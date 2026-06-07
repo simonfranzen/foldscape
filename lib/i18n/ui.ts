@@ -7,6 +7,11 @@ export interface UiDict {
   further?: { label: string };
   applications?: { label: string; lead: string };
   sound?: { label: string };
+  // Related-topics preview cards at the bottom of every story page.
+  // Optional so the six non-EN/DE locales fall back to the EN literal at the
+  // call site (`u.related?.label ?? "Related topics"`) without breaking the
+  // EN ↔ DE parity test.
+  related?: { label: string; lead: string };
   mandel: {
     bookmarks: string;
     bookmarksInfo: string;
@@ -49,6 +54,10 @@ export interface UiDict {
     ruleSummary: string;
   };
   back: string;
+  // Footer/nav label for the editorial "About" page. Optional so locales
+  // that haven't been translated yet fall back to the EN literal at the
+  // call site; EN+DE are guaranteed by the parity test.
+  about?: string;
 }
 
 const en: UiDict = {
@@ -97,12 +106,17 @@ const en: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Back to the atlas",
+  about: "About",
   further: { label: "Further reading" },
   applications: {
     label: "Where you meet it",
     lead: "How and where this technique lives in the world today.",
   },
   sound: { label: "Hear it" },
+  related: {
+    label: "Related topics",
+    lead: "Topics in the same vein.",
+  },
 };
 
 const de: UiDict = {
@@ -151,12 +165,17 @@ const de: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Zurück zum Atlas",
+  about: "Über",
   further: { label: "Weiterführend" },
   applications: {
     label: "Wo du es triffst",
     lead: "Wie und wo diese Technik heute in der Welt steckt.",
   },
   sound: { label: "Anhören" },
+  related: {
+    label: "Verwandte Themen",
+    lead: "Themen, die in dieselbe Kerbe schlagen.",
+  },
 };
 
 const es: UiDict = {
@@ -205,6 +224,7 @@ const es: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Volver al atlas",
+  about: "Acerca",
   further: { label: "Más lecturas" },
   applications: {
     label: "Dónde te lo encuentras",
@@ -259,6 +279,7 @@ const fr: UiDict = {
     ruleSummary: "B3 / S23 · toroïdal",
   },
   back: "← Retour à l'atlas",
+  about: "À propos",
   further: { label: "Pour aller plus loin" },
   applications: {
     label: "Où on la rencontre",
@@ -313,6 +334,7 @@ const it: UiDict = {
     ruleSummary: "B3 / S23 · toroidale",
   },
   back: "← Torna all'atlante",
+  about: "Chi siamo",
   further: { label: "Letture di approfondimento" },
   applications: {
     label: "Dove la incontri",
@@ -367,6 +389,7 @@ const pt: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Voltar ao atlas",
+  about: "Sobre",
   further: { label: "Leituras adicionais" },
   applications: {
     label: "Onde te encontras com isto",
@@ -421,6 +444,7 @@ const sv: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Tillbaka till atlasen",
+  about: "Om",
   further: { label: "Vidare läsning" },
   applications: {
     label: "Var du möter den",
@@ -475,6 +499,7 @@ const no: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Tilbake til atlaset",
+  about: "Om",
   further: { label: "Videre lesing" },
   applications: {
     label: "Hvor du møter den",

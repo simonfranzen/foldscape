@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Cormorant_Garamond } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { I18nProvider } from "@/lib/i18n/context";
@@ -81,11 +82,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to main content
         </a>
-        <I18nProvider>
-          <Nav />
-          <div id="main">{children}</div>
-          <Footer />
-        </I18nProvider>
+        {/* I18nProvider uses useSearchParams() to honour ?lang=<locale>; Next
+            requires that to live under a Suspense boundary so the static
+            shell can render while the client picks up the query string. */}
+        <Suspense fallback={null}>
+          <I18nProvider>
+            <Nav />
+            <div id="main">{children}</div>
+            <Footer />
+          </I18nProvider>
+        </Suspense>
       </body>
     </html>
   );

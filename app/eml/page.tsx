@@ -11,6 +11,8 @@ import { EmlVerifier } from "@/components/EmlVerifier";
 import { GardenGrid } from "@/components/GardenGrid";
 import { Info } from "@/components/Info";
 import { Reveal } from "@/components/Reveal";
+import { TopicApplications } from "@/components/TopicApplications";
+import { RelatedTopics } from "@/components/RelatedTopics";
 import { useI18n } from "@/lib/i18n/context";
 import { PAPER_URL, GITHUB_URL } from "@/components/Footer";
 import type { StationId } from "@/lib/i18n/bodies";
@@ -556,6 +558,11 @@ eml(1, eml(eml(1,z),1))
           </div>
         </div>
       </section>
+
+      <div className="px-6">
+        <TopicApplications topicId="eml" accent="text-signal-violet" />
+        <RelatedTopics topicId="eml" accent="text-signal-violet" />
+      </div>
 
       {/* Progress rail (right) */}
       <div className="fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 flex-col gap-3 md:flex">

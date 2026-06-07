@@ -93,7 +93,10 @@ export function ChaosGameBarnsleyFern({
     if (!ctx) return;
 
     let raf = 0;
-    const SPEED = 8000;
+    // Points per frame. 8000 had the fern's main silhouette in place after
+    // ~30 ms — too fast to see the IFS actually drawing. 1500 lets the stem
+    // appear first, then the pinnae unfurl over a couple of seconds.
+    const SPEED = 1500;
 
     const tick = () => {
       const W = canvas.clientWidth;

@@ -77,7 +77,10 @@ export default function ChaosGameExplorer() {
   const [restriction, setRestriction] = useState<Restriction>("none");
   const [autoMagic, setAutoMagic] = useState(true);
   const [ratio, setRatio] = useState(0.5);
-  const [speed, setSpeed] = useState(8000);
+  // Default speed: 8000 was effectively "image appears instantly", losing
+  // the IFS "drawing itself" feeling. 1500 lets the eye follow how the
+  // fractal accumulates over a few seconds. Slider still goes up to 50k.
+  const [speed, setSpeed] = useState(1500);
   const [colorId, setColorId] = useState("cyan");
   const [mode, setMode] = useState<"polygon" | "fern">("polygon");
   const [totalPoints, setTotalPoints] = useState(0);

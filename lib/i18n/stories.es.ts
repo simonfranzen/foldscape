@@ -52,7 +52,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso uno · Las reglas",
           title: "Nacimiento, supervivencia, muerte — y nada más",
-          body: "La cuadrícula es infinita, cada célula está viva o muerta, y cada una observa a sus ocho vecinas. Una célula muerta con exactamente tres vecinas vivas nace. Una célula viva con dos o tres vecinas vivas sobrevive. Cualquier otro caso —muy pocas vecinas, demasiadas, ninguna— la mata. Las cuatro demos animadas de abajo muestran cómo cada regla se dispara en una cuadrícula de cinco por cinco.",
+          body: "La cuadrícula es infinita, cada célula está viva o muerta, y cada una observa a sus ocho vecinas. Si una célula muerta se encuentra rodeada por exactamente tres vecinas vivas, se enciende; si una célula viva ya cuenta con dos o tres vecinas vivas, pasa entera al siguiente paso. Cualquier otro caso —muy pocas vecinas, demasiadas, ninguna— la mata. Las cuatro demos animadas de abajo muestran cómo cada regla se dispara en una cuadrícula de cinco por cinco.",
         },
         {
           pretitle: "Paso dos · De las reglas al movimiento",
@@ -267,7 +267,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso dos · La fórmula de Euler",
           title: "e^(iθ) = cos θ + i sin θ",
-          body: "La identidad es un caso particular de la fórmula de Euler, publicada en su Introductio in analysin infinitorum de 1748. Para cualquier número real θ, la fórmula dice que e^(iθ) — una exponencial con exponente imaginario — es igual a cos θ + i sin θ. Geométricamente: a medida que θ crece, el punto e^(iθ) recorre en sentido antihorario la circunferencia unidad del plano complejo. Multiplicar por e^(iθ) es rotar un ángulo θ. Crecimiento y rotación, las dos cosas que e e i hacen en secreto, resultan ser la misma operación vista por dos lados.",
+          body: "La identidad es lo que la fórmula de Euler devuelve para un ángulo concreto, publicada en su Introductio in analysin infinitorum de 1748. Para cualquier número real θ, la fórmula dice que e^(iθ) — una exponencial con exponente imaginario — es igual a cos θ + i sin θ. Geométricamente: a medida que θ crece, el punto e^(iθ) recorre en sentido antihorario la circunferencia unidad del plano complejo. Multiplicar por e^(iθ) es rotar un ángulo θ. Crecimiento y rotación, las dos cosas que e e i hacen en secreto, resultan ser la misma operación vista por dos lados.",
         },
         {
           pretitle: "Paso tres · Sustituye θ = π",
@@ -597,7 +597,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso dos · El teorema de Descartes",
           title: "Curvaturas encerradas en álgebra",
-          body: "Escribe la curvatura de cada círculo como k = 1/r, con una convención: si un círculo encierra a los demás (el exterior), toma su curvatura como negativa. En 1643, en una carta a la princesa Isabel de Bohemia, Descartes demostró que para cualesquiera cuatro círculos mutuamente tangentes las curvaturas satisfacen (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Resolviendo la cuadrática para la cuarta curvatura se obtiene k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Los dos signos son exactamente las dos respuestas de Apolonio: el signo + da el pequeño círculo inscrito, el signo − da el otro círculo tangente al lado opuesto.",
+          body: "Escribe la curvatura de cada círculo como k = 1/r, con una convención: si un círculo encierra a los demás (el exterior), toma su curvatura como negativa. En su correspondencia de 1643 con la princesa Isabel de Bohemia, Descartes demostró que para cualesquiera cuatro círculos mutuamente tangentes las curvaturas satisfacen (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Resolviendo la cuadrática para la cuarta curvatura se obtiene k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Los dos signos son exactamente las dos respuestas de Apolonio: el signo + da el pequeño círculo inscrito, el signo − da el otro círculo tangente al lado opuesto.",
         },
         {
           pretitle: "Paso tres · Relleno recursivo",

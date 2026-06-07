@@ -52,7 +52,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape un · Les règles",
           title: "Naissance, survie, mort — et rien d'autre",
-          body: "La grille est infinie, chaque cellule est vivante ou morte, et chaque cellule regarde ses huit voisines. Une cellule morte avec exactement trois voisines vivantes devient vivante. Une cellule vivante avec deux ou trois voisines vivantes reste vivante. Tout autre cas — trop peu de voisines, trop de voisines, aucune voisine — tue la cellule. Les quatre démos animées ci-dessous montrent chaque règle s'activer sur une grille de cinq par cinq.",
+          body: "La grille est infinie, chaque cellule est vivante ou morte, et chaque cellule regarde ses huit voisines. Si une cellule morte se trouve entourée d'exactement trois voisines vivantes, elle s'allume ; si une cellule vivante en a déjà deux ou trois autour d'elle, elle passe entière à l'étape suivante. Tout autre cas — trop peu de voisines, trop de voisines, aucune voisine — tue la cellule. Les quatre démos animées ci-dessous montrent chaque règle s'activer sur une grille de cinq par cinq.",
         },
         {
           pretitle: "Étape deux · Des règles au mouvement",
@@ -267,7 +267,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape deux · La formule d'Euler",
           title: "e^(iθ) = cos θ + i sin θ",
-          body: "L'identité est un cas particulier de la formule d'Euler, publiée dans son Introductio in analysin infinitorum de 1748. Pour tout nombre réel θ, la formule dit que e^(iθ) — une exponentielle à exposant imaginaire — égale cos θ + i sin θ. Géométriquement : à mesure que θ croît, le point e^(iθ) parcourt le cercle unité dans le sens trigonométrique du plan complexe. Multiplier par e^(iθ) est une rotation d'angle θ. La croissance et la rotation, les deux choses que e et i font secrètement, se révèlent être la même opération vue sous deux angles.",
+          body: "L'identité, c'est ce que rend la formule d'Euler pour un angle bien précis, publiée dans son Introductio in analysin infinitorum de 1748. Pour tout nombre réel θ, la formule dit que e^(iθ) — une exponentielle à exposant imaginaire — égale cos θ + i sin θ. Géométriquement : à mesure que θ croît, le point e^(iθ) parcourt le cercle unité dans le sens trigonométrique du plan complexe. Multiplier par e^(iθ) est une rotation d'angle θ. La croissance et la rotation, les deux choses que e et i font secrètement, se révèlent être la même opération vue sous deux angles.",
         },
         {
           pretitle: "Étape trois · Substituer θ = π",
@@ -597,7 +597,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape deux · Le théorème de Descartes",
           title: "Courbures, verrouillées par l'algèbre",
-          body: "Écris la courbure de chaque cercle comme k = 1/r, avec une convention : si un cercle enferme les autres (le grand extérieur), prends sa courbure négative. En 1643, dans une lettre à la princesse Élisabeth de Bohême, Descartes a prouvé que pour quatre cercles mutuellement tangents quelconques, les courbures satisfont (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Résoudre la quadratique pour la quatrième courbure donne k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Les deux signes sont exactement les deux réponses d'Apollonius : le signe + donne le petit cercle inscrit, le signe − donne l'autre cercle tangent de l'autre côté.",
+          body: "Écris la courbure de chaque cercle comme k = 1/r, avec une convention : si un cercle enferme les autres (le grand extérieur), prends sa courbure négative. Dans sa correspondance de 1643 avec la princesse Élisabeth de Bohême, Descartes a prouvé que pour quatre cercles mutuellement tangents quelconques, les courbures satisfont (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Résoudre la quadratique pour la quatrième courbure donne k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Les deux signes sont exactement les deux réponses d'Apollonius : le signe + donne le petit cercle inscrit, le signe − donne l'autre cercle tangent de l'autre côté.",
         },
         {
           pretitle: "Étape trois · Remplissage récursif",

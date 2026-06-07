@@ -48,6 +48,8 @@ For topic-specific prose, the **inline `RICH_STORY: Record<Locale, RichStory>` p
 
 `AtlasDict` allows optional fields so newer keys only need EN+DE filled in; other locales fall through via `??`. Don't break this — make new i18n fields optional on the interface unless you fill all 8.
 
+A `?lang=<locale>` query parameter overrides browser/localStorage detection (short `de` and IETF `de-DE` both resolve via `parseLangParam` in `lib/i18n/types.ts`); invalid values fall back to detection. When the user picks a locale in `LocaleSwitcher`, `I18nProvider.setLocale` mirrors it into the URL via `router.replace(..., { scroll: false })` so links stay shareable. `I18nProvider` reads `useSearchParams()` and therefore sits under a `<Suspense>` boundary in `app/layout.tsx`.
+
 ### Visual identity layers
 
 - **Atlas constellation** (`components/TopicConstellation.tsx`) — landing-page navigation. Default sky shows only hubs (12 stars); category clusters expand on click. Pure SVG, deterministic hash-seeded layout (no force sim, no zoom). Edges are quadratic Beziers; labels carry an ink-950 stroke halo via `paint-order: stroke fill` so they read on top of lines. Mobile (<720px) falls back to a card list inside the same component.

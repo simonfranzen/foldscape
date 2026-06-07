@@ -125,7 +125,7 @@ const en: RichStory = {
   ksLabels: {
     kHeading: "K — the constant function",
     sHeading: "S — the substitution function",
-    kBody: "K takes two arguments and returns the first. The second is discarded.",
+    kBody: "Hand K any two values and it keeps the first while dropping the second on the floor.",
     sBody:
       "S takes three arguments and rewrites them as x z (y z): both x and y are applied to the shared input z.",
     kResult: "K (x, y) = x",
@@ -217,7 +217,7 @@ const de: RichStory = {
   ksLabels: {
     kHeading: "K — die Konstantenfunktion",
     sHeading: "S — die Substitutionsfunktion",
-    kBody: "K nimmt zwei Argumente und gibt das erste zurück. Das zweite wird verworfen.",
+    kBody: "Gibst du K zwei Werte, behält es den ersten und lässt den zweiten einfach fallen.",
     sBody:
       "S nimmt drei Argumente und schreibt sie als x z (y z) um: x und y werden beide auf den geteilten Wert z angewendet.",
     kResult: "K (x, y) = x",
@@ -308,7 +308,7 @@ const es: RichStory = {
   ksLabels: {
     kHeading: "K — la función constante",
     sHeading: "S — la función de sustitución",
-    kBody: "K toma dos argumentos y devuelve el primero. El segundo se descarta.",
+    kBody: "Dale a K dos valores cualesquiera: se queda con el primero y deja caer el segundo.",
     sBody:
       "S toma tres argumentos y los reescribe como x z (y z): x e y se aplican al valor compartido z.",
     kResult: "K (x, y) = x",
@@ -400,7 +400,7 @@ const fr: RichStory = {
   ksLabels: {
     kHeading: "K — la fonction constante",
     sHeading: "S — la fonction de substitution",
-    kBody: "K prend deux arguments et renvoie le premier. Le second est jeté.",
+    kBody: "Donne à K deux valeurs : il garde la première et laisse tomber la seconde.",
     sBody:
       "S prend trois arguments et les réécrit en x z (y z) : x et y sont appliqués à l'entrée partagée z.",
     kResult: "K (x, y) = x",
@@ -491,7 +491,7 @@ const it: RichStory = {
   ksLabels: {
     kHeading: "K — la funzione costante",
     sHeading: "S — la funzione di sostituzione",
-    kBody: "K prende due argomenti e restituisce il primo. Il secondo viene scartato.",
+    kBody: "Dai a K due valori qualsiasi: tiene il primo e lascia cadere il secondo.",
     sBody:
       "S prende tre argomenti e li riscrive come x z (y z): x e y si applicano entrambi al valore condiviso z.",
     kResult: "K (x, y) = x",
@@ -582,7 +582,7 @@ const pt: RichStory = {
   ksLabels: {
     kHeading: "K — a função constante",
     sHeading: "S — a função de substituição",
-    kBody: "K pega em dois argumentos e devolve o primeiro. O segundo é descartado.",
+    kBody: "Dá a K dois valores quaisquer: fica com o primeiro e deixa cair o segundo.",
     sBody:
       "S pega em três argumentos e reescreve-os como x z (y z): x e y são ambos aplicados ao valor partilhado z.",
     kResult: "K (x, y) = x",
@@ -673,7 +673,7 @@ const sv: RichStory = {
   ksLabels: {
     kHeading: "K — den konstanta funktionen",
     sHeading: "S — substitutionsfunktionen",
-    kBody: "K tar två argument och returnerar det första. Det andra kastas bort.",
+    kBody: "Ge K två värden: det behåller det första och låter det andra falla bort.",
     sBody:
       "S tar tre argument och skriver om dem som x z (y z): både x och y tillämpas på det delade värdet z.",
     kResult: "K (x, y) = x",
@@ -764,7 +764,7 @@ const no: RichStory = {
   ksLabels: {
     kHeading: "K — den konstante funksjonen",
     sHeading: "S — substitusjonsfunksjonen",
-    kBody: "K tar to argumenter og returnerer det første. Det andre kastes.",
+    kBody: "Gi K to verdier: det beholder det første og lar det andre falle bort.",
     sBody:
       "S tar tre argumenter og skriver dem om som x z (y z): både x og y anvendes på den delte verdien z.",
     kResult: "K (x, y) = x",

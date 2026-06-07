@@ -52,7 +52,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Reglene",
           title: "Fødsel, overlevelse, død — og ingenting annet",
-          body: "Rutenettet er uendelig, hver celle er enten levende eller død, og hver celle ser på sine åtte naboer. En død celle med nøyaktig tre levende naboer blir levende. En levende celle med to eller tre levende naboer holder seg i live. Ethvert annet tilfelle — for få naboer, for mange naboer, ingen naboer — dreper cellen. De fire animerte demoene nedenfor viser hver regel utløst på et fem-ganger-fem-rutenett.",
+          body: "Rutenettet er uendelig, hver celle er enten levende eller død, og hver celle ser på sine åtte naboer. Om en død celle er omgitt av nøyaktig tre levende naboer, tennes den; har en levende celle allerede to eller tre rundt seg, går den hel videre til neste trinn. Ethvert annet tilfelle — for få naboer, for mange naboer, ingen naboer — dreper cellen. De fire animerte demoene nedenfor viser hver regel utløst på et fem-ganger-fem-rutenett.",
         },
         {
           pretitle: "Trinn to · Fra regler til bevegelse",
@@ -267,7 +267,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Eulers formel",
           title: "e^(iθ) = cos θ + i sin θ",
-          body: "Identiteten er et spesialtilfelle av Eulers formel, publisert i hans Introductio in analysin infinitorum fra 1748. For ethvert reelt tall θ sier formelen at e^(iθ) — en eksponential med en imaginær eksponent — er lik cos θ + i sin θ. Geometrisk: når θ vokser, vandrer punktet e^(iθ) mot klokken rundt enhetssirkelen i det komplekse planet. Å multiplisere med e^(iθ) er rotasjon med vinkelen θ. Vekst og rotasjon, de to tingene e og i i hemmelighet gjør, viser seg å være den samme operasjonen sett fra to sider.",
+          body: "Identiteten er det Eulers formel gir tilbake ved én bestemt vinkel, publisert i hans Introductio in analysin infinitorum fra 1748. For ethvert reelt tall θ sier formelen at e^(iθ) — en eksponential med en imaginær eksponent — er lik cos θ + i sin θ. Geometrisk: når θ vokser, vandrer punktet e^(iθ) mot klokken rundt enhetssirkelen i det komplekse planet. Å multiplisere med e^(iθ) er rotasjon med vinkelen θ. Vekst og rotasjon, de to tingene e og i i hemmelighet gjør, viser seg å være den samme operasjonen sett fra to sider.",
         },
         {
           pretitle: "Trinn tre · Sett inn θ = π",
@@ -597,7 +597,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Descartes' teorem",
           title: "Kurvaturer, låst i algebra",
-          body: "Skriv hver sirkels kurvatur som k = 1/r, med én konvensjon: hvis en sirkel omslutter de andre (den ytre), tar du kurvaturen som negativ. I 1643, i et brev til prinsesse Elisabeth av Böhmen, beviste Descartes at for fire gjensidig tangerende sirkler tilfredsstiller kurvaturene (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Å løse den kvadratiske for den fjerde kurvaturen gir k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). De to fortegnene er nøyaktig Apollonios' to svar: +-tegnet gir den lille innskrevne sirkelen, −-tegnet gir den andre tangerende sirkelen på motsatt side.",
+          body: "Skriv hver sirkels kurvatur som k = 1/r, med én konvensjon: hvis en sirkel omslutter de andre (den ytre), tar du kurvaturen som negativ. I sin korrespondanse i 1643 med prinsesse Elisabeth av Böhmen viste Descartes at for fire gjensidig tangerende sirkler tilfredsstiller kurvaturene (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Å løse den kvadratiske for den fjerde kurvaturen gir k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). De to fortegnene er nøyaktig Apollonios' to svar: +-tegnet gir den lille innskrevne sirkelen, −-tegnet gir den andre tangerende sirkelen på motsatt side.",
         },
         {
           pretitle: "Trinn tre · Rekursiv fylling",

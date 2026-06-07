@@ -52,7 +52,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg ett · Reglerna",
           title: "Födelse, överlevnad, död — och inget annat",
-          body: "Rutnätet är oändligt, varje cell är antingen levande eller död, och varje cell tittar på sina åtta grannar. En död cell med exakt tre levande grannar blir levande. En levande cell med två eller tre levande grannar förblir levande. Varje annat fall — för få grannar, för många grannar, inga grannar — dödar cellen. De fyra animerade demonstrationerna nedan visar varje regel utlösas på ett fem-gånger-fem-rutnät.",
+          body: "Rutnätet är oändligt, varje cell är antingen levande eller död, och varje cell tittar på sina åtta grannar. Om en död cell omges av exakt tre levande grannar tänds den; om en levande cell redan har två eller tre runt sig går den hel vidare till nästa steg. Varje annat fall — för få grannar, för många grannar, inga grannar — dödar cellen. De fyra animerade demonstrationerna nedan visar varje regel utlösas på ett fem-gånger-fem-rutnät.",
         },
         {
           pretitle: "Steg två · Från regler till rörelse",
@@ -267,7 +267,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg två · Eulers formel",
           title: "e^(iθ) = cos θ + i sin θ",
-          body: "Identiteten är ett specialfall av Eulers formel, publicerad i hans Introductio in analysin infinitorum från 1748. För varje reellt tal θ säger formeln att e^(iθ) — en exponentialfunktion med en imaginär exponent — är lika med cos θ + i sin θ. Geometriskt: när θ växer vandrar punkten e^(iθ) moturs runt enhetscirkeln i det komplexa planet. Att multiplicera med e^(iθ) är rotation med vinkeln θ. Tillväxt och rotation, de två saker e och i hemligen gör, visar sig vara samma operation sedd från två sidor.",
+          body: "Identiteten är vad Eulers formel ger tillbaka vid en enda vald vinkel, publicerad i hans Introductio in analysin infinitorum från 1748. För varje reellt tal θ säger formeln att e^(iθ) — en exponentialfunktion med en imaginär exponent — är lika med cos θ + i sin θ. Geometriskt: när θ växer vandrar punkten e^(iθ) moturs runt enhetscirkeln i det komplexa planet. Att multiplicera med e^(iθ) är rotation med vinkeln θ. Tillväxt och rotation, de två saker e och i hemligen gör, visar sig vara samma operation sedd från två sidor.",
         },
         {
           pretitle: "Steg tre · Sätt θ = π",
@@ -597,7 +597,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg två · Descartes sats",
           title: "Krökningar, låsta i algebra",
-          body: "Skriv varje cirkels krökning som k = 1/r, med en konvention: om en cirkel omsluter de andra (den yttre), ta dess krökning negativ. År 1643, i ett brev till prinsessan Elisabeth av Böhmen, bevisade Descartes att för fyra ömsesidigt tangenta cirklar uppfyller krökningarna (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Att lösa andragradsekvationen för den fjärde krökningen ger k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). De två tecknen är precis Apollonius två svar: +-tecknet ger den lilla inskrivna cirkeln, −-tecknet ger den andra tangenta cirkeln på motsatt sida.",
+          body: "Skriv varje cirkels krökning som k = 1/r, med en konvention: om en cirkel omsluter de andra (den yttre), ta dess krökning negativ. I sin korrespondens 1643 med prinsessan Elisabeth av Böhmen visade Descartes att för fyra ömsesidigt tangenta cirklar uppfyller krökningarna (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Att lösa andragradsekvationen för den fjärde krökningen ger k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). De två tecknen är precis Apollonius två svar: +-tecknet ger den lilla inskrivna cirkeln, −-tecknet ger den andra tangenta cirkeln på motsatt sida.",
         },
         {
           pretitle: "Steg tre · Rekursiv fyllning",

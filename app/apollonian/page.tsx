@@ -100,7 +100,7 @@ const en: RichStory = {
     {
       pretitle: "Section 02 · Descartes' theorem",
       title: "(k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)",
-      body: "Write each circle's curvature as k = 1/r, taking the outer enclosing circle's k negative. In 1643, in a letter to Princess Elisabeth of Bohemia, Descartes proved that any four mutually tangent circles satisfy a single quadratic identity. Solving it for the unknown fourth gives k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). The two signs are Apollonius' two answers: + drops the small inscribed circle into the gap, − gives the other tangent circle on the opposite side of the triple.",
+      body: "Write each circle's curvature as k = 1/r, taking the outer enclosing circle's k negative. Descartes worked this out in his 1643 correspondence with Princess Elisabeth of Bohemia, showing that any four mutually tangent circles satisfy a single quadratic identity. Solving it for the unknown fourth gives k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). The two signs are Apollonius' two answers: + drops the small inscribed circle into the gap, − gives the other tangent circle on the opposite side of the triple.",
     },
     {
       pretitle: "Section 03 · Recursive filling",
@@ -200,7 +200,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Descartes' Satz",
       title: "(k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)",
-      body: "Schreib jede Krümmung als k = 1/r, mit einer Konvention: die umschließende Außenkreis-Krümmung ist negativ. 1643 bewies Descartes in einem Brief an Prinzessin Elisabeth von Böhmen, dass für vier paarweise tangentiale Kreise eine einzige quadratische Identität gilt. Auflösen nach der vierten ergibt k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Die zwei Vorzeichen sind Apollonius' zwei Antworten: + setzt den kleinen eingeschriebenen Kreis in die Lücke, − liefert den anderen Tangentialkreis auf der gegenüberliegenden Seite.",
+      body: "Schreib jede Krümmung als k = 1/r, mit einer Konvention: die umschließende Außenkreis-Krümmung ist negativ. In seiner Korrespondenz von 1643 mit Prinzessin Elisabeth von Böhmen zeigte Descartes, dass für vier paarweise tangentiale Kreise eine einzige quadratische Identität gilt. Auflösen nach der vierten ergibt k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Die zwei Vorzeichen sind Apollonius' zwei Antworten: + setzt den kleinen eingeschriebenen Kreis in die Lücke, − liefert den anderen Tangentialkreis auf der gegenüberliegenden Seite.",
     },
     {
       pretitle: "Abschnitt 03 · Rekursives Füllen",
@@ -300,7 +300,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 02 · El teorema de Descartes",
       title: "(k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)",
-      body: "Escribe la curvatura de cada círculo como k = 1/r, tomando negativa la del exterior. En 1643, en una carta a la princesa Isabel de Bohemia, Descartes demostró que cuatro círculos mutuamente tangentes cumplen una sola identidad cuadrática. Despejando la cuarta queda k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Los dos signos son las dos respuestas de Apolonio: + mete el círculo pequeño inscrito, − da el otro círculo tangente al lado opuesto del trío.",
+      body: "Escribe la curvatura de cada círculo como k = 1/r, tomando negativa la del exterior. En su correspondencia de 1643 con la princesa Isabel de Bohemia, Descartes demostró que cuatro círculos mutuamente tangentes cumplen una sola identidad cuadrática. Despejando la cuarta queda k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Los dos signos son las dos respuestas de Apolonio: + mete el círculo pequeño inscrito, − da el otro círculo tangente al lado opuesto del trío.",
     },
     {
       pretitle: "Sección 03 · Relleno recursivo",
@@ -400,7 +400,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 02 · Le théorème de Descartes",
       title: "(k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)",
-      body: "Écris chaque courbure k = 1/r, en prenant négative celle du cercle qui enferme. En 1643, dans une lettre à la princesse Élisabeth de Bohême, Descartes a démontré que quatre cercles mutuellement tangents vérifient une seule identité quadratique. Résolue pour la quatrième, elle donne k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Les deux signes sont les deux réponses d'Apollonios : + dépose le petit cercle inscrit dans le vide, − donne l'autre cercle tangent du côté opposé au triplet.",
+      body: "Écris chaque courbure k = 1/r, en prenant négative celle du cercle qui enferme. Dans sa correspondance de 1643 avec la princesse Élisabeth de Bohême, Descartes a démontré que quatre cercles mutuellement tangents vérifient une seule identité quadratique. Résolue pour la quatrième, elle donne k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Les deux signes sont les deux réponses d'Apollonios : + dépose le petit cercle inscrit dans le vide, − donne l'autre cercle tangent du côté opposé au triplet.",
     },
     {
       pretitle: "Section 03 · Remplissage récursif",
@@ -500,7 +500,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 02 · Il teorema di Descartes",
       title: "(k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)",
-      body: "Scrivi ogni curvatura come k = 1/r, prendendo negativa quella del cerchio che racchiude. Nel 1643, in una lettera alla principessa Elisabetta di Boemia, Descartes dimostrò che quattro cerchi mutuamente tangenti soddisfano una sola identità quadratica. Risolvendola per la quarta si ottiene k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). I due segni sono le due risposte di Apollonio: + lascia cadere il piccolo cerchio inscritto, − dà l'altro cerchio tangente sul lato opposto del terzetto.",
+      body: "Scrivi ogni curvatura come k = 1/r, prendendo negativa quella del cerchio che racchiude. Nella sua corrispondenza del 1643 con la principessa Elisabetta di Boemia, Descartes dimostrò che quattro cerchi mutuamente tangenti soddisfano una sola identità quadratica. Risolvendola per la quarta si ottiene k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). I due segni sono le due risposte di Apollonio: + lascia cadere il piccolo cerchio inscritto, − dà l'altro cerchio tangente sul lato opposto del terzetto.",
     },
     {
       pretitle: "Sezione 03 · Riempimento ricorsivo",
@@ -600,7 +600,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 02 · O teorema de Descartes",
       title: "(k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)",
-      body: "Escreve cada curvatura k = 1/r, com a do círculo que encerra a tomar negativa. Em 1643, numa carta à princesa Isabel da Boémia, Descartes provou que quatro círculos mutuamente tangentes satisfazem uma única identidade quadrática. Resolvendo para a quarta dá k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Os dois sinais são as duas respostas de Apolónio: + atira o pequeno círculo inscrito para o vazio, − dá o outro círculo tangente do lado oposto do trio.",
+      body: "Escreve cada curvatura k = 1/r, com a do círculo que encerra a tomar negativa. Na sua correspondência de 1643 com a princesa Isabel da Boémia, Descartes provou que quatro círculos mutuamente tangentes satisfazem uma única identidade quadrática. Resolvendo para a quarta dá k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Os dois sinais são as duas respostas de Apolónio: + atira o pequeno círculo inscrito para o vazio, − dá o outro círculo tangente do lado oposto do trio.",
     },
     {
       pretitle: "Secção 03 · Enchimento recursivo",
@@ -700,7 +700,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 02 · Descartes sats",
       title: "(k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)",
-      body: "Skriv varje krökning som k = 1/r, med den omslutande cirkelns krökning negativ. År 1643, i ett brev till prinsessan Elisabeth av Böhmen, bevisade Descartes att fyra ömsesidigt tangerande cirklar uppfyller en enda kvadratisk identitet. Löst för den fjärde ger den k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). De två tecknen är Apollonios två svar: + lägger den lilla inskrivna i tomrummet, − ger den andra tangerande cirkeln på trippelns motsatta sida.",
+      body: "Skriv varje krökning som k = 1/r, med den omslutande cirkelns krökning negativ. I sin korrespondens 1643 med prinsessan Elisabeth av Böhmen visade Descartes att fyra ömsesidigt tangerande cirklar uppfyller en enda kvadratisk identitet. Löst för den fjärde ger den k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). De två tecknen är Apollonios två svar: + lägger den lilla inskrivna i tomrummet, − ger den andra tangerande cirkeln på trippelns motsatta sida.",
     },
     {
       pretitle: "Avsnitt 03 · Rekursiv fyllning",
@@ -800,7 +800,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Descartes' teorem",
       title: "(k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)",
-      body: "Skriv hver krumning som k = 1/r, med den omsluttende sirkelens krumning negativ. I 1643, i et brev til prinsesse Elisabeth av Böhmen, beviste Descartes at fire gjensidig tangente sirkler oppfyller én enkelt kvadratisk identitet. Løst for den fjerde gir den k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). De to tegnene er Apollonios' to svar: + slipper den lille innskrevne i tomrommet, − gir den andre tangente sirkelen på motsatt side av trippelen.",
+      body: "Skriv hver krumning som k = 1/r, med den omsluttende sirkelens krumning negativ. I sin korrespondanse i 1643 med prinsesse Elisabeth av Böhmen viste Descartes at fire gjensidig tangente sirkler oppfyller én enkelt kvadratisk identitet. Løst for den fjerde gir den k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). De to tegnene er Apollonios' to svar: + slipper den lille innskrevne i tomrommet, − gir den andre tangente sirkelen på motsatt side av trippelen.",
     },
     {
       pretitle: "Avsnitt 03 · Rekursiv fylling",

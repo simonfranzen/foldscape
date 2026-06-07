@@ -134,7 +134,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step one · The rules",
           title: "Birth, survival, death — and nothing else",
-          body: "The grid is infinite, every cell is either alive or dead, and every cell looks at its eight neighbours. A dead cell with exactly three live neighbours becomes alive. A live cell with two or three live neighbours stays alive. Any other case — too few neighbours, too many neighbours, no neighbours — kills the cell. The four animated demos below show each rule firing on a five-by-five grid.",
+          body: "The grid is infinite, every cell is either alive or dead, and every cell looks at its eight neighbours. If a dead cell finds exactly three living neighbours around it, it flips on; if a living cell already has two or three live neighbours, it carries over to the next step. Any other case — too few neighbours, too many neighbours, no neighbours — kills the cell. The four animated demos below show each rule firing on a five-by-five grid.",
         },
         {
           pretitle: "Step two · From rules to motion",
@@ -349,7 +349,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step two · Euler's formula",
           title: "e^(iθ) = cos θ + i sin θ",
-          body: "The identity is a special case of Euler's formula, published in his 1748 Introductio in analysin infinitorum. For any real number θ, the formula says that e^(iθ) — an exponential with an imaginary exponent — equals cos θ + i sin θ. Geometrically: as θ grows, the point e^(iθ) walks counter-clockwise around the unit circle in the complex plane. Multiplying by e^(iθ) is rotation by angle θ. Growth and rotation, the two things e and i secretly do, turn out to be the same operation seen from two sides.",
+          body: "The identity is what Euler's formula gives back at one chosen angle, published in his 1748 Introductio in analysin infinitorum. For any real number θ, the formula says that e^(iθ) — an exponential with an imaginary exponent — equals cos θ + i sin θ. Geometrically: as θ grows, the point e^(iθ) walks counter-clockwise around the unit circle in the complex plane. Multiplying by e^(iθ) is rotation by angle θ. Growth and rotation, the two things e and i secretly do, turn out to be the same operation seen from two sides.",
         },
         {
           pretitle: "Step three · Substitute θ = π",
@@ -679,7 +679,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step two · Descartes' theorem",
           title: "Curvatures, locked in algebra",
-          body: "Write each circle's curvature as k = 1/r, with one convention: if a circle encloses the others (the outer one), take its curvature negative. In 1643, in a letter to Princess Elisabeth of Bohemia, Descartes proved that for any four mutually tangent circles the curvatures satisfy (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Solving the quadratic for the fourth curvature gives k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). The two signs are exactly Apollonius' two answers: the + sign yields the small inscribed circle, the − sign yields the other tangent circle on the opposite side.",
+          body: "Write each circle's curvature as k = 1/r, with one convention: if a circle encloses the others (the outer one), take its curvature negative. Writing to his correspondent Princess Elisabeth of Bohemia in 1643, Descartes proved that for any four mutually tangent circles the curvatures satisfy (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Solving the quadratic for the fourth curvature gives k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). The two signs are exactly Apollonius' two answers: the + sign yields the small inscribed circle, the − sign yields the other tangent circle on the opposite side.",
         },
         {
           pretitle: "Step three · Recursive filling",
@@ -834,7 +834,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step three · Why s is missing",
           title: "Different in the n-th digit, every time",
-          body: "By construction s differs from r₁ in the first decimal place, from r₂ in the second, from r₃ in the third — from rₙ in the n-th, for every n. So s cannot equal any rₙ on the list. Yet s is a perfectly good real number in [0, 1]. The list was supposed to contain every such real, and here is one it missed. The assumption collapses: no listing of the reals can be complete. The reals between 0 and 1 are uncountable.",
+          body: "By construction s differs from r₁ in the first decimal place, from r₂ in the second, from r₃ in the third — from rₙ in the n-th, for every n. So s cannot equal any rₙ on the list. Yet s is a perfectly good real number in [0, 1]. The list was supposed to contain every such real, and here is one it missed. The assumption collapses: no enumeration of the reals can ever be complete. Even the sliver [0, 1] holds strictly more numbers than ℕ can index.",
         },
         {
           pretitle: "Step four · A new kind of infinity",
@@ -1475,7 +1475,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Die Regeln",
           title: "Geburt, Überleben, Tod — und sonst nichts",
-          body: "Das Gitter ist unendlich, jede Zelle ist entweder lebendig oder tot, und jede Zelle schaut auf ihre acht Nachbarn. Eine tote Zelle mit genau drei lebenden Nachbarn wird lebendig. Eine lebende Zelle mit zwei oder drei lebenden Nachbarn bleibt lebendig. Jeder andere Fall — zu wenige Nachbarn, zu viele Nachbarn, keine Nachbarn — tötet die Zelle. Die vier animierten Demos unten zeigen, wie jede Regel auf einem 5×5-Gitter zündet.",
+          body: "Das Gitter ist unendlich, jede Zelle ist entweder lebendig oder tot, und jede Zelle schaut auf ihre acht Nachbarn. Findet eine tote Zelle ringsum genau drei lebende Nachbarn, geht sie an; hat eine lebende Zelle zwei oder drei lebende Nachbarn, hält sie sich bis zur nächsten Runde. Jeder andere Fall — zu wenige Nachbarn, zu viele Nachbarn, keine Nachbarn — tötet die Zelle. Die vier animierten Demos unten zeigen, wie jede Regel auf einem 5×5-Gitter zündet.",
         },
         {
           pretitle: "Schritt zwei · Von Regeln zur Bewegung",

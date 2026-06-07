@@ -30,7 +30,10 @@ export function GaltonInlineSim({
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [rows, setRows] = useState(14);
-  const [spawnRate, setSpawnRate] = useState(4);
+  // Default + max trimmed: spawn=4 with rows=22 was ~250 balls/s on screen
+  // simultaneously, which choked weaker laptops. 1 by default lets you watch
+  // individual paths; 6 is the new fast end.
+  const [spawnRate, setSpawnRate] = useState(1);
   const [resetTick, setResetTick] = useState(0);
   const [landed, setLanded] = useState(0);
 
@@ -60,6 +63,12 @@ export function GaltonInlineSim({
     let balls: Ball[] = [];
     let landedLocal = 0;
     let lastReport = 0;
+    // Sub-frame-rate fall: at 60fps a one-row-per-frame ball clears N=22 rows in
+    // ~0.37s — too fast to follow a single path. Stepping every 4th frame slows
+    // each ball to 25% speed without touching spawn rate or visual style.
+    // Do NOT "optimise" this gate away; the integer grid renders identically.
+    const STEP_EVERY = 4;
+    let frame = 0;
 
     const draw = () => {
       const cfg = paramsRef.current;
@@ -103,24 +112,27 @@ export function GaltonInlineSim({
         ctx.stroke();
       }
 
-      // spawn + step balls
-      for (let i = 0; i < cfg.spawnRate; i++) {
-        balls.push({ x: 0, y: 0, done: false, bin: 0 });
-      }
-      for (const b of balls) {
-        if (b.done) continue;
-        if (b.y < rows) {
-          const goRight = Math.random() < 0.5;
-          b.y++;
-          b.x += goRight ? 0.5 : -0.5;
-          if (b.y === rows) {
-            b.done = true;
-            let bin = Math.round(b.x + rows / 2);
-            if (bin < 0) bin = 0;
-            else if (bin > rows) bin = rows;
-            b.bin = bin;
-            histRef.current[bin]++;
-            landedLocal++;
+      // spawn + step balls — physics gated to every 4th frame (see STEP_EVERY)
+      frame++;
+      if (frame % STEP_EVERY === 0) {
+        for (let i = 0; i < cfg.spawnRate; i++) {
+          balls.push({ x: 0, y: 0, done: false, bin: 0 });
+        }
+        for (const b of balls) {
+          if (b.done) continue;
+          if (b.y < rows) {
+            const goRight = Math.random() < 0.5;
+            b.y++;
+            b.x += goRight ? 0.5 : -0.5;
+            if (b.y === rows) {
+              b.done = true;
+              let bin = Math.round(b.x + rows / 2);
+              if (bin < 0) bin = 0;
+              else if (bin > rows) bin = rows;
+              b.bin = bin;
+              histRef.current[bin]++;
+              landedLocal++;
+            }
           }
         }
       }
@@ -224,7 +236,7 @@ export function GaltonInlineSim({
           <input
             type="range"
             min={1}
-            max={16}
+            max={6}
             step={1}
             value={spawnRate}
             onChange={(e) => setSpawnRate(parseInt(e.target.value))}

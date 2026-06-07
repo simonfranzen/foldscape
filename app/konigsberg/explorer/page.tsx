@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 
 // --------------------------------------------------------------------------
 // Königsberg Bridges Explorer
@@ -35,9 +36,10 @@ interface VertexDef {
   // Canvas coords (logical, in 800x500 space — we map to actual pixels).
   x: number;
   y: number;
-  label: string;
   // Rough shape: rectangle (banks) or rounded blob (islands)
   shape: "bank-top" | "bank-bottom" | "island";
+  // Sublabel kind so locale dict can supply the right translation per vertex.
+  sublabel: "north-bank" | "south-bank" | "kneiphof" | "lomse";
 }
 
 interface BridgeDef {
@@ -54,10 +56,10 @@ interface BridgeDef {
 }
 
 const VERTICES: VertexDef[] = [
-  { id: "A", x: 400, y: 70, label: "A — north bank", shape: "bank-top" },
-  { id: "B", x: 270, y: 250, label: "B — Kneiphof", shape: "island" },
-  { id: "C", x: 530, y: 250, label: "C — Lomse", shape: "island" },
-  { id: "D", x: 400, y: 430, label: "D — south bank", shape: "bank-bottom" },
+  { id: "A", x: 400, y: 70, shape: "bank-top", sublabel: "north-bank" },
+  { id: "B", x: 270, y: 250, shape: "island", sublabel: "kneiphof" },
+  { id: "C", x: 530, y: 250, shape: "island", sublabel: "lomse" },
+  { id: "D", x: 400, y: 430, shape: "bank-bottom", sublabel: "south-bank" },
 ];
 
 // The seven historical bridges, with the canonical multiplicities (A-B: 2,
@@ -87,6 +89,470 @@ const ORIGINAL_IDS = BRIDGES.filter((b) => b.original).map((b) => b.id);
 // Logical canvas size — we'll map to device pixels in the render.
 const CANVAS_W = 800;
 const CANVAS_H = 500;
+
+// --------------------------------------------------------------------------
+// Per-locale strings for this explorer. Kept inline so the multi-locale
+// prose lives next to the explorer it serves and doesn't fatten the shared
+// i18n bundles.
+// --------------------------------------------------------------------------
+
+type RichExplorer = {
+  // Top status bar
+  bridgeWalkPrefix: string; // shown as "<prefix> <vertex letter>"
+  statusNo: string;
+  statusCircuit: string;
+  statusPath: string;
+  // Status / legend grid
+  walkLabel: string;
+  walkProgress: (visited: number, total: number) => string;
+  walkComplete: string;
+  parityLabel: string;
+  paritySubDisconnected: string;
+  paritySubOdd: (count: number) => string;
+  paritySubZero: string;
+  paritySubEnds: (a: string, b: string) => string;
+  legendLabel: string;
+  legendHint: string;
+  // Stuck message
+  stuckLabel: string;
+  stuckHead: (v: string) => string;
+  stuckReasonNone: (oddCount: number) => string;
+  stuckReasonOther: string;
+  // Sidebar — start picker
+  startAt: string;
+  currentlyAtPrefix: string; // shown as "<prefix> <vertex letter>"
+  // Sidebar — degrees
+  vertexDegrees: string;
+  odd: string;
+  even: string;
+  degreeFootnote: string;
+  // Sidebar — bridges
+  bridges: string;
+  originalOn: string;
+  originalOff: string;
+  extraOn: string;
+  extraOff: string;
+  bridgesFootnote: string;
+  // Sidebar — actions
+  resetWalk: string;
+  autoEulerian: string;
+  autoNotEulerian: string;
+  autoHintEulerian: string;
+  autoHintNotEulerian: string;
+  // Sidebar — footer
+  storyBack: string;
+  // Canvas-drawn labels
+  vertexNorthBank: string;
+  vertexSouthBank: string;
+  vertexKneiphof: string;
+  vertexLomse: string;
+  deg: string;
+};
+
+const EXPLORER: Record<Locale, RichExplorer> = {
+  en: {
+    bridgeWalkPrefix: "Bridge walk · currently at",
+    statusNo: "Eulerian: no",
+    statusCircuit: "Eulerian circuit",
+    statusPath: "Eulerian path",
+    walkLabel: "Walk",
+    walkProgress: (v, t) => `${v} / ${t} bridges crossed`,
+    walkComplete: "Complete walk — every bridge used exactly once.",
+    parityLabel: "Parity",
+    paritySubDisconnected: "Graph is disconnected",
+    paritySubOdd: (n) => `${n} odd-degree vertices`,
+    paritySubZero: "0 odd vertices — closed walk possible",
+    paritySubEnds: (a, b) => `start at ${a}, end at ${b}`,
+    legendLabel: "Legend",
+    legendHint:
+      "Click an amber bridge from your current vertex. Greyed dashed bridges are inactive.",
+    stuckLabel: "Stuck!",
+    stuckHead: (v) => `No unvisited bridge leaves ${v}. The walk cannot continue.`,
+    stuckReasonNone: (n) =>
+      `This graph has ${n} odd-degree vertices — Euler proved no Eulerian path can exist.`,
+    stuckReasonOther: "Try a different starting vertex or change the bridge set.",
+    startAt: "Start at",
+    currentlyAtPrefix: "Currently at:",
+    vertexDegrees: "Vertex degrees",
+    odd: "odd",
+    even: "even",
+    degreeFootnote:
+      "Eulerian path ⇔ at most two vertices have odd degree (and the graph is connected).",
+    bridges: "Bridges",
+    originalOn: "original ✓",
+    originalOff: "original ✗",
+    extraOn: "extra ✓",
+    extraOff: "extra ✗",
+    bridgesFootnote:
+      "The seven historical bridges are on by default. Toggle them to see how the parity argument shifts. The Honey Bridge (BC) was built later — adding it changes everything.",
+    resetWalk: "Reset walk",
+    autoEulerian: "Auto-walk (Hierholzer)",
+    autoNotEulerian: "Try a walk — show me where it fails",
+    autoHintEulerian: "Animates Hierholzer's algorithm crossing every bridge exactly once.",
+    autoHintNotEulerian:
+      "Königsberg's seven bridges have no Eulerian path. Click to watch a greedy walk from the start and see it get stuck — that's the whole point of Euler's argument.",
+    storyBack: "← Story",
+    vertexNorthBank: "north bank",
+    vertexSouthBank: "south bank",
+    vertexKneiphof: "Kneiphof",
+    vertexLomse: "Lomse",
+    deg: "deg",
+  },
+  de: {
+    bridgeWalkPrefix: "Brückenlauf · aktuell bei",
+    statusNo: "Eulersch: nein",
+    statusCircuit: "Eulerscher Kreis",
+    statusPath: "Eulerscher Weg",
+    walkLabel: "Lauf",
+    walkProgress: (v, t) => `${v} / ${t} Brücken überquert`,
+    walkComplete: "Vollständiger Lauf — jede Brücke genau einmal benutzt.",
+    parityLabel: "Parität",
+    paritySubDisconnected: "Graph ist unzusammenhängend",
+    paritySubOdd: (n) => `${n} Knoten mit ungeradem Grad`,
+    paritySubZero: "0 ungerade Knoten — geschlossener Lauf möglich",
+    paritySubEnds: (a, b) => `Start bei ${a}, Ende bei ${b}`,
+    legendLabel: "Legende",
+    legendHint:
+      "Klicke eine bernsteinfarbene Brücke vom aktuellen Knoten aus an. Grau gestrichelte Brücken sind inaktiv.",
+    stuckLabel: "Festgefahren!",
+    stuckHead: (v) => `Von ${v} aus führt keine unbenutzte Brücke weiter. Der Lauf endet hier.`,
+    stuckReasonNone: (n) =>
+      `Dieser Graph hat ${n} Knoten mit ungeradem Grad — Euler hat bewiesen, dass es keinen Eulerschen Weg geben kann.`,
+    stuckReasonOther: "Probiere einen anderen Startknoten oder ändere die Brückenauswahl.",
+    startAt: "Start bei",
+    currentlyAtPrefix: "Aktuell bei:",
+    vertexDegrees: "Knotengrade",
+    odd: "ungerade",
+    even: "gerade",
+    degreeFootnote:
+      "Eulerscher Weg ⇔ höchstens zwei Knoten haben ungeraden Grad (und der Graph ist zusammenhängend).",
+    bridges: "Brücken",
+    originalOn: "original ✓",
+    originalOff: "original ✗",
+    extraOn: "zusätzlich ✓",
+    extraOff: "zusätzlich ✗",
+    bridgesFootnote:
+      "Die sieben historischen Brücken sind standardmäßig aktiv. Schalte sie um und beobachte, wie sich das Paritätsargument verschiebt. Die Honigbrücke (BC) wurde später gebaut — sie verändert alles.",
+    resetWalk: "Lauf zurücksetzen",
+    autoEulerian: "Auto-Lauf (Hierholzer)",
+    autoNotEulerian: "Lauf versuchen — zeig mir, wo es scheitert",
+    autoHintEulerian:
+      "Animiert den Hierholzer-Algorithmus, der jede Brücke genau einmal überquert.",
+    autoHintNotEulerian:
+      "Die sieben Königsberger Brücken haben keinen Eulerschen Weg. Klicke, um einen gierigen Lauf vom Start zu sehen, der hängen bleibt — genau das ist Eulers Argument.",
+    storyBack: "← Story",
+    vertexNorthBank: "Nordufer",
+    vertexSouthBank: "Südufer",
+    vertexKneiphof: "Kneiphof",
+    vertexLomse: "Lomse",
+    deg: "Grad",
+  },
+  es: {
+    bridgeWalkPrefix: "Recorrido de puentes · actualmente en",
+    statusNo: "Euleriano: no",
+    statusCircuit: "Circuito euleriano",
+    statusPath: "Camino euleriano",
+    walkLabel: "Recorrido",
+    walkProgress: (v, t) => `${v} / ${t} puentes cruzados`,
+    walkComplete: "Recorrido completo — cada puente usado exactamente una vez.",
+    parityLabel: "Paridad",
+    paritySubDisconnected: "El grafo está desconectado",
+    paritySubOdd: (n) => `${n} vértices de grado impar`,
+    paritySubZero: "0 vértices impares — recorrido cerrado posible",
+    paritySubEnds: (a, b) => `empieza en ${a}, termina en ${b}`,
+    legendLabel: "Leyenda",
+    legendHint:
+      "Haz clic en un puente ámbar desde tu vértice actual. Los puentes grises a trazos están inactivos.",
+    stuckLabel: "¡Atascado!",
+    stuckHead: (v) => `Ningún puente sin usar sale de ${v}. El recorrido no puede continuar.`,
+    stuckReasonNone: (n) =>
+      `Este grafo tiene ${n} vértices de grado impar — Euler demostró que no puede existir un camino euleriano.`,
+    stuckReasonOther: "Prueba con otro vértice de inicio o cambia el conjunto de puentes.",
+    startAt: "Empezar en",
+    currentlyAtPrefix: "Actualmente en:",
+    vertexDegrees: "Grados de los vértices",
+    odd: "impar",
+    even: "par",
+    degreeFootnote:
+      "Camino euleriano ⇔ a lo sumo dos vértices tienen grado impar (y el grafo es conexo).",
+    bridges: "Puentes",
+    originalOn: "original ✓",
+    originalOff: "original ✗",
+    extraOn: "extra ✓",
+    extraOff: "extra ✗",
+    bridgesFootnote:
+      "Los siete puentes históricos están activos por defecto. Actívalos y desactívalos para ver cómo cambia el argumento de paridad. El Puente de la Miel (BC) se construyó después — añadirlo lo cambia todo.",
+    resetWalk: "Reiniciar recorrido",
+    autoEulerian: "Auto-recorrido (Hierholzer)",
+    autoNotEulerian: "Intentar el recorrido — muéstrame dónde falla",
+    autoHintEulerian:
+      "Anima el algoritmo de Hierholzer cruzando cada puente exactamente una vez.",
+    autoHintNotEulerian:
+      "Los siete puentes de Königsberg no tienen camino euleriano. Haz clic para ver un recorrido voraz desde el inicio que se queda atascado — esa es la esencia del argumento de Euler.",
+    storyBack: "← Historia",
+    vertexNorthBank: "orilla norte",
+    vertexSouthBank: "orilla sur",
+    vertexKneiphof: "Kneiphof",
+    vertexLomse: "Lomse",
+    deg: "grado",
+  },
+  fr: {
+    bridgeWalkPrefix: "Parcours des ponts · actuellement en",
+    statusNo: "Eulérien : non",
+    statusCircuit: "Circuit eulérien",
+    statusPath: "Chemin eulérien",
+    walkLabel: "Parcours",
+    walkProgress: (v, t) => `${v} / ${t} ponts franchis`,
+    walkComplete: "Parcours complet — chaque pont emprunté exactement une fois.",
+    parityLabel: "Parité",
+    paritySubDisconnected: "Le graphe n'est pas connexe",
+    paritySubOdd: (n) => `${n} sommets de degré impair`,
+    paritySubZero: "0 sommet impair — parcours fermé possible",
+    paritySubEnds: (a, b) => `départ en ${a}, arrivée en ${b}`,
+    legendLabel: "Légende",
+    legendHint:
+      "Clique sur un pont ambré depuis ton sommet courant. Les ponts gris en pointillés sont inactifs.",
+    stuckLabel: "Bloqué !",
+    stuckHead: (v) => `Aucun pont non visité ne part de ${v}. Le parcours ne peut continuer.`,
+    stuckReasonNone: (n) =>
+      `Ce graphe a ${n} sommets de degré impair — Euler a prouvé qu'aucun chemin eulérien ne peut exister.`,
+    stuckReasonOther: "Essaie un autre sommet de départ ou change l'ensemble des ponts.",
+    startAt: "Départ en",
+    currentlyAtPrefix: "Actuellement en :",
+    vertexDegrees: "Degrés des sommets",
+    odd: "impair",
+    even: "pair",
+    degreeFootnote:
+      "Chemin eulérien ⇔ au plus deux sommets ont un degré impair (et le graphe est connexe).",
+    bridges: "Ponts",
+    originalOn: "original ✓",
+    originalOff: "original ✗",
+    extraOn: "extra ✓",
+    extraOff: "extra ✗",
+    bridgesFootnote:
+      "Les sept ponts historiques sont actifs par défaut. Active-les et désactive-les pour voir comment l'argument de parité bascule. Le Pont du Miel (BC) a été construit plus tard — l'ajouter change tout.",
+    resetWalk: "Réinitialiser le parcours",
+    autoEulerian: "Auto-parcours (Hierholzer)",
+    autoNotEulerian: "Tenter un parcours — montre-moi où ça échoue",
+    autoHintEulerian:
+      "Anime l'algorithme de Hierholzer qui traverse chaque pont exactement une fois.",
+    autoHintNotEulerian:
+      "Les sept ponts de Königsberg n'ont pas de chemin eulérien. Clique pour voir un parcours glouton depuis le départ qui finit bloqué — c'est tout l'argument d'Euler.",
+    storyBack: "← Récit",
+    vertexNorthBank: "rive nord",
+    vertexSouthBank: "rive sud",
+    vertexKneiphof: "Kneiphof",
+    vertexLomse: "Lomse",
+    deg: "deg",
+  },
+  it: {
+    bridgeWalkPrefix: "Percorso dei ponti · attualmente in",
+    statusNo: "Euleriano: no",
+    statusCircuit: "Circuito euleriano",
+    statusPath: "Cammino euleriano",
+    walkLabel: "Percorso",
+    walkProgress: (v, t) => `${v} / ${t} ponti attraversati`,
+    walkComplete: "Percorso completo — ogni ponte usato esattamente una volta.",
+    parityLabel: "Parità",
+    paritySubDisconnected: "Il grafo è sconnesso",
+    paritySubOdd: (n) => `${n} vertici di grado dispari`,
+    paritySubZero: "0 vertici dispari — percorso chiuso possibile",
+    paritySubEnds: (a, b) => `parti da ${a}, arrivi a ${b}`,
+    legendLabel: "Legenda",
+    legendHint:
+      "Clicca un ponte ambra dal tuo vertice corrente. I ponti grigi tratteggiati sono inattivi.",
+    stuckLabel: "Bloccato!",
+    stuckHead: (v) => `Nessun ponte non visitato esce da ${v}. Il percorso non può continuare.`,
+    stuckReasonNone: (n) =>
+      `Questo grafo ha ${n} vertici di grado dispari — Euler ha dimostrato che non può esistere un cammino euleriano.`,
+    stuckReasonOther: "Prova un altro vertice di partenza o modifica l'insieme dei ponti.",
+    startAt: "Parti da",
+    currentlyAtPrefix: "Attualmente in:",
+    vertexDegrees: "Gradi dei vertici",
+    odd: "dispari",
+    even: "pari",
+    degreeFootnote:
+      "Cammino euleriano ⇔ al più due vertici hanno grado dispari (e il grafo è connesso).",
+    bridges: "Ponti",
+    originalOn: "originale ✓",
+    originalOff: "originale ✗",
+    extraOn: "extra ✓",
+    extraOff: "extra ✗",
+    bridgesFootnote:
+      "I sette ponti storici sono attivi di default. Attivali e disattivali per vedere come cambia l'argomento di parità. Il Ponte del Miele (BC) è stato costruito dopo — aggiungerlo cambia tutto.",
+    resetWalk: "Reimposta percorso",
+    autoEulerian: "Auto-percorso (Hierholzer)",
+    autoNotEulerian: "Prova un percorso — mostrami dove fallisce",
+    autoHintEulerian:
+      "Anima l'algoritmo di Hierholzer che attraversa ogni ponte esattamente una volta.",
+    autoHintNotEulerian:
+      "I sette ponti di Königsberg non ammettono un cammino euleriano. Clicca per vedere un percorso goloso dal punto di partenza che si blocca — è esattamente l'argomento di Euler.",
+    storyBack: "← Storia",
+    vertexNorthBank: "riva nord",
+    vertexSouthBank: "riva sud",
+    vertexKneiphof: "Kneiphof",
+    vertexLomse: "Lomse",
+    deg: "grado",
+  },
+  pt: {
+    bridgeWalkPrefix: "Percurso das pontes · atualmente em",
+    statusNo: "Euleriano: não",
+    statusCircuit: "Circuito euleriano",
+    statusPath: "Caminho euleriano",
+    walkLabel: "Percurso",
+    walkProgress: (v, t) => `${v} / ${t} pontes atravessadas`,
+    walkComplete: "Percurso completo — cada ponte usada exatamente uma vez.",
+    parityLabel: "Paridade",
+    paritySubDisconnected: "O grafo está desconectado",
+    paritySubOdd: (n) => `${n} vértices de grau ímpar`,
+    paritySubZero: "0 vértices ímpares — percurso fechado possível",
+    paritySubEnds: (a, b) => `comece em ${a}, termine em ${b}`,
+    legendLabel: "Legenda",
+    legendHint:
+      "Clica numa ponte âmbar a partir do teu vértice atual. Pontes cinzentas tracejadas estão inativas.",
+    stuckLabel: "Encalhado!",
+    stuckHead: (v) => `Nenhuma ponte não visitada sai de ${v}. O percurso não pode continuar.`,
+    stuckReasonNone: (n) =>
+      `Este grafo tem ${n} vértices de grau ímpar — Euler provou que não pode existir caminho euleriano.`,
+    stuckReasonOther: "Tenta outro vértice de partida ou altera o conjunto de pontes.",
+    startAt: "Começar em",
+    currentlyAtPrefix: "Atualmente em:",
+    vertexDegrees: "Graus dos vértices",
+    odd: "ímpar",
+    even: "par",
+    degreeFootnote:
+      "Caminho euleriano ⇔ no máximo dois vértices têm grau ímpar (e o grafo é conexo).",
+    bridges: "Pontes",
+    originalOn: "original ✓",
+    originalOff: "original ✗",
+    extraOn: "extra ✓",
+    extraOff: "extra ✗",
+    bridgesFootnote:
+      "As sete pontes históricas estão ativas por defeito. Alterna-as para ver como o argumento de paridade muda. A Ponte do Mel (BC) foi construída mais tarde — adicioná-la muda tudo.",
+    resetWalk: "Reiniciar percurso",
+    autoEulerian: "Auto-percurso (Hierholzer)",
+    autoNotEulerian: "Tentar um percurso — mostra-me onde falha",
+    autoHintEulerian:
+      "Anima o algoritmo de Hierholzer a atravessar cada ponte exatamente uma vez.",
+    autoHintNotEulerian:
+      "As sete pontes de Königsberg não têm caminho euleriano. Clica para ver um percurso ganancioso desde o início que fica encalhado — é o cerne do argumento de Euler.",
+    storyBack: "← História",
+    vertexNorthBank: "margem norte",
+    vertexSouthBank: "margem sul",
+    vertexKneiphof: "Kneiphof",
+    vertexLomse: "Lomse",
+    deg: "grau",
+  },
+  sv: {
+    bridgeWalkPrefix: "Brovandring · just nu vid",
+    statusNo: "Eulersk: nej",
+    statusCircuit: "Eulerkrets",
+    statusPath: "Eulerväg",
+    walkLabel: "Vandring",
+    walkProgress: (v, t) => `${v} / ${t} broar korsade`,
+    walkComplete: "Fullständig vandring — varje bro använd exakt en gång.",
+    parityLabel: "Paritet",
+    paritySubDisconnected: "Grafen är osammanhängande",
+    paritySubOdd: (n) => `${n} hörn med udda grad`,
+    paritySubZero: "0 udda hörn — sluten vandring möjlig",
+    paritySubEnds: (a, b) => `börja vid ${a}, sluta vid ${b}`,
+    legendLabel: "Teckenförklaring",
+    legendHint:
+      "Klicka på en bärnstensfärgad bro från ditt nuvarande hörn. Gråa streckade broar är inaktiva.",
+    stuckLabel: "Fast!",
+    stuckHead: (v) => `Ingen oanvänd bro lämnar ${v}. Vandringen kan inte fortsätta.`,
+    stuckReasonNone: (n) =>
+      `Den här grafen har ${n} hörn med udda grad — Euler bevisade att ingen Eulerväg kan finnas.`,
+    stuckReasonOther: "Prova ett annat starthörn eller ändra broarna.",
+    startAt: "Börja vid",
+    currentlyAtPrefix: "Just nu vid:",
+    vertexDegrees: "Hörnens grader",
+    odd: "udda",
+    even: "jämn",
+    degreeFootnote:
+      "Eulerväg ⇔ högst två hörn har udda grad (och grafen är sammanhängande).",
+    bridges: "Broar",
+    originalOn: "original ✓",
+    originalOff: "original ✗",
+    extraOn: "extra ✓",
+    extraOff: "extra ✗",
+    bridgesFootnote:
+      "De sju historiska broarna är på som standard. Slå av och på dem för att se hur paritetsargumentet förskjuts. Honungsbron (BC) byggdes senare — att lägga till den ändrar allt.",
+    resetWalk: "Återställ vandring",
+    autoEulerian: "Auto-vandring (Hierholzer)",
+    autoNotEulerian: "Försök en vandring — visa var det går fel",
+    autoHintEulerian: "Animerar Hierholzers algoritm som korsar varje bro exakt en gång.",
+    autoHintNotEulerian:
+      "Königsbergs sju broar har ingen Eulerväg. Klicka för att se en girig vandring från starten som fastnar — det är hela poängen med Eulers argument.",
+    storyBack: "← Berättelse",
+    vertexNorthBank: "norra stranden",
+    vertexSouthBank: "södra stranden",
+    vertexKneiphof: "Kneiphof",
+    vertexLomse: "Lomse",
+    deg: "grad",
+  },
+  no: {
+    bridgeWalkPrefix: "Brovandring · nå ved",
+    statusNo: "Eulersk: nei",
+    statusCircuit: "Eulerkrets",
+    statusPath: "Eulervei",
+    walkLabel: "Vandring",
+    walkProgress: (v, t) => `${v} / ${t} broer krysset`,
+    walkComplete: "Fullført vandring — hver bro brukt nøyaktig én gang.",
+    parityLabel: "Paritet",
+    paritySubDisconnected: "Grafen er usammenhengende",
+    paritySubOdd: (n) => `${n} hjørner med odde grad`,
+    paritySubZero: "0 odde hjørner — lukket vandring mulig",
+    paritySubEnds: (a, b) => `start ved ${a}, slutt ved ${b}`,
+    legendLabel: "Tegnforklaring",
+    legendHint:
+      "Klikk en ravfarget bro fra hjørnet du står ved. Grå stiplede broer er inaktive.",
+    stuckLabel: "Fastlåst!",
+    stuckHead: (v) => `Ingen ubrukt bro går ut fra ${v}. Vandringen kan ikke fortsette.`,
+    stuckReasonNone: (n) =>
+      `Denne grafen har ${n} hjørner med odde grad — Euler beviste at ingen Eulervei kan finnes.`,
+    stuckReasonOther: "Prøv et annet starthjørne eller endre brosettet.",
+    startAt: "Start ved",
+    currentlyAtPrefix: "Nå ved:",
+    vertexDegrees: "Hjørnegrader",
+    odd: "odde",
+    even: "jevn",
+    degreeFootnote:
+      "Eulervei ⇔ høyst to hjørner har odde grad (og grafen er sammenhengende).",
+    bridges: "Broer",
+    originalOn: "original ✓",
+    originalOff: "original ✗",
+    extraOn: "ekstra ✓",
+    extraOff: "ekstra ✗",
+    bridgesFootnote:
+      "De sju historiske broene er på som standard. Slå dem av og på for å se hvordan paritetsargumentet skifter. Honningbroen (BC) ble bygget senere — å legge den til endrer alt.",
+    resetWalk: "Tilbakestill vandring",
+    autoEulerian: "Auto-vandring (Hierholzer)",
+    autoNotEulerian: "Prøv en vandring — vis meg hvor den feiler",
+    autoHintEulerian: "Animerer Hierholzers algoritme som krysser hver bro nøyaktig én gang.",
+    autoHintNotEulerian:
+      "Königsbergs sju broer har ingen Eulervei. Klikk for å se en grådig vandring fra starten som setter seg fast — det er hele poenget med Eulers argument.",
+    storyBack: "← Fortelling",
+    vertexNorthBank: "nordbredden",
+    vertexSouthBank: "sørbredden",
+    vertexKneiphof: "Kneiphof",
+    vertexLomse: "Lomse",
+    deg: "grad",
+  },
+};
+
+function vertexSublabel(v: VertexDef, dict: RichExplorer): string {
+  switch (v.sublabel) {
+    case "north-bank":
+      return `${v.id} — ${dict.vertexNorthBank}`;
+    case "south-bank":
+      return `${v.id} — ${dict.vertexSouthBank}`;
+    case "kneiphof":
+      return `${v.id} — ${dict.vertexKneiphof}`;
+    case "lomse":
+      return `${v.id} — ${dict.vertexLomse}`;
+  }
+}
 
 function curvePoint(
   b: BridgeDef,
@@ -211,8 +677,9 @@ function hierholzer(activeIds: Set<string>, status: EulerStatus): string[] | nul
 }
 
 export default function KonigsbergExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.konigsberg;
+  const dict = EXPLORER[locale];
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const sizeRef = useRef<{ w: number; h: number; dpr: number }>({ w: 0, h: 0, dpr: 1 });
@@ -272,10 +739,16 @@ export default function KonigsbergExplorer() {
     if (!hasMove && walk.length < [...activeIds].length) setStuck(true);
   }, [walk, currentVertex, activeIds, auto, stuck]);
 
-  // Auto-solve animation tick
+  // Auto-walk animation tick. When the trail is exhausted we release `auto`
+  // so the stuck-detection effect can run — important for the greedy-walk
+  // mode where the walk ends prematurely and we want the "Stuck!" message
+  // to appear automatically.
   useEffect(() => {
     if (auto === null) return;
-    if (auto.idx >= auto.trail.length) return;
+    if (auto.idx >= auto.trail.length) {
+      const release = setTimeout(() => setAuto(null), 500);
+      return () => clearTimeout(release);
+    }
     const t = setTimeout(() => {
       const id = auto.trail[auto.idx];
       const br = BRIDGES.find((b) => b.id === id);
@@ -287,17 +760,56 @@ export default function KonigsbergExplorer() {
     return () => clearTimeout(t);
   }, [auto]);
 
+  // Greedy random walk used when the graph is NOT Eulerian. This is the
+  // whole point of the Königsberg page — show the user that they get stuck,
+  // not just disable the button. From the start vertex we pick any unused
+  // incident bridge until none remain; the trail length will be < total
+  // active bridges and the UI will display "stuck" after the animation.
+  const greedyWalk = useCallback(
+    (start: VertexId): string[] => {
+      const adj: Record<VertexId, Array<{ to: VertexId; id: string }>> = {
+        A: [], B: [], C: [], D: [],
+      };
+      for (const br of BRIDGES) {
+        if (!activeIds.has(br.id)) continue;
+        adj[br.a].push({ to: br.b, id: br.id });
+        adj[br.b].push({ to: br.a, id: br.id });
+      }
+      const used = new Set<string>();
+      const trail: string[] = [];
+      let cur = start;
+      while (true) {
+        const candidates = adj[cur].filter((e) => !used.has(e.id));
+        if (candidates.length === 0) break;
+        const pick = candidates[Math.floor(Math.random() * candidates.length)];
+        used.add(pick.id);
+        trail.push(pick.id);
+        cur = pick.to;
+      }
+      return trail;
+    },
+    [activeIds],
+  );
+
   const startAutoSolve = useCallback(() => {
-    const trail = hierholzer(activeIds, status);
-    if (trail === null) return;
-    // Walk should start at the same vertex Hierholzer started from.
-    const startV: VertexId = status.kind === "path" ? status.ends[0] : startVertex;
-    setStartVertex(startV);
+    const eulerianTrail = hierholzer(activeIds, status);
+    if (eulerianTrail !== null) {
+      const startV: VertexId = status.kind === "path" ? status.ends[0] : startVertex;
+      setStartVertex(startV);
+      setWalk([]);
+      setStuck(false);
+      setCurrentVertex(startV);
+      setAuto({ trail: eulerianTrail, idx: 0 });
+      return;
+    }
+    // Not Eulerian — show why by walking greedily until stuck.
+    const trail = greedyWalk(startVertex);
+    if (trail.length === 0) return;
     setWalk([]);
     setStuck(false);
-    setCurrentVertex(startV);
+    setCurrentVertex(startVertex);
     setAuto({ trail, idx: 0 });
-  }, [activeIds, status, startVertex]);
+  }, [activeIds, status, startVertex, greedyWalk]);
 
   const toggleBridge = useCallback((id: string) => {
     setActiveIds((s) => {
@@ -391,8 +903,8 @@ export default function KonigsbergExplorer() {
 
         ctx.fillStyle = "#8a90a4";
         ctx.font = `${11 * dpr}px ui-monospace, monospace`;
-        ctx.fillText(v.label, cx, cy + 50 * Math.min(sx, sy));
-        ctx.fillText(`deg ${degrees[v.id]}`, cx, cy + 66 * Math.min(sx, sy));
+        ctx.fillText(vertexSublabel(v, dict), cx, cy + 50 * Math.min(sx, sy));
+        ctx.fillText(`${dict.deg} ${degrees[v.id]}`, cx, cy + 66 * Math.min(sx, sy));
       }
 
       // Bridges
@@ -449,7 +961,7 @@ export default function KonigsbergExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [activeIds, walk, currentVertex, startVertex, degrees, hoverId, vertsById]);
+  }, [activeIds, walk, currentVertex, startVertex, degrees, hoverId, vertsById, dict]);
 
   // --- Canvas click handler ----------------------------------------------
   const onCanvasClick = useCallback(
@@ -526,14 +1038,17 @@ export default function KonigsbergExplorer() {
   const visitedCount = walk.length;
   const allCrossed = visitedCount === activeBridgeCount && activeBridgeCount > 0;
 
-  let statusLabel = "Eulerian: no";
-  let statusSub = `${status.kind === "disconnected" ? "Graph is disconnected" : `${status.kind === "none" ? status.oddCount : 0} odd-degree vertices`}`;
+  let statusLabel = dict.statusNo;
+  let statusSub: string =
+    status.kind === "disconnected"
+      ? dict.paritySubDisconnected
+      : dict.paritySubOdd(status.kind === "none" ? status.oddCount : 0);
   if (status.kind === "circuit") {
-    statusLabel = "Eulerian circuit";
-    statusSub = "0 odd vertices — closed walk possible";
+    statusLabel = dict.statusCircuit;
+    statusSub = dict.paritySubZero;
   } else if (status.kind === "path") {
-    statusLabel = "Eulerian path";
-    statusSub = `start at ${status.ends[0]}, end at ${status.ends[1]}`;
+    statusLabel = dict.statusPath;
+    statusSub = dict.paritySubEnds(status.ends[0], status.ends[1]);
   }
 
   return (
@@ -542,17 +1057,22 @@ export default function KonigsbergExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              Bridge walk · currently at <span className="text-signal-amber">{currentVertex}</span>
+              {dict.bridgeWalkPrefix}{" "}
+              <span className="text-signal-amber">{currentVertex}</span>
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
               {statusLabel}
             </div>
           </div>
 
-          <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
+          <div className="hairline overflow-hidden rounded-2xl border bg-ink-950">
+            {/* Logical canvas is 800×500. Without aspect-[8/5] the canvas
+                stretched to whatever vertical space the flex column gave it,
+                so bridges rendered tall and warped and the hit-curve maths
+                drifted from where the user clicked. Pin the ratio. */}
             <canvas
               ref={canvasRef}
-              className="block h-full w-full cursor-pointer"
+              className="block aspect-[8/5] w-full cursor-pointer"
               onClick={onCanvasClick}
               onMouseMove={onCanvasMove}
               onMouseLeave={() => setHoverId(null)}
@@ -562,38 +1082,30 @@ export default function KonigsbergExplorer() {
           {/* Status / legend bar */}
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
             <div className="glass hairline rounded-md border px-3 py-3 font-mono text-[10px] tracking-widest2 text-ink-200">
-              <div className="uppercase text-signal-amber">Walk</div>
+              <div className="uppercase text-signal-amber">{dict.walkLabel}</div>
               <div className="mt-1 text-ink-100">
-                {visitedCount} / {activeBridgeCount} bridges crossed
+                {dict.walkProgress(visitedCount, activeBridgeCount)}
               </div>
-              {allCrossed && (
-                <div className="mt-1 text-signal-amber">
-                  Complete walk — every bridge used exactly once.
-                </div>
-              )}
+              {allCrossed && <div className="mt-1 text-signal-amber">{dict.walkComplete}</div>}
             </div>
             <div className="glass hairline rounded-md border px-3 py-3 font-mono text-[10px] tracking-widest2 text-ink-200">
-              <div className="uppercase text-signal-amber">Parity</div>
+              <div className="uppercase text-signal-amber">{dict.parityLabel}</div>
               <div className="mt-1 text-ink-100">{statusSub}</div>
             </div>
             <div className="glass hairline rounded-md border px-3 py-3 font-mono text-[10px] tracking-widest2 text-ink-200">
-              <div className="uppercase text-signal-amber">Legend</div>
-              <div className="mt-1 text-ink-100">
-                Click an amber bridge from your current vertex. Greyed dashed bridges are inactive.
-              </div>
+              <div className="uppercase text-signal-amber">{dict.legendLabel}</div>
+              <div className="mt-1 text-ink-100">{dict.legendHint}</div>
             </div>
           </div>
 
           {stuck && !allCrossed && (
             <div className="glass hairline rounded-md border px-4 py-3 font-mono text-xs text-signal-amber">
-              <div className="text-[10px] uppercase tracking-widest2">Stuck!</div>
+              <div className="text-[10px] uppercase tracking-widest2">{dict.stuckLabel}</div>
               <div className="mt-1 text-ink-100">
-                No unvisited bridge leaves{" "}
-                <span className="text-signal-amber">{currentVertex}</span>. The walk cannot
-                continue.{" "}
+                {dict.stuckHead(currentVertex)}{" "}
                 {status.kind === "none"
-                  ? `This graph has ${status.oddCount} odd-degree vertices — Euler proved no Eulerian path can exist.`
-                  : "Try a different starting vertex or change the bridge set."}
+                  ? dict.stuckReasonNone(status.oddCount)
+                  : dict.stuckReasonOther}
               </div>
             </div>
           )}
@@ -610,7 +1122,7 @@ export default function KonigsbergExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Start at
+              {dict.startAt}
             </div>
             <div className="grid grid-cols-4 gap-2">
               {VERTICES.map((v) => (
@@ -628,13 +1140,14 @@ export default function KonigsbergExplorer() {
               ))}
             </div>
             <div className="font-mono text-[10px] text-ink-400">
-              Currently at: <span className="text-signal-amber">{currentVertex}</span>
+              {dict.currentlyAtPrefix}{" "}
+              <span className="text-signal-amber">{currentVertex}</span>
             </div>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Vertex degrees
+              {dict.vertexDegrees}
             </div>
             <div className="grid grid-cols-4 gap-2">
               {(["A", "B", "C", "D"] as VertexId[]).map((v) => {
@@ -648,19 +1161,21 @@ export default function KonigsbergExplorer() {
                   >
                     <div className="text-[10px] text-ink-400">{v}</div>
                     <div>{degrees[v]}</div>
-                    <div className="text-[9px] uppercase text-ink-400">{odd ? "odd" : "even"}</div>
+                    <div className="text-[9px] uppercase text-ink-400">
+                      {odd ? dict.odd : dict.even}
+                    </div>
                   </div>
                 );
               })}
             </div>
             <div className="font-mono text-[10px] leading-relaxed text-ink-400">
-              Eulerian path ⇔ at most two vertices have odd degree (and the graph is connected).
+              {dict.degreeFootnote}
             </div>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Bridges
+              {dict.bridges}
             </div>
             <div className="space-y-1">
               {BRIDGES.map((br) => {
@@ -681,19 +1196,18 @@ export default function KonigsbergExplorer() {
                     <span className="text-[10px] uppercase tracking-widest2">
                       {br.original
                         ? on
-                          ? "original ✓"
-                          : "original ✗"
+                          ? dict.originalOn
+                          : dict.originalOff
                         : on
-                          ? "extra ✓"
-                          : "extra ✗"}
+                          ? dict.extraOn
+                          : dict.extraOff}
                     </span>
                   </button>
                 );
               })}
             </div>
             <div className="font-mono text-[10px] leading-relaxed text-ink-400">
-              The seven historical bridges are on by default. Toggle them to see how the parity
-              argument shifts. The Honey Bridge (BC) was built later — adding it changes everything.
+              {dict.bridgesFootnote}
             </div>
           </div>
 
@@ -702,22 +1216,20 @@ export default function KonigsbergExplorer() {
               onClick={resetWalk}
               className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
             >
-              Reset walk
+              {dict.resetWalk}
             </button>
             <button
               onClick={startAutoSolve}
-              disabled={status.kind !== "circuit" && status.kind !== "path"}
-              className={`w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
-                status.kind === "circuit" || status.kind === "path"
-                  ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber hover:bg-signal-amber/20"
-                  : "hairline cursor-not-allowed text-ink-500"
-              }`}
+              className="w-full rounded-md border border-signal-amber/60 bg-signal-amber/10 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/20"
             >
-              Auto-solve (Hierholzer)
+              {status.kind === "circuit" || status.kind === "path"
+                ? dict.autoEulerian
+                : dict.autoNotEulerian}
             </button>
             <div className="font-mono text-[10px] leading-relaxed text-ink-400">
-              Auto-solve is only available when the current graph is Eulerian. It animates
-              Hierholzer's algorithm walking the bridges in order.
+              {status.kind === "circuit" || status.kind === "path"
+                ? dict.autoHintEulerian
+                : dict.autoHintNotEulerian}
             </div>
           </div>
 
@@ -726,7 +1238,7 @@ export default function KonigsbergExplorer() {
               href="/konigsberg"
               className="hairline mb-2 block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
             >
-              ← Story
+              {dict.storyBack}
             </Link>
             <Link
               href="/"

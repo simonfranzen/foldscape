@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { Formula } from "@/components/Formula";
+import { RelatedTopics } from "@/components/RelatedTopics";
 import { useI18n } from "@/lib/i18n/context";
 import type { StoryPage } from "@/lib/i18n/stories";
 import { TOPIC_LINKS } from "@/lib/topicLinks";
@@ -20,6 +21,10 @@ interface Props {
   gradient: string; // e.g. "from-signal-cyan/10"
   formulaBadge: string; // Plain-text fallback when formulaLatex is omitted
   formulaLatex?: string; // KaTeX source for the hero formula
+  // Override default hero formula sizing. Default = "lg" (text-3xl md:text-5xl).
+  // Use "sm" for long formulae that would otherwise overflow the badge box —
+  // e.g. Pascalmod's `binom(n,k) ≢ 0 mod p ⇔ no carry in base-p`.
+  formulaSize?: "sm" | "md" | "lg";
   finalLabel: string;
   furtherReading?: Array<{ label: string; href: string }>;
   // Optional signature-hero artefact: a topic-specific visual that sits
@@ -39,12 +44,13 @@ export function StoryPageShell({
   gradient,
   formulaBadge,
   formulaLatex,
+  formulaSize = "lg",
   finalLabel,
   furtherReading,
   signature,
   children,
 }: Props) {
-  const { u, locale } = useI18n();
+  const { a, u, locale } = useI18n();
   // Auto-look up further-reading links by parsing the topic id out of the
   // CTA href (e.g. "/mandelbrot/explorer" → "mandelbrot"). Explicit
   // furtherReading prop still wins when provided.
@@ -57,6 +63,7 @@ export function StoryPageShell({
   // CTA — so visitors don't miss it when they land on the story page.
   const topicEntry = TOPICS.find((t) => t.id === inferredTopicId);
   const soundSection = topicEntry?.sections?.find((s) => s.key === "sound");
+
   return (
     <main className="relative isolate min-h-screen px-6 pb-32 pt-24">
       <div className="grid-bg pointer-events-none fixed inset-0 -z-10 opacity-30" />
@@ -118,7 +125,18 @@ export function StoryPageShell({
             className={`hairline glass float-gentle mx-auto mt-8 max-w-4xl overflow-x-auto rounded-2xl border px-4 py-6 md:px-8 md:py-8 ${accent}`}
           >
             {formulaLatex ? (
-              <Formula expression={formulaLatex} block size="lg" className="md:text-5xl" />
+              <Formula
+                expression={formulaLatex}
+                block
+                size={formulaSize}
+                className={
+                  formulaSize === "lg"
+                    ? "md:text-5xl"
+                    : formulaSize === "md"
+                      ? "md:text-3xl"
+                      : "md:text-xl"
+                }
+              />
             ) : (
               <div className="break-words text-center font-mono text-xl text-ink-100 md:text-2xl">
                 {formulaBadge}
@@ -145,12 +163,40 @@ export function StoryPageShell({
               {applications.map((app, i) => (
                 <div
                   key={i}
-                  className="hairline space-y-2 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-ink-300/40"
+                  className="hairline flex gap-4 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-ink-300/40"
                 >
-                  <div className={`font-mono text-[10px] uppercase tracking-widest2 ${accent}`}>
-                    {app.domain}
+                  {inferredTopicId && (
+                    /* Per-topic, per-application filigree icons under
+                       public/icons/<topic>/<index>.svg. Rendered via CSS
+                       mask-image — NOT <img> — because the icons use
+                       `stroke="currentColor"` to inherit the page accent,
+                       and <img> would render that as black on black. With
+                       a mask, the box's background colour shows through
+                       the icon's silhouette, so the icon takes whatever
+                       `text-signal-*` colour the surrounding accent class
+                       provides. `bg-current` ties it to the parent's text
+                       colour set via `${accent}`. */
+                    <span
+                      aria-hidden="true"
+                      className={`h-11 w-11 flex-shrink-0 select-none bg-current ${accent} opacity-90`}
+                      style={{
+                        WebkitMaskImage: `url(/icons/${inferredTopicId}/${i}.svg)`,
+                        maskImage: `url(/icons/${inferredTopicId}/${i}.svg)`,
+                        WebkitMaskRepeat: "no-repeat",
+                        maskRepeat: "no-repeat",
+                        WebkitMaskPosition: "center",
+                        maskPosition: "center",
+                        WebkitMaskSize: "contain",
+                        maskSize: "contain",
+                      }}
+                    />
+                  )}
+                  <div className="min-w-0 space-y-2">
+                    <div className={`font-mono text-[10px] uppercase tracking-widest2 ${accent}`}>
+                      {app.domain}
+                    </div>
+                    <div className="text-sm leading-relaxed text-ink-100">{app.description}</div>
                   </div>
-                  <div className="text-sm leading-relaxed text-ink-100">{app.description}</div>
                 </div>
               ))}
             </div>
@@ -188,6 +234,8 @@ export function StoryPageShell({
           </section>
         </Reveal>
       )}
+
+      {inferredTopicId && <RelatedTopics topicId={inferredTopicId} accent={accent} />}
 
       <Reveal>
         <section className="glass hairline mx-auto mt-16 max-w-3xl space-y-6 rounded-3xl border p-10 text-center">

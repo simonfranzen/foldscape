@@ -25,3 +25,15 @@ export function detectLocale(): Locale {
   if ((LOCALES as readonly string[]).includes(nav)) return nav as Locale;
   return DEFAULT_LOCALE;
 }
+
+// Normalise a raw value from `?lang=` to a supported Locale, or null.
+// Accepts both short ("de") and IETF ("de-DE") forms; strips region tag,
+// lowercases, and matches against LOCALES. Anything not in the list returns
+// null so callers can fall back to their existing detection.
+export function parseLangParam(raw: string | null | undefined): Locale | null {
+  if (!raw) return null;
+  const short = raw.trim().toLowerCase().split(/[-_]/)[0];
+  if (!short) return null;
+  if ((LOCALES as readonly string[]).includes(short)) return short as Locale;
+  return null;
+}

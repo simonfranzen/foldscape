@@ -10,11 +10,11 @@ export const AUTHOR_URL = "https://www.zauberware.com";
 export const SIMON_GITHUB_URL = "https://github.com/simonfranzen";
 
 export function Footer() {
-  const { t, a } = useI18n();
+  const { t, a, u } = useI18n();
   return (
     <footer className="hairline glass relative z-20 border-t">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
-        <div className="max-w-md space-y-1.5">
+        <div className="min-w-0 flex-1 space-y-1.5">
           <div className="flex items-center gap-2.5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -26,7 +26,7 @@ export function Footer() {
               className="h-5 w-5 select-none opacity-80"
               draggable={false}
             />
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300 md:whitespace-nowrap">
               Foldscape · An atlas of mathematical curiosities
             </div>
           </div>
@@ -62,7 +62,7 @@ export function Footer() {
             </a>
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-widest2">
+        <div className="flex flex-shrink-0 flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-widest2">
           <a
             href={ZAUBERWARE_URL}
             target="_blank"
@@ -71,6 +71,12 @@ export function Footer() {
           >
             ↗ zauberware.com
           </a>
+          <Link
+            href="/about"
+            className="hairline rounded-full border px-3 py-2 text-ink-200 transition-colors hover:border-signal-rose/50 hover:text-signal-rose"
+          >
+            {u.about ?? "About"}
+          </Link>
           <Link
             href="/impressum"
             className="hairline rounded-full border px-3 py-2 text-ink-200 transition-colors hover:border-signal-violet/50 hover:text-signal-violet"

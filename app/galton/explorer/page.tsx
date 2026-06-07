@@ -19,7 +19,10 @@ export default function GaltonExplorer() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [rows, setRows] = useState(16);
-  const [spawnRate, setSpawnRate] = useState(8);
+  // Default + slider max trimmed for the same reason as the inline sim:
+  // spawn=8 with rows=16 saturates weaker laptops; 2 lets the user watch the
+  // distribution build, the slider still goes up to 12 for who wants speed.
+  const [spawnRate, setSpawnRate] = useState(2);
   const [bias, setBias] = useState(0.5); // probability to go RIGHT
   const [showGaussian, setShowGaussian] = useState(true);
   const [running, setRunning] = useState(true);
@@ -51,6 +54,11 @@ export default function GaltonExplorer() {
     setTotalLanded(0);
     let balls: Ball[] = [];
     let landed = 0;
+    // Sub-frame-rate fall: balls advance one row only every STEP_EVERY frames so
+    // the eye can follow a single path through N rows (~1.5s at N=22 instead of
+    // ~0.37s). Keep this gate — do not "optimise" by moving b.y++ back per-frame.
+    const STEP_EVERY = 4;
+    let frame = 0;
 
     const layout = () => {
       const W = canvas.width;
@@ -97,33 +105,36 @@ export default function GaltonExplorer() {
         ctx.stroke();
       }
 
-      // simulate ball movement + spawn
+      // simulate ball movement + spawn — physics gated to every 4th frame
       if (cfg.running) {
-        // spawn
-        for (let i = 0; i < cfg.spawnRate; i++) {
-          balls.push({ x: 0, y: 0, px: cx, py: top, done: false, bin: 0 });
-        }
-        // step each ball
-        for (const b of balls) {
-          if (b.done) continue;
-          if (b.y < rows) {
-            const goRight = Math.random() < cfg.bias;
-            b.y++;
-            b.x += goRight ? 0.5 : -0.5; // x is left-right offset from centre
-            // target pixel
-            const tx = cx + b.x * dx;
-            const ty = top + b.y * dx;
-            // smooth animate (snap mostly for performance)
-            b.px = tx;
-            b.py = ty;
-            if (b.y === rows) {
-              b.done = true;
-              // bin index = b.x + rows/2 → integer
-              b.bin = Math.round(b.x + rows / 2);
-              if (b.bin < 0) b.bin = 0;
-              else if (b.bin > rows) b.bin = rows;
-              histRef.current[b.bin]++;
-              landed++;
+        frame++;
+        if (frame % STEP_EVERY === 0) {
+          // spawn
+          for (let i = 0; i < cfg.spawnRate; i++) {
+            balls.push({ x: 0, y: 0, px: cx, py: top, done: false, bin: 0 });
+          }
+          // step each ball
+          for (const b of balls) {
+            if (b.done) continue;
+            if (b.y < rows) {
+              const goRight = Math.random() < cfg.bias;
+              b.y++;
+              b.x += goRight ? 0.5 : -0.5; // x is left-right offset from centre
+              // target pixel
+              const tx = cx + b.x * dx;
+              const ty = top + b.y * dx;
+              // smooth animate (snap mostly for performance)
+              b.px = tx;
+              b.py = ty;
+              if (b.y === rows) {
+                b.done = true;
+                // bin index = b.x + rows/2 → integer
+                b.bin = Math.round(b.x + rows / 2);
+                if (b.bin < 0) b.bin = 0;
+                else if (b.bin > rows) b.bin = rows;
+                histRef.current[b.bin]++;
+                landed++;
+              }
             }
           }
         }
@@ -245,7 +256,7 @@ export default function GaltonExplorer() {
               label="Spawn / frame"
               value={spawnRate}
               min={1}
-              max={40}
+              max={12}
               step={1}
               display={spawnRate.toString()}
               onChange={setSpawnRate}

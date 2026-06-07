@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 
 // ---------------------------------------------------------------------------
 // P vs NP Explorer — a small DPLL-style 3-SAT solver, animated.
@@ -54,9 +55,25 @@ interface SolverState {
   conflicts: number;
   startedAt: number; // performance.now()
   elapsedMs: number;
-  lastAction: string;
+  // Either a literal i18n string (when locale-agnostic, e.g. on init) or an
+  // action descriptor that the render step interpolates into the active locale.
+  lastAction: ActionDescriptor;
   finalAssign: Assignment | null;
 }
+
+// Locale-independent action descriptors emitted by `step` / `backtrack`. The
+// component renders them via the active RichExplorer dict so the verdict /
+// action line stays translated.
+type ActionDescriptor =
+  | { kind: "ready" }
+  | { kind: "sat"; depth: number }
+  | { kind: "conflict" }
+  | { kind: "unit"; variable: number; value: boolean }
+  | { kind: "pure"; variable: number; value: boolean }
+  | { kind: "noVars" }
+  | { kind: "branch"; variable: number; value: boolean; depth: number }
+  | { kind: "backtrack"; variable: number; value: boolean; depth: number }
+  | { kind: "unsat" };
 
 // ---------------------------------------------------------------------------
 // Pure helpers — CNF evaluation, unit propagation, pure-literal elim
@@ -155,13 +172,15 @@ function restoreAssign(a: Assignment, snap: Array<[number, boolean]>): void {
 }
 
 // ---------------------------------------------------------------------------
-// Preset instances
+// Preset instances — `id` is the stable lookup key into RichExplorer.presets.
+// `numVars` and `formula` are locale-agnostic; only the label/description
+// strings get translated downstream.
 // ---------------------------------------------------------------------------
 
+type PresetId = "trivial" | "unsat-all" | "phase" | "pigeon" | "verify";
+
 interface Preset {
-  id: string;
-  label: string;
-  description: string;
+  id: PresetId;
   numVars: number;
   formula: Formula;
   verifyAssignment?: Assignment;
@@ -170,8 +189,6 @@ interface Preset {
 const PRESETS: Preset[] = [
   {
     id: "trivial",
-    label: "Trivially SAT",
-    description: "3 vars, 2 clauses. The solver finds it on the first descent.",
     numVars: 3,
     formula: [
       [1, 2, 3],
@@ -180,8 +197,6 @@ const PRESETS: Preset[] = [
   },
   {
     id: "unsat-all",
-    label: "All 8 clauses on 3 vars — UNSAT",
-    description: "Every clause of length 3 on {x1,x2,x3}. No assignment can satisfy them all.",
     numVars: 3,
     formula: [
       [1, 2, 3],
@@ -196,8 +211,6 @@ const PRESETS: Preset[] = [
   },
   {
     id: "phase",
-    label: "Phase-transition · m/n ≈ 4.26",
-    description: "Random 3-SAT at the critical clause/variable density. Hardest known regime.",
     numVars: 7,
     formula: [
       [1, -2, 3],
@@ -234,9 +247,6 @@ const PRESETS: Preset[] = [
   },
   {
     id: "pigeon",
-    label: "Pigeonhole · 4 pigeons → 3 holes",
-    description:
-      "Encodes the pigeonhole principle. Famously requires exponential resolution proofs — DPLL will sweat.",
     numVars: 12, // x_{ij} for pigeon i ∈ 1..4, hole j ∈ 1..3 → var = (i-1)*3 + j
     formula: ((): Formula => {
       const v = (i: number, j: number) => (i - 1) * 3 + j;
@@ -258,9 +268,6 @@ const PRESETS: Preset[] = [
   },
   {
     id: "verify",
-    label: "Verify-only · a 4-var SAT instance with a candidate",
-    description:
-      "Don't search. Plug the candidate assignment in and read off — this is the O(m) verifier that makes the problem NP.",
     numVars: 4,
     formula: [
       [1, -2, 3],
@@ -337,7 +344,7 @@ function makeInitialState(formula: Formula, numVars: number): SolverState {
     conflicts: 0,
     startedAt: 0,
     elapsedMs: 0,
-    lastAction: "Ready.",
+    lastAction: { kind: "ready" },
     finalAssign: null,
   };
 }
@@ -361,7 +368,7 @@ function step(prev: SolverState): SolverState {
   }));
   const tree: TreeNode[] = prev.tree.map((n) => ({ ...n }));
   let { branches, unitProps, pureLits, conflicts, currentNodeId } = prev;
-  let lastAction = prev.lastAction;
+  let lastAction: ActionDescriptor = prev.lastAction;
 
   const startedAt = prev.startedAt === 0 ? performance.now() : prev.startedAt;
   const verdictNow = evalFormula(prev.formula, assign);
@@ -375,7 +382,7 @@ function step(prev: SolverState): SolverState {
       stack,
       tree,
       verdict: "sat",
-      lastAction: `SAT — assignment found at depth ${stack.length}.`,
+      lastAction: { kind: "sat", depth: stack.length },
       finalAssign: assign,
       startedAt,
       elapsedMs: performance.now() - startedAt,
@@ -386,7 +393,7 @@ function step(prev: SolverState): SolverState {
   if (verdictNow === "unsat") {
     tree[currentNodeId].status = "conflict";
     conflicts++;
-    lastAction = "Conflict — backtracking.";
+    lastAction = { kind: "conflict" };
     return backtrack(
       prev,
       assign,
@@ -409,7 +416,7 @@ function step(prev: SolverState): SolverState {
     const val = unit > 0;
     assign.set(v, val);
     unitProps++;
-    lastAction = `Unit propagate · x${v} := ${val ? "T" : "F"}`;
+    lastAction = { kind: "unit", variable: v, value: val };
     return {
       ...prev,
       assign,
@@ -434,7 +441,7 @@ function step(prev: SolverState): SolverState {
     const val = pure > 0;
     assign.set(v, val);
     pureLits++;
-    lastAction = `Pure literal · x${v} := ${val ? "T" : "F"}`;
+    lastAction = { kind: "pure", variable: v, value: val };
     return {
       ...prev,
       assign,
@@ -459,7 +466,7 @@ function step(prev: SolverState): SolverState {
     // caught above). Treat as conflict and backtrack.
     tree[currentNodeId].status = "conflict";
     conflicts++;
-    lastAction = "No vars left, still unsatisfied → backtrack.";
+    lastAction = { kind: "noVars" };
     return backtrack(
       prev,
       assign,
@@ -497,7 +504,7 @@ function step(prev: SolverState): SolverState {
   tree.push(newNode);
   tree[currentNodeId].status = "explored";
   currentNodeId = newNode.id;
-  lastAction = `Branch · x${branchVar} := ${firstValue ? "T" : "F"}  (depth ${stack.length})`;
+  lastAction = { kind: "branch", variable: branchVar, value: firstValue, depth: stack.length };
 
   return {
     ...prev,
@@ -526,7 +533,7 @@ function backtrack(
   unitProps: number,
   pureLits: number,
   conflicts: number,
-  lastAction: string,
+  lastAction: ActionDescriptor,
   startedAt: number,
 ): SolverState {
   // Pop frames until we find one with an untried branch.
@@ -562,7 +569,12 @@ function backtrack(
         pureLits,
         conflicts,
         verdict: "running",
-        lastAction: `Backtrack · x${top.variable} := ${newVal ? "T" : "F"}  (depth ${stack.length})`,
+        lastAction: {
+          kind: "backtrack",
+          variable: top.variable,
+          value: newVal,
+          depth: stack.length,
+        },
         startedAt,
         elapsedMs: performance.now() - startedAt,
       };
@@ -573,6 +585,7 @@ function backtrack(
     if (parentNode !== null) currentNodeId = parentNode;
   }
   // Stack exhausted → UNSAT.
+  void lastAction; // intentionally dropped — the final UNSAT action overrides.
   return {
     ...prev,
     assign,
@@ -584,11 +597,777 @@ function backtrack(
     pureLits,
     conflicts,
     verdict: "unsat",
-    lastAction: "UNSAT — search tree exhausted.",
+    lastAction: { kind: "unsat" },
     startedAt,
     elapsedMs: performance.now() - startedAt,
     finalAssign: null,
   };
+}
+
+// ---------------------------------------------------------------------------
+// Per-locale strings for the explorer UI. Kept inline so the multi-locale
+// prose lives next to the explorer it serves and doesn't fatten the shared
+// i18n bundles.
+// ---------------------------------------------------------------------------
+
+type RichExplorer = {
+  // header strips
+  headerModeVerify: string;
+  headerModeSolve: string;
+  // clause display
+  formulaTitle: string;
+  // assignment row
+  candidateAssignment: string;
+  partialAssignment: string;
+  toggleHint: string;
+  // verdict panel
+  verifierOutput: string;
+  currentNode: string;
+  verifierSatisfied: string;
+  verifierFalsified: string;
+  verifierIncomplete: string;
+  verifierFootnote: string;
+  verdictLabel: string;
+  // search tree
+  searchTreeTitle: (depth: number) => string;
+  // sidebar — presets
+  presetsTitle: string;
+  presets: Record<
+    PresetId,
+    {
+      label: string;
+      description: string;
+    }
+  >;
+  // sidebar — random generator
+  randomTitle: string;
+  varsLabel: (n: number) => string;
+  clausesLabel: (m: number) => string;
+  seedLabel: (s: number) => string;
+  ratioLabel: (mn: string) => string;
+  generateRandom: string;
+  // sidebar — speed + controls
+  speedLabel: (s: number) => string;
+  btnStep: string;
+  btnRun: string;
+  btnPause: string;
+  btnReset: string;
+  // sidebar — stats
+  solverStats: string;
+  statElapsed: string;
+  statBranches: string;
+  statUnitProp: string;
+  statPureLit: string;
+  statConflicts: string;
+  statDepth: string;
+  statVerdict: string;
+  foundPrefix: string;
+  // mode toggle
+  modeLabel: string;
+  modeSolve: string;
+  modeVerify: string;
+  modeFootnote: string;
+  // verdict / action line (rendered from ActionDescriptor)
+  actionReady: string;
+  actionSat: (depth: number) => string;
+  actionConflict: string;
+  actionUnit: (variable: number, value: boolean) => string;
+  actionPure: (variable: number, value: boolean) => string;
+  actionNoVars: string;
+  actionBranch: (variable: number, value: boolean, depth: number) => string;
+  actionBacktrack: (variable: number, value: boolean, depth: number) => string;
+  actionUnsat: string;
+  // search-tree legend
+  legendOpen: string;
+  legendExplored: string;
+  legendConflict: string;
+  legendSat: string;
+};
+
+// Tiny helper — "T"/"F" universal across locales.
+const tf = (v: boolean) => (v ? "T" : "F");
+
+const EXPLORER: Record<Locale, RichExplorer> = {
+  en: {
+    headerModeVerify: "Verify mode · O(m) check",
+    headerModeSolve: "DPLL search · 3-SAT",
+    formulaTitle: "Formula φ — conjunction of clauses",
+    candidateAssignment: "Candidate assignment",
+    partialAssignment: "Partial assignment",
+    toggleHint: "Click variables to toggle T → F → unset.",
+    verifierOutput: "Verifier output",
+    currentNode: "Current node",
+    verifierSatisfied: "✓ SATISFIED — every clause evaluates to true.",
+    verifierFalsified: "✗ FALSIFIED — at least one clause is broken.",
+    verifierIncomplete: "… incomplete — some variables unassigned.",
+    verifierFootnote:
+      "Verification scans the m clauses once and checks each in O(1). Total work: O(m) — independent of the search space. This is what puts the problem in NP.",
+    verdictLabel: "verdict",
+    searchTreeTitle: (depth) => `DPLL search tree · depth = ${depth}`,
+    presetsTitle: "Preset 3-SAT instance",
+    presets: {
+      trivial: {
+        label: "Trivially SAT",
+        description: "3 vars, 2 clauses. The solver finds it on the first descent.",
+      },
+      "unsat-all": {
+        label: "All 8 clauses on 3 vars — UNSAT",
+        description:
+          "Every clause of length 3 on {x1,x2,x3}. No assignment can satisfy them all.",
+      },
+      phase: {
+        label: "Phase-transition · m/n ≈ 4.26",
+        description:
+          "Random 3-SAT at the critical clause/variable density. Hardest known regime.",
+      },
+      pigeon: {
+        label: "Pigeonhole · 4 pigeons → 3 holes",
+        description:
+          "Encodes the pigeonhole principle. Famously requires exponential resolution proofs — DPLL will sweat.",
+      },
+      verify: {
+        label: "Verify-only · a 4-var SAT instance with a candidate",
+        description:
+          "Don't search. Plug the candidate assignment in and read off — this is the O(m) verifier that makes the problem NP.",
+      },
+    },
+    randomTitle: "Random 3-SAT",
+    varsLabel: (n) => `Variables n = ${n}`,
+    clausesLabel: (m) => `Clauses m = ${m}`,
+    seedLabel: (s) => `Seed = ${s}`,
+    ratioLabel: (mn) => `m / n = ${mn} · phase transition ≈ 4.26`,
+    generateRandom: "Generate random",
+    speedLabel: (s) => `Speed · ${s} steps/s`,
+    btnStep: "Step",
+    btnRun: "Run",
+    btnPause: "Pause",
+    btnReset: "Reset",
+    solverStats: "Solver stats",
+    statElapsed: "elapsed",
+    statBranches: "branches",
+    statUnitProp: "unit-prop",
+    statPureLit: "pure-lit",
+    statConflicts: "conflicts",
+    statDepth: "depth",
+    statVerdict: "verdict",
+    foundPrefix: "Found:",
+    modeLabel: "Mode",
+    modeSolve: "Solve",
+    modeVerify: "Verify",
+    modeFootnote:
+      "Solve runs DPLL (potentially exponential). Verify just plugs an assignment into m clauses — that's the O(m) certificate that makes 3-SAT lie in NP.",
+    actionReady: "Ready.",
+    actionSat: (depth) => `SAT — assignment found at depth ${depth}.`,
+    actionConflict: "Conflict — backtracking.",
+    actionUnit: (v, val) => `Unit propagate · x${v} := ${tf(val)}`,
+    actionPure: (v, val) => `Pure literal · x${v} := ${tf(val)}`,
+    actionNoVars: "No vars left, still unsatisfied → backtrack.",
+    actionBranch: (v, val, d) => `Branch · x${v} := ${tf(val)}  (depth ${d})`,
+    actionBacktrack: (v, val, d) => `Backtrack · x${v} := ${tf(val)}  (depth ${d})`,
+    actionUnsat: "UNSAT — search tree exhausted.",
+    legendOpen: "open / unexplored",
+    legendExplored: "explored",
+    legendConflict: "conflict",
+    legendSat: "SAT",
+  },
+  de: {
+    headerModeVerify: "Verifizier-Modus · O(m)-Prüfung",
+    headerModeSolve: "DPLL-Suche · 3-SAT",
+    formulaTitle: "Formel φ — Konjunktion von Klauseln",
+    candidateAssignment: "Kandidaten-Belegung",
+    partialAssignment: "Partielle Belegung",
+    toggleHint: "Klicke Variablen, um T → F → unbelegt zu schalten.",
+    verifierOutput: "Verifizier-Ausgabe",
+    currentNode: "Aktueller Knoten",
+    verifierSatisfied: "✓ ERFÜLLT — jede Klausel ist wahr.",
+    verifierFalsified: "✗ FALSIFIZIERT — mindestens eine Klausel ist verletzt.",
+    verifierIncomplete: "… unvollständig — einige Variablen sind unbelegt.",
+    verifierFootnote:
+      "Die Verifikation läuft einmal über die m Klauseln und prüft jede in O(1). Gesamtaufwand: O(m) — unabhängig vom Suchraum. Genau das setzt das Problem in NP.",
+    verdictLabel: "Urteil",
+    searchTreeTitle: (depth) => `DPLL-Suchbaum · Tiefe = ${depth}`,
+    presetsTitle: "Voreingestellte 3-SAT-Instanz",
+    presets: {
+      trivial: {
+        label: "Trivial erfüllbar",
+        description: "3 Variablen, 2 Klauseln. Der Solver findet sie beim ersten Abstieg.",
+      },
+      "unsat-all": {
+        label: "Alle 8 Klauseln auf 3 Variablen — UNSAT",
+        description:
+          "Jede Klausel der Länge 3 auf {x1,x2,x3}. Keine Belegung kann sie alle erfüllen.",
+      },
+      phase: {
+        label: "Phasenübergang · m/n ≈ 4.26",
+        description:
+          "Zufälliges 3-SAT bei kritischer Klausel-/Variablendichte. Härtestes bekanntes Regime.",
+      },
+      pigeon: {
+        label: "Schubfach · 4 Tauben → 3 Löcher",
+        description:
+          "Kodiert das Schubfachprinzip. Berühmt für exponentielle Resolutionsbeweise — DPLL wird schwitzen.",
+      },
+      verify: {
+        label: "Nur verifizieren · 4-Variablen-SAT-Instanz mit Kandidat",
+        description:
+          "Nicht suchen. Setze die Kandidaten-Belegung ein und lies ab — das ist der O(m)-Verifizierer, der das Problem in NP packt.",
+      },
+    },
+    randomTitle: "Zufälliges 3-SAT",
+    varsLabel: (n) => `Variablen n = ${n}`,
+    clausesLabel: (m) => `Klauseln m = ${m}`,
+    seedLabel: (s) => `Seed = ${s}`,
+    ratioLabel: (mn) => `m / n = ${mn} · Phasenübergang ≈ 4.26`,
+    generateRandom: "Zufällig erzeugen",
+    speedLabel: (s) => `Geschwindigkeit · ${s} Schritte/s`,
+    btnStep: "Schritt",
+    btnRun: "Lauf",
+    btnPause: "Pause",
+    btnReset: "Zurücksetzen",
+    solverStats: "Solver-Statistik",
+    statElapsed: "Dauer",
+    statBranches: "Verzweigungen",
+    statUnitProp: "Unit-Prop",
+    statPureLit: "Pure-Lit",
+    statConflicts: "Konflikte",
+    statDepth: "Tiefe",
+    statVerdict: "Urteil",
+    foundPrefix: "Gefunden:",
+    modeLabel: "Modus",
+    modeSolve: "Lösen",
+    modeVerify: "Verifizieren",
+    modeFootnote:
+      "«Lösen» fährt DPLL (potenziell exponentiell). «Verifizieren» steckt nur eine Belegung in m Klauseln — das ist das O(m)-Zertifikat, das 3-SAT in NP legt.",
+    actionReady: "Bereit.",
+    actionSat: (depth) => `SAT — Belegung gefunden bei Tiefe ${depth}.`,
+    actionConflict: "Konflikt — Backtracking.",
+    actionUnit: (v, val) => `Unit-Propagation · x${v} := ${tf(val)}`,
+    actionPure: (v, val) => `Reines Literal · x${v} := ${tf(val)}`,
+    actionNoVars: "Keine Variablen mehr, noch unerfüllt → Backtrack.",
+    actionBranch: (v, val, d) => `Verzweigung · x${v} := ${tf(val)}  (Tiefe ${d})`,
+    actionBacktrack: (v, val, d) => `Backtrack · x${v} := ${tf(val)}  (Tiefe ${d})`,
+    actionUnsat: "UNSAT — Suchbaum erschöpft.",
+    legendOpen: "offen / unerforscht",
+    legendExplored: "erforscht",
+    legendConflict: "Konflikt",
+    legendSat: "SAT",
+  },
+  es: {
+    headerModeVerify: "Modo verificación · comprobación O(m)",
+    headerModeSolve: "Búsqueda DPLL · 3-SAT",
+    formulaTitle: "Fórmula φ — conjunción de cláusulas",
+    candidateAssignment: "Asignación candidata",
+    partialAssignment: "Asignación parcial",
+    toggleHint: "Pulsa las variables para alternar T → F → sin asignar.",
+    verifierOutput: "Salida del verificador",
+    currentNode: "Nodo actual",
+    verifierSatisfied: "✓ SATISFECHA — toda cláusula es verdadera.",
+    verifierFalsified: "✗ FALSIFICADA — al menos una cláusula falla.",
+    verifierIncomplete: "… incompleta — algunas variables sin asignar.",
+    verifierFootnote:
+      "La verificación recorre las m cláusulas una vez y comprueba cada una en O(1). Trabajo total: O(m) — independiente del espacio de búsqueda. Esto es lo que pone el problema en NP.",
+    verdictLabel: "veredicto",
+    searchTreeTitle: (depth) => `Árbol de búsqueda DPLL · profundidad = ${depth}`,
+    presetsTitle: "Instancia 3-SAT prefijada",
+    presets: {
+      trivial: {
+        label: "Trivialmente SAT",
+        description: "3 variables, 2 cláusulas. El solver la encuentra en el primer descenso.",
+      },
+      "unsat-all": {
+        label: "Las 8 cláusulas sobre 3 variables — UNSAT",
+        description:
+          "Toda cláusula de longitud 3 sobre {x1,x2,x3}. Ninguna asignación las satisface a todas.",
+      },
+      phase: {
+        label: "Transición de fase · m/n ≈ 4.26",
+        description:
+          "3-SAT aleatorio a la densidad crítica cláusulas/variables. El régimen más duro conocido.",
+      },
+      pigeon: {
+        label: "Palomar · 4 palomas → 3 huecos",
+        description:
+          "Codifica el principio del palomar. Famoso por requerir pruebas de resolución exponenciales — DPLL sudará.",
+      },
+      verify: {
+        label: "Sólo verificar · instancia SAT de 4 variables con candidato",
+        description:
+          "Sin buscar. Mete la asignación candidata y lee — éste es el verificador O(m) que mete el problema en NP.",
+      },
+    },
+    randomTitle: "3-SAT aleatorio",
+    varsLabel: (n) => `Variables n = ${n}`,
+    clausesLabel: (m) => `Cláusulas m = ${m}`,
+    seedLabel: (s) => `Semilla = ${s}`,
+    ratioLabel: (mn) => `m / n = ${mn} · transición de fase ≈ 4.26`,
+    generateRandom: "Generar aleatorio",
+    speedLabel: (s) => `Velocidad · ${s} pasos/s`,
+    btnStep: "Paso",
+    btnRun: "Ejecutar",
+    btnPause: "Pausa",
+    btnReset: "Reiniciar",
+    solverStats: "Estadísticas del solver",
+    statElapsed: "tiempo",
+    statBranches: "ramas",
+    statUnitProp: "unit-prop",
+    statPureLit: "lit-puro",
+    statConflicts: "conflictos",
+    statDepth: "profundidad",
+    statVerdict: "veredicto",
+    foundPrefix: "Encontrado:",
+    modeLabel: "Modo",
+    modeSolve: "Resolver",
+    modeVerify: "Verificar",
+    modeFootnote:
+      "«Resolver» lanza DPLL (potencialmente exponencial). «Verificar» sólo mete una asignación en m cláusulas — ése es el certificado O(m) que mete a 3-SAT en NP.",
+    actionReady: "Listo.",
+    actionSat: (depth) => `SAT — asignación hallada a profundidad ${depth}.`,
+    actionConflict: "Conflicto — retrocediendo.",
+    actionUnit: (v, val) => `Propagación unitaria · x${v} := ${tf(val)}`,
+    actionPure: (v, val) => `Literal puro · x${v} := ${tf(val)}`,
+    actionNoVars: "No quedan variables y sigue insatisfecha → retroceder.",
+    actionBranch: (v, val, d) => `Rama · x${v} := ${tf(val)}  (profundidad ${d})`,
+    actionBacktrack: (v, val, d) => `Retroceso · x${v} := ${tf(val)}  (profundidad ${d})`,
+    actionUnsat: "UNSAT — árbol de búsqueda agotado.",
+    legendOpen: "abierto / sin explorar",
+    legendExplored: "explorado",
+    legendConflict: "conflicto",
+    legendSat: "SAT",
+  },
+  fr: {
+    headerModeVerify: "Mode vérification · contrôle O(m)",
+    headerModeSolve: "Recherche DPLL · 3-SAT",
+    formulaTitle: "Formule φ — conjonction de clauses",
+    candidateAssignment: "Affectation candidate",
+    partialAssignment: "Affectation partielle",
+    toggleHint: "Cliquez les variables pour basculer T → F → non assigné.",
+    verifierOutput: "Sortie du vérificateur",
+    currentNode: "Nœud actuel",
+    verifierSatisfied: "✓ SATISFAITE — chaque clause est vraie.",
+    verifierFalsified: "✗ FALSIFIÉE — au moins une clause est cassée.",
+    verifierIncomplete: "… incomplète — certaines variables non assignées.",
+    verifierFootnote:
+      "La vérification parcourt les m clauses une fois et contrôle chacune en O(1). Travail total : O(m) — indépendant de l'espace de recherche. C'est ce qui place le problème dans NP.",
+    verdictLabel: "verdict",
+    searchTreeTitle: (depth) => `Arbre de recherche DPLL · profondeur = ${depth}`,
+    presetsTitle: "Instance 3-SAT prédéfinie",
+    presets: {
+      trivial: {
+        label: "Trivialement SAT",
+        description: "3 variables, 2 clauses. Le solveur la trouve dès la première descente.",
+      },
+      "unsat-all": {
+        label: "Les 8 clauses sur 3 variables — UNSAT",
+        description:
+          "Toute clause de longueur 3 sur {x1,x2,x3}. Aucune affectation ne peut toutes les satisfaire.",
+      },
+      phase: {
+        label: "Transition de phase · m/n ≈ 4.26",
+        description:
+          "3-SAT aléatoire à la densité critique clauses/variables. Le régime le plus difficile connu.",
+      },
+      pigeon: {
+        label: "Tiroirs · 4 pigeons → 3 trous",
+        description:
+          "Code le principe des tiroirs. Connu pour exiger des preuves de résolution exponentielles — DPLL va transpirer.",
+      },
+      verify: {
+        label: "Vérification seule · instance SAT à 4 variables avec candidat",
+        description:
+          "Pas de recherche. Branchez l'affectation candidate et lisez — c'est le vérificateur O(m) qui place le problème dans NP.",
+      },
+    },
+    randomTitle: "3-SAT aléatoire",
+    varsLabel: (n) => `Variables n = ${n}`,
+    clausesLabel: (m) => `Clauses m = ${m}`,
+    seedLabel: (s) => `Graine = ${s}`,
+    ratioLabel: (mn) => `m / n = ${mn} · transition de phase ≈ 4.26`,
+    generateRandom: "Générer aléatoirement",
+    speedLabel: (s) => `Vitesse · ${s} pas/s`,
+    btnStep: "Pas",
+    btnRun: "Lancer",
+    btnPause: "Pause",
+    btnReset: "Réinitialiser",
+    solverStats: "Stats du solveur",
+    statElapsed: "écoulé",
+    statBranches: "branches",
+    statUnitProp: "unit-prop",
+    statPureLit: "lit-pur",
+    statConflicts: "conflits",
+    statDepth: "profondeur",
+    statVerdict: "verdict",
+    foundPrefix: "Trouvé :",
+    modeLabel: "Mode",
+    modeSolve: "Résoudre",
+    modeVerify: "Vérifier",
+    modeFootnote:
+      "« Résoudre » lance DPLL (potentiellement exponentiel). « Vérifier » branche juste une affectation dans m clauses — c'est le certificat O(m) qui place 3-SAT dans NP.",
+    actionReady: "Prêt.",
+    actionSat: (depth) => `SAT — affectation trouvée à la profondeur ${depth}.`,
+    actionConflict: "Conflit — retour arrière.",
+    actionUnit: (v, val) => `Propagation unitaire · x${v} := ${tf(val)}`,
+    actionPure: (v, val) => `Littéral pur · x${v} := ${tf(val)}`,
+    actionNoVars: "Plus de variables, toujours non satisfaite → retour arrière.",
+    actionBranch: (v, val, d) => `Branche · x${v} := ${tf(val)}  (profondeur ${d})`,
+    actionBacktrack: (v, val, d) => `Retour · x${v} := ${tf(val)}  (profondeur ${d})`,
+    actionUnsat: "UNSAT — arbre de recherche épuisé.",
+    legendOpen: "ouvert / inexploré",
+    legendExplored: "exploré",
+    legendConflict: "conflit",
+    legendSat: "SAT",
+  },
+  it: {
+    headerModeVerify: "Modalità verifica · controllo O(m)",
+    headerModeSolve: "Ricerca DPLL · 3-SAT",
+    formulaTitle: "Formula φ — congiunzione di clausole",
+    candidateAssignment: "Assegnazione candidata",
+    partialAssignment: "Assegnazione parziale",
+    toggleHint: "Clicca le variabili per alternare T → F → non assegnata.",
+    verifierOutput: "Output del verificatore",
+    currentNode: "Nodo corrente",
+    verifierSatisfied: "✓ SODDISFATTA — ogni clausola è vera.",
+    verifierFalsified: "✗ FALSIFICATA — almeno una clausola è infranta.",
+    verifierIncomplete: "… incompleta — alcune variabili non assegnate.",
+    verifierFootnote:
+      "La verifica scorre le m clausole una volta e controlla ciascuna in O(1). Lavoro totale: O(m) — indipendente dallo spazio di ricerca. È ciò che pone il problema in NP.",
+    verdictLabel: "verdetto",
+    searchTreeTitle: (depth) => `Albero di ricerca DPLL · profondità = ${depth}`,
+    presetsTitle: "Istanza 3-SAT preimpostata",
+    presets: {
+      trivial: {
+        label: "Banalmente SAT",
+        description: "3 variabili, 2 clausole. Il solver la trova alla prima discesa.",
+      },
+      "unsat-all": {
+        label: "Tutte le 8 clausole su 3 variabili — UNSAT",
+        description:
+          "Ogni clausola di lunghezza 3 su {x1,x2,x3}. Nessuna assegnazione le soddisfa tutte.",
+      },
+      phase: {
+        label: "Transizione di fase · m/n ≈ 4.26",
+        description:
+          "3-SAT casuale alla densità critica clausole/variabili. Il regime più difficile noto.",
+      },
+      pigeon: {
+        label: "Cassetti · 4 piccioni → 3 buchi",
+        description:
+          "Codifica il principio dei cassetti. Notoriamente richiede dimostrazioni di risoluzione esponenziali — DPLL suderà.",
+      },
+      verify: {
+        label: "Solo verifica · istanza SAT a 4 variabili con candidato",
+        description:
+          "Niente ricerca. Inserisci l'assegnazione candidata e leggi — è il verificatore O(m) che mette il problema in NP.",
+      },
+    },
+    randomTitle: "3-SAT casuale",
+    varsLabel: (n) => `Variabili n = ${n}`,
+    clausesLabel: (m) => `Clausole m = ${m}`,
+    seedLabel: (s) => `Seed = ${s}`,
+    ratioLabel: (mn) => `m / n = ${mn} · transizione di fase ≈ 4.26`,
+    generateRandom: "Genera casuale",
+    speedLabel: (s) => `Velocità · ${s} passi/s`,
+    btnStep: "Passo",
+    btnRun: "Avvia",
+    btnPause: "Pausa",
+    btnReset: "Reset",
+    solverStats: "Statistiche del solver",
+    statElapsed: "trascorso",
+    statBranches: "rami",
+    statUnitProp: "unit-prop",
+    statPureLit: "lit-puro",
+    statConflicts: "conflitti",
+    statDepth: "profondità",
+    statVerdict: "verdetto",
+    foundPrefix: "Trovato:",
+    modeLabel: "Modalità",
+    modeSolve: "Risolvi",
+    modeVerify: "Verifica",
+    modeFootnote:
+      "«Risolvi» avvia DPLL (potenzialmente esponenziale). «Verifica» inserisce solo un'assegnazione in m clausole — è il certificato O(m) che pone 3-SAT in NP.",
+    actionReady: "Pronto.",
+    actionSat: (depth) => `SAT — assegnazione trovata a profondità ${depth}.`,
+    actionConflict: "Conflitto — backtracking.",
+    actionUnit: (v, val) => `Propagazione unitaria · x${v} := ${tf(val)}`,
+    actionPure: (v, val) => `Letterale puro · x${v} := ${tf(val)}`,
+    actionNoVars: "Niente più variabili, ancora insoddisfatta → backtrack.",
+    actionBranch: (v, val, d) => `Ramo · x${v} := ${tf(val)}  (profondità ${d})`,
+    actionBacktrack: (v, val, d) => `Backtrack · x${v} := ${tf(val)}  (profondità ${d})`,
+    actionUnsat: "UNSAT — albero di ricerca esaurito.",
+    legendOpen: "aperto / inesplorato",
+    legendExplored: "esplorato",
+    legendConflict: "conflitto",
+    legendSat: "SAT",
+  },
+  pt: {
+    headerModeVerify: "Modo verificação · verificação O(m)",
+    headerModeSolve: "Busca DPLL · 3-SAT",
+    formulaTitle: "Fórmula φ — conjunção de cláusulas",
+    candidateAssignment: "Atribuição candidata",
+    partialAssignment: "Atribuição parcial",
+    toggleHint: "Clique nas variáveis para alternar T → F → não atribuída.",
+    verifierOutput: "Saída do verificador",
+    currentNode: "Nó actual",
+    verifierSatisfied: "✓ SATISFEITA — toda cláusula é verdadeira.",
+    verifierFalsified: "✗ FALSIFICADA — pelo menos uma cláusula falha.",
+    verifierIncomplete: "… incompleta — algumas variáveis sem atribuição.",
+    verifierFootnote:
+      "A verificação percorre as m cláusulas uma vez e verifica cada uma em O(1). Trabalho total: O(m) — independente do espaço de busca. É isso que põe o problema em NP.",
+    verdictLabel: "veredicto",
+    searchTreeTitle: (depth) => `Árvore de busca DPLL · profundidade = ${depth}`,
+    presetsTitle: "Instância 3-SAT predefinida",
+    presets: {
+      trivial: {
+        label: "Trivialmente SAT",
+        description: "3 variáveis, 2 cláusulas. O solver encontra-a na primeira descida.",
+      },
+      "unsat-all": {
+        label: "Todas as 8 cláusulas sobre 3 variáveis — UNSAT",
+        description:
+          "Toda cláusula de comprimento 3 sobre {x1,x2,x3}. Nenhuma atribuição as satisfaz todas.",
+      },
+      phase: {
+        label: "Transição de fase · m/n ≈ 4.26",
+        description:
+          "3-SAT aleatório à densidade crítica cláusulas/variáveis. O regime mais difícil conhecido.",
+      },
+      pigeon: {
+        label: "Casas dos pombos · 4 pombos → 3 casas",
+        description:
+          "Codifica o princípio das casas dos pombos. Famoso por exigir provas de resolução exponenciais — DPLL vai suar.",
+      },
+      verify: {
+        label: "Só verificar · instância SAT de 4 variáveis com candidato",
+        description:
+          "Sem buscar. Mete a atribuição candidata e lê — é o verificador O(m) que põe o problema em NP.",
+      },
+    },
+    randomTitle: "3-SAT aleatório",
+    varsLabel: (n) => `Variáveis n = ${n}`,
+    clausesLabel: (m) => `Cláusulas m = ${m}`,
+    seedLabel: (s) => `Semente = ${s}`,
+    ratioLabel: (mn) => `m / n = ${mn} · transição de fase ≈ 4.26`,
+    generateRandom: "Gerar aleatório",
+    speedLabel: (s) => `Velocidade · ${s} passos/s`,
+    btnStep: "Passo",
+    btnRun: "Executar",
+    btnPause: "Pausa",
+    btnReset: "Reiniciar",
+    solverStats: "Estatísticas do solver",
+    statElapsed: "decorrido",
+    statBranches: "ramos",
+    statUnitProp: "unit-prop",
+    statPureLit: "lit-puro",
+    statConflicts: "conflitos",
+    statDepth: "profundidade",
+    statVerdict: "veredicto",
+    foundPrefix: "Encontrado:",
+    modeLabel: "Modo",
+    modeSolve: "Resolver",
+    modeVerify: "Verificar",
+    modeFootnote:
+      "«Resolver» lança DPLL (potencialmente exponencial). «Verificar» mete apenas uma atribuição em m cláusulas — é o certificado O(m) que põe 3-SAT em NP.",
+    actionReady: "Pronto.",
+    actionSat: (depth) => `SAT — atribuição encontrada à profundidade ${depth}.`,
+    actionConflict: "Conflito — retrocedendo.",
+    actionUnit: (v, val) => `Propagação unitária · x${v} := ${tf(val)}`,
+    actionPure: (v, val) => `Literal puro · x${v} := ${tf(val)}`,
+    actionNoVars: "Sem variáveis, ainda insatisfeita → retroceder.",
+    actionBranch: (v, val, d) => `Ramo · x${v} := ${tf(val)}  (profundidade ${d})`,
+    actionBacktrack: (v, val, d) => `Retrocesso · x${v} := ${tf(val)}  (profundidade ${d})`,
+    actionUnsat: "UNSAT — árvore de busca esgotada.",
+    legendOpen: "aberto / inexplorado",
+    legendExplored: "explorado",
+    legendConflict: "conflito",
+    legendSat: "SAT",
+  },
+  sv: {
+    headerModeVerify: "Verifieringsläge · O(m)-kontroll",
+    headerModeSolve: "DPLL-sökning · 3-SAT",
+    formulaTitle: "Formel φ — konjunktion av klausuler",
+    candidateAssignment: "Kandidattilldelning",
+    partialAssignment: "Partiell tilldelning",
+    toggleHint: "Klicka på variabler för att växla T → F → otilldelad.",
+    verifierOutput: "Verifierarens utdata",
+    currentNode: "Aktuell nod",
+    verifierSatisfied: "✓ UPPFYLLD — varje klausul är sann.",
+    verifierFalsified: "✗ FALSIFIERAD — minst en klausul är trasig.",
+    verifierIncomplete: "… ofullständig — vissa variabler är otilldelade.",
+    verifierFootnote:
+      "Verifieringen sveper de m klausulerna en gång och kollar var och en i O(1). Totalt arbete: O(m) — oberoende av sökrymden. Det är detta som placerar problemet i NP.",
+    verdictLabel: "utslag",
+    searchTreeTitle: (depth) => `DPLL-sökträd · djup = ${depth}`,
+    presetsTitle: "Förvald 3-SAT-instans",
+    presets: {
+      trivial: {
+        label: "Trivialt SAT",
+        description: "3 variabler, 2 klausuler. Lösaren hittar den vid första nedstigning.",
+      },
+      "unsat-all": {
+        label: "Alla 8 klausuler på 3 variabler — UNSAT",
+        description:
+          "Varje klausul av längd 3 på {x1,x2,x3}. Ingen tilldelning kan uppfylla dem alla.",
+      },
+      phase: {
+        label: "Fasövergång · m/n ≈ 4.26",
+        description:
+          "Slumpmässig 3-SAT vid kritisk klausul/variabel-täthet. Det svåraste kända regimet.",
+      },
+      pigeon: {
+        label: "Lådprincip · 4 duvor → 3 hål",
+        description:
+          "Kodar lådprincipen. Berömt för att kräva exponentiella resolutionsbevis — DPLL får svettas.",
+      },
+      verify: {
+        label: "Endast verifiera · 4-variabel-SAT-instans med kandidat",
+        description:
+          "Ingen sökning. Stoppa in kandidattilldelningen och läs av — detta är O(m)-verifieraren som placerar problemet i NP.",
+      },
+    },
+    randomTitle: "Slumpmässig 3-SAT",
+    varsLabel: (n) => `Variabler n = ${n}`,
+    clausesLabel: (m) => `Klausuler m = ${m}`,
+    seedLabel: (s) => `Frö = ${s}`,
+    ratioLabel: (mn) => `m / n = ${mn} · fasövergång ≈ 4.26`,
+    generateRandom: "Generera slumpmässig",
+    speedLabel: (s) => `Hastighet · ${s} steg/s`,
+    btnStep: "Steg",
+    btnRun: "Kör",
+    btnPause: "Paus",
+    btnReset: "Återställ",
+    solverStats: "Lösarstatistik",
+    statElapsed: "förflutet",
+    statBranches: "grenar",
+    statUnitProp: "unit-prop",
+    statPureLit: "ren-lit",
+    statConflicts: "konflikter",
+    statDepth: "djup",
+    statVerdict: "utslag",
+    foundPrefix: "Hittad:",
+    modeLabel: "Läge",
+    modeSolve: "Lös",
+    modeVerify: "Verifiera",
+    modeFootnote:
+      "«Lös» kör DPLL (potentiellt exponentiell). «Verifiera» stoppar bara in en tilldelning i m klausuler — det är O(m)-certifikatet som placerar 3-SAT i NP.",
+    actionReady: "Klar.",
+    actionSat: (depth) => `SAT — tilldelning funnen på djup ${depth}.`,
+    actionConflict: "Konflikt — backtrackar.",
+    actionUnit: (v, val) => `Unit-propagering · x${v} := ${tf(val)}`,
+    actionPure: (v, val) => `Rent literal · x${v} := ${tf(val)}`,
+    actionNoVars: "Inga variabler kvar, fortfarande ouppfylld → backtrack.",
+    actionBranch: (v, val, d) => `Gren · x${v} := ${tf(val)}  (djup ${d})`,
+    actionBacktrack: (v, val, d) => `Backtrack · x${v} := ${tf(val)}  (djup ${d})`,
+    actionUnsat: "UNSAT — sökträdet uttömt.",
+    legendOpen: "öppen / outforskad",
+    legendExplored: "utforskad",
+    legendConflict: "konflikt",
+    legendSat: "SAT",
+  },
+  no: {
+    headerModeVerify: "Verifiseringsmodus · O(m)-sjekk",
+    headerModeSolve: "DPLL-søk · 3-SAT",
+    formulaTitle: "Formel φ — konjunksjon av klausuler",
+    candidateAssignment: "Kandidat-tilordning",
+    partialAssignment: "Delvis tilordning",
+    toggleHint: "Klikk på variabler for å veksle T → F → uten verdi.",
+    verifierOutput: "Verifiserer-utdata",
+    currentNode: "Gjeldende node",
+    verifierSatisfied: "✓ OPPFYLT — hver klausul er sann.",
+    verifierFalsified: "✗ FALSIFISERT — minst én klausul er brutt.",
+    verifierIncomplete: "… ufullstendig — noen variabler er uten verdi.",
+    verifierFootnote:
+      "Verifiseringen går gjennom de m klausulene én gang og sjekker hver i O(1). Totalarbeid: O(m) — uavhengig av søkerommet. Det er det som plasserer problemet i NP.",
+    verdictLabel: "dom",
+    searchTreeTitle: (depth) => `DPLL-søketre · dybde = ${depth}`,
+    presetsTitle: "Forhåndsdefinert 3-SAT-instans",
+    presets: {
+      trivial: {
+        label: "Trivielt SAT",
+        description: "3 variabler, 2 klausuler. Løseren finner den ved første nedstigning.",
+      },
+      "unsat-all": {
+        label: "Alle 8 klausuler på 3 variabler — UNSAT",
+        description:
+          "Hver klausul av lengde 3 på {x1,x2,x3}. Ingen tilordning kan oppfylle dem alle.",
+      },
+      phase: {
+        label: "Faseovergang · m/n ≈ 4.26",
+        description:
+          "Tilfeldig 3-SAT ved kritisk klausul/variabel-tetthet. Det vanskeligste kjente regimet.",
+      },
+      pigeon: {
+        label: "Skuffeprinsipp · 4 duer → 3 hull",
+        description:
+          "Koder skuffeprinsippet. Berømt for å kreve eksponentielle resolusjonsbevis — DPLL vil svette.",
+      },
+      verify: {
+        label: "Kun verifiser · 4-variabel-SAT-instans med kandidat",
+        description:
+          "Ingen søking. Putt inn kandidat-tilordningen og les av — dette er O(m)-verifisereren som plasserer problemet i NP.",
+      },
+    },
+    randomTitle: "Tilfeldig 3-SAT",
+    varsLabel: (n) => `Variabler n = ${n}`,
+    clausesLabel: (m) => `Klausuler m = ${m}`,
+    seedLabel: (s) => `Frø = ${s}`,
+    ratioLabel: (mn) => `m / n = ${mn} · faseovergang ≈ 4.26`,
+    generateRandom: "Generer tilfeldig",
+    speedLabel: (s) => `Fart · ${s} steg/s`,
+    btnStep: "Steg",
+    btnRun: "Kjør",
+    btnPause: "Pause",
+    btnReset: "Tilbakestill",
+    solverStats: "Løser-statistikk",
+    statElapsed: "forløpt",
+    statBranches: "grener",
+    statUnitProp: "unit-prop",
+    statPureLit: "ren-lit",
+    statConflicts: "konflikter",
+    statDepth: "dybde",
+    statVerdict: "dom",
+    foundPrefix: "Funnet:",
+    modeLabel: "Modus",
+    modeSolve: "Løs",
+    modeVerify: "Verifiser",
+    modeFootnote:
+      "«Løs» kjører DPLL (potensielt eksponentielt). «Verifiser» setter bare inn en tilordning i m klausuler — det er O(m)-sertifikatet som plasserer 3-SAT i NP.",
+    actionReady: "Klar.",
+    actionSat: (depth) => `SAT — tilordning funnet på dybde ${depth}.`,
+    actionConflict: "Konflikt — backtracker.",
+    actionUnit: (v, val) => `Unit-propagering · x${v} := ${tf(val)}`,
+    actionPure: (v, val) => `Rent literal · x${v} := ${tf(val)}`,
+    actionNoVars: "Ingen variabler igjen, fortsatt uoppfylt → backtrack.",
+    actionBranch: (v, val, d) => `Gren · x${v} := ${tf(val)}  (dybde ${d})`,
+    actionBacktrack: (v, val, d) => `Backtrack · x${v} := ${tf(val)}  (dybde ${d})`,
+    actionUnsat: "UNSAT — søketreet uttømt.",
+    legendOpen: "åpen / uutforsket",
+    legendExplored: "utforsket",
+    legendConflict: "konflikt",
+    legendSat: "SAT",
+  },
+};
+
+// Render an action descriptor through the active dict.
+function renderAction(dict: RichExplorer, a: ActionDescriptor): string {
+  switch (a.kind) {
+    case "ready":
+      return dict.actionReady;
+    case "sat":
+      return dict.actionSat(a.depth);
+    case "conflict":
+      return dict.actionConflict;
+    case "unit":
+      return dict.actionUnit(a.variable, a.value);
+    case "pure":
+      return dict.actionPure(a.variable, a.value);
+    case "noVars":
+      return dict.actionNoVars;
+    case "branch":
+      return dict.actionBranch(a.variable, a.value, a.depth);
+    case "backtrack":
+      return dict.actionBacktrack(a.variable, a.value, a.depth);
+    case "unsat":
+      return dict.actionUnsat;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -598,8 +1377,9 @@ function backtrack(
 type Mode = "solve" | "verify";
 
 export default function PvsNPExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.pvsnp;
+  const dict = EXPLORER[locale];
 
   const [mode, setMode] = useState<Mode>("solve");
   const [presetId, setPresetId] = useState<string>("trivial");
@@ -703,7 +1483,7 @@ export default function PvsNPExplorer() {
           {/* Header strips */}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {mode === "verify" ? "Verify mode · O(m) check" : "DPLL search · 3-SAT"}
+              {mode === "verify" ? dict.headerModeVerify : dict.headerModeSolve}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
               n = {activeVars} · m = {formulaToShow.length}
@@ -713,7 +1493,7 @@ export default function PvsNPExplorer() {
           {/* Clause display */}
           <div className="hairline rounded-2xl border bg-ink-950/60 p-4 md:p-5">
             <div className="mb-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Formula φ — conjunction of clauses
+              {dict.formulaTitle}
             </div>
             <div className="flex flex-wrap gap-x-2 gap-y-2 font-mono text-sm leading-relaxed md:text-base">
               {formulaToShow
@@ -773,7 +1553,7 @@ export default function PvsNPExplorer() {
           {/* Assignment row */}
           <div className="hairline rounded-2xl border bg-ink-950/60 p-4 md:p-5">
             <div className="mb-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              {mode === "verify" ? "Candidate assignment" : "Partial assignment"}
+              {mode === "verify" ? dict.candidateAssignment : dict.partialAssignment}
             </div>
             <div className="flex flex-wrap gap-2 font-mono text-sm">
               {Array.from({ length: activeVars }, (_, i) => i + 1).map((v) => {
@@ -809,16 +1589,14 @@ export default function PvsNPExplorer() {
               })}
             </div>
             {mode === "verify" && (
-              <div className="mt-3 font-mono text-[11px] text-ink-400">
-                Click variables to toggle T → F → unset.
-              </div>
+              <div className="mt-3 font-mono text-[11px] text-ink-400">{dict.toggleHint}</div>
             )}
           </div>
 
           {/* Verdict panel */}
           <div className="hairline rounded-2xl border bg-ink-950/60 p-4 md:p-5">
             <div className="mb-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              {mode === "verify" ? "Verifier output" : "Current node"}
+              {mode === "verify" ? dict.verifierOutput : dict.currentNode}
             </div>
             {mode === "verify" ? (
               <div className="space-y-2">
@@ -832,21 +1610,20 @@ export default function PvsNPExplorer() {
                   }`}
                 >
                   {verifyResult.overall === "sat"
-                    ? "✓ SATISFIED — every clause evaluates to true."
+                    ? dict.verifierSatisfied
                     : verifyResult.overall === "unsat"
-                      ? "✗ FALSIFIED — at least one clause is broken."
-                      : "… incomplete — some variables unassigned."}
+                      ? dict.verifierFalsified
+                      : dict.verifierIncomplete}
                 </div>
-                <div className="text-xs leading-relaxed text-ink-300">
-                  Verification scans the m clauses once and checks each in O(1). Total work: O(m) —
-                  independent of the search space. This is what puts the problem in NP.
-                </div>
+                <div className="text-xs leading-relaxed text-ink-300">{dict.verifierFootnote}</div>
               </div>
             ) : (
               <div className="space-y-2">
-                <div className="font-mono text-sm text-ink-100">{state.lastAction}</div>
+                <div className="font-mono text-sm text-ink-100">
+                  {renderAction(dict, state.lastAction)}
+                </div>
                 <div className="font-mono text-xs text-ink-400">
-                  verdict ={" "}
+                  {dict.verdictLabel} ={" "}
                   <span
                     className={
                       state.verdict === "sat"
@@ -867,9 +1644,9 @@ export default function PvsNPExplorer() {
           {mode === "solve" && (
             <div className="hairline min-h-[260px] flex-1 rounded-2xl border bg-ink-950/60 p-4 md:p-5">
               <div className="mb-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                DPLL search tree · depth = {state.stack.length}
+                {dict.searchTreeTitle(state.stack.length)}
               </div>
-              <SearchTree state={state} />
+              <SearchTree state={state} dict={dict} />
             </div>
           )}
         </div>
@@ -888,34 +1665,37 @@ export default function PvsNPExplorer() {
           {/* Preset picker */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Preset 3-SAT instance
+              {dict.presetsTitle}
             </div>
             <div className="space-y-2">
-              {PRESETS.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => loadPreset(p)}
-                  className={`w-full rounded-md border px-3 py-2 text-left transition-colors ${
-                    presetId === p.id
-                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                      : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
-                  }`}
-                >
-                  <div className="font-mono text-xs">{p.label}</div>
-                  <div className="mt-0.5 font-mono text-[10px] leading-snug text-ink-400">
-                    {p.description}
-                  </div>
-                </button>
-              ))}
+              {PRESETS.map((p) => {
+                const txt = dict.presets[p.id];
+                return (
+                  <button
+                    key={p.id}
+                    onClick={() => loadPreset(p)}
+                    className={`w-full rounded-md border px-3 py-2 text-left transition-colors ${
+                      presetId === p.id
+                        ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
+                        : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                    }`}
+                  >
+                    <div className="font-mono text-xs">{txt.label}</div>
+                    <div className="mt-0.5 font-mono text-[10px] leading-snug text-ink-400">
+                      {txt.description}
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           {/* Random generator */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Random 3-SAT
+              {dict.randomTitle}
             </div>
-            <div className="font-mono text-[10px] text-ink-300">Variables n = {n}</div>
+            <div className="font-mono text-[10px] text-ink-300">{dict.varsLabel(n)}</div>
             <input
               type="range"
               value={n}
@@ -925,7 +1705,7 @@ export default function PvsNPExplorer() {
               onChange={(e) => setN(parseInt(e.target.value))}
               className="w-full accent-signal-rose"
             />
-            <div className="font-mono text-[10px] text-ink-300">Clauses m = {m}</div>
+            <div className="font-mono text-[10px] text-ink-300">{dict.clausesLabel(m)}</div>
             <input
               type="range"
               value={m}
@@ -935,7 +1715,7 @@ export default function PvsNPExplorer() {
               onChange={(e) => setM(parseInt(e.target.value))}
               className="w-full accent-signal-rose"
             />
-            <div className="font-mono text-[10px] text-ink-300">Seed = {seed}</div>
+            <div className="font-mono text-[10px] text-ink-300">{dict.seedLabel(seed)}</div>
             <input
               type="range"
               value={seed}
@@ -946,13 +1726,13 @@ export default function PvsNPExplorer() {
               className="w-full accent-signal-amber"
             />
             <div className="font-mono text-[10px] text-ink-400">
-              m / n = {(m / n).toFixed(2)} · phase transition ≈ 4.26
+              {dict.ratioLabel((m / n).toFixed(2))}
             </div>
             <button
               onClick={loadRandom}
               className="w-full rounded-md border border-signal-rose/50 bg-signal-rose/10 py-2 font-mono text-[11px] uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/20"
             >
-              Generate random
+              {dict.generateRandom}
             </button>
           </div>
 
@@ -960,7 +1740,7 @@ export default function PvsNPExplorer() {
           {mode === "solve" && (
             <div className="hairline space-y-3 border-b p-5">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Speed · {speed} steps/s
+                {dict.speedLabel(speed)}
               </div>
               <input
                 type="range"
@@ -977,20 +1757,20 @@ export default function PvsNPExplorer() {
                   disabled={state.verdict === "sat" || state.verdict === "unsat"}
                   className="hairline rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose disabled:opacity-30"
                 >
-                  Step
+                  {dict.btnStep}
                 </button>
                 <button
                   onClick={() => setRunning((r) => !r)}
                   disabled={state.verdict === "sat" || state.verdict === "unsat"}
                   className="rounded-md border border-signal-rose/50 bg-signal-rose/10 py-2 font-mono text-[11px] uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/20 disabled:opacity-30"
                 >
-                  {running ? "Pause" : "Run"}
+                  {running ? dict.btnPause : dict.btnRun}
                 </button>
                 <button
                   onClick={handleReset}
                   className="hairline col-span-2 rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-ink-300/50"
                 >
-                  Reset
+                  {dict.btnReset}
                 </button>
               </div>
             </div>
@@ -1000,16 +1780,16 @@ export default function PvsNPExplorer() {
           {mode === "solve" && (
             <div className="hairline space-y-2 border-b p-5 font-mono text-xs">
               <div className="mb-1 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Solver stats
+                {dict.solverStats}
               </div>
-              <StatRow label="elapsed" value={`${state.elapsedMs.toFixed(1)} ms`} />
-              <StatRow label="branches" value={`${state.branches}`} />
-              <StatRow label="unit-prop" value={`${state.unitProps}`} />
-              <StatRow label="pure-lit" value={`${state.pureLits}`} />
-              <StatRow label="conflicts" value={`${state.conflicts}`} />
-              <StatRow label="depth" value={`${state.stack.length}`} />
+              <StatRow label={dict.statElapsed} value={`${state.elapsedMs.toFixed(1)} ms`} />
+              <StatRow label={dict.statBranches} value={`${state.branches}`} />
+              <StatRow label={dict.statUnitProp} value={`${state.unitProps}`} />
+              <StatRow label={dict.statPureLit} value={`${state.pureLits}`} />
+              <StatRow label={dict.statConflicts} value={`${state.conflicts}`} />
+              <StatRow label={dict.statDepth} value={`${state.stack.length}`} />
               <StatRow
-                label="verdict"
+                label={dict.statVerdict}
                 value={state.verdict}
                 accent={
                   state.verdict === "sat"
@@ -1021,7 +1801,7 @@ export default function PvsNPExplorer() {
               />
               {state.finalAssign && (
                 <div className="mt-2 text-[10px] leading-relaxed text-ink-300">
-                  Found:{" "}
+                  {dict.foundPrefix}{" "}
                   {Array.from({ length: activeVars }, (_, i) => i + 1)
                     .map(
                       (v) =>
@@ -1036,7 +1816,7 @@ export default function PvsNPExplorer() {
           {/* Verify-mode toggle */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Mode
+              {dict.modeLabel}
             </div>
             <div className="grid grid-cols-2 gap-2">
               <button
@@ -1047,7 +1827,7 @@ export default function PvsNPExplorer() {
                     : "hairline text-ink-300 hover:text-ink-100"
                 }`}
               >
-                Solve
+                {dict.modeSolve}
               </button>
               <button
                 onClick={() => setMode("verify")}
@@ -1057,13 +1837,10 @@ export default function PvsNPExplorer() {
                     : "hairline text-ink-300 hover:text-ink-100"
                 }`}
               >
-                Verify
+                {dict.modeVerify}
               </button>
             </div>
-            <p className="text-[10px] leading-relaxed text-ink-400">
-              Solve runs DPLL (potentially exponential). Verify just plugs an assignment into m
-              clauses — that's the O(m) certificate that makes 3-SAT lie in NP.
-            </p>
+            <p className="text-[10px] leading-relaxed text-ink-400">{dict.modeFootnote}</p>
           </div>
 
           <div className="p-5">
@@ -1093,7 +1870,7 @@ function StatRow({ label, value, accent }: { label: string; value: string; accen
 // Search-tree SVG renderer
 // ---------------------------------------------------------------------------
 
-function SearchTree({ state }: { state: SolverState }) {
+function SearchTree({ state, dict }: { state: SolverState; dict: RichExplorer }) {
   // Lay nodes out by (depth, sibling order within depth).
   const layout = useMemo(() => {
     const byDepth = new Map<number, TreeNode[]>();
@@ -1186,10 +1963,10 @@ function SearchTree({ state }: { state: SolverState }) {
         })}
       </svg>
       <div className="mt-2 flex flex-wrap gap-3 font-mono text-[10px] text-ink-400">
-        <Legend swatch="#7df3ff" label="open / unexplored" />
-        <Legend swatch="rgba(138,144,164,0.7)" label="explored" />
-        <Legend swatch="#ff7ab6" label="conflict" />
-        <Legend swatch="#ffd166" label="SAT" />
+        <Legend swatch="#7df3ff" label={dict.legendOpen} />
+        <Legend swatch="rgba(138,144,164,0.7)" label={dict.legendExplored} />
+        <Legend swatch="#ff7ab6" label={dict.legendConflict} />
+        <Legend swatch="#ffd166" label={dict.legendSat} />
       </div>
     </div>
   );

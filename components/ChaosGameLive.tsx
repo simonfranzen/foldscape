@@ -132,7 +132,10 @@ export function ChaosGameLive({
     if (!ctx) return () => ro.disconnect();
 
     let raf = 0;
-    const SPEED = 20000;
+    // Points per frame. 20k felt closer to "image appears", which loses the
+    // sense of a random process drawing itself; 7k lets the fractal accumulate
+    // visibly over a couple of seconds while still filling out cleanly.
+    const SPEED = 7000;
 
     const tick = () => {
       const W = canvas.clientWidth;

@@ -43,3 +43,7 @@ test-results/
 
 # working screenshots dropped at the repo root (not site assets — those live in public/)
 /*.png
+
+# video generator — internal, not part of the open-source release
+/video/
+/public/vo/

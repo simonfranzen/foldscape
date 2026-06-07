@@ -25,7 +25,7 @@ interface Props {
 const DEFAULTS = {
   kHeading: "K — the constant function",
   sHeading: "S — the substitution function",
-  kBody: "K takes two arguments and returns the first. The second is discarded.",
+  kBody: "Hand K any two values and it keeps the first while dropping the second on the floor.",
   sBody:
     "S takes three arguments and rewrites them as x z (y z): both x and y are applied to the shared input z.",
   kResult: "K (x, y) = x",

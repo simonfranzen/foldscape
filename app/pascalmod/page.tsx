@@ -857,6 +857,7 @@ export default function PascalmodStory() {
       gradient="from-signal-amber/10"
       formulaBadge="C(n, k) mod p ≠ 0  ⇔  no carry in base-p addition of k + (n−k)"
       formulaLatex={"\\binom{n}{k} \\not\\equiv 0 \\pmod{p} \\iff \\text{no carry in base-}p"}
+      formulaSize="sm"
       finalLabel={story.closingTitle}
     >
       {/* Encounter — three approachable cards */}

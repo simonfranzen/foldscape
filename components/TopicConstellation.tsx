@@ -156,6 +156,18 @@ function layoutNonHubs(nonHubs: Topic[], frame: ClusterFrame): LaidOutTopic[] {
   return out;
 }
 
+// Snap coords to 3 decimal places so SSR (Node) and CSR (browser) produce
+// bit-identical `transform="translate(x y)"` strings. Math.sin/cos can differ
+// by 1 ulp across V8 platforms and that's enough to trip Next's hydration
+// mismatch detector. 0.001 px is invisible; the snap eliminates the wobble.
+function snap(n: number): number {
+  return Math.round(n * 1000) / 1000;
+}
+
+function snapLayout(items: LaidOutTopic[]): LaidOutTopic[] {
+  return items.map((i) => ({ topic: i.topic, x: snap(i.x), y: snap(i.y) }));
+}
+
 function layoutAll(): LaidOutTopic[] {
   const byCat: Record<TopicCategory, Topic[]> = {
     logic: [],
@@ -174,7 +186,7 @@ function layoutAll(): LaidOutTopic[] {
     out.push(...layoutHubs(hubs, frame));
     out.push(...layoutNonHubs(nonHubs, frame));
   });
-  return out;
+  return snapLayout(out);
 }
 
 // Gentle quadratic bezier so two crossing edges stay distinguishable. We bend
@@ -605,18 +617,12 @@ export function TopicConstellation({ filter }: Props) {
             const isSearchMatch = q.length > 0 && searchMatches.has(topic.id);
 
             // Visibility rules:
-            //   - hubs are always rendered.
-            //   - non-hubs render only when their category is expanded.
-            //   - a hovered hub's non-hub neighbours also light up.
-            const shouldRender = hub || catExpanded || inHubSpot;
-
-            if (!shouldRender) return null;
-
-            // Dimming layers:
-            //   - filter chip dims non-matching topics.
-            //   - when a cluster is open, hubs of OTHER categories dim out so
-            //     attention lands on the open cluster.
-            //   - search dims everything except matches.
+            //   - hubs are always rendered, big + labelled.
+            //   - non-hubs always render as faint "ghost" dots so users can
+            //     SEE that there are more topics than the 12 hubs (this hint
+            //     of-more is the whole point — earlier the canvas pretended
+            //     non-hubs didn't exist). They grow + reveal their label on
+            //     hover/focus/spot/expand/search-match.
             const dimByFilter = filteredOut;
             const dimByOpen =
               openCategory !== null && topic.category !== openCategory && hub && !inHubSpot;
@@ -624,21 +630,26 @@ export function TopicConstellation({ filter }: Props) {
             const dimBySpotlight = hubSpotlight.size > 0 && !inHubSpot && hub ? true : false;
             const dimmed = dimByFilter || dimByOpen || dimBySearch || dimBySpotlight;
 
-            // Sizes — hubs feel like bright stars; non-hubs are still real
-            // stars when their cluster is open, not crumbs.
-            const r = isHover ? 12 : hub ? 10 : 6.5;
+            // A non-hub is "active" when its category is open, it's spotlit
+            // by a hub neighbour, the user hovers it directly, or search has
+            // matched it. Otherwise it stays in ghost mode.
+            const nonHubActive = catExpanded || inHubSpot || isHover || isSearchMatch;
 
-            // Labels. Hubs always labelled, big. Non-hubs labelled when their
-            // cluster is open (or they're spotlit/search-matched).
-            const showLabel = hub || (catExpanded && !hub) || inHubSpot || isSearchMatch;
+            const r = isHover ? 12 : hub ? 10 : nonHubActive ? 6.5 : 2.2;
+
+            const showLabel = hub || nonHubActive;
 
             const labelSize = isHover ? 26 : hub ? 24 : 19;
             const labelOpacity = dimmed ? 0.22 : isHover ? 1 : hub ? 0.95 : 0.88;
 
-            const groupOpacity = dimmed ? 0.32 : 1;
-
-            // Non-hub fade-in animation tied to category expansion.
-            const enterOpacity = catExpanded || hub || inHubSpot || isSearchMatch ? 1 : 0;
+            // Ghost non-hubs sit at ~22% opacity so they read as "more is
+            // here" rather than "missing". When activated they jump to 1.
+            const ghostFloor = hub ? 1 : 0.22;
+            const groupOpacity = dimmed
+              ? 0.32
+              : nonHubActive || hub
+                ? 1
+                : ghostFloor;
 
             return (
               <g
@@ -646,7 +657,7 @@ export function TopicConstellation({ filter }: Props) {
                 transform={`translate(${x} ${y})`}
                 style={{
                   color,
-                  opacity: groupOpacity * enterOpacity,
+                  opacity: groupOpacity,
                   transition: trans("opacity, transform"),
                 }}
               >
@@ -663,7 +674,7 @@ export function TopicConstellation({ filter }: Props) {
                     role="link"
                     aria-label={`${meta.title} — ${meta.tagline}`}
                     tabIndex={0}
-                    onMouseEnter={() => hub && setHovered(topic.id)}
+                    onMouseEnter={() => setHovered(topic.id)}
                     onMouseLeave={() => setHovered((h) => (h === topic.id ? null : h))}
                     onFocus={() => setHovered(topic.id)}
                     onBlur={() => setHovered((h) => (h === topic.id ? null : h))}

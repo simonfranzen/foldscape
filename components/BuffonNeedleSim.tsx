@@ -87,9 +87,10 @@ export function BuffonNeedleSim({
     const tick = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
-      // Drop a handful of needles per frame for a lively feel without
-      // burning the canvas to grey.
-      const PER_FRAME = 6;
+      // Drop a couple of needles per frame. 6/frame felt closer to a hailstorm
+      // than a Monte Carlo experiment — 2 lets the eye follow individual throws
+      // and the π estimate visibly drift toward 3.14 as samples accumulate.
+      const PER_FRAME = 2;
       for (let i = 0; i < PER_FRAME; i++) {
         dropOne(ctx, W, H, D, ELL, (cross) => {
           dropsRef.current += 1;

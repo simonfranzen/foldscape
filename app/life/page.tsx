@@ -6,6 +6,8 @@ import { Reveal } from "@/components/Reveal";
 import { LifeGliderDemo } from "@/components/LifeGliderDemo";
 import { LifeMiniSandbox } from "@/components/LifeMiniSandbox";
 import { LifeRuleExplorer } from "@/components/LifeRuleExplorer";
+import { TopicApplications } from "@/components/TopicApplications";
+import { RelatedTopics } from "@/components/RelatedTopics";
 import type { Locale } from "@/lib/i18n/types";
 
 // --------------------------------------------------------------------------
@@ -161,8 +163,8 @@ const en: RichStory = {
   },
   ruleBlock: {
     pretitle: "The rule, in fourteen words",
-    born: "A dead cell with exactly 3 live neighbours is born.",
-    survive: "A live cell with 2 or 3 live neighbours survives.",
+    born: "If a dead cell is surrounded by exactly 3 live neighbours, it flips on.",
+    survive: "A living cell holding on to 2 or 3 live neighbours carries over to the next step.",
     lonely: "Fewer than two live neighbours: dies of loneliness.",
     crowded: "More than three live neighbours: dies of overcrowding.",
     notation:
@@ -271,8 +273,8 @@ const de: RichStory = {
   },
   ruleBlock: {
     pretitle: "Die Regel, in vierzehn Wörtern",
-    born: "Eine tote Zelle mit genau 3 lebenden Nachbarn wird geboren.",
-    survive: "Eine lebende Zelle mit 2 oder 3 lebenden Nachbarn überlebt.",
+    born: "Hat eine tote Zelle genau 3 lebende Nachbarn, geht sie an.",
+    survive: "Eine lebende Zelle mit 2 oder 3 lebenden Nachbarn trägt sich weiter.",
     lonely: "Weniger als zwei lebende Nachbarn: stirbt aus Einsamkeit.",
     crowded: "Mehr als drei lebende Nachbarn: stirbt durch Überfüllung.",
     notation:
@@ -381,8 +383,8 @@ const es: RichStory = {
   },
   ruleBlock: {
     pretitle: "La regla, en catorce palabras",
-    born: "Una célula muerta con exactamente 3 vecinas vivas nace.",
-    survive: "Una célula viva con 2 o 3 vecinas vivas sobrevive.",
+    born: "Si una célula muerta queda rodeada de exactamente 3 vecinas vivas, se enciende.",
+    survive: "Una célula viva que conserva 2 o 3 vecinas vivas pasa al siguiente paso.",
     lonely: "Menos de dos vecinas vivas: muere de soledad.",
     crowded: "Más de tres vecinas vivas: muere por hacinamiento.",
     notation:
@@ -491,8 +493,8 @@ const fr: RichStory = {
   },
   ruleBlock: {
     pretitle: "La règle, en quatorze mots",
-    born: "Une cellule morte avec exactement 3 voisines vivantes naît.",
-    survive: "Une cellule vivante avec 2 ou 3 voisines vivantes survit.",
+    born: "Si une cellule morte est entourée d'exactement 3 voisines vivantes, elle s'allume.",
+    survive: "Une cellule vivante qui garde 2 ou 3 voisines vivantes passe à l'étape suivante.",
     lonely: "Moins de deux voisines vivantes : meurt de solitude.",
     crowded: "Plus de trois voisines vivantes : meurt de surpopulation.",
     notation:
@@ -601,8 +603,8 @@ const it: RichStory = {
   },
   ruleBlock: {
     pretitle: "La regola, in quattordici parole",
-    born: "Una cella morta con esattamente 3 vicine vive nasce.",
-    survive: "Una cella viva con 2 o 3 vicine vive sopravvive.",
+    born: "Se una cella morta è circondata da esattamente 3 vicine vive, si accende.",
+    survive: "Una cella viva che mantiene 2 o 3 vicine vive passa al passo successivo.",
     lonely: "Meno di due vicine vive: muore di solitudine.",
     crowded: "Più di tre vicine vive: muore per sovraffollamento.",
     notation:
@@ -711,8 +713,8 @@ const pt: RichStory = {
   },
   ruleBlock: {
     pretitle: "A regra, em catorze palavras",
-    born: "Uma célula morta com exatamente 3 vizinhas vivas nasce.",
-    survive: "Uma célula viva com 2 ou 3 vizinhas vivas sobrevive.",
+    born: "Se uma célula morta está rodeada por exatamente 3 vizinhas vivas, acende-se.",
+    survive: "Uma célula viva que conserva 2 ou 3 vizinhas vivas transita para o passo seguinte.",
     lonely: "Menos de duas vizinhas vivas: morre de solidão.",
     crowded: "Mais de três vizinhas vivas: morre por superlotação.",
     notation:
@@ -821,8 +823,8 @@ const sv: RichStory = {
   },
   ruleBlock: {
     pretitle: "Regeln, i fjorton ord",
-    born: "En död cell med exakt 3 levande grannar föds.",
-    survive: "En levande cell med 2 eller 3 levande grannar överlever.",
+    born: "Om en död cell omges av exakt 3 levande grannar tänds den.",
+    survive: "En levande cell som behåller 2 eller 3 levande grannar går vidare till nästa steg.",
     lonely: "Färre än två levande grannar: dör av ensamhet.",
     crowded: "Fler än tre levande grannar: dör av trängsel.",
     notation:
@@ -931,8 +933,8 @@ const no: RichStory = {
   },
   ruleBlock: {
     pretitle: "Regelen, i fjorten ord",
-    born: "En død celle med nøyaktig 3 levende naboer fødes.",
-    survive: "En levende celle med 2 eller 3 levende naboer overlever.",
+    born: "Er en død celle omgitt av nøyaktig 3 levende naboer, tennes den.",
+    survive: "En levende celle som beholder 2 eller 3 levende naboer, går videre til neste trinn.",
     lonely: "Færre enn to levende naboer: dør av ensomhet.",
     crowded: "Flere enn tre levende naboer: dør av overbefolkning.",
     notation:
@@ -1409,6 +1411,9 @@ export default function LifeStory() {
           />
         </Reveal>
       </section>
+
+      <TopicApplications topicId="life" accent="text-signal-cyan" />
+      <RelatedTopics topicId="life" accent="text-signal-cyan" />
 
       {/* Final CTA — apollonian-style closing */}
       <Reveal>

@@ -181,21 +181,21 @@ body {
 }
 
 /* Scroll-reveal: starts hidden + slightly translated; flips on when the
-   IntersectionObserver tags the element with data-revealed. */
+   IntersectionObserver tags the element with data-revealed. Used to also
+   blur(8px) on entry, but on heavy WebGL pages (mandelbrot) the canvas
+   mount overlapped with the blur transition and made the whole hero look
+   milky for a beat. Translate + opacity alone is the standard pattern. */
 .reveal {
   opacity: 0;
   transform: translateY(28px) scale(0.985);
   transition:
-    opacity 900ms cubic-bezier(0.21, 0.94, 0.38, 1) var(--reveal-delay, 0ms),
-    transform 1000ms cubic-bezier(0.21, 0.94, 0.38, 1) var(--reveal-delay, 0ms),
-    filter 1100ms cubic-bezier(0.21, 0.94, 0.38, 1) var(--reveal-delay, 0ms);
-  filter: blur(8px);
-  will-change: transform, opacity, filter;
+    opacity 700ms cubic-bezier(0.21, 0.94, 0.38, 1) var(--reveal-delay, 0ms),
+    transform 800ms cubic-bezier(0.21, 0.94, 0.38, 1) var(--reveal-delay, 0ms);
+  will-change: transform, opacity;
 }
 .reveal[data-revealed="true"] {
   opacity: 1;
   transform: translateY(0) scale(1);
-  filter: blur(0);
 }
 
 @keyframes shimmer {

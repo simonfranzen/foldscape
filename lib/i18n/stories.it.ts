@@ -52,7 +52,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo uno · Le regole",
           title: "Nascita, sopravvivenza, morte — e nient'altro",
-          body: "La griglia è infinita, ogni cella è viva o morta, e ogni cella guarda i suoi otto vicini. Una cella morta con esattamente tre vicini vivi diventa viva. Una cella viva con due o tre vicini vivi resta viva. Ogni altro caso — troppo pochi vicini, troppi vicini, nessun vicino — uccide la cella. Le quattro demo animate qui sotto mostrano ciascuna regola in azione su una griglia cinque per cinque.",
+          body: "La griglia è infinita, ogni cella è viva o morta, e ogni cella guarda i suoi otto vicini. Se una cella morta si trova circondata da esattamente tre vicini vivi, si accende; se una cella viva ne ha già due o tre attorno, passa intera al passo successivo. Ogni altro caso — troppo pochi vicini, troppi vicini, nessun vicino — uccide la cella. Le quattro demo animate qui sotto mostrano ciascuna regola in azione su una griglia cinque per cinque.",
         },
         {
           pretitle: "Passo due · Dalle regole al movimento",
@@ -267,7 +267,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo due · La formula di Eulero",
           title: "e^(iθ) = cos θ + i sin θ",
-          body: "L'identità è un caso particolare della formula di Eulero, pubblicata nella sua Introductio in analysin infinitorum del 1748. Per ogni numero reale θ, la formula dice che e^(iθ) — un esponenziale con esponente immaginario — è uguale a cos θ + i sin θ. Geometricamente: al crescere di θ, il punto e^(iθ) cammina in senso antiorario lungo il cerchio unitario nel piano complesso. Moltiplicare per e^(iθ) è una rotazione di angolo θ. Crescita e rotazione, le due cose che e e i fanno segretamente, risultano essere la stessa operazione vista da due lati.",
+          body: "L'identità è ciò che la formula di Eulero restituisce per un singolo angolo scelto, pubblicata nella sua Introductio in analysin infinitorum del 1748. Per ogni numero reale θ, la formula dice che e^(iθ) — un esponenziale con esponente immaginario — è uguale a cos θ + i sin θ. Geometricamente: al crescere di θ, il punto e^(iθ) cammina in senso antiorario lungo il cerchio unitario nel piano complesso. Moltiplicare per e^(iθ) è una rotazione di angolo θ. Crescita e rotazione, le due cose che e e i fanno segretamente, risultano essere la stessa operazione vista da due lati.",
         },
         {
           pretitle: "Passo tre · Sostituisci θ = π",
@@ -597,7 +597,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo due · Il teorema di Cartesio",
           title: "Curvature, fissate nell'algebra",
-          body: "Scrivi la curvatura di ogni cerchio come k = 1/r, con una sola convenzione: se un cerchio racchiude gli altri (quello esterno), prendi la sua curvatura negativa. Nel 1643, in una lettera alla Principessa Elisabetta di Boemia, Cartesio dimostrò che per quattro cerchi mutuamente tangenti qualsiasi le curvature soddisfano (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Risolvere la quadratica per la quarta curvatura dà k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). I due segni sono esattamente le due risposte di Apollonio: il segno + restituisce il piccolo cerchio inscritto, il segno − restituisce l'altro cerchio tangente sul lato opposto.",
+          body: "Scrivi la curvatura di ogni cerchio come k = 1/r, con una sola convenzione: se un cerchio racchiude gli altri (quello esterno), prendi la sua curvatura negativa. Nella sua corrispondenza del 1643 con la Principessa Elisabetta di Boemia, Cartesio dimostrò che per quattro cerchi mutuamente tangenti qualsiasi le curvature soddisfano (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Risolvere la quadratica per la quarta curvatura dà k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). I due segni sono esattamente le due risposte di Apollonio: il segno + restituisce il piccolo cerchio inscritto, il segno − restituisce l'altro cerchio tangente sul lato opposto.",
         },
         {
           pretitle: "Passo tre · Riempimento ricorsivo",
