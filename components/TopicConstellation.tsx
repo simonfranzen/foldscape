@@ -1,31 +1,21 @@
 "use client";
 
-// Atlas as constellation, v3.
+// Atlas as constellation, v4.
 //
-// v1 was overload (every topic always labelled).
-// v2 added progressive disclosure but still rendered every non-hub as a tiny
-// dim dot at all times, so the canvas kept reading as cluttered fog.
-// v3 commits to the constellation metaphor: real constellations have a few
-// named bright stars. By default we only render those.
+// v3 had the category headers as DOM-layer pills above the SVG, but the page
+// also rendered a parallel row of filter chips above the constellation — two
+// places to do the same thing, easy to drift out of sync. v4 unifies them:
+//   - the parent owns one (filter, setFilter) and passes it in;
+//   - the pills inside the canvas are the single control;
+//   - the page no longer renders a duplicate row in constellation view.
 //
-// Default sky:
-//   - 12 hub topics (2 per category × 6) as large, comfortably-labelled stars.
-//   - 6 category headers as clearly clickable, focusable labels.
-//   - Hub-to-hub bridge + family edges, that's it. No mini dots, no echoes.
+// Camera also grew:
+//   - click-and-drag pans the canvas;
+//   - floating +/- buttons zoom in/out (with a tween);
+//   - "Back to atlas" snaps the camera home AND clears the category.
 //
-// Interaction:
-//   - Click a category header → that category "opens": its non-hub stars fade
-//     in around the cluster centre with readable labels. Other categories'
-//     hubs stay visible but dim out to keep orientation.
-//   - Hover a category → no expand; we show faint placeholder rings where the
-//     non-hubs would appear, so users know there's something to discover.
-//   - Re-click the open category (or Esc, or click outside, or the close
-//     button) → collapse.
-//   - Hub hover/focus → neighbour spotlight; clicking a hub navigates.
-//   - Search expands every category that has a match; non-matches dim hard.
-//   - filter prop (from app/page.tsx) auto-opens the matching cluster.
-//
-// Public API unchanged: <TopicConstellation filter={filter} />.
+// Camera tween for category open/close stays — it's what makes the cluster
+// open gesture feel like a camera settling rather than a state swap.
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -216,9 +206,11 @@ function edgePath(
 
 interface Props {
   filter: TopicCategory | "all";
+  setFilter: (f: TopicCategory | "all") => void;
 }
 
-// Default "home" viewBox — the full sky.
+type ViewBox = [number, number, number, number];
+
 const HOME_VB: ViewBox = [0, 0, VB_W, VB_H];
 
 // Camera frame: extra padding (user-units, same coordinate space as the
@@ -229,13 +221,18 @@ const HOME_VB: ViewBox = [0, 0, VB_W, VB_H];
 // around it for the other clusters to be partially visible (orientation cue).
 const CAMERA_PADDING = 240;
 
+// Manual zoom limits so users can't accidentally pinch the camera into a
+// pixel or unzoom out to a flea-on-a-table view. The home width is 1800, so
+// MIN_W = 540 lets the user zoom in ~3.3× past home, MAX_W = 3600 lets them
+// pull back ~2× from home (handy after they've panned off-canvas).
+const MIN_VB_W = 540;
+const MAX_VB_W = 3600;
+
 // Ease-out cubic via the cheap polynomial t*(2-t). Smooth at t=0, decelerating
 // to 0 derivative at t=1 — feels like a camera settling, not a teleport.
 function easeOutCubic(t: number): number {
   return t * (2 - t);
 }
-
-type ViewBox = [number, number, number, number];
 
 // Compute the bbox of an opened cluster's laid-out stars, expanded by
 // CAMERA_PADDING on all sides. Returns the HOME viewBox when the category
@@ -288,29 +285,46 @@ function bboxForCategory(
   return [outX, outY, outW, outH];
 }
 
-export function TopicConstellation({ filter }: Props) {
+function viewBoxEq(a: ViewBox, b: ViewBox): boolean {
+  return (
+    Math.abs(a[0] - b[0]) < 0.5 &&
+    Math.abs(a[1] - b[1]) < 0.5 &&
+    Math.abs(a[2] - b[2]) < 0.5 &&
+    Math.abs(a[3] - b[3]) < 0.5
+  );
+}
+
+export function TopicConstellation({ filter, setFilter }: Props) {
   const { a } = useI18n();
   const searchId = useId();
   const [hovered, setHovered] = useState<TopicId | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<TopicCategory | null>(null);
-  const [openCategory, setOpenCategory] = useState<TopicCategory | null>(null);
   const [query, setQuery] = useState("");
   const [isMobile, setIsMobile] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [viewBox, setViewBox] = useState<ViewBox>(HOME_VB);
+  const [isPanning, setIsPanning] = useState(false);
   const router = useRouter();
   const svgRef = useRef<SVGSVGElement | null>(null);
   const tweenRef = useRef<number | null>(null);
+  // Mirror viewBox so the tween closure can read the current frame without
+  // being a hook dep (which would re-run the effect on every animation tick).
+  const viewBoxRef = useRef<ViewBox>(HOME_VB);
+  viewBoxRef.current = viewBox;
 
-  // Auto-open the cluster that matches the page filter, so filter chips and
-  // the constellation stay in sync. Switching to "all" closes any open one.
-  useEffect(() => {
-    if (filter === "all") {
-      setOpenCategory(null);
-    } else {
-      setOpenCategory(filter);
-    }
-  }, [filter]);
+  // Pan tracking. panStartRef is null when the user isn't pressing the
+  // canvas; panActiveRef flips to true once they've moved past the click
+  // threshold so a tap on the background still counts as a click-to-close,
+  // not a pan.
+  const panStartRef = useRef<{
+    x: number;
+    y: number;
+    vb: ViewBox;
+  } | null>(null);
+  const panActiveRef = useRef(false);
+
+  // filter is the source of truth. openCategory is just a derived view.
+  const openCategory = filter === "all" ? null : filter;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -330,81 +344,74 @@ export function TopicConstellation({ filter }: Props) {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // Esc closes the open cluster (when not focused in the search input).
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && openCategory) setOpenCategory(null);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [openCategory]);
-
-  const trans = (props: string) => (reduceMotion ? undefined : `${props} 280ms ease`);
-
-  const laidOut = useMemo(() => layoutAll(), []);
-
-  // Camera tween. When openCategory changes, animate viewBox from current
-  // state to the bbox of the opened cluster (or HOME if null). rAF-driven,
-  // ~600ms ease-out cubic. prefers-reduced-motion snaps instantly.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const target: ViewBox = openCategory
-      ? bboxForCategory(openCategory, laidOut)
-      : HOME_VB;
-
+  const cancelTween = useCallback(() => {
     if (tweenRef.current !== null) {
       cancelAnimationFrame(tweenRef.current);
       tweenRef.current = null;
     }
+  }, []);
 
-    if (reduceMotion) {
-      setViewBox(target);
-      return;
-    }
+  // Imperative tween used by every "the camera should fly somewhere" call —
+  // category open/close, +/- zoom, back-to-atlas. Reads the current viewBox
+  // via the ref so it always starts from where the camera actually is, even
+  // mid-flight or right after a manual pan.
+  const tweenViewBoxTo = useCallback(
+    (target: ViewBox) => {
+      cancelTween();
+      const start = viewBoxRef.current;
+      if (viewBoxEq(start, target)) return;
 
-    // Capture the start frame so we always tween from where the camera is
-    // right now (handles rapid category switches mid-flight).
-    let start: ViewBox = HOME_VB;
-    setViewBox((cur) => {
-      start = cur;
-      return cur;
-    });
-
-    // Skip the rAF loop if we're already at the target (within 0.5 px).
-    const close =
-      Math.abs(start[0] - target[0]) < 0.5 &&
-      Math.abs(start[1] - target[1]) < 0.5 &&
-      Math.abs(start[2] - target[2]) < 0.5 &&
-      Math.abs(start[3] - target[3]) < 0.5;
-    if (close) return;
-
-    const duration = 600;
-    const t0 = performance.now();
-    const step = (now: number) => {
-      const u = Math.min(1, (now - t0) / duration);
-      const e = easeOutCubic(u);
-      const next: ViewBox = [
-        start[0] + (target[0] - start[0]) * e,
-        start[1] + (target[1] - start[1]) * e,
-        start[2] + (target[2] - start[2]) * e,
-        start[3] + (target[3] - start[3]) * e,
-      ];
-      setViewBox(next);
-      if (u < 1) {
-        tweenRef.current = requestAnimationFrame(step);
-      } else {
-        tweenRef.current = null;
+      if (reduceMotion) {
+        setViewBox(target);
+        return;
       }
+
+      const duration = 520;
+      const t0 = performance.now();
+      const step = (now: number) => {
+        const u = Math.min(1, (now - t0) / duration);
+        const e = easeOutCubic(u);
+        const next: ViewBox = [
+          start[0] + (target[0] - start[0]) * e,
+          start[1] + (target[1] - start[1]) * e,
+          start[2] + (target[2] - start[2]) * e,
+          start[3] + (target[3] - start[3]) * e,
+        ];
+        setViewBox(next);
+        if (u < 1) {
+          tweenRef.current = requestAnimationFrame(step);
+        } else {
+          tweenRef.current = null;
+        }
+      };
+      tweenRef.current = requestAnimationFrame(step);
+    },
+    [cancelTween, reduceMotion],
+  );
+
+  const laidOut = useMemo(() => layoutAll(), []);
+
+  // Snap the camera whenever the selected category changes. Manual pan/zoom
+  // afterwards doesn't refire this — the effect only listens to filter, not
+  // viewBox.
+  useEffect(() => {
+    const target = openCategory ? bboxForCategory(openCategory, laidOut) : HOME_VB;
+    tweenViewBoxTo(target);
+    return () => cancelTween();
+  }, [openCategory, laidOut, tweenViewBoxTo, cancelTween]);
+
+  // Esc closes the open cluster (when not focused in the search input).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && openCategory) setFilter("all");
     };
-    tweenRef.current = requestAnimationFrame(step);
-    return () => {
-      if (tweenRef.current !== null) {
-        cancelAnimationFrame(tweenRef.current);
-        tweenRef.current = null;
-      }
-    };
-  }, [openCategory, laidOut, reduceMotion]);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [openCategory, setFilter]);
+
+  const trans = (props: string) =>
+    reduceMotion || isPanning ? undefined : `${props} 280ms ease`;
 
   const posById = useMemo(() => {
     const m = new Map<TopicId, LaidOutTopic>();
@@ -448,16 +455,6 @@ export function TopicConstellation({ filter }: Props) {
     return s;
   }, [hovered]);
 
-  const _spotlightActive = q.length > 0 || hubSpotlight.size > 0;
-
-  const isFilteredOut = useCallback(
-    (id: TopicId) => {
-      if (filter === "all") return false;
-      return posById.get(id)?.topic.category !== filter;
-    },
-    [filter, posById],
-  );
-
   const onSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!q) return;
@@ -477,27 +474,126 @@ export function TopicConstellation({ filter }: Props) {
         // a close gesture.
         const target = e.target as HTMLElement;
         if (target.closest?.(`[data-atlas-keep-open="true"]`)) return;
-        setOpenCategory(null);
+        setFilter("all");
       }
     };
     window.addEventListener("mousedown", onDocClick);
     return () => window.removeEventListener("mousedown", onDocClick);
-  }, [openCategory]);
+  }, [openCategory, setFilter]);
 
-  const hint =
-    a.landing.constellationHint ??
-    "Click a category to open it. Hover a star to see its relatives.";
+  // ---- Pan + zoom ---------------------------------------------------------
+
+  const onBackgroundPointerDown = (e: React.PointerEvent<SVGRectElement>) => {
+    if (e.button !== 0) return;
+    panStartRef.current = {
+      x: e.clientX,
+      y: e.clientY,
+      vb: viewBoxRef.current,
+    };
+    panActiveRef.current = false;
+    // Capture on the SVG so subsequent move/up land here even if the pointer
+    // leaves the rect.
+    try {
+      svgRef.current?.setPointerCapture(e.pointerId);
+    } catch {
+      // Some older browsers throw if the capture target isn't ready; we just
+      // fall back to window-bubbled events.
+    }
+  };
+
+  const onSvgPointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
+    const ps = panStartRef.current;
+    if (!ps) return;
+    const dx = e.clientX - ps.x;
+    const dy = e.clientY - ps.y;
+    if (!panActiveRef.current) {
+      // Threshold so a real click on the background still registers (and the
+      // click-outside-cluster handler can fire). 4 px is the same number
+      // browsers use for native drag-vs-click.
+      if (Math.hypot(dx, dy) < 4) return;
+      panActiveRef.current = true;
+      setIsPanning(true);
+      cancelTween();
+    }
+    const svg = svgRef.current;
+    if (!svg) return;
+    const rect = svg.getBoundingClientRect();
+    if (rect.width === 0) return;
+    // Screen px → viewBox units. preserveAspectRatio="xMidYMid meet" means
+    // the X-axis scale equals viewBox.w / rect.w whenever the SVG isn't
+    // letterboxed horizontally; with our canvas the aspect ratio is fixed so
+    // this is exact.
+    const scale = ps.vb[2] / rect.width;
+    setViewBox([
+      ps.vb[0] - dx * scale,
+      ps.vb[1] - dy * scale,
+      ps.vb[2],
+      ps.vb[3],
+    ]);
+  };
+
+  const onSvgPointerUp = (e: React.PointerEvent<SVGSVGElement>) => {
+    if (!panStartRef.current) return;
+    try {
+      svgRef.current?.releasePointerCapture(e.pointerId);
+    } catch {
+      // Same caveat as setPointerCapture.
+    }
+    panStartRef.current = null;
+    if (panActiveRef.current) {
+      panActiveRef.current = false;
+      setIsPanning(false);
+    }
+  };
+
+  // Zoom around the centre of the visible viewBox. factor<1 zooms in
+  // (smaller viewBox), factor>1 zooms out. Clamped so the camera never
+  // pinches into nothing or pulls absurdly far back.
+  const applyZoom = (factor: number) => {
+    const [x, y, w, h] = viewBoxRef.current;
+    const targetW = Math.max(MIN_VB_W, Math.min(MAX_VB_W, w * factor));
+    if (Math.abs(targetW - w) < 0.5) return;
+    const realFactor = targetW / w;
+    const targetH = h * realFactor;
+    const target: ViewBox = [
+      x + (w - targetW) / 2,
+      y + (h - targetH) / 2,
+      targetW,
+      targetH,
+    ];
+    tweenViewBoxTo(target);
+  };
+
+  const isAtHome = openCategory === null && viewBoxEq(viewBox, HOME_VB);
+
+  const goHome = () => {
+    if (openCategory !== null) {
+      // Clearing the filter triggers the effect, which tweens to HOME for us.
+      setFilter("all");
+    } else {
+      tweenViewBoxTo(HOME_VB);
+    }
+  };
+
+  // -------------------------------------------------------------------------
+
   const ariaLabel = a.landing.constellationAriaLabel ?? "Atlas constellation of topics";
 
   if (isMobile) {
     return (
-      <MobileList query={query} setQuery={setQuery} filter={filter} searchMatches={searchMatches} />
+      <MobileList
+        query={query}
+        setQuery={setQuery}
+        filter={filter}
+        setFilter={setFilter}
+        searchMatches={searchMatches}
+      />
     );
   }
 
   // Toggle/open helper used by category headers.
   const toggleCategory = (cat: TopicCategory) => {
-    setOpenCategory((cur) => (cur === cat ? null : cat));
+    setFilter(filter === cat ? "all" : cat);
   };
 
   return (
@@ -519,7 +615,6 @@ export function TopicConstellation({ filter }: Props) {
               className="hairline w-full rounded-full border bg-ink-950/60 px-4 py-2 pr-10 font-mono text-[11px] uppercase tracking-widest2 text-ink-100 placeholder:text-ink-400 focus:border-signal-violet/60 focus:outline-none"
               autoComplete="off"
               spellCheck={false}
-              aria-describedby={`${searchId}-hint`}
             />
             <div
               aria-hidden="true"
@@ -529,18 +624,12 @@ export function TopicConstellation({ filter }: Props) {
             </div>
           </div>
         </form>
-        <p
-          id={`${searchId}-hint`}
-          className="hidden max-w-sm text-[11px] leading-snug text-ink-400 md:block"
-        >
-          {hint}
-        </p>
       </div>
 
-      {/* DOM-layer category headers. These used to live inside the SVG and
-          would clip out of view whenever the camera zoomed into a single
-          cluster. Now they're plain HTML pills above the canvas — constant
-          size, always visible, never clipped. */}
+      {/* DOM-layer category pills. Single control surface — the parent doesn't
+          render a duplicate row in constellation view. Pills mutate the
+          shared `filter` prop, which feeds back into both the camera tween
+          and the dimming logic below. */}
       <div
         className="flex flex-wrap items-center gap-2 px-4 pb-3"
         data-atlas-keep-open="true"
@@ -554,7 +643,6 @@ export function TopicConstellation({ filter }: Props) {
             ] as string) || cat;
           const color = CATEGORY_COLOR[cat];
           const isOpen = openCategory === cat;
-          const mutedByFilter = filter !== "all" && filter !== cat;
           return (
             <button
               key={cat}
@@ -571,7 +659,6 @@ export function TopicConstellation({ filter }: Props) {
                 background: isOpen ? `${color}1f` : undefined,
                 borderColor: isOpen ? `${color}80` : undefined,
                 color: isOpen ? color : undefined,
-                opacity: mutedByFilter ? 0.4 : 1,
               }}
             >
               <span
@@ -586,255 +673,274 @@ export function TopicConstellation({ filter }: Props) {
       </div>
 
       <div className="relative">
-        {/* Always-visible "back to overview" pill. Lives in the DOM layer
-            (outside the SVG) so it stays the same size and screen position
-            no matter how far the camera zooms. Only shown when a cluster is
-            actually open — otherwise it'd be a no-op. */}
-        {openCategory && (
-          <button
-            type="button"
-            onClick={() => setOpenCategory(null)}
-            className="hairline absolute right-4 top-3 z-10 rounded-full border bg-ink-950/80 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet backdrop-blur transition-colors hover:border-signal-violet/60 hover:text-ink-100"
-            style={{ borderColor: "rgba(179, 136, 255, 0.5)" }}
-            data-atlas-keep-open="true"
+        {/* Floating camera HUD: back-to-atlas + zoom buttons. Lives in the
+            DOM layer (outside the SVG) so it stays the same size and screen
+            position no matter how far the camera zooms.
+
+            Back-to-atlas shows whenever the camera isn't at HOME. Zoom
+            buttons are always available — they're the manual escape hatch
+            for users who want to explore the canvas freely. */}
+        <div
+          className="absolute right-4 top-3 z-10 flex items-center gap-2"
+          data-atlas-keep-open="true"
+        >
+          {!isAtHome && (
+            <button
+              type="button"
+              onClick={goHome}
+              className="hairline rounded-full border bg-ink-950/80 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet backdrop-blur transition-colors hover:border-signal-violet/60 hover:text-ink-100"
+              style={{ borderColor: "rgba(179, 136, 255, 0.5)" }}
+              aria-label={a.landing.constellationCloseZoom ?? "Back to atlas"}
+            >
+              {a.landing.constellationCloseZoom ?? "↺ Back to atlas"}
+            </button>
+          )}
+          <div
+            className="hairline inline-flex overflow-hidden rounded-full border bg-ink-950/80 backdrop-blur"
+            role="group"
+            aria-label="Zoom"
           >
-            {a.landing.constellationCloseZoom ?? "↺ Back to atlas"}
-          </button>
-        )}
+            <button
+              type="button"
+              onClick={() => applyZoom(0.78)}
+              className="px-3 py-1.5 font-mono text-sm text-ink-200 transition-colors hover:bg-ink-900/60 hover:text-ink-100"
+              aria-label="Zoom in"
+              title="Zoom in"
+            >
+              +
+            </button>
+            <div className="w-px bg-ink-700/60" aria-hidden="true" />
+            <button
+              type="button"
+              onClick={() => applyZoom(1.28)}
+              className="px-3 py-1.5 font-mono text-sm text-ink-200 transition-colors hover:bg-ink-900/60 hover:text-ink-100"
+              aria-label="Zoom out"
+              title="Zoom out"
+            >
+              −
+            </button>
+          </div>
+        </div>
 
         <svg
           ref={svgRef}
           viewBox={`${viewBox[0]} ${viewBox[1]} ${viewBox[2]} ${viewBox[3]}`}
           className="block h-auto w-full select-none"
+          style={{ cursor: isPanning ? "grabbing" : "grab", touchAction: "none" }}
           role="group"
           aria-label={ariaLabel}
+          onPointerMove={onSvgPointerMove}
+          onPointerUp={onSvgPointerUp}
+          onPointerCancel={onSvgPointerUp}
         >
-        <defs>
-          <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="currentColor" stopOpacity="0.55" />
-            <stop offset="60%" stopColor="currentColor" stopOpacity="0.12" />
-            <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-          </radialGradient>
-          <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="2.4" result="b" />
-            <feMerge>
-              <feMergeNode in="b" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
+          <defs>
+            <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="currentColor" stopOpacity="0.55" />
+              <stop offset="60%" stopColor="currentColor" stopOpacity="0.12" />
+              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+            </radialGradient>
+            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2.4" result="b" />
+              <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
 
-        {/* Category headers used to live inside this SVG. They've moved to
-            a DOM-layer row above the canvas (see the constellation wrapper)
-            so they stay constant-size and constant-position no matter how
-            the camera zooms into an opened cluster. What remains here is a
-            faint hover-preview ellipse, driven by hoveredCategory — it
-            shows where a closed cluster would expand if opened. */}
-        <g aria-hidden="true">
-          {hoveredCategory && openCategory !== hoveredCategory && (
-            <ellipse
-              cx={CATEGORY_FRAME[hoveredCategory].cx}
-              cy={CATEGORY_FRAME[hoveredCategory].cy}
-              rx={CATEGORY_FRAME[hoveredCategory].rx * 0.92}
-              ry={CATEGORY_FRAME[hoveredCategory].ry * 0.92}
-              fill="none"
-              stroke={CATEGORY_COLOR[hoveredCategory]}
-              strokeOpacity={0.18}
-              strokeDasharray="4 8"
-              strokeWidth={1}
-              style={{ transition: trans("opacity") }}
-            />
-          )}
-        </g>
+          {/* Pan surface. A generously oversized transparent rect (much
+              bigger than the home viewBox) catches background pointerdown
+              for click-and-drag panning. Stars and labels are drawn after
+              this and naturally win the hit test, so a click on a star
+              still navigates. */}
+          <rect
+            x={-VB_W}
+            y={-VB_H}
+            width={VB_W * 3}
+            height={VB_H * 3}
+            fill="transparent"
+            pointerEvents="all"
+            onPointerDown={onBackgroundPointerDown}
+            aria-hidden="true"
+          />
 
-        {/* Edges. By default we render only hub-to-hub bridge + family edges,
-            so the canvas reads as a deliberate sky. When a hub is spotlit or
-            a category is open, the relevant edges raise to full opacity. */}
-        <g aria-hidden="true" fill="none" strokeLinecap="round">
-          {TOPIC_EDGES.map((e, i) => {
-            const A = posById.get(e.a);
-            const B = posById.get(e.b);
-            if (!A || !B) return null;
-            const sameCluster = A.topic.category === B.topic.category;
-            const aHub = isHub(e.a);
-            const bHub = isHub(e.b);
-            const bothHubs = aHub && bHub;
-
-            const inHubSpot =
-              hubSpotlight.size > 0 && hubSpotlight.has(e.a) && hubSpotlight.has(e.b);
-            const inCategoryOpen =
-              expandedCategories.has(A.topic.category) &&
-              expandedCategories.has(B.topic.category) &&
-              sameCluster;
-
-            // Default-visible edges: hub-to-hub bridge & family edges, drawn
-            // softly. Echo edges and any non-hub edges stay invisible by
-            // default and only appear under hover/expand.
-            const defaultVisible = bothHubs && (e.kind === "bridge" || e.kind === "family");
-
-            const visible = defaultVisible || inHubSpot || inCategoryOpen;
-            if (!visible) return null;
-
-            const highlighted = inHubSpot || inCategoryOpen;
-            // Even "highlighted" edges stay clearly under the labels — earlier
-            // values (0.92 / 1.8) drowned the italic serif text when a cluster
-            // was open. With labels above + a dark stroke halo around them,
-            // edges no longer need to fight for attention; they just need to
-            // be visible.
-            const stroke = highlighted
-              ? "rgba(234,236,243,0.45)"
-              : e.kind === "bridge"
-                ? "rgba(234,236,243,0.28)"
-                : "rgba(234,236,243,0.18)";
-            const width = highlighted ? 1.1 : 0.85;
-            const opacity = highlighted ? 0.85 : 0.55;
-
-            return (
-              <path
-                key={i}
-                d={edgePath(A, B, sameCluster, `${e.a}-${e.b}`)}
-                stroke={stroke}
-                strokeWidth={width}
-                opacity={opacity}
+          {/* Faint hover-preview ellipse: shows where a closed cluster would
+              expand if opened. */}
+          <g aria-hidden="true">
+            {hoveredCategory && openCategory !== hoveredCategory && (
+              <ellipse
+                cx={CATEGORY_FRAME[hoveredCategory].cx}
+                cy={CATEGORY_FRAME[hoveredCategory].cy}
+                rx={CATEGORY_FRAME[hoveredCategory].rx * 0.92}
+                ry={CATEGORY_FRAME[hoveredCategory].ry * 0.92}
+                fill="none"
+                stroke={CATEGORY_COLOR[hoveredCategory]}
+                strokeOpacity={0.18}
+                strokeDasharray="4 8"
+                strokeWidth={1}
                 style={{ transition: trans("opacity") }}
               />
-            );
-          })}
-        </g>
+            )}
+          </g>
 
-        {/* Stars */}
-        <g>
-          {laidOut.map(({ topic, x, y }) => {
-            const meta = a.topics[topic.id];
-            const color = CATEGORY_COLOR[topic.category];
-            const hub = isHub(topic.id);
-            const filteredOut = isFilteredOut(topic.id);
-            const catExpanded = expandedCategories.has(topic.category);
-            const isHover = hovered === topic.id;
-            const inHubSpot = hubSpotlight.has(topic.id);
-            const isSearchMatch = q.length > 0 && searchMatches.has(topic.id);
+          {/* Edges. By default we render only hub-to-hub bridge + family edges,
+            so the canvas reads as a deliberate sky. When a hub is spotlit or
+            a category is open, the relevant edges raise to full opacity. */}
+          <g aria-hidden="true" fill="none" strokeLinecap="round">
+            {TOPIC_EDGES.map((e, i) => {
+              const A = posById.get(e.a);
+              const B = posById.get(e.b);
+              if (!A || !B) return null;
+              const sameCluster = A.topic.category === B.topic.category;
+              const aHub = isHub(e.a);
+              const bHub = isHub(e.b);
+              const bothHubs = aHub && bHub;
 
-            // Visibility rules:
-            //   - hubs are always rendered, big + labelled.
-            //   - non-hubs always render as faint "ghost" dots so users can
-            //     SEE that there are more topics than the 12 hubs (this hint
-            //     of-more is the whole point — earlier the canvas pretended
-            //     non-hubs didn't exist). They grow + reveal their label on
-            //     hover/focus/spot/expand/search-match.
-            const dimByFilter = filteredOut;
-            const dimByOpen =
-              openCategory !== null && topic.category !== openCategory && hub && !inHubSpot;
-            const dimBySearch = q.length > 0 && !isSearchMatch;
-            const dimBySpotlight = hubSpotlight.size > 0 && !inHubSpot && hub ? true : false;
-            const dimmed = dimByFilter || dimByOpen || dimBySearch || dimBySpotlight;
+              const inHubSpot =
+                hubSpotlight.size > 0 && hubSpotlight.has(e.a) && hubSpotlight.has(e.b);
+              const inCategoryOpen =
+                expandedCategories.has(A.topic.category) &&
+                expandedCategories.has(B.topic.category) &&
+                sameCluster;
 
-            // A non-hub is "active" when its category is open, it's spotlit
-            // by a hub neighbour, the user hovers it directly, or search has
-            // matched it. Otherwise it stays in ghost mode.
-            const nonHubActive = catExpanded || inHubSpot || isHover || isSearchMatch;
+              // Default-visible edges: hub-to-hub bridge & family edges, drawn
+              // softly. Echo edges and any non-hub edges stay invisible by
+              // default and only appear under hover/expand.
+              const defaultVisible = bothHubs && (e.kind === "bridge" || e.kind === "family");
 
-            const r = isHover ? 12 : hub ? 10 : nonHubActive ? 6.5 : 2.2;
+              const visible = defaultVisible || inHubSpot || inCategoryOpen;
+              if (!visible) return null;
 
-            const showLabel = hub || nonHubActive;
+              const highlighted = inHubSpot || inCategoryOpen;
+              const stroke = highlighted
+                ? "rgba(234,236,243,0.45)"
+                : e.kind === "bridge"
+                  ? "rgba(234,236,243,0.28)"
+                  : "rgba(234,236,243,0.18)";
+              const width = highlighted ? 1.1 : 0.85;
+              const opacity = highlighted ? 0.85 : 0.55;
 
-            const labelSize = isHover ? 26 : hub ? 24 : 19;
-            const labelOpacity = dimmed ? 0.22 : isHover ? 1 : hub ? 0.95 : 0.88;
+              return (
+                <path
+                  key={i}
+                  d={edgePath(A, B, sameCluster, `${e.a}-${e.b}`)}
+                  stroke={stroke}
+                  strokeWidth={width}
+                  opacity={opacity}
+                  style={{ transition: trans("opacity") }}
+                />
+              );
+            })}
+          </g>
 
-            // Ghost non-hubs sit at ~22% opacity so they read as "more is
-            // here" rather than "missing". When activated they jump to 1.
-            const ghostFloor = hub ? 1 : 0.22;
-            const groupOpacity = dimmed
-              ? 0.32
-              : nonHubActive || hub
-                ? 1
-                : ghostFloor;
+          {/* Stars */}
+          <g>
+            {laidOut.map(({ topic, x, y }) => {
+              const meta = a.topics[topic.id];
+              const color = CATEGORY_COLOR[topic.category];
+              const hub = isHub(topic.id);
+              const catExpanded = expandedCategories.has(topic.category);
+              const isHover = hovered === topic.id;
+              const inHubSpot = hubSpotlight.has(topic.id);
+              const isSearchMatch = q.length > 0 && searchMatches.has(topic.id);
 
-            return (
-              <g
-                key={topic.id}
-                transform={`translate(${x} ${y})`}
-                style={{
-                  color,
-                  opacity: groupOpacity,
-                  transition: trans("opacity, transform"),
-                }}
-              >
-                {(isHover || inHubSpot) && (
-                  <circle
-                    r={isHover ? 42 : 26}
-                    fill="url(#nodeGlow)"
-                    opacity={isHover ? 0.95 : 0.7}
-                    aria-hidden="true"
-                  />
-                )}
-                <Link href={topic.href} className="focus:outline-none">
-                  <g
-                    role="link"
-                    aria-label={`${meta.title} — ${meta.tagline}`}
-                    tabIndex={0}
-                    onMouseEnter={() => setHovered(topic.id)}
-                    onMouseLeave={() => setHovered((h) => (h === topic.id ? null : h))}
-                    onFocus={() => setHovered(topic.id)}
-                    onBlur={() => setHovered((h) => (h === topic.id ? null : h))}
-                    className="cursor-pointer"
-                  >
-                    {/* Hit target. Large enough to forgive precise mousing. */}
-                    <rect x="-90" y="-22" width="180" height="60" fill="transparent" />
+              const dimByOpen =
+                openCategory !== null && topic.category !== openCategory && hub && !inHubSpot;
+              const dimBySearch = q.length > 0 && !isSearchMatch;
+              const dimBySpotlight = hubSpotlight.size > 0 && !inHubSpot && hub ? true : false;
+              const dimmed = dimByOpen || dimBySearch || dimBySpotlight;
+
+              const nonHubActive = catExpanded || inHubSpot || isHover || isSearchMatch;
+
+              const r = isHover ? 12 : hub ? 10 : nonHubActive ? 6.5 : 2.2;
+
+              const showLabel = hub || nonHubActive;
+
+              const labelSize = isHover ? 26 : hub ? 24 : 19;
+              const labelOpacity = dimmed ? 0.22 : isHover ? 1 : hub ? 0.95 : 0.88;
+
+              const ghostFloor = hub ? 1 : 0.22;
+              const groupOpacity = dimmed ? 0.32 : nonHubActive || hub ? 1 : ghostFloor;
+
+              return (
+                <g
+                  key={topic.id}
+                  transform={`translate(${x} ${y})`}
+                  style={{
+                    color,
+                    opacity: groupOpacity,
+                    transition: trans("opacity, transform"),
+                  }}
+                >
+                  {(isHover || inHubSpot) && (
                     <circle
-                      r={r}
-                      fill={color}
-                      filter="url(#softGlow)"
-                      style={{ transition: trans("r") }}
+                      r={isHover ? 42 : 26}
+                      fill="url(#nodeGlow)"
+                      opacity={isHover ? 0.95 : 0.7}
+                      aria-hidden="true"
                     />
-                    {isHover && (
-                      <circle r={r + 6} fill="none" stroke={color} strokeOpacity={0.55} />
-                    )}
-                    {showLabel && (
-                      <text
-                        y={r + 24}
-                        textAnchor="middle"
-                        fontFamily="var(--font-serif)"
-                        fontStyle="italic"
-                        fontSize={labelSize}
-                        fill="#eaecf3"
-                        opacity={labelOpacity}
-                        // paint-order draws the stroke BEHIND the fill, so a
-                        // wide ink-coloured stroke acts as a knockout halo:
-                        // any edge passing under the label is masked by the
-                        // halo before the glyph fill paints. This is what
-                        // makes labels readable in the spotlight view even
-                        // when bridges run through them.
-                        stroke="#05060a"
-                        strokeWidth={4}
-                        strokeLinejoin="round"
-                        style={{
-                          transition: trans("opacity"),
-                          paintOrder: "stroke fill",
-                        }}
-                      >
-                        {meta.title}
-                      </text>
-                    )}
-                    {isHover && (
-                      <text
-                        y={r + 44}
-                        textAnchor="middle"
-                        fontFamily="var(--font-mono)"
-                        fontSize="11"
-                        letterSpacing="3"
+                  )}
+                  <Link href={topic.href} className="focus:outline-none">
+                    <g
+                      role="link"
+                      aria-label={`${meta.title} — ${meta.tagline}`}
+                      tabIndex={0}
+                      onMouseEnter={() => setHovered(topic.id)}
+                      onMouseLeave={() => setHovered((h) => (h === topic.id ? null : h))}
+                      onFocus={() => setHovered(topic.id)}
+                      onBlur={() => setHovered((h) => (h === topic.id ? null : h))}
+                      className="cursor-pointer"
+                    >
+                      <rect x="-90" y="-22" width="180" height="60" fill="transparent" />
+                      <circle
+                        r={r}
                         fill={color}
-                        opacity={0.85}
-                        style={{ textTransform: "uppercase" }}
-                      >
-                        {topic.id}
-                      </text>
-                    )}
-                  </g>
-                </Link>
-              </g>
-            );
-          })}
-        </g>
+                        filter="url(#softGlow)"
+                        style={{ transition: trans("r") }}
+                      />
+                      {isHover && (
+                        <circle r={r + 6} fill="none" stroke={color} strokeOpacity={0.55} />
+                      )}
+                      {showLabel && (
+                        <text
+                          y={r + 24}
+                          textAnchor="middle"
+                          fontFamily="var(--font-serif)"
+                          fontStyle="italic"
+                          fontSize={labelSize}
+                          fill="#eaecf3"
+                          opacity={labelOpacity}
+                          stroke="#05060a"
+                          strokeWidth={4}
+                          strokeLinejoin="round"
+                          style={{
+                            transition: trans("opacity"),
+                            paintOrder: "stroke fill",
+                          }}
+                        >
+                          {meta.title}
+                        </text>
+                      )}
+                      {isHover && (
+                        <text
+                          y={r + 44}
+                          textAnchor="middle"
+                          fontFamily="var(--font-mono)"
+                          fontSize="11"
+                          letterSpacing="3"
+                          fill={color}
+                          opacity={0.85}
+                          style={{ textTransform: "uppercase" }}
+                        >
+                          {topic.id}
+                        </text>
+                      )}
+                    </g>
+                  </Link>
+                </g>
+              );
+            })}
+          </g>
         </svg>
       </div>
 
@@ -874,18 +980,19 @@ function HoverPanel({ hoveredId }: { hoveredId: TopicId | null }) {
 }
 
 // Mobile: full SVG would be unreadable at 46 nodes on a 360px screen, so we
-// render an honest compact card list with the same search affordance. The
-// outer page also has a list view; this one is scoped to the wrapper so the
-// component remains a drop-in.
+// render an honest compact card list with the same search affordance plus a
+// small category chip row so the filter prop isn't write-only on mobile.
 function MobileList({
   query,
   setQuery,
   filter,
+  setFilter,
   searchMatches,
 }: {
   query: string;
   setQuery: (v: string) => void;
   filter: TopicCategory | "all";
+  setFilter: (f: TopicCategory | "all") => void;
   searchMatches: Set<TopicId>;
 }) {
   const { a } = useI18n();
@@ -911,6 +1018,50 @@ function MobileList({
           spellCheck={false}
         />
       </label>
+      <div className="flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() => setFilter("all")}
+          aria-pressed={filter === "all"}
+          className="hairline rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 transition-colors"
+          style={{
+            background: filter === "all" ? "rgba(179, 136, 255, 0.15)" : undefined,
+            borderColor: filter === "all" ? "rgba(179, 136, 255, 0.5)" : undefined,
+            color: filter === "all" ? "#d6c2ff" : "#9ea4b6",
+          }}
+        >
+          {a.landing.browseLabel}
+        </button>
+        {CATEGORY_ORDER.map((cat) => {
+          const color = CATEGORY_COLOR[cat];
+          const isOn = filter === cat;
+          const label =
+            (a.landing[
+              `category${cat[0].toUpperCase()}${cat.slice(1)}` as keyof typeof a.landing
+            ] as string) || cat;
+          return (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setFilter(isOn ? "all" : cat)}
+              aria-pressed={isOn}
+              className="hairline inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 transition-colors"
+              style={{
+                background: isOn ? `${color}1f` : undefined,
+                borderColor: isOn ? `${color}80` : undefined,
+                color: isOn ? color : undefined,
+              }}
+            >
+              <span
+                aria-hidden="true"
+                className="inline-block rounded-full"
+                style={{ width: 8, height: 8, background: color }}
+              />
+              {label}
+            </button>
+          );
+        })}
+      </div>
       <ul className="grid grid-cols-1 gap-2">
         {visible.map((t) => {
           const meta = a.topics[t.id];

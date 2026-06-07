@@ -32,6 +32,10 @@ export default function Landing() {
   const { a } = useI18n();
   const [filter, setFilter] = useState<TopicCategory | "all">("all");
   const [view, setView] = useState<ViewMode>("constellation");
+  // List view needs its own search box (the constellation has one inside the
+  // canvas; users in list view never see it). Independent state keeps the
+  // two surfaces simple — one search per surface.
+  const [listQuery, setListQuery] = useState("");
 
   // Per-session topic order: shuffled once on client mount so the list view
   // doesn't always lead with the same handful of topics. SSR renders the
@@ -47,10 +51,17 @@ export default function Landing() {
     }
     setTopicOrder(shuffled);
   }, [filter]);
-  const visible = useMemo(
-    () => (filter === "all" ? topicOrder : topicOrder.filter((t) => t.category === filter)),
-    [filter, topicOrder],
-  );
+  const listQ = listQuery.trim().toLowerCase();
+  const visible = useMemo(() => {
+    const byCategory =
+      filter === "all" ? topicOrder : topicOrder.filter((t) => t.category === filter);
+    if (!listQ) return byCategory;
+    return byCategory.filter((t) => {
+      const meta = a.topics[t.id];
+      const hay = `${t.id} ${meta.title} ${meta.tagline} ${t.formula ?? ""}`.toLowerCase();
+      return hay.includes(listQ);
+    });
+  }, [filter, topicOrder, listQ, a.topics]);
 
   return (
     <main className="relative isolate min-h-screen">
@@ -139,24 +150,11 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Filter chips + view toggle */}
+      {/* View toggle. Sole top-level navigation control — categories live
+          inside the constellation (or above the cards in list view) so the
+          same chips never appear twice. */}
       <section className="relative z-10 px-6" id="atlas">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-2 py-6">
-          <FilterChip active={filter === "all"} onClick={() => setFilter("all")}>
-            {a.landing.browseLabel}
-          </FilterChip>
-          {(["logic", "computation", "chaos", "analysis", "paradox"] as TopicCategory[]).map(
-            (c) => (
-              <FilterChip key={c} active={filter === c} onClick={() => setFilter(c)}>
-                {
-                  a.landing[
-                    `category${c[0].toUpperCase()}${c.slice(1)}` as keyof typeof a.landing
-                  ] as string
-                }
-              </FilterChip>
-            ),
-          )}
-          <div className="mx-3 h-5 w-px bg-ink-700/60" aria-hidden="true" />
+        <div className="mx-auto flex max-w-6xl items-center justify-center py-6">
           <ViewToggle
             value={view}
             onChange={setView}
@@ -170,21 +168,72 @@ export default function Landing() {
       {view === "constellation" ? (
         <section className="relative z-10 px-4 pb-20 md:px-6">
           <div className="mx-auto max-w-7xl">
-            <Reveal>
-              <p className="mx-auto mb-6 max-w-2xl text-center text-sm leading-relaxed text-ink-300">
-                {a.landing.constellationHint ??
-                  "Hover, focus or tap a star. Lines connect related ideas."}
-              </p>
-            </Reveal>
             <Reveal delay={120}>
               <div className="hairline overflow-hidden rounded-3xl border bg-ink-950/40">
-                <TopicConstellation filter={filter} />
+                <TopicConstellation filter={filter} setFilter={setFilter} />
               </div>
             </Reveal>
           </div>
         </section>
       ) : (
         <section className="relative z-10 px-6 pb-20">
+          {/* List view: search + all six category chips. The constellation
+              uses a different surface for the same controls (search box +
+              pills inside the canvas), so each view is self-sufficient. */}
+          <div className="mx-auto mb-4 max-w-xl">
+            <label className="block">
+              <span className="sr-only">
+                {a.landing.constellationSearchLabel ?? "Search the atlas"}
+              </span>
+              <div className="relative">
+                <input
+                  type="search"
+                  value={listQuery}
+                  onChange={(e) => setListQuery(e.target.value)}
+                  placeholder={
+                    a.landing.constellationSearchPlaceholder ?? "Search topics, formulas, ideas…"
+                  }
+                  className="hairline w-full rounded-full border bg-ink-950/60 px-4 py-2 pr-10 font-mono text-[11px] uppercase tracking-widest2 text-ink-100 placeholder:text-ink-400 focus:border-signal-violet/60 focus:outline-none"
+                  autoComplete="off"
+                  spellCheck={false}
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[10px] uppercase tracking-widest2 text-ink-400"
+                >
+                  {listQ ? `${visible.length}` : "⌕"}
+                </div>
+              </div>
+            </label>
+          </div>
+          <div className="mx-auto mb-6 flex max-w-6xl flex-wrap items-center justify-center gap-2">
+            <FilterChip active={filter === "all"} onClick={() => setFilter("all")}>
+              {a.landing.browseLabel}
+            </FilterChip>
+            {(
+              [
+                "logic",
+                "computation",
+                "chaos",
+                "geometry",
+                "analysis",
+                "paradox",
+              ] as TopicCategory[]
+            ).map((c) => (
+              <FilterChip key={c} active={filter === c} onClick={() => setFilter(c)}>
+                {
+                  a.landing[
+                    `category${c[0].toUpperCase()}${c.slice(1)}` as keyof typeof a.landing
+                  ] as string
+                }
+              </FilterChip>
+            ))}
+          </div>
+          {visible.length === 0 && (
+            <p className="mx-auto max-w-md py-12 text-center text-sm text-ink-400">
+              {a.landing.constellationEmpty ?? "Nothing matches."}
+            </p>
+          )}
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {visible.map((topic) => {
               const meta = a.topics[topic.id];
@@ -286,17 +335,19 @@ function ViewToggle({
     <button
       onClick={() => onChange(v)}
       aria-pressed={value === v}
-      className={`px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
-        value === v ? "text-signal-cyan" : "text-ink-400 hover:text-ink-200"
+      className={`px-6 py-3 font-mono text-xs uppercase tracking-widest2 transition-colors ${
+        value === v
+          ? "bg-signal-cyan/10 text-signal-cyan"
+          : "text-ink-400 hover:bg-ink-900/40 hover:text-ink-200"
       }`}
     >
       {label}
     </button>
   );
   return (
-    <div className="hairline inline-flex items-center overflow-hidden rounded-full border">
+    <div className="hairline inline-flex items-center overflow-hidden rounded-full border bg-ink-950/40">
       <Btn v="constellation" label={constellationLabel} />
-      <div className="h-4 w-px bg-ink-700/60" aria-hidden="true" />
+      <div className="h-6 w-px bg-ink-700/60" aria-hidden="true" />
       <Btn v="list" label={listLabel} />
     </div>
   );

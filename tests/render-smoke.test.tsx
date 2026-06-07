@@ -103,7 +103,9 @@ describe("render smoke", () => {
   });
 
   it("TopicConstellation mounts with a non-trivial filter", () => {
-    const { container } = render(withProviders(<TopicConstellation filter="chaos" />));
+    const { container } = render(
+      withProviders(<TopicConstellation filter="chaos" setFilter={() => {}} />),
+    );
     // The component renders an SVG sky on desktop and a card list on mobile.
     // Either way the root should produce *something*.
     expect(container.firstChild).not.toBeNull();
