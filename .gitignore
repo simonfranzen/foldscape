@@ -40,3 +40,6 @@ test-results/
 
 # misc
 *.pem
+
+# working screenshots dropped at the repo root (not site assets — those live in public/)
+/*.png
