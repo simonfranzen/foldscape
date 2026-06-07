@@ -256,13 +256,9 @@ function bboxForCategory(
     if (x > maxX) maxX = x;
     if (y > maxY) maxY = y;
   }
-  // Also include the category header position (lives above/below cluster)
-  // so the zoomed view actually shows the header that named the cluster.
+  // Pad horizontally to the cluster frame so the zoomed view doesn't crop
+  // too tightly against star labels at the edge of the cluster.
   const f = CATEGORY_FRAME[cat];
-  const above = f.cy < VB_H / 2;
-  const headerY = above ? f.cy - f.ry - 36 : f.cy + f.ry + 44;
-  minY = Math.min(minY, headerY - 30);
-  maxY = Math.max(maxY, headerY + 30);
   minX = Math.min(minX, f.cx - 150);
   maxX = Math.max(maxX, f.cx + 150);
 
@@ -539,25 +535,80 @@ export function TopicConstellation({ filter }: Props) {
         >
           {hint}
         </p>
+      </div>
+
+      {/* DOM-layer category headers. These used to live inside the SVG and
+          would clip out of view whenever the camera zoomed into a single
+          cluster. Now they're plain HTML pills above the canvas — constant
+          size, always visible, never clipped. */}
+      <div
+        className="flex flex-wrap items-center gap-2 px-4 pb-3"
+        data-atlas-keep-open="true"
+        role="group"
+        aria-label={a.landing.constellationCategoryHint ?? "Open the cluster"}
+      >
+        {CATEGORY_ORDER.map((cat) => {
+          const label =
+            (a.landing[
+              `category${cat[0].toUpperCase()}${cat.slice(1)}` as keyof typeof a.landing
+            ] as string) || cat;
+          const color = CATEGORY_COLOR[cat];
+          const isOpen = openCategory === cat;
+          const mutedByFilter = filter !== "all" && filter !== cat;
+          return (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => toggleCategory(cat)}
+              onMouseEnter={() => setHoveredCategory(cat)}
+              onMouseLeave={() => setHoveredCategory((c) => (c === cat ? null : c))}
+              onFocus={() => setHoveredCategory(cat)}
+              onBlur={() => setHoveredCategory((c) => (c === cat ? null : c))}
+              aria-pressed={isOpen}
+              aria-expanded={isOpen}
+              className="hairline inline-flex items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-ink-300/40 hover:text-ink-100"
+              style={{
+                background: isOpen ? `${color}1f` : undefined,
+                borderColor: isOpen ? `${color}80` : undefined,
+                color: isOpen ? color : undefined,
+                opacity: mutedByFilter ? 0.4 : 1,
+              }}
+            >
+              <span
+                aria-hidden="true"
+                className="inline-block rounded-full"
+                style={{ width: 8, height: 8, background: color }}
+              />
+              {label}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="relative">
+        {/* Always-visible "back to overview" pill. Lives in the DOM layer
+            (outside the SVG) so it stays the same size and screen position
+            no matter how far the camera zooms. Only shown when a cluster is
+            actually open — otherwise it'd be a no-op. */}
         {openCategory && (
           <button
             type="button"
             onClick={() => setOpenCategory(null)}
-            className="hairline rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-ink-300/40 hover:text-ink-100"
+            className="hairline absolute right-4 top-3 z-10 rounded-full border bg-ink-950/80 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet backdrop-blur transition-colors hover:border-signal-violet/60 hover:text-ink-100"
+            style={{ borderColor: "rgba(179, 136, 255, 0.5)" }}
             data-atlas-keep-open="true"
           >
-            {a.landing.constellationClose ?? "Close"}
+            {a.landing.constellationCloseZoom ?? "↺ Back to atlas"}
           </button>
         )}
-      </div>
 
-      <svg
-        ref={svgRef}
-        viewBox={`${viewBox[0]} ${viewBox[1]} ${viewBox[2]} ${viewBox[3]}`}
-        className="block h-auto w-full select-none"
-        role="group"
-        aria-label={ariaLabel}
-      >
+        <svg
+          ref={svgRef}
+          viewBox={`${viewBox[0]} ${viewBox[1]} ${viewBox[2]} ${viewBox[3]}`}
+          className="block h-auto w-full select-none"
+          role="group"
+          aria-label={ariaLabel}
+        >
         <defs>
           <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="currentColor" stopOpacity="0.55" />
@@ -573,124 +624,27 @@ export function TopicConstellation({ filter }: Props) {
           </filter>
         </defs>
 
-        {/* Category headers — large clickable cues. Hovering previews the
-            cluster footprint as a faint ring; clicking opens. */}
-        <g>
-          {CATEGORY_ORDER.map((cat) => {
-            const f = CATEGORY_FRAME[cat];
-            const label =
-              (a.landing[
-                `category${cat[0].toUpperCase()}${cat.slice(1)}` as keyof typeof a.landing
-              ] as string) || cat;
-            const color = CATEGORY_COLOR[cat];
-            const isOpen = openCategory === cat;
-            const isHoveredCat = hoveredCategory === cat;
-            const dimByOtherOpen = openCategory !== null && !isOpen;
-            const mutedByFilter = filter !== "all" && filter !== cat;
-            const opacity = mutedByFilter
-              ? 0.22
-              : isOpen
-                ? 1
-                : isHoveredCat
-                  ? 0.95
-                  : dimByOtherOpen
-                    ? 0.4
-                    : 0.75;
-
-            // Header above the cluster for the top row, below for the bottom.
-            const above = f.cy < VB_H / 2;
-            const labelY = above ? f.cy - f.ry - 36 : f.cy + f.ry + 44;
-            return (
-              <g
-                key={cat}
-                onMouseEnter={() => setHoveredCategory(cat)}
-                onMouseLeave={() => setHoveredCategory((c) => (c === cat ? null : c))}
-                onFocus={() => setHoveredCategory(cat)}
-                onBlur={() => setHoveredCategory((c) => (c === cat ? null : c))}
-                onClick={() => toggleCategory(cat)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    toggleCategory(cat);
-                  }
-                }}
-                tabIndex={0}
-                role="button"
-                aria-pressed={isOpen}
-                aria-expanded={isOpen}
-                aria-label={`${label} — ${
-                  isOpen
-                    ? (a.landing.constellationClose ?? "Close")
-                    : (a.landing.constellationCategoryHint ?? "Open the cluster")
-                }`}
-                className="cursor-pointer focus:outline-none"
-                style={{ outline: "none" }}
-              >
-                {/* Hit + focus region. Larger than the text so keyboard focus
-                    is comfortably visible. */}
-                <rect
-                  x={f.cx - 140}
-                  y={labelY - 22}
-                  width={280}
-                  height={40}
-                  rx={20}
-                  fill={isOpen ? `${color}1f` : "transparent"}
-                  stroke={isHoveredCat || isOpen ? `${color}80` : "transparent"}
-                  strokeWidth={1}
-                  style={{ transition: trans("fill, stroke") }}
-                />
-                <text
-                  x={f.cx}
-                  y={labelY}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  fontFamily="var(--font-mono)"
-                  fontSize="16"
-                  letterSpacing="4.2"
-                  fill={color}
-                  opacity={opacity}
-                  style={{
-                    textTransform: "uppercase",
-                    transition: trans("opacity"),
-                  }}
-                >
-                  {label}
-                </text>
-                {/* Tiny caret hint of openable state */}
-                <text
-                  x={f.cx + 110}
-                  y={labelY}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  fontFamily="var(--font-mono)"
-                  fontSize="14"
-                  fill={color}
-                  opacity={opacity * 0.7}
-                  style={{ transition: trans("opacity") }}
-                >
-                  {isOpen ? "×" : "+"}
-                </text>
-
-                {/* Hover preview: faint placeholder ring where non-hubs would
-                    appear. Suppressed once the cluster is open (the real
-                    stars are there). */}
-                {isHoveredCat && !isOpen && (
-                  <ellipse
-                    cx={f.cx}
-                    cy={f.cy}
-                    rx={f.rx * 0.92}
-                    ry={f.ry * 0.92}
-                    fill="none"
-                    stroke={color}
-                    strokeOpacity={0.18}
-                    strokeDasharray="4 8"
-                    strokeWidth={1}
-                    style={{ transition: trans("opacity") }}
-                  />
-                )}
-              </g>
-            );
-          })}
+        {/* Category headers used to live inside this SVG. They've moved to
+            a DOM-layer row above the canvas (see the constellation wrapper)
+            so they stay constant-size and constant-position no matter how
+            the camera zooms into an opened cluster. What remains here is a
+            faint hover-preview ellipse, driven by hoveredCategory — it
+            shows where a closed cluster would expand if opened. */}
+        <g aria-hidden="true">
+          {hoveredCategory && openCategory !== hoveredCategory && (
+            <ellipse
+              cx={CATEGORY_FRAME[hoveredCategory].cx}
+              cy={CATEGORY_FRAME[hoveredCategory].cy}
+              rx={CATEGORY_FRAME[hoveredCategory].rx * 0.92}
+              ry={CATEGORY_FRAME[hoveredCategory].ry * 0.92}
+              fill="none"
+              stroke={CATEGORY_COLOR[hoveredCategory]}
+              strokeOpacity={0.18}
+              strokeDasharray="4 8"
+              strokeWidth={1}
+              style={{ transition: trans("opacity") }}
+            />
+          )}
         </g>
 
         {/* Edges. By default we render only hub-to-hub bridge + family edges,
@@ -881,7 +835,8 @@ export function TopicConstellation({ filter }: Props) {
             );
           })}
         </g>
-      </svg>
+        </svg>
+      </div>
 
       <HoverPanel hoveredId={hovered} />
     </div>

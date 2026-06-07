@@ -49,6 +49,10 @@ export interface AtlasDict {
     constellationExpandHint?: string;
     constellationClose?: string;
     constellationCategoryHint?: string;
+    // Always-visible "back to overview" pill shown when a cluster is zoomed.
+    // Different from constellationClose (the older small Close button) — this
+    // one is the primary escape hatch from a zoomed-in state.
+    constellationCloseZoom?: string;
   };
   nav: {
     atlas: string;
@@ -107,6 +111,7 @@ const en: AtlasDict = {
     constellationExpandHint: "Open",
     constellationClose: "Close",
     constellationCategoryHint: "Open the cluster",
+    constellationCloseZoom: "↺ Back to atlas",
   },
   nav: { atlas: "Atlas" },
   footer: {
@@ -216,6 +221,7 @@ const de: AtlasDict = {
     constellationExpandHint: "Öffnen",
     constellationClose: "Schließen",
     constellationCategoryHint: "Cluster öffnen",
+    constellationCloseZoom: "↺ Zurück zum Atlas",
   },
   nav: { atlas: "Atlas" },
   footer: {
