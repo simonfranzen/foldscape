@@ -5,12 +5,12 @@
 
 export interface MandelState {
   center: [number, number];
-  scale: number;        // half-height of view in complex units
-  maxIter: number;      // up to ~1500 for deep zooms
-  palette: number;      // 0..4
-  hueShift: number;     // 0..1
-  exposure: number;     // 0.5..2
-  time: number;         // for subtle animation
+  scale: number; // half-height of view in complex units
+  maxIter: number; // up to ~1500 for deep zooms
+  palette: number; // 0..4
+  hueShift: number; // 0..1
+  exposure: number; // 0.5..2
+  time: number; // for subtle animation
 }
 
 export const defaultMandel = (): MandelState => ({
@@ -140,7 +140,16 @@ export class MandelRenderer {
     gl.bindAttribLocation(prog, 0, "aPos");
     gl.linkProgram(prog);
     this.prog = prog;
-    for (const name of ["uResolution", "uCenter", "uScale", "uMaxIter", "uPalette", "uHueShift", "uExposure", "uTime"]) {
+    for (const name of [
+      "uResolution",
+      "uCenter",
+      "uScale",
+      "uMaxIter",
+      "uPalette",
+      "uHueShift",
+      "uExposure",
+      "uTime",
+    ]) {
       this.uni[name] = gl.getUniformLocation(prog, name);
     }
   }
@@ -222,15 +231,69 @@ function compile(gl: WebGL2RenderingContext, type: number, src: string) {
 // many iterations it needs; the explorer also auto-bumps iterations with
 // continuous zoom.
 export const BOOKMARKS = [
-  { id: "overview", labelKey: "bookmarkOverview", center: [-0.6, 0] as [number, number], scale: 1.4, maxIter: 300 },
-  { id: "seahorse", labelKey: "bookmarkSeahorse", center: [-0.75, 0.1] as [number, number], scale: 0.15, maxIter: 600 },
-  { id: "elephant", labelKey: "bookmarkElephant", center: [0.275, 0] as [number, number], scale: 0.07, maxIter: 600 },
-  { id: "mini", labelKey: "bookmarkMini", center: [-1.7686, 0] as [number, number], scale: 0.01, maxIter: 900 },
-  { id: "spiral", labelKey: "bookmarkSpiral", center: [-0.7756837, 0.1364674] as [number, number], scale: 0.0025, maxIter: 1400 },
-  { id: "misiurewicz", labelKey: "bookmarkMisiurewicz", center: [-1.94, 0] as [number, number], scale: 0.003, maxIter: 1200 },
-  { id: "lightning", labelKey: "bookmarkLightning", center: [-1.7497219, 0] as [number, number], scale: 0.00012, maxIter: 2000 },
-  { id: "selfsim", labelKey: "bookmarkSelfSim", center: [-0.74364085, 0.13182733] as [number, number], scale: 0.0007, maxIter: 1800 },
-  { id: "antenna", labelKey: "bookmarkAntenna", center: [-1.99996, 0] as [number, number], scale: 0.00006, maxIter: 2500 },
+  {
+    id: "overview",
+    labelKey: "bookmarkOverview",
+    center: [-0.6, 0] as [number, number],
+    scale: 1.4,
+    maxIter: 300,
+  },
+  {
+    id: "seahorse",
+    labelKey: "bookmarkSeahorse",
+    center: [-0.75, 0.1] as [number, number],
+    scale: 0.15,
+    maxIter: 600,
+  },
+  {
+    id: "elephant",
+    labelKey: "bookmarkElephant",
+    center: [0.275, 0] as [number, number],
+    scale: 0.07,
+    maxIter: 600,
+  },
+  {
+    id: "mini",
+    labelKey: "bookmarkMini",
+    center: [-1.7686, 0] as [number, number],
+    scale: 0.01,
+    maxIter: 900,
+  },
+  {
+    id: "spiral",
+    labelKey: "bookmarkSpiral",
+    center: [-0.7756837, 0.1364674] as [number, number],
+    scale: 0.0025,
+    maxIter: 1400,
+  },
+  {
+    id: "misiurewicz",
+    labelKey: "bookmarkMisiurewicz",
+    center: [-1.94, 0] as [number, number],
+    scale: 0.003,
+    maxIter: 1200,
+  },
+  {
+    id: "lightning",
+    labelKey: "bookmarkLightning",
+    center: [-1.7497219, 0] as [number, number],
+    scale: 0.00012,
+    maxIter: 2000,
+  },
+  {
+    id: "selfsim",
+    labelKey: "bookmarkSelfSim",
+    center: [-0.74364085, 0.13182733] as [number, number],
+    scale: 0.0007,
+    maxIter: 1800,
+  },
+  {
+    id: "antenna",
+    labelKey: "bookmarkAntenna",
+    center: [-1.99996, 0] as [number, number],
+    scale: 0.00006,
+    maxIter: 2500,
+  },
 ];
 
 // Helpful: given a continuous zoom factor, suggest a sensible iteration count.

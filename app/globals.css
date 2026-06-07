@@ -2,6 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "katex/dist/katex.min.css";
+
+/* KaTeX ships its @font-face rules with font-display: block — that means up to
+   3 s of invisible glyphs on first paint while the woff2 fetches. Because we
+   render KaTeX in a useEffect after hydration, the browser only discovers it
+   needs these fonts late, and the user sees formulas "pop in" or look subtly
+   wrong for a beat. The four families below cover ~95 % of glyphs on this
+   site (regular roman, italic roman, math italic, the most common size-1
+   delimiter set). Re-declaring them with font-display: swap + a stable
+   /fonts/ URL (a) lets the browser preload them (see layout.tsx), (b) shows
+   fallback glyphs immediately instead of hiding text. The remaining
+   variants (Fraktur, Script, AMS, Size2-4) stay on KaTeX's default rules. */
+@font-face {
+  font-family: KaTeX_Main;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/KaTeX_Main-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: KaTeX_Main;
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/KaTeX_Main-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: KaTeX_Math;
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/KaTeX_Math-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: KaTeX_Size1;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/KaTeX_Size1-Regular.woff2") format("woff2");
+}
+
+/* Override KaTeX colour: by default it's dark — we want light on dark */
+.katex {
+  color: inherit;
+}
+.katex .strut {
+  vertical-align: baseline;
+}
+/* When KaTeX emits MathML in parallel with HTML, the MathML element ends up
+   as a sibling of the visible HTML. KaTeX already gives it .katex-mathml +
+   aria-hidden="false" / .katex-html + aria-hidden="true". Hiding the MathML
+   visually but keeping it readable is the right call — do nothing here, it
+   already works — but we DO need to make sure the visual layer is shown
+   to sighted users even though screen readers see the MathML twin. */
+
+/* CLS-guard: the Formula span starts as an empty inline-level node. Before
+   KaTeX populates it on mount, give it a baseline line-height matching the
+   font-size so the layout doesn't jump up by ~1.5em when KaTeX inserts its
+   measured content. */
+span[role="math"]:empty {
+  display: inline-block;
+  line-height: 1.6;
+  min-height: 1em;
+}
+
+/* Browser-native view transitions for client-side navigation. Next 15's
+   experimental.viewTransition flag opts the App-Router into this; the rule
+   below is what actually animates the swap. The default crossfade is
+   short and subtle, with reduced-motion disabling it entirely. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 280ms;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
 :root {
   --font-inter: "Inter", ui-sans-serif, system-ui;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -84,8 +168,13 @@ body {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(179, 136, 255, 0.0); }
-  50% { box-shadow: 0 0 32px 4px rgba(179, 136, 255, 0.18); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(179, 136, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 32px 4px rgba(179, 136, 255, 0.18);
+  }
 }
 .pulse-glow {
   animation: pulseGlow 4s ease-in-out infinite;
@@ -110,11 +199,22 @@ body {
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 .shimmer-text {
-  background: linear-gradient(90deg, #b388ff 0%, #7df3ff 25%, #ffd166 50%, #ff7ab6 75%, #b388ff 100%);
+  background: linear-gradient(
+    90deg,
+    #b388ff 0%,
+    #7df3ff 25%,
+    #ffd166 50%,
+    #ff7ab6 75%,
+    #b388ff 100%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -123,9 +223,72 @@ body {
 }
 
 @keyframes floatGentle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 .float-gentle {
   animation: floatGentle 6s ease-in-out infinite;
+}
+
+/* Focus-visible: a clean, consistent ring everywhere, accent-tinted so it
+   reads as part of the brand. Tailwind's default is faint on dark; this
+   replaces it across all interactive elements. */
+:focus-visible {
+  outline: 2px solid #b388ff;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+/* For the SVG node hit targets in the constellation, browsers don't honour
+   outline-offset around <g> reliably — bump opacity on the inner circle
+   ring instead via the component, but make sure default focus is visible. */
+svg g[role="link"]:focus-visible {
+  outline: 2px solid #b388ff;
+  outline-offset: 0;
+}
+
+/* Reduced-motion: kill page-level transitions and looping animations.
+   Per-component canvases also check the same media query and freeze. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal[data-revealed="true"] {
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+  .shimmer-text {
+    animation: none !important;
+    background-position: 0 0 !important;
+  }
+  .float-gentle,
+  .pulse-glow {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Native screen-reader-only utility (Tailwind's sr-only already covers this
+   but make sure the focus-visible reveal works for our skip-link). */
+.sr-only:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }

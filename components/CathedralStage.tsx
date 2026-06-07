@@ -10,14 +10,14 @@ import { PRESETS } from "@/lib/eml/presets";
 // adjacent stations using a lerp shader. Camera (center, scale) also lerps.
 
 const STATIONS = [
-  { presetId: "exp", hue: 0.00 },
+  { presetId: "exp", hue: 0.0 },
   { presetId: "ln", hue: 0.08 },
   { presetId: "id", hue: 0.14 },
   { presetId: "selfdual", hue: 0.22 },
-  { presetId: "twin", hue: 0.30 },
+  { presetId: "twin", hue: 0.3 },
   { presetId: "param-vortex", hue: 0.42 },
   { presetId: "cathedral", hue: 0.55 },
-  { presetId: "nebula", hue: 0.70 },
+  { presetId: "nebula", hue: 0.7 },
 ];
 
 const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
@@ -31,12 +31,14 @@ export function CathedralStage({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rendererRef = useRef<EmlRenderer | null>(null);
   const [currentSegment, setCurrentSegment] = useState(0);
-  const [progress, setProgress] = useState(0);
+  const [_progress, setProgress] = useState(0);
 
   // Build current lerp shader for segment [idx, idx+1]
   const fragSrc = useMemo(() => {
     const a = PRESETS.find((p) => p.id === STATIONS[currentSegment].presetId)!;
-    const b = PRESETS.find((p) => p.id === STATIONS[Math.min(currentSegment + 1, STATIONS.length - 1)].presetId)!;
+    const b = PRESETS.find(
+      (p) => p.id === STATIONS[Math.min(currentSegment + 1, STATIONS.length - 1)].presetId,
+    )!;
     return buildLerpShader(parse(a.src), parse(b.src));
   }, [currentSegment]);
 
@@ -103,8 +105,8 @@ export function CathedralStage({
   }, [onStationChange]);
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
-      <canvas ref={canvasRef} className="w-full h-full block" />
+    <div className="pointer-events-none fixed inset-0 z-0">
+      <canvas ref={canvasRef} className="block h-full w-full" />
       <div className="absolute inset-0 bg-gradient-to-b from-ink-950/40 via-transparent to-ink-950/75" />
     </div>
   );

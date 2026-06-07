@@ -2,7 +2,10 @@ import type { EmlNode } from "./ast";
 import { eml, one, p, z } from "./ast";
 
 export class ParseError extends Error {
-  constructor(message: string, public pos: number) {
+  constructor(
+    message: string,
+    public pos: number,
+  ) {
     super(message);
   }
 }
@@ -65,7 +68,9 @@ export function parse(src: string): EmlNode {
   return node;
 }
 
-export function safeParse(src: string): { ok: true; node: EmlNode } | { ok: false; error: string; pos: number } {
+export function safeParse(
+  src: string,
+): { ok: true; node: EmlNode } | { ok: false; error: string; pos: number } {
   try {
     return { ok: true, node: parse(src) };
   } catch (e) {

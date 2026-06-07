@@ -6,7 +6,14 @@ import type { Locale } from "./types";
 
 export type Dict = {
   nav: { cathedral: string; atelier: string; resonance: string; imprint: string; language: string };
-  footer: { paper: string; github: string; imprint: string; builtBy: string; copyright: string };
+  footer: {
+    paper: string;
+    github: string;
+    imprint: string;
+    builtBy: string;
+    copyright: string;
+    license: string;
+  };
   hero: {
     paperPill: string;
     title1: string;
@@ -60,11 +67,33 @@ export type Dict = {
     closing: string;
   };
   stationTitles: Record<string, { pretitle: string; title: string }>;
-  verifier: { pretitle: string; title: string; intro: string; labelRe: string; labelIm: string; legend: string };
-  complexity: { pretitle: string; title: string; intro: string; headTarget: string; headK: string; headNote: string; note: string };
+  verifier: {
+    pretitle: string;
+    title: string;
+    intro: string;
+    labelRe: string;
+    labelIm: string;
+    legend: string;
+  };
+  complexity: {
+    pretitle: string;
+    title: string;
+    intro: string;
+    headTarget: string;
+    headK: string;
+    headNote: string;
+    note: string;
+  };
   limits: { pretitle: string; title: string; intro: string };
   garden: { pretitle: string; title: string; intro: string };
-  closing: { pill: string; title: string; intro: string; ctaAtelier: string; ctaResonance: string; meta: string };
+  closing: {
+    pill: string;
+    title: string;
+    intro: string;
+    ctaAtelier: string;
+    ctaResonance: string;
+    meta: string;
+  };
   imprint: {
     title: string;
     intro: string;
@@ -83,13 +112,20 @@ export type Dict = {
 };
 
 const en: Dict = {
-  nav: { cathedral: "Cathedral", atelier: "Atelier", resonance: "Resonance", imprint: "Imprint", language: "Language" },
+  nav: {
+    cathedral: "Cathedral",
+    atelier: "Atelier",
+    resonance: "Resonance",
+    imprint: "Imprint",
+    language: "Language",
+  },
   footer: {
     paper: "Read the paper",
     github: "View on GitHub",
     imprint: "Imprint",
     builtBy: "A visual essay on EML by zauberware",
-    copyright: "© 2026 zauberware technologies",
+    license: "Open source under CC BY 4.0",
+    copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   hero: {
     paperPill: "arxiv 2603.21852 · 2026",
@@ -153,7 +189,10 @@ const en: Dict = {
     id: { pretitle: "Station III — Identity", title: "Even doing nothing takes a tree" },
     selfdual: { pretitle: "Station IV — Self-dual", title: "The atom looks at itself" },
     twin: { pretitle: "Station V — Twin", title: "Exp and log fold into each other" },
-    "param-vortex": { pretitle: "Station VI — Parametric Vortex", title: "A handle on the calculus" },
+    "param-vortex": {
+      pretitle: "Station VI — Parametric Vortex",
+      title: "A handle on the calculus",
+    },
     cathedral: { pretitle: "Station VII — Cathedral", title: "Stacked rosette" },
     nebula: { pretitle: "Station VIII — Nebula", title: "Where the calculus overflows" },
   },
@@ -174,8 +213,7 @@ const en: Dict = {
     headTarget: "target",
     headK: "K (RPN length)",
     headNote: "note",
-    note:
-      "Read the jumps. From eˣ (K = 3) to identity (K = 9) takes a tripling. From identity to multiplication takes nearly five times that. The calculus reaches everywhere — but not always cheaply.",
+    note: "Read the jumps. From eˣ (K = 3) to identity (K = 9) takes a tripling. From identity to multiplication takes nearly five times that. The calculus reaches everywhere — but not always cheaply.",
   },
   limits: {
     pretitle: "Caveats · What it cannot do",
@@ -217,13 +255,20 @@ const en: Dict = {
 };
 
 const de: Dict = {
-  nav: { cathedral: "Kathedrale", atelier: "Atelier", resonance: "Resonanz", imprint: "Impressum", language: "Sprache" },
+  nav: {
+    cathedral: "Kathedrale",
+    atelier: "Atelier",
+    resonance: "Resonanz",
+    imprint: "Impressum",
+    language: "Sprache",
+  },
   footer: {
     paper: "Paper lesen",
     github: "Auf GitHub ansehen",
     imprint: "Impressum",
     builtBy: "Ein visueller Essay über EML von zauberware",
-    copyright: "© 2026 zauberware technologies",
+    license: "Open Source unter CC BY 4.0",
+    copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   hero: {
     paperPill: "arxiv 2603.21852 · 2026",
@@ -274,7 +319,8 @@ const de: Dict = {
     title: "Jedes Pixel ist ein komplexes Ergebnis",
     p1: "Die Bilder sind keine Dekoration. Jedes folgt demselben Rezept: der Bildschirm ist die komplexe Ebene (Realteil waagerecht, Imaginärteil senkrecht); der EML-Baum wird an jedem Pixel ausgewertet; die entstehende komplexe Zahl w wählt eine Farbe.",
     rowHue: "bestimmt den Farbton. Ein voller Umlauf um Null durchläuft die Palette einmal.",
-    rowMag: "steuert die Helligkeit. Eine Verdoppelung des Betrags überschreitet einen hellen Ring.",
+    rowMag:
+      "steuert die Helligkeit. Eine Verdoppelung des Betrags überschreitet einen hellen Ring.",
     rowZero: "fällt ins Tinten-Dunkel — das Feld hat eine Nullstelle.",
     rowInf: "brennt nach Weiß — dort liegt ein Pol.",
     rowGrid: "markiert ganzzahlige Real- und Imaginärwerte, damit du Positionen ablesen kannst.",
@@ -287,7 +333,10 @@ const de: Dict = {
     id: { pretitle: "Station III — Identität", title: "Selbst Nichtstun braucht einen Baum" },
     selfdual: { pretitle: "Station IV — Selbstdual", title: "Der Baustein blickt auf sich selbst" },
     twin: { pretitle: "Station V — Zwilling", title: "Exp und log falten sich ineinander" },
-    "param-vortex": { pretitle: "Station VI — Parametrischer Strudel", title: "Ein Griff am Kalkül" },
+    "param-vortex": {
+      pretitle: "Station VI — Parametrischer Strudel",
+      title: "Ein Griff am Kalkül",
+    },
     cathedral: { pretitle: "Station VII — Kathedrale", title: "Gestapelte Rosette" },
     nebula: { pretitle: "Station VIII — Nebel", title: "Wo der Kalkül überläuft" },
   },
@@ -308,8 +357,7 @@ const de: Dict = {
     headTarget: "Ziel",
     headK: "K (RPN-Länge)",
     headNote: "Notiz",
-    note:
-      "Lies die Sprünge. Von eˣ (K = 3) zur Identität (K = 9) verdreifacht es sich. Von der Identität zur Multiplikation fast verfünffacht. Der Kalkül reicht überall hin — aber nicht überall billig.",
+    note: "Lies die Sprünge. Von eˣ (K = 3) zur Identität (K = 9) verdreifacht es sich. Von der Identität zur Multiplikation fast verfünffacht. Der Kalkül reicht überall hin — aber nicht überall billig.",
   },
   limits: {
     pretitle: "Vorbehalte · Was er nicht kann",
@@ -330,8 +378,7 @@ const de: Dict = {
       "Was bleibt, ist die Aussage selbst, die hinter der Mathematik leise leuchtet: dass ein einziger geschachtelter Baustein genügt, um den Rest zu sehen. Die Bilder sind das Nebenprodukt — das eigentliche Argument sind die Bäume.",
     ctaAtelier: "→ Ins Atelier · selbst bauen",
     ctaResonance: "→ In die Resonanz · spielen",
-    meta:
-      "auf Basis von arxiv 2603.21852 · Domain Coloring in WebGL2 · alle Bilder live aus demselben sechs-Zeilen-Shader",
+    meta: "auf Basis von arxiv 2603.21852 · Domain Coloring in WebGL2 · alle Bilder live aus demselben sechs-Zeilen-Shader",
   },
   imprint: {
     title: "Impressum",
@@ -352,13 +399,20 @@ const de: Dict = {
 };
 
 const es: Dict = {
-  nav: { cathedral: "Catedral", atelier: "Taller", resonance: "Resonancia", imprint: "Aviso legal", language: "Idioma" },
+  nav: {
+    cathedral: "Catedral",
+    atelier: "Taller",
+    resonance: "Resonancia",
+    imprint: "Aviso legal",
+    language: "Idioma",
+  },
   footer: {
     paper: "Leer el artículo",
     github: "Ver en GitHub",
     imprint: "Aviso legal",
     builtBy: "Un ensayo visual sobre EML por zauberware",
-    copyright: "© 2026 zauberware technologies",
+    license: "Código abierto bajo CC BY 4.0",
+    copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   hero: {
     paperPill: "arxiv 2603.21852 · 2026",
@@ -422,7 +476,10 @@ const es: Dict = {
     id: { pretitle: "Estación III — Identidad", title: "Incluso no hacer nada cuesta un árbol" },
     selfdual: { pretitle: "Estación IV — Autodual", title: "El átomo se mira a sí mismo" },
     twin: { pretitle: "Estación V — Gemelo", title: "Exp y log se pliegan entre sí" },
-    "param-vortex": { pretitle: "Estación VI — Vórtice paramétrico", title: "Un mango sobre el cálculo" },
+    "param-vortex": {
+      pretitle: "Estación VI — Vórtice paramétrico",
+      title: "Un mango sobre el cálculo",
+    },
     cathedral: { pretitle: "Estación VII — Catedral", title: "Rosetón apilado" },
     nebula: { pretitle: "Estación VIII — Nebulosa", title: "Donde el cálculo desborda" },
   },
@@ -443,8 +500,7 @@ const es: Dict = {
     headTarget: "objetivo",
     headK: "K (longitud RPN)",
     headNote: "nota",
-    note:
-      "Mira los saltos. De eˣ (K = 3) a la identidad (K = 9) hay un triplicado. De identidad a multiplicación, casi cinco veces más. El cálculo llega a todas partes — pero no siempre barato.",
+    note: "Mira los saltos. De eˣ (K = 3) a la identidad (K = 9) hay un triplicado. De identidad a multiplicación, casi cinco veces más. El cálculo llega a todas partes — pero no siempre barato.",
   },
   limits: {
     pretitle: "Salvedades · Lo que no puede",
@@ -465,8 +521,7 @@ const es: Dict = {
       "Lo que permanece es la afirmación misma, brillando suave detrás de la matemática: anidar un único primitivo basta para ver el resto. Las imágenes son el efecto secundario — el argumento real son los árboles.",
     ctaAtelier: "→ Entra al Taller · construye el tuyo",
     ctaResonance: "→ Escucha la Resonancia · tócala",
-    meta:
-      "basado en arxiv 2603.21852 · coloreado de dominio en webgl2 · todas las imágenes se renderizan en vivo con el mismo shader de seis líneas",
+    meta: "basado en arxiv 2603.21852 · coloreado de dominio en webgl2 · todas las imágenes se renderizan en vivo con el mismo shader de seis líneas",
   },
   imprint: {
     title: "Aviso legal",
@@ -487,13 +542,20 @@ const es: Dict = {
 };
 
 const fr: Dict = {
-  nav: { cathedral: "Cathédrale", atelier: "Atelier", resonance: "Résonance", imprint: "Mentions légales", language: "Langue" },
+  nav: {
+    cathedral: "Cathédrale",
+    atelier: "Atelier",
+    resonance: "Résonance",
+    imprint: "Mentions légales",
+    language: "Langue",
+  },
   footer: {
     paper: "Lire l'article",
     github: "Voir sur GitHub",
     imprint: "Mentions légales",
     builtBy: "Un essai visuel sur EML par zauberware",
-    copyright: "© 2026 zauberware technologies",
+    license: "Open source sous CC BY 4.0",
+    copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   hero: {
     paperPill: "arxiv 2603.21852 · 2026",
@@ -557,7 +619,10 @@ const fr: Dict = {
     id: { pretitle: "Station III — Identité", title: "Même ne rien faire coûte un arbre" },
     selfdual: { pretitle: "Station IV — Autodual", title: "L'atome se regarde lui-même" },
     twin: { pretitle: "Station V — Jumeau", title: "Exp et log se replient l'un dans l'autre" },
-    "param-vortex": { pretitle: "Station VI — Vortex paramétrique", title: "Une poignée sur le calcul" },
+    "param-vortex": {
+      pretitle: "Station VI — Vortex paramétrique",
+      title: "Une poignée sur le calcul",
+    },
     cathedral: { pretitle: "Station VII — Cathédrale", title: "Rosace empilée" },
     nebula: { pretitle: "Station VIII — Nébuleuse", title: "Là où le calcul déborde" },
   },
@@ -578,8 +643,7 @@ const fr: Dict = {
     headTarget: "cible",
     headK: "K (longueur RPN)",
     headNote: "note",
-    note:
-      "Regardez les sauts. De eˣ (K = 3) à l'identité (K = 9), c'est triplé. De l'identité à la multiplication, presque quintuplé. Le calcul atteint partout — mais pas toujours à bon compte.",
+    note: "Regardez les sauts. De eˣ (K = 3) à l'identité (K = 9), c'est triplé. De l'identité à la multiplication, presque quintuplé. Le calcul atteint partout — mais pas toujours à bon compte.",
   },
   limits: {
     pretitle: "Réserves · Ce qu'il ne peut pas",
@@ -600,8 +664,7 @@ const fr: Dict = {
       "Reste l'affirmation elle-même, brillant doucement derrière la mathématique : emboîter un seul primitif suffit pour voir le reste. Les images sont le sous-produit — le véritable argument, ce sont les arbres.",
     ctaAtelier: "→ Entrez dans l'Atelier · construisez le vôtre",
     ctaResonance: "→ Écoutez la Résonance · jouez-en",
-    meta:
-      "basé sur arxiv 2603.21852 · coloriage de domaine en webgl2 · toutes les images rendues en direct par le même shader de six lignes",
+    meta: "basé sur arxiv 2603.21852 · coloriage de domaine en webgl2 · toutes les images rendues en direct par le même shader de six lignes",
   },
   imprint: {
     title: "Mentions légales",
@@ -622,13 +685,20 @@ const fr: Dict = {
 };
 
 const it: Dict = {
-  nav: { cathedral: "Cattedrale", atelier: "Atelier", resonance: "Risonanza", imprint: "Note legali", language: "Lingua" },
+  nav: {
+    cathedral: "Cattedrale",
+    atelier: "Atelier",
+    resonance: "Risonanza",
+    imprint: "Note legali",
+    language: "Lingua",
+  },
   footer: {
     paper: "Leggi l'articolo",
     github: "Vedi su GitHub",
     imprint: "Note legali",
     builtBy: "Un saggio visivo su EML di zauberware",
-    copyright: "© 2026 zauberware technologies",
+    license: "Open source sotto CC BY 4.0",
+    copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   hero: {
     paperPill: "arxiv 2603.21852 · 2026",
@@ -692,7 +762,10 @@ const it: Dict = {
     id: { pretitle: "Stazione III — Identità", title: "Anche non fare nulla richiede un albero" },
     selfdual: { pretitle: "Stazione IV — Autoduale", title: "L'atomo guarda sé stesso" },
     twin: { pretitle: "Stazione V — Gemello", title: "Esp e log si ripiegano uno nell'altro" },
-    "param-vortex": { pretitle: "Stazione VI — Vortice parametrico", title: "Una manopola sul calcolo" },
+    "param-vortex": {
+      pretitle: "Stazione VI — Vortice parametrico",
+      title: "Una manopola sul calcolo",
+    },
     cathedral: { pretitle: "Stazione VII — Cattedrale", title: "Rosone impilato" },
     nebula: { pretitle: "Stazione VIII — Nebulosa", title: "Dove il calcolo trabocca" },
   },
@@ -713,8 +786,7 @@ const it: Dict = {
     headTarget: "obiettivo",
     headK: "K (lunghezza RPN)",
     headNote: "nota",
-    note:
-      "Guarda i salti. Da eˣ (K = 3) all'identità (K = 9) c'è una triplicazione. Dall'identità alla moltiplicazione, quasi cinque volte tanto. Il calcolo arriva ovunque — ma non sempre a buon mercato.",
+    note: "Guarda i salti. Da eˣ (K = 3) all'identità (K = 9) c'è una triplicazione. Dall'identità alla moltiplicazione, quasi cinque volte tanto. Il calcolo arriva ovunque — ma non sempre a buon mercato.",
   },
   limits: {
     pretitle: "Riserve · Cosa non può",
@@ -735,8 +807,7 @@ const it: Dict = {
       "Resta l'enunciato stesso, che brilla sommesso dietro la matematica: annidare un'unica primitiva basta per vedere il resto. Le immagini sono l'effetto collaterale — l'argomento reale sono gli alberi.",
     ctaAtelier: "→ Entra nell'Atelier · costruisci il tuo",
     ctaResonance: "→ Ascolta la Risonanza · suonala",
-    meta:
-      "basato su arxiv 2603.21852 · coloratura di dominio in webgl2 · tutte le immagini rese in tempo reale dallo stesso shader di sei righe",
+    meta: "basato su arxiv 2603.21852 · coloratura di dominio in webgl2 · tutte le immagini rese in tempo reale dallo stesso shader di sei righe",
   },
   imprint: {
     title: "Note legali",
@@ -757,13 +828,20 @@ const it: Dict = {
 };
 
 const pt: Dict = {
-  nav: { cathedral: "Catedral", atelier: "Atelier", resonance: "Ressonância", imprint: "Aviso legal", language: "Idioma" },
+  nav: {
+    cathedral: "Catedral",
+    atelier: "Atelier",
+    resonance: "Ressonância",
+    imprint: "Aviso legal",
+    language: "Idioma",
+  },
   footer: {
     paper: "Ler o artigo",
     github: "Ver no GitHub",
     imprint: "Aviso legal",
     builtBy: "Um ensaio visual sobre EML pela zauberware",
-    copyright: "© 2026 zauberware technologies",
+    license: "Código aberto sob CC BY 4.0",
+    copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   hero: {
     paperPill: "arxiv 2603.21852 · 2026",
@@ -827,7 +905,10 @@ const pt: Dict = {
     id: { pretitle: "Estação III — Identidade", title: "Até não fazer nada custa uma árvore" },
     selfdual: { pretitle: "Estação IV — Autodual", title: "O átomo olha para si mesmo" },
     twin: { pretitle: "Estação V — Gêmeo", title: "Exp e log dobram-se um no outro" },
-    "param-vortex": { pretitle: "Estação VI — Vórtice paramétrico", title: "Um cabo sobre o cálculo" },
+    "param-vortex": {
+      pretitle: "Estação VI — Vórtice paramétrico",
+      title: "Um cabo sobre o cálculo",
+    },
     cathedral: { pretitle: "Estação VII — Catedral", title: "Rosácea empilhada" },
     nebula: { pretitle: "Estação VIII — Nebulosa", title: "Onde o cálculo transborda" },
   },
@@ -848,8 +929,7 @@ const pt: Dict = {
     headTarget: "alvo",
     headK: "K (comprimento RPN)",
     headNote: "nota",
-    note:
-      "Veja os saltos. De eˣ (K = 3) à identidade (K = 9) há um triplicar. De identidade à multiplicação, quase cinco vezes mais. O cálculo alcança tudo — mas nem sempre barato.",
+    note: "Veja os saltos. De eˣ (K = 3) à identidade (K = 9) há um triplicar. De identidade à multiplicação, quase cinco vezes mais. O cálculo alcança tudo — mas nem sempre barato.",
   },
   limits: {
     pretitle: "Ressalvas · O que não pode",
@@ -870,8 +950,7 @@ const pt: Dict = {
       "O que permanece é o próprio enunciado, brilhando baixinho atrás da matemática: aninhar um único primitivo basta para ver o resto. As imagens são o efeito colateral — o argumento real são as árvores.",
     ctaAtelier: "→ Entre no Atelier · construa o seu",
     ctaResonance: "→ Ouça a Ressonância · toque",
-    meta:
-      "baseado em arxiv 2603.21852 · coloração de domínio em webgl2 · todas as imagens renderizadas ao vivo pelo mesmo shader de seis linhas",
+    meta: "baseado em arxiv 2603.21852 · coloração de domínio em webgl2 · todas as imagens renderizadas ao vivo pelo mesmo shader de seis linhas",
   },
   imprint: {
     title: "Aviso legal",
@@ -892,13 +971,20 @@ const pt: Dict = {
 };
 
 const sv: Dict = {
-  nav: { cathedral: "Katedral", atelier: "Atelier", resonance: "Resonans", imprint: "Juridisk info", language: "Språk" },
+  nav: {
+    cathedral: "Katedral",
+    atelier: "Atelier",
+    resonance: "Resonans",
+    imprint: "Juridisk info",
+    language: "Språk",
+  },
   footer: {
     paper: "Läs artikeln",
     github: "Se på GitHub",
     imprint: "Juridisk info",
     builtBy: "En visuell essä om EML av zauberware",
-    copyright: "© 2026 zauberware technologies",
+    license: "Öppen källkod under CC BY 4.0",
+    copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   hero: {
     paperPill: "arxiv 2603.21852 · 2026",
@@ -962,7 +1048,10 @@ const sv: Dict = {
     id: { pretitle: "Station III — Identitet", title: "Även att göra ingenting kostar ett träd" },
     selfdual: { pretitle: "Station IV — Självdual", title: "Atomen ser på sig själv" },
     twin: { pretitle: "Station V — Tvilling", title: "Exp och log viker in i varandra" },
-    "param-vortex": { pretitle: "Station VI — Parametrisk virvel", title: "Ett handtag på kalkylen" },
+    "param-vortex": {
+      pretitle: "Station VI — Parametrisk virvel",
+      title: "Ett handtag på kalkylen",
+    },
     cathedral: { pretitle: "Station VII — Katedral", title: "Staplad rosett" },
     nebula: { pretitle: "Station VIII — Nebulosa", title: "Där kalkylen svämmar över" },
   },
@@ -983,8 +1072,7 @@ const sv: Dict = {
     headTarget: "mål",
     headK: "K (RPN-längd)",
     headNote: "anmärkning",
-    note:
-      "Se hoppen. Från eˣ (K = 3) till identitet (K = 9) tredubblas det. Från identitet till multiplikation, nästan fem gånger så mycket. Kalkylen når överallt — men inte alltid billigt.",
+    note: "Se hoppen. Från eˣ (K = 3) till identitet (K = 9) tredubblas det. Från identitet till multiplikation, nästan fem gånger så mycket. Kalkylen når överallt — men inte alltid billigt.",
   },
   limits: {
     pretitle: "Förbehåll · Vad den inte kan",
@@ -1005,8 +1093,7 @@ const sv: Dict = {
       "Det som återstår är själva påståendet, som lyser svagt bakom matematiken: att nästla en enda primitiv räcker för att se resten. Bilderna är bieffekten — själva argumentet är träden.",
     ctaAtelier: "→ Stig in i Atelieren · bygg ditt eget",
     ctaResonance: "→ Hör Resonansen · spela",
-    meta:
-      "byggd på arxiv 2603.21852 · domänfärgning i webgl2 · alla bilder renderade i realtid av samma sex rader shader",
+    meta: "byggd på arxiv 2603.21852 · domänfärgning i webgl2 · alla bilder renderade i realtid av samma sex rader shader",
   },
   imprint: {
     title: "Juridisk information",
@@ -1027,13 +1114,20 @@ const sv: Dict = {
 };
 
 const no: Dict = {
-  nav: { cathedral: "Katedral", atelier: "Atelier", resonance: "Resonans", imprint: "Juridisk info", language: "Språk" },
+  nav: {
+    cathedral: "Katedral",
+    atelier: "Atelier",
+    resonance: "Resonans",
+    imprint: "Juridisk info",
+    language: "Språk",
+  },
   footer: {
     paper: "Les artikkelen",
     github: "Se på GitHub",
     imprint: "Juridisk info",
     builtBy: "Et visuelt essay om EML av zauberware",
-    copyright: "© 2026 zauberware technologies",
+    license: "Åpen kildekode under CC BY 4.0",
+    copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   hero: {
     paperPill: "arxiv 2603.21852 · 2026",
@@ -1097,7 +1191,10 @@ const no: Dict = {
     id: { pretitle: "Stasjon III — Identitet", title: "Selv det å ikke gjøre noe koster et tre" },
     selfdual: { pretitle: "Stasjon IV — Selvdual", title: "Atomet ser på seg selv" },
     twin: { pretitle: "Stasjon V — Tvilling", title: "Exp og log brettes inn i hverandre" },
-    "param-vortex": { pretitle: "Stasjon VI — Parametrisk virvel", title: "Et håndtak på kalkylen" },
+    "param-vortex": {
+      pretitle: "Stasjon VI — Parametrisk virvel",
+      title: "Et håndtak på kalkylen",
+    },
     cathedral: { pretitle: "Stasjon VII — Katedral", title: "Stablet rosett" },
     nebula: { pretitle: "Stasjon VIII — Stjernetåke", title: "Der kalkylen renner over" },
   },
@@ -1118,8 +1215,7 @@ const no: Dict = {
     headTarget: "mål",
     headK: "K (RPN-lengde)",
     headNote: "merknad",
-    note:
-      "Se på hoppene. Fra eˣ (K = 3) til identitet (K = 9) tredobles det. Fra identitet til multiplikasjon, nær fem ganger så mye. Kalkylen når overalt — men ikke alltid billig.",
+    note: "Se på hoppene. Fra eˣ (K = 3) til identitet (K = 9) tredobles det. Fra identitet til multiplikasjon, nær fem ganger så mye. Kalkylen når overalt — men ikke alltid billig.",
   },
   limits: {
     pretitle: "Forbehold · Hva den ikke kan",
@@ -1140,8 +1236,7 @@ const no: Dict = {
       "Det som står igjen er selve påstanden, lyser svakt bak matematikken: å nøste én eneste primitiv er nok til å se resten. Bildene er bieffekten — selve argumentet er trærne.",
     ctaAtelier: "→ Gå inn i Atelieret · bygg ditt eget",
     ctaResonance: "→ Hør Resonansen · spill",
-    meta:
-      "bygget på arxiv 2603.21852 · domenefarging i webgl2 · alle bilder gjengitt live av samme seks-linjers shader",
+    meta: "bygget på arxiv 2603.21852 · domenefarging i webgl2 · alle bilder gjengitt live av samme seks-linjers shader",
   },
   imprint: {
     title: "Juridisk informasjon",

@@ -22,11 +22,11 @@ export function GardenGrid() {
   );
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
       {items.map(({ preset, fragSrc, palette }) => (
         <div
           key={preset.id}
-          className="group relative aspect-square rounded-xl overflow-hidden border hairline bg-ink-950"
+          className="hairline group relative aspect-square overflow-hidden rounded-xl border bg-ink-950"
         >
           <EmlCanvas
             fragSrc={fragSrc}
@@ -39,17 +39,17 @@ export function GardenGrid() {
               palette,
               exposure: 1.1,
             }}
-            className="absolute inset-0 w-full h-full block"
+            className="absolute inset-0 block h-full w-full"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute left-3 right-3 bottom-3 flex items-end justify-between gap-2 pointer-events-none">
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/85 via-transparent to-transparent" />
+          <div className="pointer-events-none absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
             <div>
-              <div className="math-italic text-lg text-ink-100 leading-none">{preset.title}</div>
-              <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mt-1">
+              <div className="math-italic text-lg leading-none text-ink-100">{preset.title}</div>
+              <div className="mt-1 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
                 depth {preset.depth}
               </div>
             </div>
-            <div className="font-mono text-[9px] tracking-widest2 text-signal-violet uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="font-mono text-[9px] uppercase tracking-widest2 text-signal-violet opacity-0 transition-opacity group-hover:opacity-100">
               {preset.id}
             </div>
           </div>

@@ -11,8 +11,8 @@ interface Props {
   initial: ReadonlyArray<readonly [number, number]>;
   cols?: number;
   rows?: number;
-  cycleSteps?: number;   // steps before restarting from the seed
-  holdMs?: number;       // ms to hold each step
+  cycleSteps?: number; // steps before restarting from the seed
+  holdMs?: number; // ms to hold each step
   label: string;
   caption: string;
   accent: string;
@@ -162,12 +162,12 @@ export function LifeRuleDemo({
   }, [initial, cols, rows, cycleSteps, holdMs, accent]);
 
   return (
-    <div className="rounded-2xl border hairline bg-ink-950/40 p-5 space-y-3">
-      <div className={`font-mono text-[10px] tracking-widest2 uppercase ${accent}`}>{label}</div>
-      <div className="aspect-square w-full bg-ink-950 rounded-md overflow-hidden border hairline">
-        <canvas ref={canvasRef} className="w-full h-full block" />
+    <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5">
+      <div className={`font-mono text-[10px] uppercase tracking-widest2 ${accent}`}>{label}</div>
+      <div className="hairline aspect-square w-full overflow-hidden rounded-md border bg-ink-950">
+        <canvas ref={canvasRef} className="block h-full w-full" />
       </div>
-      <div className="text-sm text-ink-200 leading-snug">{caption}</div>
+      <div className="text-sm leading-snug text-ink-200">{caption}</div>
     </div>
   );
 }

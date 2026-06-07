@@ -117,11 +117,11 @@ export default function AtelierPage() {
     : { ok: false as const, error: parsed.error };
 
   return (
-    <main className="pt-14 min-h-screen flex flex-col">
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-0">
+    <main className="flex min-h-screen flex-col pt-14">
+      <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         {/* Stage */}
         <div
-          className="relative bg-ink-950 min-h-[60vh] lg:min-h-[calc(100vh-3.5rem)] cursor-grab active:cursor-grabbing select-none"
+          className="relative min-h-[60vh] cursor-grab select-none bg-ink-950 active:cursor-grabbing lg:min-h-[calc(100vh-3.5rem)]"
           onWheel={onWheel}
           onPointerDown={onDown}
           onPointerMove={onMove}
@@ -132,53 +132,51 @@ export default function AtelierPage() {
             <EmlCanvas
               fragSrc={fragSrc}
               state={state}
-              className="absolute inset-0 w-full h-full block"
+              className="absolute inset-0 block h-full w-full"
             />
           )}
           {/* HUD */}
-          <div className="absolute top-4 left-4 right-4 flex items-start justify-between pointer-events-none gap-3">
-            <div className="glass border hairline rounded-md px-3 py-2 font-mono text-[10px] tracking-widest2 text-ink-300 uppercase pointer-events-auto flex items-center gap-2">
+          <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
+            <div className="glass hairline pointer-events-auto flex items-center gap-2 rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               <span>
                 center {centerX.toFixed(2)}, {centerY.toFixed(2)} · scale {scale.toFixed(2)}
               </span>
               <button
                 onClick={resetView}
-                className="text-signal-violet hover:text-ink-100 transition-colors"
+                className="text-signal-violet transition-colors hover:text-ink-100"
                 title="reset view"
               >
                 ↺
               </button>
             </div>
-            <div className="glass border hairline rounded-md px-3 py-2 font-mono text-[10px] tracking-widest2 text-ink-300 uppercase">
-              p = ({paramRe.toFixed(2)},{" "}
-              {paramIm.toFixed(2)}
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+              p = ({paramRe.toFixed(2)}, {paramIm.toFixed(2)}
               <span className="text-signal-rose">i</span>)
             </div>
           </div>
-          <div className="absolute bottom-4 left-4 glass border hairline rounded-md px-3 py-2 font-mono text-[10px] tracking-widest2 text-ink-300 uppercase pointer-events-none flex items-center gap-2">
+          <div className="glass hairline pointer-events-none absolute bottom-4 left-4 flex items-center gap-2 rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
             <span>drag · scroll · domain coloring</span>
           </div>
         </div>
 
         {/* Right panel */}
-        <aside className="border-l hairline bg-ink-900/40 flex flex-col overflow-hidden scrollbar-thin overflow-y-auto">
+        <aside className="hairline scrollbar-thin flex flex-col overflow-hidden overflow-y-auto border-l bg-ink-900/40">
           {/* Formula card */}
-          <div className="p-5 border-b hairline space-y-4">
+          <div className="hairline space-y-4 border-b p-5">
             <div className="flex items-center justify-between">
-              <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase flex items-center gap-2">
+              <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
                 Formula
                 <Info side="bottom">
-                  An EML formula is a tree built from three atoms — the
-                  constant <span className="math-italic">1</span>, the input
-                  variable <span className="math-italic">z</span>, and a
-                  parameter <span className="math-italic">p</span> — combined
-                  by the operator{" "}
-                  <span className="math-italic">eml(a, b)</span>. Pick a
-                  preset to start, or type your own.
+                  An EML formula is a tree built from three atoms — the constant{" "}
+                  <span className="math-italic">1</span>, the input variable{" "}
+                  <span className="math-italic">z</span>, and a parameter{" "}
+                  <span className="math-italic">p</span> — combined by the operator{" "}
+                  <span className="math-italic">eml(a, b)</span>. Pick a preset to start, or type
+                  your own.
                 </Info>
               </div>
               <div
-                className={`font-mono text-[10px] tracking-widest2 uppercase ${
+                className={`font-mono text-[10px] uppercase tracking-widest2 ${
                   stats.ok ? "text-signal-cyan" : "text-signal-rose"
                 }`}
               >
@@ -198,11 +196,11 @@ export default function AtelierPage() {
                     className={`group relative rounded-full border px-3 py-1.5 transition-colors ${
                       active
                         ? "border-signal-violet/70 bg-signal-violet/10 text-ink-100"
-                        : "hairline text-ink-300 hover:text-ink-100 hover:border-ink-300/50"
+                        : "hairline text-ink-300 hover:border-ink-300/50 hover:text-ink-100"
                     }`}
                   >
                     <span className="math-italic text-sm">{p.title}</span>
-                    <span className="ml-2 font-mono text-[9px] text-ink-500 tracking-widest uppercase">
+                    <span className="ml-2 font-mono text-[9px] uppercase tracking-widest text-ink-500">
                       d{p.depth}
                     </span>
                   </button>
@@ -210,25 +208,22 @@ export default function AtelierPage() {
               })}
             </div>
             {activePresetId && (
-              <div className="text-[11px] text-ink-300 italic leading-relaxed border-l-2 border-signal-violet/40 pl-3">
+              <div className="border-l-2 border-signal-violet/40 pl-3 text-[11px] italic leading-relaxed text-ink-300">
                 {PRESETS.find((p) => p.id === activePresetId)?.tagline}
               </div>
             )}
 
             {/* Editor */}
             <div className="space-y-2">
-              <div className="font-mono text-[9px] tracking-widest2 text-ink-500 uppercase flex items-center gap-2">
+              <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-widest2 text-ink-500">
                 or type your own
                 <Info side="bottom">
-                  Grammar:{" "}
-                  <span className="font-mono text-ink-100">expr</span> ={" "}
+                  Grammar: <span className="font-mono text-ink-100">expr</span> ={" "}
                   <span className="font-mono text-signal-amber">1</span> ·{" "}
                   <span className="font-mono text-signal-cyan">z</span> ·{" "}
                   <span className="font-mono text-signal-rose">p</span> ·{" "}
-                  <span className="font-mono">eml(expr, expr)</span>.
-                  Whitespace is ignored. Try{" "}
-                  <span className="font-mono">eml(z, eml(p, z))</span> to
-                  start.
+                  <span className="font-mono">eml(expr, expr)</span>. Whitespace is ignored. Try{" "}
+                  <span className="font-mono">eml(z, eml(p, z))</span> to start.
                 </Info>
               </div>
               <textarea
@@ -237,16 +232,15 @@ export default function AtelierPage() {
                 spellCheck={false}
                 rows={3}
                 placeholder="eml(z, 1)"
-                className="w-full bg-ink-950/80 border hairline rounded-md p-3 font-mono text-xs text-ink-100 outline-none focus:border-signal-violet/60 resize-none placeholder:text-ink-500"
+                className="hairline w-full resize-none rounded-md border bg-ink-950/80 p-3 font-mono text-xs text-ink-100 outline-none placeholder:text-ink-500 focus:border-signal-violet/60"
               />
               {!stats.ok && (
-                <div className="text-[11px] font-mono text-signal-rose">
+                <div className="font-mono text-[11px] text-signal-rose">
                   {parsed.ok ? "" : parsed.error}
                 </div>
               )}
-              <div className="text-[10px] font-mono text-ink-500 leading-relaxed">
-                atoms:{" "}
-                <span className="text-signal-amber">1</span> ·{" "}
+              <div className="font-mono text-[10px] leading-relaxed text-ink-500">
+                atoms: <span className="text-signal-amber">1</span> ·{" "}
                 <span className="text-signal-cyan">z</span>{" "}
                 <span className="text-ink-500">(input)</span> ·{" "}
                 <span className="text-signal-rose">p</span>{" "}
@@ -256,24 +250,23 @@ export default function AtelierPage() {
           </div>
 
           {/* Tree */}
-          <div className="p-5 border-b hairline">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-3 flex items-center gap-2">
+          <div className="hairline border-b p-5">
+            <div className="mb-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               Tree
               <Info side="bottom">
                 Visual structure of the formula. Each{" "}
-                <span className="text-signal-violet">eml</span> node combines
-                its two children. Leaves are the atoms{" "}
-                <span className="text-signal-amber">1</span>,{" "}
+                <span className="text-signal-violet">eml</span> node combines its two children.
+                Leaves are the atoms <span className="text-signal-amber">1</span>,{" "}
                 <span className="text-signal-cyan">z</span>,{" "}
-                <span className="text-signal-rose">p</span>. Depth equals the
-                longest path from root to leaf.
+                <span className="text-signal-rose">p</span>. Depth equals the longest path from root
+                to leaf.
               </Info>
             </div>
-            <div className="bg-ink-950/60 rounded-md border hairline p-2 max-h-[28vh] overflow-auto scrollbar-thin">
+            <div className="hairline scrollbar-thin max-h-[28vh] overflow-auto rounded-md border bg-ink-950/60 p-2">
               {stats.ok && parsed.ok ? (
-                <EmlTree root={parsed.node} className="w-full h-auto" />
+                <EmlTree root={parsed.node} className="h-auto w-full" />
               ) : (
-                <div className="text-[11px] font-mono text-ink-500 px-2 py-6 text-center">
+                <div className="px-2 py-6 text-center font-mono text-[11px] text-ink-500">
                   fix the formula to render the tree
                 </div>
               )}
@@ -281,13 +274,13 @@ export default function AtelierPage() {
           </div>
 
           {/* Knobs */}
-          <div className="p-5 border-b hairline space-y-4">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase flex items-center gap-2">
+          <div className="hairline space-y-4 border-b p-5">
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               Parameters
               <Info side="bottom">
-                Live controls. The first four shape the formula or the
-                viewer; the rest are aesthetic. Sliding <em>p</em> is the
-                most dramatic — it moves singularities through the field.
+                Live controls. The first four shape the formula or the viewer; the rest are
+                aesthetic. Sliding <em>p</em> is the most dramatic — it moves singularities through
+                the field.
               </Info>
             </div>
             <Knob
@@ -302,9 +295,8 @@ export default function AtelierPage() {
               accent="text-signal-rose"
               info={
                 <>
-                  The real part of the complex parameter{" "}
-                  <span className="math-italic">p</span>. Only matters if the
-                  formula contains <span className="math-italic">p</span>.
+                  The real part of the complex parameter <span className="math-italic">p</span>.
+                  Only matters if the formula contains <span className="math-italic">p</span>.
                 </>
               }
             />
@@ -320,9 +312,8 @@ export default function AtelierPage() {
               accent="text-signal-rose"
               info={
                 <>
-                  Imaginary part of <span className="math-italic">p</span>. A
-                  non-zero imaginary part rotates the field instead of
-                  scaling it.
+                  Imaginary part of <span className="math-italic">p</span>. A non-zero imaginary
+                  part rotates the field instead of scaling it.
                 </>
               }
             />
@@ -344,9 +335,8 @@ export default function AtelierPage() {
               accent="text-signal-cyan"
               info={
                 <>
-                  Intensity of the magnitude rings. Each ring marks a
-                  doubling of <span className="math-italic">|w|</span>. Set
-                  to zero for a smooth field.
+                  Intensity of the magnitude rings. Each ring marks a doubling of{" "}
+                  <span className="math-italic">|w|</span>. Set to zero for a smooth field.
                 </>
               }
             />
@@ -370,9 +360,9 @@ export default function AtelierPage() {
             />
             <button
               onClick={() => setAutoMorph((v) => !v)}
-              className={`w-full mt-1 font-mono text-[10px] tracking-widest2 uppercase border rounded-md py-2 transition-colors ${
+              className={`mt-1 w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                 autoMorph
-                  ? "border-signal-rose/60 text-signal-rose bg-signal-rose/10"
+                  ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
                   : "border-ink-300/40 text-ink-300 hover:text-ink-100"
               }`}
             >
@@ -382,12 +372,11 @@ export default function AtelierPage() {
 
           {/* Palettes */}
           <div className="p-5">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-3 flex items-center gap-2">
+            <div className="mb-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               Palette
               <Info side="bottom">
-                The colour mapping. Each palette is hand-tuned to be readable
-                without being garish — the &quot;Spectrum&quot; option restores
-                the classic full rainbow for reference.
+                The colour mapping. Each palette is hand-tuned to be readable without being garish —
+                the &quot;Spectrum&quot; option restores the classic full rainbow for reference.
               </Info>
             </div>
             <div className="grid grid-cols-2 gap-2">
@@ -395,16 +384,16 @@ export default function AtelierPage() {
                 <button
                   key={pal.id}
                   onClick={() => setPalette(i)}
-                  className={`text-left rounded-md border px-3 py-2 transition-colors ${
+                  className={`rounded-md border px-3 py-2 text-left transition-colors ${
                     palette === i
                       ? "border-signal-violet/60 bg-signal-violet/5"
                       : "hairline hover:border-ink-300/40"
                   }`}
                 >
-                  <div className="font-mono text-[11px] text-ink-100 uppercase tracking-widest">
+                  <div className="font-mono text-[11px] uppercase tracking-widest text-ink-100">
                     {pal.label}
                   </div>
-                  <div className="font-mono text-[9px] text-ink-500 mt-0.5">{pal.desc}</div>
+                  <div className="mt-0.5 font-mono text-[9px] text-ink-500">{pal.desc}</div>
                 </button>
               ))}
             </div>
@@ -434,8 +423,8 @@ function Knob({
 }) {
   return (
     <label className="block">
-      <div className="flex items-center justify-between mb-1 gap-2">
-        <span className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase flex items-center gap-1.5">
+      <div className="mb-1 flex items-center justify-between gap-2">
+        <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
           {label}
           {info && <Info side="right">{info}</Info>}
         </span>

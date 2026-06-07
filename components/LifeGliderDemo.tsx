@@ -144,10 +144,10 @@ export function LifeGliderDemo({
   }, [cells, cols, rows, speedMs, accent]);
 
   return (
-    <div className="rounded-2xl border hairline bg-ink-950/40 p-4 space-y-2">
-      <div className={`font-mono text-[10px] tracking-widest2 uppercase ${accent}`}>{label}</div>
-      <div className="aspect-[16/10] w-full bg-ink-950 rounded-md overflow-hidden border hairline">
-        <canvas ref={canvasRef} className="w-full h-full block" />
+    <div className="hairline space-y-2 rounded-2xl border bg-ink-950/40 p-4">
+      <div className={`font-mono text-[10px] uppercase tracking-widest2 ${accent}`}>{label}</div>
+      <div className="hairline aspect-[16/10] w-full overflow-hidden rounded-md border bg-ink-950">
+        <canvas ref={canvasRef} className="block h-full w-full" />
       </div>
       <div className="text-xs text-ink-200">{caption}</div>
     </div>

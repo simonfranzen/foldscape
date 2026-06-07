@@ -61,18 +61,18 @@ export function EmlVerifier() {
   }, [re, im]);
 
   return (
-    <div className="rounded-2xl border hairline glass p-6 md:p-8">
-      <div className="font-mono text-[11px] tracking-widest2 text-signal-amber uppercase mb-4">
+    <div className="hairline glass rounded-2xl border p-6 md:p-8">
+      <div className="mb-4 font-mono text-[11px] uppercase tracking-widest2 text-signal-amber">
         Numerical Verification
       </div>
-      <p className="text-ink-300 text-sm mb-5 leading-relaxed">
+      <p className="mb-5 text-sm leading-relaxed text-ink-300">
         The reconstructions are claims about identities. Pick a complex number{" "}
-        <span className="math-italic text-signal-cyan">z</span> and watch each
-        EML tree return the value its classical equivalent would.
+        <span className="math-italic text-signal-cyan">z</span> and watch each EML tree return the
+        value its classical equivalent would.
       </p>
-      <div className="grid grid-cols-2 gap-3 mb-5">
+      <div className="mb-5 grid grid-cols-2 gap-3">
         <label className="block">
-          <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-1">
+          <div className="mb-1 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
             Re(z)
           </div>
           <input
@@ -80,11 +80,11 @@ export function EmlVerifier() {
             step={0.1}
             value={re}
             onChange={(e) => setRe(parseFloat(e.target.value) || 0)}
-            className="w-full bg-ink-950/70 border hairline rounded-md px-3 py-2 font-mono text-sm text-ink-100 outline-none focus:border-signal-cyan/60"
+            className="hairline w-full rounded-md border bg-ink-950/70 px-3 py-2 font-mono text-sm text-ink-100 outline-none focus:border-signal-cyan/60"
           />
         </label>
         <label className="block">
-          <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-1">
+          <div className="mb-1 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
             Im(z)
           </div>
           <input
@@ -92,7 +92,7 @@ export function EmlVerifier() {
             step={0.1}
             value={im}
             onChange={(e) => setIm(parseFloat(e.target.value) || 0)}
-            className="w-full bg-ink-950/70 border hairline rounded-md px-3 py-2 font-mono text-sm text-ink-100 outline-none focus:border-signal-cyan/60"
+            className="hairline w-full rounded-md border bg-ink-950/70 px-3 py-2 font-mono text-sm text-ink-100 outline-none focus:border-signal-cyan/60"
           />
         </label>
       </div>
@@ -100,16 +100,16 @@ export function EmlVerifier() {
         {results.map((row) => (
           <div
             key={row.src}
-            className="grid grid-cols-12 gap-2 items-center rounded-md border hairline bg-ink-950/40 px-3 py-2"
+            className="hairline grid grid-cols-12 items-center gap-2 rounded-md border bg-ink-950/40 px-3 py-2"
           >
-            <div className="col-span-2 math-italic text-lg text-ink-100">{row.label}</div>
-            <div className="col-span-5 font-mono text-[11px] text-ink-200 truncate" title={row.src}>
+            <div className="math-italic col-span-2 text-lg text-ink-100">{row.label}</div>
+            <div className="col-span-5 truncate font-mono text-[11px] text-ink-200" title={row.src}>
               {row.src}
             </div>
             <div className="col-span-4 font-mono text-[11px] text-signal-cyan">
               {fmt(row.w[0])} {row.w[1] >= 0 ? "+" : "−"} {fmt(Math.abs(row.w[1]))}i
             </div>
-            <div className="col-span-1 font-mono text-[10px] text-right">
+            <div className="col-span-1 text-right font-mono text-[10px]">
               {isFinite(row.err) && row.err < 1e-6 ? (
                 <span className="text-signal-cyan">≈</span>
               ) : isFinite(row.err) && row.err < 1e-3 ? (
@@ -121,7 +121,7 @@ export function EmlVerifier() {
           </div>
         ))}
       </div>
-      <div className="mt-4 text-[10px] font-mono text-ink-500 leading-relaxed">
+      <div className="mt-4 font-mono text-[10px] leading-relaxed text-ink-500">
         <span className="text-signal-cyan">≈</span> error &lt; 10⁻⁶ ·{" "}
         <span className="text-signal-amber">~</span> error &lt; 10⁻³ ·{" "}
         <span className="text-signal-rose">≠</span> branch cut or overflow

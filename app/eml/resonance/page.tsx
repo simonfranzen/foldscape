@@ -20,7 +20,10 @@ export default function ResonancePage() {
   const synthRef = useRef<EmlSynth | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const trailRef = useRef<HTMLCanvasElement | null>(null);
-  const [hudReadout, setHudReadout] = useState({ z: [0, 0] as [number, number], w: [0, 0] as [number, number] });
+  const [hudReadout, setHudReadout] = useState({
+    z: [0, 0] as [number, number],
+    w: [0, 0] as [number, number],
+  });
 
   const view = preset.view ?? [0, 0, 2.4];
   const paramDefault = preset.p ?? [0.4, 0.4];
@@ -160,29 +163,36 @@ export default function ResonancePage() {
   };
 
   return (
-    <main className="pt-14 min-h-[calc(100vh)] flex flex-col">
-      <div ref={stageRef} className="relative flex-1 bg-ink-950 min-h-[calc(100vh-3.5rem)] overflow-hidden">
-        <EmlCanvas fragSrc={fragSrc} state={state} className="absolute inset-0 w-full h-full block" />
+    <main className="flex min-h-[calc(100vh)] flex-col pt-14">
+      <div
+        ref={stageRef}
+        className="relative min-h-[calc(100vh-3.5rem)] flex-1 overflow-hidden bg-ink-950"
+      >
+        <EmlCanvas
+          fragSrc={fragSrc}
+          state={state}
+          className="absolute inset-0 block h-full w-full"
+        />
         <canvas
           ref={trailRef}
-          className="absolute inset-0 w-full h-full pointer-events-none [mix-blend-mode:plus-lighter]"
+          className="pointer-events-none absolute inset-0 h-full w-full [mix-blend-mode:plus-lighter]"
         />
 
         {/* HUD top */}
-        <div className="absolute top-4 left-4 right-4 flex items-start justify-between pointer-events-none">
-          <div className="glass border hairline rounded-md px-3 py-2 max-w-md pointer-events-auto">
-            <div className="font-mono text-[10px] tracking-widest2 text-signal-cyan uppercase mb-1">
+        <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between">
+          <div className="glass hairline pointer-events-auto max-w-md rounded-md border px-3 py-2">
+            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               Room III · Resonance
             </div>
             <div className="math-italic text-lg leading-tight">{preset.title}</div>
-            <div className="font-mono text-[10px] text-ink-300 mt-1 break-all">{preset.src}</div>
+            <div className="mt-1 break-all font-mono text-[10px] text-ink-300">{preset.src}</div>
           </div>
           <button
             onClick={toggleAudio}
-            className={`pointer-events-auto rounded-md border px-4 py-2 font-mono text-[11px] tracking-widest2 uppercase transition-colors ${
+            className={`pointer-events-auto rounded-md border px-4 py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
               audioOn
-                ? "border-signal-rose/60 text-signal-rose bg-signal-rose/10"
-                : "border-signal-cyan/60 text-signal-cyan bg-signal-cyan/10 hover:bg-signal-cyan/20"
+                ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
+                : "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan hover:bg-signal-cyan/20"
             }`}
           >
             {audioOn ? "● audio on" : "○ start audio"}
@@ -190,18 +200,18 @@ export default function ResonancePage() {
         </div>
 
         {/* Readout bottom */}
-        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between pointer-events-none gap-4">
-          <div className="glass border hairline rounded-md px-3 py-2 font-mono text-[11px] text-ink-200 pointer-events-auto">
+        <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
+          <div className="glass hairline pointer-events-auto rounded-md border px-3 py-2 font-mono text-[11px] text-ink-200">
             <div className="flex gap-6">
               <div>
-                <span className="text-ink-500">z =</span>{" "}
-                {hudReadout.z[0].toFixed(2)} <span className="text-signal-cyan">+</span>{" "}
-                {hudReadout.z[1].toFixed(2)}<span className="text-signal-cyan">i</span>
+                <span className="text-ink-500">z =</span> {hudReadout.z[0].toFixed(2)}{" "}
+                <span className="text-signal-cyan">+</span> {hudReadout.z[1].toFixed(2)}
+                <span className="text-signal-cyan">i</span>
               </div>
               <div>
-                <span className="text-ink-500">w =</span>{" "}
-                {fmt(hudReadout.w[0])} <span className="text-signal-violet">+</span>{" "}
-                {fmt(hudReadout.w[1])}<span className="text-signal-violet">i</span>
+                <span className="text-ink-500">w =</span> {fmt(hudReadout.w[0])}{" "}
+                <span className="text-signal-violet">+</span> {fmt(hudReadout.w[1])}
+                <span className="text-signal-violet">i</span>
               </div>
               <div>
                 <span className="text-ink-500">|w| =</span>{" "}
@@ -209,7 +219,7 @@ export default function ResonancePage() {
               </div>
             </div>
           </div>
-          <div className="flex gap-2 pointer-events-auto flex-wrap justify-end">
+          <div className="pointer-events-auto flex flex-wrap justify-end gap-2">
             {RESONANCE_PRESETS.map((id) => {
               const p = PRESETS.find((q) => q.id === id)!;
               const active = id === presetId;
@@ -217,9 +227,9 @@ export default function ResonancePage() {
                 <button
                   key={id}
                   onClick={() => setPresetId(id)}
-                  className={`rounded-md border px-3 py-2 font-mono text-[10px] tracking-widest2 uppercase transition-colors ${
+                  className={`rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                     active
-                      ? "border-signal-violet/60 text-signal-violet bg-signal-violet/10"
+                      ? "border-signal-violet/60 bg-signal-violet/10 text-signal-violet"
                       : "hairline text-ink-300 hover:text-ink-100"
                   }`}
                 >
@@ -231,19 +241,19 @@ export default function ResonancePage() {
         </div>
 
         {/* Param dials, mid-left */}
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 glass border hairline rounded-md p-3 w-56 pointer-events-auto space-y-3">
-          <div className="font-mono text-[10px] tracking-widest2 text-signal-rose uppercase">
+        <div className="glass hairline pointer-events-auto absolute left-4 top-1/2 w-56 -translate-y-1/2 space-y-3 rounded-md border p-3">
+          <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
             parameter p
           </div>
-          <div className="flex gap-1 flex-wrap">
+          <div className="flex flex-wrap gap-1">
             {PALETTES.slice(0, 5).map((pal, i) => (
               <button
                 key={pal.id}
                 onClick={() => setPalette(i)}
                 title={pal.label}
-                className={`text-[9px] font-mono uppercase tracking-widest border rounded px-2 py-1 transition-colors ${
+                className={`rounded border px-2 py-1 font-mono text-[9px] uppercase tracking-widest transition-colors ${
                   palette === i
-                    ? "border-signal-violet/70 text-signal-violet bg-signal-violet/10"
+                    ? "border-signal-violet/70 bg-signal-violet/10 text-signal-violet"
                     : "hairline text-ink-300 hover:text-ink-100"
                 }`}
               >
@@ -265,9 +275,10 @@ export default function ResonancePage() {
             max={2}
             onChange={(v) => setParam([param[0], v])}
           />
-          <div className="text-[10px] font-mono text-ink-300 leading-relaxed pt-1 border-t hairline">
+          <div className="hairline border-t pt-1 font-mono text-[10px] leading-relaxed text-ink-300">
             move the mouse over the field. each position is a complex number; what you hear is{" "}
-            <span className="math-italic">w</span> = eml-tree(<span className="math-italic">z</span>).
+            <span className="math-italic">w</span> = eml-tree(<span className="math-italic">z</span>
+            ).
           </div>
         </div>
       </div>
@@ -290,8 +301,10 @@ function Slider({
 }) {
   return (
     <label className="block">
-      <div className="flex items-center justify-between mb-1">
-        <span className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase">{label}</span>
+      <div className="mb-1 flex items-center justify-between">
+        <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+          {label}
+        </span>
         <span className="font-mono text-[10px] text-signal-rose">{value.toFixed(2)}</span>
       </div>
       <input

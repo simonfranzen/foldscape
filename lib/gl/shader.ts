@@ -200,8 +200,7 @@ void main() {
 export function buildLerpShader(a: EmlNode, b: EmlNode): string {
   const ca = compileToGLSL(a);
   const cb = compileToGLSL(b);
-  const renumber = (body: string, prefix: string) =>
-    body.replace(/\bt(\d+)\b/g, `${prefix}$1`);
+  const renumber = (body: string, prefix: string) => body.replace(/\bt(\d+)\b/g, `${prefix}$1`);
   const renumberRet = (ret: string, prefix: string) =>
     /^t\d+$/.test(ret) ? `${prefix}${ret.slice(1)}` : ret;
   const aBody = renumber(ca.body, "a");

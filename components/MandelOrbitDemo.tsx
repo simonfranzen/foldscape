@@ -19,7 +19,14 @@ interface Props {
 
 const MAX_PLOT_RADIUS = 4.5;
 
-export function MandelOrbitDemo({ c, label, accent, maxSteps = 60, bound = 1.8, speedMs = 120 }: Props) {
+export function MandelOrbitDemo({
+  c,
+  label,
+  accent,
+  maxSteps = 60,
+  bound = 1.8,
+  speedMs = 120,
+}: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -144,10 +151,10 @@ export function MandelOrbitDemo({ c, label, accent, maxSteps = 60, bound = 1.8, 
   }, [c, maxSteps, bound, speedMs]);
 
   return (
-    <div className="rounded-2xl border hairline bg-ink-950/40 p-4 space-y-2">
-      <div className={`font-mono text-[10px] tracking-widest2 uppercase ${accent}`}>{label}</div>
-      <div className="aspect-square w-full bg-ink-950 rounded-md overflow-hidden border hairline">
-        <canvas ref={canvasRef} className="w-full h-full block" />
+    <div className="hairline space-y-2 rounded-2xl border bg-ink-950/40 p-4">
+      <div className={`font-mono text-[10px] uppercase tracking-widest2 ${accent}`}>{label}</div>
+      <div className="hairline aspect-square w-full overflow-hidden rounded-md border bg-ink-950">
+        <canvas ref={canvasRef} className="block h-full w-full" />
       </div>
       <div className="font-mono text-[10px] text-ink-300">
         c = {c[0].toFixed(2)} {c[1] >= 0 ? "+" : "−"} {Math.abs(c[1]).toFixed(2)}i

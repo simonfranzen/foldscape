@@ -10,6 +10,7 @@ import { DomainLegend } from "@/components/DomainLegend";
 import { EmlVerifier } from "@/components/EmlVerifier";
 import { GardenGrid } from "@/components/GardenGrid";
 import { Info } from "@/components/Info";
+import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import { PAPER_URL, GITHUB_URL } from "@/components/Footer";
 import type { StationId } from "@/lib/i18n/bodies";
@@ -28,7 +29,7 @@ const STATION_FORMULAS: Partial<Record<StationId, string>> = {
 // plain text. The link button below the body links to the Atelier anyway.
 
 export default function CathedralPage() {
-  const { t, b } = useI18n();
+  const { t, b, a, u } = useI18n();
   const [station, setStation] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -48,101 +49,127 @@ export default function CathedralPage() {
       <CathedralStage onStationChange={(idx) => setStation(idx)} />
 
       {/* Scroll-progress rail (top) */}
-      <div className="fixed top-14 left-0 right-0 h-px z-40 bg-ink-300/15">
+      <div className="fixed left-0 right-0 top-14 z-40 h-px bg-ink-300/15">
         <div
           className="h-full bg-gradient-to-r from-signal-violet via-signal-cyan to-signal-amber transition-[width] duration-100"
           style={{ width: `${scrollProgress * 100}%` }}
         />
       </div>
 
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 z-10">
-        <div className="max-w-3xl text-center space-y-8 glass border hairline rounded-3xl px-10 py-16 pulse-glow">
-          <a
-            href={PAPER_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="eml-pill mx-auto hover:bg-signal-violet/20 transition-colors"
-          >
-            {t.hero.paperPill} ↗
-          </a>
-          <h1 className="math-italic text-6xl md:text-8xl leading-[0.95] tracking-tight">
-            {t.hero.title1}
-            <br />
-            {t.hero.title2} <span className="text-signal-violet">{t.hero.title3}</span>
-          </h1>
-          <p className="font-mono text-sm md:text-base text-ink-100">
-            eml(<span className="math-italic">x</span>,&nbsp;
-            <span className="math-italic">y</span>) ={" "}
-            <span className="math-italic">eˣ</span> − ln&nbsp;
-            <span className="math-italic">y</span>
-          </p>
-          <div className="text-sm text-ink-300 space-y-1">
-            <div>{t.hero.byAuthor}</div>
-            <a
-              href={PAPER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="italic text-signal-cyan hover:text-ink-100 transition-colors"
-            >
-              "{t.hero.paperLink}" ↗
-            </a>
-          </div>
-          <div className="space-y-4 text-ink-200 leading-relaxed max-w-xl mx-auto">
-            <p>{t.hero.p1}</p>
-            <p>{t.hero.p2}</p>
-          </div>
-          <div className="flex items-center justify-center gap-4 pt-2">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase">
-              {t.hero.scroll}
+      {/* Hero — canonical topic header, matching every other module */}
+      <section className="relative z-10 flex min-h-screen items-center justify-center px-6 pb-16 pt-24">
+        <div className="mx-auto max-w-5xl space-y-7 text-center">
+          <Reveal>
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
+              Topic · {a.landing.categoryLogic}
             </div>
-            <div className="w-px h-10 bg-ink-300/40 animate-float-slow" />
-          </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <h1 className="math-italic text-6xl leading-[0.95] tracking-tight md:text-8xl">
+              {a.topics.eml.title}
+            </h1>
+          </Reveal>
+          <Reveal delay={250}>
+            <p className="math-italic text-2xl leading-snug text-ink-200 md:text-3xl">
+              {a.topics.eml.tagline}
+            </p>
+          </Reveal>
+          <Reveal delay={380}>
+            <p className="mx-auto max-w-2xl leading-relaxed text-ink-200">{a.topics.eml.body}</p>
+          </Reveal>
+          <Reveal delay={500}>
+            <div className="flex flex-col items-center justify-center gap-3 pt-2 md:flex-row">
+              <Link
+                href="/eml/atelier"
+                className="rounded-full border border-signal-violet/70 bg-signal-violet/10 px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-signal-violet transition-colors hover:bg-signal-violet/20"
+              >
+                → {t.nav.atelier}
+              </Link>
+              <Link
+                href="/"
+                className="hairline rounded-full border px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-ink-200 transition-colors hover:border-ink-300/50 hover:text-ink-100"
+              >
+                {u.back}
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={620}>
+            <div className="hairline float-gentle mx-auto mt-6 max-w-md rounded-md border bg-ink-950/60 p-3 font-mono text-base text-ink-100">
+              eml(x, y) = eˣ − ln y
+            </div>
+          </Reveal>
+          <Reveal delay={740}>
+            <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 pt-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+              <span>{t.hero.byAuthor}</span>
+              <a
+                href={PAPER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-signal-violet transition-colors hover:text-ink-100"
+              >
+                ↗ {t.hero.paperPill}
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delay={860}>
+            <div className="flex items-center justify-center gap-4 pt-6">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+                {t.hero.scroll}
+              </div>
+              <div className="h-10 w-px animate-float-slow bg-ink-300/40" />
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* First encounter — for laypeople */}
-      <section className="relative px-6 py-32 z-10">
-        <div className="max-w-5xl mx-auto space-y-10">
-          <div className="text-center space-y-3">
+      <section className="relative z-10 px-6 py-32">
+        <div className="mx-auto max-w-5xl space-y-10">
+          <div className="space-y-3 text-center">
             <div className="eml-pill mx-auto">{t.encounter.pretitle}</div>
-            <h2 className="math-italic text-4xl md:text-5xl leading-tight">{t.encounter.title}</h2>
+            <h2 className="math-italic text-4xl leading-tight md:text-5xl">{t.encounter.title}</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             <EncounterCard label="01" title={t.encounter.legoTitle} accent="text-signal-violet">
               {t.encounter.legoBody}
             </EncounterCard>
             <EncounterCard label="02" title={t.encounter.exampleTitle} accent="text-signal-cyan">
               <p>{t.encounter.exampleBody}</p>
-              <div className="mt-4 rounded-md border hairline bg-ink-950/60 p-3 font-mono text-[11px] text-ink-100 space-y-1">
-                <div>eml(2, 1) = e² − ln 1 = <span className="text-signal-amber">7.389…</span></div>
-                <div>eml(0, 1) = 1 − 0 = <span className="text-signal-amber">1</span></div>
-                <div>eml(1, e) = e − 1 = <span className="text-signal-amber">1.718…</span></div>
+              <div className="hairline mt-4 space-y-1 rounded-md border bg-ink-950/60 p-3 font-mono text-[11px] text-ink-100">
+                <div>
+                  eml(2, 1) = e² − ln 1 = <span className="text-signal-amber">7.389…</span>
+                </div>
+                <div>
+                  eml(0, 1) = 1 − 0 = <span className="text-signal-amber">1</span>
+                </div>
+                <div>
+                  eml(1, e) = e − 1 = <span className="text-signal-amber">1.718…</span>
+                </div>
               </div>
             </EncounterCard>
             <EncounterCard label="03" title={t.encounter.insightTitle} accent="text-signal-amber">
               {t.encounter.insightBody}
             </EncounterCard>
           </div>
-          <div className="text-center text-ink-300 italic">{t.encounter.tryIt}</div>
+          <div className="text-center italic text-ink-300">{t.encounter.tryIt}</div>
         </div>
       </section>
 
       {/* Prologue: universal primitives */}
-      <section className="relative px-6 py-32 z-10">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 items-stretch">
-          <div className="md:col-span-7 space-y-5 glass border hairline rounded-2xl p-8 md:p-10">
-            <div className="font-mono text-[11px] tracking-widest2 text-signal-cyan uppercase">
+      <section className="relative z-10 px-6 py-32">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 items-stretch gap-10 md:grid-cols-12">
+          <div className="glass hairline space-y-5 rounded-2xl border p-8 md:col-span-7 md:p-10">
+            <div className="font-mono text-[11px] uppercase tracking-widest2 text-signal-cyan">
               {t.prologue.pretitle}
             </div>
-            <h2 className="math-italic text-4xl md:text-5xl leading-tight">{t.prologue.title}</h2>
-            <p className="text-ink-100 leading-relaxed">{t.prologue.p1}</p>
-            <p className="text-ink-100 leading-relaxed">{t.prologue.p2}</p>
-            <p className="text-ink-200 leading-relaxed">{t.prologue.p3}</p>
+            <h2 className="math-italic text-4xl leading-tight md:text-5xl">{t.prologue.title}</h2>
+            <p className="leading-relaxed text-ink-100">{t.prologue.p1}</p>
+            <p className="leading-relaxed text-ink-100">{t.prologue.p2}</p>
+            <p className="leading-relaxed text-ink-200">{t.prologue.p3}</p>
           </div>
-          <div className="md:col-span-5 grid grid-rows-2 gap-4">
-            <div className="rounded-2xl border hairline glass p-5">
-              <div className="font-mono text-[11px] tracking-widest2 text-ink-200 uppercase mb-3">
+          <div className="grid grid-rows-2 gap-4 md:col-span-5">
+            <div className="hairline glass rounded-2xl border p-5">
+              <div className="mb-3 font-mono text-[11px] uppercase tracking-widest2 text-ink-200">
                 {t.prologue.nandTitle}
               </div>
               <table className="w-full text-center font-mono text-xs">
@@ -154,49 +181,67 @@ export default function CathedralPage() {
                   </tr>
                 </thead>
                 <tbody className="text-ink-100">
-                  <tr><td>0</td><td>0</td><td className="text-signal-amber">1</td></tr>
-                  <tr><td>0</td><td>1</td><td className="text-signal-amber">1</td></tr>
-                  <tr><td>1</td><td>0</td><td className="text-signal-amber">1</td></tr>
-                  <tr><td>1</td><td>1</td><td className="text-signal-amber">0</td></tr>
+                  <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td className="text-signal-amber">1</td>
+                  </tr>
+                  <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td className="text-signal-amber">1</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>0</td>
+                    <td className="text-signal-amber">1</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td className="text-signal-amber">0</td>
+                  </tr>
                 </tbody>
               </table>
-              <p className="text-[11px] text-ink-300 mt-3 leading-relaxed">{t.prologue.nandNote}</p>
+              <p className="mt-3 text-[11px] leading-relaxed text-ink-300">{t.prologue.nandNote}</p>
             </div>
-            <div className="rounded-2xl border hairline glass p-5">
-              <div className="font-mono text-[11px] tracking-widest2 text-ink-200 uppercase mb-3">
+            <div className="hairline glass rounded-2xl border p-5">
+              <div className="mb-3 font-mono text-[11px] uppercase tracking-widest2 text-ink-200">
                 {t.prologue.emlTitle}
               </div>
-              <pre className="font-mono text-xs text-ink-100 bg-ink-950/60 rounded-md border hairline p-3 overflow-x-auto leading-relaxed">
-{`eml(x, 1)              →  eˣ
+              <pre className="hairline overflow-x-auto rounded-md border bg-ink-950/60 p-3 font-mono text-xs leading-relaxed text-ink-100">
+                {`eml(x, 1)              →  eˣ
 eml(1, eml(eml(1,z),1))
                        →  ln z
 …and so on, by nesting.`}
               </pre>
-              <p className="text-[11px] text-ink-300 mt-3 leading-relaxed">{t.prologue.emlNote}</p>
+              <p className="mt-3 text-[11px] leading-relaxed text-ink-300">{t.prologue.emlNote}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* The Operator */}
-      <section className="relative px-6 py-32 z-10">
-        <div className="max-w-5xl mx-auto glass border hairline rounded-3xl p-10 md:p-14">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
-            <div className="md:col-span-7 space-y-5">
-              <div className="font-mono text-[11px] tracking-widest2 text-signal-amber uppercase">
+      <section className="relative z-10 px-6 py-32">
+        <div className="glass hairline mx-auto max-w-5xl rounded-3xl border p-10 md:p-14">
+          <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12">
+            <div className="space-y-5 md:col-span-7">
+              <div className="font-mono text-[11px] uppercase tracking-widest2 text-signal-amber">
                 {t.operator.pretitle}
               </div>
-              <h2 className="math-italic text-4xl md:text-5xl leading-tight">{t.operator.title}</h2>
-              <p className="text-ink-100 leading-relaxed">{t.operator.p1}</p>
-              <p className="text-ink-100 leading-relaxed">{t.operator.p2}</p>
+              <h2 className="math-italic text-4xl leading-tight md:text-5xl">{t.operator.title}</h2>
+              <p className="leading-relaxed text-ink-100">{t.operator.p1}</p>
+              <p className="leading-relaxed text-ink-100">{t.operator.p2}</p>
               <div className="pt-2">
-                <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-2">
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
                   {t.operator.examplesLabel}
                 </div>
-                <ul className="text-ink-200 font-mono text-xs space-y-2">
+                <ul className="space-y-2 font-mono text-xs text-ink-200">
                   <li>
                     <span className="text-signal-violet">▸</span>{" "}
-                    <span className="math-italic">eml(0, 1) = e<sup>0</sup> − ln 1 = 1 − 0 = 1</span>
+                    <span className="math-italic">
+                      eml(0, 1) = e<sup>0</sup> − ln 1 = 1 − 0 = 1
+                    </span>
                   </li>
                   <li>
                     <span className="text-signal-violet">▸</span>{" "}
@@ -208,18 +253,20 @@ eml(1, eml(eml(1,z),1))
                   </li>
                   <li>
                     <span className="text-signal-violet">▸</span>{" "}
-                    <span className="math-italic">eml(z, 1) = e<sup>z</sup></span>
+                    <span className="math-italic">
+                      eml(z, 1) = e<sup>z</sup>
+                    </span>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="md:col-span-5">
-              <div className="aspect-square w-full max-w-[340px] mx-auto bg-ink-950/40 border hairline rounded-2xl p-6 flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase">
+              <div className="hairline mx-auto flex aspect-square w-full max-w-[340px] items-center justify-center rounded-2xl border bg-ink-950/40 p-6">
+                <div className="space-y-4 text-center">
+                  <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
                     {t.operator.sideTitle}
                   </div>
-                  <div className="math-italic text-5xl text-ink-100 leading-tight">
+                  <div className="math-italic text-5xl leading-tight text-ink-100">
                     eml(<span className="text-signal-violet">x</span>,{" "}
                     <span className="text-signal-cyan">y</span>)
                   </div>
@@ -237,40 +284,40 @@ eml(1, eml(eml(1,z),1))
       </section>
 
       {/* Reading the picture */}
-      <section className="relative px-6 py-32 z-10">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-          <div className="md:col-span-5 flex justify-center">
+      <section className="relative z-10 px-6 py-32">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 md:grid-cols-12">
+          <div className="flex justify-center md:col-span-5">
             <DomainLegend palette={0} />
           </div>
-          <div className="md:col-span-7 space-y-5 glass border hairline rounded-2xl p-8 md:p-10">
-            <div className="font-mono text-[11px] tracking-widest2 text-signal-rose uppercase">
+          <div className="glass hairline space-y-5 rounded-2xl border p-8 md:col-span-7 md:p-10">
+            <div className="font-mono text-[11px] uppercase tracking-widest2 text-signal-rose">
               {t.reading.pretitle}
             </div>
-            <h2 className="math-italic text-4xl md:text-5xl leading-tight">{t.reading.title}</h2>
-            <p className="text-ink-100 leading-relaxed">{t.reading.p1}</p>
+            <h2 className="math-italic text-4xl leading-tight md:text-5xl">{t.reading.title}</h2>
+            <p className="leading-relaxed text-ink-100">{t.reading.p1}</p>
             <ul className="space-y-2 text-sm text-ink-200">
               <li className="flex gap-3">
-                <span className="font-mono text-signal-violet w-20 shrink-0">arg(w)</span>
+                <span className="w-20 shrink-0 font-mono text-signal-violet">arg(w)</span>
                 {t.reading.rowHue}
               </li>
               <li className="flex gap-3">
-                <span className="font-mono text-signal-cyan w-20 shrink-0">|w|</span>
+                <span className="w-20 shrink-0 font-mono text-signal-cyan">|w|</span>
                 {t.reading.rowMag}
               </li>
               <li className="flex gap-3">
-                <span className="font-mono text-ink-300 w-20 shrink-0">|w| → 0</span>
+                <span className="w-20 shrink-0 font-mono text-ink-300">|w| → 0</span>
                 {t.reading.rowZero}
               </li>
               <li className="flex gap-3">
-                <span className="font-mono text-ink-300 w-20 shrink-0">|w| → ∞</span>
+                <span className="w-20 shrink-0 font-mono text-ink-300">|w| → ∞</span>
                 {t.reading.rowInf}
               </li>
               <li className="flex gap-3">
-                <span className="font-mono text-ink-300 w-20 shrink-0">grid</span>
+                <span className="w-20 shrink-0 font-mono text-ink-300">grid</span>
                 {t.reading.rowGrid}
               </li>
             </ul>
-            <p className="text-ink-300 text-sm leading-relaxed pt-2 border-t hairline">
+            <p className="hairline border-t pt-2 text-sm leading-relaxed text-ink-300">
               {t.reading.closing}
             </p>
           </div>
@@ -289,28 +336,34 @@ eml(1, eml(eml(1,z),1))
         return (
           <section
             key={stationId}
-            className="relative min-h-screen flex items-center px-6 py-24 z-10"
+            className="relative z-10 flex min-h-screen items-center px-6 py-24"
             data-station={stationId}
           >
             <div
-              className={`max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-10 items-center ${
+              className={`mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-12 ${
                 sideRight ? "md:[&>div:first-child]:order-2" : ""
               }`}
             >
-              <div className="md:col-span-7 space-y-6 glass border hairline rounded-2xl p-8 md:p-10">
-                <div className="font-mono text-[11px] tracking-widest2 text-signal-violet uppercase">
+              <div className="glass hairline space-y-6 rounded-2xl border p-8 md:col-span-7 md:p-10">
+                <div className="font-mono text-[11px] uppercase tracking-widest2 text-signal-violet">
                   {titles.pretitle}
                 </div>
-                <h2 className="math-italic text-4xl md:text-5xl leading-tight">{titles.title}</h2>
-                <div className="space-y-4 text-ink-100 leading-relaxed">
+                <h2 className="math-italic text-4xl leading-tight md:text-5xl">{titles.title}</h2>
+                <div className="space-y-4 leading-relaxed text-ink-100">
                   {paragraphs.map((p, idx) => (
                     <div key={idx}>
-                      <p className={idx === paragraphs.length - 1 && paragraphs.length > 1 ? "text-ink-200 text-sm" : ""}>
+                      <p
+                        className={
+                          idx === paragraphs.length - 1 && paragraphs.length > 1
+                            ? "text-sm text-ink-200"
+                            : ""
+                        }
+                      >
                         {p}
                       </p>
                       {/* Insert formula after first paragraph for ln and id */}
                       {idx === 0 && formula && (
-                        <pre className="mt-4 font-mono text-xs text-ink-100 bg-ink-900/60 border hairline rounded-lg p-3 overflow-x-auto">
+                        <pre className="hairline mt-4 overflow-x-auto rounded-lg border bg-ink-900/60 p-3 font-mono text-xs text-ink-100">
                           {formula}
                         </pre>
                       )}
@@ -321,14 +374,14 @@ eml(1, eml(eml(1,z),1))
                     <p>
                       <Link
                         href="/eml/atelier"
-                        className="underline decoration-signal-violet/60 hover:text-signal-violet font-mono text-xs uppercase tracking-widest2"
+                        className="font-mono text-xs uppercase tracking-widest2 underline decoration-signal-violet/60 hover:text-signal-violet"
                       >
                         → {t.nav.atelier}
                       </Link>
                     </p>
                   )}
                 </div>
-                <div className="pt-3 border-t hairline flex items-center justify-between text-[11px] font-mono uppercase tracking-widest2 text-ink-300">
+                <div className="hairline flex items-center justify-between border-t pt-3 font-mono text-[11px] uppercase tracking-widest2 text-ink-300">
                   <span>
                     {b.presetLabel} · <span className="text-signal-cyan">{preset.id}</span>
                   </span>
@@ -337,12 +390,12 @@ eml(1, eml(eml(1,z),1))
                   </span>
                 </div>
               </div>
-              <div className="md:col-span-5 glass border hairline rounded-2xl p-6">
-                <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-3">
+              <div className="glass hairline rounded-2xl border p-6 md:col-span-5">
+                <div className="mb-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
                   {b.expressionTree}
                 </div>
-                <EmlTree root={node} className="w-full h-auto max-h-[42vh]" />
-                <pre className="mt-3 font-mono text-[11px] text-ink-200 break-all leading-relaxed">
+                <EmlTree root={node} className="h-auto max-h-[42vh] w-full" />
+                <pre className="mt-3 break-all font-mono text-[11px] leading-relaxed text-ink-200">
                   {preset.src}
                 </pre>
               </div>
@@ -352,39 +405,38 @@ eml(1, eml(eml(1,z),1))
       })}
 
       {/* Verification widget */}
-      <section className="relative px-6 py-32 z-10">
-        <div className="max-w-3xl mx-auto space-y-6">
-          <div className="text-center space-y-3">
+      <section className="relative z-10 px-6 py-32">
+        <div className="mx-auto max-w-3xl space-y-6">
+          <div className="space-y-3 text-center">
             <div className="eml-pill mx-auto">{t.verifier.pretitle}</div>
-            <h2 className="math-italic text-4xl md:text-5xl leading-tight">{t.verifier.title}</h2>
-            <p className="text-ink-200 max-w-xl mx-auto leading-relaxed">{t.verifier.intro}</p>
+            <h2 className="math-italic text-4xl leading-tight md:text-5xl">{t.verifier.title}</h2>
+            <p className="mx-auto max-w-xl leading-relaxed text-ink-200">{t.verifier.intro}</p>
           </div>
           <EmlVerifier />
         </div>
       </section>
 
       {/* Complexity table */}
-      <section className="relative px-6 py-32 z-10">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="text-center space-y-3">
+      <section className="relative z-10 px-6 py-32">
+        <div className="mx-auto max-w-4xl space-y-8">
+          <div className="space-y-3 text-center">
             <div className="eml-pill mx-auto">{t.complexity.pretitle}</div>
-            <h2 className="math-italic text-4xl md:text-5xl leading-tight">{t.complexity.title}</h2>
-            <p className="text-ink-200 max-w-xl mx-auto leading-relaxed">
-              {t.complexity.intro}{" "}
-              <Info side="bottom">{b.complexityRpnInfo}</Info>
+            <h2 className="math-italic text-4xl leading-tight md:text-5xl">{t.complexity.title}</h2>
+            <p className="mx-auto max-w-xl leading-relaxed text-ink-200">
+              {t.complexity.intro} <Info side="bottom">{b.complexityRpnInfo}</Info>
             </p>
           </div>
-          <div className="rounded-2xl border hairline glass p-6 md:p-8">
+          <div className="hairline glass rounded-2xl border p-6 md:p-8">
             <table className="w-full font-mono text-sm">
-              <thead className="text-ink-300 border-b hairline">
+              <thead className="hairline border-b text-ink-300">
                 <tr>
-                  <th className="text-left py-2 px-2 font-mono text-[10px] tracking-widest2 uppercase">
+                  <th className="px-2 py-2 text-left font-mono text-[10px] uppercase tracking-widest2">
                     {t.complexity.headTarget}
                   </th>
-                  <th className="text-right py-2 px-2 font-mono text-[10px] tracking-widest2 uppercase">
+                  <th className="px-2 py-2 text-right font-mono text-[10px] uppercase tracking-widest2">
                     {t.complexity.headK}
                   </th>
-                  <th className="text-left py-2 px-2 font-mono text-[10px] tracking-widest2 uppercase">
+                  <th className="px-2 py-2 text-left font-mono text-[10px] uppercase tracking-widest2">
                     {t.complexity.headNote}
                   </th>
                 </tr>
@@ -401,14 +453,14 @@ eml(1, eml(eml(1,z),1))
                   ["√x", "≥ 47", b.complexityRows.sqrt],
                 ].map(([target, k, note]) => (
                   <tr key={target as string} className="border-b border-ink-700/30 last:border-0">
-                    <td className="py-2 px-2 math-italic text-base text-ink-100">{target}</td>
-                    <td className="py-2 px-2 text-right text-signal-amber">{k}</td>
-                    <td className="py-2 px-2 text-ink-200 text-xs">{note}</td>
+                    <td className="math-italic px-2 py-2 text-base text-ink-100">{target}</td>
+                    <td className="px-2 py-2 text-right text-signal-amber">{k}</td>
+                    <td className="px-2 py-2 text-xs text-ink-200">{note}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className="pt-4 mt-4 border-t hairline text-[11px] text-ink-300 leading-relaxed">
+            <div className="hairline mt-4 border-t pt-4 text-[11px] leading-relaxed text-ink-300">
               {t.complexity.note}
             </div>
           </div>
@@ -416,17 +468,17 @@ eml(1, eml(eml(1,z),1))
       </section>
 
       {/* Limitations */}
-      <section className="relative px-6 py-32 z-10">
-        <div className="max-w-5xl mx-auto glass border hairline rounded-3xl p-10 md:p-14">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
-            <div className="md:col-span-5 space-y-4">
-              <div className="font-mono text-[11px] tracking-widest2 text-signal-rose uppercase">
+      <section className="relative z-10 px-6 py-32">
+        <div className="glass hairline mx-auto max-w-5xl rounded-3xl border p-10 md:p-14">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
+            <div className="space-y-4 md:col-span-5">
+              <div className="font-mono text-[11px] uppercase tracking-widest2 text-signal-rose">
                 {t.limits.pretitle}
               </div>
-              <h2 className="math-italic text-4xl md:text-5xl leading-tight">{t.limits.title}</h2>
-              <p className="text-ink-200 leading-relaxed text-sm">{t.limits.intro}</p>
+              <h2 className="math-italic text-4xl leading-tight md:text-5xl">{t.limits.title}</h2>
+              <p className="text-sm leading-relaxed text-ink-200">{t.limits.intro}</p>
             </div>
-            <div className="md:col-span-7 space-y-3">
+            <div className="space-y-3 md:col-span-7">
               {[
                 b.limits.complexRequired,
                 b.limits.branchCuts,
@@ -434,14 +486,11 @@ eml(1, eml(eml(1,z),1))
                 b.limits.nonSelfGen,
                 b.limits.notFullyUniversal,
               ].map((row) => (
-                <div
-                  key={row.k}
-                  className="rounded-md border hairline bg-ink-950/40 px-4 py-3"
-                >
-                  <div className="font-mono text-[10px] tracking-widest2 text-signal-rose uppercase mb-1">
+                <div key={row.k} className="hairline rounded-md border bg-ink-950/40 px-4 py-3">
+                  <div className="mb-1 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
                     {row.k}
                   </div>
-                  <div className="text-sm text-ink-200 leading-relaxed">{row.v}</div>
+                  <div className="text-sm leading-relaxed text-ink-200">{row.v}</div>
                 </div>
               ))}
             </div>
@@ -450,47 +499,47 @@ eml(1, eml(eml(1,z),1))
       </section>
 
       {/* Garden */}
-      <section className="relative px-6 py-32 z-10">
-        <div className="max-w-6xl mx-auto space-y-8">
-          <div className="text-center space-y-3">
+      <section className="relative z-10 px-6 py-32">
+        <div className="mx-auto max-w-6xl space-y-8">
+          <div className="space-y-3 text-center">
             <div className="eml-pill mx-auto">{t.garden.pretitle}</div>
-            <h2 className="math-italic text-4xl md:text-5xl leading-tight">{t.garden.title}</h2>
-            <p className="text-ink-200 max-w-2xl mx-auto leading-relaxed">{t.garden.intro}</p>
+            <h2 className="math-italic text-4xl leading-tight md:text-5xl">{t.garden.title}</h2>
+            <p className="mx-auto max-w-2xl leading-relaxed text-ink-200">{t.garden.intro}</p>
           </div>
           <GardenGrid />
         </div>
       </section>
 
       {/* Closing */}
-      <section className="relative px-6 py-32 z-10">
-        <div className="max-w-4xl mx-auto space-y-10 glass border hairline rounded-3xl p-10 md:p-14 text-center">
+      <section className="relative z-10 px-6 py-32">
+        <div className="glass hairline mx-auto max-w-4xl space-y-10 rounded-3xl border p-10 text-center md:p-14">
           <div className="eml-pill mx-auto">{t.closing.pill}</div>
-          <h2 className="math-italic text-5xl md:text-7xl leading-tight">{t.closing.title}</h2>
-          <p className="text-ink-200 max-w-2xl mx-auto leading-relaxed">{t.closing.intro}</p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-3 pt-2">
+          <h2 className="math-italic text-5xl leading-tight md:text-7xl">{t.closing.title}</h2>
+          <p className="mx-auto max-w-2xl leading-relaxed text-ink-200">{t.closing.intro}</p>
+          <div className="flex flex-col items-center justify-center gap-3 pt-2 md:flex-row">
             <Link
               href="/eml/atelier"
-              className="px-6 py-3 rounded-full border border-signal-violet/60 hover:border-signal-violet hover:bg-signal-violet/10 text-signal-violet font-mono text-xs uppercase tracking-widest2 transition-colors"
+              className="rounded-full border border-signal-violet/60 px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-signal-violet transition-colors hover:border-signal-violet hover:bg-signal-violet/10"
             >
               {t.closing.ctaAtelier}
             </Link>
             <Link
               href="/eml/resonance"
-              className="px-6 py-3 rounded-full border border-signal-cyan/60 hover:border-signal-cyan hover:bg-signal-cyan/10 text-signal-cyan font-mono text-xs uppercase tracking-widest2 transition-colors"
+              className="rounded-full border border-signal-cyan/60 px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-signal-cyan transition-colors hover:border-signal-cyan hover:bg-signal-cyan/10"
             >
               {t.closing.ctaResonance}
             </Link>
           </div>
-          <div className="pt-8 border-t hairline space-y-3">
-            <div className="text-[10px] font-mono text-ink-400 uppercase tracking-widest2 leading-relaxed">
+          <div className="hairline space-y-3 border-t pt-8">
+            <div className="font-mono text-[10px] uppercase leading-relaxed tracking-widest2 text-ink-400">
               {t.closing.meta}
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-3 text-[11px] font-mono uppercase tracking-widest2">
+            <div className="flex flex-wrap items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-widest2">
               <a
                 href={PAPER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-signal-cyan hover:text-ink-100 transition-colors"
+                className="text-signal-cyan transition-colors hover:text-ink-100"
               >
                 ↗ {t.footer.paper}
               </a>
@@ -499,7 +548,7 @@ eml(1, eml(eml(1,z),1))
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-signal-cyan hover:text-ink-100 transition-colors"
+                className="text-signal-cyan transition-colors hover:text-ink-100"
               >
                 ↗ {t.footer.github}
               </a>
@@ -509,11 +558,11 @@ eml(1, eml(eml(1,z),1))
       </section>
 
       {/* Progress rail (right) */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col gap-3">
+      <div className="fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 flex-col gap-3 md:flex">
         {STATION_IDS.map((id, i) => (
           <div
             key={id}
-            className={`w-1.5 transition-all rounded-full ${
+            className={`w-1.5 rounded-full transition-all ${
               i === station ? "h-8 bg-signal-violet" : "h-3 bg-ink-300/40"
             }`}
             title={id}
@@ -536,10 +585,10 @@ function EncounterCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass border hairline rounded-2xl p-6 space-y-3 hover:border-signal-violet/40 transition-colors">
-      <div className={`font-mono text-[10px] tracking-widest2 uppercase ${accent}`}>{label}</div>
-      <h3 className="math-italic text-2xl text-ink-100 leading-snug">{title}</h3>
-      <div className="text-sm text-ink-200 leading-relaxed">{children}</div>
+    <div className="glass hairline space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-violet/40">
+      <div className={`font-mono text-[10px] uppercase tracking-widest2 ${accent}`}>{label}</div>
+      <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>
+      <div className="text-sm leading-relaxed text-ink-200">{children}</div>
     </div>
   );
 }

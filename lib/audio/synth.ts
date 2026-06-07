@@ -36,7 +36,10 @@ export class EmlSynth {
 
   async start() {
     if (this.started) return;
-    const ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+    const ctx = new (
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+    )();
     await ctx.resume();
     this.ctx = ctx;
 

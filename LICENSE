@@ -1,0 +1,61 @@
+Foldscape — An Atlas of Mathematical Curiosities
+Copyright (c) 2026 zauberware technologies GmbH & Co. KG
+
+This work is licensed under the Creative Commons Attribution 4.0
+International License (CC BY 4.0).
+
+To view a copy of this license, visit:
+
+    https://creativecommons.org/licenses/by/4.0/
+
+or send a letter to Creative Commons, PO Box 1866, Mountain View,
+CA 94042, USA.
+
+YOU ARE FREE TO:
+  · Share — copy and redistribute the material in any medium or format
+  · Adapt — remix, transform, and build upon the material for any
+    purpose, even commercially.
+
+UNDER THE FOLLOWING TERMS:
+  · Attribution — You must give appropriate credit, provide a link to
+    the license, and indicate if changes were made. You may do so in
+    any reasonable manner, but not in any way that suggests the
+    licensor endorses you or your use.
+
+NO ADDITIONAL RESTRICTIONS — You may not apply legal terms or
+technological measures that legally restrict others from doing
+anything the license permits.
+
+============================================================
+ATTRIBUTION
+============================================================
+
+When reusing material from this project, please credit:
+
+    Foldscape — An Atlas of Mathematical Curiosities
+    Curated by Simon Franzen / zauberware
+    https://github.com/zauberware/foldscape
+
+============================================================
+THIRD-PARTY CONTENT
+============================================================
+
+This project references and quotes from external mathematical
+literature (papers, theorems, proofs). Each topic page cites its
+sources inline. The mathematical CONTENT being discussed is in the
+public domain (theorems, equations, classical results); the
+specific PROSE, code, visualisations, and component implementations
+in this repository are the work of the authors and contributors
+and are covered by the license above.
+
+If you adopt prose, demos, or component code, attribution to this
+project is the only requirement.
+
+============================================================
+DISCLAIMER
+============================================================
+
+THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT.

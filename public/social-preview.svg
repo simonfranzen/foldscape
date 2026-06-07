@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="Foldscape — An Atlas of Mathematical Curiosities">
+  <!-- Dark ink background -->
+  <rect width="1280" height="640" fill="#06070d"/>
+
+  <!-- Subtle vignette gradient -->
+  <defs>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="80%">
+      <stop offset="0%" stop-color="#06070d" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#06070d" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="topFade" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#06070d" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#06070d" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bottomFade" x1="0" x2="0" y1="1" y2="0">
+      <stop offset="0%" stop-color="#06070d" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#06070d" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fourier harmonic backdrop — multiple sine waves at different frequencies and offsets -->
+  <g fill="none" stroke-width="1.6" stroke-linecap="round" opacity="0.55">
+    <path d="M 0 320 Q 80 220, 160 320 T 320 320 T 480 320 T 640 320 T 800 320 T 960 320 T 1120 320 T 1280 320" stroke="#7df3ff" opacity="0.5"/>
+    <path d="M 0 320 Q 60 240, 120 320 T 240 320 T 360 320 T 480 320 T 600 320 T 720 320 T 840 320 T 960 320 T 1080 320 T 1200 320 T 1280 320" stroke="#b388ff" opacity="0.55"/>
+    <path d="M 0 320 Q 53 252, 106 320 T 212 320 T 318 320 T 424 320 T 530 320 T 636 320 T 742 320 T 848 320 T 954 320 T 1060 320 T 1166 320 T 1280 320" stroke="#ffd166" opacity="0.45"/>
+    <path d="M 0 320 Q 40 268, 80 320 T 160 320 T 240 320 T 320 320 T 400 320 T 480 320 T 560 320 T 640 320 T 720 320 T 800 320 T 880 320 T 960 320 T 1040 320 T 1120 320 T 1200 320 T 1280 320" stroke="#ff7ab6" opacity="0.35"/>
+    <path d="M 0 320 Q 32 282, 64 320 T 128 320 T 192 320 T 256 320 T 320 320 T 384 320 T 448 320 T 512 320 T 576 320 T 640 320 T 704 320 T 768 320 T 832 320 T 896 320 T 960 320 T 1024 320 T 1088 320 T 1152 320 T 1216 320 T 1280 320" stroke="#7df3ff" opacity="0.25"/>
+  </g>
+
+  <!-- Vignette + top/bottom fades -->
+  <rect width="1280" height="640" fill="url(#vignette)"/>
+  <rect width="1280" height="200" fill="url(#topFade)"/>
+  <rect x="0" y="440" width="1280" height="200" fill="url(#bottomFade)"/>
+
+  <!-- Brand pill -->
+  <g transform="translate(640, 154)">
+    <rect x="-260" y="-24" width="520" height="48" rx="24" fill="none" stroke="#b388ff" stroke-width="1.4" opacity="0.55"/>
+    <text x="0" y="6"
+          text-anchor="middle"
+          font-family="ui-monospace, SF Mono, Menlo, Monaco, Consolas, monospace"
+          font-size="14"
+          letter-spacing="3"
+          fill="#b388ff">AN ATLAS OF MATHEMATICAL CURIOSITIES</text>
+  </g>
+
+  <!-- Wordmark — large italic serif, dead center -->
+  <text x="640" y="356"
+        text-anchor="middle"
+        font-family="'New York', 'Iowan Old Style', Cambria, 'Times New Roman', Georgia, serif"
+        font-style="italic"
+        font-weight="500"
+        font-size="156"
+        letter-spacing="-3"
+        fill="#e8eaf2">Foldscape</text>
+
+  <!-- Tagline (italic serif, lighter) -->
+  <text x="640" y="430"
+        text-anchor="middle"
+        font-family="'New York', 'Iowan Old Style', Cambria, 'Times New Roman', Georgia, serif"
+        font-style="italic"
+        font-size="30"
+        fill="#9aa0b4">From almost nothing — everything.</text>
+
+  <!-- Footer line (mono uppercase) -->
+  <text x="640" y="558"
+        text-anchor="middle"
+        font-family="ui-monospace, SF Mono, Menlo, Monaco, Consolas, monospace"
+        font-size="13"
+        letter-spacing="4"
+        fill="#666980">GITHUB.COM/ZAUBERWARE/FOLDSCAPE  ·  CC BY 4.0</text>
+</svg>

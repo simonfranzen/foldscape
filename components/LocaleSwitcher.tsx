@@ -23,15 +23,20 @@ export function LocaleSwitcher() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label={t.nav.language}
-        className="flex items-center gap-1.5 rounded-md border hairline px-2.5 py-1.5 font-mono text-[10px] tracking-widest2 uppercase text-ink-200 hover:text-ink-100 hover:border-signal-violet/50 transition-colors"
+        className="hairline inline-flex h-9 items-center justify-center gap-1.5 rounded-md border px-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-violet/50 hover:text-ink-100"
       >
         <span className="text-signal-violet">{LOCALE_LABELS[locale].flag}</span>
-        <svg width="8" height="6" viewBox="0 0 8 6" className={`transition-transform ${open ? "rotate-180" : ""}`}>
+        <svg
+          width="8"
+          height="6"
+          viewBox="0 0 8 6"
+          className={`transition-transform ${open ? "rotate-180" : ""}`}
+        >
           <path d="M1 1l3 3 3-3" stroke="currentColor" strokeWidth="1.2" fill="none" />
         </svg>
       </button>
       {open && (
-        <div className="absolute right-0 top-full mt-2 z-50 glass border hairline rounded-md py-1 w-48">
+        <div className="glass hairline absolute right-0 top-full z-50 mt-2 w-48 rounded-md border py-1">
           {LOCALES.map((l: Locale) => (
             <button
               key={l}
@@ -39,11 +44,13 @@ export function LocaleSwitcher() {
                 setLocale(l);
                 setOpen(false);
               }}
-              className={`w-full text-left px-3 py-1.5 flex items-center justify-between transition-colors ${
-                l === locale ? "text-signal-violet" : "text-ink-200 hover:text-ink-100 hover:bg-ink-700/40"
+              className={`flex w-full items-center justify-between px-3 py-1.5 text-left transition-colors ${
+                l === locale
+                  ? "text-signal-violet"
+                  : "text-ink-200 hover:bg-ink-700/40 hover:text-ink-100"
               }`}
             >
-              <span className="font-mono text-[10px] tracking-widest2 uppercase">
+              <span className="font-mono text-[10px] uppercase tracking-widest2">
                 {LOCALE_LABELS[l].flag}
               </span>
               <span className="text-xs">{LOCALE_LABELS[l].native}</span>

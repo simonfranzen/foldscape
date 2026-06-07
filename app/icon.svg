@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#06070d"/>
+  <!-- Stacked sinusoidal "folds" — visual echo of the Fourier backdrop, scaled to icon size -->
+  <g fill="none" stroke-width="2.4" stroke-linecap="round">
+    <path d="M 6 22 Q 16 12, 26 22 T 46 22 T 58 22" stroke="#7df3ff" opacity="0.85"/>
+    <path d="M 6 32 Q 16 22, 26 32 T 46 32 T 58 32" stroke="#b388ff" opacity="0.95"/>
+    <path d="M 6 42 Q 16 32, 26 42 T 46 42 T 58 42" stroke="#ffd166" opacity="0.85"/>
+  </g>
+</svg>

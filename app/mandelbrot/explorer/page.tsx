@@ -2,12 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import {
-  MandelRenderer,
-  BOOKMARKS,
-  defaultMandel,
-  suggestedIter,
-} from "@/lib/gl/mandelbrot";
+import { MandelRenderer, BOOKMARKS, defaultMandel, suggestedIter } from "@/lib/gl/mandelbrot";
 import { useI18n } from "@/lib/i18n/context";
 import { Info } from "@/components/Info";
 
@@ -21,7 +16,9 @@ export default function MandelbrotExplorer() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rendererRef = useRef<MandelRenderer | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
-  const dragRef = useRef<{ x: number; y: number; cx: number; cy: number; moved: boolean } | null>(null);
+  const dragRef = useRef<{ x: number; y: number; cx: number; cy: number; moved: boolean } | null>(
+    null,
+  );
 
   const [center, setCenter] = useState<[number, number]>([-0.6, 0]);
   const [scale, setScale] = useState(1.4);
@@ -136,82 +133,83 @@ export default function MandelbrotExplorer() {
   const zoomFmt = zoom.toFixed(2);
 
   return (
-    <main className="pt-14 min-h-screen flex flex-col">
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-0">
+    <main className="flex min-h-screen flex-col pt-14">
+      <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         {/* Stage */}
         <div
           ref={stageRef}
-          className="relative bg-ink-950 min-h-[60vh] lg:min-h-[calc(100vh-3.5rem)] cursor-grab active:cursor-grabbing select-none overflow-hidden"
+          className="relative min-h-[60vh] cursor-grab select-none overflow-hidden bg-ink-950 active:cursor-grabbing lg:min-h-[calc(100vh-3.5rem)]"
           onPointerDown={onDown}
           onPointerMove={onMove}
           onPointerUp={onUp}
           onPointerCancel={onUp}
           onDoubleClick={onDoubleClick}
         >
-          <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />
+          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
 
           {/* Top-left: coords */}
-          <div className="absolute top-4 left-4 right-4 flex items-start justify-between pointer-events-none gap-3">
-            <div className="glass border hairline rounded-md px-3 py-2 font-mono text-[10px] tracking-widest2 text-ink-200 uppercase pointer-events-auto">
-              c = {center[0].toFixed(8)} {center[1] >= 0 ? "+" : "−"} {Math.abs(center[1]).toFixed(8)}i
-              <span className="ml-3 text-signal-amber">{u.mandel.zoomLevel} 10^{zoomFmt}</span>
+          <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
+            <div className="glass hairline pointer-events-auto rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
+              c = {center[0].toFixed(8)} {center[1] >= 0 ? "+" : "−"}{" "}
+              {Math.abs(center[1]).toFixed(8)}i
+              <span className="ml-3 text-signal-amber">
+                {u.mandel.zoomLevel} 10^{zoomFmt}
+              </span>
             </div>
-            <div className="glass border hairline rounded-md px-3 py-2 font-mono text-[10px] tracking-widest2 text-signal-amber uppercase">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
               z → z² + c
             </div>
           </div>
 
           {/* Map-style zoom controls (top-right under formula) */}
-          <div className="absolute right-4 top-20 flex flex-col gap-2 pointer-events-auto">
+          <div className="pointer-events-auto absolute right-4 top-20 flex flex-col gap-2">
             <button
               onClick={() => zoomCenter(0.5)}
               title={u.mandel.zoomIn}
-              className="w-10 h-10 glass border hairline rounded-md flex items-center justify-center text-xl text-ink-100 hover:text-signal-amber hover:border-signal-amber/50 transition-colors"
+              className="glass hairline flex h-10 w-10 items-center justify-center rounded-md border text-xl text-ink-100 transition-colors hover:border-signal-amber/50 hover:text-signal-amber"
             >
               +
             </button>
             <button
               onClick={() => zoomCenter(2.0)}
               title={u.mandel.zoomOut}
-              className="w-10 h-10 glass border hairline rounded-md flex items-center justify-center text-xl text-ink-100 hover:text-signal-amber hover:border-signal-amber/50 transition-colors"
+              className="glass hairline flex h-10 w-10 items-center justify-center rounded-md border text-xl text-ink-100 transition-colors hover:border-signal-amber/50 hover:text-signal-amber"
             >
               −
             </button>
             <button
               onClick={resetView}
               title={u.mandel.reset}
-              className="w-10 h-10 glass border hairline rounded-md flex items-center justify-center text-base text-ink-100 hover:text-signal-violet hover:border-signal-violet/50 transition-colors"
+              className="glass hairline flex h-10 w-10 items-center justify-center rounded-md border text-base text-ink-100 transition-colors hover:border-signal-violet/50 hover:text-signal-violet"
             >
               ⟳
             </button>
           </div>
 
           {/* Bottom-left: pan hint */}
-          <div className="absolute bottom-4 left-4 glass border hairline rounded-md px-3 py-2 font-mono text-[10px] tracking-widest2 text-ink-300 uppercase pointer-events-none">
+          <div className="glass hairline pointer-events-none absolute bottom-4 left-4 rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
             {u.mandel.panHint}
           </div>
         </div>
 
         {/* Panel */}
-        <aside className="border-l hairline bg-ink-900/40 flex flex-col overflow-y-auto scrollbar-thin">
-          <div className="p-6 border-b hairline space-y-3">
-            <div className="font-mono text-[10px] tracking-widest2 text-signal-amber uppercase">
+        <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
+          <div className="hairline space-y-3 border-b p-6">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
               {a.topics.mandelbrot.title}
             </div>
-            <h1 className="math-italic text-3xl text-ink-100 leading-tight">
+            <h1 className="math-italic text-3xl leading-tight text-ink-100">
               {a.topics.mandelbrot.tagline}
             </h1>
-            <p className="text-sm text-ink-200 leading-relaxed">
-              {a.topics.mandelbrot.body}
-            </p>
-            <div className="rounded-md border hairline bg-ink-950/60 p-3 font-mono text-xs text-ink-100">
+            <p className="text-sm leading-relaxed text-ink-200">{a.topics.mandelbrot.body}</p>
+            <div className="hairline rounded-md border bg-ink-950/60 p-3 font-mono text-xs text-ink-100">
               z₀ = 0, zₙ₊₁ = zₙ² + c
             </div>
           </div>
 
           {/* Bookmarks */}
-          <div className="p-5 border-b hairline">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-3 flex items-center gap-2">
+          <div className="hairline border-b p-5">
+            <div className="mb-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.mandel.bookmarks}
               <Info side="bottom">{u.mandel.bookmarksInfo}</Info>
             </div>
@@ -220,12 +218,12 @@ export default function MandelbrotExplorer() {
                 <button
                   key={b.id}
                   onClick={() => loadBookmark(b.id)}
-                  className="text-left rounded-md border hairline px-3 py-2 hover:border-signal-amber/50 transition-colors"
+                  className="hairline rounded-md border px-3 py-2 text-left transition-colors hover:border-signal-amber/50"
                 >
                   <div className="text-sm text-ink-100">
                     {u.mandel[b.labelKey as keyof typeof u.mandel] as string}
                   </div>
-                  <div className="font-mono text-[10px] text-ink-400 mt-0.5">
+                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">
                     10^{Math.log10(2.8 / b.scale).toFixed(1)} · {b.maxIter} iter
                   </div>
                 </button>
@@ -234,15 +232,15 @@ export default function MandelbrotExplorer() {
           </div>
 
           {/* Iteration */}
-          <div className="p-5 border-b hairline space-y-4">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase flex items-center gap-2">
+          <div className="hairline space-y-4 border-b p-5">
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.mandel.iterations}
               <Info side="bottom">{u.mandel.iterationsInfo}</Info>
               <button
                 onClick={() => setAutoIter((v) => !v)}
-                className={`ml-auto font-mono text-[9px] uppercase tracking-widest border rounded px-2 py-0.5 transition-colors ${
+                className={`ml-auto rounded border px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest transition-colors ${
                   autoIter
-                    ? "border-signal-cyan/60 text-signal-cyan bg-signal-cyan/10"
+                    ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
                     : "hairline text-ink-300"
                 }`}
                 title={u.mandel.autoIter}
@@ -262,7 +260,7 @@ export default function MandelbrotExplorer() {
               format={(v) => `${v}`}
               accent="text-signal-amber"
             />
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.mandel.hueShift}
             </div>
             <Slider
@@ -274,7 +272,7 @@ export default function MandelbrotExplorer() {
               format={(v) => v.toFixed(3)}
               accent="text-signal-violet"
             />
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.mandel.exposure}
             </div>
             <Slider
@@ -289,8 +287,8 @@ export default function MandelbrotExplorer() {
           </div>
 
           {/* Palette */}
-          <div className="p-5 border-b hairline">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-3">
+          <div className="hairline border-b p-5">
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.mandel.palette}
             </div>
             <div className="grid grid-cols-5 gap-2">
@@ -298,9 +296,9 @@ export default function MandelbrotExplorer() {
                 <button
                   key={label}
                   onClick={() => setPalette(i)}
-                  className={`text-center font-mono text-[10px] tracking-widest uppercase border rounded-md py-2 transition-colors ${
+                  className={`rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest transition-colors ${
                     palette === i
-                      ? "border-signal-violet/60 text-signal-violet bg-signal-violet/10"
+                      ? "border-signal-violet/60 bg-signal-violet/10 text-signal-violet"
                       : "hairline text-ink-300 hover:text-ink-100"
                   }`}
                 >
@@ -314,7 +312,7 @@ export default function MandelbrotExplorer() {
           <div className="p-5">
             <Link
               href="/"
-              className="block w-full text-center rounded-md border hairline py-2 font-mono text-[10px] tracking-widest2 uppercase text-ink-300 hover:text-signal-violet hover:border-signal-violet/40 transition-colors"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-violet/40 hover:text-signal-violet"
             >
               {u.back}
             </Link>
@@ -344,7 +342,7 @@ function Slider({
 }) {
   return (
     <div>
-      <div className="flex items-center justify-between mb-1">
+      <div className="mb-1 flex items-center justify-between">
         <span className={`font-mono text-[10px] tracking-widest2 ${accent} uppercase`}>
           {format(value)}
         </span>

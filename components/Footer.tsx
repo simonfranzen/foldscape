@@ -7,23 +7,36 @@ export const GITHUB_URL = "https://github.com/zauberware/foldscape";
 export const PAPER_URL = "https://arxiv.org/abs/2603.21852";
 export const ZAUBERWARE_URL = "https://www.zauberware.com";
 export const AUTHOR_URL = "https://www.zauberware.com";
+export const SIMON_GITHUB_URL = "https://github.com/simonfranzen";
 
 export function Footer() {
   const { t, a } = useI18n();
   return (
-    <footer className="relative z-20 border-t hairline glass">
-      <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="space-y-1.5 max-w-md">
-          <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase">
-            Foldscape · An atlas of mathematical curiosities
+    <footer className="hairline glass relative z-20 border-t">
+      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
+        <div className="max-w-md space-y-1.5">
+          <div className="flex items-center gap-2.5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-mark.svg"
+              alt=""
+              aria-hidden="true"
+              width={20}
+              height={20}
+              className="h-5 w-5 select-none opacity-80"
+              draggable={false}
+            />
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+              Foldscape · An atlas of mathematical curiosities
+            </div>
           </div>
           <div className="text-sm text-ink-200">
             {a.landing.authoredByPrefix}{" "}
             <a
-              href={AUTHOR_URL}
+              href={SIMON_GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-signal-violet hover:text-ink-100 transition-colors"
+              className="text-signal-violet transition-colors hover:text-ink-100"
             >
               {a.landing.authoredByName}
             </a>{" "}
@@ -32,33 +45,35 @@ export function Footer() {
               href={ZAUBERWARE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-signal-cyan hover:text-ink-100 transition-colors"
+              className="text-signal-cyan transition-colors hover:text-ink-100"
             >
               {a.landing.authoredByOrg}
             </a>
           </div>
           <div className="font-mono text-[10px] text-ink-400">{t.footer.copyright}</div>
+          <div className="font-mono text-[10px] text-ink-400">
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              rel="noopener noreferrer license"
+              className="transition-colors hover:text-signal-cyan"
+            >
+              {t.footer.license} ↗
+            </a>
+          </div>
         </div>
-        <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono uppercase tracking-widest2">
+        <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-widest2">
           <a
             href={ZAUBERWARE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-2 rounded-full border hairline text-ink-200 hover:text-signal-amber hover:border-signal-amber/50 transition-colors"
+            className="hairline rounded-full border px-3 py-2 text-ink-200 transition-colors hover:border-signal-amber/50 hover:text-signal-amber"
           >
             ↗ zauberware.com
           </a>
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3 py-2 rounded-full border hairline text-ink-200 hover:text-signal-cyan hover:border-signal-cyan/50 transition-colors"
-          >
-            ↗ {t.footer.github}
-          </a>
           <Link
             href="/impressum"
-            className="px-3 py-2 rounded-full border hairline text-ink-200 hover:text-signal-violet hover:border-signal-violet/50 transition-colors"
+            className="hairline rounded-full border px-3 py-2 text-ink-200 transition-colors hover:border-signal-violet/50 hover:text-signal-violet"
           >
             {t.footer.imprint}
           </Link>

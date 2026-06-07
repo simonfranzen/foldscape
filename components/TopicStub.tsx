@@ -31,50 +31,52 @@ export function TopicStub({ topicId }: { topicId: TopicId }) {
   ] as string;
 
   return (
-    <main className="pt-24 pb-32 px-6 min-h-screen relative isolate">
-      <div className={`fixed inset-0 -z-10 bg-gradient-to-br ${CATEGORY_BG[topic.category]} via-transparent to-transparent opacity-50 pointer-events-none`} />
-      <div className="fixed inset-0 -z-10 grid-bg opacity-30 pointer-events-none" />
+    <main className="relative isolate min-h-screen px-6 pb-32 pt-24">
+      <div
+        className={`fixed inset-0 -z-10 bg-gradient-to-br ${CATEGORY_BG[topic.category]} pointer-events-none via-transparent to-transparent opacity-50`}
+      />
+      <div className="grid-bg pointer-events-none fixed inset-0 -z-10 opacity-30" />
 
-      <div className="max-w-3xl mx-auto space-y-12">
+      <div className="mx-auto max-w-3xl space-y-12">
         <Link
           href="/"
-          className="inline-block font-mono text-[10px] tracking-widest2 uppercase text-ink-300 hover:text-signal-violet transition-colors"
+          className="inline-block font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:text-signal-violet"
         >
           {a.comingSoon.back}
         </Link>
 
         <header className="space-y-6">
-          <div className={`font-mono text-[10px] tracking-widest2 uppercase ${CATEGORY_ACCENT[topic.category]}`}>
+          <div
+            className={`font-mono text-[10px] uppercase tracking-widest2 ${CATEGORY_ACCENT[topic.category]}`}
+          >
             {categoryLabel} · {a.landing.statusStub}
           </div>
-          <h1 className="math-italic text-5xl md:text-7xl leading-[0.95] tracking-tight">
+          <h1 className="math-italic text-5xl leading-[0.95] tracking-tight md:text-7xl">
             {meta.title}
           </h1>
-          <p className="text-2xl text-ink-200 leading-snug math-italic">
-            {meta.tagline}
-          </p>
+          <p className="math-italic text-2xl leading-snug text-ink-200">{meta.tagline}</p>
         </header>
 
         {topic.formula && (
-          <div className="glass border hairline rounded-2xl p-8 text-center">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-3">
+          <div className="glass hairline rounded-2xl border p-8 text-center">
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               Formula
             </div>
-            <div className="math-italic text-3xl md:text-4xl text-ink-100 break-words">
+            <div className="math-italic break-words text-3xl text-ink-100 md:text-4xl">
               {topic.formula}
             </div>
           </div>
         )}
 
-        <section className="glass border hairline rounded-2xl p-8 space-y-5">
-          <p className="text-ink-100 text-lg leading-relaxed">{meta.body}</p>
+        <section className="glass hairline space-y-5 rounded-2xl border p-8">
+          <p className="text-lg leading-relaxed text-ink-100">{meta.body}</p>
         </section>
 
-        <section className="glass border hairline rounded-2xl p-6 space-y-3">
-          <div className="font-mono text-[10px] tracking-widest2 text-signal-amber uppercase">
+        <section className="glass hairline space-y-3 rounded-2xl border p-6">
+          <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
             {a.comingSoon.title}
           </div>
-          <p className="text-ink-200 text-sm leading-relaxed">{a.comingSoon.body}</p>
+          <p className="text-sm leading-relaxed text-ink-200">{a.comingSoon.body}</p>
         </section>
       </div>
     </main>

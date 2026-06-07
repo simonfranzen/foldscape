@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { TOPICS, type TopicCategory } from "@/lib/topics";
-import { PAPER_URL, GITHUB_URL } from "@/components/Footer";
+import { LandingBackdrop } from "@/components/LandingBackdrop";
+import { Reveal } from "@/components/Reveal";
+import { TopicConstellation } from "@/components/TopicConstellation";
 
 const CATEGORY_ACCENT: Record<TopicCategory, string> = {
   logic: "text-signal-violet border-signal-violet/40",
@@ -24,143 +26,207 @@ const CATEGORY_BG: Record<TopicCategory, string> = {
   paradox: "from-signal-rose/12 via-transparent to-transparent",
 };
 
+type ViewMode = "constellation" | "list";
+
 export default function Landing() {
   const { a } = useI18n();
   const [filter, setFilter] = useState<TopicCategory | "all">("all");
+  const [view, setView] = useState<ViewMode>("constellation");
 
   const visible = filter === "all" ? TOPICS : TOPICS.filter((t) => t.category === filter);
 
   return (
     <main className="relative isolate min-h-screen">
-      <div className="fixed inset-0 -z-0 grid-bg opacity-40 pointer-events-none" />
-      <div className="fixed inset-0 -z-0 bg-gradient-to-b from-ink-950 via-ink-950/80 to-ink-950 pointer-events-none" />
+      <a
+        href="#atlas"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-md focus:bg-signal-violet focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:tracking-widest2 focus:text-ink-950"
+      >
+        Skip to atlas
+      </a>
+      <div className="pointer-events-none fixed inset-0 -z-0 bg-ink-950" />
 
-      {/* Hero */}
-      <section className="relative px-6 pt-32 pb-16 z-10">
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <div className="eml-pill mx-auto">{a.landing.pretitle}</div>
-          <h1 className="math-italic text-6xl md:text-8xl leading-[0.95] tracking-tight">
-            {a.landing.title1}{" "}
-            <span className="text-signal-violet">{a.landing.title2}</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-ink-200 leading-snug max-w-2xl mx-auto math-italic">
-            {a.landing.subtitle}
-          </p>
-          <div className="space-y-4 text-ink-200 leading-relaxed max-w-xl mx-auto pt-3">
-            <p>{a.landing.intro1}</p>
-            <p>{a.landing.intro2}</p>
-          </div>
-          <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase pt-2">
-            {a.landing.authoredByPrefix}{" "}
-            <a
-              href="https://www.zauberware.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-signal-violet hover:text-ink-100 transition-colors"
-            >
-              {a.landing.authoredByName} · {a.landing.authoredByOrg}
-            </a>
-          </div>
+      {/* Hero with live backdrop */}
+      <section className="relative z-10 overflow-hidden pb-20 pt-28">
+        <div className="pointer-events-none absolute inset-0">
+          <LandingBackdrop />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink-950/80 via-ink-950/55 to-ink-950" />
+        </div>
+        <div className="relative mx-auto max-w-4xl space-y-8 px-6 text-center">
+          <Reveal>
+            <div className="eml-pill mx-auto">{a.landing.pretitle}</div>
+          </Reveal>
+          <Reveal delay={120}>
+            <h1 className="math-italic text-6xl leading-[0.9] tracking-tight md:text-9xl">
+              {a.landing.title1}
+              <span className="mx-2 text-ink-300 md:mx-4">—</span>
+              <span className="shimmer-text">{a.landing.title2}</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={260}>
+            <p className="math-italic mx-auto max-w-2xl text-xl leading-snug text-ink-200 md:text-2xl">
+              {a.landing.subtitle}
+            </p>
+          </Reveal>
+          <Reveal delay={400}>
+            <p className="mx-auto max-w-3xl pt-2 text-lg leading-relaxed text-ink-100 md:text-xl">
+              {a.landing.hook}
+            </p>
+          </Reveal>
+          <Reveal delay={540}>
+            <div className="pt-4 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+              {a.landing.authoredByPrefix}{" "}
+              <a
+                href="https://www.zauberware.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-signal-violet transition-colors hover:text-ink-100"
+              >
+                {a.landing.authoredByName} · {a.landing.authoredByOrg}
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Filter chips */}
-      <section className="relative px-6 z-10">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-2 py-6">
+      {/* For whom + why */}
+      <section className="relative z-10 px-6 pb-12">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-5 md:grid-cols-2">
+          <Reveal>
+            <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 md:p-8">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                {a.landing.forWhomLabel}
+              </div>
+              <p className="leading-relaxed text-ink-100">{a.landing.forWhom}</p>
+            </div>
+          </Reveal>
+          <Reveal delay={140}>
+            <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 md:p-8">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                {a.landing.motivationLabel}
+              </div>
+              <p className="leading-relaxed text-ink-100">{a.landing.motivation}</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Existing intros, lower-key now */}
+      <section className="relative z-10 px-6 pb-12">
+        <div className="mx-auto max-w-3xl space-y-4 text-center leading-relaxed text-ink-200">
+          <Reveal>
+            <p>{a.landing.intro1}</p>
+          </Reveal>
+          <Reveal delay={120}>
+            <p>{a.landing.intro2}</p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Filter chips + view toggle */}
+      <section className="relative z-10 px-6" id="atlas">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-2 py-6">
           <FilterChip active={filter === "all"} onClick={() => setFilter("all")}>
             {a.landing.browseLabel}
           </FilterChip>
-          {(["logic", "computation", "chaos", "analysis", "paradox"] as TopicCategory[]).map((c) => (
-            <FilterChip key={c} active={filter === c} onClick={() => setFilter(c)}>
-              {a.landing[`category${c[0].toUpperCase()}${c.slice(1)}` as keyof typeof a.landing] as string}
-            </FilterChip>
-          ))}
+          {(["logic", "computation", "chaos", "analysis", "paradox"] as TopicCategory[]).map(
+            (c) => (
+              <FilterChip key={c} active={filter === c} onClick={() => setFilter(c)}>
+                {
+                  a.landing[
+                    `category${c[0].toUpperCase()}${c.slice(1)}` as keyof typeof a.landing
+                  ] as string
+                }
+              </FilterChip>
+            ),
+          )}
+          <div className="mx-3 h-5 w-px bg-ink-700/60" aria-hidden="true" />
+          <ViewToggle
+            value={view}
+            onChange={setView}
+            constellationLabel={a.landing.viewConstellation ?? "Constellation"}
+            listLabel={a.landing.viewList ?? "List"}
+          />
         </div>
       </section>
 
-      {/* Topic grid */}
-      <section className="relative px-6 pb-20 z-10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {visible.map((topic) => {
-            const meta = a.topics[topic.id];
-            const categoryLabel = a.landing[
-              `category${topic.category[0].toUpperCase()}${topic.category.slice(1)}` as keyof typeof a.landing
-            ] as string;
-            const statusLabel =
-              topic.status === "interactive" ? a.landing.statusInteractive : a.landing.statusStub;
-            return (
-              <Link
-                key={topic.id}
-                href={topic.href}
-                className="group relative rounded-2xl overflow-hidden border hairline bg-ink-900/50 hover:border-signal-violet/40 transition-colors min-h-[280px] flex flex-col"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${CATEGORY_BG[topic.category]} opacity-60 pointer-events-none`} />
-                <div className="relative p-6 flex flex-col gap-4 h-full">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className={`inline-flex items-center px-2.5 py-1 rounded-full border font-mono text-[10px] tracking-widest2 uppercase ${CATEGORY_ACCENT[topic.category]}`}>
-                      {categoryLabel}
-                    </div>
-                    <div
-                      className={`font-mono text-[10px] tracking-widest2 uppercase ${
-                        topic.status === "interactive" ? "text-signal-cyan" : "text-ink-400"
-                      }`}
-                    >
-                      {topic.status === "interactive" ? "● " : "○ "}
-                      {statusLabel}
-                    </div>
-                  </div>
-                  <div className="flex-1 space-y-3">
-                    <div className="math-italic text-3xl text-ink-100 leading-tight">
-                      {meta.title}
-                    </div>
-                    <div className="text-ink-200 leading-snug">{meta.tagline}</div>
-                    {topic.formula && (
-                      <div className="font-mono text-xs text-ink-300 mt-2 bg-ink-950/40 border hairline rounded-md px-3 py-2 inline-block">
-                        {topic.formula}
+      {/* Atlas: constellation (default) or list */}
+      {view === "constellation" ? (
+        <section className="relative z-10 px-4 pb-20 md:px-6">
+          <div className="mx-auto max-w-7xl">
+            <Reveal>
+              <p className="mx-auto mb-6 max-w-2xl text-center text-sm leading-relaxed text-ink-300">
+                {a.landing.constellationHint ??
+                  "Hover, focus or tap a star. Lines connect related ideas."}
+              </p>
+            </Reveal>
+            <Reveal delay={120}>
+              <div className="hairline overflow-hidden rounded-3xl border bg-ink-950/40">
+                <TopicConstellation filter={filter} />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      ) : (
+        <section className="relative z-10 px-6 pb-20">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {visible.map((topic) => {
+              const meta = a.topics[topic.id];
+              const categoryLabel = a.landing[
+                `category${topic.category[0].toUpperCase()}${topic.category.slice(1)}` as keyof typeof a.landing
+              ] as string;
+              const statusLabel =
+                topic.status === "interactive" ? a.landing.statusInteractive : a.landing.statusStub;
+              return (
+                <Link
+                  key={topic.id}
+                  href={topic.href}
+                  className="hairline group relative flex min-h-[280px] flex-col overflow-hidden rounded-2xl border bg-ink-900/50 transition-colors hover:border-signal-violet/40"
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${CATEGORY_BG[topic.category]} pointer-events-none opacity-60`}
+                  />
+                  <div className="relative flex h-full flex-col gap-4 p-6">
+                    <div className="flex items-start justify-between gap-3">
+                      <div
+                        className={`inline-flex items-center rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest2 ${CATEGORY_ACCENT[topic.category]}`}
+                      >
+                        {categoryLabel}
                       </div>
-                    )}
-                  </div>
-                  <div className="flex items-center justify-between pt-2 border-t hairline">
-                    <div className="font-mono text-[10px] tracking-widest2 uppercase text-ink-400">
-                      {topic.id}
+                      <div
+                        className={`font-mono text-[10px] uppercase tracking-widest2 ${
+                          topic.status === "interactive" ? "text-signal-cyan" : "text-ink-400"
+                        }`}
+                      >
+                        {topic.status === "interactive" ? "● " : "○ "}
+                        {statusLabel}
+                      </div>
                     </div>
-                    <div className="font-mono text-[10px] tracking-widest2 uppercase text-signal-violet opacity-0 group-hover:opacity-100 transition-opacity">
-                      {a.landing.enterTopic}
+                    <div className="flex-1 space-y-3">
+                      <div className="math-italic text-3xl leading-tight text-ink-100">
+                        {meta.title}
+                      </div>
+                      <div className="leading-snug text-ink-200">{meta.tagline}</div>
+                      {topic.formula && (
+                        <div className="hairline mt-2 inline-block rounded-md border bg-ink-950/40 px-3 py-2 font-mono text-xs text-ink-300">
+                          {topic.formula}
+                        </div>
+                      )}
+                    </div>
+                    <div className="hairline flex items-center justify-between border-t pt-2">
+                      <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-400">
+                        {topic.id}
+                      </div>
+                      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-violet opacity-0 transition-opacity group-hover:opacity-100">
+                        {a.landing.enterTopic}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Footer links */}
-      <section className="relative px-6 pb-20 z-10">
-        <div className="max-w-3xl mx-auto text-center space-y-4">
-          <div className="font-mono text-[10px] tracking-widest2 text-ink-400 uppercase">
-            external
+                </Link>
+              );
+            })}
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-mono uppercase tracking-widest2">
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-2 rounded-full border hairline text-ink-200 hover:text-signal-cyan hover:border-signal-cyan/40 transition-colors"
-            >
-              ↗ GitHub
-            </a>
-            <a
-              href="https://www.zauberware.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-2 rounded-full border hairline text-ink-200 hover:text-signal-amber hover:border-signal-amber/40 transition-colors"
-            >
-              ↗ zauberware.com
-            </a>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
     </main>
   );
 }
@@ -177,13 +243,44 @@ function FilterChip({
   return (
     <button
       onClick={onClick}
-      className={`rounded-full px-4 py-2 font-mono text-[10px] tracking-widest2 uppercase border transition-colors ${
+      className={`rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
         active
           ? "border-signal-violet bg-signal-violet/15 text-signal-violet"
-          : "hairline text-ink-300 hover:text-ink-100 hover:border-ink-300/40"
+          : "hairline text-ink-300 hover:border-ink-300/40 hover:text-ink-100"
       }`}
     >
       {children}
     </button>
+  );
+}
+
+function ViewToggle({
+  value,
+  onChange,
+  constellationLabel,
+  listLabel,
+}: {
+  value: ViewMode;
+  onChange: (v: ViewMode) => void;
+  constellationLabel: string;
+  listLabel: string;
+}) {
+  const Btn = ({ v, label }: { v: ViewMode; label: string }) => (
+    <button
+      onClick={() => onChange(v)}
+      aria-pressed={value === v}
+      className={`px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
+        value === v ? "text-signal-cyan" : "text-ink-400 hover:text-ink-200"
+      }`}
+    >
+      {label}
+    </button>
+  );
+  return (
+    <div className="hairline inline-flex items-center overflow-hidden rounded-full border">
+      <Btn v="constellation" label={constellationLabel} />
+      <div className="h-4 w-px bg-ink-700/60" aria-hidden="true" />
+      <Btn v="list" label={listLabel} />
+    </div>
   );
 }

@@ -33,8 +33,8 @@ export function Info({
     side === "bottom"
       ? "top-full mt-2 left-1/2 -translate-x-1/2"
       : side === "right"
-      ? "left-full ml-2 top-1/2 -translate-y-1/2"
-      : "bottom-full mb-2 left-1/2 -translate-x-1/2";
+        ? "left-full ml-2 top-1/2 -translate-y-1/2"
+        : "bottom-full mb-2 left-1/2 -translate-x-1/2";
 
   return (
     <span ref={ref} className={`relative inline-flex align-middle ${className}`}>
@@ -47,17 +47,17 @@ export function Info({
           setSticky((v) => !v);
           setOpen((v) => !v || !sticky);
         }}
-        className={`w-4 h-4 inline-flex items-center justify-center rounded-full border text-[9px] font-mono leading-none transition-colors ${
+        className={`inline-flex h-4 w-4 items-center justify-center rounded-full border font-mono text-[9px] leading-none transition-colors ${
           sticky
-            ? "border-signal-violet text-signal-violet bg-signal-violet/10"
-            : "border-ink-300/40 text-ink-300 hover:text-signal-violet hover:border-signal-violet/60"
+            ? "border-signal-violet bg-signal-violet/10 text-signal-violet"
+            : "border-ink-300/40 text-ink-300 hover:border-signal-violet/60 hover:text-signal-violet"
         }`}
       >
         i
       </button>
       {open && (
         <span
-          className={`absolute ${placement} z-50 w-64 glass border hairline rounded-md px-3 py-2 text-xs text-ink-200 leading-relaxed pointer-events-none shadow-xl`}
+          className={`absolute ${placement} glass hairline pointer-events-none z-50 w-64 rounded-md border px-3 py-2 text-xs leading-relaxed text-ink-200 shadow-xl`}
           style={{ pointerEvents: sticky ? "auto" : "none" }}
         >
           {children}

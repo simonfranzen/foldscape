@@ -41,7 +41,12 @@ function step(src: Grid, dst: Grid) {
   }
 }
 
-function paintPattern(g: Grid, cells: ReadonlyArray<readonly [number, number]>, originX: number, originY: number) {
+function paintPattern(
+  g: Grid,
+  cells: ReadonlyArray<readonly [number, number]>,
+  originX: number,
+  originY: number,
+) {
   for (const [cx, cy] of cells) {
     const x = (originX + cx + COLS) % COLS;
     const y = (originY + cy + ROWS) % ROWS;
@@ -239,65 +244,72 @@ export default function LifePage() {
     drawRef.current();
   };
 
-  const populationPct = useMemo(() => ((population / totalCells) * 100).toFixed(1), [population, totalCells]);
+  const populationPct = useMemo(
+    () => ((population / totalCells) * 100).toFixed(1),
+    [population, totalCells],
+  );
 
   return (
-    <main className="pt-14 min-h-screen flex flex-col">
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-0">
+    <main className="flex min-h-screen flex-col pt-14">
+      <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         {/* Stage */}
-        <div className="relative bg-ink-950 min-h-[60vh] lg:min-h-[calc(100vh-3.5rem)] cursor-cell select-none">
+        <div className="relative min-h-[60vh] cursor-cell select-none bg-ink-950 lg:min-h-[calc(100vh-3.5rem)]">
           <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full block"
+            className="absolute inset-0 block h-full w-full"
             onPointerDown={(e) => onPointerEvent(e, "down")}
             onPointerMove={(e) => onPointerEvent(e, "move")}
             onPointerUp={() => setDrawMode(null)}
             onPointerCancel={() => setDrawMode(null)}
             onPointerLeave={() => setDrawMode(null)}
           />
-          <div className="absolute top-4 left-4 right-4 flex items-start justify-between pointer-events-none gap-3">
-            <div className="glass border hairline rounded-md px-3 py-2 font-mono text-[10px] tracking-widest2 text-ink-200 uppercase pointer-events-auto flex items-center gap-3">
-              <span>{u.life.genLabel} {generation}</span>
+          <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
+            <div className="glass hairline pointer-events-auto flex items-center gap-3 rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
+              <span>
+                {u.life.genLabel} {generation}
+              </span>
               <span className="text-ink-400">·</span>
-              <span>{u.life.popLabel} {population}</span>
+              <span>
+                {u.life.popLabel} {population}
+              </span>
               <span className="text-ink-400">({populationPct}%)</span>
             </div>
-            <div className="glass border hairline rounded-md px-3 py-2 font-mono text-[10px] tracking-widest2 text-signal-cyan uppercase">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               {u.life.ruleSummary} {COLS}×{ROWS}
             </div>
           </div>
-          <div className="absolute bottom-4 left-4 glass border hairline rounded-md px-3 py-2 font-mono text-[10px] tracking-widest2 text-ink-300 uppercase pointer-events-none">
+          <div className="glass hairline pointer-events-none absolute bottom-4 left-4 rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
             {u.life.drawHint}
           </div>
         </div>
 
         {/* Panel */}
-        <aside className="border-l hairline bg-ink-900/40 flex flex-col overflow-y-auto scrollbar-thin">
-          <div className="p-6 border-b hairline space-y-3">
-            <div className="font-mono text-[10px] tracking-widest2 text-signal-cyan uppercase">
+        <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
+          <div className="hairline space-y-3 border-b p-6">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               {a.topics.life.title}
             </div>
-            <h1 className="math-italic text-3xl text-ink-100 leading-tight">
+            <h1 className="math-italic text-3xl leading-tight text-ink-100">
               {a.topics.life.tagline}
             </h1>
-            <p className="text-sm text-ink-200 leading-relaxed">{a.topics.life.body}</p>
-            <div className="rounded-md border hairline bg-ink-950/60 p-3 font-mono text-xs text-ink-100">
+            <p className="text-sm leading-relaxed text-ink-200">{a.topics.life.body}</p>
+            <div className="hairline rounded-md border bg-ink-950/60 p-3 font-mono text-xs text-ink-100">
               {u.life.rulesBox}
             </div>
           </div>
 
           {/* Controls */}
-          <div className="p-5 border-b hairline space-y-3">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase">
+          <div className="hairline space-y-3 border-b p-5">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.life.controls}
             </div>
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => setRunning((v) => !v)}
-                className={`rounded-md border py-2 font-mono text-[11px] tracking-widest2 uppercase transition-colors ${
+                className={`rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
                   running
-                    ? "border-signal-rose/60 text-signal-rose bg-signal-rose/10"
-                    : "border-signal-cyan/60 text-signal-cyan bg-signal-cyan/10 hover:bg-signal-cyan/20"
+                    ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
+                    : "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan hover:bg-signal-cyan/20"
                 }`}
               >
                 {running ? `❚❚ ${u.life.pause}` : `▶ ${u.life.play}`}
@@ -305,26 +317,28 @@ export default function LifePage() {
               <button
                 onClick={handleStep}
                 disabled={running}
-                className="rounded-md border hairline py-2 font-mono text-[11px] tracking-widest2 uppercase text-ink-200 hover:text-ink-100 disabled:opacity-40 transition-colors"
+                className="hairline rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:text-ink-100 disabled:opacity-40"
               >
                 {u.life.step}
               </button>
               <button
                 onClick={handleRandom}
-                className="rounded-md border hairline py-2 font-mono text-[11px] tracking-widest2 uppercase text-ink-200 hover:text-signal-amber hover:border-signal-amber/40 transition-colors"
+                className="hairline rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
               >
                 ⌁ {u.life.random}
               </button>
               <button
                 onClick={handleClear}
-                className="rounded-md border hairline py-2 font-mono text-[11px] tracking-widest2 uppercase text-ink-200 hover:text-signal-rose hover:border-signal-rose/40 transition-colors"
+                className="hairline rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
               >
                 ○ {u.life.clear}
               </button>
             </div>
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase">{u.life.speed}</span>
+              <div className="mb-1 flex items-center justify-between">
+                <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+                  {u.life.speed}
+                </span>
                 <span className="font-mono text-[10px] text-signal-cyan">{speed} gen/s</span>
               </div>
               <input
@@ -340,8 +354,8 @@ export default function LifePage() {
           </div>
 
           {/* Patterns */}
-          <div className="p-5 border-b hairline">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-3 flex items-center gap-2">
+          <div className="hairline border-b p-5">
+            <div className="mb-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.life.patterns}
               <Info side="bottom">{u.life.patternsInfo}</Info>
             </div>
@@ -350,18 +364,18 @@ export default function LifePage() {
                 <button
                   key={p.id}
                   onClick={() => handlePattern(p.id)}
-                  className="text-left rounded-md border hairline px-3 py-2 hover:border-signal-cyan/40 transition-colors"
+                  className="hairline rounded-md border px-3 py-2 text-left transition-colors hover:border-signal-cyan/40"
                 >
                   <div className="text-sm text-ink-100">{p.label}</div>
-                  <div className="font-mono text-[10px] text-ink-400 mt-0.5">{p.note}</div>
+                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">{p.note}</div>
                 </button>
               ))}
             </div>
           </div>
 
           {/* Color palette */}
-          <div className="p-5 border-b hairline">
-            <div className="font-mono text-[10px] tracking-widest2 text-ink-300 uppercase mb-3">
+          <div className="hairline border-b p-5">
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.life.cellColour}
             </div>
             <div className="grid grid-cols-4 gap-2">
@@ -369,7 +383,7 @@ export default function LifePage() {
                 <button
                   key={c}
                   onClick={() => setPalette(c)}
-                  className={`rounded-md border py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${
+                  className={`rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest transition-colors ${
                     palette === c
                       ? `border-signal-${c}/60 text-signal-${c} bg-signal-${c}/10`
                       : "hairline text-ink-300 hover:text-ink-100"
@@ -385,7 +399,7 @@ export default function LifePage() {
           <div className="p-5">
             <Link
               href="/"
-              className="block w-full text-center rounded-md border hairline py-2 font-mono text-[10px] tracking-widest2 uppercase text-ink-300 hover:text-signal-violet hover:border-signal-violet/40 transition-colors"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-violet/40 hover:text-signal-violet"
             >
               {u.back}
             </Link>

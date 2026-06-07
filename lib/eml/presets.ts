@@ -4,10 +4,10 @@
 
 export interface Preset {
   id: string;
-  title: string;       // human title (math italic)
-  tagline: string;     // one-line intuition
-  src: string;         // EML source
-  depth: number;       // visual depth label
+  title: string; // human title (math italic)
+  tagline: string; // one-line intuition
+  src: string; // EML source
+  depth: number; // visual depth label
   // Optional default parameter for `p`
   p?: [number, number];
   // Optional view rect (centerX, centerY, halfHeight)

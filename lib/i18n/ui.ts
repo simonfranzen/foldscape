@@ -4,6 +4,9 @@
 import type { Locale } from "./types";
 
 export interface UiDict {
+  further?: { label: string };
+  applications?: { label: string; lead: string };
+  sound?: { label: string };
   mandel: {
     bookmarks: string;
     bookmarksInfo: string;
@@ -94,6 +97,12 @@ const en: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Back to the atlas",
+  further: { label: "Further reading" },
+  applications: {
+    label: "Where you meet it",
+    lead: "How and where this technique lives in the world today.",
+  },
+  sound: { label: "Hear it" },
 };
 
 const de: UiDict = {
@@ -142,6 +151,12 @@ const de: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Zurück zum Atlas",
+  further: { label: "Weiterführend" },
+  applications: {
+    label: "Wo du es triffst",
+    lead: "Wie und wo diese Technik heute in der Welt steckt.",
+  },
+  sound: { label: "Anhören" },
 };
 
 const es: UiDict = {
@@ -190,6 +205,12 @@ const es: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Volver al atlas",
+  further: { label: "Más lecturas" },
+  applications: {
+    label: "Dónde te lo encuentras",
+    lead: "Cómo y dónde vive hoy esta técnica en el mundo.",
+  },
+  sound: { label: "Escuchar" },
 };
 
 const fr: UiDict = {
@@ -238,6 +259,12 @@ const fr: UiDict = {
     ruleSummary: "B3 / S23 · toroïdal",
   },
   back: "← Retour à l'atlas",
+  further: { label: "Pour aller plus loin" },
+  applications: {
+    label: "Où on la rencontre",
+    lead: "Comment et où cette technique vit aujourd'hui dans le monde.",
+  },
+  sound: { label: "Écouter" },
 };
 
 const it: UiDict = {
@@ -286,6 +313,12 @@ const it: UiDict = {
     ruleSummary: "B3 / S23 · toroidale",
   },
   back: "← Torna all'atlante",
+  further: { label: "Letture di approfondimento" },
+  applications: {
+    label: "Dove la incontri",
+    lead: "Come e dove questa tecnica vive oggi nel mondo.",
+  },
+  sound: { label: "Ascoltare" },
 };
 
 const pt: UiDict = {
@@ -334,6 +367,12 @@ const pt: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Voltar ao atlas",
+  further: { label: "Leituras adicionais" },
+  applications: {
+    label: "Onde te encontras com isto",
+    lead: "Como e onde esta técnica vive hoje no mundo.",
+  },
+  sound: { label: "Ouvir" },
 };
 
 const sv: UiDict = {
@@ -382,6 +421,12 @@ const sv: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Tillbaka till atlasen",
+  further: { label: "Vidare läsning" },
+  applications: {
+    label: "Var du möter den",
+    lead: "Hur och var den här tekniken lever i världen idag.",
+  },
+  sound: { label: "Lyssna" },
 };
 
 const no: UiDict = {
@@ -430,6 +475,12 @@ const no: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Tilbake til atlaset",
+  further: { label: "Videre lesing" },
+  applications: {
+    label: "Hvor du møter den",
+    lead: "Hvordan og hvor denne teknikken lever i verden i dag.",
+  },
+  sound: { label: "Hør" },
 };
 
 export const UI: Record<Locale, UiDict> = { en, de, es, fr, it, pt, sv, no };

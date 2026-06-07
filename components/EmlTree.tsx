@@ -50,11 +50,7 @@ export function EmlTree({ root, className }: { root: EmlNode; className?: string
   const H = height * cellH + padY * 2;
 
   return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      className={className}
-      preserveAspectRatio="xMidYMid meet"
-    >
+    <svg viewBox={`0 0 ${W} ${H}`} className={className} preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="emlEdge" x1="0" x2="0" y1="0" y2="1">
           <stop offset="0%" stopColor="#b388ff" stopOpacity="0.6" />
@@ -112,10 +108,19 @@ export function EmlTree({ root, className }: { root: EmlNode; className?: string
           );
         }
         const label = n.node.kind === "one" ? "1" : n.node.kind === "z" ? "z" : "p";
-        const stroke = n.node.kind === "one" ? "#ffd166" : n.node.kind === "z" ? "#7df3ff" : "#ff7ab6";
+        const stroke =
+          n.node.kind === "one" ? "#ffd166" : n.node.kind === "z" ? "#7df3ff" : "#ff7ab6";
         return (
           <g key={`n${i}`}>
-            <circle cx={cx} cy={cy} r={13} fill="#0a0c12" stroke={stroke} strokeOpacity="0.8" strokeWidth="1.1" />
+            <circle
+              cx={cx}
+              cy={cy}
+              r={13}
+              fill="#0a0c12"
+              stroke={stroke}
+              strokeOpacity="0.8"
+              strokeWidth="1.1"
+            />
             <text
               x={cx}
               y={cy + 4}
