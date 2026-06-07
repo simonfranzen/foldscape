@@ -555,4 +555,67 @@ export const TOPIC_LINKS: Record<TopicId, TopicLink[]> = {
       href: "https://www.nature.com/articles/30918",
     },
   ],
+  quine: [
+    {
+      label: "Wikipedia — Quine (computing)",
+      href: "https://en.wikipedia.org/wiki/Quine_(computing)",
+    },
+    {
+      label: "Kleene, S. (1938) — On notation for ordinal numbers (recursion theorem)",
+      href: "https://www.jstor.org/stable/2267778",
+    },
+    {
+      label: "Hofstadter, D. R. — Gödel, Escher, Bach (1979)",
+      href: "https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach",
+    },
+    {
+      label: "David Madore — The Quine Page",
+      href: "https://www.madore.org/~david/computers/quine.html",
+    },
+  ],
+  backprop: [
+    { label: "Wikipedia — Backpropagation", href: "https://en.wikipedia.org/wiki/Backpropagation" },
+    {
+      label: "Rumelhart, Hinton, Williams (1986) — Learning representations by back-propagating errors",
+      href: "https://www.nature.com/articles/323533a0",
+    },
+    {
+      label: "3Blue1Brown — Backpropagation, intuitively",
+      href: "https://www.3blue1brown.com/lessons/backpropagation",
+    },
+    {
+      label: "Goodfellow, Bengio, Courville — Deep Learning (Chapter 6)",
+      href: "https://www.deeplearningbook.org/",
+    },
+  ],
+  diffusion: [
+    { label: "Wikipedia — Diffusion model", href: "https://en.wikipedia.org/wiki/Diffusion_model" },
+    {
+      label: "Ho, Jain, Abbeel (2020) — Denoising Diffusion Probabilistic Models",
+      href: "https://arxiv.org/abs/2006.11239",
+    },
+    {
+      label: "Sohl-Dickstein et al. (2015) — Deep Unsupervised Learning using Nonequilibrium Thermodynamics",
+      href: "https://arxiv.org/abs/1503.03585",
+    },
+    {
+      label: "Song & Ermon (2019) — Generative Modeling by Estimating Gradients of the Data Distribution",
+      href: "https://arxiv.org/abs/1907.05600",
+    },
+  ],
+  riemann: [
+    { label: "Wikipedia — Riemann hypothesis", href: "https://en.wikipedia.org/wiki/Riemann_hypothesis" },
+    {
+      label: "Riemann, B. (1859) — Über die Anzahl der Primzahlen unter einer gegebenen Größe",
+      href: "https://www.claymath.org/library/historical/riemann/Wirkungen.pdf",
+    },
+    {
+      label: "Clay Mathematics Institute — Riemann Hypothesis Millennium Problem",
+      href: "https://www.claymath.org/millennium/riemann-hypothesis/",
+    },
+    {
+      label: "Edwards, H. M. — Riemann's Zeta Function (1974)",
+      href: "https://store.doverpublications.com/0486417409.html",
+    },
+  ],
 };

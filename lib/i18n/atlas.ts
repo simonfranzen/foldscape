@@ -233,6 +233,11 @@ const de: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    diffusion: {
+      title: "Diffusionsmodelle",
+      tagline: "Rauschen, Schritt für Schritt zu einem Bild aufgelöst",
+      body: "Nimm ein Bild und streue ein wenig Gauß-Rauschen darüber. Wiederhole das tausendmal, und es bleibt nur noch Rauschen. Lerne nun die Umkehrung: gegeben reines Rauschen, sage die leicht weniger verrauschte Version voraus. Stapele tausend solcher Schritte und du erzeugst aus reinem Zufall völlig neue Bilder. Das ist die ganze Idee hinter Stable Diffusion, Midjourney und DALL·E — eine Markov-Kette, die gelernt hat, die Wärmegleichung rückwärts zu laufen.",
+    },
     eml: {
       title: "Der EML-Kalkül",
       tagline: "Ein Operator baut (fast) jede elementare Funktion",
@@ -458,6 +463,21 @@ const de: AtlasDict = {
       tagline: "Zwei beliebige Menschen, sechs Handschläge voneinander entfernt",
       body: "Stanley Milgrams Experiment von 1967 schickte Briefe durch die USA über persönliche Kontakte. Die durchschnittliche Kette war etwa sechs Glieder lang. 1998 zeigten Duncan Watts und Steven Strogatz, dass schon ein paar zufällige Abkürzungen in einem regelmäßigen Netzwerk die mittlere Pfadlänge auf rund log(N) kollabieren lassen, während die lokale Clusterung hoch bleibt. Soziale Netzwerke, Gehirne, Stromnetze und das Internet leben alle in diesem Small-World-Regime.",
     },
+    quine: {
+      title: "Die Quine",
+      tagline: "Ein Programm, dessen einzige Ausgabe sein eigener Quelltext ist",
+      body: "Schreibe ein Programm, das sich selbst Zeichen für Zeichen ausgibt, ohne seine eigene Datei zu lesen. Klingt unmöglich — das Programm müsste sein eigenes Listing enthalten, einschließlich des Teils, der das Listing enthält, und so weiter. Kleenes Rekursionssatz besagt, dass das in jeder hinreichend ausdrucksstarken Sprache möglich ist: jede berechenbare Transformation von Programmen besitzt einen Fixpunkt. Quines sind dieser Fixpunkt konkret gemacht — und derselbe Selbstreferenz-Motor, der Gödels Unvollständigkeitsbeweis antreibt.",
+    },
+    riemann: {
+      title: "Die Riemann-Hypothese",
+      tagline: "Jede nichttriviale Nullstelle von ζ liegt auf der kritischen Linie",
+      body: "Die Riemannsche Zeta-Funktion ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + … wird in die gesamte komplexe Ebene fortgesetzt. Die Nullstellen, die nicht bei den negativen geraden Zahlen liegen, scheinen alle auf einer einzigen senkrechten Linie zu sitzen: Realteil genau 1/2. Bernhard Riemann vermutete das 1859 und niemand hat es seither bewiesen oder widerlegt. Ein Beweis würde die Verteilung der Primzahlen festlegen; eines der sieben Millennium-Probleme, 1 Mio. $ Belohnung.",
+    },
+    backprop: {
+      title: "Backpropagation",
+      tagline: "Gradientenabstieg auf einer Kettenregel",
+      body: "Backpropagation ist der Algorithmus, der ein neuronales Netz aus seinen Fehlern lernen lässt. Schicke eine Eingabe vorwärts durch die Schichten, vergleiche die Ausgabe mit dem Ziel und laufe dann die Kettenregel rückwärts, um für jedes Gewicht zu bestimmen, wie sehr es sich ändern muss, damit die Antwort beim nächsten Mal näher dran ist. Der gesamte moderne KI-Boom ruht auf dieser Idee: nichts als mehrdimensionale Analysis plus eine Menge GPUs. Mehrfach unabhängig entdeckt; bekannt geworden durch Rumelhart, Hinton und Williams 1986.",
+    },
   },
 };
 
@@ -503,6 +523,11 @@ const es: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    diffusion: {
+      title: "Modelos de difusión",
+      tagline: "Ruido disuelto en una imagen, paso a paso",
+      body: "Toma cualquier foto y espolvorea un poco de ruido gaussiano. Repítelo mil veces y la imagen se vuelve estática pura. Ahora aprende lo inverso: dado ruido puro, predice la versión un poco menos ruidosa. Apila mil pasos así y puedes generar imágenes nuevas a partir de puro azar. Esa es toda la idea detrás de Stable Diffusion, Midjourney y DALL·E — una cadena de Markov entrenada para hacer correr la ecuación del calor hacia atrás.",
+    },
     eml: {
       title: "El cálculo EML",
       tagline: "Un operador construye (casi) toda función elemental",
@@ -678,6 +703,21 @@ const es: AtlasDict = {
       tagline: "Dos personas cualesquiera, a seis apretones de mano",
       body: "El experimento de Stanley Milgram de 1967 envió cartas a través de Estados Unidos por contactos personales. La cadena media tenía unos seis eslabones. En 1998 Duncan Watts y Steven Strogatz mostraron que basta añadir unos pocos atajos aleatorios a una red regular para que la longitud media de camino caiga a casi log(N), conservando el clustering local. Redes sociales, cerebros, redes eléctricas e Internet viven en este régimen de mundo pequeño.",
     },
+    quine: {
+      title: "La quine",
+      tagline: "Un programa cuya única salida es su propio código fuente",
+      body: "Escribe un programa que se imprima a sí mismo, carácter a carácter, sin leer su propio fichero. Suena imposible: el programa tendría que contener su propio listado, incluida la parte que contiene el listado. El teorema de recursión de Kleene dice que es posible en cualquier lenguaje suficientemente expresivo: toda transformación computable de programas tiene un punto fijo. Las quines son ese punto fijo hecho concreto — y el mismo motor de autorreferencia que mueve la prueba de incompletitud de Gödel.",
+    },
+    riemann: {
+      title: "La hipótesis de Riemann",
+      tagline: "Todo cero no trivial de ζ está en la línea crítica",
+      body: "La función zeta de Riemann ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + … se extiende a todo el plano complejo. Los ceros que no están en los enteros pares negativos parecen estar todos en una única línea vertical: parte real exactamente 1/2. Bernhard Riemann lo conjeturó en 1859 y nadie lo ha probado ni refutado desde entonces. Una prueba fijaría la distribución de los primos; uno de los siete Problemas del Milenio, recompensa de 1 millón de dólares.",
+    },
+    backprop: {
+      title: "Retropropagación",
+      tagline: "Descenso de gradiente sobre la regla de la cadena",
+      body: "La retropropagación es el algoritmo que permite a una red neuronal aprender de sus errores. Pasa una entrada hacia adelante por las capas, compara la salida con el objetivo y luego recorre la regla de la cadena hacia atrás para saber, peso a peso, cuánto debe cambiar cada uno para acercar la respuesta la próxima vez. Todo el auge moderno de la IA descansa en esta idea: solo cálculo multivariable más muchas GPUs. Descubierta varias veces de forma independiente; popularizada por Rumelhart, Hinton y Williams en 1986.",
+    },
   },
 };
 
@@ -723,6 +763,11 @@ const fr: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    diffusion: {
+      title: "Modèles de diffusion",
+      tagline: "Du bruit dissous en image, pas après pas",
+      body: "Prenez une photographie et saupoudrez-y un peu de bruit gaussien. Recommencez mille fois et l'image n'est plus que grésillement. Apprenez maintenant l'inverse : à partir de bruit pur, prédisez la version un peu moins bruitée. Empilez mille étapes de ce type et vous générez des images inédites depuis du pur hasard. C'est toute l'idée derrière Stable Diffusion, Midjourney et DALL·E — une chaîne de Markov entraînée à faire tourner l'équation de la chaleur à l'envers.",
+    },
     eml: {
       title: "Le calcul EML",
       tagline: "Un opérateur bâtit (presque) toute fonction élémentaire",
@@ -898,6 +943,21 @@ const fr: AtlasDict = {
       tagline: "Deux personnes quelconques, à six poignées de main",
       body: "L'expérience de Stanley Milgram (1967) envoyait des lettres à travers les États-Unis par contacts personnels. La chaîne moyenne était d'environ six maillons. En 1998, Duncan Watts et Steven Strogatz montrent qu'il suffit d'ajouter quelques raccourcis aléatoires à un réseau régulier pour faire chuter la longueur moyenne des chemins à environ log(N) tout en conservant un fort clustering local. Réseaux sociaux, cerveaux, réseaux électriques et Internet vivent tous dans ce régime de petit monde.",
     },
+    quine: {
+      title: "La quine",
+      tagline: "Un programme dont la seule sortie est son propre code source",
+      body: "Écris un programme qui s'imprime lui-même, caractère par caractère, sans lire son propre fichier. Cela paraît impossible : le programme devrait contenir son propre listing, y compris la partie qui contient le listing. Le théorème de récursion de Kleene dit que c'est possible dans tout langage suffisamment expressif : toute transformation calculable de programmes admet un point fixe. Les quines sont ce point fixe rendu concret — et le même moteur d'autoréférence qui anime la preuve d'incomplétude de Gödel.",
+    },
+    riemann: {
+      title: "L'hypothèse de Riemann",
+      tagline: "Tout zéro non trivial de ζ se trouve sur la droite critique",
+      body: "La fonction zêta de Riemann ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + … se prolonge à tout le plan complexe. Les zéros qui ne sont pas aux entiers pairs négatifs semblent tous se tenir sur une seule droite verticale : partie réelle exactement 1/2. Bernhard Riemann l'a conjecturé en 1859 et personne ne l'a prouvé ni réfuté depuis. Une preuve fixerait la distribution des nombres premiers ; l'un des sept problèmes du millénaire, un million de dollars à la clé.",
+    },
+    backprop: {
+      title: "Rétropropagation",
+      tagline: "Descente de gradient sur la règle de la chaîne",
+      body: "La rétropropagation est l'algorithme qui permet à un réseau de neurones d'apprendre de ses erreurs. Fais passer une entrée à travers les couches, compare la sortie à la cible, puis remonte la règle de la chaîne pour déterminer, poids par poids, de combien chacun doit changer pour rapprocher la réponse la prochaine fois. Tout l'essor moderne de l'IA repose sur cette idée : juste du calcul multivariable plus beaucoup de GPUs. Découverte plusieurs fois indépendamment ; popularisée par Rumelhart, Hinton et Williams en 1986.",
+    },
   },
 };
 
@@ -943,6 +1003,11 @@ const it: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    diffusion: {
+      title: "Modelli di diffusione",
+      tagline: "Rumore disciolto in un'immagine, passo dopo passo",
+      body: "Prendi una fotografia e cospargila di un po' di rumore gaussiano. Ripeti mille volte e l'immagine è solo fruscio. Ora impara l'inverso: dato il rumore puro, prevedi la versione un po' meno rumorosa. Impila mille passi del genere e generi immagini inedite dal puro caso. È tutta l'idea dietro Stable Diffusion, Midjourney e DALL·E — una catena di Markov addestrata a far girare l'equazione del calore al contrario.",
+    },
     eml: {
       title: "Il calcolo EML",
       tagline: "Un operatore costruisce (quasi) ogni funzione elementare",
@@ -1118,6 +1183,21 @@ const it: AtlasDict = {
       tagline: "Due persone qualsiasi, a sei strette di mano di distanza",
       body: "L'esperimento di Stanley Milgram del 1967 spediva lettere attraverso gli Stati Uniti tramite contatti personali. La catena media era lunga circa sei anelli. Nel 1998 Duncan Watts e Steven Strogatz mostrarono che basta aggiungere pochi collegamenti casuali a una rete regolare per far crollare la lunghezza media del cammino a circa log(N), mantenendo alto il clustering locale. Reti sociali, cervelli, reti elettriche e Internet vivono tutti in questo regime di piccolo mondo.",
     },
+    quine: {
+      title: "La quine",
+      tagline: "Un programma il cui unico output è il proprio codice sorgente",
+      body: "Scrivi un programma che stampi sé stesso, carattere per carattere, senza leggere il proprio file. Sembra impossibile: il programma dovrebbe contenere il proprio listato, inclusa la parte che contiene il listato. Il teorema di ricorsione di Kleene dice che è possibile in qualsiasi linguaggio abbastanza espressivo: ogni trasformazione calcolabile di programmi ammette un punto fisso. Le quine sono quel punto fisso reso concreto — e lo stesso motore di autoreferenza che muove la dimostrazione di incompletezza di Gödel.",
+    },
+    riemann: {
+      title: "L'ipotesi di Riemann",
+      tagline: "Ogni zero non banale di ζ giace sulla retta critica",
+      body: "La funzione zeta di Riemann ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + … si estende a tutto il piano complesso. Gli zeri che non si trovano agli interi pari negativi sembrano stare tutti su un'unica retta verticale: parte reale esattamente 1/2. Bernhard Riemann lo congetturò nel 1859 e nessuno l'ha dimostrato né confutato da allora. Una dimostrazione fisserebbe la distribuzione dei numeri primi; uno dei sette Problemi del Millennio, premio di 1 milione di dollari.",
+    },
+    backprop: {
+      title: "Retropropagazione",
+      tagline: "Discesa del gradiente su una regola della catena",
+      body: "La retropropagazione è l'algoritmo che permette a una rete neurale di imparare dai propri errori. Manda un input in avanti attraverso gli strati, confronta l'uscita con il bersaglio, poi percorri all'indietro la regola della catena per scoprire, peso per peso, di quanto ciascuno deve cambiare per rendere la risposta più vicina la prossima volta. L'intero boom moderno dell'IA poggia su questa idea: nient'altro che analisi multivariabile più molte GPU. Scoperta più volte in modo indipendente; resa popolare da Rumelhart, Hinton e Williams nel 1986.",
+    },
   },
 };
 
@@ -1163,6 +1243,11 @@ const pt: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    diffusion: {
+      title: "Modelos de difusão",
+      tagline: "Ruído dissolvido numa imagem, passo a passo",
+      body: "Pega numa fotografia e polvilha-lhe um pouco de ruído gaussiano. Repete mil vezes e a imagem é só chuvisco. Aprende agora o inverso: dado ruído puro, prevê a versão um pouco menos ruidosa. Empilha mil passos destes e geras imagens inéditas a partir de puro acaso. É toda a ideia por trás do Stable Diffusion, Midjourney e DALL·E — uma cadeia de Markov treinada para fazer correr a equação do calor ao contrário.",
+    },
     eml: {
       title: "O cálculo EML",
       tagline: "Um operador constrói (quase) toda função elementar",
@@ -1338,6 +1423,21 @@ const pt: AtlasDict = {
       tagline: "Duas pessoas quaisquer, a seis apertos de mão de distância",
       body: "A experiência de Stanley Milgram (1967) enviou cartas pelos Estados Unidos por contactos pessoais. A cadeia média tinha cerca de seis elos. Em 1998 Duncan Watts e Steven Strogatz mostraram que basta acrescentar uns poucos atalhos aleatórios a uma rede regular para o comprimento médio dos caminhos colapsar para cerca de log(N), mantendo alto o clustering local. Redes sociais, cérebros, redes eléctricas e a Internet vivem todos neste regime de mundo pequeno.",
     },
+    quine: {
+      title: "A quine",
+      tagline: "Um programa cuja única saída é o seu próprio código-fonte",
+      body: "Escreve um programa que se imprima a si próprio, carácter a carácter, sem ler o seu próprio ficheiro. Parece impossível: o programa teria de conter a sua própria listagem, incluindo a parte que contém a listagem. O teorema da recursão de Kleene diz que é possível em qualquer linguagem suficientemente expressiva: toda a transformação computável de programas tem um ponto fixo. As quines são esse ponto fixo tornado concreto — e o mesmo motor de autorreferência que move a prova de incompletude de Gödel.",
+    },
+    riemann: {
+      title: "A hipótese de Riemann",
+      tagline: "Todo zero não trivial de ζ está na recta crítica",
+      body: "A função zeta de Riemann ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + … estende-se a todo o plano complexo. Os zeros que não estão nos inteiros pares negativos parecem estar todos numa única recta vertical: parte real exactamente 1/2. Bernhard Riemann conjecturou-o em 1859 e ninguém o provou ou refutou desde então. Uma demonstração fixaria a distribuição dos primos; um dos sete Problemas do Milénio, prémio de 1 milhão de dólares.",
+    },
+    backprop: {
+      title: "Retropropagação",
+      tagline: "Descida do gradiente sobre a regra da cadeia",
+      body: "A retropropagação é o algoritmo que permite a uma rede neuronal aprender com os seus erros. Empurra uma entrada para a frente pelas camadas, compara a saída com o alvo e depois percorre a regra da cadeia para trás para descobrir, peso a peso, quanto cada um deve mudar para que a resposta fique mais perto da próxima vez. Todo o boom moderno da IA assenta nesta ideia: apenas cálculo multivariável mais muitas GPUs. Descoberta várias vezes de forma independente; popularizada por Rumelhart, Hinton e Williams em 1986.",
+    },
   },
 };
 
@@ -1383,6 +1483,11 @@ const sv: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    diffusion: {
+      title: "Diffusionsmodeller",
+      tagline: "Brus upplöst i en bild, steg för steg",
+      body: "Ta vilket fotografi som helst och strö i lite gaussiskt brus. Upprepa tusen gånger och bilden är rent brus. Lär dig nu omvändningen: givet rent brus, förutsäg den något mindre brusiga versionen. Stapla tusen sådana steg och du kan generera helt nya bilder ur ren slump. Det är hela idén bakom Stable Diffusion, Midjourney och DALL·E — en Markovkedja tränad att köra värmeekvationen baklänges.",
+    },
     eml: {
       title: "EML-kalkylen",
       tagline: "En operator bygger (nästan) varje elementär funktion",
@@ -1558,6 +1663,21 @@ const sv: AtlasDict = {
       tagline: "Vilka två personer som helst, sex handslag bort",
       body: "Stanley Milgrams experiment 1967 skickade brev tvärs över USA via personliga kontakter. Den genomsnittliga kedjan var ungefär sex länkar lång. År 1998 visade Duncan Watts och Steven Strogatz att det räcker att lägga in några slumpmässiga genvägar i ett regelbundet nätverk för att medellängden ska kollapsa till ungefär log(N) medan den lokala klustringen förblir hög. Sociala nätverk, hjärnor, elnät och internet lever alla i denna small-world-regim.",
     },
+    quine: {
+      title: "Quinen",
+      tagline: "Ett program vars enda utdata är dess egen källkod",
+      body: "Skriv ett program som skriver ut sig självt, tecken för tecken, utan att läsa sin egen fil. Låter omöjligt — programmet skulle behöva innehålla sin egen listning, inklusive den del som innehåller listningen. Kleenes rekursionssats säger att det är möjligt i varje tillräckligt uttrycksfullt språk: varje beräkningsbar transformation av program har en fixpunkt. Quiner är den fixpunkten gjord konkret — och samma självreferensmotor som driver Gödels ofullständighetsbevis.",
+    },
+    riemann: {
+      title: "Riemannhypotesen",
+      tagline: "Varje icke-trivialt nollställe till ζ ligger på den kritiska linjen",
+      body: "Riemanns zetafunktion ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + … utvidgas till hela det komplexa planet. Nollställena som inte ligger vid de negativa jämna heltalen tycks alla sitta på en enda lodrät linje: realdel precis 1/2. Bernhard Riemann förmodade detta 1859 och ingen har bevisat eller motbevisat det sedan dess. Ett bevis skulle låsa fast primtalens fördelning; ett av de sju millennieproblemen, en miljon dollar i belöning.",
+    },
+    backprop: {
+      title: "Backpropagation",
+      tagline: "Gradientnedstigning på en kedjeregel",
+      body: "Backpropagation är algoritmen som låter ett neuralt nätverk lära sig av sina misstag. Mata en ingång framåt genom lagren, jämför utgången med målet och gå sedan kedjeregeln baklänges för att, vikt för vikt, ta reda på hur mycket var och en ska ändras för att svaret ska bli närmare nästa gång. Hela den moderna AI-explosionen vilar på denna idé: bara multivariabel kalkyl plus en massa GPU:er. Upptäckt oberoende flera gånger; populariserad av Rumelhart, Hinton och Williams 1986.",
+    },
   },
 };
 
@@ -1603,6 +1723,11 @@ const no: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    diffusion: {
+      title: "Diffusjonsmodeller",
+      tagline: "Støy oppløst til et bilde, steg for steg",
+      body: "Ta et hvilket som helst fotografi og strø på litt gaussisk støy. Gjenta tusen ganger og bildet er ren snø. Lær nå det motsatte: gitt ren støy, forutsi den litt mindre støyete versjonen. Stable tusen slike steg og du kan generere helt nye bilder fra ren tilfeldighet. Det er hele idéen bak Stable Diffusion, Midjourney og DALL·E — en Markov-kjede trent til å kjøre varmelikningen baklengs.",
+    },
     eml: {
       title: "EML-kalkylen",
       tagline: "Én operator bygger (nesten) hver elementær funksjon",
@@ -1777,6 +1902,21 @@ const no: AtlasDict = {
       title: "Seks grader & små verdener",
       tagline: "Hvilke som helst to mennesker, seks håndtrykk fra hverandre",
       body: "Stanley Milgrams eksperiment fra 1967 sendte brev tvers gjennom USA via personlige kontakter. Den gjennomsnittlige kjeden var om lag seks ledd lang. I 1998 viste Duncan Watts og Steven Strogatz at det holder å legge inn noen tilfeldige snarveier i et regelmessig nettverk for å få den gjennomsnittlige veilengden til å falle til omtrent log(N), samtidig som den lokale klyngingen holder seg høy. Sosiale nettverk, hjerner, strømnett og internett lever alle i dette small-world-regimet.",
+    },
+    quine: {
+      title: "Quinen",
+      tagline: "Et program hvis eneste utdata er dets egen kildekode",
+      body: "Skriv et program som skriver seg selv ut, tegn for tegn, uten å lese sin egen fil. Høres umulig ut — programmet måtte inneholde sin egen listing, inkludert delen som inneholder listingen. Kleenes rekursjonssetning sier at det er mulig i ethvert tilstrekkelig uttrykksfullt språk: hver beregnbar transformasjon av programmer har et fikspunkt. Quiner er det fikspunktet gjort konkret — og den samme selvreferansemotoren som driver Gödels ufullstendighetsbevis.",
+    },
+    riemann: {
+      title: "Riemannhypotesen",
+      tagline: "Hvert ikke-trivielt nullpunkt til ζ ligger på den kritiske linjen",
+      body: "Riemanns zetafunksjon ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + … utvides til hele det komplekse planet. Nullpunktene som ikke ligger ved de negative partallene ser ut til å sitte alle på én eneste loddrett linje: realdel nøyaktig 1/2. Bernhard Riemann formodet dette i 1859 og ingen har bevist eller motbevist det siden. Et bevis ville feste primtallenes fordeling; ett av de syv tusenårsproblemene, en million dollar i belønning.",
+    },
+    backprop: {
+      title: "Backpropagation",
+      tagline: "Gradientnedstigning på en kjerneregel",
+      body: "Backpropagation er algoritmen som lar et nevralt nettverk lære av feilene sine. Send en inngang fremover gjennom lagene, sammenlign utgangen med målet, og gå deretter kjerneregelen baklengs for, vekt for vekt, å finne ut hvor mye hver enkelt må endres for at svaret skal bli nærmere neste gang. Hele den moderne AI-eksplosjonen hviler på denne ideen: bare multivariabel kalkulus pluss massevis av GPU-er. Oppdaget uavhengig flere ganger; gjort kjent av Rumelhart, Hinton og Williams i 1986.",
     },
   },
 };

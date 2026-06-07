@@ -196,4 +196,24 @@ export const EN_PLACEHOLDERS: Record<PlaceholderId, TopicMeta> = {
     tagline: "Any two people, six handshakes apart",
     body: "Stanley Milgram's 1967 experiment sent letters across the United States via personal contacts. The average chain was about six links long. In 1998 Duncan Watts and Steven Strogatz showed that adding just a few random shortcuts to a regular network collapses the average path length to roughly log(N) while keeping local clustering high. Social networks, brains, power grids and the internet all live in this small-world regime.",
   },
+  quine: {
+    title: "The Quine",
+    tagline: "A program whose only output is its own source code",
+    body: "Write a program that prints itself, character for character, without reading its own file. Sounds impossible — the program would need to contain its own listing, including the part that contains its own listing, forever. Kleene's recursion theorem says it is possible in any sufficiently expressive language: every computable transformation of a program has a fixed point. Quines are that fixed point made concrete, and they are the same self-reference engine that powers Gödel's incompleteness proof.",
+  },
+  backprop: {
+    title: "Backpropagation",
+    tagline: "Gradient descent on a chain rule",
+    body: "Backpropagation is the algorithm that lets a neural network learn from its mistakes. Run an input forward through the layers, compare the output to the target, then walk the chain rule backward to find — for every weight — how much it should change to make the answer closer next time. The whole modern AI boom rests on this idea: just multivariable calculus plus a lot of GPUs. Discovered independently many times; popularised by Rumelhart, Hinton and Williams in 1986.",
+  },
+  diffusion: {
+    title: "Diffusion Models",
+    tagline: "Noise dissolved into an image, step by step",
+    body: "Take any picture and add a sprinkle of Gaussian noise. Repeat a thousand times and the image is pure static. Now learn the reverse: given pure noise, predict the slightly less noisy version. Stack a thousand such steps and you can generate brand-new images from nothing but random noise. That is the entire idea behind Stable Diffusion, Midjourney and DALL·E — a Markov chain trained to run time backwards through a heat equation.",
+  },
+  riemann: {
+    title: "The Riemann Hypothesis",
+    tagline: "Every non-trivial zero of ζ lies on the critical line",
+    body: "The Riemann zeta function ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + … extends to the whole complex plane. The zeros that aren't at the negative even integers all seem to sit on a single vertical line: real part exactly 1/2. Bernhard Riemann conjectured this in 1859 and nobody has proved or disproved it since. A proof would lock down how prime numbers are distributed; one of the seven Millennium Prize Problems, $1M reward.",
+  },
 };

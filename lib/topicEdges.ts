@@ -87,6 +87,24 @@ export const TOPIC_EDGES: TopicEdge[] = [
   { a: "gabrielshorn", b: "fourier", kind: "echo" }, // analysis paradoxes
   { a: "banach", b: "hilberthotel", kind: "family" },
   { a: "banach", b: "cantor", kind: "echo" },
+
+  // ── Fifth wave — Quine, Backprop, Diffusion, Riemann ──────────────────
+  { a: "quine", b: "godel", kind: "bridge" }, // self-reference engine
+  { a: "quine", b: "halting", kind: "bridge" }, // Kleene's recursion theorem
+  { a: "quine", b: "iota", kind: "family" }, // combinator self-reference
+  { a: "quine", b: "rule110", kind: "echo" }, // universal computation
+  { a: "backprop", b: "logistic", kind: "bridge" }, // sigmoid + chain rule
+  { a: "backprop", b: "fourier", kind: "echo" }, // signal processing math
+  { a: "backprop", b: "pvsnp", kind: "echo" }, // training NP-hardness
+  { a: "backprop", b: "diffusion", kind: "family" }, // modern AI math
+  { a: "diffusion", b: "lorenz", kind: "bridge" }, // stochastic dynamics
+  { a: "diffusion", b: "bzr", kind: "echo" }, // reaction–diffusion cousin
+  { a: "diffusion", b: "turingpattern", kind: "family" }, // pattern formation via diffusion
+  { a: "diffusion", b: "galton", kind: "echo" }, // Gaussian noise + CLT
+  { a: "riemann", b: "ulam", kind: "bridge" }, // primes distribution
+  { a: "riemann", b: "euler", kind: "family" }, // ζ comes from Euler's product
+  { a: "riemann", b: "pvsnp", kind: "echo" }, // Millennium siblings
+  { a: "riemann", b: "cantor", kind: "echo" }, // foundations / open problems
 ];
 
 // Quick adjacency lookup keyed by topic id. Built once at module load.

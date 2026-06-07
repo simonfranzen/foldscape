@@ -50,7 +50,12 @@ export type TopicId =
   | "eulerchar"
   | "konigsberg"
   | "fourcolor"
-  | "smallworld";
+  | "smallworld"
+  // Fifth wave — open problems + the AI math
+  | "quine"
+  | "backprop"
+  | "diffusion"
+  | "riemann";
 
 export type TopicStatus = "interactive" | "stub";
 export type TopicCategory = "logic" | "computation" | "chaos" | "geometry" | "analysis" | "paradox";
@@ -615,6 +620,55 @@ export const TOPICS: Topic[] = [
     sections: [
       { key: "story", href: "/smallworld" },
       { key: "explorer", href: "/smallworld/explorer" },
+    ],
+  },
+  // Fifth wave — open problems + the AI math
+  {
+    id: "quine",
+    href: "/quine",
+    status: "interactive",
+    category: "computation",
+    glyph: "↻",
+    formula: "p ↦ print(p)",
+    sections: [
+      { key: "story", href: "/quine" },
+      { key: "explorer", href: "/quine/explorer" },
+    ],
+  },
+  {
+    id: "backprop",
+    href: "/backprop",
+    status: "interactive",
+    category: "analysis",
+    glyph: "∂L",
+    formula: "w ← w − η∇w L",
+    sections: [
+      { key: "story", href: "/backprop" },
+      { key: "explorer", href: "/backprop/explorer" },
+    ],
+  },
+  {
+    id: "diffusion",
+    href: "/diffusion",
+    status: "interactive",
+    category: "chaos",
+    glyph: "→←",
+    formula: "x_t = √(1−β)·x_{t−1} + √β·ε",
+    sections: [
+      { key: "story", href: "/diffusion" },
+      { key: "explorer", href: "/diffusion/explorer" },
+    ],
+  },
+  {
+    id: "riemann",
+    href: "/riemann",
+    status: "interactive",
+    category: "analysis",
+    glyph: "ζ",
+    formula: "ζ(s) = 0 ⇒ ℜ(s) = ½",
+    sections: [
+      { key: "story", href: "/riemann" },
+      { key: "explorer", href: "/riemann/explorer" },
     ],
   },
 ];

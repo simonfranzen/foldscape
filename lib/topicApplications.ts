@@ -971,6 +971,114 @@ const en: Partial<Record<TopicId, Application[]>> = {
         "The 1994 movie game and the Bacon Number website are popular-culture artefacts of small-world theory; mathematicians compete for low Erdős numbers.",
     },
   ],
+  quine: [
+    {
+      domain: "Programming language theory",
+      description:
+        "Quines are the standard sanity-check that a language is expressive enough for self-reference; courses on theory of computation use them to teach Kleene's recursion theorem in concrete form.",
+    },
+    {
+      domain: "Computer viruses & self-replicators",
+      description:
+        "Every classical virus, worm and metamorphic engine is a quine variant: code that copies itself before doing anything else. Modern self-replicating malware is studied as applied quine engineering.",
+    },
+    {
+      domain: "Genetics & molecular biology",
+      description:
+        "DNA replication is biology's quine: a sequence whose only job is to copy itself, including the copying machinery. Hofstadter draws the analogy explicitly in Gödel, Escher, Bach.",
+    },
+    {
+      domain: "Compiler bootstrapping",
+      description:
+        "Trusting Trust (Ken Thompson, 1984) showed that a compiler's compiler can be a quine inserting a backdoor at every build — the foundation of supply-chain security and reproducible-build research.",
+    },
+    {
+      domain: "Demoscene & code art",
+      description:
+        "Polyglot quines — programs that print themselves and are valid in multiple languages — are a beloved code-art genre; the IOCCC has a dedicated quine category.",
+    },
+  ],
+  backprop: [
+    {
+      domain: "Deep learning",
+      description:
+        "Every modern neural network — image classifier, language model, recommender — is trained by backpropagation. PyTorch and JAX implement it as their differentiation core (autograd).",
+    },
+    {
+      domain: "Computer vision",
+      description:
+        "Convolutional networks for medical imaging, autonomous driving and biometric ID all use backprop to learn filter kernels directly from labelled data; gradients flow back through convolutions and pooling layers.",
+    },
+    {
+      domain: "Language models",
+      description:
+        "GPT, Claude, Llama and every transformer are trained by backpropagating cross-entropy loss through trillions of parameters. The single algorithm that scales from one neuron to one trillion.",
+    },
+    {
+      domain: "Robotics & control",
+      description:
+        "Policy-gradient methods in reinforcement learning use backprop to update neural controllers from reward signals; modern bipedal-walking and dexterous-manipulation robots all use it.",
+    },
+    {
+      domain: "Inverse problems in science",
+      description:
+        "Physicists invert experiments by setting up the forward model in PyTorch/JAX and backpropagating through it — used in protein design (AlphaFold), differentiable rendering, and gradient-based experimental design.",
+    },
+  ],
+  diffusion: [
+    {
+      domain: "Image generation",
+      description:
+        "Stable Diffusion, Midjourney, DALL·E 3 and Imagen are all latent-diffusion models. Type a prompt, the model walks Gaussian noise back to an image consistent with the text.",
+    },
+    {
+      domain: "Video generation",
+      description:
+        "Sora, Veo and Runway extend the same diffusion math to three dimensions (height × width × time) so the denoiser learns space-time consistency along with appearance.",
+    },
+    {
+      domain: "Drug & protein design",
+      description:
+        "RFdiffusion (Baker lab) and Chroma generate novel protein backbones by denoising 3D coordinates instead of pixels — published candidates have been synthesised and shown to fold.",
+    },
+    {
+      domain: "Audio & speech",
+      description:
+        "AudioLDM, Riffusion and the speech-synthesis line ElevenLabs/Vall-E use 1D diffusion over waveforms or spectrograms to generate music and natural-sounding voices from text.",
+    },
+    {
+      domain: "Physics & thermodynamics",
+      description:
+        "The forward process is literally Langevin dynamics — the noise schedule mirrors a system relaxing toward thermal equilibrium. Sohl-Dickstein's original 2015 paper was framed as non-equilibrium thermodynamics.",
+    },
+  ],
+  riemann: [
+    {
+      domain: "Prime number theorem",
+      description:
+        "The error term in the count of primes below N is controlled by the zeros of ζ; the Riemann hypothesis is equivalent to the sharpest possible bound on how irregularly the primes are spaced.",
+    },
+    {
+      domain: "Cryptography",
+      description:
+        "RSA, elliptic-curve crypto and integer-factorisation hardness all depend on assumptions about prime distribution; RH-equivalent statements feed into best-known bounds on cryptographic security.",
+    },
+    {
+      domain: "Quantum chaos",
+      description:
+        "The statistics of zeta-zero spacings match the eigenvalue statistics of random Hermitian matrices — the same matrices that model heavy-nucleus energy levels. The Montgomery-Dyson conjecture (1972) is one of the most surprising links in mathematics.",
+    },
+    {
+      domain: "Computer-verified numerics",
+      description:
+        "The first 10^13 non-trivial zeros have been computed to lie on the critical line (Xavier Gourdon, 2004 and later). No counterexample to RH has ever been found in any verification campaign.",
+    },
+    {
+      domain: "Pop science & open-problem prestige",
+      description:
+        "Riemann is the most famous unsolved problem outside Fermat — a Clay Millennium Prize ($1M), recurring fictional appearances (A Beautiful Mind, The Music of the Primes), and a steady stream of disproofs that don't survive peer review.",
+    },
+  ],
 };
 
 const de: Partial<Record<TopicId, Application[]>> = {
@@ -1932,6 +2040,114 @@ const de: Partial<Record<TopicId, Application[]>> = {
       domain: "Six Degrees of Kevin Bacon",
       description:
         "Das Filmspiel von 1994 und die Bacon-Number-Website sind popkulturelle Artefakte der Small-World-Theorie; Mathematiker:innen wetteifern um niedrige Erdős-Zahlen.",
+    },
+  ],
+  diffusion: [
+    {
+      domain: "Bildgenerierung",
+      description:
+        "Stable Diffusion, Midjourney, DALL·E 3 und Imagen sind allesamt Latent-Diffusionsmodelle. Gib einen Prompt ein, und das Modell läuft Gauß-Rauschen zurück in ein zum Text passendes Bild.",
+    },
+    {
+      domain: "Videogenerierung",
+      description:
+        "Sora, Veo und Runway erweitern dieselbe Diffusionsmathematik auf drei Dimensionen (Höhe × Breite × Zeit), sodass der Entrauscher räumlich-zeitliche Kohärenz neben dem Aussehen lernt.",
+    },
+    {
+      domain: "Wirkstoff- & Proteindesign",
+      description:
+        "RFdiffusion (Baker-Labor) und Chroma erzeugen neue Protein-Backbones, indem sie 3D-Koordinaten statt Pixel entrauschen — veröffentlichte Kandidaten wurden synthetisiert und falten sich korrekt.",
+    },
+    {
+      domain: "Audio & Sprache",
+      description:
+        "AudioLDM, Riffusion und die Sprachsynthese-Linie ElevenLabs/Vall-E nutzen 1D-Diffusion über Wellenformen oder Spektrogramme, um Musik und natürlich klingende Stimmen aus Text zu erzeugen.",
+    },
+    {
+      domain: "Physik & Thermodynamik",
+      description:
+        "Der Vorwärtsprozess ist buchstäblich Langevin-Dynamik — der Rauschplan spiegelt ein System wider, das ins thermische Gleichgewicht relaxiert. Sohl-Dicksteins Originalarbeit von 2015 war als Nichtgleichgewichts-Thermodynamik formuliert.",
+    },
+  ],
+  quine: [
+    {
+      domain: "Programmiersprachen-Theorie",
+      description:
+        "Quines sind der Standard-Sanity-Check, ob eine Sprache ausdrucksstark genug für Selbstreferenz ist; Vorlesungen zur Berechenbarkeitstheorie nutzen sie, um Kleenes Rekursionssatz greifbar zu machen.",
+    },
+    {
+      domain: "Computerviren & Selbstreplikatoren",
+      description:
+        "Jeder klassische Virus, Wurm und jede metamorphe Engine ist eine Quine-Variante: Code, der sich zuerst kopiert, bevor er irgendetwas anderes tut. Moderne sich selbst replizierende Malware wird als angewandte Quine-Technik untersucht.",
+    },
+    {
+      domain: "Genetik & Molekularbiologie",
+      description:
+        "Die DNA-Replikation ist die Quine der Biologie: eine Sequenz, deren einzige Aufgabe darin besteht, sich selbst samt ihrer Kopiermaschinerie zu kopieren. Hofstadter zieht die Analogie in Gödel, Escher, Bach ausdrücklich.",
+    },
+    {
+      domain: "Compiler-Bootstrapping",
+      description:
+        "Trusting Trust (Ken Thompson, 1984) zeigte, dass der Compiler eines Compilers eine Quine sein kann, die bei jedem Build eine Hintertür einfügt — das Fundament der Lieferkettensicherheit und der Forschung zu reproduzierbaren Builds.",
+    },
+    {
+      domain: "Demoszene & Code-Kunst",
+      description:
+        "Polyglotte Quines — Programme, die sich selbst drucken und in mehreren Sprachen gleichzeitig gültig sind — sind ein geliebtes Code-Art-Genre; der IOCCC hat eine eigene Quine-Kategorie.",
+    },
+  ],
+  riemann: [
+    {
+      domain: "Primzahlsatz",
+      description:
+        "Der Fehlerterm in der Anzahl der Primzahlen unter N wird von den Nullstellen von ζ kontrolliert; die Riemann-Hypothese ist äquivalent zur schärfstmöglichen Schranke dafür, wie unregelmäßig die Primzahlen verteilt sind.",
+    },
+    {
+      domain: "Kryptographie",
+      description:
+        "RSA, elliptische-Kurven-Kryptographie und die Härte der Faktorisierung beruhen auf Annahmen über die Primzahlverteilung; RH-äquivalente Aussagen liefern die besten bekannten Schranken für die kryptographische Sicherheit.",
+    },
+    {
+      domain: "Quantenchaos",
+      description:
+        "Die Statistik der Abstände zwischen Zeta-Nullstellen stimmt mit den Eigenwertstatistiken zufälliger hermitescher Matrizen überein — derselben, die schwere Atomkern-Energieniveaus modellieren. Die Montgomery-Dyson-Vermutung (1972) ist eine der überraschendsten Brücken der Mathematik.",
+    },
+    {
+      domain: "Computerverifizierte Numerik",
+      description:
+        "Die ersten 10^13 nichttrivialen Nullstellen wurden auf die kritische Linie gerechnet (Xavier Gourdon, 2004 und später). Keine Verifikationskampagne hat je ein Gegenbeispiel zu RH gefunden.",
+    },
+    {
+      domain: "Popkultur & Prestige offener Probleme",
+      description:
+        "Riemann ist außerhalb von Fermat das berühmteste ungelöste Problem — ein Clay Millennium Prize (1 Mio. $), wiederkehrende Auftritte in Fiktion (A Beautiful Mind, The Music of the Primes) und ein steter Strom von «Beweisen», die das Peer-Review nicht überleben.",
+    },
+  ],
+  backprop: [
+    {
+      domain: "Deep Learning",
+      description:
+        "Jedes moderne neuronale Netz — Bildklassifikator, Sprachmodell, Empfehler — wird durch Backpropagation trainiert. PyTorch und JAX implementieren sie als ihren Differentiationskern (Autograd).",
+    },
+    {
+      domain: "Computer Vision",
+      description:
+        "Faltungsnetze für medizinische Bildgebung, autonomes Fahren und biometrische Identifikation lernen ihre Filterkerne direkt aus gelabelten Daten via Backprop; Gradienten fließen rückwärts durch Faltungs- und Pooling-Schichten.",
+    },
+    {
+      domain: "Sprachmodelle",
+      description:
+        "GPT, Claude, Llama und jeder Transformer werden trainiert, indem Cross-Entropy-Verluste durch Billionen Parameter zurückpropagiert werden. Der eine Algorithmus, der von einem Neuron bis zu einer Billion skaliert.",
+    },
+    {
+      domain: "Robotik & Regelung",
+      description:
+        "Policy-Gradient-Methoden im Reinforcement Learning nutzen Backprop, um neuronale Regler aus Belohnungssignalen zu lernen; moderne zweibeinige Lauf- und Geschicklichkeits-Manipulationsroboter setzen alle darauf.",
+    },
+    {
+      domain: "Inverse Probleme in der Wissenschaft",
+      description:
+        "Physiker:innen invertieren Experimente, indem sie das Vorwärtsmodell in PyTorch/JAX aufbauen und durch es hindurch zurückpropagieren — eingesetzt im Protein-Design (AlphaFold), in differenzierbarem Rendering und im gradientbasierten Experimententwurf.",
     },
   ],
 };
@@ -2900,6 +3116,114 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
           "El juego cinematográfico de 1994 y la web del número de Bacon son artefactos populares de la teoría del mundo pequeño; quienes hacen matemáticas compiten por números de Erdős bajos.",
       },
     ],
+    diffusion: [
+      {
+        domain: "Generación de imágenes",
+        description:
+          "Stable Diffusion, Midjourney, DALL·E 3 e Imagen son modelos de difusión latente. Escribe un prompt y el modelo recorre ruido gaussiano hasta una imagen coherente con el texto.",
+      },
+      {
+        domain: "Generación de vídeo",
+        description:
+          "Sora, Veo y Runway llevan la misma matemática de difusión a tres dimensiones (alto × ancho × tiempo) para que el denoiser aprenda coherencia espacio-temporal junto con el aspecto.",
+      },
+      {
+        domain: "Diseño de fármacos y proteínas",
+        description:
+          "RFdiffusion (laboratorio Baker) y Chroma generan nuevos esqueletos proteicos eliminando ruido sobre coordenadas 3D en vez de píxeles — candidatos publicados han sido sintetizados y se pliegan correctamente.",
+      },
+      {
+        domain: "Audio y habla",
+        description:
+          "AudioLDM, Riffusion y la línea de síntesis vocal ElevenLabs/Vall-E usan difusión 1D sobre formas de onda o espectrogramas para generar música y voces naturales a partir de texto.",
+      },
+      {
+        domain: "Física y termodinámica",
+        description:
+          "El proceso directo es literalmente dinámica de Langevin — el calendario de ruido refleja un sistema relajándose hacia el equilibrio térmico. El artículo original de Sohl-Dickstein (2015) se planteó como termodinámica de no equilibrio.",
+      },
+    ],
+    quine: [
+      {
+        domain: "Teoría de lenguajes de programación",
+        description:
+          "Las quines son la prueba de cordura estándar de que un lenguaje es lo bastante expresivo para la autorreferencia; los cursos de teoría de la computación las usan para enseñar el teorema de recursión de Kleene en forma concreta.",
+      },
+      {
+        domain: "Virus informáticos y autorreplicadores",
+        description:
+          "Cada virus, gusano y motor metamórfico clásico es una variante de quine: código que se copia antes de hacer cualquier otra cosa. El malware autorreplicante moderno se estudia como ingeniería de quines aplicada.",
+      },
+      {
+        domain: "Genética y biología molecular",
+        description:
+          "La replicación del ADN es la quine de la biología: una secuencia cuya única tarea es copiarse a sí misma, incluida la maquinaria que copia. Hofstadter traza la analogía explícitamente en Gödel, Escher, Bach.",
+      },
+      {
+        domain: "Bootstrapping de compiladores",
+        description:
+          "Trusting Trust (Ken Thompson, 1984) demostró que el compilador de un compilador puede ser una quine que inserta una puerta trasera en cada compilación — base de la seguridad de la cadena de suministro y de la investigación en builds reproducibles.",
+      },
+      {
+        domain: "Demoscene y arte de código",
+        description:
+          "Las quines polígrafas — programas que se imprimen a sí mismos y son válidos en varios lenguajes a la vez — son un género adorado del arte de código; el IOCCC tiene una categoría dedicada a las quines.",
+      },
+    ],
+    riemann: [
+      {
+        domain: "Teorema de los números primos",
+        description:
+          "El término de error en el recuento de primos por debajo de N está controlado por los ceros de ζ; la hipótesis de Riemann equivale a la cota más fina posible sobre cuán irregularmente se distribuyen los primos.",
+      },
+      {
+        domain: "Criptografía",
+        description:
+          "RSA, la criptografía de curva elíptica y la dureza de la factorización dependen de hipótesis sobre la distribución de los primos; enunciados RH-equivalentes alimentan las mejores cotas conocidas sobre la seguridad criptográfica.",
+      },
+      {
+        domain: "Caos cuántico",
+        description:
+          "La estadística de los espaciados entre ceros de zeta coincide con la estadística de los autovalores de matrices hermíticas aleatorias — las mismas con que se modelan los niveles de energía de núcleos pesados. La conjetura de Montgomery-Dyson (1972) es una de las pasarelas más sorprendentes de la matemática.",
+      },
+      {
+        domain: "Numéricos verificados por ordenador",
+        description:
+          "Se ha comprobado que los primeros 10^13 ceros no triviales están sobre la línea crítica (Xavier Gourdon, 2004 y posteriores). Ninguna campaña de verificación ha encontrado un contraejemplo a RH.",
+      },
+      {
+        domain: "Divulgación y prestigio de problemas abiertos",
+        description:
+          "Riemann es el problema sin resolver más famoso fuera de Fermat — un Premio Clay del Milenio (1 M$), apariciones recurrentes en la ficción (A Beautiful Mind, La música de los primos) y un goteo constante de «pruebas» que no sobreviven al peer review.",
+      },
+    ],
+    backprop: [
+      {
+        domain: "Aprendizaje profundo",
+        description:
+          "Toda red neuronal moderna —clasificadores de imágenes, modelos de lenguaje, recomendadores— se entrena por retropropagación. PyTorch y JAX la implementan como su núcleo de diferenciación (autograd).",
+      },
+      {
+        domain: "Visión por computador",
+        description:
+          "Las redes convolucionales para imagen médica, conducción autónoma e identificación biométrica aprenden sus núcleos de filtro directamente de datos etiquetados con backprop; los gradientes fluyen hacia atrás por convoluciones y pooling.",
+      },
+      {
+        domain: "Modelos de lenguaje",
+        description:
+          "GPT, Claude, Llama y cualquier transformer se entrenan retropropagando la entropía cruzada a través de billones de parámetros. El único algoritmo que escala de una neurona a un billón.",
+      },
+      {
+        domain: "Robótica y control",
+        description:
+          "Los métodos de gradiente de política en aprendizaje por refuerzo usan backprop para actualizar controladores neuronales a partir de señales de recompensa; los robots modernos de marcha bípeda y manipulación diestra lo usan.",
+      },
+      {
+        domain: "Problemas inversos en ciencia",
+        description:
+          "Los físicos invierten experimentos montando el modelo directo en PyTorch/JAX y retropropagando a través de él — empleado en diseño de proteínas (AlphaFold), renderizado diferenciable y diseño experimental basado en gradientes.",
+      },
+    ],
   },
   fr: {
     eml: [
@@ -3860,6 +4184,114 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
         domain: "Six Degrees of Kevin Bacon",
         description:
           "Le jeu cinéphile de 1994 et le site du Bacon Number sont des artefacts pop de la théorie du petit monde ; les mathématiciens et mathématiciennes se disputent les faibles numéros d'Erdős.",
+      },
+    ],
+    diffusion: [
+      {
+        domain: "Génération d'images",
+        description:
+          "Stable Diffusion, Midjourney, DALL·E 3 et Imagen sont tous des modèles de diffusion latente. Tape un prompt et le modèle ramène du bruit gaussien vers une image cohérente avec le texte.",
+      },
+      {
+        domain: "Génération vidéo",
+        description:
+          "Sora, Veo et Runway étendent la même mathématique de diffusion à trois dimensions (hauteur × largeur × temps), si bien que le débruiteur apprend la cohérence spatio-temporelle en plus de l'apparence.",
+      },
+      {
+        domain: "Conception de médicaments et de protéines",
+        description:
+          "RFdiffusion (laboratoire Baker) et Chroma génèrent de nouveaux squelettes protéiques en débruitant des coordonnées 3D plutôt que des pixels — des candidats publiés ont été synthétisés et se replient correctement.",
+      },
+      {
+        domain: "Audio et voix",
+        description:
+          "AudioLDM, Riffusion et la lignée de synthèse vocale ElevenLabs/Vall-E utilisent de la diffusion 1D sur des formes d'onde ou des spectrogrammes pour générer musique et voix naturelles à partir de texte.",
+      },
+      {
+        domain: "Physique et thermodynamique",
+        description:
+          "Le processus direct est littéralement de la dynamique de Langevin — le calendrier de bruit reflète un système qui se relaxe vers l'équilibre thermique. L'article original de Sohl-Dickstein (2015) était formulé comme de la thermodynamique hors équilibre.",
+      },
+    ],
+    quine: [
+      {
+        domain: "Théorie des langages de programmation",
+        description:
+          "Les quines sont le test de bon sens standard pour vérifier qu'un langage est assez expressif pour l'autoréférence ; les cours de théorie de la calculabilité les utilisent pour enseigner le théorème de récursion de Kleene sous forme concrète.",
+      },
+      {
+        domain: "Virus informatiques & autoréplicateurs",
+        description:
+          "Chaque virus, ver et moteur métamorphique classique est une variante de quine : du code qui se copie avant de faire quoi que ce soit d'autre. Les logiciels malveillants autoréplicants modernes sont étudiés comme de l'ingénierie de quines appliquée.",
+      },
+      {
+        domain: "Génétique & biologie moléculaire",
+        description:
+          "La réplication de l'ADN est la quine de la biologie : une séquence dont la seule tâche est de se copier elle-même, machinerie de copie comprise. Hofstadter trace l'analogie de manière explicite dans Gödel, Escher, Bach.",
+      },
+      {
+        domain: "Bootstrap de compilateurs",
+        description:
+          "Trusting Trust (Ken Thompson, 1984) a montré que le compilateur d'un compilateur peut être une quine qui insère une porte dérobée à chaque build — fondement de la sécurité de la chaîne d'approvisionnement et de la recherche sur les builds reproductibles.",
+      },
+      {
+        domain: "Démoscène & art du code",
+        description:
+          "Les quines polyglottes — des programmes qui s'impriment eux-mêmes et sont valides dans plusieurs langages à la fois — sont un genre adoré de l'art du code ; l'IOCCC a une catégorie dédiée aux quines.",
+      },
+    ],
+    riemann: [
+      {
+        domain: "Théorème des nombres premiers",
+        description:
+          "Le terme d'erreur dans le comptage des premiers inférieurs à N est contrôlé par les zéros de ζ ; l'hypothèse de Riemann équivaut à la borne la plus fine possible sur l'irrégularité de la distribution des premiers.",
+      },
+      {
+        domain: "Cryptographie",
+        description:
+          "RSA, la cryptographie sur courbes elliptiques et la dureté de la factorisation reposent sur des hypothèses concernant la distribution des premiers ; des énoncés RH-équivalents nourrissent les meilleures bornes connues sur la sécurité cryptographique.",
+      },
+      {
+        domain: "Chaos quantique",
+        description:
+          "La statistique des écarts entre zéros de zêta coïncide avec la statistique des valeurs propres de matrices hermitiennes aléatoires — les mêmes qui modélisent les niveaux d'énergie des noyaux lourds. La conjecture de Montgomery-Dyson (1972) est l'un des ponts les plus surprenants de la mathématique.",
+      },
+      {
+        domain: "Vérifications numériques par ordinateur",
+        description:
+          "Les 10^13 premiers zéros non triviaux ont été calculés sur la droite critique (Xavier Gourdon, 2004 et successeurs). Aucune campagne de vérification n'a jamais trouvé de contre-exemple à RH.",
+      },
+      {
+        domain: "Vulgarisation et prestige des problèmes ouverts",
+        description:
+          "Riemann est le problème ouvert le plus célèbre en dehors de Fermat — un prix du millénaire de Clay (1 M$), des apparitions récurrentes dans la fiction (Un homme d'exception, La musique des nombres premiers) et un flot continu de « preuves » qui ne survivent pas à la relecture par les pairs.",
+      },
+    ],
+    backprop: [
+      {
+        domain: "Apprentissage profond",
+        description:
+          "Tout réseau de neurones moderne — classifieur d'images, modèle de langage, recommandeur — est entraîné par rétropropagation. PyTorch et JAX l'implémentent comme cœur de différentiation (autograd).",
+      },
+      {
+        domain: "Vision par ordinateur",
+        description:
+          "Les réseaux convolutionnels pour l'imagerie médicale, la conduite autonome et l'identification biométrique apprennent leurs noyaux de filtres directement à partir de données étiquetées via backprop ; les gradients remontent à travers les convolutions et le pooling.",
+      },
+      {
+        domain: "Modèles de langage",
+        description:
+          "GPT, Claude, Llama et chaque transformer s'entraînent en rétropropageant la perte d'entropie croisée à travers des milliers de milliards de paramètres. Le seul algorithme qui passe d'un neurone à mille milliards.",
+      },
+      {
+        domain: "Robotique & contrôle",
+        description:
+          "Les méthodes de gradient de politique en apprentissage par renforcement utilisent backprop pour mettre à jour des contrôleurs neuronaux à partir des signaux de récompense ; les robots bipèdes et de manipulation dextre modernes en dépendent tous.",
+      },
+      {
+        domain: "Problèmes inverses en science",
+        description:
+          "Les physiciens inversent des expériences en montant le modèle direct dans PyTorch/JAX puis en rétropropageant à travers — utilisé en conception de protéines (AlphaFold), rendu différentiable et conception expérimentale par gradient.",
       },
     ],
   },
@@ -4824,6 +5256,114 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
           "Il gioco cinefilo del 1994 e il sito Bacon Number sono artefatti pop della teoria del piccolo mondo; il mondo matematico si contende numeri di Erdős bassi.",
       },
     ],
+    diffusion: [
+      {
+        domain: "Generazione di immagini",
+        description:
+          "Stable Diffusion, Midjourney, DALL·E 3 e Imagen sono tutti modelli di diffusione latente. Digiti un prompt e il modello riporta rumore gaussiano a un'immagine coerente con il testo.",
+      },
+      {
+        domain: "Generazione video",
+        description:
+          "Sora, Veo e Runway estendono la stessa matematica della diffusione a tre dimensioni (altezza × larghezza × tempo), così il denoiser impara coerenza spazio-temporale oltre all'aspetto.",
+      },
+      {
+        domain: "Progettazione di farmaci e proteine",
+        description:
+          "RFdiffusion (laboratorio Baker) e Chroma generano nuovi scheletri proteici denoising di coordinate 3D al posto dei pixel — candidati pubblicati sono stati sintetizzati e si ripiegano correttamente.",
+      },
+      {
+        domain: "Audio e parlato",
+        description:
+          "AudioLDM, Riffusion e la linea di sintesi vocale ElevenLabs/Vall-E usano diffusione 1D su forme d'onda o spettrogrammi per generare musica e voci naturali a partire da testo.",
+      },
+      {
+        domain: "Fisica e termodinamica",
+        description:
+          "Il processo diretto è letteralmente dinamica di Langevin — il calendario di rumore rispecchia un sistema che rilassa verso l'equilibrio termico. L'articolo originale di Sohl-Dickstein (2015) era formulato come termodinamica fuori equilibrio.",
+      },
+    ],
+    quine: [
+      {
+        domain: "Teoria dei linguaggi di programmazione",
+        description:
+          "Le quine sono il sanity check standard per verificare che un linguaggio sia abbastanza espressivo per l'autoreferenza; i corsi di teoria della calcolabilità le usano per insegnare il teorema di ricorsione di Kleene in forma concreta.",
+      },
+      {
+        domain: "Virus informatici & autoreplicatori",
+        description:
+          "Ogni virus, worm e motore metamorfico classico è una variante di quine: codice che si copia prima di fare qualsiasi altra cosa. Il malware autoreplicante moderno è studiato come ingegneria di quine applicata.",
+      },
+      {
+        domain: "Genetica & biologia molecolare",
+        description:
+          "La replicazione del DNA è la quine della biologia: una sequenza il cui unico compito è copiare sé stessa, macchinario di copia incluso. Hofstadter traccia l'analogia in modo esplicito in Gödel, Escher, Bach.",
+      },
+      {
+        domain: "Bootstrap di compilatori",
+        description:
+          "Trusting Trust (Ken Thompson, 1984) mostrò che il compilatore di un compilatore può essere una quine che inserisce una backdoor a ogni build — fondamento della sicurezza della catena di fornitura e della ricerca sui build riproducibili.",
+      },
+      {
+        domain: "Demoscene & arte del codice",
+        description:
+          "Le quine poliglotte — programmi che stampano sé stessi e sono validi in più linguaggi insieme — sono un genere amato dell'arte del codice; l'IOCCC ha una categoria dedicata alle quine.",
+      },
+    ],
+    riemann: [
+      {
+        domain: "Teorema dei numeri primi",
+        description:
+          "Il termine d'errore nel conteggio dei primi sotto N è controllato dagli zeri di ζ; l'ipotesi di Riemann equivale al limite più stretto possibile su quanto irregolarmente i primi siano distribuiti.",
+      },
+      {
+        domain: "Crittografia",
+        description:
+          "RSA, la crittografia ellittica e la durezza della fattorizzazione dipendono da ipotesi sulla distribuzione dei primi; enunciati RH-equivalenti alimentano i migliori limiti noti sulla sicurezza crittografica.",
+      },
+      {
+        domain: "Caos quantistico",
+        description:
+          "La statistica delle distanze tra zeri di zeta coincide con quella degli autovalori di grandi matrici hermitiane casuali — le stesse usate per modellare i livelli di energia dei nuclei pesanti. La congettura di Montgomery-Dyson (1972) è uno dei ponti più sorprendenti della matematica.",
+      },
+      {
+        domain: "Numerica verificata al computer",
+        description:
+          "I primi 10^13 zeri non banali sono stati calcolati sulla retta critica (Xavier Gourdon, 2004 e successori). Nessuna campagna di verifica ha mai trovato un controesempio a RH.",
+      },
+      {
+        domain: "Divulgazione e prestigio dei problemi aperti",
+        description:
+          "Riemann è il problema irrisolto più famoso al di fuori di Fermat — un Clay Millennium Prize (1 M$), apparizioni ricorrenti nella narrativa (A Beautiful Mind, La musica dei numeri primi) e un flusso costante di «dimostrazioni» che non sopravvivono al peer review.",
+      },
+    ],
+    backprop: [
+      {
+        domain: "Deep learning",
+        description:
+          "Ogni rete neurale moderna — classificatori di immagini, modelli di linguaggio, raccomandatori — è allenata con la retropropagazione. PyTorch e JAX la implementano come nucleo di differenziazione (autograd).",
+      },
+      {
+        domain: "Visione artificiale",
+        description:
+          "Le reti convoluzionali per imaging medico, guida autonoma e identificazione biometrica apprendono i kernel di filtro direttamente da dati etichettati con backprop; i gradienti scorrono indietro attraverso convoluzioni e pooling.",
+      },
+      {
+        domain: "Modelli linguistici",
+        description:
+          "GPT, Claude, Llama e ogni transformer si allenano retropropagando la cross-entropy attraverso migliaia di miliardi di parametri. L'unico algoritmo che scala da un neurone a mille miliardi.",
+      },
+      {
+        domain: "Robotica e controllo",
+        description:
+          "I metodi policy-gradient nell'apprendimento per rinforzo usano backprop per aggiornare controllori neurali a partire da segnali di ricompensa; i moderni robot bipedi e di manipolazione destra lo usano tutti.",
+      },
+      {
+        domain: "Problemi inversi nelle scienze",
+        description:
+          "I fisici invertono esperimenti costruendo il modello in avanti in PyTorch/JAX e retropropagando attraverso di esso — usato nel design di proteine (AlphaFold), nel rendering differenziabile e nel design sperimentale gradient-based.",
+      },
+    ],
   },
   pt: {
     eml: [
@@ -5784,6 +6324,114 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
         domain: "Six Degrees of Kevin Bacon",
         description:
           "O jogo cinéfilo de 1994 e o site do Bacon Number são artefactos pop da teoria do mundo pequeno; quem faz matemática disputa números de Erdős baixos.",
+      },
+    ],
+    diffusion: [
+      {
+        domain: "Geração de imagens",
+        description:
+          "Stable Diffusion, Midjourney, DALL·E 3 e Imagen são todos modelos de difusão latente. Escreves um prompt e o modelo percorre ruído gaussiano até uma imagem consistente com o texto.",
+      },
+      {
+        domain: "Geração de vídeo",
+        description:
+          "Sora, Veo e Runway estendem a mesma matemática de difusão a três dimensões (altura × largura × tempo), para que o denoiser aprenda coerência espácio-temporal além da aparência.",
+      },
+      {
+        domain: "Conceção de fármacos e proteínas",
+        description:
+          "O RFdiffusion (laboratório Baker) e o Chroma geram novos esqueletos proteicos a remover ruído sobre coordenadas 3D em vez de píxeis — candidatos publicados foram sintetizados e dobram corretamente.",
+      },
+      {
+        domain: "Áudio e voz",
+        description:
+          "AudioLDM, Riffusion e a linha de síntese vocal ElevenLabs/Vall-E usam difusão 1D sobre formas de onda ou espectrogramas para gerar música e vozes naturais a partir de texto.",
+      },
+      {
+        domain: "Física e termodinâmica",
+        description:
+          "O processo direto é literalmente dinâmica de Langevin — o calendário de ruído reflete um sistema a relaxar para o equilíbrio térmico. O artigo original de Sohl-Dickstein (2015) foi formulado como termodinâmica fora do equilíbrio.",
+      },
+    ],
+    quine: [
+      {
+        domain: "Teoria das linguagens de programação",
+        description:
+          "As quines são o teste de sanidade padrão para verificar se uma linguagem é suficientemente expressiva para a autorreferência; os cursos de teoria da computação usam-nas para ensinar o teorema da recursão de Kleene de forma concreta.",
+      },
+      {
+        domain: "Vírus informáticos e autorreplicadores",
+        description:
+          "Cada vírus, worm e motor metamórfico clássico é uma variante de quine: código que se copia antes de fazer qualquer outra coisa. O malware autorreplicante moderno é estudado como engenharia de quines aplicada.",
+      },
+      {
+        domain: "Genética e biologia molecular",
+        description:
+          "A replicação do ADN é a quine da biologia: uma sequência cuja única tarefa é copiar-se a si própria, incluindo a maquinaria de cópia. Hofstadter traça a analogia explicitamente em Gödel, Escher, Bach.",
+      },
+      {
+        domain: "Bootstrapping de compiladores",
+        description:
+          "Trusting Trust (Ken Thompson, 1984) mostrou que o compilador de um compilador pode ser uma quine que insere uma backdoor em cada build — fundamento da segurança da cadeia de fornecimento e da investigação em builds reproduzíveis.",
+      },
+      {
+        domain: "Demoscene e arte de código",
+        description:
+          "As quines poliglotas — programas que se imprimem a si próprios e são válidos em várias linguagens em simultâneo — são um género adorado da arte de código; o IOCCC tem uma categoria dedicada às quines.",
+      },
+    ],
+    riemann: [
+      {
+        domain: "Teorema dos números primos",
+        description:
+          "O termo de erro na contagem de primos abaixo de N é controlado pelos zeros de ζ; a hipótese de Riemann equivale ao limite mais apertado possível sobre quão irregularmente os primos estão distribuídos.",
+      },
+      {
+        domain: "Criptografia",
+        description:
+          "RSA, a criptografia de curvas elípticas e a dureza da factorização dependem de hipóteses sobre a distribuição dos primos; enunciados RH-equivalentes alimentam os melhores limites conhecidos sobre a segurança criptográfica.",
+      },
+      {
+        domain: "Caos quântico",
+        description:
+          "A estatística dos espaçamentos entre zeros de zeta coincide com a dos valores próprios de grandes matrizes hermíticas aleatórias — as mesmas usadas para modelar os níveis de energia de núcleos pesados. A conjectura de Montgomery-Dyson (1972) é uma das pontes mais surpreendentes da matemática.",
+      },
+      {
+        domain: "Numérica verificada por computador",
+        description:
+          "Os primeiros 10^13 zeros não triviais foram calculados sobre a recta crítica (Xavier Gourdon, 2004 e sucessores). Nenhuma campanha de verificação alguma vez encontrou contraexemplo a RH.",
+      },
+      {
+        domain: "Divulgação e prestígio dos problemas em aberto",
+        description:
+          "Riemann é o problema em aberto mais famoso fora de Fermat — um Clay Millennium Prize (1 M$), aparições recorrentes na ficção (Uma Mente Brilhante, A música dos primos) e um fluxo constante de «provas» que não sobrevivem à revisão por pares.",
+      },
+    ],
+    backprop: [
+      {
+        domain: "Aprendizagem profunda",
+        description:
+          "Toda rede neuronal moderna — classificadores de imagens, modelos de linguagem, recomendadores — é treinada por retropropagação. PyTorch e JAX implementam-na como o núcleo de diferenciação (autograd).",
+      },
+      {
+        domain: "Visão computacional",
+        description:
+          "As redes convolucionais para imagem médica, condução autónoma e identificação biométrica aprendem os seus kernels de filtro directamente a partir de dados rotulados com backprop; os gradientes correm para trás através das convoluções e do pooling.",
+      },
+      {
+        domain: "Modelos de linguagem",
+        description:
+          "GPT, Claude, Llama e cada transformer treinam retropropagando a entropia cruzada por biliões de parâmetros. O único algoritmo que escala de um neurónio a um bilião.",
+      },
+      {
+        domain: "Robótica e controlo",
+        description:
+          "Os métodos policy-gradient em aprendizagem por reforço usam backprop para actualizar controladores neuronais a partir de sinais de recompensa; os modernos robots bípedes e de manipulação destra usam-no todos.",
+      },
+      {
+        domain: "Problemas inversos na ciência",
+        description:
+          "Os físicos invertem experiências montando o modelo directo em PyTorch/JAX e retropropagando através dele — usado em design de proteínas (AlphaFold), renderização diferenciável e design experimental baseado em gradientes.",
       },
     ],
   },
@@ -6748,6 +7396,114 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
           "Filmleken från 1994 och webbplatsen för Bacon-talet är populärkulturella artefakter av small-world-teorin; matematiker tävlar om låga Erdős-tal.",
       },
     ],
+    diffusion: [
+      {
+        domain: "Bildgenerering",
+        description:
+          "Stable Diffusion, Midjourney, DALL·E 3 och Imagen är alla latenta diffusionsmodeller. Skriv en prompt och modellen vandrar gaussiskt brus tillbaka till en bild som matchar texten.",
+      },
+      {
+        domain: "Videogenerering",
+        description:
+          "Sora, Veo och Runway utvidgar samma diffusionsmatematik till tre dimensioner (höjd × bredd × tid) så att brusborttagaren lär sig rum-tid-konsistens utöver utseendet.",
+      },
+      {
+        domain: "Läkemedels- och proteindesign",
+        description:
+          "RFdiffusion (Baker-laboratoriet) och Chroma genererar nya proteinryggar genom att brusrensa 3D-koordinater i stället för pixlar — publicerade kandidater har syntetiserats och visat sig vecka sig korrekt.",
+      },
+      {
+        domain: "Ljud och tal",
+        description:
+          "AudioLDM, Riffusion och röstsyntes-linjen ElevenLabs/Vall-E använder 1D-diffusion över vågformer eller spektrogram för att generera musik och naturligt klingande röster ur text.",
+      },
+      {
+        domain: "Fysik och termodynamik",
+        description:
+          "Framåtprocessen är bokstavligen Langevin-dynamik — brusschemat speglar ett system som relaxerar mot termisk jämvikt. Sohl-Dicksteins originalartikel från 2015 formulerades som icke-jämviktstermodynamik.",
+      },
+    ],
+    quine: [
+      {
+        domain: "Programspråksteori",
+        description:
+          "Quiner är det standardmässiga sanity-testet på att ett språk är uttrycksfullt nog för självreferens; kurser i beräkningsbarhetsteori använder dem för att undervisa Kleenes rekursionssats i konkret form.",
+      },
+      {
+        domain: "Datorvirus & självreplikatorer",
+        description:
+          "Varje klassiskt virus, mask och metamorfisk motor är en quine-variant: kod som kopierar sig själv innan den gör något annat. Modern självreplikerande skadlig kod studeras som tillämpad quine-ingenjörskonst.",
+      },
+      {
+        domain: "Genetik & molekylärbiologi",
+        description:
+          "DNA-replikation är biologins quine: en sekvens vars enda uppgift är att kopiera sig själv, inklusive kopieringsmaskineriet. Hofstadter drar analogin explicit i Gödel, Escher, Bach.",
+      },
+      {
+        domain: "Kompilator-bootstrapping",
+        description:
+          "Trusting Trust (Ken Thompson, 1984) visade att en kompilators kompilator kan vara en quine som lägger in en bakdörr vid varje build — grunden för leveranskedjesäkerhet och forskning om reproducerbara builds.",
+      },
+      {
+        domain: "Demoscene & kodkonst",
+        description:
+          "Polyglotta quiner — program som skriver ut sig själva och är giltiga i flera språk samtidigt — är en älskad kodkonst-genre; IOCCC har en egen quine-kategori.",
+      },
+    ],
+    riemann: [
+      {
+        domain: "Primtalssatsen",
+        description:
+          "Felledet i räkningen av primtal under N styrs av nollställena till ζ; Riemannhypotesen är ekvivalent med den skarpast möjliga skrankan på hur oregelbundet primtalen är fördelade.",
+      },
+      {
+        domain: "Kryptografi",
+        description:
+          "RSA, elliptisk-kurva-kryptografi och hårdheten i faktorisering vilar på antaganden om primtalsfördelning; RH-ekvivalenta påståenden ger de bästa kända skrankorna för kryptografisk säkerhet.",
+      },
+      {
+        domain: "Kvantkaos",
+        description:
+          "Statistiken över avstånden mellan zeta-nollställen sammanfaller med egenvärdesstatistiken hos stora slumpmässiga hermitiska matriser — samma matriser som modellerar energinivåer i tunga atomkärnor. Montgomery–Dyson-förmodan (1972) är en av matematikens mest överraskande broar.",
+      },
+      {
+        domain: "Datorverifierad numerik",
+        description:
+          "De första 10^13 icke-triviala nollställena har beräknats ligga på den kritiska linjen (Xavier Gourdon, 2004 och senare). Inget motexempel till RH har någonsin hittats i någon verifikationskampanj.",
+      },
+      {
+        domain: "Populärvetenskap och öppen-problem-prestige",
+        description:
+          "Riemann är det mest kända olösta problemet utanför Fermat — ett Clay Millennium-pris (1 M$), återkommande gestaltningar i fiktion (A Beautiful Mind, The Music of the Primes) och en stadig ström av «bevis» som inte överlever peer review.",
+      },
+    ],
+    backprop: [
+      {
+        domain: "Djupinlärning",
+        description:
+          "Varje modernt neuralt nätverk — bildklassificerare, språkmodell, rekommenderare — tränas med backpropagation. PyTorch och JAX implementerar den som sin differentieringskärna (autograd).",
+      },
+      {
+        domain: "Datorseende",
+        description:
+          "Faltningsnätverk för medicinsk bildbehandling, självkörande fordon och biometrisk identifiering lär sig sina filterkärnor direkt från märkt data med backprop; gradienter flödar baklänges genom faltningar och pooling.",
+      },
+      {
+        domain: "Språkmodeller",
+        description:
+          "GPT, Claude, Llama och varje transformer tränas genom att backpropagera korsentropiförlust genom biljoner parametrar. Den enda algoritmen som skalar från en neuron till en biljon.",
+      },
+      {
+        domain: "Robotik & reglering",
+        description:
+          "Policy-gradient-metoder i förstärkningsinlärning använder backprop för att uppdatera neurala styrenheter från belöningssignaler; moderna tvåbenta gående och fingerfärdiga manipulationsrobotar använder den.",
+      },
+      {
+        domain: "Inversa problem i naturvetenskap",
+        description:
+          "Fysiker inverterar experiment genom att bygga den framåtriktade modellen i PyTorch/JAX och backpropagera igenom — används i proteindesign (AlphaFold), differentierbar rendering och gradientbaserad experimentdesign.",
+      },
+    ],
   },
   no: {
     eml: [
@@ -7708,6 +8464,114 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
         domain: "Six Degrees of Kevin Bacon",
         description:
           "Filmleken fra 1994 og nettstedet for Bacon-tall er populærkulturelle avtrykk av small-world-teorien; matematikere konkurrerer om lave Erdős-tall.",
+      },
+    ],
+    diffusion: [
+      {
+        domain: "Bildegenerering",
+        description:
+          "Stable Diffusion, Midjourney, DALL·E 3 og Imagen er alle latente diffusjonsmodeller. Skriv en prompt og modellen vandrer gaussisk støy tilbake til et bilde som passer teksten.",
+      },
+      {
+        domain: "Videogenerering",
+        description:
+          "Sora, Veo og Runway utvider den samme diffusjonsmatematikken til tre dimensjoner (høyde × bredde × tid) slik at støyfjerneren lærer rom-tid-konsistens i tillegg til utseende.",
+      },
+      {
+        domain: "Legemiddel- og proteindesign",
+        description:
+          "RFdiffusion (Baker-laboratoriet) og Chroma genererer nye proteinrygger ved å støyfjerne 3D-koordinater i stedet for piksler — publiserte kandidater har blitt syntetisert og folder seg korrekt.",
+      },
+      {
+        domain: "Lyd og tale",
+        description:
+          "AudioLDM, Riffusion og talesyntese-linjen ElevenLabs/Vall-E bruker 1D-diffusjon over bølgeformer eller spektrogrammer for å generere musikk og naturlig klingende stemmer ut fra tekst.",
+      },
+      {
+        domain: "Fysikk og termodynamikk",
+        description:
+          "Fremoverprosessen er bokstavelig talt Langevin-dynamikk — støyplanen speiler et system som relakserer mot termisk likevekt. Sohl-Dicksteins originalartikkel fra 2015 var formulert som ikke-likevektstermodynamikk.",
+      },
+    ],
+    quine: [
+      {
+        domain: "Programspråkteori",
+        description:
+          "Quiner er den standard sanity-testen på at et språk er uttrykksfullt nok for selvreferanse; kurs i beregnbarhetsteori bruker dem til å undervise Kleenes rekursjonssetning i konkret form.",
+      },
+      {
+        domain: "Datavirus & selvreplikatorer",
+        description:
+          "Hvert klassisk virus, orm og metamorfisk motor er en quine-variant: kode som kopierer seg selv før den gjør noe annet. Moderne selvreplikerende skadevare studeres som anvendt quine-ingeniørkunst.",
+      },
+      {
+        domain: "Genetikk & molekylærbiologi",
+        description:
+          "DNA-replikering er biologiens quine: en sekvens hvis eneste oppgave er å kopiere seg selv, inkludert kopieringsmaskineriet. Hofstadter trekker analogien eksplisitt i Gödel, Escher, Bach.",
+      },
+      {
+        domain: "Kompilator-bootstrapping",
+        description:
+          "Trusting Trust (Ken Thompson, 1984) viste at en kompilators kompilator kan være en quine som setter inn en bakdør ved hver build — grunnlaget for forsyningskjedesikkerhet og forskning på reproduserbare builds.",
+      },
+      {
+        domain: "Demoscene & kodekunst",
+        description:
+          "Polyglotte quiner — programmer som skriver seg selv ut og er gyldige i flere språk samtidig — er en elsket kodekunst-sjanger; IOCCC har en egen quine-kategori.",
+      },
+    ],
+    riemann: [
+      {
+        domain: "Primtallssetningen",
+        description:
+          "Feilledd i tellingen av primtall under N styres av nullpunktene til ζ; Riemannhypotesen er ekvivalent med den skarpest mulige skranken på hvor uregelmessig primtallene er fordelt.",
+      },
+      {
+        domain: "Kryptografi",
+        description:
+          "RSA, elliptisk-kurve-kryptografi og hardheten i faktorisering hviler på antakelser om primtallenes fordeling; RH-ekvivalente utsagn gir de beste kjente skrankene for kryptografisk sikkerhet.",
+      },
+      {
+        domain: "Kvantekaos",
+        description:
+          "Statistikken over avstandene mellom zeta-nullpunkter faller sammen med egenverdistatistikken til store tilfeldige hermitiske matriser — de samme matrisene som modellerer energinivåer i tunge atomkjerner. Montgomery–Dyson-formodningen (1972) er en av matematikkens mest overraskende broer.",
+      },
+      {
+        domain: "Datamaskinverifisert numerikk",
+        description:
+          "De første 10^13 ikke-trivielle nullpunktene er beregnet å ligge på den kritiske linjen (Xavier Gourdon, 2004 og senere). Ingen verifikasjonskampanje har noensinne funnet et moteksempel til RH.",
+      },
+      {
+        domain: "Populærvitenskap og åpen-problem-prestisje",
+        description:
+          "Riemann er det mest kjente uløste problemet utenfor Fermat — en Clay Millennium-pris (1 M$), gjentatte opptredener i fiksjon (A Beautiful Mind, The Music of the Primes) og en jevn strøm av «bevis» som ikke overlever fagfellevurdering.",
+      },
+    ],
+    backprop: [
+      {
+        domain: "Dyp læring",
+        description:
+          "Hvert moderne nevrale nettverk — bildeklassifikator, språkmodell, anbefaler — trenes med backpropagation. PyTorch og JAX implementerer den som sin differensieringskjerne (autograd).",
+      },
+      {
+        domain: "Datamaskinsyn",
+        description:
+          "Konvolusjonsnett for medisinsk bildebehandling, autonom kjøring og biometrisk identifikasjon lærer filterkjerner direkte fra merket data med backprop; gradienter strømmer bakover gjennom konvolusjoner og pooling.",
+      },
+      {
+        domain: "Språkmodeller",
+        description:
+          "GPT, Claude, Llama og hver transformer trenes ved å backpropagere kryssentropi gjennom billioner av parametre. Den ene algoritmen som skalerer fra ett nevron til én billion.",
+      },
+      {
+        domain: "Robotikk og kontroll",
+        description:
+          "Policy-gradient-metoder i forsterkningslæring bruker backprop til å oppdatere nevrale kontrollere fra belønningssignaler; moderne tobeinte gå- og fingerferdige manipulasjonsroboter bruker den.",
+      },
+      {
+        domain: "Inverse problemer i vitenskap",
+        description:
+          "Fysikere inverterer eksperimenter ved å bygge foroverbevegelses-modellen i PyTorch/JAX og backpropagere gjennom — brukt i proteindesign (AlphaFold), differensierbar rendering og gradientbasert eksperimentdesign.",
       },
     ],
   },
