@@ -164,7 +164,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step one · The gate",
           title: "Four lines, settled in 1913",
-          body: "Henry Sheffer's stroke (a ↑ b) is the negation of AND. It outputs 1 unless both inputs are 1. Sheffer's 1913 paper showed that this single operator — together with constants and variables — can express any proposition of classical Boolean logic. Charles Sanders Peirce had quietly noted the same fact in an unpublished manuscript thirty years earlier; both arrived at the result independently.",
+          body: "Henry Sheffer's stroke (a ↑ b) is the negation of AND. It outputs 1 unless both inputs are 1. Sheffer's 1913 paper showed that this single operator — together with constants and variables — can express any proposition of classical Boolean logic. Charles Sanders Peirce had quietly recorded the dual fact for NOR (↓) in an unpublished manuscript some thirty years earlier — both NAND and NOR are functionally complete, and the two arrived at their results independently.",
         },
         {
           pretitle: "Step two · Building everything else",
@@ -1279,7 +1279,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step two · Cutting surprises",
           title: "What scissors reveal about topology",
-          body: "Cut the Möbius strip down the middle. It does not fall apart — you get one longer strip with two full twists (four half-twists), and crucially that strip is two-sided again. Cut a Möbius strip a third of the way in from one edge, keeping the cut parallel to the edge all the way around, and the scissors travel twice around before closing the loop: out come two interlocked rings, one a fresh Möbius strip and one a longer Möbius-style ribbon with extra twists, linked through each other. Topology is full of these surprises — the global twist hidden by local flatness.",
+          body: "Cut the Möbius strip down the middle. It does not fall apart — you get one longer strip with two full twists (four half-twists), and crucially that strip is two-sided again. Cut a Möbius strip a third of the way in from one edge, keeping the cut parallel to the edge all the way around, and the scissors travel twice around before closing the loop: out come two interlocked rings — a narrower fresh Möbius strip (still with one half-twist) and a longer two-sided ring with two half-twists (no longer a Möbius strip at all), the two linked through each other. Topology is full of these surprises — the global twist hidden by local flatness.",
         },
         {
           pretitle: "Step three · The Klein bottle",
@@ -1289,7 +1289,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step four · Where they live",
           title: "From belt drives to chemistry",
-          body: "Möbius strips show up as conveyor and printer belts (the wear distributes over the entire surface, doubling lifetime), as Max Bill's Endless Ribbon sculptures, as Möbius resistors that cancel their own self-inductance, as superconducting microwave Möbius waveguides — and, since 2003, as Möbius aromatic molecules synthesised by Rainer Herges. The familiar recycling triangle is, strictly, a trefoil knot rather than a Möbius strip, but the public reads it as one. Above all, the Möbius strip and the Klein bottle are the entry points to the classification of surfaces — the theorem that every closed surface is determined up to homeomorphism by genus, orientability and a single integer χ.",
+          body: "Möbius strips show up as conveyor and printer belts (the wear distributes over the entire surface, doubling lifetime), as Max Bill's Endless Ribbon sculptures, as Möbius resistors that cancel their own self-inductance, as superconducting microwave Möbius waveguides — and, since 2003, as Möbius aromatic molecules synthesised by Rainer Herges. The familiar recycling triangle is, strictly, a Möbius strip with three half-twists — still one-sided, but more twisted than the classical single-half-twist band. Above all, the Möbius strip and the Klein bottle are the entry points to the classification of surfaces — the theorem that every closed surface is determined up to homeomorphism by genus, orientability and a single integer χ.",
         },
       ],
     },
@@ -1374,7 +1374,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step three · The Appel-Haken proof, 1976",
           title: "The first theorem proven by computer",
-          body: 'Kenneth Appel and Wolfgang Haken at the University of Illinois reduced the problem to a finite list of 1834 "unavoidable configurations" — and then showed each one is reducible. Their proof ran on an IBM 360 for around 1200 hours. Many mathematicians refused to accept it: a proof a human cannot read in its entirety, they argued, is not a proof. The University of Illinois mathematics department\'s outgoing mail was franked with "Four Colors Suffice" for years.',
+          body: 'Kenneth Appel and Wolfgang Haken at the University of Illinois reduced the problem to a finite list of 1834 "unavoidable configurations" — and then showed each one is reducible. Their proof ran on an IBM 370 for around 1200 hours. Many mathematicians refused to accept it: a proof a human cannot read in its entirety, they argued, is not a proof. The University of Illinois mathematics department\'s outgoing mail was franked with "Four Colors Suffice" for years.',
         },
         {
           pretitle: "Step four · Where it stands",
@@ -1505,7 +1505,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Das Gatter",
           title: "Vier Zeilen, festgelegt 1913",
-          body: "Henry Sheffers Strich (a ↑ b) ist die Negation von UND. Er liefert 1, außer wenn beide Eingänge 1 sind. Sheffers Arbeit von 1913 zeigte, dass dieser eine Operator — zusammen mit Konstanten und Variablen — jeden Satz der klassischen booleschen Logik ausdrücken kann. Charles Sanders Peirce hatte dieselbe Tatsache dreißig Jahre zuvor stillschweigend in einem unveröffentlichten Manuskript notiert; beide gelangten unabhängig voneinander zu dem Ergebnis.",
+          body: "Henry Sheffers Strich (a ↑ b) ist die Negation von UND. Er liefert 1, außer wenn beide Eingänge 1 sind. Sheffers Arbeit von 1913 zeigte, dass dieser eine Operator — zusammen mit Konstanten und Variablen — jeden Satz der klassischen booleschen Logik ausdrücken kann. Charles Sanders Peirce hatte die duale Tatsache für NOR (↓) bereits dreißig Jahre zuvor in einem unveröffentlichten Manuskript notiert — sowohl NAND als auch NOR sind funktional vollständig, und beide gelangten unabhängig voneinander zu ihrem Ergebnis.",
         },
         {
           pretitle: "Schritt zwei · Alles andere bauen",
@@ -1837,7 +1837,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt zwei · Überraschungen mit der Schere",
           title: "Was Schnitte über Topologie verraten",
-          body: "Schneide das Möbiusband in der Mitte auf. Es fällt nicht auseinander — du erhältst einen längeren Streifen mit zwei vollen Drehungen (vier halben Drehungen), und entscheidend: dieser Streifen ist wieder zweiseitig. Schneide ein Möbiusband ein Drittel vom Rand entfernt auf, parallel zur Kante einmal ringsum, und die Schere reist zweimal um das Band, bevor sich der Schnitt schließt: heraus kommen zwei ineinandergehakte Ringe, eines ein frisches Möbiusband, das andere ein längeres Möbius-artiges Band mit zusätzlichen Drehungen, durcheinander verschlungen. Die Topologie steckt voller solcher Überraschungen — die globale Verdrehung, die sich hinter lokaler Flachheit versteckt.",
+          body: "Schneide das Möbiusband in der Mitte auf. Es fällt nicht auseinander — du erhältst einen längeren Streifen mit zwei vollen Drehungen (vier halben Drehungen), und entscheidend: dieser Streifen ist wieder zweiseitig. Schneide ein Möbiusband ein Drittel vom Rand entfernt auf, parallel zur Kante einmal ringsum, und die Schere reist zweimal um das Band, bevor sich der Schnitt schließt: heraus kommen zwei ineinander verschlungene Ringe — ein schmäleres, neues Möbiusband (innen, mit nach wie vor einer halben Drehung) und ein längerer, zweiseitiger Ring mit zwei vollen Halbdrehungen, der kein Möbiusband mehr ist, beide ineinander gehakt. Die Topologie steckt voller solcher Überraschungen — die globale Verdrehung, die sich hinter lokaler Flachheit versteckt.",
         },
         {
           pretitle: "Schritt drei · Die Kleinsche Flasche",
@@ -1847,7 +1847,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt vier · Wo sie leben",
           title: "Von Antriebsriemen zur Chemie",
-          body: "Möbiusbänder tauchen als Förder- und Druckerbänder auf (der Verschleiß verteilt sich auf die gesamte Fläche und verdoppelt die Lebensdauer), als Max Bills Skulpturen ‚Unendliche Schleife', als Möbius-Widerstände, die ihre eigene Selbstinduktion auslöschen, als supraleitende Mikrowellen-Möbius-Wellenleiter — und seit 2003 als möbius-aromatische Moleküle, die Rainer Herges synthetisierte. Das vertraute Recycling-Dreieck ist streng genommen eher ein Kleeblattknoten als ein Möbiusband, aber die Öffentlichkeit liest es als Möbiusband. Vor allem aber sind das Möbiusband und die Kleinsche Flasche die Einstiegstore zur Klassifikation der Flächen — dem Theorem, dass jede geschlossene Fläche bis auf Homöomorphie durch Geschlecht, Orientierbarkeit und eine einzige ganze Zahl χ bestimmt ist.",
+          body: "Möbiusbänder tauchen als Förder- und Druckerbänder auf (der Verschleiß verteilt sich auf die gesamte Fläche und verdoppelt die Lebensdauer), als Max Bills Skulpturen ‚Unendliche Schleife', als Möbius-Widerstände, die ihre eigene Selbstinduktion auslöschen, als supraleitende Mikrowellen-Möbius-Wellenleiter — und seit 2003 als möbius-aromatische Moleküle, die Rainer Herges synthetisierte. Das vertraute Recycling-Dreieck ist streng genommen ein Möbiusband mit drei Halbdrehungen — immer noch einseitig, aber stärker verdreht als das klassische Ein-Halbdrehungs-Band. Vor allem aber sind das Möbiusband und die Kleinsche Flasche die Einstiegstore zur Klassifikation der Flächen — dem Theorem, dass jede geschlossene Fläche bis auf Homöomorphie durch Geschlecht, Orientierbarkeit und eine einzige ganze Zahl χ bestimmt ist.",
         },
       ],
     },
@@ -1932,7 +1932,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt drei · Der Appel-Haken-Beweis, 1976",
           title: "Der erste vom Computer bewiesene Satz",
-          body: "Kenneth Appel und Wolfgang Haken an der University of Illinois reduzierten das Problem auf eine endliche Liste von 1834 ‚unvermeidbaren Konfigurationen' — und zeigten dann, dass jede davon reduzibel ist. Ihr Beweis lief etwa 1200 Stunden auf einem IBM 360. Viele Mathematiker:innen weigerten sich, ihn zu akzeptieren: ein Beweis, den ein Mensch nicht zur Gänze lesen kann, argumentierten sie, sei kein Beweis. Die ausgehende Post der Mathematik-Abteilung der University of Illinois wurde jahrelang mit ‚Four Colors Suffice' freigestempelt.",
+          body: "Kenneth Appel und Wolfgang Haken an der University of Illinois reduzierten das Problem auf eine endliche Liste von 1834 «unvermeidbaren Konfigurationen» — und zeigten dann, dass jede davon reduzibel ist. Ihr Beweis lief etwa 1200 Stunden auf einem IBM 370. Viele Mathematiker:innen weigerten sich, ihn zu akzeptieren: ein Beweis, den ein Mensch nicht zur Gänze lesen kann, argumentierten sie, sei kein Beweis. Die ausgehende Post der Mathematik-Abteilung der University of Illinois wurde jahrelang mit «Four Colors Suffice» freigestempelt.",
         },
         {
           pretitle: "Schritt vier · Wo es heute steht",
@@ -1946,7 +1946,7 @@ const de: StoriesDict = {
       title: "Sechs Grade & kleine Welten",
       tagline: "Zwei beliebige Menschen, sechs Händedrücke voneinander entfernt.",
       intro:
-        "Stanley Milgram schickte Briefe an Fremde und stellte fest, dass im Schnitt sechs Weiterleitungen sie quer durch Amerika brachten. Vierzig Jahre später zeigten Watts und Strogatz, warum: eine Prise zufälliger Abkürzungen in einem sonst regelmäßigen Netz lässt die mittlere Pfadlänge einbrechen, ohne die lokale Klusterung anzurühren. Der Explorer lässt dich die Watts-Strogatz-Umverdrahtungswahrscheinlichkeit p einstellen und in Echtzeit zusehen, wie die mittlere Pfadlänge L kollabiert.",
+        "Stanley Milgram schickte Briefe an Fremde und stellte fest, dass im Schnitt sechs Weiterleitungen sie quer durch Amerika brachten. Vierzig Jahre später zeigten Watts und Strogatz, warum: eine Prise zufälliger Abkürzungen in einem sonst regelmäßigen Netz lässt die mittlere Pfadlänge einbrechen, ohne das lokale Clustering anzurühren. Der Explorer lässt dich die Watts-Strogatz-Umverdrahtungswahrscheinlichkeit p einstellen und in Echtzeit zusehen, wie die mittlere Pfadlänge L kollabiert.",
       ctaInteractive: "→ Explorer öffnen",
       sections: [
         {
@@ -1957,7 +1957,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt zwei · Watts und Strogatz, 1998",
           title: "Umverdrahten mit Wahrscheinlichkeit p",
-          body: "Starte mit einem Ringgitter: N Knoten auf einem Kreis, jeder mit seinen k nächsten Nachbarn auf jeder Seite verbunden. Der Graph hat hohe Klusterung C — deine Freunde sind miteinander befreundet — aber eine lange mittlere Pfadlänge L in der Größenordnung von N/k. Verdrahte nun jede Kante mit Wahrscheinlichkeit p zu einem zufälligen Ziel um. Mit steigendem p von 0 fällt L logarithmisch, während C kaum von der Stelle rückt. Wenige zufällige Abkürzungen schrumpfen die Welt. Der süße Fleck, um p ≈ 0,01 bis 0,1, ist das Kleine-Welt-Regime: hohes C wie ein Gitter, niedriges L wie ein Zufallsgraph.",
+          body: "Starte mit einem Ringgitter: N Knoten auf einem Kreis, jeder mit seinen k nächsten Nachbarn auf jeder Seite verbunden. Der Graph hat einen hohen Cluster-Koeffizienten C — deine Freunde sind miteinander befreundet — aber eine lange mittlere Pfadlänge L in der Größenordnung von N/k. Verdrahte nun jede Kante mit Wahrscheinlichkeit p zu einem zufälligen Ziel um. Mit steigendem p von 0 fällt L logarithmisch, während C kaum von der Stelle rückt. Wenige zufällige Abkürzungen schrumpfen die Welt. Genau in diesem Zwischenbereich, um p ≈ 0,01 bis 0,1, liegt das Kleine-Welt-Regime: hohes C wie ein Gitter, niedriges L wie ein Zufallsgraph.",
         },
         {
           pretitle: "Schritt drei · Wo die Welt wirklich klein ist",

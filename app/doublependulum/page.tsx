@@ -101,8 +101,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
         {
           label: "02 · A concrete example",
-          title: "90°, 90° vs. 90°, 90.000001°",
-          body: "Start one pendulum at θ₁ = 90°, θ₂ = 90°. The tip traces a beautiful, intricate curve. Restart with θ₂ = 90.000001° — a millionth of a degree of difference. The two curves coincide for a few seconds, then peel apart, and by ten seconds in they have nothing whatsoever to say to each other.",
+          title: "90°, 90° vs. 90°, 90.00001°",
+          body: "Start one pendulum at θ₁ = 90°, θ₂ = 90°. The tip traces a beautiful, intricate curve. Restart with θ₂ = 90.00001° — a hundred-thousandth of a degree of difference. The two curves coincide for a few seconds, then peel apart, and by ten seconds in they have nothing whatsoever to say to each other.",
         },
         {
           label: "03 · Why it matters",
@@ -221,8 +221,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
         {
           label: "02 · Ein konkretes Beispiel",
-          title: "90°, 90° gegen 90°, 90.000001°",
-          body: "Starte ein Pendel bei θ₁ = 90°, θ₂ = 90°. Die Spitze zeichnet eine schöne, verschlungene Kurve. Neustart mit θ₂ = 90.000001° — ein Millionstel Grad Unterschied. Die beiden Kurven decken sich ein paar Sekunden, lösen sich dann ab, und nach zehn Sekunden haben sie einander nichts mehr zu sagen.",
+          title: "90°, 90° gegen 90°, 90.00001°",
+          body: "Starte ein Pendel bei θ₁ = 90°, θ₂ = 90°. Die Spitze zeichnet eine schöne, verschlungene Kurve. Neustart mit θ₂ = 90.00001° — ein Hunderttausendstel Grad Unterschied. Die beiden Kurven decken sich ein paar Sekunden, lösen sich dann ab, und nach zehn Sekunden haben sie einander nichts mehr zu sagen.",
         },
         {
           label: "03 · Warum es zählt",
@@ -341,8 +341,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
         {
           label: "02 · Un ejemplo concreto",
-          title: "90°, 90° frente a 90°, 90.000001°",
-          body: "Arranca un péndulo en θ₁ = 90°, θ₂ = 90°. La punta dibuja una curva bonita y enredada. Reinicia con θ₂ = 90.000001° — una millonésima de grado de diferencia. Las dos curvas coinciden unos segundos, luego se separan, y a los diez segundos ya no tienen nada en común.",
+          title: "90°, 90° frente a 90°, 90.00001°",
+          body: "Arranca un péndulo en θ₁ = 90°, θ₂ = 90°. La punta dibuja una curva bonita y enredada. Reinicia con θ₂ = 90.00001° — una cienmilésima de grado de diferencia. Las dos curvas coinciden unos segundos, luego se separan, y a los diez segundos ya no tienen nada en común.",
         },
         {
           label: "03 · Por qué importa",
@@ -461,8 +461,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
         {
           label: "02 · Un exemple concret",
-          title: "90°, 90° contre 90°, 90,000001°",
-          body: "Lance un pendule à θ₁ = 90°, θ₂ = 90°. La pointe trace une belle courbe entremêlée. Recommence avec θ₂ = 90,000001° — un millionième de degré d'écart. Les deux courbes coïncident quelques secondes, se détachent, et à dix secondes elles n'ont plus rien à se dire.",
+          title: "90°, 90° contre 90°, 90,00001°",
+          body: "Lance un pendule à θ₁ = 90°, θ₂ = 90°. La pointe trace une belle courbe entremêlée. Recommence avec θ₂ = 90,00001° — un cent-millième de degré d'écart. Les deux courbes coïncident quelques secondes, se détachent, et à dix secondes elles n'ont plus rien à se dire.",
         },
         {
           label: "03 · Pourquoi ça compte",
@@ -581,8 +581,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
         {
           label: "02 · Un esempio concreto",
-          title: "90°, 90° contro 90°, 90,000001°",
-          body: "Avvia un pendolo a θ₁ = 90°, θ₂ = 90°. La punta traccia una curva intricata e bellissima. Riparti con θ₂ = 90,000001° — un milionesimo di grado di differenza. Le due curve coincidono per qualche secondo, poi si staccano, e dopo dieci secondi non hanno più nulla da dirsi.",
+          title: "90°, 90° contro 90°, 90,00001°",
+          body: "Avvia un pendolo a θ₁ = 90°, θ₂ = 90°. La punta traccia una curva intricata e bellissima. Riparti con θ₂ = 90,00001° — un centomillesimo di grado di differenza. Le due curve coincidono per qualche secondo, poi si staccano, e dopo dieci secondi non hanno più nulla da dirsi.",
         },
         {
           label: "03 · Perché conta",
@@ -701,8 +701,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
         {
           label: "02 · Um exemplo concreto",
-          title: "90°, 90° contra 90°, 90,000001°",
-          body: "Inicie um pêndulo em θ₁ = 90°, θ₂ = 90°. A ponta desenha uma curva linda e entrelaçada. Reinicie com θ₂ = 90,000001° — um milionésimo de grau de diferença. As duas curvas coincidem por alguns segundos, depois se separam, e em dez segundos não têm mais nada a dizer uma à outra.",
+          title: "90°, 90° contra 90°, 90,00001°",
+          body: "Inicie um pêndulo em θ₁ = 90°, θ₂ = 90°. A ponta desenha uma curva linda e entrelaçada. Reinicie com θ₂ = 90,00001° — um centomilésimo de grau de diferença. As duas curvas coincidem por alguns segundos, depois se separam, e em dez segundos não têm mais nada a dizer uma à outra.",
         },
         {
           label: "03 · Por que importa",
@@ -821,8 +821,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
         {
           label: "02 · Ett konkret exempel",
-          title: "90°, 90° mot 90°, 90,000001°",
-          body: "Starta en pendel vid θ₁ = 90°, θ₂ = 90°. Spetsen ritar en vacker, sammanflätad kurva. Starta om med θ₂ = 90,000001° — en miljondels grad i skillnad. De två kurvorna sammanfaller några sekunder, släpper sedan från varandra och vid tio sekunder har de ingenting kvar att säga varandra.",
+          title: "90°, 90° mot 90°, 90,00001°",
+          body: "Starta en pendel vid θ₁ = 90°, θ₂ = 90°. Spetsen ritar en vacker, sammanflätad kurva. Starta om med θ₂ = 90,00001° — en hundratusendels grad i skillnad. De två kurvorna sammanfaller några sekunder, släpper sedan från varandra och vid tio sekunder har de ingenting kvar att säga varandra.",
         },
         {
           label: "03 · Varför det betyder något",
@@ -941,8 +941,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
         {
           label: "02 · Et konkret eksempel",
-          title: "90°, 90° mot 90°, 90,000001°",
-          body: "Start en pendel ved θ₁ = 90°, θ₂ = 90°. Spissen tegner en vakker, flettet kurve. Start på nytt med θ₂ = 90,000001° — en milliondels grad forskjell. De to kurvene faller sammen et par sekunder, slipper så hverandre, og etter ti sekunder har de ingenting igjen å si til hverandre.",
+          title: "90°, 90° mot 90°, 90,00001°",
+          body: "Start en pendel ved θ₁ = 90°, θ₂ = 90°. Spissen tegner en vakker, flettet kurve. Start på nytt med θ₂ = 90,00001° — en hundretusendels grad forskjell. De to kurvene faller sammen et par sekunder, slipper så hverandre, og etter ti sekunder har de ingenting igjen å si til hverandre.",
         },
         {
           label: "03 · Hvorfor det betyr noe",

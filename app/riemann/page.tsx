@@ -146,7 +146,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es wichtig ist",
-        body: "Hunderte Sätze stehen im Konjunktiv „Angenommen RH gilt, dann …\". Ein Beweis würde sie alle auf einmal aktivieren: engere Primzahllücken, schärfere Fehlerterme in der Zahlentheorie, Härtegarantien in der Kryptographie, eine tiefere Brücke zwischen Analysis und Arithmetik. Es ist Hilberts achtes Problem und eines der sieben Clay Millennium Prizes.",
+        body: 'Hunderte Sätze stehen im Konjunktiv „Angenommen RH gilt, dann …“. Ein Beweis würde sie alle auf einmal aktivieren: engere Primzahllücken, schärfere Fehlerterme in der Zahlentheorie, Härtegarantien in der Kryptographie, eine tiefere Brücke zwischen Analysis und Arithmetik. Es ist Hilberts achtes Problem und eines der sieben Clay Millennium Prizes.',
       },
     ],
     tryIt:
@@ -156,7 +156,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Eulers Produkt",
       title: "ζ hat die Primzahlen in der DNA",
-      body: "Schon 1737, fast ein Jahrhundert vor Riemann, bemerkte Euler, dass die unendliche Summe ζ(s) = Σ 1/nˢ als unendliches Produkt über die Primzahlen geschrieben werden kann: ζ(s) = ∏ₚ 1 / (1 − p⁻ˢ). Die Identität gehört zu den leise atemberaubendsten der Mathematik — die additive Struktur der ganzen Zahlen und die multiplikative Struktur der Primzahlen sind buchstäblich dasselbe Objekt, nur von zwei Seiten gesehen. Sobald man das weiß, ist die Frage „Wo verschwindet ζ?\" keine Frage über eine Funktion mehr; sie ist eine Frage über die Primzahlen selbst.",
+      body: 'Schon 1737, fast ein Jahrhundert vor Riemann, bemerkte Euler, dass die unendliche Summe ζ(s) = Σ 1/nˢ als unendliches Produkt über die Primzahlen geschrieben werden kann: ζ(s) = ∏ₚ 1 / (1 − p⁻ˢ). Die Identität gehört zu den leise atemberaubendsten der Mathematik — die additive Struktur der ganzen Zahlen und die multiplikative Struktur der Primzahlen sind buchstäblich dasselbe Objekt, nur von zwei Seiten gesehen. Sobald man das weiß, ist die Frage „Wo verschwindet ζ?“ keine Frage über eine Funktion mehr; sie ist eine Frage über die Primzahlen selbst.',
     },
     {
       pretitle: "Abschnitt 02 · Analytische Fortsetzung",
@@ -166,12 +166,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Der kritische Streifen",
       title: "Triviale Nullstellen außerhalb, interessante drinnen",
-      body: "Die Funktionalgleichung verrät sofort die „trivialen\" Nullstellen bei s = −2, −4, −6, … — der Sinusfaktor erzwingt sie. Alles andere muss im kritischen Streifen 0 < Re(s) < 1 leben, dem einzigen Ort, an dem die Funktion noch Spielraum hat zu oszillieren. Riemanns Hypothese ist die Behauptung, dass dieser ganze Streifen letztlich täuscht: die nichttrivialen Nullstellen verteilen sich nicht über ihn, sie kollabieren auf eine einzige senkrechte Naht in der Mitte, Re(s) = ½. Der Streifen ist die Bühne; die Naht ist, wo etwas passiert.",
+      body: 'Die Funktionalgleichung verrät sofort die „trivialen“ Nullstellen bei s = −2, −4, −6, … — der Sinusfaktor erzwingt sie. Alles andere muss im kritischen Streifen 0 < Re(s) < 1 leben, dem einzigen Ort, an dem die Funktion noch Spielraum hat zu oszillieren. Riemanns Hypothese ist die Behauptung, dass dieser ganze Streifen letztlich täuscht: die nichttrivialen Nullstellen verteilen sich nicht über ihn, sie kollabieren auf eine einzige senkrechte Naht in der Mitte, Re(s) = ½. Der Streifen ist die Bühne; die Naht ist, wo etwas passiert.',
     },
     {
       pretitle: "Abschnitt 04 · Die Vermutung",
       title: "Re(s) = ½. Immer.",
-      body: "Hardy bewies 1914, dass es unendlich viele Nullstellen auf der kritischen Linie gibt. Selberg zeigte später, dass ein positiver Anteil aller Nullstellen dort sitzt; dieser Anteil wurde über 41 % gedrückt (Conrey, 1989) und steigt seitdem mit jedem Jahrzehnt. Die Hypothese selbst ist die maximale Aussage: nicht „die meisten\", nicht „alle bis auf endlich viele\" — alle, ohne Ausnahme, auf Re(s) = ½. Es ist die schärfste denkbare Form einer wahrscheinlichkeitstheoretischen Intuition über Primzahlen — dass sie so gleichmäßig verteilt sind, wie eine deterministische Folge nur sein kann.",
+      body: 'Hardy bewies 1914, dass es unendlich viele Nullstellen auf der kritischen Linie gibt. Selberg zeigte später, dass ein positiver Anteil aller Nullstellen dort sitzt; dieser Anteil wurde über 41 % gedrückt (Conrey, 1989) und steigt seitdem mit jedem Jahrzehnt. Die Hypothese selbst ist die maximale Aussage: nicht „die meisten“, nicht „alle bis auf endlich viele“ — alle, ohne Ausnahme, auf Re(s) = ½. Es ist die schärfste denkbare Form einer wahrscheinlichkeitstheoretischen Intuition über Primzahlen — dass sie so gleichmäßig verteilt sind, wie eine deterministische Folge nur sein kann.',
     },
     {
       pretitle: "Abschnitt 05 · Was ein Beweis brächte",

@@ -505,7 +505,7 @@ export const TOPICS: Topic[] = [
     status: "interactive",
     category: "paradox",
     glyph: "G",
-    formula: "⊢G ↔ ¬⊢G",
+    formula: "G ⇔ ¬Prov(⌜G⌝)",
     sections: [
       { key: "story", href: "/godel" },
       { key: "explorer", href: "/godel/explorer" },

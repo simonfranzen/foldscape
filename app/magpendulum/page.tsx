@@ -137,7 +137,7 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · The physics",
       title: "Newton, magnets, a little friction",
-      body: "A small iron bob hangs above a plate, free to swing in the plane. Three magnets pull it with an inverse-cube force; a weak spring pulls it back to the centre; air resistance bleeds energy. The equations of motion are clean and deterministic — only the starting position is left free.",
+      body: "A small iron bob hangs above a plate, free to swing in the plane. Three magnets pull it with a horizontal force component that scales as 1/(r² + h²)^(3/2) — near-cubic when the horizontal distance r is large compared to the plate-to-bob height h, gentler in the near field; a weak spring pulls it back to the centre; air resistance bleeds energy. The equations of motion are clean and deterministic — only the starting position is left free.",
     },
     {
       pretitle: "Section 02 · Deterministic chaos",
@@ -157,7 +157,7 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · Yoneyama, 1917",
       title: "A topology curio that the chaos era weaponised",
-      body: "The first Wada construction was a topology amuse-bouche by Kunizō Yoneyama in 1917: three «lakes» on an island, each carving channels so fine that every land point ends up on all three shores. For seventy years it stayed a curiosity. Then Kennedy and Yorke in 1991 found the same structure in the magnetic pendulum — and chaos theory had its first concrete Wada basin.",
+      body: "The first Wada construction was a topology amuse-bouche by Kunizō Yoneyama in 1917: three «lakes» on an island, each carving channels so fine that every land point ends up on all three shores. For seventy years it stayed a curiosity. Then Kennedy and Yorke in 1991 coined the term Wada basins for chaotic dynamics (originally for the Hénon-Heiles system); Aguirre, Vallejo and Sanjuán demonstrated the property explicitly for the magnetic pendulum in the early 2000s — and chaos theory had its first concrete Wada basin in a tabletop experiment.",
     },
     {
       pretitle: "Section 06 · Connections",
@@ -219,7 +219,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die Physik",
       title: "Newton, Magnete, ein wenig Reibung",
-      body: "Ein kleiner Eisenpendel hängt über einer Platte, frei beweglich in der Ebene. Drei Magnete ziehen ihn mit umgekehrt-kubischer Kraft; eine schwache Feder holt ihn zur Mitte zurück; Luftreibung entzieht ihm Energie. Die Bewegungsgleichungen sind sauber und deterministisch — nur der Startpunkt bleibt frei.",
+      body: "Ein kleiner Eisenpendel hängt über einer Platte, frei beweglich in der Ebene. Drei Magnete ziehen ihn an, wobei die horizontale Kraftkomponente wie 1/(r² + h²)^(3/2) skaliert — im Fernfeld (Abstand r groß gegenüber der Höhe h) annähernd 1/r³, im Nahfeld sanfter; eine schwache Feder holt ihn zur Mitte zurück; Luftreibung entzieht ihm Energie. Die Bewegungsgleichungen sind sauber und deterministisch — nur der Startpunkt bleibt frei.",
     },
     {
       pretitle: "Abschnitt 02 · Deterministisches Chaos",
@@ -239,7 +239,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Yoneyama, 1917",
       title: "Eine topologische Kuriosität, die das Chaos-Zeitalter aufgriff",
-      body: "Die erste Wada-Konstruktion war ein topologisches Häppchen von Kunizō Yoneyama, 1917: drei «Seen» auf einer Insel, jeder gräbt so feine Kanäle, dass jeder Landpunkt am Ende an allen drei Ufern liegt. Siebzig Jahre lang blieb sie Kuriosität. Dann fanden Kennedy und Yorke 1991 dieselbe Struktur im magnetischen Pendel — und die Chaostheorie hatte ihr erstes konkretes Wada-Bassin.",
+      body: "Die erste Wada-Konstruktion war ein topologisches Häppchen von Kunizō Yoneyama, 1917: drei «Seen» auf einer Insel, jeder gräbt so feine Kanäle, dass jeder Landpunkt am Ende an allen drei Ufern liegt. Siebzig Jahre lang blieb sie Kuriosität. Dann prägten Kennedy und Yorke 1991 den Begriff der Wada-Bassins für chaotische Dynamik (ursprünglich am Hénon-Heiles-System); Aguirre, Vallejo und Sanjuán zeigten die Eigenschaft Anfang der 2000er Jahre explizit am magnetischen Pendel — und die Chaostheorie hatte ihr erstes konkretes Wada-Bassin im Tischexperiment.",
     },
     {
       pretitle: "Abschnitt 06 · Verbindungen",
@@ -301,7 +301,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · La física",
       title: "Newton, imanes, un poco de fricción",
-      body: "Un pequeño peso de hierro cuelga sobre una placa, libre de oscilar en el plano. Tres imanes tiran con fuerza inverso-cubo; un resorte débil lo devuelve al centro; el aire le quita energía. Las ecuaciones son limpias y deterministas — solo queda libre el punto de partida.",
+      body: "Un pequeño peso de hierro cuelga sobre una placa, libre de oscilar en el plano. Tres imanes tiran de él con una componente horizontal de fuerza que escala como 1/(r² + h²)^(3/2) — casi cúbica cuando la distancia horizontal r es grande comparada con la altura h sobre la placa, más suave en el campo cercano; un resorte débil lo devuelve al centro; el aire le quita energía. Las ecuaciones son limpias y deterministas — solo queda libre el punto de partida.",
     },
     {
       pretitle: "Sección 02 · Caos determinista",
@@ -321,7 +321,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · Yoneyama, 1917",
       title: "Una curiosidad topológica que la era del caos rearmó",
-      body: "La primera construcción de Wada fue un bocado topológico de Kunizō Yoneyama en 1917: tres «lagos» en una isla, cada uno cavando canales tan finos que cada punto de tierra acaba en las tres orillas. Setenta años se quedó como curiosidad. Luego Kennedy y Yorke en 1991 hallaron la misma estructura en el péndulo magnético — y la teoría del caos tuvo su primera cuenca de Wada concreta.",
+      body: "La primera construcción de Wada fue un bocado topológico de Kunizō Yoneyama en 1917: tres «lagos» en una isla, cada uno cavando canales tan finos que cada punto de tierra acaba en las tres orillas. Setenta años se quedó como curiosidad. Luego Kennedy y Yorke en 1991 acuñaron el término «cuencas de Wada» para la dinámica caótica (originalmente para el sistema Hénon-Heiles); Aguirre, Vallejo y Sanjuán demostraron explícitamente la propiedad en el péndulo magnético a principios de los 2000 — y la teoría del caos tuvo su primera cuenca de Wada concreta en un experimento de mesa.",
     },
     {
       pretitle: "Sección 06 · Conexiones",
@@ -384,7 +384,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · La physique",
       title: "Newton, aimants, un peu de frottement",
-      body: "Un petit bob de fer pend au-dessus d'une plaque, libre d'osciller dans le plan. Trois aimants l'attirent avec une force en 1/r³ ; un ressort faible le ramène au centre ; l'air lui prend son énergie. Les équations du mouvement sont propres et déterministes — seule la position de départ reste libre.",
+      body: "Un petit bob de fer pend au-dessus d'une plaque, libre d'osciller dans le plan. Trois aimants l'attirent avec une composante horizontale de force qui s'écrit comme 1/(r² + h²)^(3/2) — presque en 1/r³ quand la distance horizontale r est grande devant la hauteur h au-dessus de la plaque, plus douce en champ proche ; un ressort faible le ramène au centre ; l'air lui prend son énergie. Les équations du mouvement sont propres et déterministes — seule la position de départ reste libre.",
     },
     {
       pretitle: "Section 02 · Chaos déterministe",
@@ -404,7 +404,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Yoneyama, 1917",
       title: "Une curiosité topologique que l'ère du chaos a réarmée",
-      body: "La première construction de Wada fut un amuse-bouche topologique de Kunizō Yoneyama en 1917 : trois «lacs» sur une île, chacun creusant des canaux si fins que tout point de terre finit sur les trois rives. Soixante-dix ans elle resta curiosité. Puis Kennedy et Yorke en 1991 trouvent la même structure dans le pendule magnétique — et la théorie du chaos a son premier bassin de Wada concret.",
+      body: "La première construction de Wada fut un amuse-bouche topologique de Kunizō Yoneyama en 1917 : trois «lacs» sur une île, chacun creusant des canaux si fins que tout point de terre finit sur les trois rives. Soixante-dix ans elle resta curiosité. Puis Kennedy et Yorke en 1991 forgent le terme «bassins de Wada» pour la dynamique chaotique (à l'origine pour le système de Hénon-Heiles) ; Aguirre, Vallejo et Sanjuán démontrent explicitement la propriété pour le pendule magnétique au début des années 2000 — et la théorie du chaos a son premier bassin de Wada concret dans une expérience de table.",
     },
     {
       pretitle: "Section 06 · Connexions",
@@ -466,7 +466,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · La fisica",
       title: "Newton, magneti, un po' di attrito",
-      body: "Un piccolo peso di ferro pende sopra una piastra, libero di oscillare nel piano. Tre magneti lo attraggono con forza inversa al cubo; una molla debole lo riporta al centro; l'aria gli toglie energia. Le equazioni del moto sono pulite e deterministiche — solo la posizione di partenza resta libera.",
+      body: "Un piccolo peso di ferro pende sopra una piastra, libero di oscillare nel piano. Tre magneti lo attirano con una componente orizzontale di forza che scala come 1/(r² + h²)^(3/2) — quasi cubica quando la distanza orizzontale r è grande rispetto all'altezza h sopra la piastra, più morbida nel campo vicino; una molla debole lo riporta al centro; l'aria gli toglie energia. Le equazioni del moto sono pulite e deterministiche — solo la posizione di partenza resta libera.",
     },
     {
       pretitle: "Sezione 02 · Caos deterministico",
@@ -486,7 +486,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · Yoneyama, 1917",
       title: "Una curiosità topologica che l'era del caos ha riarmato",
-      body: "La prima costruzione di Wada fu uno stuzzichino topologico di Kunizō Yoneyama nel 1917: tre «laghi» su un'isola, ognuno scava canali così fini che ogni punto di terra finisce su tutte e tre le rive. Per settant'anni rimase curiosità. Poi Kennedy e Yorke nel 1991 trovano la stessa struttura nel pendolo magnetico — e la teoria del caos ha il suo primo bacino di Wada concreto.",
+      body: "La prima costruzione di Wada fu uno stuzzichino topologico di Kunizō Yoneyama nel 1917: tre «laghi» su un'isola, ognuno scava canali così fini che ogni punto di terra finisce su tutte e tre le rive. Per settant'anni rimase curiosità. Poi Kennedy e Yorke nel 1991 coniarono il termine «bacini di Wada» per la dinamica caotica (originariamente per il sistema Hénon-Heiles); Aguirre, Vallejo e Sanjuán dimostrarono esplicitamente la proprietà per il pendolo magnetico nei primi anni 2000 — e la teoria del caos ebbe il suo primo bacino di Wada concreto in un esperimento da tavolo.",
     },
     {
       pretitle: "Sezione 06 · Connessioni",
@@ -548,7 +548,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · A física",
       title: "Newton, ímanes, um pouco de atrito",
-      body: "Um pequeno peso de ferro pendura-se sobre uma placa, livre de oscilar no plano. Três ímanes atraem-no com força inversa ao cubo; uma mola fraca devolve-o ao centro; o ar tira-lhe energia. As equações do movimento são limpas e deterministas — só o ponto de partida fica livre.",
+      body: "Um pequeno peso de ferro pendura-se sobre uma placa, livre de oscilar no plano. Três ímanes atraem-no com uma componente horizontal de força que escala como 1/(r² + h²)^(3/2) — quase cúbica quando a distância horizontal r é grande comparada com a altura h sobre a placa, mais suave no campo próximo; uma mola fraca devolve-o ao centro; o ar tira-lhe energia. As equações do movimento são limpas e deterministas — só o ponto de partida fica livre.",
     },
     {
       pretitle: "Secção 02 · Caos determinista",
@@ -568,7 +568,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · Yoneyama, 1917",
       title: "Uma curiosidade topológica que a era do caos rearmou",
-      body: "A primeira construção de Wada foi um aperitivo topológico de Kunizō Yoneyama em 1917: três «lagos» numa ilha, cada um escavando canais tão finos que cada ponto de terra acaba em todas as três margens. Setenta anos ficou como curiosidade. Depois Kennedy e Yorke em 1991 encontraram a mesma estrutura no pêndulo magnético — e a teoria do caos teve a sua primeira bacia de Wada concreta.",
+      body: "A primeira construção de Wada foi um aperitivo topológico de Kunizō Yoneyama em 1917: três «lagos» numa ilha, cada um escavando canais tão finos que cada ponto de terra acaba em todas as três margens. Setenta anos ficou como curiosidade. Depois Kennedy e Yorke em 1991 cunharam o termo «bacias de Wada» para a dinâmica caótica (originalmente para o sistema Hénon-Heiles); Aguirre, Vallejo e Sanjuán demonstraram explicitamente a propriedade para o pêndulo magnético no início dos anos 2000 — e a teoria do caos teve a sua primeira bacia de Wada concreta numa experiência de bancada.",
     },
     {
       pretitle: "Secção 06 · Ligações",
@@ -630,7 +630,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Fysiken",
       title: "Newton, magneter, en aning friktion",
-      body: "En liten järnvikt hänger över en platta, fri att svänga i planet. Tre magneter drar i den med en kraft i 1/r³; en svag fjäder drar tillbaka den till mitten; luft tar dess energi. Rörelseekvationerna är rena och deterministiska — bara startpunkten är fri.",
+      body: "En liten järnvikt hänger över en platta, fri att svänga i planet. Tre magneter drar i den med en horisontell kraftkomponent som skalar som 1/(r² + h²)^(3/2) — nära kubisk när horisontalavståndet r är stort jämfört med höjden h över plattan, mildare i närfältet; en svag fjäder drar tillbaka den till mitten; luft tar dess energi. Rörelseekvationerna är rena och deterministiska — bara startpunkten är fri.",
     },
     {
       pretitle: "Avsnitt 02 · Deterministisk kaos",
@@ -650,7 +650,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Yoneyama, 1917",
       title: "En topologisk kuriositet som kaos-eran beväpnade",
-      body: "Den första Wada-konstruktionen var en topologisk amuse-bouche av Kunizō Yoneyama 1917: tre «sjöar» på en ö, var och en gräver kanaler så fina att varje landpunkt hamnar på alla tre stränder. I sjuttio år förblev det en kuriositet. Sedan hittade Kennedy och Yorke 1991 samma struktur i den magnetiska pendeln — och kaosteorin hade sitt första konkreta Wada-bäcken.",
+      body: "Den första Wada-konstruktionen var en topologisk amuse-bouche av Kunizō Yoneyama 1917: tre «sjöar» på en ö, var och en gräver kanaler så fina att varje landpunkt hamnar på alla tre stränder. I sjuttio år förblev det en kuriositet. Sedan myntade Kennedy och Yorke 1991 begreppet Wada-bäcken för kaotisk dynamik (ursprungligen för Hénon-Heiles-systemet); Aguirre, Vallejo och Sanjuán demonstrerade egenskapen explicit för den magnetiska pendeln i början av 2000-talet — och kaosteorin hade sitt första konkreta Wada-bäcken i ett bordsexperiment.",
     },
     {
       pretitle: "Avsnitt 06 · Kopplingar",
@@ -712,7 +712,7 @@ const no: RichStory = {
     {
       pretitle: "Del 01 · Fysikken",
       title: "Newton, magneter, litt friksjon",
-      body: "En liten jernlodd henger over en plate, fri til å svinge i planet. Tre magneter trekker i den med en kraft som 1/r³; en svak fjær drar den tilbake til midten; luft tapper energien. Bevegelsesligningene er rene og deterministiske — bare startpunktet er fritt.",
+      body: "En liten jernlodd henger over en plate, fri til å svinge i planet. Tre magneter trekker i den med en horisontal kraftkomponent som skalerer som 1/(r² + h²)^(3/2) — nær kubisk når horisontalavstanden r er stor sammenlignet med høyden h over platen, mildere i nærfeltet; en svak fjær drar den tilbake til midten; luft tapper energien. Bevegelsesligningene er rene og deterministiske — bare startpunktet er fritt.",
     },
     {
       pretitle: "Del 02 · Deterministisk kaos",
@@ -732,7 +732,7 @@ const no: RichStory = {
     {
       pretitle: "Del 05 · Yoneyama, 1917",
       title: "En topologisk kuriositet som kaos-tiden væpnet opp",
-      body: "Den første Wada-konstruksjonen var en topologisk smakebit fra Kunizō Yoneyama i 1917: tre «sjøer» på en øy, hver graver kanaler så fine at hvert landpunkt ender på alle tre bredder. I sytti år forble det en kuriositet. Så fant Kennedy og Yorke i 1991 samme struktur i den magnetiske pendelen — og kaosteorien hadde sitt første konkrete Wada-bekken.",
+      body: "Den første Wada-konstruksjonen var en topologisk smakebit fra Kunizō Yoneyama i 1917: tre «sjøer» på en øy, hver graver kanaler så fine at hvert landpunkt ender på alle tre bredder. I sytti år forble det en kuriositet. Så myntet Kennedy og Yorke i 1991 begrepet Wada-bekken for kaotisk dynamikk (opprinnelig for Hénon-Heiles-systemet); Aguirre, Vallejo og Sanjuán viste egenskapen eksplisitt for den magnetiske pendelen tidlig på 2000-tallet — og kaosteorien hadde sitt første konkrete Wada-bekken i et bordeksperiment.",
     },
     {
       pretitle: "Del 06 · Forbindelser",

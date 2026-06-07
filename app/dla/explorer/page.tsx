@@ -3,52 +3,225 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 
 type SeedKind = "point" | "line" | "ring";
 
 interface Preset {
   id: string;
-  label: string;
-  note: string;
   seed: SeedKind;
   walkers: number;
   stickiness: number;
 }
 
+// Preset metadata that doesn't depend on locale.
 const PRESETS: Preset[] = [
-  {
-    id: "classic",
-    label: "Centre seed",
-    note: "single point, slow",
-    seed: "point",
-    walkers: 80,
-    stickiness: 1.0,
-  },
-  {
-    id: "fast",
-    label: "Centre · fast",
-    note: "80 walkers/frame",
-    seed: "point",
-    walkers: 300,
-    stickiness: 1.0,
-  },
-  {
-    id: "line",
-    label: "Bottom line",
-    note: "crystal growth",
-    seed: "line",
-    walkers: 200,
-    stickiness: 1.0,
-  },
-  {
-    id: "ring",
-    label: "Ring seed",
-    note: "inside-out coral",
-    seed: "ring",
-    walkers: 200,
-    stickiness: 1.0,
-  },
+  { id: "classic", seed: "point", walkers: 80, stickiness: 1.0 },
+  { id: "fast", seed: "point", walkers: 300, stickiness: 1.0 },
+  { id: "line", seed: "line", walkers: 200, stickiness: 1.0 },
+  { id: "ring", seed: "ring", walkers: 200, stickiness: 1.0 },
 ];
+
+// Per-locale labels for the preset cards, the controls section headers,
+// the play/pause/reset buttons, and the status badges. Kept local to this
+// file because nothing else needs them; mirrors the inline-RICH pattern.
+type PresetCopy = { label: string; note: string };
+type ExplorerCopy = {
+  presets: Record<string, PresetCopy>;
+  presetsHeader: string;
+  seedHeader: string;
+  seedLabels: Record<SeedKind, string>;
+  walkersLabel: string;
+  stickinessLabel: string;
+  cellLabel: string;
+  colourHeader: string;
+  pause: string;
+  play: string;
+  reset: string;
+  statusSeed: string;
+  statusCell: string;
+  statusStuck: string;
+  statusWalkers: string;
+};
+
+const COPY: Record<Locale, ExplorerCopy> = {
+  en: {
+    presets: {
+      classic: { label: "Centre seed", note: "single point, slow" },
+      fast: { label: "Centre · fast", note: "80 walkers/frame" },
+      line: { label: "Bottom line", note: "crystal growth" },
+      ring: { label: "Ring seed", note: "inside-out coral" },
+    },
+    presetsHeader: "Presets",
+    seedHeader: "Seed",
+    seedLabels: { point: "point", line: "line", ring: "ring" },
+    walkersLabel: "Walkers / frame",
+    stickinessLabel: "Stickiness",
+    cellLabel: "Cell size (px)",
+    colourHeader: "Colour",
+    pause: "❚❚ Pause",
+    play: "▶ Play",
+    reset: "⟳ Reset",
+    statusSeed: "seed",
+    statusCell: "cell",
+    statusStuck: "stuck",
+    statusWalkers: "walkers",
+  },
+  de: {
+    presets: {
+      classic: { label: "Mittelkeim", note: "Einzelpunkt, langsam" },
+      fast: { label: "Mitte · schnell", note: "80 Wanderer/Frame" },
+      line: { label: "Bodenlinie", note: "Kristallwachstum" },
+      ring: { label: "Ringkeim", note: "Koralle von innen heraus" },
+    },
+    presetsHeader: "Voreinstellungen",
+    seedHeader: "Keim",
+    seedLabels: { point: "Punkt", line: "Linie", ring: "Ring" },
+    walkersLabel: "Wanderer / Frame",
+    stickinessLabel: "Haftung",
+    cellLabel: "Zellgröße (px)",
+    colourHeader: "Farbe",
+    pause: "❚❚ Pause",
+    play: "▶ Start",
+    reset: "⟳ Zurück",
+    statusSeed: "Keim",
+    statusCell: "Zelle",
+    statusStuck: "geheftet",
+    statusWalkers: "Wanderer",
+  },
+  es: {
+    presets: {
+      classic: { label: "Semilla central", note: "punto único, lento" },
+      fast: { label: "Centro · rápido", note: "80 caminantes/cuadro" },
+      line: { label: "Línea inferior", note: "crecimiento cristalino" },
+      ring: { label: "Semilla anillo", note: "coral de dentro hacia fuera" },
+    },
+    presetsHeader: "Preajustes",
+    seedHeader: "Semilla",
+    seedLabels: { point: "punto", line: "línea", ring: "anillo" },
+    walkersLabel: "Caminantes / cuadro",
+    stickinessLabel: "Adherencia",
+    cellLabel: "Tamaño de celda (px)",
+    colourHeader: "Color",
+    pause: "❚❚ Pausa",
+    play: "▶ Jugar",
+    reset: "⟳ Reiniciar",
+    statusSeed: "semilla",
+    statusCell: "celda",
+    statusStuck: "pegados",
+    statusWalkers: "caminantes",
+  },
+  fr: {
+    presets: {
+      classic: { label: "Graine centrale", note: "point unique, lent" },
+      fast: { label: "Centre · rapide", note: "80 marcheurs/image" },
+      line: { label: "Ligne du bas", note: "croissance cristalline" },
+      ring: { label: "Graine anneau", note: "corail de l'intérieur" },
+    },
+    presetsHeader: "Préréglages",
+    seedHeader: "Graine",
+    seedLabels: { point: "point", line: "ligne", ring: "anneau" },
+    walkersLabel: "Marcheurs / image",
+    stickinessLabel: "Adhérence",
+    cellLabel: "Taille de cellule (px)",
+    colourHeader: "Couleur",
+    pause: "❚❚ Pause",
+    play: "▶ Lire",
+    reset: "⟳ Réinit.",
+    statusSeed: "graine",
+    statusCell: "cellule",
+    statusStuck: "collés",
+    statusWalkers: "marcheurs",
+  },
+  it: {
+    presets: {
+      classic: { label: "Seme centrale", note: "punto singolo, lento" },
+      fast: { label: "Centro · veloce", note: "80 camminatori/frame" },
+      line: { label: "Linea inferiore", note: "crescita cristallina" },
+      ring: { label: "Seme ad anello", note: "corallo dall'interno" },
+    },
+    presetsHeader: "Preset",
+    seedHeader: "Seme",
+    seedLabels: { point: "punto", line: "linea", ring: "anello" },
+    walkersLabel: "Camminatori / frame",
+    stickinessLabel: "Aderenza",
+    cellLabel: "Dimensione cella (px)",
+    colourHeader: "Colore",
+    pause: "❚❚ Pausa",
+    play: "▶ Vai",
+    reset: "⟳ Reset",
+    statusSeed: "seme",
+    statusCell: "cella",
+    statusStuck: "fissati",
+    statusWalkers: "camminatori",
+  },
+  pt: {
+    presets: {
+      classic: { label: "Semente central", note: "ponto único, lento" },
+      fast: { label: "Centro · rápido", note: "80 caminhantes/quadro" },
+      line: { label: "Linha inferior", note: "crescimento cristalino" },
+      ring: { label: "Semente anel", note: "coral de dentro para fora" },
+    },
+    presetsHeader: "Predefinições",
+    seedHeader: "Semente",
+    seedLabels: { point: "ponto", line: "linha", ring: "anel" },
+    walkersLabel: "Caminhantes / quadro",
+    stickinessLabel: "Aderência",
+    cellLabel: "Tamanho da célula (px)",
+    colourHeader: "Cor",
+    pause: "❚❚ Pausa",
+    play: "▶ Jogar",
+    reset: "⟳ Repor",
+    statusSeed: "semente",
+    statusCell: "célula",
+    statusStuck: "fixados",
+    statusWalkers: "caminhantes",
+  },
+  sv: {
+    presets: {
+      classic: { label: "Mittfrö", note: "enstaka punkt, långsamt" },
+      fast: { label: "Mitten · snabbt", note: "80 vandrare/bildruta" },
+      line: { label: "Bottenlinje", note: "kristalltillväxt" },
+      ring: { label: "Ringfrö", note: "korall inifrån och ut" },
+    },
+    presetsHeader: "Förinställningar",
+    seedHeader: "Frö",
+    seedLabels: { point: "punkt", line: "linje", ring: "ring" },
+    walkersLabel: "Vandrare / bildruta",
+    stickinessLabel: "Klibbighet",
+    cellLabel: "Cellstorlek (px)",
+    colourHeader: "Färg",
+    pause: "❚❚ Paus",
+    play: "▶ Spela",
+    reset: "⟳ Återställ",
+    statusSeed: "frö",
+    statusCell: "cell",
+    statusStuck: "fastnade",
+    statusWalkers: "vandrare",
+  },
+  no: {
+    presets: {
+      classic: { label: "Sentrum-frø", note: "enkelt punkt, sakte" },
+      fast: { label: "Sentrum · rask", note: "80 vandrere/ramme" },
+      line: { label: "Bunnlinje", note: "krystallvekst" },
+      ring: { label: "Ringfrø", note: "korall fra innsiden og ut" },
+    },
+    presetsHeader: "Forhåndsinnstillinger",
+    seedHeader: "Frø",
+    seedLabels: { point: "punkt", line: "linje", ring: "ring" },
+    walkersLabel: "Vandrere / ramme",
+    stickinessLabel: "Klebrighet",
+    cellLabel: "Cellestørrelse (px)",
+    colourHeader: "Farge",
+    pause: "❚❚ Pause",
+    play: "▶ Spill",
+    reset: "⟳ Nullstill",
+    statusSeed: "frø",
+    statusCell: "celle",
+    statusStuck: "festet",
+    statusWalkers: "vandrere",
+  },
+};
 
 const COLORS = {
   rose: {
@@ -83,8 +256,9 @@ const COLORS = {
 type ColorKey = keyof typeof COLORS;
 
 export default function DlaExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.dla;
+  const copy = COPY[locale];
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [seed, setSeed] = useState<SeedKind>("point");
@@ -280,12 +454,12 @@ export default function DlaExplorer() {
           <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
           <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              DLA · seed = {seed} · cell {cell}px
+              DLA · {copy.statusSeed} = {copy.seedLabels[seed]} · {copy.statusCell} {cell}px
             </div>
             <div
               className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${c.tw}`}
             >
-              {stuck.toLocaleString()} stuck · {walkers} walkers
+              {stuck.toLocaleString()} {copy.statusStuck} · {walkers} {copy.statusWalkers}
             </div>
           </div>
         </div>
@@ -301,25 +475,28 @@ export default function DlaExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Presets
+              {copy.presetsHeader}
             </div>
             <div className="grid grid-cols-2 gap-2">
-              {PRESETS.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => applyPreset(p)}
-                  className="hairline rounded-md border px-3 py-2 text-left text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
-                >
-                  <div className="font-mono text-xs">{p.label}</div>
-                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">{p.note}</div>
-                </button>
-              ))}
+              {PRESETS.map((p) => {
+                const t = copy.presets[p.id];
+                return (
+                  <button
+                    key={p.id}
+                    onClick={() => applyPreset(p)}
+                    className="hairline rounded-md border px-3 py-2 text-left text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+                  >
+                    <div className="font-mono text-xs">{t.label}</div>
+                    <div className="mt-0.5 font-mono text-[10px] text-ink-400">{t.note}</div>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Seed
+              {copy.seedHeader}
             </div>
             <div className="grid grid-cols-3 gap-2">
               {(["point", "line", "ring"] as SeedKind[]).map((k) => (
@@ -335,7 +512,7 @@ export default function DlaExplorer() {
                       : "hairline text-ink-300 hover:text-ink-100"
                   }`}
                 >
-                  {k}
+                  {copy.seedLabels[k]}
                 </button>
               ))}
             </div>
@@ -343,7 +520,7 @@ export default function DlaExplorer() {
 
           <div className="hairline space-y-4 border-b p-5">
             <SliderRow
-              label="Walkers / frame"
+              label={copy.walkersLabel}
               value={walkers}
               min={10}
               max={1000}
@@ -352,7 +529,7 @@ export default function DlaExplorer() {
               onChange={setWalkers}
             />
             <SliderRow
-              label="Stickiness"
+              label={copy.stickinessLabel}
               value={stickiness}
               min={0.1}
               max={1}
@@ -361,7 +538,7 @@ export default function DlaExplorer() {
               onChange={setStickiness}
             />
             <SliderRow
-              label="Cell size (px)"
+              label={copy.cellLabel}
               value={cell}
               min={2}
               max={8}
@@ -376,7 +553,7 @@ export default function DlaExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Colour
+              {copy.colourHeader}
             </div>
             <div className="grid grid-cols-4 gap-2">
               {(Object.keys(COLORS) as ColorKey[]).map((k) => (
@@ -405,13 +582,13 @@ export default function DlaExplorer() {
                   : `${c.border} ${c.tw} ${c.bg}`
               }`}
             >
-              {running ? "❚❚ Pause" : "▶ Play"}
+              {running ? copy.pause : copy.play}
             </button>
             <button
               onClick={() => setResetTick((t) => t + 1)}
               className="hairline hover:text-ink-50 w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-ink-300/50"
             >
-              ⟳ Reset
+              {copy.reset}
             </button>
           </div>
 

@@ -149,11 +149,11 @@ const en: RichStory = {
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "And so on. Each level dwarfs the one below." },
     {
-      pretty: "𝒫⁴(ℕ)",
-      note: "Four power-set steps in. The names are still finite; the sizes already aren't.",
+      pretty: "𝒫³(ℝ)",
+      note: "Three power-set steps over ℝ. The names are still finite; the sizes already aren't.",
     },
-    { pretty: "𝒫⁵(ℕ)", note: "Iterate the same rule forever. There is no top floor." },
-    { pretty: "𝒫⁶(ℕ)", note: "The cardinals beyond ℵ₀ are themselves an uncountable hierarchy." },
+    { pretty: "𝒫⁴(ℝ)", note: "Iterate the same rule forever. There is no top floor." },
+    { pretty: "𝒫⁵(ℝ)", note: "The cardinals beyond ℵ₀ are themselves an uncountable hierarchy." },
     {
       pretty: "⋯ forever",
       note: "Cantor's theorem guarantees: no matter how high you climb, |𝒫(X)| > |X|.",
@@ -261,12 +261,12 @@ const de: RichStory = {
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "Und so weiter. Jede Stufe lässt die vorherige verschwinden." },
     {
-      pretty: "𝒫⁴(ℕ)",
-      note: "Vier Potenzmengen-Schritte. Die Namen sind noch endlich; die Größen längst nicht mehr.",
+      pretty: "𝒫³(ℝ)",
+      note: "Drei Potenzmengen-Schritte über ℝ. Die Namen sind noch endlich; die Größen längst nicht mehr.",
     },
-    { pretty: "𝒫⁵(ℕ)", note: "Iterier dieselbe Regel für immer. Es gibt kein oberstes Stockwerk." },
+    { pretty: "𝒫⁴(ℝ)", note: "Iterier dieselbe Regel für immer. Es gibt kein oberstes Stockwerk." },
     {
-      pretty: "𝒫⁶(ℕ)",
+      pretty: "𝒫⁵(ℝ)",
       note: "Die Kardinalzahlen jenseits von ℵ₀ bilden selbst eine überabzählbare Hierarchie.",
     },
     {
@@ -373,12 +373,12 @@ const es: RichStory = {
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "Y así sucesivamente. Cada nivel empequeñece al anterior." },
     {
-      pretty: "𝒫⁴(ℕ)",
-      note: "Cuatro pasos de partes. Los nombres aún son finitos; los tamaños ya no.",
+      pretty: "𝒫³(ℝ)",
+      note: "Tres pasos de partes sobre ℝ. Los nombres aún son finitos; los tamaños ya no.",
     },
-    { pretty: "𝒫⁵(ℕ)", note: "Itera la misma regla para siempre. No hay último piso." },
+    { pretty: "𝒫⁴(ℝ)", note: "Itera la misma regla para siempre. No hay último piso." },
     {
-      pretty: "𝒫⁶(ℕ)",
+      pretty: "𝒫⁵(ℝ)",
       note: "Los cardinales más allá de ℵ₀ forman ellos mismos una jerarquía no numerable.",
     },
     {
@@ -485,12 +485,12 @@ const fr: RichStory = {
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "Et ainsi de suite. Chaque niveau écrase celui d'en dessous." },
     {
-      pretty: "𝒫⁴(ℕ)",
-      note: "Quatre passages à l'ensemble des parties. Les noms restent finis ; les tailles non.",
+      pretty: "𝒫³(ℝ)",
+      note: "Trois passages à l'ensemble des parties au-dessus de ℝ. Les noms restent finis ; les tailles non.",
     },
-    { pretty: "𝒫⁵(ℕ)", note: "Itère la même règle pour toujours. Pas d'étage supérieur." },
+    { pretty: "𝒫⁴(ℝ)", note: "Itère la même règle pour toujours. Pas d'étage supérieur." },
     {
-      pretty: "𝒫⁶(ℕ)",
+      pretty: "𝒫⁵(ℝ)",
       note: "Les cardinaux au-delà de ℵ₀ forment eux-mêmes une hiérarchie indénombrable.",
     },
     {
@@ -597,12 +597,12 @@ const it: RichStory = {
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "E così via. Ogni livello fa impallidire il precedente." },
     {
-      pretty: "𝒫⁴(ℕ)",
-      note: "Quattro passi di parti. I nomi sono ancora finiti; le taglie non più.",
+      pretty: "𝒫³(ℝ)",
+      note: "Tre passi di parti sopra ℝ. I nomi sono ancora finiti; le taglie non più.",
     },
-    { pretty: "𝒫⁵(ℕ)", note: "Itera la stessa regola per sempre. Non c'è ultimo piano." },
+    { pretty: "𝒫⁴(ℝ)", note: "Itera la stessa regola per sempre. Non c'è ultimo piano." },
     {
-      pretty: "𝒫⁶(ℕ)",
+      pretty: "𝒫⁵(ℝ)",
       note: "I cardinali oltre ℵ₀ formano essi stessi una gerarchia non numerabile.",
     },
     {
@@ -709,12 +709,12 @@ const pt: RichStory = {
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "E assim por diante. Cada nível faz o anterior parecer pequeno." },
     {
-      pretty: "𝒫⁴(ℕ)",
-      note: "Quatro passos de partes. Os nomes ainda são finitos; os tamanhos já não.",
+      pretty: "𝒫³(ℝ)",
+      note: "Três passos de partes sobre ℝ. Os nomes ainda são finitos; os tamanhos já não.",
     },
-    { pretty: "𝒫⁵(ℕ)", note: "Itera a mesma regra para sempre. Não há último andar." },
+    { pretty: "𝒫⁴(ℝ)", note: "Itera a mesma regra para sempre. Não há último andar." },
     {
-      pretty: "𝒫⁶(ℕ)",
+      pretty: "𝒫⁵(ℝ)",
       note: "Os cardinais para lá de ℵ₀ formam eles próprios uma hierarquia não-numerável.",
     },
     {
@@ -821,11 +821,11 @@ const sv: RichStory = {
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "Och så vidare. Varje nivå får den under att se liten ut." },
     {
-      pretty: "𝒫⁴(ℕ)",
-      note: "Fyra potensmängdssteg in. Namnen är fortfarande ändliga; storlekarna inte längre.",
+      pretty: "𝒫³(ℝ)",
+      note: "Tre potensmängdssteg över ℝ. Namnen är fortfarande ändliga; storlekarna inte längre.",
     },
-    { pretty: "𝒫⁵(ℕ)", note: "Iterera samma regel för alltid. Det finns ingen översta våning." },
-    { pretty: "𝒫⁶(ℕ)", note: "Kardinaltalen bortom ℵ₀ utgör själva en överuppräknelig hierarki." },
+    { pretty: "𝒫⁴(ℝ)", note: "Iterera samma regel för alltid. Det finns ingen översta våning." },
+    { pretty: "𝒫⁵(ℝ)", note: "Kardinaltalen bortom ℵ₀ utgör själva en överuppräknelig hierarki." },
     {
       pretty: "⋯ för alltid",
       note: "Cantors sats garanterar: hur högt du än klättrar, |𝒫(X)| > |X|.",
@@ -930,14 +930,14 @@ const no: RichStory = {
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "Og slik videre. Hvert nivå dverger det under." },
     {
-      pretty: "𝒫⁴(ℕ)",
-      note: "Fire potensmengde-steg inn. Navnene er ennå endelige; størrelsene ikke lenger.",
+      pretty: "𝒫³(ℝ)",
+      note: "Tre potensmengde-steg over ℝ. Navnene er ennå endelige; størrelsene ikke lenger.",
     },
     {
-      pretty: "𝒫⁵(ℕ)",
+      pretty: "𝒫⁴(ℝ)",
       note: "Iterer den samme regelen for alltid. Det finnes ingen øverste etasje.",
     },
-    { pretty: "𝒫⁶(ℕ)", note: "Kardinaltallene utover ℵ₀ utgjør selv et overtellbart hierarki." },
+    { pretty: "𝒫⁵(ℝ)", note: "Kardinaltallene utover ℵ₀ utgjør selv et overtellbart hierarki." },
     {
       pretty: "⋯ for alltid",
       note: "Cantors teorem garanterer: uansett hvor høyt du klatrer, |𝒫(X)| > |X|.",

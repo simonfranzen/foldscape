@@ -1198,7 +1198,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape deux · Les surprises du ciseau",
           title: "Ce que les ciseaux révèlent sur la topologie",
-          body: "Coupe le ruban de Möbius par le milieu. Il ne tombe pas en morceaux — tu obtiens une bande plus longue avec deux tours complets (quatre demi-tours), et surtout cette bande est de nouveau à deux côtés. Coupe un ruban de Möbius à un tiers de la distance d'un bord, en gardant la coupe parallèle au bord tout du long, et les ciseaux font deux fois le tour avant de refermer la boucle : il en sort deux anneaux entrelacés, l'un un nouveau ruban de Möbius, l'autre un ruban plus long de style Möbius avec des torsions supplémentaires, enlacés l'un dans l'autre. La topologie regorge de ces surprises — la torsion globale cachée par la planéité locale.",
+          body: "Coupe le ruban de Möbius par le milieu. Il ne tombe pas en morceaux — tu obtiens une bande plus longue avec deux tours complets (quatre demi-tours), et surtout cette bande est de nouveau à deux côtés. Coupe un ruban de Möbius à un tiers de la distance d'un bord, en gardant la coupe parallèle au bord tout du long, et les ciseaux font deux fois le tour avant de refermer la boucle : il en sort deux anneaux entrelacés — un nouveau ruban de Möbius plus étroit (toujours avec un seul demi-tour) et un anneau plus long à deux côtés avec deux demi-tours (qui n'est plus un ruban de Möbius), enlacés l'un dans l'autre. La topologie regorge de ces surprises — la torsion globale cachée par la planéité locale.",
         },
         {
           pretitle: "Étape trois · La bouteille de Klein",
@@ -1208,7 +1208,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape quatre · Où elles vivent",
           title: "Des courroies de transmission à la chimie",
-          body: "Les rubans de Möbius apparaissent comme courroies de transport et d'imprimante (l'usure se répartit sur toute la surface, doublant la durée de vie), comme les sculptures Endless Ribbon de Max Bill, comme des résistances de Möbius qui annulent leur propre auto-inductance, comme des guides d'ondes micro-ondes de Möbius supraconducteurs — et, depuis 2003, comme des molécules aromatiques de Möbius synthétisées par Rainer Herges. Le triangle familier du recyclage est, à strictement parler, un nœud de trèfle plutôt qu'un ruban de Möbius, mais le public le lit comme tel. Surtout, le ruban de Möbius et la bouteille de Klein sont les portes d'entrée vers la classification des surfaces — le théorème selon lequel toute surface fermée est déterminée à homéomorphisme près par son genre, son orientabilité et un seul entier χ.",
+          body: "Les rubans de Möbius apparaissent comme courroies de transport et d'imprimante (l'usure se répartit sur toute la surface, doublant la durée de vie), comme les sculptures Endless Ribbon de Max Bill, comme des résistances de Möbius qui annulent leur propre auto-inductance, comme des guides d'ondes micro-ondes de Möbius supraconducteurs — et, depuis 2003, comme des molécules aromatiques de Möbius synthétisées par Rainer Herges. Le triangle familier du recyclage est, à strictement parler, un ruban de Möbius avec trois demi-tours — toujours à un seul côté, mais plus tordu que le ruban classique à un seul demi-tour. Surtout, le ruban de Möbius et la bouteille de Klein sont les portes d'entrée vers la classification des surfaces — le théorème selon lequel toute surface fermée est déterminée à homéomorphisme près par son genre, son orientabilité et un seul entier χ.",
         },
       ],
     },
@@ -1293,7 +1293,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape trois · La preuve d'Appel et Haken, 1976",
           title: "Le premier théorème prouvé par ordinateur",
-          body: "Kenneth Appel et Wolfgang Haken, à l'université de l'Illinois, ont réduit le problème à une liste finie de 1834 « configurations inévitables » — puis ont montré que chacune est réductible. Leur preuve a tourné sur un IBM 360 pendant environ 1200 heures. De nombreux mathématiciens ont refusé de l'accepter : une preuve qu'un humain ne peut lire dans son intégralité, soutenaient-ils, n'est pas une preuve. Le courrier sortant du département de mathématiques de l'université de l'Illinois fut affranchi de « Four Colors Suffice » pendant des années.",
+          body: "Kenneth Appel et Wolfgang Haken, à l'université de l'Illinois, ont réduit le problème à une liste finie de 1834 « configurations inévitables » — puis ont montré que chacune est réductible. Leur preuve a tourné sur un IBM 370 pendant environ 1200 heures. De nombreux mathématiciens ont refusé de l'accepter : une preuve qu'un humain ne peut lire dans son intégralité, soutenaient-ils, n'est pas une preuve. Le courrier sortant du département de mathématiques de l'université de l'Illinois fut affranchi de « Four Colors Suffice » pendant des années.",
         },
         {
           pretitle: "Étape quatre · Où en est-on",

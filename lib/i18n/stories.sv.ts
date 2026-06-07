@@ -1197,7 +1197,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg två · Saxöverraskningar",
           title: "Vad saxen avslöjar om topologin",
-          body: "Skär Möbiusbandet längs mitten. Det faller inte isär — du får ett längre band med två fulla vridningar (fyra halvvridningar), och avgörande nog är det bandet tvåsidigt igen. Skär ett Möbiusband en tredjedel in från ena kanten, och håll snittet parallellt med kanten hela vägen runt, och saxen färdas två varv innan slingan sluts: ut kommer två sammanflätade ringar, en ett färskt Möbiusband och en ett längre Möbius-liknande band med extra vridningar, länkade genom varandra. Topologin är full av sådana överraskningar — den globala vridningen gömd av lokal planhet.",
+          body: "Skär Möbiusbandet längs mitten. Det faller inte isär — du får ett längre band med två fulla vridningar (fyra halvvridningar), och avgörande nog är det bandet tvåsidigt igen. Skär ett Möbiusband en tredjedel in från ena kanten, och håll snittet parallellt med kanten hela vägen runt, och saxen färdas två varv innan slingan sluts: ut kommer två sammanflätade ringar — ett smalare, färskt Möbiusband (fortfarande med en halv vridning) och en längre tvåsidig ring med två halva vridningar (inte längre ett Möbiusband), länkade genom varandra. Topologin är full av sådana överraskningar — den globala vridningen gömd av lokal planhet.",
         },
         {
           pretitle: "Steg tre · Kleinflaskan",
@@ -1207,7 +1207,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg fyra · Var de lever",
           title: "Från remdrifter till kemi",
-          body: "Möbiusband dyker upp som transportband och skrivarremmar (slitaget fördelas över hela ytan, dubbel livslängd), som Max Bills Endless Ribbon-skulpturer, som Möbiusmotstånd som upphäver sin egen självinduktans, som supraledande mikrovågs-Möbiusvågledare — och, sedan 2003, som Möbius-aromatiska molekyler syntetiserade av Rainer Herges. Den välbekanta återvinningstriangeln är, strängt taget, en treklöverknut snarare än ett Möbiusband, men allmänheten läser den som ett. Framför allt är Möbiusbandet och Kleinflaskan ingångarna till klassificeringen av ytor — satsen att varje sluten yta är bestämd upp till homeomorfi av kön, orienterbarhet och ett enda heltal χ.",
+          body: "Möbiusband dyker upp som transportband och skrivarremmar (slitaget fördelas över hela ytan, dubbel livslängd), som Max Bills Endless Ribbon-skulpturer, som Möbiusmotstånd som upphäver sin egen självinduktans, som supraledande mikrovågs-Möbiusvågledare — och, sedan 2003, som Möbius-aromatiska molekyler syntetiserade av Rainer Herges. Den välbekanta återvinningstriangeln är, strängt taget, ett Möbiusband med tre halva vridningar — fortfarande ensidigt, men mer vridet än det klassiska bandet med en halv vridning. Framför allt är Möbiusbandet och Kleinflaskan ingångarna till klassificeringen av ytor — satsen att varje sluten yta är bestämd upp till homeomorfi av kön, orienterbarhet och ett enda heltal χ.",
         },
       ],
     },
@@ -1292,7 +1292,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg tre · Appel-Hakens bevis, 1976",
           title: "Den första satsen bevisad av dator",
-          body: 'Kenneth Appel och Wolfgang Haken vid University of Illinois reducerade problemet till en ändlig lista av 1834 "oundvikliga konfigurationer" — och visade sedan att var och en är reducibel. Deras bevis kördes på en IBM 360 i cirka 1200 timmar. Många matematiker vägrade godta det: ett bevis som en människa inte kan läsa i sin helhet, argumenterade de, är inget bevis. University of Illinois matematikinstitutions utgående post frankerades med "Four Colors Suffice" i åratal.',
+          body: 'Kenneth Appel och Wolfgang Haken vid University of Illinois reducerade problemet till en ändlig lista av 1834 "oundvikliga konfigurationer" — och visade sedan att var och en är reducibel. Deras bevis kördes på en IBM 370 i cirka 1200 timmar. Många matematiker vägrade godta det: ett bevis som en människa inte kan läsa i sin helhet, argumenterade de, är inget bevis. University of Illinois matematikinstitutions utgående post frankerades med "Four Colors Suffice" i åratal.',
         },
         {
           pretitle: "Steg fyra · Var det står",

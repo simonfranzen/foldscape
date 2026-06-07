@@ -92,9 +92,9 @@ const en: RichStory = {
       body: "Moses Schönfinkel, in a 1924 paper that pre-dated Church, found that two combinators are enough. K x y = x throws its second argument away (the constant function). S x y z = x z (y z) takes three arguments, feeds the third to both of the first two, and applies one result to the other (substitution with sharing). These two rewrite rules together can encode every λ-term, every recursive function, every Turing-machine program.",
     },
     {
-      pretitle: "Section 03 · Barker, 1995",
+      pretitle: "Section 03 · Barker, 2001",
       title: "Enter Iota",
-      body: "In 1995 the linguist and logician Chris Barker asked: how far can we push this? Schönfinkel needed two combinators. Can one suffice? He defined ℩ ≡ λx. x S K — “apply your argument to S and to K, in that order.” That's the whole language: one symbol, one rule. Parentheses are typography, not extra primitives. And yet, as we'll now see, this single rule contains S and K as derived terms — and therefore everything.",
+      body: "In 2001 the linguist and logician Chris Barker asked: how far can we push this? Schönfinkel needed two combinators. Can one suffice? He defined ℩ ≡ λx. x S K — “apply your argument to S and to K, in that order.” That's the whole language: one symbol, one rule. Parentheses are typography, not extra primitives. And yet, as we'll now see, this single rule contains S and K as derived terms — and therefore everything.",
     },
     {
       pretitle: "Section 04 · Deriving K",
@@ -184,9 +184,9 @@ const de: RichStory = {
       body: "Moses Schönfinkel zeigte 1924, noch vor Church, dass zwei Kombinatoren reichen. K x y = x wirft sein zweites Argument weg (die Konstantenfunktion). S x y z = x z (y z) nimmt drei Argumente, gibt das dritte beiden ersten und wendet eines auf das andere an (Substitution mit Teilen). Mit diesen beiden Regeln lässt sich jeder λ-Term, jede rekursive Funktion, jedes Turing-Maschinen-Programm codieren.",
     },
     {
-      pretitle: "Abschnitt 03 · Barker, 1995",
+      pretitle: "Abschnitt 03 · Barker, 2001",
       title: "Auftritt Iota",
-      body: "1995 fragte der Linguist und Logiker Chris Barker: wie weit kann man das treiben? Schönfinkel brauchte zwei Kombinatoren. Reicht einer? Er definierte ℩ ≡ λx. x S K — „wende dein Argument auf S an, dann auf K.“ Das ist die ganze Sprache: ein Symbol, eine Regel. Klammern sind Typografie, kein zusätzliches Primitiv. Und doch enthält diese eine Regel S und K als abgeleitete Terme — und damit alles.",
+      body: "2001 fragte der Linguist und Logiker Chris Barker: wie weit kann man das treiben? Schönfinkel brauchte zwei Kombinatoren. Reicht einer? Er definierte ℩ ≡ λx. x S K — „wende dein Argument auf S an, dann auf K.“ Das ist die ganze Sprache: ein Symbol, eine Regel. Klammern sind Typografie, kein zusätzliches Primitiv. Und doch enthält diese eine Regel S und K als abgeleitete Terme — und damit alles.",
     },
     {
       pretitle: "Abschnitt 04 · K herleiten",
@@ -275,9 +275,9 @@ const es: RichStory = {
       body: "Moses Schönfinkel, en un artículo de 1924 anterior a Church, descubrió que bastan dos combinadores. K x y = x tira su segundo argumento (la función constante). S x y z = x z (y z) toma tres argumentos, da el tercero a los dos primeros, y aplica un resultado al otro (sustitución con compartición). Estas dos reglas codifican todo λ-término, toda función recursiva, todo programa de máquina de Turing.",
     },
     {
-      pretitle: "Sección 03 · Barker, 1995",
+      pretitle: "Sección 03 · Barker, 2001",
       title: "Entra Iota",
-      body: "En 1995 el lingüista y lógico Chris Barker preguntó: ¿hasta dónde se puede llevar esto? Schönfinkel necesitaba dos combinadores. ¿Basta con uno? Definió ℩ ≡ λx. x S K — “aplica tu argumento a S y luego a K”. Ese es todo el lenguaje: un símbolo, una regla. Los paréntesis son tipografía, no una primitiva extra. Y, sin embargo, esta regla contiene a S y a K como términos derivados — y por tanto, todo.",
+      body: "En 2001 el lingüista y lógico Chris Barker preguntó: ¿hasta dónde se puede llevar esto? Schönfinkel necesitaba dos combinadores. ¿Basta con uno? Definió ℩ ≡ λx. x S K — “aplica tu argumento a S y luego a K”. Ese es todo el lenguaje: un símbolo, una regla. Los paréntesis son tipografía, no una primitiva extra. Y, sin embargo, esta regla contiene a S y a K como términos derivados — y por tanto, todo.",
     },
     {
       pretitle: "Sección 04 · Derivar K",
@@ -367,9 +367,9 @@ const fr: RichStory = {
       body: "Moses Schönfinkel, dans un article de 1924 antérieur à Church, a trouvé que deux combinateurs suffisent. K x y = x jette son second argument (la fonction constante). S x y z = x z (y z) prend trois arguments, donne le troisième aux deux premiers et applique l'un au résultat de l'autre (substitution avec partage). Ces deux règles encodent tout λ-terme, toute fonction récursive, tout programme de machine de Turing.",
     },
     {
-      pretitle: "Section 03 · Barker, 1995",
+      pretitle: "Section 03 · Barker, 2001",
       title: "Iota entre en scène",
-      body: "En 1995 le linguiste et logicien Chris Barker a demandé : jusqu'où peut-on pousser ? Schönfinkel avait besoin de deux combinateurs. Un seul peut-il suffire ? Il a défini ℩ ≡ λx. x S K — « applique ton argument à S, puis à K ». C'est tout le langage : un symbole, une règle. Les parenthèses ne sont que typographie, pas une primitive de plus. Et pourtant, cette unique règle contient S et K comme termes dérivés — donc tout.",
+      body: "En 2001 le linguiste et logicien Chris Barker a demandé : jusqu'où peut-on pousser ? Schönfinkel avait besoin de deux combinateurs. Un seul peut-il suffire ? Il a défini ℩ ≡ λx. x S K — « applique ton argument à S, puis à K ». C'est tout le langage : un symbole, une règle. Les parenthèses ne sont que typographie, pas une primitive de plus. Et pourtant, cette unique règle contient S et K comme termes dérivés — donc tout.",
     },
     {
       pretitle: "Section 04 · Dériver K",
@@ -458,9 +458,9 @@ const it: RichStory = {
       body: "Moses Schönfinkel, in un articolo del 1924 anteriore a Church, scoprì che bastano due combinatori. K x y = x butta via il secondo argomento (la funzione costante). S x y z = x z (y z) prende tre argomenti, dà il terzo ai primi due e applica un risultato all'altro (sostituzione con condivisione). Queste due regole codificano ogni λ-termine, ogni funzione ricorsiva, ogni programma di macchina di Turing.",
     },
     {
-      pretitle: "Sezione 03 · Barker, 1995",
+      pretitle: "Sezione 03 · Barker, 2001",
       title: "Entra Iota",
-      body: "Nel 1995 il linguista e logico Chris Barker si chiese: fin dove si può spingere? Schönfinkel aveva bisogno di due combinatori. Ne basta uno? Definì ℩ ≡ λx. x S K — “applica il tuo argomento a S e poi a K”. Ecco l'intero linguaggio: un simbolo, una regola. Le parentesi sono tipografia, non una primitiva in più. Eppure questa unica regola contiene S e K come termini derivati — e quindi tutto.",
+      body: "Nel 2001 il linguista e logico Chris Barker si chiese: fin dove si può spingere? Schönfinkel aveva bisogno di due combinatori. Ne basta uno? Definì ℩ ≡ λx. x S K — “applica il tuo argomento a S e poi a K”. Ecco l'intero linguaggio: un simbolo, una regola. Le parentesi sono tipografia, non una primitiva in più. Eppure questa unica regola contiene S e K come termini derivati — e quindi tutto.",
     },
     {
       pretitle: "Sezione 04 · Derivare K",
@@ -549,9 +549,9 @@ const pt: RichStory = {
       body: "Moses Schönfinkel, num artigo de 1924 anterior a Church, descobriu que bastam dois combinadores. K x y = x deita fora o segundo argumento (a função constante). S x y z = x z (y z) pega em três argumentos, dá o terceiro aos dois primeiros e aplica um resultado ao outro (substituição com partilha). Estas duas regras codificam todo λ-termo, toda função recursiva, todo programa de máquina de Turing.",
     },
     {
-      pretitle: "Secção 03 · Barker, 1995",
+      pretitle: "Secção 03 · Barker, 2001",
       title: "Entra o Iota",
-      body: "Em 1995 o linguista e lógico Chris Barker perguntou: até onde se pode levar isto? Schönfinkel precisava de dois combinadores. Bastará um? Definiu ℩ ≡ λx. x S K — “aplica o teu argumento a S e depois a K”. É toda a linguagem: um símbolo, uma regra. Os parênteses são tipografia, não uma primitiva extra. E, no entanto, esta única regra contém S e K como termos derivados — e portanto tudo.",
+      body: "Em 2001 o linguista e lógico Chris Barker perguntou: até onde se pode levar isto? Schönfinkel precisava de dois combinadores. Bastará um? Definiu ℩ ≡ λx. x S K — “aplica o teu argumento a S e depois a K”. É toda a linguagem: um símbolo, uma regra. Os parênteses são tipografia, não uma primitiva extra. E, no entanto, esta única regra contém S e K como termos derivados — e portanto tudo.",
     },
     {
       pretitle: "Secção 04 · Derivar K",
@@ -640,9 +640,9 @@ const sv: RichStory = {
       body: "Moses Schönfinkel upptäckte 1924, före Church, att två kombinatorer räcker. K x y = x kastar bort sitt andra argument (den konstanta funktionen). S x y z = x z (y z) tar tre argument, ger det tredje till båda de första, och tillämpar det ena resultatet på det andra (substitution med delning). Dessa två regler kodar varje λ-term, varje rekursiv funktion, varje Turingmaskinsprogram.",
     },
     {
-      pretitle: "Avsnitt 03 · Barker, 1995",
+      pretitle: "Avsnitt 03 · Barker, 2001",
       title: "In kommer Iota",
-      body: "1995 frågade lingvisten och logikern Chris Barker: hur långt kan man driva det? Schönfinkel behövde två kombinatorer. Räcker det med en? Han definierade ℩ ≡ λx. x S K — ”tillämpa ditt argument på S och sedan på K”. Det är hela språket: en symbol, en regel. Parenteser är typografi, inte en extra primitiv. Ändå innehåller denna enda regel S och K som härledda termer — och därmed allt.",
+      body: "2001 frågade lingvisten och logikern Chris Barker: hur långt kan man driva det? Schönfinkel behövde två kombinatorer. Räcker det med en? Han definierade ℩ ≡ λx. x S K — ”tillämpa ditt argument på S och sedan på K”. Det är hela språket: en symbol, en regel. Parenteser är typografi, inte en extra primitiv. Ändå innehåller denna enda regel S och K som härledda termer — och därmed allt.",
     },
     {
       pretitle: "Avsnitt 04 · Härleda K",
@@ -731,9 +731,9 @@ const no: RichStory = {
       body: "Moses Schönfinkel oppdaget i 1924, før Church, at to kombinatorer holder. K x y = x kaster det andre argumentet (den konstante funksjonen). S x y z = x z (y z) tar tre argumenter, gir det tredje til de to første, og anvender det ene resultatet på det andre (substitusjon med deling). Disse to reglene koder enhver λ-term, enhver rekursiv funksjon, ethvert Turingmaskinprogram.",
     },
     {
-      pretitle: "Avsnitt 03 · Barker, 1995",
+      pretitle: "Avsnitt 03 · Barker, 2001",
       title: "Inn kommer Iota",
-      body: "I 1995 spurte lingvisten og logikeren Chris Barker: hvor langt kan man drive det? Schönfinkel trengte to kombinatorer. Holder det med én? Han definerte ℩ ≡ λx. x S K — «anvend argumentet ditt på S og deretter på K». Det er hele språket: ett symbol, én regel. Parenteser er typografi, ikke en ekstra primitiv. Likevel inneholder denne ene regelen S og K som avledede termer — og dermed alt.",
+      body: "I 2001 spurte lingvisten og logikeren Chris Barker: hvor langt kan man drive det? Schönfinkel trengte to kombinatorer. Holder det med én? Han definerte ℩ ≡ λx. x S K — «anvend argumentet ditt på S og deretter på K». Det er hele språket: ett symbol, én regel. Parenteser er typografi, ikke en ekstra primitiv. Likevel inneholder denne ene regelen S og K som avledede termer — og dermed alt.",
     },
     {
       pretitle: "Avsnitt 04 · Utlede K",
@@ -967,7 +967,7 @@ export default function IotaStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Barker, 1995
+              Barker, 2001
             </div>
             <div className="math-italic text-3xl leading-tight text-ink-100 md:text-4xl">
               ℩ ≡ λx. x S K

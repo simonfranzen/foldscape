@@ -1197,7 +1197,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo due · Sorprese al taglio",
           title: "Quello che le forbici rivelano sulla topologia",
-          body: "Taglia il nastro di Möbius lungo la metà. Non si spezza — ottieni una striscia più lunga con due torsioni complete (quattro mezzi giri), e crucialmente quella striscia è di nuovo a due lati. Taglia un nastro di Möbius a un terzo da un bordo, mantenendo il taglio parallelo al bordo per tutto il giro, e le forbici percorrono due volte l'anello prima di chiudere il loop: ne escono due anelli concatenati, uno è un nuovo nastro di Möbius e l'altro è un nastro più lungo in stile Möbius con torsioni extra, intrecciati l'uno con l'altro. La topologia è piena di queste sorprese — la torsione globale nascosta dietro la planarità locale.",
+          body: "Taglia il nastro di Möbius lungo la metà. Non si spezza — ottieni una striscia più lunga con due torsioni complete (quattro mezzi giri), e crucialmente quella striscia è di nuovo a due lati. Taglia un nastro di Möbius a un terzo da un bordo, mantenendo il taglio parallelo al bordo per tutto il giro, e le forbici percorrono due volte l'anello prima di chiudere il loop: ne escono due anelli concatenati — un nuovo nastro di Möbius più stretto (ancora con un solo mezzo giro) e un anello più lungo a due lati con due mezzi giri (che non è più un nastro di Möbius), intrecciati l'uno con l'altro. La topologia è piena di queste sorprese — la torsione globale nascosta dietro la planarità locale.",
         },
         {
           pretitle: "Passo tre · La bottiglia di Klein",
@@ -1207,7 +1207,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo quattro · Dove vivono",
           title: "Dalle cinghie di trasmissione alla chimica",
-          body: "I nastri di Möbius compaiono come cinghie di trasporto e di stampante (l'usura si distribuisce sull'intera superficie, raddoppiando la durata), come le sculture Endless Ribbon di Max Bill, come resistori di Möbius che cancellano la propria autoinduttanza, come guide d'onda a microonde superconduttrici di Möbius — e, dal 2003, come molecole aromatiche di Möbius sintetizzate da Rainer Herges. Il familiare triangolo del riciclo è, a rigore, un nodo a trifoglio anziché un nastro di Möbius, ma il pubblico lo legge come tale. Soprattutto, il nastro di Möbius e la bottiglia di Klein sono le porte d'accesso alla classificazione delle superfici — il teorema secondo cui ogni superficie chiusa è determinata a meno di omeomorfismo dal genere, dall'orientabilità e da un singolo intero χ.",
+          body: "I nastri di Möbius compaiono come cinghie di trasporto e di stampante (l'usura si distribuisce sull'intera superficie, raddoppiando la durata), come le sculture Endless Ribbon di Max Bill, come resistori di Möbius che cancellano la propria autoinduttanza, come guide d'onda a microonde superconduttrici di Möbius — e, dal 2003, come molecole aromatiche di Möbius sintetizzate da Rainer Herges. Il familiare triangolo del riciclo è, a rigore, un nastro di Möbius con tre mezzi giri — ancora a un solo lato, ma più ritorto del classico nastro a un solo mezzo giro. Soprattutto, il nastro di Möbius e la bottiglia di Klein sono le porte d'accesso alla classificazione delle superfici — il teorema secondo cui ogni superficie chiusa è determinata a meno di omeomorfismo dal genere, dall'orientabilità e da un singolo intero χ.",
         },
       ],
     },
@@ -1292,7 +1292,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo tre · La dimostrazione di Appel-Haken, 1976",
           title: "Il primo teorema dimostrato al computer",
-          body: "Kenneth Appel e Wolfgang Haken all'Università dell'Illinois ridussero il problema a una lista finita di 1834 \"configurazioni inevitabili\" — e poi mostrarono che ciascuna è riducibile. La loro dimostrazione girò su un IBM 360 per circa 1200 ore. Molti matematici rifiutarono di accettarla: una dimostrazione che un umano non può leggere per intero, sostenevano, non è una dimostrazione. La posta in uscita del dipartimento di matematica dell'Università dell'Illinois venne affrancata con \"Four Colors Suffice\" per anni.",
+          body: "Kenneth Appel e Wolfgang Haken all'Università dell'Illinois ridussero il problema a una lista finita di 1834 \"configurazioni inevitabili\" — e poi mostrarono che ciascuna è riducibile. La loro dimostrazione girò su un IBM 370 per circa 1200 ore. Molti matematici rifiutarono di accettarla: una dimostrazione che un umano non può leggere per intero, sostenevano, non è una dimostrazione. La posta in uscita del dipartimento di matematica dell'Università dell'Illinois venne affrancata con \"Four Colors Suffice\" per anni.",
         },
         {
           pretitle: "Passo quattro · Dove sta",

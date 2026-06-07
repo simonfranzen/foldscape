@@ -114,8 +114,8 @@ const enStory: RichStory = {
     },
     {
       pretitle: "Section 06 · Mathematical history",
-      title: "Sierpiński 1915 and the Lwów school",
-      body: "Wacław Sierpiński published the triangle in 1915, working in Lwów (now Lviv) inside the extraordinary Polish mathematical school that also produced Banach, Steinhaus, Mazur, Ulam and Kuratowski — many of them meeting at the Scottish Café to write theorems in a shared notebook. Sierpiński himself contributed the carpet in 1916; Karl Menger generalised the construction to three dimensions in 1926. The pattern itself, however, is far older: thirteenth-century Cosmatesque marble floors in Roman churches already carry recognisable Sierpiński gaskets, cut three or four iterations deep. The mathematics formalised what the masons had been laying out for seven centuries.",
+      title: "Sierpiński 1915 and the rise of Polish set theory",
+      body: "Wacław Sierpiński published the triangle in 1915, working in Lwów (now Lviv) against the backdrop of an emerging Polish school of set theory and point-set topology that he, Janiszewski and Mazurkiewicz would soon institutionalise around the Warsaw journal Fundamenta Mathematicae. Sierpiński himself contributed the carpet in 1916; Karl Menger generalised the construction to three dimensions in 1926. (The famous Lwów school around Banach, Steinhaus, Mazur and Ulam at the Scottish Café came later, through the 1920s and 1930s.) The pattern itself, however, is far older: thirteenth-century Cosmatesque marble floors in Roman churches already carry recognisable Sierpiński gaskets, cut three or four iterations deep. The mathematics formalised what the masons had been laying out for seven centuries.",
     },
   ],
   subdivision: {
@@ -212,8 +212,8 @@ const deStory: RichStory = {
     },
     {
       pretitle: "Abschnitt 06 · Mathematische Geschichte",
-      title: "Sierpiński 1915 und die Lemberger Schule",
-      body: "Wacław Sierpiński publizierte das Dreieck 1915 in Lemberg (heute Lwiw), im Zentrum jener außergewöhnlichen polnischen mathematischen Schule, die auch Banach, Steinhaus, Mazur, Ulam und Kuratowski hervorbrachte — viele trafen sich im Café Szkocka und schrieben Theoreme in ein gemeinsames Buch. 1916 folgte Sierpińskis Teppich; 1926 verallgemeinerte Karl Menger die Konstruktion ins Räumliche. Das Muster selbst ist jedoch viel älter: kosmateske Marmorböden des 13. Jahrhunderts in römischen Kirchen tragen schon klar erkennbare Sierpiński-Packungen, drei oder vier Iterationen tief geschnitten. Die Mathematik formalisierte, was die Steinmetze seit sieben Jahrhunderten verlegt hatten.",
+      title: "Sierpiński 1915 und die aufkommende polnische Mengenlehre",
+      body: "Wacław Sierpiński publizierte das Dreieck 1915 in Lemberg (heute Lwiw), vor dem Hintergrund einer aufkommenden polnischen Schule für Mengenlehre und Punktmengen-Topologie, die er, Janiszewski und Mazurkiewicz wenig später um die Warschauer Zeitschrift Fundamenta Mathematicae herum institutionalisieren sollten. 1916 folgte Sierpińskis Teppich; 1926 verallgemeinerte Karl Menger die Konstruktion ins Räumliche. (Die berühmte Lemberger Schule um Banach, Steinhaus, Mazur und Ulam im Café Szkocka kam erst später — in den 1920ern und 1930ern.) Das Muster selbst ist jedoch viel älter: kosmateske Marmorböden des 13. Jahrhunderts in römischen Kirchen tragen schon klar erkennbare Sierpiński-Packungen, drei oder vier Iterationen tief geschnitten. Die Mathematik formalisierte, was die Steinmetze seit sieben Jahrhunderten verlegt hatten.",
     },
   ],
   subdivision: {
@@ -311,8 +311,8 @@ const esStory: RichStory = {
     },
     {
       pretitle: "Sección 06 · Historia matemática",
-      title: "Sierpiński 1915 y la escuela de Lwów",
-      body: "Wacław Sierpiński publicó el triángulo en 1915 trabajando en Lwów (hoy Lviv), dentro de la extraordinaria escuela matemática polaca que también dio a Banach, Steinhaus, Mazur, Ulam y Kuratowski — muchos se reunían en el Café Escocés y escribían teoremas en un cuaderno compartido. El propio Sierpiński aportó la alfombra en 1916; Karl Menger generalizó la construcción al espacio en 1926. El patrón, sin embargo, es mucho más antiguo: los suelos cosmatescos de mármol del siglo XIII en iglesias romanas ya llevan tramas de Sierpiński reconocibles, cortadas tres o cuatro iteraciones de profundidad. Las matemáticas formalizaron lo que los canteros llevaban siete siglos colocando.",
+      title: "Sierpiński 1915 y el surgimiento de la teoría polaca de conjuntos",
+      body: "Wacław Sierpiński publicó el triángulo en 1915 trabajando en Lwów (hoy Lviv), con el telón de fondo de una escuela polaca emergente de teoría de conjuntos y topología de conjuntos de puntos que él, Janiszewski y Mazurkiewicz institucionalizarían poco después en torno a la revista varsoviana Fundamenta Mathematicae. El propio Sierpiński aportó la alfombra en 1916; Karl Menger generalizó la construcción al espacio en 1926. (La famosa escuela de Lwów en torno a Banach, Steinhaus, Mazur y Ulam en el Café Escocés llegó más tarde — durante los años 1920 y 1930.) El patrón, sin embargo, es mucho más antiguo: los suelos cosmatescos de mármol del siglo XIII en iglesias romanas ya llevan tramas de Sierpiński reconocibles, cortadas tres o cuatro iteraciones de profundidad. Las matemáticas formalizaron lo que los canteros llevaban siete siglos colocando.",
     },
   ],
   subdivision: {
@@ -410,8 +410,8 @@ const frStory: RichStory = {
     },
     {
       pretitle: "Section 06 · Histoire mathématique",
-      title: "Sierpiński 1915 et l'école de Lwów",
-      body: "Wacław Sierpiński a publié le triangle en 1915, à Lwów (aujourd'hui Lviv), au cœur de l'extraordinaire école mathématique polonaise qui a aussi produit Banach, Steinhaus, Mazur, Ulam et Kuratowski — beaucoup se retrouvaient au Café écossais et inscrivaient leurs théorèmes dans un cahier commun. Sierpiński a apporté lui-même le tapis en 1916 ; Karl Menger a généralisé la construction à trois dimensions en 1926. Le motif lui-même est pourtant bien plus ancien : les sols cosmatesques en marbre du XIIIᵉ siècle dans les églises romaines portent déjà des tamis de Sierpiński reconnaissables, taillés trois ou quatre itérations de profondeur. Les mathématiques ont formalisé ce que les tailleurs de pierre posaient depuis sept siècles.",
+      title: "Sierpiński 1915 et l'essor de la théorie polonaise des ensembles",
+      body: "Wacław Sierpiński a publié le triangle en 1915, à Lwów (aujourd'hui Lviv), sur fond d'une école polonaise naissante de théorie des ensembles et de topologie des espaces de points que lui, Janiszewski et Mazurkiewicz allaient institutionnaliser peu après autour de la revue varsovienne Fundamenta Mathematicae. Sierpiński a apporté lui-même le tapis en 1916 ; Karl Menger a généralisé la construction à trois dimensions en 1926. (La fameuse école de Lwów autour de Banach, Steinhaus, Mazur et Ulam au Café écossais est venue plus tard — dans les années 1920 et 1930.) Le motif lui-même est pourtant bien plus ancien : les sols cosmatesques en marbre du XIIIᵉ siècle dans les églises romaines portent déjà des tamis de Sierpiński reconnaissables, taillés trois ou quatre itérations de profondeur. Les mathématiques ont formalisé ce que les tailleurs de pierre posaient depuis sept siècles.",
     },
   ],
   subdivision: {
@@ -509,8 +509,8 @@ const itStory: RichStory = {
     },
     {
       pretitle: "Sezione 06 · Storia matematica",
-      title: "Sierpiński 1915 e la scuola di Leopoli",
-      body: "Wacław Sierpiński pubblicò il triangolo nel 1915, lavorando a Leopoli (oggi Lviv), nel cuore della straordinaria scuola matematica polacca che diede anche Banach, Steinhaus, Mazur, Ulam e Kuratowski — molti si trovavano al Caffè Scozzese e scrivevano teoremi in un quaderno comune. Sierpiński stesso contribuì col tappeto nel 1916; Karl Menger generalizzò la costruzione al tridimensionale nel 1926. Il motivo, però, è molto più antico: i pavimenti cosmateschi in marmo del XIII secolo nelle chiese romane portano già setacci di Sierpiński riconoscibili, tagliati a profondità tre o quattro. La matematica ha formalizzato ciò che gli scalpellini posavano da sette secoli.",
+      title: "Sierpiński 1915 e l'ascesa della teoria polacca degli insiemi",
+      body: "Wacław Sierpiński pubblicò il triangolo nel 1915, lavorando a Leopoli (oggi Lviv), sullo sfondo di una nascente scuola polacca di teoria degli insiemi e topologia generale che lui, Janiszewski e Mazurkiewicz avrebbero presto istituzionalizzato intorno alla rivista varsaviana Fundamenta Mathematicae. Sierpiński stesso contribuì col tappeto nel 1916; Karl Menger generalizzò la costruzione al tridimensionale nel 1926. (La famosa scuola di Leopoli attorno a Banach, Steinhaus, Mazur e Ulam al Caffè Scozzese venne più tardi — negli anni 1920 e 1930.) Il motivo, però, è molto più antico: i pavimenti cosmateschi in marmo del XIII secolo nelle chiese romane portano già setacci di Sierpiński riconoscibili, tagliati a profondità tre o quattro. La matematica ha formalizzato ciò che gli scalpellini posavano da sette secoli.",
     },
   ],
   subdivision: {
@@ -608,8 +608,8 @@ const ptStory: RichStory = {
     },
     {
       pretitle: "Secção 06 · História matemática",
-      title: "Sierpiński 1915 e a escola de Lviv",
-      body: "Wacław Sierpiński publicou o triângulo em 1915, a trabalhar em Lwów (hoje Lviv), no centro da extraordinária escola matemática polaca que também produziu Banach, Steinhaus, Mazur, Ulam e Kuratowski — muitos juntavam-se no Café Escocês e escreviam teoremas num caderno comum. O próprio Sierpiński trouxe o tapete em 1916; Karl Menger generalizou a construção ao tridimensional em 1926. O padrão, porém, é muito mais antigo: os pavimentos cosmatescos em mármore do século XIII em igrejas romanas trazem já crivos de Sierpiński reconhecíveis, talhados a três ou quatro iterações de profundidade. A matemática formalizou o que os canteiros vinham a assentar há sete séculos.",
+      title: "Sierpiński 1915 e a ascensão da teoria polaca dos conjuntos",
+      body: "Wacław Sierpiński publicou o triângulo em 1915, a trabalhar em Lwów (hoje Lviv), no pano de fundo de uma escola polaca nascente de teoria dos conjuntos e topologia geral que ele, Janiszewski e Mazurkiewicz iriam em breve institucionalizar em torno da revista varsoviana Fundamenta Mathematicae. O próprio Sierpiński trouxe o tapete em 1916; Karl Menger generalizou a construção ao tridimensional em 1926. (A famosa escola de Lwów em torno de Banach, Steinhaus, Mazur e Ulam no Café Escocês veio mais tarde — nos anos 1920 e 1930.) O padrão, porém, é muito mais antigo: os pavimentos cosmatescos em mármore do século XIII em igrejas romanas trazem já crivos de Sierpiński reconhecíveis, talhados a três ou quatro iterações de profundidade. A matemática formalizou o que os canteiros vinham a assentar há sete séculos.",
     },
   ],
   subdivision: {
@@ -706,8 +706,8 @@ const svStory: RichStory = {
     },
     {
       pretitle: "Avsnitt 06 · Matematikens historia",
-      title: "Sierpiński 1915 och Lwów-skolan",
-      body: "Wacław Sierpiński publicerade triangeln 1915, verksam i Lwów (i dag Lviv), mitt i den extraordinära polska matematikskola som också gav Banach, Steinhaus, Mazur, Ulam och Kuratowski — många träffades på Skotska kaféet och skrev satser i en gemensam anteckningsbok. Sierpiński själv bidrog med mattan 1916; Karl Menger generaliserade konstruktionen till tre dimensioner 1926. Mönstret är dock mycket äldre: kosmateska marmorgolv från 1200-talet i romerska kyrkor bär redan tydligt igenkännbara Sierpiński-såll, skurna tre eller fyra iterationer djupt. Matematiken formaliserade vad stenhuggarna hade lagt ned i sju århundraden.",
+      title: "Sierpiński 1915 och den framväxande polska mängdläran",
+      body: "Wacław Sierpiński publicerade triangeln 1915, verksam i Lwów (i dag Lviv), mot bakgrund av en framväxande polsk skola i mängdlära och punktmängdtopologi som han, Janiszewski och Mazurkiewicz snart skulle institutionalisera kring den Warszawabaserade tidskriften Fundamenta Mathematicae. Sierpiński själv bidrog med mattan 1916; Karl Menger generaliserade konstruktionen till tre dimensioner 1926. (Den berömda Lwów-skolan kring Banach, Steinhaus, Mazur och Ulam på Skotska kaféet kom senare — under 1920- och 1930-talen.) Mönstret är dock mycket äldre: kosmateska marmorgolv från 1200-talet i romerska kyrkor bär redan tydligt igenkännbara Sierpiński-såll, skurna tre eller fyra iterationer djupt. Matematiken formaliserade vad stenhuggarna hade lagt ned i sju århundraden.",
     },
   ],
   subdivision: {
@@ -804,8 +804,8 @@ const noStory: RichStory = {
     },
     {
       pretitle: "Avsnitt 06 · Matematisk historie",
-      title: "Sierpiński 1915 og Lwów-skolen",
-      body: "Wacław Sierpiński publiserte trekanten i 1915, mens han arbeidet i Lwów (i dag Lviv), midt i den eksepsjonelle polske matematikkskolen som også brakte fram Banach, Steinhaus, Mazur, Ulam og Kuratowski — mange møttes på Den skotske kafeen og skrev teoremer i en felles bok. Sierpiński bidro selv med teppet i 1916; Karl Menger generaliserte konstruksjonen til tre dimensjoner i 1926. Selve mønsteret er likevel mye eldre: kosmateske marmorgulv fra 1200-tallet i romerske kirker bærer allerede gjenkjennelige Sierpiński-sikter, hugget tre eller fire iterasjoner dypt. Matematikken formaliserte det steinhuggerne hadde lagt ned i sju århundrer.",
+      title: "Sierpiński 1915 og fremveksten av polsk mengdelære",
+      body: "Wacław Sierpiński publiserte trekanten i 1915, mens han arbeidet i Lwów (i dag Lviv), mot bakgrunnen av en gryende polsk skole i mengdelære og punktmengde-topologi som han, Janiszewski og Mazurkiewicz snart skulle institusjonalisere rundt det Warszawabaserte tidsskriftet Fundamenta Mathematicae. Sierpiński bidro selv med teppet i 1916; Karl Menger generaliserte konstruksjonen til tre dimensjoner i 1926. (Den berømte Lwów-skolen rundt Banach, Steinhaus, Mazur og Ulam på Den skotske kafeen kom senere — gjennom 1920- og 1930-årene.) Selve mønsteret er likevel mye eldre: kosmateske marmorgulv fra 1200-tallet i romerske kirker bærer allerede gjenkjennelige Sierpiński-sikter, hugget tre eller fire iterasjoner dypt. Matematikken formaliserte det steinhuggerne hadde lagt ned i sju århundrer.",
     },
   ],
   subdivision: {

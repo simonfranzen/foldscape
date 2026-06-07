@@ -1197,7 +1197,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Overraskelser med saks",
           title: "Hva saksen avslører om topologi",
-          body: "Skjær Möbius-båndet gjennom midten. Det faller ikke fra hverandre — du får én lengre strimmel med to fulle vridninger (fire halvvridninger), og avgjørende: den strimmelen er nå tosidig igjen. Skjær et Möbius-bånd en tredjedel inn fra én kant, med snittet parallelt med kanten hele veien rundt, og saksen reiser to ganger rundt før løkken lukkes: ut faller to sammenkoblede ringer, ett friskt Möbius-bånd og ett lengre Möbius-aktig bånd med ekstra vridninger, hektet i hverandre. Topologien er full av slike overraskelser — den globale vridningen skjult bak lokal flathet.",
+          body: "Skjær Möbius-båndet gjennom midten. Det faller ikke fra hverandre — du får én lengre strimmel med to fulle vridninger (fire halvvridninger), og avgjørende: den strimmelen er nå tosidig igjen. Skjær et Möbius-bånd en tredjedel inn fra én kant, med snittet parallelt med kanten hele veien rundt, og saksen reiser to ganger rundt før løkken lukkes: ut faller to sammenkoblede ringer — et smalere, ferskt Möbius-bånd (fortsatt med én halv vridning) og en lengre tosidig ring med to halve vridninger (ikke lenger et Möbius-bånd), hektet i hverandre. Topologien er full av slike overraskelser — den globale vridningen skjult bak lokal flathet.",
         },
         {
           pretitle: "Trinn tre · Klein-flasken",
@@ -1207,7 +1207,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Der de bor",
           title: "Fra transportbånd til kjemi",
-          body: "Möbius-bånd dukker opp som transport- og skriverbånd (slitasjen fordeler seg over hele flaten, og levetiden dobles), som Max Bills Endless Ribbon-skulpturer, som Möbius-motstander som kansellerer sin egen selvinduktans, som superledende mikrobølge-Möbius-bølgeledere — og, siden 2003, som Möbius-aromatiske molekyler syntetisert av Rainer Herges. Den velkjente resirkulerings­trekanten er, strengt tatt, en kløverknute snarere enn et Möbius-bånd, men publikum leser den som ett. Fremfor alt er Möbius-båndet og Klein-flasken inngangene til klassifikasjonen av flater — teoremet om at hver lukket flate er bestemt opp til homeomorfi av genus, orienterbarhet og ett enkelt heltall χ.",
+          body: "Möbius-bånd dukker opp som transport- og skriverbånd (slitasjen fordeler seg over hele flaten, og levetiden dobles), som Max Bills Endless Ribbon-skulpturer, som Möbius-motstander som kansellerer sin egen selvinduktans, som superledende mikrobølge-Möbius-bølgeledere — og, siden 2003, som Möbius-aromatiske molekyler syntetisert av Rainer Herges. Den velkjente resirkulerings­trekanten er, strengt tatt, et Möbius-bånd med tre halve vridninger — fortsatt ensidig, men mer vridd enn det klassiske båndet med én halv vridning. Fremfor alt er Möbius-båndet og Klein-flasken inngangene til klassifikasjonen av flater — teoremet om at hver lukket flate er bestemt opp til homeomorfi av genus, orienterbarhet og ett enkelt heltall χ.",
         },
       ],
     },
@@ -1292,7 +1292,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Appel-Haken-beviset, 1976",
           title: "Det første teoremet bevist av en datamaskin",
-          body: "Kenneth Appel og Wolfgang Haken ved University of Illinois reduserte problemet til en endelig liste på 1834 «uunngåelige konfigurasjoner» — og viste deretter at hver enkelt er reduserbar. Beviset deres kjørte på en IBM 360 i omkring 1200 timer. Mange matematikere nektet å akseptere det: et bevis et menneske ikke kan lese i sin helhet, hevdet de, er ikke et bevis. Utgående post fra matematikkavdelingen ved University of Illinois ble frankert med «Four Colors Suffice» i årevis.",
+          body: "Kenneth Appel og Wolfgang Haken ved University of Illinois reduserte problemet til en endelig liste på 1834 «uunngåelige konfigurasjoner» — og viste deretter at hver enkelt er reduserbar. Beviset deres kjørte på en IBM 370 i omkring 1200 timer. Mange matematikere nektet å akseptere det: et bevis et menneske ikke kan lese i sin helhet, hevdet de, er ikke et bevis. Utgående post fra matematikkavdelingen ved University of Illinois ble frankert med «Four Colors Suffice» i årevis.",
         },
         {
           pretitle: "Trinn fire · Hvor det står",

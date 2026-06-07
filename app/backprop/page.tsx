@@ -143,7 +143,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Du willst ein Netz, das beim XOR zweier Bits eine 1 ausgibt und sonst eine 0. Starte mit zufälligen Gewichten — das Netz rät Müll. Vergleiche Tipp mit Wahrheit, berechne den Verlust. Backprop sagt jedem Gewicht: „senke dich um 0,03«, „erhöhe dich um 0,11«, und so weiter. Nach ein paar hundert solcher Mini-Korrekturen gibt das Netz 0,98 statt 0,4 aus und 0,02 statt 0,6. Es hat die Regel gelernt, die kein einzelnes Neuron je allein kodieren könnte.",
+        body: "Du willst ein Netz, das beim XOR zweier Bits eine 1 ausgibt und sonst eine 0. Starte mit zufälligen Gewichten — das Netz rät Müll. Vergleiche Tipp mit Wahrheit, berechne den Verlust. Backprop sagt jedem Gewicht: „senke dich um 0,03“, „erhöhe dich um 0,11“, und so weiter. Nach ein paar hundert solcher Mini-Korrekturen gibt das Netz 0,98 statt 0,4 aus und 0,02 statt 0,6. Es hat die Regel gelernt, die kein einzelnes Neuron je allein kodieren könnte.",
       },
       {
         label: "03",
@@ -157,7 +157,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Das Problem",
       title: "Warum ein Netz lernen muss",
-      body: "Ein neuronales Netz ist nur ein Stapel linearer Abbildungen, getrennt durch einfache Nichtlinearitäten wie Sigmoid oder ReLU. Mit den richtigen Gewichten kann es jede Funktion approximieren — das ist der universelle Approximationssatz. Der Haken steckt in „mit den richtigen Gewichten«. Für jede nichttriviale Aufgabe liegen die richtigen Gewichte in einem millionendimensionalen Heuhaufen, und keine analytische Arbeit findet sie. Sie müssen aus Beispielen gelernt werden: eine Eingabe zeigen, die gewünschte Ausgabe zeigen, Anpassung zulassen. Backpropagation ist die Anpassungsregel, die das im großen Maßstab ermöglicht.",
+      body: "Ein neuronales Netz ist nur ein Stapel linearer Abbildungen, getrennt durch einfache Nichtlinearitäten wie Sigmoid oder ReLU. Mit den richtigen Gewichten kann es jede Funktion approximieren — das ist der universelle Approximationssatz. Der Haken steckt in „mit den richtigen Gewichten“. Für jede nichttriviale Aufgabe liegen die richtigen Gewichte in einem millionendimensionalen Heuhaufen, und keine analytische Arbeit findet sie. Sie müssen aus Beispielen gelernt werden: eine Eingabe zeigen, die gewünschte Ausgabe zeigen, Anpassung zulassen. Backpropagation ist die Anpassungsregel, die das im großen Maßstab ermöglicht.",
     },
     {
       pretitle: "Abschnitt 02 · Der Vorwärtsdurchlauf",

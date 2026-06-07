@@ -71,7 +71,7 @@ const en: RichStory = {
       {
         label: "01",
         title: "The big idea",
-        body: "Take two simple shapes — a kite and a dart, cut from a single rhombus. Lay them down side by side, respecting a few simple matching rules on the edges. They cover the whole infinite plane perfectly, like normal tiles. But here is the twist: no finite chunk of the pattern ever appears twice in the same orientation. Anywhere. Ever. Roger Penrose found this in 1974, and it broke a 20-year-old assumption.",
+        body: "Take two simple shapes — a kite and a dart, cut from a single rhombus. Lay them down side by side, respecting a few simple matching rules on the edges. They cover the whole infinite plane perfectly, like normal tiles. But here is the twist: no finite chunk of the pattern ever appears twice in the same orientation. Anywhere. Ever. Roger Penrose found this in 1974, and it broke a decades-old question.",
       },
       {
         label: "02",
@@ -100,7 +100,7 @@ const en: RichStory = {
     {
       pretitle: "Section 03 · Kite and dart with matching rules",
       title: "The matching rules force aperiodicity",
-      body: "Cut a thick rhombus along its short diagonal — the two pieces are a fat kite (the angle at the cut is 144°) and a thin dart (the angle at the cut is 72°). With no further restrictions you could tile the plane periodically using just kites and darts. The trick is the colored arcs Conway drew on each tile's edges: one red, one green, both crossing the kite and dart in specific places. The rule is then simply: where two tiles meet, their arcs must continue. With this single constraint every legal tiling becomes aperiodic. The arcs grow into never-closing curves that wander the whole plane.",
+      body: "From two golden triangles — a 72-72-36 acute triangle and a 108-36-36 obtuse triangle — Penrose assembles the kite and the dart. (The P3 set of thin and thick rhombs is a separate, dual family — not produced by halving the same rhombus.) With no further restrictions you could tile the plane periodically using just kites and darts. The trick is the colored arcs Conway drew on each tile's edges: one red, one green, both crossing the kite and dart in specific places. The rule is then simply: where two tiles meet, their arcs must continue. With this single constraint every legal tiling becomes aperiodic. The arcs grow into never-closing curves that wander the whole plane.",
     },
     {
       pretitle: "Section 04 · Inflation and deflation",
@@ -164,7 +164,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Nimm zwei einfache Formen — einen Drachen und einen Pfeil, beide aus demselben Rhombus geschnitten. Leg sie nebeneinander und halte dich an ein paar einfache Anlegeregeln an den Kanten. Sie bedecken die ganze unendliche Ebene lückenlos, wie normale Kacheln. Aber: kein endlicher Ausschnitt taucht jemals zweimal in derselben Lage auf. Nirgends. Niemals. Roger Penrose fand das 1974, und es brach eine 20 Jahre alte Annahme.",
+        body: "Nimm zwei einfache Formen — einen Drachen und einen Pfeil, beide aus demselben Rhombus geschnitten. Leg sie nebeneinander und halte dich an ein paar einfache Anlegeregeln an den Kanten. Sie bedecken die ganze unendliche Ebene lückenlos, wie normale Kacheln. Aber: kein endlicher Ausschnitt taucht jemals zweimal in derselben Lage auf. Nirgends. Niemals. Roger Penrose fand das 1974, und es brach eine jahrzehntealte Frage.",
       },
       {
         label: "02",
@@ -194,7 +194,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Drache und Pfeil mit Anlegeregeln",
       title: "Die Anlegeregeln erzwingen die Aperiodizität",
-      body: "Schneide einen dicken Rhombus entlang seiner kurzen Diagonale — die zwei Teile sind ein dicker Drachen (Winkel am Schnitt: 144°) und ein dünner Pfeil (Winkel am Schnitt: 72°). Ohne weitere Einschränkungen könntest du die Ebene mit ihnen ganz normal periodisch parkettieren. Der Trick sind die farbigen Bögen, die Conway auf jede Kante zeichnete: einer rot, einer grün, jeder kreuzt Drachen und Pfeil an bestimmten Stellen. Die Regel ist dann schlicht: wo zwei Kacheln aneinander stoßen, müssen die Bögen weiterlaufen. Mit dieser einen Bedingung wird jede legale Parkettierung aperiodisch. Die Bögen wachsen zu nie-schließenden Kurven, die die ganze Ebene durchwandern.",
+      body: "Aus zwei goldenen Dreiecken — einem 72-72-36-Akut-Dreieck und einem 108-36-36-Obtus-Dreieck — setzt Penrose den Drachen (Kite) und den Pfeil (Dart) zusammen. (Das P3-Set aus dünnen und dicken Rhomben ist eine eigenständige, duale Familie — nicht durch Halbieren desselben Rhombus erzeugt.) Ohne weitere Einschränkungen könntest du die Ebene mit ihnen ganz normal periodisch parkettieren. Der Trick sind die farbigen Bögen, die Conway auf jede Kante zeichnete: einer rot, einer grün, jeder kreuzt Drachen und Pfeil an bestimmten Stellen. Die Regel ist dann schlicht: wo zwei Kacheln aneinander stoßen, müssen die Bögen weiterlaufen. Mit dieser einen Bedingung wird jede legale Parkettierung aperiodisch. Die Bögen wachsen zu nie-schließenden Kurven, die die ganze Ebene durchwandern.",
     },
     {
       pretitle: "Abschnitt 04 · Inflation und Deflation",
@@ -258,7 +258,7 @@ const es: RichStory = {
       {
         label: "01",
         title: "La gran idea",
-        body: "Toma dos formas simples — una cometa y un dardo, recortadas del mismo rombo. Ponlas una al lado de la otra respetando unas reglas de encaje en los bordes. Cubren todo el plano infinito sin huecos, como baldosas normales. Pero el giro: ningún trozo finito del patrón vuelve a aparecer dos veces en la misma orientación. En ningún sitio. Nunca. Roger Penrose lo encontró en 1974, y rompió una hipótesis de 20 años.",
+        body: "Toma dos formas simples — una cometa y un dardo, recortadas del mismo rombo. Ponlas una al lado de la otra respetando unas reglas de encaje en los bordes. Cubren todo el plano infinito sin huecos, como baldosas normales. Pero el giro: ningún trozo finito del patrón vuelve a aparecer dos veces en la misma orientación. En ningún sitio. Nunca. Roger Penrose lo encontró en 1974, y rompió una pregunta de décadas.",
       },
       {
         label: "02",
@@ -288,7 +288,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 03 · Cometa y dardo con reglas de encaje",
       title: "Las reglas de encaje fuerzan la aperiodicidad",
-      body: "Corta un rombo grueso a lo largo de su diagonal corta — las dos piezas son una cometa ancha (el ángulo en el corte es 144°) y un dardo delgado (el ángulo en el corte es 72°). Sin más restricciones podrías teselar el plano periódicamente solo con cometas y dardos. El truco son los arcos de colores que Conway dibujó en cada arista: uno rojo, otro verde, ambos cruzando la cometa y el dardo en lugares concretos. La regla es entonces simple: donde dos baldosas se encuentran, sus arcos tienen que continuar. Con esta única restricción todo teselado legal se vuelve aperiódico. Los arcos crecen en curvas que nunca cierran y recorren todo el plano.",
+      body: "A partir de dos triángulos áureos — uno agudo de 72-72-36 y uno obtuso de 108-36-36 — Penrose monta la cometa y el dardo. (El conjunto P3 de rombos finos y gruesos es una familia independiente y dual — no se obtiene partiendo el mismo rombo.) Sin más restricciones podrías teselar el plano periódicamente solo con cometas y dardos. El truco son los arcos de colores que Conway dibujó en cada arista: uno rojo, otro verde, ambos cruzando la cometa y el dardo en lugares concretos. La regla es entonces simple: donde dos baldosas se encuentran, sus arcos tienen que continuar. Con esta única restricción todo teselado legal se vuelve aperiódico. Los arcos crecen en curvas que nunca cierran y recorren todo el plano.",
     },
     {
       pretitle: "Sección 04 · Inflación y deflación",
@@ -352,7 +352,7 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Prends deux formes simples — un cerf-volant et une flèche, taillés dans un seul losange. Pose-les côte à côte en respectant quelques règles d'accord sur les bords. Elles couvrent tout le plan infini sans trou, comme des tuiles normales. Mais voici le tour : aucun morceau fini du motif ne réapparaît jamais deux fois dans la même orientation. Nulle part. Jamais. Roger Penrose l'a trouvé en 1974, et cela a brisé une hypothèse vieille de 20 ans.",
+        body: "Prends deux formes simples — un cerf-volant et une flèche, taillés dans un seul losange. Pose-les côte à côte en respectant quelques règles d'accord sur les bords. Elles couvrent tout le plan infini sans trou, comme des tuiles normales. Mais voici le tour : aucun morceau fini du motif ne réapparaît jamais deux fois dans la même orientation. Nulle part. Jamais. Roger Penrose l'a trouvé en 1974, et cela a brisé une question vieille de plusieurs décennies.",
       },
       {
         label: "02",
@@ -382,7 +382,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · Cerf-volant et flèche avec règles d'accord",
       title: "Les règles d'accord forcent l'apériodicité",
-      body: "Coupe un losange épais le long de sa courte diagonale — les deux morceaux sont un cerf-volant large (angle au coup : 144°) et une flèche fine (angle au coup : 72°). Sans restriction supplémentaire, tu pourrais paver le plan périodiquement avec eux. L'astuce : les arcs colorés que Conway a dessinés sur chaque bord — un rouge, un vert, traversant cerf-volant et flèche à des endroits précis. La règle est alors simple : là où deux tuiles se rencontrent, leurs arcs doivent se prolonger. Avec cette seule contrainte, tout pavage légal devient apériodique. Les arcs grandissent en courbes qui ne se referment jamais et parcourent tout le plan.",
+      body: "À partir de deux triangles d'or — un aigu 72-72-36 et un obtus 108-36-36 — Penrose assemble le cerf-volant et la flèche. (Le jeu P3 fait de losanges fins et épais est une famille distincte, duale — elle ne s'obtient pas en coupant en deux le même losange.) Sans restriction supplémentaire, tu pourrais paver le plan périodiquement avec eux. L'astuce : les arcs colorés que Conway a dessinés sur chaque bord — un rouge, un vert, traversant cerf-volant et flèche à des endroits précis. La règle est alors simple : là où deux tuiles se rencontrent, leurs arcs doivent se prolonger. Avec cette seule contrainte, tout pavage légal devient apériodique. Les arcs grandissent en courbes qui ne se referment jamais et parcourent tout le plan.",
     },
     {
       pretitle: "Section 04 · Inflation et déflation",
@@ -446,7 +446,7 @@ const it: RichStory = {
       {
         label: "01",
         title: "L'idea centrale",
-        body: "Prendi due forme semplici — un aquilone e un dardo, tagliati dallo stesso rombo. Posale fianco a fianco rispettando alcune regole di incastro sui bordi. Coprono tutto il piano infinito senza buchi, come piastrelle normali. Ma il colpo di scena: nessuna porzione finita del motivo compare mai due volte nella stessa orientazione. Da nessuna parte. Mai. Roger Penrose lo trovò nel 1974, e ha rotto un'ipotesi vecchia di 20 anni.",
+        body: "Prendi due forme semplici — un aquilone e un dardo, tagliati dallo stesso rombo. Posale fianco a fianco rispettando alcune regole di incastro sui bordi. Coprono tutto il piano infinito senza buchi, come piastrelle normali. Ma il colpo di scena: nessuna porzione finita del motivo compare mai due volte nella stessa orientazione. Da nessuna parte. Mai. Roger Penrose lo trovò nel 1974, e ha rotto una domanda vecchia di decenni.",
       },
       {
         label: "02",
@@ -476,7 +476,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 03 · Aquilone e dardo con regole di incastro",
       title: "Le regole di incastro forzano l'aperiodicità",
-      body: "Taglia un rombo spesso lungo la sua diagonale corta — i due pezzi sono un aquilone largo (angolo al taglio: 144°) e un dardo sottile (angolo al taglio: 72°). Senza ulteriori vincoli potresti tassellare il piano periodicamente. Il trucco sono gli archi colorati che Conway disegnò su ogni bordo: uno rosso, uno verde, ciascuno che attraversa aquilone e dardo in posizioni precise. La regola è poi semplice: dove due piastrelle si incontrano, i loro archi devono proseguire. Con questo unico vincolo ogni tassellatura legale diventa aperiodica. Gli archi crescono in curve mai chiuse che attraversano tutto il piano.",
+      body: "A partire da due triangoli aurei — uno acuto 72-72-36 e uno ottuso 108-36-36 — Penrose costruisce l'aquilone e il dardo. (Il set P3 di rombi sottili e spessi è una famiglia separata e duale — non ottenuta tagliando lo stesso rombo a metà.) Senza ulteriori vincoli potresti tassellare il piano periodicamente. Il trucco sono gli archi colorati che Conway disegnò su ogni bordo: uno rosso, uno verde, ciascuno che attraversa aquilone e dardo in posizioni precise. La regola è poi semplice: dove due piastrelle si incontrano, i loro archi devono proseguire. Con questo unico vincolo ogni tassellatura legale diventa aperiodica. Gli archi crescono in curve mai chiuse che attraversano tutto il piano.",
     },
     {
       pretitle: "Sezione 04 · Inflazione e deflazione",
@@ -540,7 +540,7 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A ideia central",
-        body: "Pega em duas formas simples — um papagaio e um dardo, cortados do mesmo losango. Põe-nos lado a lado respeitando algumas regras de encaixe nas arestas. Cobrem todo o plano infinito sem buracos, como peças normais. Mas a viragem: nenhum pedaço finito do padrão volta a aparecer duas vezes na mesma orientação. Em parte alguma. Nunca. Roger Penrose encontrou-o em 1974, e quebrou uma suposição de 20 anos.",
+        body: "Pega em duas formas simples — um papagaio e um dardo, cortados do mesmo losango. Põe-nos lado a lado respeitando algumas regras de encaixe nas arestas. Cobrem todo o plano infinito sem buracos, como peças normais. Mas a viragem: nenhum pedaço finito do padrão volta a aparecer duas vezes na mesma orientação. Em parte alguma. Nunca. Roger Penrose encontrou-o em 1974, e quebrou uma pergunta de décadas.",
       },
       {
         label: "02",
@@ -570,7 +570,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 03 · Papagaio e dardo com regras de encaixe",
       title: "As regras de encaixe forçam a aperiodicidade",
-      body: "Corta um losango espesso ao longo da sua diagonal curta — as duas peças são um papagaio largo (ângulo no corte: 144°) e um dardo fino (ângulo no corte: 72°). Sem mais restrições poderias pavimentar o plano periodicamente. O truque são os arcos coloridos que Conway desenhou em cada aresta: um vermelho, outro verde, atravessando papagaio e dardo em pontos certos. A regra é então simples: onde duas peças se encontram, os seus arcos têm de continuar. Com este único constrangimento todo tiling legal se torna aperiódico. Os arcos crescem em curvas que nunca fecham e percorrem todo o plano.",
+      body: "A partir de dois triângulos áureos — um agudo de 72-72-36 e um obtuso de 108-36-36 — Penrose monta o papagaio e o dardo. (O conjunto P3 de losangos finos e espessos é uma família distinta, dual — não se obtém partindo o mesmo losango.) Sem mais restrições poderias pavimentar o plano periodicamente. O truque são os arcos coloridos que Conway desenhou em cada aresta: um vermelho, outro verde, atravessando papagaio e dardo em pontos certos. A regra é então simples: onde duas peças se encontram, os seus arcos têm de continuar. Com este único constrangimento todo tiling legal se torna aperiódico. Os arcos crescem em curvas que nunca fecham e percorrem todo o plano.",
     },
     {
       pretitle: "Secção 04 · Inflação e deflação",
@@ -634,7 +634,7 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "Ta två enkla former — en drake och en pil, klippta ur samma romb. Lägg dem sida vid sida med några matchningsregler längs kanterna. De täcker hela det oändliga planet utan luckor, som vanliga plattor. Men knorren: ingen ändlig del av mönstret återkommer någonsin två gånger i samma orientering. Ingenstans. Aldrig. Roger Penrose hittade detta 1974 och knäckte ett 20 år gammalt antagande.",
+        body: "Ta två enkla former — en drake och en pil, klippta ur samma romb. Lägg dem sida vid sida med några matchningsregler längs kanterna. De täcker hela det oändliga planet utan luckor, som vanliga plattor. Men knorren: ingen ändlig del av mönstret återkommer någonsin två gånger i samma orientering. Ingenstans. Aldrig. Roger Penrose hittade detta 1974 och knäckte en decennier gammal fråga.",
       },
       {
         label: "02",
@@ -664,7 +664,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 03 · Drake och pil med matchningsregler",
       title: "Matchningsreglerna tvingar fram aperiodicitet",
-      body: "Skär en tjock romb längs dess korta diagonal — de två bitarna är en bred drake (vinkeln vid snittet 144°) och en smal pil (vinkeln vid snittet 72°). Utan ytterligare restriktioner skulle du kunna tessellera planet periodiskt. Tricket är de färgade bågarna som Conway ritade på varje kant: en röd, en grön, båda korsande drake och pil på bestämda ställen. Regeln är då enkel: där två plattor möts måste deras bågar fortsätta. Med detta enda villkor blir varje laglig parkettering aperiodisk. Bågarna växer ut i aldrig-slutande kurvor som vandrar genom hela planet.",
+      body: "Av två gyllene trianglar — en spetsig 72-72-36 och en trubbig 108-36-36 — sätter Penrose ihop draken och pilen. (P3-mängden av tunna och tjocka romber är en separat, dual familj — inte framställd genom att halvera samma romb.) Utan ytterligare restriktioner skulle du kunna tessellera planet periodiskt. Tricket är de färgade bågarna som Conway ritade på varje kant: en röd, en grön, båda korsande drake och pil på bestämda ställen. Regeln är då enkel: där två plattor möts måste deras bågar fortsätta. Med detta enda villkor blir varje laglig parkettering aperiodisk. Bågarna växer ut i aldrig-slutande kurvor som vandrar genom hela planet.",
     },
     {
       pretitle: "Avsnitt 04 · Inflation och deflation",
@@ -728,7 +728,7 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Ta to enkle former — en drage og en pil, klippet ut av samme rombe. Legg dem ved siden av hverandre med noen matchregler langs kantene. De dekker hele det uendelige planet uten hull, som vanlige fliser. Men vrien: ingen endelig bit av mønsteret dukker noen gang opp to ganger i samme orientering. Ingen steder. Aldri. Roger Penrose fant dette i 1974, og det knuste en 20 år gammel antagelse.",
+        body: "Ta to enkle former — en drage og en pil, klippet ut av samme rombe. Legg dem ved siden av hverandre med noen matchregler langs kantene. De dekker hele det uendelige planet uten hull, som vanlige fliser. Men vrien: ingen endelig bit av mønsteret dukker noen gang opp to ganger i samme orientering. Ingen steder. Aldri. Roger Penrose fant dette i 1974, og det knuste et tiår gammelt spørsmål.",
       },
       {
         label: "02",
@@ -757,7 +757,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Drage og pil med matchregler",
       title: "Matchreglene tvinger frem aperiodisitet",
-      body: "Klipp en tykk rombe langs den korte diagonalen — de to bitene er en bred drage (vinkelen i snittet er 144°) og en tynn pil (vinkelen i snittet er 72°). Uten flere restriksjoner kunne du flise planet periodisk. Trikset er de fargede buene som Conway tegnet på hver kant: én rød, én grønn, hver av dem krysser drage og pil på spesifikke steder. Regelen er da enkel: der to fliser møtes, må buene fortsette. Med dette ene vilkåret blir hver lovlige flislegging aperiodisk. Buene vokser ut til aldri-lukkende kurver som vandrer over hele planet.",
+      body: "Av to gylne trekanter — en spiss 72-72-36 og en stump 108-36-36 — setter Penrose sammen dragen og pilen. (P3-settet med tynne og tjukke romber er en egen, dual familie — ikke laget ved å halvere den samme romben.) Uten flere restriksjoner kunne du flise planet periodisk. Trikset er de fargede buene som Conway tegnet på hver kant: én rød, én grønn, hver av dem krysser drage og pil på spesifikke steder. Regelen er da enkel: der to fliser møtes, må buene fortsette. Med dette ene vilkåret blir hver lovlige flislegging aperiodisk. Buene vokser ut til aldri-lukkende kurver som vandrer over hele planet.",
     },
     {
       pretitle: "Avsnitt 04 · Inflasjon og deflasjon",

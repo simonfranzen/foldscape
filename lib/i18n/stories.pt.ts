@@ -1197,7 +1197,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo dois · Surpresas com tesoura",
           title: "O que as tesouras revelam sobre topologia",
-          body: "Corta a fita de Möbius a meio. Não se parte — obténs uma fita mais comprida com duas voltas completas (quatro meias voltas), e crucialmente essa fita volta a ter dois lados. Corta uma fita de Möbius a um terço da distância a uma das arestas, mantendo o corte paralelo à aresta ao longo de toda a volta, e a tesoura percorre o caminho duas vezes antes de fechar o ciclo: saem dois anéis entrelaçados, um uma nova fita de Möbius e outro uma fita estilo-Möbius mais comprida com voltas extra, enlaçados um no outro. A topologia está cheia destas surpresas — o giro global escondido pela planura local.",
+          body: "Corta a fita de Möbius a meio. Não se parte — obténs uma fita mais comprida com duas voltas completas (quatro meias voltas), e crucialmente essa fita volta a ter dois lados. Corta uma fita de Möbius a um terço da distância a uma das arestas, mantendo o corte paralelo à aresta ao longo de toda a volta, e a tesoura percorre o caminho duas vezes antes de fechar o ciclo: saem dois anéis entrelaçados — uma nova fita de Möbius mais estreita (ainda com uma só meia volta) e um anel mais comprido de dois lados com duas meias voltas (que já não é uma fita de Möbius), enlaçados um no outro. A topologia está cheia destas surpresas — o giro global escondido pela planura local.",
         },
         {
           pretitle: "Passo três · A garrafa de Klein",
@@ -1207,7 +1207,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo quatro · Onde vivem",
           title: "Das correias de transmissão à química",
-          body: "As fitas de Möbius aparecem como correias transportadoras e correias de impressoras (o desgaste distribui-se por toda a superfície, duplicando a vida útil), como as esculturas Endless Ribbon de Max Bill, como resistências de Möbius que cancelam a sua própria auto-indutância, como guias de onda supercondutores de micro-ondas em forma de Möbius — e, desde 2003, como moléculas aromáticas de Möbius sintetizadas por Rainer Herges. O familiar triângulo da reciclagem é, em rigor, um nó trefólio e não uma fita de Möbius, mas o público lê-o como uma. Acima de tudo, a fita de Möbius e a garrafa de Klein são as portas de entrada para a classificação das superfícies — o teorema que diz que toda a superfície fechada está determinada, a menos de homeomorfismo, pelo género, pela orientabilidade e por um único inteiro χ.",
+          body: "As fitas de Möbius aparecem como correias transportadoras e correias de impressoras (o desgaste distribui-se por toda a superfície, duplicando a vida útil), como as esculturas Endless Ribbon de Max Bill, como resistências de Möbius que cancelam a sua própria auto-indutância, como guias de onda supercondutores de micro-ondas em forma de Möbius — e, desde 2003, como moléculas aromáticas de Möbius sintetizadas por Rainer Herges. O familiar triângulo da reciclagem é, em rigor, uma fita de Möbius com três meias voltas — ainda só com um lado, mas mais torcida que a clássica fita de uma só meia volta. Acima de tudo, a fita de Möbius e a garrafa de Klein são as portas de entrada para a classificação das superfícies — o teorema que diz que toda a superfície fechada está determinada, a menos de homeomorfismo, pelo género, pela orientabilidade e por um único inteiro χ.",
         },
       ],
     },
@@ -1292,7 +1292,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo três · A demonstração de Appel-Haken, 1976",
           title: "O primeiro teorema demonstrado por computador",
-          body: 'Kenneth Appel e Wolfgang Haken, na Universidade do Illinois, reduziram o problema a uma lista finita de 1834 "configurações inevitáveis" — e mostraram depois que cada uma é redutível. A sua demonstração correu num IBM 360 durante cerca de 1200 horas. Muitos matemáticos recusaram-se a aceitá-la: uma demonstração que um humano não consegue ler na íntegra, argumentaram, não é uma demonstração. A correspondência de saída do departamento de matemática da Universidade do Illinois levou durante anos o carimbo "Four Colors Suffice".',
+          body: 'Kenneth Appel e Wolfgang Haken, na Universidade do Illinois, reduziram o problema a uma lista finita de 1834 "configurações inevitáveis" — e mostraram depois que cada uma é redutível. A sua demonstração correu num IBM 370 durante cerca de 1200 horas. Muitos matemáticos recusaram-se a aceitá-la: uma demonstração que um humano não consegue ler na íntegra, argumentaram, não é uma demonstração. A correspondência de saída do departamento de matemática da Universidade do Illinois levou durante anos o carimbo "Four Colors Suffice".',
         },
         {
           pretitle: "Passo quatro · Onde está hoje",

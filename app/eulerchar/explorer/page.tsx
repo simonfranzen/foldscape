@@ -3,6 +3,399 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
+
+// --------------------------------------------------------------------------
+// Per-locale UI strings for the Euler-characteristic explorer. Stays inline
+// so all controls + per-polyhedron labels are translated next to their use.
+// --------------------------------------------------------------------------
+
+type LocalizedPoly = { label: string; note: string };
+
+type RichExplorer = {
+  polyhedron: string;
+  autoSpin: string;
+  on: string;
+  off: string;
+  speed: string;
+  step: string;
+  countVertices: string;
+  countEdges: string;
+  countFaces: string;
+  revealAll: string;
+  reset: string;
+  runningEquation: string;
+  finalLabel: string;
+  sphereLike: string;
+  oneHandle: string;
+  twoHandles: string;
+  notSphereLike: string;
+  torusNote: string;
+  doubleTorusNote: string;
+  stageIdle: string;
+  stageVertices: string;
+  stageEdges: string;
+  stageFaces: string;
+  stageDone: string;
+  polyById: Record<string, LocalizedPoly>;
+};
+
+// Helper to build the per-id polyhedron labels for each locale. The id keys
+// must match the `id` strings produced by the build functions above (e.g.
+// "icosphere-2", "torus-18x10", "double-torus-14x8").
+function buildPolyMap(locale: Locale): Record<string, LocalizedPoly> {
+  const dict: Record<Locale, Record<string, LocalizedPoly>> = {
+    en: {
+      tetrahedron: { label: "Tetrahedron", note: "4 triangles · χ = 2" },
+      cube: { label: "Cube", note: "6 squares · χ = 2" },
+      octahedron: { label: "Octahedron", note: "8 triangles · χ = 2" },
+      dodecahedron: { label: "Dodecahedron", note: "12 pentagons · χ = 2" },
+      icosahedron: { label: "Icosahedron", note: "20 triangles · χ = 2" },
+      trunctetra: { label: "Truncated tetrahedron", note: "4 hex + 4 tri · χ = 2" },
+      cuboctahedron: { label: "Cuboctahedron", note: "8 tri + 6 sq · χ = 2" },
+      truncico: {
+        label: "Truncated icosahedron",
+        note: "12 pent + 20 hex · χ = 2 · the soccer ball",
+      },
+      icosphere: { label: "Icosphere", note: "χ stays 2" },
+      torus: { label: "Torus", note: "χ = 0 (one hole)" },
+      doubleTorus: { label: "Double torus", note: "two handles · χ = −2 (genus 2)" },
+    },
+    de: {
+      tetrahedron: { label: "Tetraeder", note: "4 Dreiecke · χ = 2" },
+      cube: { label: "Würfel", note: "6 Quadrate · χ = 2" },
+      octahedron: { label: "Oktaeder", note: "8 Dreiecke · χ = 2" },
+      dodecahedron: { label: "Dodekaeder", note: "12 Fünfecke · χ = 2" },
+      icosahedron: { label: "Ikosaeder", note: "20 Dreiecke · χ = 2" },
+      trunctetra: { label: "Abgestumpftes Tetraeder", note: "4 Sechsecke + 4 Dreiecke · χ = 2" },
+      cuboctahedron: { label: "Kuboktaeder", note: "8 Dreiecke + 6 Quadrate · χ = 2" },
+      truncico: {
+        label: "Abgestumpftes Ikosaeder",
+        note: "12 Fünf- + 20 Sechsecke · χ = 2 · der Fußball",
+      },
+      icosphere: { label: "Ikosphäre", note: "χ bleibt 2" },
+      torus: { label: "Torus", note: "χ = 0 (ein Loch)" },
+      doubleTorus: { label: "Doppeltorus", note: "zwei Henkel · χ = −2 (Geschlecht 2)" },
+    },
+    es: {
+      tetrahedron: { label: "Tetraedro", note: "4 triángulos · χ = 2" },
+      cube: { label: "Cubo", note: "6 cuadrados · χ = 2" },
+      octahedron: { label: "Octaedro", note: "8 triángulos · χ = 2" },
+      dodecahedron: { label: "Dodecaedro", note: "12 pentágonos · χ = 2" },
+      icosahedron: { label: "Icosaedro", note: "20 triángulos · χ = 2" },
+      trunctetra: { label: "Tetraedro truncado", note: "4 hex + 4 tri · χ = 2" },
+      cuboctahedron: { label: "Cuboctaedro", note: "8 tri + 6 cuad · χ = 2" },
+      truncico: {
+        label: "Icosaedro truncado",
+        note: "12 pent + 20 hex · χ = 2 · el balón de fútbol",
+      },
+      icosphere: { label: "Icosfera", note: "χ sigue siendo 2" },
+      torus: { label: "Toro", note: "χ = 0 (un agujero)" },
+      doubleTorus: { label: "Doble toro", note: "dos asas · χ = −2 (género 2)" },
+    },
+    fr: {
+      tetrahedron: { label: "Tétraèdre", note: "4 triangles · χ = 2" },
+      cube: { label: "Cube", note: "6 carrés · χ = 2" },
+      octahedron: { label: "Octaèdre", note: "8 triangles · χ = 2" },
+      dodecahedron: { label: "Dodécaèdre", note: "12 pentagones · χ = 2" },
+      icosahedron: { label: "Icosaèdre", note: "20 triangles · χ = 2" },
+      trunctetra: { label: "Tétraèdre tronqué", note: "4 hex + 4 tri · χ = 2" },
+      cuboctahedron: { label: "Cuboctaèdre", note: "8 tri + 6 carr. · χ = 2" },
+      truncico: {
+        label: "Icosaèdre tronqué",
+        note: "12 pent + 20 hex · χ = 2 · le ballon de football",
+      },
+      icosphere: { label: "Icosphère", note: "χ reste 2" },
+      torus: { label: "Tore", note: "χ = 0 (un trou)" },
+      doubleTorus: { label: "Double tore", note: "deux anses · χ = −2 (genre 2)" },
+    },
+    it: {
+      tetrahedron: { label: "Tetraedro", note: "4 triangoli · χ = 2" },
+      cube: { label: "Cubo", note: "6 quadrati · χ = 2" },
+      octahedron: { label: "Ottaedro", note: "8 triangoli · χ = 2" },
+      dodecahedron: { label: "Dodecaedro", note: "12 pentagoni · χ = 2" },
+      icosahedron: { label: "Icosaedro", note: "20 triangoli · χ = 2" },
+      trunctetra: { label: "Tetraedro troncato", note: "4 esag + 4 tri · χ = 2" },
+      cuboctahedron: { label: "Cubottaedro", note: "8 tri + 6 quad · χ = 2" },
+      truncico: {
+        label: "Icosaedro troncato",
+        note: "12 pent + 20 esag · χ = 2 · il pallone da calcio",
+      },
+      icosphere: { label: "Icosfera", note: "χ resta 2" },
+      torus: { label: "Toro", note: "χ = 0 (un buco)" },
+      doubleTorus: { label: "Doppio toro", note: "due manici · χ = −2 (genere 2)" },
+    },
+    pt: {
+      tetrahedron: { label: "Tetraedro", note: "4 triângulos · χ = 2" },
+      cube: { label: "Cubo", note: "6 quadrados · χ = 2" },
+      octahedron: { label: "Octaedro", note: "8 triângulos · χ = 2" },
+      dodecahedron: { label: "Dodecaedro", note: "12 pentágonos · χ = 2" },
+      icosahedron: { label: "Icosaedro", note: "20 triângulos · χ = 2" },
+      trunctetra: { label: "Tetraedro truncado", note: "4 hex + 4 tri · χ = 2" },
+      cuboctahedron: { label: "Cuboctaedro", note: "8 tri + 6 quad · χ = 2" },
+      truncico: {
+        label: "Icosaedro truncado",
+        note: "12 pent + 20 hex · χ = 2 · a bola de futebol",
+      },
+      icosphere: { label: "Icosfera", note: "χ continua 2" },
+      torus: { label: "Toro", note: "χ = 0 (um buraco)" },
+      doubleTorus: { label: "Toro duplo", note: "duas asas · χ = −2 (género 2)" },
+    },
+    sv: {
+      tetrahedron: { label: "Tetraeder", note: "4 trianglar · χ = 2" },
+      cube: { label: "Kub", note: "6 kvadrater · χ = 2" },
+      octahedron: { label: "Oktaeder", note: "8 trianglar · χ = 2" },
+      dodecahedron: { label: "Dodekaeder", note: "12 femhörningar · χ = 2" },
+      icosahedron: { label: "Ikosaeder", note: "20 trianglar · χ = 2" },
+      trunctetra: { label: "Stympad tetraeder", note: "4 hex + 4 tri · χ = 2" },
+      cuboctahedron: { label: "Kuboktaeder", note: "8 tri + 6 kv · χ = 2" },
+      truncico: {
+        label: "Stympad ikosaeder",
+        note: "12 fem + 20 hex · χ = 2 · fotbollen",
+      },
+      icosphere: { label: "Ikosfär", note: "χ förblir 2" },
+      torus: { label: "Torus", note: "χ = 0 (ett hål)" },
+      doubleTorus: { label: "Dubbeltorus", note: "två handtag · χ = −2 (genus 2)" },
+    },
+    no: {
+      tetrahedron: { label: "Tetraeder", note: "4 trekanter · χ = 2" },
+      cube: { label: "Terning", note: "6 kvadrater · χ = 2" },
+      octahedron: { label: "Oktaeder", note: "8 trekanter · χ = 2" },
+      dodecahedron: { label: "Dodekaeder", note: "12 femkanter · χ = 2" },
+      icosahedron: { label: "Ikosaeder", note: "20 trekanter · χ = 2" },
+      trunctetra: { label: "Avstumpet tetraeder", note: "4 hex + 4 tri · χ = 2" },
+      cuboctahedron: { label: "Kuboktaeder", note: "8 tri + 6 kv · χ = 2" },
+      truncico: {
+        label: "Avstumpet ikosaeder",
+        note: "12 fem + 20 hex · χ = 2 · fotballen",
+      },
+      icosphere: { label: "Ikosfære", note: "χ forblir 2" },
+      torus: { label: "Torus", note: "χ = 0 (ett hull)" },
+      doubleTorus: { label: "Dobbeltorus", note: "to håndtak · χ = −2 (genus 2)" },
+    },
+  };
+  return dict[locale];
+}
+
+const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
+  en: {
+    polyhedron: "Polyhedron",
+    autoSpin: "Auto-spin",
+    on: "on",
+    off: "off",
+    speed: "speed",
+    step: "Step",
+    countVertices: "Count vertices",
+    countEdges: "Count edges",
+    countFaces: "Count faces",
+    revealAll: "Reveal all",
+    reset: "Reset",
+    runningEquation: "Running equation",
+    finalLabel: "final",
+    sphereLike: "· sphere-like",
+    oneHandle: "· one handle",
+    twoHandles: "· two handles",
+    notSphereLike: "χ ≠ 2 — this surface is not sphere-like.",
+    torusNote: "A surface with one handle: χ drops to 0.",
+    doubleTorusNote: "Two handles: χ = 2 − 2·2 = −2.",
+    stageIdle: "Pick a stage →",
+    stageVertices: "Counting vertices…",
+    stageEdges: "Counting edges…",
+    stageFaces: "Counting faces…",
+    stageDone: "All counted.",
+  },
+  de: {
+    polyhedron: "Polyeder",
+    autoSpin: "Auto-Rotation",
+    on: "an",
+    off: "aus",
+    speed: "Geschwindigkeit",
+    step: "Schritt",
+    countVertices: "Ecken zählen",
+    countEdges: "Kanten zählen",
+    countFaces: "Flächen zählen",
+    revealAll: "Alles zeigen",
+    reset: "Zurücksetzen",
+    runningEquation: "Laufende Gleichung",
+    finalLabel: "endgültig",
+    sphereLike: "· kugelartig",
+    oneHandle: "· ein Henkel",
+    twoHandles: "· zwei Henkel",
+    notSphereLike: "χ ≠ 2 — diese Fläche ist nicht kugelartig.",
+    torusNote: "Eine Fläche mit einem Henkel: χ fällt auf 0.",
+    doubleTorusNote: "Zwei Henkel: χ = 2 − 2·2 = −2.",
+    stageIdle: "Wähle einen Schritt →",
+    stageVertices: "Zähle Ecken…",
+    stageEdges: "Zähle Kanten…",
+    stageFaces: "Zähle Flächen…",
+    stageDone: "Alles gezählt.",
+  },
+  es: {
+    polyhedron: "Poliedro",
+    autoSpin: "Auto-rotación",
+    on: "act.",
+    off: "inact.",
+    speed: "velocidad",
+    step: "Paso",
+    countVertices: "Contar vértices",
+    countEdges: "Contar aristas",
+    countFaces: "Contar caras",
+    revealAll: "Mostrar todo",
+    reset: "Restablecer",
+    runningEquation: "Ecuación en curso",
+    finalLabel: "final",
+    sphereLike: "· tipo esfera",
+    oneHandle: "· un asa",
+    twoHandles: "· dos asas",
+    notSphereLike: "χ ≠ 2 — esta superficie no es tipo esfera.",
+    torusNote: "Una superficie con un asa: χ cae a 0.",
+    doubleTorusNote: "Dos asas: χ = 2 − 2·2 = −2.",
+    stageIdle: "Elige una etapa →",
+    stageVertices: "Contando vértices…",
+    stageEdges: "Contando aristas…",
+    stageFaces: "Contando caras…",
+    stageDone: "Todo contado.",
+  },
+  fr: {
+    polyhedron: "Polyèdre",
+    autoSpin: "Rotation auto",
+    on: "on",
+    off: "off",
+    speed: "vitesse",
+    step: "Étape",
+    countVertices: "Compter les sommets",
+    countEdges: "Compter les arêtes",
+    countFaces: "Compter les faces",
+    revealAll: "Tout afficher",
+    reset: "Réinitialiser",
+    runningEquation: "Équation en cours",
+    finalLabel: "final",
+    sphereLike: "· type sphère",
+    oneHandle: "· une anse",
+    twoHandles: "· deux anses",
+    notSphereLike: "χ ≠ 2 — cette surface n'est pas de type sphère.",
+    torusNote: "Une surface avec une anse : χ tombe à 0.",
+    doubleTorusNote: "Deux anses : χ = 2 − 2·2 = −2.",
+    stageIdle: "Choisis une étape →",
+    stageVertices: "Comptage des sommets…",
+    stageEdges: "Comptage des arêtes…",
+    stageFaces: "Comptage des faces…",
+    stageDone: "Tout compté.",
+  },
+  it: {
+    polyhedron: "Poliedro",
+    autoSpin: "Rotazione auto",
+    on: "on",
+    off: "off",
+    speed: "velocità",
+    step: "Passo",
+    countVertices: "Conta vertici",
+    countEdges: "Conta spigoli",
+    countFaces: "Conta facce",
+    revealAll: "Mostra tutto",
+    reset: "Reimposta",
+    runningEquation: "Equazione corrente",
+    finalLabel: "finale",
+    sphereLike: "· tipo sfera",
+    oneHandle: "· un manico",
+    twoHandles: "· due manici",
+    notSphereLike: "χ ≠ 2 — questa superficie non è di tipo sfera.",
+    torusNote: "Una superficie con un manico: χ scende a 0.",
+    doubleTorusNote: "Due manici: χ = 2 − 2·2 = −2.",
+    stageIdle: "Scegli una tappa →",
+    stageVertices: "Conteggio vertici…",
+    stageEdges: "Conteggio spigoli…",
+    stageFaces: "Conteggio facce…",
+    stageDone: "Tutto contato.",
+  },
+  pt: {
+    polyhedron: "Poliedro",
+    autoSpin: "Rotação auto",
+    on: "on",
+    off: "off",
+    speed: "velocidade",
+    step: "Passo",
+    countVertices: "Contar vértices",
+    countEdges: "Contar arestas",
+    countFaces: "Contar faces",
+    revealAll: "Mostrar tudo",
+    reset: "Reiniciar",
+    runningEquation: "Equação em curso",
+    finalLabel: "final",
+    sphereLike: "· tipo esfera",
+    oneHandle: "· uma asa",
+    twoHandles: "· duas asas",
+    notSphereLike: "χ ≠ 2 — esta superfície não é do tipo esfera.",
+    torusNote: "Uma superfície com uma asa: χ cai para 0.",
+    doubleTorusNote: "Duas asas: χ = 2 − 2·2 = −2.",
+    stageIdle: "Escolha uma etapa →",
+    stageVertices: "A contar vértices…",
+    stageEdges: "A contar arestas…",
+    stageFaces: "A contar faces…",
+    stageDone: "Tudo contado.",
+  },
+  sv: {
+    polyhedron: "Polyeder",
+    autoSpin: "Auto-rotation",
+    on: "på",
+    off: "av",
+    speed: "hastighet",
+    step: "Steg",
+    countVertices: "Räkna hörn",
+    countEdges: "Räkna kanter",
+    countFaces: "Räkna sidor",
+    revealAll: "Visa allt",
+    reset: "Återställ",
+    runningEquation: "Pågående ekvation",
+    finalLabel: "slutligt",
+    sphereLike: "· sfärlik",
+    oneHandle: "· ett handtag",
+    twoHandles: "· två handtag",
+    notSphereLike: "χ ≠ 2 — denna yta är inte sfärlik.",
+    torusNote: "En yta med ett handtag: χ faller till 0.",
+    doubleTorusNote: "Två handtag: χ = 2 − 2·2 = −2.",
+    stageIdle: "Välj ett steg →",
+    stageVertices: "Räknar hörn…",
+    stageEdges: "Räknar kanter…",
+    stageFaces: "Räknar sidor…",
+    stageDone: "Allt räknat.",
+  },
+  no: {
+    polyhedron: "Polyeder",
+    autoSpin: "Auto-rotasjon",
+    on: "på",
+    off: "av",
+    speed: "hastighet",
+    step: "Steg",
+    countVertices: "Tell hjørner",
+    countEdges: "Tell kanter",
+    countFaces: "Tell flater",
+    revealAll: "Vis alt",
+    reset: "Tilbakestill",
+    runningEquation: "Pågående ligning",
+    finalLabel: "endelig",
+    sphereLike: "· kulelignende",
+    oneHandle: "· ett håndtak",
+    twoHandles: "· to håndtak",
+    notSphereLike: "χ ≠ 2 — denne flaten er ikke kulelignende.",
+    torusNote: "En flate med ett håndtak: χ faller til 0.",
+    doubleTorusNote: "To håndtak: χ = 2 − 2·2 = −2.",
+    stageIdle: "Velg et steg →",
+    stageVertices: "Teller hjørner…",
+    stageEdges: "Teller kanter…",
+    stageFaces: "Teller flater…",
+    stageDone: "Alt telt.",
+  },
+};
+
+// Map a polyhedron `id` (which may carry mesh-density suffixes like
+// "icosphere-2" or "torus-18x10") to the canonical key used in `polyById`.
+function localizationKey(id: string): string {
+  if (id.startsWith("icosphere")) return "icosphere";
+  if (id.startsWith("double-torus")) return "doubleTorus";
+  if (id.startsWith("torus")) return "torus";
+  return id;
+}
 
 // ---------------------------------------------------------------------------
 // Euler-characteristic explorer.
@@ -658,8 +1051,26 @@ const PRESETS: ReadonlyArray<Polyhedron> = [
 // ---- Component ------------------------------------------------------------
 
 export default function EulerCharExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.eulerchar;
+  const tr = RICH_EXPLORER[locale];
+  const polyMap = buildPolyMap(locale);
+  // Look up a polyhedron's localized display strings; the icosphere keeps
+  // its subdivision suffix from `note` ("60 − 120 + 80 = 20 …") so we don't
+  // overwrite it — we only translate `label` and the non-numeric portion.
+  const localizedLabel = (p: Polyhedron): string =>
+    polyMap[localizationKey(p.id)]?.label ?? p.label;
+  const localizedNote = (p: Polyhedron): string => {
+    const key = localizationKey(p.id);
+    const base = polyMap[key];
+    if (!base) return p.note;
+    // For icosphere / torus / double torus the original note bakes in
+    // the running V−E+F counts; we keep the numeric prefix and just
+    // translate the trailing copy.
+    if (key === "icosphere") return `${p.V} − ${p.E} + ${p.F} = ${p.V - p.E + p.F} · ${base.note}`;
+    if (key === "torus") return `${p.V} − ${p.E} + ${p.F} = ${p.V - p.E + p.F} · ${base.note}`;
+    return base.note;
+  };
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [presetIdx, setPresetIdx] = useState(1); // start on cube
@@ -990,11 +1401,11 @@ export default function EulerCharExplorer() {
   const sum = tally.V - tally.E + tally.F;
   const finalSum = polyhedron.V - polyhedron.E + polyhedron.F;
   const stageLabel: Record<Stage, string> = {
-    idle: "Pick a stage →",
-    vertices: "Counting vertices…",
-    edges: "Counting edges…",
-    faces: "Counting faces…",
-    done: "All counted.",
+    idle: tr.stageIdle,
+    vertices: tr.stageVertices,
+    edges: tr.stageEdges,
+    faces: tr.stageFaces,
+    done: tr.stageDone,
   };
 
   return (
@@ -1003,7 +1414,7 @@ export default function EulerCharExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {polyhedron.label} · {polyhedron.note}
+              {localizedLabel(polyhedron)} · {localizedNote(polyhedron)}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               V − E + F = {finalSum}
@@ -1035,11 +1446,11 @@ export default function EulerCharExplorer() {
                 <div className="pt-1 text-[10px] leading-relaxed text-ink-300">
                   χ = <span className="text-signal-cyan">{finalSum}</span>{" "}
                   {finalSum === 2
-                    ? "· sphere-like"
+                    ? tr.sphereLike
                     : finalSum === 0
-                      ? "· one handle"
+                      ? tr.oneHandle
                       : finalSum === -2
-                        ? "· two handles"
+                        ? tr.twoHandles
                         : ""}
                 </div>
               )}
@@ -1059,7 +1470,7 @@ export default function EulerCharExplorer() {
           {/* Preset picker */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Polyhedron
+              {tr.polyhedron}
             </div>
             <div className="grid grid-cols-1 gap-1.5">
               {PRESETS.map((p, i) => (
@@ -1072,7 +1483,7 @@ export default function EulerCharExplorer() {
                       : "hairline text-ink-200 hover:border-signal-cyan/40 hover:text-ink-100"
                   }`}
                 >
-                  <div className="font-mono text-xs">{p.label}</div>
+                  <div className="font-mono text-xs">{localizedLabel(p)}</div>
                   <div className="mt-0.5 font-mono text-[10px] text-ink-400">
                     V={p.V}, E={p.E}, F={p.F} &nbsp;·&nbsp; χ={p.V - p.E + p.F}
                   </div>
@@ -1085,7 +1496,7 @@ export default function EulerCharExplorer() {
           <div className="hairline space-y-3 border-b p-5">
             <div className="flex items-center justify-between">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Auto-spin
+                {tr.autoSpin}
               </div>
               <button
                 onClick={() => setAutoSpin((s) => !s)}
@@ -1095,7 +1506,7 @@ export default function EulerCharExplorer() {
                     : "hairline text-ink-300 hover:text-ink-100"
                 }`}
               >
-                {autoSpin ? "on" : "off"}
+                {autoSpin ? tr.on : tr.off}
               </button>
             </div>
             <input
@@ -1109,14 +1520,14 @@ export default function EulerCharExplorer() {
               disabled={!autoSpin}
             />
             <div className="text-right font-mono text-[10px] text-ink-400">
-              speed {spinSpeed.toFixed(2)}
+              {tr.speed} {spinSpeed.toFixed(2)}
             </div>
           </div>
 
           {/* Stage buttons */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Step
+              {tr.step}
             </div>
             <div className="grid grid-cols-1 gap-2">
               <button
@@ -1127,7 +1538,7 @@ export default function EulerCharExplorer() {
                     : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-signal-amber"
                 }`}
               >
-                <div className="font-mono text-xs">1 · Count vertices</div>
+                <div className="font-mono text-xs">1 · {tr.countVertices}</div>
                 <div className="mt-0.5 font-mono text-[10px] text-ink-400">V = {polyhedron.V}</div>
               </button>
               <button
@@ -1138,7 +1549,7 @@ export default function EulerCharExplorer() {
                     : "hairline text-ink-200 hover:border-signal-cyan/40 hover:text-signal-cyan"
                 }`}
               >
-                <div className="font-mono text-xs">2 · Count edges</div>
+                <div className="font-mono text-xs">2 · {tr.countEdges}</div>
                 <div className="mt-0.5 font-mono text-[10px] text-ink-400">E = {polyhedron.E}</div>
               </button>
               <button
@@ -1149,7 +1560,7 @@ export default function EulerCharExplorer() {
                     : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-signal-rose"
                 }`}
               >
-                <div className="font-mono text-xs">3 · Count faces</div>
+                <div className="font-mono text-xs">3 · {tr.countFaces}</div>
                 <div className="mt-0.5 font-mono text-[10px] text-ink-400">F = {polyhedron.F}</div>
               </button>
               <button
@@ -1160,13 +1571,13 @@ export default function EulerCharExplorer() {
                 }}
                 className="hairline rounded-md border px-3 py-2 text-left text-ink-200 transition-colors hover:border-ink-300/40 hover:text-ink-100"
               >
-                <div className="font-mono text-xs">Reveal all</div>
+                <div className="font-mono text-xs">{tr.revealAll}</div>
               </button>
               <button
                 onClick={resetCounts}
                 className="hairline rounded-md border px-3 py-2 text-left text-ink-300 transition-colors hover:border-ink-300/40 hover:text-ink-100"
               >
-                <div className="font-mono text-xs">Reset</div>
+                <div className="font-mono text-xs">{tr.reset}</div>
               </button>
             </div>
           </div>
@@ -1174,7 +1585,7 @@ export default function EulerCharExplorer() {
           {/* Equation panel */}
           <div className="hairline space-y-2 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Running equation
+              {tr.runningEquation}
             </div>
             <div className="font-mono text-lg text-ink-100">
               <span className="text-signal-amber">{tally.V}</span>
@@ -1186,15 +1597,15 @@ export default function EulerCharExplorer() {
               <span className="text-signal-cyan">{sum}</span>
             </div>
             <div className="font-mono text-[10px] text-ink-400">
-              final · {polyhedron.V} − {polyhedron.E} + {polyhedron.F} = {finalSum} (χ)
+              {tr.finalLabel} · {polyhedron.V} − {polyhedron.E} + {polyhedron.F} = {finalSum} (χ)
             </div>
             {finalSum !== 2 && (
               <div className="pt-1 font-mono text-[10px] leading-relaxed text-signal-amber">
-                {polyhedron.label === "Torus"
-                  ? "A surface with one handle: χ drops to 0."
-                  : polyhedron.label === "Double torus"
-                    ? "Two handles: χ = 2 − 2·2 = −2."
-                    : "χ ≠ 2 — this surface is not sphere-like."}
+                {localizationKey(polyhedron.id) === "torus"
+                  ? tr.torusNote
+                  : localizationKey(polyhedron.id) === "doubleTorus"
+                    ? tr.doubleTorusNote
+                    : tr.notSphereLike}
               </div>
             )}
           </div>

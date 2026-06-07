@@ -1197,7 +1197,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso dos · Sorpresas con las tijeras",
           title: "Lo que las tijeras revelan sobre la topología",
-          body: "Corta la cinta de Möbius por el medio. No se cae a pedazos — obtienes una tira más larga con dos vueltas completas (cuatro medias vueltas) y, lo crucial, esa tira vuelve a tener dos caras. Corta una cinta de Möbius a un tercio de uno de sus bordes, manteniendo el corte paralelo al borde a lo largo de toda la vuelta, y las tijeras recorren dos vueltas antes de cerrar el lazo: salen dos anillos entrelazados, uno una nueva cinta de Möbius y otro una cinta más larga al estilo Möbius con torsiones extra, enlazados entre sí. La topología está llena de estas sorpresas — la torsión global oculta tras la planitud local.",
+          body: "Corta la cinta de Möbius por el medio. No se cae a pedazos — obtienes una tira más larga con dos vueltas completas (cuatro medias vueltas) y, lo crucial, esa tira vuelve a tener dos caras. Corta una cinta de Möbius a un tercio de uno de sus bordes, manteniendo el corte paralelo al borde a lo largo de toda la vuelta, y las tijeras recorren dos vueltas antes de cerrar el lazo: salen dos anillos entrelazados — una nueva cinta de Möbius más estrecha (aún con una sola media vuelta) y un anillo de dos caras más largo con dos medias vueltas (que ya no es una cinta de Möbius), enlazados entre sí. La topología está llena de estas sorpresas — la torsión global oculta tras la planitud local.",
         },
         {
           pretitle: "Paso tres · La botella de Klein",
@@ -1207,7 +1207,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso cuatro · Dónde viven",
           title: "De las correas de transmisión a la química",
-          body: "Las cintas de Möbius aparecen como correas transportadoras y cintas de impresora (el desgaste se reparte por toda la superficie y duplica la vida útil), como las esculturas Endless Ribbon de Max Bill, como resistencias de Möbius que cancelan su propia autoinducción, como guías de onda Möbius superconductoras para microondas — y, desde 2003, como moléculas aromáticas de Möbius sintetizadas por Rainer Herges. El famoso triángulo del reciclaje es, en rigor, un nudo de trébol más que una cinta de Möbius, pero el público lo lee como tal. Sobre todo, la cinta de Möbius y la botella de Klein son las puertas de entrada a la clasificación de superficies — el teorema que afirma que toda superficie cerrada queda determinada, salvo homeomorfismo, por el género, la orientabilidad y un único entero χ.",
+          body: "Las cintas de Möbius aparecen como correas transportadoras y cintas de impresora (el desgaste se reparte por toda la superficie y duplica la vida útil), como las esculturas Endless Ribbon de Max Bill, como resistencias de Möbius que cancelan su propia autoinducción, como guías de onda Möbius superconductoras para microondas — y, desde 2003, como moléculas aromáticas de Möbius sintetizadas por Rainer Herges. El famoso triángulo del reciclaje es, en rigor, una cinta de Möbius con tres medias vueltas — sigue siendo de una sola cara, pero más retorcida que la clásica banda de una sola media vuelta. Sobre todo, la cinta de Möbius y la botella de Klein son las puertas de entrada a la clasificación de superficies — el teorema que afirma que toda superficie cerrada queda determinada, salvo homeomorfismo, por el género, la orientabilidad y un único entero χ.",
         },
       ],
     },
@@ -1292,7 +1292,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso tres · La demostración de Appel-Haken, 1976",
           title: "El primer teorema demostrado por computadora",
-          body: "Kenneth Appel y Wolfgang Haken, en la Universidad de Illinois, redujeron el problema a una lista finita de 1834 «configuraciones inevitables» — y luego mostraron que cada una de ellas es reducible. Su demostración corrió en una IBM 360 durante unas 1200 horas. Muchos matemáticos se negaron a aceptarla: una demostración que un humano no puede leer en su totalidad, argumentaban, no es una demostración. Durante años, el correo saliente del departamento de matemáticas de la Universidad de Illinois llevaba el sello «Four Colors Suffice».",
+          body: "Kenneth Appel y Wolfgang Haken, en la Universidad de Illinois, redujeron el problema a una lista finita de 1834 «configuraciones inevitables» — y luego mostraron que cada una de ellas es reducible. Su demostración corrió en una IBM 370 durante unas 1200 horas. Muchos matemáticos se negaron a aceptarla: una demostración que un humano no puede leer en su totalidad, argumentaban, no es una demostración. Durante años, el correo saliente del departamento de matemáticas de la Universidad de Illinois llevaba el sello «Four Colors Suffice».",
         },
         {
           pretitle: "Paso cuatro · Dónde está hoy",

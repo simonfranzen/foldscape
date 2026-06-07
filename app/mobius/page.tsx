@@ -3,13 +3,117 @@
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 import { MobiusStripHero } from "@/components/signature/MobiusStripHero";
 
 const ACCENT = "text-signal-violet";
 
+// Per-locale strings for the gluing-identification diagram. Kept inline so
+// the translations live with the diagram they label.
+type RichStory = {
+  diagramPretitle: string;
+  diagramTitle: string;
+  svgAria: string;
+  identifyRule: string;
+  caption: string;
+  paragraph: string;
+};
+
+const RICH_STORY: Record<Locale, RichStory> = {
+  en: {
+    diagramPretitle: "Diagram · the gluing identification",
+    diagramTitle: "A rectangle with two arrows pointing the opposite way.",
+    svgAria:
+      "Flat rectangle with the two short edges identified with opposite orientation, producing a Möbius strip",
+    identifyRule: "identify (0, y) ∼ (1, 1 − y)",
+    caption:
+      "the two short edges are glued with opposite orientation — that single flip is the whole story",
+    paragraph:
+      "A Möbius strip is the quotient of the unit square [0, 1] × [0, 1] under the relation (0, y) ∼ (1, 1 − y): glue the two short sides together after flipping one. The two long sides remain free, but they meet up at the join — what looked like two boundary curves is in fact a single edge. The same diagram for the Klein bottle would add a second identification, gluing the long sides as well (this time with the same orientation), removing every boundary at once.",
+  },
+  de: {
+    diagramPretitle: "Diagramm · Identifikation der Klebung",
+    diagramTitle: "Ein Rechteck mit zwei Pfeilen, die in entgegengesetzte Richtungen zeigen.",
+    svgAria:
+      "Flaches Rechteck, dessen beide kurze Seiten mit entgegengesetzter Orientierung identifiziert werden — daraus entsteht ein Möbius-Band",
+    identifyRule: "identifiziere (0, y) ∼ (1, 1 − y)",
+    caption:
+      "die beiden kurzen Seiten werden mit entgegengesetzter Orientierung verklebt — diese einzige Umkehrung ist die ganze Geschichte",
+    paragraph:
+      "Ein Möbius-Band ist der Quotient des Einheitsquadrats [0, 1] × [0, 1] unter der Relation (0, y) ∼ (1, 1 − y): die beiden kurzen Seiten werden nach einer Umkehrung verklebt. Die langen Seiten bleiben frei, treffen sich aber an der Naht — was wie zwei Randkurven aussah, ist in Wahrheit eine einzige Kante. Dasselbe Diagramm für die Klein-Flasche würde eine zweite Identifikation hinzufügen, die auch die langen Seiten verklebt (diesmal mit gleicher Orientierung), und damit jeden Rand entfernen.",
+  },
+  es: {
+    diagramPretitle: "Diagrama · la identificación del pegado",
+    diagramTitle: "Un rectángulo con dos flechas que apuntan en sentido opuesto.",
+    svgAria:
+      "Rectángulo plano cuyos dos lados cortos se identifican con orientación opuesta, produciendo una banda de Möbius",
+    identifyRule: "identificar (0, y) ∼ (1, 1 − y)",
+    caption:
+      "los dos lados cortos se pegan con orientación opuesta — ese único giro es toda la historia",
+    paragraph:
+      "Una banda de Möbius es el cociente del cuadrado unidad [0, 1] × [0, 1] bajo la relación (0, y) ∼ (1, 1 − y): se pegan los dos lados cortos después de invertir uno. Los dos lados largos quedan libres, pero se encuentran en la junta — lo que parecían dos curvas frontera es en realidad un único borde. El mismo diagrama para la botella de Klein añadiría una segunda identificación pegando también los lados largos (esta vez con la misma orientación), eliminando toda frontera de golpe.",
+  },
+  fr: {
+    diagramPretitle: "Diagramme · l'identification du collage",
+    diagramTitle: "Un rectangle avec deux flèches pointant en sens opposés.",
+    svgAria:
+      "Rectangle plat dont les deux côtés courts sont identifiés avec orientation opposée, produisant un ruban de Möbius",
+    identifyRule: "identifier (0, y) ∼ (1, 1 − y)",
+    caption:
+      "les deux côtés courts sont collés avec orientation opposée — ce seul retournement, c'est toute l'histoire",
+    paragraph:
+      "Un ruban de Möbius est le quotient du carré unité [0, 1] × [0, 1] par la relation (0, y) ∼ (1, 1 − y) : on colle les deux côtés courts après en avoir retourné un. Les deux côtés longs restent libres, mais se rejoignent à la jointure — ce qui ressemblait à deux courbes frontières est en fait une seule arête. Le même diagramme pour la bouteille de Klein ajouterait une seconde identification, collant aussi les côtés longs (cette fois avec la même orientation), supprimant toute frontière d'un coup.",
+  },
+  it: {
+    diagramPretitle: "Diagramma · l'identificazione dell'incollaggio",
+    diagramTitle: "Un rettangolo con due frecce che puntano in versi opposti.",
+    svgAria:
+      "Rettangolo piatto i cui due lati corti vengono identificati con orientamento opposto, producendo un nastro di Möbius",
+    identifyRule: "identifica (0, y) ∼ (1, 1 − y)",
+    caption:
+      "i due lati corti vengono incollati con orientamento opposto — quell'unico ribaltamento è tutta la storia",
+    paragraph:
+      "Un nastro di Möbius è il quoziente del quadrato unitario [0, 1] × [0, 1] sotto la relazione (0, y) ∼ (1, 1 − y): i due lati corti vengono incollati dopo aver ribaltato uno. I due lati lunghi restano liberi, ma si incontrano alla giuntura — quelle che sembravano due curve di bordo sono in realtà un unico spigolo. Lo stesso diagramma per la bottiglia di Klein aggiungerebbe una seconda identificazione, incollando anche i lati lunghi (questa volta con lo stesso orientamento), eliminando ogni bordo in un colpo solo.",
+  },
+  pt: {
+    diagramPretitle: "Diagrama · a identificação da colagem",
+    diagramTitle: "Um retângulo com duas setas a apontar em sentidos opostos.",
+    svgAria:
+      "Retângulo plano cujos dois lados curtos são identificados com orientação oposta, produzindo uma faixa de Möbius",
+    identifyRule: "identificar (0, y) ∼ (1, 1 − y)",
+    caption:
+      "os dois lados curtos são colados com orientação oposta — esse único virar é a história inteira",
+    paragraph:
+      "Uma faixa de Möbius é o quociente do quadrado unitário [0, 1] × [0, 1] pela relação (0, y) ∼ (1, 1 − y): cola-se os dois lados curtos depois de inverter um. Os dois lados longos ficam livres, mas encontram-se na junção — o que parecia duas curvas de fronteira é, de facto, uma única aresta. O mesmo diagrama para a garrafa de Klein acrescentaria uma segunda identificação, colando também os lados longos (desta vez com a mesma orientação), removendo toda a fronteira de uma só vez.",
+  },
+  sv: {
+    diagramPretitle: "Diagram · sammanlimningens identifiering",
+    diagramTitle: "En rektangel med två pilar som pekar åt motsatt håll.",
+    svgAria:
+      "Plan rektangel där de två korta sidorna identifieras med motsatt orientering, vilket ger ett Möbius-band",
+    identifyRule: "identifiera (0, y) ∼ (1, 1 − y)",
+    caption:
+      "de två korta sidorna limmas ihop med motsatt orientering — den enda vändningen är hela poängen",
+    paragraph:
+      "Ett Möbius-band är kvoten av enhetskvadraten [0, 1] × [0, 1] under relationen (0, y) ∼ (1, 1 − y): de två korta sidorna limmas ihop efter att en vänts. De två långa sidorna förblir fria, men möts vid skarven — det som såg ut som två randkurvor är i själva verket en enda kant. Samma diagram för Kleinflaskan skulle lägga till en andra identifiering som även limmar samman de långa sidorna (denna gång med samma orientering), och därmed ta bort all rand på en gång.",
+  },
+  no: {
+    diagramPretitle: "Diagram · sammenlimingens identifikasjon",
+    diagramTitle: "Et rektangel med to piler som peker motsatt vei.",
+    svgAria:
+      "Flatt rektangel der de to korte sidene identifiseres med motsatt orientering, slik at det blir et Möbius-bånd",
+    identifyRule: "identifiser (0, y) ∼ (1, 1 − y)",
+    caption:
+      "de to korte sidene limes sammen med motsatt orientering — den ene snuingen er hele poenget",
+    paragraph:
+      "Et Möbius-bånd er kvotienten av enhetskvadratet [0, 1] × [0, 1] under relasjonen (0, y) ∼ (1, 1 − y): de to korte sidene limes sammen etter at den ene er snudd. De to lange sidene forblir frie, men møtes ved skjøten — det som så ut som to randkurver er i virkeligheten én eneste kant. Det samme diagrammet for Kleinflasken ville lagt til en ny identifikasjon som også limer sammen de lange sidene (denne gangen med samme orientering), og fjerner dermed all rand på én gang.",
+  },
+};
+
 export default function MobiusStoryPage() {
-  const { s } = useI18n();
+  const { s, locale } = useI18n();
   const page = s.pages.mobius;
+  const story = RICH_STORY[locale];
   const [sec0, sec1, sec2, sec3] = page.sections;
 
   return (
@@ -37,16 +141,16 @@ export default function MobiusStoryPage() {
       <Reveal>
         <section className="glass hairline mx-auto mb-12 mt-8 max-w-4xl space-y-6 rounded-2xl border p-8 md:p-10">
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-            Diagram · the gluing identification
+            {story.diagramPretitle}
           </div>
           <h2 className="math-italic text-2xl leading-tight text-ink-100 md:text-3xl">
-            A rectangle with two arrows pointing the opposite way.
+            {story.diagramTitle}
           </h2>
           <div className="flex justify-center">
             <svg
               viewBox="0 0 640 280"
               role="img"
-              aria-label="Flat rectangle with the two short edges identified with opposite orientation, producing a Möbius strip"
+              aria-label={story.svgAria}
               className="h-auto w-full max-w-2xl"
             >
               {/* The flat rectangle */}
@@ -158,7 +262,7 @@ export default function MobiusStoryPage() {
                 fontSize="14"
                 textAnchor="middle"
               >
-                identify (0, y) ∼ (1, 1 − y)
+                {story.identifyRule}
               </text>
 
               {/* A traced loop showing the path */}
@@ -177,19 +281,11 @@ export default function MobiusStoryPage() {
                 fontSize="11"
                 textAnchor="middle"
               >
-                the two short edges are glued with opposite orientation — that single flip is the
-                whole story
+                {story.caption}
               </text>
             </svg>
           </div>
-          <p className="text-sm leading-relaxed text-ink-300">
-            A Möbius strip is the quotient of the unit square [0, 1] × [0, 1] under the relation (0,
-            y) ∼ (1, 1 − y): glue the two short sides together after flipping one. The two long
-            sides remain free, but they meet up at the join — what looked like two boundary curves
-            is in fact a single edge. The same diagram for the Klein bottle would add a second
-            identification, gluing the long sides as well (this time with the same orientation),
-            removing every boundary at once.
-          </p>
+          <p className="text-sm leading-relaxed text-ink-300">{story.paragraph}</p>
         </section>
       </Reveal>
     </StoryPageShell>

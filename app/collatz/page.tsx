@@ -112,7 +112,7 @@ const en: RichStory = {
     {
       pretitle: "Section 06 · What stops a proof",
       title: "An invariant nobody has found",
-      body: "Why is this so hard? The deep reason is that no one has found a sufficient invariant. To prove every orbit terminates you need a quantity that strictly decreases along the iteration, or a Lyapunov function, or a clever potential — and nothing of the kind has surfaced in eighty-eight years of trying. John Conway proved in 1972 that generalised Collatz-like maps with a few extra cases can be Turing-complete — his FRACTRAN system encodes arbitrary computation in exactly this style of branching arithmetic. That suggests Collatz itself may live close to the boundary of undecidability: a problem that is not just hard but possibly outside the reach of any finite proof system. Erdős may have been right that mathematics is not yet ripe.",
+      body: "Why is this so hard? The deep reason is that no one has found a sufficient invariant. To prove every orbit terminates you need a quantity that strictly decreases along the iteration, or a Lyapunov function, or a clever potential — and nothing of the kind has surfaced in eighty-eight years of trying. John Conway proved in 1972 that a slightly generalised Collatz-like map is already undecidable; his later FRACTRAN system (1987) then realised full Turing-completeness in exactly this style of branching arithmetic. That suggests Collatz itself may live close to the boundary of undecidability: a problem that is not just hard but possibly outside the reach of any finite proof system. Erdős may have been right that mathematics is not yet ripe.",
     },
   ],
   closingTitle: "Watch it fall.",
@@ -207,7 +207,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Was den Beweis aufhält",
       title: "Eine Invariante, die niemand findet",
-      body: "Warum ist das so schwer? Der tiefe Grund: niemand hat eine ausreichende Invariante gefunden. Um zu zeigen, dass jede Bahn endet, brauchst du eine Größe, die entlang der Iteration strikt fällt, oder eine Lyapunov-Funktion, oder ein kluges Potential — und nichts davon ist in achtundachtzig Jahren aufgetaucht. John Conway bewies 1972, dass verallgemeinerte Collatz-artige Abbildungen mit ein paar Extrafällen Turing-vollständig sein können — sein FRACTRAN-System kodiert beliebige Berechnung in genau diesem Stil verzweigter Arithmetik. Das deutet darauf hin, dass Collatz selbst nahe an der Grenze der Unentscheidbarkeit liegen könnte: nicht nur schwer, sondern womöglich außerhalb der Reichweite jedes endlichen Beweissystems. Erdős könnte recht gehabt haben.",
+      body: "Warum ist das so schwer? Der tiefe Grund: niemand hat eine ausreichende Invariante gefunden. Um zu zeigen, dass jede Bahn endet, brauchst du eine Größe, die entlang der Iteration strikt fällt, oder eine Lyapunov-Funktion, oder ein kluges Potential — und nichts davon ist in achtundachtzig Jahren aufgetaucht. John Conway zeigte 1972, dass schon eine leicht verallgemeinerte Collatz-artige Abbildung unentscheidbar ist; sein späteres FRACTRAN-System (1987) realisierte dann volle Turing-Vollständigkeit in genau diesem Stil verzweigter Arithmetik. Das deutet darauf hin, dass Collatz selbst nahe an der Grenze der Unentscheidbarkeit liegen könnte: nicht nur schwer, sondern womöglich außerhalb der Reichweite jedes endlichen Beweissystems. Erdős könnte recht gehabt haben.",
     },
   ],
   closingTitle: "Sieh es fallen.",
@@ -302,7 +302,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 06 · Qué impide demostrarlo",
       title: "Una invariante que nadie encuentra",
-      body: "¿Por qué es tan duro? La razón profunda: nadie ha encontrado una invariante suficiente. Para probar que toda órbita termina necesitas una magnitud que disminuya estrictamente con la iteración, o una función de Lyapunov, o un potencial ingenioso — y nada así ha aparecido en ochenta y ocho años. John Conway demostró en 1972 que aplicaciones generalizadas tipo Collatz con un par de casos extra pueden ser Turing-completas — su sistema FRACTRAN codifica computación arbitraria en exactamente este estilo de aritmética ramificada. Eso sugiere que el propio Collatz puede vivir cerca de la frontera de la indecidibilidad: un problema no solo duro sino quizá fuera del alcance de cualquier sistema de demostración finito. Quizá Erdős tenía razón al decir que las matemáticas aún no están maduras.",
+      body: "¿Por qué es tan duro? La razón profunda: nadie ha encontrado una invariante suficiente. Para probar que toda órbita termina necesitas una magnitud que disminuya estrictamente con la iteración, o una función de Lyapunov, o un potencial ingenioso — y nada así ha aparecido en ochenta y ocho años. John Conway demostró en 1972 que una aplicación tipo Collatz ligeramente generalizada ya es indecidible; su posterior sistema FRACTRAN (1987) realizó la Turing-completitud plena en exactamente este estilo de aritmética ramificada. Eso sugiere que el propio Collatz puede vivir cerca de la frontera de la indecidibilidad: un problema no solo duro sino quizá fuera del alcance de cualquier sistema de demostración finito. Quizá Erdős tenía razón al decir que las matemáticas aún no están maduras.",
     },
   ],
   closingTitle: "Mírala caer.",
@@ -397,7 +397,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 06 · Ce qui bloque la preuve",
       title: "Un invariant que personne n'a trouvé",
-      body: "Pourquoi est-ce si difficile ? La raison profonde : personne n'a trouvé d'invariant suffisant. Pour prouver que toute orbite s'arrête, il te faut une quantité qui décroît strictement le long de l'itération, ou une fonction de Lyapunov, ou un potentiel astucieux — et rien de tel n'a émergé en quatre-vingt-huit ans. John Conway a montré en 1972 que des applications généralisées de type Collatz, avec quelques cas supplémentaires, peuvent être Turing-complètes — son système FRACTRAN code n'importe quel calcul dans exactement ce style d'arithmétique ramifiée. Cela suggère que Collatz lui-même vit peut-être près de la frontière de l'indécidabilité : un problème non seulement difficile, mais peut-être hors d'atteinte de tout système de preuve fini. Erdős avait peut-être raison.",
+      body: "Pourquoi est-ce si difficile ? La raison profonde : personne n'a trouvé d'invariant suffisant. Pour prouver que toute orbite s'arrête, il te faut une quantité qui décroît strictement le long de l'itération, ou une fonction de Lyapunov, ou un potentiel astucieux — et rien de tel n'a émergé en quatre-vingt-huit ans. John Conway a montré en 1972 qu'une application de type Collatz légèrement généralisée est déjà indécidable ; son système FRACTRAN ultérieur (1987) a ensuite réalisé la Turing-complétude entière dans exactement ce style d'arithmétique ramifiée. Cela suggère que Collatz lui-même vit peut-être près de la frontière de l'indécidabilité : un problème non seulement difficile, mais peut-être hors d'atteinte de tout système de preuve fini. Erdős avait peut-être raison.",
     },
   ],
   closingTitle: "Regarde-la tomber.",
@@ -492,7 +492,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 06 · Cosa blocca la dimostrazione",
       title: "Un invariante che nessuno trova",
-      body: "Perché è così difficile? La ragione profonda: nessuno ha trovato un invariante sufficiente. Per dimostrare che ogni orbita termina ti serve una grandezza che cali strettamente lungo l'iterazione, o una funzione di Lyapunov, o un potenziale ingegnoso — e nulla del genere è emerso in ottantotto anni. John Conway dimostrò nel 1972 che mappe generalizzate alla Collatz, con qualche caso in più, possono essere Turing-complete — il suo sistema FRACTRAN codifica calcoli arbitrari proprio in questo stile di aritmetica ramificata. Suggerisce che Collatz stesso possa vivere vicino al confine dell'indecidibilità: un problema non solo difficile ma forse fuori dalla portata di qualsiasi sistema di prova finito. Erdős poteva avere ragione.",
+      body: "Perché è così difficile? La ragione profonda: nessuno ha trovato un invariante sufficiente. Per dimostrare che ogni orbita termina ti serve una grandezza che cali strettamente lungo l'iterazione, o una funzione di Lyapunov, o un potenziale ingegnoso — e nulla del genere è emerso in ottantotto anni. John Conway dimostrò nel 1972 che una mappa alla Collatz leggermente generalizzata è già indecidibile; il suo successivo sistema FRACTRAN (1987) ha poi realizzato la piena Turing-completezza proprio in questo stile di aritmetica ramificata. Suggerisce che Collatz stesso possa vivere vicino al confine dell'indecidibilità: un problema non solo difficile ma forse fuori dalla portata di qualsiasi sistema di prova finito. Erdős poteva avere ragione.",
     },
   ],
   closingTitle: "Guardala cadere.",
@@ -587,7 +587,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 06 · O que trava a demonstração",
       title: "Um invariante que ninguém encontra",
-      body: "Porque é tão difícil? A razão profunda: ninguém encontrou um invariante suficiente. Para provar que toda órbita termina precisas de uma grandeza que decresça estritamente ao longo da iteração, ou uma função de Lyapunov, ou um potencial engenhoso — e nada disso surgiu em oitenta e oito anos. John Conway demonstrou em 1972 que mapas generalizados à Collatz, com alguns casos extra, podem ser Turing-completos — o seu sistema FRACTRAN codifica computação arbitrária neste estilo de aritmética ramificada. Sugere que Collatz vive perto da fronteira da indecidibilidade: um problema não apenas difícil, mas talvez fora do alcance de qualquer sistema de prova finito. Erdős podia ter razão.",
+      body: "Porque é tão difícil? A razão profunda: ninguém encontrou um invariante suficiente. Para provar que toda órbita termina precisas de uma grandeza que decresça estritamente ao longo da iteração, ou uma função de Lyapunov, ou um potencial engenhoso — e nada disso surgiu em oitenta e oito anos. John Conway demonstrou em 1972 que um mapa à Collatz ligeiramente generalizado já é indecidível; o seu posterior sistema FRACTRAN (1987) realizou então a Turing-completude plena neste mesmo estilo de aritmética ramificada. Sugere que Collatz vive perto da fronteira da indecidibilidade: um problema não apenas difícil, mas talvez fora do alcance de qualquer sistema de prova finito. Erdős podia ter razão.",
     },
   ],
   closingTitle: "Vê-a cair.",
@@ -682,7 +682,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 06 · Det som stoppar beviset",
       title: "En invariant ingen har hittat",
-      body: "Varför är det så svårt? Det djupa skälet: ingen har hittat en tillräcklig invariant. För att bevisa att varje bana avslutas behöver du en storhet som strikt minskar längs iterationen, eller en Lyapunov-funktion, eller en smart potential — och inget sådant har dykt upp på åttioåtta år. John Conway visade 1972 att generaliserade Collatz-liknande avbildningar med några extra fall kan vara Turing-kompletta — hans FRACTRAN-system kodar godtycklig beräkning i precis den här stilen av grenad aritmetik. Det antyder att Collatz själv kan ligga nära oavgörbarhetens gräns: ett problem inte bara svårt utan kanske bortom räckhåll för varje ändligt bevissystem. Erdős kan ha haft rätt.",
+      body: "Varför är det så svårt? Det djupa skälet: ingen har hittat en tillräcklig invariant. För att bevisa att varje bana avslutas behöver du en storhet som strikt minskar längs iterationen, eller en Lyapunov-funktion, eller en smart potential — och inget sådant har dykt upp på åttioåtta år. John Conway visade 1972 att redan en lätt generaliserad Collatz-liknande avbildning är oavgörbar; hans senare FRACTRAN-system (1987) realiserade sedan full Turing-komplettering i precis den här stilen av grenad aritmetik. Det antyder att Collatz själv kan ligga nära oavgörbarhetens gräns: ett problem inte bara svårt utan kanske bortom räckhåll för varje ändligt bevissystem. Erdős kan ha haft rätt.",
     },
   ],
   closingTitle: "Se den falla.",
@@ -777,7 +777,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Det som hindrer beviset",
       title: "En invariant ingen har funnet",
-      body: "Hvorfor er det så vanskelig? Den dypeste grunnen: ingen har funnet en tilstrekkelig invariant. For å bevise at hver bane stopper, trengs en størrelse som strengt avtar langs iterasjonen, eller en Lyapunov-funksjon, eller et slu potensial — og intet slikt har dukket opp på åttiåtte år. John Conway viste i 1972 at generaliserte Collatz-lignende avbildninger med et par ekstra tilfeller kan være Turing-komplette — hans FRACTRAN-system koder vilkårlig beregning i nettopp denne stilen av forgrenet aritmetikk. Det antyder at Collatz selv kan ligge nær uavgjørbarhetens grense: et problem ikke bare vanskelig, men kanskje utenfor rekkevidde for ethvert endelig bevisystem. Erdős kan ha hatt rett.",
+      body: "Hvorfor er det så vanskelig? Den dypeste grunnen: ingen har funnet en tilstrekkelig invariant. For å bevise at hver bane stopper, trengs en størrelse som strengt avtar langs iterasjonen, eller en Lyapunov-funksjon, eller et slu potensial — og intet slikt har dukket opp på åttiåtte år. John Conway viste i 1972 at allerede en lett generalisert Collatz-lignende avbildning er uavgjørbar; hans senere FRACTRAN-system (1987) realiserte deretter full Turing-komplettering i nettopp denne stilen av forgrenet aritmetikk. Det antyder at Collatz selv kan ligge nær uavgjørbarhetens grense: et problem ikke bare vanskelig, men kanskje utenfor rekkevidde for ethvert endelig bevisystem. Erdős kan ha hatt rett.",
     },
   ],
   closingTitle: "Se den falle.",

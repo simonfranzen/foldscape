@@ -49,6 +49,20 @@ type RichStory = {
   closingTitle: string;
   closingBody: string;
   closingCta: string;
+  loopLabel: string;
+  loopBody1Prefix: string;
+  loopBody1Suffix: string;
+  loopBody2: string;
+  fullSetLabel: string;
+  fullSetCaption: string;
+  seahorseLabel: string;
+  seahorseCaption: string;
+  iterSliderNote: string;
+  cascadePrefix: string;
+  cascadeLogisticLink: string;
+  cascadeMiddle: string;
+  cascadeCardioidLink: string;
+  cascadeSuffix: string;
 };
 
 const en: RichStory = {
@@ -143,6 +157,23 @@ const en: RichStory = {
   closingBody:
     "The Explorer lets you zoom into the boundary down to 10¹⁰, jump to famous spots, and turn the iteration knob live. Everything you just read is one click away.",
   closingCta: "→ Open the Explorer",
+  loopLabel: "the loop · in pseudocode",
+  loopBody1Prefix: "|z| > 2",
+  loopBody1Suffix:
+    " is the safety net: once the running value crosses radius 2, it provably never comes back. That gives us our cheap yes/no test.",
+  loopBody2:
+    "The number of steps before escape is what becomes the colour. Black means we ran out of steps without escaping.",
+  fullSetLabel: "the full set",
+  fullSetCaption: "All of c, drawn at modest detail.",
+  seahorseLabel: "seahorse valley",
+  seahorseCaption: "Zoom 10² into the upper notch — and another universe.",
+  iterSliderNote:
+    "At low iterations, large stretches near the boundary are mis-classified as \"inside\" the set. Push the slider right and the filaments thin out, revealing what was always there.",
+  cascadePrefix: "The same period-doubling cascade you see in the ",
+  cascadeLogisticLink: "logistic map",
+  cascadeMiddle: " is encoded here as a geometric tree of bulbs. The cardioid itself is the shape covered in detail at ",
+  cascadeCardioidLink: "/cardioid",
+  cascadeSuffix: ".",
 };
 
 const de: RichStory = {
@@ -192,7 +223,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Knospen und Knospen auf Knospen",
       title: "Die Kardioide, die Scheiben, das p/q-Gitter",
-      body: "Die große herzförmige Lobus in der Mitte ist eine Kardioide — dieselbe Kurve, die ein Punkt auf einem rollenden Kreis zeichnet. In ihrem Inneren konvergiert die Iteration zu einem Fixpunkt. An die Kardioide hängt sich eine perfekte Scheibe, in der die Iteration zu einem 2-Zyklus wird, dann eine weitere Scheibe für 3-Zyklen, eine für 5-Zyklen, und so weiter. Die rationalen Zahlen p/q geben an, wo sich jede Scheibe ankoppelt. Die Mandelbrot-Menge ist ein geometrisch sortiertes Verzeichnis aller Zykluslängen.",
+      body: "Die große herzförmige Hauptkomponente in der Mitte ist eine Kardioide — dieselbe Kurve, die ein Punkt auf einem rollenden Kreis zeichnet. In ihrem Inneren konvergiert die Iteration zu einem Fixpunkt. An die Kardioide hängt sich eine perfekte Scheibe, in der die Iteration zu einem 2-Zyklus wird, dann eine weitere Scheibe für 3-Zyklen, eine für 5-Zyklen, und so weiter. Die rationalen Zahlen p/q geben an, wo sich jede Scheibe ankoppelt. Die Mandelbrot-Menge ist ein geometrisch sortiertes Verzeichnis aller Zykluslängen.",
     },
     {
       pretitle: "Abschnitt 06 · Julia-Mengen",
@@ -206,7 +237,7 @@ const de: RichStory = {
     draggerTitle: "Find den Rand mit dem Finger",
     draggerBody:
       "Die schwache Form hinter der Leinwand deutet die Menge an. Zieh den hellgelben Punkt irgendwohin — in die Kardioide, in eine Knospe, ab in die Leere — und sieh die Bahn entscheiden. Beschränkte Bahnen zeichnen ein violettes Netz; flüchtende Bahnen blitzen rosa und starten neu, damit du es noch einmal versuchen kannst.",
-    draggerHint: "Probier knapp außerhalb der Kardioidenspitze — da setzt die 2-er-Knospe an.",
+    draggerHint: "Probier knapp außerhalb der Kardioidenspitze — da setzt die Periode-2-Knospe an.",
     iterLabel: "Dreh am Iterations-Regler",
     iterPretitle: "Interaktiv · Schieberegler",
     iterTitle: "Wie viele Schritte, bevor wir beschränkt sagen?",
@@ -237,6 +268,24 @@ const de: RichStory = {
   closingBody:
     "Der Explorer lässt dich bis 10¹⁰ in den Rand zoomen, zu berühmten Stellen springen und live am Iterationsregler drehen. Alles, was du gerade gelesen hast, ist einen Klick entfernt.",
   closingCta: "→ Explorer öffnen",
+  loopLabel: "die Schleife · in Pseudocode",
+  loopBody1Prefix: "|z| > 2",
+  loopBody1Suffix:
+    " ist das Sicherheitsnetz: sobald der laufende Wert den Radius 2 überschreitet, kommt er nachweislich nie zurück. Das liefert uns den billigen Ja/Nein-Test.",
+  loopBody2:
+    "Die Zahl der Schritte bis zur Flucht wird zur Farbe. Schwarz bedeutet, dass uns die Schritte ausgegangen sind, ohne dass die Bahn geflohen wäre.",
+  fullSetLabel: "die ganze Menge",
+  fullSetCaption: "Das gesamte c, in moderater Auflösung gezeichnet.",
+  seahorseLabel: "Seepferdchen-Tal",
+  seahorseCaption: "Zoome um Faktor 10² in die obere Kerbe — und ein weiteres Universum.",
+  iterSliderNote:
+    "Bei wenigen Iterationen werden große Bereiche am Rand fälschlich als „drin\" eingestuft. Schiebe den Regler nach rechts, und die Fäden werden dünner — das, was immer schon da war, tritt hervor.",
+  cascadePrefix: "Dieselbe Periodenverdopplungs-Kaskade, die du auch in der ",
+  cascadeLogisticLink: "logistischen Abbildung",
+  cascadeMiddle:
+    " siehst, ist hier als geometrischer Knospenbaum kodiert. Die Kardioide selbst wird im Detail behandelt bei ",
+  cascadeCardioidLink: "/cardioid",
+  cascadeSuffix: ".",
 };
 
 const es: RichStory = {
@@ -332,6 +381,24 @@ const es: RichStory = {
   closingBody:
     "El Explorador te permite acercarte al borde hasta 10¹⁰, saltar a sitios famosos y girar en vivo la perilla de iteraciones. Todo lo que acabas de leer está a un clic.",
   closingCta: "→ Abrir el Explorador",
+  loopLabel: "el bucle · en pseudocódigo",
+  loopBody1Prefix: "|z| > 2",
+  loopBody1Suffix:
+    " es la red de seguridad: en cuanto el valor en curso cruza el radio 2, está demostrado que nunca vuelve. Eso nos da el test sí/no más barato.",
+  loopBody2:
+    "El número de pasos antes de la fuga es lo que se convierte en color. El negro significa que se nos acabaron los pasos sin que escapara.",
+  fullSetLabel: "el conjunto completo",
+  fullSetCaption: "Todo el c, dibujado a detalle modesto.",
+  seahorseLabel: "valle de los caballitos de mar",
+  seahorseCaption: "Acércate 10² en la muesca superior — y otro universo.",
+  iterSliderNote:
+    "Con pocas iteraciones, grandes franjas cerca del borde se clasifican erróneamente como «dentro» del conjunto. Empuja el deslizador a la derecha y los filamentos se afinan, revelando lo que siempre estuvo ahí.",
+  cascadePrefix: "La misma cascada de duplicación de período que ves en el ",
+  cascadeLogisticLink: "mapa logístico",
+  cascadeMiddle:
+    " está codificada aquí como un árbol geométrico de bulbos. La cardioide misma es la forma tratada en detalle en ",
+  cascadeCardioidLink: "/cardioid",
+  cascadeSuffix: ".",
 };
 
 const fr: RichStory = {
@@ -427,6 +494,24 @@ const fr: RichStory = {
   closingBody:
     "L'Explorateur te permet de plonger dans la frontière jusqu'à 10¹⁰, de sauter à des points célèbres et de tourner en direct la molette d'itération. Tout ce que tu viens de lire est à un clic.",
   closingCta: "→ Ouvrir l'Explorateur",
+  loopLabel: "la boucle · en pseudocode",
+  loopBody1Prefix: "|z| > 2",
+  loopBody1Suffix:
+    " est le filet de sécurité : dès que la valeur courante franchit le rayon 2, on prouve qu'elle ne revient jamais. Cela nous donne notre test oui/non bon marché.",
+  loopBody2:
+    "Le nombre de pas avant l'évasion devient la couleur. Le noir signifie qu'on a épuisé les pas sans qu'elle s'échappe.",
+  fullSetLabel: "l'ensemble complet",
+  fullSetCaption: "Tout le c, tracé à un niveau de détail modeste.",
+  seahorseLabel: "vallée des hippocampes",
+  seahorseCaption: "Zoome de 10² dans l'encoche supérieure — et un autre univers.",
+  iterSliderNote:
+    "À faible nombre d'itérations, de larges bandes près du bord sont mal classées comme « à l'intérieur » de l'ensemble. Pousse le curseur vers la droite et les filaments s'amincissent, révélant ce qui était toujours là.",
+  cascadePrefix: "La même cascade de doublement de période que tu vois dans l'",
+  cascadeLogisticLink: "application logistique",
+  cascadeMiddle:
+    " est encodée ici comme un arbre géométrique de bulbes. La cardioïde elle-même est la forme traitée en détail à ",
+  cascadeCardioidLink: "/cardioid",
+  cascadeSuffix: ".",
 };
 
 const it: RichStory = {
@@ -522,6 +607,24 @@ const it: RichStory = {
   closingBody:
     "L'Esploratore ti lascia entrare nel bordo fino a 10¹⁰, saltare a punti famosi e girare dal vivo la manopola delle iterazioni. Tutto quello che hai appena letto è a un clic.",
   closingCta: "→ Apri l'Esploratore",
+  loopLabel: "il ciclo · in pseudocodice",
+  loopBody1Prefix: "|z| > 2",
+  loopBody1Suffix:
+    " è la rete di sicurezza: appena il valore corrente attraversa il raggio 2, è dimostrato che non torna mai indietro. Questo ci dà il test sì/no a basso costo.",
+  loopBody2:
+    "Il numero di passi prima della fuga diventa il colore. Il nero significa che abbiamo esaurito i passi senza che la successione scappasse.",
+  fullSetLabel: "l'insieme completo",
+  fullSetCaption: "Tutto il c, disegnato a dettaglio modesto.",
+  seahorseLabel: "valle dei cavallucci marini",
+  seahorseCaption: "Zooma 10² nell'incavo superiore — e un altro universo.",
+  iterSliderNote:
+    "A poche iterazioni, ampi tratti vicino al bordo vengono erroneamente classificati come «dentro» l'insieme. Spingi il cursore a destra e i filamenti si assottigliano, rivelando ciò che era sempre stato lì.",
+  cascadePrefix: "La stessa cascata di raddoppio di periodo che vedi nella ",
+  cascadeLogisticLink: "mappa logistica",
+  cascadeMiddle:
+    " è codificata qui come un albero geometrico di bulbi. La cardioide stessa è la forma trattata in dettaglio in ",
+  cascadeCardioidLink: "/cardioid",
+  cascadeSuffix: ".",
 };
 
 const pt: RichStory = {
@@ -617,6 +720,24 @@ const pt: RichStory = {
   closingBody:
     "O Explorador deixa-te mergulhar na borda até 10¹⁰, saltar para sítios famosos e rodar em direto o botão das iterações. Tudo o que acabaste de ler está a um clique.",
   closingCta: "→ Abrir o Explorador",
+  loopLabel: "o ciclo · em pseudocódigo",
+  loopBody1Prefix: "|z| > 2",
+  loopBody1Suffix:
+    " é a rede de segurança: assim que o valor em curso atravessa o raio 2, prova-se que nunca mais volta. Isso dá-nos o teste sim/não barato.",
+  loopBody2:
+    "O número de passos antes da fuga é o que se torna cor. Preto significa que esgotámos os passos sem que escapasse.",
+  fullSetLabel: "o conjunto completo",
+  fullSetCaption: "Todo o c, desenhado com detalhe modesto.",
+  seahorseLabel: "vale dos cavalos-marinhos",
+  seahorseCaption: "Faz zoom 10² no entalhe superior — e outro universo.",
+  iterSliderNote:
+    "Com poucas iterações, grandes faixas perto da fronteira são mal classificadas como «dentro» do conjunto. Empurra o cursor para a direita e os filamentos afinam-se, revelando o que sempre lá esteve.",
+  cascadePrefix: "A mesma cascata de duplicação de período que vês no ",
+  cascadeLogisticLink: "mapa logístico",
+  cascadeMiddle:
+    " está codificada aqui como uma árvore geométrica de bolbos. A cardioide em si é a forma tratada em detalhe em ",
+  cascadeCardioidLink: "/cardioid",
+  cascadeSuffix: ".",
 };
 
 const sv: RichStory = {
@@ -711,6 +832,24 @@ const sv: RichStory = {
   closingBody:
     "Utforskaren låter dig zooma in i gränsen ända ner till 10¹⁰, hoppa till kända ställen och vrida iterationsratten live. Allt du just läst är ett klick bort.",
   closingCta: "→ Öppna Utforskaren",
+  loopLabel: "slingan · i pseudokod",
+  loopBody1Prefix: "|z| > 2",
+  loopBody1Suffix:
+    " är skyddsnätet: så snart det pågående värdet korsar radien 2 är det bevisat att det aldrig kommer tillbaka. Det ger oss vårt billiga ja/nej-test.",
+  loopBody2:
+    "Antalet steg före flykten är vad som blir färgen. Svart betyder att stegen tog slut utan att den flydde.",
+  fullSetLabel: "hela mängden",
+  fullSetCaption: "Hela c, ritat med måttlig detalj.",
+  seahorseLabel: "sjöhästdalen",
+  seahorseCaption: "Zooma 10² in i den övre skåran — och ännu ett universum.",
+  iterSliderNote:
+    "Vid få iterationer felklassas långa sträckor nära kanten som »inuti« mängden. Skjut reglaget åt höger så tunnas filamenten ut och visar det som alltid funnits där.",
+  cascadePrefix: "Samma periodfördubblingskaskad som du ser i den ",
+  cascadeLogisticLink: "logistiska avbildningen",
+  cascadeMiddle:
+    " är här kodad som ett geometriskt knoppträd. Själva kardioiden är formen som behandlas i detalj på ",
+  cascadeCardioidLink: "/cardioid",
+  cascadeSuffix: ".",
 };
 
 const no: RichStory = {
@@ -805,6 +944,24 @@ const no: RichStory = {
   closingBody:
     "Utforskeren lar deg zoome ned i grensen helt til 10¹⁰, hoppe til kjente steder og vri iterasjonsrattet live. Alt du nettopp leste er ett klikk unna.",
   closingCta: "→ Åpne Utforskeren",
+  loopLabel: "løkka · i pseudokode",
+  loopBody1Prefix: "|z| > 2",
+  loopBody1Suffix:
+    " er sikkerhetsnettet: så snart den løpende verdien krysser radius 2, er det bevist at den aldri kommer tilbake. Det gir oss den billige ja/nei-testen.",
+  loopBody2:
+    "Antall steg før flukt blir til fargen. Svart betyr at vi gikk tom for steg uten at den flyktet.",
+  fullSetLabel: "hele mengden",
+  fullSetCaption: "Hele c, tegnet med moderat detaljgrad.",
+  seahorseLabel: "sjøhestdalen",
+  seahorseCaption: "Zoom 10² inn i det øvre hakket — og enda et univers.",
+  iterSliderNote:
+    "Ved få iterasjoner blir lange strekninger nær kanten feilklassifisert som «inne i» mengden. Skyv glidebryteren mot høyre, og filamentene tynnes ut og avslører det som alltid var der.",
+  cascadePrefix: "Den samme periodedoblingskaskaden du ser i den ",
+  cascadeLogisticLink: "logistiske avbildningen",
+  cascadeMiddle:
+    " er kodet her som et geometrisk knopptre. Selve kardioiden er formen som behandles i detalj på ",
+  cascadeCardioidLink: "/cardioid",
+  cascadeSuffix: ".",
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
@@ -923,7 +1080,7 @@ export default function MandelbrotStory() {
           <div className="hairline grid grid-cols-1 items-center gap-6 rounded-2xl border bg-ink-950/40 p-6 md:grid-cols-2">
             <div className="space-y-3">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-                the loop · in pseudocode
+                {story.loopLabel}
               </div>
               <pre className="hairline rounded-md border bg-ink-950/60 p-4 font-mono text-xs leading-relaxed text-ink-100">
                 {`z = 0
@@ -936,14 +1093,10 @@ return "bounded"`}
             </div>
             <div className="space-y-2 text-sm leading-relaxed text-ink-200">
               <p>
-                <span className="font-mono text-signal-amber">|z| &gt; 2</span> is the safety net:
-                once the running value crosses radius 2, it provably never comes back. That gives us
-                our cheap yes/no test.
+                <span className="font-mono text-signal-amber">{story.loopBody1Prefix}</span>
+                {story.loopBody1Suffix}
               </p>
-              <p>
-                The number of steps before escape is what becomes the colour. Black means we ran out
-                of steps without escaping.
-              </p>
+              <p>{story.loopBody2}</p>
             </div>
           </div>
         </Reveal>
@@ -1046,7 +1199,7 @@ return "bounded"`}
           <Reveal delay={100}>
             <div className="hairline space-y-2 rounded-2xl border bg-ink-950/40 p-4">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-                the full set
+                {story.fullSetLabel}
               </div>
               <div className="hairline aspect-square w-full overflow-hidden rounded-md border bg-ink-950">
                 <MandelMini
@@ -1056,13 +1209,13 @@ return "bounded"`}
                   className="h-full w-full"
                 />
               </div>
-              <div className="text-xs text-ink-300">All of c, drawn at modest detail.</div>
+              <div className="text-xs text-ink-300">{story.fullSetCaption}</div>
             </div>
           </Reveal>
           <Reveal delay={250}>
             <div className="hairline space-y-2 rounded-2xl border bg-ink-950/40 p-4">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
-                seahorse valley
+                {story.seahorseLabel}
               </div>
               <div className="hairline aspect-square w-full overflow-hidden rounded-md border bg-ink-950">
                 <MandelMini
@@ -1072,9 +1225,7 @@ return "bounded"`}
                   className="h-full w-full"
                 />
               </div>
-              <div className="text-xs text-ink-300">
-                Zoom 10² into the upper notch — and another universe.
-              </div>
+              <div className="text-xs text-ink-300">{story.seahorseCaption}</div>
             </div>
           </Reveal>
         </div>
@@ -1127,11 +1278,7 @@ return "bounded"`}
                   onChange={(e) => setIter(parseInt(e.target.value, 10))}
                   className="w-full accent-signal-amber"
                 />
-                <p className="text-xs leading-relaxed text-ink-300">
-                  At low iterations, large stretches near the boundary are mis-classified as
-                  &quot;inside&quot; the set. Push the slider right and the filaments thin out,
-                  revealing what was always there.
-                </p>
+                <p className="text-xs leading-relaxed text-ink-300">{story.iterSliderNote}</p>
               </div>
             </div>
           </div>
@@ -1253,22 +1400,21 @@ return "bounded"`}
               </div>
             </div>
             <div className="text-xs leading-relaxed text-ink-300">
-              The same period-doubling cascade you see in the{" "}
+              {story.cascadePrefix}
               <Link
                 href="/logistic"
                 className="underline decoration-signal-amber/40 hover:text-signal-amber"
               >
-                logistic map
-              </Link>{" "}
-              is encoded here as a geometric tree of bulbs. The cardioid itself is the shape covered
-              in detail at{" "}
+                {story.cascadeLogisticLink}
+              </Link>
+              {story.cascadeMiddle}
               <Link
                 href="/cardioid"
                 className="underline decoration-signal-amber/40 hover:text-signal-amber"
               >
-                /cardioid
+                {story.cascadeCardioidLink}
               </Link>
-              .
+              {story.cascadeSuffix}
             </div>
           </div>
         </Reveal>

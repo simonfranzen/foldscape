@@ -62,7 +62,7 @@ const en: RichStory = {
       {
         label: "03",
         title: "Why it matters",
-        body: "In 2002, after years of work, Matthew Cook proved that Rule 110 is Turing-complete: arrange the right initial pattern and it can simulate any computer, any algorithm, anything you can compute. From eight bits. The simplest known universal cellular automaton — and arguably the simplest universal computer ever discovered.",
+        body: "In the late 1990s Matthew Cook proved at Wolfram Research that Rule 110 is Turing-complete; the result was finally published in 2004 after a long publication dispute. Arrange the right initial pattern and it can simulate any computer, any algorithm, anything you can compute. From eight bits. The simplest known universal cellular automaton — and arguably the simplest universal computer ever discovered.",
       },
     ],
     tryIt: "Below: flip the eight output bits yourself, then watch the rule run live.",
@@ -90,7 +90,7 @@ const en: RichStory = {
     },
     {
       pretitle: "Section 05 · Turing-completeness",
-      title: "Cook 2002 — universality from a byte",
+      title: "Cook 2004 — universality from a byte",
       body: "Matthew Cook's construction, completed at Wolfram Research in the late 1990s and finally published in 2004 after a lengthy publication dispute, shows that the glider zoo of Rule 110 can simulate a cyclic tag system — and cyclic tag systems are themselves Turing-complete. Any program, any computation, any algorithm can be encoded as an initial row of cells; Rule 110, applied long enough, runs that program. The proof took thousands of cells per logical step and is famously intricate, but the conclusion is clean: a one-line lookup table is a universal computer. No clock, no memory, no instruction set — just a rule.",
     },
     {
@@ -146,7 +146,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "2002, nach Jahren Arbeit, bewies Matthew Cook, dass Regel 110 Turing-vollständig ist: mit dem richtigen Anfangsmuster simuliert sie jeden Computer, jeden Algorithmus, alles, was berechenbar ist. Aus acht Bit. Der einfachste bekannte universelle Zellularautomat — und wohl der einfachste je entdeckte universelle Computer.",
+        body: "In den späten 1990er-Jahren bewies Matthew Cook bei Wolfram Research, dass Regel 110 Turing-vollständig ist; das Paper erschien nach langem Publikationsstreit erst 2004 in Complex Systems. Mit dem richtigen Anfangsmuster simuliert sie jeden Computer, jeden Algorithmus, alles, was berechenbar ist. Aus acht Bit. Der einfachste bekannte universelle Zellularautomat — und wohl der einfachste je entdeckte universelle Computer.",
       },
     ],
     tryIt: "Unten: kipp die acht Ausgabebits selbst und sieh die Regel live laufen.",
@@ -174,7 +174,7 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 05 · Turing-Vollständigkeit",
-      title: "Cook 2002 — Universalität aus einem Byte",
+      title: "Cook 2004 — Universalität aus einem Byte",
       body: "Matthew Cooks Konstruktion, in den späten 1990ern bei Wolfram Research fertiggestellt und nach langem Publikationsstreit 2004 endgültig erschienen, zeigt, dass der Gleiterzoo von Regel 110 ein zyklisches Tag-System simulieren kann — und zyklische Tag-Systeme sind selbst Turing-vollständig. Jedes Programm, jede Berechnung, jeder Algorithmus lässt sich als Anfangsreihe von Zellen kodieren; Regel 110, lange genug angewendet, führt dieses Programm aus. Der Beweis braucht pro logischem Schritt Tausende Zellen und ist berüchtigt verschachtelt, aber die Konsequenz ist sauber: eine einzeilige Lookup-Tabelle ist ein universeller Computer. Kein Takt, kein Speicher, kein Befehlssatz — nur eine Regel.",
     },
     {
@@ -230,7 +230,7 @@ const es: RichStory = {
       {
         label: "03",
         title: "Por qué importa",
-        body: "En 2002, tras años de trabajo, Matthew Cook demostró que la Regla 110 es Turing-completa: con el patrón inicial adecuado simula cualquier computador, cualquier algoritmo, cualquier cosa computable. A partir de ocho bits. El autómata celular universal más simple conocido — y posiblemente el computador universal más simple jamás descubierto.",
+        body: "A finales de los años 90, Matthew Cook demostró en Wolfram Research que la Regla 110 es Turing-completa; el artículo apareció en Complex Systems en 2004 tras una larga disputa editorial. Con el patrón inicial adecuado simula cualquier computador, cualquier algoritmo, cualquier cosa computable. A partir de ocho bits. El autómata celular universal más simple conocido — y posiblemente el computador universal más simple jamás descubierto.",
       },
     ],
     tryIt: "Abajo: cambia tú los ocho bits de salida y mira la regla correr en vivo.",
@@ -258,7 +258,7 @@ const es: RichStory = {
     },
     {
       pretitle: "Sección 05 · Turing-completitud",
-      title: "Cook 2002 — universalidad desde un byte",
+      title: "Cook 2004 — universalidad desde un byte",
       body: "La construcción de Matthew Cook, completada en Wolfram Research a finales de los noventa y finalmente publicada en 2004 tras una larga disputa editorial, muestra que el zoológico de planeadores de la Regla 110 puede simular un sistema de etiquetas cíclico — y los sistemas de etiquetas cíclicos son a su vez Turing-completos. Cualquier programa, cualquier cómputo, cualquier algoritmo puede codificarse como una fila inicial de celdas; la Regla 110, aplicada suficiente tiempo, ejecuta ese programa. La prueba requiere miles de celdas por paso lógico y es célebremente intrincada, pero la conclusión es limpia: una tabla de búsqueda de una sola línea es un computador universal. Sin reloj, sin memoria, sin conjunto de instrucciones — solo una regla.",
     },
     {
@@ -314,7 +314,7 @@ const fr: RichStory = {
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "En 2002, après des années de travail, Matthew Cook a démontré que la Règle 110 est Turing-complète : avec le bon motif initial elle simule n'importe quel ordinateur, n'importe quel algorithme, tout ce qui est calculable. Depuis huit bits. Le plus simple automate cellulaire universel connu — et probablement le plus simple ordinateur universel jamais découvert.",
+        body: "À la fin des années 1990, Matthew Cook a démontré chez Wolfram Research que la Règle 110 est Turing-complète ; l'article n'a paru qu'en 2004 dans Complex Systems après une longue dispute éditoriale. Avec le bon motif initial elle simule n'importe quel ordinateur, n'importe quel algorithme, tout ce qui est calculable. Depuis huit bits. Le plus simple automate cellulaire universel connu — et probablement le plus simple ordinateur universel jamais découvert.",
       },
     ],
     tryIt:
@@ -343,7 +343,7 @@ const fr: RichStory = {
     },
     {
       pretitle: "Section 05 · Turing-complétude",
-      title: "Cook 2002 — l'universalité depuis un octet",
+      title: "Cook 2004 — l'universalité depuis un octet",
       body: "La construction de Matthew Cook, achevée chez Wolfram Research à la fin des années 1990 et finalement publiée en 2004 après une longue dispute éditoriale, montre que le zoo de planeurs de la Règle 110 peut simuler un système de tag cyclique — et les systèmes de tag cycliques sont eux-mêmes Turing-complets. Tout programme, tout calcul, tout algorithme peut s'encoder comme une rangée initiale de cellules ; la Règle 110, appliquée assez longtemps, exécute ce programme. La preuve réclame des milliers de cellules par pas logique et est célèbre pour son enchevêtrement, mais la conclusion est nette : une table de correspondance d'une ligne est un ordinateur universel. Pas d'horloge, pas de mémoire, pas de jeu d'instructions — juste une règle.",
     },
     {
@@ -399,7 +399,7 @@ const it: RichStory = {
       {
         label: "03",
         title: "Perché conta",
-        body: "Nel 2002, dopo anni di lavoro, Matthew Cook ha dimostrato che la Regola 110 è Turing-completa: con il motivo iniziale giusto simula qualsiasi computer, qualsiasi algoritmo, qualsiasi cosa sia calcolabile. A partire da otto bit. L'automa cellulare universale più semplice conosciuto — e probabilmente il computer universale più semplice mai scoperto.",
+        body: "Alla fine degli anni '90 Matthew Cook ha dimostrato alla Wolfram Research che la Regola 110 è Turing-completa; il lavoro è apparso solo nel 2004 su Complex Systems dopo una lunga disputa editoriale. Con il motivo iniziale giusto simula qualsiasi computer, qualsiasi algoritmo, qualsiasi cosa sia calcolabile. A partire da otto bit. L'automa cellulare universale più semplice conosciuto — e probabilmente il computer universale più semplice mai scoperto.",
       },
     ],
     tryIt: "Sotto: capovolgi tu stesso gli otto bit di uscita e guarda la regola correre dal vivo.",
@@ -427,7 +427,7 @@ const it: RichStory = {
     },
     {
       pretitle: "Sezione 05 · Turing-completezza",
-      title: "Cook 2002 — universalità da un byte",
+      title: "Cook 2004 — universalità da un byte",
       body: "La costruzione di Matthew Cook, completata alla Wolfram Research alla fine degli anni '90 e pubblicata definitivamente nel 2004 dopo una lunga disputa editoriale, mostra che lo zoo di alianti della Regola 110 può simulare un sistema di tag ciclico — e i sistemi di tag ciclici sono a loro volta Turing-completi. Qualsiasi programma, qualsiasi calcolo, qualsiasi algoritmo può essere codificato come riga iniziale di celle; la Regola 110, applicata a lungo, esegue quel programma. La dimostrazione richiede migliaia di celle per passo logico ed è notoriamente intricata, ma la conclusione è netta: una tabella di lookup di una riga è un computer universale. Niente clock, niente memoria, niente set di istruzioni — solo una regola.",
     },
     {
@@ -483,7 +483,7 @@ const pt: RichStory = {
       {
         label: "03",
         title: "Porque importa",
-        body: "Em 2002, depois de anos de trabalho, Matthew Cook provou que a Regra 110 é Turing-completa: com o padrão inicial certo simula qualquer computador, qualquer algoritmo, tudo o que é computável. A partir de oito bits. O autómato celular universal mais simples conhecido — e provavelmente o computador universal mais simples alguma vez descoberto.",
+        body: "No final dos anos 90, Matthew Cook provou na Wolfram Research que a Regra 110 é Turing-completa; o artigo só apareceu em 2004 em Complex Systems, após uma longa disputa editorial. Com o padrão inicial certo simula qualquer computador, qualquer algoritmo, tudo o que é computável. A partir de oito bits. O autómato celular universal mais simples conhecido — e provavelmente o computador universal mais simples alguma vez descoberto.",
       },
     ],
     tryIt: "Em baixo: inverte tu mesmo os oito bits de saída e vê a regra correr ao vivo.",
@@ -511,7 +511,7 @@ const pt: RichStory = {
     },
     {
       pretitle: "Secção 05 · Turing-completude",
-      title: "Cook 2002 — universalidade a partir de um byte",
+      title: "Cook 2004 — universalidade a partir de um byte",
       body: "A construção de Matthew Cook, concluída na Wolfram Research no final dos anos 90 e finalmente publicada em 2004 após uma longa disputa editorial, mostra que o zoo de planadores da Regra 110 pode simular um sistema de tags cíclicos — e os sistemas de tags cíclicos são, por sua vez, Turing-completos. Qualquer programa, qualquer cálculo, qualquer algoritmo pode ser codificado como uma fila inicial de células; a Regra 110, aplicada o suficiente, executa esse programa. A prova exige milhares de células por passo lógico e é célebre pela complexidade, mas a conclusão é limpa: uma tabela de procura de uma linha é um computador universal. Sem relógio, sem memória, sem conjunto de instruções — apenas uma regra.",
     },
     {
@@ -567,7 +567,7 @@ const sv: RichStory = {
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "År 2002, efter flera års arbete, bevisade Matthew Cook att Regel 110 är Turing-komplett: med rätt startmönster simulerar den vilken dator som helst, vilken algoritm som helst, allt som är beräkningsbart. Från åtta bitar. Den enklaste kända universella cellulära automaten — och troligen den enklaste universella dator som någonsin upptäckts.",
+        body: "I slutet av 1990-talet bevisade Matthew Cook på Wolfram Research att Regel 110 är Turing-komplett; arbetet publicerades först 2004 i Complex Systems efter en lång publikationstvist. Med rätt startmönster simulerar den vilken dator som helst, vilken algoritm som helst, allt som är beräkningsbart. Från åtta bitar. Den enklaste kända universella cellulära automaten — och troligen den enklaste universella dator som någonsin upptäckts.",
       },
     ],
     tryIt: "Nedan: vrid själv på de åtta utgångsbitarna och se regeln rulla live.",
@@ -595,7 +595,7 @@ const sv: RichStory = {
     },
     {
       pretitle: "Avsnitt 05 · Turing-komplettering",
-      title: "Cook 2002 — universalitet från en byte",
+      title: "Cook 2004 — universalitet från en byte",
       body: "Matthew Cooks konstruktion, färdig på Wolfram Research i slutet av 1990-talet och slutligen publicerad 2004 efter en lång publikationstvist, visar att glidarzoot i Regel 110 kan simulera ett cykliskt tagg-system — och cykliska tagg-system är själva Turing-kompletta. Varje program, varje beräkning, varje algoritm kan kodas som en startrad celler; Regel 110, applicerad tillräckligt länge, kör det programmet. Beviset kräver tusentals celler per logiskt steg och är ökänt invecklat, men slutsatsen är klar: en enradig uppslagningstabell är en universell dator. Ingen klocka, inget minne, ingen instruktionsuppsättning — bara en regel.",
     },
     {
@@ -651,7 +651,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "I 2002, etter flere års arbeid, beviste Matthew Cook at Regel 110 er Turing-komplett: med riktig startmønster simulerer den hvilken som helst datamaskin, hvilken som helst algoritme, alt som er beregnbart. Fra åtte biter. Den enkleste kjente universelle cellulære automaten — og trolig den enkleste universelle datamaskinen som noensinne er oppdaget.",
+        body: "På slutten av 1990-tallet beviste Matthew Cook ved Wolfram Research at Regel 110 er Turing-komplett; arbeidet ble først publisert i 2004 i Complex Systems etter en lang publiseringsstrid. Med riktig startmønster simulerer den hvilken som helst datamaskin, hvilken som helst algoritme, alt som er beregnbart. Fra åtte biter. Den enkleste kjente universelle cellulære automaten — og trolig den enkleste universelle datamaskinen som noensinne er oppdaget.",
       },
     ],
     tryIt: "Under: vri selv på de åtte utgangsbitene og se regelen kjøre live.",
@@ -679,7 +679,7 @@ const no: RichStory = {
     },
     {
       pretitle: "Avsnitt 05 · Turing-kompletthet",
-      title: "Cook 2002 — universalitet fra én byte",
+      title: "Cook 2004 — universalitet fra én byte",
       body: "Matthew Cooks konstruksjon, fullført ved Wolfram Research på slutten av 1990-tallet og endelig publisert i 2004 etter en lang publiseringsstrid, viser at glidersamlingen i Regel 110 kan simulere et syklisk tag-system — og sykliske tag-systemer er selv Turing-komplette. Ethvert program, enhver beregning, enhver algoritme kan kodes som en startrad av celler; Regel 110, anvendt lenge nok, kjører det programmet. Beviset krever tusenvis av celler per logisk steg og er beryktet for sin innfløkthet, men konklusjonen er ren: en énrads oppslagstabell er en universell datamaskin. Ingen klokke, intet minne, intet instruksjonssett — bare en regel.",
     },
     {

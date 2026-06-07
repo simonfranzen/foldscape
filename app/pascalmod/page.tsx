@@ -114,7 +114,7 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · Hausdorff dimensions",
       title: "log((p+1)p/2) / log p, climbing toward 2",
-      body: "The mod-p gasket has Hausdorff dimension log((p+1)p/2) / log p. For p = 2 it equals log 3 / log 2 ≈ 1.585; for p = 3 about 1.631; for p = 7 already 1.771. As p grows the dimension creeps toward 2 — the triangle fills more and more of the plane, but never quite all of it.",
+      body: "The mod-p gasket has Hausdorff dimension log((p+1)p/2) / log p. For p = 2 it equals log 3 / log 2 ≈ 1.585; for p = 3 about 1.631; for p = 7 already 1.712. As p grows the dimension creeps toward 2 — the triangle fills more and more of the plane, but never quite all of it.",
     },
     {
       pretitle: "Section 06 · Non-prime moduli",
@@ -211,7 +211,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Hausdorff-Dimensionen",
       title: "log((p+1)p/2) / log p, gegen 2 strebend",
-      body: "Das mod-p-Sieb hat Hausdorff-Dimension log((p+1)p/2) / log p. Für p = 2 ergibt das log 3 / log 2 ≈ 1,585; für p = 3 etwa 1,631; für p = 7 schon 1,771. Mit wachsendem p kriecht die Dimension gegen 2 — das Dreieck füllt mehr und mehr der Ebene, aber nie ganz.",
+      body: "Das mod-p-Sieb hat Hausdorff-Dimension log((p+1)p/2) / log p. Für p = 2 ergibt das log 3 / log 2 ≈ 1,585; für p = 3 etwa 1,631; für p = 7 schon 1,712. Mit wachsendem p kriecht die Dimension gegen 2 — das Dreieck füllt mehr und mehr der Ebene, aber nie ganz.",
     },
     {
       pretitle: "Abschnitt 06 · Zusammengesetzte Modulen",
@@ -308,7 +308,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · Dimensiones de Hausdorff",
       title: "log((p+1)p/2) / log p, trepando hacia 2",
-      body: "El tamiz mod p tiene dimensión de Hausdorff log((p+1)p/2) / log p. Para p = 2 da log 3 / log 2 ≈ 1,585; para p = 3 cerca de 1,631; para p = 7 ya 1,771. Al crecer p, la dimensión sube hacia 2 — el triángulo cubre cada vez más plano, pero nunca todo.",
+      body: "El tamiz mod p tiene dimensión de Hausdorff log((p+1)p/2) / log p. Para p = 2 da log 3 / log 2 ≈ 1,585; para p = 3 cerca de 1,631; para p = 7 ya 1,712. Al crecer p, la dimensión sube hacia 2 — el triángulo cubre cada vez más plano, pero nunca todo.",
     },
     {
       pretitle: "Sección 06 · Módulos no primos",
@@ -405,7 +405,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Dimensions de Hausdorff",
       title: "log((p+1)p/2) / log p, qui grimpe vers 2",
-      body: "Le tamis mod p a pour dimension de Hausdorff log((p+1)p/2) / log p. Pour p = 2 cela vaut log 3 / log 2 ≈ 1,585 ; pour p = 3 environ 1,631 ; pour p = 7 déjà 1,771. Quand p grandit, la dimension monte vers 2 — le triangle remplit de plus en plus le plan, mais jamais tout.",
+      body: "Le tamis mod p a pour dimension de Hausdorff log((p+1)p/2) / log p. Pour p = 2 cela vaut log 3 / log 2 ≈ 1,585 ; pour p = 3 environ 1,631 ; pour p = 7 déjà 1,712. Quand p grandit, la dimension monte vers 2 — le triangle remplit de plus en plus le plan, mais jamais tout.",
     },
     {
       pretitle: "Section 06 · Modules non premiers",
@@ -502,7 +502,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · Dimensioni di Hausdorff",
       title: "log((p+1)p/2) / log p, in salita verso 2",
-      body: "Il setaccio mod p ha dimensione di Hausdorff log((p+1)p/2) / log p. Per p = 2 vale log 3 / log 2 ≈ 1,585; per p = 3 circa 1,631; per p = 7 già 1,771. Crescendo p, la dimensione tende a 2 — il triangolo riempie sempre più piano, ma mai tutto.",
+      body: "Il setaccio mod p ha dimensione di Hausdorff log((p+1)p/2) / log p. Per p = 2 vale log 3 / log 2 ≈ 1,585; per p = 3 circa 1,631; per p = 7 già 1,712. Crescendo p, la dimensione tende a 2 — il triangolo riempie sempre più piano, ma mai tutto.",
     },
     {
       pretitle: "Sezione 06 · Moduli non primi",
@@ -599,7 +599,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · Dimensões de Hausdorff",
       title: "log((p+1)p/2) / log p, a subir para 2",
-      body: "O peneiro mod p tem dimensão de Hausdorff log((p+1)p/2) / log p. Para p = 2 dá log 3 / log 2 ≈ 1,585; para p = 3 cerca de 1,631; para p = 7 já 1,771. Crescendo p, a dimensão sobe para 2 — o triângulo enche cada vez mais o plano, mas nunca tudo.",
+      body: "O peneiro mod p tem dimensão de Hausdorff log((p+1)p/2) / log p. Para p = 2 dá log 3 / log 2 ≈ 1,585; para p = 3 cerca de 1,631; para p = 7 já 1,712. Crescendo p, a dimensão sobe para 2 — o triângulo enche cada vez mais o plano, mas nunca tudo.",
     },
     {
       pretitle: "Secção 06 · Módulos não primos",
@@ -696,7 +696,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Hausdorffdimensioner",
       title: "log((p+1)p/2) / log p, klättrandes mot 2",
-      body: "Mod-p-silen har Hausdorffdimension log((p+1)p/2) / log p. För p = 2 ger det log 3 / log 2 ≈ 1,585; för p = 3 ungefär 1,631; för p = 7 redan 1,771. När p växer kryper dimensionen mot 2 — triangeln fyller mer och mer av planet, men aldrig allt.",
+      body: "Mod-p-silen har Hausdorffdimension log((p+1)p/2) / log p. För p = 2 ger det log 3 / log 2 ≈ 1,585; för p = 3 ungefär 1,631; för p = 7 redan 1,712. När p växer kryper dimensionen mot 2 — triangeln fyller mer och mer av planet, men aldrig allt.",
     },
     {
       pretitle: "Avsnitt 06 · Icke-prima moduler",
@@ -793,7 +793,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Hausdorff-dimensjoner",
       title: "log((p+1)p/2) / log p, klatrende mot 2",
-      body: "Mod-p-silen har Hausdorff-dimensjon log((p+1)p/2) / log p. For p = 2 gir det log 3 / log 2 ≈ 1,585; for p = 3 omtrent 1,631; for p = 7 allerede 1,771. Når p vokser, kryper dimensjonen mot 2 — trekanten fyller mer og mer av planet, men aldri alt.",
+      body: "Mod-p-silen har Hausdorff-dimensjon log((p+1)p/2) / log p. For p = 2 gir det log 3 / log 2 ≈ 1,585; for p = 3 omtrent 1,631; for p = 7 allerede 1,712. Når p vokser, kryper dimensjonen mot 2 — trekanten fyller mer og mer av planet, men aldri alt.",
     },
     {
       pretitle: "Avsnitt 06 · Ikke-prime moduler",
@@ -989,7 +989,7 @@ export default function PascalmodStory() {
                 { p: 2, d: "1.585" },
                 { p: 3, d: "1.631" },
                 { p: 5, d: "1.683" },
-                { p: 7, d: "1.771" },
+                { p: 7, d: "1.712" },
               ].map(({ p, d }) => (
                 <div
                   key={p}

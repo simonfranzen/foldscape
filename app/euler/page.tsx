@@ -211,7 +211,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: 'Feynman nannte sie „die bemerkenswerteste Formel der Mathematik" — „unser Juwel." Eine Umfrage im Mathematical Intelligencer von 1990 unter arbeitenden Mathematiker:innen wählte sie zum schönsten je bewiesenen Satz. Sie ist eine Brücke: Algebra schreibt die Symbole, Geometrie läuft den Kreis, Analysis liefert die unendliche Reihe, die alles einrasten lässt.',
+        body: 'Feynman nannte sie „die bemerkenswerteste Formel der Mathematik“ — „unser Juwel.“ Eine Umfrage im Mathematical Intelligencer von 1990 unter arbeitenden Mathematiker:innen wählte sie zum schönsten je bewiesenen Satz. Sie ist eine Brücke: Algebra schreibt die Symbole, Geometrie läuft den Kreis, Analysis liefert die unendliche Reihe, die alles einrasten lässt.',
       },
     ],
     tryIt:
@@ -226,7 +226,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Komplexe Multiplikation",
       title: "Warum i eine Vierteldrehung ist",
-      body: 'Vergiss kurz, dass i „imaginär" sein soll, und sieh, was Multiplikation mit i wirklich tut. Starte bei 1 auf der reellen Achse. Multipliziere mit i und du landest bei i — eine Vierteldrehung nach oben. Noch einmal mit i, und du landest bei i² = −1 — eine weitere Vierteldrehung, genau gegenüber vom Start. Zwei Vierteldrehungen ergeben eine Halbdrehung, und genau das ist die geometrische Bedeutung von i² = −1. Komplexe Multiplikation ist Drehung (um das Argument) mal Streckung (um den Betrag). Die Zahlen auf dem Einheitskreis, wo der Betrag 1 ist, sind reine Drehung. Sie sind der Motor der Identität.',
+      body: 'Vergiss kurz, dass i „imaginär“ sein soll, und sieh, was Multiplikation mit i wirklich tut. Starte bei 1 auf der reellen Achse. Multipliziere mit i und du landest bei i — eine Vierteldrehung nach oben. Noch einmal mit i, und du landest bei i² = −1 — eine weitere Vierteldrehung, genau gegenüber vom Start. Zwei Vierteldrehungen ergeben eine Halbdrehung, und genau das ist die geometrische Bedeutung von i² = −1. Komplexe Multiplikation ist Drehung (um das Argument) mal Streckung (um den Betrag). Die Zahlen auf dem Einheitskreis, wo der Betrag 1 ist, sind reine Drehung. Sie sind der Motor der Identität.',
     },
     {
       pretitle: "Abschnitt 03 · Eulers Formel",

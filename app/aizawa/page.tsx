@@ -37,11 +37,11 @@ type RichStory = {
 const RICH_STORY: Record<Locale, RichStory> = {
   en: {
     page: {
-      pretitle: "Attractor · 1982",
+      pretitle: "Attractor · Aizawa family",
       title: "The Aizawa Attractor",
       tagline: "Lorenz's stranger, more ornate cousin",
       intro:
-        "Three coupled equations, seven dials, and a trajectory that folds itself into a basket-handled torus with a vertical spike through its heart. Aizawa lives in the same family as Lorenz and Rössler — but its geometry is uncannily sculptural, and a single parameter can melt it from basket to flower to chaos.",
+        "Three coupled equations, six dials, and a trajectory that folds itself into a basket-handled torus with a vertical spike through its heart. Aizawa lives in the same family as Lorenz and Rössler — but its geometry is uncannily sculptural, and a single parameter can melt it from basket to flower to chaos.",
       ctaInteractive: "Open the Explorer",
     },
     encounter: {
@@ -51,7 +51,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · The big idea",
           title: "Lorenz's stranger cousin",
-          body: "In 1982 Aizawa wrote down a 3D system that, like Lorenz's butterfly, never settles and never repeats. But where Lorenz's attractor looks like two flat wings, Aizawa's looks like a torus threaded by a vertical spike — a geometry so distinctive it became a staple of strange-attractor galleries.",
+          body: "Yoshisuke Aizawa and collaborators formulated this 3D system in the early 1980s; like Lorenz's butterfly it never settles and never repeats. But where Lorenz's attractor looks like two flat wings, Aizawa's looks like a torus threaded by a vertical spike — a geometry so distinctive it became a staple of strange-attractor galleries.",
         },
         {
           label: "02 · Concrete",
@@ -70,8 +70,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
     sections: [
       {
         pretitle: "Section one · The equations",
-        title: "Three rates, seven dials",
-        body: "Each line says how fast one coordinate changes. The cross-terms (x·y, x²+y², z³, z·x³) are where the chaos lives — strip them and the system collapses to a damped spiral. Seven parameters (a, b, c, d, e, f and the implicit dt of the integrator) give you a small kingdom of behaviours.",
+        title: "Three rates, six dials",
+        body: "Each line says how fast one coordinate changes. The cross-terms (x·y, x²+y², z³, z·x³) are where the chaos lives — strip them and the system collapses to a damped spiral. Six parameters (a, b, c, d, e, f) give you a small kingdom of behaviours; the integrator step dt is a numerical knob, not a dynamical one.",
       },
       {
         pretitle: "Section two · Default geometry",
@@ -91,7 +91,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section five · Lyapunov & dimension",
         title: "How fractal is a basket?",
-        body: "The leading Lyapunov exponent is positive (≈ 0.14), meaning nearby trajectories separate exponentially — the signature of chaos. The Kaplan-Yorke conjecture turns the exponent spectrum into a fractal dimension; for Aizawa it lands at about 2.05, just barely thicker than a surface.",
+        body: "The leading Lyapunov exponent is positive (reported numerical estimates sit around 0.1), meaning nearby trajectories separate exponentially — the signature of chaos. The Kaplan-Yorke conjecture turns the exponent spectrum into a fractal dimension; for Aizawa it lands just above 2 — barely thicker than a surface.",
       },
       {
         pretitle: "Section six · Why we care",
@@ -110,11 +110,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
   },
   de: {
     page: {
-      pretitle: "Attraktor · 1982",
+      pretitle: "Attraktor · Aizawa-Familie",
       title: "Der Aizawa-Attraktor",
       tagline: "Lorenz' seltsamerer, ornamentalerer Cousin",
       intro:
-        "Drei gekoppelte Gleichungen, sieben Regler und eine Bahn, die sich zu einem korbgeflochtenen Torus mit vertikaler Spitze durch sein Herz faltet. Aizawa gehört zur Familie von Lorenz und Rössler — aber seine Geometrie ist unheimlich skulptural, und ein einziger Parameter kann ihn von Korb zu Blume zu Chaos verwandeln.",
+        "Drei gekoppelte Gleichungen, sechs Regler und eine Bahn, die sich zu einem korbgeflochtenen Torus mit vertikaler Spitze durch sein Herz faltet. Aizawa gehört zur Familie von Lorenz und Rössler — aber seine Geometrie ist unheimlich skulptural, und ein einziger Parameter kann ihn von Korb zu Blume zu Chaos verwandeln.",
       ctaInteractive: "Explorer öffnen",
     },
     encounter: {
@@ -124,7 +124,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · Die große Idee",
           title: "Lorenz' seltsamerer Cousin",
-          body: "1982 schrieb Aizawa ein 3D-System nieder, das wie Lorenz' Schmetterling nie zur Ruhe kommt und sich nie wiederholt. Doch wo Lorenz zwei flache Flügel zeigt, zeigt Aizawa einen Torus, von einer vertikalen Spitze durchstochen — eine Geometrie, die zu einem Klassiker der Attraktor-Galerien wurde.",
+          body: "Yoshisuke Aizawa und Kolleg:innen formulierten dieses 3D-System in den frühen 1980er-Jahren; wie Lorenz' Schmetterling kommt es nie zur Ruhe und wiederholt sich nie. Doch wo Lorenz zwei flache Flügel zeigt, zeigt Aizawa einen Torus, von einer vertikalen Spitze durchstochen — eine Geometrie, die zu einem Klassiker der Attraktor-Galerien wurde.",
         },
         {
           label: "02 · Konkret",
@@ -143,8 +143,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
     sections: [
       {
         pretitle: "Abschnitt eins · Die Gleichungen",
-        title: "Drei Raten, sieben Regler",
-        body: "Jede Zeile sagt, wie schnell sich eine Koordinate ändert. Die Mischterme (x·y, x²+y², z³, z·x³) sind, wo das Chaos lebt — entferne sie, und das System fällt zu einer gedämpften Spirale zusammen. Sieben Parameter (a, b, c, d, e, f plus der implizite dt-Schritt) geben dir ein kleines Königreich von Verhalten.",
+        title: "Drei Raten, sechs Regler",
+        body: "Jede Zeile sagt, wie schnell sich eine Koordinate ändert. Die Mischterme (x·y, x²+y², z³, z·x³) sind, wo das Chaos lebt — entferne sie, und das System fällt zu einer gedämpften Spirale zusammen. Sechs Parameter (a, b, c, d, e, f) geben dir ein kleines Königreich von Verhalten; der Integrator-Schritt dt ist ein numerischer Knopf, kein dynamischer Parameter.",
       },
       {
         pretitle: "Abschnitt zwei · Standardgeometrie",
@@ -164,7 +164,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt fünf · Lyapunov & Dimension",
         title: "Wie fraktal ist ein Korb?",
-        body: "Der größte Lyapunov-Exponent ist positiv (≈ 0,14), was bedeutet, dass nahe Bahnen exponentiell auseinanderlaufen — die Signatur des Chaos. Die Kaplan-Yorke-Vermutung verwandelt das Exponentenspektrum in eine fraktale Dimension; für Aizawa landet sie bei etwa 2,05, gerade etwas dicker als eine Fläche.",
+        body: "Der größte Lyapunov-Exponent ist positiv (numerische Schätzungen liegen um 0,1), was bedeutet, dass nahe Bahnen exponentiell auseinanderlaufen — die Signatur des Chaos. Die Kaplan-Yorke-Vermutung verwandelt das Exponentenspektrum in eine fraktale Dimension; für Aizawa landet sie knapp über 2 — gerade etwas dicker als eine Fläche.",
       },
       {
         pretitle: "Abschnitt sechs · Warum es zählt",
@@ -183,11 +183,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
   },
   es: {
     page: {
-      pretitle: "Atractor · 1982",
+      pretitle: "Atractor · familia Aizawa",
       title: "El atractor de Aizawa",
       tagline: "El primo más extraño y ornamental de Lorenz",
       intro:
-        "Tres ecuaciones acopladas, siete diales y una trayectoria que se pliega en un toro tejido como cesta atravesado por una espiga vertical en su corazón. Aizawa vive en la misma familia que Lorenz y Rössler — pero su geometría es asombrosamente escultórica, y un solo parámetro puede transformarlo de cesta a flor a caos.",
+        "Tres ecuaciones acopladas, seis diales y una trayectoria que se pliega en un toro tejido como cesta atravesado por una espiga vertical en su corazón. Aizawa vive en la misma familia que Lorenz y Rössler — pero su geometría es asombrosamente escultórica, y un solo parámetro puede transformarlo de cesta a flor a caos.",
       ctaInteractive: "Abrir el Explorer",
     },
     encounter: {
@@ -197,7 +197,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · La gran idea",
           title: "El primo más extraño de Lorenz",
-          body: "En 1982 Aizawa escribió un sistema 3D que, como la mariposa de Lorenz, nunca se asienta y nunca se repite. Pero donde el atractor de Lorenz tiene dos alas planas, el de Aizawa parece un toro atravesado por una espiga vertical — una geometría tan distintiva que se volvió un clásico en galerías de atractores extraños.",
+          body: "Yoshisuke Aizawa y colaboradores formularon este sistema 3D a principios de los años 1980; como la mariposa de Lorenz, nunca se asienta y nunca se repite. Pero donde el atractor de Lorenz tiene dos alas planas, el de Aizawa parece un toro atravesado por una espiga vertical — una geometría tan distintiva que se volvió un clásico en galerías de atractores extraños.",
         },
         {
           label: "02 · Concreto",
@@ -216,8 +216,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
     sections: [
       {
         pretitle: "Sección uno · Las ecuaciones",
-        title: "Tres tasas, siete diales",
-        body: "Cada línea dice a qué velocidad cambia una coordenada. Los términos cruzados (x·y, x²+y², z³, z·x³) son donde vive el caos — quítalos y el sistema cae a una espiral amortiguada. Siete parámetros (a, b, c, d, e, f más el dt implícito del integrador) te dan un pequeño reino de comportamientos.",
+        title: "Tres tasas, seis diales",
+        body: "Cada línea dice a qué velocidad cambia una coordenada. Los términos cruzados (x·y, x²+y², z³, z·x³) son donde vive el caos — quítalos y el sistema cae a una espiral amortiguada. Seis parámetros (a, b, c, d, e, f) te dan un pequeño reino de comportamientos; el paso dt del integrador es un mando numérico, no un parámetro dinámico.",
       },
       {
         pretitle: "Sección dos · Geometría por defecto",
@@ -237,7 +237,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sección cinco · Lyapunov y dimensión",
         title: "¿Cuán fractal es una cesta?",
-        body: "El exponente de Lyapunov dominante es positivo (≈ 0,14), lo que significa que trayectorias cercanas se separan exponencialmente — la firma del caos. La conjetura de Kaplan-Yorke convierte el espectro de exponentes en una dimensión fractal; para Aizawa cae en torno a 2,05, apenas más gruesa que una superficie.",
+        body: "El exponente de Lyapunov dominante es positivo (las estimaciones numéricas rondan 0,1), lo que significa que trayectorias cercanas se separan exponencialmente — la firma del caos. La conjetura de Kaplan-Yorke convierte el espectro de exponentes en una dimensión fractal; para Aizawa cae apenas por encima de 2 — apenas más gruesa que una superficie.",
       },
       {
         pretitle: "Sección seis · Por qué importa",
@@ -256,11 +256,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
   },
   fr: {
     page: {
-      pretitle: "Attracteur · 1982",
+      pretitle: "Attracteur · famille Aizawa",
       title: "L'attracteur d'Aizawa",
       tagline: "Le cousin plus étrange et ornemental de Lorenz",
       intro:
-        "Trois équations couplées, sept molettes et une trajectoire qui se replie en un tore tressé comme un panier traversé par une pointe verticale en son cœur. Aizawa vit dans la même famille que Lorenz et Rössler — mais sa géométrie est étrangement sculpturale, et un seul paramètre peut le faire fondre du panier à la fleur au chaos.",
+        "Trois équations couplées, six molettes et une trajectoire qui se replie en un tore tressé comme un panier traversé par une pointe verticale en son cœur. Aizawa vit dans la même famille que Lorenz et Rössler — mais sa géométrie est étrangement sculpturale, et un seul paramètre peut le faire fondre du panier à la fleur au chaos.",
       ctaInteractive: "Ouvrir l'Explorer",
     },
     encounter: {
@@ -270,7 +270,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · La grande idée",
           title: "Le cousin plus étrange de Lorenz",
-          body: "En 1982 Aizawa a écrit un système 3D qui, comme le papillon de Lorenz, ne se pose jamais et ne se répète jamais. Mais là où l'attracteur de Lorenz a deux ailes plates, celui d'Aizawa ressemble à un tore traversé par une pointe verticale — une géométrie si distinctive qu'elle est devenue un classique des galeries d'attracteurs étranges.",
+          body: "Yoshisuke Aizawa et ses collaborateurs ont formulé ce système 3D au début des années 1980 ; comme le papillon de Lorenz, il ne se pose jamais et ne se répète jamais. Mais là où l'attracteur de Lorenz a deux ailes plates, celui d'Aizawa ressemble à un tore traversé par une pointe verticale — une géométrie si distinctive qu'elle est devenue un classique des galeries d'attracteurs étranges.",
         },
         {
           label: "02 · Concret",
@@ -289,8 +289,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
     sections: [
       {
         pretitle: "Section un · Les équations",
-        title: "Trois taux, sept molettes",
-        body: "Chaque ligne dit à quelle vitesse une coordonnée change. Les termes croisés (x·y, x²+y², z³, z·x³) sont là où vit le chaos — enlève-les et le système retombe en spirale amortie. Sept paramètres (a, b, c, d, e, f plus le dt implicite de l'intégrateur) te donnent un petit royaume de comportements.",
+        title: "Trois taux, six molettes",
+        body: "Chaque ligne dit à quelle vitesse une coordonnée change. Les termes croisés (x·y, x²+y², z³, z·x³) sont là où vit le chaos — enlève-les et le système retombe en spirale amortie. Six paramètres (a, b, c, d, e, f) te donnent un petit royaume de comportements ; le pas dt de l'intégrateur est un bouton numérique, pas un paramètre dynamique.",
       },
       {
         pretitle: "Section deux · Géométrie par défaut",
@@ -310,7 +310,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section cinq · Lyapunov & dimension",
         title: "Un panier, est-ce fractal ?",
-        body: "L'exposant de Lyapunov dominant est positif (≈ 0,14), c'est-à-dire que les trajectoires voisines se séparent exponentiellement — la signature du chaos. La conjecture de Kaplan-Yorke convertit le spectre des exposants en dimension fractale ; pour Aizawa elle tombe autour de 2,05, à peine plus épaisse qu'une surface.",
+        body: "L'exposant de Lyapunov dominant est positif (les estimations numériques tournent autour de 0,1), c'est-à-dire que les trajectoires voisines se séparent exponentiellement — la signature du chaos. La conjecture de Kaplan-Yorke convertit le spectre des exposants en dimension fractale ; pour Aizawa elle tombe juste au-dessus de 2 — à peine plus épaisse qu'une surface.",
       },
       {
         pretitle: "Section six · Pourquoi ça compte",
@@ -329,11 +329,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
   },
   it: {
     page: {
-      pretitle: "Attrattore · 1982",
+      pretitle: "Attrattore · famiglia Aizawa",
       title: "L'attrattore di Aizawa",
       tagline: "Il cugino più strano e ornamentale di Lorenz",
       intro:
-        "Tre equazioni accoppiate, sette manopole e una traiettoria che si piega in un toro intrecciato a cestino attraversato da una punta verticale nel suo cuore. Aizawa vive nella stessa famiglia di Lorenz e Rössler — ma la sua geometria è straordinariamente scultorea, e un solo parametro può farlo passare da cesto a fiore a caos.",
+        "Tre equazioni accoppiate, sei manopole e una traiettoria che si piega in un toro intrecciato a cestino attraversato da una punta verticale nel suo cuore. Aizawa vive nella stessa famiglia di Lorenz e Rössler — ma la sua geometria è straordinariamente scultorea, e un solo parametro può farlo passare da cesto a fiore a caos.",
       ctaInteractive: "Apri l'Explorer",
     },
     encounter: {
@@ -343,7 +343,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · La grande idea",
           title: "Il cugino più strano di Lorenz",
-          body: "Nel 1982 Aizawa scrisse un sistema 3D che, come la farfalla di Lorenz, non si stabilizza mai e non si ripete mai. Ma dove l'attrattore di Lorenz mostra due ali piatte, quello di Aizawa sembra un toro infilato da una punta verticale — una geometria così distintiva da diventare un classico delle gallerie di attrattori strani.",
+          body: "Yoshisuke Aizawa e collaboratori formularono questo sistema 3D nei primi anni 1980; come la farfalla di Lorenz, non si stabilizza mai e non si ripete mai. Ma dove l'attrattore di Lorenz mostra due ali piatte, quello di Aizawa sembra un toro infilato da una punta verticale — una geometria così distintiva da diventare un classico delle gallerie di attrattori strani.",
         },
         {
           label: "02 · Concreto",
@@ -362,8 +362,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
     sections: [
       {
         pretitle: "Sezione uno · Le equazioni",
-        title: "Tre tassi, sette manopole",
-        body: "Ogni riga dice a quale velocità cambia una coordinata. I termini incrociati (x·y, x²+y², z³, z·x³) sono dove vive il caos — toglili e il sistema collassa in una spirale smorzata. Sette parametri (a, b, c, d, e, f più il dt implicito dell'integratore) ti danno un piccolo regno di comportamenti.",
+        title: "Tre tassi, sei manopole",
+        body: "Ogni riga dice a quale velocità cambia una coordinata. I termini incrociati (x·y, x²+y², z³, z·x³) sono dove vive il caos — toglili e il sistema collassa in una spirale smorzata. Sei parametri (a, b, c, d, e, f) ti danno un piccolo regno di comportamenti; il passo dt dell'integratore è una manopola numerica, non un parametro dinamico.",
       },
       {
         pretitle: "Sezione due · Geometria di default",
@@ -383,7 +383,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sezione cinque · Lyapunov e dimensione",
         title: "Quanto è frattale un cesto?",
-        body: "L'esponente di Lyapunov dominante è positivo (≈ 0,14), cioè le traiettorie vicine si separano esponenzialmente — la firma del caos. La congettura di Kaplan-Yorke trasforma lo spettro degli esponenti in una dimensione frattale; per Aizawa cade attorno a 2,05, appena più spessa di una superficie.",
+        body: "L'esponente di Lyapunov dominante è positivo (le stime numeriche si aggirano intorno a 0,1), cioè le traiettorie vicine si separano esponenzialmente — la firma del caos. La congettura di Kaplan-Yorke trasforma lo spettro degli esponenti in una dimensione frattale; per Aizawa cade appena sopra 2 — appena più spessa di una superficie.",
       },
       {
         pretitle: "Sezione sei · Perché conta",
@@ -402,11 +402,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
   },
   pt: {
     page: {
-      pretitle: "Atrator · 1982",
+      pretitle: "Atrator · família Aizawa",
       title: "O atrator de Aizawa",
       tagline: "O primo mais estranho e ornamental de Lorenz",
       intro:
-        "Três equações acopladas, sete botões e uma trajetória que se dobra num toro trançado como cesto atravessado por uma espiga vertical em seu coração. Aizawa vive na mesma família de Lorenz e Rössler — mas sua geometria é assombrosamente escultural, e um único parâmetro pode transformá-lo de cesto a flor a caos.",
+        "Três equações acopladas, seis botões e uma trajetória que se dobra num toro trançado como cesto atravessado por uma espiga vertical em seu coração. Aizawa vive na mesma família de Lorenz e Rössler — mas sua geometria é assombrosamente escultural, e um único parâmetro pode transformá-lo de cesto a flor a caos.",
       ctaInteractive: "Abrir o Explorer",
     },
     encounter: {
@@ -416,7 +416,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · A grande ideia",
           title: "O primo mais estranho de Lorenz",
-          body: "Em 1982 Aizawa escreveu um sistema 3D que, como a borboleta de Lorenz, nunca se acomoda e nunca se repete. Mas onde o atrator de Lorenz mostra duas asas planas, o de Aizawa parece um toro atravessado por uma espiga vertical — uma geometria tão distintiva que se tornou clássica em galerias de atratores estranhos.",
+          body: "Yoshisuke Aizawa e colaboradores formularam este sistema 3D no início dos anos 1980; como a borboleta de Lorenz, nunca se acomoda e nunca se repete. Mas onde o atrator de Lorenz mostra duas asas planas, o de Aizawa parece um toro atravessado por uma espiga vertical — uma geometria tão distintiva que se tornou clássica em galerias de atratores estranhos.",
         },
         {
           label: "02 · Concreto",
@@ -435,8 +435,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
     sections: [
       {
         pretitle: "Seção um · As equações",
-        title: "Três taxas, sete botões",
-        body: "Cada linha diz a que velocidade uma coordenada muda. Os termos cruzados (x·y, x²+y², z³, z·x³) são onde o caos vive — remova-os e o sistema colapsa numa espiral amortecida. Sete parâmetros (a, b, c, d, e, f mais o dt implícito do integrador) dão um pequeno reino de comportamentos.",
+        title: "Três taxas, seis botões",
+        body: "Cada linha diz a que velocidade uma coordenada muda. Os termos cruzados (x·y, x²+y², z³, z·x³) são onde o caos vive — remova-os e o sistema colapsa numa espiral amortecida. Seis parâmetros (a, b, c, d, e, f) dão um pequeno reino de comportamentos; o passo dt do integrador é um botão numérico, não um parâmetro dinâmico.",
       },
       {
         pretitle: "Seção dois · Geometria padrão",
@@ -456,7 +456,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Seção cinco · Lyapunov e dimensão",
         title: "Quão fractal é um cesto?",
-        body: "O expoente de Lyapunov dominante é positivo (≈ 0,14), ou seja, trajetórias próximas se separam exponencialmente — a assinatura do caos. A conjectura de Kaplan-Yorke converte o espectro de expoentes em dimensão fractal; para Aizawa ela cai em torno de 2,05, apenas um pouco mais espessa que uma superfície.",
+        body: "O expoente de Lyapunov dominante é positivo (estimativas numéricas ficam em torno de 0,1), ou seja, trajetórias próximas se separam exponencialmente — a assinatura do caos. A conjectura de Kaplan-Yorke converte o espectro de expoentes em dimensão fractal; para Aizawa ela cai apenas acima de 2 — apenas um pouco mais espessa que uma superfície.",
       },
       {
         pretitle: "Seção seis · Por que importa",
@@ -475,11 +475,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
   },
   sv: {
     page: {
-      pretitle: "Attraktor · 1982",
+      pretitle: "Attraktor · Aizawa-familjen",
       title: "Aizawa-attraktorn",
       tagline: "Lorenz mer sällsamma och prydligare kusin",
       intro:
-        "Tre kopplade ekvationer, sju rattar och en bana som viker sig till en korgflätad torus med en lodrät spets genom hjärtat. Aizawa hör till samma familj som Lorenz och Rössler — men dess geometri är kusligt skulptural, och en enda parameter kan smälta den från korg till blomma till kaos.",
+        "Tre kopplade ekvationer, sex rattar och en bana som viker sig till en korgflätad torus med en lodrät spets genom hjärtat. Aizawa hör till samma familj som Lorenz och Rössler — men dess geometri är kusligt skulptural, och en enda parameter kan smälta den från korg till blomma till kaos.",
       ctaInteractive: "Öppna Explorer",
     },
     encounter: {
@@ -489,7 +489,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · Den stora idén",
           title: "Lorenz mer sällsamma kusin",
-          body: "År 1982 skrev Aizawa ner ett 3D-system som, likt Lorenz fjäril, aldrig lägger sig till ro och aldrig upprepar sig. Men där Lorenz attraktor har två platta vingar liknar Aizawas en torus trädd på en lodrät spets — en geometri så distinkt att den blev en klassiker i attraktorgallerier.",
+          body: "Yoshisuke Aizawa och medarbetare formulerade detta 3D-system i början av 1980-talet; likt Lorenz fjäril lägger det sig aldrig till ro och upprepar sig aldrig. Men där Lorenz attraktor har två platta vingar liknar Aizawas en torus trädd på en lodrät spets — en geometri så distinkt att den blev en klassiker i attraktorgallerier.",
         },
         {
           label: "02 · Konkret",
@@ -508,8 +508,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
     sections: [
       {
         pretitle: "Avsnitt ett · Ekvationerna",
-        title: "Tre takter, sju rattar",
-        body: "Varje rad säger hur snabbt en koordinat ändras. Korstermerna (x·y, x²+y², z³, z·x³) är där kaoset bor — ta bort dem och systemet faller till en dämpad spiral. Sju parametrar (a, b, c, d, e, f plus integratorns implicita dt) ger dig ett litet kungarike av beteenden.",
+        title: "Tre takter, sex rattar",
+        body: "Varje rad säger hur snabbt en koordinat ändras. Korstermerna (x·y, x²+y², z³, z·x³) är där kaoset bor — ta bort dem och systemet faller till en dämpad spiral. Sex parametrar (a, b, c, d, e, f) ger dig ett litet kungarike av beteenden; integratorns steg dt är en numerisk ratt, inte en dynamisk parameter.",
       },
       {
         pretitle: "Avsnitt två · Standardgeometri",
@@ -529,7 +529,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Avsnitt fem · Lyapunov & dimension",
         title: "Hur fraktal är en korg?",
-        body: "Den ledande Lyapunov-exponenten är positiv (≈ 0,14), vilket betyder att närliggande banor separeras exponentiellt — kaosets signatur. Kaplan-Yorke-förmodan översätter exponentspektrumet till en fraktal dimension; för Aizawa hamnar den runt 2,05, knappt tjockare än en yta.",
+        body: "Den ledande Lyapunov-exponenten är positiv (numeriska skattningar ligger runt 0,1), vilket betyder att närliggande banor separeras exponentiellt — kaosets signatur. Kaplan-Yorke-förmodan översätter exponentspektrumet till en fraktal dimension; för Aizawa hamnar den knappt över 2 — knappt tjockare än en yta.",
       },
       {
         pretitle: "Avsnitt sex · Varför det spelar roll",
@@ -548,11 +548,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
   },
   no: {
     page: {
-      pretitle: "Attraktor · 1982",
+      pretitle: "Attraktor · Aizawa-familien",
       title: "Aizawa-attraktoren",
       tagline: "Lorenz' selsommere og mer ornamentale fetter",
       intro:
-        "Tre koblede ligninger, sju rattenheter og en bane som folder seg til en kurvflettet torus med en loddrett spiss gjennom hjertet. Aizawa hører til samme familie som Lorenz og Rössler — men geometrien er underlig skulpturell, og en enkelt parameter kan smelte den fra kurv til blomst til kaos.",
+        "Tre koblede ligninger, seks rattenheter og en bane som folder seg til en kurvflettet torus med en loddrett spiss gjennom hjertet. Aizawa hører til samme familie som Lorenz og Rössler — men geometrien er underlig skulpturell, og en enkelt parameter kan smelte den fra kurv til blomst til kaos.",
       ctaInteractive: "Åpne Explorer",
     },
     encounter: {
@@ -562,7 +562,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · Den store idéen",
           title: "Lorenz' selsommere fetter",
-          body: "I 1982 skrev Aizawa ned et 3D-system som, lik Lorenz-sommerfuglen, aldri faller til ro og aldri gjentar seg. Men der Lorenz-attraktoren har to flate vinger, ligner Aizawas en torus tredd på en loddrett spiss — en geometri så distinkt at den ble en klassiker i attraktorgallerier.",
+          body: "Yoshisuke Aizawa og medarbeidere formulerte dette 3D-systemet på begynnelsen av 1980-tallet; lik Lorenz-sommerfuglen faller det aldri til ro og gjentar seg aldri. Men der Lorenz-attraktoren har to flate vinger, ligner Aizawas en torus tredd på en loddrett spiss — en geometri så distinkt at den ble en klassiker i attraktorgallerier.",
         },
         {
           label: "02 · Konkret",
@@ -581,8 +581,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
     sections: [
       {
         pretitle: "Del én · Ligningene",
-        title: "Tre rater, sju rattenheter",
-        body: "Hver linje sier hvor raskt en koordinat endrer seg. Kryssleddene (x·y, x²+y², z³, z·x³) er der kaoset bor — fjern dem og systemet faller til en dempet spiral. Sju parametere (a, b, c, d, e, f pluss integratorens implisitte dt) gir deg et lite kongerike av oppførsel.",
+        title: "Tre rater, seks rattenheter",
+        body: "Hver linje sier hvor raskt en koordinat endrer seg. Kryssleddene (x·y, x²+y², z³, z·x³) er der kaoset bor — fjern dem og systemet faller til en dempet spiral. Seks parametere (a, b, c, d, e, f) gir deg et lite kongerike av oppførsel; integratorens skritt dt er en numerisk ratt, ikke en dynamisk parameter.",
       },
       {
         pretitle: "Del to · Standardgeometri",
@@ -602,7 +602,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del fem · Lyapunov & dimensjon",
         title: "Hvor fraktal er en kurv?",
-        body: "Den ledende Lyapunov-eksponenten er positiv (≈ 0,14), det vil si at nære baner skilles eksponentielt — kaosets signatur. Kaplan-Yorke-formodningen oversetter eksponentspekteret til en fraktal dimensjon; for Aizawa havner den rundt 2,05, så vidt tykkere enn en flate.",
+        body: "Den ledende Lyapunov-eksponenten er positiv (numeriske anslag ligger rundt 0,1), det vil si at nære baner skilles eksponentielt — kaosets signatur. Kaplan-Yorke-formodningen oversetter eksponentspekteret til en fraktal dimensjon; for Aizawa havner den så vidt over 2 — så vidt tykkere enn en flate.",
       },
       {
         pretitle: "Del seks · Hvorfor det betyr noe",
@@ -787,14 +787,14 @@ export default function AizawaStory() {
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
               Kaplan-Yorke dimension
             </div>
-            <div className="math-italic text-6xl text-ink-100 md:text-7xl">≈ 2.05</div>
+            <div className="math-italic text-6xl text-ink-100 md:text-7xl">just over 2</div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Just above a surface, well below a solid. Computed from the Lyapunov spectrum (λ₁ ≈
-              +0.14, λ₂ ≈ 0, λ₃ ≈ −0.81).
+              Just above a surface, well below a solid. Computed from the Lyapunov spectrum (leading
+              exponent positive, around 0.1; second near zero; third strongly negative).
             </p>
             <div className="mx-auto grid max-w-md grid-cols-3 gap-3 pt-4 text-center">
               <DimDot label="curve" value="1" />
-              <DimDot label="Aizawa" value="2.05" highlight />
+              <DimDot label="Aizawa" value="~2.0" highlight />
               <DimDot label="solid" value="3" />
             </div>
           </div>

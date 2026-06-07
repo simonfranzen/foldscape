@@ -87,7 +87,7 @@ const en: RichStory = {
     {
       pretitle: "Section 02 · The equation",
       title: "r = 2a (1 − cos θ)",
-      body: "In polar coordinates centred at the cusp, the cardioid is r(θ) = 2a(1 − cos θ). At θ = 0 the radius is 0 — the cusp itself. At θ = π the radius is 4a — the far tip. The number a is the radius of a parent circle; the cardioid is twice as wide and exactly four times as long.",
+      body: "In polar coordinates centred at the cusp, the cardioid is r(θ) = 2a(1 − cos θ). At θ = 0 the radius is 0 — the cusp itself. At θ = π the radius is 4a — the far tip. The number a is the radius of a parent circle; the cardioid is twice as wide, and its perimeter equals 8a — exactly eight times the parent radius.",
     },
     {
       pretitle: "Section 03 · The rolling-circle definition",
@@ -175,7 +175,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Die Gleichung",
       title: "r = 2a (1 − cos θ)",
-      body: "In Polarkoordinaten mit Ursprung in der Spitze lautet die Kardioide r(θ) = 2a(1 − cos θ). Bei θ = 0 ist r = 0 — die Spitze. Bei θ = π ist r = 4a — die ferne Spitze. Die Größe a ist der Radius eines Mutterkreises; die Kardioide ist doppelt so breit und genau viermal so lang.",
+      body: "In Polarkoordinaten mit Ursprung in der Spitze lautet die Kardioide r(θ) = 2a(1 − cos θ). Bei θ = 0 ist r = 0 — die Spitze. Bei θ = π ist r = 4a — die ferne Spitze. Die Größe a ist der Radius eines Mutterkreises; die Kardioide ist doppelt so breit, und ihr Umfang beträgt 8a — also achtmal den Radius des Mutterkreises.",
     },
     {
       pretitle: "Abschnitt 03 · Die rollende Definition",
@@ -263,7 +263,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 02 · La ecuación",
       title: "r = 2a (1 − cos θ)",
-      body: "En coordenadas polares centradas en la cúspide, la cardioide es r(θ) = 2a(1 − cos θ). En θ = 0 el radio es 0 — la cúspide. En θ = π el radio es 4a — el extremo lejano. El número a es el radio de un círculo madre; la cardioide es el doble de ancha y exactamente cuatro veces de larga.",
+      body: "En coordenadas polares centradas en la cúspide, la cardioide es r(θ) = 2a(1 − cos θ). En θ = 0 el radio es 0 — la cúspide. En θ = π el radio es 4a — el extremo lejano. El número a es el radio de un círculo madre; la cardioide es el doble de ancha, y su perímetro vale 8a — ocho veces el radio del círculo madre.",
     },
     {
       pretitle: "Sección 03 · La definición rodante",
@@ -351,7 +351,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 02 · L'équation",
       title: "r = 2a (1 − cos θ)",
-      body: "En coordonnées polaires centrées au rebroussement, la cardioïde est r(θ) = 2a(1 − cos θ). En θ = 0 le rayon est 0 — le rebroussement. En θ = π il vaut 4a — la pointe opposée. Le nombre a est le rayon d'un cercle parent ; la cardioïde est deux fois plus large et exactement quatre fois plus longue.",
+      body: "En coordonnées polaires centrées au rebroussement, la cardioïde est r(θ) = 2a(1 − cos θ). En θ = 0 le rayon est 0 — le rebroussement. En θ = π il vaut 4a — la pointe opposée. Le nombre a est le rayon d'un cercle parent ; la cardioïde est deux fois plus large, et son périmètre vaut 8a — soit huit fois le rayon du cercle parent.",
     },
     {
       pretitle: "Section 03 · La définition par roulement",
@@ -438,7 +438,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 02 · L'equazione",
       title: "r = 2a (1 − cos θ)",
-      body: "In coordinate polari centrate nella cuspide, la cardioide è r(θ) = 2a(1 − cos θ). A θ = 0 il raggio è 0 — la cuspide. A θ = π vale 4a — la punta lontana. Il numero a è il raggio del cerchio madre; la cardioide è larga il doppio e lunga esattamente quattro volte.",
+      body: "In coordinate polari centrate nella cuspide, la cardioide è r(θ) = 2a(1 − cos θ). A θ = 0 il raggio è 0 — la cuspide. A θ = π vale 4a — la punta lontana. Il numero a è il raggio del cerchio madre; la cardioide è larga il doppio, e il suo perimetro vale 8a — otto volte il raggio del cerchio madre.",
     },
     {
       pretitle: "Sezione 03 · La definizione per rotolamento",
@@ -525,7 +525,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 02 · A equação",
       title: "r = 2a (1 − cos θ)",
-      body: "Em coordenadas polares centradas na cúspide, a cardioide é r(θ) = 2a(1 − cos θ). Em θ = 0 o raio é 0 — a cúspide. Em θ = π vale 4a — a ponta oposta. O número a é o raio de um círculo-mãe; a cardioide tem o dobro da largura e exatamente o quádruplo do comprimento.",
+      body: "Em coordenadas polares centradas na cúspide, a cardioide é r(θ) = 2a(1 − cos θ). Em θ = 0 o raio é 0 — a cúspide. Em θ = π vale 4a — a ponta oposta. O número a é o raio de um círculo-mãe; a cardioide tem o dobro da largura, e o seu perímetro vale 8a — oito vezes o raio do círculo-mãe.",
     },
     {
       pretitle: "Secção 03 · A definição por rolamento",
@@ -612,7 +612,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 02 · Ekvationen",
       title: "r = 2a (1 − cos θ)",
-      body: "I polära koordinater med ursprung i spetsen är kardioiden r(θ) = 2a(1 − cos θ). Vid θ = 0 är radien 0 — spetsen själv. Vid θ = π är den 4a — den bortre udden. Talet a är moderlands cirkelns radie; kardioiden är dubbelt så bred och exakt fyra gånger så lång.",
+      body: "I polära koordinater med ursprung i spetsen är kardioiden r(θ) = 2a(1 − cos θ). Vid θ = 0 är radien 0 — spetsen själv. Vid θ = π är den 4a — den bortre udden. Talet a är modercirkelns radie; kardioiden är dubbelt så bred, och dess omkrets är 8a — åtta gånger modercirkelns radie.",
     },
     {
       pretitle: "Avsnitt 03 · Den rullande definitionen",
@@ -699,7 +699,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Ligningen",
       title: "r = 2a (1 − cos θ)",
-      body: "I polare koordinater med utgangspunkt i spissen er kardioiden r(θ) = 2a(1 − cos θ). Ved θ = 0 er radien 0 — spissen. Ved θ = π er den 4a — den bortre spissen. Tallet a er radius på morsirkelen; kardioiden er dobbelt så bred og nøyaktig fire ganger så lang.",
+      body: "I polare koordinater med utgangspunkt i spissen er kardioiden r(θ) = 2a(1 − cos θ). Ved θ = 0 er radien 0 — spissen. Ved θ = π er den 4a — den bortre spissen. Tallet a er radius på morsirkelen; kardioiden er dobbelt så bred, og omkretsen er 8a — åtte ganger morsirkelens radius.",
     },
     {
       pretitle: "Avsnitt 03 · Den rullende definisjonen",
@@ -868,7 +868,8 @@ export default function CardioidStory() {
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
               Cusp at θ = 0, far tip at θ = π with radius 4a. The parent circle has radius a; the
-              cardioid is twice as wide and exactly four times as long.
+              cardioid is twice as wide, and its perimeter is exactly 8a — eight times the parent
+              radius.
             </p>
           </div>
         </Reveal>
