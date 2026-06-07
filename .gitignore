@@ -47,3 +47,6 @@ test-results/
 # video generator — internal, not part of the open-source release
 /video/
 /public/vo/
+
+# book generator
+/book/

@@ -51,13 +51,18 @@ interface ClusterFrame {
   rx: number;
   ry: number;
 }
+// Bigger per-category footprints so non-hub stars have room to breathe when
+// the cluster is expanded — earlier the labels crowded into each other and
+// crossed edges. The two rows are also vertically staggered (top row cy
+// 250/300/270, bottom 650/680/640) so hubs don't all line up on one
+// horizontal axis.
 const CATEGORY_FRAME: Record<TopicCategory, ClusterFrame> = {
-  logic: { cx: 300, cy: 290, rx: 200, ry: 180 },
-  computation: { cx: 900, cy: 270, rx: 260, ry: 180 },
-  chaos: { cx: 1500, cy: 300, rx: 240, ry: 200 },
-  geometry: { cx: 320, cy: 650, rx: 240, ry: 180 },
-  analysis: { cx: 920, cy: 660, rx: 260, ry: 160 },
-  paradox: { cx: 1490, cy: 640, rx: 220, ry: 180 },
+  logic: { cx: 280, cy: 250, rx: 260, ry: 230 },
+  computation: { cx: 900, cy: 300, rx: 320, ry: 230 },
+  chaos: { cx: 1520, cy: 270, rx: 300, ry: 240 },
+  geometry: { cx: 300, cy: 680, rx: 300, ry: 240 },
+  analysis: { cx: 920, cy: 640, rx: 320, ry: 220 },
+  paradox: { cx: 1500, cy: 690, rx: 280, ry: 230 },
 };
 
 const CATEGORY_COLOR: Record<TopicCategory, string> = {
@@ -213,6 +218,80 @@ interface Props {
   filter: TopicCategory | "all";
 }
 
+// Default "home" viewBox — the full sky.
+const HOME_VB: ViewBox = [0, 0, VB_W, VB_H];
+
+// Camera frame: extra padding (user-units, same coordinate space as the
+// constellation layout) added around the bbox of an opened cluster so
+// labels at the edge of the cluster aren't clipped by the viewport.
+// Bigger padding = gentler zoom. 80 zoomed in too hard and crowded labels;
+// 240 leaves the opened cluster occupying ~60% of the canvas with room
+// around it for the other clusters to be partially visible (orientation cue).
+const CAMERA_PADDING = 240;
+
+// Ease-out cubic via the cheap polynomial t*(2-t). Smooth at t=0, decelerating
+// to 0 derivative at t=1 — feels like a camera settling, not a teleport.
+function easeOutCubic(t: number): number {
+  return t * (2 - t);
+}
+
+type ViewBox = [number, number, number, number];
+
+// Compute the bbox of an opened cluster's laid-out stars, expanded by
+// CAMERA_PADDING on all sides. Returns the HOME viewBox when the category
+// has no positioned topics (defensive — every category has hubs).
+function bboxForCategory(
+  cat: TopicCategory,
+  laidOut: LaidOutTopic[],
+): ViewBox {
+  const inCat = laidOut.filter((l) => l.topic.category === cat);
+  if (inCat.length === 0) return HOME_VB;
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  for (const { x, y } of inCat) {
+    if (x < minX) minX = x;
+    if (y < minY) minY = y;
+    if (x > maxX) maxX = x;
+    if (y > maxY) maxY = y;
+  }
+  // Also include the category header position (lives above/below cluster)
+  // so the zoomed view actually shows the header that named the cluster.
+  const f = CATEGORY_FRAME[cat];
+  const above = f.cy < VB_H / 2;
+  const headerY = above ? f.cy - f.ry - 36 : f.cy + f.ry + 44;
+  minY = Math.min(minY, headerY - 30);
+  maxY = Math.max(maxY, headerY + 30);
+  minX = Math.min(minX, f.cx - 150);
+  maxX = Math.max(maxX, f.cx + 150);
+
+  const x = minX - CAMERA_PADDING;
+  const y = minY - CAMERA_PADDING;
+  const w = maxX - minX + CAMERA_PADDING * 2;
+  const h = maxY - minY + CAMERA_PADDING * 2;
+
+  // Preserve the home aspect ratio so the SVG (which has no
+  // preserveAspectRatio override → defaults to xMidYMid meet) doesn't
+  // letterbox surprisingly. Expand the shorter axis to match.
+  const homeAspect = VB_W / VB_H;
+  const boxAspect = w / h;
+  let outW = w;
+  let outH = h;
+  let outX = x;
+  let outY = y;
+  if (boxAspect > homeAspect) {
+    // Wider than home — grow height.
+    outH = w / homeAspect;
+    outY = y - (outH - h) / 2;
+  } else {
+    // Taller than home — grow width.
+    outW = h * homeAspect;
+    outX = x - (outW - w) / 2;
+  }
+  return [outX, outY, outW, outH];
+}
+
 export function TopicConstellation({ filter }: Props) {
   const { a } = useI18n();
   const searchId = useId();
@@ -222,8 +301,10 @@ export function TopicConstellation({ filter }: Props) {
   const [query, setQuery] = useState("");
   const [isMobile, setIsMobile] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [viewBox, setViewBox] = useState<ViewBox>(HOME_VB);
   const router = useRouter();
   const svgRef = useRef<SVGSVGElement | null>(null);
+  const tweenRef = useRef<number | null>(null);
 
   // Auto-open the cluster that matches the page filter, so filter chips and
   // the constellation stay in sync. Switching to "all" closes any open one.
@@ -266,6 +347,69 @@ export function TopicConstellation({ filter }: Props) {
   const trans = (props: string) => (reduceMotion ? undefined : `${props} 280ms ease`);
 
   const laidOut = useMemo(() => layoutAll(), []);
+
+  // Camera tween. When openCategory changes, animate viewBox from current
+  // state to the bbox of the opened cluster (or HOME if null). rAF-driven,
+  // ~600ms ease-out cubic. prefers-reduced-motion snaps instantly.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const target: ViewBox = openCategory
+      ? bboxForCategory(openCategory, laidOut)
+      : HOME_VB;
+
+    if (tweenRef.current !== null) {
+      cancelAnimationFrame(tweenRef.current);
+      tweenRef.current = null;
+    }
+
+    if (reduceMotion) {
+      setViewBox(target);
+      return;
+    }
+
+    // Capture the start frame so we always tween from where the camera is
+    // right now (handles rapid category switches mid-flight).
+    let start: ViewBox = HOME_VB;
+    setViewBox((cur) => {
+      start = cur;
+      return cur;
+    });
+
+    // Skip the rAF loop if we're already at the target (within 0.5 px).
+    const close =
+      Math.abs(start[0] - target[0]) < 0.5 &&
+      Math.abs(start[1] - target[1]) < 0.5 &&
+      Math.abs(start[2] - target[2]) < 0.5 &&
+      Math.abs(start[3] - target[3]) < 0.5;
+    if (close) return;
+
+    const duration = 600;
+    const t0 = performance.now();
+    const step = (now: number) => {
+      const u = Math.min(1, (now - t0) / duration);
+      const e = easeOutCubic(u);
+      const next: ViewBox = [
+        start[0] + (target[0] - start[0]) * e,
+        start[1] + (target[1] - start[1]) * e,
+        start[2] + (target[2] - start[2]) * e,
+        start[3] + (target[3] - start[3]) * e,
+      ];
+      setViewBox(next);
+      if (u < 1) {
+        tweenRef.current = requestAnimationFrame(step);
+      } else {
+        tweenRef.current = null;
+      }
+    };
+    tweenRef.current = requestAnimationFrame(step);
+    return () => {
+      if (tweenRef.current !== null) {
+        cancelAnimationFrame(tweenRef.current);
+        tweenRef.current = null;
+      }
+    };
+  }, [openCategory, laidOut, reduceMotion]);
+
   const posById = useMemo(() => {
     const m = new Map<TopicId, LaidOutTopic>();
     laidOut.forEach((l) => m.set(l.topic.id, l));
@@ -409,7 +553,7 @@ export function TopicConstellation({ filter }: Props) {
 
       <svg
         ref={svgRef}
-        viewBox={`0 0 ${VB_W} ${VB_H}`}
+        viewBox={`${viewBox[0]} ${viewBox[1]} ${viewBox[2]} ${viewBox[3]}`}
         className="block h-auto w-full select-none"
         role="group"
         aria-label={ariaLabel}

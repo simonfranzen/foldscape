@@ -257,6 +257,141 @@ export default function PhiExplorer() {
 // Spiral panel — nested Fibonacci squares + quarter-arc spiral
 // ----------------------------------------------------------------------------
 
+// Build the canonical Fibonacci-squares spiral. Returns square boxes plus
+// per-arc centre, radius, and start/end angles (canvas convention: angles in
+// radians, going CW on screen because Y points down). Arcs chain endpoint-to-
+// endpoint so a single ctx.arc loop draws one continuous in-spiralling curve.
+//
+// Construction (Y-down):
+//   - Sides F_1, F_2, ..., F_n. First square at (0,0); each subsequent square
+//     attaches to the current bounding rectangle in the cycle L, U, R, D and
+//     spans the full side it attaches to.
+//   - Per-square arc centre is the corner adjacent to BOTH the edge shared
+//     with the previous square and the edge shared with the next; this is
+//     what makes the chain tangent-continuous. Direction -> centre corner:
+//     L -> TR, U -> BR, R -> BL, D -> TL.
+//   - All arcs are swept clockwise on screen, so canvas-arc anticlockwise = false.
+type Sq = { x: number; y: number; s: number };
+type Arc = { cx: number; cy: number; sx: number; sy: number; ex: number; ey: number; r: number };
+
+function adjCorners(sq: Sq, c: [number, number]): [[number, number], [number, number]] {
+  const x0 = sq.x;
+  const y0 = sq.y;
+  const x1 = sq.x + sq.s;
+  const y1 = sq.y + sq.s;
+  const [cx, cy] = c;
+  if (cx === x0 && cy === y0) return [[x1, y0], [x0, y1]];
+  if (cx === x1 && cy === y0) return [[x0, y0], [x1, y1]];
+  if (cx === x1 && cy === y1) return [[x1, y0], [x0, y1]];
+  if (cx === x0 && cy === y1) return [[x0, y0], [x1, y1]];
+  return [[x0, y0], [x1, y1]];
+}
+
+function buildFibSpiral(n: number): { squares: Sq[]; arcs: Arc[]; bx: number; by: number; bw: number; bh: number } {
+  const sizes: number[] = [];
+  for (let i = 1; i <= n; i++) sizes.push(FIB[i]);
+
+  const squares: Sq[] = [{ x: 0, y: 0, s: sizes[0] }];
+  const dirs = ["L", "U", "R", "D"] as const;
+  let bx = 0;
+  let by = 0;
+  let bw = sizes[0];
+  let bh = sizes[0];
+  for (let i = 1; i < n; i++) {
+    const s = sizes[i];
+    const d = dirs[(i - 1) % 4];
+    let nx = 0;
+    let ny = 0;
+    if (d === "L") {
+      nx = bx - s;
+      ny = by;
+    } else if (d === "U") {
+      nx = bx;
+      ny = by - s;
+    } else if (d === "R") {
+      nx = bx + bw;
+      ny = by;
+    } else {
+      nx = bx;
+      ny = by + bh;
+    }
+    squares.push({ x: nx, y: ny, s });
+    const mnx = Math.min(bx, nx);
+    const mny = Math.min(by, ny);
+    const mxx = Math.max(bx + bw, nx + s);
+    const mxy = Math.max(by + bh, ny + s);
+    bx = mnx;
+    by = mny;
+    bw = mxx - mnx;
+    bh = mxy - mny;
+  }
+
+  const centres: Array<[number, number]> = new Array(n);
+  for (let i = 1; i < n; i++) {
+    const sq = squares[i];
+    const d = dirs[(i - 1) % 4];
+    if (d === "L") centres[i] = [sq.x + sq.s, sq.y];
+    else if (d === "U") centres[i] = [sq.x + sq.s, sq.y + sq.s];
+    else if (d === "R") centres[i] = [sq.x, sq.y + sq.s];
+    else centres[i] = [sq.x, sq.y];
+  }
+
+  const sq0 = squares[0];
+  if (n >= 2) {
+    const sq1 = squares[1];
+    const corners0: Array<[number, number]> = [
+      [sq0.x, sq0.y],
+      [sq0.x + sq0.s, sq0.y],
+      [sq0.x + sq0.s, sq0.y + sq0.s],
+      [sq0.x, sq0.y + sq0.s],
+    ];
+    const isCornerOfSq1 = (p: [number, number]) =>
+      (p[0] === sq1.x || p[0] === sq1.x + sq1.s) && (p[1] === sq1.y || p[1] === sq1.y + sq1.s);
+    const isCornerOfSq0 = (p: [number, number]) =>
+      (p[0] === sq0.x || p[0] === sq0.x + sq0.s) && (p[1] === sq0.y || p[1] === sq0.y + sq0.s);
+    const adj1 = adjCorners(sq1, centres[1]);
+    const connecting = isCornerOfSq0(adj1[0]) ? adj1[0] : adj1[1];
+    const shared = corners0.filter(isCornerOfSq1);
+    centres[0] =
+      shared.find((p) => p[0] !== connecting[0] || p[1] !== connecting[1]) ??
+      shared[0] ??
+      [sq0.x, sq0.y];
+  } else {
+    centres[0] = [sq0.x, sq0.y];
+  }
+
+  const arcs: Arc[] = squares.map((sq, i) => {
+    const c = centres[i];
+    const [p, q] = adjCorners(sq, c);
+    return { cx: c[0], cy: c[1], sx: p[0], sy: p[1], ex: q[0], ey: q[1], r: sq.s };
+  });
+  for (let i = 0; i < n - 1; i++) {
+    const cur = arcs[i];
+    const nxt = arcs[i + 1];
+    const eq = (ax: number, ay: number, bx2: number, by2: number) => ax === bx2 && ay === by2;
+    const sharedIsCurEnd =
+      eq(cur.ex, cur.ey, nxt.sx, nxt.sy) || eq(cur.ex, cur.ey, nxt.ex, nxt.ey);
+    if (!sharedIsCurEnd) {
+      const tx = cur.sx;
+      const ty = cur.sy;
+      cur.sx = cur.ex;
+      cur.sy = cur.ey;
+      cur.ex = tx;
+      cur.ey = ty;
+    }
+    if (!eq(nxt.sx, nxt.sy, cur.ex, cur.ey)) {
+      const tx = nxt.sx;
+      const ty = nxt.sy;
+      nxt.sx = nxt.ex;
+      nxt.sy = nxt.ey;
+      nxt.ex = tx;
+      nxt.ey = ty;
+    }
+  }
+
+  return { squares, arcs, bx, by, bw, bh };
+}
+
 function SpiralPanel({ depth }: { depth: number }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -276,47 +411,9 @@ function SpiralPanel({ depth }: { depth: number }) {
       ctx.fillStyle = "#06070d";
       ctx.fillRect(0, 0, W, H);
 
-      // Squares' sides are F_1, F_2, ..., F_depth (always ≥ 1)
-      const sides: number[] = [];
-      for (let i = 1; i <= depth; i++) sides.push(FIB[i]);
+      const spiral = buildFibSpiral(depth);
+      const { squares, arcs, bx, by, bw, bh } = spiral;
 
-      // Lay out squares by attaching new square on the side of the bounding
-      // rectangle in CCW order: right, top, left, bottom, repeating.
-      type Rect = { x: number; y: number; w: number; h: number };
-      const rects: Rect[] = [];
-      // first square
-      const first: Rect = { x: 0, y: 0, w: sides[0], h: sides[0] };
-      rects.push(first);
-      let bx = first.x;
-      let by = first.y;
-      let bw = first.w;
-      let bh = first.h;
-      // sides direction: 0=right, 1=top, 2=left, 3=bottom
-      for (let i = 1; i < sides.length; i++) {
-        const s = sides[i];
-        const dir = (i - 1) % 4;
-        let r: Rect;
-        if (dir === 0) {
-          r = { x: bx + bw, y: by, w: s, h: bh };
-        } else if (dir === 1) {
-          r = { x: bx, y: by - s, w: bw, h: s };
-        } else if (dir === 2) {
-          r = { x: bx - s, y: by, w: s, h: bh };
-        } else {
-          r = { x: bx, y: by + bh, w: bw, h: s };
-        }
-        rects.push(r);
-        const nx = Math.min(bx, r.x);
-        const ny = Math.min(by, r.y);
-        const nw = Math.max(bx + bw, r.x + r.w) - nx;
-        const nh = Math.max(by + bh, r.y + r.h) - ny;
-        bx = nx;
-        by = ny;
-        bw = nw;
-        bh = nh;
-      }
-
-      // Compute bounding box and a transform to fit the canvas.
       const pad = 30;
       const scale = Math.min((W - 2 * pad) / bw, (H - 2 * pad) / bh);
       const ox = (W - bw * scale) / 2 - bx * scale;
@@ -332,62 +429,36 @@ function SpiralPanel({ depth }: { depth: number }) {
 
       // Squares
       ctx.font = "11px ui-monospace, monospace";
-      for (let i = 0; i < rects.length; i++) {
-        const r = rects[i];
-        const alpha = 0.18 + (i / rects.length) * 0.35;
+      for (let i = 0; i < squares.length; i++) {
+        const r = squares[i];
+        const alpha = 0.18 + (i / squares.length) * 0.35;
         ctx.strokeStyle = `rgba(255, 209, 102, ${alpha})`;
-        ctx.fillStyle = `rgba(255, 209, 102, ${0.04 + (i / rects.length) * 0.08})`;
+        ctx.fillStyle = `rgba(255, 209, 102, ${0.04 + (i / squares.length) * 0.08})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.rect(tx(r.x), ty(r.y), r.w * scale, r.h * scale);
+        ctx.rect(tx(r.x), ty(r.y), r.s * scale, r.s * scale);
         ctx.fill();
         ctx.stroke();
-        if (r.w * scale > 28 && r.h * scale > 18) {
+        if (r.s * scale > 28) {
           ctx.fillStyle = "rgba(255, 232, 170, 0.85)";
-          ctx.fillText(String(sides[i]), tx(r.x) + 6, ty(r.y) + 14);
+          ctx.fillText(String(r.s), tx(r.x) + 6, ty(r.y) + 14);
         }
       }
 
-      // Quarter-circle spiral. For each square the arc spans 90° around a
-      // corner that points away from the bounding rectangle's center.
+      // Quarter-circle spiral - one continuous chained path. moveTo to the
+      // first start, then ctx.arc per square (each arc starts exactly where
+      // the previous ended, so no spurious straight lines).
       ctx.strokeStyle = "rgba(255, 122, 182, 0.95)";
       ctx.lineWidth = 2;
       ctx.beginPath();
-      for (let i = 0; i < rects.length; i++) {
-        const r = rects[i];
-        const dir = (i - 1) % 4; // dir of attachment for i≥1
-        // For i=0 use dir as if "right" (start of spiral).
-        let cx = r.x;
-        let cy = r.y;
-        let startAngle = 0;
-        if (i === 0) {
-          // first square: arc from top-right corner sweeping inward toward bottom-left
-          cx = r.x;
-          cy = r.y + r.h;
-          startAngle = -Math.PI / 2;
-        } else if (dir === 0) {
-          // square attached to the right: center at bottom-left of square
-          cx = r.x;
-          cy = r.y + r.h;
-          startAngle = -Math.PI / 2;
-        } else if (dir === 1) {
-          // square attached to the top: center at bottom-right
-          cx = r.x + r.w;
-          cy = r.y + r.h;
-          startAngle = Math.PI;
-        } else if (dir === 2) {
-          // square attached to the left: center at top-right
-          cx = r.x + r.w;
-          cy = r.y;
-          startAngle = Math.PI / 2;
-        } else {
-          // square attached to the bottom: center at top-left
-          cx = r.x;
-          cy = r.y;
-          startAngle = 0;
+      if (arcs.length > 0) {
+        const a0 = arcs[0];
+        ctx.moveTo(tx(a0.sx), ty(a0.sy));
+        for (const a of arcs) {
+          const startAngle = Math.atan2(a.sy - a.cy, a.sx - a.cx);
+          const endAngle = startAngle + Math.PI / 2; // CW on screen = +angle in canvas (Y-down)
+          ctx.arc(tx(a.cx), ty(a.cy), a.r * scale, startAngle, endAngle, false);
         }
-        const radius = Math.min(r.w, r.h) * scale;
-        ctx.arc(tx(cx), ty(cy), radius, startAngle, startAngle + Math.PI / 2);
       }
       ctx.stroke();
     };

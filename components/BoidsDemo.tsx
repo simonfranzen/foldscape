@@ -1,14 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Props {
   count?: number;
   className?: string;
+  // Label for the reset button. Defaults to EN; pass a locale-aware string
+  // from the story page (e.g. "Neu starten" in DE).
+  resetLabel?: string;
 }
 
-export function BoidsDemo({ count = 120, className = "" }: Props) {
+export function BoidsDemo({ count = 120, className = "", resetLabel = "Restart" }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  // Bumping this tears down + restarts the simulation effect — flocks
+  // re-seed from random positions so the user can watch the swarm form
+  // from scratch.
+  const [resetTick, setResetTick] = useState(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -193,7 +200,18 @@ export function BoidsDemo({ count = 120, className = "" }: Props) {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [count]);
+  }, [count, resetTick]);
 
-  return <canvas ref={canvasRef} className={className} />;
+  return (
+    <div className={`relative ${className}`}>
+      <canvas ref={canvasRef} className="block h-full w-full" />
+      <button
+        type="button"
+        onClick={() => setResetTick((n) => n + 1)}
+        className="hairline glass absolute right-3 top-3 rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-cyan/60 hover:text-signal-cyan"
+      >
+        ↻ {resetLabel}
+      </button>
+    </div>
+  );
 }

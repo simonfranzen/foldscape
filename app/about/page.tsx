@@ -83,9 +83,6 @@ type RichAbout = {
     pretitle: string;
     title: string;
     paragraphs: string[];
-    pledgeLabel: string;
-    pledgeBody: string;
-    recipientsNote: string;
   };
   studio: {
     pretitle: string;
@@ -125,11 +122,6 @@ const de: RichAbout = {
       "Konkret: Einnahmen aus diesem Projekt fließen vollständig an Organisationen, die Forschende, Studierende und junge Menschen — insbesondere Frauen und nicht-binäre Personen — in Mathematik und Informatik stärken. Keine versteckten Kosten, keine Werbe-Umwege.",
       "Ich bin keine neutrale Stimme hier. Das ist eine sehr persönliche Sammlung, kuratiert mit der Hand, die sie geschrieben hat. Wenn es dir gefällt: schick es weiter. Wenn dich etwas stört: schreib mir.",
     ],
-    pledgeLabel: "Spendenversprechen",
-    pledgeBody:
-      "Sämtliche Einnahmen aus Foldscape fließen direkt an Organisationen, die Frauen in Mathematik und Informatik stärken — etwa Femtec.Network, Girls Who Code und vergleichbare gemeinnützige Initiativen im DACH- und EU-Raum.",
-    recipientsNote:
-      "Die jeweils aktuellen Empfängerorganisationen werden auf dieser Seite gelistet, sobald die ersten Mittel weitergeleitet wurden.",
   },
   studio: {
     pretitle: "Studio",
@@ -182,11 +174,6 @@ const en: RichAbout = {
       "Concretely: project earnings flow in full to organisations that strengthen researchers, students, and young people — especially women and non-binary people — in maths and CS. No hidden costs, no advertising detours.",
       "I am not a neutral voice here. This is a deeply personal collection, curated by the hand that wrote it. If it lands for you, pass it on. If something rubs you the wrong way, write to me.",
     ],
-    pledgeLabel: "Funding pledge",
-    pledgeBody:
-      "All earnings from Foldscape flow directly to organisations that strengthen women in mathematics and computer science — for example Femtec.Network, Girls Who Code, and comparable non-profit initiatives in the DACH and EU region.",
-    recipientsNote:
-      "Current recipient organisations will be listed on this page as soon as the first funds have been forwarded.",
   },
   studio: {
     pretitle: "Studio",
@@ -239,11 +226,6 @@ const es: RichAbout = {
       "En concreto: los ingresos del proyecto van íntegros a organizaciones que fortalecen a investigadoras, estudiantes y jóvenes — especialmente mujeres y personas no binarias — en matemáticas e informática. Sin costes ocultos, sin desvíos publicitarios.",
       "No soy una voz neutra aquí. Esta es una colección profundamente personal, curada por la mano que la escribe. Si te llega, pásala. Si algo te molesta, escríbeme.",
     ],
-    pledgeLabel: "Compromiso de financiación",
-    pledgeBody:
-      "Todos los ingresos de Foldscape se destinan directamente a organizaciones que fortalecen a las mujeres en matemáticas e informática — por ejemplo Femtec.Network, Girls Who Code e iniciativas no lucrativas equivalentes en la región DACH y la UE.",
-    recipientsNote:
-      "Las organizaciones receptoras actuales se listarán en esta página en cuanto se hayan transferido los primeros fondos.",
   },
   studio: {
     pretitle: "Estudio",
@@ -296,11 +278,6 @@ const fr: RichAbout = {
       "Concrètement : les revenus du projet vont intégralement à des organisations qui renforcent les chercheuses, étudiantes et jeunes — en particulier les femmes et les personnes non binaires — en maths et en informatique. Pas de coûts cachés, pas de détours publicitaires.",
       "Je ne suis pas une voix neutre ici. C'est une collection profondément personnelle, curatée par la main qui l'écrit. Si elle te parle, fais-la circuler. Si quelque chose te dérange, écris-moi.",
     ],
-    pledgeLabel: "Engagement de financement",
-    pledgeBody:
-      "L'intégralité des revenus de Foldscape est reversée à des organisations qui renforcent la place des femmes en mathématiques et en informatique — par exemple Femtec.Network, Girls Who Code et des initiatives associatives équivalentes dans la région DACH et l'UE.",
-    recipientsNote:
-      "Les organisations bénéficiaires actuelles seront listées sur cette page dès que les premiers fonds auront été reversés.",
   },
   studio: {
     pretitle: "Studio",
@@ -353,11 +330,6 @@ const it: RichAbout = {
       "In concreto: i ricavi del progetto vanno per intero a organizzazioni che rafforzano ricercatrici, studenti e giovani — in particolare donne e persone non binarie — in matematica e informatica. Nessun costo nascosto, nessun aggiramento pubblicitario.",
       "Non sono una voce neutra qui. Questa è una raccolta profondamente personale, curata dalla mano che la scrive. Se ti arriva, fallo girare. Se qualcosa ti dà fastidio, scrivimi.",
     ],
-    pledgeLabel: "Impegno di finanziamento",
-    pledgeBody:
-      "Tutti i ricavi di Foldscape vengono devoluti direttamente a organizzazioni che rafforzano le donne in matematica e informatica — ad esempio Femtec.Network, Girls Who Code e iniziative non profit analoghe nell'area DACH e nell'UE.",
-    recipientsNote:
-      "Le organizzazioni destinatarie attuali verranno elencate in questa pagina non appena i primi fondi saranno stati trasferiti.",
   },
   studio: {
     pretitle: "Studio",
@@ -410,11 +382,6 @@ const pt: RichAbout = {
       "Em concreto: as receitas do projecto vão integralmente para organizações que fortalecem investigadoras, estudantes e jovens — em particular mulheres e pessoas não binárias — em matemática e informática. Sem custos escondidos, sem desvios publicitários.",
       "Não sou uma voz neutra aqui. Esta é uma colecção profundamente pessoal, curada pela mão que a escreve. Se te chega, faz circular. Se algo te incomoda, escreve-me.",
     ],
-    pledgeLabel: "Compromisso de financiamento",
-    pledgeBody:
-      "Todas as receitas do Foldscape são entregues directamente a organizações que fortalecem as mulheres em matemática e informática — por exemplo Femtec.Network, Girls Who Code e iniciativas sem fins lucrativos equivalentes na região DACH e na UE.",
-    recipientsNote:
-      "As organizações destinatárias actuais serão listadas nesta página assim que os primeiros fundos forem encaminhados.",
   },
   studio: {
     pretitle: "Estúdio",
@@ -467,11 +434,6 @@ const sv: RichAbout = {
       "Konkret: intäkterna från projektet går i sin helhet till organisationer som stärker forskare, studenter och unga — särskilt kvinnor och icke-binära personer — inom matematik och datavetenskap. Inga dolda kostnader, inga reklamomvägar.",
       "Jag är ingen neutral röst här. Det här är en djupt personlig samling, kurerad av den hand som skriver den. Om den landar hos dig, skicka den vidare. Om något skaver, skriv till mig.",
     ],
-    pledgeLabel: "Finansieringslöfte",
-    pledgeBody:
-      "Alla intäkter från Foldscape går direkt till organisationer som stärker kvinnor inom matematik och datavetenskap — till exempel Femtec.Network, Girls Who Code och motsvarande ideella initiativ i DACH-regionen och EU.",
-    recipientsNote:
-      "Aktuella mottagarorganisationer listas på den här sidan så snart de första medlen har vidarebefordrats.",
   },
   studio: {
     pretitle: "Studio",
@@ -524,11 +486,6 @@ const no: RichAbout = {
       "Konkret: inntektene fra prosjektet går i sin helhet til organisasjoner som styrker forskere, studenter og unge — særlig kvinner og ikke-binære personer — i matematikk og informatikk. Ingen skjulte kostnader, ingen reklame-omveier.",
       "Jeg er ingen nøytral stemme her. Dette er en dypt personlig samling, kuratert av hånden som skriver den. Hvis den treffer deg, send den videre. Hvis noe skurrer, skriv til meg.",
     ],
-    pledgeLabel: "Finansieringsløfte",
-    pledgeBody:
-      "Alle inntekter fra Foldscape går direkte til organisasjoner som styrker kvinner i matematikk og informatikk — for eksempel Femtec.Network, Girls Who Code og tilsvarende ideelle initiativer i DACH-regionen og EU.",
-    recipientsNote:
-      "Aktuelle mottakerorganisasjoner blir listet på denne siden så snart de første midlene er videreført.",
   },
   studio: {
     pretitle: "Studio",
@@ -616,13 +573,6 @@ export default function AboutPage() {
               <p key={i}>{p}</p>
             ))}
           </div>
-          <aside className="hairline mt-4 space-y-3 rounded-xl border border-signal-violet/30 bg-signal-violet/5 p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
-              {about.motivation.pledgeLabel}
-            </div>
-            <p className="leading-relaxed text-ink-100">{about.motivation.pledgeBody}</p>
-            <p className="text-sm italic text-ink-300">{about.motivation.recipientsNote}</p>
-          </aside>
         </section>
       </Reveal>
 

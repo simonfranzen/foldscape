@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
-import { TOPICS, type TopicCategory } from "@/lib/topics";
+import { TOPICS, type Topic, type TopicCategory } from "@/lib/topics";
 import { LandingBackdrop } from "@/components/LandingBackdrop";
 import { Reveal } from "@/components/Reveal";
 import { TopicConstellation } from "@/components/TopicConstellation";
@@ -33,7 +33,24 @@ export default function Landing() {
   const [filter, setFilter] = useState<TopicCategory | "all">("all");
   const [view, setView] = useState<ViewMode>("constellation");
 
-  const visible = filter === "all" ? TOPICS : TOPICS.filter((t) => t.category === filter);
+  // Per-session topic order: shuffled once on client mount so the list view
+  // doesn't always lead with the same handful of topics. SSR renders the
+  // canonical TOPICS order to avoid a hydration mismatch; the client effect
+  // overrides it on the next tick. A new shuffle fires on each filter change
+  // so the filtered list also feels random, not alphabetical.
+  const [topicOrder, setTopicOrder] = useState<Topic[]>(TOPICS);
+  useEffect(() => {
+    const shuffled = [...TOPICS];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    setTopicOrder(shuffled);
+  }, [filter]);
+  const visible = useMemo(
+    () => (filter === "all" ? topicOrder : topicOrder.filter((t) => t.category === filter)),
+    [filter, topicOrder],
+  );
 
   return (
     <main className="relative isolate min-h-screen">

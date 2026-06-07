@@ -38,6 +38,7 @@ type RichStory = {
   hilbertFreeRooms: string;
   hilbertOccupied: string;
   hilbertHint: string;
+  robinsonNote: string;
   closingPretitle: string;
   closingTitle: string;
   closingBody: string;
@@ -66,7 +67,7 @@ const en: RichStory = {
       {
         label: "02",
         title: "A concrete example",
-        body: "Hilbert's hotel is a warm-up. It has infinitely many rooms, all booked. A new guest arrives. The clerk asks each guest to shift one room over — guest 1 to room 2, guest 2 to room 3, and so on. Room 1 is now free, no one was kicked out, and every guest still has a room. You added a guest to a full hotel. Banach–Tarski does the same trick, in three dimensions, with volume.",
+        body: "Take a solid orange. Cut it — mathematically — into just five pieces. Not orange-slices: each piece is a dense, intertwined cloud of points threaded through the fruit. Now rotate each cloud rigidly in place, no stretching, no extra matter. The five pieces reassemble into two solid oranges, each the same size as the original and indistinguishable from it. The cut is exactly defined but physically unbuildable — no scalpel can trace it, because it lives only in the continuum.",
       },
       {
         label: "03",
@@ -74,7 +75,7 @@ const en: RichStory = {
         body: "The paradox is the cleanest signal that mathematical reality and physical reality are not the same thing. It depends on the Axiom of Choice — a quiet assumption most mathematicians use without thinking — and it forced a century of debate about which set-theory foundations are worth keeping. The pieces are not regions you could touch; they are infinite point-clouds with no defined volume.",
       },
     ],
-    tryIt: "Walk a free-group tree. Duplicate guests in an infinite hotel. The intuition is below.",
+    tryIt: "Walk a free-group tree. Watch the duplication trick play out below.",
   },
   sections: [
     {
@@ -121,6 +122,8 @@ const en: RichStory = {
   hilbertOccupied: "occupied",
   hilbertHint:
     "The hotel is full, yet there is always room for one more — or for infinitely many more. Banach–Tarski takes the same algebraic trick (shifting an infinite collection into a proper subset of itself) and runs it inside a solid ball.",
+
+  robinsonNote: "Minimum number of pieces. Four are dense non-measurable point-clouds carved by the F₂ action; the fifth is a single point at the centre, an artefact of rotations fixing the origin.",
   closingPretitle: "See the engine",
   closingTitle: "Open the Explorer.",
   closingBody:
@@ -150,7 +153,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Hilberts Hotel ist die Aufwärmübung. Es hat unendlich viele Zimmer, alle belegt. Ein neuer Gast kommt. Der Empfang bittet jeden Gast, ein Zimmer weiterzurücken — Gast 1 in Zimmer 2, Gast 2 in Zimmer 3, und so weiter. Zimmer 1 ist nun frei, niemand wurde hinausgeworfen, jeder hat weiter ein Zimmer. Ein Gast mehr in einem vollen Hotel. Banach–Tarski macht denselben Trick, in drei Dimensionen, mit Volumen.",
+        body: "Nimm eine massive Orange. Zerlege sie — rein mathematisch — in genau fünf Teile. Keine Orangenspalten: jedes Teil ist eine dichte, ineinander verwobene Punktwolke, die durch die ganze Frucht zieht. Drehe jede Wolke starr an Ort und Stelle, kein Strecken, keine zusätzliche Materie. Die fünf Teile fügen sich zu zwei massiven Orangen zusammen, jede so groß wie die ursprüngliche und nicht von ihr zu unterscheiden. Der Schnitt ist exakt definiert, aber physikalisch nicht ausführbar — kein Skalpell kann ihm folgen, denn er existiert nur im Kontinuum.",
       },
       {
         label: "03",
@@ -159,7 +162,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Lauf durch einen Baum freier Gruppen. Verdopple Gäste im unendlichen Hotel. Die Intuition kommt unten.",
+      "Lauf durch einen Baum freier Gruppen. Sieh den Verdopplungstrick unten in Aktion.",
   },
   sections: [
     {
@@ -206,6 +209,8 @@ const de: RichStory = {
   hilbertOccupied: "belegt",
   hilbertHint:
     "Das Hotel ist voll und hat trotzdem immer Platz für einen mehr — oder für unendlich viele mehr. Banach–Tarski nimmt denselben algebraischen Trick (eine unendliche Sammlung in eine echte Teilmenge ihrer selbst verschieben) und führt ihn innerhalb einer massiven Kugel aus.",
+
+  robinsonNote: "Minimale Stückzahl. Vier sind dichte, nichtmessbare Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet; das fünfte ist ein einzelner Punkt im Zentrum — ein Artefakt der Drehungen, die den Ursprung fixieren.",
   closingPretitle: "Sieh die Maschine",
   closingTitle: "Öffne den Explorer.",
   closingBody:
@@ -235,7 +240,7 @@ const es: RichStory = {
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: "El hotel de Hilbert es el calentamiento. Tiene infinitas habitaciones, todas ocupadas. Llega un huésped nuevo. La recepción pide a cada huésped que se mueva una habitación — del 1 al 2, del 2 al 3, y así. La habitación 1 queda libre, nadie ha sido expulsado, todos siguen alojados. Has añadido un huésped a un hotel lleno. Banach–Tarski hace el mismo truco, en tres dimensiones, con volumen.",
+        body: "Toma una naranja sólida. Córtala — matemáticamente — en exactamente cinco piezas. Nada de gajos: cada pieza es una nube densa de puntos entrelazada por toda la fruta. Gira cada nube como un cuerpo rígido en su sitio, sin estirar, sin materia extra. Las cinco piezas se reensamblan en dos naranjas sólidas, cada una del mismo tamaño que la original e indistinguible de ella. El corte está definido con precisión, pero es físicamente irrealizable — ningún escalpelo puede seguirlo, porque solo existe en el continuo.",
       },
       {
         label: "03",
@@ -244,7 +249,7 @@ const es: RichStory = {
       },
     ],
     tryIt:
-      "Recorre un árbol de grupo libre. Duplica huéspedes en un hotel infinito. La intuición está abajo.",
+      "Recorre un árbol de grupo libre. Mira el truco de duplicación en acción abajo.",
   },
   sections: [
     {
@@ -291,6 +296,8 @@ const es: RichStory = {
   hilbertOccupied: "ocupadas",
   hilbertHint:
     "El hotel está lleno y, sin embargo, siempre hay sitio para uno más — o para infinitos más. Banach–Tarski toma el mismo truco algebraico (desplazar una colección infinita a un subconjunto propio de sí misma) y lo ejecuta dentro de una bola sólida.",
+
+  robinsonNote: "Número mínimo de piezas. Cuatro son nubes densas no medibles talladas por la acción de F₂; la quinta es un único punto en el centro, un artefacto de las rotaciones que fijan el origen.",
   closingPretitle: "Mira el motor",
   closingTitle: "Abre el Explorador.",
   closingBody:
@@ -320,7 +327,7 @@ const fr: RichStory = {
       {
         label: "02",
         title: "Un exemple concret",
-        body: "L'hôtel de Hilbert sert d'échauffement. Il a une infinité de chambres, toutes occupées. Un nouvel hôte arrive. La réception demande à chacun de passer dans la chambre suivante — du 1 au 2, du 2 au 3, et ainsi de suite. La chambre 1 est libre, personne n'a été expulsé, tout le monde est encore logé. Tu as ajouté un client à un hôtel complet. Banach–Tarski exécute la même astuce, en trois dimensions, avec du volume.",
+        body: "Prends une orange pleine. Découpe-la — mathématiquement — en exactement cinq morceaux. Pas des quartiers : chaque morceau est un nuage dense de points, entrelacé à travers tout le fruit. Fais tourner chaque nuage comme un solide rigide sur place, sans étirement, sans matière supplémentaire. Les cinq morceaux se réassemblent en deux oranges pleines, chacune de la même taille que l'originale et impossible à en distinguer. La coupe est définie avec précision mais physiquement irréalisable — aucun scalpel ne peut la suivre, car elle n'existe que dans le continu.",
       },
       {
         label: "03",
@@ -329,7 +336,7 @@ const fr: RichStory = {
       },
     ],
     tryIt:
-      "Parcours un arbre de groupe libre. Dédouble des hôtes dans un hôtel infini. L'intuition est en bas.",
+      "Parcours un arbre de groupe libre. Regarde le tour du dédoublement se jouer en bas.",
   },
   sections: [
     {
@@ -376,6 +383,8 @@ const fr: RichStory = {
   hilbertOccupied: "occupées",
   hilbertHint:
     "L'hôtel est plein et, pourtant, il y a toujours de la place pour un de plus — ou pour une infinité de plus. Banach–Tarski reprend la même astuce algébrique (déplacer une collection infinie dans un sous-ensemble propre d'elle-même) et l'exécute à l'intérieur d'une boule pleine.",
+
+  robinsonNote: "Nombre minimum de morceaux. Quatre sont des nuages denses non mesurables découpés par l’action de F₂ ; le cinquième est un unique point au centre, artefact des rotations qui fixent l’origine.",
   closingPretitle: "Vois le moteur",
   closingTitle: "Ouvre l'Explorateur.",
   closingBody:
@@ -405,7 +414,7 @@ const it: RichStory = {
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "L'hotel di Hilbert è il riscaldamento. Ha infinite stanze, tutte occupate. Arriva un nuovo ospite. La reception chiede a ciascun ospite di spostarsi di una stanza — l'1 al 2, il 2 al 3, e così via. La stanza 1 è libera, nessuno è stato cacciato, tutti hanno ancora una stanza. Hai aggiunto un ospite a un hotel pieno. Banach–Tarski compie lo stesso gioco, in tre dimensioni, con il volume.",
+        body: "Prendi un'arancia piena. Tagliala — matematicamente — in esattamente cinque pezzi. Non spicchi: ogni pezzo è una nuvola densa di punti, intrecciata attraverso tutto il frutto. Ruota ciascuna nuvola come corpo rigido sul posto, senza stirare, senza materia in più. I cinque pezzi si ricompongono in due arance piene, ciascuna delle dimensioni dell'originale e indistinguibile da essa. Il taglio è definito con precisione ma fisicamente irrealizzabile — nessun bisturi può seguirlo, perché esiste solo nel continuo.",
       },
       {
         label: "03",
@@ -414,7 +423,7 @@ const it: RichStory = {
       },
     ],
     tryIt:
-      "Cammina su un albero di gruppo libero. Duplica ospiti in un hotel infinito. L'intuizione è qui sotto.",
+      "Cammina su un albero di gruppo libero. Guarda il trucco della duplicazione svolgersi qui sotto.",
   },
   sections: [
     {
@@ -461,6 +470,8 @@ const it: RichStory = {
   hilbertOccupied: "occupate",
   hilbertHint:
     "L'hotel è pieno e tuttavia c'è sempre posto per uno in più — o per infiniti in più. Banach–Tarski prende lo stesso trucco algebrico (spostare una collezione infinita in un proprio sottoinsieme di sé) e lo esegue all'interno di una palla piena.",
+
+  robinsonNote: "Numero minimo di pezzi. Quattro sono nuvole dense e non misurabili scolpite dall’azione di F₂; il quinto è un singolo punto al centro, un artefatto delle rotazioni che fissano l’origine.",
   closingPretitle: "Vedi il motore",
   closingTitle: "Apri l'Esploratore.",
   closingBody:
@@ -490,7 +501,7 @@ const pt: RichStory = {
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: "O hotel de Hilbert é o aquecimento. Tem uma infinidade de quartos, todos ocupados. Chega um hóspede novo. A recepção pede a cada hóspede que se mude um quarto à frente — do 1 para o 2, do 2 para o 3, e por aí fora. O quarto 1 está livre, ninguém foi expulso, todos continuam alojados. Adicionaste um hóspede a um hotel cheio. Banach–Tarski faz o mesmo truque, em três dimensões, com volume.",
+        body: "Pega numa laranja sólida. Corta-a — matematicamente — em exactamente cinco peças. Nada de gomos: cada peça é uma nuvem densa de pontos, entrelaçada por toda a fruta. Roda cada nuvem como corpo rígido no mesmo sítio, sem esticar, sem matéria extra. As cinco peças voltam a juntar-se em duas laranjas sólidas, cada uma do tamanho da original e indistinguível dela. O corte está definido com precisão, mas é fisicamente irrealizável — nenhum bisturi o consegue seguir, porque só existe no contínuo.",
       },
       {
         label: "03",
@@ -499,7 +510,7 @@ const pt: RichStory = {
       },
     ],
     tryIt:
-      "Percorre uma árvore de grupo livre. Duplica hóspedes num hotel infinito. A intuição está em baixo.",
+      "Percorre uma árvore de grupo livre. Vê o truque da duplicação a desenrolar-se em baixo.",
   },
   sections: [
     {
@@ -546,6 +557,8 @@ const pt: RichStory = {
   hilbertOccupied: "ocupados",
   hilbertHint:
     "O hotel está cheio e, ainda assim, há sempre espaço para mais um — ou para infinitos mais. Banach–Tarski apanha o mesmo truque algébrico (deslocar uma coleção infinita para um subconjunto próprio de si mesma) e executa-o dentro de uma bola sólida.",
+
+  robinsonNote: "Número mínimo de peças. Quatro são nuvens densas não mensuráveis recortadas pela acção de F₂; a quinta é um único ponto no centro, um artefacto das rotações que fixam a origem.",
   closingPretitle: "Vê o motor",
   closingTitle: "Abre o Explorador.",
   closingBody:
@@ -575,7 +588,7 @@ const sv: RichStory = {
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "Hilberts hotell är uppvärmningen. Det har oändligt många rum, alla bokade. En ny gäst dyker upp. Receptionen ber varje gäst flytta ett rum framåt — gäst 1 till rum 2, gäst 2 till rum 3, och så vidare. Rum 1 är nu ledigt, ingen har kastats ut, alla har fortfarande ett rum. Du har lagt till en gäst på ett fullt hotell. Banach–Tarski gör samma trick, i tre dimensioner, med volym.",
+        body: "Ta en hel apelsin. Skär den — matematiskt — i exakt fem bitar. Inga klyftor: varje bit är ett tätt punktmoln som löper sammanflätat genom hela frukten. Rotera varje moln stelt på plats, ingen sträckning, ingen extra materia. De fem bitarna sätts ihop till två hela apelsiner, var och en lika stor som originalet och omöjlig att skilja från det. Snittet är exakt definierat men fysiskt outförbart — ingen skalpell kan följa det, för det existerar bara i kontinuumet.",
       },
       {
         label: "03",
@@ -584,7 +597,7 @@ const sv: RichStory = {
       },
     ],
     tryIt:
-      "Vandra i ett fri-grupp-träd. Duplicera gäster i ett oändligt hotell. Intuitionen ligger nedan.",
+      "Vandra i ett fri-grupp-träd. Se dubbleringstricket spela ut sig nedan.",
   },
   sections: [
     {
@@ -631,6 +644,8 @@ const sv: RichStory = {
   hilbertOccupied: "upptagna",
   hilbertHint:
     "Hotellet är fullt och har ändå alltid plats för en till — eller för oändligt många till. Banach–Tarski tar samma algebraiska trick (att flytta en oändlig samling in i en äkta delmängd av sig själv) och kör det inne i ett massivt klot.",
+
+  robinsonNote: "Minimalt antal bitar. Fyra är täta, icke-mätbara punktmoln som F₂-verkan skär ut; den femte är en enda punkt i centrum, en artefakt av rotationerna som fixerar origo.",
   closingPretitle: "Se motorn",
   closingTitle: "Öppna Utforskaren.",
   closingBody:
@@ -660,7 +675,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Hilberts hotell er oppvarmingen. Det har uendelig mange rom, alle bookede. En ny gjest dukker opp. Resepsjonen ber hver gjest flytte ett rom videre — gjest 1 til rom 2, gjest 2 til rom 3, og så videre. Rom 1 er nå ledig, ingen ble kastet ut, alle har fortsatt et rom. Du la til en gjest på et fullt hotell. Banach–Tarski gjør samme triks, i tre dimensjoner, med volum.",
+        body: "Ta en hel appelsin. Skjær den — matematisk — i nøyaktig fem biter. Ingen båter: hver bit er en tett punktsky som er flettet gjennom hele frukten. Roter hver sky stivt på stedet, ingen strekking, ingen ekstra materie. De fem bitene settes sammen til to hele appelsiner, hver like stor som originalen og umulig å skille fra den. Snittet er presist definert, men fysisk uutførbart — ingen skalpell kan følge det, for det finnes bare i kontinuumet.",
       },
       {
         label: "03",
@@ -669,7 +684,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Vandre i et frigruppe-tre. Dupliser gjester i et uendelig hotell. Intuisjonen ligger under.",
+      "Vandre i et frigruppe-tre. Se duplikasjonstrikset utspille seg under.",
   },
   sections: [
     {
@@ -716,6 +731,8 @@ const no: RichStory = {
   hilbertOccupied: "opptatte",
   hilbertHint:
     "Hotellet er fullt, og likevel er det alltid plass til én til — eller til uendelig mange til. Banach–Tarski tar samme algebraiske triks (å flytte en uendelig samling inn i en ekte delmengde av seg selv) og kjører det inne i en massiv kule.",
+
+  robinsonNote: "Minimum antall biter. Fire er tette, ikke-målbare punktskyer som F₂-virkningen skjærer ut; den femte er et enkelt punkt i sentrum, en artefakt av rotasjonene som fester origo.",
   closingPretitle: "Se motoren",
   closingTitle: "Åpne Utforskeren.",
   closingBody:
@@ -853,9 +870,7 @@ export default function BanachStory() {
             </div>
             <div className="math-italic text-5xl text-ink-100 md:text-6xl">5</div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Minimum number of pieces. Four are dense non-measurable point-clouds carved by the F₂
-              action; the fifth is a single point at the centre, an artefact of rotations fixing the
-              origin.
+              {story.robinsonNote}
             </p>
           </div>
         </Reveal>
