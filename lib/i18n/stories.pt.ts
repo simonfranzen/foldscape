@@ -927,7 +927,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo dois · Cada fração, uma vez",
           title: "Nada falta, nada se repete",
-          body: "É um teorema — demonstrável em poucas linhas — que a árvore de Stern-Brocot contém todo número racional positivo exatamente uma vez, com numerador e denominador já coprimos. Portanto, a árvore é, simultaneamente, uma enumeração dos racionais positivos, uma prova de que só existem numeráveis, e uma forma estruturalmente justa de os construir. Stern (1858) e Brocot (1861) descobriram a mesma árvore independentemente — Stern como peça de teoria de números, Brocot como ferramenta de relojoeiro para escolher rácios de engrenagens.",
+          body: "É um teorema — demonstrável em poucas linhas — que os ramos da árvore de Stern-Brocot enumeram os racionais positivos sem omissões e sem repetições: cada fração irredutível p/q pousa num único nó, com p e q já coprimos. Portanto, a árvore é, simultaneamente, um catálogo completo dos racionais positivos, uma testemunha de que só existem numeráveis, e uma forma estruturalmente justa de os construir. Stern (1858) e Brocot (1861) descobriram a mesma árvore independentemente — Stern como peça de teoria de números, Brocot como ferramenta de relojoeiro para escolher rácios de engrenagens.",
         },
         {
           pretitle: "Passo três · O caminho da fração contínua",
@@ -1006,7 +1006,7 @@ export const pt: StoriesDict = {
       title: "A Tábua de Galton",
       tagline: "Bolas a saltar desenham sempre o mesmo sino.",
       intro:
-        "O quincunce de Francis Galton é um triângulo de pinos. Uma bola deixada cair do topo salta para a esquerda ou para a direita em cada pino, cinquenta-cinquenta, e aterra num dos compartimentos no fundo. Deixa cair dez mil bolas e os compartimentos enchem-se — sempre — na forma da distribuição normal. O sino não é uma coincidência. É o Teorema do Limite Central tornado tangível.",
+        "O quincunce de Francis Galton é um triângulo de pinos. Solta um berlinde no cimo: em cada pino, um cara-ou-coroa cinquenta-cinquenta desvia-o para a esquerda ou para a direita, até que a gravidade o deposita num dos compartimentos de recolha ao longo do chão. Deixa cair dez mil berlindes e os compartimentos enchem-se — sempre — na forma da distribuição normal. O sino não é uma coincidência. É o Teorema do Limite Central tornado tangível.",
       ctaInteractive: "→ Abrir o Explorador",
       sections: [
         {

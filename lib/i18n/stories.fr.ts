@@ -927,7 +927,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape deux · Chaque fraction, une fois",
           title: "Rien n'est manqué, rien n'est répété",
-          body: "C'est un théorème — démontrable en quelques lignes — que l'arbre de Stern-Brocot contient chaque nombre rationnel positif exactement une fois, avec numérateur et dénominateur déjà premiers entre eux. L'arbre est donc, simultanément, une énumération des rationnels positifs, une preuve qu'il n'y en a qu'un nombre dénombrable, et une manière structurellement équitable de les construire. Stern (1858) et Brocot (1861) ont découvert le même arbre indépendamment — Stern en théorie des nombres, Brocot en tant qu'outil d'horloger pour choisir des rapports d'engrenages.",
+          body: "C'est un théorème — démontrable en quelques lignes — que les branches de l'arbre de Stern-Brocot énumèrent les rationnels positifs sans omission ni répétition : chaque fraction irréductible p/q se pose sur un nœud et un seul, p et q déjà premiers entre eux. L'arbre est donc, simultanément, un catalogue complet des rationnels positifs, un témoin qu'il n'y en a qu'un nombre dénombrable, et une manière structurellement équitable de les construire. Stern (1858) et Brocot (1861) ont découvert le même arbre indépendamment — Stern en théorie des nombres, Brocot en tant qu'outil d'horloger pour choisir des rapports d'engrenages.",
         },
         {
           pretitle: "Étape trois · Le chemin en fraction continue",
@@ -1007,7 +1007,7 @@ export const fr: StoriesDict = {
       title: "La planche de Galton",
       tagline: "Des billes qui rebondissent dessinent toujours la même cloche.",
       intro:
-        "Le quincunx de Francis Galton est un triangle de chevilles. Une bille lâchée du haut rebondit à gauche ou à droite à chaque cheville, à 50-50, et atterrit dans l'un des bacs en bas. Lâche dix mille billes et les bacs se remplissent — toujours — selon la forme de la distribution normale. La cloche n'est pas un hasard. C'est le théorème central limite rendu tactile.",
+        "Le quincunx de Francis Galton est un triangle de chevilles. Lâche une bille au sommet : à chaque cheville, un pile-ou-face à 50-50 la dévie à gauche ou à droite, jusqu'à ce que la gravité la dépose dans l'un des bacs collecteurs du bas. Lâche dix mille billes et les bacs se remplissent — toujours — selon la forme de la distribution normale. La cloche n'est pas un hasard. C'est le théorème central limite rendu tactile.",
       ctaInteractive: "→ Ouvrir l'Explorateur",
       sections: [
         {

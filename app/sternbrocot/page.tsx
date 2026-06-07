@@ -88,7 +88,7 @@ const en: RichStory = {
     {
       pretitle: "Section 02 · Every fraction, once",
       title: "Nothing missed, nothing repeated",
-      body: "Stern discovered the tree in 1858 as a piece of pure number theory; Brocot rediscovered it in 1861 while picking gear ratios for clocks. Their shared theorem: every positive rational number appears in the tree exactly once, with numerator and denominator already coprime. The tree is simultaneously an enumeration of the rationals and a proof that there are only countably many.",
+      body: "Stern discovered the tree in 1858 as a piece of pure number theory; Brocot rediscovered it in 1861 while picking gear ratios for clocks. Their shared theorem: walk far enough and you meet every reduced fraction p/q with p, q > 0 — each one sitting at its own unique node, no fraction missing, none ever repeated. The tree is simultaneously a complete listing of the positive rationals and a witness that they are merely countable.",
     },
     {
       pretitle: "Section 03 · Left-right is the continued fraction",
@@ -171,7 +171,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Jeder Bruch, einmal",
       title: "Nichts ausgelassen, nichts wiederholt",
-      body: "Stern entdeckte den Baum 1858 als Stück reiner Zahlentheorie; Brocot fand ihn 1861 wieder, beim Wählen von Zahnradübersetzungen für Uhren. Ihr gemeinsamer Satz: jede positive rationale Zahl erscheint genau einmal, mit Zähler und Nenner bereits teilerfremd. Der Baum ist gleichzeitig Aufzählung der rationalen Zahlen und Beweis, dass es nur abzählbar viele gibt.",
+      body: "Stern entdeckte den Baum 1858 als Stück reiner Zahlentheorie; Brocot fand ihn 1861 wieder, beim Wählen von Zahnradübersetzungen für Uhren. Ihr gemeinsamer Satz: gehst du weit genug, triffst du jeden gekürzten Bruch p/q mit p, q > 0 — jeder sitzt an seinem eigenen, einzigen Knoten, keiner fehlt, keiner taucht doppelt auf. Der Baum ist zugleich vollständige Liste der positiven rationalen Zahlen und Zeuge dafür, dass sie nur abzählbar sind.",
     },
     {
       pretitle: "Abschnitt 03 · Links-Rechts ist der Kettenbruch",
@@ -254,7 +254,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 02 · Cada fracción, una vez",
       title: "Nada falta, nada se repite",
-      body: "Stern descubrió el árbol en 1858 como teoría pura de números; Brocot lo redescubrió en 1861 eligiendo razones de engranaje para relojes. Su teorema común: toda fracción positiva aparece exactamente una vez, con numerador y denominador ya coprimos. El árbol es a la vez enumeración de los racionales y prueba de que son contables.",
+      body: "Stern descubrió el árbol en 1858 como teoría pura de números; Brocot lo redescubrió en 1861 eligiendo razones de engranaje para relojes. Su teorema común: si caminas lo bastante, te cruzas con cada fracción reducida p/q de términos positivos — cada una en su propio nodo único, ninguna ausente, ninguna repetida. El árbol es a la vez catálogo completo de los racionales positivos y testigo de que son numerables.",
     },
     {
       pretitle: "Sección 03 · Izquierda-derecha es la fracción continua",
@@ -337,7 +337,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 02 · Chaque fraction, une seule fois",
       title: "Rien oublié, rien répété",
-      body: "Stern a découvert l'arbre en 1858 comme théorie pure des nombres ; Brocot l'a redécouvert en 1861 en choisissant des rapports d'engrenage pour des horloges. Leur théorème commun : toute fraction positive apparaît exactement une fois, numérateur et dénominateur déjà premiers entre eux. L'arbre est à la fois énumération des rationnels et preuve qu'ils sont dénombrables.",
+      body: "Stern a découvert l'arbre en 1858 comme théorie pure des nombres ; Brocot l'a redécouvert en 1861 en choisissant des rapports d'engrenage pour des horloges. Leur théorème commun : descends assez loin et tu rencontres chaque fraction irréductible p/q à termes positifs — chacune à son propre nœud unique, aucune absente, aucune doublée. L'arbre est à la fois catalogue complet des rationnels positifs et témoin de leur dénombrabilité.",
     },
     {
       pretitle: "Section 03 · Gauche-droite est la fraction continue",
@@ -420,7 +420,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 02 · Ogni frazione, una volta",
       title: "Niente saltato, niente ripetuto",
-      body: "Stern scoprì l'albero nel 1858 come pezzo di pura teoria dei numeri; Brocot lo riscoprì nel 1861 scegliendo rapporti di trasmissione per orologi. Il loro teorema condiviso: ogni razionale positivo compare esattamente una volta, con numeratore e denominatore già coprimi. L'albero è insieme enumerazione dei razionali e prova che sono numerabili.",
+      body: "Stern scoprì l'albero nel 1858 come pezzo di pura teoria dei numeri; Brocot lo riscoprì nel 1861 scegliendo rapporti di trasmissione per orologi. Il loro teorema condiviso: scendi abbastanza e incontri ogni frazione ridotta p/q a termini positivi — ciascuna in un suo nodo unico, nessuna mancante, nessuna ripetuta. L'albero è insieme elenco completo dei razionali positivi e testimone della loro numerabilità.",
     },
     {
       pretitle: "Sezione 03 · Sinistra-destra è la frazione continua",
@@ -503,7 +503,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 02 · Cada fração, uma vez",
       title: "Nada falta, nada se repete",
-      body: "Stern descobriu a árvore em 1858 como pura teoria dos números; Brocot redescobriu-a em 1861 a escolher razões de engrenagem para relógios. O teorema comum: toda fração positiva aparece exatamente uma vez, com numerador e denominador já coprimos. A árvore é, ao mesmo tempo, enumeração dos racionais e prova de que são numeráveis.",
+      body: "Stern descobriu a árvore em 1858 como pura teoria dos números; Brocot redescobriu-a em 1861 a escolher razões de engrenagem para relógios. O teorema comum: desce o suficiente e encontras cada fração irredutível p/q de termos positivos — cada uma num nó próprio e único, nenhuma em falta, nenhuma repetida. A árvore é, ao mesmo tempo, catálogo completo dos racionais positivos e testemunho de que são numeráveis.",
     },
     {
       pretitle: "Secção 03 · Esquerda-direita é a fração contínua",
@@ -586,7 +586,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 02 · Varje bråk, en gång",
       title: "Inget missas, inget upprepas",
-      body: "Stern upptäckte trädet 1858 som ren talteori; Brocot återupptäckte det 1861 medan han valde utväxlingar till klockor. Deras gemensamma sats: varje positivt rationellt tal dyker upp exakt en gång, med täljare och nämnare redan relativt prima. Trädet är samtidigt uppräkning av rationalerna och bevis för att de är uppräkneliga.",
+      body: "Stern upptäckte trädet 1858 som ren talteori; Brocot återupptäckte det 1861 medan han valde utväxlingar till klockor. Deras gemensamma sats: gå tillräckligt långt och du möter varje förkortat bråk p/q med positiva termer — vart och ett vid sin egen unika nod, inget saknas, inget upprepas. Trädet är på en gång en fullständig katalog över de positiva rationella talen och ett vittnesbörd om att de bara är uppräkneligt många.",
     },
     {
       pretitle: "Avsnitt 03 · Vänster-höger är kedjebråket",
@@ -669,7 +669,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Hver brøk, én gang",
       title: "Ingenting glemt, ingenting gjentatt",
-      body: "Stern oppdaget treet i 1858 som ren tallteori; Brocot gjenoppdaget det i 1861 mens han valgte utvekslinger til klokker. Deres felles teorem: hvert positivt rasjonalt tall dukker opp nøyaktig én gang, med teller og nevner allerede innbyrdes primiske. Treet er samtidig oppramsing av de rasjonale og bevis for at de er tellbare.",
+      body: "Stern oppdaget treet i 1858 som ren tallteori; Brocot gjenoppdaget det i 1861 mens han valgte utvekslinger til klokker. Deres felles teorem: gå langt nok og du møter hver forkortet brøk p/q med positive ledd — hver enkelt ved sin egen unike node, ingen mangler, ingen gjentas. Treet er samtidig en fullstendig liste over de positive rasjonale tallene og et vitne om at de bare er tellbart mange.",
     },
     {
       pretitle: "Avsnitt 03 · Venstre-høyre er kjedebrøken",

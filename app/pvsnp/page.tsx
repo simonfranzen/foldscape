@@ -72,7 +72,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     problems: {
       sat: "Boolean satisfiability — the original Cook-Levin problem.",
       threesat: "SAT with clauses of length 3. The canonical NP-complete.",
-      hamiltonian: "Visit every vertex of a graph exactly once.",
+      hamiltonian: "Trace a path through the graph that lands on each vertex once and only once.",
       subsetsum: "Pick a sub-multiset summing to a target integer.",
       colouring: "Colour vertices with k colours, no edge monochrome.",
       clique: "Find a complete subgraph of size k.",
@@ -97,7 +97,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     problems: {
       sat: "Boolesche Erfüllbarkeit — das ursprüngliche Cook-Levin-Problem.",
       threesat: "SAT mit Klauseln der Länge 3. Der kanonische NP-vollständige Fall.",
-      hamiltonian: "Besuche jeden Knoten eines Graphen genau einmal.",
+      hamiltonian: "Zeichne einen Pfad durch den Graphen, der jeden Knoten ein einziges Mal berührt.",
       subsetsum: "Wähle eine Teilmenge, deren Summe eine Zielzahl trifft.",
       colouring: "Färbe die Knoten mit k Farben, keine Kante einfarbig.",
       clique: "Finde einen vollständigen Teilgraphen der Größe k.",
@@ -122,7 +122,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     problems: {
       sat: "Satisfacibilidad booleana — el problema original de Cook-Levin.",
       threesat: "SAT con cláusulas de longitud 3. El NP-completo canónico.",
-      hamiltonian: "Visitar cada vértice del grafo exactamente una vez.",
+      hamiltonian: "Trazar un camino por el grafo que toque cada vértice una sola vez.",
       subsetsum: "Elegir un submulticonjunto que sume un entero dado.",
       colouring: "Colorear vértices con k colores, ninguna arista monocromática.",
       clique: "Hallar un subgrafo completo de tamaño k.",
@@ -147,7 +147,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     problems: {
       sat: "Satisfiabilité booléenne — le problème original de Cook-Levin.",
       threesat: "SAT avec des clauses de longueur 3. Le NP-complet canonique.",
-      hamiltonian: "Visiter chaque sommet d'un graphe exactement une fois.",
+      hamiltonian: "Tracer un chemin dans le graphe qui touche chaque sommet une seule fois.",
       subsetsum: "Choisir un sous-multi-ensemble dont la somme atteint un entier cible.",
       colouring: "Colorer les sommets avec k couleurs, aucune arête monochrome.",
       clique: "Trouver un sous-graphe complet de taille k.",
@@ -172,7 +172,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     problems: {
       sat: "Soddisfacibilità booleana — il problema originale di Cook-Levin.",
       threesat: "SAT con clausole di lunghezza 3. L'NP-completo canonico.",
-      hamiltonian: "Visitare ogni vertice di un grafo esattamente una volta.",
+      hamiltonian: "Tracciare un cammino nel grafo che tocchi ogni vertice una sola volta.",
       subsetsum: "Scegliere un sotto-multinsieme la cui somma colpisce un intero.",
       colouring: "Colorare i vertici con k colori, nessun arco monocromatico.",
       clique: "Trovare un sottografo completo di dimensione k.",
@@ -197,7 +197,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     problems: {
       sat: "Satisfatibilidade booleana — o problema original de Cook-Levin.",
       threesat: "SAT com cláusulas de comprimento 3. O NP-completo canónico.",
-      hamiltonian: "Visitar cada vértice de um grafo exactamente uma vez.",
+      hamiltonian: "Traçar um caminho pelo grafo que toque cada vértice uma única vez.",
       subsetsum: "Escolher um submulticonjunto cuja soma atinge um inteiro alvo.",
       colouring: "Colorir vértices com k cores, nenhuma aresta monocromática.",
       clique: "Encontrar um subgrafo completo de tamanho k.",
@@ -222,7 +222,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     problems: {
       sat: "Boolesk satisfierbarhet — det ursprungliga Cook-Levin-problemet.",
       threesat: "SAT med klausuler av längd 3. Det kanoniska NP-fullständiga.",
-      hamiltonian: "Besök varje nod i en graf exakt en gång.",
+      hamiltonian: "Dra en stig genom grafen som landar på varje nod en enda gång.",
       subsetsum: "Välj en delmängd vars summa träffar ett mål-heltal.",
       colouring: "Färga noder med k färger, ingen kant enfärgad.",
       clique: "Hitta en fullständig delgraf av storlek k.",
@@ -247,7 +247,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     problems: {
       sat: "Boolsk tilfredsstillbarhet — det opprinnelige Cook-Levin-problemet.",
       threesat: "SAT med klausuler av lengde 3. Det kanoniske NP-fullstendige.",
-      hamiltonian: "Besøk hver node i en graf nøyaktig én gang.",
+      hamiltonian: "Tegn en sti gjennom grafen som lander på hver node en eneste gang.",
       subsetsum: "Velg en delmengde med sum lik et målheltall.",
       colouring: "Farg noder med k farger, ingen kant enfarget.",
       clique: "Finn en fullstendig delgraf av størrelse k.",

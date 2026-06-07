@@ -1009,7 +1009,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step two · Every fraction, once",
           title: "Nothing is missed, nothing is repeated",
-          body: "It is a theorem — provable in a few lines — that the Stern–Brocot tree contains every positive rational number exactly once, with numerator and denominator already coprime. So the tree is, simultaneously, an enumeration of the positive rationals, a proof that there are only countably many, and a structurally fair way to build them. Stern (1858) and Brocot (1861) discovered the same tree independently — Stern as a piece of number theory, Brocot as a clockmaker's tool for picking gear ratios.",
+          body: "It is a theorem — provable in a few lines — that the branches of the Stern–Brocot tree enumerate the positive rationals without omission and without repetition: each reduced fraction p/q lands at one and only one node, p and q already coprime. So the tree is, simultaneously, a complete listing of the positive rationals, a witness that there are only countably many, and a structurally fair way to build them. Stern (1858) and Brocot (1861) discovered the same tree independently — Stern as a piece of number theory, Brocot as a clockmaker's tool for picking gear ratios.",
         },
         {
           pretitle: "Step three · The continued-fraction path",
@@ -1088,7 +1088,7 @@ const en: StoriesDict = {
       title: "The Galton Board",
       tagline: "Bouncing balls always draw the same bell.",
       intro:
-        "Francis Galton's quincunx is a triangle of pegs. A ball dropped from the top bounces left or right at each peg, fifty-fifty, and lands in one of the bins at the bottom. Drop ten thousand balls and the bins fill — always — into the shape of the normal distribution. The bell is not a coincidence. It is the Central Limit Theorem made tactile.",
+        "Francis Galton's quincunx is a triangle of pegs. Release a marble at the apex: at every peg it veers left or right on a fifty-fifty coin flip, until gravity drops it into one of the catch bins along the floor. Drop ten thousand marbles and the bins fill — always — into the shape of the normal distribution. The bell is not a coincidence. It is the Central Limit Theorem made tactile.",
       ctaInteractive: "→ Open the Explorer",
       sections: [
         {

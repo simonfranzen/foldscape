@@ -927,7 +927,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg två · Varje bråk, en gång",
           title: "Inget missas, inget upprepas",
-          body: "Det är en sats — bevisbar på några rader — att Stern–Brocot-trädet innehåller varje positivt rationellt tal exakt en gång, med täljare och nämnare redan relativt prima. Så trädet är samtidigt en uppräkning av de positiva rationella, ett bevis för att det bara finns räkneligt många, och ett strukturellt rättvist sätt att bygga dem. Stern (1858) och Brocot (1861) upptäckte samma träd oberoende av varandra — Stern som ett stycke talteori, Brocot som en urmakares verktyg för att välja kuggförhållanden.",
+          body: "Det är en sats — bevisbar på några rader — att Stern–Brocot-trädets grenar räknar upp de positiva rationella talen utan utelämnanden och utan upprepningar: varje förkortat bråk p/q landar på en och endast en nod, med täljare och nämnare redan relativt prima. Så trädet är samtidigt en fullständig katalog över de positiva rationella talen, ett vittnesbörd om att det bara finns räkneligt många, och ett strukturellt rättvist sätt att bygga dem. Stern (1858) och Brocot (1861) upptäckte samma träd oberoende av varandra — Stern som ett stycke talteori, Brocot som en urmakares verktyg för att välja kuggförhållanden.",
         },
         {
           pretitle: "Steg tre · Kedjebråksvägen",
@@ -1006,7 +1006,7 @@ export const sv: StoriesDict = {
       title: "Galton-brädet",
       tagline: "Studsande bollar ritar alltid samma klocka.",
       intro:
-        "Francis Galtons quincunx är en triangel av tappar. En boll som släpps från toppen studsar vänster eller höger vid varje tapp, femtio-femtio, och landar i en av lådorna längst ner. Släpp tio tusen bollar och lådorna fylls — alltid — i formen av normalfördelningen. Klockan är ingen tillfällighet. Det är centrala gränsvärdessatsen gjord taktil.",
+        "Francis Galtons quincunx är en triangel av tappar. Släpp en kula från toppen: vid varje tapp avgör ett femtio-femtio myntkast om den viker av åt vänster eller höger, tills tyngdkraften släpper ner den i en av uppsamlingslådorna längs golvet. Släpp tio tusen kulor och lådorna fylls — alltid — i formen av normalfördelningen. Klockan är ingen tillfällighet. Det är centrala gränsvärdessatsen gjord taktil.",
       ctaInteractive: "→ Öppna Utforskaren",
       sections: [
         {

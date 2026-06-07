@@ -311,7 +311,7 @@ const de: AtlasDict = {
     sternbrocot: {
       title: "Der Stern-Brocot-Baum",
       tagline: "Jeder Bruch, genau einmal, aus falsch addieren gebaut",
-      body: "Starte mit 0/1 und 1/0. Wann immer zwei Brüche nebeneinanderstehen, schiebe ihren Medianten (a + c)/(b + d) dazwischen. Weiter, unendlich. Der so wachsende Baum enthält jede positive rationale Zahl genau einmal, und zwar bereits in vollständig gekürzter Form — und der Links-Rechts-Pfad zu einem Bruch ist exakt seine Kettenbruchentwicklung. Derselbe Baum liefert die besten rationalen Approximationen für irrationale Zahlen: der Weg zu π und φ führt mitten hindurch.",
+      body: "Starte mit 0/1 und 1/0. Wann immer zwei Brüche nebeneinanderstehen, schiebe ihren Medianten (a + c)/(b + d) dazwischen. Weiter, unendlich. Im so wachsenden Baum bekommt jeder gekürzte Bruch p/q mit p, q > 0 seinen eigenen, einzigen Knoten — keiner fehlt, keiner taucht doppelt auf — und der Links-Rechts-Pfad zu einem Bruch ist exakt seine Kettenbruchentwicklung. Derselbe Baum liefert die besten rationalen Approximationen für irrationale Zahlen: der Weg zu π und φ führt mitten hindurch.",
     },
     ulam: {
       title: "Die Ulam-Spirale",
@@ -331,7 +331,7 @@ const de: AtlasDict = {
     galton: {
       title: "Das Galton-Brett",
       tagline: "Hüpfende Kugeln zeichnen immer dieselbe Glocke",
-      body: "Francis Galtons Quincunx ist ein Dreieck aus Stiften. Eine Kugel, oben fallengelassen, springt an jedem Stift fifty-fifty links oder rechts und landet in einem der Fächer unten. Lässt du zehntausend Kugeln fallen, füllen sich die Fächer — immer — zur Form der Normalverteilung. Die Glocke ist kein Zufall; sie ist der Zentrale Grenzwertsatz zum Anfassen: jede Summe vieler unabhängiger kleiner Zufallsstöße konvergiert gegen eine Gauß-Kurve, unabhängig davon, wie die einzelnen Stöße aussehen.",
+      body: "Francis Galtons Quincunx ist ein Dreieck aus Stiften. Lass oben eine Kugel los: an jedem Stift entscheidet ein fifty-fifty-Münzwurf, ob es nach links oder rechts geht, bis die Schwerkraft sie in eines der Auffangfächer am Boden befördert. Lässt du zehntausend Kugeln fallen, füllen sich die Fächer — immer — zur Form der Normalverteilung. Die Glocke ist kein Zufall; sie ist der Zentrale Grenzwertsatz zum Anfassen: jede Summe vieler unabhängiger kleiner Zufallsstöße konvergiert gegen eine Gauß-Kurve, unabhängig davon, wie die einzelnen Stöße aussehen.",
     },
     magpendulum: {
       title: "Das magnetische Pendel",

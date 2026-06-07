@@ -124,7 +124,7 @@ export const EN_PLACEHOLDERS: Record<PlaceholderId, TopicMeta> = {
   sternbrocot: {
     title: "The Stern–Brocot Tree",
     tagline: "Every fraction, once, built by adding badly",
-    body: "Start with 0/1 and 1/0. Whenever two fractions sit side by side, insert the mediant (a + c)/(b + d) between them. Continue forever. The infinite tree that grows out contains every positive rational number exactly once, already in lowest terms — and the left–right path to any fraction encodes that fraction's continued-fraction expansion. The same tree gives you the best rational approximations to irrationals: the road to π and φ runs through it.",
+    body: "Start with 0/1 and 1/0. Whenever two fractions sit side by side, insert the mediant (a + c)/(b + d) between them. Continue forever. In the infinite tree that grows out, every reduced fraction p/q with p, q > 0 lands at one and only one node — none missing, none doubled — and the left–right path to any fraction encodes that fraction's continued-fraction expansion. The same tree gives you the best rational approximations to irrationals: the road to π and φ runs through it.",
   },
   ulam: {
     title: "The Ulam Spiral",
@@ -144,7 +144,7 @@ export const EN_PLACEHOLDERS: Record<PlaceholderId, TopicMeta> = {
   galton: {
     title: "The Galton Board",
     tagline: "Bouncing balls always draw the same bell",
-    body: "Francis Galton's quincunx is a triangle of pegs. A ball dropped from the top bounces left or right at each peg, fifty-fifty, and lands in one of the bins at the bottom. Drop ten thousand balls and the bins fill — always — into the shape of the normal distribution. The bell is not a coincidence; it is the Central Limit Theorem made tactile: any sum of many independent small random kicks converges to a Gaussian, no matter what the individual kicks look like.",
+    body: "Francis Galton's quincunx is a triangle of pegs. Release a marble at the apex: at every peg it veers left or right on a fifty-fifty coin flip, until gravity drops it into one of the catch bins along the floor. Drop ten thousand marbles and the bins fill — always — into the shape of the normal distribution. The bell is not a coincidence; it is the Central Limit Theorem made tactile: any sum of many independent small random kicks converges to a Gaussian, no matter what the individual kicks look like.",
   },
   magpendulum: {
     title: "The Magnetic Pendulum",

@@ -50,7 +50,7 @@ export function StoryPageShell({
   signature,
   children,
 }: Props) {
-  const { a, u, locale } = useI18n();
+  const { u, locale } = useI18n();
   // Auto-look up further-reading links by parsing the topic id out of the
   // CTA href (e.g. "/mandelbrot/explorer" → "mandelbrot"). Explicit
   // furtherReading prop still wins when provided.

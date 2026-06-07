@@ -927,7 +927,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Hver brøk, én gang",
           title: "Ingenting glipper, ingenting gjentas",
-          body: "Det er et teorem — bevisbart på noen få linjer — at Stern–Brocot-treet inneholder hvert positivt rasjonalt tall nøyaktig én gang, med teller og nevner allerede koprime. Så treet er samtidig en oppregning av de positive rasjonale tallene, et bevis på at det bare er tellbart mange, og en strukturelt rettferdig måte å bygge dem på. Stern (1858) og Brocot (1861) oppdaget det samme treet uavhengig — Stern som et stykke tallteori, Brocot som en urmakers verktøy for å velge tannhjulforhold.",
+          body: "Det er et teorem — bevisbart på noen få linjer — at grenene i Stern–Brocot-treet ramser opp de positive rasjonale tallene uten utelatelser og uten gjentakelser: hver forkortet brøk p/q lander på én og bare én node, med p og q allerede koprime. Så treet er samtidig en fullstendig liste over de positive rasjonale tallene, et vitne om at det bare er tellbart mange, og en strukturelt rettferdig måte å bygge dem på. Stern (1858) og Brocot (1861) oppdaget det samme treet uavhengig — Stern som et stykke tallteori, Brocot som en urmakers verktøy for å velge tannhjulforhold.",
         },
         {
           pretitle: "Trinn tre · Kjedebrøkveien",
@@ -1006,7 +1006,7 @@ export const no: StoriesDict = {
       title: "Galton-brettet",
       tagline: "Sprettkuler tegner alltid den samme klokken.",
       intro:
-        "Francis Galtons quincunx er en trekant av pigger. En kule sluppet fra toppen spretter til venstre eller høyre ved hver pigg, femti-femti, og lander i en av kurvene i bunnen. Slipp ti tusen kuler, og kurvene fylles — alltid — til formen av normalfordelingen. Klokken er ingen tilfeldighet. Det er sentralgrenseteoremet gjort taktilt.",
+        "Francis Galtons quincunx er en trekant av pigger. Slipp en kule fra toppen: ved hver pigg avgjør et femti-femti myntkast om den styrer til venstre eller høyre, helt til tyngdekraften lar den falle ned i en av oppsamlingskurvene langs bunnen. Slipp ti tusen kuler, og kurvene fylles — alltid — til formen av normalfordelingen. Klokken er ingen tilfeldighet. Det er sentralgrenseteoremet gjort taktilt.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {

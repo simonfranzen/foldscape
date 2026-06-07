@@ -83,7 +83,7 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · The setup",
       title: "N rows of pegs, one fair coin at each",
-      body: "Francis Galton's 1889 quincunx is a board of N staggered rows of pegs. A ball dropped from the apex strikes one peg per row and bounces left or right independently with probability 1/2. After N rows the ball settles into one of N+1 collection bins, indexed by how many right-bounces it took.",
+      body: "Francis Galton's 1889 quincunx is a board of N staggered rows of pegs. Release a marble at the apex and watch it strike exactly one peg per row, veering left or right with probability 1/2 at each impact — every collision an independent coin flip. After N rows the marble has dropped into one of N+1 catch bins along the floor, indexed by how many right-veers it took.",
     },
     {
       pretitle: "Section 02 · Pascal landing",

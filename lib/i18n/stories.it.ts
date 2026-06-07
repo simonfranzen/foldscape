@@ -927,7 +927,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo due · Ogni frazione, una volta",
           title: "Nulla viene mancato, nulla viene ripetuto",
-          body: "È un teorema — dimostrabile in poche righe — che l'albero di Stern–Brocot contiene ogni numero razionale positivo esattamente una volta, con numeratore e denominatore già coprimi. Quindi l'albero è, simultaneamente, un'enumerazione dei razionali positivi, una dimostrazione che ce ne sono solo numerabilmente tanti e un modo strutturalmente equo di costruirli. Stern (1858) e Brocot (1861) scoprirono lo stesso albero indipendentemente — Stern come pezzo di teoria dei numeri, Brocot come strumento di orologiaio per scegliere rapporti di ingranaggi.",
+          body: "È un teorema — dimostrabile in poche righe — che i rami dell'albero di Stern–Brocot elencano i razionali positivi senza omissioni né ripetizioni: ogni frazione ridotta p/q si posa su uno e un solo nodo, con p e q già coprimi. Quindi l'albero è, simultaneamente, un catalogo completo dei razionali positivi, un testimone che ce ne sono solo numerabilmente tanti e un modo strutturalmente equo di costruirli. Stern (1858) e Brocot (1861) scoprirono lo stesso albero indipendentemente — Stern come pezzo di teoria dei numeri, Brocot come strumento di orologiaio per scegliere rapporti di ingranaggi.",
         },
         {
           pretitle: "Passo tre · Il percorso a frazione continua",
@@ -1006,7 +1006,7 @@ export const it: StoriesDict = {
       title: "La tavola di Galton",
       tagline: "Le palline rimbalzanti disegnano sempre la stessa campana.",
       intro:
-        "Il quincunx di Francis Galton è un triangolo di pioli. Una pallina lasciata cadere dall'alto rimbalza a sinistra o a destra a ogni piolo, cinquanta e cinquanta, e atterra in uno dei cestini in fondo. Lascia cadere diecimila palline e i cestini si riempiono — sempre — nella forma della distribuzione normale. La campana non è una coincidenza. È il Teorema del Limite Centrale reso tattile.",
+        "Il quincunx di Francis Galton è un triangolo di pioli. Lascia cadere una pallina dalla cima: a ogni piolo un testa-o-croce cinquanta e cinquanta la devia a sinistra o a destra, finché la gravità non la deposita in uno dei cestini di raccolta sul fondo. Lascia cadere diecimila palline e i cestini si riempiono — sempre — nella forma della distribuzione normale. La campana non è una coincidenza. È il Teorema del Limite Centrale reso tattile.",
       ctaInteractive: "→ Apri l'Esploratore",
       sections: [
         {

@@ -927,7 +927,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso dos · Cada fracción, una vez",
           title: "Nada se omite, nada se repite",
-          body: "Es un teorema — demostrable en unas pocas líneas — que el árbol de Stern-Brocot contiene cada número racional positivo exactamente una vez, con numerador y denominador ya coprimos. Así que el árbol es, a la vez, una enumeración de los racionales positivos, una prueba de que solo hay un número contable de ellos y una manera estructuralmente justa de construirlos. Stern (1858) y Brocot (1861) descubrieron el mismo árbol de manera independiente — Stern como teoría de números, Brocot como herramienta de relojero para elegir relaciones de engranajes.",
+          body: "Es un teorema — demostrable en unas pocas líneas — que las ramas del árbol de Stern-Brocot enumeran los racionales positivos sin omisión y sin repetición: cada fracción reducida p/q aterriza en un único nodo, con p y q ya coprimos. Así que el árbol es, a la vez, un listado completo de los racionales positivos, un testimonio de que solo hay un número contable de ellos y una manera estructuralmente justa de construirlos. Stern (1858) y Brocot (1861) descubrieron el mismo árbol de manera independiente — Stern como teoría de números, Brocot como herramienta de relojero para elegir relaciones de engranajes.",
         },
         {
           pretitle: "Paso tres · El camino de la fracción continua",
@@ -1006,7 +1006,7 @@ export const es: StoriesDict = {
       title: "La tabla de Galton",
       tagline: "Bolas que rebotan dibujan siempre la misma campana.",
       intro:
-        "La quincunx de Francis Galton es un triángulo de clavos. Una bola caída desde arriba rebota a izquierda o derecha en cada clavo, mitad y mitad, y aterriza en una de las bandejas de abajo. Lanza diez mil bolas y las bandejas se llenan — siempre — con la forma de la distribución normal. La campana no es casualidad. Es el Teorema Central del Límite hecho tangible.",
+        "La quincunx de Francis Galton es un triángulo de clavos. Suelta una canica en lo alto: en cada clavo un cara-o-cruz a mitad y mitad la desvía a izquierda o derecha, hasta que la gravedad la deposita en una de las bandejas del suelo. Lanza diez mil canicas y las bandejas se llenan — siempre — con la forma de la distribución normal. La campana no es casualidad. Es el Teorema Central del Límite hecho tangible.",
       ctaInteractive: "→ Abrir el Explorador",
       sections: [
         {
