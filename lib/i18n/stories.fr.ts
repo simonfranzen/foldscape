@@ -67,7 +67,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape quatre · Ce que cela nous apprend",
           title: "La complexité n'a pas besoin de règles complexes",
-          body: "La leçon plus profonde est philosophique. Le Jeu de la vie montre qu'une structure élaborée — mouvement, réplication, computation, voire conscience, si l'on adhère aux versions fortes — peut tenir dans une règle assez petite pour être écrite sur une carte postale. C'est la même leçon qu'EML offre à l'analyse, NAND à la logique, et la Règle 110 aux automates cellulaires. Une petite primitive, appliquée avec discipline, suffit.",
+          body: "La leçon plus profonde est philosophique. Le Jeu de la vie montre qu'une structure élaborée — mouvement, réplication, computation, voire conscience, si l'on adhère aux versions fortes — peut tenir dans une règle assez petite pour être écrite sur une carte postale. C'est la même leçon que NAND offre à la logique et la Règle 110 aux automates cellulaires. Une petite primitive, appliquée avec discipline, suffit.",
         },
       ],
     },

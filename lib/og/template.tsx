@@ -45,10 +45,6 @@ const CATEGORY_LABEL: Record<TopicCategory, string> = {
 // rendering we keep a small, self-contained EN map: the explicit overrides
 // for the first wave, plus EN_PLACEHOLDERS for everything else.
 const EN_OVERRIDES: Partial<Record<TopicId, { title: string; tagline: string }>> = {
-  eml: {
-    title: "The EML Calculus",
-    tagline: "One operator builds (almost) every elementary function",
-  },
   nand: {
     title: "The Sheffer Stroke",
     tagline: "One gate is enough for all of digital logic",

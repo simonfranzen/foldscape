@@ -119,20 +119,15 @@ const en: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
-    eml: {
-      title: "The EML Calculus",
-      tagline: "One operator builds (almost) every elementary function",
-      body: "Take eml(x, y) = eˣ − ln y. Nest it inside itself enough times, with the number 1 as the only available constant, and you can recover exponentials, logarithms, multiplication, the identity, even sin and cos. A 2026 paper makes the case formally and shows where the calculus eventually breaks.",
-    },
     nand: {
       title: "The Sheffer Stroke",
       tagline: "One gate is enough for all of digital logic",
-      body: "The NAND gate (a ↑ b = ¬(a ∧ b)) is functionally complete on its own: every Boolean expression — AND, OR, NOT, XOR, the lot — can be built from NANDs alone. This is why entire computer chips are physically realised as a sea of NANDs. It is the EML of electronics, settled in the 1910s by Henry Sheffer.",
+      body: "The NAND gate (a ↑ b = ¬(a ∧ b)) is functionally complete on its own: every Boolean expression — AND, OR, NOT, XOR, the lot — can be built from NANDs alone. This is why entire computer chips are physically realised as a sea of NANDs. The result was settled in the 1910s by Henry Sheffer.",
     },
     iota: {
       title: "The Iota Combinator",
       tagline: "One symbol that is Turing-complete",
-      body: "Iota (℩) is a single combinator defined as ℩x = xSK. With nothing but Iota and parentheses you can re-derive S and K, and from S and K you can encode every computable function. A whole programming language lives inside one symbol — the spiritual cousin of EML, but for computation itself.",
+      body: "Iota (℩) is a single combinator defined as ℩x = xSK. With nothing but Iota and parentheses you can re-derive S and K, and from S and K you can encode every computable function. A whole programming language lives inside one symbol.",
     },
     life: {
       title: "Conway's Game of Life",
@@ -238,20 +233,15 @@ const de: AtlasDict = {
       tagline: "Rauschen, Schritt für Schritt zu einem Bild aufgelöst",
       body: "Nimm ein Bild und streue ein wenig Gauß-Rauschen darüber. Wiederhole das tausendmal, und es bleibt nur noch Rauschen. Lerne nun die Umkehrung: gegeben reines Rauschen, sage die leicht weniger verrauschte Version voraus. Stapele tausend solcher Schritte und du erzeugst aus reinem Zufall völlig neue Bilder. Das ist die ganze Idee hinter Stable Diffusion, Midjourney und DALL·E — eine Markov-Kette, die gelernt hat, die Wärmegleichung rückwärts zu laufen.",
     },
-    eml: {
-      title: "Der EML-Kalkül",
-      tagline: "Ein Operator baut (fast) jede elementare Funktion",
-      body: "Nimm eml(x, y) = eˣ − ln y. Schachtle ihn oft genug in sich selbst, mit der Zahl 1 als einziger Konstante, und du erhältst Exponentialfunktion, Logarithmus, Multiplikation, Identität, sogar Sinus und Cosinus zurück. Ein Paper von 2026 führt das formal vor und zeigt, wo der Kalkül schließlich zusammenbricht.",
-    },
     nand: {
       title: "Der Sheffer-Strich",
       tagline: "Ein Gatter genügt für die gesamte digitale Logik",
-      body: "Das NAND-Gatter (a ↑ b = ¬(a ∧ b)) ist allein funktional vollständig: jede boolesche Verknüpfung — UND, ODER, NICHT, XOR, alles — lässt sich aus NANDs bauen. Genau deshalb sind ganze Computerchips physikalisch ein Meer aus NAND-Gattern. Es ist das EML der Elektronik, geklärt von Henry Sheffer in den 1910ern.",
+      body: "Das NAND-Gatter (a ↑ b = ¬(a ∧ b)) ist allein funktional vollständig: jede boolesche Verknüpfung — UND, ODER, NICHT, XOR, alles — lässt sich aus NANDs bauen. Genau deshalb sind ganze Computerchips physikalisch ein Meer aus NAND-Gattern. Das Resultat geht auf Henry Sheffer in den 1910ern zurück.",
     },
     iota: {
       title: "Der Iota-Kombinator",
       tagline: "Ein Symbol — und damit Turing-vollständig",
-      body: "Iota (℩) ist ein einzelner Kombinator, definiert als ℩x = xSK. Mit nichts als Iota und Klammern kannst du S und K wiedergewinnen — und aus S und K jede berechenbare Funktion. Eine ganze Programmiersprache lebt in einem Symbol — der geistige Verwandte des EML, nur für das Rechnen selbst.",
+      body: "Iota (℩) ist ein einzelner Kombinator, definiert als ℩x = xSK. Mit nichts als Iota und Klammern kannst du S und K wiedergewinnen — und aus S und K jede berechenbare Funktion. Eine ganze Programmiersprache lebt in einem einzigen Symbol.",
     },
     life: {
       title: "Conways Game of Life",
@@ -463,11 +453,6 @@ const de: AtlasDict = {
       tagline: "Zwei beliebige Menschen, sechs Handschläge voneinander entfernt",
       body: "Stanley Milgrams Experiment von 1967 schickte Briefe durch die USA über persönliche Kontakte. Die durchschnittliche Kette war etwa sechs Glieder lang. 1998 zeigten Duncan Watts und Steven Strogatz, dass schon ein paar zufällige Abkürzungen in einem regelmäßigen Netzwerk die mittlere Pfadlänge auf rund log(N) kollabieren lassen, während die lokale Clusterung hoch bleibt. Soziale Netzwerke, Gehirne, Stromnetze und das Internet leben alle in diesem Small-World-Regime.",
     },
-    quine: {
-      title: "Die Quine",
-      tagline: "Ein Programm, dessen einzige Ausgabe sein eigener Quelltext ist",
-      body: "Schreibe ein Programm, das sich selbst Zeichen für Zeichen ausgibt, ohne seine eigene Datei zu lesen. Klingt unmöglich — das Programm müsste sein eigenes Listing enthalten, einschließlich des Teils, der das Listing enthält, und so weiter. Kleenes Rekursionssatz besagt, dass das in jeder hinreichend ausdrucksstarken Sprache möglich ist: jede berechenbare Transformation von Programmen besitzt einen Fixpunkt. Quines sind dieser Fixpunkt konkret gemacht — und derselbe Selbstreferenz-Motor, der Gödels Unvollständigkeitsbeweis antreibt.",
-    },
     riemann: {
       title: "Die Riemann-Hypothese",
       tagline: "Jede nichttriviale Nullstelle von ζ liegt auf der kritischen Linie",
@@ -528,20 +513,15 @@ const es: AtlasDict = {
       tagline: "Ruido disuelto en una imagen, paso a paso",
       body: "Toma cualquier foto y espolvorea un poco de ruido gaussiano. Repítelo mil veces y la imagen se vuelve estática pura. Ahora aprende lo inverso: dado ruido puro, predice la versión un poco menos ruidosa. Apila mil pasos así y puedes generar imágenes nuevas a partir de puro azar. Esa es toda la idea detrás de Stable Diffusion, Midjourney y DALL·E — una cadena de Markov entrenada para hacer correr la ecuación del calor hacia atrás.",
     },
-    eml: {
-      title: "El cálculo EML",
-      tagline: "Un operador construye (casi) toda función elemental",
-      body: "Toma eml(x, y) = eˣ − ln y. Anídalo en sí mismo lo suficiente, con el número 1 como única constante, y recuperas exponencial, logaritmo, multiplicación, identidad, incluso seno y coseno. Un artículo de 2026 lo plantea formalmente y muestra dónde el cálculo termina rompiéndose.",
-    },
     nand: {
       title: "La barra de Sheffer",
       tagline: "Una sola puerta basta para toda la lógica digital",
-      body: "La puerta NAND (a ↑ b = ¬(a ∧ b)) es funcionalmente completa por sí sola: toda expresión booleana — AND, OR, NOT, XOR, lo que sea — se construye sólo con NANDs. Por eso chips enteros se realizan físicamente como un mar de NANDs. Es el EML de la electrónica, establecido por Henry Sheffer en los años 1910.",
+      body: "La puerta NAND (a ↑ b = ¬(a ∧ b)) es funcionalmente completa por sí sola: toda expresión booleana — AND, OR, NOT, XOR, lo que sea — se construye sólo con NANDs. Por eso chips enteros se realizan físicamente como un mar de NANDs. El resultado lo estableció Henry Sheffer en los años 1910.",
     },
     iota: {
       title: "El combinador Iota",
       tagline: "Un símbolo y, con él, completitud de Turing",
-      body: "Iota (℩) es un solo combinador definido como ℩x = xSK. Con sólo Iota y paréntesis se derivan S y K, y a partir de S y K se codifica toda función computable. Todo un lenguaje habita en un único símbolo — el pariente espiritual de EML, pero para la computación misma.",
+      body: "Iota (℩) es un solo combinador definido como ℩x = xSK. Con sólo Iota y paréntesis se derivan S y K, y a partir de S y K se codifica toda función computable. Todo un lenguaje habita en un único símbolo.",
     },
     life: {
       title: "El juego de la vida de Conway",
@@ -703,11 +683,6 @@ const es: AtlasDict = {
       tagline: "Dos personas cualesquiera, a seis apretones de mano",
       body: "El experimento de Stanley Milgram de 1967 envió cartas a través de Estados Unidos por contactos personales. La cadena media tenía unos seis eslabones. En 1998 Duncan Watts y Steven Strogatz mostraron que basta añadir unos pocos atajos aleatorios a una red regular para que la longitud media de camino caiga a casi log(N), conservando el clustering local. Redes sociales, cerebros, redes eléctricas e Internet viven en este régimen de mundo pequeño.",
     },
-    quine: {
-      title: "La quine",
-      tagline: "Un programa cuya única salida es su propio código fuente",
-      body: "Escribe un programa que se imprima a sí mismo, carácter a carácter, sin leer su propio fichero. Suena imposible: el programa tendría que contener su propio listado, incluida la parte que contiene el listado. El teorema de recursión de Kleene dice que es posible en cualquier lenguaje suficientemente expresivo: toda transformación computable de programas tiene un punto fijo. Las quines son ese punto fijo hecho concreto — y el mismo motor de autorreferencia que mueve la prueba de incompletitud de Gödel.",
-    },
     riemann: {
       title: "La hipótesis de Riemann",
       tagline: "Todo cero no trivial de ζ está en la línea crítica",
@@ -768,20 +743,15 @@ const fr: AtlasDict = {
       tagline: "Du bruit dissous en image, pas après pas",
       body: "Prenez une photographie et saupoudrez-y un peu de bruit gaussien. Recommencez mille fois et l'image n'est plus que grésillement. Apprenez maintenant l'inverse : à partir de bruit pur, prédisez la version un peu moins bruitée. Empilez mille étapes de ce type et vous générez des images inédites depuis du pur hasard. C'est toute l'idée derrière Stable Diffusion, Midjourney et DALL·E — une chaîne de Markov entraînée à faire tourner l'équation de la chaleur à l'envers.",
     },
-    eml: {
-      title: "Le calcul EML",
-      tagline: "Un opérateur bâtit (presque) toute fonction élémentaire",
-      body: "Prenez eml(x, y) = eˣ − ln y. Imbriquez-le en lui-même suffisamment de fois, avec le nombre 1 pour seule constante, et vous retrouvez exponentielle, logarithme, multiplication, identité, jusqu'aux sinus et cosinus. Un article de 2026 le démontre formellement et indique où le calcul finit par céder.",
-    },
     nand: {
       title: "La barre de Sheffer",
       tagline: "Une seule porte suffit à toute la logique numérique",
-      body: "La porte NAND (a ↑ b = ¬(a ∧ b)) est fonctionnellement complète à elle seule : toute expression booléenne — ET, OU, NON, XOR, l'intégralité — se construit avec des NAND seuls. C'est pour cela que des puces entières sont physiquement réalisées comme une mer de NAND. C'est l'EML de l'électronique, établi par Henry Sheffer dans les années 1910.",
+      body: "La porte NAND (a ↑ b = ¬(a ∧ b)) est fonctionnellement complète à elle seule : toute expression booléenne — ET, OU, NON, XOR, l'intégralité — se construit avec des NAND seuls. C'est pour cela que des puces entières sont physiquement réalisées comme une mer de NAND. Le résultat a été établi par Henry Sheffer dans les années 1910.",
     },
     iota: {
       title: "Le combinateur Iota",
       tagline: "Un symbole, et avec lui la complétude de Turing",
-      body: "Iota (℩) est un combinateur unique défini par ℩x = xSK. Avec seulement Iota et des parenthèses on retrouve S et K, et à partir de S et K on encode toute fonction calculable. Tout un langage habite dans un seul symbole — le cousin spirituel d'EML, pour le calcul lui-même.",
+      body: "Iota (℩) est un combinateur unique défini par ℩x = xSK. Avec seulement Iota et des parenthèses on retrouve S et K, et à partir de S et K on encode toute fonction calculable. Tout un langage habite dans un seul symbole.",
     },
     life: {
       title: "Le jeu de la vie de Conway",
@@ -943,11 +913,6 @@ const fr: AtlasDict = {
       tagline: "Deux personnes quelconques, à six poignées de main",
       body: "L'expérience de Stanley Milgram (1967) envoyait des lettres à travers les États-Unis par contacts personnels. La chaîne moyenne était d'environ six maillons. En 1998, Duncan Watts et Steven Strogatz montrent qu'il suffit d'ajouter quelques raccourcis aléatoires à un réseau régulier pour faire chuter la longueur moyenne des chemins à environ log(N) tout en conservant un fort clustering local. Réseaux sociaux, cerveaux, réseaux électriques et Internet vivent tous dans ce régime de petit monde.",
     },
-    quine: {
-      title: "La quine",
-      tagline: "Un programme dont la seule sortie est son propre code source",
-      body: "Écris un programme qui s'imprime lui-même, caractère par caractère, sans lire son propre fichier. Cela paraît impossible : le programme devrait contenir son propre listing, y compris la partie qui contient le listing. Le théorème de récursion de Kleene dit que c'est possible dans tout langage suffisamment expressif : toute transformation calculable de programmes admet un point fixe. Les quines sont ce point fixe rendu concret — et le même moteur d'autoréférence qui anime la preuve d'incomplétude de Gödel.",
-    },
     riemann: {
       title: "L'hypothèse de Riemann",
       tagline: "Tout zéro non trivial de ζ se trouve sur la droite critique",
@@ -1008,20 +973,15 @@ const it: AtlasDict = {
       tagline: "Rumore disciolto in un'immagine, passo dopo passo",
       body: "Prendi una fotografia e cospargila di un po' di rumore gaussiano. Ripeti mille volte e l'immagine è solo fruscio. Ora impara l'inverso: dato il rumore puro, prevedi la versione un po' meno rumorosa. Impila mille passi del genere e generi immagini inedite dal puro caso. È tutta l'idea dietro Stable Diffusion, Midjourney e DALL·E — una catena di Markov addestrata a far girare l'equazione del calore al contrario.",
     },
-    eml: {
-      title: "Il calcolo EML",
-      tagline: "Un operatore costruisce (quasi) ogni funzione elementare",
-      body: "Prendi eml(x, y) = eˣ − ln y. Annidalo in sé stesso a sufficienza, con il numero 1 come unica costante, e recuperi esponenziale, logaritmo, moltiplicazione, identità, perfino seno e coseno. Un articolo del 2026 lo formalizza e mostra dove il calcolo finisce per spezzarsi.",
-    },
     nand: {
       title: "Il tratto di Sheffer",
       tagline: "Una sola porta basta per tutta la logica digitale",
-      body: "La porta NAND (a ↑ b = ¬(a ∧ b)) è funzionalmente completa da sola: ogni espressione booleana — AND, OR, NOT, XOR, tutto — si costruisce con soli NAND. Per questo interi chip sono realizzati fisicamente come un mare di NAND. È l'EML dell'elettronica, fissato da Henry Sheffer negli anni 1910.",
+      body: "La porta NAND (a ↑ b = ¬(a ∧ b)) è funzionalmente completa da sola: ogni espressione booleana — AND, OR, NOT, XOR, tutto — si costruisce con soli NAND. Per questo interi chip sono realizzati fisicamente come un mare di NAND. Il risultato fu fissato da Henry Sheffer negli anni 1910.",
     },
     iota: {
       title: "Il combinatore Iota",
       tagline: "Un simbolo e, con esso, completezza di Turing",
-      body: "Iota (℩) è un singolo combinatore definito da ℩x = xSK. Con sole Iota e parentesi si ricavano S e K, e da S e K si codifica ogni funzione calcolabile. Un intero linguaggio abita in un solo simbolo — il cugino spirituale di EML, ma per il calcolo stesso.",
+      body: "Iota (℩) è un singolo combinatore definito da ℩x = xSK. Con sole Iota e parentesi si ricavano S e K, e da S e K si codifica ogni funzione calcolabile. Un intero linguaggio abita in un solo simbolo.",
     },
     life: {
       title: "Il gioco della vita di Conway",
@@ -1183,11 +1143,6 @@ const it: AtlasDict = {
       tagline: "Due persone qualsiasi, a sei strette di mano di distanza",
       body: "L'esperimento di Stanley Milgram del 1967 spediva lettere attraverso gli Stati Uniti tramite contatti personali. La catena media era lunga circa sei anelli. Nel 1998 Duncan Watts e Steven Strogatz mostrarono che basta aggiungere pochi collegamenti casuali a una rete regolare per far crollare la lunghezza media del cammino a circa log(N), mantenendo alto il clustering locale. Reti sociali, cervelli, reti elettriche e Internet vivono tutti in questo regime di piccolo mondo.",
     },
-    quine: {
-      title: "La quine",
-      tagline: "Un programma il cui unico output è il proprio codice sorgente",
-      body: "Scrivi un programma che stampi sé stesso, carattere per carattere, senza leggere il proprio file. Sembra impossibile: il programma dovrebbe contenere il proprio listato, inclusa la parte che contiene il listato. Il teorema di ricorsione di Kleene dice che è possibile in qualsiasi linguaggio abbastanza espressivo: ogni trasformazione calcolabile di programmi ammette un punto fisso. Le quine sono quel punto fisso reso concreto — e lo stesso motore di autoreferenza che muove la dimostrazione di incompletezza di Gödel.",
-    },
     riemann: {
       title: "L'ipotesi di Riemann",
       tagline: "Ogni zero non banale di ζ giace sulla retta critica",
@@ -1248,20 +1203,15 @@ const pt: AtlasDict = {
       tagline: "Ruído dissolvido numa imagem, passo a passo",
       body: "Pega numa fotografia e polvilha-lhe um pouco de ruído gaussiano. Repete mil vezes e a imagem é só chuvisco. Aprende agora o inverso: dado ruído puro, prevê a versão um pouco menos ruidosa. Empilha mil passos destes e geras imagens inéditas a partir de puro acaso. É toda a ideia por trás do Stable Diffusion, Midjourney e DALL·E — uma cadeia de Markov treinada para fazer correr a equação do calor ao contrário.",
     },
-    eml: {
-      title: "O cálculo EML",
-      tagline: "Um operador constrói (quase) toda função elementar",
-      body: "Toma eml(x, y) = eˣ − ln y. Aninha-o em si mesmo o suficiente, com o número 1 como única constante, e recuperas exponencial, logaritmo, multiplicação, identidade, até seno e cosseno. Um artigo de 2026 o expõe formalmente e mostra onde o cálculo acaba por se partir.",
-    },
     nand: {
       title: "O traço de Sheffer",
       tagline: "Uma só porta basta para toda a lógica digital",
-      body: "A porta NAND (a ↑ b = ¬(a ∧ b)) é por si só funcionalmente completa: toda expressão booleana — AND, OR, NOT, XOR, tudo — constrói-se só com NANDs. Por isso chips inteiros são realizados fisicamente como um mar de NANDs. É o EML da eletrónica, estabelecido por Henry Sheffer nos anos 1910.",
+      body: "A porta NAND (a ↑ b = ¬(a ∧ b)) é por si só funcionalmente completa: toda expressão booleana — AND, OR, NOT, XOR, tudo — constrói-se só com NANDs. Por isso chips inteiros são realizados fisicamente como um mar de NANDs. O resultado foi estabelecido por Henry Sheffer nos anos 1910.",
     },
     iota: {
       title: "O combinador Iota",
       tagline: "Um símbolo e, com ele, completude de Turing",
-      body: "Iota (℩) é um único combinador definido por ℩x = xSK. Com apenas Iota e parênteses recuperas S e K, e a partir de S e K codificas qualquer função computável. Uma linguagem inteira mora num só símbolo — o primo espiritual de EML, mas para a computação em si.",
+      body: "Iota (℩) é um único combinador definido por ℩x = xSK. Com apenas Iota e parênteses recuperas S e K, e a partir de S e K codificas qualquer função computável. Uma linguagem inteira mora num só símbolo.",
     },
     life: {
       title: "O jogo da vida de Conway",
@@ -1423,11 +1373,6 @@ const pt: AtlasDict = {
       tagline: "Duas pessoas quaisquer, a seis apertos de mão de distância",
       body: "A experiência de Stanley Milgram (1967) enviou cartas pelos Estados Unidos por contactos pessoais. A cadeia média tinha cerca de seis elos. Em 1998 Duncan Watts e Steven Strogatz mostraram que basta acrescentar uns poucos atalhos aleatórios a uma rede regular para o comprimento médio dos caminhos colapsar para cerca de log(N), mantendo alto o clustering local. Redes sociais, cérebros, redes eléctricas e a Internet vivem todos neste regime de mundo pequeno.",
     },
-    quine: {
-      title: "A quine",
-      tagline: "Um programa cuja única saída é o seu próprio código-fonte",
-      body: "Escreve um programa que se imprima a si próprio, carácter a carácter, sem ler o seu próprio ficheiro. Parece impossível: o programa teria de conter a sua própria listagem, incluindo a parte que contém a listagem. O teorema da recursão de Kleene diz que é possível em qualquer linguagem suficientemente expressiva: toda a transformação computável de programas tem um ponto fixo. As quines são esse ponto fixo tornado concreto — e o mesmo motor de autorreferência que move a prova de incompletude de Gödel.",
-    },
     riemann: {
       title: "A hipótese de Riemann",
       tagline: "Todo zero não trivial de ζ está na recta crítica",
@@ -1488,20 +1433,15 @@ const sv: AtlasDict = {
       tagline: "Brus upplöst i en bild, steg för steg",
       body: "Ta vilket fotografi som helst och strö i lite gaussiskt brus. Upprepa tusen gånger och bilden är rent brus. Lär dig nu omvändningen: givet rent brus, förutsäg den något mindre brusiga versionen. Stapla tusen sådana steg och du kan generera helt nya bilder ur ren slump. Det är hela idén bakom Stable Diffusion, Midjourney och DALL·E — en Markovkedja tränad att köra värmeekvationen baklänges.",
     },
-    eml: {
-      title: "EML-kalkylen",
-      tagline: "En operator bygger (nästan) varje elementär funktion",
-      body: "Ta eml(x, y) = eˣ − ln y. Nästla den i sig själv tillräckligt många gånger, med talet 1 som enda konstant, och du får tillbaka exponentialfunktion, logaritm, multiplikation, identitet, till och med sinus och cosinus. En artikel från 2026 lägger fram det formellt och visar var kalkylen till sist brister.",
-    },
     nand: {
       title: "Sheffer-strecket",
       tagline: "En enda grind räcker för all digital logik",
-      body: "NAND-grinden (a ↑ b = ¬(a ∧ b)) är funktionellt fullständig i sig själv: varje booleskt uttryck — AND, OR, NOT, XOR, alltihop — kan byggas av enbart NAND. Det är därför hela chip fysiskt realiseras som ett hav av NAND-grindar. Det är elektronikens EML, fastslaget av Henry Sheffer på 1910-talet.",
+      body: "NAND-grinden (a ↑ b = ¬(a ∧ b)) är funktionellt fullständig i sig själv: varje booleskt uttryck — AND, OR, NOT, XOR, alltihop — kan byggas av enbart NAND. Det är därför hela chip fysiskt realiseras som ett hav av NAND-grindar. Resultatet slogs fast av Henry Sheffer på 1910-talet.",
     },
     iota: {
       title: "Iota-kombinatorn",
       tagline: "En symbol, och med den Turing-fullständighet",
-      body: "Iota (℩) är en enda kombinator definierad som ℩x = xSK. Med bara Iota och parenteser kan du återskapa S och K, och från S och K koda varje beräkningsbar funktion. Ett helt programmeringsspråk bor i en enda symbol — EML:s andliga släkting, fast för själva räknandet.",
+      body: "Iota (℩) är en enda kombinator definierad som ℩x = xSK. Med bara Iota och parenteser kan du återskapa S och K, och från S och K koda varje beräkningsbar funktion. Ett helt programmeringsspråk bor i en enda symbol.",
     },
     life: {
       title: "Conways Game of Life",
@@ -1663,11 +1603,6 @@ const sv: AtlasDict = {
       tagline: "Vilka två personer som helst, sex handslag bort",
       body: "Stanley Milgrams experiment 1967 skickade brev tvärs över USA via personliga kontakter. Den genomsnittliga kedjan var ungefär sex länkar lång. År 1998 visade Duncan Watts och Steven Strogatz att det räcker att lägga in några slumpmässiga genvägar i ett regelbundet nätverk för att medellängden ska kollapsa till ungefär log(N) medan den lokala klustringen förblir hög. Sociala nätverk, hjärnor, elnät och internet lever alla i denna small-world-regim.",
     },
-    quine: {
-      title: "Quinen",
-      tagline: "Ett program vars enda utdata är dess egen källkod",
-      body: "Skriv ett program som skriver ut sig självt, tecken för tecken, utan att läsa sin egen fil. Låter omöjligt — programmet skulle behöva innehålla sin egen listning, inklusive den del som innehåller listningen. Kleenes rekursionssats säger att det är möjligt i varje tillräckligt uttrycksfullt språk: varje beräkningsbar transformation av program har en fixpunkt. Quiner är den fixpunkten gjord konkret — och samma självreferensmotor som driver Gödels ofullständighetsbevis.",
-    },
     riemann: {
       title: "Riemannhypotesen",
       tagline: "Varje icke-trivialt nollställe till ζ ligger på den kritiska linjen",
@@ -1728,20 +1663,15 @@ const no: AtlasDict = {
       tagline: "Støy oppløst til et bilde, steg for steg",
       body: "Ta et hvilket som helst fotografi og strø på litt gaussisk støy. Gjenta tusen ganger og bildet er ren snø. Lær nå det motsatte: gitt ren støy, forutsi den litt mindre støyete versjonen. Stable tusen slike steg og du kan generere helt nye bilder fra ren tilfeldighet. Det er hele idéen bak Stable Diffusion, Midjourney og DALL·E — en Markov-kjede trent til å kjøre varmelikningen baklengs.",
     },
-    eml: {
-      title: "EML-kalkylen",
-      tagline: "Én operator bygger (nesten) hver elementær funksjon",
-      body: "Ta eml(x, y) = eˣ − ln y. Nøst den i seg selv ofte nok, med tallet 1 som eneste konstant, og du får tilbake eksponentialfunksjon, logaritme, multiplikasjon, identitet, til og med sinus og cosinus. En artikkel fra 2026 fremlegger det formelt og viser hvor kalkylen til slutt brister.",
-    },
     nand: {
       title: "Sheffer-streken",
       tagline: "Én port er nok for all digital logikk",
-      body: "NAND-porten (a ↑ b = ¬(a ∧ b)) er funksjonelt fullstendig alene: ethvert boolsk uttrykk — AND, OR, NOT, XOR, alt — kan bygges utelukkende av NAND. Det er derfor hele brikker fysisk realiseres som et hav av NAND-porter. Det er elektronikkens EML, slått fast av Henry Sheffer på 1910-tallet.",
+      body: "NAND-porten (a ↑ b = ¬(a ∧ b)) er funksjonelt fullstendig alene: ethvert boolsk uttrykk — AND, OR, NOT, XOR, alt — kan bygges utelukkende av NAND. Det er derfor hele brikker fysisk realiseres som et hav av NAND-porter. Resultatet ble slått fast av Henry Sheffer på 1910-tallet.",
     },
     iota: {
       title: "Iota-kombinatoren",
       tagline: "Ett symbol, og med det Turing-fullstendighet",
-      body: "Iota (℩) er én enkelt kombinator definert ved ℩x = xSK. Med kun Iota og parenteser gjenfinner du S og K, og fra S og K koder du enhver beregnelig funksjon. Et helt programmerings­språk bor i ett symbol — EMLs åndelige slektning, men for selve regningen.",
+      body: "Iota (℩) er én enkelt kombinator definert ved ℩x = xSK. Med kun Iota og parenteser gjenfinner du S og K, og fra S og K koder du enhver beregnelig funksjon. Et helt programmerings­språk bor i ett symbol.",
     },
     life: {
       title: "Conways Game of Life",
@@ -1902,11 +1832,6 @@ const no: AtlasDict = {
       title: "Seks grader & små verdener",
       tagline: "Hvilke som helst to mennesker, seks håndtrykk fra hverandre",
       body: "Stanley Milgrams eksperiment fra 1967 sendte brev tvers gjennom USA via personlige kontakter. Den gjennomsnittlige kjeden var om lag seks ledd lang. I 1998 viste Duncan Watts og Steven Strogatz at det holder å legge inn noen tilfeldige snarveier i et regelmessig nettverk for å få den gjennomsnittlige veilengden til å falle til omtrent log(N), samtidig som den lokale klyngingen holder seg høy. Sosiale nettverk, hjerner, strømnett og internett lever alle i dette small-world-regimet.",
-    },
-    quine: {
-      title: "Quinen",
-      tagline: "Et program hvis eneste utdata er dets egen kildekode",
-      body: "Skriv et program som skriver seg selv ut, tegn for tegn, uten å lese sin egen fil. Høres umulig ut — programmet måtte inneholde sin egen listing, inkludert delen som inneholder listingen. Kleenes rekursjonssetning sier at det er mulig i ethvert tilstrekkelig uttrykksfullt språk: hver beregnbar transformasjon av programmer har et fikspunkt. Quiner er det fikspunktet gjort konkret — og den samme selvreferansemotoren som driver Gödels ufullstendighetsbevis.",
     },
     riemann: {
       title: "Riemannhypotesen",

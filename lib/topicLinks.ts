@@ -7,20 +7,6 @@ import type { TopicId } from "./topics";
 export type TopicLink = { label: string; href: string };
 
 export const TOPIC_LINKS: Record<TopicId, TopicLink[]> = {
-  eml: [
-    {
-      label: "Odrzywołek 2026 — All elementary functions from a single binary operator",
-      href: "https://arxiv.org/abs/2603.21852",
-    },
-    {
-      label: "Wikipedia — Combinatory logic",
-      href: "https://en.wikipedia.org/wiki/Combinatory_logic",
-    },
-    {
-      label: "Stylewarning — A friendly response to the EML paper",
-      href: "https://www.stylewarning.com/posts/not-all-elementary/",
-    },
-  ],
   mandelbrot: [
     { label: "Wikipedia — Mandelbrot set", href: "https://en.wikipedia.org/wiki/Mandelbrot_set" },
     {
@@ -553,24 +539,6 @@ export const TOPIC_LINKS: Record<TopicId, TopicLink[]> = {
     {
       label: "Watts & Strogatz (1998) — Collective dynamics of small-world networks",
       href: "https://www.nature.com/articles/30918",
-    },
-  ],
-  quine: [
-    {
-      label: "Wikipedia — Quine (computing)",
-      href: "https://en.wikipedia.org/wiki/Quine_(computing)",
-    },
-    {
-      label: "Kleene, S. (1938) — On notation for ordinal numbers (recursion theorem)",
-      href: "https://www.jstor.org/stable/2267778",
-    },
-    {
-      label: "Hofstadter, D. R. — Gödel, Escher, Bach (1979)",
-      href: "https://en.wikipedia.org/wiki/G%C3%B6del,_Escher,_Bach",
-    },
-    {
-      label: "David Madore — The Quine Page",
-      href: "https://www.madore.org/~david/computers/quine.html",
     },
   ],
   backprop: [

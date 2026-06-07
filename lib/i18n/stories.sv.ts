@@ -67,7 +67,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg fyra · Vad detta säger oss",
           title: "Komplexitet behöver inga komplexa regler",
-          body: "Det djupare påståendet är filosofiskt. Life visar att utarbetad struktur — rörelse, replikation, beräkning, till och med medvetande, om man tror på de starka versionerna — kan rymmas inom en regel liten nog att skrivas på ett vykort. Det är samma lärdom som EML erbjuder för analysen, NAND för logiken och Regel 110 för cellulära automater. En liten primitiv, tillämpad med disciplin, räcker.",
+          body: "Det djupare påståendet är filosofiskt. Life visar att utarbetad struktur — rörelse, replikation, beräkning, till och med medvetande, om man tror på de starka versionerna — kan rymmas inom en regel liten nog att skrivas på ett vykort. Det är samma lärdom som NAND erbjuder för logiken och Regel 110 för cellulära automater. En liten primitiv, tillämpad med disciplin, räcker.",
         },
       ],
     },

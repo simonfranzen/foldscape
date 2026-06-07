@@ -67,7 +67,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Hva dette forteller oss",
           title: "Kompleksitet trenger ikke komplekse regler",
-          body: "Den dypere påstanden er filosofisk. Life viser at intrikat struktur — bevegelse, replikasjon, beregning, til og med bevissthet, hvis du tror på de sterke versjonene — kan ligge inne i en regel som er liten nok til å skrives på et postkort. Det er den samme lærdommen EML gir for analysen, NAND for logikken, og Regel 110 for cellulære automater. Et lite primitiv, anvendt med disiplin, er nok.",
+          body: "Den dypere påstanden er filosofisk. Life viser at intrikat struktur — bevegelse, replikasjon, beregning, til og med bevissthet, hvis du tror på de sterke versjonene — kan ligge inne i en regel som er liten nok til å skrives på et postkort. Det er den samme lærdommen NAND gir for logikken og Regel 110 for cellulære automater. Et lite primitiv, anvendt med disiplin, er nok.",
         },
       ],
     },

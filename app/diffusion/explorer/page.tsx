@@ -6,16 +6,16 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 
 // --------------------------------------------------------------------------
-// Diffusion Explorer — a 2D denoising trainer + sampler.
-//
-// We build a tiny score network ε_θ : R² × [0,1] → R² that predicts the
-// noise added to a clean 2D point at noise level t. The dataset is one of
-// three small synthetic toy distributions (two-moons, three Gaussian blobs,
-// or a swiss spiral). Train with the DDPM loss:
+// Diffusion Explorer — a 2D denoising trainer + sampler that runs the
+// moment the page loads. The visitor walks into a scene already in
+// motion: a small score MLP ε_θ : R² × [0,1] → R² is being trained, a
+// learned score field is painted as a heatmap behind the data, and a
+// fresh cohort of walkers is being denoised from pure Gaussian noise
+// onto the toy data manifold. The sampling loops; the training keeps
+// improving the field. The DDPM loss is
 //
 //   L = E_{x₀,t,ε}  ‖ ε  −  ε_θ( √ᾱ_t · x₀ + √(1−ᾱ_t) · ε,  t ) ‖²
 //
-// Sample by running the reverse chain from x_T ~ N(0, I) back to t=0.
 // Everything lives in plain JS — no TensorFlow.js, no library.
 // --------------------------------------------------------------------------
 
@@ -44,16 +44,21 @@ type RichExplorer = {
   stepsUnit: string;
   samplesLabel: string;
   samplesUnit: string;
-  trainButton: string;
-  trainingButton: string;
-  sampleButton: string;
-  resetButton: string;
+  pauseButton: string;
+  resumeButton: string;
+  resetModelButton: string;
   legendData: string;
   legendSamples: string;
   legendTrails: string;
-  trainStatus: (epoch: number, loss: number) => string;
-  trainIdle: string;
-  trainDone: (loss: number) => string;
+  legendField: string;
+  // Live status — three independent counters joined into one line.
+  statusFmt: (epoch: number, loss: number, sStep: number, sTotal: number) => string;
+  // Tiny phase labels under the canvas that update as sampling progresses.
+  whatNowLabel: string;
+  whatNowTrainingEarly: string;
+  whatNowNoise: string;
+  whatNowMoving: string;
+  whatNowConverged: string;
   whatYouSeeLabel: string;
   whatYouSeeP1: string;
   whatYouSeeP2: string;
@@ -62,10 +67,10 @@ type RichExplorer = {
 const EXPLORER: Record<Locale, RichExplorer> = {
   en: {
     topicTitle: "Topic · Diffusion",
-    topicTagline: "Train a tiny denoiser, then sample fresh data from pure noise.",
+    topicTagline: "A score network learns the data field, walkers walk back from noise.",
     topicBody:
-      "A small MLP learns to predict the noise added to a clean 2D point at any noise level. Once trained, it can walk pure Gaussian noise back onto the data manifold — the same trick that turns static into Stable Diffusion images, miniaturised so the whole process fits on screen.",
-    scatterBadge: "2D toy diffusion",
+      "Training and sampling start the moment the page loads. A small MLP keeps improving its noise prediction in the background; rose walkers continuously denoise themselves from a Gaussian cloud onto the data manifold, restart, and do it again. Switch dataset, schedule or T at any moment — the chain reorganises live.",
+    scatterBadge: "2D toy diffusion · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Dataset",
     datasetMoons: "two moons",
@@ -76,30 +81,35 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     scheduleCosine: "cosine ᾱ",
     stepsLabel: "Diffusion steps T",
     stepsUnit: "steps",
-    samplesLabel: "Samples to draw",
+    samplesLabel: "Walkers",
     samplesUnit: "points",
-    trainButton: "▶ Train denoiser",
-    trainingButton: "❚❚ Training…",
-    sampleButton: "✦ Sample from noise",
-    resetButton: "↺ Reset",
+    pauseButton: "❚❚ Pause",
+    resumeButton: "▶ Resume",
+    resetModelButton: "↺ Reset model (retrain from scratch)",
     legendData: "data distribution",
     legendSamples: "generated samples",
     legendTrails: "reverse-process trail",
-    trainStatus: (e, l) => `epoch ${e} · loss ${l.toFixed(4)}`,
-    trainIdle: "Press Train to fit the score network on the chosen dataset.",
-    trainDone: (l) => `done · final loss ${l.toFixed(4)} · press Sample to generate`,
-    whatYouSeeLabel: "What you are seeing",
+    legendField: "learned score field",
+    statusFmt: (e, l, s, S) =>
+      `epoch ${e} · loss ${l.toFixed(3)} · sampling step ${s}/${S}`,
+    whatNowLabel: "What you should see right now",
+    whatNowTrainingEarly:
+      "the denoiser is still learning the field — walkers wander before snapping",
+    whatNowNoise: "the walkers are still pure noise from N(0, I)",
+    whatNowMoving: "the walkers are starting to clump along the data",
+    whatNowConverged: "the walkers have collapsed onto the data manifold",
+    whatYouSeeLabel: "Reading the canvas",
     whatYouSeeP1:
-      "Cyan dots: a fixed sample drawn from the toy data distribution. The denoiser only ever sees these (noised) during training — it never memorises positions; it learns the local 'which way is in?' field.",
+      "Cyan dots: the toy data distribution. The denoiser sees only noised copies of these during training — it never memorises positions; it learns the local 'which way is in?' field.",
     whatYouSeeP2:
-      "Rose dots: fresh samples drawn from pure 2D Gaussian noise and walked T steps backward through the reverse chain. With enough training, the walkers concentrate on the same manifold as the data — diffusion in miniature.",
+      "Rose dots: walkers drawn from pure 2D Gaussian noise and pushed T steps backward through the learned reverse chain, leaving fading trails behind them. Faint blue under-glow: the magnitude of −ε_θ at mid-noise — the score field the walkers ride down.",
   },
   de: {
     topicTitle: "Thema · Diffusion",
-    topicTagline: "Trainiere einen winzigen Entrauscher und ziehe frische Daten aus reinem Rauschen.",
+    topicTagline: "Ein Score-Netz lernt das Datenfeld, Wanderer laufen aus Rauschen zurück.",
     topicBody:
-      "Ein kleiner MLP lernt, das Rauschen vorherzusagen, das einem sauberen 2D-Punkt auf jeder Stufe hinzugefügt wurde. Einmal trainiert, kann er reines Gauß-Rauschen zurück auf die Datenmannigfaltigkeit laufen lassen — derselbe Trick, der Bildrauschen in Stable-Diffusion-Bilder verwandelt, miniaturisiert, sodass der ganze Vorgang auf den Bildschirm passt.",
-    scatterBadge: "2D-Spielzeug-Diffusion",
+      "Training und Sampling starten, sobald die Seite lädt. Ein kleiner MLP verbessert im Hintergrund laufend seine Rauschvorhersage; rosa Wanderer entrauschen sich kontinuierlich aus einer Gauß-Wolke auf die Datenmannigfaltigkeit, starten neu und tun es wieder. Wechsle Datensatz, Schedule oder T jederzeit — die Kette ordnet sich live neu.",
+    scatterBadge: "2D-Spielzeug-Diffusion · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Datensatz",
     datasetMoons: "zwei Monde",
@@ -110,30 +120,35 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     scheduleCosine: "kosinus ᾱ",
     stepsLabel: "Diffusionsschritte T",
     stepsUnit: "Schritte",
-    samplesLabel: "Anzahl Stichproben",
+    samplesLabel: "Wanderer",
     samplesUnit: "Punkte",
-    trainButton: "▶ Entrauscher trainieren",
-    trainingButton: "❚❚ Trainiert…",
-    sampleButton: "✦ Aus Rauschen ziehen",
-    resetButton: "↺ Zurücksetzen",
+    pauseButton: "❚❚ Pause",
+    resumeButton: "▶ Weiter",
+    resetModelButton: "↺ Modell zurücksetzen (neu trainieren)",
     legendData: "Datenverteilung",
     legendSamples: "erzeugte Proben",
     legendTrails: "Rückwärts-Pfade",
-    trainStatus: (e, l) => `Epoche ${e} · Verlust ${l.toFixed(4)}`,
-    trainIdle: "Drücke Trainieren, um das Score-Netz auf den Datensatz anzupassen.",
-    trainDone: (l) => `fertig · Endverlust ${l.toFixed(4)} · drücke Ziehen, um zu generieren`,
-    whatYouSeeLabel: "Was du siehst",
+    legendField: "gelerntes Score-Feld",
+    statusFmt: (e, l, s, S) =>
+      `Epoche ${e} · Verlust ${l.toFixed(3)} · Sampling-Schritt ${s}/${S}`,
+    whatNowLabel: "Was du gerade sehen solltest",
+    whatNowTrainingEarly:
+      "der Entrauscher lernt das Feld noch — die Wanderer irren, bevor sie einrasten",
+    whatNowNoise: "die Wanderer sind noch reines Rauschen aus N(0, I)",
+    whatNowMoving: "die Wanderer beginnen, sich an den Daten zu sammeln",
+    whatNowConverged: "die Wanderer sind auf der Datenmannigfaltigkeit gelandet",
+    whatYouSeeLabel: "Die Leinwand lesen",
     whatYouSeeP1:
-      "Cyan-Punkte: eine feste Stichprobe aus der Spielzeug-Datenverteilung. Der Entrauscher sieht diese nur (verrauscht) während des Trainings — er merkt sich keine Positionen, sondern lernt das lokale „wo ist innen?\"-Feld.",
+      "Cyan-Punkte: die Spielzeug-Datenverteilung. Der Entrauscher sieht nur verrauschte Kopien davon im Training — er merkt sich keine Positionen, sondern lernt das lokale „wo ist innen?\"-Feld.",
     whatYouSeeP2:
-      "Rosa-Punkte: frische Proben aus reinem 2D-Gauß-Rauschen, durch T Schritte rückwärts durch die Kette gelaufen. Mit ausreichend Training sammeln sich die Wanderer auf derselben Mannigfaltigkeit wie die Daten — Diffusion en miniature.",
+      "Rosa-Punkte: Wanderer aus reinem 2D-Gauß-Rauschen, T Schritte rückwärts durch die gelernte Kette geschoben, mit verblassenden Pfaden. Schwacher blauer Schein: die Stärke von −ε_θ bei mittlerem Rauschen — das Score-Feld, an dem die Wanderer hinabrutschen.",
   },
   es: {
     topicTitle: "Tema · Difusión",
-    topicTagline: "Entrena un denoiser diminuto y luego genera datos nuevos a partir de ruido puro.",
+    topicTagline: "Una red de score aprende el campo, los caminantes regresan desde el ruido.",
     topicBody:
-      "Un MLP pequeño aprende a predecir el ruido añadido a un punto 2D limpio en cualquier nivel. Una vez entrenado, puede caminar ruido gaussiano puro de vuelta a la variedad de los datos — el mismo truco que convierte estática en imágenes de Stable Diffusion, en miniatura para que todo el proceso quepa en pantalla.",
-    scatterBadge: "difusión 2D de juguete",
+      "Entrenamiento y muestreo arrancan en cuanto carga la página. Un MLP pequeño mejora sin parar su predicción de ruido en segundo plano; caminantes rosa se desruidan continuamente desde una nube gaussiana hasta la variedad de datos, reinician y vuelven a hacerlo. Cambia conjunto, calendario o T en cualquier momento — la cadena se reorganiza en vivo.",
+    scatterBadge: "difusión 2D · en vivo",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Conjunto de datos",
     datasetMoons: "dos lunas",
@@ -144,30 +159,35 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     scheduleCosine: "ᾱ coseno",
     stepsLabel: "Pasos de difusión T",
     stepsUnit: "pasos",
-    samplesLabel: "Muestras a generar",
+    samplesLabel: "Caminantes",
     samplesUnit: "puntos",
-    trainButton: "▶ Entrenar denoiser",
-    trainingButton: "❚❚ Entrenando…",
-    sampleButton: "✦ Muestrear desde ruido",
-    resetButton: "↺ Reiniciar",
+    pauseButton: "❚❚ Pausa",
+    resumeButton: "▶ Reanudar",
+    resetModelButton: "↺ Reiniciar modelo (reentrenar)",
     legendData: "distribución de datos",
     legendSamples: "muestras generadas",
     legendTrails: "rastro del proceso inverso",
-    trainStatus: (e, l) => `época ${e} · pérdida ${l.toFixed(4)}`,
-    trainIdle: "Pulsa Entrenar para ajustar la red de score al conjunto elegido.",
-    trainDone: (l) => `listo · pérdida final ${l.toFixed(4)} · pulsa Muestrear para generar`,
-    whatYouSeeLabel: "Lo que estás viendo",
+    legendField: "campo de score aprendido",
+    statusFmt: (e, l, s, S) =>
+      `época ${e} · pérdida ${l.toFixed(3)} · paso de muestreo ${s}/${S}`,
+    whatNowLabel: "Lo que deberías ver ahora mismo",
+    whatNowTrainingEarly:
+      "el denoiser aún está aprendiendo el campo — los caminantes vagan antes de fijarse",
+    whatNowNoise: "los caminantes son aún ruido puro de N(0, I)",
+    whatNowMoving: "los caminantes empiezan a aglutinarse cerca de los datos",
+    whatNowConverged: "los caminantes han colapsado sobre la variedad de datos",
+    whatYouSeeLabel: "Leer el lienzo",
     whatYouSeeP1:
-      "Puntos cian: una muestra fija extraída de la distribución de datos de juguete. El denoiser sólo las ve (ruidosas) durante el entrenamiento — no memoriza posiciones; aprende el campo local de «¿hacia dónde está el interior?».",
+      "Puntos cian: la distribución de datos. El denoiser sólo ve copias ruidosas durante el entrenamiento — no memoriza posiciones; aprende el campo local de «¿hacia dónde está el interior?».",
     whatYouSeeP2:
-      "Puntos rosa: muestras nuevas extraídas de ruido gaussiano 2D puro y caminadas T pasos hacia atrás por la cadena inversa. Con suficiente entrenamiento, los caminantes se concentran en la misma variedad que los datos — difusión en miniatura.",
+      "Puntos rosa: caminantes tomados de ruido gaussiano 2D puro y empujados T pasos hacia atrás por la cadena aprendida, dejando estelas que se desvanecen. Resplandor azul tenue: la magnitud de −ε_θ a ruido medio — el campo de score por el que descienden.",
   },
   fr: {
     topicTitle: "Sujet · Diffusion",
-    topicTagline: "Entraîne un débruiteur minuscule puis échantillonne des données neuves depuis du bruit pur.",
+    topicTagline: "Un réseau de score apprend le champ, des marcheurs reviennent du bruit.",
     topicBody:
-      "Un petit MLP apprend à prédire le bruit ajouté à un point 2D propre à n'importe quel niveau. Une fois entraîné, il peut ramener du bruit gaussien pur vers la variété des données — le même truc qui transforme le grésillement en images Stable Diffusion, miniaturisé pour tenir à l'écran.",
-    scatterBadge: "diffusion 2D jouet",
+      "Entraînement et échantillonnage démarrent dès le chargement. Un petit MLP affine sans cesse sa prédiction de bruit en arrière-plan ; des marcheurs roses se débruitent en continu depuis un nuage gaussien jusqu'à la variété des données, redémarrent et recommencent. Change de jeu, de calendrier ou de T à tout moment — la chaîne se réorganise en direct.",
+    scatterBadge: "diffusion 2D · en direct",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Jeu de données",
     datasetMoons: "deux lunes",
@@ -178,30 +198,35 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     scheduleCosine: "ᾱ cosinus",
     stepsLabel: "Pas de diffusion T",
     stepsUnit: "pas",
-    samplesLabel: "Échantillons à tirer",
+    samplesLabel: "Marcheurs",
     samplesUnit: "points",
-    trainButton: "▶ Entraîner le débruiteur",
-    trainingButton: "❚❚ Entraînement…",
-    sampleButton: "✦ Échantillonner depuis le bruit",
-    resetButton: "↺ Réinitialiser",
+    pauseButton: "❚❚ Pause",
+    resumeButton: "▶ Reprendre",
+    resetModelButton: "↺ Réinitialiser le modèle (ré-entraîner)",
     legendData: "distribution des données",
     legendSamples: "échantillons générés",
     legendTrails: "trace du processus inverse",
-    trainStatus: (e, l) => `époque ${e} · perte ${l.toFixed(4)}`,
-    trainIdle: "Appuie sur Entraîner pour ajuster le réseau de score au jeu choisi.",
-    trainDone: (l) => `terminé · perte finale ${l.toFixed(4)} · appuie sur Échantillonner pour générer`,
-    whatYouSeeLabel: "Ce que tu vois",
+    legendField: "champ de score appris",
+    statusFmt: (e, l, s, S) =>
+      `époque ${e} · perte ${l.toFixed(3)} · pas d'échantillonnage ${s}/${S}`,
+    whatNowLabel: "Ce que tu devrais voir maintenant",
+    whatNowTrainingEarly:
+      "le débruiteur apprend encore le champ — les marcheurs errent avant de s'accrocher",
+    whatNowNoise: "les marcheurs sont encore du bruit pur de N(0, I)",
+    whatNowMoving: "les marcheurs commencent à se regrouper près des données",
+    whatNowConverged: "les marcheurs ont collapsé sur la variété des données",
+    whatYouSeeLabel: "Lire le canevas",
     whatYouSeeP1:
-      "Points cyan : un échantillon fixe tiré de la distribution de données jouet. Le débruiteur ne les voit (bruités) que pendant l'entraînement — il ne mémorise pas les positions ; il apprend le champ local du « par où est l'intérieur ? ».",
+      "Points cyan : la distribution des données jouet. Le débruiteur ne les voit (bruités) que pendant l'entraînement — il ne mémorise pas les positions ; il apprend le champ local du « par où est l'intérieur ? ».",
     whatYouSeeP2:
-      "Points roses : échantillons frais tirés de bruit gaussien 2D pur et parcourus T pas à l'envers par la chaîne inverse. Avec assez d'entraînement, les marcheurs se concentrent sur la même variété que les données — diffusion en miniature.",
+      "Points roses : marcheurs tirés de bruit gaussien 2D pur, poussés T pas à l'envers par la chaîne apprise, laissant des traînées qui s'estompent. Halo bleu pâle : la magnitude de −ε_θ à bruit moyen — le champ de score qu'ils dévalent.",
   },
   it: {
     topicTitle: "Tema · Diffusione",
-    topicTagline: "Addestra un denoiser minuscolo, poi campiona dati nuovi da rumore puro.",
+    topicTagline: "Una rete di score impara il campo, dei camminatori tornano dal rumore.",
     topicBody:
-      "Un piccolo MLP impara a predire il rumore aggiunto a un punto 2D pulito a qualsiasi livello. Una volta addestrato, può percorrere rumore gaussiano puro all'indietro fino alla varietà dei dati — lo stesso trucco che trasforma il fruscio nelle immagini di Stable Diffusion, in miniatura, tutto in una schermata.",
-    scatterBadge: "diffusione 2D giocattolo",
+      "Addestramento e campionamento partono appena la pagina carica. Un piccolo MLP continua a migliorare la sua predizione del rumore in background; camminatori rosa si denoisificano di continuo da una nube gaussiana fino alla varietà dei dati, ripartono e lo rifanno. Cambia dataset, calendario o T quando vuoi — la catena si riorganizza dal vivo.",
+    scatterBadge: "diffusione 2D · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Dataset",
     datasetMoons: "due lune",
@@ -212,30 +237,35 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     scheduleCosine: "ᾱ coseno",
     stepsLabel: "Passi di diffusione T",
     stepsUnit: "passi",
-    samplesLabel: "Campioni da estrarre",
+    samplesLabel: "Camminatori",
     samplesUnit: "punti",
-    trainButton: "▶ Addestra denoiser",
-    trainingButton: "❚❚ Addestramento…",
-    sampleButton: "✦ Campiona dal rumore",
-    resetButton: "↺ Reset",
+    pauseButton: "❚❚ Pausa",
+    resumeButton: "▶ Riprendi",
+    resetModelButton: "↺ Reset modello (ri-addestra)",
     legendData: "distribuzione dei dati",
     legendSamples: "campioni generati",
     legendTrails: "scia del processo inverso",
-    trainStatus: (e, l) => `epoca ${e} · perdita ${l.toFixed(4)}`,
-    trainIdle: "Premi Addestra per adattare la rete di score al dataset scelto.",
-    trainDone: (l) => `fatto · perdita finale ${l.toFixed(4)} · premi Campiona per generare`,
-    whatYouSeeLabel: "Ciò che stai vedendo",
+    legendField: "campo di score appreso",
+    statusFmt: (e, l, s, S) =>
+      `epoca ${e} · perdita ${l.toFixed(3)} · passo di sampling ${s}/${S}`,
+    whatNowLabel: "Cosa dovresti vedere ora",
+    whatNowTrainingEarly:
+      "il denoiser sta ancora imparando il campo — i camminatori vagano prima di agganciarsi",
+    whatNowNoise: "i camminatori sono ancora rumore puro da N(0, I)",
+    whatNowMoving: "i camminatori cominciano ad addensarsi vicino ai dati",
+    whatNowConverged: "i camminatori sono collassati sulla varietà dei dati",
+    whatYouSeeLabel: "Leggere la tela",
     whatYouSeeP1:
-      "Punti ciano: un campione fisso preso dalla distribuzione giocattolo. Il denoiser li vede solo (rumorosi) durante l'addestramento — non memorizza posizioni; impara il campo locale del «da che parte sta dentro?».",
+      "Punti ciano: la distribuzione giocattolo. Il denoiser li vede solo (rumorosi) durante l'addestramento — non memorizza posizioni; impara il campo locale del «da che parte sta dentro?».",
     whatYouSeeP2:
-      "Punti rosa: campioni nuovi presi da rumore gaussiano 2D puro e percorsi T passi all'indietro lungo la catena inversa. Con abbastanza addestramento, i camminatori si concentrano sulla stessa varietà dei dati — diffusione in miniatura.",
+      "Punti rosa: camminatori presi da rumore gaussiano 2D puro e spinti T passi indietro lungo la catena appresa, lasciando scie sbiadite. Bagliore blu tenue: la magnitudine di −ε_θ a rumore medio — il campo di score lungo cui scivolano.",
   },
   pt: {
     topicTitle: "Tema · Difusão",
-    topicTagline: "Treina um denoiser minúsculo, depois amostra dados novos a partir de ruído puro.",
+    topicTagline: "Uma rede de score aprende o campo, caminhantes voltam do ruído.",
     topicBody:
-      "Um pequeno MLP aprende a prever o ruído adicionado a um ponto 2D limpo em qualquer nível. Uma vez treinado, pode caminhar ruído gaussiano puro de volta à variedade dos dados — o mesmo truque que transforma chuvisco em imagens Stable Diffusion, em miniatura, com todo o processo a caber no ecrã.",
-    scatterBadge: "difusão 2D de brincadeira",
+      "Treino e amostragem arrancam assim que a página carrega. Um pequeno MLP continua a melhorar a sua previsão de ruído em segundo plano; caminhantes rosa removem ruído sem parar a partir de uma nuvem gaussiana até à variedade dos dados, reiniciam e voltam a fazê-lo. Troca de conjunto, calendário ou T a qualquer momento — a cadeia reorganiza-se em direto.",
+    scatterBadge: "difusão 2D · em direto",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Conjunto de dados",
     datasetMoons: "duas luas",
@@ -246,30 +276,35 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     scheduleCosine: "ᾱ cosseno",
     stepsLabel: "Passos de difusão T",
     stepsUnit: "passos",
-    samplesLabel: "Amostras a gerar",
+    samplesLabel: "Caminhantes",
     samplesUnit: "pontos",
-    trainButton: "▶ Treinar denoiser",
-    trainingButton: "❚❚ A treinar…",
-    sampleButton: "✦ Amostrar a partir de ruído",
-    resetButton: "↺ Reiniciar",
+    pauseButton: "❚❚ Pausar",
+    resumeButton: "▶ Retomar",
+    resetModelButton: "↺ Reset do modelo (re-treinar)",
     legendData: "distribuição dos dados",
     legendSamples: "amostras geradas",
     legendTrails: "rasto do processo inverso",
-    trainStatus: (e, l) => `época ${e} · perda ${l.toFixed(4)}`,
-    trainIdle: "Carrega em Treinar para ajustar a rede de score ao conjunto escolhido.",
-    trainDone: (l) => `pronto · perda final ${l.toFixed(4)} · carrega em Amostrar para gerar`,
-    whatYouSeeLabel: "O que estás a ver",
+    legendField: "campo de score aprendido",
+    statusFmt: (e, l, s, S) =>
+      `época ${e} · perda ${l.toFixed(3)} · passo de amostragem ${s}/${S}`,
+    whatNowLabel: "O que deves estar a ver agora",
+    whatNowTrainingEarly:
+      "o denoiser ainda está a aprender o campo — os caminhantes vagueiam antes de prender",
+    whatNowNoise: "os caminhantes ainda são ruído puro de N(0, I)",
+    whatNowMoving: "os caminhantes começam a aglomerar-se junto aos dados",
+    whatNowConverged: "os caminhantes colapsaram sobre a variedade dos dados",
+    whatYouSeeLabel: "Ler a tela",
     whatYouSeeP1:
-      "Pontos ciano: uma amostra fixa retirada da distribuição de dados de brincadeira. O denoiser só os vê (ruidosos) durante o treino — não memoriza posições; aprende o campo local de «para que lado fica dentro?».",
+      "Pontos ciano: a distribuição de dados de brincadeira. O denoiser só os vê (ruidosos) durante o treino — não memoriza posições; aprende o campo local de «para que lado fica dentro?».",
     whatYouSeeP2:
-      "Pontos rosa: amostras novas tiradas de ruído gaussiano 2D puro e percorridas T passos para trás pela cadeia inversa. Com treino suficiente, os caminhantes concentram-se na mesma variedade dos dados — difusão em miniatura.",
+      "Pontos rosa: caminhantes tirados de ruído gaussiano 2D puro e empurrados T passos para trás pela cadeia aprendida, deixando rastos que se esbatem. Brilho azul ténue: a magnitude de −ε_θ a ruído médio — o campo de score por onde descem.",
   },
   sv: {
     topicTitle: "Ämne · Diffusion",
-    topicTagline: "Träna en pytteliten brusborttagare, sampla sedan färska data ur rent brus.",
+    topicTagline: "Ett score-nät lär fältet, vandrare går tillbaka från brus.",
     topicBody:
-      "Ett litet MLP lär sig att förutsäga bruset som tillsattes en ren 2D-punkt på vilken nivå som helst. Väl tränat kan det vandra rent gaussiskt brus tillbaka till datamångfalden — samma trick som förvandlar brus till Stable Diffusion-bilder, i miniformat så att hela processen ryms på skärmen.",
-    scatterBadge: "2D-leksaksdiffusion",
+      "Träning och sampling startar i samma stund som sidan laddas. Ett litet MLP fortsätter förbättra sin brusprediktion i bakgrunden; rosa vandrare brusrensar sig oavbrutet från ett gaussiskt moln in på datamångfalden, startar om och gör det igen. Byt dataset, schema eller T när som helst — kedjan organiserar om sig i realtid.",
+    scatterBadge: "2D-diffusion · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Dataset",
     datasetMoons: "två månar",
@@ -280,30 +315,35 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     scheduleCosine: "kosinus ᾱ",
     stepsLabel: "Diffusionssteg T",
     stepsUnit: "steg",
-    samplesLabel: "Antal sampel",
+    samplesLabel: "Vandrare",
     samplesUnit: "punkter",
-    trainButton: "▶ Träna brusborttagare",
-    trainingButton: "❚❚ Tränar…",
-    sampleButton: "✦ Sampla från brus",
-    resetButton: "↺ Återställ",
+    pauseButton: "❚❚ Paus",
+    resumeButton: "▶ Återuppta",
+    resetModelButton: "↺ Återställ modellen (träna om)",
     legendData: "datafördelning",
     legendSamples: "genererade sampel",
     legendTrails: "spår från bakåtprocessen",
-    trainStatus: (e, l) => `epok ${e} · förlust ${l.toFixed(4)}`,
-    trainIdle: "Tryck Träna för att passa score-nätet på det valda datasetet.",
-    trainDone: (l) => `klart · slutförlust ${l.toFixed(4)} · tryck Sampla för att generera`,
-    whatYouSeeLabel: "Det du ser",
+    legendField: "lärt score-fält",
+    statusFmt: (e, l, s, S) =>
+      `epok ${e} · förlust ${l.toFixed(3)} · samplingssteg ${s}/${S}`,
+    whatNowLabel: "Det du borde se just nu",
+    whatNowTrainingEarly:
+      "brusborttagaren lär sig fortfarande fältet — vandrarna ströar innan de fastnar",
+    whatNowNoise: "vandrarna är fortfarande rent brus från N(0, I)",
+    whatNowMoving: "vandrarna börjar klumpa sig kring datan",
+    whatNowConverged: "vandrarna har kollapsat på datamångfalden",
+    whatYouSeeLabel: "Läsa duken",
     whatYouSeeP1:
-      "Cyanprickar: ett fast sampel draget från leksaksdatafördelningen. Brusborttagaren ser dem bara (brusiga) under träning — den minns inte positioner; den lär sig det lokala 'åt vilket håll är inåt?'-fältet.",
+      "Cyanprickar: leksaksdatafördelningen. Brusborttagaren ser dem bara (brusiga) under träning — den memorerar inte positioner; den lär sig det lokala 'åt vilket håll är inåt?'-fältet.",
     whatYouSeeP2:
-      "Rosa prickar: färska sampel dragna från rent 2D-gaussiskt brus och vandrade T steg bakåt genom kedjan. Med tillräcklig träning samlas vandrarna på samma mångfald som datan — diffusion i miniatyr.",
+      "Rosa prickar: vandrare dragna från rent 2D-gaussiskt brus och puttade T steg bakåt genom den lärda kedjan, med tonande spår. Svagt blått sken: magnituden av −ε_θ vid medelbrus — score-fältet de glider ned för.",
   },
   no: {
     topicTitle: "Tema · Diffusjon",
-    topicTagline: "Tren en bitteliten støyfjerner, og sampl deretter ferske data fra ren støy.",
+    topicTagline: "Et score-nett lærer feltet, vandrere går tilbake fra støy.",
     topicBody:
-      "Et lite MLP lærer å forutsi støyen som ble lagt til et rent 2D-punkt på et hvilket som helst nivå. Når det er trent, kan det vandre ren gaussisk støy tilbake til datamangfoldigheten — det samme trikset som gjør snø om til Stable Diffusion-bilder, i miniatyr så hele prosessen får plass på skjermen.",
-    scatterBadge: "2D-leketøysdiffusjon",
+      "Trening og sampling starter i det siden lastes. Et lite MLP fortsetter å forbedre støyprediksjonen i bakgrunnen; rosa vandrere fjerner støy uavbrutt fra en gaussisk sky inn på datamangfoldigheten, starter på nytt og gjør det igjen. Bytt datasett, plan eller T når du vil — kjeden omorganiserer seg live.",
+    scatterBadge: "2D-diffusjon · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Datasett",
     datasetMoons: "to måner",
@@ -314,23 +354,28 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     scheduleCosine: "kosinus ᾱ",
     stepsLabel: "Diffusjonssteg T",
     stepsUnit: "steg",
-    samplesLabel: "Antall prøver",
+    samplesLabel: "Vandrere",
     samplesUnit: "punkter",
-    trainButton: "▶ Tren støyfjerner",
-    trainingButton: "❚❚ Trener…",
-    sampleButton: "✦ Sampl fra støy",
-    resetButton: "↺ Nullstill",
+    pauseButton: "❚❚ Pause",
+    resumeButton: "▶ Gjenoppta",
+    resetModelButton: "↺ Tilbakestill modellen (tren på nytt)",
     legendData: "datafordeling",
     legendSamples: "genererte prøver",
     legendTrails: "spor fra bakoverprosessen",
-    trainStatus: (e, l) => `epoke ${e} · tap ${l.toFixed(4)}`,
-    trainIdle: "Trykk Tren for å tilpasse score-nettet på det valgte datasettet.",
-    trainDone: (l) => `ferdig · sluttap ${l.toFixed(4)} · trykk Sampl for å generere`,
-    whatYouSeeLabel: "Det du ser",
+    legendField: "lært score-felt",
+    statusFmt: (e, l, s, S) =>
+      `epoke ${e} · tap ${l.toFixed(3)} · samplingssteg ${s}/${S}`,
+    whatNowLabel: "Det du burde se nå",
+    whatNowTrainingEarly:
+      "støyfjerneren lærer fortsatt feltet — vandrerne driver før de fester seg",
+    whatNowNoise: "vandrerne er fortsatt ren støy fra N(0, I)",
+    whatNowMoving: "vandrerne begynner å klumpe seg nær dataene",
+    whatNowConverged: "vandrerne har kollapset på datamangfoldigheten",
+    whatYouSeeLabel: "Lese lerretet",
     whatYouSeeP1:
-      "Cyan-prikker: en fast prøve trukket fra leketøys-datafordelingen. Støyfjerneren ser dem kun (støyete) under trening — den memorerer ikke posisjoner; den lærer det lokale 'hvilken vei er innover?'-feltet.",
+      "Cyan-prikker: leketøys-datafordelingen. Støyfjerneren ser dem kun (støyete) under trening — den memorerer ikke posisjoner; den lærer det lokale 'hvilken vei er innover?'-feltet.",
     whatYouSeeP2:
-      "Rosa prikker: ferske prøver trukket fra ren 2D-gaussisk støy og vandret T steg bakover gjennom kjeden. Med nok trening samler vandrerne seg på samme mangfoldighet som dataene — diffusjon i miniatyr.",
+      "Rosa prikker: vandrere trukket fra ren 2D-gaussisk støy og dyttet T steg bakover gjennom den lærte kjeden, med falmende spor. Svakt blått skjær: størrelsen av −ε_θ ved middels støy — score-feltet de glir nedover.",
   },
 };
 
@@ -341,7 +386,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
 // --------------------------------------------------------------------------
 
 const IN_DIM = 4;
-const HID = 24;
+const HID = 32;
 const OUT_DIM = 2;
 
 interface MLP {
@@ -389,7 +434,6 @@ function randn(rng: () => number): number {
 }
 
 function makeMLP(rng: () => number): MLP {
-  // He initialisation for GELU/ReLU-like activations.
   const init = (rows: number, cols: number) => {
     const out = new Float32Array(rows * cols);
     const scale = Math.sqrt(2 / cols);
@@ -434,7 +478,6 @@ function gelu(z: number): number {
   );
 }
 function geluPrime(z: number): number {
-  // Numerically stable derivative of the tanh-approx GELU.
   const c = Math.sqrt(2 / Math.PI);
   const z3 = z * z * z;
   const inner = c * (z + 0.044715 * z3);
@@ -443,18 +486,16 @@ function geluPrime(z: number): number {
   return 0.5 * (1 + t) + 0.5 * z * sech2 * c * (1 + 3 * 0.044715 * z * z);
 }
 
-// Forward pass over a single (x, t) pair. Returns caches used by backward.
 function forward(
   net: MLP,
-  inp: Float32Array, // length IN_DIM
+  inp: Float32Array,
 ): {
-  h1: Float32Array; // pre-activation
-  a1: Float32Array; // post-activation
+  h1: Float32Array;
+  a1: Float32Array;
   h2: Float32Array;
   a2: Float32Array;
   out: Float32Array;
 } {
-  // Layer 1
   const h1 = new Float32Array(HID);
   for (let i = 0; i < HID; i++) {
     let s = net.b1[i];
@@ -463,7 +504,6 @@ function forward(
   }
   const a1 = new Float32Array(HID);
   for (let i = 0; i < HID; i++) a1[i] = gelu(h1[i]);
-  // Layer 2
   const h2 = new Float32Array(HID);
   for (let i = 0; i < HID; i++) {
     let s = net.b2[i];
@@ -472,7 +512,6 @@ function forward(
   }
   const a2 = new Float32Array(HID);
   for (let i = 0; i < HID; i++) a2[i] = gelu(h2[i]);
-  // Output layer (linear)
   const out = new Float32Array(OUT_DIM);
   for (let i = 0; i < OUT_DIM; i++) {
     let s = net.b3[i];
@@ -482,12 +521,11 @@ function forward(
   return { h1, a1, h2, a2, out };
 }
 
-// Accumulate gradients into `grad` buffers from a single sample.
 function backward(
   net: MLP,
   inp: Float32Array,
   fwd: ReturnType<typeof forward>,
-  dOut: Float32Array, // dL/dout, length OUT_DIM
+  dOut: Float32Array,
   grads: {
     gW1: Float32Array;
     gb1: Float32Array;
@@ -497,7 +535,6 @@ function backward(
     gb3: Float32Array;
   },
 ) {
-  // dW3, db3, da2
   const da2 = new Float32Array(HID);
   for (let i = 0; i < OUT_DIM; i++) {
     grads.gb3[i] += dOut[i];
@@ -506,10 +543,8 @@ function backward(
       da2[j] += dOut[i] * net.W3[i * HID + j];
     }
   }
-  // through GELU at layer 2
   const dh2 = new Float32Array(HID);
   for (let i = 0; i < HID; i++) dh2[i] = da2[i] * geluPrime(fwd.h2[i]);
-  // dW2, db2, da1
   const da1 = new Float32Array(HID);
   for (let i = 0; i < HID; i++) {
     grads.gb2[i] += dh2[i];
@@ -518,10 +553,8 @@ function backward(
       da1[j] += dh2[i] * net.W2[i * HID + j];
     }
   }
-  // through GELU at layer 1
   const dh1 = new Float32Array(HID);
   for (let i = 0; i < HID; i++) dh1[i] = da1[i] * geluPrime(fwd.h1[i]);
-  // dW1, db1
   for (let i = 0; i < HID; i++) {
     grads.gb1[i] += dh1[i];
     for (let j = 0; j < IN_DIM; j++) {
@@ -576,7 +609,6 @@ function buildSchedule(T: number, kind: Schedule): {
       alphaBar[t] = acc;
     }
   } else {
-    // Nichol & Dhariwal (2021) cosine schedule.
     const s = 0.008;
     const f = (t: number) => Math.cos(((t / T + s) / (1 + s)) * (Math.PI / 2)) ** 2;
     const f0 = f(0);
@@ -613,7 +645,6 @@ function sampleDataset(kind: DatasetKind, n: number, rng: () => number): Float32
         x = 1 - Math.cos(t) - 0.5;
         y = 1 - Math.sin(t) - 0.75;
       }
-      // tighten and jitter
       x *= 1.4;
       y *= 1.4;
       x += randn(rng) * 0.06;
@@ -629,7 +660,6 @@ function sampleDataset(kind: DatasetKind, n: number, rng: () => number): Float32
       x = cx + randn(rng) * 0.22;
       y = cy + randn(rng) * 0.22;
     } else {
-      // swiss spiral
       const t = rng() * 3.5 + 0.8;
       const r = t * 0.4;
       const sign = i % 2 === 0 ? 1 : -1;
@@ -645,10 +675,50 @@ function sampleDataset(kind: DatasetKind, n: number, rng: () => number): Float32
 }
 
 // --------------------------------------------------------------------------
+// Score-field heatmap — sample −ε_θ(x, t_mid) on a coarse grid. Magnitude
+// is mapped to alpha and painted as a cyan glow behind everything so the
+// visitor can SEE the field the model has carved out.
+// --------------------------------------------------------------------------
+
+const FIELD_GRID = 28; // 28×28 cells = 784 forward passes per refresh (cheap)
+
+function buildField(net: MLP, schedule: { alphaBar: Float32Array }, T: number): Float32Array {
+  const out = new Float32Array(FIELD_GRID * FIELD_GRID);
+  // mid-noise level — where the field is most informative.
+  const tMid = Math.floor(T / 2);
+  const tn = (tMid + 1) / T;
+  const sinT = Math.sin(Math.PI * tn);
+  const cosT = Math.cos(Math.PI * tn);
+  const inp = new Float32Array(IN_DIM);
+  inp[2] = sinT;
+  inp[3] = cosT;
+  let maxMag = 1e-6;
+  for (let gy = 0; gy < FIELD_GRID; gy++) {
+    for (let gx = 0; gx < FIELD_GRID; gx++) {
+      const x = -2.5 + (5 * gx) / (FIELD_GRID - 1);
+      const y = -2.5 + (5 * gy) / (FIELD_GRID - 1);
+      inp[0] = x;
+      inp[1] = y;
+      const o = forward(net, inp).out;
+      const m = Math.hypot(o[0], o[1]);
+      out[gy * FIELD_GRID + gx] = m;
+      if (m > maxMag) maxMag = m;
+    }
+  }
+  // Normalise so the brightest cell is ~1. We invert it (small magnitude =
+  // high density region in score-matching) so data-manifold areas light up.
+  for (let i = 0; i < out.length; i++) {
+    out[i] = 1 - Math.min(1, out[i] / maxMag);
+  }
+  return out;
+}
+
+// --------------------------------------------------------------------------
 // Component
 // --------------------------------------------------------------------------
 
 const DATA_N = 256;
+const TRAIL_LEN = 8;
 
 export default function DiffusionExplorer() {
   const { u, locale } = useI18n();
@@ -658,193 +728,244 @@ export default function DiffusionExplorer() {
   const [schedule, setSchedule] = useState<Schedule>("cosine");
   const [steps, setSteps] = useState(40);
   const [numSamples, setNumSamples] = useState(160);
-  const [training, setTraining] = useState(false);
-  const [trainStatus, setTrainStatus] = useState<string>(x.trainIdle);
-  const [trained, setTrained] = useState(false);
+  const [paused, setPaused] = useState(false);
+
+  // Live status numbers — these are React state because they drive the
+  // visible counter strip; updated on every animation tick (rAF).
+  const [epoch, setEpoch] = useState(0);
+  const [loss, setLoss] = useState(0);
+  const [sampStep, setSampStep] = useState(0);
 
   // Canvas refs and persistent state held outside React so the training loop
   // and animation can mutate without triggering re-renders for every frame.
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const netRef = useRef<MLP | null>(null);
+  const adamRef = useRef<AdamState | null>(null);
+  const schedRef = useRef<ReturnType<typeof buildSchedule> | null>(null);
   const dataRef = useRef<Float32Array | null>(null);
-  const samplesRef = useRef<Float32Array | null>(null); // current sample positions (N×2)
-  const trailsRef = useRef<Float32Array[] | null>(null); // history of sample positions (recent first)
-  const trainAbort = useRef(false);
-  const sampleRaf = useRef<number | null>(null);
-  const rngRef = useRef(makeRng(0xC0FFEE));
-
-  // Build the dataset whenever the kind changes. Stable seed so refreshes
-  // keep the same point cloud — comparisons stay meaningful.
+  const samplesRef = useRef<Float32Array | null>(null);
+  const trailsRef = useRef<Float32Array[] | null>(null);
+  const fieldRef = useRef<Float32Array | null>(null);
+  const fieldFrameRef = useRef(0); // how many redraws since last field refresh
+  const rngRef = useRef(makeRng(0xc0ffee));
+  // sampling cursor — counts down from steps-1 to 0, then resets to steps-1
+  // with a fresh noise cloud (the loop the visitor watches).
+  const sampCursorRef = useRef<number>(0);
+  // Latest epoch counters for the rAF loop (kept in refs to avoid stale closures).
+  const epochRef = useRef(0);
+  const lossRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+  const pausedRef = useRef(false);
   useEffect(() => {
-    const r = makeRng(0xC0FFEE ^ dataset.length);
+    pausedRef.current = paused;
+  }, [paused]);
+
+  // Reduced motion — when set, freeze the rAF loop on a single static frame
+  // (training still runs a tiny bit so the heatmap forms, but no continuous
+  // animation).
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(m.matches);
+    const h = (e: MediaQueryListEvent) => setReduced(e.matches);
+    m.addEventListener?.("change", h);
+    return () => m.removeEventListener?.("change", h);
+  }, []);
+
+  // -------- (re)initialise everything for the current configuration --------
+  // Called on mount, on dataset/schedule/steps change, and from "Reset model".
+  const initEverything = () => {
+    const r = makeRng(0xc0ffee ^ dataset.length ^ steps);
     dataRef.current = sampleDataset(dataset, DATA_N, r);
-    samplesRef.current = null;
-    trailsRef.current = null;
-    setTrainStatus(x.trainIdle);
-    setTrained(false);
-    netRef.current = null;
-    drawAll();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataset]);
-
-  // Reset language-dependent status string when the locale changes.
-  useEffect(() => {
-    if (!trained && !training) setTrainStatus(x.trainIdle);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [locale]);
-
-  // -------- training loop --------
-  const trainAsync = async () => {
-    if (training) return;
-    trainAbort.current = false;
-    setTraining(true);
-    setTrained(false);
-    const net = makeMLP(makeRng(0xBEEF));
-    netRef.current = net;
-    const adam = makeAdam(net);
-    const sched = buildSchedule(steps, schedule);
-    const data = dataRef.current!;
-    const N = data.length / 2;
-    const lr = 4e-3;
-    const BATCH = 64;
-    const EPOCHS = 40;
-    const ITERS_PER_EPOCH = 30;
-    const rng = rngRef.current;
-    const inp = new Float32Array(IN_DIM);
-    let lastLoss = 0;
-    for (let epoch = 1; epoch <= EPOCHS; epoch++) {
-      if (trainAbort.current) break;
-      let epochLoss = 0;
-      for (let it = 0; it < ITERS_PER_EPOCH; it++) {
-        const grads = {
-          gW1: new Float32Array(net.W1.length),
-          gb1: new Float32Array(net.b1.length),
-          gW2: new Float32Array(net.W2.length),
-          gb2: new Float32Array(net.b2.length),
-          gW3: new Float32Array(net.W3.length),
-          gb3: new Float32Array(net.b3.length),
-        };
-        let lossSum = 0;
-        for (let b = 0; b < BATCH; b++) {
-          // pick random data point and random timestep
-          const idx = Math.floor(rng() * N);
-          const x0x = data[idx * 2];
-          const x0y = data[idx * 2 + 1];
-          const t = Math.floor(rng() * steps);
-          const sa = Math.sqrt(sched.alphaBar[t]);
-          const sb = Math.sqrt(1 - sched.alphaBar[t]);
-          const eX = randn(rng);
-          const eY = randn(rng);
-          const xtX = sa * x0x + sb * eX;
-          const xtY = sa * x0y + sb * eY;
-          // input features: (x, y, sin(πt/T), cos(πt/T))
-          const tn = (t + 1) / steps;
-          inp[0] = xtX;
-          inp[1] = xtY;
-          inp[2] = Math.sin(Math.PI * tn);
-          inp[3] = Math.cos(Math.PI * tn);
-          const fwd = forward(net, inp);
-          const eHatX = fwd.out[0];
-          const eHatY = fwd.out[1];
-          const dX = eHatX - eX;
-          const dY = eHatY - eY;
-          lossSum += dX * dX + dY * dY;
-          const dOut = new Float32Array(2);
-          // dL/d(out) = 2(out − ε) / BATCH  (mean-squared loss, mean over batch)
-          dOut[0] = (2 * dX) / BATCH;
-          dOut[1] = (2 * dY) / BATCH;
-          backward(net, inp, fwd, dOut, grads);
-        }
-        adam.step += 1;
-        adamStep(net.W1, grads.gW1, adam.mW1, adam.vW1, lr, adam.step);
-        adamStep(net.b1, grads.gb1, adam.mb1, adam.vb1, lr, adam.step);
-        adamStep(net.W2, grads.gW2, adam.mW2, adam.vW2, lr, adam.step);
-        adamStep(net.b2, grads.gb2, adam.mb2, adam.vb2, lr, adam.step);
-        adamStep(net.W3, grads.gW3, adam.mW3, adam.vW3, lr, adam.step);
-        adamStep(net.b3, grads.gb3, adam.mb3, adam.vb3, lr, adam.step);
-        epochLoss += lossSum / BATCH;
-      }
-      lastLoss = epochLoss / ITERS_PER_EPOCH;
-      setTrainStatus(x.trainStatus(epoch, lastLoss));
-      // Yield to the browser so the UI can paint between epochs.
-      await new Promise<void>((res) => setTimeout(res, 0));
-    }
-    setTraining(false);
-    setTrained(true);
-    setTrainStatus(x.trainDone(lastLoss));
-  };
-
-  // -------- sampler (animated reverse process) --------
-  const sampleAsync = () => {
-    if (!netRef.current) return;
-    if (sampleRaf.current !== null) cancelAnimationFrame(sampleRaf.current);
-    const net = netRef.current;
-    const sched = buildSchedule(steps, schedule);
-    const rng = rngRef.current;
-    // Initialise sample positions ~ N(0, I), scaled to roughly the data extent.
+    schedRef.current = buildSchedule(steps, schedule);
+    netRef.current = makeMLP(makeRng(0xbeef + steps));
+    adamRef.current = makeAdam(netRef.current);
+    fieldRef.current = null;
+    fieldFrameRef.current = 0;
+    // Fresh walker cloud from N(0, I).
     const xs = new Float32Array(numSamples * 2);
-    for (let i = 0; i < numSamples * 2; i++) xs[i] = randn(rng);
+    for (let i = 0; i < numSamples * 2; i++) xs[i] = randn(rngRef.current);
     samplesRef.current = xs;
-    // Trails: keep last few positions per sample for a fading streak.
-    const TRAIL_LEN = 6;
     trailsRef.current = Array.from({ length: TRAIL_LEN }, () => new Float32Array(xs));
-    let t = steps - 1;
-    const inp = new Float32Array(IN_DIM);
-    const stepOnce = () => {
-      if (t < 0) return false;
-      const ab = sched.alphaBar[t];
-      const abPrev = t === 0 ? 1 : sched.alphaBar[t - 1];
-      const a = sched.alpha[t];
-      const b = sched.beta[t];
-      const tn = (t + 1) / steps;
-      const sinT = Math.sin(Math.PI * tn);
-      const cosT = Math.cos(Math.PI * tn);
-      const sqrtA = Math.sqrt(a);
-      const sqrtOneMinusAb = Math.sqrt(1 - ab);
-      const coef = (1 - a) / sqrtOneMinusAb;
-      const sigma = t === 0 ? 0 : Math.sqrt(((1 - abPrev) / (1 - ab)) * b);
-      for (let i = 0; i < numSamples; i++) {
-        inp[0] = xs[i * 2];
-        inp[1] = xs[i * 2 + 1];
-        inp[2] = sinT;
-        inp[3] = cosT;
-        const fwd = forward(net, inp);
-        const eHatX = fwd.out[0];
-        const eHatY = fwd.out[1];
-        const meanX = (1 / sqrtA) * (xs[i * 2] - coef * eHatX);
-        const meanY = (1 / sqrtA) * (xs[i * 2 + 1] - coef * eHatY);
-        const noiseX = t === 0 ? 0 : randn(rng);
-        const noiseY = t === 0 ? 0 : randn(rng);
-        xs[i * 2] = meanX + sigma * noiseX;
-        xs[i * 2 + 1] = meanY + sigma * noiseY;
-      }
-      // push to trail buffer (rotate)
-      const tr = trailsRef.current!;
-      for (let k = tr.length - 1; k > 0; k--) tr[k] = tr[k - 1];
-      tr[0] = new Float32Array(xs);
-      t -= 1;
-      return true;
-    };
-    const tick = () => {
-      // run ~3 reverse steps per animation frame so the user sees the walk.
-      for (let k = 0; k < 3; k++) stepOnce();
-      drawAll();
-      if (t >= 0) {
-        sampleRaf.current = requestAnimationFrame(tick);
-      } else {
-        sampleRaf.current = null;
-      }
-    };
-    sampleRaf.current = requestAnimationFrame(tick);
+    sampCursorRef.current = steps - 1;
+    epochRef.current = 0;
+    lossRef.current = 0;
+    setEpoch(0);
+    setLoss(0);
+    setSampStep(steps - 1);
   };
 
-  const resetSampler = () => {
-    if (sampleRaf.current !== null) cancelAnimationFrame(sampleRaf.current);
-    sampleRaf.current = null;
-    samplesRef.current = null;
-    trailsRef.current = null;
-    drawAll();
+  // Rebuild on first mount and whenever the dataset/schedule/steps change.
+  useEffect(() => {
+    initEverything();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataset, schedule, steps]);
+
+  // Rebuild the walker cloud (only) when the walker count slider moves.
+  useEffect(() => {
+    const xs = new Float32Array(numSamples * 2);
+    for (let i = 0; i < numSamples * 2; i++) xs[i] = randn(rngRef.current);
+    samplesRef.current = xs;
+    trailsRef.current = Array.from({ length: TRAIL_LEN }, () => new Float32Array(xs));
+    sampCursorRef.current = steps - 1;
+    setSampStep(steps - 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [numSamples]);
+
+  // -------- one mini-batch of training. Called several times per frame. --
+  const trainMiniBatch = (BATCH = 64): number => {
+    const net = netRef.current;
+    const adam = adamRef.current;
+    const sched = schedRef.current;
+    const data = dataRef.current;
+    if (!net || !adam || !sched || !data) return 0;
+    const N = data.length / 2;
+    const lr = 5e-3;
+    const rng = rngRef.current;
+    const inp = new Float32Array(IN_DIM);
+    const grads = {
+      gW1: new Float32Array(net.W1.length),
+      gb1: new Float32Array(net.b1.length),
+      gW2: new Float32Array(net.W2.length),
+      gb2: new Float32Array(net.b2.length),
+      gW3: new Float32Array(net.W3.length),
+      gb3: new Float32Array(net.b3.length),
+    };
+    let lossSum = 0;
+    for (let b = 0; b < BATCH; b++) {
+      const idx = Math.floor(rng() * N);
+      const x0x = data[idx * 2];
+      const x0y = data[idx * 2 + 1];
+      const t = Math.floor(rng() * steps);
+      const sa = Math.sqrt(sched.alphaBar[t]);
+      const sb = Math.sqrt(1 - sched.alphaBar[t]);
+      const eX = randn(rng);
+      const eY = randn(rng);
+      const xtX = sa * x0x + sb * eX;
+      const xtY = sa * x0y + sb * eY;
+      const tn = (t + 1) / steps;
+      inp[0] = xtX;
+      inp[1] = xtY;
+      inp[2] = Math.sin(Math.PI * tn);
+      inp[3] = Math.cos(Math.PI * tn);
+      const fwd = forward(net, inp);
+      const eHatX = fwd.out[0];
+      const eHatY = fwd.out[1];
+      const dX = eHatX - eX;
+      const dY = eHatY - eY;
+      lossSum += dX * dX + dY * dY;
+      const dOut = new Float32Array(2);
+      dOut[0] = (2 * dX) / BATCH;
+      dOut[1] = (2 * dY) / BATCH;
+      backward(net, inp, fwd, dOut, grads);
+    }
+    adam.step += 1;
+    adamStep(net.W1, grads.gW1, adam.mW1, adam.vW1, lr, adam.step);
+    adamStep(net.b1, grads.gb1, adam.mb1, adam.vb1, lr, adam.step);
+    adamStep(net.W2, grads.gW2, adam.mW2, adam.vW2, lr, adam.step);
+    adamStep(net.b2, grads.gb2, adam.mb2, adam.vb2, lr, adam.step);
+    adamStep(net.W3, grads.gW3, adam.mW3, adam.vW3, lr, adam.step);
+    adamStep(net.b3, grads.gb3, adam.mb3, adam.vb3, lr, adam.step);
+    return lossSum / BATCH;
   };
+
+  // -------- one reverse-process step on every walker. Counts down to t=0
+  // and then refreshes the cloud from N(0, I) so the loop is continuous. -
+  const sampleOneStep = () => {
+    const net = netRef.current;
+    const sched = schedRef.current;
+    const xs = samplesRef.current;
+    if (!net || !sched || !xs) return;
+    const rng = rngRef.current;
+    let t = sampCursorRef.current;
+    if (t < 0) {
+      // restart with fresh Gaussian noise so the visitor keeps seeing the
+      // collapse-from-noise moment.
+      for (let i = 0; i < xs.length; i++) xs[i] = randn(rng);
+      const tr = trailsRef.current!;
+      for (let k = 0; k < tr.length; k++) tr[k] = new Float32Array(xs);
+      sampCursorRef.current = steps - 1;
+      t = steps - 1;
+    }
+    const ab = sched.alphaBar[t];
+    const abPrev = t === 0 ? 1 : sched.alphaBar[t - 1];
+    const a = sched.alpha[t];
+    const b = sched.beta[t];
+    const tn = (t + 1) / steps;
+    const sinT = Math.sin(Math.PI * tn);
+    const cosT = Math.cos(Math.PI * tn);
+    const sqrtA = Math.sqrt(a);
+    const sqrtOneMinusAb = Math.sqrt(1 - ab);
+    const coef = (1 - a) / sqrtOneMinusAb;
+    const sigma = t === 0 ? 0 : Math.sqrt(((1 - abPrev) / (1 - ab)) * b);
+    const inp = new Float32Array(IN_DIM);
+    for (let i = 0; i < numSamples; i++) {
+      inp[0] = xs[i * 2];
+      inp[1] = xs[i * 2 + 1];
+      inp[2] = sinT;
+      inp[3] = cosT;
+      const out = forward(net, inp).out;
+      const meanX = (1 / sqrtA) * (xs[i * 2] - coef * out[0]);
+      const meanY = (1 / sqrtA) * (xs[i * 2 + 1] - coef * out[1]);
+      const noiseX = t === 0 ? 0 : randn(rng);
+      const noiseY = t === 0 ? 0 : randn(rng);
+      xs[i * 2] = meanX + sigma * noiseX;
+      xs[i * 2 + 1] = meanY + sigma * noiseY;
+    }
+    const tr = trailsRef.current!;
+    for (let k = tr.length - 1; k > 0; k--) tr[k] = tr[k - 1];
+    tr[0] = new Float32Array(xs);
+    sampCursorRef.current = t - 1;
+  };
+
+  // -------- the persistent rAF loop. Trains in the background and runs the
+  // reverse process so the visitor always walks into a scene in motion. ---
+  useEffect(() => {
+    let cancelled = false;
+    const tick = () => {
+      if (cancelled) return;
+      if (!pausedRef.current) {
+        // Run ~6 mini-batches per frame so the loss visibly drops in a few
+        // seconds. After ~30 batches we tick the visible epoch counter.
+        for (let b = 0; b < 6; b++) {
+          const l = trainMiniBatch(48);
+          // Smooth running loss for stability (EMA).
+          lossRef.current = lossRef.current === 0 ? l : 0.9 * lossRef.current + 0.1 * l;
+        }
+        // 30 mini-batches per "epoch" by visible counter convention.
+        const bumpEvery = 30;
+        epochRef.current += 6 / bumpEvery;
+        // Push counters to React state at most once per frame.
+        setEpoch(Math.floor(epochRef.current));
+        setLoss(lossRef.current);
+
+        // Reverse step on every walker (or twice per frame for snappier feel).
+        for (let s = 0; s < 2; s++) sampleOneStep();
+        setSampStep(Math.max(0, sampCursorRef.current + 1));
+
+        // Refresh the field heatmap every ~12 frames (cheap; ~770 forwards).
+        fieldFrameRef.current += 1;
+        if (fieldFrameRef.current % 12 === 0 && netRef.current && schedRef.current) {
+          fieldRef.current = buildField(netRef.current, schedRef.current, steps);
+        }
+      }
+      drawAll();
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    if (!reduced) {
+      rafRef.current = requestAnimationFrame(tick);
+    } else {
+      // Reduced motion — paint once with the initial random net so the
+      // visitor still sees the data and a noise cloud (no animation).
+      drawAll();
+    }
+    return () => {
+      cancelled = true;
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduced, steps, schedule]);
 
   // -------- drawing --------
   const drawAll = () => {
@@ -853,6 +974,7 @@ export default function DiffusionExplorer() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const W = canvas.clientWidth;
     const H = canvas.clientHeight;
+    if (W === 0 || H === 0) return;
     canvas.width = Math.floor(W * dpr);
     canvas.height = Math.floor(H * dpr);
     const ctx = canvas.getContext("2d");
@@ -861,8 +983,38 @@ export default function DiffusionExplorer() {
     ctx.fillStyle = "#06070d";
     ctx.fillRect(0, 0, W, H);
 
-    // Grid
-    ctx.strokeStyle = "rgba(138,144,164,0.06)";
+    // World-to-screen: data coords roughly in [-2.5, 2.5]² → window.
+    const cx = W / 2;
+    const cy = H / 2;
+    const scale = Math.min(W, H) / 6;
+    const project = (px: number, py: number): [number, number] => [
+      cx + px * scale,
+      cy - py * scale,
+    ];
+
+    // -------- score-field heatmap (under everything) --------
+    const field = fieldRef.current;
+    if (field) {
+      const cellW = (5 * scale) / (FIELD_GRID - 1); // 5 world-units across
+      for (let gy = 0; gy < FIELD_GRID; gy++) {
+        for (let gx = 0; gx < FIELD_GRID; gx++) {
+          const wx = -2.5 + (5 * gx) / (FIELD_GRID - 1);
+          const wy = -2.5 + (5 * gy) / (FIELD_GRID - 1);
+          const [sx, sy] = project(wx, wy);
+          const v = field[gy * FIELD_GRID + gx];
+          // gamma curve so the field reads as a soft glow rather than blocks
+          const a = Math.pow(v, 2.2) * 0.42;
+          if (a < 0.02) continue;
+          ctx.fillStyle = `rgba(125, 243, 255, ${a})`;
+          ctx.beginPath();
+          ctx.arc(sx, sy, cellW * 0.65, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    // Grid (light, above the field so cells stay legible)
+    ctx.strokeStyle = "rgba(138,144,164,0.05)";
     ctx.lineWidth = 1;
     for (let i = 0; i <= 12; i++) {
       const xg = (i / 12) * W;
@@ -877,82 +1029,83 @@ export default function DiffusionExplorer() {
       ctx.stroke();
     }
 
-    // World-to-screen: data coords roughly in [-2.5, 2.5]² → window.
-    const cx = W / 2;
-    const cy = H / 2;
-    const scale = Math.min(W, H) / 6;
-    const project = (px: number, py: number): [number, number] => [
-      cx + px * scale,
-      cy - py * scale,
-    ];
-
     // Data cloud (cyan)
     const data = dataRef.current;
     if (data) {
-      ctx.fillStyle = "rgba(125, 243, 255, 0.55)";
+      ctx.fillStyle = "rgba(125, 243, 255, 0.75)";
       for (let i = 0; i < data.length; i += 2) {
         const [px, py] = project(data[i], data[i + 1]);
         ctx.beginPath();
-        ctx.arc(px, py, 2.2, 0, Math.PI * 2);
+        ctx.arc(px, py, 2.4, 0, Math.PI * 2);
         ctx.fill();
       }
     }
 
-    // Sample trails (fading)
+    // Sample trails — render as thin fading lines so the user sees the
+    // walker collapse from noise onto the manifold as a streak, not a dot.
     const trails = trailsRef.current;
     if (trails) {
-      for (let k = trails.length - 1; k >= 1; k--) {
-        const buf = trails[k];
-        const alpha = 0.06 + 0.18 * (1 - k / trails.length);
-        ctx.fillStyle = `rgba(255, 122, 182, ${alpha})`;
-        for (let i = 0; i < buf.length; i += 2) {
-          const [px, py] = project(buf[i], buf[i + 1]);
-          ctx.beginPath();
-          ctx.arc(px, py, 1.4, 0, Math.PI * 2);
-          ctx.fill();
+      for (let k = 1; k < trails.length; k++) {
+        const a = (1 - k / trails.length) * 0.18;
+        ctx.strokeStyle = `rgba(255, 122, 182, ${a})`;
+        ctx.lineWidth = 1.1;
+        const cur = trails[k - 1];
+        const prev = trails[k];
+        const n = Math.min(cur.length, prev.length) / 2;
+        ctx.beginPath();
+        for (let i = 0; i < n; i++) {
+          const [px1, py1] = project(prev[i * 2], prev[i * 2 + 1]);
+          const [px2, py2] = project(cur[i * 2], cur[i * 2 + 1]);
+          ctx.moveTo(px1, py1);
+          ctx.lineTo(px2, py2);
         }
+        ctx.stroke();
       }
     }
 
-    // Current sample positions (rose, brighter)
+    // Current walker positions (rose, bright)
     const samples = samplesRef.current;
     if (samples) {
       ctx.fillStyle = "rgba(255, 122, 182, 0.95)";
       for (let i = 0; i < samples.length; i += 2) {
         const [px, py] = project(samples[i], samples[i + 1]);
         ctx.beginPath();
-        ctx.arc(px, py, 2.4, 0, Math.PI * 2);
+        ctx.arc(px, py, 2.6, 0, Math.PI * 2);
         ctx.fill();
       }
     }
   };
 
-  // Initial paint + on resize
+  // Resize observer — keeps the canvas painted at the right DPR.
   useEffect(() => {
-    drawAll();
     const ro = new ResizeObserver(() => drawAll());
     if (canvasRef.current) ro.observe(canvasRef.current);
     return () => ro.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Redraw when toggles change (dataset already handled in its own effect)
-  useEffect(() => {
-    drawAll();
-  }, [schedule, steps, numSamples]);
-
-  // Cleanup
-  useEffect(() => {
-    return () => {
-      trainAbort.current = true;
-      if (sampleRaf.current !== null) cancelAnimationFrame(sampleRaf.current);
-    };
-  }, []);
+  // -------- phase caption ("what you should see right now") --------
+  // The caption updates based on how far the current walker cohort has
+  // collapsed and how trained the net is, so the visitor sees the demo
+  // narrate itself.
+  let phaseCaption = x.whatNowNoise;
+  const sCursor = sampCursorRef.current;
+  const sPct = sCursor < 0 ? 0 : 1 - sCursor / Math.max(1, steps - 1); // 0=just noise, 1=converged
+  if (epoch < 4) {
+    phaseCaption = x.whatNowTrainingEarly;
+  } else if (sPct < 0.2) {
+    phaseCaption = x.whatNowNoise;
+  } else if (sPct < 0.75) {
+    phaseCaption = x.whatNowMoving;
+  } else {
+    phaseCaption = x.whatNowConverged;
+  }
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
       <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         {/* Canvas pane */}
-        <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
+        <div className="relative flex min-h-[60vh] flex-col gap-3 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {x.scatterBadge}
@@ -961,7 +1114,18 @@ export default function DiffusionExplorer() {
               {x.formulaBadge}
             </div>
           </div>
-          <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
+
+          {/* Live status — the strip that visibly ticks. */}
+          <div className="hairline flex flex-wrap items-center justify-between gap-3 rounded-md border bg-ink-950/60 px-4 py-2 font-mono text-[11px] text-ink-200">
+            <span className="text-signal-rose">
+              {x.statusFmt(epoch, loss, sampStep, steps)}
+            </span>
+            <span className="text-[10px] uppercase tracking-widest2 text-ink-400">
+              {x.whatNowLabel}: <span className="text-ink-100">{phaseCaption}</span>
+            </span>
+          </div>
+
+          <div className="hairline min-h-[520px] flex-1 overflow-hidden rounded-2xl border bg-ink-950">
             <canvas ref={canvasRef} className="block h-full w-full" />
           </div>
           <div className="glass hairline flex flex-wrap items-center gap-4 rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
@@ -985,6 +1149,13 @@ export default function DiffusionExplorer() {
                 style={{ background: "rgb(255, 122, 182)" }}
               />
               {x.legendTrails}
+            </span>
+            <span className="flex items-center gap-2">
+              <span
+                className="inline-block h-2 w-2 rounded-full opacity-50"
+                style={{ background: "rgb(125, 243, 255)" }}
+              />
+              {x.legendField}
             </span>
           </div>
         </div>
@@ -1080,7 +1251,7 @@ export default function DiffusionExplorer() {
             />
           </div>
 
-          {/* Samples slider */}
+          {/* Walkers slider */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {x.samplesLabel}
@@ -1100,37 +1271,24 @@ export default function DiffusionExplorer() {
             />
           </div>
 
-          {/* Train + sample buttons */}
+          {/* Pause + reset buttons (no train/sample buttons — both run live) */}
           <div className="hairline space-y-3 border-b p-5">
             <button
-              onClick={trainAsync}
-              disabled={training}
+              onClick={() => setPaused((p) => !p)}
               className={`w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
-                training
-                  ? "cursor-not-allowed border-ink-700/40 text-ink-500"
-                  : "border-signal-rose/60 bg-signal-rose/10 text-signal-rose hover:bg-signal-rose/20"
-              }`}
-            >
-              {training ? x.trainingButton : x.trainButton}
-            </button>
-            <button
-              onClick={sampleAsync}
-              disabled={!trained || training}
-              className={`w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
-                !trained || training
-                  ? "cursor-not-allowed border-ink-700/40 text-ink-500"
+                paused
+                  ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose hover:bg-signal-rose/20"
                   : "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan hover:bg-signal-cyan/20"
               }`}
             >
-              {x.sampleButton}
+              {paused ? x.resumeButton : x.pauseButton}
             </button>
             <button
-              onClick={resetSampler}
+              onClick={initEverything}
               className="hairline w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
             >
-              {x.resetButton}
+              {x.resetModelButton}
             </button>
-            <p className="font-mono text-[11px] leading-relaxed text-ink-300">{trainStatus}</p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">

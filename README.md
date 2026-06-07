@@ -19,11 +19,11 @@ teenager, the working scientist, the professor looking for a story to tell.
 
 ## What's inside
 
-37 topic rooms, each with a long-form story and an interactive playground:
+36 topic rooms, each with a long-form story and an interactive playground:
 
-- **Logic & computation** — EML calculus, Sheffer stroke (NAND), Iota
-  combinator, Conway's Game of Life, Rule 110, Wang tiles, Boids,
-  Langton's ant, halting problem, P vs NP, RSA.
+- **Logic & computation** — Sheffer stroke (NAND), Iota combinator,
+  Conway's Game of Life, Rule 110, Wang tiles, Boids, Langton's ant,
+  halting problem, P vs NP, RSA.
 - **Chaos & dynamics** — Logistic map, Lorenz attractor, Aizawa attractor,
   double pendulum, magnetic pendulum, BZ reaction, Collatz, DLA.
 - **Geometry** — Mandelbrot set, L-systems, Sierpiński, chaos game,
@@ -68,7 +68,6 @@ app/                       # Next.js routes
   page.tsx                 # Atlas landing page
   <topic>/page.tsx         # Long-form story for a topic
   <topic>/explorer/        # Interactive playground for that topic
-  eml/                     # Special: the EML cathedral (multi-section essay)
 components/                # Shared UI + inline interactive demos
   StoryPageShell.tsx       # Canonical hero + final CTA wrapper
   Reveal.tsx               # Intersection-observer fade-in animation

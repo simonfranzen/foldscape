@@ -94,7 +94,7 @@ const en: RichStory = {
       {
         label: "03",
         title: "Why it matters",
-        body: "Modern CPUs are physically a sea of NAND gates etched into silicon — billions of them, identical, in tidy rows. The complexity of a processor is not in the parts but in the wiring. Same lesson as EML for continuous math: pick the right primitive, and everything becomes assembly.",
+        body: "Modern CPUs are physically a sea of NAND gates etched into silicon — billions of them, identical, in tidy rows. The complexity of a processor is not in the parts but in the wiring. Pick the right primitive, and everything becomes assembly.",
       },
     ],
     tryIt: "Below: flip the bits, watch the gates rewire, build the universe yourself.",
@@ -228,7 +228,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Moderne CPUs sind physisch ein Meer aus NAND-Gattern, in Silizium geätzt — Milliarden davon, identisch, in ordentlichen Reihen. Die Komplexität eines Prozessors steckt nicht in den Teilen, sondern in der Verdrahtung. Dieselbe Lektion wie EML für die kontinuierliche Mathematik: wähle das richtige Primitiv, und alles wird zur Montage.",
+        body: "Moderne CPUs sind physisch ein Meer aus NAND-Gattern, in Silizium geätzt — Milliarden davon, identisch, in ordentlichen Reihen. Die Komplexität eines Prozessors steckt nicht in den Teilen, sondern in der Verdrahtung. Wähle das richtige Primitiv, und alles wird zur Montage.",
       },
     ],
     tryIt: "Unten: kipp die Bits, sieh die Gatter sich neu verdrahten, bau selbst das Universum.",
@@ -366,7 +366,7 @@ const es: RichStory = {
       {
         label: "03",
         title: "Por qué importa",
-        body: "Las CPU modernas son, físicamente, un mar de puertas NAND grabadas en silicio — miles de millones, idénticas, en filas ordenadas. La complejidad de un procesador no está en las piezas, sino en el cableado. Misma lección que EML para la matemática continua: escoge la primitiva correcta y todo se vuelve ensamblaje.",
+        body: "Las CPU modernas son, físicamente, un mar de puertas NAND grabadas en silicio — miles de millones, idénticas, en filas ordenadas. La complejidad de un procesador no está en las piezas, sino en el cableado. Escoge la primitiva correcta y todo se vuelve ensamblaje.",
       },
     ],
     tryIt: "Abajo: cambia los bits, mira las puertas recablearse, construye tú mismo el universo.",
@@ -500,7 +500,7 @@ const fr: RichStory = {
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "Les processeurs modernes sont physiquement une mer de portes NAND gravées dans le silicium — des milliards, identiques, en lignes bien rangées. La complexité d'un processeur n'est pas dans les pièces mais dans le câblage. Même leçon qu'EML pour les maths continues : choisis la bonne primitive, et tout devient assemblage.",
+        body: "Les processeurs modernes sont physiquement une mer de portes NAND gravées dans le silicium — des milliards, identiques, en lignes bien rangées. La complexité d'un processeur n'est pas dans les pièces mais dans le câblage. Choisis la bonne primitive, et tout devient assemblage.",
       },
     ],
     tryIt:
@@ -635,7 +635,7 @@ const it: RichStory = {
       {
         label: "03",
         title: "Perché conta",
-        body: "Le CPU moderne sono, fisicamente, un mare di porte NAND incise nel silicio — miliardi, identiche, in file ordinate. La complessità di un processore non sta nei pezzi ma nei collegamenti. Stessa lezione di EML per la matematica continua: scegli la primitiva giusta e tutto diventa assemblaggio.",
+        body: "Le CPU moderne sono, fisicamente, un mare di porte NAND incise nel silicio — miliardi, identiche, in file ordinate. La complessità di un processore non sta nei pezzi ma nei collegamenti. Scegli la primitiva giusta e tutto diventa assemblaggio.",
       },
     ],
     tryIt: "Sotto: capovolgi i bit, guarda le porte ricablearsi, costruisci tu stesso l'universo.",
@@ -769,7 +769,7 @@ const pt: RichStory = {
       {
         label: "03",
         title: "Porque importa",
-        body: "Os CPUs modernos são, fisicamente, um mar de portas NAND gravadas em silício — milhares de milhões, idênticas, em filas arrumadas. A complexidade de um processador não está nas peças, mas no cabeamento. Mesma lição que EML para a matemática contínua: escolhe a primitiva certa e tudo vira montagem.",
+        body: "Os CPUs modernos são, fisicamente, um mar de portas NAND gravadas em silício — milhares de milhões, idênticas, em filas arrumadas. A complexidade de um processador não está nas peças, mas no cabeamento. Escolhe a primitiva certa e tudo vira montagem.",
       },
     ],
     tryIt: "Abaixo: troca os bits, vê as portas a recabearem-se, constrói tu mesmo o universo.",
@@ -903,7 +903,7 @@ const sv: RichStory = {
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "Moderna CPU:er är fysiskt ett hav av NAND-grindar etsade i kisel — miljarder, identiska, i prydliga rader. En processors komplexitet sitter inte i delarna utan i ledningsdragningen. Samma lärdom som EML för kontinuerlig matematik: välj rätt primitiv, så blir allt montering.",
+        body: "Moderna CPU:er är fysiskt ett hav av NAND-grindar etsade i kisel — miljarder, identiska, i prydliga rader. En processors komplexitet sitter inte i delarna utan i ledningsdragningen. Välj rätt primitiv, så blir allt montering.",
       },
     ],
     tryIt: "Nedan: vänd bitarna, se grindarna kopplas om, bygg själv universum.",
@@ -1037,7 +1037,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Moderne CPU-er er fysisk et hav av NAND-porter etset inn i silisium — milliarder, identiske, i ryddige rader. Kompleksiteten til en prosessor ligger ikke i delene, men i ledningsføringen. Samme lekse som EML for kontinuerlig matematikk: velg den rette primitiven, så blir alt montering.",
+        body: "Moderne CPU-er er fysisk et hav av NAND-porter etset inn i silisium — milliarder, identiske, i ryddige rader. Kompleksiteten til en prosessor ligger ikke i delene, men i ledningsføringen. Velg den rette primitiven, så blir alt montering.",
       },
     ],
     tryIt: "Under: vipp bitene, se portene koble seg om, bygg selv universet.",

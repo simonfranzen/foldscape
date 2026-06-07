@@ -149,7 +149,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step four · What this tells us",
           title: "Complexity does not need complex rules",
-          body: "The deeper claim is philosophical. Life shows that elaborate structure — motion, replication, computation, even consciousness, if you believe the strong versions — can sit inside a rule small enough to write on a postcard. It is the same lesson EML offers for analysis, NAND for logic, and Rule 110 for cellular automata. A small primitive, applied with discipline, is enough.",
+          body: "The deeper claim is philosophical. Life shows that elaborate structure — motion, replication, computation, even consciousness, if you believe the strong versions — can sit inside a rule small enough to write on a postcard. It is the same lesson NAND offers for logic and Rule 110 for cellular automata. A small primitive, applied with discipline, is enough.",
         },
       ],
     },
@@ -1490,7 +1490,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt vier · Was uns das sagt",
           title: "Komplexität braucht keine komplexen Regeln",
-          body: "Die tiefere Aussage ist philosophisch. Life zeigt, dass aufwendige Struktur — Bewegung, Replikation, Berechnung, ja in den starken Varianten sogar Bewusstsein — in einer Regel sitzen kann, die auf eine Postkarte passt. Es ist dieselbe Lektion, die EML für die Analysis liefert, NAND für die Logik, Regel 110 für Zellularautomaten. Ein kleiner Baustein, mit Disziplin angewendet, reicht.",
+          body: "Die tiefere Aussage ist philosophisch. Life zeigt, dass aufwendige Struktur — Bewegung, Replikation, Berechnung, ja in den starken Varianten sogar Bewusstsein — in einer Regel sitzen kann, die auf eine Postkarte passt. Es ist dieselbe Lektion, die NAND für die Logik liefert und Regel 110 für Zellularautomaten. Ein kleiner Baustein, mit Disziplin angewendet, reicht.",
         },
       ],
     },

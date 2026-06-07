@@ -7,10 +7,10 @@ import { TOPICS, type TopicId } from "@/lib/topics";
 import { TOPIC_NEIGHBORS } from "@/lib/topicEdges";
 import { CATEGORY_HOVER_BORDER, CATEGORY_SWATCH } from "@/lib/topicCategoryStyles";
 
-// "Related topics" panel — shared between StoryPageShell (43 pages) and the
-// two custom-layout story pages (eml, life). Pulls neighbours from the same
-// affinity graph the landing constellation uses, caps at six cards, renders
-// each as a Link with category swatch + formula glyph + locale-aware title.
+// "Related topics" panel — shared between StoryPageShell and the custom-layout
+// story page (life). Pulls neighbours from the same affinity graph the landing
+// constellation uses, caps at six cards, renders each as a Link with category
+// swatch + formula glyph + locale-aware title.
 
 const RELATED_CAP = 6;
 

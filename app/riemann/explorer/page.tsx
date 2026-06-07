@@ -442,8 +442,11 @@ export default function RiemannExplorer() {
     const render = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
-      canvas.width = Math.floor(W * dpr);
-      canvas.height = Math.floor(H * dpr);
+      if (W <= 0 || H <= 0) return;
+      const bw = Math.floor(W * dpr);
+      const bh = Math.floor(H * dpr);
+      if (canvas.width !== bw) canvas.width = bw;
+      if (canvas.height !== bh) canvas.height = bh;
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -526,8 +529,11 @@ export default function RiemannExplorer() {
     const render = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
-      canvas.width = Math.floor(W * dpr);
-      canvas.height = Math.floor(H * dpr);
+      if (W <= 0 || H <= 0) return;
+      const bw = Math.floor(W * dpr);
+      const bh = Math.floor(H * dpr);
+      if (canvas.width !== bw) canvas.width = bw;
+      if (canvas.height !== bh) canvas.height = bh;
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -607,20 +613,21 @@ export default function RiemannExplorer() {
             </div>
           </div>
 
-          <div className="hairline relative flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={primeCanvasRef} className="block h-[55%] w-full" />
-            <div className="hairline border-t" />
+          <div className="hairline relative h-[360px] shrink-0 overflow-hidden rounded-2xl border bg-ink-950 lg:h-[420px]">
+            <canvas ref={primeCanvasRef} className="block h-full w-full" />
             <div className="hairline glass absolute left-3 top-3 rounded-md border px-2 py-1 font-mono text-[10px] tracking-widest2 text-ink-200">
               <span className="text-ink-300">━━</span>{" "}
               <span className="text-ink-100">{x.legendPiTrue}</span>{" "}
               <span className="ml-2 text-signal-amber">━━</span>{" "}
               <span className="text-ink-100">{x.legendRApprox}</span>
             </div>
-            <div className="hairline glass absolute right-3 top-[55%] mt-2 rounded-md border px-2 py-1 font-mono text-[10px] tracking-widest2 text-ink-300">
+            <div className="hairline glass absolute right-3 top-3 rounded-md border px-2 py-1 font-mono text-[10px] tracking-widest2 text-ink-300">
               {x.errorLabel}:{" "}
               <span className="text-signal-amber">{piApproxData.maxErr.toFixed(2)}</span>
             </div>
-            <canvas ref={zetaCanvasRef} className="block h-[45%] w-full" />
+          </div>
+          <div className="hairline relative h-[320px] shrink-0 overflow-hidden rounded-2xl border bg-ink-950 lg:h-[380px]">
+            <canvas ref={zetaCanvasRef} className="block h-full w-full" />
             <div className="hairline glass absolute bottom-3 left-3 rounded-md border px-2 py-1 font-mono text-[10px] tracking-widest2 text-ink-200">
               {x.zetaTraceBadge}
             </div>

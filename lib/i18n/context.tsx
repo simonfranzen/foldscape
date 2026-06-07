@@ -17,7 +17,6 @@ import {
   parseLangParam,
 } from "./types";
 import { MESSAGES, type Dict } from "./messages";
-import { BODIES, type BodyDict } from "./bodies";
 import { ATLAS, type AtlasDict } from "./atlas";
 import { STORIES, type StoriesDict } from "./stories";
 import { UI, type UiDict } from "./ui";
@@ -26,7 +25,6 @@ interface I18nCtx {
   locale: Locale;
   setLocale: (l: Locale) => void;
   t: Dict;
-  b: BodyDict;
   a: AtlasDict;
   s: StoriesDict;
   u: UiDict;
@@ -36,7 +34,6 @@ const Ctx = createContext<I18nCtx>({
   locale: DEFAULT_LOCALE,
   setLocale: () => {},
   t: MESSAGES[DEFAULT_LOCALE],
-  b: BODIES[DEFAULT_LOCALE],
   a: ATLAS[DEFAULT_LOCALE],
   s: STORIES[DEFAULT_LOCALE],
   u: UI[DEFAULT_LOCALE],
@@ -82,7 +79,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     if (parsed && parsed !== locale) {
       setLocaleState(parsed);
       try {
-        localStorage.setItem("eml.locale", parsed);
+        localStorage.setItem("foldscape.locale", parsed);
       } catch {
         // storage may be unavailable; ignore
       }
@@ -96,7 +93,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     (l: Locale) => {
       setLocaleState(l);
       try {
-        localStorage.setItem("eml.locale", l);
+        localStorage.setItem("foldscape.locale", l);
       } catch {
         // storage may be unavailable; ignore
       }
@@ -132,7 +129,6 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
         locale,
         setLocale,
         t: MESSAGES[locale],
-        b: BODIES[locale],
         a: ATLAS[locale],
         s: STORIES[locale],
         u: UI[locale],

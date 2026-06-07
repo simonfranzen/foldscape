@@ -5,9 +5,9 @@ import { useI18n } from "@/lib/i18n/context";
 import { TOPIC_APPLICATIONS } from "@/lib/topicApplications";
 import type { TopicId } from "@/lib/topics";
 
-// "Where you meet it" panel — shared between StoryPageShell (used by 43
-// pages) and the two custom-layout pages (eml, life) that bypass it. Extracted
-// so the inline icons + locale-fallback logic live in exactly one place.
+// "Where you meet it" panel — shared between StoryPageShell and the
+// custom-layout page (life) that bypasses it. Extracted so the inline icons
+// + locale-fallback logic live in exactly one place.
 
 interface Props {
   topicId: TopicId;

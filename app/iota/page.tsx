@@ -75,7 +75,7 @@ const en: RichStory = {
       {
         label: "03",
         title: "Why it matters",
-        body: "This is a proof that Turing-completeness can be reached with ONE primitive operation. It threads logic, computer science and the philosophy of mind: can thought itself be reduced to a single symbol? Iota is the computation-side cousin of EML for the continuous side.",
+        body: "This is a proof that Turing-completeness can be reached with ONE primitive operation. It threads logic, computer science and the philosophy of mind: can thought itself be reduced to a single symbol?",
       },
     ],
     tryIt: "Below: drive the reducer, watch K and S do their job, and rebuild them from scratch.",
@@ -166,7 +166,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Das ist der Beweis, dass Turing-Vollständigkeit mit EINER einzigen Grundoperation erreichbar ist. Es verbindet Logik, Informatik und Philosophie des Geistes: lässt sich Denken auf ein einziges Symbol reduzieren? Iota ist der Berechnungs-Cousin von EML für die kontinuierliche Seite.",
+        body: "Das ist der Beweis, dass Turing-Vollständigkeit mit EINER einzigen Grundoperation erreichbar ist. Es verbindet Logik, Informatik und Philosophie des Geistes: lässt sich Denken auf ein einziges Symbol reduzieren?",
       },
     ],
     tryIt:
@@ -258,7 +258,7 @@ const es: RichStory = {
       {
         label: "03",
         title: "Por qué importa",
-        body: "Esto demuestra que la Turing-completitud se alcanza con UNA sola operación primitiva. Enlaza lógica, ciencias de la computación y filosofía de la mente: ¿puede reducirse el pensamiento a un único símbolo? Iota es el primo computacional de EML para el lado continuo.",
+        body: "Esto demuestra que la Turing-completitud se alcanza con UNA sola operación primitiva. Enlaza lógica, ciencias de la computación y filosofía de la mente: ¿puede reducirse el pensamiento a un único símbolo?",
       },
     ],
     tryIt: "Abajo: maneja el reductor, observa a K y S trabajando y reconstrúyelos desde cero.",
@@ -349,7 +349,7 @@ const fr: RichStory = {
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "C'est la preuve que la Turing-complétude est atteinte avec UNE seule opération primitive. Cela relie logique, informatique et philosophie de l'esprit : la pensée peut-elle se réduire à un seul symbole ? Iota est le cousin côté calcul d'EML pour le continu.",
+        body: "C'est la preuve que la Turing-complétude est atteinte avec UNE seule opération primitive. Cela relie logique, informatique et philosophie de l'esprit : la pensée peut-elle se réduire à un seul symbole ?",
       },
     ],
     tryIt:
@@ -441,7 +441,7 @@ const it: RichStory = {
       {
         label: "03",
         title: "Perché conta",
-        body: "È la dimostrazione che la Turing-completezza si raggiunge con UNA sola operazione primitiva. Lega logica, informatica e filosofia della mente: si può ridurre il pensiero a un solo simbolo? Iota è il cugino computazionale di EML per il lato continuo.",
+        body: "È la dimostrazione che la Turing-completezza si raggiunge con UNA sola operazione primitiva. Lega logica, informatica e filosofia della mente: si può ridurre il pensiero a un solo simbolo?",
       },
     ],
     tryIt: "Sotto: pilota il riduttore, osserva K e S all'opera, e ricostruiscili da zero.",
@@ -532,7 +532,7 @@ const pt: RichStory = {
       {
         label: "03",
         title: "Por que importa",
-        body: "É a prova de que a Turing-completude se alcança com UMA operação primitiva. Liga lógica, ciência da computação e filosofia da mente: pode o pensamento ser reduzido a um único símbolo? Iota é o primo computacional do EML para o lado contínuo.",
+        body: "É a prova de que a Turing-completude se alcança com UMA operação primitiva. Liga lógica, ciência da computação e filosofia da mente: pode o pensamento ser reduzido a um único símbolo?",
       },
     ],
     tryIt: "Abaixo: pilota o redutor, vê o K e o S a trabalhar, e reconstrói-os a partir do zero.",
@@ -623,7 +623,7 @@ const sv: RichStory = {
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "Det är beviset att Turing-komplethet kan nås med EN enda primitiv operation. Det knyter ihop logik, datavetenskap och medvetandefilosofi: kan tanken själv reduceras till en enda symbol? Iota är beräkningssidans kusin till EML på den kontinuerliga sidan.",
+        body: "Det är beviset att Turing-komplethet kan nås med EN enda primitiv operation. Det knyter ihop logik, datavetenskap och medvetandefilosofi: kan tanken själv reduceras till en enda symbol?",
       },
     ],
     tryIt: "Nedanför: kör reduceraren, se K och S i arbete, och bygg upp dem från grunden.",
@@ -714,7 +714,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Det er beviset på at Turing-fullstendighet kan nås med ÉN primitiv operasjon. Det binder sammen logikk, informatikk og bevissthetsfilosofi: kan tanken selv reduseres til ett eneste symbol? Iota er beregningssidens fetter til EML på den kontinuerlige siden.",
+        body: "Det er beviset på at Turing-fullstendighet kan nås med ÉN primitiv operasjon. Det binder sammen logikk, informatikk og bevissthetsfilosofi: kan tanken selv reduseres til ett eneste symbol?",
       },
     ],
     tryIt: "Under: kjør reduseren, se K og S i arbeid, og bygg dem opp fra bunnen.",

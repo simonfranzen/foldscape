@@ -88,14 +88,14 @@ describe("render smoke", () => {
     // first effect. Falls back gracefully if jsdom hasn't surfaced
     // localStorage on the window in this configuration.
     try {
-      window.localStorage?.setItem("eml.locale", "de");
+      window.localStorage?.setItem("foldscape.locale", "de");
     } catch {
       // ignore — we still want the smoke test to run
     }
     const { container } = render(withProviders(<BanachStory />));
     expect(container.textContent ?? "").not.toBe("");
     try {
-      window.localStorage?.removeItem("eml.locale");
+      window.localStorage?.removeItem("foldscape.locale");
     } catch {
       /* noop */
     }

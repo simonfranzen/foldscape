@@ -11,18 +11,6 @@ export interface Application {
 }
 
 const en: Partial<Record<TopicId, Application[]>> = {
-  eml: [
-    {
-      domain: "Symbolic regression",
-      description:
-        "Computer-algebra systems that try to rediscover physical laws from data sometimes use compact operator alphabets like EML to constrain the search space.",
-    },
-    {
-      domain: "Theoretical computer science",
-      description:
-        "EML is a cousin of universal sets like NAND in logic and Iota in combinators — interesting for what it says about how small a primitive can be.",
-    },
-  ],
   mandelbrot: [
     {
       domain: "Generative art & motion graphics",
@@ -971,33 +959,6 @@ const en: Partial<Record<TopicId, Application[]>> = {
         "The 1994 movie game and the Bacon Number website are popular-culture artefacts of small-world theory; mathematicians compete for low Erdős numbers.",
     },
   ],
-  quine: [
-    {
-      domain: "Programming language theory",
-      description:
-        "Quines are the standard sanity-check that a language is expressive enough for self-reference; courses on theory of computation use them to teach Kleene's recursion theorem in concrete form.",
-    },
-    {
-      domain: "Computer viruses & self-replicators",
-      description:
-        "Every classical virus, worm and metamorphic engine is a quine variant: code that copies itself before doing anything else. Modern self-replicating malware is studied as applied quine engineering.",
-    },
-    {
-      domain: "Genetics & molecular biology",
-      description:
-        "DNA replication is biology's quine: a sequence whose only job is to copy itself, including the copying machinery. Hofstadter draws the analogy explicitly in Gödel, Escher, Bach.",
-    },
-    {
-      domain: "Compiler bootstrapping",
-      description:
-        "Trusting Trust (Ken Thompson, 1984) showed that a compiler's compiler can be a quine inserting a backdoor at every build — the foundation of supply-chain security and reproducible-build research.",
-    },
-    {
-      domain: "Demoscene & code art",
-      description:
-        "Polyglot quines — programs that print themselves and are valid in multiple languages — are a beloved code-art genre; the IOCCC has a dedicated quine category.",
-    },
-  ],
   backprop: [
     {
       domain: "Deep learning",
@@ -1082,18 +1043,6 @@ const en: Partial<Record<TopicId, Application[]>> = {
 };
 
 const de: Partial<Record<TopicId, Application[]>> = {
-  eml: [
-    {
-      domain: "Symbolische Regression",
-      description:
-        "Computeralgebra-Systeme, die physikalische Gesetze aus Daten wiederentdecken wollen, nutzen manchmal kompakte Operator-Alphabete wie EML, um den Suchraum einzugrenzen.",
-    },
-    {
-      domain: "Theoretische Informatik",
-      description:
-        "EML ist verwandt mit universellen Mengen wie NAND in der Logik und Iota in der Kombinatorik — spannend dafür, wie klein ein Primitiv überhaupt sein kann.",
-    },
-  ],
   mandelbrot: [
     {
       domain: "Generative Kunst & Motion Graphics",
@@ -2069,33 +2018,6 @@ const de: Partial<Record<TopicId, Application[]>> = {
         "Der Vorwärtsprozess ist buchstäblich Langevin-Dynamik — der Rauschplan spiegelt ein System wider, das ins thermische Gleichgewicht relaxiert. Sohl-Dicksteins Originalarbeit von 2015 war als Nichtgleichgewichts-Thermodynamik formuliert.",
     },
   ],
-  quine: [
-    {
-      domain: "Programmiersprachen-Theorie",
-      description:
-        "Quines sind der Standard-Sanity-Check, ob eine Sprache ausdrucksstark genug für Selbstreferenz ist; Vorlesungen zur Berechenbarkeitstheorie nutzen sie, um Kleenes Rekursionssatz greifbar zu machen.",
-    },
-    {
-      domain: "Computerviren & Selbstreplikatoren",
-      description:
-        "Jeder klassische Virus, Wurm und jede metamorphe Engine ist eine Quine-Variante: Code, der sich zuerst kopiert, bevor er irgendetwas anderes tut. Moderne sich selbst replizierende Malware wird als angewandte Quine-Technik untersucht.",
-    },
-    {
-      domain: "Genetik & Molekularbiologie",
-      description:
-        "Die DNA-Replikation ist die Quine der Biologie: eine Sequenz, deren einzige Aufgabe darin besteht, sich selbst samt ihrer Kopiermaschinerie zu kopieren. Hofstadter zieht die Analogie in Gödel, Escher, Bach ausdrücklich.",
-    },
-    {
-      domain: "Compiler-Bootstrapping",
-      description:
-        "Trusting Trust (Ken Thompson, 1984) zeigte, dass der Compiler eines Compilers eine Quine sein kann, die bei jedem Build eine Hintertür einfügt — das Fundament der Lieferkettensicherheit und der Forschung zu reproduzierbaren Builds.",
-    },
-    {
-      domain: "Demoszene & Code-Kunst",
-      description:
-        "Polyglotte Quines — Programme, die sich selbst drucken und in mehreren Sprachen gleichzeitig gültig sind — sind ein geliebtes Code-Art-Genre; der IOCCC hat eine eigene Quine-Kategorie.",
-    },
-  ],
   riemann: [
     {
       domain: "Primzahlsatz",
@@ -2156,18 +2078,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
   en,
   de,
   es: {
-    eml: [
-      {
-        domain: "Regresión simbólica",
-        description:
-          "Los sistemas de álgebra computacional que intentan redescubrir leyes físicas a partir de datos emplean a veces alfabetos compactos de operadores como EML para restringir el espacio de búsqueda.",
-      },
-      {
-        domain: "Informática teórica",
-        description:
-          "EML es prima de conjuntos universales como NAND en lógica e Iota en combinadores: interesante por lo que dice sobre cuán pequeño puede ser un primitivo.",
-      },
-    ],
     mandelbrot: [
       {
         domain: "Arte generativo y motion graphics",
@@ -3143,33 +3053,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
           "El proceso directo es literalmente dinámica de Langevin — el calendario de ruido refleja un sistema relajándose hacia el equilibrio térmico. El artículo original de Sohl-Dickstein (2015) se planteó como termodinámica de no equilibrio.",
       },
     ],
-    quine: [
-      {
-        domain: "Teoría de lenguajes de programación",
-        description:
-          "Las quines son la prueba de cordura estándar de que un lenguaje es lo bastante expresivo para la autorreferencia; los cursos de teoría de la computación las usan para enseñar el teorema de recursión de Kleene en forma concreta.",
-      },
-      {
-        domain: "Virus informáticos y autorreplicadores",
-        description:
-          "Cada virus, gusano y motor metamórfico clásico es una variante de quine: código que se copia antes de hacer cualquier otra cosa. El malware autorreplicante moderno se estudia como ingeniería de quines aplicada.",
-      },
-      {
-        domain: "Genética y biología molecular",
-        description:
-          "La replicación del ADN es la quine de la biología: una secuencia cuya única tarea es copiarse a sí misma, incluida la maquinaria que copia. Hofstadter traza la analogía explícitamente en Gödel, Escher, Bach.",
-      },
-      {
-        domain: "Bootstrapping de compiladores",
-        description:
-          "Trusting Trust (Ken Thompson, 1984) demostró que el compilador de un compilador puede ser una quine que inserta una puerta trasera en cada compilación — base de la seguridad de la cadena de suministro y de la investigación en builds reproducibles.",
-      },
-      {
-        domain: "Demoscene y arte de código",
-        description:
-          "Las quines polígrafas — programas que se imprimen a sí mismos y son válidos en varios lenguajes a la vez — son un género adorado del arte de código; el IOCCC tiene una categoría dedicada a las quines.",
-      },
-    ],
     riemann: [
       {
         domain: "Teorema de los números primos",
@@ -3226,18 +3109,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
     ],
   },
   fr: {
-    eml: [
-      {
-        domain: "Régression symbolique",
-        description:
-          "Les systèmes de calcul formel qui cherchent à redécouvrir des lois physiques à partir de données utilisent parfois des alphabets d'opérateurs compacts comme EML afin de restreindre l'espace de recherche.",
-      },
-      {
-        domain: "Informatique théorique",
-        description:
-          "EML est cousine d'ensembles universels comme NAND en logique et Iota en combinateurs — intéressante pour ce qu'elle dit de la taille minimale d'une primitive.",
-      },
-    ],
     mandelbrot: [
       {
         domain: "Art génératif et motion design",
@@ -4213,33 +4084,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
           "Le processus direct est littéralement de la dynamique de Langevin — le calendrier de bruit reflète un système qui se relaxe vers l'équilibre thermique. L'article original de Sohl-Dickstein (2015) était formulé comme de la thermodynamique hors équilibre.",
       },
     ],
-    quine: [
-      {
-        domain: "Théorie des langages de programmation",
-        description:
-          "Les quines sont le test de bon sens standard pour vérifier qu'un langage est assez expressif pour l'autoréférence ; les cours de théorie de la calculabilité les utilisent pour enseigner le théorème de récursion de Kleene sous forme concrète.",
-      },
-      {
-        domain: "Virus informatiques & autoréplicateurs",
-        description:
-          "Chaque virus, ver et moteur métamorphique classique est une variante de quine : du code qui se copie avant de faire quoi que ce soit d'autre. Les logiciels malveillants autoréplicants modernes sont étudiés comme de l'ingénierie de quines appliquée.",
-      },
-      {
-        domain: "Génétique & biologie moléculaire",
-        description:
-          "La réplication de l'ADN est la quine de la biologie : une séquence dont la seule tâche est de se copier elle-même, machinerie de copie comprise. Hofstadter trace l'analogie de manière explicite dans Gödel, Escher, Bach.",
-      },
-      {
-        domain: "Bootstrap de compilateurs",
-        description:
-          "Trusting Trust (Ken Thompson, 1984) a montré que le compilateur d'un compilateur peut être une quine qui insère une porte dérobée à chaque build — fondement de la sécurité de la chaîne d'approvisionnement et de la recherche sur les builds reproductibles.",
-      },
-      {
-        domain: "Démoscène & art du code",
-        description:
-          "Les quines polyglottes — des programmes qui s'impriment eux-mêmes et sont valides dans plusieurs langages à la fois — sont un genre adoré de l'art du code ; l'IOCCC a une catégorie dédiée aux quines.",
-      },
-    ],
     riemann: [
       {
         domain: "Théorème des nombres premiers",
@@ -4296,18 +4140,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
     ],
   },
   it: {
-    eml: [
-      {
-        domain: "Regressione simbolica",
-        description:
-          "I sistemi di algebra computazionale che provano a riscoprire leggi fisiche dai dati usano talvolta alfabeti di operatori compatti come EML per restringere lo spazio di ricerca.",
-      },
-      {
-        domain: "Informatica teorica",
-        description:
-          "EML è cugina di insiemi universali come NAND in logica e Iota nei combinatori — interessante per ciò che dice su quanto piccola possa essere una primitiva.",
-      },
-    ],
     mandelbrot: [
       {
         domain: "Arte generativa e motion graphics",
@@ -5283,33 +5115,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
           "Il processo diretto è letteralmente dinamica di Langevin — il calendario di rumore rispecchia un sistema che rilassa verso l'equilibrio termico. L'articolo originale di Sohl-Dickstein (2015) era formulato come termodinamica fuori equilibrio.",
       },
     ],
-    quine: [
-      {
-        domain: "Teoria dei linguaggi di programmazione",
-        description:
-          "Le quine sono il sanity check standard per verificare che un linguaggio sia abbastanza espressivo per l'autoreferenza; i corsi di teoria della calcolabilità le usano per insegnare il teorema di ricorsione di Kleene in forma concreta.",
-      },
-      {
-        domain: "Virus informatici & autoreplicatori",
-        description:
-          "Ogni virus, worm e motore metamorfico classico è una variante di quine: codice che si copia prima di fare qualsiasi altra cosa. Il malware autoreplicante moderno è studiato come ingegneria di quine applicata.",
-      },
-      {
-        domain: "Genetica & biologia molecolare",
-        description:
-          "La replicazione del DNA è la quine della biologia: una sequenza il cui unico compito è copiare sé stessa, macchinario di copia incluso. Hofstadter traccia l'analogia in modo esplicito in Gödel, Escher, Bach.",
-      },
-      {
-        domain: "Bootstrap di compilatori",
-        description:
-          "Trusting Trust (Ken Thompson, 1984) mostrò che il compilatore di un compilatore può essere una quine che inserisce una backdoor a ogni build — fondamento della sicurezza della catena di fornitura e della ricerca sui build riproducibili.",
-      },
-      {
-        domain: "Demoscene & arte del codice",
-        description:
-          "Le quine poliglotte — programmi che stampano sé stessi e sono validi in più linguaggi insieme — sono un genere amato dell'arte del codice; l'IOCCC ha una categoria dedicata alle quine.",
-      },
-    ],
     riemann: [
       {
         domain: "Teorema dei numeri primi",
@@ -5366,18 +5171,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
     ],
   },
   pt: {
-    eml: [
-      {
-        domain: "Regressão simbólica",
-        description:
-          "Os sistemas de álgebra computacional que tentam redescobrir leis físicas a partir de dados usam por vezes alfabetos de operadores compactos como o EML para restringir o espaço de procura.",
-      },
-      {
-        domain: "Informática teórica",
-        description:
-          "O EML é primo de conjuntos universais como o NAND em lógica e o Iota em combinadores — interessante pelo que diz sobre quão pequena pode ser uma primitiva.",
-      },
-    ],
     mandelbrot: [
       {
         domain: "Arte generativa e motion graphics",
@@ -6353,33 +6146,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
           "O processo direto é literalmente dinâmica de Langevin — o calendário de ruído reflete um sistema a relaxar para o equilíbrio térmico. O artigo original de Sohl-Dickstein (2015) foi formulado como termodinâmica fora do equilíbrio.",
       },
     ],
-    quine: [
-      {
-        domain: "Teoria das linguagens de programação",
-        description:
-          "As quines são o teste de sanidade padrão para verificar se uma linguagem é suficientemente expressiva para a autorreferência; os cursos de teoria da computação usam-nas para ensinar o teorema da recursão de Kleene de forma concreta.",
-      },
-      {
-        domain: "Vírus informáticos e autorreplicadores",
-        description:
-          "Cada vírus, worm e motor metamórfico clássico é uma variante de quine: código que se copia antes de fazer qualquer outra coisa. O malware autorreplicante moderno é estudado como engenharia de quines aplicada.",
-      },
-      {
-        domain: "Genética e biologia molecular",
-        description:
-          "A replicação do ADN é a quine da biologia: uma sequência cuja única tarefa é copiar-se a si própria, incluindo a maquinaria de cópia. Hofstadter traça a analogia explicitamente em Gödel, Escher, Bach.",
-      },
-      {
-        domain: "Bootstrapping de compiladores",
-        description:
-          "Trusting Trust (Ken Thompson, 1984) mostrou que o compilador de um compilador pode ser uma quine que insere uma backdoor em cada build — fundamento da segurança da cadeia de fornecimento e da investigação em builds reproduzíveis.",
-      },
-      {
-        domain: "Demoscene e arte de código",
-        description:
-          "As quines poliglotas — programas que se imprimem a si próprios e são válidos em várias linguagens em simultâneo — são um género adorado da arte de código; o IOCCC tem uma categoria dedicada às quines.",
-      },
-    ],
     riemann: [
       {
         domain: "Teorema dos números primos",
@@ -6436,18 +6202,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
     ],
   },
   sv: {
-    eml: [
-      {
-        domain: "Symbolisk regression",
-        description:
-          "Datoralgebra-system som försöker återupptäcka fysikaliska lagar ur data använder ibland kompakta operatoralfabet som EML för att begränsa sökrymden.",
-      },
-      {
-        domain: "Teoretisk datavetenskap",
-        description:
-          "EML är släkt med universella mängder som NAND i logik och Iota bland kombinatorer – intressant för vad den säger om hur liten en primitiv kan vara.",
-      },
-    ],
     mandelbrot: [
       {
         domain: "Generativ konst och motion graphics",
@@ -7423,33 +7177,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
           "Framåtprocessen är bokstavligen Langevin-dynamik — brusschemat speglar ett system som relaxerar mot termisk jämvikt. Sohl-Dicksteins originalartikel från 2015 formulerades som icke-jämviktstermodynamik.",
       },
     ],
-    quine: [
-      {
-        domain: "Programspråksteori",
-        description:
-          "Quiner är det standardmässiga sanity-testet på att ett språk är uttrycksfullt nog för självreferens; kurser i beräkningsbarhetsteori använder dem för att undervisa Kleenes rekursionssats i konkret form.",
-      },
-      {
-        domain: "Datorvirus & självreplikatorer",
-        description:
-          "Varje klassiskt virus, mask och metamorfisk motor är en quine-variant: kod som kopierar sig själv innan den gör något annat. Modern självreplikerande skadlig kod studeras som tillämpad quine-ingenjörskonst.",
-      },
-      {
-        domain: "Genetik & molekylärbiologi",
-        description:
-          "DNA-replikation är biologins quine: en sekvens vars enda uppgift är att kopiera sig själv, inklusive kopieringsmaskineriet. Hofstadter drar analogin explicit i Gödel, Escher, Bach.",
-      },
-      {
-        domain: "Kompilator-bootstrapping",
-        description:
-          "Trusting Trust (Ken Thompson, 1984) visade att en kompilators kompilator kan vara en quine som lägger in en bakdörr vid varje build — grunden för leveranskedjesäkerhet och forskning om reproducerbara builds.",
-      },
-      {
-        domain: "Demoscene & kodkonst",
-        description:
-          "Polyglotta quiner — program som skriver ut sig själva och är giltiga i flera språk samtidigt — är en älskad kodkonst-genre; IOCCC har en egen quine-kategori.",
-      },
-    ],
     riemann: [
       {
         domain: "Primtalssatsen",
@@ -7506,18 +7233,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
     ],
   },
   no: {
-    eml: [
-      {
-        domain: "Symbolsk regresjon",
-        description:
-          "Datamaskinalgebrasystemer som forsøker å gjenoppdage fysiske lover ut fra data, bruker av og til kompakte operatoralfabet som EML for å begrense søkerommet.",
-      },
-      {
-        domain: "Teoretisk informatikk",
-        description:
-          "EML er i slekt med universelle mengder som NAND i logikk og Iota blant kombinatorer – interessant for hva den sier om hvor liten en primitiv kan være.",
-      },
-    ],
     mandelbrot: [
       {
         domain: "Generativ kunst og motion graphics",
@@ -8491,33 +8206,6 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
         domain: "Fysikk og termodynamikk",
         description:
           "Fremoverprosessen er bokstavelig talt Langevin-dynamikk — støyplanen speiler et system som relakserer mot termisk likevekt. Sohl-Dicksteins originalartikkel fra 2015 var formulert som ikke-likevektstermodynamikk.",
-      },
-    ],
-    quine: [
-      {
-        domain: "Programspråkteori",
-        description:
-          "Quiner er den standard sanity-testen på at et språk er uttrykksfullt nok for selvreferanse; kurs i beregnbarhetsteori bruker dem til å undervise Kleenes rekursjonssetning i konkret form.",
-      },
-      {
-        domain: "Datavirus & selvreplikatorer",
-        description:
-          "Hvert klassisk virus, orm og metamorfisk motor er en quine-variant: kode som kopierer seg selv før den gjør noe annet. Moderne selvreplikerende skadevare studeres som anvendt quine-ingeniørkunst.",
-      },
-      {
-        domain: "Genetikk & molekylærbiologi",
-        description:
-          "DNA-replikering er biologiens quine: en sekvens hvis eneste oppgave er å kopiere seg selv, inkludert kopieringsmaskineriet. Hofstadter trekker analogien eksplisitt i Gödel, Escher, Bach.",
-      },
-      {
-        domain: "Kompilator-bootstrapping",
-        description:
-          "Trusting Trust (Ken Thompson, 1984) viste at en kompilators kompilator kan være en quine som setter inn en bakdør ved hver build — grunnlaget for forsyningskjedesikkerhet og forskning på reproduserbare builds.",
-      },
-      {
-        domain: "Demoscene & kodekunst",
-        description:
-          "Polyglotte quiner — programmer som skriver seg selv ut og er gyldige i flere språk samtidig — er en elsket kodekunst-sjanger; IOCCC har en egen quine-kategori.",
       },
     ],
     riemann: [

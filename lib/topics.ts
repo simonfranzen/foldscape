@@ -3,7 +3,6 @@
 
 export type TopicId =
   // First wave (already built)
-  | "eml"
   | "nand"
   | "iota"
   | "life"
@@ -52,7 +51,6 @@ export type TopicId =
   | "fourcolor"
   | "smallworld"
   // Fifth wave — open problems + the AI math
-  | "quine"
   | "backprop"
   | "diffusion"
   | "riemann";
@@ -76,19 +74,6 @@ export interface Topic {
 }
 
 export const TOPICS: Topic[] = [
-  {
-    id: "eml",
-    href: "/eml",
-    status: "interactive",
-    category: "logic",
-    glyph: "eml(x, y)",
-    formula: "eˣ − ln y",
-    sections: [
-      { key: "cathedral", href: "/eml" },
-      { key: "atelier", href: "/eml/atelier" },
-      { key: "resonance", href: "/eml/resonance" },
-    ],
-  },
   {
     id: "mandelbrot",
     href: "/mandelbrot",
@@ -623,18 +608,6 @@ export const TOPICS: Topic[] = [
     ],
   },
   // Fifth wave — open problems + the AI math
-  {
-    id: "quine",
-    href: "/quine",
-    status: "interactive",
-    category: "computation",
-    glyph: "↻",
-    formula: "p ↦ print(p)",
-    sections: [
-      { key: "story", href: "/quine" },
-      { key: "explorer", href: "/quine/explorer" },
-    ],
-  },
   {
     id: "backprop",
     href: "/backprop",

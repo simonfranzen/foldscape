@@ -36,7 +36,7 @@ beforeEach(() => {
   currentSearch = new URLSearchParams();
   currentPath = "/";
   try {
-    window.localStorage?.removeItem("eml.locale");
+    window.localStorage?.removeItem("foldscape.locale");
   } catch {
     /* noop */
   }

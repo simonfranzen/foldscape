@@ -7,10 +7,6 @@ import { getTopic, type TopicId } from "@/lib/topics";
 import { EN_PLACEHOLDERS } from "@/lib/i18n/placeholders";
 
 const EN_OVERRIDES: Partial<Record<TopicId, { title: string; tagline: string }>> = {
-  eml: {
-    title: "The EML Calculus",
-    tagline: "One operator builds (almost) every elementary function",
-  },
   nand: { title: "The Sheffer Stroke", tagline: "One gate is enough for all of digital logic" },
   iota: { title: "The Iota Combinator", tagline: "One symbol that is Turing-complete" },
   life: {

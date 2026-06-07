@@ -14,7 +14,6 @@ import { TOPIC_LINKS } from "@/lib/topicLinks";
 import { ATLAS } from "@/lib/i18n/atlas";
 import { MESSAGES } from "@/lib/i18n/messages";
 import { UI } from "@/lib/i18n/ui";
-import { BODIES } from "@/lib/i18n/bodies";
 import { LOCALES, type Locale } from "@/lib/i18n/types";
 
 const TOPIC_IDS = TOPICS.map((t) => t.id);
@@ -153,7 +152,6 @@ describe("i18n: EN ↔ DE key parity", () => {
     { name: "MESSAGES", dict: MESSAGES as Record<Locale, unknown> },
     { name: "ATLAS", dict: ATLAS as Record<Locale, unknown> },
     { name: "UI", dict: UI as Record<Locale, unknown> },
-    { name: "BODIES", dict: BODIES as Record<Locale, unknown> },
   ];
 
   for (const { name, dict } of bundles) {

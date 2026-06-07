@@ -12,7 +12,6 @@ import type { TopicId } from "../topics";
 
 type PlaceholderId = Exclude<
   TopicId,
-  | "eml"
   | "nand"
   | "iota"
   | "life"
@@ -195,11 +194,6 @@ export const EN_PLACEHOLDERS: Record<PlaceholderId, TopicMeta> = {
     title: "Six Degrees & Small Worlds",
     tagline: "Any two people, six handshakes apart",
     body: "Stanley Milgram's 1967 experiment sent letters across the United States via personal contacts. The average chain was about six links long. In 1998 Duncan Watts and Steven Strogatz showed that adding just a few random shortcuts to a regular network collapses the average path length to roughly log(N) while keeping local clustering high. Social networks, brains, power grids and the internet all live in this small-world regime.",
-  },
-  quine: {
-    title: "The Quine",
-    tagline: "A program whose only output is its own source code",
-    body: "Write a program that prints itself, character for character, without reading its own file. Sounds impossible — the program would need to contain its own listing, including the part that contains its own listing, forever. Kleene's recursion theorem says it is possible in any sufficiently expressive language: every computable transformation of a program has a fixed point. Quines are that fixed point made concrete, and they are the same self-reference engine that powers Gödel's incompleteness proof.",
   },
   backprop: {
     title: "Backpropagation",

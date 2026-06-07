@@ -53,7 +53,7 @@ export default function Landing() {
         </div>
         <div className="relative mx-auto max-w-4xl space-y-8 px-6 text-center">
           <Reveal>
-            <div className="eml-pill mx-auto">{a.landing.pretitle}</div>
+            <div className="tag-pill mx-auto">{a.landing.pretitle}</div>
           </Reveal>
           <Reveal delay={120}>
             <h1 className="math-italic text-6xl leading-[0.9] tracking-tight md:text-9xl">

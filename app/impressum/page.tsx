@@ -8,7 +8,7 @@ export default function ImprintPage() {
     <main className="min-h-screen px-6 pb-32 pt-24">
       <div className="mx-auto max-w-3xl space-y-10">
         <header className="space-y-3">
-          <div className="eml-pill">{t.nav.imprint}</div>
+          <div className="tag-pill">{t.nav.imprint}</div>
           <h1 className="math-italic text-5xl leading-tight md:text-6xl">{t.imprint.title}</h1>
           <p className="text-sm text-ink-300">{t.imprint.intro}</p>
         </header>

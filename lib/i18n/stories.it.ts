@@ -67,7 +67,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo quattro · Cosa ci dice questo",
           title: "La complessità non richiede regole complesse",
-          body: "L'affermazione più profonda è filosofica. Life mostra che una struttura elaborata — movimento, replicazione, computazione, persino coscienza, se credi alle versioni forti — può risiedere dentro una regola abbastanza piccola da scrivere su una cartolina. È la stessa lezione che EML offre all'analisi, NAND alla logica e la Regola 110 agli automi cellulari. Una piccola primitiva, applicata con disciplina, basta.",
+          body: "L'affermazione più profonda è filosofica. Life mostra che una struttura elaborata — movimento, replicazione, computazione, persino coscienza, se credi alle versioni forti — può risiedere dentro una regola abbastanza piccola da scrivere su una cartolina. È la stessa lezione che NAND offre alla logica e la Regola 110 agli automi cellulari. Una piccola primitiva, applicata con disciplina, basta.",
         },
       ],
     },

@@ -18,7 +18,7 @@ export function detectLocale(): Locale {
   if (typeof navigator === "undefined") return DEFAULT_LOCALE;
   const stored =
     typeof localStorage !== "undefined"
-      ? (localStorage.getItem("eml.locale") as Locale | null)
+      ? (localStorage.getItem("foldscape.locale") as Locale | null)
       : null;
   if (stored && (LOCALES as readonly string[]).includes(stored)) return stored;
   const nav = navigator.language.slice(0, 2).toLowerCase();

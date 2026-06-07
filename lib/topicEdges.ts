@@ -28,8 +28,6 @@ export const TOPIC_EDGES: TopicEdge[] = [
 
   // ── Combinator / building-blocks ───────────────────────────────────────
   { a: "nand", b: "iota", kind: "family" },
-  { a: "nand", b: "eml", kind: "family" },
-  { a: "iota", b: "eml", kind: "family" },
   { a: "iota", b: "halting", kind: "echo" },
   { a: "rsa", b: "pvsnp", kind: "echo" },
 
@@ -88,11 +86,7 @@ export const TOPIC_EDGES: TopicEdge[] = [
   { a: "banach", b: "hilberthotel", kind: "family" },
   { a: "banach", b: "cantor", kind: "echo" },
 
-  // ── Fifth wave — Quine, Backprop, Diffusion, Riemann ──────────────────
-  { a: "quine", b: "godel", kind: "bridge" }, // self-reference engine
-  { a: "quine", b: "halting", kind: "bridge" }, // Kleene's recursion theorem
-  { a: "quine", b: "iota", kind: "family" }, // combinator self-reference
-  { a: "quine", b: "rule110", kind: "echo" }, // universal computation
+  // ── Fifth wave — Backprop, Diffusion, Riemann ─────────────────────────
   { a: "backprop", b: "logistic", kind: "bridge" }, // sigmoid + chain rule
   { a: "backprop", b: "fourier", kind: "echo" }, // signal processing math
   { a: "backprop", b: "pvsnp", kind: "echo" }, // training NP-hardness
