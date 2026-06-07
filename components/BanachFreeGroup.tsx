@@ -63,8 +63,10 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel }: P
     const angle = childAngle(last.parent, gen, depth);
     const dx = Math.cos(angle);
     const dy = Math.sin(angle);
-    const nx = last.x + dx * len;
-    const ny = last.y + dy * len;
+    // Same snap rationale as buildSkeleton — keep walker coords ulp-stable
+    // across SSR/CSR so the next render doesn't trip a hydration mismatch.
+    const nx = Math.round((last.x + dx * len) * 1000) / 1000;
+    const ny = Math.round((last.y + dy * len) * 1000) / 1000;
     const next: Vertex = {
       x: nx,
       y: ny,
@@ -233,6 +235,12 @@ function childAngle(parentGen: number, gen: number, depth: number): number {
 type SkelSeg = { x1: number; y1: number; x2: number; y2: number; depth: number };
 type SkelNode = { x: number; y: number; depth: number };
 
+// Snap to 3 decimal places so SSR (Node V8) and CSR (browser V8) emit
+// identical SVG coordinate strings. Without this Math.cos/sin chains drift
+// by 1 ulp between platforms — visually invisible but enough to trip Next's
+// hydration mismatch detector. Same fix as TopicConstellation.snap.
+const snap = (n: number) => Math.round(n * 1000) / 1000;
+
 function buildSkeleton(maxDepth: number, rootLen: number) {
   const segments: SkelSeg[] = [];
   const nodes: SkelNode[] = [{ x: 0, y: 0, depth: 0 }];
@@ -243,8 +251,8 @@ function buildSkeleton(maxDepth: number, rootLen: number) {
     for (let g = 0; g < 4; g++) {
       if (parentGen !== -1 && g === INV[parentGen]) continue;
       const angle = childAngle(parentGen, g, depth);
-      const nx = x + Math.cos(angle) * len;
-      const ny = y + Math.sin(angle) * len;
+      const nx = snap(x + Math.cos(angle) * len);
+      const ny = snap(y + Math.sin(angle) * len);
       segments.push({ x1: x, y1: y, x2: nx, y2: ny, depth });
       nodes.push({ x: nx, y: ny, depth: depth + 1 });
       recurse(nx, ny, depth + 1, g, len * SHRINK);

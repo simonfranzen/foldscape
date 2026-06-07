@@ -5,7 +5,6 @@ import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import { BanachFreeGroup } from "@/components/BanachFreeGroup";
-import { BanachHilbertMini } from "@/components/BanachHilbertMini";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
@@ -31,13 +30,6 @@ type RichStory = {
   freeGroupReset: string;
   freeGroupHint: string;
   freeGroupWordLabel: string;
-  hilbertCaption: string;
-  hilbertAddOne: string;
-  hilbertDouble: string;
-  hilbertReset: string;
-  hilbertFreeRooms: string;
-  hilbertOccupied: string;
-  hilbertHint: string;
   robinsonNote: string;
   closingPretitle: string;
   closingTitle: string;
@@ -112,16 +104,8 @@ const en: RichStory = {
   freeGroupCaption: "Cayley graph of F₂",
   freeGroupReset: "↺ reset to ε",
   freeGroupHint:
-    "Every reduced word in a, a⁻¹, b, b⁻¹ is a unique vertex. The walker never lands on the same node twice unless you retrace your last move. Four branches at the root, three at every other node — and the whole infinite tree contains four shrunken copies of itself. That self-similarity is the paradox.",
+    "Every reduced word in a, a⁻¹, b, b⁻¹ is a unique vertex, and every vertex has the same four neighbours — one per generator. Drawn with the identity at the root, the picture fans into four directions; at every further node three new branches open (the fourth would just retrace your last step). The whole infinite tree contains four shrunken copies of itself, and that self-similarity is the paradox.",
   freeGroupWordLabel: "current word",
-  hilbertCaption: "Hilbert's hotel — make room for more",
-  hilbertAddOne: "+1 guest",
-  hilbertDouble: "+∞ guests (n → 2n)",
-  hilbertReset: "↺ reset",
-  hilbertFreeRooms: "free",
-  hilbertOccupied: "occupied",
-  hilbertHint:
-    "The hotel is full, yet there is always room for one more — or for infinitely many more. Banach–Tarski takes the same algebraic trick (shifting an infinite collection into a proper subset of itself) and runs it inside a solid ball.",
 
   robinsonNote: "Minimum number of pieces. Four are dense non-measurable point-clouds carved by the F₂ action; the fifth is a single point at the centre, an artefact of rotations fixing the origin.",
   closingPretitle: "See the engine",
@@ -199,16 +183,8 @@ const de: RichStory = {
   freeGroupCaption: "Cayley-Graph von F₂",
   freeGroupReset: "↺ zurück auf ε",
   freeGroupHint:
-    "Jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine einzigartige Ecke. Der Läufer landet nie zweimal am selben Knoten, außer du zeichnest deinen letzten Schritt zurück. Vier Äste an der Wurzel, drei an jedem weiteren Knoten — und der ganze unendliche Baum enthält vier verkleinerte Kopien seiner selbst. Diese Selbstähnlichkeit ist das Paradox.",
+    "Jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine eigene Ecke, und jede Ecke hat dieselben vier Nachbarn — einen pro Erzeuger. Zeichnet man das Bild mit der Identität als Wurzel, fächert es in vier Richtungen auf; an jedem weiteren Knoten öffnen sich drei neue Äste (der vierte würde nur den letzten Schritt zurücknehmen). Der ganze unendliche Baum enthält vier verkleinerte Kopien seiner selbst, und genau diese Selbstähnlichkeit ist das Paradox.",
   freeGroupWordLabel: "aktuelles Wort",
-  hilbertCaption: "Hilberts Hotel — Platz für mehr schaffen",
-  hilbertAddOne: "+1 Gast",
-  hilbertDouble: "+∞ Gäste (n → 2n)",
-  hilbertReset: "↺ zurücksetzen",
-  hilbertFreeRooms: "frei",
-  hilbertOccupied: "belegt",
-  hilbertHint:
-    "Das Hotel ist voll und hat trotzdem immer Platz für einen mehr — oder für unendlich viele mehr. Banach–Tarski nimmt denselben algebraischen Trick (eine unendliche Sammlung in eine echte Teilmenge ihrer selbst verschieben) und führt ihn innerhalb einer massiven Kugel aus.",
 
   robinsonNote: "Minimale Stückzahl. Vier sind dichte, nichtmessbare Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet; das fünfte ist ein einzelner Punkt im Zentrum — ein Artefakt der Drehungen, die den Ursprung fixieren.",
   closingPretitle: "Sieh die Maschine",
@@ -286,16 +262,8 @@ const es: RichStory = {
   freeGroupCaption: "Grafo de Cayley de F₂",
   freeGroupReset: "↺ volver a ε",
   freeGroupHint:
-    "Cada palabra reducida en a, a⁻¹, b, b⁻¹ es un vértice único. El caminante nunca aterriza dos veces en el mismo nodo a menos que deshagas tu último paso. Cuatro ramas en la raíz, tres en cualquier otro nodo — y el árbol infinito completo contiene cuatro copias reducidas de sí mismo. Esa autosimilaridad es la paradoja.",
+    "Cada palabra reducida en a, a⁻¹, b, b⁻¹ es un vértice único, y cada vértice tiene los mismos cuatro vecinos — uno por generador. Dibujado con la identidad en la raíz, el cuadro se abre en cuatro direcciones; en cada nodo posterior se abren tres nuevas ramas (la cuarta solo desharía el último paso). El árbol infinito completo contiene cuatro copias reducidas de sí mismo, y esa autosimilaridad es la paradoja.",
   freeGroupWordLabel: "palabra actual",
-  hilbertCaption: "Hotel de Hilbert — hacer sitio para más",
-  hilbertAddOne: "+1 huésped",
-  hilbertDouble: "+∞ huéspedes (n → 2n)",
-  hilbertReset: "↺ reiniciar",
-  hilbertFreeRooms: "libres",
-  hilbertOccupied: "ocupadas",
-  hilbertHint:
-    "El hotel está lleno y, sin embargo, siempre hay sitio para uno más — o para infinitos más. Banach–Tarski toma el mismo truco algebraico (desplazar una colección infinita a un subconjunto propio de sí misma) y lo ejecuta dentro de una bola sólida.",
 
   robinsonNote: "Número mínimo de piezas. Cuatro son nubes densas no medibles talladas por la acción de F₂; la quinta es un único punto en el centro, un artefacto de las rotaciones que fijan el origen.",
   closingPretitle: "Mira el motor",
@@ -373,16 +341,8 @@ const fr: RichStory = {
   freeGroupCaption: "Graphe de Cayley de F₂",
   freeGroupReset: "↺ retour à ε",
   freeGroupHint:
-    "Chaque mot réduit en a, a⁻¹, b, b⁻¹ est un sommet unique. Le marcheur ne retombe jamais sur le même nœud, sauf si tu reprends ton dernier pas. Quatre branches à la racine, trois à chaque autre nœud — et l'arbre infini entier contient quatre copies réduites de lui-même. Cette auto-similarité est le paradoxe.",
+    "Chaque mot réduit en a, a⁻¹, b, b⁻¹ est un sommet unique, et chaque sommet a les mêmes quatre voisins — un par générateur. Dessiné avec l'identité à la racine, l'image s'ouvre en quatre directions ; à chaque nœud suivant trois nouvelles branches s'ouvrent (la quatrième ne ferait que reprendre ton dernier pas). L'arbre infini entier contient quatre copies réduites de lui-même, et cette auto-similarité est le paradoxe.",
   freeGroupWordLabel: "mot courant",
-  hilbertCaption: "Hôtel de Hilbert — faire de la place",
-  hilbertAddOne: "+1 hôte",
-  hilbertDouble: "+∞ hôtes (n → 2n)",
-  hilbertReset: "↺ réinitialiser",
-  hilbertFreeRooms: "libres",
-  hilbertOccupied: "occupées",
-  hilbertHint:
-    "L'hôtel est plein et, pourtant, il y a toujours de la place pour un de plus — ou pour une infinité de plus. Banach–Tarski reprend la même astuce algébrique (déplacer une collection infinie dans un sous-ensemble propre d'elle-même) et l'exécute à l'intérieur d'une boule pleine.",
 
   robinsonNote: "Nombre minimum de morceaux. Quatre sont des nuages denses non mesurables découpés par l’action de F₂ ; le cinquième est un unique point au centre, artefact des rotations qui fixent l’origine.",
   closingPretitle: "Vois le moteur",
@@ -460,16 +420,8 @@ const it: RichStory = {
   freeGroupCaption: "Grafo di Cayley di F₂",
   freeGroupReset: "↺ torna a ε",
   freeGroupHint:
-    "Ogni parola ridotta in a, a⁻¹, b, b⁻¹ è un vertice unico. Il camminatore non atterra mai due volte sullo stesso nodo a meno che tu non riavvolga l'ultimo passo. Quattro rami alla radice, tre a ogni altro nodo — e l'intero albero infinito contiene quattro copie rimpicciolite di sé. Questa autosimilarità è il paradosso.",
+    "Ogni parola ridotta in a, a⁻¹, b, b⁻¹ è un vertice unico, e ogni vertice ha gli stessi quattro vicini — uno per generatore. Disegnato con l'identità alla radice, il quadro si apre in quattro direzioni; a ogni nodo successivo si aprono tre nuovi rami (il quarto si limiterebbe a riavvolgere l'ultimo passo). L'intero albero infinito contiene quattro copie rimpicciolite di sé, e questa autosimilarità è il paradosso.",
   freeGroupWordLabel: "parola corrente",
-  hilbertCaption: "Hotel di Hilbert — fare spazio per altri",
-  hilbertAddOne: "+1 ospite",
-  hilbertDouble: "+∞ ospiti (n → 2n)",
-  hilbertReset: "↺ azzera",
-  hilbertFreeRooms: "libere",
-  hilbertOccupied: "occupate",
-  hilbertHint:
-    "L'hotel è pieno e tuttavia c'è sempre posto per uno in più — o per infiniti in più. Banach–Tarski prende lo stesso trucco algebrico (spostare una collezione infinita in un proprio sottoinsieme di sé) e lo esegue all'interno di una palla piena.",
 
   robinsonNote: "Numero minimo di pezzi. Quattro sono nuvole dense e non misurabili scolpite dall’azione di F₂; il quinto è un singolo punto al centro, un artefatto delle rotazioni che fissano l’origine.",
   closingPretitle: "Vedi il motore",
@@ -547,16 +499,8 @@ const pt: RichStory = {
   freeGroupCaption: "Grafo de Cayley de F₂",
   freeGroupReset: "↺ voltar a ε",
   freeGroupHint:
-    "Cada palavra reduzida em a, a⁻¹, b, b⁻¹ é um vértice único. O caminhante nunca cai duas vezes no mesmo nó a não ser que desfaças o último passo. Quatro ramos na raiz, três em cada outro nó — e toda a árvore infinita contém quatro cópias reduzidas de si mesma. Essa autossimilaridade é o paradoxo.",
+    "Cada palavra reduzida em a, a⁻¹, b, b⁻¹ é um vértice único, e cada vértice tem os mesmos quatro vizinhos — um por gerador. Desenhado com a identidade na raiz, o quadro abre-se em quatro direcções; em cada nó seguinte abrem-se três novos ramos (o quarto apenas desfaria o último passo). Toda a árvore infinita contém quatro cópias reduzidas de si mesma, e essa autossimilaridade é o paradoxo.",
   freeGroupWordLabel: "palavra atual",
-  hilbertCaption: "Hotel de Hilbert — abrir espaço para mais",
-  hilbertAddOne: "+1 hóspede",
-  hilbertDouble: "+∞ hóspedes (n → 2n)",
-  hilbertReset: "↺ reiniciar",
-  hilbertFreeRooms: "livres",
-  hilbertOccupied: "ocupados",
-  hilbertHint:
-    "O hotel está cheio e, ainda assim, há sempre espaço para mais um — ou para infinitos mais. Banach–Tarski apanha o mesmo truque algébrico (deslocar uma coleção infinita para um subconjunto próprio de si mesma) e executa-o dentro de uma bola sólida.",
 
   robinsonNote: "Número mínimo de peças. Quatro são nuvens densas não mensuráveis recortadas pela acção de F₂; a quinta é um único ponto no centro, um artefacto das rotações que fixam a origem.",
   closingPretitle: "Vê o motor",
@@ -634,16 +578,8 @@ const sv: RichStory = {
   freeGroupCaption: "Cayleygraf för F₂",
   freeGroupReset: "↺ tillbaka till ε",
   freeGroupHint:
-    "Varje reducerat ord i a, a⁻¹, b, b⁻¹ är en unik nod. Vandraren landar aldrig på samma nod två gånger om du inte vänder ditt senaste steg. Fyra grenar vid roten, tre vid varje annan nod — och hela det oändliga trädet innehåller fyra förminskade kopior av sig självt. Den självsimilariteten är paradoxen.",
+    "Varje reducerat ord i a, a⁻¹, b, b⁻¹ är en unik nod, och varje nod har samma fyra grannar — en per generator. Ritat med identiteten i roten fläktar bilden ut i fyra riktningar; vid varje vidare nod öppnas tre nya grenar (den fjärde skulle bara vända det senaste steget). Hela det oändliga trädet innehåller fyra förminskade kopior av sig självt, och just den självlikheten är paradoxen.",
   freeGroupWordLabel: "aktuellt ord",
-  hilbertCaption: "Hilberts hotell — gör plats för fler",
-  hilbertAddOne: "+1 gäst",
-  hilbertDouble: "+∞ gäster (n → 2n)",
-  hilbertReset: "↺ återställ",
-  hilbertFreeRooms: "lediga",
-  hilbertOccupied: "upptagna",
-  hilbertHint:
-    "Hotellet är fullt och har ändå alltid plats för en till — eller för oändligt många till. Banach–Tarski tar samma algebraiska trick (att flytta en oändlig samling in i en äkta delmängd av sig själv) och kör det inne i ett massivt klot.",
 
   robinsonNote: "Minimalt antal bitar. Fyra är täta, icke-mätbara punktmoln som F₂-verkan skär ut; den femte är en enda punkt i centrum, en artefakt av rotationerna som fixerar origo.",
   closingPretitle: "Se motorn",
@@ -721,16 +657,8 @@ const no: RichStory = {
   freeGroupCaption: "Cayley-graf for F₂",
   freeGroupReset: "↺ tilbake til ε",
   freeGroupHint:
-    "Hvert redusert ord i a, a⁻¹, b, b⁻¹ er en unik node. Vandreren lander aldri på samme node to ganger med mindre du angrer siste steg. Fire grener ved roten, tre ved hver annen node — og hele det uendelige treet inneholder fire forminskede kopier av seg selv. Den selvlikheten er paradokset.",
+    "Hvert redusert ord i a, a⁻¹, b, b⁻¹ er en unik node, og hver node har de samme fire naboene — én per generator. Tegnet med identiteten i roten vifter bildet ut i fire retninger; ved hver videre node åpnes tre nye grener (den fjerde ville bare angre det siste steget). Hele det uendelige treet inneholder fire forminskede kopier av seg selv, og nettopp den selvlikheten er paradokset.",
   freeGroupWordLabel: "gjeldende ord",
-  hilbertCaption: "Hilberts hotell — lag plass til flere",
-  hilbertAddOne: "+1 gjest",
-  hilbertDouble: "+∞ gjester (n → 2n)",
-  hilbertReset: "↺ tilbakestill",
-  hilbertFreeRooms: "ledige",
-  hilbertOccupied: "opptatte",
-  hilbertHint:
-    "Hotellet er fullt, og likevel er det alltid plass til én til — eller til uendelig mange til. Banach–Tarski tar samme algebraiske triks (å flytte en uendelig samling inn i en ekte delmengde av seg selv) og kjører det inne i en massiv kule.",
 
   robinsonNote: "Minimum antall biter. Fire er tette, ikke-målbare punktskyer som F₂-virkningen skjærer ut; den femte er et enkelt punkt i sentrum, en artefakt av rotasjonene som fester origo.",
   closingPretitle: "Se motoren",
@@ -798,21 +726,6 @@ export default function BanachStory() {
           body={story.sections[0].body}
           accent={ACCENT}
         />
-      </section>
-
-      {/* INTERACTIVE 1 — Hilbert mini (intuition for "more from infinite") */}
-      <section className="mx-auto mb-32 max-w-4xl">
-        <Reveal>
-          <BanachHilbertMini
-            caption={story.hilbertCaption}
-            addOneLabel={story.hilbertAddOne}
-            doubleLabel={story.hilbertDouble}
-            resetLabel={story.hilbertReset}
-            freeRoomsLabel={story.hilbertFreeRooms}
-            occupiedLabel={story.hilbertOccupied}
-            hintLabel={story.hilbertHint}
-          />
-        </Reveal>
       </section>
 
       {/* Section 02 — Axiom of Choice */}

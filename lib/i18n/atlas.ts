@@ -72,7 +72,7 @@ const en: AtlasDict = {
     subtitle: "Ideas in which a single rule unfolds into an entire universe.",
     hook: "One operator. One rule. One equation. And suddenly: logic, life, chaos. Universes from almost nothing — math at the moment it stops being homework and starts looking like art.",
     intro1:
-      "Every room begins with almost nothing — one operator, one rule, one equation — and walks until the picture is dense. Some rooms are fully built and you get to turn the knobs; others are still being furnished and for now offer only the explanation.",
+      "Every room begins with almost nothing — one operator, one rule, one equation — and walks until the picture is dense. Every room is fully built; you get to turn every knob, restart every iteration, zoom every picture down to the last digit.",
     intro2:
       "Click a tile to step in. Two minutes of reading, ten of playing. No tricks. These are the small statements mathematicians keep coming back to — laid out here so you can see them.",
     forWhomLabel: "Who this is for",
@@ -180,7 +180,7 @@ const de: AtlasDict = {
     subtitle: "Ideen, in denen sich aus einer einzigen Regel ein ganzes Universum entfaltet.",
     hook: "Eine Operation. Eine Regel. Eine Gleichung. Und plötzlich: Logik, Leben, Chaos. Universen aus fast nichts — Mathematik in dem Moment, in dem sie aufhört Hausaufgabe zu sein und anfängt, wie Kunst auszusehen.",
     intro1:
-      "Jeder Raum beginnt bei fast nichts — ein Operator, eine Regel, eine Gleichung — und läuft, bis das Bild dicht wird. Manche Räume sind fertig ausgebaut und du darfst an den Knöpfen drehen; andere werden gerade eingerichtet und liefern vorerst nur die Erklärung.",
+      "Jeder Raum beginnt bei fast nichts — ein Operator, eine Regel, eine Gleichung — und läuft, bis das Bild dicht wird. Jeder Raum ist fertig ausgebaut; du darfst an jedem Knopf drehen, jede Iteration neu starten, jedes Bild bis zur letzten Stelle zoomen.",
     intro2:
       "Klicke eine Kachel, um einzutreten. Zwei Minuten Lesen, zehn Minuten Spielen. Keine Tricks. Es sind die kleinen Aussagen, zu denen Mathematiker:innen immer wieder zurückkehren — hier aufbereitet, damit du sie siehst.",
     forWhomLabel: "Für wen das hier ist",
@@ -474,7 +474,7 @@ const es: AtlasDict = {
     subtitle: "Ideas en que una sola regla se despliega en un universo entero.",
     hook: "Un operador. Una regla. Una ecuación. Y de pronto: lógica, vida, caos. Universos a partir de casi nada — la matemática justo cuando deja de ser tarea y empieza a parecer arte.",
     intro1:
-      "Cada sala empieza con casi nada — un operador, una regla, una ecuación — y avanza hasta que la imagen se densifica. Algunas salas están totalmente montadas y puedes girar las perillas; otras siguen amueblándose y de momento solo ofrecen la explicación.",
+      "Cada sala empieza con casi nada — un operador, una regla, una ecuación — y avanza hasta que la imagen se densifica. Todas las salas están totalmente montadas; puedes girar cada perilla, reiniciar cada iteración, hacer zoom en cada imagen hasta el último dígito.",
     intro2:
       "Pulsa una baldosa para entrar. Dos minutos leyendo, diez jugando. Sin trucos. Son los pequeños enunciados a los que los matemáticos vuelven una y otra vez, presentados para que los veas.",
     forWhomLabel: "Para quién es esto",
@@ -704,7 +704,7 @@ const fr: AtlasDict = {
     subtitle: "Des idées où une seule règle se déploie en un univers entier.",
     hook: "Un opérateur. Une règle. Une équation. Et soudain : logique, vie, chaos. Des univers à partir de presque rien — la mathématique au moment où elle cesse d'être un devoir et commence à ressembler à de l'art.",
     intro1:
-      "Chaque salle commence avec presque rien — un opérateur, une règle, une équation — et marche jusqu'à ce que l'image soit dense. Certaines salles sont entièrement bâties et tu peux tourner les boutons ; d'autres se meublent encore et n'offrent pour l'instant que l'explication.",
+      "Chaque salle commence avec presque rien — un opérateur, une règle, une équation — et marche jusqu'à ce que l'image soit dense. Chaque salle est entièrement bâtie ; tu peux tourner chaque bouton, relancer chaque itération, zoomer chaque image jusqu'au dernier chiffre.",
     intro2:
       "Clique sur une tuile pour entrer. Deux minutes de lecture, dix de jeu. Aucun tour de magie. Ce sont les petits énoncés sur lesquels les mathématiciens reviennent sans cesse, posés là pour que tu les voies.",
     forWhomLabel: "Pour qui c'est",
@@ -934,7 +934,7 @@ const it: AtlasDict = {
     subtitle: "Idee in cui una sola regola si dispiega in un intero universo.",
     hook: "Un operatore. Una regola. Un'equazione. E all'improvviso: logica, vita, caos. Universi da quasi nulla — la matematica nel momento in cui smette di essere compito e inizia ad assomigliare all'arte.",
     intro1:
-      "Ogni stanza inizia da quasi nulla — un operatore, una regola, un'equazione — e cammina finché l'immagine non si addensa. Alcune stanze sono completamente allestite e puoi girare le manopole; altre vengono ancora arredate e per ora offrono solo la spiegazione.",
+      "Ogni stanza inizia da quasi nulla — un operatore, una regola, un'equazione — e cammina finché l'immagine non si addensa. Ogni stanza è completamente allestita; puoi girare ogni manopola, riavviare ogni iterazione, ingrandire ogni immagine fino all'ultima cifra.",
     intro2:
       "Tocca una mattonella per entrare. Due minuti di lettura, dieci di gioco. Nessun trucco. Sono i piccoli enunciati ai quali i matematici tornano sempre, presentati perché tu li veda.",
     forWhomLabel: "Per chi è questo",
@@ -1164,7 +1164,7 @@ const pt: AtlasDict = {
     subtitle: "Ideias em que uma única regra se desdobra num universo inteiro.",
     hook: "Um operador. Uma regra. Uma equação. E de repente: lógica, vida, caos. Universos a partir de quase nada — matemática no momento em que deixa de ser trabalho de casa e começa a parecer arte.",
     intro1:
-      "Cada sala começa com quase nada — um operador, uma regra, uma equação — e caminha até a imagem ficar densa. Algumas salas estão totalmente montadas e podes girar os botões; outras ainda estão a ser mobiladas e por agora oferecem apenas a explicação.",
+      "Cada sala começa com quase nada — um operador, uma regra, uma equação — e caminha até a imagem ficar densa. Cada sala está totalmente montada; podes girar cada botão, reiniciar cada iteração, fazer zoom em cada imagem até ao último dígito.",
     intro2:
       "Carrega num azulejo para entrar. Dois minutos a ler, dez a brincar. Sem truques. São os pequenos enunciados aos quais os matemáticos voltam sempre, postos à mostra para que os vejas.",
     forWhomLabel: "Para quem é isto",
@@ -1394,7 +1394,7 @@ const sv: AtlasDict = {
     subtitle: "Idéer där en enda regel viker ut sig till ett helt universum.",
     hook: "En operator. En regel. En ekvation. Och plötsligt: logik, liv, kaos. Universum ur nästan ingenting — matematiken i det ögonblick då den slutar vara läxa och börjar se ut som konst.",
     intro1:
-      "Varje rum börjar med nästan ingenting — en operator, en regel, en ekvation — och går tills bilden är tät. Vissa rum är helt utbyggda och du får vrida på rattarna; andra möbleras fortfarande och erbjuder för stunden bara förklaringen.",
+      "Varje rum börjar med nästan ingenting — en operator, en regel, en ekvation — och går tills bilden är tät. Varje rum är helt utbyggt; du får vrida på varje ratt, starta om varje iteration, zooma varje bild till sista siffran.",
     intro2:
       "Klicka på en bricka för att gå in. Två minuters läsning, tio minuters lek. Inga trick. Det är de små utsagor som matematiker återkommer till, framlagda så att du ser dem.",
     forWhomLabel: "Vem detta är för",
@@ -1624,7 +1624,7 @@ const no: AtlasDict = {
     subtitle: "Idéer der én eneste regel folder seg ut til et helt univers.",
     hook: "Én operator. Én regel. Én likning. Og plutselig: logikk, liv, kaos. Univers fra nesten ingenting — matematikken i det øyeblikket den slutter å være lekse og begynner å se ut som kunst.",
     intro1:
-      "Hvert rom starter med nesten ingenting — én operator, én regel, én likning — og går til bildet er tett. Noen rom er ferdig bygd og du får vri på knappene; andre er fortsatt under møblering og tilbyr foreløpig bare forklaringen.",
+      "Hvert rom starter med nesten ingenting — én operator, én regel, én likning — og går til bildet er tett. Hvert rom er ferdig bygd; du får vri på hver knapp, starte hver iterasjon på nytt, zoome hvert bilde til siste siffer.",
     intro2:
       "Klikk på en flis for å gå inn. To minutter lesing, ti minutter lek. Ingen triks. Det er de små utsagnene matematikere alltid vender tilbake til, satt frem så du ser dem.",
     forWhomLabel: "Hvem dette er for",
