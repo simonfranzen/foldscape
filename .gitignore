@@ -50,3 +50,6 @@ test-results/
 
 # book generator
 /book/
+
+# pitch material (local only)
+/pitch/
