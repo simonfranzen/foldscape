@@ -9,7 +9,7 @@ import { ApollonianGasket } from "@/components/ApollonianGasket";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-rose";
+const ACCENT = "text-signal-amber";
 
 // --------------------------------------------------------------------------
 // Rich, per-locale story content. The hero (pretitle/title/tagline/intro)
@@ -932,8 +932,8 @@ function EncounterCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-rose/40">
-      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-amber/40">
+      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
         {label}
       </div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>
@@ -953,10 +953,10 @@ export default function ApollonianStory() {
       page={page}
       ctaHref="/apollonian/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-rose/70"
-      bgAccent="bg-signal-rose/10"
-      hoverAccent="hover:bg-signal-rose/20"
-      gradient="from-signal-rose/10"
+      borderAccent="border-signal-amber/70"
+      bgAccent="bg-signal-amber/10"
+      hoverAccent="hover:bg-signal-amber/20"
+      gradient="from-signal-amber/10"
       formulaBadge="(k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)"
       formulaLatex={"(k_1 + k_2 + k_3 + k_4)^2 = 2(k_1^2 + k_2^2 + k_3^2 + k_4^2)"}
       finalLabel={story.closingTitle}
@@ -1132,7 +1132,7 @@ export default function ApollonianStory() {
                   ["(−6, 11, 14, 15)", "15, 18, 23, 26, 30, 35, 38, …"],
                 ].map(([seed, rest]) => (
                   <tr key={seed} className="border-b border-ink-700/30 last:border-0">
-                    <td className="px-2 py-2 text-signal-rose">{seed}</td>
+                    <td className="px-2 py-2 text-signal-amber">{seed}</td>
                     <td className="px-2 py-2 text-ink-200">{rest}</td>
                   </tr>
                 ))}
@@ -1187,7 +1187,7 @@ export default function ApollonianStory() {
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/apollonian/explorer"
-            className="inline-block rounded-full border border-signal-rose/70 bg-signal-rose/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/25"
+            className="inline-block rounded-full border border-signal-amber/70 bg-signal-amber/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/25"
           >
             {story.closingCta}
           </Link>

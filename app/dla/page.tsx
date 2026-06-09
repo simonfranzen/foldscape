@@ -8,7 +8,7 @@ import { DlaMiniSim } from "@/components/DlaMiniSim";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-rose";
+const ACCENT = "text-signal-coral";
 
 // --------------------------------------------------------------------------
 // Hand-drawn dendrite. Static, deterministic, used as a quiet visual cue
@@ -852,10 +852,10 @@ export default function DlaStory() {
       page={page}
       ctaHref="/dla/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-rose/70"
-      bgAccent="bg-signal-rose/10"
-      hoverAccent="hover:bg-signal-rose/20"
-      gradient="from-signal-rose/10"
+      borderAccent="border-signal-coral/70"
+      bgAccent="bg-signal-coral/10"
+      hoverAccent="hover:bg-signal-coral/20"
+      gradient="from-signal-coral/10"
       formulaBadge="random walk → first contact → freeze"
       formulaLatex={"D \\approx 1.71"}
       finalLabel={story.closingTitle}
@@ -960,7 +960,7 @@ export default function DlaStory() {
           <div className="text-center">
             <Link
               href="/dla/explorer"
-              className="inline-block rounded-full border border-signal-rose/70 bg-signal-rose/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/25"
+              className="inline-block rounded-full border border-signal-coral/70 bg-signal-coral/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/25"
             >
               {story.ctaLabel}
             </Link>
@@ -981,7 +981,7 @@ export default function DlaStory() {
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/dla/explorer"
-            className="inline-block rounded-full border border-signal-rose/70 bg-signal-rose/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/25"
+            className="inline-block rounded-full border border-signal-coral/70 bg-signal-coral/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/25"
           >
             {story.ctaLabel}
           </Link>
@@ -1001,7 +1001,7 @@ function EncounterCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-rose/40">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-coral/40">
       <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>{label}</div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>
       <div className="text-sm leading-relaxed text-ink-200">{children}</div>

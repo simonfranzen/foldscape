@@ -6,7 +6,7 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { MobiusStripHero } from "@/components/signature/MobiusStripHero";
 
-const ACCENT = "text-signal-violet";
+const ACCENT = "text-signal-amber";
 
 // Per-locale strings for the gluing-identification diagram. Kept inline so
 // the translations live with the diagram they label.
@@ -120,11 +120,11 @@ export default function MobiusStoryPage() {
     <StoryPageShell
       page={page}
       ctaHref="/mobius/explorer"
-      accent="text-signal-violet"
-      borderAccent="border-signal-violet/70"
-      bgAccent="bg-signal-violet/10"
-      hoverAccent="hover:bg-signal-violet/20"
-      gradient="from-signal-violet/10"
+      accent="text-signal-amber"
+      borderAccent="border-signal-amber/70"
+      bgAccent="bg-signal-amber/10"
+      hoverAccent="hover:bg-signal-amber/20"
+      gradient="from-signal-amber/10"
       formulaBadge="χ = 0,  one side,  one edge"
       formulaLatex={"\\chi = 0, \\quad \\text{one side}, \\quad \\text{one edge}"}
       finalLabel="Take it apart."

@@ -226,10 +226,10 @@ const COPY: Record<Locale, ExplorerCopy> = {
 const COLORS = {
   rose: {
     rgb: "255, 122, 182",
-    tw: "text-signal-rose",
-    border: "border-signal-rose/60",
-    bg: "bg-signal-rose/10",
-    swatch: "bg-signal-rose",
+    tw: "text-signal-coral",
+    border: "border-signal-coral/60",
+    bg: "bg-signal-coral/10",
+    swatch: "bg-signal-coral",
   },
   cyan: {
     rgb: "125, 243, 255",
@@ -435,7 +435,7 @@ export default function DlaExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [seed, cell, resetTick]);
 
   const applyPreset = (p: Preset) => {
@@ -484,7 +484,7 @@ export default function DlaExplorer() {
                   <button
                     key={p.id}
                     onClick={() => applyPreset(p)}
-                    className="hairline rounded-md border px-3 py-2 text-left text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+                    className="hairline rounded-md border px-3 py-2 text-left text-ink-200 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
                   >
                     <div className="font-mono text-xs">{t.label}</div>
                     <div className="mt-0.5 font-mono text-[10px] text-ink-400">{t.note}</div>
@@ -578,7 +578,7 @@ export default function DlaExplorer() {
               onClick={() => setRunning((v) => !v)}
               className={`w-full rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
                 running
-                  ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
+                  ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
                   : `${c.border} ${c.tw} ${c.bg}`
               }`}
             >
@@ -595,7 +595,7 @@ export default function DlaExplorer() {
           <div className="p-5">
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
               {u.back}
             </Link>
@@ -636,7 +636,7 @@ function SliderRow({
         max={max}
         step={step}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-signal-rose"
+        className="w-full accent-signal-coral"
       />
     </div>
   );

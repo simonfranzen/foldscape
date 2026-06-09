@@ -242,7 +242,7 @@ export default function LorenzExplorer() {
               onClick={() => setRunning((v) => !v)}
               className={`w-full rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
                 running
-                  ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
+                  ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
                   : "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
               }`}
             >

@@ -354,7 +354,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
 //     two coloured halves and animates them pulling apart.
 //   - Klein bottle (Lawson-style immersion in 3-D).
 //
-// Accent colour throughout: signal-violet.
+// Accent colour throughout: signal-amber.
 // --------------------------------------------------------------------------
 
 type Vec3 = readonly [number, number, number];
@@ -643,7 +643,7 @@ export default function MobiusExplorer() {
       for (const tri of tris) {
         // Cut colouring: group 1 (the inside band) gets a contrasting amber
         // tint so the user can see exactly what the scissors took out.
-        let alpha = 0.92;
+        const alpha = 0.92;
         let fill: string;
         if (tri.cutGroup === 1) {
           // Amber band.
@@ -740,7 +740,7 @@ export default function MobiusExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {kleinMode ? t.badgeKlein : t.badgeMobius}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
               {kleinMode
                 ? "(a + cos u/2 sin v − sin u/2 sin 2v) · (cos u, sin u)"
                 : "(R + v cos(ku/2)) (cos u, sin u),  v sin(ku/2)"}
@@ -759,7 +759,7 @@ export default function MobiusExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -776,8 +776,8 @@ export default function MobiusExplorer() {
                 onClick={() => setKleinMode(false)}
                 className={`rounded-md border px-3 py-2 font-mono text-xs transition-colors ${
                   !kleinMode
-                    ? "border-signal-violet/70 bg-signal-violet/10 text-signal-violet"
-                    : "hairline text-ink-200 hover:border-signal-violet/40 hover:text-ink-100"
+                    ? "border-signal-amber/70 bg-signal-amber/10 text-signal-amber"
+                    : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
                 }`}
               >
                 {t.mobiusStrip}
@@ -786,8 +786,8 @@ export default function MobiusExplorer() {
                 onClick={() => setKleinMode(true)}
                 className={`rounded-md border px-3 py-2 font-mono text-xs transition-colors ${
                   kleinMode
-                    ? "border-signal-violet/70 bg-signal-violet/10 text-signal-violet"
-                    : "hairline text-ink-200 hover:border-signal-violet/40 hover:text-ink-100"
+                    ? "border-signal-amber/70 bg-signal-amber/10 text-signal-amber"
+                    : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
                 }`}
               >
                 {t.kleinBottle}
@@ -808,8 +808,8 @@ export default function MobiusExplorer() {
                 onClick={() => setAutoSpin((s) => !s)}
                 className={`rounded-md border px-2 py-1 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                   autoSpin
-                    ? "border-signal-violet/70 bg-signal-violet/10 text-signal-violet"
-                    : "hairline text-ink-300 hover:border-signal-violet/40 hover:text-ink-100"
+                    ? "border-signal-amber/70 bg-signal-amber/10 text-signal-amber"
+                    : "hairline text-ink-300 hover:border-signal-amber/40 hover:text-ink-100"
                 }`}
               >
                 {autoSpin ? t.on : t.off}
@@ -825,7 +825,7 @@ export default function MobiusExplorer() {
               max={1.5}
               step={0.01}
               onChange={(e) => setSpinSpeed(parseFloat(e.target.value))}
-              className="w-full accent-signal-violet"
+              className="w-full accent-signal-amber"
             />
             <div className="text-right font-mono text-[10px] text-ink-400">
               {spinSpeed.toFixed(2)} {t.speedUnit}
@@ -846,7 +846,7 @@ export default function MobiusExplorer() {
               max={0.5}
               step={0.005}
               onChange={(e) => setWidth(parseFloat(e.target.value))}
-              className="w-full accent-signal-violet"
+              className="w-full accent-signal-amber"
             />
             <div className="text-right font-mono text-[10px] text-ink-400">{width.toFixed(3)}</div>
           </div>
@@ -865,7 +865,7 @@ export default function MobiusExplorer() {
               max={5}
               step={1}
               onChange={(e) => setHalfTwists(parseInt(e.target.value, 10))}
-              className="w-full accent-signal-violet"
+              className="w-full accent-signal-amber"
             />
             <div className="grid grid-cols-5 gap-1 font-mono text-[10px] text-ink-400">
               {[1, 2, 3, 4, 5].map((n) => (
@@ -874,8 +874,8 @@ export default function MobiusExplorer() {
                   onClick={() => setHalfTwists(n)}
                   className={`rounded border py-1 transition-colors ${
                     halfTwists === n
-                      ? "border-signal-violet/70 bg-signal-violet/10 text-signal-violet"
-                      : "hairline hover:border-signal-violet/40 hover:text-ink-100"
+                      ? "border-signal-amber/70 bg-signal-amber/10 text-signal-amber"
+                      : "hairline hover:border-signal-amber/40 hover:text-ink-100"
                   }`}
                 >
                   {n}
@@ -939,13 +939,13 @@ export default function MobiusExplorer() {
           <div className="p-5">
             <Link
               href="/mobius"
-              className="hairline mb-2 block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-violet/40 hover:text-signal-violet"
+              className="hairline mb-2 block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
             >
               {t.story}
             </Link>
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-violet/40 hover:text-signal-violet"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
             >
               {u.back}
             </Link>

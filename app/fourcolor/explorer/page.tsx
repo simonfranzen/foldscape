@@ -511,7 +511,7 @@ export default function FourColorExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {PRESETS.find((p) => p.id === presetId)?.label} · seed {seed}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               χ(planar) ≤ 4
             </div>
           </div>
@@ -528,7 +528,7 @@ export default function FourColorExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               max deg · {map?.maxDegree ?? 0}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {stepRow}
             </div>
           </div>
@@ -536,7 +536,7 @@ export default function FourColorExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -559,8 +559,8 @@ export default function FourColorExplorer() {
                   }}
                   className={`rounded-md border px-3 py-2 text-left transition-colors ${
                     presetId === p.id
-                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                      : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                      ? "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
+                      : "hairline text-ink-200 hover:border-signal-teal/40 hover:text-ink-100"
                   }`}
                 >
                   <div className="font-mono text-xs">{p.label}</div>
@@ -572,7 +572,7 @@ export default function FourColorExplorer() {
                 const next = (seed + 1) >>> 0 || 1;
                 setSeed(next);
               }}
-              className="w-full rounded-md border border-signal-rose/60 bg-signal-rose/10 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/20"
+              className="w-full rounded-md border border-signal-teal/60 bg-signal-teal/10 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/20"
             >
               Generate random
             </button>
@@ -583,7 +583,7 @@ export default function FourColorExplorer() {
               Number of regions
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-rose">{n}</span>
+              <span className="text-signal-teal">{n}</span>
               <span className="text-[10px] text-ink-400">5 … 80</span>
             </div>
             <input
@@ -601,7 +601,7 @@ export default function FourColorExplorer() {
                   setPresetId(v > 40 ? "voronoi60" : "voronoi30");
                 }
               }}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-teal"
             />
           </div>
 
@@ -653,7 +653,7 @@ export default function FourColorExplorer() {
                     return Math.min(i + 1, solution.steps.length);
                   });
                 }}
-                className="hairline rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+                className="hairline rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
               >
                 Step
               </button>
@@ -662,7 +662,7 @@ export default function FourColorExplorer() {
                 className={`rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                   running
                     ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber hover:bg-signal-amber/20"
-                    : "border-signal-rose/60 bg-signal-rose/10 text-signal-rose hover:bg-signal-rose/20"
+                    : "border-signal-teal/60 bg-signal-teal/10 text-signal-teal hover:bg-signal-teal/20"
                 }`}
               >
                 {running ? "Pause" : "Run"}
@@ -672,7 +672,7 @@ export default function FourColorExplorer() {
                   setRunning(false);
                   setAnimIdx(solution ? solution.steps.length : 0);
                 }}
-                className="hairline rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+                className="hairline rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
               >
                 Auto
               </button>
@@ -713,7 +713,7 @@ export default function FourColorExplorer() {
             </div>
             <div className="flex justify-between">
               <span>solved</span>
-              <span className={solution?.final ? "text-signal-rose" : "text-ink-400"}>
+              <span className={solution?.final ? "text-signal-teal" : "text-ink-400"}>
                 {solution?.final ? "yes" : "in progress"}
               </span>
             </div>
@@ -726,7 +726,7 @@ export default function FourColorExplorer() {
           <div className="p-5">
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               {u.back}
             </Link>

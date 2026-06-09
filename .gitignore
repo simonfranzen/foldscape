@@ -6,6 +6,7 @@ node_modules/
 # next.js
 .next/
 out/
+out.*/
 build/
 dist/
 
@@ -47,6 +48,7 @@ test-results/
 # video generator — internal, not part of the open-source release
 /video/
 /public/vo/
+/public/montage
 
 # book generator
 /book/

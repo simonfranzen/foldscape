@@ -608,7 +608,7 @@ export default function RiemannExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {x.primeStaircaseBadge}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {x.formulaBadge}
             </div>
           </div>
@@ -618,12 +618,12 @@ export default function RiemannExplorer() {
             <div className="hairline glass absolute left-3 top-3 rounded-md border px-2 py-1 font-mono text-[10px] tracking-widest2 text-ink-200">
               <span className="text-ink-300">━━</span>{" "}
               <span className="text-ink-100">{x.legendPiTrue}</span>{" "}
-              <span className="ml-2 text-signal-amber">━━</span>{" "}
+              <span className="ml-2 text-signal-teal">━━</span>{" "}
               <span className="text-ink-100">{x.legendRApprox}</span>
             </div>
             <div className="hairline glass absolute right-3 top-3 rounded-md border px-2 py-1 font-mono text-[10px] tracking-widest2 text-ink-300">
               {x.errorLabel}:{" "}
-              <span className="text-signal-amber">{piApproxData.maxErr.toFixed(2)}</span>
+              <span className="text-signal-teal">{piApproxData.maxErr.toFixed(2)}</span>
             </div>
           </div>
           <div className="hairline relative h-[320px] shrink-0 overflow-hidden rounded-2xl border bg-ink-950 lg:h-[380px]">
@@ -636,7 +636,7 @@ export default function RiemannExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -648,7 +648,7 @@ export default function RiemannExplorer() {
               {x.tMaxLabel}
             </div>
             <div className="flex items-baseline justify-between font-mono text-sm">
-              <span className="text-signal-amber">{tMax.toFixed(1)}</span>
+              <span className="text-signal-teal">{tMax.toFixed(1)}</span>
               <span className="text-[10px] text-ink-400">t ∈ [0, {tMax.toFixed(1)}]</span>
             </div>
             <input
@@ -658,7 +658,7 @@ export default function RiemannExplorer() {
               max={60}
               step={0.5}
               onChange={(e) => setTMax(parseFloat(e.target.value))}
-              className="w-full accent-signal-amber"
+              className="w-full accent-signal-teal"
             />
             <p className="text-[11px] leading-relaxed text-ink-400">{x.tMaxHint}</p>
           </div>
@@ -668,7 +668,7 @@ export default function RiemannExplorer() {
               {x.nDirichletLabel}
             </div>
             <div className="flex items-baseline justify-between font-mono text-sm">
-              <span className="text-signal-amber">{nDirichlet}</span>
+              <span className="text-signal-teal">{nDirichlet}</span>
               <span className="text-[10px] text-ink-400">terms</span>
             </div>
             <input
@@ -678,7 +678,7 @@ export default function RiemannExplorer() {
               max={500}
               step={10}
               onChange={(e) => setNDirichlet(parseInt(e.target.value, 10))}
-              className="w-full accent-signal-amber"
+              className="w-full accent-signal-teal"
             />
             <p className="text-[11px] leading-relaxed text-ink-400">{x.nDirichletHint}</p>
           </div>
@@ -688,7 +688,7 @@ export default function RiemannExplorer() {
               {x.nZerosLabel}
             </div>
             <div className="flex items-baseline justify-between font-mono text-sm">
-              <span className="text-signal-amber">{nZeros}</span>
+              <span className="text-signal-teal">{nZeros}</span>
               <span className="text-[10px] text-ink-400">zeros</span>
             </div>
             <input
@@ -698,7 +698,7 @@ export default function RiemannExplorer() {
               max={ZERO_HEIGHTS.length}
               step={1}
               onChange={(e) => setNZeros(parseInt(e.target.value, 10))}
-              className="w-full accent-signal-amber"
+              className="w-full accent-signal-teal"
             />
             <p className="text-[11px] leading-relaxed text-ink-400">{x.nZerosHint}</p>
           </div>
@@ -710,7 +710,7 @@ export default function RiemannExplorer() {
             {detectedZeroTs.length === 0 ? (
               <p className="text-[11px] leading-relaxed text-ink-400">{x.detectedEmpty}</p>
             ) : (
-              <ul className="grid grid-cols-2 gap-1 font-mono text-[11px] text-signal-amber">
+              <ul className="grid grid-cols-2 gap-1 font-mono text-[11px] text-signal-teal">
                 {detectedZeroTs.map((t, i) => (
                   <li key={i}>
                     γ_{i + 1} ≈ {t.toFixed(3)}
@@ -735,13 +735,13 @@ export default function RiemannExplorer() {
                 setNDirichlet(200);
                 setNZeros(8);
               }}
-              className="hairline w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/50 hover:text-signal-amber"
+              className="hairline w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/50 hover:text-signal-teal"
             >
               {x.resetLabel}
             </button>
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               {u.back}
             </Link>

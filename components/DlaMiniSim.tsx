@@ -37,7 +37,7 @@ export function DlaMiniSim({ caption, className = "" }: Props) {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let raf = 0;
-    let cellPx = CELL_PX * dpr;
+    const cellPx = CELL_PX * dpr;
     let gridW = 1;
     let gridH = 1;
     let grid = new Uint8Array(0);

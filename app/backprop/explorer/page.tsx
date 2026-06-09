@@ -767,7 +767,7 @@ export default function BackpropExplorer() {
           : x.trainingBadge;
   const statusColor =
     status === "converged"
-      ? "text-signal-amber"
+      ? "text-signal-teal"
       : status === "training"
         ? "text-signal-cyan"
         : "text-ink-300";
@@ -802,7 +802,7 @@ export default function BackpropExplorer() {
           {/* Loss chart, always visible below the boundary. */}
           <div className="hairline rounded-2xl border bg-ink-950/60 p-4">
             <div className="mb-2 flex items-baseline justify-between">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
                 {x.lossLabel}
               </div>
               <div className="font-mono text-[10px] text-ink-400">
@@ -826,7 +826,7 @@ export default function BackpropExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -849,8 +849,8 @@ export default function BackpropExplorer() {
                     onClick={() => setTopology(t)}
                     className={`rounded-md border px-3 py-2 text-left font-mono text-[11px] transition-colors ${
                       active
-                        ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
-                        : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
+                        ? "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
+                        : "hairline text-ink-200 hover:border-signal-teal/40 hover:text-ink-100"
                     }`}
                   >
                     {x.topologyOptions[t]}
@@ -874,8 +874,8 @@ export default function BackpropExplorer() {
                     onClick={() => setTask(t)}
                     className={`rounded-md border px-3 py-2 text-left font-mono text-[11px] transition-colors ${
                       active
-                        ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
-                        : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
+                        ? "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
+                        : "hairline text-ink-200 hover:border-signal-teal/40 hover:text-ink-100"
                     }`}
                   >
                     {x.taskOptions[t]}
@@ -920,7 +920,7 @@ export default function BackpropExplorer() {
           <div className="hairline grid grid-cols-2 gap-2 border-b p-5">
             <button
               onClick={() => setRunning((r) => !r)}
-              className="rounded-md border border-signal-amber/60 bg-signal-amber/10 px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/20"
+              className="rounded-md border border-signal-teal/60 bg-signal-teal/10 px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/20"
             >
               {running ? x.pause : x.play}
             </button>
@@ -949,7 +949,7 @@ export default function BackpropExplorer() {
           <div className="p-5">
             <Link
               href="/backprop"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               {u.back}
             </Link>
@@ -981,7 +981,7 @@ function SliderRow({
     <div className="space-y-1.5">
       <div className="flex items-baseline justify-between">
         <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">{label}</div>
-        <div className="font-mono text-[11px] text-signal-amber">{display}</div>
+        <div className="font-mono text-[11px] text-signal-teal">{display}</div>
       </div>
       <input
         type="range"
@@ -990,7 +990,7 @@ function SliderRow({
         max={max}
         step={step}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-signal-amber"
+        className="w-full accent-signal-teal"
       />
     </div>
   );

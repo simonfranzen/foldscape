@@ -9,7 +9,7 @@ import { DoublePendulumTwin } from "@/components/DoublePendulumTwin";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-rose";
+const ACCENT = "text-signal-coral";
 
 // -----------------------------------------------------------------------------
 // Rich locale-aware story content for the Double Pendulum page. We override
@@ -1031,10 +1031,10 @@ export default function DoublePendulumStory() {
       page={page}
       ctaHref="/doublependulum/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-rose/70"
-      bgAccent="bg-signal-rose/10"
-      hoverAccent="hover:bg-signal-rose/20"
-      gradient="from-signal-rose/10"
+      borderAccent="border-signal-coral/70"
+      bgAccent="bg-signal-coral/10"
+      hoverAccent="hover:bg-signal-coral/20"
+      gradient="from-signal-coral/10"
       formulaBadge="θ̈₁ , θ̈₂ — coupled"
       formulaLatex={
         "\\ddot{\\theta}_1, \\ddot{\\theta}_2 \\;\\text{ from }\\; \\mathcal{L}(\\theta_1,\\theta_2,\\dot{\\theta}_1,\\dot{\\theta}_2) = T - V"
@@ -1058,7 +1058,7 @@ export default function DoublePendulumStory() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {story.encounter.cards.map((card, i) => (
             <Reveal key={i} delay={140 + i * 90}>
-              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-rose/40">
+              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-coral/40">
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
                   {card.label}
                 </div>
@@ -1238,7 +1238,7 @@ L = T − V`}
           <div className="pt-2">
             <Link
               href="/doublependulum/explorer"
-              className="inline-block rounded-full border border-signal-rose/70 bg-signal-rose/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/25"
+              className="inline-block rounded-full border border-signal-coral/70 bg-signal-coral/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/25"
             >
               {story.closingCta}
             </Link>

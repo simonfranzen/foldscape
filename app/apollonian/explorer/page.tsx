@@ -359,7 +359,7 @@ export default function ApollonianExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               Packing · {PRESETS[presetIdx]!.label}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
               (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)
             </div>
           </div>
@@ -370,7 +370,7 @@ export default function ApollonianExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -388,8 +388,8 @@ export default function ApollonianExplorer() {
                   onClick={() => setPresetIdx(i)}
                   className={`rounded-md border px-3 py-2 text-left transition-colors ${
                     presetIdx === i
-                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                      : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                      ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
+                      : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
                   }`}
                 >
                   <div className="font-mono text-xs">{p.label}</div>
@@ -406,7 +406,7 @@ export default function ApollonianExplorer() {
               Recursion depth
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-rose">{depth}</span>
+              <span className="text-signal-amber">{depth}</span>
               <span className="text-[10px] text-ink-400">{circles.length} circles</span>
             </div>
             <input
@@ -416,7 +416,7 @@ export default function ApollonianExplorer() {
               max={8}
               step={1}
               onChange={(e) => setDepth(parseInt(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-amber"
             />
             <p className="font-mono text-[10px] leading-relaxed text-ink-400">
               Each step fills every curved-triangle gap with its inscribed circle.
@@ -433,7 +433,7 @@ export default function ApollonianExplorer() {
                 type="checkbox"
                 checked={showLabels}
                 onChange={(e) => setShowLabels(e.target.checked)}
-                className="accent-signal-rose"
+                className="accent-signal-amber"
               />
               <span>Show curvature labels</span>
             </label>
@@ -443,7 +443,7 @@ export default function ApollonianExplorer() {
                 type="checkbox"
                 checked={showGaps}
                 onChange={(e) => setShowGaps(e.target.checked)}
-                className="accent-signal-rose"
+                className="accent-signal-amber"
               />
               <span>Highlight triangle gaps</span>
             </label>
@@ -453,7 +453,7 @@ export default function ApollonianExplorer() {
                 type="checkbox"
                 checked={colourByCurvature}
                 onChange={(e) => setColourByCurvature(e.target.checked)}
-                className="accent-signal-rose"
+                className="accent-signal-amber"
               />
               <span>Colour by curvature</span>
             </label>
@@ -463,7 +463,7 @@ export default function ApollonianExplorer() {
                 type="checkbox"
                 checked={centerOnPacking}
                 onChange={(e) => setCenterOnPacking(e.target.checked)}
-                className="accent-signal-rose"
+                className="accent-signal-amber"
               />
               <span>Centre on packing</span>
             </label>
@@ -486,7 +486,7 @@ export default function ApollonianExplorer() {
               <tbody>
                 {seed.map((c, i) => (
                   <tr key={i} className="border-b border-ink-700/30 last:border-0">
-                    <td className="px-1 py-1 text-signal-rose">
+                    <td className="px-1 py-1 text-signal-amber">
                       {Number.isInteger(c.k) ? c.k : c.k.toFixed(2)}
                     </td>
                     <td className="px-1 py-1 text-ink-200">{c.r.toFixed(3)}</td>
@@ -505,7 +505,7 @@ export default function ApollonianExplorer() {
                 setColourByCurvature(true);
                 setCenterOnPacking(true);
               }}
-              className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
             >
               Reset view
             </button>

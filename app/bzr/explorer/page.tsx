@@ -275,7 +275,7 @@ export default function BzrExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               Hodgepodge automaton · {GRID} × {GRID} · {STATES} states
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               k₁ = {k1} · k₂ = {k2} · g = {g}
             </div>
           </div>
@@ -298,7 +298,7 @@ export default function BzrExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -309,13 +309,13 @@ export default function BzrExplorer() {
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={restart}
-                className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-rose/50 hover:text-signal-rose"
+                className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-coral/50 hover:text-signal-coral"
               >
                 Restart · random
               </button>
               <button
                 onClick={seedSpiral}
-                className="rounded-md border border-signal-rose/60 bg-signal-rose/10 px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/20"
+                className="rounded-md border border-signal-coral/60 bg-signal-coral/10 px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/20"
               >
                 Seed spiral
               </button>
@@ -339,8 +339,8 @@ export default function BzrExplorer() {
                   onClick={() => applyPreset(i)}
                   className={`rounded-md border px-3 py-2 text-left transition-colors ${
                     presetIdx === i && p.k1 === k1 && p.k2 === k2 && p.g === g
-                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                      : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                      ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
+                      : "hairline text-ink-200 hover:border-signal-coral/40 hover:text-ink-100"
                   }`}
                 >
                   <div className="font-mono text-xs">{p.label}</div>
@@ -357,7 +357,7 @@ export default function BzrExplorer() {
               k₁ · infected weight
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-rose">{k1}</span>
+              <span className="text-signal-coral">{k1}</span>
             </div>
             <input
               type="range"
@@ -366,14 +366,14 @@ export default function BzrExplorer() {
               max={8}
               step={1}
               onChange={(e) => setK1(parseInt(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
 
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               k₂ · ill weight
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-rose">{k2}</span>
+              <span className="text-signal-coral">{k2}</span>
             </div>
             <input
               type="range"
@@ -382,7 +382,7 @@ export default function BzrExplorer() {
               max={8}
               step={1}
               onChange={(e) => setK2(parseInt(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
 
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
@@ -431,8 +431,8 @@ export default function BzrExplorer() {
                   onClick={() => setColourMap(cm)}
                   className={`rounded-md border px-2 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                     colourMap === cm
-                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                      : "hairline text-ink-300 hover:border-signal-rose/40 hover:text-ink-100"
+                      ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
+                      : "hairline text-ink-300 hover:border-signal-coral/40 hover:text-ink-100"
                   }`}
                 >
                   {cm}
@@ -457,14 +457,14 @@ export default function BzrExplorer() {
             </div>
             <div className="flex justify-between font-mono text-xs text-ink-200">
               <span>Iteration</span>
-              <span className="text-signal-rose">{iter}</span>
+              <span className="text-signal-coral">{iter}</span>
             </div>
           </div>
 
           <div className="p-5">
             <Link
               href="/bzr"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
               {u.back}
             </Link>

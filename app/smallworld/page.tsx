@@ -5,7 +5,7 @@ import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 
-const ACCENT = "text-signal-cyan";
+const ACCENT = "text-signal-teal";
 
 // --------------------------------------------------------------------------
 // Per-locale strings for the inline "three networks, three regimes" figure
@@ -240,10 +240,10 @@ export default function SmallWorldStoryPage() {
       page={page}
       ctaHref="/smallworld/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-cyan/70"
-      bgAccent="bg-signal-cyan/10"
-      hoverAccent="hover:bg-signal-cyan/20"
-      gradient="from-signal-cyan/10"
+      borderAccent="border-signal-teal/70"
+      bgAccent="bg-signal-teal/10"
+      hoverAccent="hover:bg-signal-teal/20"
+      gradient="from-signal-teal/10"
       formulaBadge="L ∝ log N,  C ≈ 0.7"
       formulaLatex={"L \\propto \\log N, \\quad C \\approx 0.7"}
       finalLabel={f.finalLabel}

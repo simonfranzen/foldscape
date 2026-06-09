@@ -8,7 +8,7 @@ import { MagPendulumBasinMini } from "@/components/MagPendulumBasinMini";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-rose";
+const ACCENT = "text-signal-coral";
 
 // --------------------------------------------------------------------------
 // Rich, per-locale narrative. Hero (pretitle/title/tagline/intro/cta) is
@@ -775,10 +775,10 @@ export default function MagpendulumStory() {
       page={page}
       ctaHref="/magpendulum/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-rose/70"
-      bgAccent="bg-signal-rose/10"
-      hoverAccent="hover:bg-signal-rose/20"
-      gradient="from-signal-rose/10"
+      borderAccent="border-signal-coral/70"
+      bgAccent="bg-signal-coral/10"
+      hoverAccent="hover:bg-signal-coral/20"
+      gradient="from-signal-coral/10"
       formulaBadge="m·p̈ = −Σᵢ kᵢ (p − mᵢ) / r³ − γ·ṗ − ω²·p"
       formulaLatex={
         "\\ddot{\\vec p} = -\\sum_i k_i \\dfrac{\\vec p - \\vec m_i}{|\\vec p - \\vec m_i|^3} - \\gamma \\dot{\\vec p} - \\omega^2 \\vec p"
@@ -802,7 +802,7 @@ export default function MagpendulumStory() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {story.encounter.cards.map((card, i) => (
             <Reveal key={card.label} delay={140 + i * 90}>
-              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-rose/40">
+              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-coral/40">
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
                   {card.label}
                 </div>
@@ -885,7 +885,7 @@ export default function MagpendulumStory() {
           <div className="pt-2">
             <Link
               href="/magpendulum/explorer"
-              className="inline-block rounded-full border border-signal-rose/70 bg-signal-rose/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/25"
+              className="inline-block rounded-full border border-signal-coral/70 bg-signal-coral/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/25"
             >
               {story.ctaLabel}
             </Link>

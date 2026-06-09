@@ -32,10 +32,10 @@ function spiralCoord(n: number): [number, number] {
   // Standard Ulam orientation: 1 in centre, 2 to the right, 3 up, 4 5 left, etc.
   if (n === 1) return [0, 0];
   // ring k contains numbers (2k-1)² + 1 .. (2k+1)²
-  let k = Math.ceil((Math.sqrt(n) - 1) / 2);
+  const k = Math.ceil((Math.sqrt(n) - 1) / 2);
   const sideLen = 2 * k;
   const start = (2 * k - 1) * (2 * k - 1) + 1;
-  let off = n - start;
+  const off = n - start;
   // segments: right (k-1 entries upward), top (sideLen left), left (sideLen down), bottom (sideLen right)
   // Actually standard: from (k, -(k-1)) we go up to (k, k); then left to (-k, k); then down to (-k, -k); then right to (k, -k).
   let x = k,
@@ -142,7 +142,7 @@ export default function UlamExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               spiral · {side} × {side} · {total.toLocaleString()} numbers
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {primesCount.toLocaleString()} primes
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function UlamExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -171,7 +171,7 @@ export default function UlamExplorer() {
               max={501}
               step={2}
               onChange={(e) => setSide(parseInt(e.target.value))}
-              className="w-full accent-signal-amber"
+              className="w-full accent-signal-teal"
             />
             <p className="font-mono text-[10px] text-ink-400">Odd numbers keep 1 centred.</p>
           </div>
@@ -203,7 +203,7 @@ export default function UlamExplorer() {
           <div className="p-5">
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               {u.back}
             </Link>

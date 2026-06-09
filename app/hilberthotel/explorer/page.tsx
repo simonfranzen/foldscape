@@ -23,15 +23,19 @@ const OFF_SCREEN_ROOMS = 6; // "…" tail
 // First 8 odd primes used as bus bases (k-th odd prime for bus k).
 const BUS_PRIMES = [3, 5, 7, 11, 13, 17, 19, 23];
 
+// One hue per bus. Deliberately excludes cyan (= NEW_GUEST_COLOR) so bus 1
+// can never be mistaken for a new guest, and starts on rose to match bus 1 in
+// the story-page widget (HilbertHotelInline). The first four show in the
+// legend; the rest only ever appear as the higher buses' dots.
 const BUS_COLORS = [
-  "#7df3ff", // cyan
-  "#ffd166", // amber
-  "#ff7ab6", // rose
-  "#b794f4", // violet
-  "#86efac", // green
-  "#fca5a5", // light rose
-  "#fcd34d", // yellow
-  "#a5b4fc", // indigo
+  "#ff7ab6", // rose       — bus 1
+  "#b794f4", // violet     — bus 2
+  "#86efac", // green      — bus 3
+  "#ffd166", // amber      — bus 4
+  "#fca5a5", // light rose — bus 5
+  "#fcd34d", // yellow     — bus 6
+  "#a5b4fc", // indigo     — bus 7
+  "#fb923c", // orange     — bus 8
 ];
 
 const EXISTING_COLOR = "#cdd6f4"; // soft white for original guests
@@ -72,7 +76,7 @@ export default function HilbertHotelExplorer() {
   // Reset whenever scenario or k changes
   useEffect(() => {
     resetScenario(scenario, k);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [scenario, k]);
 
   function resetScenario(sc: Scenario, kk: number) {

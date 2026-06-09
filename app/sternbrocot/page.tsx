@@ -9,7 +9,7 @@ import { SternBrocotWalk } from "@/components/SternBrocotWalk";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-cyan";
+const ACCENT = "text-signal-teal";
 
 // --------------------------------------------------------------------------
 // Rich, per-locale story content. The hero (pretitle/title/tagline/intro)
@@ -747,10 +747,10 @@ export default function SternbrocotStory() {
       page={page}
       ctaHref="/sternbrocot/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-cyan/70"
-      bgAccent="bg-signal-cyan/10"
-      hoverAccent="hover:bg-signal-cyan/20"
-      gradient="from-signal-cyan/10"
+      borderAccent="border-signal-teal/70"
+      bgAccent="bg-signal-teal/10"
+      hoverAccent="hover:bg-signal-teal/20"
+      gradient="from-signal-teal/10"
       formulaBadge="a/b ⊕ c/d = (a + c) / (b + d)"
       formulaLatex={"\\frac{a}{b} \\oplus \\frac{c}{d} = \\frac{a + c}{b + d}"}
       finalLabel={story.closingTitle}
@@ -772,7 +772,7 @@ export default function SternbrocotStory() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {story.encounter.cards.map((card, i) => (
             <Reveal key={card.label} delay={120 + i * 100}>
-              <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-cyan/40">
+              <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-teal/40">
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
                   {card.label}
                 </div>
@@ -948,7 +948,7 @@ export default function SternbrocotStory() {
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/sternbrocot/explorer"
-            className="inline-block rounded-full border border-signal-cyan/70 bg-signal-cyan/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-cyan transition-colors hover:bg-signal-cyan/25"
+            className="inline-block rounded-full border border-signal-teal/70 bg-signal-teal/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/25"
           >
             {story.ctaLabel}
           </Link>

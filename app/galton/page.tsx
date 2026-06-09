@@ -9,7 +9,7 @@ import { GaltonNormalOverlay } from "@/components/GaltonNormalOverlay";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-cyan";
+const ACCENT = "text-signal-teal";
 
 // --------------------------------------------------------------------------
 // Rich, per-locale story content. Hero copy lives in `page`; encounter cards,
@@ -786,8 +786,8 @@ function EncounterCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-cyan/40">
-      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-teal/40">
+      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
         {label}
       </div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>
@@ -808,10 +808,10 @@ export default function GaltonStory() {
       page={page}
       ctaHref="/galton/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-cyan/70"
-      bgAccent="bg-signal-cyan/10"
-      hoverAccent="hover:bg-signal-cyan/20"
-      gradient="from-signal-cyan/10"
+      borderAccent="border-signal-teal/70"
+      bgAccent="bg-signal-teal/10"
+      hoverAccent="hover:bg-signal-teal/20"
+      gradient="from-signal-teal/10"
       formulaBadge="P(bin = k) = C(N, k) / 2ᴺ   →   𝒩(N/2, N/4)"
       formulaLatex={
         "\\binom{N}{k} \\, 2^{-N} \\;\\xrightarrow[N \\to \\infty]{}\\; \\mathcal{N}\\!\\left(\\tfrac{N}{2},\\, \\tfrac{N}{4}\\right)"
@@ -839,7 +839,7 @@ export default function GaltonStory() {
                 {i === 1 ? (
                   <>
                     <p>{card.body}</p>
-                    <div className="hairline mt-4 space-y-1 rounded-md border bg-ink-950/60 p-3 text-center font-mono text-[11px] leading-relaxed text-signal-cyan">
+                    <div className="hairline mt-4 space-y-1 rounded-md border bg-ink-950/60 p-3 text-center font-mono text-[11px] leading-relaxed text-signal-teal">
                       <div className="text-[10px] uppercase tracking-widest2 text-ink-300">
                         N = 10 · row of Pascal
                       </div>
@@ -906,7 +906,7 @@ export default function GaltonStory() {
               N = 10 · bin probabilities × 1024
             </div>
             <div className="font-mono text-sm leading-relaxed text-ink-100 md:text-base">
-              1 · 10 · 45 · 120 · 210 · <span className="text-signal-cyan">252</span> · 210 · 120 ·
+              1 · 10 · 45 · 120 · 210 · <span className="text-signal-teal">252</span> · 210 · 120 ·
               45 · 10 · 1
             </div>
             <p className="mx-auto max-w-xl text-xs text-ink-400">
@@ -1018,7 +1018,7 @@ export default function GaltonStory() {
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/galton/explorer"
-            className="inline-block rounded-full border border-signal-cyan/70 bg-signal-cyan/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-cyan transition-colors hover:bg-signal-cyan/25"
+            className="inline-block rounded-full border border-signal-teal/70 bg-signal-teal/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/25"
           >
             {story.ctaLabel}
           </Link>

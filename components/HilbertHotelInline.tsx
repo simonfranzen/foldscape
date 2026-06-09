@@ -6,8 +6,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 // Renders 12 visible rooms with a "…" tail and animates the four canonical
 // scenarios: one new guest (n → n+1), k new guests (n → n+k), ℵ₀ new
 // guests (n → 2n, odd rooms freed), and ℵ₀ buses × ℵ₀ guests (existing
-// guest n → 2ⁿ, bus b passenger p → pₙbᵖ). The animation is purely visual:
-// after a short staged delay the rooms reflect the new mapping.
+// guest n → 2ⁿ, bus k passenger m → pₖᵐ — the k-th odd prime raised to m).
+// The animation is purely visual: after a short staged delay the rooms
+// reflect the new mapping.
 
 type Scenario = "one" | "k" | "infinite" | "buses";
 
@@ -23,6 +24,8 @@ interface Props {
   newGuestLabel: string;
   existingGuestLabel: string;
   busGuestLabel: string;
+  // Shown only in the buses scenario — explains why some rooms stay empty.
+  gapNoteLabel: string;
 }
 
 const ROOMS = 12;
@@ -42,7 +45,11 @@ interface Guest {
 
 const EXISTING = "#cdd6f4";
 const NEW = "#7df3ff";
-const BUS_COLORS = ["#ffd166", "#ff7ab6", "#b388ff"];
+// One hue per bus so passengers from different buses stay distinguishable.
+// Deliberately avoids amber (the shift pulse) and cyan (new guests) so every
+// colour in the widget means exactly one thing. Bus 1 = rose keeps the hint
+// copy ("rose is a bus passenger") true.
+const BUS_COLORS = ["#ff7ab6", "#b388ff", "#a6e3a1"];
 
 function initialRooms(): (Guest | null)[] {
   return Array.from({ length: ROOMS }, (_, i) => ({
@@ -57,7 +64,7 @@ const FORMULAS: Record<Scenario, string> = {
   one: "n → n + 1",
   k: `n → n + ${K_SHIFT}`,
   infinite: "n → 2n  ·  odd rooms ← new",
-  buses: "guest n → 2ⁿ  ·  bus b pass. p → pₙᵇᵖ",
+  buses: "guest n → 2ⁿ  ·  bus k pass. m → pₖᵐ",
 };
 
 export function HilbertHotelInline({
@@ -72,6 +79,7 @@ export function HilbertHotelInline({
   newGuestLabel,
   existingGuestLabel,
   busGuestLabel,
+  gapNoteLabel,
 }: Props) {
   const [scenario, setScenario] = useState<Scenario>("one");
   const [rooms, setRooms] = useState<(Guest | null)[]>(initialRooms);
@@ -250,7 +258,7 @@ export function HilbertHotelInline({
                     ? "border-signal-rose/60 bg-signal-rose/10"
                     : g
                       ? "border-ink-300/30 bg-ink-900/80"
-                      : "border-signal-rose/30 bg-signal-rose/5";
+                      : "border-ink-700/40 bg-ink-900/30"; // empty room — neutral grey, not a colour that means something
             const title = g
               ? g.kind === "existing"
                 ? `${existingGuestLabel} #${g.origin}`
@@ -270,6 +278,14 @@ export function HilbertHotelInline({
                       style={{ background: g.color }}
                     >
                       {g.kind === "bus" ? `${g.bus}·${g.passenger}` : g.origin}
+                    </div>
+                  )}
+                  {/* In the buses scenario, mark the deliberately-empty
+                      (non-prime-power) rooms so the gaps read as intentional
+                      rather than as a broken render. */}
+                  {!g && scenario === "buses" && (
+                    <div className="absolute inset-0 flex items-center justify-center font-mono text-[10px] text-ink-600">
+                      ∅
                     </div>
                   )}
                 </div>
@@ -343,23 +359,31 @@ export function HilbertHotelInline({
 
       <p className="hairline border-t pt-3 text-[11px] leading-relaxed text-ink-300">{hintLabel}</p>
 
-      {/* Tiny legend */}
+      {scenario === "buses" && (
+        <p className="text-[11px] leading-relaxed text-ink-400">{gapNoteLabel}</p>
+      )}
+
+      {/* Legend — scenario-aware. The buses case colour-codes per bus and has
+          no "new" guests; the other scenarios have new guests and no buses.
+          Showing all swatches at once would always mislabel half the tiles. */}
       <div className="flex flex-wrap items-center gap-4 font-mono text-[10px] text-ink-300">
         <span className="flex items-center gap-1.5">
           <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ background: EXISTING }} />
           {existingGuestLabel}
         </span>
-        <span className="flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ background: NEW }} />
-          {newGuestLabel}
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span
-            className="inline-block h-2.5 w-2.5 rounded-sm"
-            style={{ background: BUS_COLORS[0] }}
-          />
-          {busGuestLabel}
-        </span>
+        {scenario === "buses" ? (
+          BUS_COLORS.map((c, i) => (
+            <span key={i} className="flex items-center gap-1.5">
+              <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ background: c }} />
+              {busGuestLabel} {i + 1}
+            </span>
+          ))
+        ) : (
+          <span className="flex items-center gap-1.5">
+            <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ background: NEW }} />
+            {newGuestLabel}
+          </span>
+        )}
         <span className="ml-auto text-ink-400">
           {occupied} / {ROOMS}
         </span>

@@ -272,7 +272,7 @@ export default function RsaExplorer() {
           {/* Top panel: key generation */}
           <section className="hairline glass space-y-4 rounded-2xl border p-5 md:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
                 Key generation
               </div>
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
@@ -300,7 +300,7 @@ export default function RsaExplorer() {
 
             {derived.valid && euclid && (
               <div className="hairline space-y-3 rounded-md border bg-ink-950/60 p-4">
-                <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
                   Extended Euclidean · finding d so that e·d + φ(n)·t = 1
                 </div>
                 {euclid.g !== 1n ? (
@@ -329,10 +329,10 @@ export default function RsaExplorer() {
                             <td className="p-1.5 text-right">{st.b.toString()}</td>
                             <td className="p-1.5 text-right">{st.q.toString()}</td>
                             <td className="p-1.5 text-right">{st.r.toString()}</td>
-                            <td className="p-1.5 text-right text-signal-amber">
+                            <td className="p-1.5 text-right text-signal-cyan">
                               {st.s.toString()}
                             </td>
-                            <td className="p-1.5 text-right text-signal-amber">
+                            <td className="p-1.5 text-right text-signal-cyan">
                               {st.t.toString()}
                             </td>
                           </tr>
@@ -341,18 +341,18 @@ export default function RsaExplorer() {
                     </table>
                     <div className="mt-3 text-xs leading-relaxed text-ink-300">
                       Bézout:{" "}
-                      <span className="font-mono text-signal-amber">
+                      <span className="font-mono text-signal-cyan">
                         {effectiveE.toString()} · {euclid.s.toString()} + {derived.phi.toString()} ·{" "}
                         {euclid.t.toString()} = 1
                       </span>
                       . Reducing s mod φ(n) gives d ={" "}
-                      <span className="font-mono text-signal-amber">{d?.toString() ?? "—"}</span>.
+                      <span className="font-mono text-signal-cyan">{d?.toString() ?? "—"}</span>.
                     </div>
                   </div>
                 ) : (
                   <div className="text-xs text-ink-300">
                     e·d ≡ 1 mod φ(n) &nbsp;⇒&nbsp; d ={" "}
-                    <span className="font-mono text-signal-amber">{d?.toString() ?? "—"}</span>.
+                    <span className="font-mono text-signal-cyan">{d?.toString() ?? "—"}</span>.
                     Toggle steps on to see the row-by-row derivation.
                   </div>
                 )}
@@ -363,7 +363,7 @@ export default function RsaExplorer() {
           {/* Bottom panel: encrypt / decrypt */}
           <section className="hairline glass space-y-4 rounded-2xl border p-5 md:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
                 Encrypt &nbsp;·&nbsp; decrypt
               </div>
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
@@ -411,7 +411,7 @@ export default function RsaExplorer() {
               <div
                 className={`rounded-md border p-3 font-mono text-xs ${
                   decryption.value === mBig
-                    ? "border-signal-amber/40 bg-signal-amber/10 text-signal-amber"
+                    ? "border-signal-cyan/40 bg-signal-cyan/10 text-signal-cyan"
                     : "border-signal-rose/40 bg-signal-rose/10 text-signal-rose"
                 }`}
               >
@@ -425,7 +425,7 @@ export default function RsaExplorer() {
           {/* Text round-trip panel */}
           {textRoundTrip && (
             <section className="hairline glass space-y-3 rounded-2xl border p-5 md:p-6">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
                 Try as text · each letter is one RSA block
               </div>
               <p className="text-xs leading-relaxed text-ink-300">
@@ -447,13 +447,13 @@ export default function RsaExplorer() {
                   <tbody>
                     {textRoundTrip.blocks.map((b, i) => (
                       <tr key={i} className="hairline border-b text-ink-100 last:border-0">
-                        <td className="p-1.5 text-signal-amber">{b.ch}</td>
+                        <td className="p-1.5 text-signal-cyan">{b.ch}</td>
                         <td className="p-1.5 text-right">{b.m.toString()}</td>
                         <td className="p-1.5 text-right">{b.c !== null ? b.c.toString() : "—"}</td>
                         <td className="p-1.5 text-right">
                           {b.mBack !== null ? b.mBack.toString() : "—"}
                         </td>
-                        <td className="p-1.5 pl-3 text-signal-amber">
+                        <td className="p-1.5 pl-3 text-signal-cyan">
                           {b.mBack !== null ? String.fromCharCode(Number(b.mBack) + 96) : "?"}
                         </td>
                       </tr>
@@ -461,7 +461,7 @@ export default function RsaExplorer() {
                   </tbody>
                 </table>
               </div>
-              <div className="rounded-md border border-signal-amber/30 bg-signal-amber/5 p-3 font-mono text-xs text-signal-amber">
+              <div className="rounded-md border border-signal-cyan/30 bg-signal-cyan/5 p-3 font-mono text-xs text-signal-cyan">
                 «{textRoundTrip.cleaned}» → «{textRoundTrip.decoded}»
               </div>
             </section>
@@ -471,7 +471,7 @@ export default function RsaExplorer() {
         {/* Sidebar controls */}
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -488,7 +488,7 @@ export default function RsaExplorer() {
                 <select
                   value={p.toString()}
                   onChange={handlePrimeChange("p")}
-                  className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-amber focus:border-signal-amber/60 focus:outline-none"
+                  className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-cyan focus:border-signal-cyan/60 focus:outline-none"
                 >
                   {SMALL_PRIMES.map((pr) => (
                     <option key={pr.toString()} value={pr.toString()}>
@@ -502,7 +502,7 @@ export default function RsaExplorer() {
                 <select
                   value={q.toString()}
                   onChange={handlePrimeChange("q")}
-                  className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-amber focus:border-signal-amber/60 focus:outline-none"
+                  className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-cyan focus:border-signal-cyan/60 focus:outline-none"
                 >
                   {SMALL_PRIMES.map((pr) => (
                     <option key={pr.toString()} value={pr.toString()}>
@@ -515,13 +515,13 @@ export default function RsaExplorer() {
             <div className="hairline space-y-1 rounded-md border bg-ink-950/60 p-3 font-mono text-xs">
               <div className="text-ink-300">
                 n ={" "}
-                <span className="text-signal-amber">
+                <span className="text-signal-cyan">
                   {derived.valid ? derived.n.toString() : "—"}
                 </span>
               </div>
               <div className="text-ink-300">
                 φ(n) ={" "}
-                <span className="text-signal-amber">
+                <span className="text-signal-cyan">
                   {derived.valid ? derived.phi.toString() : "—"}
                 </span>
               </div>
@@ -536,7 +536,7 @@ export default function RsaExplorer() {
               value={effectiveE.toString()}
               onChange={(ev) => setEVal(BigInt(ev.target.value))}
               disabled={!derived.valid || validEs.length === 0}
-              className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-amber focus:border-signal-amber/60 focus:outline-none disabled:opacity-50"
+              className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-cyan focus:border-signal-cyan/60 focus:outline-none disabled:opacity-50"
             >
               {validEs.length === 0 ? (
                 <option value="">— no valid e —</option>
@@ -562,7 +562,7 @@ export default function RsaExplorer() {
               inputMode="numeric"
               value={m}
               onChange={(ev) => setM(ev.target.value)}
-              className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-amber focus:border-signal-amber/60 focus:outline-none"
+              className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-cyan focus:border-signal-cyan/60 focus:outline-none"
             />
             <div className="font-mono text-[10px] text-ink-400">
               n = {derived.valid ? derived.n.toString() : "—"} · max plaintext ={" "}
@@ -580,7 +580,7 @@ export default function RsaExplorer() {
               onChange={(ev) => setTextInput(ev.target.value)}
               maxLength={32}
               placeholder="rsa"
-              className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-amber focus:border-signal-amber/60 focus:outline-none"
+              className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-cyan focus:border-signal-cyan/60 focus:outline-none"
             />
             <div className="font-mono text-[10px] leading-relaxed text-ink-400">
               a–z → 1–26 · each letter is encrypted as one block · whitespace ignored.
@@ -596,8 +596,8 @@ export default function RsaExplorer() {
               onClick={() => setShowSteps((v) => !v)}
               className={`w-full rounded-md border px-3 py-2 font-mono text-xs uppercase tracking-widest2 transition-colors ${
                 showSteps
-                  ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
-                  : "hairline text-ink-300 hover:border-signal-amber/40 hover:text-ink-100"
+                  ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
+                  : "hairline text-ink-300 hover:border-signal-cyan/40 hover:text-ink-100"
               }`}
             >
               {showSteps ? "Showing steps" : "Steps hidden"}
@@ -617,7 +617,7 @@ export default function RsaExplorer() {
                 // field, to make it obvious recompute happened.
                 setM((cur) => cur);
               }}
-              className="w-full rounded-md border border-signal-amber/40 bg-signal-amber/5 px-3 py-2 font-mono text-xs uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/15"
+              className="w-full rounded-md border border-signal-cyan/40 bg-signal-cyan/5 px-3 py-2 font-mono text-xs uppercase tracking-widest2 text-signal-cyan transition-colors hover:bg-signal-cyan/15"
             >
               Recompute
             </button>
@@ -626,7 +626,7 @@ export default function RsaExplorer() {
           <div className="p-5">
             <Link
               href="/rsa"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
             >
               {u.back}
             </Link>
@@ -643,7 +643,7 @@ function KvCell({ label, value, accent }: { label: string; value: string; accent
     <div className="hairline space-y-1 rounded-md border bg-ink-950/40 p-3">
       <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">{label}</div>
       <div
-        className={`break-all font-mono text-sm ${accent ? "text-signal-amber" : "text-ink-100"}`}
+        className={`break-all font-mono text-sm ${accent ? "text-signal-cyan" : "text-ink-100"}`}
       >
         {value}
       </div>
@@ -663,7 +663,7 @@ function ModExpTrace({
   if (!show) return null;
   return (
     <div className="hairline space-y-3 rounded-md border bg-ink-950/60 p-4">
-      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
         Square-and-multiply · {title}
       </div>
       <div className="overflow-x-auto">
@@ -685,12 +685,12 @@ function ModExpTrace({
                 <td className="p-1.5 text-right">{s.squareResult.toString()}</td>
                 <td className="p-1.5 text-right">
                   {s.multiplyApplied ? (
-                    <span className="text-signal-amber">× base</span>
+                    <span className="text-signal-cyan">× base</span>
                   ) : (
                     <span className="text-ink-400">—</span>
                   )}
                 </td>
-                <td className="p-1.5 text-right text-signal-amber">{s.accumulator.toString()}</td>
+                <td className="p-1.5 text-right text-signal-cyan">{s.accumulator.toString()}</td>
               </tr>
             ))}
           </tbody>

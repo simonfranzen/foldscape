@@ -89,7 +89,12 @@ export function EulerTaylorBuilder({
   walkLabel,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [N, setN] = useState(4);
+  // Default at N=2 so the curves already show partial convergence but still
+  // have visible room to grow as the user slides up. (Default of 4 used to
+  // sit at the high end of the interesting range — Taylor converges so fast
+  // on [-π, π] that beyond N≈5 the curves move by < 1 px and the slider
+  // felt unresponsive.)
+  const [N, setN] = useState(2);
 
   useEffect(() => {
     const cnv = canvasRef.current;
@@ -213,7 +218,7 @@ export function EulerTaylorBuilder({
         </span>
         <input
           type="range"
-          min={1}
+          min={0}
           max={15}
           step={1}
           value={N}
@@ -221,8 +226,11 @@ export function EulerTaylorBuilder({
           className="flex-1 accent-signal-amber"
           aria-label="number of Taylor terms"
         />
+        {/* The prose talks about "the first N+1 terms" because the sum runs
+            k = 0..N. So the label has to display N+1, not N — otherwise
+            "15 Terme" at N=15 contradicts "die ersten N+1 Glieder". */}
         <span className="w-24 text-right font-mono text-xs text-signal-amber">
-          {N} {termsLabel}
+          {N + 1} {termsLabel}
         </span>
       </div>
       <div className="grid grid-cols-3 gap-2 font-mono text-[10px] uppercase tracking-widest2">
@@ -242,7 +250,7 @@ export function EulerTaylorBuilder({
       <div className="hairline space-y-1 rounded-md border bg-ink-950/60 p-3 font-mono text-xs">
         <div className="text-[10px] uppercase tracking-widest2 text-signal-rose">{walkLabel}</div>
         <div className="text-ink-100">
-          Σₖ₌₀..{N} (iπ)ᵏ / k! ={" "}
+          Σ<sub>k=0..{N}</sub> (iπ)ᵏ / k! ={" "}
           <span className="text-signal-amber">
             {walk.re.toFixed(4)}
             {walk.im >= 0 ? " + " : " − "}

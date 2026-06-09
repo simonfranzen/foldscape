@@ -360,7 +360,7 @@ export default function LogisticSound() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               Listening to the cascade · last {HISTORY_MAX} iterates
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               xₙ₊₁ = r · xₙ (1 − xₙ)
             </div>
           </div>
@@ -377,7 +377,7 @@ export default function LogisticSound() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -393,7 +393,7 @@ export default function LogisticSound() {
               onClick={toggleAudio}
               className={`w-full rounded-md border px-4 py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
                 audioOn
-                  ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
+                  ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
                   : "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan hover:bg-signal-cyan/20"
               }`}
             >
@@ -404,7 +404,7 @@ export default function LogisticSound() {
                 <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
                   Master gain
                 </span>
-                <span className="font-mono text-[10px] text-signal-rose">
+                <span className="font-mono text-[10px] text-signal-coral">
                   {masterGain.toFixed(2)}
                 </span>
               </div>
@@ -415,7 +415,7 @@ export default function LogisticSound() {
                 max={0.4}
                 step={0.005}
                 onChange={(e) => setMasterGain(parseFloat(e.target.value))}
-                className="w-full accent-signal-rose"
+                className="w-full accent-signal-coral"
               />
             </div>
           </div>
@@ -425,7 +425,7 @@ export default function LogisticSound() {
               Growth rate r
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-rose">{r.toFixed(4)}</span>
+              <span className="text-signal-coral">{r.toFixed(4)}</span>
             </div>
             <input
               type="range"
@@ -434,7 +434,7 @@ export default function LogisticSound() {
               max={R_MAX}
               step={0.0005}
               onChange={(e) => setR(parseFloat(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
             <div className="grid grid-cols-5 gap-1">
               {SNAP_R.map((sr) => (
@@ -443,8 +443,8 @@ export default function LogisticSound() {
                   onClick={() => setR(sr)}
                   className={`rounded-md border px-2 py-1.5 font-mono text-[10px] transition-colors ${
                     Math.abs(r - sr) < 0.001
-                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                      : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                      ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
+                      : "hairline text-ink-200 hover:border-signal-coral/40 hover:text-ink-100"
                   }`}
                 >
                   {sr}
@@ -462,7 +462,7 @@ export default function LogisticSound() {
                 type="checkbox"
                 checked={autoSweep}
                 onChange={(e) => setAutoSweep(e.target.checked)}
-                className="h-4 w-4 accent-signal-rose"
+                className="h-4 w-4 accent-signal-coral"
               />
             </label>
             <div className="space-y-2">
@@ -470,7 +470,7 @@ export default function LogisticSound() {
                 <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
                   Sweep duration
                 </span>
-                <span className="font-mono text-[10px] text-signal-rose">{sweepSeconds}s</span>
+                <span className="font-mono text-[10px] text-signal-coral">{sweepSeconds}s</span>
               </div>
               <input
                 type="range"
@@ -479,7 +479,7 @@ export default function LogisticSound() {
                 max={240}
                 step={1}
                 onChange={(e) => setSweepSeconds(parseInt(e.target.value))}
-                className="w-full accent-signal-rose"
+                className="w-full accent-signal-coral"
                 disabled={!autoSweep}
               />
             </div>
@@ -491,7 +491,7 @@ export default function LogisticSound() {
                 <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
                   Iteration rate
                 </span>
-                <span className="font-mono text-[10px] text-signal-rose">{iterRate} / s</span>
+                <span className="font-mono text-[10px] text-signal-coral">{iterRate} / s</span>
               </div>
               <input
                 type="range"
@@ -500,7 +500,7 @@ export default function LogisticSound() {
                 max={40}
                 step={1}
                 onChange={(e) => setIterRate(parseInt(e.target.value))}
-                className="w-full accent-signal-rose"
+                className="w-full accent-signal-coral"
               />
             </div>
           </div>
@@ -516,8 +516,8 @@ export default function LogisticSound() {
                   onClick={() => setPitchRangeIdx(i)}
                   className={`rounded-md border px-2 py-1.5 font-mono text-[10px] transition-colors ${
                     pitchRangeIdx === i
-                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                      : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                      ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
+                      : "hairline text-ink-200 hover:border-signal-coral/40 hover:text-ink-100"
                   }`}
                 >
                   {pr.label}
@@ -535,7 +535,7 @@ export default function LogisticSound() {
                 type="checkbox"
                 checked={quantize}
                 onChange={(e) => setQuantize(e.target.checked)}
-                className="h-4 w-4 accent-signal-rose"
+                className="h-4 w-4 accent-signal-coral"
               />
             </label>
             <p className="font-mono text-[10px] leading-relaxed text-ink-400">
@@ -554,8 +554,8 @@ export default function LogisticSound() {
                   onClick={() => setWaveIdx(i)}
                   className={`rounded-md border px-2 py-1.5 font-mono text-[10px] uppercase transition-colors ${
                     waveIdx === i
-                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                      : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                      ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
+                      : "hairline text-ink-200 hover:border-signal-coral/40 hover:text-ink-100"
                   }`}
                 >
                   {w}

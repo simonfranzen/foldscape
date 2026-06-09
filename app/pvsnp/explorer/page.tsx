@@ -1485,7 +1485,7 @@ export default function PvsNPExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {mode === "verify" ? dict.headerModeVerify : dict.headerModeSolve}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               n = {activeVars} · m = {formulaToShow.length}
             </div>
           </div>
@@ -1506,7 +1506,7 @@ export default function PvsNPExplorer() {
                     r === "sat"
                       ? "text-signal-amber border-signal-amber/40 bg-signal-amber/5"
                       : r === "unsat"
-                        ? "text-signal-rose border-signal-rose/60 bg-signal-rose/10"
+                        ? "text-signal-cyan border-signal-cyan/60 bg-signal-cyan/10"
                         : "text-ink-200 border-ink-700/60 bg-ink-950/40";
                   return (
                     <span
@@ -1524,7 +1524,7 @@ export default function PvsNPExplorer() {
                           litTrue === true
                             ? "text-signal-amber"
                             : litTrue === false
-                              ? "text-signal-rose/80 line-through"
+                              ? "text-signal-cyan/80 line-through"
                               : "text-ink-100";
                         return (
                           <span key={li} className={litColor}>
@@ -1563,7 +1563,7 @@ export default function PvsNPExplorer() {
                   ? "border-ink-700/60 bg-ink-950/40 text-ink-300"
                   : value
                     ? "border-signal-amber/50 bg-signal-amber/10 text-signal-amber"
-                    : "border-signal-rose/50 bg-signal-rose/10 text-signal-rose";
+                    : "border-signal-cyan/50 bg-signal-cyan/10 text-signal-cyan";
                 if (mode === "verify") {
                   return (
                     <button
@@ -1605,7 +1605,7 @@ export default function PvsNPExplorer() {
                     verifyResult.overall === "sat"
                       ? "text-signal-amber"
                       : verifyResult.overall === "unsat"
-                        ? "text-signal-rose"
+                        ? "text-signal-cyan"
                         : "text-ink-200"
                   }`}
                 >
@@ -1629,7 +1629,7 @@ export default function PvsNPExplorer() {
                       state.verdict === "sat"
                         ? "text-signal-amber"
                         : state.verdict === "unsat"
-                          ? "text-signal-rose"
+                          ? "text-signal-cyan"
                           : "text-ink-200"
                     }
                   >
@@ -1655,7 +1655,7 @@ export default function PvsNPExplorer() {
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           {/* Topic header */}
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -1676,8 +1676,8 @@ export default function PvsNPExplorer() {
                     onClick={() => loadPreset(p)}
                     className={`w-full rounded-md border px-3 py-2 text-left transition-colors ${
                       presetId === p.id
-                        ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                        : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                        ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
+                        : "hairline text-ink-200 hover:border-signal-cyan/40 hover:text-ink-100"
                     }`}
                   >
                     <div className="font-mono text-xs">{txt.label}</div>
@@ -1703,7 +1703,7 @@ export default function PvsNPExplorer() {
               max={12}
               step={1}
               onChange={(e) => setN(parseInt(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-cyan"
             />
             <div className="font-mono text-[10px] text-ink-300">{dict.clausesLabel(m)}</div>
             <input
@@ -1713,7 +1713,7 @@ export default function PvsNPExplorer() {
               max={50}
               step={1}
               onChange={(e) => setM(parseInt(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-cyan"
             />
             <div className="font-mono text-[10px] text-ink-300">{dict.seedLabel(seed)}</div>
             <input
@@ -1730,7 +1730,7 @@ export default function PvsNPExplorer() {
             </div>
             <button
               onClick={loadRandom}
-              className="w-full rounded-md border border-signal-rose/50 bg-signal-rose/10 py-2 font-mono text-[11px] uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/20"
+              className="w-full rounded-md border border-signal-cyan/50 bg-signal-cyan/10 py-2 font-mono text-[11px] uppercase tracking-widest2 text-signal-cyan transition-colors hover:bg-signal-cyan/20"
             >
               {dict.generateRandom}
             </button>
@@ -1755,14 +1755,14 @@ export default function PvsNPExplorer() {
                 <button
                   onClick={handleStep}
                   disabled={state.verdict === "sat" || state.verdict === "unsat"}
-                  className="hairline rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose disabled:opacity-30"
+                  className="hairline rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan disabled:opacity-30"
                 >
                   {dict.btnStep}
                 </button>
                 <button
                   onClick={() => setRunning((r) => !r)}
                   disabled={state.verdict === "sat" || state.verdict === "unsat"}
-                  className="rounded-md border border-signal-rose/50 bg-signal-rose/10 py-2 font-mono text-[11px] uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/20 disabled:opacity-30"
+                  className="rounded-md border border-signal-cyan/50 bg-signal-cyan/10 py-2 font-mono text-[11px] uppercase tracking-widest2 text-signal-cyan transition-colors hover:bg-signal-cyan/20 disabled:opacity-30"
                 >
                   {running ? dict.btnPause : dict.btnRun}
                 </button>
@@ -1795,7 +1795,7 @@ export default function PvsNPExplorer() {
                   state.verdict === "sat"
                     ? "text-signal-amber"
                     : state.verdict === "unsat"
-                      ? "text-signal-rose"
+                      ? "text-signal-cyan"
                       : "text-ink-200"
                 }
               />
@@ -1823,7 +1823,7 @@ export default function PvsNPExplorer() {
                 onClick={() => setMode("solve")}
                 className={`rounded-md border px-2 py-1.5 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
                   mode === "solve"
-                    ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
+                    ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
                     : "hairline text-ink-300 hover:text-ink-100"
                 }`}
               >
@@ -1846,7 +1846,7 @@ export default function PvsNPExplorer() {
           <div className="p-5">
             <Link
               href="/pvsnp"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
             >
               {u.back}
             </Link>

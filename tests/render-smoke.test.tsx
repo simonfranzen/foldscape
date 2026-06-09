@@ -1,7 +1,9 @@
 // Render smoke tests. Goal is the lowest bar imaginable: the page mounts
 // without throwing. We mock next/navigation hooks (jsdom has no router) and
-// stub the canvas-heavy LandingBackdrop, whose 2d context jsdom can't
-// satisfy. KaTeX is left intact — its DOM mutations don't crash in jsdom.
+// stub the canvas-heavy cosmos visuals (StarField, NebulaLayer) whose
+// 2d context / matchMedia / IntersectionObserver dependencies jsdom can't
+// fully satisfy. KaTeX is left intact — its DOM mutations don't crash in
+// jsdom.
 
 import { describe, it, expect, vi, beforeAll } from "vitest";
 import { render, cleanup } from "@testing-library/react";
@@ -20,11 +22,16 @@ vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 
-// LandingBackdrop draws into a 2d canvas context; jsdom returns null from
-// getContext("2d") so the component throws inside its effect. Replace it
-// with an inert placeholder for the smoke test.
-vi.mock("@/components/LandingBackdrop", () => ({
-  LandingBackdrop: () => null,
+// StarField + NebulaLayer draw into a 2d canvas / lean on
+// window.matchMedia for reduced-motion + IntersectionObserver for scroll
+// progress; jsdom only partially satisfies these. Replace both with inert
+// placeholders for the smoke test — we are testing that the cosmos page
+// MOUNTS, not that the parallax animates.
+vi.mock("@/components/cosmos/StarField", () => ({
+  StarField: () => null,
+}));
+vi.mock("@/components/cosmos/NebulaLayer", () => ({
+  NebulaLayer: () => null,
 }));
 
 // Reveal is an IntersectionObserver-driven fade — stub to children-only so
@@ -55,6 +62,19 @@ beforeAll(() => {
       observe() {}
       unobserve() {}
       disconnect() {}
+    };
+  }
+  // The cosmos hooks (useScrollProgress) use IntersectionObserver to gate
+  // their rAF loop. jsdom doesn't ship it, so the cosmos would throw at
+  // mount without this polyfill.
+  if (!(globalThis as { IntersectionObserver?: unknown }).IntersectionObserver) {
+    (globalThis as { IntersectionObserver: unknown }).IntersectionObserver = class {
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+      takeRecords() {
+        return [];
+      }
     };
   }
 });

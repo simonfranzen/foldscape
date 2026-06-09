@@ -8,8 +8,6 @@ export type Term = { kind: "sym"; name: string } | { kind: "app"; f: Term; x: Te
 export const sym = (name: string): Term => ({ kind: "sym", name });
 export const app = (f: Term, x: Term): Term => ({ kind: "app", f, x });
 
-const _KNOWN_ATOMS = new Set(["S", "K", "I", "i", "ι", "I"]);
-
 // Parser — accepts:
 //   S, K, I, i, ι
 //   parentheses for grouping
@@ -123,7 +121,7 @@ export function reduceTrace(t: Term, maxSteps = 80): ReduceTrace {
 }
 
 export const PRESETS = [
-  { id: "ki", label: "K I (identity selector)", src: "K I" },
+  { id: "i-rule", label: "I x → x (the I rule)", src: "I (S K)" },
   { id: "k-recover", label: "Recover K from ι", src: "ι (ι (ι ι))" },
   { id: "s-recover", label: "Recover S from ι", src: "ι (ι (ι (ι ι)))" },
   { id: "i-eq", label: "S K K x = I x", src: "S K K I" },

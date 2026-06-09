@@ -979,12 +979,12 @@ export default function MandelbrotStory() {
   return (
     <main className="relative isolate min-h-screen px-6 pb-32 pt-24">
       <div className="grid-bg pointer-events-none fixed inset-0 -z-10 opacity-30" />
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-signal-amber/10 via-transparent to-ink-950" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-signal-coral/10 via-transparent to-ink-950" />
 
       {/* Hero — unchanged structure */}
       <section className="mx-auto mb-32 max-w-5xl space-y-7 text-center">
         <Reveal>
-          <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+          <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
             {page.pretitle}
           </div>
         </Reveal>
@@ -1005,7 +1005,7 @@ export default function MandelbrotStory() {
           <div className="flex flex-col items-center justify-center gap-3 pt-2 md:flex-row">
             <Link
               href="/mandelbrot/explorer"
-              className="rounded-full border border-signal-amber/70 bg-signal-amber/10 px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/20"
+              className="rounded-full border border-signal-coral/70 bg-signal-coral/10 px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/20"
             >
               {page.ctaInteractive}
             </Link>
@@ -1028,7 +1028,7 @@ export default function MandelbrotStory() {
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {story.encounter.pretitle}
             </div>
           </Reveal>
@@ -1048,7 +1048,7 @@ export default function MandelbrotStory() {
                     <div className="hairline mt-4 space-y-1 rounded-md border bg-ink-950/60 p-3 font-mono text-[11px] text-ink-100">
                       <div>
                         c = −0.5 · 0 → −0.5 → −0.25 → −0.4375 →{" "}
-                        <span className="text-signal-amber">bounded</span>
+                        <span className="text-signal-coral">bounded</span>
                       </div>
                       <div>
                         c = 1 · 0 → 1 → 2 → 5 → 26 →{" "}
@@ -1074,12 +1074,12 @@ export default function MandelbrotStory() {
           pretitle={sec0.pretitle}
           title={sec0.title}
           body={sec0.body}
-          accent="text-signal-amber"
+          accent="text-signal-coral"
         />
         <Reveal>
           <div className="hairline grid grid-cols-1 items-center gap-6 rounded-2xl border bg-ink-950/40 p-6 md:grid-cols-2">
             <div className="space-y-3">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
                 {story.loopLabel}
               </div>
               <pre className="hairline rounded-md border bg-ink-950/60 p-4 font-mono text-xs leading-relaxed text-ink-100">
@@ -1093,7 +1093,7 @@ return "bounded"`}
             </div>
             <div className="space-y-2 text-sm leading-relaxed text-ink-200">
               <p>
-                <span className="font-mono text-signal-amber">{story.loopBody1Prefix}</span>
+                <span className="font-mono text-signal-coral">{story.loopBody1Prefix}</span>
                 {story.loopBody1Suffix}
               </p>
               <p>{story.loopBody2}</p>
@@ -1108,7 +1108,7 @@ return "bounded"`}
           pretitle={sec1.pretitle}
           title={sec1.title}
           body={sec1.body}
-          accent="text-signal-amber"
+          accent="text-signal-coral"
         />
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <Reveal delay={80}>
@@ -1148,7 +1148,7 @@ return "bounded"`}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <Reveal>
           <div className="space-y-2 text-center">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {story.interactive.draggerPretitle}
             </div>
             <h2 className="math-italic text-3xl leading-tight md:text-4xl">
@@ -1161,11 +1161,11 @@ return "bounded"`}
         </Reveal>
         <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-2">
           <Reveal delay={120}>
-            <MandelCDragger label={story.interactive.draggerLabel} accent="text-signal-amber" />
+            <MandelCDragger label={story.interactive.draggerLabel} accent="text-signal-coral" />
           </Reveal>
           <Reveal delay={220}>
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
                 hint
               </div>
               <p className="text-sm leading-relaxed text-ink-200">
@@ -1179,7 +1179,7 @@ return "bounded"`}
                   <span className="text-signal-rose">rose flash</span> · orbit escaped
                 </div>
                 <div>
-                  <span className="text-signal-amber">yellow dot</span> · your c
+                  <span className="text-signal-coral">yellow dot</span> · your c
                 </div>
               </div>
             </div>
@@ -1193,12 +1193,12 @@ return "bounded"`}
           pretitle={sec2.pretitle}
           title={sec2.title}
           body={sec2.body}
-          accent="text-signal-amber"
+          accent="text-signal-coral"
         />
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <Reveal delay={100}>
             <div className="hairline space-y-2 rounded-2xl border bg-ink-950/40 p-4">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
                 {story.fullSetLabel}
               </div>
               <div className="hairline aspect-square w-full overflow-hidden rounded-md border bg-ink-950">
@@ -1235,7 +1235,7 @@ return "bounded"`}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <Reveal>
           <div className="space-y-2 text-center">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {story.interactive.iterPretitle}
             </div>
             <h2 className="math-italic text-3xl leading-tight md:text-4xl">
@@ -1259,12 +1259,12 @@ return "bounded"`}
                 />
               </div>
               <div className="space-y-4">
-                <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
                   {story.interactive.iterLabel}
                 </div>
                 <div className="flex items-center justify-between font-mono text-xs text-ink-200">
                   <span>10</span>
-                  <span className="text-base text-signal-amber">
+                  <span className="text-base text-signal-coral">
                     {story.interactive.iterCaption(iter)}
                   </span>
                   <span>800</span>
@@ -1276,7 +1276,7 @@ return "bounded"`}
                   step={5}
                   value={iter}
                   onChange={(e) => setIter(parseInt(e.target.value, 10))}
-                  className="w-full accent-signal-amber"
+                  className="w-full accent-signal-coral"
                 />
                 <p className="text-xs leading-relaxed text-ink-300">{story.iterSliderNote}</p>
               </div>
@@ -1291,11 +1291,11 @@ return "bounded"`}
           pretitle={sec3.pretitle}
           title={sec3.title}
           body={sec3.body}
-          accent="text-signal-amber"
+          accent="text-signal-coral"
         />
         <Reveal delay={150}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-4">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {story.zoomLabel}
             </div>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -1351,11 +1351,11 @@ return "bounded"`}
           pretitle={sec4.pretitle}
           title={sec4.title}
           body={sec4.body}
-          accent="text-signal-amber"
+          accent="text-signal-coral"
         />
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-4">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {story.bulbsLabel}
             </div>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -1403,14 +1403,14 @@ return "bounded"`}
               {story.cascadePrefix}
               <Link
                 href="/logistic"
-                className="underline decoration-signal-amber/40 hover:text-signal-amber"
+                className="underline decoration-signal-coral/40 hover:text-signal-coral"
               >
                 {story.cascadeLogisticLink}
               </Link>
               {story.cascadeMiddle}
               <Link
                 href="/cardioid"
-                className="underline decoration-signal-amber/40 hover:text-signal-amber"
+                className="underline decoration-signal-coral/40 hover:text-signal-coral"
               >
                 {story.cascadeCardioidLink}
               </Link>
@@ -1426,11 +1426,11 @@ return "bounded"`}
           pretitle={sec5.pretitle}
           title={sec5.title}
           body={sec5.body}
-          accent="text-signal-amber"
+          accent="text-signal-coral"
         />
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-4">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {story.juliaPretitle}
             </div>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -1446,7 +1446,7 @@ return "bounded"`}
       {/* Closing CTA */}
       <Reveal>
         <section className="glass hairline mx-auto max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
-          <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+          <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
             {story.closingPretitle}
           </div>
           <div className="math-italic shimmer-text text-3xl leading-tight md:text-5xl">
@@ -1455,7 +1455,7 @@ return "bounded"`}
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/mandelbrot/explorer"
-            className="inline-block rounded-full border border-signal-amber/70 bg-signal-amber/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/25"
+            className="inline-block rounded-full border border-signal-coral/70 bg-signal-coral/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/25"
           >
             {story.closingCta}
           </Link>
@@ -1475,8 +1475,8 @@ function EncounterCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-amber/40">
-      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-coral/40">
+      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
         {label}
       </div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>

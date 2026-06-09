@@ -8,7 +8,7 @@ import { AizawaInlineMini } from "@/components/AizawaInlineMini";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-rose";
+const ACCENT = "text-signal-coral";
 
 // -----------------------------------------------------------------------------
 // Aizawa Attractor — rich, locale-aware story content. We author the hero
@@ -631,10 +631,10 @@ export default function AizawaStory() {
       page={page}
       ctaHref="/aizawa/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-rose/70"
-      bgAccent="bg-signal-rose/10"
-      hoverAccent="hover:bg-signal-rose/20"
-      gradient="from-signal-rose/10"
+      borderAccent="border-signal-coral/70"
+      bgAccent="bg-signal-coral/10"
+      hoverAccent="hover:bg-signal-coral/20"
+      gradient="from-signal-coral/10"
       formulaBadge="ẋ=(z−b)x−dy · ẏ=dx+(z−b)y · ż=c+az−z³/3−(x²+y²)(1+ez)+fzx³"
       formulaLatex={
         "\\begin{aligned} \\dot{x} &= (z - b)x - dy \\\\ \\dot{y} &= dx + (z - b)y \\\\ \\dot{z} &= c + az - z^3/3 - (x^2 + y^2)(1 + ez) + fzx^3 \\end{aligned}"
@@ -658,7 +658,7 @@ export default function AizawaStory() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {story.encounter.cards.map((card, i) => (
             <Reveal key={card.label} delay={140 + i * 90}>
-              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-rose/40">
+              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-coral/40">
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
                   {card.label}
                 </div>
@@ -766,7 +766,7 @@ export default function AizawaStory() {
             ].map(([name, year, shape]) => (
               <div
                 key={name}
-                className="hairline space-y-1 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-signal-rose/40"
+                className="hairline space-y-1 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-signal-coral/40"
               >
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
                   {year}
@@ -817,7 +817,7 @@ export default function AizawaStory() {
           <div className="pt-2">
             <Link
               href="/aizawa/explorer"
-              className="inline-block rounded-full border border-signal-rose/70 bg-signal-rose/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/25"
+              className="inline-block rounded-full border border-signal-coral/70 bg-signal-coral/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/25"
             >
               {story.ctaLabel}
             </Link>
@@ -834,7 +834,7 @@ function Param({ label, value }: { label: string; value: string }) {
       <div className="mb-1 font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
         {label}
       </div>
-      <div className="math-italic text-xl text-signal-rose">{value}</div>
+      <div className="math-italic text-xl text-signal-coral">{value}</div>
     </div>
   );
 }
@@ -851,13 +851,13 @@ function DimDot({
   return (
     <div
       className={`hairline rounded-md border p-3 ${
-        highlight ? "border-signal-rose/50 bg-signal-rose/10" : "bg-ink-950/60"
+        highlight ? "border-signal-coral/50 bg-signal-coral/10" : "bg-ink-950/60"
       }`}
     >
       <div className="mb-1 font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
         {label}
       </div>
-      <div className={`math-italic text-lg ${highlight ? "text-signal-rose" : "text-ink-100"}`}>
+      <div className={`math-italic text-lg ${highlight ? "text-signal-coral" : "text-ink-100"}`}>
         {value}
       </div>
     </div>
@@ -984,7 +984,7 @@ function SweepCell({ b }: { b: number }) {
         <path d={dPath} fill="none" stroke="rgba(125,243,255,0.55)" strokeWidth="0.6" />
       </svg>
       <div className="text-center font-mono text-[10px] text-ink-300">
-        b · <span className="text-signal-rose">{b.toFixed(2)}</span>
+        b · <span className="text-signal-coral">{b.toFixed(2)}</span>
       </div>
     </div>
   );

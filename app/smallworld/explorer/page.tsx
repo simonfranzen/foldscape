@@ -517,7 +517,7 @@ export default function SmallWorldExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               Watts-Strogatz · N = {N} · k = {k} · p = {p.toFixed(3)}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               L = {stats.L.toFixed(2)} · C = {stats.C.toFixed(3)} · maxDeg = {stats.D}
             </div>
           </div>
@@ -538,7 +538,7 @@ export default function SmallWorldExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -550,7 +550,7 @@ export default function SmallWorldExplorer() {
               N — number of nodes
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-cyan">{N}</span>
+              <span className="text-signal-teal">{N}</span>
             </div>
             <input
               type="range"
@@ -563,7 +563,7 @@ export default function SmallWorldExplorer() {
                 setPathSrc(null);
                 setPathDst(null);
               }}
-              className="w-full accent-signal-cyan"
+              className="w-full accent-signal-teal"
             />
           </div>
 
@@ -572,7 +572,7 @@ export default function SmallWorldExplorer() {
               k — neighbours per side (degree = 2k)
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-cyan">{k}</span>
+              <span className="text-signal-teal">{k}</span>
             </div>
             <input
               type="range"
@@ -585,7 +585,7 @@ export default function SmallWorldExplorer() {
                 setPathSrc(null);
                 setPathDst(null);
               }}
-              className="w-full accent-signal-cyan"
+              className="w-full accent-signal-teal"
             />
           </div>
 
@@ -594,7 +594,7 @@ export default function SmallWorldExplorer() {
               p — rewiring probability
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-cyan">{p.toFixed(2)}</span>
+              <span className="text-signal-teal">{p.toFixed(2)}</span>
             </div>
             <input
               type="range"
@@ -603,7 +603,7 @@ export default function SmallWorldExplorer() {
               max={1}
               step={0.01}
               onChange={(e) => setP(parseFloat(e.target.value))}
-              className="w-full accent-signal-cyan"
+              className="w-full accent-signal-teal"
             />
             <div className="grid grid-cols-4 gap-2">
               {[0, 0.01, 0.1, 1].map((preset) => (
@@ -612,8 +612,8 @@ export default function SmallWorldExplorer() {
                   onClick={() => setP(preset)}
                   className={`rounded-md border px-2 py-1 font-mono text-[10px] transition-colors ${
                     Math.abs(p - preset) < 0.005
-                      ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
-                      : "hairline text-ink-300 hover:border-signal-cyan/40 hover:text-ink-100"
+                      ? "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
+                      : "hairline text-ink-300 hover:border-signal-teal/40 hover:text-ink-100"
                   }`}
                 >
                   {preset}
@@ -625,7 +625,7 @@ export default function SmallWorldExplorer() {
           <div className="hairline space-y-3 border-b p-5">
             <button
               onClick={onGenerate}
-              className="w-full rounded-md border border-signal-cyan/60 bg-signal-cyan/10 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan transition-colors hover:bg-signal-cyan/20"
+              className="w-full rounded-md border border-signal-teal/60 bg-signal-teal/10 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/20"
             >
               Generate (new seed)
             </button>
@@ -638,7 +638,7 @@ export default function SmallWorldExplorer() {
             <dl className="space-y-1.5 font-mono text-xs">
               <div className="flex justify-between">
                 <dt className="text-ink-300">avg path length L</dt>
-                <dd className="text-signal-cyan">{stats.L.toFixed(3)}</dd>
+                <dd className="text-signal-teal">{stats.L.toFixed(3)}</dd>
               </div>
               <div className="flex justify-between">
                 <dt className="text-ink-300">clustering C</dt>
@@ -692,7 +692,7 @@ export default function SmallWorldExplorer() {
                 setPathSrc(null);
                 setPathDst(null);
               }}
-              className="hairline w-full rounded-md border py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
+              className="hairline w-full rounded-md border py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               Clear path
             </button>
@@ -701,7 +701,7 @@ export default function SmallWorldExplorer() {
           <div className="p-5">
             <Link
               href="/smallworld"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               {u.back}
             </Link>

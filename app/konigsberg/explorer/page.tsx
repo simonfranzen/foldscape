@@ -1058,9 +1058,9 @@ export default function KonigsbergExplorer() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {dict.bridgeWalkPrefix}{" "}
-              <span className="text-signal-amber">{currentVertex}</span>
+              <span className="text-signal-teal">{currentVertex}</span>
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {statusLabel}
             </div>
           </div>
@@ -1082,24 +1082,24 @@ export default function KonigsbergExplorer() {
           {/* Status / legend bar */}
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
             <div className="glass hairline rounded-md border px-3 py-3 font-mono text-[10px] tracking-widest2 text-ink-200">
-              <div className="uppercase text-signal-amber">{dict.walkLabel}</div>
+              <div className="uppercase text-signal-teal">{dict.walkLabel}</div>
               <div className="mt-1 text-ink-100">
                 {dict.walkProgress(visitedCount, activeBridgeCount)}
               </div>
-              {allCrossed && <div className="mt-1 text-signal-amber">{dict.walkComplete}</div>}
+              {allCrossed && <div className="mt-1 text-signal-teal">{dict.walkComplete}</div>}
             </div>
             <div className="glass hairline rounded-md border px-3 py-3 font-mono text-[10px] tracking-widest2 text-ink-200">
-              <div className="uppercase text-signal-amber">{dict.parityLabel}</div>
+              <div className="uppercase text-signal-teal">{dict.parityLabel}</div>
               <div className="mt-1 text-ink-100">{statusSub}</div>
             </div>
             <div className="glass hairline rounded-md border px-3 py-3 font-mono text-[10px] tracking-widest2 text-ink-200">
-              <div className="uppercase text-signal-amber">{dict.legendLabel}</div>
+              <div className="uppercase text-signal-teal">{dict.legendLabel}</div>
               <div className="mt-1 text-ink-100">{dict.legendHint}</div>
             </div>
           </div>
 
           {stuck && !allCrossed && (
-            <div className="glass hairline rounded-md border px-4 py-3 font-mono text-xs text-signal-amber">
+            <div className="glass hairline rounded-md border px-4 py-3 font-mono text-xs text-signal-teal">
               <div className="text-[10px] uppercase tracking-widest2">{dict.stuckLabel}</div>
               <div className="mt-1 text-ink-100">
                 {dict.stuckHead(currentVertex)}{" "}
@@ -1113,7 +1113,7 @@ export default function KonigsbergExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -1131,8 +1131,8 @@ export default function KonigsbergExplorer() {
                   onClick={() => setStartVertex(v.id)}
                   className={`rounded-md border py-2 font-mono text-sm transition-colors ${
                     startVertex === v.id
-                      ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
-                      : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
+                      ? "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
+                      : "hairline text-ink-200 hover:border-signal-teal/40 hover:text-ink-100"
                   }`}
                 >
                   {v.id}
@@ -1141,7 +1141,7 @@ export default function KonigsbergExplorer() {
             </div>
             <div className="font-mono text-[10px] text-ink-400">
               {dict.currentlyAtPrefix}{" "}
-              <span className="text-signal-amber">{currentVertex}</span>
+              <span className="text-signal-teal">{currentVertex}</span>
             </div>
           </div>
 
@@ -1156,7 +1156,7 @@ export default function KonigsbergExplorer() {
                   <div
                     key={v}
                     className={`hairline rounded-md border py-2 text-center font-mono text-sm ${
-                      odd ? "border-signal-amber/40 text-signal-amber" : "text-ink-100"
+                      odd ? "border-signal-teal/40 text-signal-teal" : "text-ink-100"
                     }`}
                   >
                     <div className="text-[10px] text-ink-400">{v}</div>
@@ -1186,7 +1186,7 @@ export default function KonigsbergExplorer() {
                     onClick={() => toggleBridge(br.id)}
                     className={`flex w-full items-center justify-between rounded-md border px-3 py-2 font-mono text-xs transition-colors ${
                       on
-                        ? "border-signal-amber/40 bg-signal-amber/5 text-signal-amber"
+                        ? "border-signal-teal/40 bg-signal-teal/5 text-signal-teal"
                         : "hairline text-ink-400 hover:text-ink-200"
                     }`}
                   >
@@ -1214,13 +1214,13 @@ export default function KonigsbergExplorer() {
           <div className="hairline space-y-3 border-b p-5">
             <button
               onClick={resetWalk}
-              className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
+              className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               {dict.resetWalk}
             </button>
             <button
               onClick={startAutoSolve}
-              className="w-full rounded-md border border-signal-amber/60 bg-signal-amber/10 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/20"
+              className="w-full rounded-md border border-signal-teal/60 bg-signal-teal/10 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/20"
             >
               {status.kind === "circuit" || status.kind === "path"
                 ? dict.autoEulerian
@@ -1236,13 +1236,13 @@ export default function KonigsbergExplorer() {
           <div className="p-5">
             <Link
               href="/konigsberg"
-              className="hairline mb-2 block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
+              className="hairline mb-2 block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               {dict.storyBack}
             </Link>
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               {u.back}
             </Link>

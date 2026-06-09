@@ -8,7 +8,7 @@ import { LangtonMiniRunner } from "@/components/LangtonMiniRunner";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-violet";
+const ACCENT = "text-signal-cyan";
 
 // --------------------------------------------------------------------------
 // A tiny schematic of the highway, drawn in violet — kept inline because no
@@ -793,10 +793,10 @@ export default function LangtonStory() {
       page={page}
       ctaHref="/langton/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-violet/70"
-      bgAccent="bg-signal-violet/10"
-      hoverAccent="hover:bg-signal-violet/20"
-      gradient="from-signal-violet/10"
+      borderAccent="border-signal-cyan/70"
+      bgAccent="bg-signal-cyan/10"
+      hoverAccent="hover:bg-signal-cyan/20"
+      gradient="from-signal-cyan/10"
       formulaBadge="white → R · flip · step    black → L · flip · step"
       formulaLatex={
         "\\text{white} \\to R \\cdot \\text{flip} \\cdot \\text{step}, \\quad \\text{black} \\to L \\cdot \\text{flip} \\cdot \\text{step}"
@@ -820,7 +820,7 @@ export default function LangtonStory() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {story.encounter.cards.map((card, i) => (
             <Reveal key={card.label} delay={120 + i * 100}>
-              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-violet/40">
+              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-cyan/40">
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
                   {card.label}
                 </div>
@@ -890,7 +890,7 @@ export default function LangtonStory() {
               <p className="text-sm leading-relaxed text-ink-200">{story.runnerHint}</p>
               <div className="hairline space-y-1 border-t pt-3 font-mono text-[11px] text-ink-300">
                 <div>
-                  <span className="text-signal-violet">violet cells</span> · black squares
+                  <span className="text-signal-cyan">violet cells</span> · black squares
                 </div>
                 <div>
                   <span className="text-signal-amber">amber pixel</span> · the ant
@@ -965,7 +965,7 @@ export default function LangtonStory() {
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/langton/explorer"
-            className="inline-block rounded-full border border-signal-violet/70 bg-signal-violet/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-violet transition-colors hover:bg-signal-violet/25"
+            className="inline-block rounded-full border border-signal-cyan/70 bg-signal-cyan/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-cyan transition-colors hover:bg-signal-cyan/25"
           >
             {story.ctaLabel}
           </Link>

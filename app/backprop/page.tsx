@@ -9,7 +9,7 @@ import { BackpropSignatureHero } from "@/components/signature/BackpropSignatureH
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-amber";
+const ACCENT = "text-signal-teal";
 
 // --------------------------------------------------------------------------
 // Inline RichStory: hero + encounter cards + six narrative sections +
@@ -700,10 +700,10 @@ export default function BackpropStory() {
       page={page}
       ctaHref="/backprop/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-amber/70"
-      bgAccent="bg-signal-amber/10"
-      hoverAccent="hover:bg-signal-amber/20"
-      gradient="from-signal-amber/10"
+      borderAccent="border-signal-teal/70"
+      bgAccent="bg-signal-teal/10"
+      hoverAccent="hover:bg-signal-teal/20"
+      gradient="from-signal-teal/10"
       formulaBadge="w ← w − η∇w L"
       formulaLatex={"w \\leftarrow w - \\eta\\,\\nabla_{w}L"}
       finalLabel={story.closingTitle}
@@ -840,7 +840,7 @@ export default function BackpropStory() {
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/backprop/explorer"
-            className="inline-block rounded-full border border-signal-amber/70 bg-signal-amber/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/25"
+            className="inline-block rounded-full border border-signal-teal/70 bg-signal-teal/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/25"
           >
             {story.ctaLabel}
           </Link>
@@ -860,7 +860,7 @@ function EncounterCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-amber/40">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-teal/40">
       <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>{label}</div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>
       <div className="text-sm leading-relaxed text-ink-200">{children}</div>

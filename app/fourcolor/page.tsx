@@ -5,7 +5,7 @@ import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { useI18n } from "@/lib/i18n/context";
 import { FourColorVoronoiHero } from "@/components/signature/FourColorVoronoiHero";
 
-const ACCENT = "text-signal-rose";
+const ACCENT = "text-signal-teal";
 
 // Three tiny example maps that force exactly 2, 3 or 4 colours. SVGs are
 // rendered inline so they don't drag in any image assets, and the chosen
@@ -63,10 +63,10 @@ export default function FourColorStoryPage() {
       page={page}
       ctaHref="/fourcolor/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-rose/70"
-      bgAccent="bg-signal-rose/10"
-      hoverAccent="hover:bg-signal-rose/20"
-      gradient="from-signal-rose/10"
+      borderAccent="border-signal-teal/70"
+      bgAccent="bg-signal-teal/10"
+      hoverAccent="hover:bg-signal-teal/20"
+      gradient="from-signal-teal/10"
       formulaBadge="χ(planar) ≤ 4"
       formulaLatex={"\\chi(\\text{planar graph}) \\leq 4"}
       finalLabel="Colour a map."

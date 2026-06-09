@@ -5,7 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 
-const ACCENT = "text-signal-rose";
+const ACCENT = "text-signal-cyan";
 
 // Stable IDs for the canonical NP-complete problems — every gloss is looked
 // up per locale via the RichFigures dict below so we keep the prose in step
@@ -269,11 +269,11 @@ export default function PvsNPStoryPage() {
     <StoryPageShell
       page={page}
       ctaHref="/pvsnp/explorer"
-      accent="text-signal-rose"
-      borderAccent="border-signal-rose/70"
-      bgAccent="bg-signal-rose/10"
-      hoverAccent="hover:bg-signal-rose/20"
-      gradient="from-signal-rose/10"
+      accent="text-signal-cyan"
+      borderAccent="border-signal-cyan/70"
+      bgAccent="bg-signal-cyan/10"
+      hoverAccent="hover:bg-signal-cyan/20"
+      gradient="from-signal-cyan/10"
       formulaBadge="P ⊆ NP ⊆ EXP"
       formulaLatex={
         "\\mathrm{P} \\;\\subseteq\\; \\mathrm{NP} \\;\\subseteq\\; \\mathrm{PSPACE} \\;\\subseteq\\; \\mathrm{EXP}"
@@ -421,7 +421,7 @@ export default function PvsNPStoryPage() {
             {NP_COMPLETE_PROBLEMS.map((p) => (
               <div
                 key={p.id}
-                className="hairline space-y-2 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-signal-rose/40"
+                className="hairline space-y-2 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-signal-cyan/40"
               >
                 <div className={`font-mono text-[11px] uppercase tracking-widest2 ${ACCENT}`}>
                   {p.name}

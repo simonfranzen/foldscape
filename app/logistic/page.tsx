@@ -8,7 +8,7 @@ import { LogisticRTimeSeries } from "@/components/LogisticRTimeSeries";
 import { LogisticDivergeDemo } from "@/components/LogisticDivergeDemo";
 import type { Locale } from "@/lib/i18n/types";
 
-const ACCENT = "text-signal-rose";
+const ACCENT = "text-signal-coral";
 
 // Rich, locale-aware story copy lives in the page itself — the shared
 // stories.ts dictionary only carries the hero block. Eight languages,
@@ -794,10 +794,10 @@ export default function LogisticStory() {
       page={page}
       ctaHref="/logistic/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-rose/70"
-      bgAccent="bg-signal-rose/10"
-      hoverAccent="hover:bg-signal-rose/20"
-      gradient="from-signal-rose/10"
+      borderAccent="border-signal-coral/70"
+      bgAccent="bg-signal-coral/10"
+      hoverAccent="hover:bg-signal-coral/20"
+      gradient="from-signal-coral/10"
       formulaBadge="xₙ₊₁ = r · xₙ (1 − xₙ)"
       formulaLatex={"x_{n+1} = r\\, x_n (1 - x_n)"}
       finalLabel={s.storyLabels.yourTurn}
@@ -819,7 +819,7 @@ export default function LogisticStory() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {story.encounter.cards.map((card, i) => (
             <Reveal key={card.label} delay={120 + i * 120}>
-              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-rose/40">
+              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-coral/40">
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
                   {card.label}
                 </div>
@@ -1024,7 +1024,7 @@ x₃ = 0.60   →   fixed point reached`}
           <div className="flex flex-col items-center justify-center gap-3 pt-2 md:flex-row">
             <Link
               href="/logistic/explorer"
-              className="rounded-full border border-signal-rose/70 bg-signal-rose/10 px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/25"
+              className="rounded-full border border-signal-coral/70 bg-signal-coral/10 px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/25"
             >
               {story.ctaLabel}
             </Link>

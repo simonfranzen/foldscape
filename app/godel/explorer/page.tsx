@@ -17,7 +17,7 @@ import type { Locale } from "@/lib/i18n/types";
 // dict below — same pattern used by app/banach/explorer/page.tsx.
 // ---------------------------------------------------------------------------
 
-const ACCENT = "text-signal-violet";
+const ACCENT = "text-signal-rose";
 
 // Compact alphabet for the demo. Real Gödel numberings vary across sources;
 // this one is illustrative — consistent enough to give honest numbers, small
@@ -1090,7 +1090,7 @@ export default function GodelExplorer() {
               <div
                 key={i}
                 className={`h-1 flex-1 rounded-full transition-colors ${
-                  i <= step ? "bg-signal-violet" : "bg-ink-800"
+                  i <= step ? "bg-signal-rose" : "bg-ink-800"
                 }`}
               />
             ))}
@@ -1119,7 +1119,7 @@ export default function GodelExplorer() {
               <button
                 onClick={next}
                 disabled={step >= 4}
-                className="rounded-md border border-signal-violet/60 bg-signal-violet/10 px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet transition-colors hover:bg-signal-violet/20 disabled:cursor-not-allowed disabled:opacity-30"
+                className="rounded-md border border-signal-rose/60 bg-signal-rose/10 px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/20 disabled:cursor-not-allowed disabled:opacity-30"
               >
                 {x.sidebarStepBtn}
               </button>
@@ -1146,8 +1146,8 @@ export default function GodelExplorer() {
                   }}
                   className={`rounded-md border px-3 py-2 text-left transition-colors ${
                     formulaId === f.id
-                      ? "border-signal-violet/60 bg-signal-violet/10 text-signal-violet"
-                      : "hairline text-ink-200 hover:border-signal-violet/40 hover:text-ink-100"
+                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
+                      : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
                   }`}
                 >
                   <div className="font-mono text-xs">{x.formulaLabels[f.labelKey]}</div>
@@ -1173,7 +1173,7 @@ export default function GodelExplorer() {
           <div className="p-5">
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-violet/40 hover:text-signal-violet"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
             >
               {u.back}
             </Link>
@@ -1426,7 +1426,7 @@ function StepBranches({ x }: { x: RichExplorer }) {
           <div className="font-mono text-xs text-ink-300">{x.step4BranchAArrow}</div>
         </div>
 
-        <div className="space-y-3 rounded-2xl border border-signal-violet/40 bg-signal-violet/5 p-5">
+        <div className="space-y-3 rounded-2xl border border-signal-rose/40 bg-signal-rose/5 p-5">
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
             {x.step4BranchB}
           </div>

@@ -9,7 +9,7 @@ import { UlamQuadraticTester } from "@/components/UlamQuadraticTester";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-amber";
+const ACCENT = "text-signal-teal";
 
 // --------------------------------------------------------------------------
 // Rich, per-locale story content. The canonical hero comes from this module
@@ -869,7 +869,7 @@ const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no }
 
 function EncounterCard({ label, title, body }: { label: string; title: string; body: string }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-amber/40">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-teal/40">
       <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>{label}</div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>
       <p className="text-sm leading-relaxed text-ink-200">{body}</p>
@@ -888,10 +888,10 @@ export default function UlamStory() {
       page={heroPage}
       ctaHref="/ulam/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-amber/70"
-      bgAccent="bg-signal-amber/10"
-      hoverAccent="hover:bg-signal-amber/20"
-      gradient="from-signal-amber/10"
+      borderAccent="border-signal-teal/70"
+      bgAccent="bg-signal-teal/10"
+      hoverAccent="hover:bg-signal-teal/20"
+      gradient="from-signal-teal/10"
       formulaBadge="diagonals ↔ 4n² + bn + c"
       formulaLatex={"\\mathrm{spiral}(n) \\in \\mathbb{P}\\,?"}
       finalLabel={story.closingTitle}
@@ -1036,7 +1036,7 @@ export default function UlamStory() {
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/ulam/explorer"
-            className="inline-block rounded-full border border-signal-amber/70 bg-signal-amber/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/25"
+            className="inline-block rounded-full border border-signal-teal/70 bg-signal-teal/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/25"
           >
             {story.ctaLabel}
           </Link>

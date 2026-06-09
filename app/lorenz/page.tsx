@@ -8,7 +8,7 @@ import { LorenzInlineRho } from "@/components/LorenzInlineRho";
 import { LorenzTwoOrbits } from "@/components/LorenzTwoOrbits";
 import type { Locale } from "@/lib/i18n/types";
 
-const ACCENT = "text-signal-rose";
+const ACCENT = "text-signal-coral";
 
 // -----------------------------------------------------------------------------
 // Rich, locale-aware story content extending the four-section base in
@@ -743,10 +743,10 @@ export default function LorenzStory() {
       page={page}
       ctaHref="/lorenz/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-rose/70"
-      bgAccent="bg-signal-rose/10"
-      hoverAccent="hover:bg-signal-rose/20"
-      gradient="from-signal-rose/10"
+      borderAccent="border-signal-coral/70"
+      bgAccent="bg-signal-coral/10"
+      hoverAccent="hover:bg-signal-coral/20"
+      gradient="from-signal-coral/10"
       formulaBadge="σ = 10, ρ = 28, β = 8/3"
       formulaLatex={
         "\\begin{aligned} \\dot{x} &= \\sigma(y - x) \\\\ \\dot{y} &= x(\\rho - z) - y \\\\ \\dot{z} &= xy - \\beta z \\end{aligned}"
@@ -770,7 +770,7 @@ export default function LorenzStory() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {story.encounter.cards.map((card, i) => (
             <Reveal key={i} delay={140 + i * 90}>
-              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-rose/40">
+              <article className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-coral/40">
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
                   {card.label}
                 </div>
@@ -914,7 +914,7 @@ export default function LorenzStory() {
           <div className="pt-2">
             <Link
               href="/lorenz/explorer"
-              className="inline-block rounded-full border border-signal-rose/70 bg-signal-rose/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/25"
+              className="inline-block rounded-full border border-signal-coral/70 bg-signal-coral/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/25"
             >
               {story.closingCta}
             </Link>
@@ -931,7 +931,7 @@ function Param({ label, value }: { label: string; value: string }) {
       <div className="mb-1 font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
         {label}
       </div>
-      <div className="math-italic text-2xl text-signal-rose">{value}</div>
+      <div className="math-italic text-2xl text-signal-coral">{value}</div>
     </div>
   );
 }
@@ -948,13 +948,13 @@ function DimDot({
   return (
     <div
       className={`hairline rounded-md border p-3 ${
-        highlight ? "border-signal-rose/50 bg-signal-rose/10" : "bg-ink-950/60"
+        highlight ? "border-signal-coral/50 bg-signal-coral/10" : "bg-ink-950/60"
       }`}
     >
       <div className="mb-1 font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
         {label}
       </div>
-      <div className={`math-italic text-lg ${highlight ? "text-signal-rose" : "text-ink-100"}`}>
+      <div className={`math-italic text-lg ${highlight ? "text-signal-coral" : "text-ink-100"}`}>
         {value}
       </div>
     </div>

@@ -348,7 +348,7 @@ export default function DoublePendulumExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               θ₁ = {readout.th1deg.toFixed(1)}° · θ₂ = {readout.th2deg.toFixed(1)}°
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               E = {readout.energyVal.toFixed(2)}
               {showGhost ? ` · Δ = ${readout.divergence.toFixed(2)} px` : ""}
             </div>
@@ -362,7 +362,7 @@ export default function DoublePendulumExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -380,7 +380,7 @@ export default function DoublePendulumExplorer() {
               max={2}
               step={0.05}
               onChange={(e) => setM1(parseFloat(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
             <div className="text-right font-mono text-[10px] text-ink-400">{m1.toFixed(2)}</div>
 
@@ -394,7 +394,7 @@ export default function DoublePendulumExplorer() {
               max={2}
               step={0.05}
               onChange={(e) => setM2(parseFloat(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
             <div className="text-right font-mono text-[10px] text-ink-400">{m2.toFixed(2)}</div>
 
@@ -408,7 +408,7 @@ export default function DoublePendulumExplorer() {
               max={200}
               step={1}
               onChange={(e) => setL1(parseFloat(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
             <div className="text-right font-mono text-[10px] text-ink-400">{L1.toFixed(0)}</div>
 
@@ -422,7 +422,7 @@ export default function DoublePendulumExplorer() {
               max={200}
               step={1}
               onChange={(e) => setL2(parseFloat(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
             <div className="text-right font-mono text-[10px] text-ink-400">{L2.toFixed(0)}</div>
 
@@ -436,7 +436,7 @@ export default function DoublePendulumExplorer() {
               max={2400}
               step={20}
               onChange={(e) => setG(parseFloat(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
             <div className="text-right font-mono text-[10px] text-ink-400">{g.toFixed(0)}</div>
           </div>
@@ -519,7 +519,7 @@ export default function DoublePendulumExplorer() {
                 onClick={() => setRunning((v) => !v)}
                 className={`rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
                   running
-                    ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
+                    ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
                     : "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
                 }`}
               >
@@ -527,7 +527,7 @@ export default function DoublePendulumExplorer() {
               </button>
               <button
                 onClick={handleReset}
-                className="hairline rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+                className="hairline rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
               >
                 ⟳ Reset
               </button>
@@ -561,7 +561,7 @@ export default function DoublePendulumExplorer() {
           <div className="p-5">
             <Link
               href="/doublependulum"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
               {u.back}
             </Link>

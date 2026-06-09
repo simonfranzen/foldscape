@@ -152,11 +152,11 @@ export default function MandelbrotExplorer() {
             <div className="glass hairline pointer-events-auto rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               c = {center[0].toFixed(8)} {center[1] >= 0 ? "+" : "−"}{" "}
               {Math.abs(center[1]).toFixed(8)}i
-              <span className="ml-3 text-signal-amber">
+              <span className="ml-3 text-signal-coral">
                 {u.mandel.zoomLevel} 10^{zoomFmt}
               </span>
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               z → z² + c
             </div>
           </div>
@@ -166,14 +166,14 @@ export default function MandelbrotExplorer() {
             <button
               onClick={() => zoomCenter(0.5)}
               title={u.mandel.zoomIn}
-              className="glass hairline flex h-10 w-10 items-center justify-center rounded-md border text-xl text-ink-100 transition-colors hover:border-signal-amber/50 hover:text-signal-amber"
+              className="glass hairline flex h-10 w-10 items-center justify-center rounded-md border text-xl text-ink-100 transition-colors hover:border-signal-coral/50 hover:text-signal-coral"
             >
               +
             </button>
             <button
               onClick={() => zoomCenter(2.0)}
               title={u.mandel.zoomOut}
-              className="glass hairline flex h-10 w-10 items-center justify-center rounded-md border text-xl text-ink-100 transition-colors hover:border-signal-amber/50 hover:text-signal-amber"
+              className="glass hairline flex h-10 w-10 items-center justify-center rounded-md border text-xl text-ink-100 transition-colors hover:border-signal-coral/50 hover:text-signal-coral"
             >
               −
             </button>
@@ -195,7 +195,7 @@ export default function MandelbrotExplorer() {
         {/* Panel */}
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {a.topics.mandelbrot.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">
@@ -218,7 +218,7 @@ export default function MandelbrotExplorer() {
                 <button
                   key={b.id}
                   onClick={() => loadBookmark(b.id)}
-                  className="hairline rounded-md border px-3 py-2 text-left transition-colors hover:border-signal-amber/50"
+                  className="hairline rounded-md border px-3 py-2 text-left transition-colors hover:border-signal-coral/50"
                 >
                   <div className="text-sm text-ink-100">
                     {u.mandel[b.labelKey as keyof typeof u.mandel] as string}
@@ -258,7 +258,7 @@ export default function MandelbrotExplorer() {
               max={3000}
               step={10}
               format={(v) => `${v}`}
-              accent="text-signal-amber"
+              accent="text-signal-coral"
             />
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.mandel.hueShift}

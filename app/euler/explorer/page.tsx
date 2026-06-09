@@ -349,7 +349,7 @@ export default function EulerExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               Complex plane · unit circle
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               e^(iθ) = cos θ + i sin θ
             </div>
           </div>
@@ -366,7 +366,7 @@ export default function EulerExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -378,7 +378,7 @@ export default function EulerExplorer() {
               Angle θ
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-amber">{theta.toFixed(3)} rad</span>
+              <span className="text-signal-teal">{theta.toFixed(3)} rad</span>
               <span className="text-ink-300">{((theta * 180) / Math.PI).toFixed(1)}°</span>
             </div>
             <input
@@ -388,7 +388,7 @@ export default function EulerExplorer() {
               max={TAU}
               step={0.01}
               onChange={(e) => setTheta(parseFloat(e.target.value))}
-              className="w-full accent-signal-amber"
+              className="w-full accent-signal-teal"
             />
             <div className="grid grid-cols-5 gap-2">
               {SPECIAL_ANGLES.map((a2) => {
@@ -399,8 +399,8 @@ export default function EulerExplorer() {
                     onClick={() => setTheta(a2.theta)}
                     className={`rounded-md border px-1 py-2 text-center transition-colors ${
                       active
-                        ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
-                        : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
+                        ? "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
+                        : "hairline text-ink-200 hover:border-signal-teal/40 hover:text-ink-100"
                     }`}
                   >
                     <div className="font-mono text-[11px]">{a2.label}</div>
@@ -418,14 +418,14 @@ export default function EulerExplorer() {
                 className={`flex-1 rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
                   running
                     ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                    : "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
+                    : "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
                 }`}
               >
                 {running ? "❚❚ Pause" : "▶ Play"}
               </button>
               <button
                 onClick={reset}
-                className="hairline flex-1 rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
+                className="hairline flex-1 rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
               >
                 ⟳ Reset
               </button>
@@ -440,7 +440,7 @@ export default function EulerExplorer() {
               max={3}
               step={0.05}
               onChange={(e) => setSpeed(parseFloat(e.target.value))}
-              className="w-full accent-signal-amber"
+              className="w-full accent-signal-teal"
             />
             <div className="text-right font-mono text-[10px] text-ink-400">
               {speed.toFixed(2)} rad/s
@@ -453,7 +453,7 @@ export default function EulerExplorer() {
             </div>
             <p className="text-sm leading-relaxed text-ink-200">
               At θ = π the point lands exactly at z = −1. Adding 1 gives 0:
-              <span className="mt-2 block font-mono text-signal-amber">e^(iπ) + 1 = 0</span>
+              <span className="mt-2 block font-mono text-signal-teal">e^(iπ) + 1 = 0</span>
             </p>
           </div>
 

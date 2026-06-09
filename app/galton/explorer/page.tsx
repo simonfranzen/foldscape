@@ -224,7 +224,7 @@ export default function GaltonExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {rows} rows · p = {bias.toFixed(2)}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {totalLanded.toLocaleString()} balls
             </div>
           </div>
@@ -232,7 +232,7 @@ export default function GaltonExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -278,7 +278,7 @@ export default function GaltonExplorer() {
                 type="checkbox"
                 checked={showGaussian}
                 onChange={(e) => setShowGaussian(e.target.checked)}
-                className="accent-signal-cyan"
+                className="accent-signal-teal"
               />
               <span>Overlay 𝒩(Np, Np(1−p))</span>
             </label>
@@ -290,7 +290,7 @@ export default function GaltonExplorer() {
               className={`w-full rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
                 running
                   ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                  : "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
+                  : "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
               }`}
             >
               {running ? "❚❚ Pause" : "▶ Play"}
@@ -306,7 +306,7 @@ export default function GaltonExplorer() {
           <div className="p-5">
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               {u.back}
             </Link>
@@ -347,7 +347,7 @@ function SliderRow({
         max={max}
         step={step}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-signal-cyan"
+        className="w-full accent-signal-teal"
       />
     </div>
   );

@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import { Formula } from "@/components/Formula";
 
-const ACCENT = "text-signal-amber";
+const ACCENT = "text-signal-cyan";
 
 interface KeyRow {
   symbol: string;
@@ -43,11 +43,11 @@ export default function RsaStoryPage() {
     <StoryPageShell
       page={page}
       ctaHref="/rsa/explorer"
-      accent="text-signal-amber"
-      borderAccent="border-signal-amber/70"
-      bgAccent="bg-signal-amber/10"
-      hoverAccent="hover:bg-signal-amber/20"
-      gradient="from-signal-amber/10"
+      accent="text-signal-cyan"
+      borderAccent="border-signal-cyan/70"
+      bgAccent="bg-signal-cyan/10"
+      hoverAccent="hover:bg-signal-cyan/20"
+      gradient="from-signal-cyan/10"
       formulaBadge="c = m^e mod n,  m = c^d mod n"
       formulaLatex={"c = m^e \\bmod n, \\quad m = c^d \\bmod n"}
       finalLabel="Try the maths."
@@ -105,21 +105,21 @@ export default function RsaStoryPage() {
                     <td className="p-3 text-ink-200">
                       <Formula expression={row.latex} size="sm" />
                     </td>
-                    <td className="p-3 text-right font-mono text-signal-amber">{row.value}</td>
+                    <td className="p-3 text-right font-mono text-signal-cyan">{row.value}</td>
                     <td className="p-3 text-xs leading-relaxed text-ink-300">{row.meaning}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <div className="space-y-2 rounded-md border border-signal-amber/30 bg-signal-amber/5 p-5">
+          <div className="space-y-2 rounded-md border border-signal-cyan/30 bg-signal-cyan/5 p-5">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
               Round trip
             </div>
             <p className="text-sm leading-relaxed text-ink-100">
               Encrypt m = 88: &nbsp;c = 88<sup>7</sup> mod 187 ={" "}
-              <span className="font-mono text-signal-amber">11</span>. &nbsp;Decrypt: &nbsp;11
-              <sup>23</sup> mod 187 = <span className="font-mono text-signal-amber">88</span>. The
+              <span className="font-mono text-signal-cyan">11</span>. &nbsp;Decrypt: &nbsp;11
+              <sup>23</sup> mod 187 = <span className="font-mono text-signal-cyan">88</span>. The
               maths returns the plaintext exactly because 7 · 23 = 161 ≡ 1 mod φ(n) = 160.
             </p>
           </div>

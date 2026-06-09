@@ -1081,7 +1081,7 @@ export default function DiffusionExplorer() {
     const ro = new ResizeObserver(() => drawAll());
     if (canvasRef.current) ro.observe(canvasRef.current);
     return () => ro.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, []);
 
   // -------- phase caption ("what you should see right now") --------
@@ -1110,14 +1110,14 @@ export default function DiffusionExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {x.scatterBadge}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {x.formulaBadge}
             </div>
           </div>
 
           {/* Live status — the strip that visibly ticks. */}
           <div className="hairline flex flex-wrap items-center justify-between gap-3 rounded-md border bg-ink-950/60 px-4 py-2 font-mono text-[11px] text-ink-200">
-            <span className="text-signal-rose">
+            <span className="text-signal-coral">
               {x.statusFmt(epoch, loss, sampStep, steps)}
             </span>
             <span className="text-[10px] uppercase tracking-widest2 text-ink-400">
@@ -1163,7 +1163,7 @@ export default function DiffusionExplorer() {
         {/* Sidebar */}
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {x.topicTitle}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{x.topicTagline}</h1>
@@ -1190,8 +1190,8 @@ export default function DiffusionExplorer() {
                     onClick={() => setDataset(k)}
                     className={`rounded-md border px-2 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                       active
-                        ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                        : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                        ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
+                        : "hairline text-ink-200 hover:border-signal-coral/40 hover:text-ink-100"
                     }`}
                   >
                     {label}
@@ -1220,8 +1220,8 @@ export default function DiffusionExplorer() {
                     onClick={() => setSchedule(k)}
                     className={`rounded-md border px-2 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                       active
-                        ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                        : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                        ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
+                        : "hairline text-ink-200 hover:border-signal-coral/40 hover:text-ink-100"
                     }`}
                   >
                     {label}
@@ -1237,7 +1237,7 @@ export default function DiffusionExplorer() {
               {x.stepsLabel}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-rose">{steps}</span>
+              <span className="text-signal-coral">{steps}</span>
               <span className="text-[10px] text-ink-400">{x.stepsUnit}</span>
             </div>
             <input
@@ -1247,7 +1247,7 @@ export default function DiffusionExplorer() {
               step={5}
               value={steps}
               onChange={(e) => setSteps(parseInt(e.target.value, 10))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
           </div>
 
@@ -1257,7 +1257,7 @@ export default function DiffusionExplorer() {
               {x.samplesLabel}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-rose">{numSamples}</span>
+              <span className="text-signal-coral">{numSamples}</span>
               <span className="text-[10px] text-ink-400">{x.samplesUnit}</span>
             </div>
             <input
@@ -1267,7 +1267,7 @@ export default function DiffusionExplorer() {
               step={10}
               value={numSamples}
               onChange={(e) => setNumSamples(parseInt(e.target.value, 10))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
           </div>
 
@@ -1277,7 +1277,7 @@ export default function DiffusionExplorer() {
               onClick={() => setPaused((p) => !p)}
               className={`w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                 paused
-                  ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose hover:bg-signal-rose/20"
+                  ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral hover:bg-signal-coral/20"
                   : "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan hover:bg-signal-cyan/20"
               }`}
             >
@@ -1285,7 +1285,7 @@ export default function DiffusionExplorer() {
             </button>
             <button
               onClick={initEverything}
-              className="hairline w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
               {x.resetModelButton}
             </button>
@@ -1302,7 +1302,7 @@ export default function DiffusionExplorer() {
           <div className="p-5">
             <Link
               href="/diffusion"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
               {u.back}
             </Link>

@@ -79,7 +79,7 @@ export default function LifePage() {
     setGeneration(0);
     setPopulation(countAlive(g));
     requestDraw();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, []);
 
   // Drawing loop — independent of simulation tick so the canvas is responsive

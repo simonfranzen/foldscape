@@ -13,7 +13,7 @@ import { GodelLoopHero } from "@/components/signature/GodelLoopHero";
 // figure panels (symbol-table + self-reference loop) carry their own
 // per-locale strings via the RichFigures dict below.
 
-const ACCENT = "text-signal-violet";
+const ACCENT = "text-signal-rose";
 
 // A handful of symbols from the formal language, each with a Gödel number.
 // Real Gödel numberings vary across sources; this table is illustrative and
@@ -393,10 +393,10 @@ export default function GodelStoryPage() {
       page={page}
       ctaHref="/godel/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-violet/70"
-      bgAccent="bg-signal-violet/10"
-      hoverAccent="hover:bg-signal-violet/20"
-      gradient="from-signal-violet/10"
+      borderAccent="border-signal-rose/70"
+      bgAccent="bg-signal-rose/10"
+      hoverAccent="hover:bg-signal-rose/20"
+      gradient="from-signal-rose/10"
       formulaBadge="G ⇔ ¬Prov(⌜G⌝)"
       formulaLatex={"G \\;\\Leftrightarrow\\; \\neg\\,\\mathrm{Prov}(\\ulcorner G \\urcorner)"}
       finalLabel={s.storyLabels.stepIntoIt}
@@ -430,7 +430,7 @@ export default function GodelStoryPage() {
                   {GODEL_SYMBOL_TABLE.map((row) => (
                     <tr
                       key={row.symbol}
-                      className="hairline border-b transition-colors last:border-b-0 hover:bg-signal-violet/5"
+                      className="hairline border-b transition-colors last:border-b-0 hover:bg-signal-rose/5"
                     >
                       <td className={`py-2 pr-4 text-lg ${ACCENT}`}>{row.symbol}</td>
                       <td className="py-2 pr-4 text-ink-200">{f.meanings[row.meaningKey]}</td>

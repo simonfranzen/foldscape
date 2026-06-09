@@ -9,7 +9,7 @@ import { TuringGallery } from "@/components/TuringGallery";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-amber";
+const ACCENT = "text-signal-teal";
 
 // --------------------------------------------------------------------------
 // Rich, per-locale story copy for the Turing-patterns story page. The hero
@@ -1056,8 +1056,8 @@ const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no }
 
 function EncounterCard({ label, title, body }: { label: string; title: string; body: string }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-amber/40">
-      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-teal/40">
+      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
         {label}
       </div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>
@@ -1127,10 +1127,10 @@ export default function TuringPatternStory() {
       page={page}
       ctaHref="/turingpattern/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-amber/70"
-      bgAccent="bg-signal-amber/10"
-      hoverAccent="hover:bg-signal-amber/20"
-      gradient="from-signal-amber/10"
+      borderAccent="border-signal-teal/70"
+      bgAccent="bg-signal-teal/10"
+      hoverAccent="hover:bg-signal-teal/20"
+      gradient="from-signal-teal/10"
       formulaBadge="∂u/∂t = D_u ∇²u + f(u, v)"
       formulaLatex={
         "\\dfrac{\\partial u}{\\partial t} = D_u \\nabla^2 u + f(u, v) \\qquad \\dfrac{\\partial v}{\\partial t} = D_v \\nabla^2 v + g(u, v)"
@@ -1155,8 +1155,8 @@ export default function TuringPatternStory() {
           {story.encounter.cards.map((card, i) => (
             <Reveal key={card.label} delay={120 + i * 100}>
               {i === 1 ? (
-                <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-amber/40">
-                  <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-teal/40">
+                  <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
                     {card.label}
                   </div>
                   <h3 className="math-italic text-2xl leading-snug text-ink-100">{card.title}</h3>
@@ -1219,7 +1219,7 @@ export default function TuringPatternStory() {
                   ["v · inhibitor", "Suppresses the activator at distance.", "Fast (D_v ≫ D_u)"],
                 ].map(([sub, role, diff]) => (
                   <tr key={sub} className="border-b border-ink-700/30 last:border-0">
-                    <td className="px-2 py-2 text-signal-amber">{sub}</td>
+                    <td className="px-2 py-2 text-signal-teal">{sub}</td>
                     <td className="px-2 py-2 text-ink-200">{role}</td>
                     <td className="px-2 py-2 text-signal-cyan">{diff}</td>
                   </tr>
@@ -1350,7 +1350,7 @@ export default function TuringPatternStory() {
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/turingpattern/explorer"
-            className="inline-block rounded-full border border-signal-amber/70 bg-signal-amber/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/25"
+            className="inline-block rounded-full border border-signal-teal/70 bg-signal-teal/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/25"
           >
             {story.ctaLabel}
           </Link>

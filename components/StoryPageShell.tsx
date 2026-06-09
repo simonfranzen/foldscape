@@ -71,7 +71,7 @@ export function StoryPageShell({
         className={`fixed inset-0 -z-10 bg-gradient-to-b ${gradient} pointer-events-none via-transparent to-ink-950`}
       />
 
-      <section className="mx-auto mb-32 max-w-5xl space-y-7 text-center">
+      <section className="mx-auto mb-32 max-w-5xl space-y-7 pb-12 text-center md:pb-16">
         <Reveal>
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${accent}`}>
             {page.pretitle}

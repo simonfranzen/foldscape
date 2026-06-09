@@ -216,7 +216,7 @@ export default function AizawaExplorer() {
       window.removeEventListener("mouseup", onUp);
       window.removeEventListener("mousemove", onMove);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [resetTick]);
 
   const attractor = ATTRACTORS[attractorId];
@@ -233,7 +233,7 @@ export default function AizawaExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {attractor.label} · drag to rotate
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {stepsPerFrame.toLocaleString()} steps/frame
             </div>
           </div>
@@ -241,7 +241,7 @@ export default function AizawaExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -264,8 +264,8 @@ export default function AizawaExplorer() {
                   }}
                   className={`rounded-md border py-2 font-mono text-xs transition-colors ${
                     attractorId === at.id
-                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                      : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-signal-rose"
+                      ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
+                      : "hairline text-ink-200 hover:border-signal-coral/40 hover:text-signal-coral"
                   }`}
                 >
                   {at.label}
@@ -309,7 +309,7 @@ export default function AizawaExplorer() {
                 setParams(attractor.params);
                 setDt(attractor.step);
               }}
-              className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
               ⟲ Reset parameters
             </button>
@@ -329,7 +329,7 @@ export default function AizawaExplorer() {
               onClick={() => setAutoRotate((v) => !v)}
               className={`w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                 autoRotate
-                  ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
+                  ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
                   : "hairline hover:text-ink-50 text-ink-200 hover:border-ink-300/50"
               }`}
             >
@@ -346,7 +346,7 @@ export default function AizawaExplorer() {
           <div className="p-5">
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
               {u.back}
             </Link>
@@ -376,7 +376,7 @@ function ParamSlider({
     <div className="space-y-1">
       <div className="flex items-baseline justify-between">
         <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">{label}</div>
-        <div className="font-mono text-[10px] text-signal-rose">{value.toFixed(3)}</div>
+        <div className="font-mono text-[10px] text-signal-coral">{value.toFixed(3)}</div>
       </div>
       <input
         type="range"
@@ -385,7 +385,7 @@ function ParamSlider({
         max={max}
         step={step}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-signal-rose"
+        className="w-full accent-signal-coral"
       />
     </div>
   );
@@ -421,7 +421,7 @@ function SliderRow({
         max={max}
         step={step}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-signal-rose"
+        className="w-full accent-signal-coral"
       />
     </div>
   );

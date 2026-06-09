@@ -5,7 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 
-const ACCENT = "text-signal-cyan";
+const ACCENT = "text-signal-amber";
 
 // Per-locale strings for the two reference panels (Platonic table + genus
 // trio). Inline-pattern, in line with the rest of this project.
@@ -414,11 +414,11 @@ export default function EulerCharStoryPage() {
     <StoryPageShell
       page={page}
       ctaHref="/eulerchar/explorer"
-      accent="text-signal-cyan"
-      borderAccent="border-signal-cyan/70"
-      bgAccent="bg-signal-cyan/10"
-      hoverAccent="hover:bg-signal-cyan/20"
-      gradient="from-signal-cyan/10"
+      accent="text-signal-amber"
+      borderAccent="border-signal-amber/70"
+      bgAccent="bg-signal-amber/10"
+      hoverAccent="hover:bg-signal-amber/20"
+      gradient="from-signal-amber/10"
       formulaBadge="V − E + F = 2 − 2g"
       formulaLatex={"V - E + F = 2 - 2g"}
       finalLabel="Count and verify."

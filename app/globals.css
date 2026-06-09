@@ -102,6 +102,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* The global Nav header is `position: fixed` at 56 px tall. Without
+   scroll-padding-top, in-page anchor jumps and `scrollIntoView` would
+   slide the target right under the header, hiding its heading. The
+   88 px includes 56 px header + ~32 px breathing room so the section
+   title visibly lands BELOW the header bar after every jump. */
+html {
+  scroll-padding-top: 88px;
+}
+
 ::selection {
   background: rgba(179, 136, 255, 0.35);
   color: #fff;
@@ -276,6 +285,244 @@ svg g[role="link"]:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ── Cosmos (scroll-driven landing) ──────────────────────────────────
+   The new landing is a single sticky-driven cosmos: a fixed StarField +
+   NebulaLayer underneath, six per-category ConstellationScenes pinned
+   one at a time, and a persistent HUD floating over the top. The CSS
+   here is intentionally narrow — most styling is Tailwind utilities
+   inside the components. We only declare the things utilities can't:
+   the scroll-arrow bounce, the per-scene sticky pin (so reduced-motion
+   can release it cleanly), and the focus-visible ring on SVG stars. */
+
+@keyframes cosmosScrollArrow {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+.cosmos-scroll-arrow {
+  display: inline-block;
+  animation: cosmosScrollArrow 1.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Per-section scroll-down button — gentle continuous bob so it reads as
+   "there's more below" without competing with the prose. The button itself
+   is round + outlined; the bob is on its inner SVG via the same keyframes
+   as the arrow. */
+.cosmos-scroll-hint svg {
+  animation: cosmosScrollArrow 2.2s ease-in-out infinite;
+}
+.cosmos-scroll-hint {
+  opacity: 0.6;
+  transition:
+    opacity 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease;
+}
+.cosmos-scroll-hint:hover,
+.cosmos-scroll-hint:focus-visible {
+  opacity: 1;
+}
+
+/* Each per-category constellation scene is a tall section (~1×100vh) that
+   sticky-pins its inner SVG cluster. Without `position: sticky` the
+   constellation would just scroll past with the page.
+   v2: dropped `content-visibility: auto`. It saved layout work, but on
+   back-navigation it kept the scrolled-to scene logically "skipped" past
+   the React paint window, so the IntersectionObserver in useScrollProgress
+   reported 0 progress → the topic stars never revealed (user feedback). */
+.cosmos-scene {
+  min-height: 100vh;
+}
+
+/* Hit / focus target for the SVG topic stars. Tailwind's focus utilities
+   don't reach Link-wrapped <g> reliably, so we lay down our own ring. */
+a.cosmos-star {
+  display: inline;
+  cursor: pointer;
+}
+a.cosmos-star:focus-visible g {
+  outline: 2px solid #b388ff;
+  outline-offset: 4px;
+}
+a.cosmos-star-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+/* Mobile: the star labels are scaled to the SVG viewBox, which on a phone
+   means the hub names end up at ~10 px high — readable but small. Bump
+   them via SVG-level scale so the constellation feels touch-sized. */
+@media (max-width: 720px) {
+  .cosmos-star-label {
+    font-size: 22px !important;
+  }
+  /* Reserve space at the bottom for the mobile category strip so the
+     specimen / atlas overview footer don't sit under it. */
+  .cosmos-root {
+    padding-bottom: 64px;
+  }
+  /* Trim the foreground formula layer on phones — eight drifters on a
+     small screen reads as clutter. */
+  .cosmos-drift:nth-child(n + 5) {
+    display: none;
+  }
+}
+
+/* Floating formulas behind the stars. v3 used a single keyframe set so
+   every formula drifted the same direction → "logo carpet" feel (user
+   feedback). v4 spreads four variants with distinct paths so neighbouring
+   pieces sail in different directions and the layer feels like real
+   drift. Distances are 90–160 px (v3 was 40 px) — the eye actually
+   catches the motion now. Opacity still fades in/out so at any instant
+   only ~half the pieces are visible. */
+@keyframes cosmosDrift1 {
+  0% { transform: translate(0, 0) rotate(-3deg); opacity: 0; }
+  20% { opacity: 0.38; }
+  50% { transform: translate(110px, -90px) rotate(2deg); opacity: 0.5; }
+  80% { opacity: 0.38; }
+  100% { transform: translate(0, 0) rotate(-3deg); opacity: 0; }
+}
+@keyframes cosmosDrift2 {
+  0% { transform: translate(0, 0) rotate(2deg); opacity: 0; }
+  20% { opacity: 0.38; }
+  50% { transform: translate(-130px, -60px) rotate(-4deg); opacity: 0.5; }
+  80% { opacity: 0.38; }
+  100% { transform: translate(0, 0) rotate(2deg); opacity: 0; }
+}
+@keyframes cosmosDrift3 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.38; }
+  50% { transform: translate(80px, 120px) rotate(5deg); opacity: 0.5; }
+  80% { opacity: 0.38; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+}
+@keyframes cosmosDrift4 {
+  0% { transform: translate(0, 0) rotate(-2deg); opacity: 0; }
+  20% { opacity: 0.38; }
+  50% { transform: translate(-90px, 100px) rotate(3deg); opacity: 0.5; }
+  80% { opacity: 0.38; }
+  100% { transform: translate(0, 0) rotate(-2deg); opacity: 0; }
+}
+.cosmos-drift {
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+}
+.cosmos-drift-1 { animation-name: cosmosDrift1; }
+.cosmos-drift-2 { animation-name: cosmosDrift2; }
+.cosmos-drift-3 { animation-name: cosmosDrift3; }
+.cosmos-drift-4 { animation-name: cosmosDrift4; }
+
+/* Per-scene specimens — slow ambient motion for the small SVG behind each
+   constellation. None of these should ever upstage the stars; they exist
+   to confirm "the cosmos is breathing." */
+@keyframes cosmosRotateSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.cosmos-rotate-slow {
+  animation: cosmosRotateSlow 90s linear infinite;
+}
+@keyframes cosmosPulseSlow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.cosmos-pulse-slow {
+  animation: cosmosPulseSlow 6s ease-in-out infinite;
+}
+@keyframes cosmosGliderDrift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(960px, -160px);
+  }
+}
+.cosmos-glider-drift {
+  animation: cosmosGliderDrift 80s linear infinite;
+}
+@keyframes cosmosTraceSlow {
+  0%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 60;
+  }
+}
+.cosmos-trace-slow {
+  animation: cosmosTraceSlow 14s ease-in-out infinite;
+}
+@keyframes cosmosShiftSlow {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-30px, 0);
+  }
+}
+.cosmos-shift-slow {
+  animation: cosmosShiftSlow 18s ease-in-out infinite;
+}
+
+/* Reduced motion: release the sticky pin, freeze the scroll arrow, freeze
+   every cosmos ambient animation. The scenes collapse to plain block
+   sections so the page reads as a top-to-bottom list, not a pinned camera. */
+@media (prefers-reduced-motion: reduce) {
+  .cosmos-scroll-arrow,
+  .cosmos-scroll-hint svg,
+  .cosmos-drift,
+  .cosmos-rotate-slow,
+  .cosmos-pulse-slow,
+  .cosmos-glider-drift,
+  .cosmos-trace-slow,
+  .cosmos-shift-slow {
+    animation: none !important;
+  }
+  .cosmos-sticky {
+    position: static !important;
+    height: auto !important;
+  }
+  .cosmos-scene {
+    min-height: auto;
+    content-visibility: visible;
+  }
+}
+
+/* Print: keep topic story heroes airy. Without this, Chrome's "Save as PDF"
+   often splits the hero such that the formula card sits flush against the
+   page break — exactly the "Formel klebt am unteren Rand" issue. Forcing a
+   page break after the hero gives the formula its own padded bottom edge. */
+@media print {
+  main > section:first-of-type {
+    break-after: page;
+    page-break-after: always;
+    padding-bottom: 2rem;
+  }
+  .grid-bg {
+    display: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

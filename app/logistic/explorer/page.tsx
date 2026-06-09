@@ -174,7 +174,7 @@ export default function LogisticExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               Bifurcation diagram · r ∈ [{BIFURCATION_R_MIN}, {BIFURCATION_R_MAX}]
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               xₙ₊₁ = r · xₙ (1 − xₙ)
             </div>
           </div>
@@ -191,7 +191,7 @@ export default function LogisticExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -203,7 +203,7 @@ export default function LogisticExplorer() {
               Growth rate r
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-rose">{r.toFixed(4)}</span>
+              <span className="text-signal-coral">{r.toFixed(4)}</span>
             </div>
             <input
               type="range"
@@ -212,7 +212,7 @@ export default function LogisticExplorer() {
               max={4.0}
               step={0.0005}
               onChange={(e) => setR(parseFloat(e.target.value))}
-              className="w-full accent-signal-rose"
+              className="w-full accent-signal-coral"
             />
             <div className="grid grid-cols-2 gap-2">
               {FAMOUS_R.map((p) => (
@@ -221,8 +221,8 @@ export default function LogisticExplorer() {
                   onClick={() => setR(p.r)}
                   className={`rounded-md border px-3 py-2 text-left transition-colors ${
                     Math.abs(r - p.r) < 0.001
-                      ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                      : "hairline text-ink-200 hover:border-signal-rose/40 hover:text-ink-100"
+                      ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
+                      : "hairline text-ink-200 hover:border-signal-coral/40 hover:text-ink-100"
                   }`}
                 >
                   <div className="font-mono text-xs">{p.r}</div>

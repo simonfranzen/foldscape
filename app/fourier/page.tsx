@@ -8,7 +8,7 @@ import { FourierHarmonicBuilder } from "@/components/FourierHarmonicBuilder";
 import { FourierSpectrumPlay } from "@/components/FourierSpectrumPlay";
 import type { Locale } from "@/lib/i18n/types";
 
-const ACCENT = "text-signal-amber";
+const ACCENT = "text-signal-teal";
 
 type RichStory = {
   encounter: {
@@ -701,7 +701,7 @@ function EncounterCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-amber/40">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-teal/40">
       <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>{label}</div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>
       <div className="text-sm leading-relaxed text-ink-200">{children}</div>
@@ -720,10 +720,10 @@ export default function FourierStory() {
       page={page}
       ctaHref="/fourier/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-amber/70"
-      bgAccent="bg-signal-amber/10"
-      hoverAccent="hover:bg-signal-amber/20"
-      gradient="from-signal-amber/10"
+      borderAccent="border-signal-teal/70"
+      bgAccent="bg-signal-teal/10"
+      hoverAccent="hover:bg-signal-teal/20"
+      gradient="from-signal-teal/10"
       formulaBadge="f̂(ξ) = ∫ f(t) e^(−2πi ξ t) dt"
       formulaLatex={"\\hat{f}(\\xi) = \\int_{-\\infty}^{\\infty} f(t)\\, e^{-2\\pi i \\xi t}\\, dt"}
       finalLabel={s.storyLabels.stepIntoIt}
@@ -759,19 +759,19 @@ export default function FourierStory() {
                 </div>
                 <div>
                   261.6 Hz <span className="text-ink-400">·</span>{" "}
-                  <span className="text-signal-amber">1.00</span>
+                  <span className="text-signal-teal">1.00</span>
                 </div>
                 <div>
                   523.3 Hz <span className="text-ink-400">·</span>{" "}
-                  <span className="text-signal-amber">0.45</span>
+                  <span className="text-signal-teal">0.45</span>
                 </div>
                 <div>
                   785.0 Hz <span className="text-ink-400">·</span>{" "}
-                  <span className="text-signal-amber">0.28</span>
+                  <span className="text-signal-teal">0.28</span>
                 </div>
                 <div>
                   1046.5 Hz <span className="text-ink-400">·</span>{" "}
-                  <span className="text-signal-amber">0.18</span>
+                  <span className="text-signal-teal">0.18</span>
                 </div>
                 <div className="pt-1 text-ink-400">Σ aₖ sin(2π · k · 261.6 · t)</div>
               </div>
@@ -896,7 +896,7 @@ export default function FourierStory() {
                   <tr key={n} className="border-b border-ink-700/30 last:border-0">
                     <td className="math-italic px-2 py-2 text-base text-ink-100">{n}</td>
                     <td className="px-2 py-2 text-ink-200">{naive}</td>
-                    <td className="px-2 py-2 text-signal-amber">{fft}</td>
+                    <td className="px-2 py-2 text-signal-teal">{fft}</td>
                     <td className="px-2 py-2 text-right text-ink-300">{sp}</td>
                   </tr>
                 ))}
@@ -925,7 +925,7 @@ export default function FourierStory() {
             <div className="text-base italic text-ink-300">
               Multiply by ℏ. Read the same inequality.
             </div>
-            <div className="math-italic text-2xl leading-tight text-signal-amber md:text-3xl">
+            <div className="math-italic text-2xl leading-tight text-signal-teal md:text-3xl">
               σ_x · σ_p ≥ ℏ / 2
             </div>
             <p className="mx-auto max-w-xl pt-2 text-xs leading-relaxed text-ink-300">
@@ -973,7 +973,7 @@ export default function FourierStory() {
           <div className="pt-2">
             <Link
               href="/fourier/explorer"
-              className="inline-block rounded-full border border-signal-amber/70 bg-signal-amber/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/20"
+              className="inline-block rounded-full border border-signal-teal/70 bg-signal-teal/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/20"
             >
               {story.ctaLabel}
             </Link>

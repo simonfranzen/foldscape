@@ -222,7 +222,7 @@ export default function MagpendulumExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               basin map · {resolution} × {resolution}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {computing ? `computing ${(progress * 100).toFixed(0)}%` : "ready"}
             </div>
           </div>
@@ -230,7 +230,7 @@ export default function MagpendulumExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -300,13 +300,13 @@ export default function MagpendulumExplorer() {
                 type="checkbox"
                 checked={shade}
                 onChange={(e) => setShade(e.target.checked)}
-                className="accent-signal-rose"
+                className="accent-signal-coral"
               />
               <span>Shade by capture time</span>
             </label>
             <button
               onClick={() => setRev((r) => r + 1)}
-              className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
               ⟳ Recompute
             </button>
@@ -335,7 +335,7 @@ export default function MagpendulumExplorer() {
           <div className="p-5">
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
               {u.back}
             </Link>
@@ -376,7 +376,7 @@ function SliderRow({
         max={max}
         step={step}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-signal-rose"
+        className="w-full accent-signal-coral"
       />
     </div>
   );

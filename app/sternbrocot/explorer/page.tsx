@@ -92,13 +92,13 @@ export default function SternbrocotExplorer() {
         <div className="scrollbar-thin relative min-h-[60vh] overflow-y-auto bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="mx-auto max-w-3xl space-y-6">
             <div className="glass hairline rounded-md border px-4 py-3 font-mono text-xs text-ink-200">
-              Target: <span className="text-signal-cyan">{target.toFixed(12)}</span>
+              Target: <span className="text-signal-teal">{target.toFixed(12)}</span>
               <span className="mx-3 text-ink-500">·</span>
-              Depth: <span className="text-signal-cyan">{path.length}</span>
+              Depth: <span className="text-signal-teal">{path.length}</span>
             </div>
 
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
                 Path · L = smaller · R = larger
               </div>
               <div className="break-all font-mono text-sm leading-relaxed text-ink-100">
@@ -107,7 +107,7 @@ export default function SternbrocotExplorer() {
             </div>
 
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
                 Continued fraction · run-length encoding of the path
               </div>
               <div className="font-mono text-lg text-signal-amber">
@@ -119,7 +119,7 @@ export default function SternbrocotExplorer() {
             </div>
 
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
                 Best rational approximations · the convergents along the walk
               </div>
               <div className="overflow-x-auto">
@@ -152,7 +152,7 @@ export default function SternbrocotExplorer() {
                           <td className="px-2 py-1.5 text-ink-400">
                             {path.length - 32 + i + 1 > 0 ? path.length - 32 + i + 1 : i + 1}
                           </td>
-                          <td className="px-2 py-1.5 text-signal-cyan">
+                          <td className="px-2 py-1.5 text-signal-teal">
                             {p.num}/{p.den}
                           </td>
                           <td className="px-2 py-1.5 text-ink-200">{value.toFixed(10)}</td>
@@ -170,7 +170,7 @@ export default function SternbrocotExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -186,7 +186,7 @@ export default function SternbrocotExplorer() {
               value={input}
               step="0.00000001"
               onChange={(e) => setInput(e.target.value)}
-              className="hairline w-full rounded-md border bg-ink-950 px-3 py-2 font-mono text-sm text-signal-cyan"
+              className="hairline w-full rounded-md border bg-ink-950 px-3 py-2 font-mono text-sm text-signal-teal"
             />
           </div>
 
@@ -199,7 +199,7 @@ export default function SternbrocotExplorer() {
                 <button
                   key={p.id}
                   onClick={() => setInput(p.value.toFixed(12))}
-                  className="hairline rounded-md border px-3 py-2 text-left text-ink-200 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
+                  className="hairline rounded-md border px-3 py-2 text-left text-ink-200 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
                 >
                   <div className="flex items-center justify-between font-mono text-xs">
                     <span>{p.label}</span>
@@ -224,14 +224,14 @@ export default function SternbrocotExplorer() {
               max={60}
               step={1}
               onChange={(e) => setDepth(parseInt(e.target.value))}
-              className="w-full accent-signal-cyan"
+              className="w-full accent-signal-teal"
             />
           </div>
 
           <div className="p-5">
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
             >
               {u.back}
             </Link>

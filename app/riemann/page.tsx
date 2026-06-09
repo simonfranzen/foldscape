@@ -9,7 +9,7 @@ import { RiemannZetaPath } from "@/components/RiemannZetaPath";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-amber";
+const ACCENT = "text-signal-teal";
 
 // --------------------------------------------------------------------------
 // All Riemann prose lives inline here so the page can carry the full
@@ -823,10 +823,10 @@ export default function RiemannStory() {
       page={page}
       ctaHref="/riemann/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-amber/70"
-      bgAccent="bg-signal-amber/10"
-      hoverAccent="hover:bg-signal-amber/20"
-      gradient="from-signal-amber/10"
+      borderAccent="border-signal-teal/70"
+      bgAccent="bg-signal-teal/10"
+      hoverAccent="hover:bg-signal-teal/20"
+      gradient="from-signal-teal/10"
       formulaBadge="ζ(s) = 0 ⇒ Re(s) = 1/2"
       formulaLatex={"\\zeta(s) = 0 \\;\\Rightarrow\\; \\Re(s) = \\tfrac{1}{2}"}
       finalLabel={story.closingTitle}
@@ -943,7 +943,7 @@ export default function RiemannStory() {
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/riemann/explorer"
-            className="inline-block rounded-full border border-signal-amber/70 bg-signal-amber/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/25"
+            className="inline-block rounded-full border border-signal-teal/70 bg-signal-teal/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/25"
           >
             {story.ctaLabel}
           </Link>
@@ -963,7 +963,7 @@ function EncounterCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-amber/40">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-teal/40">
       <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>{label}</div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>
       <div className="text-sm leading-relaxed text-ink-200">{children}</div>

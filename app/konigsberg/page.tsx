@@ -5,7 +5,7 @@ import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 
-const ACCENT = "text-signal-amber";
+const ACCENT = "text-signal-teal";
 
 // Per-locale strings for the four inline SVG figures. Proper place-names
 // (Kneiphof, Lomse) stay untranslated — they're historical Königsberg
@@ -994,10 +994,10 @@ export default function KonigsbergStoryPage() {
       page={page}
       ctaHref="/konigsberg/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-amber/70"
-      bgAccent="bg-signal-amber/10"
-      hoverAccent="hover:bg-signal-amber/20"
-      gradient="from-signal-amber/10"
+      borderAccent="border-signal-teal/70"
+      bgAccent="bg-signal-teal/10"
+      hoverAccent="hover:bg-signal-teal/20"
+      gradient="from-signal-teal/10"
       formulaBadge="Eulerian path ⇔ ≤ 2 odd-degree vertices"
       formulaLatex={
         "\\text{Eulerian path} \\;\\Leftrightarrow\\; \\#\\{v: \\deg(v) \\text{ odd}\\} \\leq 2"

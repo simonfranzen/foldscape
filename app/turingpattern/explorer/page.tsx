@@ -366,7 +366,7 @@ export default function TuringPatternExplorer() {
                 D_a · activator diffusion
               </div>
               <div className="flex items-center justify-between font-mono text-sm">
-                <span className="text-signal-amber">{Da.toFixed(3)}</span>
+                <span className="text-signal-teal">{Da.toFixed(3)}</span>
               </div>
               <input
                 type="range"
@@ -375,7 +375,7 @@ export default function TuringPatternExplorer() {
                 max={0.25}
                 step={0.005}
                 onChange={(e) => setDa(parseFloat(e.target.value))}
-                className="w-full accent-signal-amber"
+                className="w-full accent-signal-teal"
               />
             </div>
             <div>
@@ -383,7 +383,7 @@ export default function TuringPatternExplorer() {
                 D_b · inhibitor diffusion
               </div>
               <div className="flex items-center justify-between font-mono text-sm">
-                <span className="text-signal-amber">{Db.toFixed(3)}</span>
+                <span className="text-signal-teal">{Db.toFixed(3)}</span>
               </div>
               <input
                 type="range"
@@ -392,7 +392,7 @@ export default function TuringPatternExplorer() {
                 max={0.12}
                 step={0.002}
                 onChange={(e) => setDb(parseFloat(e.target.value))}
-                className="w-full accent-signal-amber"
+                className="w-full accent-signal-teal"
               />
             </div>
           </div>
@@ -434,7 +434,7 @@ export default function TuringPatternExplorer() {
               max={20}
               step={1}
               onChange={(e) => setSpeed(parseInt(e.target.value))}
-              className="w-full accent-signal-amber"
+              className="w-full accent-signal-teal"
             />
             <div className="text-right font-mono text-[10px] text-ink-400">{speed} steps</div>
             <button

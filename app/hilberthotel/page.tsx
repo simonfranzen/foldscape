@@ -43,6 +43,7 @@ type RichStory = {
   inlineNewGuest: string;
   inlineExistingGuest: string;
   inlineBusGuest: string;
+  inlineGapNote: string;
   // HilbertHotelCardinality labels
   cardinalityCaption: string;
   cardinalityDoubles: string;
@@ -136,6 +137,8 @@ const en: RichStory = {
   inlineNewGuest: "new",
   inlineExistingGuest: "existing",
   inlineBusGuest: "bus",
+  inlineGapNote:
+    "Grey ∅ rooms are numbers that are not a prime power — no one maps there, so they stay empty. The packing wastes rooms but never collides.",
   cardinalityCaption: "Bijection lab — does the hotel still fit?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
@@ -230,6 +233,8 @@ const de: RichStory = {
   inlineNewGuest: "neu",
   inlineExistingGuest: "bestehend",
   inlineBusGuest: "Bus",
+  inlineGapNote:
+    "Graue ∅-Zimmer sind Nummern, die keine Primzahlpotenz sind — dorthin wird niemand abgebildet, sie bleiben leer. Das Schema verschenkt Zimmer, kollidiert aber nie.",
   cardinalityCaption: "Bijektions-Labor — passt das Hotel noch?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
@@ -324,6 +329,8 @@ const es: RichStory = {
   inlineNewGuest: "nuevo",
   inlineExistingGuest: "existente",
   inlineBusGuest: "autocar",
+  inlineGapNote:
+    "Las habitaciones ∅ grises son números que no son potencia de primo — nadie va a parar ahí, quedan vacías. El esquema desperdicia habitaciones, pero nunca colisiona.",
   cardinalityCaption: "Laboratorio de biyecciones — ¿sigue cabiendo en el hotel?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
@@ -418,6 +425,8 @@ const fr: RichStory = {
   inlineNewGuest: "nouveau",
   inlineExistingGuest: "existant",
   inlineBusGuest: "car",
+  inlineGapNote:
+    "Les chambres ∅ grises sont des numéros qui ne sont pas une puissance de premier — personne n'y est envoyé, elles restent vides. Le schéma gaspille des chambres, mais ne provoque jamais de collision.",
   cardinalityCaption: "Labo de bijections — l'hôtel suffit-il encore ?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
@@ -512,6 +521,8 @@ const it: RichStory = {
   inlineNewGuest: "nuovo",
   inlineExistingGuest: "esistente",
   inlineBusGuest: "pullman",
+  inlineGapNote:
+    "Le stanze ∅ grigie sono numeri che non sono potenza di un primo — nessuno ci finisce, restano vuote. Lo schema spreca stanze, ma non collide mai.",
   cardinalityCaption: "Laboratorio di biiezioni — l'hotel basta ancora?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
@@ -606,6 +617,8 @@ const pt: RichStory = {
   inlineNewGuest: "novo",
   inlineExistingGuest: "existente",
   inlineBusGuest: "autocarro",
+  inlineGapNote:
+    "Os quartos ∅ cinzentos são números que não são potência de primo — ninguém é mapeado para lá, ficam vazios. O esquema desperdiça quartos, mas nunca colide.",
   cardinalityCaption: "Laboratório de bijecções — o hotel ainda chega?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
@@ -699,6 +712,8 @@ const sv: RichStory = {
   inlineNewGuest: "ny",
   inlineExistingGuest: "befintlig",
   inlineBusGuest: "buss",
+  inlineGapNote:
+    "Grå ∅-rum är nummer som inte är en primtalspotens — ingen hamnar där, de förblir tomma. Schemat slösar rum men krockar aldrig.",
   cardinalityCaption: "Bijektionslabb — räcker hotellet ännu?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
@@ -792,6 +807,8 @@ const no: RichStory = {
   inlineNewGuest: "ny",
   inlineExistingGuest: "eksisterende",
   inlineBusGuest: "buss",
+  inlineGapNote:
+    "Grå ∅-rom er tall som ikke er en primtallspotens — ingen havner der, de forblir tomme. Skjemaet sløser med rom, men kolliderer aldri.",
   cardinalityCaption: "Bijeksjonslab — strekker hotellet fortsatt til?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
@@ -914,6 +931,7 @@ export default function HilbertHotelStory() {
             newGuestLabel={story.inlineNewGuest}
             existingGuestLabel={story.inlineExistingGuest}
             busGuestLabel={story.inlineBusGuest}
+            gapNoteLabel={story.inlineGapNote}
           />
         </Reveal>
       </section>

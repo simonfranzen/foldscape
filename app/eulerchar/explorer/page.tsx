@@ -1416,7 +1416,7 @@ export default function EulerCharExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {localizedLabel(polyhedron)} · {localizedNote(polyhedron)}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
               V − E + F = {finalSum}
             </div>
           </div>
@@ -1432,7 +1432,7 @@ export default function EulerCharExplorer() {
                 <span className="text-ink-500">/ {polyhedron.V}</span>
               </div>
               <div className="flex items-baseline gap-3">
-                <span className="text-base text-signal-cyan">E = {tally.E}</span>
+                <span className="text-base text-signal-amber">E = {tally.E}</span>
                 <span className="text-ink-500">/ {polyhedron.E}</span>
               </div>
               <div className="flex items-baseline gap-3">
@@ -1440,11 +1440,11 @@ export default function EulerCharExplorer() {
                 <span className="text-ink-500">/ {polyhedron.F}</span>
               </div>
               <div className="hairline mt-2 border-t pt-2 text-sm text-ink-100">
-                V − E + F = <span className="text-signal-cyan">{sum}</span>
+                V − E + F = <span className="text-signal-amber">{sum}</span>
               </div>
               {stage === "done" && (
                 <div className="pt-1 text-[10px] leading-relaxed text-ink-300">
-                  χ = <span className="text-signal-cyan">{finalSum}</span>{" "}
+                  χ = <span className="text-signal-amber">{finalSum}</span>{" "}
                   {finalSum === 2
                     ? tr.sphereLike
                     : finalSum === 0
@@ -1460,7 +1460,7 @@ export default function EulerCharExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -1479,8 +1479,8 @@ export default function EulerCharExplorer() {
                   onClick={() => setPresetIdx(i)}
                   className={`rounded-md border px-3 py-2 text-left transition-colors ${
                     presetIdx === i
-                      ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
-                      : "hairline text-ink-200 hover:border-signal-cyan/40 hover:text-ink-100"
+                      ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
+                      : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
                   }`}
                 >
                   <div className="font-mono text-xs">{localizedLabel(p)}</div>
@@ -1502,7 +1502,7 @@ export default function EulerCharExplorer() {
                 onClick={() => setAutoSpin((s) => !s)}
                 className={`rounded-md border px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                   autoSpin
-                    ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
+                    ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
                     : "hairline text-ink-300 hover:text-ink-100"
                 }`}
               >
@@ -1516,7 +1516,7 @@ export default function EulerCharExplorer() {
               max={2.0}
               step={0.05}
               onChange={(e) => setSpinSpeed(parseFloat(e.target.value))}
-              className="w-full accent-signal-cyan"
+              className="w-full accent-signal-amber"
               disabled={!autoSpin}
             />
             <div className="text-right font-mono text-[10px] text-ink-400">
@@ -1545,8 +1545,8 @@ export default function EulerCharExplorer() {
                 onClick={() => startStage("edges")}
                 className={`rounded-md border px-3 py-2 text-left transition-colors ${
                   stage === "edges"
-                    ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
-                    : "hairline text-ink-200 hover:border-signal-cyan/40 hover:text-signal-cyan"
+                    ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
+                    : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-signal-amber"
                 }`}
               >
                 <div className="font-mono text-xs">2 · {tr.countEdges}</div>
@@ -1590,11 +1590,11 @@ export default function EulerCharExplorer() {
             <div className="font-mono text-lg text-ink-100">
               <span className="text-signal-amber">{tally.V}</span>
               <span className="text-ink-400"> − </span>
-              <span className="text-signal-cyan">{tally.E}</span>
+              <span className="text-signal-amber">{tally.E}</span>
               <span className="text-ink-400"> + </span>
               <span className="text-signal-rose">{tally.F}</span>
               <span className="text-ink-400"> = </span>
-              <span className="text-signal-cyan">{sum}</span>
+              <span className="text-signal-amber">{sum}</span>
             </div>
             <div className="font-mono text-[10px] text-ink-400">
               {tr.finalLabel} · {polyhedron.V} − {polyhedron.E} + {polyhedron.F} = {finalSum} (χ)
@@ -1613,7 +1613,7 @@ export default function EulerCharExplorer() {
           <div className="p-5">
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
             >
               {u.back}
             </Link>

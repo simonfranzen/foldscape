@@ -1077,12 +1077,12 @@ export default function EulerStory() {
   return (
     <main className="relative isolate min-h-screen px-6 pb-32 pt-24">
       <div className="grid-bg pointer-events-none fixed inset-0 -z-10 opacity-30" />
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-signal-amber/10 via-transparent to-ink-950" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-signal-teal/10 via-transparent to-ink-950" />
 
       {/* Hero — canonical pretitle / title / tagline / intro / 2 buttons / formula badge */}
       <section className="mx-auto mb-32 max-w-5xl space-y-7 text-center">
         <Reveal>
-          <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+          <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
             {page.pretitle}
           </div>
         </Reveal>
@@ -1103,7 +1103,7 @@ export default function EulerStory() {
           <div className="flex flex-col items-center justify-center gap-3 pt-2 md:flex-row">
             <Link
               href="/euler/explorer"
-              className="rounded-full border border-signal-amber/70 bg-signal-amber/10 px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/20"
+              className="rounded-full border border-signal-teal/70 bg-signal-teal/10 px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/20"
             >
               {page.ctaInteractive}
             </Link>
@@ -1126,7 +1126,7 @@ export default function EulerStory() {
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {story.encounter.pretitle}
             </div>
           </Reveal>
@@ -1148,7 +1148,7 @@ export default function EulerStory() {
                         start · <span className="text-signal-cyan">1</span>
                       </div>
                       <div>
-                        × e^(iπ) · <span className="text-signal-amber">half-turn</span>
+                        × e^(iπ) · <span className="text-signal-teal">half-turn</span>
                       </div>
                       <div>
                         land · <span className="text-signal-rose">−1</span>
@@ -1176,18 +1176,18 @@ export default function EulerStory() {
           pretitle={sec0.pretitle}
           title={sec0.title}
           body={sec0.body}
-          accent="text-signal-amber"
+          accent="text-signal-teal"
         />
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {story.charactersLabel}
             </div>
             <table className="w-full font-mono text-sm">
               <tbody>
                 {story.charactersRows.map((r) => (
                   <tr key={r.sym} className="border-b border-ink-700/30 last:border-0">
-                    <td className="math-italic w-12 px-2 py-2 text-lg text-signal-amber">
+                    <td className="math-italic w-12 px-2 py-2 text-lg text-signal-teal">
                       {r.sym}
                     </td>
                     <td className="px-2 py-2 text-ink-100">{r.role}</td>
@@ -1208,17 +1208,17 @@ export default function EulerStory() {
           pretitle={sec1.pretitle}
           title={sec1.title}
           body={sec1.body}
-          accent="text-signal-amber"
+          accent="text-signal-teal"
         />
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6 text-center font-mono text-sm">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               i · i · i · i
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3 text-ink-100">
               <span className="text-signal-cyan">1</span>
               <span className="text-ink-400">→×i→</span>
-              <span className="text-signal-amber">i</span>
+              <span className="text-signal-teal">i</span>
               <span className="text-ink-400">→×i→</span>
               <span className="text-signal-rose">−1</span>
               <span className="text-ink-400">→×i→</span>
@@ -1237,7 +1237,7 @@ export default function EulerStory() {
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <Reveal>
           <div className="space-y-2 text-center">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {story.interactivePretitle1}
             </div>
             <h2 className="math-italic text-3xl leading-tight md:text-4xl">
@@ -1262,11 +1262,11 @@ export default function EulerStory() {
           pretitle={sec2.pretitle}
           title={sec2.title}
           body={sec2.body}
-          accent="text-signal-amber"
+          accent="text-signal-teal"
         />
         <Reveal delay={120}>
           <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-8 text-center font-mono">
-            <div className="text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="text-[10px] uppercase tracking-widest2 text-signal-teal">
               {story.proofLabel}
             </div>
             <div className="mx-auto grid max-w-md gap-3 text-left text-sm">
@@ -1284,7 +1284,7 @@ export default function EulerStory() {
               </div>
               <div className="flex gap-3">
                 <span className="w-6 text-ink-400">4.</span>
-                <span className="text-signal-amber">e^(iπ) + 1 = 0 ∎</span>
+                <span className="text-signal-teal">e^(iπ) + 1 = 0 ∎</span>
               </div>
             </div>
           </div>
@@ -1297,11 +1297,11 @@ export default function EulerStory() {
           pretitle={sec3.pretitle}
           title={sec3.title}
           body={sec3.body}
-          accent="text-signal-amber"
+          accent="text-signal-teal"
         />
         <Reveal delay={120}>
           <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-6 font-mono text-xs">
-            <div className="text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="text-[10px] uppercase tracking-widest2 text-signal-teal">
               {story.proofIntro}
             </div>
             <pre className="hairline overflow-x-auto rounded-md border bg-ink-950/60 p-4 leading-relaxed text-ink-100">
@@ -1325,7 +1325,7 @@ imaginary part = Σ (−1)ʲ θ²ʲ⁺¹ / (2j+1)! = sin θ`}
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <Reveal>
           <div className="space-y-2 text-center">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {story.interactivePretitle2}
             </div>
             <h2 className="math-italic text-3xl leading-tight md:text-4xl">
@@ -1354,20 +1354,20 @@ imaginary part = Σ (−1)ʲ θ²ʲ⁺¹ / (2j+1)! = sin θ`}
           pretitle={sec4.pretitle}
           title={sec4.title}
           body={sec4.body}
-          accent="text-signal-amber"
+          accent="text-signal-teal"
         />
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {story.connectionsLabel}
             </div>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               {story.connectionsRows.map((c) => (
                 <div
                   key={c.field}
-                  className="hairline space-y-1.5 rounded-md border bg-ink-950/60 p-4 transition-colors hover:border-signal-amber/40"
+                  className="hairline space-y-1.5 rounded-md border bg-ink-950/60 p-4 transition-colors hover:border-signal-teal/40"
                 >
-                  <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                  <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
                     {c.field}
                   </div>
                   <div className="text-sm leading-relaxed text-ink-200">{c.body}</div>
@@ -1384,17 +1384,17 @@ imaginary part = Σ (−1)ʲ θ²ʲ⁺¹ / (2j+1)! = sin θ`}
           pretitle={sec5.pretitle}
           title={sec5.title}
           body={sec5.body}
-          accent="text-signal-amber"
+          accent="text-signal-teal"
         />
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {story.progressionLabel}
             </div>
             <ol className="space-y-2">
               {story.progressionRows.map((row, i) => (
                 <li key={i} className="flex gap-3 text-sm leading-relaxed text-ink-100">
-                  <span className="w-6 shrink-0 font-mono text-signal-amber">{i + 1}.</span>
+                  <span className="w-6 shrink-0 font-mono text-signal-teal">{i + 1}.</span>
                   <span>{row}</span>
                 </li>
               ))}
@@ -1406,7 +1406,7 @@ imaginary part = Σ (−1)ʲ θ²ʲ⁺¹ / (2j+1)! = sin θ`}
       {/* Closing CTA — apollonian-style */}
       <Reveal>
         <section className="glass hairline mx-auto max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
-          <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+          <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
             {story.closingPretitle}
           </div>
           <div className="math-italic shimmer-text text-3xl leading-tight md:text-5xl">
@@ -1415,7 +1415,7 @@ imaginary part = Σ (−1)ʲ θ²ʲ⁺¹ / (2j+1)! = sin θ`}
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/euler/explorer"
-            className="inline-block rounded-full border border-signal-amber/70 bg-signal-amber/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/25"
+            className="inline-block rounded-full border border-signal-teal/70 bg-signal-teal/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/25"
           >
             {story.closingCta}
           </Link>
@@ -1435,8 +1435,8 @@ function EncounterCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-amber/40">
-      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-teal/40">
+      <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
         {label}
       </div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>

@@ -116,7 +116,7 @@ const en: RichStory = {
   reducerPretitle: "Try it · the reducer",
   reducerTitle: "Watch a derivation unfold",
   reducerBody:
-    "Pick a famous derivation (ι ι → K, or ι (ι (ι (ι ι))) → S), or type your own expression. Press Step to apply one reduction; the new term replaces the old. The reducer follows leftmost-outermost order — exactly the strategy the textbooks use.",
+    "Pick a famous derivation (ι (ι (ι ι)) → K, or ι (ι (ι (ι ι))) → S), or type your own expression. Press Step to apply one reduction; the new term replaces the old. The reducer follows leftmost-outermost order — exactly the strategy the textbooks use.",
   ksCaption: "Interactive · K and S playground",
   ksPretitle: "Try it · K and S",
   ksTitle: "Feel what K and S actually do",
@@ -208,7 +208,7 @@ const de: RichStory = {
   reducerPretitle: "Probier es · der Reduzierer",
   reducerTitle: "Sieh einer Herleitung beim Entfalten zu",
   reducerBody:
-    "Wähl eine berühmte Herleitung (ι ι → K oder ι (ι (ι (ι ι))) → S) oder tipp deinen eigenen Ausdruck ein. Schritt drücken wendet eine Reduktion an; der neue Term ersetzt den alten. Der Reduzierer folgt der Linksaußen-Reihenfolge — genau die Strategie der Lehrbücher.",
+    "Wähl eine berühmte Herleitung (ι (ι (ι ι)) → K oder ι (ι (ι (ι ι))) → S) oder tipp deinen eigenen Ausdruck ein. Schritt drücken wendet eine Reduktion an; der neue Term ersetzt den alten. Der Reduzierer folgt der Linksaußen-Reihenfolge — genau die Strategie der Lehrbücher.",
   ksCaption: "Interaktiv · K- und S-Spielwiese",
   ksPretitle: "Probier es · K und S",
   ksTitle: "Spür, was K und S wirklich tun",
@@ -299,7 +299,7 @@ const es: RichStory = {
   reducerPretitle: "Pruébalo · el reductor",
   reducerTitle: "Ve una derivación desplegándose",
   reducerBody:
-    "Elige una derivación famosa (ι ι → K, o ι (ι (ι (ι ι))) → S), o escribe tu propia expresión. Pulsa Paso para aplicar una reducción; el término nuevo sustituye al anterior. El reductor sigue el orden más-a-la-izquierda — exactamente la estrategia de los libros.",
+    "Elige una derivación famosa (ι (ι (ι ι)) → K, o ι (ι (ι (ι ι))) → S), o escribe tu propia expresión. Pulsa Paso para aplicar una reducción; el término nuevo sustituye al anterior. El reductor sigue el orden más-a-la-izquierda — exactamente la estrategia de los libros.",
   ksCaption: "Interactivo · campo de juego K y S",
   ksPretitle: "Pruébalo · K y S",
   ksTitle: "Siente qué hacen realmente K y S",
@@ -391,7 +391,7 @@ const fr: RichStory = {
   reducerPretitle: "Essaie · le réducteur",
   reducerTitle: "Regarde une dérivation se dérouler",
   reducerBody:
-    "Choisis une dérivation célèbre (ι ι → K, ou ι (ι (ι (ι ι))) → S), ou tape ta propre expression. Appuie sur Étape pour appliquer une réduction ; le nouveau terme remplace l'ancien. Le réducteur suit l'ordre la-plus-à-gauche — exactement la stratégie des manuels.",
+    "Choisis une dérivation célèbre (ι (ι (ι ι)) → K, ou ι (ι (ι (ι ι))) → S), ou tape ta propre expression. Appuie sur Étape pour appliquer une réduction ; le nouveau terme remplace l'ancien. Le réducteur suit l'ordre la-plus-à-gauche — exactement la stratégie des manuels.",
   ksCaption: "Interactif · terrain de jeu K et S",
   ksPretitle: "Essaie · K et S",
   ksTitle: "Ressens ce que font vraiment K et S",
@@ -482,7 +482,7 @@ const it: RichStory = {
   reducerPretitle: "Provalo · il riduttore",
   reducerTitle: "Guarda una derivazione che si svolge",
   reducerBody:
-    "Scegli una derivazione famosa (ι ι → K, o ι (ι (ι (ι ι))) → S), o digita la tua espressione. Premi Passo per applicare una riduzione; il nuovo termine sostituisce il precedente. Il riduttore segue l'ordine più-a-sinistra — esattamente la strategia dei manuali.",
+    "Scegli una derivazione famosa (ι (ι (ι ι)) → K, o ι (ι (ι (ι ι))) → S), o digita la tua espressione. Premi Passo per applicare una riduzione; il nuovo termine sostituisce il precedente. Il riduttore segue l'ordine più-a-sinistra — esattamente la strategia dei manuali.",
   ksCaption: "Interattivo · campo giochi K e S",
   ksPretitle: "Provalo · K e S",
   ksTitle: "Senti cosa fanno davvero K e S",
@@ -573,7 +573,7 @@ const pt: RichStory = {
   reducerPretitle: "Experimenta · o redutor",
   reducerTitle: "Vê uma derivação a desenrolar-se",
   reducerBody:
-    "Escolhe uma derivação famosa (ι ι → K, ou ι (ι (ι (ι ι))) → S), ou escreve a tua expressão. Prime Passo para aplicar uma redução; o novo termo substitui o anterior. O redutor segue a ordem mais-à-esquerda — exatamente a estratégia dos manuais.",
+    "Escolhe uma derivação famosa (ι (ι (ι ι)) → K, ou ι (ι (ι (ι ι))) → S), ou escreve a tua expressão. Prime Passo para aplicar uma redução; o novo termo substitui o anterior. O redutor segue a ordem mais-à-esquerda — exatamente a estratégia dos manuais.",
   ksCaption: "Interativo · campo de jogos K e S",
   ksPretitle: "Experimenta · K e S",
   ksTitle: "Sente o que K e S realmente fazem",
@@ -664,7 +664,7 @@ const sv: RichStory = {
   reducerPretitle: "Prova · reduceraren",
   reducerTitle: "Se en härledning veckla ut sig",
   reducerBody:
-    "Välj en berömd härledning (ι ι → K, eller ι (ι (ι (ι ι))) → S), eller skriv ditt eget uttryck. Tryck Steg för att tillämpa en reduktion; den nya termen ersätter den gamla. Reduceraren följer vänstermest-yttersta ordning — exakt strategin från läroböckerna.",
+    "Välj en berömd härledning (ι (ι (ι ι)) → K, eller ι (ι (ι (ι ι))) → S), eller skriv ditt eget uttryck. Tryck Steg för att tillämpa en reduktion; den nya termen ersätter den gamla. Reduceraren följer vänstermest-yttersta ordning — exakt strategin från läroböckerna.",
   ksCaption: "Interaktiv · K- och S-lekplats",
   ksPretitle: "Prova · K och S",
   ksTitle: "Känn vad K och S faktiskt gör",
@@ -755,7 +755,7 @@ const no: RichStory = {
   reducerPretitle: "Prøv · reduseren",
   reducerTitle: "Se en utledning folde seg ut",
   reducerBody:
-    "Velg en berømt utledning (ι ι → K, eller ι (ι (ι (ι ι))) → S), eller skriv ditt eget uttrykk. Trykk Steg for å anvende én reduksjon; den nye termen erstatter den gamle. Reduseren følger venstre-ytterste rekkefølge — nøyaktig strategien fra lærebøkene.",
+    "Velg en berømt utledning (ι (ι (ι ι)) → K, eller ι (ι (ι (ι ι))) → S), eller skriv ditt eget uttrykk. Trykk Steg for å anvende én reduksjon; den nye termen erstatter den gamle. Reduseren følger venstre-ytterste rekkefølge — nøyaktig strategien fra lærebøkene.",
   ksCaption: "Interaktiv · K- og S-lekeplass",
   ksPretitle: "Prøv · K og S",
   ksTitle: "Føl hva K og S faktisk gjør",

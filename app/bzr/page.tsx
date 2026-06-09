@@ -9,7 +9,7 @@ import { BzrSpiralSim } from "@/components/BzrSpiralSim";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
-const ACCENT = "text-signal-rose";
+const ACCENT = "text-signal-coral";
 
 // --------------------------------------------------------------------------
 // Rich, per-locale story copy for the Belousov-Zhabotinsky story page. All
@@ -847,7 +847,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
 
 function EncounterCard({ label, title, body }: { label: string; title: string; body: string }) {
   return (
-    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-rose/40">
+    <div className="glass hairline h-full space-y-3 rounded-2xl border p-6 transition-colors hover:border-signal-coral/40">
       <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>{label}</div>
       <h3 className="math-italic text-2xl leading-snug text-ink-100">{title}</h3>
       <p className="text-sm leading-relaxed text-ink-200">{body}</p>
@@ -866,10 +866,10 @@ export default function BzrStory() {
       page={page}
       ctaHref="/bzr/explorer"
       accent={ACCENT}
-      borderAccent="border-signal-rose/70"
-      bgAccent="bg-signal-rose/10"
-      hoverAccent="hover:bg-signal-rose/20"
-      gradient="from-signal-rose/10"
+      borderAccent="border-signal-coral/70"
+      bgAccent="bg-signal-coral/10"
+      hoverAccent="hover:bg-signal-coral/20"
+      gradient="from-signal-coral/10"
       formulaBadge="3 species · reaction + diffusion"
       formulaLatex={
         "\\varepsilon\\,\\dot{x} = q\\,y - x\\,y + x(1-x) \\qquad \\varepsilon'\\,\\dot{y} = -q\\,y - x\\,y + f\\,z \\qquad \\dot{z} = x - z"
@@ -1083,7 +1083,7 @@ export default function BzrStory() {
         <Reveal delay={120}>
           <div className="hairline mt-2 rounded-2xl border bg-ink-950/40 p-6 text-sm leading-relaxed text-ink-300">
             See also the{" "}
-            <Link href="/turingpattern" className="text-signal-rose hover:underline">
+            <Link href="/turingpattern" className="text-signal-coral hover:underline">
               Turing patterns
             </Link>{" "}
             room — a parallel story about reaction-diffusion, told in stripes and spots instead of
@@ -1104,7 +1104,7 @@ export default function BzrStory() {
           <p className="leading-relaxed text-ink-200">{story.closingBody}</p>
           <Link
             href="/bzr/explorer"
-            className="inline-block rounded-full border border-signal-rose/70 bg-signal-rose/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-rose transition-colors hover:bg-signal-rose/25"
+            className="inline-block rounded-full border border-signal-coral/70 bg-signal-coral/10 px-8 py-4 font-mono text-sm uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/25"
           >
             {story.ctaLabel}
           </Link>

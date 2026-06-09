@@ -146,7 +146,7 @@ export default function LangtonExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [ruleId, cell, resetTick]);
 
   const _preset = PRESETS.find((p) => p.id === ruleId) ?? PRESETS[0];
@@ -160,7 +160,7 @@ export default function LangtonExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               rule = {ruleId} · {ruleId.length} colours
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
+            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               step {stepCount.toLocaleString()}
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function LangtonExplorer() {
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
@@ -189,8 +189,8 @@ export default function LangtonExplorer() {
                   }}
                   className={`rounded-md border px-3 py-2 text-left transition-colors ${
                     ruleId === p.id
-                      ? "border-signal-violet/60 bg-signal-violet/10 text-signal-violet"
-                      : "hairline text-ink-200 hover:border-signal-violet/40 hover:text-signal-violet"
+                      ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
+                      : "hairline text-ink-200 hover:border-signal-cyan/40 hover:text-signal-cyan"
                   }`}
                 >
                   <div className="flex items-center justify-between font-mono text-xs">
@@ -233,7 +233,7 @@ export default function LangtonExplorer() {
               className={`w-full rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
                 running
                   ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
-                  : "border-signal-violet/60 bg-signal-violet/10 text-signal-violet"
+                  : "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
               }`}
             >
               {running ? "❚❚ Pause" : "▶ Play"}
@@ -249,7 +249,7 @@ export default function LangtonExplorer() {
           <div className="p-5">
             <Link
               href="/"
-              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-violet/40 hover:text-signal-violet"
+              className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
             >
               {u.back}
             </Link>
@@ -290,7 +290,7 @@ function SliderRow({
         max={max}
         step={step}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-signal-violet"
+        className="w-full accent-signal-cyan"
       />
     </div>
   );

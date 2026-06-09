@@ -22,6 +22,12 @@ export default {
           cyan: "#7df3ff",
           amber: "#ffd166",
           rose: "#ff7ab6",
+          // Added so chaos and analysis can have their own category hues
+          // distinct from paradox (rose) and geometry (amber). Used by
+          // every chaos topic page (coral) and every analysis topic page
+          // (teal), plus the cosmos constellation in lib/cosmos/layout.ts.
+          coral: "#ff8a5c",
+          teal: "#7be0c0",
         },
       },
       fontFamily: {
