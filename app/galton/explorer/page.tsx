@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 interface Ball {
   x: number; // peg-grid x (0..rows)
@@ -17,6 +19,7 @@ export default function GaltonExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.galton;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [rows, setRows] = useState(16);
   // Default + slider max trimmed for the same reason as the inline sim:
@@ -39,7 +42,6 @@ export default function GaltonExplorer() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let raf = 0;
 
     const resize = () => {
@@ -77,7 +79,7 @@ export default function GaltonExplorer() {
     const draw = () => {
       const cfg = paramsRef.current;
       const { W, H, cx, top, dx, histTop, histH, margin: _margin } = layout();
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // pegs
@@ -168,7 +170,7 @@ export default function GaltonExplorer() {
           const mu = rows * cfg.bias;
           const sigma2 = rows * cfg.bias * (1 - cfg.bias);
           if (sigma2 > 0.0001) {
-            ctx.strokeStyle = "#ff7ab6";
+            ctx.strokeStyle = palette.signal.rose;
             ctx.lineWidth = 1.6 * dpr;
             ctx.beginPath();
             const steps = 200;
@@ -213,7 +215,7 @@ export default function GaltonExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [rows, resetTick]);
+  }, [rows, resetTick, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">

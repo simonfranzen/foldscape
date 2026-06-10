@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Small inline Galton board: balls cascade through a triangle of pegs,
 // filling a histogram below. Two sliders — rows N and spawn rate. Tuned
@@ -29,6 +31,7 @@ export function GaltonInlineSim({
   hint,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
   const [rows, setRows] = useState(14);
   // Default + max trimmed: spawn=4 with rows=22 was ~250 balls/s on screen
   // simultaneously, which choked weaker laptops. 1 by default lets you watch
@@ -47,7 +50,6 @@ export function GaltonInlineSim({
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let raf = 0;
 
     const resize = () => {
@@ -84,7 +86,7 @@ export function GaltonInlineSim({
       const histTop = H - histH - margin;
 
       // background
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // pegs — cyan
@@ -181,7 +183,7 @@ export function GaltonInlineSim({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [rows, resetTick]);
+  }, [rows, resetTick, dpr]);
 
   return (
     <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5 md:p-6">
