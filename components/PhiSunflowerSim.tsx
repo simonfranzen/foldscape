@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Vogel-model sunflower phyllotaxis renderer for the φ story page. Seeds are
 // placed at (r, θ) = (c·√n, n·α). The user controls α from 137.0° to 138.0°
@@ -21,6 +23,7 @@ const GOLDEN_DEG = 137.507764;
 
 export function PhiSunflowerSim({ caption, angleLabel, seedsLabel, hint, goldenLabel }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
   // Step in hundredths of a degree so 137.5077 (golden) is reachable exactly.
   const [angle, setAngle] = useState<number>(137.51);
   const [seedCount, setSeedCount] = useState<number>(640);
@@ -28,7 +31,6 @@ export function PhiSunflowerSim({ caption, angleLabel, seedsLabel, hint, goldenL
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = window.devicePixelRatio || 1;
     canvas.width = SIZE * dpr;
     canvas.height = SIZE * dpr;
     canvas.style.width = `${SIZE}px`;
@@ -38,7 +40,7 @@ export function PhiSunflowerSim({ caption, angleLabel, seedsLabel, hint, goldenL
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     // Ink background
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, SIZE, SIZE);
 
     // Subtle disk halo
@@ -73,7 +75,7 @@ export function PhiSunflowerSim({ caption, angleLabel, seedsLabel, hint, goldenL
       ctx.arc(x, y, rad, 0, Math.PI * 2);
       ctx.fill();
     }
-  }, [angle, seedCount]);
+  }, [angle, seedCount, dpr]);
 
   const diffDeg = angle - GOLDEN_DEG;
   const isGolden = Math.abs(diffDeg) < 0.005;

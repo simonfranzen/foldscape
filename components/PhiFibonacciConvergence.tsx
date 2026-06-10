@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Fibonacci ratio convergence table + a small golden-spiral SVG. The user
 // drags an N slider; we show every consecutive ratio F(n+1)/F(n) up to N,
@@ -322,7 +323,7 @@ export function PhiFibonacciConvergence({
               <path
                 d={spiral.d}
                 fill="none"
-                stroke="#ffd166"
+                stroke={palette.signal.amber}
                 strokeWidth={Math.max(0.08, spiralN * 0.05)}
                 strokeLinecap="round"
               />
