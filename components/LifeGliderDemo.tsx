@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { getDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // A larger grid running a single pattern continuously, with toroidal wrap.
 // Used to show a glider walking across the demo.
@@ -71,7 +73,7 @@ export function LifeGliderDemo({
     seed();
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = getDpr();
       canvas.width = Math.floor(canvas.clientWidth * dpr);
       canvas.height = Math.floor(canvas.clientHeight * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -81,12 +83,12 @@ export function LifeGliderDemo({
     ro.observe(canvas);
 
     const colorMap: Record<string, string> = {
-      "text-signal-violet": "#b388ff",
-      "text-signal-cyan": "#7df3ff",
-      "text-signal-amber": "#ffd166",
-      "text-signal-rose": "#ff7ab6",
+      "text-signal-violet": palette.signal.violet,
+      "text-signal-cyan": palette.signal.cyan,
+      "text-signal-amber": palette.signal.amber,
+      "text-signal-rose": palette.signal.rose,
     };
-    const fill = colorMap[accent] ?? "#7df3ff";
+    const fill = colorMap[accent] ?? palette.signal.cyan;
 
     const draw = () => {
       const W = canvas.clientWidth;
