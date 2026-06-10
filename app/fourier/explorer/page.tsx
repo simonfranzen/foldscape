@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 type WaveType = "square" | "sawtooth" | "triangle" | "pulse";
 
@@ -60,6 +62,7 @@ export default function FourierExplorer() {
   const topic = a.topics.fourier;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const spectrumRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [wave, setWave] = useState<WaveType>("square");
   const [N, setN] = useState(8);
@@ -71,8 +74,8 @@ export default function FourierExplorer() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -80,7 +83,7 @@ export default function FourierExplorer() {
       canvas.width = Math.floor(W * dpr);
       canvas.height = Math.floor(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Axes
@@ -124,8 +127,8 @@ export default function FourierExplorer() {
       }
 
       // Partial sum (bright amber)
-      ctx.strokeStyle = "#ffd166";
-      ctx.shadowColor = "#ffd166";
+      ctx.strokeStyle = palette.signal.amber;
+      ctx.shadowColor = palette.signal.amber;
       ctx.shadowBlur = 8;
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -143,14 +146,14 @@ export default function FourierExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [wave, N, showTarget, showHarmonics, harms]);
+  }, [wave, N, showTarget, showHarmonics, harms, dpr]);
 
   // Spectrum (bar chart of amplitudes)
   useEffect(() => {
     const canvas = spectrumRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -158,7 +161,7 @@ export default function FourierExplorer() {
       canvas.width = Math.floor(W * dpr);
       canvas.height = Math.floor(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const max = Math.max(0.1, ...harms.map((h) => Math.abs(h.a)));
@@ -180,7 +183,7 @@ export default function FourierExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [harms, N]);
+  }, [harms, N, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">

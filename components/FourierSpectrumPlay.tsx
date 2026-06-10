@@ -1,10 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 const N_BARS = 5;
 const DEFAULT_AMPS: number[] = [1.0, 0.0, 0.35, 0.0, 0.18];
-const COLORS = ["#7df3ff", "#b388ff", "#ffd166", "#ff7ab6", "#7df3ff"];
+const COLORS = [
+  palette.signal.cyan,
+  palette.signal.violet,
+  palette.signal.amber,
+  palette.signal.rose,
+  palette.signal.cyan,
+];
 
 interface Props {
   caption?: string;
@@ -53,6 +61,7 @@ export function FourierSpectrumPlay({
   const specRef = useRef<HTMLCanvasElement | null>(null);
   const [amps, setAmps] = useState<number[]>([...DEFAULT_AMPS]);
   const [playing, setPlaying] = useState(false);
+  const dpr = useDpr();
   const audioRef = useRef<{
     ctx: AudioContext;
     osc: OscillatorNode[];
@@ -68,7 +77,6 @@ export function FourierSpectrumPlay({
     if (!ctx) return;
 
     const render = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
       if (canvas.width !== Math.floor(W * dpr) || canvas.height !== Math.floor(H * dpr)) {
@@ -76,7 +84,7 @@ export function FourierSpectrumPlay({
         canvas.height = Math.floor(H * dpr);
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // baseline
@@ -110,7 +118,7 @@ export function FourierSpectrumPlay({
       }
 
       // Sum — amber
-      ctx.strokeStyle = "#ffd166";
+      ctx.strokeStyle = palette.signal.amber;
       ctx.lineWidth = 1.8;
       ctx.beginPath();
       for (let s = 0; s <= STEPS; s++) {
@@ -128,7 +136,7 @@ export function FourierSpectrumPlay({
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [amps]);
+  }, [amps, dpr]);
 
   // Spectrum bar canvas
   useEffect(() => {
@@ -138,7 +146,6 @@ export function FourierSpectrumPlay({
     if (!ctx) return;
 
     const render = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
       if (canvas.width !== Math.floor(W * dpr) || canvas.height !== Math.floor(H * dpr)) {
@@ -146,7 +153,7 @@ export function FourierSpectrumPlay({
         canvas.height = Math.floor(H * dpr);
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const baseY = H - 22;
@@ -179,7 +186,7 @@ export function FourierSpectrumPlay({
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [amps]);
+  }, [amps, dpr]);
 
   // Audio: build oscillators per harmonic on first play.
   const start = async () => {
