@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 interface ParamSpec {
   label: string;
@@ -123,6 +125,7 @@ export default function AizawaExplorer() {
   const [dt, setDt] = useState<number>(ATTRACTORS.aizawa.step);
   const [resetTick, setResetTick] = useState(0);
 
+  const dpr = useDpr();
   const stateRef = useRef({ attractor: ATTRACTORS.aizawa, params, stepsPerFrame, autoRotate, dt });
   stateRef.current = { attractor: ATTRACTORS[attractorId], params, stepsPerFrame, autoRotate, dt };
 
@@ -134,12 +137,11 @@ export default function AizawaExplorer() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
       canvas.height = Math.floor(canvas.clientHeight * dpr);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
     resize();
@@ -217,7 +219,7 @@ export default function AizawaExplorer() {
       window.removeEventListener("mousemove", onMove);
     };
      
-  }, [resetTick]);
+  }, [resetTick, dpr]);
 
   const attractor = ATTRACTORS[attractorId];
 

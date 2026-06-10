@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
 
 // Live Aizawa attractor with drag-to-rotate and a slider for parameter `b`
 // (the most visually expressive dial — drives the basket-handled torus
@@ -36,13 +37,14 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
   const yawRef = useRef(0.7);
   const draggingRef = useRef(false);
   const lastXRef = useRef(0);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d", { alpha: true })!;
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
     let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
@@ -99,7 +101,6 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
         const [ax, ay] = project(pts[i - 1]);
         const [bx, by] = project(pts[i]);
         const t = i / pts.length;
-        // Gradient from cyan #7df3ff to violet #b388ff
         const r = Math.floor(125 + (179 - 125) * t);
         const g = Math.floor(243 + (136 - 243) * t);
         const bl = Math.floor(255 + (255 - 255) * t);
@@ -133,22 +134,22 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [b]);
+  }, [b, dpr]);
 
-  const onPointerDown = (e: React.PointerEvent) => {
+  const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = true;
     lastXRef.current = e.clientX;
-    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    e.currentTarget.setPointerCapture(e.pointerId);
   };
-  const onPointerMove = (e: React.PointerEvent) => {
+  const onPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (!draggingRef.current) return;
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
     yawRef.current += dx * 0.01;
   };
-  const onPointerUp = (e: React.PointerEvent) => {
+  const onPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = false;
-    (e.target as HTMLElement).releasePointerCapture?.(e.pointerId);
+    e.currentTarget.releasePointerCapture(e.pointerId);
   };
 
   return (

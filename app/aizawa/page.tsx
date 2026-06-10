@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { palette } from "@/lib/visual/palette";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { AizawaInlineMini } from "@/components/AizawaInlineMini";
@@ -874,7 +875,7 @@ function TorusSpikeSVG() {
       role="img"
       aria-label="Schematic torus pierced by a vertical spike"
     >
-      <rect width="320" height="200" fill="#06070d" rx="8" />
+      <rect width="320" height="200" fill={palette.canvas.bg} rx="8" />
       {/* Torus outer ellipses */}
       <ellipse
         cx="160"
@@ -922,14 +923,14 @@ function TorusSpikeSVG() {
         strokeWidth="1.1"
         strokeDasharray="3 3"
       />
-      <circle cx="160" cy="120" r="2.6" fill="#ff7ab6" />
+      <circle cx="160" cy="120" r="2.6" fill={palette.signal.rose} />
       <text
         x="160"
         y="24"
         textAnchor="middle"
         fontFamily="ui-monospace, monospace"
         fontSize="9"
-        fill="#ffd166"
+        fill={palette.signal.amber}
       >
         z-axis
       </text>
@@ -980,7 +981,7 @@ function SweepCell({ b }: { b: number }) {
   return (
     <div className="hairline space-y-1 rounded-md border bg-ink-950/60 p-2">
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={`b = ${b}`}>
-        <rect width={W} height={H} fill="#06070d" rx="4" />
+        <rect width={W} height={H} fill={palette.canvas.bg} rx="4" />
         <path d={dPath} fill="none" stroke="rgba(125,243,255,0.55)" strokeWidth="0.6" />
       </svg>
       <div className="text-center font-mono text-[10px] text-ink-300">
