@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Interactive c-picker. The user drags a point on a small complex plane;
 // the orbit of z₀ = 0 under zₙ₊₁ = zₙ² + c animates live, and the panel
@@ -62,7 +64,7 @@ export function MandelCDragger({
     let escapedLocal = false;
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = getDpr();
       canvas.width = canvas.clientWidth * dpr;
       canvas.height = canvas.clientHeight * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -110,7 +112,7 @@ export function MandelCDragger({
     const draw = () => {
       const w = W();
       const h = H();
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, w, h);
 
       // soft silhouette of the set
@@ -188,7 +190,7 @@ export function MandelCDragger({
 
       // c marker
       const c = cRef.current;
-      ctx.fillStyle = "#ffd166";
+      ctx.fillStyle = palette.signal.amber;
       ctx.beginPath();
       ctx.arc(px(c[0]), py(c[1]), 5, 0, Math.PI * 2);
       ctx.fill();

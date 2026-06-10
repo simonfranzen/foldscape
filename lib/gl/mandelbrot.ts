@@ -3,6 +3,8 @@
 // it takes to escape |z| > 2. Map the (possibly smoothed) escape count to a
 // colour palette.
 
+import { getDpr } from "@/lib/hooks/useDpr";
+
 export interface MandelState {
   center: [number, number];
   scale: number; // half-height of view in complex units
@@ -112,7 +114,7 @@ export class MandelRenderer {
     const gl = canvas.getContext("webgl2", { antialias: false, alpha: false });
     if (!gl) throw new Error("WebGL2 not available");
     this.gl = gl;
-    this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.dpr = getDpr();
     this.initQuad();
     this.initProgram();
   }

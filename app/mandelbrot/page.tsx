@@ -8,6 +8,7 @@ import { MandelMini } from "@/components/MandelMini";
 import { MandelCDragger } from "@/components/MandelCDragger";
 import { Reveal } from "@/components/Reveal";
 import { StoryCard } from "@/components/StoryPageShell";
+import { getDpr } from "@/lib/hooks/useDpr";
 import type { Locale } from "@/lib/i18n/types";
 
 // --------------------------------------------------------------------------
@@ -1515,7 +1516,7 @@ function useRefCanvas(c: [number, number]) {
     let cancelled = false;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = getDpr();
 
     const render = () => {
       if (cancelled) return;

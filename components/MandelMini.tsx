@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { getDpr } from "@/lib/hooks/useDpr";
 
 // Tiny static (or slowly drifting) Mandelbrot render. Used inside the story
 // page for the "Why the picture is infinite" section without needing the full
@@ -26,7 +27,7 @@ export function MandelMini({
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
     let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = getDpr();
     const render = () => {
       const targetW = Math.floor(canvas.clientWidth * dpr);
       const targetH = Math.floor(canvas.clientHeight * dpr);
