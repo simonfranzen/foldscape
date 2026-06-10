@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // ─── Palette ─────────────────────────────────────────────────────────────────
-const COLOURS = ["#7df3ff", "#b388ff", "#ffd166", "#ff7ab6", "#9ad7ff"] as const;
-const INK = "#06070d";
+const COLOURS = [palette.signal.cyan, palette.signal.violet, palette.signal.amber, palette.signal.rose, "#9ad7ff"] as const;
 
 // ─── Tile sets ───────────────────────────────────────────────────────────────
 // Two demo sets in the spirit of the modern aperiodic Wang records:
@@ -209,7 +209,7 @@ export function WangAperiodicTiler({ caption, randomizeLabel, setLabel, hint }: 
     const rows = Math.floor(H / tileSize);
 
     // Background
-    ctx.fillStyle = INK;
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, W, H);
 
     const { grid } = tilePatch(setDef.tiles, rows, cols, seed);
