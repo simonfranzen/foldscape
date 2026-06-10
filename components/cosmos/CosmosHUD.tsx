@@ -112,9 +112,9 @@ export function CosmosHUD({ activeCategory }: Props) {
         <>
       <nav
         aria-label={cosmos.jumpLabel}
-        className="hud-fixed pointer-events-auto fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-end gap-3 md:flex"
+        className="hud-fixed pointer-events-auto fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-end gap-4 md:flex"
       >
-        <div className="font-mono text-[9px] uppercase tracking-widest2 text-ink-400">
+        <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-400">
           {cosmos.jumpLabel}
         </div>
         {SCENE_ORDER.map((cat, i) => {
@@ -127,23 +127,32 @@ export function CosmosHUD({ activeCategory }: Props) {
             | "categoryAnalysis"
             | "categoryParadox";
           const name = (a.landing as unknown as Record<string, string>)[categoryKey] ?? cat;
+          // The active category's name is ALWAYS visible (user feedback:
+          // "die aktive sektion sollte mit namen dann immer sichtbar sein").
+          // Inactive labels still reveal on hover/focus so the menu doesn't
+          // sprawl into a column of words.
           return (
             <button
               key={cat}
               onClick={() => smoothScrollToId(`scene-${cat}`)}
               aria-label={`${i + 1}. ${name}`}
-              className="group flex flex-row-reverse items-center gap-2 text-right"
+              aria-current={isActive ? "true" : undefined}
+              className="group flex flex-row-reverse items-center gap-3 text-right"
             >
               <span
-                className="inline-block h-2 w-2 flex-shrink-0 rounded-full transition-all"
+                className="inline-block h-3 w-3 flex-shrink-0 rounded-full transition-all"
                 style={{
-                  background: isActive ? CATEGORY_COLOR[cat] : "rgba(234,236,243,0.35)",
-                  boxShadow: isActive ? `0 0 12px ${CATEGORY_COLOR[cat]}` : undefined,
-                  transform: isActive ? "scale(1.4)" : undefined,
+                  background: isActive ? CATEGORY_COLOR[cat] : "rgba(234,236,243,0.32)",
+                  boxShadow: isActive ? `0 0 14px ${CATEGORY_COLOR[cat]}` : undefined,
+                  transform: isActive ? "scale(1.5)" : undefined,
                 }}
               />
               <span
-                className="whitespace-nowrap font-mono text-[10px] uppercase tracking-widest2 opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100"
+                className={`whitespace-nowrap font-mono text-[11px] uppercase tracking-widest2 transition-opacity ${
+                  isActive
+                    ? "opacity-100"
+                    : "opacity-0 group-hover:opacity-100 group-focus:opacity-100"
+                }`}
                 style={{ color: isActive ? CATEGORY_COLOR[cat] : "#eaecf3" }}
               >
                 {name}

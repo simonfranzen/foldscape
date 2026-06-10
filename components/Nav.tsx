@@ -39,7 +39,19 @@ export function Nav() {
         </Link>
 
         {sections.length > 0 ? (
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-2 md:flex">
+            {/* Back-to-atlas link sits *before* the section tabs on every
+                topic page so the back path is always visible — the body
+                of the story used to carry a "Back to atlas" button which
+                made the hero feel cluttered (user feedback). */}
+            <Link
+              href="/"
+              className="mr-3 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest2 text-ink-400 transition-colors hover:text-signal-violet"
+            >
+              <span aria-hidden="true">←</span>
+              <span>{a.nav.atlas}</span>
+            </Link>
+            <span className="h-4 w-px bg-ink-700/50" aria-hidden="true" />
             {sections.map((sec, i) => {
               const active = pathname === sec.href;
               const label = s.sectionLabels[sec.key] ?? sec.key;
@@ -48,8 +60,11 @@ export function Nav() {
                   key={sec.href}
                   href={sec.href}
                   className={`relative rounded-md px-3 py-1.5 font-mono text-sm uppercase tracking-widest transition-colors ${
-                    active ? "text-signal-violet" : "text-ink-200 hover:text-ink-100"
+                    active
+                      ? "font-medium text-signal-violet"
+                      : "text-ink-300 hover:text-ink-100"
                   }`}
+                  aria-current={active ? "page" : undefined}
                 >
                   <span className="mr-2 text-[10px] opacity-50">{romanize(i + 1)}</span>
                   {label}

@@ -13,6 +13,7 @@
 // timing, no rAF, just SVG attributes driven by the parent's progress.
 
 import type { TopicCategory } from "@/lib/topics";
+import { CATEGORY_COLOR } from "@/lib/cosmos/layout";
 
 interface Props {
   category: TopicCategory;
@@ -35,12 +36,25 @@ function dashoffset(reveal: number, len: number): number {
 }
 
 export function Specimen({ category, progress }: Props) {
+  // Specimen art is rendered with a soft category-colour drop-shadow so
+  // the strokes read as a glowing neon line rather than a flat tracing.
+  // The glow intensifies with scroll progress so the "ignition" of the
+  // level art is visible — by the time the user is in the middle of the
+  // scene the bloom is at full strength. Reduced-motion users still get
+  // the static drawing; the filter is a CSS value, not an animation.
+  const color = CATEGORY_COLOR[category];
+  const glow = 0.4 + 0.6 * Math.max(0, Math.min(1, (progress - 0.15) / 0.35));
   return (
     <svg
       aria-hidden="true"
       viewBox="0 0 1000 600"
       className="cosmos-specimen pointer-events-none absolute inset-0 z-[1] h-full w-full"
       preserveAspectRatio="xMidYMid slice"
+      style={{
+        filter: `drop-shadow(0 0 ${8 + glow * 6}px ${color}) drop-shadow(0 0 ${
+          2 + glow * 4
+        }px ${color})`,
+      }}
     >
       {category === "paradox" && <ParadoxSpecimen progress={progress} />}
       {category === "logic" && <LogicSpecimen progress={progress} />}
@@ -128,20 +142,22 @@ function ComputationSpecimen({ progress }: { progress: number }) {
       <g>
         {Array.from({ length: 20 }).map((_, i) =>
           Array.from({ length: 12 }).map((__, j) => {
-            const on = (i * 7 + j * 13) % 5 === 0;
+            // Sparser density (1 in 9 cells) + skip the central
+            // exclusion zone where the title text and constellation
+            // stars live (user feedback: "vor allem in der mitte nicht
+            // da wo text und elemente sind").
+            const on = (i * 7 + j * 13) % 9 === 0;
             if (!on) return null;
+            const cx = 60 + i * 50 + 14;
+            const cy = 60 + j * 40 + 14;
+            if (cx > 200 && cx < 800 && cy > 140 && cy < 520) return null;
             // Diagonal stagger normalised to 0..1.
             const wave = (i + j) / (20 + 12);
-            // Per-cell jitter so the front isn't a sharp diagonal.
             const jitter = (((i * 17 + j * 31) % 100) / 100 - 0.5) * 0.1;
             const start = Math.max(0, Math.min(0.55, wave * 0.5 + jitter));
             const end = start + 0.1;
             const cellReveal = window01(progress, start, end);
             const size = 28 * cellReveal;
-            // Centre-anchored shrink so the cell grows from its centre,
-            // not its top-left corner.
-            const cx = 60 + i * 50 + 14;
-            const cy = 60 + j * 40 + 14;
             return (
               <rect
                 key={`${i}-${j}`}
@@ -150,7 +166,7 @@ function ComputationSpecimen({ progress }: { progress: number }) {
                 width={size}
                 height={size}
                 fill="#7df3ff"
-                opacity={0.22 * cellReveal}
+                opacity={0.06 * cellReveal}
                 stroke="none"
               />
             );

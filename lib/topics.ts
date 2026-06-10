@@ -53,7 +53,9 @@ export type TopicId =
   // Fifth wave — open problems + the AI math
   | "backprop"
   | "diffusion"
-  | "riemann";
+  | "riemann"
+  // Sixth wave — logic & satisfiability
+  | "sat";
 
 export type TopicStatus = "interactive" | "stub";
 export type TopicCategory = "logic" | "computation" | "chaos" | "geometry" | "analysis" | "paradox";
@@ -108,6 +110,18 @@ export const TOPICS: Topic[] = [
     sections: [
       { key: "story", href: "/nand" },
       { key: "builder", href: "/nand/builder" },
+    ],
+  },
+  {
+    id: "sat",
+    href: "/sat",
+    status: "interactive",
+    category: "logic",
+    glyph: "⊨",
+    formula: "(x ∨ ¬y) ∧ (y ∨ z)",
+    sections: [
+      { key: "story", href: "/sat" },
+      { key: "explorer", href: "/sat/explorer" },
     ],
   },
   {

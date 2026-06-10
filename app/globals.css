@@ -483,6 +483,11 @@ a.cosmos-star-label {
   animation: cosmosShiftSlow 18s ease-in-out infinite;
 }
 
+/* (Earlier versions of this file shipped a 620 ms "warp" zoom-and-flash
+   on star click. The user found it fought with the browser-native view
+   transition that Next.js sets up via experimental.viewTransition, so
+   it was removed. The crossfade alone is enough.) */
+
 /* Reduced motion: release the sticky pin, freeze the scroll arrow, freeze
    every cosmos ambient animation. The scenes collapse to plain block
    sections so the page reads as a top-to-bottom list, not a pinned camera. */

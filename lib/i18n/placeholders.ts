@@ -165,6 +165,11 @@ export const EN_PLACEHOLDERS: Record<PlaceholderId, TopicMeta> = {
     tagline: "The biggest open question in computer science",
     body: "P is the class of problems a computer solves quickly. NP is the class where, given an answer, you can verify it quickly. Is every NP problem secretly in P? Decades of research, a $1 million Clay prize, no proof either way. If P = NP, every cryptographic system would crack and every shortest-route problem would melt. Most computer scientists bet P ≠ NP — but nobody knows.",
   },
+  sat: {
+    title: "Boolean Satisfiability",
+    tagline: "The problem every hard problem reduces to",
+    body: "Given a logical formula of variables joined by AND, OR and NOT — can you set each variable true or false so the whole thing comes out true? Checking a proposed assignment is trivial; finding one can be brutal. In 1971 Stephen Cook (and, independently, Leonid Levin) proved SAT is NP-complete: every problem whose answers are easy to verify reduces to it, so one fast SAT solver would crack them all at once. It was the first problem ever proved NP-complete, and it sits at the heart of P versus NP — yet real solvers, armed with the DPLL search and conflict-driven clause learning, routinely settle formulas with millions of variables.",
+  },
   rsa: {
     title: "RSA & One-Way Functions",
     tagline: "Multiplying is easy; factoring is impossible",

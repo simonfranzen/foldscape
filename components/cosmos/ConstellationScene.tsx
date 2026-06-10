@@ -125,20 +125,32 @@ export function ConstellationScene({ category, index, onProgress }: Props) {
           <div className="pointer-events-none absolute inset-0">
             <Specimen category={category} progress={progress} />
           </div>
-          {/* Title + tagline — sits above the cluster with generous top
-              padding so it never touches the topmost stars. The SCENE_FRAME
-              centres the cluster at 62 % of the sky's vertical height to
-              reserve the top 38 % for prose. */}
+          {/* Title block: act numeral + chapter title (the narrative arc
+              I–VI), then the existing poetic tagline. The arc gives the
+              six scenes a sense of *sequence* — Krise → Stabilität →
+              Aufbau → Verlust → Form → Grenze — so the visitor feels
+              they're moving through a story, not flipping through a
+              flat menu. */}
           <div className="pointer-events-none absolute left-1/2 top-6 z-10 -translate-x-1/2 px-4 text-center md:top-16 lg:top-20">
             <div
-              className="font-mono text-[10px] uppercase tracking-widest2 opacity-80"
+              className="flex items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-widest2 opacity-90"
               style={{ color }}
             >
-              {categoryName}
+              <span className="text-[14px] tabular-nums opacity-85">
+                {cosmos.acts[category].numeral}
+              </span>
+              <span aria-hidden="true" className="opacity-40">
+                ·
+              </span>
+              <span>{cosmos.acts[category].title}</span>
+              <span aria-hidden="true" className="opacity-40">
+                ·
+              </span>
+              <span className="opacity-60">{categoryName}</span>
             </div>
             <h2
               id={`scene-${category}-title`}
-              className="math-italic mx-auto mt-2 max-w-[90vw] text-2xl leading-tight text-ink-100 md:max-w-3xl md:text-4xl lg:text-5xl"
+              className="math-italic mx-auto mt-3 max-w-[90vw] text-2xl leading-tight text-ink-100 md:max-w-3xl md:text-4xl lg:text-5xl"
             >
               {cosmos.taglines[category]}
             </h2>

@@ -234,6 +234,11 @@ const de: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    sat: {
+      title: "Erfüllbarkeit (SAT)",
+      tagline: "Das Problem, auf das sich jedes schwere Problem zurückführen lässt",
+      body: "Gegeben eine logische Formel aus Variablen, verknüpft mit UND, ODER und NICHT — kann man jede Variable so auf wahr oder falsch setzen, dass das Ganze wahr wird? Eine vorgeschlagene Belegung zu prüfen ist trivial; eine zu finden kann brutal sein. 1971 bewies Stephen Cook (und unabhängig Leonid Levin), dass SAT NP-vollständig ist: Jedes Problem, dessen Antworten sich leicht prüfen lassen, reduziert sich darauf — ein schneller SAT-Solver würde sie alle auf einmal knacken. Es war das erste je als NP-vollständig bewiesene Problem und steht im Zentrum von P gegen NP — und doch bewältigen echte Solver mit DPLL-Suche und Conflict-Driven Clause Learning routinemäßig Formeln mit Millionen von Variablen.",
+    },
     diffusion: {
       title: "Diffusionsmodelle",
       tagline: "Rauschen, Schritt für Schritt zu einem Bild aufgelöst",
@@ -514,6 +519,11 @@ const es: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    sat: {
+      title: "Satisfacibilidad booleana (SAT)",
+      tagline: "El problema al que se reduce todo problema difícil",
+      body: "Dada una fórmula lógica de variables unidas por Y, O y NO — ¿puedes poner cada variable en verdadero o falso para que el conjunto resulte verdadero? Comprobar una asignación propuesta es trivial; encontrarla puede ser brutal. En 1971 Stephen Cook (e, independientemente, Leonid Levin) demostró que SAT es NP-completo: todo problema cuyas respuestas son fáciles de verificar se reduce a él, así que un solver de SAT rápido los resolvería todos de golpe. Fue el primer problema demostrado NP-completo y está en el corazón de P frente a NP — y aun así los solvers reales, con la búsqueda DPLL y el aprendizaje de cláusulas por conflicto, resuelven de rutina fórmulas con millones de variables.",
+    },
     diffusion: {
       title: "Modelos de difusión",
       tagline: "Ruido disuelto en una imagen, paso a paso",
@@ -744,6 +754,11 @@ const fr: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    sat: {
+      title: "Satisfaisabilité booléenne (SAT)",
+      tagline: "Le problème auquel se ramène tout problème difficile",
+      body: "Étant donné une formule logique de variables reliées par ET, OU et NON — peux-tu mettre chaque variable à vrai ou faux pour que l'ensemble devienne vrai ? Vérifier une affectation proposée est trivial ; en trouver une peut être brutal. En 1971, Stephen Cook (et, indépendamment, Leonid Levin) a prouvé que SAT est NP-complet : tout problème dont les réponses sont faciles à vérifier s'y ramène, donc un solveur SAT rapide les résoudrait tous d'un coup. Ce fut le premier problème jamais prouvé NP-complet, au cœur de P contre NP — et pourtant les solveurs réels, armés de la recherche DPLL et de l'apprentissage de clauses par conflit, règlent couramment des formules à des millions de variables.",
+    },
     diffusion: {
       title: "Modèles de diffusion",
       tagline: "Du bruit dissous en image, pas après pas",
@@ -974,6 +989,11 @@ const it: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    sat: {
+      title: "Soddisfacibilità booleana (SAT)",
+      tagline: "Il problema a cui si riduce ogni problema difficile",
+      body: "Data una formula logica di variabili unite da E, O e NON — puoi mettere ogni variabile a vero o falso così che il tutto risulti vero? Verificare un assegnamento proposto è banale; trovarne uno può essere brutale. Nel 1971 Stephen Cook (e, indipendentemente, Leonid Levin) dimostrò che SAT è NP-completo: ogni problema le cui risposte sono facili da verificare vi si riduce, quindi un solver SAT veloce li risolverebbe tutti in un colpo. Fu il primo problema mai dimostrato NP-completo e sta al cuore di P contro NP — eppure i solver reali, con la ricerca DPLL e l'apprendimento di clausole guidato dai conflitti, risolvono di routine formule con milioni di variabili.",
+    },
     diffusion: {
       title: "Modelli di diffusione",
       tagline: "Rumore disciolto in un'immagine, passo dopo passo",
@@ -1204,6 +1224,11 @@ const pt: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    sat: {
+      title: "Satisfazibilidade booleana (SAT)",
+      tagline: "O problema a que todo problema difícil se reduz",
+      body: "Dada uma fórmula lógica de variáveis ligadas por E, OU e NÃO — consegues pôr cada variável em verdadeiro ou falso para que o conjunto fique verdadeiro? Verificar uma atribuição proposta é trivial; encontrar uma pode ser brutal. Em 1971 Stephen Cook (e, independentemente, Leonid Levin) provou que SAT é NP-completo: todo problema cujas respostas são fáceis de verificar reduz-se a ele, logo um solver de SAT rápido resolvê-los-ia todos de uma vez. Foi o primeiro problema alguma vez provado NP-completo e está no coração de P contra NP — e ainda assim os solvers reais, com a busca DPLL e a aprendizagem de cláusulas guiada por conflitos, resolvem por rotina fórmulas com milhões de variáveis.",
+    },
     diffusion: {
       title: "Modelos de difusão",
       tagline: "Ruído dissolvido numa imagem, passo a passo",
@@ -1434,6 +1459,11 @@ const sv: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    sat: {
+      title: "Boolesk satisfierbarhet (SAT)",
+      tagline: "Problemet som varje svårt problem reduceras till",
+      body: "Givet en logisk formel av variabler sammanfogade med OCH, ELLER och ICKE — kan du sätta varje variabel till sann eller falsk så att helheten blir sann? Att kontrollera en föreslagen tilldelning är trivialt; att hitta en kan vara brutalt. År 1971 bevisade Stephen Cook (och oberoende Leonid Levin) att SAT är NP-fullständigt: varje problem vars svar är lätta att verifiera reduceras till det, så en snabb SAT-lösare skulle knäcka dem alla på en gång. Det var det första problem som någonsin bevisats NP-fullständigt och ligger i hjärtat av P mot NP — ändå avgör verkliga lösare, med DPLL-sökning och konfliktdriven klausulinlärning, rutinmässigt formler med miljoner variabler.",
+    },
     diffusion: {
       title: "Diffusionsmodeller",
       tagline: "Brus upplöst i en bild, steg för steg",
@@ -1664,6 +1694,11 @@ const no: AtlasDict = {
   },
   topics: {
     ...EN_PLACEHOLDERS,
+    sat: {
+      title: "Boolsk oppfyllbarhet (SAT)",
+      tagline: "Problemet som ethvert vanskelig problem reduseres til",
+      body: "Gitt en logisk formel av variabler bundet sammen med OG, ELLER og IKKE — kan du sette hver variabel til sann eller usann slik at helheten blir sann? Å sjekke en foreslått tildeling er trivielt; å finne en kan være brutalt. I 1971 beviste Stephen Cook (og uavhengig Leonid Levin) at SAT er NP-fullstendig: ethvert problem hvis svar er lette å verifisere reduseres til det, så en rask SAT-løser ville knekt dem alle på én gang. Det var det første problemet som noensinne ble bevist NP-fullstendig, og står i hjertet av P mot NP — likevel avgjør virkelige løsere, med DPLL-søk og konfliktdrevet klausullæring, rutinemessig formler med millioner av variabler.",
+    },
     diffusion: {
       title: "Diffusjonsmodeller",
       tagline: "Støy oppløst til et bilde, steg for steg",

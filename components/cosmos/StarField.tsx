@@ -238,14 +238,47 @@ export function StarField() {
 
     const t0 = performance.now();
     let lastFrame = t0;
+
+    // "Big-Bang" intro — first time the cosmos mounts in a session, the
+    // stars emerge from a single point at the viewport centre over the
+    // first 1.5 s. After the intro completes, the flag is stored so the
+    // user doesn't replay it every time they back-nav to /. We also skip
+    // the intro if the user lands mid-cosmos (scrollY > 0) so the
+    // ignition only fires when they're actually looking at the hero.
+    let introPlayed = false;
+    try {
+      introPlayed = sessionStorage.getItem("foldscape.cosmos.introPlayed") === "1";
+    } catch {
+      // sessionStorage may be unavailable; default to skipping the intro
+      introPlayed = true;
+    }
+    const skipIntro = introPlayed || window.scrollY > 0 || reduced;
+    const INTRO_DURATION = 1.5; // seconds
+
     const draw = (now: number) => {
       rafRef.current = null;
       const t = (now - t0) / 1000;
       const dt = Math.min(0.1, (now - lastFrame) / 1000);
       lastFrame = now;
+      // Intro progress 0..1. Eased so stars decelerate as they reach their
+      // final positions (feels like the universe settling, not exploding).
+      const introT = skipIntro ? 1 : Math.min(1, t / INTRO_DURATION);
+      const introEase = 1 - Math.pow(1 - introT, 3); // ease-out cubic
+      if (!skipIntro && introT >= 1 && !introPlayed) {
+        introPlayed = true;
+        try {
+          sessionStorage.setItem("foldscape.cosmos.introPlayed", "1");
+        } catch {
+          /* noop */
+        }
+      }
       ctx.clearRect(0, 0, width, height);
       const scrollY = scrollYRef.current;
       const { x: mx, y: my } = mouseRef.current;
+      // During the intro, all stars converge from a single bright origin
+      // at the viewport centre. After, they sit in their parallax positions.
+      const originX = width / 2;
+      const originY = height / 2;
 
       for (let li = 0; li < LAYERS.length; li++) {
         const layer = LAYERS[li];
@@ -268,9 +301,17 @@ export function StarField() {
           // frequency is halved compared to v3. Reads as "the eye thinks
           // it sees motion" rather than fairy lights flashing.
           const tw = reduced ? 1 : 0.94 + 0.06 * Math.sin(t * layer.twinkleHz * Math.PI + s.phase);
-          const a = s.alpha * tw;
-          const px = s.x * width + mxOff;
-          const py = y + myOff;
+          // Intro: stars fade in + lerp from the central origin to their
+          // final position. The deeper layers settle later (0..0.9 of
+          // intro) so the foreground stars arrive first — feels like
+          // depth blooming outward.
+          const layerStart = li * 0.08;
+          const localIntro = Math.max(0, Math.min(1, (introEase - layerStart) / (1 - layerStart)));
+          const a = s.alpha * tw * (skipIntro ? 1 : localIntro);
+          const finalPx = s.x * width + mxOff;
+          const finalPy = y + myOff;
+          const px = skipIntro ? finalPx : originX + (finalPx - originX) * localIntro;
+          const py = skipIntro ? finalPy : originY + (finalPy - originY) * localIntro;
           // Halo only on the closest layer, and even then half the v1
           // intensity. The user's note "weniger ist mehr" applies hardest
           // here: gauzy halos on every star turn the sky into a smear.
@@ -291,10 +332,28 @@ export function StarField() {
         }
       }
 
+      // Intro central bloom — a single bright dot pulses at the origin
+      // during the first ~0.6 s, then fades out as stars arrive. Sells
+      // the "everything from one point" moment.
+      if (!skipIntro && introT < 0.6) {
+        const bloomT = 1 - introT / 0.6;
+        const bloomR = 60 + 80 * (1 - bloomT);
+        const bloomA = 0.55 * Math.pow(bloomT, 0.5);
+        const grad = ctx.createRadialGradient(originX, originY, 0, originX, originY, bloomR);
+        grad.addColorStop(0, `rgba(255, 245, 230, ${bloomA})`);
+        grad.addColorStop(0.5, `rgba(200, 215, 255, ${bloomA * 0.4})`);
+        grad.addColorStop(1, `rgba(200, 215, 255, 0)`);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(originX, originY, bloomR, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
       // Fading-form pass — one geometric ghost at a time, emerges and
       // dissolves over its lifetime. Drawn over stars but at low opacity
-      // so it reads as a "depth bloom" rather than a flashy event.
-      if (!reduced && width > 0 && height > 0) {
+      // so it reads as a "depth bloom" rather than a flashy event. Held
+      // off during the intro so it doesn't compete with the bloom.
+      if (!reduced && skipIntro && width > 0 && height > 0) {
         if (formRef.current == null && t >= nextFormAt.current) {
           formSeed.current = (formSeed.current * 1103515245 + 12345) >>> 0;
           formRef.current = spawnForm(width, height, formSeed.current);
@@ -315,7 +374,10 @@ export function StarField() {
         }
       }
 
-      if (!reduced) {
+      // Keep animating during the intro even under reduced-motion — it's
+      // a one-shot event, not a loop. After the intro, reduced motion
+      // freezes the loop as usual.
+      if (!reduced || introT < 1) {
         rafRef.current = requestAnimationFrame(draw);
       }
     };

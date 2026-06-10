@@ -37,6 +37,17 @@ export const TOPIC_LINKS: Record<TopicId, TopicLink[]> = {
     },
     { label: "nand2tetris — Build a computer from NAND", href: "https://www.nand2tetris.org/" },
   ],
+  sat: [
+    {
+      label: "Wikipedia — Boolean satisfiability problem",
+      href: "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem",
+    },
+    {
+      label: "Cook, S. (1971) — The complexity of theorem-proving procedures",
+      href: "https://dl.acm.org/doi/10.1145/800157.805047",
+    },
+    { label: "Wikipedia — DPLL algorithm", href: "https://en.wikipedia.org/wiki/DPLL_algorithm" },
+  ],
   iota: [
     { label: "Wikipedia — Iota and Jot", href: "https://en.wikipedia.org/wiki/Iota_and_Jot" },
     {

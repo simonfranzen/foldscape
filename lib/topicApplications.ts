@@ -1040,6 +1040,28 @@ const en: Partial<Record<TopicId, Application[]>> = {
         "Riemann is the most famous unsolved problem outside Fermat — a Clay Millennium Prize ($1M), recurring fictional appearances (A Beautiful Mind, The Music of the Primes), and a steady stream of disproofs that don't survive peer review.",
     },
   ],
+  sat: [
+    {
+      domain: "Hardware & chip verification",
+      description:
+        "Before a chip is fabricated, equivalence and property checks are compiled into SAT/SMT instances; Intel, AMD and Apple run them millions of times a day. A missed bug on a multi-million-dollar mask set is catastrophic, so SAT-based bounded model checking is now standard EDA practice.",
+    },
+    {
+      domain: "Software verification & program analysis",
+      description:
+        "Microsoft's Z3 — an SMT solver built on a SAT core — verifies device drivers, finds security bugs, and checks that compiler optimisations preserve meaning. SAT/SMT underpins symbolic execution and much of modern static analysis.",
+    },
+    {
+      domain: "Planning, scheduling & configuration",
+      description:
+        "AI planners, timetabling, and product configurators (which car options are mutually compatible?) encode their constraints as Boolean clauses and hand them to a SAT solver — often faster than a bespoke algorithm.",
+    },
+    {
+      domain: "Cryptanalysis",
+      description:
+        "Encoding a cipher's logic as a CNF formula lets a SAT solver search for keys or collisions; SAT attacks have analysed reduced-round versions of hash functions and stream ciphers.",
+    },
+  ],
 };
 
 const de: Partial<Record<TopicId, Application[]>> = {
@@ -2072,12 +2094,56 @@ const de: Partial<Record<TopicId, Application[]>> = {
         "Physiker:innen invertieren Experimente, indem sie das Vorwärtsmodell in PyTorch/JAX aufbauen und durch es hindurch zurückpropagieren — eingesetzt im Protein-Design (AlphaFold), in differenzierbarem Rendering und im gradientbasierten Experimententwurf.",
     },
   ],
+  sat: [
+    {
+      domain: "Hardware- & Chip-Verifikation",
+      description:
+        "Vor der Fertigung werden Äquivalenz- und Eigenschaftsprüfungen in SAT/SMT-Instanzen übersetzt; Intel, AMD und Apple lösen sie millionenfach pro Tag. Ein übersehener Fehler auf einer mehrere Millionen Dollar teuren Maske ist katastrophal — Bounded Model Checking per SAT ist heute EDA-Standard.",
+    },
+    {
+      domain: "Software-Verifikation & Programmanalyse",
+      description:
+        "Microsofts Z3 — ein SMT-Solver mit SAT-Kern — verifiziert Treiber, findet Sicherheitslücken und prüft, ob Compiler-Optimierungen die Bedeutung erhalten. SAT/SMT trägt symbolische Ausführung und große Teile der modernen statischen Analyse.",
+    },
+    {
+      domain: "Planung, Scheduling & Konfiguration",
+      description:
+        "KI-Planer, Stundenpläne und Produktkonfiguratoren (welche Auto-Optionen sind miteinander kompatibel?) kodieren ihre Bedingungen als boolesche Klauseln und übergeben sie einem SAT-Solver — oft schneller als ein maßgeschneiderter Algorithmus.",
+    },
+    {
+      domain: "Kryptoanalyse",
+      description:
+        "Kodiert man die Logik einer Chiffre als KNF-Formel, kann ein SAT-Solver nach Schlüsseln oder Kollisionen suchen; SAT-Angriffe haben rundenreduzierte Hashfunktionen und Stromchiffren analysiert.",
+    },
+  ],
 };
 
 export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Application[]>>> = {
   en,
   de,
   es: {
+    sat: [
+      {
+        domain: "Verificación de hardware y chips",
+        description:
+          "Antes de fabricar un chip, las comprobaciones de equivalencia y de propiedades se compilan en instancias de SAT/SMT; Intel, AMD y Apple las ejecutan millones de veces al día. Un error no detectado en un juego de máscaras de varios millones de dólares es catastrófico, por eso la verificación acotada de modelos basada en SAT es hoy práctica estándar en EDA.",
+      },
+      {
+        domain: "Verificación de software y análisis de programas",
+        description:
+          "Z3 de Microsoft —un solver SMT construido sobre un núcleo SAT— verifica controladores, encuentra fallos de seguridad y comprueba que las optimizaciones del compilador preservan el significado. SAT/SMT sustenta la ejecución simbólica y buena parte del análisis estático moderno.",
+      },
+      {
+        domain: "Planificación, horarios y configuración",
+        description:
+          "Los planificadores de IA, la elaboración de horarios y los configuradores de productos (¿qué opciones de coche son compatibles entre sí?) codifican sus restricciones como cláusulas booleanas y se las pasan a un solver de SAT, a menudo más rápido que un algoritmo a medida.",
+      },
+      {
+        domain: "Criptoanálisis",
+        description:
+          "Codificar la lógica de un cifrado como fórmula FNC permite a un solver de SAT buscar claves o colisiones; los ataques con SAT han analizado versiones con rondas reducidas de funciones hash y cifrados de flujo.",
+      },
+    ],
     mandelbrot: [
       {
         domain: "Arte generativo y motion graphics",
@@ -3109,6 +3175,28 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
     ],
   },
   fr: {
+    sat: [
+      {
+        domain: "Vérification matérielle et de puces",
+        description:
+          "Avant la fabrication d'une puce, les vérifications d'équivalence et de propriétés sont compilées en instances SAT/SMT ; Intel, AMD et Apple les exécutent des millions de fois par jour. Un bug manqué sur un jeu de masques à plusieurs millions de dollars est catastrophique : le bounded model checking fondé sur SAT est désormais une pratique standard en EDA.",
+      },
+      {
+        domain: "Vérification logicielle et analyse de programmes",
+        description:
+          "Z3 de Microsoft — un solveur SMT bâti sur un cœur SAT — vérifie des pilotes, trouve des failles de sécurité et contrôle que les optimisations du compilateur préservent le sens. SAT/SMT sous-tend l'exécution symbolique et une grande part de l'analyse statique moderne.",
+      },
+      {
+        domain: "Planification, ordonnancement et configuration",
+        description:
+          "Les planificateurs d'IA, la création d'emplois du temps et les configurateurs de produits (quelles options de voiture sont compatibles entre elles ?) encodent leurs contraintes en clauses booléennes et les confient à un solveur SAT, souvent plus rapide qu'un algorithme sur mesure.",
+      },
+      {
+        domain: "Cryptanalyse",
+        description:
+          "Encoder la logique d'un chiffre en formule FNC permet à un solveur SAT de chercher des clés ou des collisions ; des attaques SAT ont analysé des versions à tours réduits de fonctions de hachage et de chiffrements de flux.",
+      },
+    ],
     mandelbrot: [
       {
         domain: "Art génératif et motion design",
@@ -4140,6 +4228,28 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
     ],
   },
   it: {
+    sat: [
+      {
+        domain: "Verifica di hardware e chip",
+        description:
+          "Prima che un chip sia fabbricato, i controlli di equivalenza e di proprietà vengono compilati in istanze SAT/SMT; Intel, AMD e Apple li eseguono milioni di volte al giorno. Un bug sfuggito su un set di maschere da diversi milioni di dollari è catastrofico, perciò il bounded model checking basato su SAT è oggi prassi standard nell'EDA.",
+      },
+      {
+        domain: "Verifica del software e analisi dei programmi",
+        description:
+          "Z3 di Microsoft — un solver SMT costruito su un nucleo SAT — verifica driver, trova bug di sicurezza e controlla che le ottimizzazioni del compilatore preservino il significato. SAT/SMT sostiene l'esecuzione simbolica e gran parte dell'analisi statica moderna.",
+      },
+      {
+        domain: "Pianificazione, scheduling e configurazione",
+        description:
+          "I pianificatori IA, la creazione di orari e i configuratori di prodotto (quali optional dell'auto sono compatibili tra loro?) codificano i loro vincoli come clausole booleane e li passano a un solver SAT, spesso più veloce di un algoritmo su misura.",
+      },
+      {
+        domain: "Crittoanalisi",
+        description:
+          "Codificare la logica di un cifrario come formula FNC permette a un solver SAT di cercare chiavi o collisioni; attacchi SAT hanno analizzato versioni a round ridotti di funzioni hash e cifrari a flusso.",
+      },
+    ],
     mandelbrot: [
       {
         domain: "Arte generativa e motion graphics",
@@ -5171,6 +5281,28 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
     ],
   },
   pt: {
+    sat: [
+      {
+        domain: "Verificação de hardware e chips",
+        description:
+          "Antes de um chip ser fabricado, as verificações de equivalência e de propriedades são compiladas em instâncias SAT/SMT; a Intel, a AMD e a Apple executam-nas milhões de vezes por dia. Um erro não detectado num conjunto de máscaras de vários milhões de dólares é catastrófico, por isso a verificação limitada de modelos baseada em SAT é hoje prática padrão em EDA.",
+      },
+      {
+        domain: "Verificação de software e análise de programas",
+        description:
+          "O Z3 da Microsoft — um solver SMT construído sobre um núcleo SAT — verifica controladores, encontra falhas de segurança e confirma que as otimizações do compilador preservam o significado. SAT/SMT sustenta a execução simbólica e grande parte da análise estática moderna.",
+      },
+      {
+        domain: "Planeamento, escalonamento e configuração",
+        description:
+          "Os planeadores de IA, a criação de horários e os configuradores de produtos (que opções de carro são compatíveis entre si?) codificam as suas restrições como cláusulas booleanas e entregam-nas a um solver de SAT, muitas vezes mais rápido que um algoritmo à medida.",
+      },
+      {
+        domain: "Criptanálise",
+        description:
+          "Codificar a lógica de uma cifra como fórmula FNC permite a um solver de SAT procurar chaves ou colisões; ataques SAT já analisaram versões com rondas reduzidas de funções de hash e cifras de fluxo.",
+      },
+    ],
     mandelbrot: [
       {
         domain: "Arte generativa e motion graphics",
@@ -6202,6 +6334,28 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
     ],
   },
   sv: {
+    sat: [
+      {
+        domain: "Hårdvaru- och chipverifiering",
+        description:
+          "Innan ett chip tillverkas kompileras ekvivalens- och egenskapskontroller till SAT/SMT-instanser; Intel, AMD och Apple kör dem miljontals gånger om dagen. En missad bugg på en masksats för flera miljoner dollar är katastrofal, så SAT-baserad bounded model checking är numera standard inom EDA.",
+      },
+      {
+        domain: "Mjukvaruverifiering och programanalys",
+        description:
+          "Microsofts Z3 — en SMT-lösare byggd på en SAT-kärna — verifierar drivrutiner, hittar säkerhetsbuggar och kontrollerar att kompilatoroptimeringar bevarar betydelsen. SAT/SMT bär symbolisk exekvering och stora delar av modern statisk analys.",
+      },
+      {
+        domain: "Planering, schemaläggning och konfiguration",
+        description:
+          "AI-planerare, schemaläggning och produktkonfiguratorer (vilka biltillval är förenliga med varandra?) kodar sina villkor som booleska klausuler och lämnar dem till en SAT-lösare — ofta snabbare än en skräddarsydd algoritm.",
+      },
+      {
+        domain: "Kryptoanalys",
+        description:
+          "Att koda en chiffers logik som en KNF-formel låter en SAT-lösare söka efter nycklar eller kollisioner; SAT-attacker har analyserat rundreducerade versioner av hashfunktioner och strömchiffer.",
+      },
+    ],
     mandelbrot: [
       {
         domain: "Generativ konst och motion graphics",
@@ -7233,6 +7387,28 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
     ],
   },
   no: {
+    sat: [
+      {
+        domain: "Maskinvare- og brikkeverifisering",
+        description:
+          "Før en brikke produseres, kompileres ekvivalens- og egenskapssjekker til SAT/SMT-instanser; Intel, AMD og Apple kjører dem millioner av ganger om dagen. En oversett feil på et maskesett til flere millioner dollar er katastrofal, så SAT-basert bounded model checking er nå standard i EDA.",
+      },
+      {
+        domain: "Programvareverifisering og programanalyse",
+        description:
+          "Microsofts Z3 — en SMT-løser bygd på en SAT-kjerne — verifiserer drivere, finner sikkerhetsfeil og sjekker at kompilatoroptimaliseringer bevarer betydningen. SAT/SMT bærer symbolsk kjøring og store deler av moderne statisk analyse.",
+      },
+      {
+        domain: "Planlegging, tidsplanlegging og konfigurasjon",
+        description:
+          "KI-planleggere, timeplanlegging og produktkonfiguratorer (hvilke biltilvalg er kompatible med hverandre?) koder vilkårene sine som boolske klausuler og gir dem til en SAT-løser — ofte raskere enn en skreddersydd algoritme.",
+      },
+      {
+        domain: "Kryptoanalyse",
+        description:
+          "Å kode logikken i en chiffer som en KNF-formel lar en SAT-løser søke etter nøkler eller kollisjoner; SAT-angrep har analysert rundereduserte versjoner av hashfunksjoner og strømchiffer.",
+      },
+    ],
     mandelbrot: [
       {
         domain: "Generativ kunst og motion graphics",

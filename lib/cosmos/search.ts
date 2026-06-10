@@ -18,6 +18,7 @@ export const TOPIC_ALIASES: Partial<Record<TopicId, string[]>> = {
   banach: ["banach tarski", "banach-tarski", "duplikation"],
   riemann: ["riemann hypothesis", "riemannvermutung", "zeta", "ζ"],
   pvsnp: ["p vs np", "p versus np", "p=np", "pequalnp", "millennium"],
+  sat: ["satisfiability", "boolean satisfiability", "erfüllbarkeit", "3sat", "3-sat", "cnf", "cook levin", "cook-levin", "dpll", "aussagenlogik"],
   fourcolor: ["four colour", "four color", "vierfarben", "4 colors"],
   konigsberg: ["königsberg", "koenigsberg", "seven bridges", "sieben brücken"],
   euler: ["eulers identity", "eulersche identität", "e to the i pi"],

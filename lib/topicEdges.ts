@@ -25,9 +25,12 @@ export const TOPIC_EDGES: TopicEdge[] = [
   { a: "godel", b: "pvsnp", kind: "echo" },
   { a: "godel", b: "cantor", kind: "family" }, // diagonal arguments
   { a: "halting", b: "cantor", kind: "family" }, // diagonal arguments
+  { a: "sat", b: "pvsnp", kind: "bridge" }, // Cook–Levin: SAT is the first NP-complete problem
+  { a: "sat", b: "godel", kind: "echo" }, // the reach and the limits of formal logic
 
   // ── Combinator / building-blocks ───────────────────────────────────────
   { a: "nand", b: "iota", kind: "family" },
+  { a: "nand", b: "sat", kind: "family" }, // Boolean formulas built from gates
   { a: "iota", b: "halting", kind: "echo" },
   { a: "rsa", b: "pvsnp", kind: "echo" },
 

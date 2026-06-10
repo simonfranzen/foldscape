@@ -54,6 +54,12 @@ export interface UiDict {
     ruleSummary: string;
   };
   back: string;
+  // Primary CTA in every topic-page hero: a button that scrolls the
+  // visitor down into the story content. Encourages reading the
+  // narrative *before* jumping to the interactive Explorer (which is
+  // a secondary outline next to it). Optional so the six non-EN/DE
+  // locales fall back to the EN literal via `??`; EN + DE are filled.
+  discoverStory?: string;
   // Footer/nav label for the editorial "About" page. Optional so locales
   // that haven't been translated yet fall back to the EN literal at the
   // call site; EN+DE are guaranteed by the parity test.
@@ -106,6 +112,7 @@ const en: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Back to the atlas",
+  discoverStory: "Discover the story",
   about: "About",
   further: { label: "Further reading" },
   applications: {
@@ -165,6 +172,7 @@ const de: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Zurück zum Atlas",
+  discoverStory: "Story entdecken",
   about: "Über",
   further: { label: "Weiterführend" },
   applications: {
@@ -224,6 +232,7 @@ const es: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Volver al atlas",
+  discoverStory: "Descubrir la historia",
   about: "Acerca",
   further: { label: "Más lecturas" },
   applications: {
@@ -279,6 +288,7 @@ const fr: UiDict = {
     ruleSummary: "B3 / S23 · toroïdal",
   },
   back: "← Retour à l'atlas",
+  discoverStory: "Découvrir l'histoire",
   about: "À propos",
   further: { label: "Pour aller plus loin" },
   applications: {
@@ -334,6 +344,7 @@ const it: UiDict = {
     ruleSummary: "B3 / S23 · toroidale",
   },
   back: "← Torna all'atlante",
+  discoverStory: "Scopri la storia",
   about: "Chi siamo",
   further: { label: "Letture di approfondimento" },
   applications: {
@@ -389,6 +400,7 @@ const pt: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Voltar ao atlas",
+  discoverStory: "Descobrir a história",
   about: "Sobre",
   further: { label: "Leituras adicionais" },
   applications: {
@@ -444,6 +456,7 @@ const sv: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Tillbaka till atlasen",
+  discoverStory: "Upptäck berättelsen",
   about: "Om",
   further: { label: "Vidare läsning" },
   applications: {
@@ -499,6 +512,7 @@ const no: UiDict = {
     ruleSummary: "B3 / S23 · toroidal",
   },
   back: "← Tilbake til atlaset",
+  discoverStory: "Oppdag historien",
   about: "Om",
   further: { label: "Videre lesing" },
   applications: {

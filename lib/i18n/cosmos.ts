@@ -24,6 +24,17 @@ export interface CosmosDict {
   exploreAtlas: string;
   // One poetic 1-liner per category, displayed beside the constellation.
   taglines: Record<TopicCategory, string>;
+  // Narrative arc — six acts in three pairs:
+  //   I  · paradox     → crisis
+  //   II · logic       → stability (the crisis answered)
+  //   III · computation → construction
+  //   IV · chaos       → undoing (construction unbuilt)
+  //   V  · geometry    → form
+  //   VI · analysis    → limit (form dissolved into continuum)
+  // Each scene's heading carries its Roman numeral + chapter title in
+  // the category colour so the visitor can feel they're moving through
+  // a sequence, not picking from a flat menu.
+  acts: Record<TopicCategory, { numeral: string; title: string }>;
 }
 
 export const COSMOS: Record<Locale, CosmosDict> = {
@@ -49,6 +60,14 @@ export const COSMOS: Record<Locale, CosmosDict> = {
       geometry: "Shape, where shape stops being decoration.",
       analysis: "The arithmetic of the infinite.",
     },
+    acts: {
+      paradox: { numeral: "I", title: "The crisis" },
+      logic: { numeral: "II", title: "The hinge" },
+      computation: { numeral: "III", title: "The build" },
+      chaos: { numeral: "IV", title: "The undoing" },
+      geometry: { numeral: "V", title: "The form" },
+      analysis: { numeral: "VI", title: "The limit" },
+    },
   },
   de: {
     scrollHint: "In den Kosmos hineinscrollen",
@@ -71,6 +90,14 @@ export const COSMOS: Record<Locale, CosmosDict> = {
       chaos: "Ordnung, verliebt in ihren eigenen Zerfall.",
       geometry: "Form, wo Form aufhört, Dekoration zu sein.",
       analysis: "Die Arithmetik des Unendlichen.",
+    },
+    acts: {
+      paradox: { numeral: "I", title: "Die Krise" },
+      logic: { numeral: "II", title: "Das Scharnier" },
+      computation: { numeral: "III", title: "Der Aufbau" },
+      chaos: { numeral: "IV", title: "Der Zerfall" },
+      geometry: { numeral: "V", title: "Die Form" },
+      analysis: { numeral: "VI", title: "Die Grenze" },
     },
   },
   es: {
@@ -95,6 +122,14 @@ export const COSMOS: Record<Locale, CosmosDict> = {
       geometry: "Forma, donde la forma deja de ser decoración.",
       analysis: "La aritmética del infinito.",
     },
+    acts: {
+      paradox: { numeral: "I", title: "La crisis" },
+      logic: { numeral: "II", title: "La bisagra" },
+      computation: { numeral: "III", title: "La construcción" },
+      chaos: { numeral: "IV", title: "El deshacer" },
+      geometry: { numeral: "V", title: "La forma" },
+      analysis: { numeral: "VI", title: "El límite" },
+    },
   },
   fr: {
     scrollHint: "Glissez dans le cosmos",
@@ -117,6 +152,14 @@ export const COSMOS: Record<Locale, CosmosDict> = {
       chaos: "L'ordre, épris de sa propre défaite.",
       geometry: "La forme, là où elle cesse d'être décoration.",
       analysis: "L'arithmétique de l'infini.",
+    },
+    acts: {
+      paradox: { numeral: "I", title: "La crise" },
+      logic: { numeral: "II", title: "La charnière" },
+      computation: { numeral: "III", title: "La construction" },
+      chaos: { numeral: "IV", title: "La défaite" },
+      geometry: { numeral: "V", title: "La forme" },
+      analysis: { numeral: "VI", title: "La limite" },
     },
   },
   it: {
@@ -141,6 +184,14 @@ export const COSMOS: Record<Locale, CosmosDict> = {
       geometry: "Forma, dove la forma smette di essere decorazione.",
       analysis: "L'aritmetica dell'infinito.",
     },
+    acts: {
+      paradox: { numeral: "I", title: "La crisi" },
+      logic: { numeral: "II", title: "La cerniera" },
+      computation: { numeral: "III", title: "La costruzione" },
+      chaos: { numeral: "IV", title: "Il disfarsi" },
+      geometry: { numeral: "V", title: "La forma" },
+      analysis: { numeral: "VI", title: "Il limite" },
+    },
   },
   pt: {
     scrollHint: "Role para o cosmos",
@@ -163,6 +214,14 @@ export const COSMOS: Record<Locale, CosmosDict> = {
       chaos: "Ordem, apaixonada pelo próprio desfazer-se.",
       geometry: "Forma, onde a forma deixa de ser decoração.",
       analysis: "A aritmética do infinito.",
+    },
+    acts: {
+      paradox: { numeral: "I", title: "A crise" },
+      logic: { numeral: "II", title: "A dobradiça" },
+      computation: { numeral: "III", title: "A construção" },
+      chaos: { numeral: "IV", title: "O desfazer" },
+      geometry: { numeral: "V", title: "A forma" },
+      analysis: { numeral: "VI", title: "O limite" },
     },
   },
   sv: {
@@ -187,6 +246,14 @@ export const COSMOS: Record<Locale, CosmosDict> = {
       geometry: "Form, där form upphör att vara dekoration.",
       analysis: "Det oändligas aritmetik.",
     },
+    acts: {
+      paradox: { numeral: "I", title: "Krisen" },
+      logic: { numeral: "II", title: "Gångjärnet" },
+      computation: { numeral: "III", title: "Bygget" },
+      chaos: { numeral: "IV", title: "Upplösningen" },
+      geometry: { numeral: "V", title: "Formen" },
+      analysis: { numeral: "VI", title: "Gränsen" },
+    },
   },
   no: {
     scrollHint: "Rull inn i kosmos",
@@ -209,6 +276,14 @@ export const COSMOS: Record<Locale, CosmosDict> = {
       chaos: "Orden, forelsket i sin egen oppløsning.",
       geometry: "Form, der form slutter å være pynt.",
       analysis: "Det uendeliges aritmetikk.",
+    },
+    acts: {
+      paradox: { numeral: "I", title: "Krisen" },
+      logic: { numeral: "II", title: "Hengselet" },
+      computation: { numeral: "III", title: "Byggverket" },
+      chaos: { numeral: "IV", title: "Oppløsningen" },
+      geometry: { numeral: "V", title: "Formen" },
+      analysis: { numeral: "VI", title: "Grensen" },
     },
   },
 };

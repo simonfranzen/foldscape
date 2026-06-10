@@ -95,29 +95,39 @@ export function StoryPageShell({
             <div className="mx-auto mt-4 max-w-4xl">{signature}</div>
           </Reveal>
         )}
+        {/* Hero CTAs. The primary button "Discover the story" scrolls the
+            visitor down into the long-form prose — that's the action we
+            want them to take first. Explorer is the secondary outline
+            (also reachable from the Nav tabs above). Sound, if present,
+            is a third quiet outline. "Back to atlas" lives in the Nav
+            header now, not here. */}
         <Reveal delay={500}>
           <div className="flex flex-col items-center justify-center gap-3 pt-2 md:flex-row">
+            <a
+              href="#story"
+              className={`inline-flex items-center gap-2 rounded-full border px-6 py-3 ${borderAccent} ${bgAccent} ${hoverAccent} ${accent} font-mono text-xs uppercase tracking-widest2 transition-colors`}
+            >
+              <span>{u.discoverStory ?? "Discover the story"}</span>
+              <span aria-hidden="true">↓</span>
+            </a>
             <Link
               href={ctaHref}
-              className={`rounded-full border px-6 py-3 ${borderAccent} ${bgAccent} ${hoverAccent} ${accent} font-mono text-xs uppercase tracking-widest2 transition-colors`}
+              className="hairline inline-flex items-center gap-2 rounded-full border bg-transparent px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-ink-200 transition-colors hover:border-ink-300/50 hover:text-ink-100"
             >
-              {page.ctaInteractive}
+              <span>{page.ctaInteractive}</span>
+              <span aria-hidden="true" className="opacity-60">
+                →
+              </span>
             </Link>
             {soundSection && (
               <Link
                 href={soundSection.href}
-                className="flex items-center gap-2 rounded-full border border-signal-cyan/60 bg-signal-cyan/10 px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-signal-cyan transition-colors hover:bg-signal-cyan/20"
+                className="hairline inline-flex items-center gap-2 rounded-full border bg-transparent px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-cyan/60 hover:text-signal-cyan"
               >
                 <span aria-hidden="true">♪</span>
                 {u.sound?.label ?? "Hear it"}
               </Link>
             )}
-            <Link
-              href="/"
-              className="hairline rounded-full border px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-ink-200 transition-colors hover:border-ink-300/50 hover:text-ink-100"
-            >
-              {u.back}
-            </Link>
           </div>
         </Reveal>
         <Reveal delay={620}>
@@ -145,6 +155,12 @@ export function StoryPageShell({
           </div>
         </Reveal>
       </section>
+
+      {/* Anchor target for the hero's "Discover the story" CTA — sits
+          just before the topic-specific long-form prose. The global
+          html { scroll-padding-top: 88px } in globals.css handles the
+          fixed Nav offset. */}
+      <div id="story" aria-hidden="true" />
 
       {children}
 

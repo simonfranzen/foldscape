@@ -4,11 +4,16 @@
 // labelled (the "twelve named stars every math-curious person knows"
 // principle — user feedback). Satellites reveal their label on hover/focus.
 //
-// We use SVG-native <a href> (not next/link) here: next/link wrapping a
-// <g> inside SVG ended up swallowing pointer events in some browsers,
-// so neither hover nor click registered. SVG <a> is rock-solid for hit
-// testing; we still let Next intercept clicks for client-side nav via a
-// small onClick that calls router.push.
+// SVG-native <a href> (not next/link) — next/link wrapping a <g> inside
+// SVG ended up swallowing pointer events in some browsers, so neither
+// hover nor click registered. SVG <a> is rock-solid for hit testing.
+//
+// The click handler saves the atlas scroll position for back-navigation
+// and then hands off to the router. Next.js' experimental viewTransition
+// flag (next.config.mjs) gives us a clean browser-native crossfade for
+// free. An earlier version of this file ran a 620 ms zoom-warp animation
+// on top of that — the user found it competing with the crossfade and
+// asked to remove it.
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -45,8 +50,6 @@ export function TopicStar({ topic, x, y, isHub, title, tagline, category }: Prop
     e.preventDefault();
     // Save where we left the atlas so that back-navigation lands the user
     // at the same star they jumped from, not at the top of the page.
-    // sessionStorage (not localStorage) so the position resets between
-    // tabs / new sessions.
     try {
       sessionStorage.setItem("foldscape.atlas.scrollY", String(window.scrollY));
     } catch {
@@ -88,7 +91,7 @@ export function TopicStar({ topic, x, y, isHub, title, tagline, category }: Prop
           opacity={hover ? 0.4 : isHub ? 0.18 : 0.08}
           style={{ transition: "opacity 220ms ease" }}
         />
-        {/* Bright bloom ring */}
+        {/* Bright bloom ring for hubs */}
         {isHub && (
           <circle
             r={r * 1.5}
