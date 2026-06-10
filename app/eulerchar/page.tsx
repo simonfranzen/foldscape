@@ -4,6 +4,7 @@ import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-amber";
 
@@ -310,7 +311,7 @@ const GENUS_ICONS: ReadonlyArray<GenusIcon> = [
           rx="42"
           ry="42"
           fill="rgba(125,243,255,0.10)"
-          stroke="#7df3ff"
+          stroke={palette.signal.cyan}
           strokeWidth="1.6"
         />
         <ellipse
@@ -348,10 +349,10 @@ const GENUS_ICONS: ReadonlyArray<GenusIcon> = [
           rx="50"
           ry="30"
           fill="rgba(125,243,255,0.10)"
-          stroke="#7df3ff"
+          stroke={palette.signal.cyan}
           strokeWidth="1.6"
         />
-        <path d="M 50 60 Q 80 80 110 60" fill="none" stroke="#7df3ff" strokeWidth="1.4" />
+        <path d="M 50 60 Q 80 80 110 60" fill="none" stroke={palette.signal.cyan} strokeWidth="1.4" />
         <path
           d="M 56 56 Q 80 44 104 56"
           fill="none"
@@ -373,7 +374,7 @@ const GENUS_ICONS: ReadonlyArray<GenusIcon> = [
           rx="32"
           ry="22"
           fill="rgba(125,243,255,0.10)"
-          stroke="#7df3ff"
+          stroke={palette.signal.cyan}
           strokeWidth="1.6"
         />
         <ellipse
@@ -382,11 +383,11 @@ const GENUS_ICONS: ReadonlyArray<GenusIcon> = [
           rx="32"
           ry="22"
           fill="rgba(125,243,255,0.10)"
-          stroke="#7df3ff"
+          stroke={palette.signal.cyan}
           strokeWidth="1.6"
         />
-        <path d="M 38 60 Q 55 73 72 60" fill="none" stroke="#7df3ff" strokeWidth="1.3" />
-        <path d="M 88 60 Q 105 73 122 60" fill="none" stroke="#7df3ff" strokeWidth="1.3" />
+        <path d="M 38 60 Q 55 73 72 60" fill="none" stroke={palette.signal.cyan} strokeWidth="1.3" />
+        <path d="M 88 60 Q 105 73 122 60" fill="none" stroke={palette.signal.cyan} strokeWidth="1.3" />
         <path
           d="M 42 57 Q 55 49 68 57"
           fill="none"
