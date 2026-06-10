@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
 
 // Generator indices: 0 = a, 1 = a⁻¹, 2 = b, 3 = b⁻¹.
@@ -218,6 +220,7 @@ export default function BanachExplorer() {
   const x = EXPLORER[locale];
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
   const [depth, setDepth] = useState(5);
   const [highlight, setHighlight] = useState<number | null>(null);
   const [shift, setShift] = useState(0); // 0..1 animation progress for "the trick"
@@ -262,7 +265,6 @@ export default function BanachExplorer() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -274,7 +276,7 @@ export default function BanachExplorer() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       // Background
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Faint background grid
@@ -405,7 +407,7 @@ export default function BanachExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [depth, highlight, shift, x]);
+  }, [depth, dpr, highlight, shift, x]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">

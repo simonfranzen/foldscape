@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Inline Cayley-graph walker for the free group F₂ = <a, b>.
 // The user clicks one of four buttons (a, a⁻¹, b, b⁻¹) and walks the
@@ -107,7 +108,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel }: P
                 y1={s.y1}
                 x2={s.x2}
                 y2={s.y2}
-                stroke="#b388ff"
+                stroke={palette.signal.violet}
                 strokeOpacity={Math.max(0.05, 0.22 - s.depth * 0.04)}
                 strokeWidth={0.8}
               />
@@ -118,7 +119,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel }: P
                 cx={n.x}
                 cy={n.y}
                 r={Math.max(0.8, 2 - n.depth * 0.25)}
-                fill="#b388ff"
+                fill={palette.signal.violet}
                 fillOpacity={Math.max(0.06, 0.3 - n.depth * 0.05)}
               />
             ))}
@@ -133,7 +134,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel }: P
                   y1={prev.y}
                   x2={v.x}
                   y2={v.y}
-                  stroke="#7df3ff"
+                  stroke={palette.signal.cyan}
                   strokeWidth={1.8}
                   strokeOpacity={0.9}
                 />
@@ -145,7 +146,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel }: P
                 cx={v.x}
                 cy={v.y}
                 r={i === path.length - 1 ? 5 : 3}
-                fill={i === 0 ? "#ffd166" : i === path.length - 1 ? "#ff7ab6" : "#7df3ff"}
+                fill={i === 0 ? palette.signal.amber : i === path.length - 1 ? palette.signal.rose : palette.signal.cyan}
               />
             ))}
           </svg>
