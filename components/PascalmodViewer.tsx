@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // PascalmodViewer — compact, story-page-friendly canvas (~340×340) that
 // renders Pascal's triangle modulo p, with sliders for p and the number of
@@ -20,11 +22,11 @@ interface Props {
 }
 
 const PALETTE = [
-  "#06070d", // residue 0 = background
-  "#ffd166", // 1 amber
-  "#7df3ff", // 2 cyan
-  "#b388ff", // 3 violet
-  "#ff7ab6", // 4 rose
+  palette.canvas.bg, // residue 0 = background
+  palette.signal.amber, // 1
+  palette.signal.cyan, // 2
+  palette.signal.violet, // 3
+  palette.signal.rose, // 4
   "#a0e89a", // 5 mint
   "#ff9a55", // 6
   "#c4c6d0", // 7
@@ -54,6 +56,7 @@ export function PascalmodViewer({
   const [p, setP] = useState(initialP);
   const [n, setN] = useState(initialN);
   const [includeComposites, setIncludeComposites] = useState(false);
+  const dpr = useDpr();
 
   const moduli = includeComposites ? [...PRIMES, ...COMPOSITES].sort((a, b) => a - b) : PRIMES;
 
@@ -62,7 +65,6 @@ export function PascalmodViewer({
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const draw = () => {
       const W = Math.floor(canvas.clientWidth * dpr);
@@ -70,7 +72,7 @@ export function PascalmodViewer({
       if (canvas.width !== W) canvas.width = W;
       if (canvas.height !== H) canvas.height = H;
 
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const cellSize = Math.min(W / n, (H * 1.05) / n);
@@ -106,7 +108,7 @@ export function PascalmodViewer({
     const ro = new ResizeObserver(draw);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [p, n]);
+  }, [p, n, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-5">

@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 const PALETTE = [
-  "#06070d", // residue 0 = empty
-  "#ffd166", // 1
-  "#7df3ff", // 2
-  "#b388ff", // 3
-  "#ff7ab6", // 4
+  palette.canvas.bg, // residue 0 = empty
+  palette.signal.amber, // 1
+  palette.signal.cyan, // 2
+  palette.signal.violet, // 3
+  palette.signal.rose, // 4
   "#a0e89a", // 5
   "#ff9a55", // 6
   "#c4c6d0", // 7
@@ -23,24 +25,23 @@ export default function PascalmodExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.pascalmod;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [modulus, setModulus] = useState(2);
   const [rows, setRows] = useState(256);
-  const [highlightCarry, _setHighlightCarry] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const draw = () => {
       const W = canvas.clientWidth * dpr;
       const H = canvas.clientHeight * dpr;
       canvas.width = Math.floor(W);
       canvas.height = Math.floor(H);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Triangle bounding box
@@ -75,17 +76,13 @@ export default function PascalmodExplorer() {
         prev = next;
       }
 
-      if (highlightCarry) {
-        // outline cells whose value is zero (carry happened) — too many to draw; skip for >128 rows
-        // (kept here as conceptual handle; real outline would need pre-pass)
-      }
     };
 
     draw();
     const ro = new ResizeObserver(draw);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [modulus, rows, highlightCarry]);
+  }, [modulus, rows, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
