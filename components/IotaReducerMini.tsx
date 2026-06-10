@@ -1,13 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { parse, reduceTrace, show } from "@/lib/iota/reduce";
+import { parse, reduceTrace } from "@/lib/iota/reduce";
 
 // Inline, story-page reducer. Tiny by design — pick one of a few preset
 // derivations (or type your own), then walk forward / backward one step at
 // a time. The current step glows cyan; previous steps fade into the past.
 //
 // Differs from /iota/reducer in scope: it's a teaser, not the full tool.
+
+const MINI_MAX_STEPS = 40;
 
 interface Preset {
   id: string;
@@ -37,12 +39,12 @@ export function IotaReducerMini({ caption }: Props) {
   const [custom, setCustom] = useState<string>("");
   const [step, setStep] = useState(0);
 
-  const src = custom.trim().length > 0 ? custom : PRESETS.find((p) => p.id === presetId)!.src;
+  const src = custom.trim().length > 0 ? custom : (PRESETS.find((p) => p.id === presetId) ?? PRESETS[0]).src;
 
   const result = useMemo(() => {
     try {
       const tree = parse(src);
-      const trace = reduceTrace(tree, 40);
+      const trace = reduceTrace(tree, MINI_MAX_STEPS);
       return { ok: true as const, ...trace };
     } catch (e) {
       return {
@@ -195,5 +197,3 @@ export function IotaReducerMini({ caption }: Props) {
   );
 }
 
-// Suppress unused-import nag — show() is exported via lib/iota/reduce.
-void show;
