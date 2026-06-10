@@ -4,6 +4,7 @@ import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-cyan";
 
@@ -313,7 +314,7 @@ export default function PvsNPStoryPage() {
                 stroke="rgba(125,243,255,0.55)"
                 strokeWidth="1.5"
               />
-              <text x="40" y="40" fill="#7df3ff" fontFamily="ui-monospace, monospace" fontSize="14">
+              <text x="40" y="40" fill={palette.signal.cyan} fontFamily="ui-monospace, monospace" fontSize="14">
                 EXP
               </text>
 
@@ -344,7 +345,7 @@ export default function PvsNPStoryPage() {
               <text
                 x="145"
                 y="120"
-                fill="#ffd166"
+                fill={palette.signal.amber}
                 fontFamily="ui-monospace, monospace"
                 fontSize="13"
               >
@@ -364,7 +365,7 @@ export default function PvsNPStoryPage() {
               <text
                 x="225"
                 y="215"
-                fill="#7df3ff"
+                fill={palette.signal.cyan}
                 fontFamily="ui-monospace, monospace"
                 fontSize="14"
               >
@@ -384,7 +385,7 @@ export default function PvsNPStoryPage() {
               <text
                 x="345"
                 y="205"
-                fill="#ff7ab6"
+                fill={palette.signal.rose}
                 fontFamily="ui-monospace, monospace"
                 fontSize="11"
               >
