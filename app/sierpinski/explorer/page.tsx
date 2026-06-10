@@ -134,7 +134,7 @@ export default function SierpinskiExplorer() {
         const c2 = canvas.getContext("2d");
         if (!c2) return;
         c2.setTransform(dpr, 0, 0, dpr, 0, 0);
-        c2.fillStyle = "#06070d";
+        c2.fillStyle = palette.canvas.bg;
         c2.fillRect(0, 0, W, H);
         c2.fillStyle = color.solid;
         const [v0, v1, v2] = triangleVertices(W, H);

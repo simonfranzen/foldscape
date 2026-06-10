@@ -61,7 +61,7 @@ function findSat(): boolean[] {
 
 const GREEN = palette.signal.teal;
 const VIOLET = palette.signal.violet;
-const DIM = "rgba(138,144,164,0.5)";
+const DIM = `${palette.canvas.muted}80`;
 
 export function SatClauseHero() {
   const [reduced, setReduced] = useState(false);
