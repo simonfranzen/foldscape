@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getDpr } from "@/lib/hooks/useDpr";
 
 interface Props {
   count?: number;
@@ -20,12 +21,13 @@ export function BoidsDemo({ count = 120, className = "", resetLabel = "Restart" 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
     let raf = 0;
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let dpr = getDpr();
 
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = getDpr();
       canvas.width = Math.floor(canvas.clientWidth * dpr);
       canvas.height = Math.floor(canvas.clientHeight * dpr);
     };
