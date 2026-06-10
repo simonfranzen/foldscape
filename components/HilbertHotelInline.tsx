@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Inline Hilbert-hotel scenario picker + animated shifter, sized ~360x280.
 // Renders 12 visible rooms with a "…" tail and animates the four canonical
@@ -44,12 +45,12 @@ interface Guest {
 }
 
 const EXISTING = "#cdd6f4";
-const NEW = "#7df3ff";
+const NEW = palette.signal.cyan;
 // One hue per bus so passengers from different buses stay distinguishable.
 // Deliberately avoids amber (the shift pulse) and cyan (new guests) so every
 // colour in the widget means exactly one thing. Bus 1 = rose keeps the hint
 // copy ("rose is a bus passenger") true.
-const BUS_COLORS = ["#ff7ab6", "#b388ff", "#a6e3a1"];
+const BUS_COLORS = [palette.signal.rose, palette.signal.violet, "#a6e3a1"];
 
 function initialRooms(): (Guest | null)[] {
   return Array.from({ length: ROOMS }, (_, i) => ({
