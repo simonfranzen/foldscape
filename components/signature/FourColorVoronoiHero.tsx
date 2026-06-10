@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Signature artefact for the Four-Color page. A live-recolouring Voronoi map:
 // random cells, each filled with one of four colours such that no two
@@ -16,10 +17,10 @@ interface Site {
 
 // Colour palette: distinct hues + each one carries a unique hatch pattern.
 const PALETTE = [
-  { fill: "#7df3ff", pattern: "p0" }, // cyan, horizontal hatch
-  { fill: "#ffd166", pattern: "p1" }, // amber, vertical hatch
-  { fill: "#b388ff", pattern: "p2" }, // violet, diagonal-1 hatch
-  { fill: "#ff7ab6", pattern: "p3" }, // rose, diagonal-2 hatch
+  { fill: palette.signal.cyan, pattern: "p0" }, // cyan, horizontal hatch
+  { fill: palette.signal.amber, pattern: "p1" }, // amber, vertical hatch
+  { fill: palette.signal.violet, pattern: "p2" }, // violet, diagonal-1 hatch
+  { fill: palette.signal.rose, pattern: "p3" }, // rose, diagonal-2 hatch
 ];
 
 const W = 800;

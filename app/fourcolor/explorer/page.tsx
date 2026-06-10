@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette as colorPalette } from "@/lib/visual/palette";
 
 // --------------------------------------------------------------------------
 // The Four Colour Theorem · Explorer
@@ -34,7 +36,7 @@ const PRESETS: Preset[] = [
   { id: "stress", label: "Stress test (mutually-adjacent regions)", n: 12, relax: 0 },
 ];
 
-const DEFAULT_PALETTE = ["#7df3ff", "#ffd166", "#b18cff", "#ff7ab6"] as const;
+const DEFAULT_PALETTE = [colorPalette.signal.cyan, colorPalette.signal.amber, "#b18cff", colorPalette.signal.rose] as const;
 const COLOUR_NAMES = ["cyan", "amber", "violet", "rose"] as const;
 
 interface MapData {
@@ -352,7 +354,7 @@ function drawMap(
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.imageSmoothingEnabled = false;
   ctx.clearRect(0, 0, ctx.canvas.width / dpr, ctx.canvas.height / dpr);
-  ctx.fillStyle = "#06070d";
+  ctx.fillStyle = colorPalette.canvas.bg;
   ctx.fillRect(0, 0, ctx.canvas.width / dpr, ctx.canvas.height / dpr);
   ctx.drawImage(tmp, 0, 0, ctx.canvas.width / dpr, ctx.canvas.height / dpr);
 
@@ -368,7 +370,7 @@ function drawMap(
     ctx.beginPath();
     ctx.arc(sx, sy, 9, 0, Math.PI * 2);
     ctx.fill();
-    ctx.fillStyle = colours[i] === -1 ? "#8a90a4" : "#ffffff";
+    ctx.fillStyle = colours[i] === -1 ? colorPalette.canvas.muted : "#ffffff";
     ctx.fillText(String(i + 1), sx, sy + 0.5);
   }
   ctx.restore();
@@ -377,6 +379,7 @@ function drawMap(
 export default function FourColorExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.fourcolor;
+  const dpr = useDpr();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animRef = useRef<number | null>(null);
 
@@ -445,7 +448,6 @@ export default function FourColorExplorer() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !map || !solution) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.floor(canvasSize.w * dpr);
     canvas.height = Math.floor(canvasSize.h * dpr);
     const ctx = canvas.getContext("2d");
@@ -459,7 +461,7 @@ export default function FourColorExplorer() {
       colours[step.cell] = step.colour;
     }
     drawMap(ctx, map, colours, palette, dpr);
-  }, [map, solution, animIdx, canvasSize.w, canvasSize.h, palette]);
+  }, [map, solution, animIdx, canvasSize.w, canvasSize.h, palette, dpr]);
 
   // Animation loop
   useEffect(() => {
