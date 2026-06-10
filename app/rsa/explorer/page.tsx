@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 
-// --- small-prime universe ------------------------------------------------
+const TEXT_INPUT_MAX_LENGTH = 32;
+
 const SMALL_PRIMES: readonly bigint[] = [
   11n,
   13n,
@@ -50,7 +51,6 @@ const E_CANDIDATES: readonly bigint[] = [
   65537n,
 ] as const;
 
-// --- BigInt arithmetic helpers ------------------------------------------
 function gcdBig(a: bigint, b: bigint): bigint {
   let x = a < 0n ? -a : a;
   let y = b < 0n ? -b : b;
@@ -169,7 +169,6 @@ function modPow(base: bigint, exp: bigint, mod: bigint): bigint {
   return modPowSteps(base, exp, mod).value;
 }
 
-// --- component -----------------------------------------------------------
 export default function RsaExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.rsa;
@@ -226,7 +225,6 @@ export default function RsaExplorer() {
     return v;
   }, [m, derived]);
 
-  // Encrypt / decrypt with step traces.
   const encryption = useMemo(() => {
     if (mBig === null || !derived.valid) return null;
     return modPowSteps(mBig, effectiveE, derived.n);
@@ -267,9 +265,7 @@ export default function RsaExplorer() {
   return (
     <main className="flex min-h-screen flex-col pt-14">
       <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
-        {/* Main view: key generation + encryption/decryption */}
         <div className="relative flex min-h-[60vh] flex-col gap-4 overflow-y-auto bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
-          {/* Top panel: key generation */}
           <section className="hairline glass space-y-4 rounded-2xl border p-5 md:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
@@ -360,7 +356,6 @@ export default function RsaExplorer() {
             )}
           </section>
 
-          {/* Bottom panel: encrypt / decrypt */}
           <section className="hairline glass space-y-4 rounded-2xl border p-5 md:p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
@@ -422,7 +417,6 @@ export default function RsaExplorer() {
             )}
           </section>
 
-          {/* Text round-trip panel */}
           {textRoundTrip && (
             <section className="hairline glass space-y-3 rounded-2xl border p-5 md:p-6">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
@@ -468,7 +462,6 @@ export default function RsaExplorer() {
           )}
         </div>
 
-        {/* Sidebar controls */}
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
@@ -578,7 +571,7 @@ export default function RsaExplorer() {
               type="text"
               value={textInput}
               onChange={(ev) => setTextInput(ev.target.value)}
-              maxLength={32}
+              maxLength={TEXT_INPUT_MAX_LENGTH}
               placeholder="rsa"
               className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-cyan focus:border-signal-cyan/60 focus:outline-none"
             />
@@ -637,7 +630,6 @@ export default function RsaExplorer() {
   );
 }
 
-// --- presentational helpers ---------------------------------------------
 function KvCell({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
   return (
     <div className="hairline space-y-1 rounded-md border bg-ink-950/40 p-3">
