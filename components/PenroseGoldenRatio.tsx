@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Golden-ratio demo for the Penrose story page.
 // Renders a Fibonacci-rectangle spiral that converges into the golden spiral,
@@ -23,6 +25,7 @@ function fibSeq(n: number): number[] {
 export function PenroseGoldenRatio({ caption, levelsLabel, ratioLabel, hint }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [levels, setLevels] = useState(7);
+  const dpr = useDpr();
 
   const fib = useMemo(() => fibSeq(Math.max(2, levels)), [levels]);
   const ratio = fib[fib.length - 1]! / (fib[fib.length - 2] || 1);
@@ -30,7 +33,6 @@ export function PenroseGoldenRatio({ caption, levelsLabel, ratioLabel, hint }: P
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -41,7 +43,7 @@ export function PenroseGoldenRatio({ caption, levelsLabel, ratioLabel, hint }: P
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Compute bounding box of the Fibonacci-tile layout (squares placed in
@@ -181,7 +183,7 @@ export function PenroseGoldenRatio({ caption, levelsLabel, ratioLabel, hint }: P
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [fib]);
+  }, [fib, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-6">

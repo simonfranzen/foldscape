@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline Penrose tiling renderer for the story page. Uses Robinson-triangle
 // deflation of the "sun" seed to produce a kite + dart P2 tiling. We pair
@@ -98,6 +100,7 @@ export function PenroseTiling({
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [depth, setDepth] = useState(4);
+  const dpr = useDpr();
 
   const tris = useMemo(() => buildTiling(depth), [depth]);
 
@@ -115,7 +118,6 @@ export function PenroseTiling({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -126,7 +128,7 @@ export function PenroseTiling({
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const margin = 16;
@@ -181,7 +183,7 @@ export function PenroseTiling({
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [tris, depth]);
+  }, [tris, depth, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-6">
