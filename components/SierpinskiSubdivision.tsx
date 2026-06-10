@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Inline iterative subdivision visualiser for the Sierpinski story page.
 // Renders an SVG triangle and recursively subdivides it `depth` times,
@@ -67,14 +68,14 @@ export function SierpinskiSubdivision({ caption, depthLabel, triangleLabel, hint
               style={{ maxWidth: SIZE, display: "block" }}
               aria-label="Sierpinski subdivision"
             >
-              <rect x={0} y={0} width={SIZE} height={HEIGHT} fill="#06070d" />
+              <rect x={0} y={0} width={SIZE} height={HEIGHT} fill={palette.canvas.bg} />
               {triangles.map((tri, i) => (
                 <polygon
                   key={i}
                   points={tri.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                  fill="#ffd166"
+                  fill={palette.signal.amber}
                   fillOpacity={0.82}
-                  stroke="#ffd166"
+                  stroke={palette.signal.amber}
                   strokeOpacity={0.4}
                   strokeWidth={depth >= 6 ? 0 : 0.6}
                 />

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 type Mode = "subdivision" | "chaos" | "pascal" | "rule90";
 
@@ -86,6 +88,7 @@ export default function SierpinskiExplorer() {
   const [colorId, setColorId] = useState<DotColor["id"]>("violet");
   const [restartTick, setRestartTick] = useState(0);
 
+  const dpr = useDpr();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const totalPointsRef = useRef(0);
   const [totalPoints, setTotalPoints] = useState(0);
@@ -99,7 +102,6 @@ export default function SierpinskiExplorer() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let raf = 0;
     let cancelled = false;
@@ -114,7 +116,7 @@ export default function SierpinskiExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return null;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
       return ctx;
     };
@@ -274,7 +276,7 @@ export default function SierpinskiExplorer() {
         ro.disconnect();
       };
     }
-  }, [mode, depth, pointsPerFrame, rows, gens, color.solid, color.soft, restartTick]);
+  }, [mode, depth, pointsPerFrame, rows, gens, color.solid, color.soft, restartTick, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
