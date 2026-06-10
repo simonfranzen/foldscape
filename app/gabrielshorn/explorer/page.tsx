@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 const X_MIN = 1;
 const LOG_X_MAX_MIN = Math.log10(1.5);
@@ -43,6 +45,7 @@ export default function GabrielsHornExplorer() {
   const [view, setView] = useState<"3d" | "2d">("3d");
   const [spin, setSpin] = useState<boolean>(true);
   const animRef = useRef<number | null>(null);
+  const dpr = useDpr();
 
   // 3D rotation state.
   const yawRef = useRef(0.7);
@@ -84,7 +87,6 @@ export default function GabrielsHornExplorer() {
     if (view !== "2d") return;
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -96,7 +98,7 @@ export default function GabrielsHornExplorer() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       // Background
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Layout: leave a small left margin for the y-axis labels and a
@@ -228,7 +230,7 @@ export default function GabrielsHornExplorer() {
       ctx.stroke();
 
       // Cutoff label
-      ctx.fillStyle = "#7df3ff";
+      ctx.fillStyle = palette.signal.cyan;
       ctx.font = "11px ui-monospace, monospace";
       const cutLabel = `x_max = ${sig6(xMax)}`;
       const lblX = Math.min(toPx(xMax) - 6, padL + plotW - 110);
@@ -239,7 +241,7 @@ export default function GabrielsHornExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [xMax, view]);
+  }, [xMax, view, dpr]);
 
   // 3D mesh renderer (solid of revolution). Auto-spins; drag to rotate.
   useEffect(() => {
@@ -248,7 +250,6 @@ export default function GabrielsHornExplorer() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let raf = 0;
 
     const resize = () => {
@@ -271,7 +272,7 @@ export default function GabrielsHornExplorer() {
     }
 
     // First full clear for crisp first frame.
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const draw = () => {
@@ -404,7 +405,7 @@ export default function GabrielsHornExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [xMax, view, spin]);
+  }, [xMax, view, spin, dpr]);
 
   // Window-level drag listeners (only active when view is 3D).
   useEffect(() => {
@@ -429,7 +430,7 @@ export default function GabrielsHornExplorer() {
     };
   }, [view]);
 
-  const onCanvasMouseDown = (e: React.MouseEvent) => {
+  const onCanvasMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (view !== "3d") return;
     draggingRef.current = true;
     lastRef.current = { x: e.clientX, y: e.clientY };
