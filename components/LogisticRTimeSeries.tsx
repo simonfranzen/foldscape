@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline live demo: a small r-slider that drives two synchronized canvases.
 // Left canvas: time series xₙ (last ~120 iterations after a burn-in). Right
@@ -30,6 +32,9 @@ export function LogisticRTimeSeries({
   const [r, setR] = useState(initialR);
   const rRef = useRef(r);
   rRef.current = r;
+  const dpr = useDpr();
+  const dprRef = useRef(dpr);
+  dprRef.current = dpr;
 
   // Time-series canvas: redraw every animation frame using the current r.
   // We shift the buffer one step left and append a new iterate so the
@@ -37,7 +42,7 @@ export function LogisticRTimeSeries({
   useEffect(() => {
     const canvas = seriesRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = dprRef.current;
     canvas.width = Math.floor(W * dpr);
     canvas.height = Math.floor(H * dpr);
     const ctx = canvas.getContext("2d")!;
@@ -72,7 +77,7 @@ export function LogisticRTimeSeries({
       }
 
       // Background.
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Grid: y = 0, 0.5, 1.
@@ -99,7 +104,7 @@ export function LogisticRTimeSeries({
       ctx.stroke();
 
       // Dots, recent ones brighter.
-      ctx.fillStyle = "#ff7ab6";
+      ctx.fillStyle = palette.signal.rose;
       for (let i = 0; i < buf.length; i++) {
         const px = (i / (SHOW - 1)) * W;
         const py = (1 - buf[i]) * H;
@@ -122,14 +127,14 @@ export function LogisticRTimeSeries({
   useEffect(() => {
     const canvas = cobwebRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = dprRef.current;
     const S = COBWEB_SIZE;
     canvas.width = Math.floor(S * dpr);
     canvas.height = Math.floor(S * dpr);
     const ctx = canvas.getContext("2d")!;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, S, S);
 
     // y = x diagonal.
@@ -141,7 +146,7 @@ export function LogisticRTimeSeries({
     ctx.stroke();
 
     // Parabola y = r·x·(1−x).
-    ctx.strokeStyle = "#7df3ff";
+    ctx.strokeStyle = palette.signal.cyan;
     ctx.lineWidth = 1.4;
     ctx.beginPath();
     for (let i = 0; i <= 200; i++) {

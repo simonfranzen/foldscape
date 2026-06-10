@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 const R_MIN = 2.5;
 const R_MAX = 4.0;
@@ -68,6 +70,9 @@ interface AudioRefs {
 export default function LogisticSound() {
   const { a, u } = useI18n();
   const topic = a.topics.logistic;
+  const dpr = useDpr();
+  const dprRef = useRef(dpr);
+  dprRef.current = dpr;
 
   // Audio state
   const audioRef = useRef<AudioRefs | null>(null);
@@ -148,7 +153,7 @@ export default function LogisticSound() {
       if (canvas) {
         const W = canvas.clientWidth;
         const H = canvas.clientHeight;
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const dpr = dprRef.current;
         if (canvas.width !== Math.floor(W * dpr) || canvas.height !== Math.floor(H * dpr)) {
           canvas.width = Math.floor(W * dpr);
           canvas.height = Math.floor(H * dpr);
@@ -156,7 +161,7 @@ export default function LogisticSound() {
         const ctx = canvas.getContext("2d");
         if (ctx) {
           ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-          ctx.fillStyle = "#06070d";
+          ctx.fillStyle = palette.canvas.bg;
           ctx.fillRect(0, 0, W, H);
 
           // Horizontal grid
@@ -173,7 +178,7 @@ export default function LogisticSound() {
           // Iterates as scrolling dots; newest on the right.
           const hist = historyRef.current;
           const n = hist.length;
-          ctx.fillStyle = "#ff7ab6";
+          ctx.fillStyle = palette.signal.rose;
           for (let i = 0; i < n; i++) {
             const px = (i / (HISTORY_MAX - 1)) * W;
             const py = (1 - hist[i]) * H;
@@ -196,7 +201,7 @@ export default function LogisticSound() {
       if (axis) {
         const W = axis.clientWidth;
         const H = axis.clientHeight;
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const dpr = dprRef.current;
         if (axis.width !== Math.floor(W * dpr) || axis.height !== Math.floor(H * dpr)) {
           axis.width = Math.floor(W * dpr);
           axis.height = Math.floor(H * dpr);
@@ -204,7 +209,7 @@ export default function LogisticSound() {
         const ctx = axis.getContext("2d");
         if (ctx) {
           ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-          ctx.fillStyle = "#06070d";
+          ctx.fillStyle = palette.canvas.bg;
           ctx.fillRect(0, 0, W, H);
 
           // Track
@@ -229,13 +234,13 @@ export default function LogisticSound() {
 
           // Current r cursor
           const cx = ((rRef.current - R_MIN) / (R_MAX - R_MIN)) * W;
-          ctx.strokeStyle = "#ff7ab6";
+          ctx.strokeStyle = palette.signal.rose;
           ctx.lineWidth = 2;
           ctx.beginPath();
           ctx.moveTo(cx, 0);
           ctx.lineTo(cx, H);
           ctx.stroke();
-          ctx.fillStyle = "#ff7ab6";
+          ctx.fillStyle = palette.signal.rose;
           ctx.beginPath();
           ctx.arc(cx, H / 2, 5, 0, Math.PI * 2);
           ctx.fill();

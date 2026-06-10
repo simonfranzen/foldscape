@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 const FAMOUS_R = [
   { r: 2.5, label: "Calm fixed point" },
@@ -23,6 +25,9 @@ export default function LogisticExplorer() {
   const topic = a.topics.logistic;
   const bifurcationRef = useRef<HTMLCanvasElement | null>(null);
   const timeSeriesRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
+  const dprRef = useRef(dpr);
+  dprRef.current = dpr;
 
   // Cache the heavy bifurcation render so we can redraw it under the cursor
   // without recomputing 350 k iterations on every r-slider tick.
@@ -41,7 +46,7 @@ export default function LogisticExplorer() {
     if (!canvas) return;
 
     const renderHeavy = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = dprRef.current;
       const cssW = canvas.clientWidth;
       const cssH = canvas.clientHeight;
       if (cssW === 0 || cssH === 0) return;
@@ -50,7 +55,7 @@ export default function LogisticExplorer() {
       canvas.width = W;
       canvas.height = H;
       const ctx = canvas.getContext("2d")!;
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const NR = 700;
@@ -98,7 +103,7 @@ export default function LogisticExplorer() {
     ctx.moveTo(rx, 0);
     ctx.lineTo(rx, H);
     ctx.stroke();
-    ctx.fillStyle = "#7df3ff";
+    ctx.fillStyle = palette.signal.cyan;
     ctx.font = `${11 * dpr}px ui-monospace, monospace`;
     ctx.fillText(`r = ${r.toFixed(4)}`, rx + 6 * dpr, 14 * dpr);
   }, [r, bifReady]);
@@ -107,7 +112,7 @@ export default function LogisticExplorer() {
   useEffect(() => {
     const canvas = timeSeriesRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = dprRef.current;
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -116,7 +121,7 @@ export default function LogisticExplorer() {
       canvas.height = Math.floor(H * dpr);
       const ctx = canvas.getContext("2d")!;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Grid
@@ -135,7 +140,7 @@ export default function LogisticExplorer() {
 
       // Plot trajectory
       ctx.strokeStyle = "rgba(255, 209, 102, 0.65)";
-      ctx.fillStyle = "#ffd166";
+      ctx.fillStyle = palette.signal.amber;
       ctx.lineWidth = 1.4;
       ctx.beginPath();
       for (let k = 0; k <= showCount; k++) {
