@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import { ApollonianDescartes } from "@/components/ApollonianDescartes";
 import { ApollonianGasket } from "@/components/ApollonianGasket";
+import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
@@ -886,7 +887,7 @@ function SeedSVG({ withLabels = true }: { withLabels?: boolean }) {
       role="img"
       aria-label="Integer Apollonian packing seed (−1, 2, 2, 3)"
     >
-      <rect width="260" height="260" fill="#06070d" rx="14" />
+      <rect width="260" height="260" fill={palette.canvas.bg} rx="14" />
       {circles.map((c, i) => {
         const [px, py] = map(c.x, c.y);
         return (

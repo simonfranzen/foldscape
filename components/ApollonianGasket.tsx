@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline Apollonian gasket renderer for the story page. A scaled-down sibling
 // of the full explorer canvas: we share the geometry logic but limit depth and
@@ -163,6 +165,7 @@ export function ApollonianGasket({ caption, seedLabel, depthLabel, countLabel, h
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [presetIdx, setPresetIdx] = useState(0);
   const [depth, setDepth] = useState(3);
+  const dpr = useDpr();
 
   const seed = useMemo(() => placeSeed(PRESETS[presetIdx]!.seeds), [presetIdx]);
   const circles = useMemo(() => growGasket(seed, depth), [seed, depth]);
@@ -170,7 +173,6 @@ export function ApollonianGasket({ caption, seedLabel, depthLabel, countLabel, h
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -181,7 +183,7 @@ export function ApollonianGasket({ caption, seedLabel, depthLabel, countLabel, h
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const margin = 0.92;
@@ -224,7 +226,7 @@ export function ApollonianGasket({ caption, seedLabel, depthLabel, countLabel, h
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [circles]);
+  }, [circles, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-6">

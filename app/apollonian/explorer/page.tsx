@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // ---------- Geometry types ----------
 
@@ -230,6 +232,7 @@ export default function ApollonianExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.apollonian;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [presetIdx, setPresetIdx] = useState(0);
   const [depth, setDepth] = useState(4);
@@ -245,7 +248,6 @@ export default function ApollonianExplorer() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -255,7 +257,7 @@ export default function ApollonianExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Determine viewport — we always centre on the outer disc (the seed
@@ -283,7 +285,7 @@ export default function ApollonianExplorer() {
           ctx.arc(ox, oy, outer.r * scale, 0, Math.PI * 2);
           ctx.fill();
         }
-        ctx.fillStyle = "#06070d";
+        ctx.fillStyle = palette.canvas.bg;
         for (let i = 1; i < circles.length; i++) {
           const c = circles[i]!;
           const [px, py] = toPx(c.x, c.y);
@@ -349,7 +351,7 @@ export default function ApollonianExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [circles, depth, showLabels, showGaps, colourByCurvature, centerOnPacking]);
+  }, [circles, depth, showLabels, showGaps, colourByCurvature, centerOnPacking, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
