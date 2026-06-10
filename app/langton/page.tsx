@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { palette } from "@/lib/visual/palette";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { LangtonMiniRunner } from "@/components/LangtonMiniRunner";
@@ -29,7 +30,7 @@ function HighwaySVG() {
       const x = Math.floor(bx + i * 1.2);
       const y = Math.floor(by + i * 0.5);
       if (x >= 0 && x < cols && y >= 0 && y < rows) {
-        blocks.push([x, y, i % 2 === 0 ? "#b388ff" : "#e8eaf2"]);
+        blocks.push([x, y, i % 2 === 0 ? palette.signal.violet : "#e8eaf2"]);
       }
     }
   }
@@ -40,7 +41,7 @@ function HighwaySVG() {
       role="img"
       aria-label="Langton highway schematic"
     >
-      <rect width={W} height={H} fill="#06070d" rx={10} />
+      <rect width={W} height={H} fill={palette.canvas.bg} rx={10} />
       {blocks.map(([x, y, fill], i) => (
         <rect
           key={i}
@@ -49,7 +50,7 @@ function HighwaySVG() {
           width={c - 0.5}
           height={c - 0.5}
           fill={fill}
-          fillOpacity={fill === "#b388ff" ? 0.8 : 0.6}
+          fillOpacity={fill === palette.signal.violet ? 0.8 : 0.6}
         />
       ))}
     </svg>

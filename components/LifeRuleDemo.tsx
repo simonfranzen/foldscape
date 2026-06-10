@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { getDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // A small grid that iterates the Game-of-Life rules from a fixed seed and
 // loops. Older demos showed just step 0 → step 1, which barely demonstrated
@@ -75,7 +77,7 @@ export function LifeRuleDemo({
     reseed();
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = getDpr();
       canvas.width = Math.floor(canvas.clientWidth * dpr);
       canvas.height = Math.floor(canvas.clientHeight * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -85,12 +87,12 @@ export function LifeRuleDemo({
     ro.observe(canvas);
 
     const colorMap: Record<string, string> = {
-      "text-signal-violet": "#b388ff",
-      "text-signal-cyan": "#7df3ff",
-      "text-signal-amber": "#ffd166",
-      "text-signal-rose": "#ff7ab6",
+      "text-signal-violet": palette.signal.violet,
+      "text-signal-cyan": palette.signal.cyan,
+      "text-signal-amber": palette.signal.amber,
+      "text-signal-rose": palette.signal.rose,
     };
-    const fill = colorMap[accent] ?? "#b388ff";
+    const fill = colorMap[accent] ?? palette.signal.violet;
 
     const draw = () => {
       const W = canvas.clientWidth;

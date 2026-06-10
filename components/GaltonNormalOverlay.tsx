@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Static demonstration of the De Moivre–Laplace convergence: binomial PMF
 // (cyan bars) with the matching Gaussian density (violet curve) for any N
@@ -39,6 +41,7 @@ export function GaltonNormalOverlay({
   legendNormal = "normal",
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
   const [N, setN] = useState(10);
 
   useEffect(() => {
@@ -46,7 +49,6 @@ export function GaltonNormalOverlay({
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
@@ -64,7 +66,7 @@ export function GaltonNormalOverlay({
       const plotW = W - margin * 2;
       const plotH = H - margin * 2;
 
-      ctx!.fillStyle = "#06070d";
+      ctx!.fillStyle = palette.canvas.bg;
       ctx!.fillRect(0, 0, W, H);
 
       // baseline
@@ -103,7 +105,7 @@ export function GaltonNormalOverlay({
       }
 
       // normal curve — violet
-      ctx!.strokeStyle = "#b388ff";
+      ctx!.strokeStyle = palette.signal.violet;
       ctx!.lineWidth = 1.8 * dpr;
       ctx!.beginPath();
       const steps = 240;
@@ -138,7 +140,7 @@ export function GaltonNormalOverlay({
 
     draw();
     return () => ro.disconnect();
-  }, [N]);
+  }, [N, dpr]);
 
   return (
     <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5 md:p-6">

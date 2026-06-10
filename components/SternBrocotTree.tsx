@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 interface Props {
   caption: string;
@@ -151,7 +152,7 @@ export function SternBrocotTree({ caption, depthLabel, targetLabel, pathLabel, p
           role="img"
           aria-label="Stern-Brocot tree"
         >
-          <rect width={W} height={H} fill="#06070d" rx={10} />
+          <rect width={W} height={H} fill={palette.canvas.bg} rx={10} />
           {edges.map(([a, b], i) => {
             const A = pos(nodes[a]!);
             const B = pos(nodes[b]!);
@@ -165,7 +166,7 @@ export function SternBrocotTree({ caption, depthLabel, targetLabel, pathLabel, p
                 y1={A.py}
                 x2={B.px}
                 y2={B.py}
-                stroke={onPath ? "#ffd166" : "rgba(125,243,255,0.25)"}
+                stroke={onPath ? palette.signal.amber : "rgba(125,243,255,0.25)"}
                 strokeWidth={onPath ? 1.4 : 0.7}
               />
             );
@@ -182,7 +183,7 @@ export function SternBrocotTree({ caption, depthLabel, targetLabel, pathLabel, p
                   cx={px}
                   cy={py}
                   r={onPath ? 3.6 : 2.4}
-                  fill={onPath ? "#ffd166" : "#7df3ff"}
+                  fill={onPath ? palette.signal.amber : palette.signal.cyan}
                 />
                 <text
                   x={px}
@@ -190,7 +191,7 @@ export function SternBrocotTree({ caption, depthLabel, targetLabel, pathLabel, p
                   textAnchor="middle"
                   fontFamily="ui-monospace, monospace"
                   fontSize={fs}
-                  fill={onPath ? "#ffd166" : "#e8eaf2"}
+                  fill={onPath ? palette.signal.amber : "#e8eaf2"}
                 >
                   {n.num}/{n.den}
                 </text>

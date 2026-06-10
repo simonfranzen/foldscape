@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
 
 // --------------------------------------------------------------------------
@@ -564,6 +566,7 @@ const CONVERGED_LOSS = 0.02;
 
 export default function BackpropExplorer() {
   const { u, locale, a } = useI18n();
+  const dpr = useDpr();
   const x = E[locale];
   // Atlas card copy for the side panel.
   const topic = a.topics.backprop ?? {
@@ -662,7 +665,6 @@ export default function BackpropExplorer() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const W = canvas.clientWidth;
     const H = canvas.clientHeight;
     canvas.width = Math.floor(W * dpr);
@@ -672,7 +674,7 @@ export default function BackpropExplorer() {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     // Background.
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, W, H);
 
     // Build a low-resolution heatmap by sampling the net on a grid.
@@ -730,7 +732,7 @@ export default function BackpropExplorer() {
       ctx.lineWidth = 0.8;
       ctx.stroke();
     }
-  }, [tick, topology, task]);
+  }, [tick, topology, task, dpr]);
 
   // Loss chart.
   const lossPath = useMemo(() => {
@@ -818,7 +820,7 @@ export default function BackpropExplorer() {
             >
               <line x1="0" y1="87" x2="380" y2="87" stroke="rgba(138,144,164,0.3)" />
               {lossPath && (
-                <path d={lossPath} fill="none" stroke="#ffd166" strokeWidth="1.4" />
+                <path d={lossPath} fill="none" stroke={palette.signal.amber} strokeWidth="1.4" />
               )}
             </svg>
           </div>

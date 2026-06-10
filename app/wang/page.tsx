@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import { WangTileGrid } from "@/components/WangTileGrid";
 import { WangAperiodicTiler } from "@/components/WangAperiodicTiler";
+import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
@@ -13,7 +14,7 @@ import type { StoryPage } from "@/lib/i18n/stories";
 const ACCENT = "text-signal-cyan";
 
 // Edge-colour palette shared with the components.
-const C = ["#7df3ff", "#b388ff", "#ffd166", "#ff7ab6"];
+const C = [palette.signal.cyan, palette.signal.violet, palette.signal.amber, palette.signal.rose];
 
 // ─── Tiny inline tile diagram for the Encounter card 02 ──────────────────────
 // A minimal valid 2×2 patch. The chosen tiles' shared edges agree.

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Inline Descartes-formula calculator: given three signed curvatures k1, k2, k3,
 // compute the two possible fourth curvatures via
@@ -43,7 +44,7 @@ function MiniSeed({ curvatures, highlight }: { curvatures: number[]; highlight?:
   const H = 120;
   const cx = W / 2;
   const cy = H / 2;
-  const palette = [
+  const circleColors = [
     "rgba(255,122,182,0.95)", // outer / rose
     "rgba(125,243,255,0.95)", // cyan
     "rgba(179,136,255,0.95)", // violet
@@ -51,7 +52,7 @@ function MiniSeed({ curvatures, highlight }: { curvatures: number[]; highlight?:
   ];
   const radii = curvatures.map((k, i) => {
     const r = 1 / Math.max(Math.abs(k), TINY);
-    return { r, k, color: palette[i % palette.length]! };
+    return { r, k, color: circleColors[i % circleColors.length]! };
   });
   // Normalise so the largest |1/k| maps to half the box.
   const maxR = Math.max(...radii.map((c) => c.r), 1);
@@ -65,7 +66,7 @@ function MiniSeed({ curvatures, highlight }: { curvatures: number[]; highlight?:
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-hidden="true">
-      <rect width={W} height={H} fill="#06070d" rx={8} />
+      <rect width={W} height={H} fill={palette.canvas.bg} rx={8} />
       {radii.map((c, i) => {
         const rPx = c.r * scale;
         let x = cx;

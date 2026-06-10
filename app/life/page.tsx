@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { palette } from "@/lib/visual/palette";
 import { Reveal } from "@/components/Reveal";
 import { LifeGliderDemo } from "@/components/LifeGliderDemo";
 import { LifeMiniSandbox } from "@/components/LifeMiniSandbox";
@@ -984,7 +985,7 @@ function MiniGrid({
   size: _size = 4,
   cols = 4,
   rows = 3,
-  accent = "#7df3ff",
+  accent = palette.signal.cyan,
 }: {
   cells: ReadonlyArray<readonly [number, number]>;
   size?: number;
@@ -998,7 +999,7 @@ function MiniGrid({
   const set = new Set(cells.map(([x, y]) => `${x},${y}`));
   return (
     <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} className="block" aria-hidden="true">
-      <rect width={W} height={H} fill="#06070d" />
+      <rect width={W} height={H} fill={palette.canvas.bg} />
       {Array.from({ length: cols + 1 }).map((_, i) => (
         <line
           key={`v${i}`}
@@ -1149,14 +1150,14 @@ export default function LifeStory() {
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
                   <div className="space-y-1">
-                    <MiniGrid cells={BLOCK_CELLS} cols={4} rows={4} accent="#7df3ff" />
+                    <MiniGrid cells={BLOCK_CELLS} cols={4} rows={4} accent={palette.signal.cyan} />
                     <div className="font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
                       Block · still
                     </div>
                   </div>
                   <div className="font-mono text-2xl text-ink-300">→</div>
                   <div className="space-y-1">
-                    <MiniGrid cells={BLOCK_CELLS} cols={4} rows={4} accent="#7df3ff" />
+                    <MiniGrid cells={BLOCK_CELLS} cols={4} rows={4} accent={palette.signal.cyan} />
                     <div className="font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
                       gen 1 · same
                     </div>
@@ -1164,14 +1165,14 @@ export default function LifeStory() {
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
                   <div className="space-y-1">
-                    <MiniGrid cells={BLINKER_H} cols={3} rows={3} accent="#b388ff" />
+                    <MiniGrid cells={BLINKER_H} cols={3} rows={3} accent={palette.signal.violet} />
                     <div className="font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
                       Blinker · gen 0
                     </div>
                   </div>
                   <div className="font-mono text-2xl text-ink-300">↔</div>
                   <div className="space-y-1">
-                    <MiniGrid cells={BLINKER_V} cols={3} rows={3} accent="#b388ff" />
+                    <MiniGrid cells={BLINKER_V} cols={3} rows={3} accent={palette.signal.violet} />
                     <div className="font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
                       gen 1 · flipped
                     </div>

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-amber";
 const TRUE_PI = Math.PI;
@@ -30,6 +32,7 @@ const HISTORY_MAX = 1200;
 export default function BuffonExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.buffon;
+  const dpr = useDpr();
   const dropCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const plotCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -153,7 +156,6 @@ export default function BuffonExplorer() {
   useEffect(() => {
     const canvas = dropCanvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const render = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
@@ -162,7 +164,7 @@ export default function BuffonExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Parallel lines
@@ -194,13 +196,12 @@ export default function BuffonExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [tick, spacing, needleLen]);
+  }, [tick, spacing, needleLen, dpr]);
 
   // Render the convergence plot: running π estimate vs n.
   useEffect(() => {
     const canvas = plotCanvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const render = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
@@ -209,7 +210,7 @@ export default function BuffonExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Read samples in chronological order out of the circular buffer.
@@ -248,7 +249,7 @@ export default function BuffonExplorer() {
       ctx.lineTo(W, piY);
       ctx.stroke();
       ctx.setLineDash([]);
-      ctx.fillStyle = "#7df3ff";
+      ctx.fillStyle = palette.signal.cyan;
       ctx.font = "10px ui-monospace, monospace";
       ctx.fillText("π = 3.14159…", 8, piY - 4);
 
@@ -285,7 +286,7 @@ export default function BuffonExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [tick]);
+  }, [tick, dpr]);
 
   const piEst = crossings > 0 ? (2 * needleLen * total) / (spacing * crossings) : NaN;
   const errPct = Number.isFinite(piEst) ? (Math.abs(piEst - TRUE_PI) / TRUE_PI) * 100 : NaN;

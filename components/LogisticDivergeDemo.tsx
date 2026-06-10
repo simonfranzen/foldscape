@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Sensitive dependence on initial conditions for the logistic map.
 // Two parallel orbits start at x₀ and x₀ + 10⁻⁶ and advance one iteration
@@ -41,17 +43,20 @@ export function LogisticDivergeDemo({
   const [running, setRunning] = useState(true);
   const [resetTick, setResetTick] = useState(0);
   const [stats, setStats] = useState({ n: 0, dist: EPSILON });
+  const dpr = useDpr();
 
   const rRef = useRef(r);
   rRef.current = r;
   const runningRef = useRef(running);
   runningRef.current = running;
+  const dprRef = useRef(dpr);
+  dprRef.current = dpr;
 
   useEffect(() => {
     const cA = canvasARef.current;
     const cB = canvasBRef.current;
     if (!cA || !cB) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = dprRef.current;
     [cA, cB].forEach((c) => {
       c.width = Math.floor(W * dpr);
       c.height = Math.floor(H * dpr);
@@ -70,7 +75,7 @@ export function LogisticDivergeDemo({
     let raf = 0;
 
     const drawBackground = (ctx: CanvasRenderingContext2D) => {
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
       ctx.strokeStyle = "rgba(138,144,164,0.15)";
       ctx.lineWidth = 1;
@@ -111,8 +116,8 @@ export function LogisticDivergeDemo({
       }
     };
 
-    drawHist(ctxA, histA, "rgba(125,243,255,0.85)", "#7df3ff");
-    drawHist(ctxB, histB, "rgba(179,136,255,0.85)", "#b388ff");
+    drawHist(ctxA, histA, "rgba(125,243,255,0.85)", palette.signal.cyan);
+    drawHist(ctxB, histB, "rgba(179,136,255,0.85)", palette.signal.violet);
 
     const step = (t: number) => {
       if (runningRef.current && t - lastT > STEP_MS) {
@@ -124,8 +129,8 @@ export function LogisticDivergeDemo({
           histA.push(xa);
           histB.push(xb);
           n++;
-          drawHist(ctxA, histA, "rgba(125,243,255,0.85)", "#7df3ff");
-          drawHist(ctxB, histB, "rgba(179,136,255,0.85)", "#b388ff");
+          drawHist(ctxA, histA, "rgba(125,243,255,0.85)", palette.signal.cyan);
+          drawHist(ctxB, histB, "rgba(179,136,255,0.85)", palette.signal.violet);
           setStats({ n, dist: Math.abs(xa - xb) });
         }
       }

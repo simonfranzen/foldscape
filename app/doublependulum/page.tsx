@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { palette } from "@/lib/visual/palette";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { DoublePendulumSim } from "@/components/DoublePendulumSim";
@@ -1266,7 +1267,7 @@ function RegimeMini({ variant }: { variant: "torus" | "chaos" }) {
     }
     return (
       <svg viewBox="0 0 220 140" className="h-auto w-full" role="img" aria-label="Invariant torus">
-        <rect width="220" height="140" fill="#06070d" rx="6" />
+        <rect width="220" height="140" fill={palette.canvas.bg} rx="6" />
         <path d={path.join(" ")} fill="none" stroke="rgba(125,243,255,0.65)" strokeWidth="0.9" />
       </svg>
     );
@@ -1289,7 +1290,7 @@ function RegimeMini({ variant }: { variant: "torus" | "chaos" }) {
   }
   return (
     <svg viewBox="0 0 220 140" className="h-auto w-full" role="img" aria-label="Chaotic cloud">
-      <rect width="220" height="140" fill="#06070d" rx="6" />
+      <rect width="220" height="140" fill={palette.canvas.bg} rx="6" />
       {dots.map(([x, y], i) => (
         <circle key={i} cx={x.toFixed(2)} cy={y.toFixed(2)} r="0.9" fill="rgba(255,122,182,0.65)" />
       ))}
@@ -1335,7 +1336,7 @@ function PoincareSVG() {
       role="img"
       aria-label="Poincaré section"
     >
-      <rect width="320" height="180" fill="#06070d" rx="8" />
+      <rect width="320" height="180" fill={palette.canvas.bg} rx="8" />
       {dots.map(([x, y], i) => (
         <circle key={i} cx={x.toFixed(2)} cy={y.toFixed(2)} r="0.8" fill="rgba(255,122,182,0.55)" />
       ))}
@@ -1360,7 +1361,7 @@ function PoincareSVG() {
         textAnchor="middle"
         fontFamily="ui-monospace, monospace"
         fontSize="9"
-        fill="#ffd166"
+        fill={palette.signal.amber}
       >
         KAM islands · stochastic sea
       </text>

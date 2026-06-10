@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { useI18n } from "@/lib/i18n/context";
 import { FourColorVoronoiHero } from "@/components/signature/FourColorVoronoiHero";
+import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-teal";
 
@@ -13,7 +14,7 @@ const ACCENT = "text-signal-teal";
 // also paired with a unique hatch pattern so the maps still parse under
 // protanopia / deuteranopia — the visual constraint is colour-encoded AND
 // texture-encoded.
-const SWATCHES = ["#7df3ff", "#ffd166", "#b18cff", "#ff7ab6"];
+const SWATCHES = [palette.signal.cyan, palette.signal.amber, "#b18cff", palette.signal.rose];
 const PATTERNS = ["fc-h", "fc-v", "fc-d1", "fc-d2"]; // horizontal, vertical, diag-up, diag-down
 
 function ExampleMap({
@@ -118,7 +119,7 @@ export default function FourColorStoryPage() {
                 needs={2}
                 svg={
                   <svg viewBox="0 0 200 200" className="block h-full w-full">
-                    <rect width="200" height="200" fill="#06070d" />
+                    <rect width="200" height="200" fill={palette.canvas.bg} />
                     <rect
                       x="20"
                       y="20"
@@ -126,7 +127,7 @@ export default function FourColorStoryPage() {
                       height="160"
                       fill={SWATCHES[0]}
                       opacity="0.85"
-                      stroke="#0b0d18"
+                      stroke={palette.canvas.bgAlt}
                       strokeWidth="2"
                     />
                     <rect
@@ -144,7 +145,7 @@ export default function FourColorStoryPage() {
                       height="160"
                       fill={SWATCHES[1]}
                       opacity="0.85"
-                      stroke="#0b0d18"
+                      stroke={palette.canvas.bgAlt}
                       strokeWidth="2"
                     />
                     <rect
@@ -161,7 +162,7 @@ export default function FourColorStoryPage() {
                       textAnchor="middle"
                       fontFamily="ui-monospace, monospace"
                       fontSize="11"
-                      fill="#06070d"
+                      fill={palette.canvas.bg}
                     >
                       A
                     </text>
@@ -171,7 +172,7 @@ export default function FourColorStoryPage() {
                       textAnchor="middle"
                       fontFamily="ui-monospace, monospace"
                       fontSize="11"
-                      fill="#06070d"
+                      fill={palette.canvas.bg}
                     >
                       B
                     </text>
@@ -184,13 +185,13 @@ export default function FourColorStoryPage() {
                 needs={3}
                 svg={
                   <svg viewBox="0 0 200 200" className="block h-full w-full">
-                    <rect width="200" height="200" fill="#06070d" />
+                    <rect width="200" height="200" fill={palette.canvas.bg} />
                     {/* Three wedges meeting at the centre */}
                     <path
                       d="M 100 100 L 100 20 A 80 80 0 0 1 169 140 Z"
                       fill={SWATCHES[0]}
                       opacity="0.85"
-                      stroke="#0b0d18"
+                      stroke={palette.canvas.bgAlt}
                       strokeWidth="2"
                     />
                     <path
@@ -202,7 +203,7 @@ export default function FourColorStoryPage() {
                       d="M 100 100 L 169 140 A 80 80 0 0 1 31 140 Z"
                       fill={SWATCHES[1]}
                       opacity="0.85"
-                      stroke="#0b0d18"
+                      stroke={palette.canvas.bgAlt}
                       strokeWidth="2"
                     />
                     <path
@@ -214,7 +215,7 @@ export default function FourColorStoryPage() {
                       d="M 100 100 L 31 140 A 80 80 0 0 1 100 20 Z"
                       fill={SWATCHES[2]}
                       opacity="0.85"
-                      stroke="#0b0d18"
+                      stroke={palette.canvas.bgAlt}
                       strokeWidth="2"
                     />
                     <path
@@ -228,7 +229,7 @@ export default function FourColorStoryPage() {
                       textAnchor="middle"
                       fontFamily="ui-monospace, monospace"
                       fontSize="11"
-                      fill="#06070d"
+                      fill={palette.canvas.bg}
                     >
                       A
                     </text>
@@ -238,7 +239,7 @@ export default function FourColorStoryPage() {
                       textAnchor="middle"
                       fontFamily="ui-monospace, monospace"
                       fontSize="11"
-                      fill="#06070d"
+                      fill={palette.canvas.bg}
                     >
                       B
                     </text>
@@ -248,7 +249,7 @@ export default function FourColorStoryPage() {
                       textAnchor="middle"
                       fontFamily="ui-monospace, monospace"
                       fontSize="11"
-                      fill="#06070d"
+                      fill={palette.canvas.bg}
                     >
                       C
                     </text>
@@ -261,13 +262,13 @@ export default function FourColorStoryPage() {
                 needs={4}
                 svg={
                   <svg viewBox="0 0 200 200" className="block h-full w-full">
-                    <rect width="200" height="200" fill="#06070d" />
+                    <rect width="200" height="200" fill={palette.canvas.bg} />
                     {/* One central region D surrounded by three petals A, B, C — each pair touches */}
                     <path
                       d="M 100 100 L 100 20 A 80 80 0 0 1 169 140 Z"
                       fill={SWATCHES[0]}
                       opacity="0.85"
-                      stroke="#0b0d18"
+                      stroke={palette.canvas.bgAlt}
                       strokeWidth="2"
                     />
                     <path
@@ -279,7 +280,7 @@ export default function FourColorStoryPage() {
                       d="M 100 100 L 169 140 A 80 80 0 0 1 31 140 Z"
                       fill={SWATCHES[1]}
                       opacity="0.85"
-                      stroke="#0b0d18"
+                      stroke={palette.canvas.bgAlt}
                       strokeWidth="2"
                     />
                     <path
@@ -291,7 +292,7 @@ export default function FourColorStoryPage() {
                       d="M 100 100 L 31 140 A 80 80 0 0 1 100 20 Z"
                       fill={SWATCHES[2]}
                       opacity="0.85"
-                      stroke="#0b0d18"
+                      stroke={palette.canvas.bgAlt}
                       strokeWidth="2"
                     />
                     <path
@@ -305,7 +306,7 @@ export default function FourColorStoryPage() {
                       r="26"
                       fill={SWATCHES[3]}
                       opacity="0.95"
-                      stroke="#0b0d18"
+                      stroke={palette.canvas.bgAlt}
                       strokeWidth="2"
                     />
                     <circle cx="100" cy="100" r="26" fill={`url(#${PATTERNS[3]})`} opacity="0.55" />
@@ -315,7 +316,7 @@ export default function FourColorStoryPage() {
                       textAnchor="middle"
                       fontFamily="ui-monospace, monospace"
                       fontSize="11"
-                      fill="#06070d"
+                      fill={palette.canvas.bg}
                     >
                       A
                     </text>
@@ -325,7 +326,7 @@ export default function FourColorStoryPage() {
                       textAnchor="middle"
                       fontFamily="ui-monospace, monospace"
                       fontSize="11"
-                      fill="#06070d"
+                      fill={palette.canvas.bg}
                     >
                       B
                     </text>
@@ -335,7 +336,7 @@ export default function FourColorStoryPage() {
                       textAnchor="middle"
                       fontFamily="ui-monospace, monospace"
                       fontSize="11"
-                      fill="#06070d"
+                      fill={palette.canvas.bg}
                     >
                       C
                     </text>
@@ -345,7 +346,7 @@ export default function FourColorStoryPage() {
                       textAnchor="middle"
                       fontFamily="ui-monospace, monospace"
                       fontSize="11"
-                      fill="#06070d"
+                      fill={palette.canvas.bg}
                     >
                       D
                     </text>

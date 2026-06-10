@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Mini Hilbert-hotel duplicator. We render 12 numbered rooms (truncating a
 // genuinely infinite row with a "…" marker) and animate two famous moves:
@@ -29,10 +30,16 @@ function initialGuests(): (Guest | null)[] {
   }));
 }
 
+// Cycle through the four signal colours for visual variety among room guests.
+const GUEST_COLORS = [
+  palette.signal.cyan,
+  palette.signal.violet,
+  palette.signal.amber,
+  palette.signal.rose,
+] as const;
+
 function pickColor(i: number): string {
-  // cycle through the four signal colours
-  const palette = ["#7df3ff", "#b388ff", "#ffd166", "#ff7ab6"];
-  return palette[i % palette.length];
+  return GUEST_COLORS[i % GUEST_COLORS.length];
 }
 
 export function BanachHilbertMini({
@@ -56,7 +63,7 @@ export function BanachHilbertMini({
       shifted[i + 1] = rooms[i];
     }
     // New guest enters room 1
-    shifted[0] = { id: nextId, color: "#ff7ab6" };
+    shifted[0] = { id: nextId, color: palette.signal.rose };
     setRooms(shifted);
     setNextId(nextId + 1);
     setFlash([0]);

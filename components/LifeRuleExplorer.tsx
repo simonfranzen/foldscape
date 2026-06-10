@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { getDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Side-by-side rule exploration. The same seed soup runs under any B/S rule
 // the user picks. Default seed is a small random soup so divergence between
@@ -24,10 +26,6 @@ const PRESETS: RulePreset[] = [
   { key: "dnd", name: "Day & Night · B3678/S34678", birth: [3, 6, 7, 8], survive: [3, 4, 6, 7, 8] },
   { key: "seeds", name: "Seeds · B2/S", birth: [2], survive: [] },
 ];
-
-function _ruleFromPreset(p: RulePreset): Rule {
-  return { b: new Set(p.birth), s: new Set(p.survive), name: p.name, key: p.key };
-}
 
 function ruleString(r: Rule): string {
   const b = [...r.b].sort((a, c) => a - c).join("");
@@ -133,7 +131,7 @@ export function LifeRuleExplorer({ labels }: Props) {
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = getDpr();
     const w = canvas.clientWidth * dpr;
     const h = canvas.clientHeight * dpr;
     if (canvas.width !== w || canvas.height !== h) {
@@ -144,11 +142,11 @@ export function LifeRuleExplorer({ labels }: Props) {
     const cellSize = Math.min(canvas.width / COLS, canvas.height / ROWS);
     const offX = (canvas.width - cellSize * COLS) / 2;
     const offY = (canvas.height - cellSize * ROWS) / 2;
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     const r = cellSize * 0.38;
-    ctx.fillStyle = "#b388ff";
-    ctx.shadowColor = "#b388ff";
+    ctx.fillStyle = palette.signal.violet;
+    ctx.shadowColor = palette.signal.violet;
     ctx.shadowBlur = cellSize * 0.9;
     ctx.beginPath();
     const g = aRef.current;

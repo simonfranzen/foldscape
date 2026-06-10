@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // ---------------------------------------------------------------------------
 // P3 (rhombi) Penrose tiling via inflation of Robinson half-rhombi.
@@ -177,14 +179,15 @@ const ARROW_DOUBLE = "rgba(125, 243, 255, 0.9)";
 
 // P2 kite + dart palette
 const KITE_FILL = "rgba(255, 209, 102, 0.15)"; // amber
-const KITE_STROKE = "#ffd166";
+const KITE_STROKE = palette.signal.amber;
 const DART_FILL = "rgba(179, 136, 255, 0.15)"; // violet
-const DART_STROKE = "#b388ff";
+const DART_STROKE = palette.signal.violet;
 
 export default function PenroseExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.penrose;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [mode, setMode] = useState<Mode>("P3");
   const [depth, setDepth] = useState(4);
@@ -210,7 +213,6 @@ export default function PenroseExplorer() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -220,7 +222,7 @@ export default function PenroseExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Auto-scale: fit the seed disc of radius ~1 to ~85% of the viewport.
@@ -363,7 +365,7 @@ export default function PenroseExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [rhombi, p2Tris, mode, depth, showOutlines, showColors, showArrows, recenterTick]);
+  }, [rhombi, p2Tris, mode, depth, showOutlines, showColors, showArrows, recenterTick, dpr]);
 
   const tileCount = rhombi.length;
   const fatCount = rhombi.filter((r) => r.t === 0).length;

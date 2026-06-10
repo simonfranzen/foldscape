@@ -5,6 +5,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { PATTERNS } from "@/lib/life/patterns";
 import { Info } from "@/components/Info";
+import { getDpr } from "@/lib/hooks/useDpr";
+import { palette as colorPalette } from "@/lib/visual/palette";
 
 const COLS = 120;
 const ROWS = 70;
@@ -74,12 +76,11 @@ export default function LifePage() {
   useEffect(() => {
     const g = gridARef.current;
     g.fill(0);
-    const gun = PATTERNS.find((p) => p.id === "gun")!;
-    paintPattern(g, gun.cells, 4, 4);
+    const gun = PATTERNS.find((p) => p.id === "gun");
+    if (gun) paintPattern(g, gun.cells, 4, 4);
     setGeneration(0);
     setPopulation(countAlive(g));
     requestDraw();
-     
   }, []);
 
   // Drawing loop — independent of simulation tick so the canvas is responsive
@@ -89,7 +90,7 @@ export default function LifePage() {
     drawRef.current = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = getDpr();
       const w = canvas.clientWidth * dpr;
       const h = canvas.clientHeight * dpr;
       if (canvas.width !== w || canvas.height !== h) {
@@ -102,14 +103,12 @@ export default function LifePage() {
       const offX = (canvas.width - cellSize * COLS) / 2;
       const offY = (canvas.height - cellSize * ROWS) / 2;
 
-      // background
       const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
       grad.addColorStop(0, "#070811");
-      grad.addColorStop(1, "#05060a");
+      grad.addColorStop(1, colorPalette.ink[950]);
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // very faint grid
       ctx.strokeStyle = "rgba(138, 144, 164, 0.05)";
       ctx.lineWidth = 1;
       ctx.beginPath();
@@ -123,12 +122,11 @@ export default function LifePage() {
       }
       ctx.stroke();
 
-      // cells
       const colorMap: Record<string, string> = {
-        violet: "#b388ff",
-        cyan: "#7df3ff",
-        amber: "#ffd166",
-        rose: "#ff7ab6",
+        violet: colorPalette.signal.violet,
+        cyan: colorPalette.signal.cyan,
+        amber: colorPalette.signal.amber,
+        rose: colorPalette.signal.rose,
       };
       const fill = colorMap[palette];
       ctx.fillStyle = fill;
@@ -187,7 +185,7 @@ export default function LifePage() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = getDpr();
     const cellSize = cellSizeRef.current;
     const offX = (canvas.width - cellSize * COLS) / 2;
     const offY = (canvas.height - cellSize * ROWS) / 2;

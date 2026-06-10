@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { palette } from "@/lib/visual/palette";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { DlaMiniSim } from "@/components/DlaMiniSim";
@@ -70,7 +71,7 @@ function DendriteSVG() {
       role="img"
       aria-label="DLA-like dendrite seeded at centre"
     >
-      <rect width={W} height={H} fill="#06070d" rx={10} />
+      <rect width={W} height={H} fill={palette.canvas.bg} rx={10} />
       {segs.map(([x1, y1, x2, y2], i) => (
         <line
           key={i}
@@ -82,7 +83,7 @@ function DendriteSVG() {
           strokeWidth={1.1}
         />
       ))}
-      <circle cx={cx} cy={cy} r={2.4} fill="#7df3ff" />
+      <circle cx={cx} cy={cy} r={2.4} fill={palette.signal.cyan} />
     </svg>
   );
 }
@@ -121,7 +122,7 @@ function TipsVsValleysSVG() {
       role="img"
       aria-label="Tips capture walkers, valleys starve"
     >
-      <rect width={W} height={H} fill="#06070d" rx={10} />
+      <rect width={W} height={H} fill={palette.canvas.bg} rx={10} />
       {/* trunk */}
       <line x1={cx} y1={cy} x2={cx} y2={cy - 30} stroke="rgba(255,122,182,0.7)" strokeWidth={2} />
       {tips.map((t, i) => (
@@ -134,7 +135,7 @@ function TipsVsValleysSVG() {
             stroke="rgba(255,122,182,0.75)"
             strokeWidth={1.6}
           />
-          <circle cx={t.x} cy={t.y} r={3.2} fill="#ff7ab6" />
+          <circle cx={t.x} cy={t.y} r={3.2} fill={palette.signal.rose} />
         </g>
       ))}
       {/* arrows hitting tips */}

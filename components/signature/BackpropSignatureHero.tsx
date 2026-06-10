@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Signature artefact for the Backprop page. A loss landscape rendered as
 // nested contour rings, with a tiny walker descending the gradient toward
@@ -78,9 +79,9 @@ export function BackpropSignatureHero() {
       <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" role="img" aria-hidden="true">
         <defs>
           <radialGradient id="bp-basin" cx="50%" cy="55%" r="60%">
-            <stop offset="0%" stopColor="#ffd166" stopOpacity="0.18" />
-            <stop offset="60%" stopColor="#ffd166" stopOpacity="0.04" />
-            <stop offset="100%" stopColor="#ffd166" stopOpacity="0" />
+            <stop offset="0%" stopColor={palette.signal.amber} stopOpacity="0.18" />
+            <stop offset="60%" stopColor={palette.signal.amber} stopOpacity="0.04" />
+            <stop offset="100%" stopColor={palette.signal.amber} stopOpacity="0" />
           </radialGradient>
           <linearGradient id="bp-axis" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="rgba(138,144,164,0)" />
@@ -118,7 +119,7 @@ export function BackpropSignatureHero() {
           textAnchor="end"
           fontFamily="var(--font-mono)"
           fontSize="10"
-          fill="#8a90a4"
+          fill={palette.canvas.muted}
         >
           weight space
         </text>
@@ -127,14 +128,14 @@ export function BackpropSignatureHero() {
           y={28}
           fontFamily="var(--font-mono)"
           fontSize="10"
-          fill="#8a90a4"
+          fill={palette.canvas.muted}
         >
           loss L(w)
         </text>
 
         {/* Trail of past steps */}
         {trail.map((p, i) => (
-          <circle key={i} cx={p.x} cy={p.y} r={2.2 - i * 0.05} fill="#ffd166" opacity={p.a * 0.55} />
+          <circle key={i} cx={p.x} cy={p.y} r={2.2 - i * 0.05} fill={palette.signal.amber} opacity={p.a * 0.55} />
         ))}
 
         {/* The gradient arrow at the walker — points toward the next step */}
@@ -158,16 +159,16 @@ export function BackpropSignatureHero() {
           const h2y = ay - Math.sin(angle + 0.5) * headL;
           return (
             <g>
-              <line x1={wx} y1={wy} x2={ax} y2={ay} stroke="#ffd166" strokeWidth="1.4" />
-              <line x1={ax} y1={ay} x2={h1x} y2={h1y} stroke="#ffd166" strokeWidth="1.4" />
-              <line x1={ax} y1={ay} x2={h2x} y2={h2y} stroke="#ffd166" strokeWidth="1.4" />
+              <line x1={wx} y1={wy} x2={ax} y2={ay} stroke={palette.signal.amber} strokeWidth="1.4" />
+              <line x1={ax} y1={ay} x2={h1x} y2={h1y} stroke={palette.signal.amber} strokeWidth="1.4" />
+              <line x1={ax} y1={ay} x2={h2x} y2={h2y} stroke={palette.signal.amber} strokeWidth="1.4" />
             </g>
           );
         })()}
 
         {/* The walker itself */}
-        <circle cx={wx} cy={wy} r="6" fill="rgba(5,6,10,0.95)" stroke="#ffd166" strokeWidth="1.6" />
-        <circle cx={wx} cy={wy} r="2" fill="#ffd166" />
+        <circle cx={wx} cy={wy} r="6" fill="rgba(5,6,10,0.95)" stroke={palette.signal.amber} strokeWidth="1.6" />
+        <circle cx={wx} cy={wy} r="2" fill={palette.signal.amber} />
 
         {/* Minimum marker at the centre */}
         <g transform={`translate(${cx} ${cy})`}>
@@ -178,7 +179,7 @@ export function BackpropSignatureHero() {
             fontFamily="var(--font-serif)"
             fontStyle="italic"
             fontSize="15"
-            fill="#ffd166"
+            fill={palette.signal.amber}
           >
             w*
           </text>
@@ -191,7 +192,7 @@ export function BackpropSignatureHero() {
           textAnchor="end"
           fontFamily="var(--font-mono)"
           fontSize="13"
-          fill="#ffd166"
+          fill={palette.signal.amber}
           opacity="0.85"
         >
           w ← w − η ∇w L

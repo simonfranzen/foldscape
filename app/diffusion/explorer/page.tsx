@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { getDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // --------------------------------------------------------------------------
 // Diffusion Explorer — a 2D denoising trainer + sampler that runs the
@@ -971,7 +973,7 @@ export default function DiffusionExplorer() {
   const drawAll = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = getDpr();
     const W = canvas.clientWidth;
     const H = canvas.clientHeight;
     if (W === 0 || H === 0) return;
@@ -980,7 +982,7 @@ export default function DiffusionExplorer() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, W, H);
 
     // World-to-screen: data coords roughly in [-2.5, 2.5]² → window.

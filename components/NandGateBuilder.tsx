@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Small SVG canvas showing how to wire 1–4 NAND gates into NOT / AND / OR /
 // XOR. The user picks a target gate; the diagram morphs (CSS transitions on
@@ -159,10 +160,10 @@ function wirePath(w: Wire): string {
 export function NandGateBuilder({ caption, labels }: Props) {
   const [target, setTarget] = useState<Target>("AND");
   const layout = layoutFor(target);
-  const accent = "#b388ff"; // violet
-  const wireColor = "#7df3ff"; // cyan
-  const inputColor = "#ffd166"; // amber
-  const outputColor = "#ff7ab6"; // rose
+  const accent = palette.signal.violet;
+  const wireColor = palette.signal.cyan;
+  const inputColor = palette.signal.amber;
+  const outputColor = palette.signal.rose;
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-6">
@@ -204,7 +205,7 @@ export function NandGateBuilder({ caption, labels }: Props) {
           role="img"
           aria-label={`Circuit: ${target} built from ${layout.count} NAND gate${layout.count > 1 ? "s" : ""}`}
         >
-          <rect width={W} height={H} fill="#06070d" />
+          <rect width={W} height={H} fill={palette.canvas.bg} />
 
           {/* faint grid */}
           <g stroke="rgba(232,234,242,0.04)" strokeWidth={0.5}>

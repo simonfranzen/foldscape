@@ -24,6 +24,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { TOPICS, type Topic, type TopicCategory, type TopicId } from "@/lib/topics";
 import { TOPIC_EDGES, TOPIC_NEIGHBORS } from "@/lib/topicEdges";
 import { isHub } from "@/lib/topicHubs";
+import { palette } from "@/lib/visual/palette";
 
 // Wider canvas than v2 so labels can breathe.
 const VB_W = 1800;
@@ -56,12 +57,12 @@ const CATEGORY_FRAME: Record<TopicCategory, ClusterFrame> = {
 };
 
 const CATEGORY_COLOR: Record<TopicCategory, string> = {
-  logic: "#b388ff",
-  computation: "#7df3ff",
-  chaos: "#ff7ab6",
-  geometry: "#ffd166",
-  analysis: "#ffd166",
-  paradox: "#ff7ab6",
+  logic: palette.signal.violet,
+  computation: palette.signal.cyan,
+  chaos: palette.signal.rose,
+  geometry: palette.signal.amber,
+  analysis: palette.signal.amber,
+  paradox: palette.signal.rose,
 };
 
 const CATEGORY_ORDER: TopicCategory[] = [
@@ -908,9 +909,9 @@ export function TopicConstellation({ filter, setFilter }: Props) {
                           fontFamily="var(--font-serif)"
                           fontStyle="italic"
                           fontSize={labelSize}
-                          fill="#eaecf3"
+                          fill={palette.ink[100]}
                           opacity={labelOpacity}
-                          stroke="#05060a"
+                          stroke={palette.ink[950]}
                           strokeWidth={4}
                           strokeLinejoin="round"
                           style={{

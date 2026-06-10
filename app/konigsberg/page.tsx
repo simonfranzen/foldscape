@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-teal";
 
@@ -455,10 +456,10 @@ const FIGURE: Record<Locale, FigureLabels> = {
 // Figure helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-const AMBER = "#ffd166";
+const AMBER = palette.signal.amber;
 const RIVER = "rgba(125,243,255,0.10)";
 const RIVER_EDGE = "rgba(125,243,255,0.30)";
-const MUTED = "#8a90a4";
+const MUTED = palette.canvas.muted;
 
 // Schematic Königsberg map. Two horizontal bank rectangles + two island ovals,
 // connected by seven arched bridges. Reused at smaller scale in Figure 2.
@@ -700,8 +701,8 @@ function AbstractGraph({
           <stop offset="100%" stopColor={AMBER} stopOpacity="0.15" />
         </radialGradient>
         <radialGradient id="kb-vert-odd" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#7df3ff" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#7df3ff" stopOpacity="0.15" />
+          <stop offset="0%" stopColor={palette.signal.cyan} stopOpacity="0.9" />
+          <stop offset="100%" stopColor={palette.signal.cyan} stopOpacity="0.15" />
         </radialGradient>
       </defs>
 
@@ -735,7 +736,7 @@ function AbstractGraph({
                   width="100"
                   height="20"
                   rx="6"
-                  fill="#0b0d18"
+                  fill={palette.canvas.bgAlt}
                   stroke={MUTED}
                   strokeWidth="0.8"
                 />
@@ -768,8 +769,8 @@ function AbstractGraph({
               cx={v.x}
               cy={v.y}
               r="22"
-              fill="#0b0d18"
-              stroke={odd ? "#7df3ff" : AMBER}
+              fill={palette.canvas.bgAlt}
+              stroke={odd ? palette.signal.cyan : AMBER}
               strokeWidth={odd ? "2" : "1.6"}
             />
             {odd && (
@@ -780,7 +781,7 @@ function AbstractGraph({
                 textAnchor="middle"
                 fontFamily="ui-monospace, monospace"
                 fontSize="14"
-                fill="#7df3ff"
+                fill={palette.signal.cyan}
               >
                 ★
               </text>
@@ -791,7 +792,7 @@ function AbstractGraph({
               textAnchor="middle"
               fontFamily="ui-monospace, monospace"
               fontSize="20"
-              fill={odd ? "#7df3ff" : AMBER}
+              fill={odd ? palette.signal.cyan : AMBER}
             >
               {v.id}
             </text>
@@ -894,7 +895,7 @@ function ParityPanel({ kind, title, note }: { kind: "even" | "odd"; title: strin
           ))}
 
       {/* Center vertex */}
-      <circle cx={cx} cy={cy} r="22" fill="#0b0d18" stroke={AMBER} strokeWidth="1.6" />
+      <circle cx={cx} cy={cy} r="22" fill={palette.canvas.bgAlt} stroke={AMBER} strokeWidth="1.6" />
       <text
         x={cx}
         y={cy + 5}
@@ -909,7 +910,7 @@ function ParityPanel({ kind, title, note }: { kind: "even" | "odd"; title: strin
       {/* Odd "stuck" badge near the leftover edge endpoint */}
       {kind === "odd" && (
         <g>
-          <circle cx="150" cy="265" r="12" fill="#0b0d18" stroke={MUTED} strokeWidth="1" />
+          <circle cx="150" cy="265" r="12" fill={palette.canvas.bgAlt} stroke={MUTED} strokeWidth="1" />
           <text
             x="150"
             y="270"

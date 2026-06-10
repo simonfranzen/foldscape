@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 type Restriction = "none" | "norepeat" | "noneighbour" | "noopposite";
 
@@ -69,6 +71,7 @@ function pickFernMap(): number {
 export default function ChaosGameExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.chaosgame;
+  const dpr = useDpr();
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -110,7 +113,7 @@ export default function ChaosGameExplorer() {
     if (canvas) {
       const ctx = canvas.getContext("2d");
       if (ctx) {
-        ctx.fillStyle = "#06070d";
+        ctx.fillStyle = palette.canvas.bg;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
     }
@@ -120,7 +123,6 @@ export default function ChaosGameExplorer() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const sizeCanvas = () => {
       const W = canvas.clientWidth;
@@ -130,7 +132,7 @@ export default function ChaosGameExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
       // Sketch the polygon outline for context
       if (mode === "polygon") {
@@ -238,7 +240,7 @@ export default function ChaosGameExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [n, ratio, restriction, mode, speed, colorId, clearTick]);
+  }, [n, ratio, restriction, mode, speed, colorId, clearTick, dpr]);
 
   const handlePreset = (p: Preset) => {
     if (p.id === "fern") {

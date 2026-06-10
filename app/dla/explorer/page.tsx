@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
 
 type SeedKind = "point" | "line" | "ring";
@@ -260,6 +262,7 @@ export default function DlaExplorer() {
   const topic = a.topics.dla;
   const copy = COPY[locale];
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [seed, setSeed] = useState<SeedKind>("point");
   const [walkers, setWalkers] = useState(150);
@@ -278,7 +281,6 @@ export default function DlaExplorer() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let raf = 0;
     let cellPx = cell * dpr;
@@ -399,7 +401,7 @@ export default function DlaExplorer() {
     const draw = () => {
       const p = paramsRef.current;
       const rgb = COLORS[p.color].rgb;
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       // stuck cells, colour by age tier
       for (let y = 0; y < gridH; y++) {
@@ -436,7 +438,7 @@ export default function DlaExplorer() {
       ro.disconnect();
     };
      
-  }, [seed, cell, resetTick]);
+  }, [seed, cell, resetTick, dpr]);
 
   const applyPreset = (p: Preset) => {
     setSeed(p.seed);

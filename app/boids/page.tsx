@@ -7,6 +7,7 @@ import { Reveal } from "@/components/Reveal";
 import { BoidsDemo } from "@/components/BoidsDemo";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
+import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-cyan";
 
@@ -81,7 +82,7 @@ function RuleSVG({ kind }: { kind: "separation" | "alignment" | "cohesion" }) {
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={`${kind} rule`}>
-      <rect width={W} height={H} fill="#06070d" rx={10} />
+      <rect width={W} height={H} fill={palette.canvas.bg} rx={10} />
       <circle
         cx={cx}
         cy={cy}
@@ -93,8 +94,8 @@ function RuleSVG({ kind }: { kind: "separation" | "alignment" | "cohesion" }) {
       {neighbours.map((n, i) => (
         <path key={i} d={boidPath(n.x, n.y, n.vx, n.vy)} fill="rgba(232,234,242,0.55)" />
       ))}
-      <path d={boidPath(focus.x, focus.y, focus.vx, focus.vy, 6)} fill="#7df3ff" />
-      <line x1={focus.x} y1={focus.y} x2={ax} y2={ay} stroke="#7df3ff" strokeWidth={1.6} />
+      <path d={boidPath(focus.x, focus.y, focus.vx, focus.vy, 6)} fill={palette.signal.cyan} />
+      <line x1={focus.x} y1={focus.y} x2={ax} y2={ay} stroke={palette.signal.cyan} strokeWidth={1.6} />
       <polygon
         points={(() => {
           const a = Math.atan2(arrow.dy, arrow.dx);
@@ -108,7 +109,7 @@ function RuleSVG({ kind }: { kind: "separation" | "alignment" | "cohesion" }) {
             .map((p) => p.join(","))
             .join(" ");
         })()}
-        fill="#7df3ff"
+        fill={palette.signal.cyan}
       />
       <text
         x={W / 2}

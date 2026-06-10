@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline interactive for the Riemann story. Plots the image of ζ along the
 // critical line s = 1/2 + it for t ∈ [0, t_max], parameterised by a single
@@ -58,6 +60,7 @@ interface Props {
 export function RiemannZetaPath({ caption, tLabel, zerosFoundLabel, hintLabel }: Props) {
   const [tMax, setTMax] = useState(35);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   // Compute the full trace once per render — cached per tMax value so
   // dragging the slider stays smooth even at N=200, ~3500 samples.
@@ -90,7 +93,6 @@ export function RiemannZetaPath({ caption, tLabel, zerosFoundLabel, hintLabel }:
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -101,7 +103,7 @@ export function RiemannZetaPath({ caption, tLabel, zerosFoundLabel, hintLabel }:
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Frame the plot to fit the trace's bounding box with a margin.
@@ -158,8 +160,8 @@ export function RiemannZetaPath({ caption, tLabel, zerosFoundLabel, hintLabel }:
         ctx.stroke();
       }
 
-      // Mark the origin
-      ctx.fillStyle = "#fff5d6";
+      // Origin dot — ivory to stand out against the amber trace.
+      ctx.fillStyle = palette.canvas.ivory;
       ctx.beginPath();
       ctx.arc(ox.x, ox.y, 3, 0, Math.PI * 2);
       ctx.fill();
@@ -181,7 +183,7 @@ export function RiemannZetaPath({ caption, tLabel, zerosFoundLabel, hintLabel }:
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [trace]);
+  }, [trace, dpr]);
 
   return (
     <div className="hairline glass space-y-3 rounded-2xl border p-5 md:p-6">

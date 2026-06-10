@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 type Mode = "cup" | "mandelbrot" | "rolling";
 
@@ -17,6 +19,7 @@ export default function CardioidExplorer() {
   const [showCardioid, setShowCardioid] = useState(true);
   const [rolling, _setRolling] = useState(true);
   const [running, setRunning] = useState(true);
+  const dpr = useDpr();
 
   const tRef = useRef(0);
   const cfgRef = useRef({ mode, rayCount, showRays, showCardioid, rolling, running });
@@ -27,7 +30,6 @@ export default function CardioidExplorer() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let raf = 0;
 
     const resize = () => {
@@ -42,7 +44,7 @@ export default function CardioidExplorer() {
       const cfg = cfgRef.current;
       const W = canvas.width;
       const H = canvas.height;
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const cx = W / 2;
@@ -90,7 +92,7 @@ export default function CardioidExplorer() {
 
       // The envelope: catacaustic = cardioid with cusp at (cx + R, cy), size R/2.
       if (cfg.showCardioid) {
-        ctx.strokeStyle = "#ffd166";
+        ctx.strokeStyle = palette.signal.amber;
         ctx.lineWidth = 2 * dpr;
         ctx.beginPath();
         // Parametric cardioid: take the parent circle of radius a = R/2 centred at cx, cy
@@ -115,10 +117,9 @@ export default function CardioidExplorer() {
     };
 
     const drawRolling = () => {
-      const _cfg = cfgRef.current;
       const W = canvas.width;
       const H = canvas.height;
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
       const cx = W / 2;
       const cy = H / 2;
@@ -151,7 +152,7 @@ export default function CardioidExplorer() {
           cy + 2 * a0 * Math.sin(s) - a0 * Math.sin(2 * s),
         ]);
       }
-      ctx.strokeStyle = "#ffd166";
+      ctx.strokeStyle = palette.signal.amber;
       ctx.lineWidth = 2 * dpr;
       ctx.beginPath();
       ctx.moveTo(pts[0][0], pts[0][1]);
@@ -161,7 +162,7 @@ export default function CardioidExplorer() {
       // current tracing dot
       const px = cx + 2 * a0 * Math.cos(t) - a0 * Math.cos(2 * t);
       const py = cy + 2 * a0 * Math.sin(t) - a0 * Math.sin(2 * t);
-      ctx.fillStyle = "#7df3ff";
+      ctx.fillStyle = palette.signal.cyan;
       ctx.beginPath();
       ctx.arc(px, py, 3 * dpr, 0, Math.PI * 2);
       ctx.fill();
@@ -170,7 +171,7 @@ export default function CardioidExplorer() {
     const drawMandelbrot = () => {
       const W = canvas.width;
       const H = canvas.height;
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Render the Mandelbrot set quickly.
@@ -212,7 +213,7 @@ export default function CardioidExplorer() {
       ctx.putImageData(imgData, 0, 0);
 
       // Overlay the main cardioid in amber
-      ctx.strokeStyle = "#ffd166";
+      ctx.strokeStyle = palette.signal.amber;
       ctx.lineWidth = 2 * dpr;
       ctx.beginPath();
       const steps = 256;
@@ -244,7 +245,7 @@ export default function CardioidExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, []);
+  }, [dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">

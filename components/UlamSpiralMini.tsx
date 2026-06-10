@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline Ulam-spiral demo for the story page. Smaller than the Explorer:
 // a fixed-size canvas at ~340×340 with a slider for grid side and a small
@@ -76,6 +78,7 @@ export function UlamSpiralMini({
   quadratics,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
   // Odd grid side so 1 stays centred. 51 is a comfortable default for a
   // small inline canvas — diagonals are already very visible.
   const [side, setSide] = useState(51);
@@ -104,7 +107,6 @@ export function UlamSpiralMini({
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = SIZE * dpr;
     canvas.height = SIZE * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -116,7 +118,7 @@ export function UlamSpiralMini({
     const offsetX = (W - cell * side) / 2;
     const offsetY = (H - cell * side) / 2;
 
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, W, H);
 
     const max = side * side;
@@ -127,7 +129,7 @@ export function UlamSpiralMini({
       const px = offsetX + (x + half) * cell;
       const py = offsetY + (half - y) * cell;
       const highlit = highlightSet?.has(((x + 1000) << 16) | (y + 1000));
-      ctx.fillStyle = highlit ? "#ff7ab6" : "rgba(255, 209, 102, 0.85)";
+      ctx.fillStyle = highlit ? palette.signal.rose : "rgba(255, 209, 102, 0.85)";
       ctx.fillRect(px, py, Math.max(1, cell - 0.4), Math.max(1, cell - 0.4));
     }
 
@@ -137,7 +139,7 @@ export function UlamSpiralMini({
     ctx.strokeStyle = "rgba(125, 243, 255, 0.6)";
     ctx.lineWidth = 1;
     ctx.strokeRect(cx, cy, Math.max(1, cell - 0.4), Math.max(1, cell - 0.4));
-  }, [side, sieve, highlightSet]);
+  }, [side, sieve, highlightSet, dpr]);
 
   const total = side * side;
   let primesCount = 0;

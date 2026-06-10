@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // --------------------------------------------------------------------------
 // Per-locale UI strings for the Euler-characteristic explorer. Stays inline
@@ -1072,6 +1074,7 @@ export default function EulerCharExplorer() {
     return base.note;
   };
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [presetIdx, setPresetIdx] = useState(1); // start on cube
   const [autoSpin, setAutoSpin] = useState(true);
@@ -1151,7 +1154,6 @@ export default function EulerCharExplorer() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
@@ -1174,7 +1176,7 @@ export default function EulerCharExplorer() {
       const H = canvas.height;
 
       // Background
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Camera + projection params
@@ -1364,7 +1366,7 @@ export default function EulerCharExplorer() {
       for (let i = 0; i < vertCount; i++) {
         const p = projVerts[i];
         if (i < vertsToShow) {
-          ctx.fillStyle = "#ffd166";
+          ctx.fillStyle = palette.signal.amber;
           ctx.beginPath();
           ctx.arc(p.x, p.y, dotR, 0, Math.PI * 2);
           ctx.fill();
@@ -1384,7 +1386,7 @@ export default function EulerCharExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [polyhedron, stage, progress, revealCap, autoSpin, spinSpeed]);
+  }, [polyhedron, stage, progress, revealCap, autoSpin, spinSpeed, dpr]);
 
   // --- Step handlers -----------------------------------------------------
   const startStage = (next: Stage) => {

@@ -3,6 +3,8 @@
 // once per step, performing the leftmost-outermost redex it finds — exactly
 // the strategy the textbooks use to demonstrate normal-order evaluation.
 
+const DEFAULT_MAX_STEPS = 80;
+
 export type Term = { kind: "sym"; name: string } | { kind: "app"; f: Term; x: Term };
 
 export const sym = (name: string): Term => ({ kind: "sym", name });
@@ -59,7 +61,6 @@ export function parse(src: string): Term {
 
 export function show(t: Term): string {
   if (t.kind === "sym") return t.name === "i" ? "ι" : t.name;
-  // Add parens around right side if it is an application
   const left = show(t.f);
   const right = t.x.kind === "app" ? `(${show(t.x)})` : show(t.x);
   return `${left} ${right}`;
@@ -92,7 +93,6 @@ export function reduceOnce(t: Term): Term | null {
   if (t.kind === "app" && t.f.kind === "sym" && t.f.name === "i") {
     return app(app(t.x, sym("S")), sym("K"));
   }
-  // recurse left, then right
   if (t.kind === "app") {
     const lf = reduceOnce(t.f);
     if (lf) return app(lf, t.x);
@@ -108,7 +108,7 @@ export interface ReduceTrace {
   hitLimit: boolean;
 }
 
-export function reduceTrace(t: Term, maxSteps = 80): ReduceTrace {
+export function reduceTrace(t: Term, maxSteps = DEFAULT_MAX_STEPS): ReduceTrace {
   const steps = [show(t)];
   let cur = t;
   for (let k = 0; k < maxSteps; k++) {

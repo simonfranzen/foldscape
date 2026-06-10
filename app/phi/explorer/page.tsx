@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 type Panel = "spiral" | "ratios" | "sunflower";
 
@@ -394,11 +396,11 @@ function buildFibSpiral(n: number): { squares: Sq[]; arcs: Arc[]; bx: number; by
 
 function SpiralPanel({ depth }: { depth: number }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -408,7 +410,7 @@ function SpiralPanel({ depth }: { depth: number }) {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const spiral = buildFibSpiral(depth);
@@ -467,7 +469,7 @@ function SpiralPanel({ depth }: { depth: number }) {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [depth]);
+  }, [depth, dpr]);
 
   return <canvas ref={canvasRef} className="block h-full w-full" />;
 }
@@ -478,6 +480,7 @@ function SpiralPanel({ depth }: { depth: number }) {
 
 function RatiosPanel({ n }: { n: number }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
   const ratios = useMemo(() => {
     const out: number[] = [];
     for (let i = 1; i <= n; i++) out.push(FIB[i + 1] / FIB[i]);
@@ -487,7 +490,6 @@ function RatiosPanel({ n }: { n: number }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -497,7 +499,7 @@ function RatiosPanel({ n }: { n: number }) {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const padL = 60;
@@ -538,7 +540,7 @@ function RatiosPanel({ n }: { n: number }) {
       ctx.lineTo(W - padR, yOf(PHI));
       ctx.stroke();
       ctx.setLineDash([]);
-      ctx.fillStyle = "#7df3ff";
+      ctx.fillStyle = palette.signal.cyan;
       ctx.fillText(`φ ≈ ${PHI_STR}`, W - padR - 130, yOf(PHI) - 6);
 
       // Line of ratios
@@ -558,7 +560,7 @@ function RatiosPanel({ n }: { n: number }) {
         const px = xOf(i);
         const py = yOf(ratios[i]);
         const isLast = i === ratios.length - 1;
-        ctx.fillStyle = isLast ? "#ffd166" : "rgba(255, 209, 102, 0.6)";
+        ctx.fillStyle = isLast ? palette.signal.amber : "rgba(255, 209, 102, 0.6)";
         ctx.beginPath();
         ctx.arc(px, py, isLast ? 4 : 2.2, 0, Math.PI * 2);
         ctx.fill();
@@ -579,7 +581,7 @@ function RatiosPanel({ n }: { n: number }) {
         const last = ratios[ratios.length - 1];
         const lx = xOf(ratios.length - 1);
         const ly = yOf(last);
-        ctx.fillStyle = "#ffd166";
+        ctx.fillStyle = palette.signal.amber;
         ctx.fillText(
           `F${ratios.length + 1}/F${ratios.length} = ${last.toFixed(10)}`,
           lx - 200,
@@ -592,7 +594,7 @@ function RatiosPanel({ n }: { n: number }) {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [ratios]);
+  }, [ratios, dpr]);
 
   return <canvas ref={canvasRef} className="block h-full w-full" />;
 }
@@ -603,11 +605,11 @@ function RatiosPanel({ n }: { n: number }) {
 
 function SunflowerPanel({ angleDeg, count }: { angleDeg: number; count: number }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -617,7 +619,7 @@ function SunflowerPanel({ angleDeg, count }: { angleDeg: number; count: number }
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const cx = W / 2;
@@ -654,7 +656,7 @@ function SunflowerPanel({ angleDeg, count }: { angleDeg: number; count: number }
 
       // Status badge top-left
       ctx.font = "11px ui-monospace, monospace";
-      ctx.fillStyle = isGolden ? "#ffd166" : "rgba(180,188,210,0.8)";
+      ctx.fillStyle = isGolden ? palette.signal.amber : "rgba(180,188,210,0.8)";
       ctx.fillText(
         isGolden
           ? `α = golden angle (137.5078°) — no spiral arms`
@@ -672,7 +674,7 @@ function SunflowerPanel({ angleDeg, count }: { angleDeg: number; count: number }
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [angleDeg, count]);
+  }, [angleDeg, count, dpr]);
 
   return <canvas ref={canvasRef} className="block h-full w-full" />;
 }

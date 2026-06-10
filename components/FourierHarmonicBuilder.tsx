@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 type WaveType = "square" | "sawtooth" | "triangle";
 
@@ -55,6 +57,7 @@ export function FourierHarmonicBuilder({ caption, height = 180 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [wave, setWave] = useState<WaveType>("square");
   const [N, setN] = useState(5);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -64,7 +67,6 @@ export function FourierHarmonicBuilder({ caption, height = 180 }: Props) {
 
     let raf = 0;
     const render = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
       if (canvas.width !== Math.floor(W * dpr) || canvas.height !== Math.floor(H * dpr)) {
@@ -72,7 +74,7 @@ export function FourierHarmonicBuilder({ caption, height = 180 }: Props) {
         canvas.height = Math.floor(H * dpr);
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // baseline / midline
@@ -116,7 +118,7 @@ export function FourierHarmonicBuilder({ caption, height = 180 }: Props) {
       }
 
       // Partial sum — amber, bright
-      ctx.strokeStyle = "#ffd166";
+      ctx.strokeStyle = palette.signal.amber;
       ctx.lineWidth = 1.8;
       ctx.beginPath();
       for (let i = 0; i <= STEPS; i++) {
@@ -138,7 +140,7 @@ export function FourierHarmonicBuilder({ caption, height = 180 }: Props) {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [wave, N]);
+  }, [wave, N, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-5">

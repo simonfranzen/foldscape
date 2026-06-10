@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 import { useI18n } from "@/lib/i18n/context";
 
 type Scenario = "one" | "k" | "infinite" | "buses";
@@ -28,18 +29,18 @@ const BUS_PRIMES = [3, 5, 7, 11, 13, 17, 19, 23];
 // the story-page widget (HilbertHotelInline). The first four show in the
 // legend; the rest only ever appear as the higher buses' dots.
 const BUS_COLORS = [
-  "#ff7ab6", // rose       — bus 1
-  "#b794f4", // violet     — bus 2
-  "#86efac", // green      — bus 3
-  "#ffd166", // amber      — bus 4
-  "#fca5a5", // light rose — bus 5
-  "#fcd34d", // yellow     — bus 6
-  "#a5b4fc", // indigo     — bus 7
-  "#fb923c", // orange     — bus 8
+  palette.signal.rose,   // rose       — bus 1
+  "#b794f4",             // violet     — bus 2
+  "#86efac",             // green      — bus 3
+  palette.signal.amber,  // amber      — bus 4
+  "#fca5a5",             // light rose — bus 5
+  "#fcd34d",             // yellow     — bus 6
+  "#a5b4fc",             // indigo     — bus 7
+  "#fb923c",             // orange     — bus 8
 ];
 
 const EXISTING_COLOR = "#cdd6f4"; // soft white for original guests
-const NEW_GUEST_COLOR = "#7df3ff"; // cyan — same accent as the page
+const NEW_GUEST_COLOR = palette.signal.cyan; // cyan — same accent as the page
 
 function uid(): string {
   return Math.random().toString(36).slice(2, 9);
@@ -76,7 +77,6 @@ export default function HilbertHotelExplorer() {
   // Reset whenever scenario or k changes
   useEffect(() => {
     resetScenario(scenario, k);
-     
   }, [scenario, k]);
 
   function resetScenario(sc: Scenario, kk: number) {

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { getDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline Game-of-Life sandbox tuned for the story page. Small enough to feel
 // snappy, big enough to host a Gosper gun.
@@ -217,7 +219,7 @@ export function LifeMiniSandbox({ labels }: Props) {
     drawRef.current = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = getDpr();
       const w = canvas.clientWidth * dpr;
       const h = canvas.clientHeight * dpr;
       if (canvas.width !== w || canvas.height !== h) {
@@ -228,7 +230,7 @@ export function LifeMiniSandbox({ labels }: Props) {
       const cellSize = Math.min(canvas.width / COLS, canvas.height / ROWS);
       const offX = (canvas.width - cellSize * COLS) / 2;
       const offY = (canvas.height - cellSize * ROWS) / 2;
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // grid lines
@@ -248,8 +250,8 @@ export function LifeMiniSandbox({ labels }: Props) {
       // cells
       const g = aRef.current;
       const r = cellSize * 0.38;
-      ctx.fillStyle = "#7df3ff";
-      ctx.shadowColor = "#7df3ff";
+      ctx.fillStyle = palette.signal.cyan;
+      ctx.shadowColor = palette.signal.cyan;
       ctx.shadowBlur = cellSize * 0.9;
       ctx.beginPath();
       for (let y = 0; y < ROWS; y++) {
@@ -323,7 +325,7 @@ export function LifeMiniSandbox({ labels }: Props) {
     const canvas = canvasRef.current;
     if (!canvas) return null;
     const rect = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = getDpr();
     const px = (clientX - rect.left) * dpr;
     const py = (clientY - rect.top) * dpr;
     const cellSize = Math.min(canvas.width / COLS, canvas.height / ROWS);
@@ -335,7 +337,7 @@ export function LifeMiniSandbox({ labels }: Props) {
     return [x, y];
   };
 
-  const onPointerDown = (e: React.PointerEvent) => {
+  const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     e.preventDefault();
     (e.target as Element).setPointerCapture?.(e.pointerId);
     const c = cellAt(e.clientX, e.clientY);
@@ -350,7 +352,7 @@ export function LifeMiniSandbox({ labels }: Props) {
     requestDraw();
   };
 
-  const onPointerMove = (e: React.PointerEvent) => {
+  const onPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (dragValueRef.current === null) return;
     const c = cellAt(e.clientX, e.clientY);
     if (!c) return;

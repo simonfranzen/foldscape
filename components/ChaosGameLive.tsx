@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline, compact live chaos-game animator for the story page.
 // Smaller than the Explorer, intentionally — just enough to feel the rule.
@@ -50,6 +52,7 @@ export function ChaosGameLive({
   resetLabel,
   pointsLabel,
 }: Props) {
+  const dpr = useDpr();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [n, setN] = useState(3);
   const [ratio, setRatio] = useState(0.5);
@@ -71,7 +74,7 @@ export function ChaosGameLive({
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
     // sketch polygon outline
     const { vx, vy } = polygonLayout(n, canvas.clientWidth, canvas.clientHeight);
@@ -96,7 +99,6 @@ export function ChaosGameLive({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const size = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
@@ -105,7 +107,7 @@ export function ChaosGameLive({
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
       const { vx, vy } = polygonLayout(n, W, H);
       ctx.strokeStyle = "rgba(255, 209, 102, 0.22)";
@@ -166,11 +168,7 @@ export function ChaosGameLive({
       }
       posRef.current = { x, y };
       countRef.current += SPEED;
-      if (countRef.current % (SPEED * 5) === 0) {
-        setPoints(countRef.current);
-      } else {
-        setPoints(countRef.current);
-      }
+      setPoints(countRef.current);
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -178,7 +176,7 @@ export function ChaosGameLive({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [n, ratio, noRepeat, resetTick]);
+  }, [n, ratio, noRepeat, resetTick, dpr]);
 
   const mr = magicRatio(n);
 

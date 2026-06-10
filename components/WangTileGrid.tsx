@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // ─── Palette ─────────────────────────────────────────────────────────────────
 // Cyan, violet, amber, rose — matches the Explorer.
-const COLOURS = ["#7df3ff", "#b388ff", "#ffd166", "#ff7ab6"] as const;
+const COLOURS = [palette.signal.cyan, palette.signal.violet, palette.signal.amber, palette.signal.rose] as const;
 
 // ─── Tiles ───────────────────────────────────────────────────────────────────
 // A hand-picked palette of 8 tiles drawn from the 4-colour space. Enough

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Inline 2-2-1 neural net for the story page. Trains XOR by hand-rolled
 // backprop (sigmoid activations, MSE loss). One click = one mini-batch of
@@ -238,7 +239,7 @@ export function BackpropMiniNet({
             textAnchor="middle"
             fontFamily="var(--font-mono)"
             fontSize="10"
-            fill="#8a90a4"
+            fill={palette.canvas.muted}
           >
             {label}
           </text>
@@ -292,7 +293,7 @@ export function BackpropMiniNet({
               textAnchor="middle"
               fontFamily="var(--font-mono)"
               fontSize="13"
-              fill="#eaecf3"
+              fill={palette.ink[100]}
             >
               x{i + 1}
             </text>
@@ -316,7 +317,7 @@ export function BackpropMiniNet({
               fontFamily="var(--font-serif)"
               fontStyle="italic"
               fontSize="14"
-              fill="#ffd166"
+              fill={palette.signal.amber}
             >
               h{j + 1}
             </text>
@@ -339,7 +340,7 @@ export function BackpropMiniNet({
             fontFamily="var(--font-serif)"
             fontStyle="italic"
             fontSize="14"
-            fill="#ff7ab6"
+            fill={palette.signal.rose}
           >
             ŷ
           </text>
@@ -365,7 +366,7 @@ export function BackpropMiniNet({
           y={CHART_Y + 8}
           fontFamily="var(--font-mono)"
           fontSize="10"
-          fill="#8a90a4"
+          fill={palette.canvas.muted}
         >
           {lossLabel}
         </text>
@@ -375,12 +376,12 @@ export function BackpropMiniNet({
           textAnchor="end"
           fontFamily="var(--font-mono)"
           fontSize="10"
-          fill="#8a90a4"
+          fill={palette.canvas.muted}
         >
           {stepCounterLabel}: {steps}
         </text>
         {losses.length > 1 && (
-          <path d={path} fill="none" stroke="#ffd166" strokeWidth="1.6" strokeLinejoin="round" />
+          <path d={path} fill="none" stroke={palette.signal.amber} strokeWidth="1.6" strokeLinejoin="round" />
         )}
       </svg>
 

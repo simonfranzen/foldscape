@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 interface Preset {
   id: string;
@@ -153,6 +155,7 @@ export default function LsystemExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.lsystem;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [presetId, setPresetId] = useState<string>(PRESETS[0].id);
   const preset = useMemo(() => PRESETS.find((p) => p.id === presetId) ?? PRESETS[0], [presetId]);
@@ -191,7 +194,6 @@ export default function LsystemExplorer() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let raf = 0;
 
     const draw = () => {
@@ -202,7 +204,7 @@ export default function LsystemExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Background grid
@@ -318,7 +320,7 @@ export default function LsystemExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [generated, angle, stroke, preset.startAngle]);
+  }, [generated, angle, stroke, preset.startAngle, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">

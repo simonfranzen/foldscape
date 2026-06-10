@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Three magnets at the vertices of an equilateral triangle of radius 1.
 // Colours: cyan, violet, amber — the palette mandated for the rose-accented
@@ -85,6 +87,7 @@ export function MagPendulumBasinMini({
   readyLabel,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [k, setK] = useState(0.4);
   const [gamma, setGamma] = useState(0.2);
@@ -104,7 +107,6 @@ export function MagPendulumBasinMini({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const W = Math.floor(canvas.clientWidth * dpr);
     const H = Math.floor(canvas.clientHeight * dpr);
     canvas.width = W;
@@ -121,7 +123,7 @@ export function MagPendulumBasinMini({
     const img = tctx.createImageData(R, R);
 
     // Solid background while computing.
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, W, H);
 
     let cancelled = false;
@@ -176,7 +178,7 @@ export function MagPendulumBasinMini({
     return () => {
       cancelled = true;
     };
-  }, [k, gamma]);
+  }, [k, gamma, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-6">

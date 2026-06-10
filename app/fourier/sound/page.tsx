@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { Info } from "@/components/Info";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 type WaveType = "square" | "sawtooth" | "triangle" | "pulse";
 
@@ -50,6 +52,7 @@ interface Voice {
 export default function FourierSoundPage() {
   const { a, u } = useI18n();
   const topic = a.topics.fourier;
+  const dpr = useDpr();
 
   // Audio state
   const [audioOn, setAudioOn] = useState(false);
@@ -261,7 +264,6 @@ export default function FourierSoundPage() {
     const sctx = scope.getContext("2d");
     const pctx = spectrum.getContext("2d");
     if (!sctx || !pctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let raf = 0;
     let last = performance.now();
 
@@ -295,7 +297,7 @@ export default function FourierSoundPage() {
       // Oscilloscope
       const sW = scope.clientWidth;
       const sH = scope.clientHeight;
-      sctx.fillStyle = "#06070d";
+      sctx.fillStyle = palette.canvas.bg;
       sctx.fillRect(0, 0, sW, sH);
       sctx.strokeStyle = "rgba(138,144,164,0.15)";
       sctx.lineWidth = 1;
@@ -308,8 +310,8 @@ export default function FourierSoundPage() {
       const buf = analyserBufferRef.current;
       if (analyser && buf) {
         analyser.getFloatTimeDomainData(buf);
-        sctx.strokeStyle = "#7df3ff";
-        sctx.shadowColor = "#7df3ff";
+        sctx.strokeStyle = palette.signal.cyan;
+        sctx.shadowColor = palette.signal.cyan;
         sctx.shadowBlur = 8;
         sctx.lineWidth = 1.6;
         sctx.beginPath();
@@ -336,7 +338,7 @@ export default function FourierSoundPage() {
       // Spectrum
       const pW = spectrum.clientWidth;
       const pH = spectrum.clientHeight;
-      pctx.fillStyle = "#06070d";
+      pctx.fillStyle = palette.canvas.bg;
       pctx.fillRect(0, 0, pW, pH);
 
       const N = numHarmonicsRef.current;
@@ -374,7 +376,7 @@ export default function FourierSoundPage() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [audioOn, effectiveBase, updateAudio]);
+  }, [audioOn, effectiveBase, updateAudio, dpr]);
 
   // When the target waveform changes (and we're not in custom mode),
   // seed the custom bank to the canonical values for the new wave so toggling

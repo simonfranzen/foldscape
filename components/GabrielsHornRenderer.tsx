@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
 
 // Small 3D renderer of Gabriel's Horn (the solid of revolution of y = 1/x
 // around the x-axis, truncated at x = X_max). Drag to rotate. The volume
@@ -47,6 +48,7 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
   const pitchRef = useRef(0.25);
   const draggingRef = useRef(false);
   const lastRef = useRef({ x: 0, y: 0 });
+  const dpr = useDpr();
 
   const V = volumeUpTo(xMax);
   const A = surfaceUpTo(xMax);
@@ -54,9 +56,9 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d", { alpha: true })!;
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
     let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
@@ -198,14 +200,14 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [xMax]);
+  }, [xMax, dpr]);
 
-  const onPointerDown = (e: React.PointerEvent) => {
+  const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = true;
     lastRef.current = { x: e.clientX, y: e.clientY };
-    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    (e.target as HTMLCanvasElement).setPointerCapture?.(e.pointerId);
   };
-  const onPointerMove = (e: React.PointerEvent) => {
+  const onPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (!draggingRef.current) return;
     const dx = e.clientX - lastRef.current.x;
     const dy = e.clientY - lastRef.current.y;
@@ -213,9 +215,9 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
     yawRef.current += dx * 0.01;
     pitchRef.current = Math.max(-0.9, Math.min(0.9, pitchRef.current + dy * 0.01));
   };
-  const onPointerUp = (e: React.PointerEvent) => {
+  const onPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = false;
-    (e.target as HTMLElement).releasePointerCapture?.(e.pointerId);
+    (e.target as HTMLCanvasElement).releasePointerCapture?.(e.pointerId);
   };
 
   return (

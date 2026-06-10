@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Magnet colours — three distinct hues.
 const MAGNET_COLORS = [
@@ -89,6 +91,7 @@ export default function MagpendulumExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.magpendulum;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [k, setK] = useState(0.4);
   const [gamma, setGamma] = useState(0.18);
@@ -114,8 +117,6 @@ export default function MagpendulumExplorer() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
     const W = Math.floor(canvas.clientWidth * dpr);
     const H = Math.floor(canvas.clientHeight * dpr);
     canvas.width = W;
@@ -137,7 +138,7 @@ export default function MagpendulumExplorer() {
     const maxSteps = 3000;
 
     // Background fill while computing
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, W, H);
 
     let cancelled = false;
@@ -211,7 +212,7 @@ export default function MagpendulumExplorer() {
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [k, gamma, omega2, h, resolution, span, shade, rev]);
+  }, [k, gamma, omega2, h, resolution, span, shade, rev, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">

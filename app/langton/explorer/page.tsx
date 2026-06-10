@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Preset rule strings — each character r=right l=left over a colour.
 // Classic Langton's ant is "RL". Some famous others below produce highways,
@@ -23,11 +25,11 @@ const PRESETS: RulePreset[] = [
 ];
 
 const COLOR_PALETTE = [
-  "#06070d", // 0 = empty (background)
-  "#b388ff", // violet
-  "#7df3ff", // cyan
-  "#ffd166", // amber
-  "#ff7ab6", // rose
+  palette.canvas.bg,    // 0 = empty (background)
+  palette.signal.violet,
+  palette.signal.cyan,
+  palette.signal.amber,
+  palette.signal.rose,
   "#a0e89a", // soft green
   "#c4c6d0", // grey
   "#ff9a55", // orange
@@ -42,6 +44,7 @@ export default function LangtonExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.langton;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [ruleId, setRuleId] = useState("RL");
   const [stepsPerFrame, setStepsPerFrame] = useState(800);
@@ -58,7 +61,6 @@ export default function LangtonExplorer() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let raf = 0;
 
     const cellPx = cell * dpr;
@@ -89,7 +91,7 @@ export default function LangtonExplorer() {
       ay = Math.floor(gridH / 2);
       dir = 0;
       total = 0;
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
     reseed();
@@ -146,10 +148,7 @@ export default function LangtonExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-     
-  }, [ruleId, cell, resetTick]);
-
-  const _preset = PRESETS.find((p) => p.id === ruleId) ?? PRESETS[0];
+  }, [ruleId, cell, resetTick, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">

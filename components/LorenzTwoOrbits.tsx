@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Two trajectories starting ε = 1e-5 apart. We integrate both in lockstep
 // and draw them on two small canvases. After a few seconds of simulated
@@ -58,6 +60,7 @@ export function LorenzTwoOrbits({
   const [running, setRunning] = useState(true);
   const [resetTick, setResetTick] = useState(0);
   const [stats, setStats] = useState({ t: 0, dist: EPSILON });
+  const dpr = useDpr();
 
   useEffect(() => {
     const cA = canvasARef.current;
@@ -66,7 +69,6 @@ export function LorenzTwoOrbits({
     const ctxA = cA.getContext("2d", { alpha: true })!;
     const ctxB = cB.getContext("2d", { alpha: true })!;
     let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       [cA, cB].forEach((c) => {
@@ -75,7 +77,7 @@ export function LorenzTwoOrbits({
       });
       // Wipe.
       for (const ctx of [ctxA, ctxB]) {
-        ctx.fillStyle = "#06070d";
+        ctx.fillStyle = palette.canvas.bg;
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       }
     };
@@ -170,7 +172,7 @@ export function LorenzTwoOrbits({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [running, resetTick]);
+  }, [running, resetTick, dpr]);
 
   const reset = () => {
     setStats({ t: 0, dist: EPSILON });

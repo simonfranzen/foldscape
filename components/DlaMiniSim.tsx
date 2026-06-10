@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline mini DLA simulator for the /dla story page. Smaller, simpler, and
 // self-contained version of the full Explorer — single point seed at centre,
@@ -25,6 +27,7 @@ export function DlaMiniSim({ caption, className = "" }: Props) {
   const [running, setRunning] = useState(true);
   const [stuck, setStuck] = useState(1);
   const [resetTick, setResetTick] = useState(0);
+  const dpr = useDpr();
 
   const paramsRef = useRef({ walkers, stickiness, running });
   paramsRef.current = { walkers, stickiness, running };
@@ -34,7 +37,6 @@ export function DlaMiniSim({ caption, className = "" }: Props) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let raf = 0;
     const cellPx = CELL_PX * dpr;
@@ -121,7 +123,7 @@ export function DlaMiniSim({ caption, className = "" }: Props) {
     };
 
     const draw = () => {
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       for (let y = 0; y < gridH; y++) {
         for (let x = 0; x < gridW; x++) {
@@ -155,7 +157,7 @@ export function DlaMiniSim({ caption, className = "" }: Props) {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [resetTick]);
+  }, [resetTick, dpr]);
 
   return (
     <div className={`hairline space-y-4 rounded-2xl border bg-ink-950/40 p-5 ${className}`}>

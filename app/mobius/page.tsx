@@ -5,6 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { MobiusStripHero } from "@/components/signature/MobiusStripHero";
+import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-amber";
 
@@ -235,7 +236,7 @@ export default function MobiusStoryPage() {
               <text
                 x="80"
                 y="70"
-                fill="#8a90a4"
+                fill={palette.canvas.muted}
                 fontFamily="ui-monospace, monospace"
                 fontSize="11"
                 textAnchor="middle"
@@ -245,7 +246,7 @@ export default function MobiusStoryPage() {
               <text
                 x="560"
                 y="70"
-                fill="#8a90a4"
+                fill={palette.canvas.muted}
                 fontFamily="ui-monospace, monospace"
                 fontSize="11"
                 textAnchor="middle"
@@ -276,7 +277,7 @@ export default function MobiusStoryPage() {
               <text
                 x="320"
                 y="265"
-                fill="#8a90a4"
+                fill={palette.canvas.muted}
                 fontFamily="ui-monospace, monospace"
                 fontSize="11"
                 textAnchor="middle"

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { getDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Plots a tiny complex plane and animates the orbit of z₀ = 0 under
 // zₙ₊₁ = zₙ² + c for a fixed c. Three regimes are interesting:
@@ -40,7 +42,7 @@ export function MandelOrbitDemo({
     const orbit: Array<[number, number]> = [[0, 0]];
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = getDpr();
       canvas.width = canvas.clientWidth * dpr;
       canvas.height = canvas.clientHeight * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -75,7 +77,7 @@ export function MandelOrbitDemo({
     };
 
     const draw = () => {
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W(), H());
 
       // faint axes
@@ -95,7 +97,7 @@ export function MandelOrbitDemo({
       ctx.stroke();
 
       // c marker
-      ctx.fillStyle = "#ffd166";
+      ctx.fillStyle = palette.signal.amber;
       ctx.beginPath();
       ctx.arc(px(c[0]), py(c[1]), 4, 0, Math.PI * 2);
       ctx.fill();

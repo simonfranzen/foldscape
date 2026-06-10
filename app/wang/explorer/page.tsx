@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -35,7 +37,7 @@ interface Choice {
 
 // ─── Palette ─────────────────────────────────────────────────────────────────
 
-const COLOURS = ["#7df3ff", "#b388ff", "#ffd166", "#ff7ab6"] as const;
+const COLOURS = [palette.signal.cyan, palette.signal.violet, palette.signal.amber, palette.signal.rose] as const;
 const COLOUR_NAMES = ["cyan", "violet", "amber", "rose"] as const;
 
 // ─── Tile sets ───────────────────────────────────────────────────────────────
@@ -109,6 +111,7 @@ const SETS: Record<TileSetKey, TileSetDef> = {
 export default function WangExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.wang;
+  const dpr = useDpr();
 
   const [setKey, setSetKey] = useState<TileSetKey>("A");
   const [gridSize, setGridSize] = useState<number>(16);
@@ -174,7 +177,6 @@ export default function WangExplorer() {
     (cursorRow: number, cursorCol: number) => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
       if (canvas.width !== Math.floor(W * dpr) || canvas.height !== Math.floor(H * dpr)) {
@@ -184,7 +186,7 @@ export default function WangExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const n = gridSize;
@@ -223,7 +225,7 @@ export default function WangExplorer() {
         ctx.strokeRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
       }
     },
-    [gridSize],
+    [gridSize, dpr],
   );
 
   // The single search step. Returns true while still working.

@@ -113,7 +113,7 @@ export const TOPIC_NEIGHBORS: Record<TopicId, TopicId[]> = (() => {
   }
   const out = {} as Record<TopicId, TopicId[]>;
   (Object.keys(map) as TopicId[]).forEach((k) => {
-    out[k] = Array.from(map[k]!);
+    out[k] = Array.from(map[k] ?? new Set<TopicId>());
   });
   return out;
 })();

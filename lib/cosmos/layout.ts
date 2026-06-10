@@ -9,6 +9,7 @@
 
 import { TOPICS, type Topic, type TopicCategory, type TopicId } from "@/lib/topics";
 import { isHub } from "@/lib/topicHubs";
+import { palette } from "@/lib/visual/palette";
 
 export interface ClusterFrame {
   cx: number;
@@ -26,12 +27,12 @@ export const SCENE_VB_H = 600;
 // + paradox both rose. v5 keeps the four "signal" hues anchored to one
 // category each and adds coral + teal so every category owns one hue.
 export const CATEGORY_COLOR: Record<TopicCategory, string> = {
-  logic: "#b388ff",
-  computation: "#7df3ff",
-  chaos: "#ff8a5c",
-  geometry: "#ffd166",
-  analysis: "#7be0c0",
-  paradox: "#ff7ab6",
+  logic: palette.signal.violet,
+  computation: palette.signal.cyan,
+  chaos: palette.signal.coral,
+  geometry: palette.signal.amber,
+  analysis: palette.signal.teal,
+  paradox: palette.signal.rose,
 };
 
 export const CATEGORY_RGB: Record<TopicCategory, string> = {

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { palette } from "@/lib/visual/palette";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
@@ -907,12 +908,12 @@ function MiniGasket() {
       style={{ maxWidth: 220, display: "block" }}
       aria-hidden="true"
     >
-      <rect x={0} y={0} width={W} height={H} fill="#06070d" />
+      <rect x={0} y={0} width={W} height={H} fill={palette.canvas.bg} />
       {triangles.map((tri, i) => (
         <polygon
           key={i}
           points={tri.map((p) => `${p[0]},${p[1]}`).join(" ")}
-          fill="#ffd166"
+          fill={palette.signal.amber}
           fillOpacity={0.82}
         />
       ))}

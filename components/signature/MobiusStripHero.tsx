@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Signature artefact for the Möbius page. A 2D parametric projection of a
 // Möbius band, rendered as a chain of small ribbons coloured along the
@@ -155,8 +156,8 @@ export function MobiusStripHero() {
           })}
 
         {/* Ant marker — a tiny luminous dot tracing the surface */}
-        <circle cx={ax} cy={ay} r="3.5" fill="#eaecf3" />
-        <circle cx={ax} cy={ay} r="9" fill="#eaecf3" opacity="0.18" />
+        <circle cx={ax} cy={ay} r="3.5" fill={palette.ink[100]} />
+        <circle cx={ax} cy={ay} r="9" fill={palette.ink[100]} opacity="0.18" />
 
         {/* Caption */}
         <text

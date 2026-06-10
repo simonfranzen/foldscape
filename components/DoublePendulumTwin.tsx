@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
 
 // Twin double pendulum demo. Two identical systems integrated in lockstep —
 // one starts at θ₁ = 90°, the other at θ₁ = 90° + 10⁻⁵°. For ~5 seconds
@@ -94,15 +95,16 @@ export function DoublePendulumTwin({
   const [running, setRunning] = useState(true);
   const [resetTick, setResetTick] = useState(0);
   const [stats, setStats] = useState({ t: 0, dist: 0 });
+  const dpr = useDpr();
 
   useEffect(() => {
     const cA = canvasARef.current;
     const cB = canvasBRef.current;
     if (!cA || !cB) return;
-    const ctxA = cA.getContext("2d", { alpha: true })!;
-    const ctxB = cB.getContext("2d", { alpha: true })!;
+    const ctxA = cA.getContext("2d", { alpha: true });
+    const ctxB = cB.getContext("2d", { alpha: true });
+    if (!ctxA || !ctxB) return;
     let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       [cA, cB].forEach((c) => {
@@ -250,7 +252,7 @@ export function DoublePendulumTwin({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [running, resetTick]);
+  }, [running, resetTick, dpr]);
 
   const reset = () => {
     setStats({ t: 0, dist: 0 });

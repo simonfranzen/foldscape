@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { palette } from "@/lib/visual/palette";
 
 // ---------------------------------------------------------------------------
 // P vs NP Explorer — a small DPLL-style 3-SAT solver, animated.
@@ -87,7 +88,7 @@ function evalClauseUnderAssign(clause: Clause, a: Assignment): "sat" | "unsat" |
       allFalse = false;
       continue;
     }
-    const value = a.get(v)!;
+    const value = a.get(v) ?? false;
     const lit_true = lit > 0 ? value : !value;
     if (lit_true) return "sat";
   }
@@ -119,7 +120,7 @@ function findUnit(formula: Formula, a: Assignment): number | null {
         if (unassignedCount > 1) break;
         continue;
       }
-      const value = a.get(v)!;
+      const value = a.get(v) ?? false;
       if (lit > 0 ? value : !value) {
         satisfied = true;
         break;
@@ -1374,6 +1375,17 @@ function renderAction(dict: RichExplorer, a: ActionDescriptor): string {
 // Component
 // ---------------------------------------------------------------------------
 
+// UI defaults / limits — surfaced as consts so they're easy to tune.
+const DEFAULT_SPEED = 8; // steps per second
+const MIN_INTERVAL_MS = 15; // floor on the setInterval period
+const DEFAULT_N = 5; // random-generator variable count default
+const DEFAULT_M = 20; // random-generator clause count default
+const DEFAULT_SEED = 1;
+const MAX_N = 12;
+const MAX_M = 50;
+const MAX_SEED = 999;
+const MAX_SPEED = 60;
+
 type Mode = "solve" | "verify";
 
 export default function PvsNPExplorer() {
@@ -1383,10 +1395,10 @@ export default function PvsNPExplorer() {
 
   const [mode, setMode] = useState<Mode>("solve");
   const [presetId, setPresetId] = useState<string>("trivial");
-  const [n, setN] = useState(5);
-  const [m, setM] = useState(20);
-  const [seed, setSeed] = useState(1);
-  const [speed, setSpeed] = useState(8); // steps/sec
+  const [n, setN] = useState(DEFAULT_N);
+  const [m, setM] = useState(DEFAULT_M);
+  const [seed, setSeed] = useState(DEFAULT_SEED);
+  const [speed, setSpeed] = useState(DEFAULT_SPEED);
   const [running, setRunning] = useState(false);
 
   // Active formula state
@@ -1434,7 +1446,7 @@ export default function PvsNPExplorer() {
 
   useEffect(() => {
     if (!running) return;
-    const interval = Math.max(15, 1000 / Math.max(1, speed));
+    const interval = Math.max(MIN_INTERVAL_MS, 1000 / Math.max(1, speed));
     const id = window.setInterval(() => {
       const s = stateRef.current;
       if (s.verdict === "sat" || s.verdict === "unsat") {
@@ -1518,8 +1530,8 @@ export default function PvsNPExplorer() {
                       {clause.map((lit, li) => {
                         const v = Math.abs(lit);
                         const has = liveAssign.has(v);
-                        const value = has ? liveAssign.get(v)! : null;
-                        const litTrue = has ? (lit > 0 ? value! : !value!) : null;
+                        const value = has ? (liveAssign.get(v) ?? false) : null;
+                        const litTrue = has ? (lit > 0 ? value : !value) : null;
                         const litColor =
                           litTrue === true
                             ? "text-signal-amber"
@@ -1700,7 +1712,7 @@ export default function PvsNPExplorer() {
               type="range"
               value={n}
               min={3}
-              max={12}
+              max={MAX_N}
               step={1}
               onChange={(e) => setN(parseInt(e.target.value))}
               className="w-full accent-signal-cyan"
@@ -1710,7 +1722,7 @@ export default function PvsNPExplorer() {
               type="range"
               value={m}
               min={3}
-              max={50}
+              max={MAX_M}
               step={1}
               onChange={(e) => setM(parseInt(e.target.value))}
               className="w-full accent-signal-cyan"
@@ -1720,7 +1732,7 @@ export default function PvsNPExplorer() {
               type="range"
               value={seed}
               min={1}
-              max={999}
+              max={MAX_SEED}
               step={1}
               onChange={(e) => setSeed(parseInt(e.target.value))}
               className="w-full accent-signal-amber"
@@ -1746,7 +1758,7 @@ export default function PvsNPExplorer() {
                 type="range"
                 value={speed}
                 min={1}
-                max={60}
+                max={MAX_SPEED}
                 step={1}
                 onChange={(e) => setSpeed(parseInt(e.target.value))}
                 className="w-full accent-signal-amber"
@@ -1799,17 +1811,20 @@ export default function PvsNPExplorer() {
                       : "text-ink-200"
                 }
               />
-              {state.finalAssign && (
-                <div className="mt-2 text-[10px] leading-relaxed text-ink-300">
-                  {dict.foundPrefix}{" "}
-                  {Array.from({ length: activeVars }, (_, i) => i + 1)
-                    .map(
-                      (v) =>
-                        `x${v}=${state.finalAssign!.get(v) ? "T" : state.finalAssign!.get(v) === false ? "F" : "?"}`,
-                    )
-                    .join(", ")}
-                </div>
-              )}
+              {state.finalAssign && (() => {
+                const fa = state.finalAssign;
+                return (
+                  <div className="mt-2 text-[10px] leading-relaxed text-ink-300">
+                    {dict.foundPrefix}{" "}
+                    {Array.from({ length: activeVars }, (_, i) => i + 1)
+                      .map(
+                        (v) =>
+                          `x${v}=${fa.get(v) ? "T" : fa.get(v) === false ? "F" : "?"}`,
+                      )
+                      .join(", ")}
+                  </div>
+                );
+              })()}
             </div>
           )}
 
@@ -1929,12 +1944,12 @@ function SearchTree({ state, dict }: { state: SolverState; dict: RichExplorer })
           const isCurrent = node.id === state.currentNodeId;
           const fill =
             node.status === "sat"
-              ? "#ffd166"
+              ? palette.signal.amber
               : node.status === "conflict"
-                ? "#ff7ab6"
+                ? palette.signal.rose
                 : node.status === "explored"
                   ? "rgba(138,144,164,0.35)"
-                  : "#7df3ff";
+                  : palette.signal.cyan;
           const stroke = isCurrent ? "#ffffff" : "rgba(255,255,255,0.25)";
           const r = isCurrent ? 8 : 5;
           return (
@@ -1963,10 +1978,10 @@ function SearchTree({ state, dict }: { state: SolverState; dict: RichExplorer })
         })}
       </svg>
       <div className="mt-2 flex flex-wrap gap-3 font-mono text-[10px] text-ink-400">
-        <Legend swatch="#7df3ff" label={dict.legendOpen} />
+        <Legend swatch={palette.signal.cyan} label={dict.legendOpen} />
         <Legend swatch="rgba(138,144,164,0.7)" label={dict.legendExplored} />
-        <Legend swatch="#ff7ab6" label={dict.legendConflict} />
-        <Legend swatch="#ffd166" label={dict.legendSat} />
+        <Legend swatch={palette.signal.rose} label={dict.legendConflict} />
+        <Legend swatch={palette.signal.amber} label={dict.legendSat} />
       </div>
     </div>
   );

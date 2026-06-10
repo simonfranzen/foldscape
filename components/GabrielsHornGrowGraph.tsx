@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
 
 // V(X) and A(X) as a function of X, plotted on a small canvas. V converges
 // to π; A grows like 2π ln X, unbounded. Static plot — no controls. Used as
@@ -26,12 +27,13 @@ function surfaceLowerBound(X: number): number {
 
 export function GabrielsHornGrowGraph({ caption, legendV, legendA, xMax = 50 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d", { alpha: true })!;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
 
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
@@ -147,7 +149,7 @@ export function GabrielsHornGrowGraph({ caption, legendV, legendA, xMax = 50 }: 
     return () => {
       ro.disconnect();
     };
-  }, [xMax]);
+  }, [xMax, dpr]);
 
   return (
     <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5 md:p-6">

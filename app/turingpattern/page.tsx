@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import { TuringGrayScott } from "@/components/TuringGrayScott";
 import { TuringGallery } from "@/components/TuringGallery";
+import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
@@ -1075,7 +1076,7 @@ function LeopardZebraGlyph() {
       role="img"
       aria-label="Spots versus stripes"
     >
-      <rect width="240" height="110" fill="#06070d" rx="10" />
+      <rect width="240" height="110" fill={palette.canvas.bg} rx="10" />
       {/* leopard side */}
       <g>
         {[

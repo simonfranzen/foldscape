@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Compact Oregonator-style three-variable oscillator. Plots the rescaled
 // concentrations x ~ HBrO2, y ~ Br-, z ~ Ce(IV) over time. Uses the
@@ -18,9 +19,9 @@ const HISTORY = W; // one sample per displayed column
 
 // Colours for the three traces.
 const TRACE_COLORS = {
-  x: "#7df3ff", // cyan   - HBrO2
-  y: "#b388ff", // violet - Br-
-  z: "#ffd166", // amber  - Ce(IV)
+  x: palette.signal.cyan,   // HBrO2
+  y: palette.signal.violet, // Br-
+  z: palette.signal.amber,  // Ce(IV)
 } as const;
 
 // Logarithmic-like compression so we can see all three traces on one
@@ -135,7 +136,7 @@ export function BzrOregonator({
       }
 
       // Draw
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Grid

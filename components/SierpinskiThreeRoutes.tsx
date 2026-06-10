@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Three-routes comparator: classical subdivision, Pascal mod 2, Chaos Game.
 // Each route gets its own little canvas/SVG at depth 5+ so the same gasket
@@ -54,12 +56,12 @@ function SubdivisionPane() {
 
   return (
     <svg viewBox={`0 0 ${PANE} ${PANE}`} width="100%" style={{ display: "block" }}>
-      <rect x={0} y={0} width={PANE} height={PANE} fill="#06070d" />
+      <rect x={0} y={0} width={PANE} height={PANE} fill={palette.canvas.bg} />
       {triangles.map((tri, i) => (
         <polygon
           key={i}
           points={tri.map((p) => `${p[0]},${p[1]}`).join(" ")}
-          fill="#ffd166"
+          fill={palette.signal.amber}
           fillOpacity={0.85}
         />
       ))}
@@ -70,11 +72,11 @@ function SubdivisionPane() {
 // ---------- Pascal mod 2 ----------
 function PascalPane() {
   const ref = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const W = canvas.clientWidth;
     const H = canvas.clientHeight;
     canvas.width = Math.max(1, Math.floor(W * dpr));
@@ -82,7 +84,7 @@ function PascalPane() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, W, H);
 
     const rows = 64;
@@ -112,7 +114,7 @@ function PascalPane() {
       }
       row = next;
     }
-  }, []);
+  }, [dpr]);
 
   return (
     <div style={{ width: "100%", aspectRatio: "1 / 1" }}>
@@ -124,11 +126,11 @@ function PascalPane() {
 // ---------- Chaos Game (animated, ~500 dots fade in) ----------
 function ChaosPane() {
   const ref = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const resize = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
@@ -137,7 +139,7 @@ function ChaosPane() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
     };
     resize();
@@ -180,7 +182,7 @@ function ChaosPane() {
     raf = requestAnimationFrame(tick);
 
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [dpr]);
 
   return (
     <div style={{ width: "100%", aspectRatio: "1 / 1" }}>

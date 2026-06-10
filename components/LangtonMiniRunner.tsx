@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // LangtonMiniRunner — a compact, story-page-friendly demo of Langton's Ant.
 // Renders to a small canvas (~340×280), with Play/Pause, Step, Reset and a
@@ -12,11 +14,14 @@ interface Props {
   initialStepsPerFrame?: number;
 }
 
-const PALETTE = {
-  bg: "#06070d",
+const CELL = 5; // CSS px per cell
+
+const ANT_COLORS = {
+  bg: palette.canvas.bg,
   white: "#e8eaf2",
-  black: "#b388ff", // we render the "black" cells as violet for contrast on the violet page
-  head: "#ffd166",
+  // "black" cells render as violet for contrast on the violet page
+  black: palette.signal.violet,
+  head: palette.signal.amber,
 };
 
 const DIR_GLYPH = ["N", "E", "S", "W"];
@@ -27,6 +32,7 @@ export function LangtonMiniRunner({
   initialStepsPerFrame = 8,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [running, setRunning] = useState(true);
   const [stepsPerFrame, setStepsPerFrame] = useState(initialStepsPerFrame);
@@ -47,8 +53,6 @@ export function LangtonMiniRunner({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const CELL = 5; // CSS px per cell
     const cellPx = CELL * dpr;
     let raf = 0;
 
@@ -71,12 +75,12 @@ export function LangtonMiniRunner({
     let total = 0;
 
     const paintAll = () => {
-      ctx.fillStyle = PALETTE.bg;
+      ctx.fillStyle = ANT_COLORS.bg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       for (let y = 0; y < gridH; y++) {
         for (let x = 0; x < gridW; x++) {
           if (grid[y * gridW + x] === 1) {
-            ctx.fillStyle = PALETTE.black;
+            ctx.fillStyle = ANT_COLORS.black;
             ctx.fillRect(x * cellPx, y * cellPx, cellPx, cellPx);
           }
         }
@@ -105,10 +109,10 @@ export function LangtonMiniRunner({
       grid[idx] = next;
       // Paint just the cell we changed.
       if (next === 1) {
-        ctx.fillStyle = PALETTE.black;
+        ctx.fillStyle = ANT_COLORS.black;
         ctx.fillRect(ax * cellPx, ay * cellPx, cellPx, cellPx);
       } else {
-        ctx.fillStyle = PALETTE.bg;
+        ctx.fillStyle = ANT_COLORS.bg;
         ctx.fillRect(ax * cellPx, ay * cellPx, cellPx, cellPx);
       }
       // Move (torus)
@@ -120,7 +124,7 @@ export function LangtonMiniRunner({
     };
 
     const drawHead = () => {
-      ctx.fillStyle = PALETTE.head;
+      ctx.fillStyle = ANT_COLORS.head;
       ctx.fillRect(ax * cellPx, ay * cellPx, cellPx, cellPx);
     };
 
@@ -130,7 +134,7 @@ export function LangtonMiniRunner({
     const loop = () => {
       // Erase the previous head position by repainting the cell beneath it.
       const idx = ay * gridW + ax;
-      ctx.fillStyle = grid[idx] === 1 ? PALETTE.black : PALETTE.bg;
+      ctx.fillStyle = grid[idx] === 1 ? ANT_COLORS.black : ANT_COLORS.bg;
       ctx.fillRect(ax * cellPx, ay * cellPx, cellPx, cellPx);
 
       const want = singleStepRef.current;
@@ -160,7 +164,7 @@ export function LangtonMiniRunner({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [resetTick]);
+  }, [resetTick, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-5">

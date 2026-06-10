@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
 
 type Projection = "xz" | "xy" | "yz";
 
@@ -17,6 +18,7 @@ export default function LorenzExplorer() {
   const [dt, setDt] = useState(0.005);
   const [running, setRunning] = useState(true);
   const [projection, setProjection] = useState<Projection>("xz");
+  const dpr = useDpr();
 
   // Mutable simulation state held in refs so we don't re-allocate on each render
   const stateRef = useRef({ x: 0.1, y: 0, z: 0 });
@@ -41,7 +43,6 @@ export default function LorenzExplorer() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
     let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
       canvas.height = Math.floor(canvas.clientHeight * dpr);
@@ -125,7 +126,7 @@ export default function LorenzExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [sigma, rho, beta, dt, running, projection]);
+  }, [sigma, rho, beta, dt, running, projection, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Signature artefact for the SAT page. A small 3-SAT formula whose variable
 // assignment cycles like a brute-force search; each clause lights green the
@@ -58,14 +59,14 @@ function findSat(): boolean[] {
   return [true, true, true, true];
 }
 
-const GREEN = "#7be0c0"; // signal-teal — the repo's positive/"true" hue
-const VIOLET = "#b388ff"; // signal-violet — the logic-category accent
-const DIM = "rgba(138,144,164,0.5)";
+const GREEN = palette.signal.teal;
+const VIOLET = palette.signal.violet;
+const DIM = `${palette.canvas.muted}80`;
 
 export function SatClauseHero() {
   const [reduced, setReduced] = useState(false);
-  const [n, setN] = useState(0); // current assignment as a 4-bit counter
-  const holdRef = useRef(0); // linger a beat on a satisfying assignment
+  const [n, setN] = useState(0);
+  const holdRef = useRef(0);
   const lastTickRef = useRef(0);
 
   useEffect(() => {
@@ -146,7 +147,7 @@ export function SatClauseHero() {
                 textAnchor="middle"
                 fontFamily="var(--font-mono)"
                 fontSize="14"
-                fill={val ? "#7df3ff" : "rgba(234,236,243,0.6)"}
+                fill={val ? palette.signal.cyan : "rgba(234,236,243,0.6)"}
               >
                 {name}={val ? "T" : "F"}
               </text>

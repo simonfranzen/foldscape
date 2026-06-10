@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
 
 // Live ρ slider with a small canvas trajectory rendering. RK4 integration of
 // the Lorenz system. Drag the canvas to rotate the camera around the
@@ -43,13 +44,13 @@ export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
   const yawRef = useRef(0.6);
   const draggingRef = useRef(false);
   const lastXRef = useRef(0);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d", { alpha: true })!;
     let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
@@ -139,22 +140,22 @@ export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [rho]);
+  }, [rho, dpr]);
 
-  const onPointerDown = (e: React.PointerEvent) => {
+  const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = true;
     lastXRef.current = e.clientX;
-    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    e.currentTarget.setPointerCapture(e.pointerId);
   };
-  const onPointerMove = (e: React.PointerEvent) => {
+  const onPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (!draggingRef.current) return;
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
     yawRef.current += dx * 0.01;
   };
-  const onPointerUp = (e: React.PointerEvent) => {
+  const onPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = false;
-    (e.target as HTMLElement).releasePointerCapture?.(e.pointerId);
+    e.currentTarget.releasePointerCapture(e.pointerId);
   };
 
   return (

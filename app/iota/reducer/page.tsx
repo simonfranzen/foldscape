@@ -6,11 +6,15 @@ import { useI18n } from "@/lib/i18n/context";
 import { parse, reduceTrace, PRESETS } from "@/lib/iota/reduce";
 import { Info } from "@/components/Info";
 
+const INITIAL_MAX_STEPS = 40;
+const STEP_LIMIT_MIN = 5;
+const STEP_LIMIT_MAX = 200;
+
 export default function IotaReducer() {
   const { a, u } = useI18n();
   const topic = a.topics.iota;
   const [src, setSrc] = useState(PRESETS[1].src);
-  const [maxSteps, setMaxSteps] = useState(40);
+  const [maxSteps, setMaxSteps] = useState(INITIAL_MAX_STEPS);
 
   const result = useMemo(() => {
     try {
@@ -149,8 +153,8 @@ export default function IotaReducer() {
               <input
                 type="range"
                 value={maxSteps}
-                min={5}
-                max={200}
+                min={STEP_LIMIT_MIN}
+                max={STEP_LIMIT_MAX}
                 step={1}
                 onChange={(e) => setMaxSteps(parseInt(e.target.value))}
                 className="w-full accent-signal-cyan"

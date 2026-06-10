@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { palette } from "@/lib/visual/palette";
 
 const FAMOUS_SEEDS: Array<{ n: number; label: string }> = [
   { n: 27, label: "111 steps · peak 9232" },
@@ -217,7 +218,7 @@ export default function CollatzExplorer() {
               className="block h-auto w-full"
               preserveAspectRatio="xMidYMid meet"
             >
-              <rect x={0} y={0} width={TW} height={TH} fill="#06070d" />
+              <rect x={0} y={0} width={TW} height={TH} fill={palette.canvas.bg} />
               {yTicks.map((p) => (
                 <g key={p}>
                   <line
@@ -232,7 +233,7 @@ export default function CollatzExplorer() {
                     x={padL - 6}
                     y={yPx(Math.pow(10, p)) + 3}
                     textAnchor="end"
-                    fill="#8a90a4"
+                    fill={palette.canvas.muted}
                     fontSize={10}
                     fontFamily="ui-monospace, monospace"
                   >
@@ -242,7 +243,7 @@ export default function CollatzExplorer() {
               ))}
               <path d={trajPath} fill="none" stroke="rgba(255, 209, 102, 0.85)" strokeWidth={1.4} />
               {traj.values.map((v, i) => (
-                <circle key={i} cx={xPx(i)} cy={yPx(v)} r={1.6} fill="#ffd166" />
+                <circle key={i} cx={xPx(i)} cy={yPx(v)} r={1.6} fill={palette.signal.amber} />
               ))}
               {/* Peak marker */}
               <circle
@@ -250,13 +251,13 @@ export default function CollatzExplorer() {
                 cy={yPx(traj.peak)}
                 r={4.5}
                 fill="none"
-                stroke="#7df3ff"
+                stroke={palette.signal.cyan}
                 strokeWidth={1.4}
               />
               <text
                 x={xPx(traj.peakStep) + 8}
                 y={yPx(traj.peak) - 6}
-                fill="#7df3ff"
+                fill={palette.signal.cyan}
                 fontSize={11}
                 fontFamily="ui-monospace, monospace"
               >
@@ -266,7 +267,7 @@ export default function CollatzExplorer() {
                 x={TW - padR}
                 y={TH - 10}
                 textAnchor="end"
-                fill="#8a90a4"
+                fill={palette.canvas.muted}
                 fontSize={10}
                 fontFamily="ui-monospace, monospace"
               >
@@ -275,7 +276,7 @@ export default function CollatzExplorer() {
               <text
                 x={padL}
                 y={padT - 8}
-                fill="#8a90a4"
+                fill={palette.canvas.muted}
                 fontSize={10}
                 fontFamily="ui-monospace, monospace"
               >
@@ -307,7 +308,7 @@ export default function CollatzExplorer() {
                   y={-treeBox / 2}
                   width={treeBox}
                   height={treeBox}
-                  fill="#06070d"
+                  fill={palette.canvas.bg}
                 />
                 {positioned.map((p, i) =>
                   p.parent !== null ? (
@@ -324,7 +325,7 @@ export default function CollatzExplorer() {
                 )}
                 {positioned.map((p, i) => {
                   const onTraj = traj.values.includes(p.v);
-                  const fill = onTraj ? "#7df3ff" : "#ffd166";
+                  const fill = onTraj ? palette.signal.cyan : palette.signal.amber;
                   const r = p.depth === 0 ? 6 : onTraj ? 3.5 : 2.4;
                   return (
                     <g key={`n-${i}`}>
