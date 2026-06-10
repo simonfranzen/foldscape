@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Small canvas renderer that draws an L-system via a turtle path. The
 // visitor picks one of three pre-canned classics and slides the iteration
@@ -93,6 +95,7 @@ export function LsystemTurtleRenderer({
   const preset = useMemo(() => PRESETS.find((p) => p.id === presetId) ?? PRESETS[0], [presetId]);
   const [iter, setIter] = useState<number>(preset.defaultIter);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   // Reset iteration whenever the preset changes.
   useEffect(() => {
@@ -105,7 +108,6 @@ export function LsystemTurtleRenderer({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const draw = () => {
       const W = canvas.clientWidth;
@@ -116,7 +118,7 @@ export function LsystemTurtleRenderer({
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const str = expand(preset.axiom, preset.rules, clampedIter);
@@ -204,7 +206,7 @@ export function LsystemTurtleRenderer({
     const ro = new ResizeObserver(draw);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [preset, clampedIter]);
+  }, [preset, clampedIter, dpr]);
 
   return (
     <div className="hairline glass space-y-5 rounded-2xl border p-6 md:p-8">
