@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Highlightable quadratics — diagonals on the spiral.
 const QUADRATICS = [
@@ -22,7 +24,6 @@ function buildSieve(N: number): Uint8Array {
       for (let j = i * i; j <= N; j += i) s[j] = 1;
     }
   }
-  // invert: 1 = prime
   for (let i = 0; i <= N; i++) s[i] = s[i] === 0 ? 1 : 0;
   return s;
 }
@@ -36,8 +37,7 @@ function spiralCoord(n: number): [number, number] {
   const sideLen = 2 * k;
   const start = (2 * k - 1) * (2 * k - 1) + 1;
   const off = n - start;
-  // segments: right (k-1 entries upward), top (sideLen left), left (sideLen down), bottom (sideLen right)
-  // Actually standard: from (k, -(k-1)) we go up to (k, k); then left to (-k, k); then down to (-k, -k); then right to (k, -k).
+  // From (k, -(k-1)) we go up to (k, k); then left to (-k, k); then down to (-k, -k); then right to (k, -k).
   let x = k,
     y = -(k - 1);
   if (off < sideLen) {
@@ -59,6 +59,7 @@ export default function UlamExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.ulam;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [side, setSide] = useState(251); // odd grid side (251×251 = 63 001 numbers)
   const [quadraticId, setQuadraticId] = useState("euler");
@@ -86,7 +87,6 @@ export default function UlamExplorer() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const draw = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
@@ -98,11 +98,10 @@ export default function UlamExplorer() {
       const offsetX = (W - cell * side) / 2;
       const offsetY = (H - cell * side) / 2;
 
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const max = side * side;
-      // Compute primes' (x, y) and paint.
       for (let n = 1; n <= max; n++) {
         if (sieve[n] === 0) continue;
         const [x, y] = spiralCoord(n);
@@ -111,11 +110,10 @@ export default function UlamExplorer() {
         // y axis flipped — positive y points up in our coords but down on screen
         const py = offsetY + (half - y) * cell;
         const highlit = highlightSet?.has(((x + 1000) << 16) | (y + 1000));
-        ctx.fillStyle = highlit ? "#ff7ab6" : "rgba(255, 209, 102, 0.85)";
+        ctx.fillStyle = highlit ? palette.signal.rose : "rgba(255, 209, 102, 0.85)";
         ctx.fillRect(px, py, Math.max(1, cell - 0.4), Math.max(1, cell - 0.4));
       }
 
-      // Mark centre 1
       const cx = offsetX + half * cell;
       const cy = offsetY + half * cell;
       ctx.strokeStyle = "rgba(125, 243, 255, 0.6)";
@@ -127,7 +125,7 @@ export default function UlamExplorer() {
     const ro = new ResizeObserver(draw);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [side, sieve, highlightSet]);
+  }, [side, sieve, highlightSet, dpr]);
 
   const total = side * side;
   let primesCount = 0;
