@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Signature artefact for the Halting page. A living Turing-machine tape:
 // cells stream right, a head reads + writes glyphs as it passes. Once in a
@@ -15,6 +16,10 @@ interface Cell {
 }
 
 const CELLS = 21;
+const TICK_INTERVAL_MS = 520;
+const HALT_DISPLAY_MS = 1100;
+const HALT_PROBABILITY = 1 / 14;
+const SHIFT_PROBABILITY = 0.35;
 
 export function HaltingTapeHero() {
   const [reduced, setReduced] = useState(false);
@@ -40,17 +45,17 @@ export function HaltingTapeHero() {
     if (reduced) return;
     let raf = 0;
     const tick = (now: number) => {
-      if (now - lastTickRef.current > 520) {
+      if (now - lastTickRef.current > TICK_INTERVAL_MS) {
         lastTickRef.current = now;
         // 1 in 14 ticks: visible pause — the "does it halt?" beat
-        if (Math.random() < 1 / 14) {
+        if (Math.random() < HALT_PROBABILITY) {
           setHalted(true);
-          setTimeout(() => setHalted(false), 1100);
+          setTimeout(() => setHalted(false), HALT_DISPLAY_MS);
         } else {
           setTape((t) => {
             const next = t.map((c) => ({ ...c, highlighted: false }));
             // shift the tape one to the left occasionally
-            if (Math.random() < 0.35) {
+            if (Math.random() < SHIFT_PROBABILITY) {
               next.shift();
               next.push({ sym: pick(), highlighted: false });
             } else {
@@ -82,10 +87,10 @@ export function HaltingTapeHero() {
       <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" aria-hidden="true">
         <defs>
           <linearGradient id="ht-fade" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#05060a" stopOpacity="1" />
-            <stop offset="8%" stopColor="#05060a" stopOpacity="0" />
-            <stop offset="92%" stopColor="#05060a" stopOpacity="0" />
-            <stop offset="100%" stopColor="#05060a" stopOpacity="1" />
+            <stop offset="0%" stopColor={palette.ink[950]} stopOpacity="1" />
+            <stop offset="8%" stopColor={palette.ink[950]} stopOpacity="0" />
+            <stop offset="92%" stopColor={palette.ink[950]} stopOpacity="0" />
+            <stop offset="100%" stopColor={palette.ink[950]} stopOpacity="1" />
           </linearGradient>
         </defs>
 
@@ -109,7 +114,7 @@ export function HaltingTapeHero() {
                   textAnchor="middle"
                   fontFamily="var(--font-mono)"
                   fontSize="22"
-                  fill={c.highlighted ? "#7df3ff" : "#eaecf3"}
+                  fill={c.highlighted ? palette.signal.cyan : palette.ink[100]}
                   opacity={c.sym === "□" ? 0.45 : 0.95}
                 >
                   {c.sym}
@@ -124,14 +129,14 @@ export function HaltingTapeHero() {
 
         {/* Read/write head */}
         <g transform={`translate(${headIdx * cellW + cellW / 2} ${tapeY - 10})`}>
-          <polygon points="-9,-14 9,-14 0,0" fill={halted ? "#ff7ab6" : "#7df3ff"} opacity="0.9" />
+          <polygon points="-9,-14 9,-14 0,0" fill={halted ? palette.signal.rose : palette.signal.cyan} opacity="0.9" />
           <text
             y={-22}
             textAnchor="middle"
             fontFamily="var(--font-mono)"
             fontSize="9"
             letterSpacing="2.4"
-            fill={halted ? "#ff7ab6" : "#7df3ff"}
+            fill={halted ? palette.signal.rose : palette.signal.cyan}
             opacity="0.85"
           >
             {halted ? "HALT?" : "HEAD"}

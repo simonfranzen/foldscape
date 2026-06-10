@@ -28,6 +28,10 @@ import { useI18n } from "@/lib/i18n/context";
 
 const TAPE_SIZE = 32;
 const MAX_STEPS_HARD_CAP = 100_000;
+const STEP_CAP_SLIDER_MAX = 10_000; // keep the slider range manageable without hiding the hard cap
+const DEFAULT_STEP_CAP = 2000;
+const DEFAULT_SPEED = 40; // steps/sec
+const MAX_STEPS_PER_FRAME = 500;
 
 type HaltStatus = "running" | "halted" | "cap";
 
@@ -241,8 +245,8 @@ export default function HaltingExplorer() {
   );
   const jumps = useMemo(() => buildJumpTable(program.code), [program.code]);
 
-  const [stepCap, setStepCap] = useState(2000);
-  const [speed, setSpeed] = useState(40); // steps/sec slider value 1..200
+  const [stepCap, setStepCap] = useState(DEFAULT_STEP_CAP);
+  const [speed, setSpeed] = useState(DEFAULT_SPEED);
   const [running, setRunning] = useState(false);
 
   const [state, setState] = useState<VMState>(() => freshState());
@@ -277,7 +281,7 @@ export default function HaltingExplorer() {
       acc += (dt / 1000) * speed;
       let steps = Math.floor(acc);
       acc -= steps;
-      if (steps > 500) steps = 500;
+      if (steps > MAX_STEPS_PER_FRAME) steps = MAX_STEPS_PER_FRAME;
       if (steps > 0) {
         setState((prev) => {
           let s = prev;
@@ -464,7 +468,7 @@ export default function HaltingExplorer() {
               type="range"
               value={stepCap}
               min={10}
-              max={MAX_STEPS_HARD_CAP > 10000 ? 10000 : MAX_STEPS_HARD_CAP}
+              max={Math.min(MAX_STEPS_HARD_CAP, STEP_CAP_SLIDER_MAX)}
               step={10}
               onChange={(e) => setStepCap(parseInt(e.target.value))}
               className="w-full accent-signal-cyan"
