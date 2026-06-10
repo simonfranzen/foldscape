@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Small inline Collatz trajectory plotter for the story page. The user
 // types a starting integer; the canvas draws the hailstone orbit on a log
@@ -47,6 +49,7 @@ export function CollatzTrajectoryPlot({
 }: Props) {
   const [seed, setSeed] = useState(27);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const orbit = useMemo(() => {
     const n = Number.isFinite(seed) && seed >= 1 ? Math.floor(seed) : 1;
@@ -68,14 +71,13 @@ export function CollatzTrajectoryPlot({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = W * dpr;
     canvas.height = H * dpr;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, W, H);
 
     const innerW = W - PAD_L - PAD_R;
@@ -89,7 +91,7 @@ export function CollatzTrajectoryPlot({
     ctx.strokeStyle = "rgba(138,144,164,0.18)";
     ctx.lineWidth = 1;
     ctx.font = "9px ui-monospace, monospace";
-    ctx.fillStyle = "#8a90a4";
+    ctx.fillStyle = palette.canvas.muted;
     ctx.textAlign = "right";
     ctx.textBaseline = "middle";
     for (let p = 0; p <= Math.ceil(yMax); p++) {
@@ -114,7 +116,7 @@ export function CollatzTrajectoryPlot({
     ctx.stroke();
 
     // orbit dots
-    ctx.fillStyle = "#ff7ab6";
+    ctx.fillStyle = palette.signal.rose;
     for (let i = 0; i < orbit.length; i++) {
       ctx.beginPath();
       ctx.arc(xAt(i), yAt(orbit[i]), 1.4, 0, Math.PI * 2);
@@ -124,23 +126,23 @@ export function CollatzTrajectoryPlot({
     // peak marker
     const px = xAt(peak.index);
     const py = yAt(peak.value);
-    ctx.strokeStyle = "#7df3ff";
+    ctx.strokeStyle = palette.signal.cyan;
     ctx.lineWidth = 1.4;
     ctx.beginPath();
     ctx.arc(px, py, 4, 0, Math.PI * 2);
     ctx.stroke();
-    ctx.fillStyle = "#7df3ff";
+    ctx.fillStyle = palette.signal.cyan;
     ctx.textAlign = "left";
     ctx.fillText(`peak ${peak.value}`, Math.min(W - PAD_R - 70, px + 6), py - 8);
 
     // stopping time marker (final descent to 1)
     const lastX = xAt(orbit.length - 1);
     const lastY = yAt(orbit[orbit.length - 1]);
-    ctx.strokeStyle = "#ffd166";
+    ctx.strokeStyle = palette.signal.amber;
     ctx.beginPath();
     ctx.arc(lastX, lastY, 3.4, 0, Math.PI * 2);
     ctx.stroke();
-  }, [orbit, peak]);
+  }, [orbit, peak, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-5">

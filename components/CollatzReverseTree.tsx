@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Inline reverse-Collatz coral tree visualiser. Starting from 1, we run the
 // rule backwards: every node n has parent 2n (always) and, if (n − 1) is a
@@ -103,7 +104,7 @@ function buildTree(maxDepth: number): { nodes: TreeNode[]; edges: Array<[TreeNod
   return { nodes, edges };
 }
 
-const PALETTE = ["#ff7ab6", "#ffd166", "#7df3ff", "#b388ff"];
+const PALETTE = [palette.signal.rose, palette.signal.amber, palette.signal.cyan, palette.signal.violet];
 
 export function CollatzReverseTree({ caption, depthLabel, nodeLabel, hint, maxDepth = 14 }: Props) {
   const [depth, setDepth] = useState(8);
@@ -124,7 +125,7 @@ export function CollatzReverseTree({ caption, depthLabel, nodeLabel, hint, maxDe
               style={{ maxWidth: SIZE, display: "block" }}
               aria-label="Reverse Collatz coral tree"
             >
-              <rect x={0} y={0} width={SIZE} height={SIZE} fill="#06070d" />
+              <rect x={0} y={0} width={SIZE} height={SIZE} fill={palette.canvas.bg} />
               {edges.map(([a, b], i) => {
                 const colour = PALETTE[Math.min(PALETTE.length - 1, b.depth % PALETTE.length)];
                 const opacity = 0.35 + 0.5 * (1 - b.depth / Math.max(1, depth));
