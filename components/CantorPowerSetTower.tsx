@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Visualisation of the power-set hierarchy. Cantor proved |𝒫(X)| > |X|
 // for any set X — so iterating the power set forever gives an unending
@@ -29,14 +30,14 @@ interface Props {
 const CARD_LABELS = ["ℵ₀", "2^ℵ₀", "2^(2^ℵ₀)", "2^(2^(2^ℵ₀))", "2^(2^(2^(2^ℵ₀)))", "⋯", "⋯", "⋯"];
 
 const COLORS = [
-  "#7df3ff", // cyan — ℵ₀
-  "#b388ff", // violet — c
-  "#ffd166", // amber
-  "#ff7ab6", // rose
-  "#7df3ff",
-  "#b388ff",
-  "#ffd166",
-  "#ff7ab6",
+  palette.signal.cyan, // ℵ₀
+  palette.signal.violet, // c
+  palette.signal.amber,
+  palette.signal.rose,
+  palette.signal.cyan,
+  palette.signal.violet,
+  palette.signal.amber,
+  palette.signal.rose,
 ];
 
 export function CantorPowerSetTower({
