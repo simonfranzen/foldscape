@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline Barnsley fern renderer. Tall canvas (~280×360) so the fern fits
 // upright. Buttons: Play / Pause / Reset / Fast-forward 100k dots.
@@ -41,6 +43,7 @@ export function ChaosGameBarnsleyFern({
   fastForwardLabel,
   pointsLabel,
 }: Props) {
+  const dpr = useDpr();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [playing, setPlaying] = useState(true);
   const [points, setPoints] = useState(0);
@@ -58,7 +61,7 @@ export function ChaosGameBarnsleyFern({
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
   }, [resetTick]);
 
@@ -66,7 +69,6 @@ export function ChaosGameBarnsleyFern({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const size = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
@@ -75,14 +77,14 @@ export function ChaosGameBarnsleyFern({
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
     };
     size();
     const ro = new ResizeObserver(size);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [resetTick]);
+  }, [resetTick, dpr]);
 
   // Animation loop
   useEffect(() => {
