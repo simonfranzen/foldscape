@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
 
 // ---------------------------------------------------------------------------
@@ -381,6 +383,8 @@ export default function RiemannExplorer() {
   const topic = a.topics.riemann;
   const x = EXPLORER[locale];
 
+  const dpr = useDpr();
+
   const [tMax, setTMax] = useState(45);
   const [nDirichlet, setNDirichlet] = useState(200);
   const [nZeros, setNZeros] = useState(8);
@@ -438,7 +442,6 @@ export default function RiemannExplorer() {
   useEffect(() => {
     const canvas = primeCanvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const render = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
@@ -450,7 +453,7 @@ export default function RiemannExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const padL = 38;
@@ -519,13 +522,12 @@ export default function RiemannExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [piApproxData]);
+  }, [piApproxData, dpr]);
 
   // Render the ζ trace plot.
   useEffect(() => {
     const canvas = zetaCanvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const render = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
@@ -537,7 +539,7 @@ export default function RiemannExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       let minR = Infinity;
@@ -589,7 +591,7 @@ export default function RiemannExplorer() {
         ctx.lineTo(p1.x, p1.y);
         ctx.stroke();
       }
-      ctx.fillStyle = "#fff5d6";
+      ctx.fillStyle = palette.canvas.ivory;
       ctx.beginPath();
       ctx.arc(ox.x, ox.y, 3, 0, Math.PI * 2);
       ctx.fill();
@@ -598,7 +600,7 @@ export default function RiemannExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [zetaTrace]);
+  }, [zetaTrace, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">

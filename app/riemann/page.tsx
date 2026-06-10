@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import { RiemannSignatureHero } from "@/components/signature/RiemannSignatureHero";
 import { RiemannZetaPath } from "@/components/RiemannZetaPath";
+import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
@@ -761,7 +762,7 @@ function CriticalStripFigure({ caption }: { caption: string }) {
           return (
             <g key={i}>
               <circle cx={lineX} cy={y} r="9" fill="rgba(255,209,102,0.25)" />
-              <circle cx={lineX} cy={y} r="4" fill="#fff5d6" />
+              <circle cx={lineX} cy={y} r="4" fill={palette.canvas.ivory} />
               <text
                 x={lineX - 14}
                 y={y + 4}

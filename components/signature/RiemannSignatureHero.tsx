@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { palette } from "@/lib/visual/palette";
 
 // Signature artefact for the Riemann page. A vertical critical line cuts
 // through an 800×320 canvas with the first twelve non-trivial zero heights
@@ -90,15 +91,15 @@ export function RiemannSignatureHero() {
       <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" role="img" aria-hidden="true">
         <defs>
           <linearGradient id="riemann-line" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#ffd166" stopOpacity="0" />
-            <stop offset="15%" stopColor="#ffd166" stopOpacity="0.85" />
-            <stop offset="85%" stopColor="#ffd166" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#ffd166" stopOpacity="0" />
+            <stop offset="0%" stopColor={palette.signal.amber} stopOpacity="0" />
+            <stop offset="15%" stopColor={palette.signal.amber} stopOpacity="0.85" />
+            <stop offset="85%" stopColor={palette.signal.amber} stopOpacity="0.85" />
+            <stop offset="100%" stopColor={palette.signal.amber} stopOpacity="0" />
           </linearGradient>
           <radialGradient id="riemann-bead" cx="0.5" cy="0.5" r="0.5">
-            <stop offset="0%" stopColor="#fff5d6" stopOpacity="1" />
-            <stop offset="40%" stopColor="#ffd166" stopOpacity="0.95" />
-            <stop offset="100%" stopColor="#ffd166" stopOpacity="0" />
+            <stop offset="0%" stopColor={palette.canvas.ivory} stopOpacity="1" />
+            <stop offset="40%" stopColor={palette.signal.amber} stopOpacity="0.95" />
+            <stop offset="100%" stopColor={palette.signal.amber} stopOpacity="0" />
           </radialGradient>
         </defs>
 
@@ -156,7 +157,7 @@ export function RiemannSignatureHero() {
           return (
             <g key={i}>
               <circle cx={lineX} cy={y} r={rOuter} fill="url(#riemann-bead)" opacity="0.55" />
-              <circle cx={lineX} cy={y} r={r} fill="#fff5d6" />
+              <circle cx={lineX} cy={y} r={r} fill={palette.canvas.ivory} />
               <text
                 x={lineX + 18}
                 y={y + 4}
