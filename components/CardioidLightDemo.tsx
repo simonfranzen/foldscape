@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline demo for the cardioid story page. Shows a circular cup wall lit by
 // a point light source sitting on the rim (the classical setup whose
@@ -20,23 +22,20 @@ interface Props {
 }
 
 const SIZE = 340;
-const INK = "#06070d";
 const WALL = "rgba(125, 243, 255, 0.45)";
 const RAY = "rgba(255, 209, 102, 0.22)";
-const CARDIOID = "#ffd166";
-const SRC = "#ff7ab6";
 
 export function CardioidLightDemo({ caption, rayCountLabel, envelopeLabel, hint }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [rays, setRays] = useState(80);
   const [showEnvelope, setShowEnvelope] = useState(true);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
@@ -47,7 +46,7 @@ export function CardioidLightDemo({ caption, rayCountLabel, envelopeLabel, hint 
     const draw = () => {
       const W = canvas.width;
       const H = canvas.height;
-      ctx.fillStyle = INK;
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const cx = W / 2;
@@ -111,7 +110,7 @@ export function CardioidLightDemo({ caption, rayCountLabel, envelopeLabel, hint 
       // (Standard result for point source on a reflecting circle.) The cusp
       // sits at the source, the far tip on the opposite wall at distance 2R.
       if (showEnvelope) {
-        ctx.strokeStyle = CARDIOID;
+        ctx.strokeStyle = palette.signal.amber;
         ctx.lineWidth = 2.2 * dpr;
         ctx.beginPath();
         const steps = 360;
@@ -128,7 +127,7 @@ export function CardioidLightDemo({ caption, rayCountLabel, envelopeLabel, hint 
       }
 
       // Source dot.
-      ctx.fillStyle = SRC;
+      ctx.fillStyle = palette.signal.rose;
       ctx.beginPath();
       ctx.arc(sx, sy, 3.4 * dpr, 0, Math.PI * 2);
       ctx.fill();
@@ -138,7 +137,7 @@ export function CardioidLightDemo({ caption, rayCountLabel, envelopeLabel, hint 
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [rays, showEnvelope]);
+  }, [rays, showEnvelope, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-5">

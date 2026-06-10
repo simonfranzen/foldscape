@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Inline demo for the cardioid story page. Renders the Mandelbrot set at low
 // resolution with the main cardioid overlaid, and a slider that traces a dot
@@ -15,22 +17,18 @@ interface Props {
 
 const W_LOGICAL = 340;
 const H_LOGICAL = 280;
-const INK = "#06070d";
-const CARDIOID = "#ffd166";
-const TRACE = "#b388ff";
-const POINT = "#7df3ff";
 
 export function CardioidMandelbrotBridge({ caption, paramLabel, hint }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [tDeg, setTDeg] = useState(60);
   const mandelbrotCacheRef = useRef<ImageData | null>(null);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let cw = 0;
     let ch = 0;
@@ -80,7 +78,7 @@ export function CardioidMandelbrotBridge({ caption, paramLabel, hint }: Props) {
     const draw = () => {
       const W = canvas.width;
       const H = canvas.height;
-      ctx.fillStyle = INK;
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       if (mandelbrotCacheRef.current) {
@@ -94,7 +92,7 @@ export function CardioidMandelbrotBridge({ caption, paramLabel, hint }: Props) {
       const cy = H / 2;
 
       // Overlay the Douady–Hubbard cardioid.
-      ctx.strokeStyle = CARDIOID;
+      ctx.strokeStyle = palette.signal.amber;
       ctx.lineWidth = 2 * dpr;
       ctx.beginPath();
       const steps = 360;
@@ -111,7 +109,7 @@ export function CardioidMandelbrotBridge({ caption, paramLabel, hint }: Props) {
 
       // Trace arc from 0 up to the parameter t.
       const tMax = (tDeg / 360) * Math.PI * 2;
-      ctx.strokeStyle = TRACE;
+      ctx.strokeStyle = palette.signal.violet;
       ctx.lineWidth = 2.6 * dpr;
       ctx.beginPath();
       const arcSteps = Math.max(8, Math.floor((tDeg / 360) * 240));
@@ -132,11 +130,11 @@ export function CardioidMandelbrotBridge({ caption, paramLabel, hint }: Props) {
       const cim = 0.5 * Math.sin(theta) - 0.25 * Math.sin(2 * theta);
       const px = cx + (cre - reCenter) * scale;
       const py = cy + (cim - imCenter) * scale;
-      ctx.fillStyle = POINT;
+      ctx.fillStyle = palette.signal.cyan;
       ctx.beginPath();
       ctx.arc(px, py, 4 * dpr, 0, Math.PI * 2);
       ctx.fill();
-      ctx.strokeStyle = "#06070d";
+      ctx.strokeStyle = palette.canvas.bg;
       ctx.lineWidth = 1.4 * dpr;
       ctx.stroke();
     };
@@ -158,7 +156,7 @@ export function CardioidMandelbrotBridge({ caption, paramLabel, hint }: Props) {
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [tDeg]);
+  }, [tDeg, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-5">
