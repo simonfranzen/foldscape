@@ -5,6 +5,7 @@ import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { I18nProvider } from "@/lib/i18n/context";
 import { Footer } from "@/components/Footer";
+import { palette } from "@/lib/visual/palette";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#06070d",
+  themeColor: palette.canvas.bg,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -14,6 +14,7 @@
 
 import type { TopicCategory } from "@/lib/topics";
 import { CATEGORY_COLOR } from "@/lib/cosmos/layout";
+import { palette } from "@/lib/visual/palette";
 
 interface Props {
   category: TopicCategory;
@@ -75,7 +76,7 @@ function ParadoxSpecimen({ progress }: { progress: number }) {
   const aleph = window01(progress, 0.35, 0.55);
   return (
     <g>
-      <g stroke="#ff7ab6" fill="none">
+      <g stroke={palette.signal.rose} fill="none">
         <circle cx={500} cy={300} r={260} strokeWidth={0.8} strokeOpacity={0.18 * ring1} />
         <circle cx={500} cy={300} r={210} strokeWidth={0.7} strokeOpacity={0.18 * ring2} strokeDasharray="2 5" />
         <circle cx={500} cy={300} r={160} strokeWidth={0.6} strokeOpacity={0.18 * ring3} />
@@ -84,7 +85,7 @@ function ParadoxSpecimen({ progress }: { progress: number }) {
       <text
         x={500}
         y={340}
-        fill="#ff7ab6"
+        fill={palette.signal.rose}
         fillOpacity={0.22 * aleph}
         stroke="none"
         fontSize={140}
@@ -105,7 +106,7 @@ function LogicSpecimen({ progress }: { progress: number }) {
   const outDot = window01(progress, 0.35, 0.5);
   const outWire = window01(progress, 0.4, 0.55);
   return (
-    <g stroke="#b388ff" fill="none">
+    <g stroke={palette.signal.violet} fill="none">
       <line x1={250} y1={260} x2={360} y2={260} strokeWidth={1.2} strokeOpacity={0.32 * wireA} />
       <line x1={250} y1={340} x2={360} y2={340} strokeWidth={1.2} strokeOpacity={0.32 * wireB} />
       <path
@@ -165,7 +166,7 @@ function ComputationSpecimen({ progress }: { progress: number }) {
                 y={cy - size / 2}
                 width={size}
                 height={size}
-                fill="#7df3ff"
+                fill={palette.signal.cyan}
                 opacity={0.06 * cellReveal}
                 stroke="none"
               />
@@ -188,7 +189,7 @@ function ComputationSpecimen({ progress }: { progress: number }) {
               y={row * 28}
               width={24}
               height={24}
-              fill="#7df3ff"
+              fill={palette.signal.cyan}
               opacity={0.7}
               rx={2}
             />
@@ -208,7 +209,7 @@ function ChaosSpecimen({ progress }: { progress: number }) {
   const lenA = 1600;
   const lenB = 1600;
   return (
-    <g stroke="#ff8a5c" fill="none">
+    <g stroke={palette.signal.coral} fill="none">
       <path
         d="M 320 480 Q 130 380 220 220 Q 310 80 460 180 Q 580 250 510 360 Q 440 480 320 480 Z"
         strokeWidth={1.3}
@@ -223,8 +224,8 @@ function ChaosSpecimen({ progress }: { progress: number }) {
         strokeDasharray={lenB}
         strokeDashoffset={dashoffset(lobeB, lenB)}
       />
-      <circle cx={330} cy={280} r={6} fill="#ff8a5c" opacity={0.5 * eyes} stroke="none" />
-      <circle cx={670} cy={280} r={6} fill="#ff8a5c" opacity={0.5 * eyes} stroke="none" />
+      <circle cx={330} cy={280} r={6} fill={palette.signal.coral} opacity={0.5 * eyes} stroke="none" />
+      <circle cx={670} cy={280} r={6} fill={palette.signal.coral} opacity={0.5 * eyes} stroke="none" />
     </g>
   );
 }
@@ -243,14 +244,14 @@ function GeometrySpecimen({ progress }: { progress: number }) {
         y={120}
         width={400}
         height={400}
-        stroke="#ffd166"
+        stroke={palette.signal.amber}
         strokeOpacity={0.06 * frame}
         strokeWidth={0.8}
         fill="none"
       />
       <path
         d="M 700 120 A 400 400 0 0 0 300 520 A 248 248 0 0 0 548 272 A 152 152 0 0 0 396 120 A 94 94 0 0 0 302 214"
-        stroke="#ffd166"
+        stroke={palette.signal.amber}
         strokeOpacity={0.16 * Math.min(1, spiral + 0.2)}
         strokeWidth={1}
         fill="none"
@@ -277,7 +278,7 @@ function AnalysisSpecimen({ progress }: { progress: number }) {
   // Approximate path length per wave (1000 wide path, mostly horizontal).
   const len = 1100;
   return (
-    <g stroke="#7be0c0" fill="none">
+    <g stroke={palette.signal.teal} fill="none">
       <path
         d={make(2, 110, 0, 0)}
         strokeWidth={1.4}

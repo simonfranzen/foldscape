@@ -11,11 +11,12 @@
 import { ImageResponse } from "next/og";
 import { getTopic, type TopicCategory, type TopicId } from "@/lib/topics";
 import { EN_PLACEHOLDERS } from "@/lib/i18n/placeholders";
+import { palette } from "@/lib/visual/palette";
 
 export const OG_SIZE = { width: 1200, height: 630 } as const;
 export const OG_CONTENT_TYPE = "image/png";
 
-const INK = "#06070d";
+const INK = palette.canvas.bg;
 const INK_SOFT = "#0b0d17";
 const INK_LINE = "rgba(255,255,255,0.08)";
 const TEXT_PRIMARY = "#f5f6fa";
@@ -23,12 +24,12 @@ const TEXT_MUTED = "#a8abbd";
 const TEXT_FAINT = "#6b6f86";
 
 const CATEGORY_ACCENT: Record<TopicCategory, string> = {
-  logic: "#b388ff",
-  computation: "#7df3ff",
-  chaos: "#ff7ab6",
-  geometry: "#ffd166",
-  analysis: "#ffd166",
-  paradox: "#ff7ab6",
+  logic: palette.signal.violet,
+  computation: palette.signal.cyan,
+  chaos: palette.signal.rose,
+  geometry: palette.signal.amber,
+  analysis: palette.signal.amber,
+  paradox: palette.signal.rose,
 };
 
 const CATEGORY_LABEL: Record<TopicCategory, string> = {
@@ -104,7 +105,7 @@ function harmonicBackdrop(accent: string): string {
   const paths: string[] = [];
   const waves = [
     { amp: 70, freq: 2.2, phase: 0.0, y: 200, op: 0.1, stroke: accent },
-    { amp: 90, freq: 1.4, phase: 1.1, y: 320, op: 0.07, stroke: "#7df3ff" },
+    { amp: 90, freq: 1.4, phase: 1.1, y: 320, op: 0.07, stroke: palette.signal.cyan },
     { amp: 60, freq: 3.1, phase: 2.4, y: 460, op: 0.08, stroke: accent },
     { amp: 110, freq: 0.9, phase: 0.6, y: 540, op: 0.05, stroke: "#ffffff" },
   ];
@@ -132,7 +133,7 @@ const MONO = '"JetBrains Mono", "SF Mono", Menlo, Monaco, Consolas, "Courier New
 // --------------------------------------------------------------------- root
 
 export function renderRootOG(): ImageResponse {
-  const accent = "#b388ff";
+  const accent = palette.signal.violet;
   return new ImageResponse(
     <div
       style={{

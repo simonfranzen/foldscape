@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { Topic, TopicCategory } from "@/lib/topics";
 import { CATEGORY_COLOR } from "@/lib/cosmos/layout";
+import { palette } from "@/lib/visual/palette";
 
 interface Props {
   topic: Topic;
@@ -115,7 +116,7 @@ export function TopicStar({ topic, x, y, isHub, title, tagline, category }: Prop
               x={r + 10}
               y={isHub ? 5 : 4}
               fill={hover ? "#ffffff" : "#dde2f0"}
-              stroke="#05060a"
+              stroke={palette.ink[950]}
               strokeWidth={3.5}
               paintOrder="stroke fill"
               className="cosmos-star-label"

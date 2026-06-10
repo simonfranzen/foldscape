@@ -9,6 +9,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { TOPICS } from "@/lib/topics";
 import { CATEGORY_COLOR, SCENE_ORDER } from "@/lib/cosmos/layout";
+import { palette } from "@/lib/visual/palette";
 import { COSMOS } from "@/lib/i18n/cosmos";
 import { useDocumentScrollProgress } from "@/lib/cosmos/hooks";
 import { buildHaystack, normaliseQuery, scoreTopic } from "@/lib/cosmos/search";
@@ -153,7 +154,7 @@ export function CosmosHUD({ activeCategory }: Props) {
                     ? "opacity-100"
                     : "opacity-0 group-hover:opacity-100 group-focus:opacity-100"
                 }`}
-                style={{ color: isActive ? CATEGORY_COLOR[cat] : "#eaecf3" }}
+                style={{ color: isActive ? CATEGORY_COLOR[cat] : palette.ink[100] }}
               >
                 {name}
               </span>
