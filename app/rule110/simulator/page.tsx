@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { Info } from "@/components/Info";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 const WIDTH = 240;
 const HEIGHT = 360;
@@ -46,11 +48,12 @@ export default function Rule110Simulator() {
   const { a, u } = useI18n();
   const topic = a.topics.rule110;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
   const [rule, setRule] = useState(110);
   const [seed, setSeed] = useState<Seed>("single");
   const [running, setRunning] = useState(true);
   const [speed, setSpeed] = useState(20);
-  const [palette, setPalette] = useState<"cyan" | "violet" | "amber" | "rose">("cyan");
+  const [colourKey, setColourKey] = useState<"cyan" | "violet" | "amber" | "rose">("cyan");
   const [generation, setGeneration] = useState(0);
 
   // grid is stored as rolling rows of size HEIGHT, but each frame we redraw
@@ -74,16 +77,16 @@ export default function Rule110Simulator() {
     let raf = 0;
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;;
     const colour = {
-      cyan: "#7df3ff",
-      violet: "#b388ff",
-      amber: "#ffd166",
-      rose: "#ff7ab6",
-    }[palette];
+      cyan: palette.signal.cyan,
+      violet: palette.signal.violet,
+      amber: palette.signal.amber,
+      rose: palette.signal.rose,
+    }[colourKey];
 
     const draw = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const W = canvas.clientWidth * dpr;
       const H = canvas.clientHeight * dpr;
       if (canvas.width !== W || canvas.height !== H) {
@@ -93,7 +96,7 @@ export default function Rule110Simulator() {
       const grid = gridRef.current;
       const cellW = W / WIDTH;
       const cellH = H / HEIGHT;
-      ctx.fillStyle = "#05060a";
+      ctx.fillStyle = palette.ink[950];
       ctx.fillRect(0, 0, W, H);
       ctx.fillStyle = colour;
       const rows = grid.length;
@@ -132,7 +135,7 @@ export default function Rule110Simulator() {
     lastRef.current = performance.now();
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [rule, speed, running, palette]);
+  }, [rule, speed, running, colourKey, dpr]);
 
   const handleStep = () => {
     const grid = gridRef.current;
@@ -308,9 +311,9 @@ export default function Rule110Simulator() {
               {(["cyan", "violet", "amber", "rose"] as const).map((c) => (
                 <button
                   key={c}
-                  onClick={() => setPalette(c)}
+                  onClick={() => setColourKey(c)}
                   className={`rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest transition-colors ${
-                    palette === c
+                    colourKey === c
                       ? `border-signal-${c}/60 text-signal-${c} bg-signal-${c}/10`
                       : "hairline text-ink-300 hover:text-ink-100"
                   }`}

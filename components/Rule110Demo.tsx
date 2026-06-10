@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Compact Rule-N 1D cellular automaton renderer. Each row is one generation
 // drawn below the previous. The whole canvas re-renders every `cycleMs` so
@@ -18,10 +20,10 @@ interface Props {
 }
 
 const colourMap: Record<string, string> = {
-  "text-signal-violet": "#b388ff",
-  "text-signal-cyan": "#7df3ff",
-  "text-signal-amber": "#ffd166",
-  "text-signal-rose": "#ff7ab6",
+  "text-signal-violet": palette.signal.violet,
+  "text-signal-cyan": palette.signal.cyan,
+  "text-signal-amber": palette.signal.amber,
+  "text-signal-rose": palette.signal.rose,
 };
 
 export function Rule110Demo({
@@ -35,14 +37,16 @@ export function Rule110Demo({
   className = "",
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
     let raf = 0;
     let last = performance.now();
-    const fill = colourMap[accent] ?? "#7df3ff";
+    const fill = colourMap[accent] ?? palette.signal.cyan;
 
     const reset = () => {
       const row = new Uint8Array(width);
@@ -64,11 +68,10 @@ export function Rule110Demo({
     };
 
     const render = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.floor(width * cellSize * dpr);
       canvas.height = Math.floor(height * cellSize * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       let row = reset();
       ctx.fillStyle = fill;
@@ -98,7 +101,7 @@ export function Rule110Demo({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [rule, initial, width, height, cellSize, cycleMs, accent]);
+  }, [rule, initial, width, height, cellSize, cycleMs, accent, dpr]);
 
   return (
     <canvas

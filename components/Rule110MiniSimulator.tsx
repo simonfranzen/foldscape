@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Tiny elementary-CA simulator. Shares the live `rule` prop with whatever
 // editor is wired up in the parent (typically Rule110LookupTable). The seed
@@ -15,8 +17,8 @@ interface Props {
 type SeedKind = "single" | "random";
 
 const COLOURS = {
-  cell: "#7df3ff",
-  bg: "#06070d",
+  cell: palette.signal.cyan,
+  bg: palette.canvas.bg,
   edge: "#11131c",
 };
 
@@ -57,6 +59,7 @@ function step(row: Uint8Array, rule: number): Uint8Array {
 
 export function Rule110MiniSimulator({ rule, caption }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
   const [steps, setSteps] = useState(180);
   const [seed, setSeed] = useState<SeedKind>("single");
   const [seedHash, setSeedHash] = useState(0xc0ffee);
@@ -68,7 +71,6 @@ export function Rule110MiniSimulator({ rule, caption }: Props) {
     if (!ctx) return;
 
     const draw = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const cw = canvas.clientWidth;
       const ch = canvas.clientHeight;
       if (cw < 4 || ch < 4) return;
@@ -101,7 +103,7 @@ export function Rule110MiniSimulator({ rule, caption }: Props) {
     const ro = new ResizeObserver(() => draw());
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [rule, steps, seed, seedHash]);
+  }, [rule, steps, seed, seedHash, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-4">
