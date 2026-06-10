@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
 
 interface PendulumState {
   th1: number;
@@ -87,6 +88,7 @@ export default function DoublePendulumExplorer() {
   const { a, u } = useI18n();
   const topic = a.topics.doublependulum;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   // Sliders / controls
   const [m1, setM1] = useState(1);
@@ -137,7 +139,6 @@ export default function DoublePendulumExplorer() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
       canvas.height = Math.floor(canvas.clientHeight * dpr);
@@ -333,7 +334,7 @@ export default function DoublePendulumExplorer() {
     };
     // We intentionally re-run the whole effect when any of these change so
     // that the simulation reinitialises cleanly.
-  }, [m1, m2, L1, L2, g, dt, speed, initTh1, initTh2, trailLen, running, showGhost, resetTick]);
+  }, [m1, m2, L1, L2, g, dt, speed, initTh1, initTh2, trailLen, running, showGhost, resetTick, dpr]);
 
   const handleReset = () => {
     setResetTick((n) => n + 1);

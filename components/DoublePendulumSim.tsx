@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
 
 // A live double pendulum. RK4 integration of the standard equations of
 // motion (Lagrangian formulation). Two sliders set the initial angles; the
@@ -94,6 +95,7 @@ export function DoublePendulumSim({
   const [th2Deg, setTh2Deg] = useState(90);
   const [running, setRunning] = useState(true);
   const [tick, setTick] = useState(0);
+  const dpr = useDpr();
 
   // Whenever the user moves the sliders, reset the simulation so the new
   // initial conditions take effect immediately.
@@ -110,9 +112,9 @@ export function DoublePendulumSim({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d", { alpha: true })!;
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
     let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
@@ -204,7 +206,7 @@ export function DoublePendulumSim({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [running]);
+  }, [running, dpr]);
 
   const reset = () => setTick((x) => x + 1);
 
