@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { getDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // --------------------------------------------------------------------------
 // Per-locale UI strings for the Möbius / Klein explorer. Kept inline so the
@@ -482,11 +484,9 @@ export default function MobiusExplorer() {
     let raf = 0;
     let stopped = false;
 
-    const dprCap = 2;
-
     const render = (now: number) => {
       if (stopped) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, dprCap);
+      const dpr = getDpr();
       const cssW = canvas.clientWidth;
       const cssH = canvas.clientHeight;
       const W = Math.floor(cssW * dpr);
@@ -499,7 +499,7 @@ export default function MobiusExplorer() {
       if (!ctx) return;
 
       ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Time delta → auto-spin.
