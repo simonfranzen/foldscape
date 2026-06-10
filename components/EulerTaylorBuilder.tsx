@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Builds three partial Taylor sums in parallel:
 //   eˣ  ≈ Σₖ xᵏ / k!
@@ -95,11 +97,11 @@ export function EulerTaylorBuilder({
   // on [-π, π] that beyond N≈5 the curves move by < 1 px and the slider
   // felt unresponsive.)
   const [N, setN] = useState(2);
+  const dpr = useDpr();
 
   useEffect(() => {
     const cnv = canvasRef.current;
     if (!cnv) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     cnv.width = W * dpr;
     cnv.height = H * dpr;
     const ctx = cnv.getContext("2d");
@@ -107,7 +109,7 @@ export function EulerTaylorBuilder({
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     // Background
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, W, H);
 
     // Plot range: x in [-π, π], y in [-2.5, 4]
@@ -178,9 +180,9 @@ export function EulerTaylorBuilder({
     plot((x) => Math.sin(x), "rgba(179,136,255,0.25)", 1.2, true);
 
     // Partial Taylor sums (bright, solid)
-    plot((x) => expPartial(x, N), "#ffd166", 1.8);
-    plot((x) => cosPartial(x, N), "#7df3ff", 1.8);
-    plot((x) => sinPartial(x, N), "#b388ff", 1.8);
+    plot((x) => expPartial(x, N), palette.signal.amber, 1.8);
+    plot((x) => cosPartial(x, N), palette.signal.cyan, 1.8);
+    plot((x) => sinPartial(x, N), palette.signal.violet, 1.8);
 
     // Mark x = π
     ctx.strokeStyle = "rgba(255,122,182,0.6)";
@@ -190,11 +192,11 @@ export function EulerTaylorBuilder({
     ctx.lineTo(xToPx(Math.PI), H - 4);
     ctx.stroke();
     ctx.setLineDash([]);
-    ctx.fillStyle = "#ff7ab6";
+    ctx.fillStyle = palette.signal.rose;
     ctx.font = "10px ui-monospace, monospace";
     ctx.textAlign = "right";
     ctx.fillText("π", xToPx(Math.PI) - 4, 14);
-  }, [N]);
+  }, [N, dpr]);
 
   // The complex walk e^(iπ) partial sum at current N
   const walk = expIPiPartial(N);

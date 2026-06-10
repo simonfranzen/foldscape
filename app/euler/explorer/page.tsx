@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 const TAU = Math.PI * 2;
 
@@ -19,6 +21,7 @@ export default function EulerExplorer() {
   const topic = a.topics.euler;
   const planeRef = useRef<HTMLCanvasElement | null>(null);
   const stripRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
 
   const [theta, setTheta] = useState(0);
   const [running, setRunning] = useState(false);
@@ -57,7 +60,6 @@ export default function EulerExplorer() {
   useEffect(() => {
     const canvas = planeRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -67,7 +69,7 @@ export default function EulerExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const cx = W / 2;
@@ -164,7 +166,7 @@ export default function EulerExplorer() {
       ctx.beginPath();
       ctx.arc(px, py, glowR, 0, TAU);
       ctx.fill();
-      ctx.fillStyle = atPi ? "#ff7ab6" : "#ffd166";
+      ctx.fillStyle = atPi ? palette.signal.rose : palette.signal.amber;
       ctx.beginPath();
       ctx.arc(px, py, 4, 0, TAU);
       ctx.fill();
@@ -180,10 +182,11 @@ export default function EulerExplorer() {
       ];
       ctx.fillStyle = "rgba(5, 6, 10, 0.7)";
       ctx.fillRect(12, H - 92, 290, 80);
-      ctx.fillStyle = atPi ? "#ff7ab6" : "#ffd166";
+      ctx.fillStyle = atPi ? palette.signal.rose : palette.signal.amber;
       ctx.font = "12px ui-monospace, monospace";
       for (let i = 0; i < lines.length; i++) {
-        ctx.fillStyle = i === 0 ? (atPi ? "#ff7ab6" : "#ffd166") : "rgba(225, 228, 240, 0.9)";
+        ctx.fillStyle =
+          i === 0 ? (atPi ? palette.signal.rose : palette.signal.amber) : "rgba(225, 228, 240, 0.9)";
         ctx.fillText(lines[i], 20, H - 70 + i * 16);
       }
 
@@ -191,7 +194,7 @@ export default function EulerExplorer() {
       if (atPi) {
         ctx.fillStyle = "rgba(255, 122, 182, 0.12)";
         ctx.fillRect(0, 0, W, H);
-        ctx.fillStyle = "#ff7ab6";
+        ctx.fillStyle = palette.signal.rose;
         ctx.font = "bold 18px ui-monospace, monospace";
         const msg = "e^(iπ) + 1 = 0";
         const mw = ctx.measureText(msg).width;
@@ -214,13 +217,12 @@ export default function EulerExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [resetTick]);
+  }, [resetTick, dpr]);
 
   // Strip canvas — cos θ and sin θ over [0, 2π]
   useEffect(() => {
     const canvas = stripRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const render = () => {
       const W = canvas.clientWidth;
@@ -230,7 +232,7 @@ export default function EulerExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const padL = 28;
@@ -303,11 +305,11 @@ export default function EulerExplorer() {
       ctx.lineTo(cxLine, padT + innerH);
       ctx.stroke();
       // Dots on each curve at θ
-      ctx.fillStyle = "#ffd166";
+      ctx.fillStyle = palette.signal.amber;
       ctx.beginPath();
       ctx.arc(cxLine, midY - Math.cos(t) * (innerH / 2), 3, 0, TAU);
       ctx.fill();
-      ctx.fillStyle = "#7df3ff";
+      ctx.fillStyle = palette.signal.cyan;
       ctx.beginPath();
       ctx.arc(cxLine, midY - Math.sin(t) * (innerH / 2), 3, 0, TAU);
       ctx.fill();
@@ -334,7 +336,7 @@ export default function EulerExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [resetTick]);
+  }, [resetTick, dpr]);
 
   const reset = () => {
     setTheta(0);

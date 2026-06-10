@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Live unit-circle in the complex plane. Slider sets θ ∈ [0, 2π]. We draw
 // the unit circle, the point e^(iθ) = (cos θ, sin θ), its projections onto
@@ -21,11 +23,11 @@ export function EulerUnitCircle({ caption, identityHint }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   // θ starts at π/4 so the picture is immediately interesting on mount.
   const [theta, setTheta] = useState(Math.PI / 4);
+  const dpr = useDpr();
 
   useEffect(() => {
     const cnv = canvasRef.current;
     if (!cnv) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     cnv.width = SIZE * dpr;
     cnv.height = SIZE * dpr;
     const ctx = cnv.getContext("2d");
@@ -37,7 +39,7 @@ export function EulerUnitCircle({ caption, identityHint }: Props) {
     const R = SIZE * 0.36; // radius of the unit circle in canvas pixels
 
     // Background fill
-    ctx.fillStyle = "#06070d";
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, SIZE, SIZE);
 
     // Faint grid
@@ -65,7 +67,7 @@ export function EulerUnitCircle({ caption, identityHint }: Props) {
     ctx.stroke();
 
     // Axis tick labels
-    ctx.fillStyle = "#8a90a4";
+    ctx.fillStyle = palette.canvas.muted;
     ctx.font = "10px ui-monospace, monospace";
     ctx.textAlign = "center";
     ctx.fillText("Re", SIZE - 18, cy - 6);
@@ -85,7 +87,7 @@ export function EulerUnitCircle({ caption, identityHint }: Props) {
 
     // Arc swept so far (0 → θ, counter-clockwise in math convention, which
     // is clockwise in screen-y-down. We flip y so math-up = canvas-up).
-    ctx.strokeStyle = "#ffd166";
+    ctx.strokeStyle = palette.signal.amber;
     ctx.lineWidth = 2.2;
     ctx.beginPath();
     ctx.arc(cx, cy, R, 0, -theta, true);
@@ -110,11 +112,11 @@ export function EulerUnitCircle({ caption, identityHint }: Props) {
     ctx.setLineDash([]);
 
     // Cos / sin component markers on the axes
-    ctx.fillStyle = "#7df3ff";
+    ctx.fillStyle = palette.signal.cyan;
     ctx.beginPath();
     ctx.arc(px, cy, 3, 0, TWO_PI);
     ctx.fill();
-    ctx.fillStyle = "#b388ff";
+    ctx.fillStyle = palette.signal.violet;
     ctx.beginPath();
     ctx.arc(cx, py, 3, 0, TWO_PI);
     ctx.fill();
@@ -137,14 +139,14 @@ export function EulerUnitCircle({ caption, identityHint }: Props) {
     }
 
     // The moving point e^(iθ)
-    ctx.fillStyle = nearPi ? "#ff7ab6" : "#ffd166";
+    ctx.fillStyle = nearPi ? palette.signal.rose : palette.signal.amber;
     ctx.beginPath();
     ctx.arc(px, py, 5.5, 0, TWO_PI);
     ctx.fill();
-    ctx.strokeStyle = "#06070d";
+    ctx.strokeStyle = palette.canvas.bg;
     ctx.lineWidth = 1.2;
     ctx.stroke();
-  }, [theta]);
+  }, [theta, dpr]);
 
   const cos = Math.cos(theta);
   const sin = Math.sin(theta);
