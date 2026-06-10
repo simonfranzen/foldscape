@@ -6,6 +6,7 @@ import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { LorenzInlineRho } from "@/components/LorenzInlineRho";
 import { LorenzTwoOrbits } from "@/components/LorenzTwoOrbits";
+import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
 
 const ACCENT = "text-signal-coral";
@@ -975,9 +976,9 @@ function RegimeMini({ variant }: { variant: "stable" | "chaos" }) {
     }
     return (
       <svg viewBox="0 0 220 140" className="h-auto w-full" role="img" aria-label="Stable spiral">
-        <rect width="220" height="140" fill="#06070d" rx="6" />
+        <rect width="220" height="140" fill={palette.canvas.bg} rx="6" />
         <path d={path.join(" ")} fill="none" stroke="rgba(125,243,255,0.7)" strokeWidth="1.1" />
-        <circle cx="110" cy="70" r="2.4" fill="#ffd166" />
+        <circle cx="110" cy="70" r="2.4" fill={palette.signal.amber} />
       </svg>
     );
   }
@@ -999,7 +1000,7 @@ function RegimeMini({ variant }: { variant: "stable" | "chaos" }) {
       role="img"
       aria-label="Butterfly schematic"
     >
-      <rect width="220" height="140" fill="#06070d" rx="6" />
+      <rect width="220" height="140" fill={palette.canvas.bg} rx="6" />
       <path d={path.join(" ")} fill="none" stroke="rgba(255,122,182,0.6)" strokeWidth="0.9" />
     </svg>
   );
@@ -1014,7 +1015,7 @@ function WingsSVG() {
       role="img"
       aria-label="Two wings around two fixed points"
     >
-      <rect width="320" height="180" fill="#06070d" rx="8" />
+      <rect width="320" height="180" fill={palette.canvas.bg} rx="8" />
       {/* Left wing — a loose ellipse */}
       <ellipse
         cx="110"
@@ -1043,14 +1044,14 @@ function WingsSVG() {
         stroke="rgba(125,243,255,0.25)"
         strokeWidth="0.7"
       />
-      <circle cx="110" cy="90" r="2.6" fill="#ff7ab6" />
+      <circle cx="110" cy="90" r="2.6" fill={palette.signal.rose} />
       <text
         x="110"
         y="106"
         textAnchor="middle"
         fontFamily="ui-monospace, monospace"
         fontSize="9"
-        fill="#ff7ab6"
+        fill={palette.signal.rose}
       >
         C₋
       </text>
@@ -1083,14 +1084,14 @@ function WingsSVG() {
         stroke="rgba(179,136,255,0.25)"
         strokeWidth="0.7"
       />
-      <circle cx="210" cy="90" r="2.6" fill="#ff7ab6" />
+      <circle cx="210" cy="90" r="2.6" fill={palette.signal.rose} />
       <text
         x="210"
         y="106"
         textAnchor="middle"
         fontFamily="ui-monospace, monospace"
         fontSize="9"
-        fill="#ff7ab6"
+        fill={palette.signal.rose}
       >
         C₊
       </text>
@@ -1109,7 +1110,7 @@ function WingsSVG() {
         textAnchor="middle"
         fontFamily="ui-monospace, monospace"
         fontSize="8"
-        fill="#ffd166"
+        fill={palette.signal.amber}
       >
         jump
       </text>
