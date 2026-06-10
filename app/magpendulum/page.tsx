@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
+import { palette } from "@/lib/visual/palette";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
 import { MagPendulumBasinMini } from "@/components/MagPendulumBasinMini";
@@ -49,16 +50,16 @@ function BasinSketchSVG() {
   const cy = H / 2;
   const R = 60;
   const magnets = [
-    { x: cx, y: cy - R, color: "#7df3ff" }, // cyan
+    { x: cx, y: cy - R, color: palette.signal.cyan }, // cyan
     {
       x: cx + R * Math.cos((Math.PI * 7) / 6),
       y: cy - R * Math.sin((Math.PI * 7) / 6),
-      color: "#b388ff",
+      color: palette.signal.violet,
     }, // violet
     {
       x: cx + R * Math.cos((Math.PI * 11) / 6),
       y: cy - R * Math.sin((Math.PI * 11) / 6),
-      color: "#ffd166",
+      color: palette.signal.amber,
     }, // amber
   ];
   return (
@@ -68,7 +69,7 @@ function BasinSketchSVG() {
       role="img"
       aria-label="Magnetic-pendulum basins (schematic)"
     >
-      <rect width={W} height={H} fill="#06070d" rx={10} />
+      <rect width={W} height={H} fill={palette.canvas.bg} rx={10} />
       {magnets.map((m, i) => (
         <g key={i}>
           <circle cx={m.x} cy={m.y} r={28} fill={m.color} fillOpacity={0.08} />
@@ -81,7 +82,7 @@ function BasinSketchSVG() {
         const r1 = 70 + Math.sin(i * 1.3) * 14;
         const x2 = cx + Math.cos(a) * r1;
         const y2 = cy + Math.sin(a) * r1;
-        const color = ["#7df3ff", "#b388ff", "#ffd166"][i % 3];
+        const color = [palette.signal.cyan, palette.signal.violet, palette.signal.amber][i % 3];
         return (
           <line
             key={`s-${i}`}
