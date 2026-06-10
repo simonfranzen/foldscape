@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // --------------------------------------------------------------------------
 // Königsberg Bridges Explorer
@@ -680,6 +682,7 @@ export default function KonigsbergExplorer() {
   const { a, u, locale } = useI18n();
   const topic = a.topics.konigsberg;
   const dict = EXPLORER[locale];
+  const dpr = useDpr();
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const sizeRef = useRef<{ w: number; h: number; dpr: number }>({ w: 0, h: 0, dpr: 1 });
@@ -826,7 +829,6 @@ export default function KonigsbergExplorer() {
     if (!canvas) return;
 
     const render = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const cssW = canvas.clientWidth;
       const cssH = canvas.clientHeight;
       if (cssW === 0 || cssH === 0) return;
@@ -843,7 +845,7 @@ export default function KonigsbergExplorer() {
       // Background — schematic river and banks.
       const sx = W / CANVAS_W;
       const sy = H / CANVAS_H;
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // River bands
@@ -889,19 +891,19 @@ export default function KonigsbergExplorer() {
           ? "rgba(255,209,102,0.95)"
           : isStart
             ? "rgba(255,209,102,0.45)"
-            : "#0b0d18";
+            : palette.canvas.bgAlt;
         ctx.fill();
-        ctx.strokeStyle = "#ffd166";
+        ctx.strokeStyle = palette.signal.amber;
         ctx.lineWidth = 1.8 * dpr;
         ctx.stroke();
 
-        ctx.fillStyle = isCurrent ? "#0b0d18" : "#ffd166";
+        ctx.fillStyle = isCurrent ? palette.canvas.bgAlt : palette.signal.amber;
         ctx.font = `${20 * Math.min(sx, sy)}px ui-monospace, monospace`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(v.id, cx, cy);
 
-        ctx.fillStyle = "#8a90a4";
+        ctx.fillStyle = palette.canvas.muted;
         ctx.font = `${11 * dpr}px ui-monospace, monospace`;
         ctx.fillText(vertexSublabel(v, dict), cx, cy + 50 * Math.min(sx, sy));
         ctx.fillText(`${dict.deg} ${degrees[v.id]}`, cx, cy + 66 * Math.min(sx, sy));
@@ -928,7 +930,7 @@ export default function KonigsbergExplorer() {
           ctx.setLineDash([]);
           ctx.lineWidth = 2.4 * dpr;
         } else if (isHover) {
-          ctx.strokeStyle = "#ffd166";
+          ctx.strokeStyle = palette.signal.amber;
           ctx.setLineDash([]);
           ctx.lineWidth = 4 * dpr;
         } else {
@@ -947,9 +949,9 @@ export default function KonigsbergExplorer() {
         const m = curvePoint(br, 0.5, vertsById);
         ctx.beginPath();
         ctx.arc(m.x * sx, m.y * sy, 12 * dpr, 0, Math.PI * 2);
-        ctx.fillStyle = "#ffd166";
+        ctx.fillStyle = palette.signal.amber;
         ctx.fill();
-        ctx.fillStyle = "#0b0d18";
+        ctx.fillStyle = palette.canvas.bgAlt;
         ctx.font = `bold ${11 * dpr}px ui-monospace, monospace`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -961,7 +963,7 @@ export default function KonigsbergExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [activeIds, walk, currentVertex, startVertex, degrees, hoverId, vertsById, dict]);
+  }, [activeIds, walk, currentVertex, startVertex, degrees, hoverId, vertsById, dict, dpr]);
 
   // --- Canvas click handler ----------------------------------------------
   const onCanvasClick = useCallback(
