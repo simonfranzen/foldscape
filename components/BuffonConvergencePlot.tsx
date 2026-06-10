@@ -1,17 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // A small canvas (~360×140) that plots the running estimate of π versus
 // the number of drops, with a horizontal line at the true π for
 // comparison. The plot runs its own batched Buffon simulation governed
 // by the N slider (100..100000); each time N changes we replay a fresh
 // run and animate the curve into view.
-
-const CYAN = "#7df3ff";
-const AMBER = "#ffd166";
-const ROSE = "#ff7ab6";
-const INK = "#06070d";
 
 interface Props {
   caption: string;
@@ -31,13 +28,13 @@ export function BuffonConvergencePlot({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [logN, setLogN] = useState(3); // 10^3 = 1000 default
   const [finalEstimate, setFinalEstimate] = useState<number | null>(null);
+  const dpr = useDpr();
 
   const N = Math.round(Math.pow(10, logN));
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const W0 = canvas.clientWidth;
     const H0 = canvas.clientHeight;
     canvas.width = Math.max(1, Math.floor(W0 * dpr));
@@ -84,7 +81,7 @@ export function BuffonConvergencePlot({
     setFinalEstimate(last ? last.est : null);
 
     drawPlot(ctx, W0, H0, samples, N);
-  }, [N]);
+  }, [N, dpr]);
 
   return (
     <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-5">
@@ -96,7 +93,7 @@ export function BuffonConvergencePlot({
           <canvas
             ref={canvasRef}
             className="hairline block w-full rounded-md border"
-            style={{ height: 140, background: INK }}
+            style={{ height: 140, background: palette.canvas.bg }}
           />
           <div className="absolute left-3 top-2 font-mono text-[9px] uppercase tracking-widest2 text-signal-amber/80">
             π · 3.14159
@@ -145,7 +142,7 @@ function drawPlot(
   samples: Array<{ n: number; est: number }>,
   N: number,
 ) {
-  ctx.fillStyle = INK;
+  ctx.fillStyle = palette.canvas.bg;
   ctx.fillRect(0, 0, W, H);
 
   const PAD_L = 28;
@@ -184,7 +181,7 @@ function drawPlot(
 
   // The estimate curve.
   if (samples.length > 0) {
-    ctx.strokeStyle = CYAN;
+    ctx.strokeStyle = palette.signal.cyan;
     ctx.lineWidth = 1.6;
     ctx.beginPath();
     let started = false;
@@ -202,7 +199,7 @@ function drawPlot(
 
     // Final point marker.
     const last = samples[samples.length - 1];
-    ctx.fillStyle = ROSE;
+    ctx.fillStyle = palette.signal.rose;
     ctx.beginPath();
     ctx.arc(xOf(last.n), yOf(Math.max(yMin, Math.min(yMax, last.est))), 2.6, 0, Math.PI * 2);
     ctx.fill();
@@ -216,6 +213,4 @@ function drawPlot(
   ctx.fillText("3.5", PAD_L - 4, yOf(3.5) + 3);
   ctx.fillText("2.8", PAD_L - 4, yOf(2.8) + 3);
 
-  // Mute AMBER reference so eslint stays happy with imports.
-  void AMBER;
 }

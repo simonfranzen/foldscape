@@ -9,6 +9,7 @@ import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 import { BuffonNeedleSim } from "@/components/BuffonNeedleSim";
 import { BuffonConvergencePlot } from "@/components/BuffonConvergencePlot";
+import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-amber";
 
@@ -55,7 +56,7 @@ function SixNeedlesSVG() {
       const dx = (LEN / 2) * Math.cos(n.angle);
       const dy = (LEN / 2) * Math.sin(n.angle);
       const crossed = lineYs.some((ly) => n.y - Math.abs(dy) <= ly && n.y + Math.abs(dy) >= ly);
-      const stroke = crossed ? "#ffd166" : "rgba(176,182,200,0.7)";
+      const stroke = crossed ? palette.signal.amber : "rgba(176,182,200,0.7)";
       const line = document.createElementNS(ns, "line");
       line.setAttribute("x1", String(n.x - dx));
       line.setAttribute("y1", String(n.y - dy));

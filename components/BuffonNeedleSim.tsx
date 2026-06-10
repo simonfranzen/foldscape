@@ -1,18 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Live Buffon's-needle drop simulator. Tiny canvas (~360×280), parallel
 // lines, needles dropping one at a time. Tracks crossings, total drops,
 // and the rolling π estimate. Buttons: play / pause / reset / +1000.
 // State is exposed through an optional callback so the convergence-plot
 // sibling can plot the same run if desired.
-
-const CYAN = "#7df3ff";
-const VIOLET = "#b388ff";
-const AMBER = "#ffd166";
-const ROSE = "#ff7ab6";
-const INK = "#06070d";
 
 interface Props {
   caption: string;
@@ -40,6 +36,7 @@ export function BuffonNeedleSim({
   onSample,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
   const [running, setRunning] = useState(true);
   const [drops, setDrops] = useState(0);
   const [crossings, setCrossings] = useState(0);
@@ -58,7 +55,6 @@ export function BuffonNeedleSim({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const size = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
@@ -73,7 +69,7 @@ export function BuffonNeedleSim({
     const ro = new ResizeObserver(size);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [resetTick]);
+  }, [resetTick, dpr]);
 
   // Drop loop — runs only while `running` is true.
   useEffect(() => {
@@ -132,7 +128,7 @@ export function BuffonNeedleSim({
     const H = canvas.clientHeight;
     // Clear and redraw the lines once so the page does not turn into
     // pure pigment.
-    ctx.fillStyle = INK;
+    ctx.fillStyle = palette.canvas.bg;
     ctx.fillRect(0, 0, W, H);
     drawLines(ctx, W, H, D);
     for (let i = 0; i < 1000; i++) {
@@ -172,7 +168,7 @@ export function BuffonNeedleSim({
           <canvas
             ref={canvasRef}
             className="hairline block rounded-md border"
-            style={{ width: 360, height: 280, maxWidth: "100%", background: INK }}
+            style={{ width: 360, height: 280, maxWidth: "100%", background: palette.canvas.bg }}
           />
         </div>
         <div className="space-y-4 md:col-span-5">
@@ -257,7 +253,7 @@ function drawLines(ctx: CanvasRenderingContext2D, W: number, H: number, d: numbe
 }
 
 function drawBackground(ctx: CanvasRenderingContext2D, W: number, H: number) {
-  ctx.fillStyle = INK;
+  ctx.fillStyle = palette.canvas.bg;
   ctx.fillRect(0, 0, W, H);
   drawLines(ctx, W, H, 38);
 }
@@ -278,8 +274,8 @@ function dropOne(
   const lineYs = computeLines(H, d);
   const cross = lineYs.some((ly) => cy - Math.abs(dy) <= ly && cy + Math.abs(dy) >= ly);
 
-  ctx.strokeStyle = cross ? AMBER : "rgba(176,182,200,0.55)";
-  ctx.fillStyle = cross ? AMBER : "rgba(176,182,200,0.55)";
+  ctx.strokeStyle = cross ? palette.signal.amber : "rgba(176,182,200,0.55)";
+  ctx.fillStyle = cross ? palette.signal.amber : "rgba(176,182,200,0.55)";
   ctx.lineWidth = cross ? 1.4 : 1.1;
   ctx.beginPath();
   ctx.moveTo(cx - dx, cy - dy);
@@ -290,13 +286,6 @@ function dropOne(
   ctx.beginPath();
   ctx.arc(cx, cy, 0.9, 0, Math.PI * 2);
   ctx.fill();
-
-  // Unused palette refs kept so the import surface line up with the
-  // story spec (cyan/violet/rose available if a future caller wants
-  // them).
-  void CYAN;
-  void VIOLET;
-  void ROSE;
 
   onResult(cross);
 }
