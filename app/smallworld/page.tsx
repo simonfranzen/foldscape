@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-teal";
 
@@ -355,7 +356,7 @@ function SmallNetworkSVG({ p, seed }: { p: number; seed: number }) {
             y1={A.y}
             x2={B.x}
             y2={B.y}
-            stroke={e.rewired ? "#7df3ff" : "#8a90a4"}
+            stroke={e.rewired ? palette.signal.cyan : palette.canvas.muted}
             strokeOpacity={e.rewired ? 0.9 : 0.45}
             strokeWidth={e.rewired ? 1.2 : 0.7}
           />
@@ -363,7 +364,7 @@ function SmallNetworkSVG({ p, seed }: { p: number; seed: number }) {
       })}
       {Array.from({ length: N }, (_, i) => {
         const P = pos(i);
-        return <circle key={i} cx={P.x} cy={P.y} r={2.6} fill="#7df3ff" />;
+        return <circle key={i} cx={P.x} cy={P.y} r={2.6} fill={palette.signal.cyan} />;
       })}
     </svg>
   );

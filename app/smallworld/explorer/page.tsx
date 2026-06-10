@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // --------------------------------------------------------------------------
 // Watts-Strogatz explorer. The user tunes N, k, p; we (a) lay the N nodes
@@ -11,6 +13,13 @@ import { useI18n } from "@/lib/i18n/context";
 // canonical L(p)/L₀, C(p)/C₀ curve underneath, (d) let the user click two
 // nodes to highlight the shortest path between them.
 // --------------------------------------------------------------------------
+
+// Node radius scales inversely with N so dense graphs don't overlap.
+const NODE_R_SCALE = 220;
+const NODE_R_MIN = 2.2;
+const NODE_R_MAX = 5;
+// Hit-test tolerance for node click selection, in CSS pixels.
+const NODE_HIT_PX = 18;
 
 interface Graph {
   N: number;
@@ -202,6 +211,8 @@ export default function SmallWorldExplorer() {
   const [pathSrc, setPathSrc] = useState<number | null>(null);
   const [pathDst, setPathDst] = useState<number | null>(null);
 
+  const dpr = useDpr();
+
   const graph = useMemo(() => buildWattsStrogatz(N, k, p, seed), [N, k, p, seed]);
 
   // Stats — memoised so they only recompute when the graph changes.
@@ -266,8 +277,7 @@ export default function SmallWorldExplorer() {
         }
       }
       if (bestIdx === -1) return;
-      const tolerance = 18; // px
-      if (bestDist > tolerance * tolerance) return;
+      if (bestDist > NODE_HIT_PX * NODE_HIT_PX) return;
       if (pathSrc === null) {
         setPathSrc(bestIdx);
         setPathDst(null);
@@ -287,7 +297,6 @@ export default function SmallWorldExplorer() {
     if (!canvas) return;
 
     const render = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
       if (W === 0 || H === 0) return;
@@ -296,7 +305,7 @@ export default function SmallWorldExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       // Positions cached per render — cheap, avoids re-trig.
@@ -358,17 +367,17 @@ export default function SmallWorldExplorer() {
       }
 
       // Nodes.
-      const nodeR = Math.max(2.2, Math.min(5, 220 / N));
+      const nodeR = Math.max(NODE_R_MIN, Math.min(NODE_R_MAX, NODE_R_SCALE / N));
       for (let i = 0; i < N; i++) {
         const pos = positions[i]!;
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, nodeR, 0, Math.PI * 2);
         if (i === pathSrc || i === pathDst) {
-          ctx.fillStyle = "#ffd166";
+          ctx.fillStyle = palette.signal.amber;
         } else if (highlightedPath && highlightedPath.includes(i)) {
           ctx.fillStyle = "#ffe7a8";
         } else {
-          ctx.fillStyle = "#7df3ff";
+          ctx.fillStyle = palette.signal.cyan;
         }
         ctx.fill();
       }
@@ -388,7 +397,7 @@ export default function SmallWorldExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [graph, N, k, layoutNode, highlightedPath, pathSrc, pathDst]);
+  }, [graph, N, k, dpr, layoutNode, highlightedPath, pathSrc, pathDst]);
 
   // Render the L/L0, C/C0 curve underneath.
   useEffect(() => {
@@ -396,7 +405,6 @@ export default function SmallWorldExplorer() {
     if (!canvas) return;
 
     const render = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
       if (W === 0 || H === 0) return;
@@ -405,7 +413,7 @@ export default function SmallWorldExplorer() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#06070d";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
       const padX = 36;
@@ -491,9 +499,9 @@ export default function SmallWorldExplorer() {
       // Legend.
       ctx.font = "10px ui-monospace, monospace";
       ctx.textAlign = "left";
-      ctx.fillStyle = "#7df3ff";
+      ctx.fillStyle = palette.signal.cyan;
       ctx.fillText("L(p) / L₀", padX + 6, padY + 12);
-      ctx.fillStyle = "#ff7ab6";
+      ctx.fillStyle = palette.signal.rose;
       ctx.fillText("C(p) / C₀", padX + 6, padY + 24);
     };
 
@@ -501,7 +509,7 @@ export default function SmallWorldExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [curve, reference, p]);
+  }, [curve, reference, p, dpr]);
 
   const onGenerate = () => {
     setSeed((s) => (s + 1) >>> 0);
