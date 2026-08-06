@@ -75,6 +75,33 @@ type RichStory = {
     pretitle: string;
     heading: string;
   };
+  computeBlock: {
+    wiresLabel: string;
+    wiresBody: string;
+    gatesLabel: string;
+    gatesBody: string;
+    memoryLabel: string;
+    memoryBody: string;
+    clockLabel: string;
+    clockBody: string;
+  };
+  ruleExplorerBlock: {
+    pretitle: string;
+    heading: string;
+  };
+  gunStats: {
+    yearLabel: string;
+    cellsLabel: string;
+    gliderEveryLabel: string;
+    gliderEveryValue: string;
+  };
+  miniGridLabels: {
+    shapesCaption: string;
+    blockStill: string;
+    genSame: string;
+    blinkerGen0: string;
+    genFlipped: string;
+  };
 };
 
 const en: RichStory = {
@@ -124,7 +151,7 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · Self-replication and meta-Life",
       title: "OTCA metapixels and Game of Life in Game of Life",
-      body: "In 2006 Brice Due designed the OTCA metapixel — a 2048×2048 Life pattern whose collective behaviour, viewed from far enough away, is itself a single Life cell. Tile a whole grid with OTCA metapixels and you get Game of Life running inside Game of Life, indistinguishable in the limit from the original. Self-replicating patterns followed: in 2010 Andrew Wade built Gemini, a 4 217 466-cell construction that copies itself across the grid every 33.8 million generations. The toy contains itself.",
+      body: "In 2006 Brice Due designed the OTCA metapixel — a 2048×2048 Life pattern whose collective behaviour, viewed from far enough away, is itself a single Life cell. Tile a whole grid with OTCA metapixels and you get Game of Life running inside Game of Life, indistinguishable in the limit from the original. Self-replicating patterns followed: in 2010 Andrew Wade built Gemini, a pattern of 846,278 live cells spanning a roughly 4.2-million-cell-wide bounding box, copying itself every 33.7 million generations. The toy contains itself.",
     },
     {
       pretitle: "Section 06 · Open frontiers",
@@ -185,6 +212,33 @@ const en: RichStory = {
     pretitle: "Inline sandbox · click cells",
     heading: "Build something. Press play.",
   },
+  computeBlock: {
+    wiresLabel: "Wires",
+    wiresBody: "Streams of gliders carry bits along straight tracks.",
+    gatesLabel: "Gates",
+    gatesBody: "Collisions between gliders implement AND, OR, NOT.",
+    memoryLabel: "Memory",
+    memoryBody: "Loops of glider streams (or eaters plus reflectors) hold a bit.",
+    clockLabel: "Clock",
+    clockBody: "Glider guns fire on a fixed period, providing the heartbeat.",
+  },
+  ruleExplorerBlock: {
+    pretitle: "Rule explorer · flip a digit",
+    heading: "Change the physics. Watch it diverge.",
+  },
+  gunStats: {
+    yearLabel: "Year",
+    cellsLabel: "Cells in the gun",
+    gliderEveryLabel: "Glider every",
+    gliderEveryValue: "30 gens",
+  },
+  miniGridLabels: {
+    shapesCaption: "B3/S23 · two simple shapes",
+    blockStill: "Block · still",
+    genSame: "gen 1 · same",
+    blinkerGen0: "Blinker · gen 0",
+    genFlipped: "gen 1 · flipped",
+  },
 };
 
 const de: RichStory = {
@@ -205,7 +259,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "John Conway erfand das 1970 als Gesellschaftsspiel. 1982 bauten Bastler Logikgatter aus Gleiterströmen, 2000 eine Turing-Maschine, 2010 eine CPU, 2014 einen Game-of-Life-Simulator innerhalb von Game of Life. Universelle Berechnung, entdeckt in einem Spielzeug.",
+        body: "John Conway erfand das 1970 als Gesellschaftsspiel. 1982 bauten Bastler:innen Logikgatter aus Gleiterströmen, 2000 eine Turing-Maschine, 2010 eine CPU, 2014 einen Game-of-Life-Simulator innerhalb von Game of Life. Universelle Berechnung, entdeckt in einem Spielzeug.",
       },
     ],
     tryIt: "Unten: lies die Regeln, schau dem Zoo zu, dann klick selbst Zellen an.",
@@ -234,7 +288,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Selbstreplikation und Meta-Life",
       title: "OTCA-Metapixel und Game of Life in Game of Life",
-      body: "2006 entwarf Brice Due das OTCA-Metapixel — ein 2048×2048-Life-Muster, dessen Gesamtverhalten von weit genug weg betrachtet selbst wieder eine einzige Life-Zelle ist. Kachle ein ganzes Gitter mit OTCA-Metapixeln, und du erhältst Game of Life laufend in Game of Life, im Grenzwert ununterscheidbar vom Original. Selbstreplizierende Muster folgten: 2010 baute Andrew Wade Gemini, eine 4 217 466-Zellen-Konstruktion, die sich alle 33,8 Millionen Generationen über das Gitter kopiert. Das Spielzeug enthält sich selbst.",
+      body: "2006 entwarf Brice Due das OTCA-Metapixel — ein 2048×2048-Life-Muster, dessen Gesamtverhalten von weit genug weg betrachtet selbst wieder eine einzige Life-Zelle ist. Kachle ein ganzes Gitter mit OTCA-Metapixeln, und du erhältst Game of Life laufend in Game of Life, im Grenzwert ununterscheidbar vom Original. Selbstreplizierende Muster folgten: 2010 baute Andrew Wade Gemini, ein Muster aus 846.278 lebenden Zellen in einem rund 4,2 Millionen Zellen breiten Begrenzungsrahmen, das sich alle 33,7 Millionen Generationen selbst kopiert. Das Spielzeug enthält sich selbst.",
     },
     {
       pretitle: "Abschnitt 06 · Offene Grenzen",
@@ -295,6 +349,33 @@ const de: RichStory = {
     pretitle: "Inline-Sandbox · klicke auf Zellen",
     heading: "Bau was. Drück Play.",
   },
+  computeBlock: {
+    wiresLabel: "Drähte",
+    wiresBody: "Gleiterströme tragen Bits entlang gerader Bahnen.",
+    gatesLabel: "Gatter",
+    gatesBody: "Kollisionen zwischen Gleitern ergeben UND, ODER, NICHT.",
+    memoryLabel: "Speicher",
+    memoryBody: "Schleifen aus Gleiterströmen (oder Esser plus Reflektoren) halten ein Bit.",
+    clockLabel: "Takt",
+    clockBody: "Gleiterkanonen feuern in fester Periode und liefern den Herzschlag.",
+  },
+  ruleExplorerBlock: {
+    pretitle: "Regel-Explorer · Ziffer kippen",
+    heading: "Ändere die Physik. Sieh sie auseinanderlaufen.",
+  },
+  gunStats: {
+    yearLabel: "Jahr",
+    cellsLabel: "Zellen in der Kanone",
+    gliderEveryLabel: "Gleiter alle",
+    gliderEveryValue: "30 Gen.",
+  },
+  miniGridLabels: {
+    shapesCaption: "B3/S23 · zwei einfache Formen",
+    blockStill: "Block · unverändert",
+    genSame: "Gen 1 · gleich",
+    blinkerGen0: "Blinker · Gen 0",
+    genFlipped: "Gen 1 · gekippt",
+  },
 };
 
 const es: RichStory = {
@@ -344,7 +425,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · Autorreplicación y meta-Life",
       title: "Metapíxeles OTCA y Game of Life dentro de Game of Life",
-      body: "En 2006 Brice Due diseñó el metapíxel OTCA — un patrón de Life de 2048×2048 cuyo comportamiento colectivo, visto desde lejos, es a su vez una única celda de Life. Embaldosa una cuadrícula entera con metapíxeles OTCA y obtienes Game of Life corriendo dentro de Game of Life, indistinguible en el límite del original. Llegaron luego patrones autorreplicantes: en 2010 Andrew Wade construyó Gemini, una construcción de 4 217 466 celdas que se copia por la cuadrícula cada 33,8 millones de generaciones. El juguete se contiene a sí mismo.",
+      body: "En 2006 Brice Due diseñó el metapíxel OTCA — un patrón de Life de 2048×2048 cuyo comportamiento colectivo, visto desde lejos, es a su vez una única celda de Life. Embaldosa una cuadrícula entera con metapíxeles OTCA y obtienes Game of Life corriendo dentro de Game of Life, indistinguible en el límite del original. Llegaron luego patrones autorreplicantes: en 2010 Andrew Wade construyó Gemini, un patrón de 846.278 celdas vivas que abarca un cuadro delimitador de unos 4,2 millones de celdas de ancho y se copia cada 33,7 millones de generaciones. El juguete se contiene a sí mismo.",
     },
     {
       pretitle: "Sección 06 · Fronteras abiertas",
@@ -405,6 +486,33 @@ const es: RichStory = {
     pretitle: "Sandbox en línea · haz clic en celdas",
     heading: "Construye algo. Pulsa play.",
   },
+  computeBlock: {
+    wiresLabel: "Cables",
+    wiresBody: "Chorros de planeadores llevan bits por pistas rectas.",
+    gatesLabel: "Puertas",
+    gatesBody: "Las colisiones entre planeadores implementan Y, O, NO.",
+    memoryLabel: "Memoria",
+    memoryBody: "Bucles de chorros de planeadores (o comedores más reflectores) guardan un bit.",
+    clockLabel: "Reloj",
+    clockBody: "Los cañones disparan con período fijo y dan el latido.",
+  },
+  ruleExplorerBlock: {
+    pretitle: "Explorador de reglas · cambia un dígito",
+    heading: "Cambia la física. Míralas divergir.",
+  },
+  gunStats: {
+    yearLabel: "Año",
+    cellsLabel: "Celdas en el cañón",
+    gliderEveryLabel: "Planeador cada",
+    gliderEveryValue: "30 gen",
+  },
+  miniGridLabels: {
+    shapesCaption: "B3/S23 · dos formas simples",
+    blockStill: "Bloque · quieto",
+    genSame: "gen 1 · igual",
+    blinkerGen0: "Parpadeador · gen 0",
+    genFlipped: "gen 1 · girado",
+  },
 };
 
 const fr: RichStory = {
@@ -454,7 +562,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Auto-réplication et méta-Life",
       title: "Métapixels OTCA et Game of Life dans Game of Life",
-      body: "En 2006, Brice Due a conçu le métapixel OTCA — un motif de Life de 2048×2048 dont le comportement collectif, vu d'assez loin, est à son tour une cellule de Life unique. Pavé une grille entière avec des métapixels OTCA et tu obtiens du Game of Life tournant dans du Game of Life, indiscernable à la limite de l'original. Des motifs auto-répliquants ont suivi : en 2010 Andrew Wade a bâti Gemini, une construction de 4 217 466 cellules qui se recopie à travers la grille toutes les 33,8 millions de générations. Le jouet se contient lui-même.",
+      body: "En 2006, Brice Due a conçu le métapixel OTCA — un motif de Life de 2048×2048 dont le comportement collectif, vu d'assez loin, est à son tour une cellule de Life unique. Pavé une grille entière avec des métapixels OTCA et tu obtiens du Game of Life tournant dans du Game of Life, indiscernable à la limite de l'original. Des motifs auto-répliquants ont suivi : en 2010 Andrew Wade a bâti Gemini, un motif de 846 278 cellules vivantes couvrant une boîte englobante d'environ 4,2 millions de cellules de large, qui se recopie toutes les 33,7 millions de générations. Le jouet se contient lui-même.",
     },
     {
       pretitle: "Section 06 · Frontières ouvertes",
@@ -515,6 +623,33 @@ const fr: RichStory = {
     pretitle: "Sandbox en ligne · clique sur les cases",
     heading: "Construis quelque chose. Lance.",
   },
+  computeBlock: {
+    wiresLabel: "Fils",
+    wiresBody: "Des flux de planeurs portent des bits le long de pistes droites.",
+    gatesLabel: "Portes",
+    gatesBody: "Les collisions entre planeurs réalisent ET, OU, NON.",
+    memoryLabel: "Mémoire",
+    memoryBody: "Des boucles de flux de planeurs (ou mangeurs plus réflecteurs) gardent un bit.",
+    clockLabel: "Horloge",
+    clockBody: "Les canons tirent à période fixe et fournissent le battement.",
+  },
+  ruleExplorerBlock: {
+    pretitle: "Explorateur de règles · change un chiffre",
+    heading: "Change la physique. Regarde-les diverger.",
+  },
+  gunStats: {
+    yearLabel: "Année",
+    cellsLabel: "Cellules du canon",
+    gliderEveryLabel: "Planeur toutes les",
+    gliderEveryValue: "30 gén",
+  },
+  miniGridLabels: {
+    shapesCaption: "B3/S23 · deux formes simples",
+    blockStill: "Bloc · fixe",
+    genSame: "gén 1 · identique",
+    blinkerGen0: "Clignotant · gén 0",
+    genFlipped: "gén 1 · basculé",
+  },
 };
 
 const it: RichStory = {
@@ -564,7 +699,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · Autoreplicazione e meta-Life",
       title: "Metapixel OTCA e Game of Life dentro Game of Life",
-      body: "Nel 2006 Brice Due progettò il metapixel OTCA — un pattern di Life di 2048×2048 il cui comportamento collettivo, visto da abbastanza lontano, è a sua volta una singola cella di Life. Piastrella un'intera griglia con metapixel OTCA e ottieni Game of Life che gira dentro Game of Life, indistinguibile al limite dall'originale. Seguirono pattern autoreplicanti: nel 2010 Andrew Wade costruì Gemini, una costruzione di 4 217 466 celle che si copia attraverso la griglia ogni 33,8 milioni di generazioni. Il giocattolo contiene se stesso.",
+      body: "Nel 2006 Brice Due progettò il metapixel OTCA — un pattern di Life di 2048×2048 il cui comportamento collettivo, visto da abbastanza lontano, è a sua volta una singola cella di Life. Piastrella un'intera griglia con metapixel OTCA e ottieni Game of Life che gira dentro Game of Life, indistinguibile al limite dall'originale. Seguirono pattern autoreplicanti: nel 2010 Andrew Wade costruì Gemini, un pattern di 846.278 celle vive che occupa un riquadro di delimitazione largo circa 4,2 milioni di celle e si copia ogni 33,7 milioni di generazioni. Il giocattolo contiene se stesso.",
     },
     {
       pretitle: "Sezione 06 · Frontiere aperte",
@@ -625,6 +760,33 @@ const it: RichStory = {
     pretitle: "Sandbox in linea · clicca le celle",
     heading: "Costruisci qualcosa. Premi play.",
   },
+  computeBlock: {
+    wiresLabel: "Fili",
+    wiresBody: "Flussi di alianti portano bit lungo tracce dritte.",
+    gatesLabel: "Porte",
+    gatesBody: "Le collisioni tra alianti realizzano AND, OR, NOT.",
+    memoryLabel: "Memoria",
+    memoryBody: "Anelli di flussi di alianti (o mangiatori più riflettori) mantengono un bit.",
+    clockLabel: "Clock",
+    clockBody: "I cannoni sparano a periodo fisso e danno il battito.",
+  },
+  ruleExplorerBlock: {
+    pretitle: "Esploratore di regole · cambia una cifra",
+    heading: "Cambia la fisica. Guardale divergere.",
+  },
+  gunStats: {
+    yearLabel: "Anno",
+    cellsLabel: "Celle nel cannone",
+    gliderEveryLabel: "Aliante ogni",
+    gliderEveryValue: "30 gen",
+  },
+  miniGridLabels: {
+    shapesCaption: "B3/S23 · due forme semplici",
+    blockStill: "Blocco · fermo",
+    genSame: "gen 1 · uguale",
+    blinkerGen0: "Lampeggiatore · gen 0",
+    genFlipped: "gen 1 · ribaltato",
+  },
 };
 
 const pt: RichStory = {
@@ -674,7 +836,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · Auto-replicação e meta-Life",
       title: "Metapíxeis OTCA e Game of Life dentro de Game of Life",
-      body: "Em 2006 Brice Due projetou o metapíxel OTCA — um padrão de Life de 2048×2048 cujo comportamento coletivo, visto de longe o suficiente, é por sua vez uma única célula de Life. Ladrilha uma grelha inteira com metapíxeis OTCA e obténs Game of Life a correr dentro de Game of Life, no limite indistinguível do original. Seguiram-se padrões auto-replicantes: em 2010 Andrew Wade construiu Gemini, uma construção de 4 217 466 células que se copia pela grelha a cada 33,8 milhões de gerações. O brinquedo contém-se a si próprio.",
+      body: "Em 2006 Brice Due projetou o metapíxel OTCA — um padrão de Life de 2048×2048 cujo comportamento coletivo, visto de longe o suficiente, é por sua vez uma única célula de Life. Ladrilha uma grelha inteira com metapíxeis OTCA e obténs Game of Life a correr dentro de Game of Life, no limite indistinguível do original. Seguiram-se padrões auto-replicantes: em 2010 Andrew Wade construiu Gemini, um padrão de 846.278 células vivas que ocupa uma caixa delimitadora com cerca de 4,2 milhões de células de largura e se copia a cada 33,7 milhões de gerações. O brinquedo contém-se a si próprio.",
     },
     {
       pretitle: "Secção 06 · Fronteiras abertas",
@@ -735,6 +897,33 @@ const pt: RichStory = {
     pretitle: "Sandbox em linha · clica nas células",
     heading: "Constrói algo. Prime play.",
   },
+  computeBlock: {
+    wiresLabel: "Fios",
+    wiresBody: "Fluxos de planadores levam bits por pistas retas.",
+    gatesLabel: "Portas",
+    gatesBody: "As colisões entre planadores realizam E, OU, NÃO.",
+    memoryLabel: "Memória",
+    memoryBody: "Ciclos de fluxos de planadores (ou comedores mais refletores) guardam um bit.",
+    clockLabel: "Relógio",
+    clockBody: "Os canhões disparam com período fixo e dão o batimento.",
+  },
+  ruleExplorerBlock: {
+    pretitle: "Explorador de regras · muda um dígito",
+    heading: "Muda a física. Vê-as divergir.",
+  },
+  gunStats: {
+    yearLabel: "Ano",
+    cellsLabel: "Células no canhão",
+    gliderEveryLabel: "Planador a cada",
+    gliderEveryValue: "30 ger",
+  },
+  miniGridLabels: {
+    shapesCaption: "B3/S23 · duas formas simples",
+    blockStill: "Bloco · parado",
+    genSame: "ger 1 · igual",
+    blinkerGen0: "Pisca-pisca · ger 0",
+    genFlipped: "ger 1 · invertido",
+  },
 };
 
 const sv: RichStory = {
@@ -784,7 +973,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Självreplikation och meta-Life",
       title: "OTCA-metapixlar och Game of Life i Game of Life",
-      body: "År 2006 utformade Brice Due OTCA-metapixeln — ett Life-mönster på 2048×2048 vars samlade beteende, betraktat från tillräckligt långt håll, i sin tur är en enda Life-cell. Klä ett helt rutnät med OTCA-metapixlar och du får Game of Life som körs inuti Game of Life, i gränsen oskiljbart från originalet. Självreplikerande mönster följde: 2010 byggde Andrew Wade Gemini, en konstruktion på 4 217 466 celler som kopierar sig själv över rutnätet var 33,8 miljonte generation. Leksaken innehåller sig själv.",
+      body: "År 2006 utformade Brice Due OTCA-metapixeln — ett Life-mönster på 2048×2048 vars samlade beteende, betraktat från tillräckligt långt håll, i sin tur är en enda Life-cell. Klä ett helt rutnät med OTCA-metapixlar och du får Game of Life som körs inuti Game of Life, i gränsen oskiljbart från originalet. Självreplikerande mönster följde: 2010 byggde Andrew Wade Gemini, ett mönster på 846 278 levande celler i en ungefär 4,2 miljoner celler bred begränsningsruta, som kopierar sig själv var 33,7 miljonte generation. Leksaken innehåller sig själv.",
     },
     {
       pretitle: "Avsnitt 06 · Öppna gränser",
@@ -845,6 +1034,33 @@ const sv: RichStory = {
     pretitle: "Inbäddad sandlåda · klicka på rutor",
     heading: "Bygg något. Tryck spela.",
   },
+  computeBlock: {
+    wiresLabel: "Trådar",
+    wiresBody: "Glidarflöden bär bitar längs raka spår.",
+    gatesLabel: "Grindar",
+    gatesBody: "Kollisioner mellan glidare ger OCH, ELLER, ICKE.",
+    memoryLabel: "Minne",
+    memoryBody: "Slingor av glidarflöden (eller ätare plus reflektorer) håller en bit.",
+    clockLabel: "Klocka",
+    clockBody: "Glidarkanoner avfyrar med fast period och ger hjärtslaget.",
+  },
+  ruleExplorerBlock: {
+    pretitle: "Regelutforskare · vänd en siffra",
+    heading: "Ändra fysiken. Se dem divergera.",
+  },
+  gunStats: {
+    yearLabel: "År",
+    cellsLabel: "Celler i kanonen",
+    gliderEveryLabel: "Glidare var",
+    gliderEveryValue: "30 gen",
+  },
+  miniGridLabels: {
+    shapesCaption: "B3/S23 · två enkla former",
+    blockStill: "Block · stilla",
+    genSame: "gen 1 · samma",
+    blinkerGen0: "Blinkare · gen 0",
+    genFlipped: "gen 1 · vänd",
+  },
 };
 
 const no: RichStory = {
@@ -894,7 +1110,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Selvreplikasjon og meta-Life",
       title: "OTCA-metapiksler og Game of Life i Game of Life",
-      body: "I 2006 designet Brice Due OTCA-metapikselet — et Life-mønster på 2048×2048 hvis kollektive atferd, sett fra langt nok unna, i sin tur er en enkelt Life-celle. Flislegg et helt rutenett med OTCA-metapiksler og du får Game of Life som kjører inni Game of Life, i grensen umulig å skille fra originalen. Selvreplikerende mønstre fulgte: i 2010 bygde Andrew Wade Gemini, en konstruksjon på 4 217 466 celler som kopierer seg selv over rutenettet hver 33,8. millioner generasjon. Leken inneholder seg selv.",
+      body: "I 2006 designet Brice Due OTCA-metapikselet — et Life-mønster på 2048×2048 hvis kollektive atferd, sett fra langt nok unna, i sin tur er en enkelt Life-celle. Flislegg et helt rutenett med OTCA-metapiksler og du får Game of Life som kjører inni Game of Life, i grensen umulig å skille fra originalen. Selvreplikerende mønstre fulgte: i 2010 bygde Andrew Wade Gemini, et mønster på 846 278 levende celler i en om lag 4,2 millioner celler bred avgrensningsboks, som kopierer seg selv hver 33,7. million generasjon. Leken inneholder seg selv.",
     },
     {
       pretitle: "Avsnitt 06 · Åpne grenser",
@@ -954,6 +1170,33 @@ const no: RichStory = {
   sandboxBlock: {
     pretitle: "Innebygd sandkasse · klikk på celler",
     heading: "Bygg noe. Trykk spill.",
+  },
+  computeBlock: {
+    wiresLabel: "Tråder",
+    wiresBody: "Gliderstrømmer bærer bits langs rette spor.",
+    gatesLabel: "Porter",
+    gatesBody: "Kollisjoner mellom glidere gir OG, ELLER, IKKE.",
+    memoryLabel: "Minne",
+    memoryBody: "Løkker av gliderstrømmer (eller etere pluss reflektorer) holder en bit.",
+    clockLabel: "Klokke",
+    clockBody: "Gliderkanoner fyrer med fast periode og gir hjerteslaget.",
+  },
+  ruleExplorerBlock: {
+    pretitle: "Regelutforsker · snu et tall",
+    heading: "Endre fysikken. Se dem divergere.",
+  },
+  gunStats: {
+    yearLabel: "År",
+    cellsLabel: "Celler i kanonen",
+    gliderEveryLabel: "Glider hver",
+    gliderEveryValue: "30 gen",
+  },
+  miniGridLabels: {
+    shapesCaption: "B3/S23 · to enkle former",
+    blockStill: "Blokk · stille",
+    genSame: "gen 1 · lik",
+    blinkerGen0: "Blinker · gen 0",
+    genFlipped: "gen 1 · vendt",
   },
 };
 
@@ -1146,20 +1389,20 @@ export default function LifeStory() {
               <p>{story.encounter.cards[1].body}</p>
               <div className="hairline mt-4 space-y-3 rounded-md border bg-ink-950/60 p-3">
                 <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-                  B3/S23 · two simple shapes
+                  {story.miniGridLabels.shapesCaption}
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
                   <div className="space-y-1">
                     <MiniGrid cells={BLOCK_CELLS} cols={4} rows={4} accent={palette.signal.cyan} />
                     <div className="font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
-                      Block · still
+                      {story.miniGridLabels.blockStill}
                     </div>
                   </div>
                   <div className="font-mono text-2xl text-ink-300">→</div>
                   <div className="space-y-1">
                     <MiniGrid cells={BLOCK_CELLS} cols={4} rows={4} accent={palette.signal.cyan} />
                     <div className="font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
-                      gen 1 · same
+                      {story.miniGridLabels.genSame}
                     </div>
                   </div>
                 </div>
@@ -1167,14 +1410,14 @@ export default function LifeStory() {
                   <div className="space-y-1">
                     <MiniGrid cells={BLINKER_H} cols={3} rows={3} accent={palette.signal.violet} />
                     <div className="font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
-                      Blinker · gen 0
+                      {story.miniGridLabels.blinkerGen0}
                     </div>
                   </div>
                   <div className="font-mono text-2xl text-ink-300">↔</div>
                   <div className="space-y-1">
                     <MiniGrid cells={BLINKER_V} cols={3} rows={3} accent={palette.signal.violet} />
                     <div className="font-mono text-[9px] uppercase tracking-widest2 text-ink-300">
-                      gen 1 · flipped
+                      {story.miniGridLabels.genFlipped}
                     </div>
                   </div>
                 </div>
@@ -1320,21 +1563,21 @@ export default function LifeStory() {
           <div className="hairline mt-6 grid grid-cols-1 gap-4 rounded-2xl border bg-ink-950/40 p-6 text-center md:grid-cols-3">
             <div className="space-y-1">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-                Year
+                {story.gunStats.yearLabel}
               </div>
               <div className="math-italic text-3xl text-ink-100">1970</div>
             </div>
             <div className="space-y-1">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
-                Cells in the gun
+                {story.gunStats.cellsLabel}
               </div>
               <div className="math-italic text-3xl text-ink-100">36</div>
             </div>
             <div className="space-y-1">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-                Glider every
+                {story.gunStats.gliderEveryLabel}
               </div>
-              <div className="math-italic text-3xl text-ink-100">30 gens</div>
+              <div className="math-italic text-3xl text-ink-100">{story.gunStats.gliderEveryValue}</div>
             </div>
           </div>
         </Reveal>
@@ -1353,10 +1596,10 @@ export default function LifeStory() {
         <Reveal delay={120}>
           <div className="hairline mt-6 grid grid-cols-1 gap-4 rounded-2xl border bg-ink-950/40 p-6 md:grid-cols-2">
             {[
-              { k: "Wires", v: "Streams of gliders carry bits along straight tracks." },
-              { k: "Gates", v: "Glider–glider collisions implement AND, OR, NOT." },
-              { k: "Memory", v: "Loops of glider streams (or eaters + reflectors) hold a bit." },
-              { k: "Clock", v: "Glider guns fire on a fixed period, providing the heartbeat." },
+              { k: story.computeBlock.wiresLabel, v: story.computeBlock.wiresBody },
+              { k: story.computeBlock.gatesLabel, v: story.computeBlock.gatesBody },
+              { k: story.computeBlock.memoryLabel, v: story.computeBlock.memoryBody },
+              { k: story.computeBlock.clockLabel, v: story.computeBlock.clockBody },
             ].map((row) => (
               <div key={row.k} className="hairline rounded-md border bg-ink-950/60 px-4 py-3">
                 <div className="mb-1 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
@@ -1374,10 +1617,10 @@ export default function LifeStory() {
         <Reveal>
           <div className="space-y-2 text-center">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              Rule explorer · flip a digit
+              {story.ruleExplorerBlock.pretitle}
             </div>
             <h2 className="math-italic text-3xl leading-tight md:text-4xl">
-              Change the physics. Watch it diverge.
+              {story.ruleExplorerBlock.heading}
             </h2>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
               {story.ruleExplorerCaption}

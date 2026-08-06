@@ -24,15 +24,26 @@ const DIRS: ReadonlyArray<{ dx: number; dy: number }> = [
 ];
 
 const GEN_LABELS = ["a", "a⁻¹", "b", "b⁻¹"] as const;
+// One palette token per generator so these colours cannot drift from the
+// shared palette (a standalone rgb literal for a⁻¹ had gone off-palette).
 const GEN_COLORS = [
-  "rgb(255, 122, 182)", // rose       — a
-  "rgb(196, 124, 255)", // violet     — a⁻¹
-  "rgb(125, 243, 255)", // cyan       — b
-  "rgb(255, 209, 102)", // amber      — b⁻¹
+  palette.signal.rose, // a
+  palette.signal.violet, // a⁻¹
+  palette.signal.cyan, // b
+  palette.signal.amber, // b⁻¹
 ] as const;
 
-const ROOT_LEN = 150;
 const SHRINK = 0.5;
+
+// Build a translucent tint from a palette hex so the canvas washes track the
+// shared palette instead of being hand-tuned rgba literals that drift.
+function rgba(hex: string, alpha: number): string {
+  const n = parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 255;
+  const g = (n >> 8) & 255;
+  const b = n & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
 
 // --------------------------------------------------------------------------
 // Per-locale strings for this explorer. Kept inline so the multi-locale
@@ -75,7 +86,8 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP2:
       "Colour each node by the first letter of its word and you split F₂ into four disjoint pieces W(a), W(a⁻¹), W(b), W(b⁻¹). The paradox is purely combinatorial: multiplying W(a⁻¹) on the left by a (its inverse) covers every word that doesn't start with a — i.e. the three other pieces plus the identity. One piece, shifted, is three pieces plus a point. Lift this from the group to the sphere via Hausdorff (1914), then to the ball — and one ball becomes two.",
     overlayMsg: (h, inv) => `W(${h}) shifted by ${inv} covers F₂ ∖ W(${inv})`,
-    overlaySubMsg: "this piece, multiplied by its inverse generator, equals the whole tree",
+    overlaySubMsg:
+      "this piece, shifted by its inverse generator, becomes the other three pieces plus the identity",
   },
   de: {
     cayleyBadge: "Cayley-Baum · F₂ = ⟨a, b⟩",
@@ -95,7 +107,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       "Färbe jeden Knoten nach dem Anfangsbuchstaben seines Wortes — und du zerlegst F₂ in vier disjunkte Stücke W(a), W(a⁻¹), W(b), W(b⁻¹). Das Paradox ist rein kombinatorisch: Multiplikation von W(a⁻¹) von links mit a (dem Inversen) überdeckt jedes Wort, das nicht mit a beginnt — also die drei anderen Stücke plus die Identität. Ein Stück, einmal verschoben, ergibt drei Stücke plus einen Punkt. Hebe das via Hausdorff (1914) von der Gruppe auf die Sphäre, dann auf die Kugel — und aus einer Kugel werden zwei.",
     overlayMsg: (h, inv) => `W(${h}) verschoben um ${inv} überdeckt F₂ ∖ W(${inv})`,
     overlaySubMsg:
-      "dieses Stück, mit seinem inversen Erzeuger multipliziert, ergibt den ganzen Baum",
+      "dieses Stück, um seinen inversen Erzeuger verschoben, wird zu den drei anderen Stücken plus der Identität",
   },
   es: {
     cayleyBadge: "Árbol de Cayley · F₂ = ⟨a, b⟩",
@@ -114,7 +126,8 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP2:
       "Colorea cada nodo según la primera letra de su palabra y divides F₂ en cuatro piezas disjuntas W(a), W(a⁻¹), W(b), W(b⁻¹). La paradoja es puramente combinatoria: multiplicar W(a⁻¹) por la izquierda por a (su inverso) cubre toda palabra que no empieza por a — es decir, las otras tres piezas más la identidad. Una pieza, desplazada, son tres piezas más un punto. Lleva esto del grupo a la esfera vía Hausdorff (1914), luego a la bola — y una bola se vuelve dos.",
     overlayMsg: (h, inv) => `W(${h}) desplazada por ${inv} cubre F₂ ∖ W(${inv})`,
-    overlaySubMsg: "esta pieza, multiplicada por su generador inverso, es todo el árbol",
+    overlaySubMsg:
+      "esta pieza, desplazada por su generador inverso, se convierte en las otras tres piezas más la identidad",
   },
   fr: {
     cayleyBadge: "Arbre de Cayley · F₂ = ⟨a, b⟩",
@@ -133,7 +146,8 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP2:
       "Colore chaque nœud selon la première lettre de son mot et tu sépares F₂ en quatre pièces disjointes W(a), W(a⁻¹), W(b), W(b⁻¹). Le paradoxe est purement combinatoire : multiplier W(a⁻¹) à gauche par a (son inverse) recouvre tout mot qui ne commence pas par a — c'est-à-dire les trois autres pièces plus l'identité. Une pièce, décalée, vaut trois pièces plus un point. Remonte cela du groupe à la sphère via Hausdorff (1914), puis à la boule — et une boule en devient deux.",
     overlayMsg: (h, inv) => `W(${h}) décalée de ${inv} recouvre F₂ ∖ W(${inv})`,
-    overlaySubMsg: "cette pièce, multipliée par son générateur inverse, vaut l'arbre entier",
+    overlaySubMsg:
+      "cette pièce, décalée par son générateur inverse, devient les trois autres pièces plus l'identité",
   },
   it: {
     cayleyBadge: "Albero di Cayley · F₂ = ⟨a, b⟩",
@@ -152,7 +166,8 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP2:
       "Colora ogni nodo in base alla prima lettera della sua parola e dividi F₂ in quattro pezzi disgiunti W(a), W(a⁻¹), W(b), W(b⁻¹). Il paradosso è puramente combinatorio: moltiplicare W(a⁻¹) a sinistra per a (il suo inverso) copre ogni parola che non inizia con a — cioè gli altri tre pezzi più l'identità. Un pezzo, traslato, sono tre pezzi più un punto. Solleva tutto questo dal gruppo alla sfera via Hausdorff (1914), poi alla palla — e una palla diventa due.",
     overlayMsg: (h, inv) => `W(${h}) traslato di ${inv} copre F₂ ∖ W(${inv})`,
-    overlaySubMsg: "questo pezzo, moltiplicato per il suo generatore inverso, è l'intero albero",
+    overlaySubMsg:
+      "questo pezzo, traslato per il suo generatore inverso, diventa gli altri tre pezzi più l'identità",
   },
   pt: {
     cayleyBadge: "Árvore de Cayley · F₂ = ⟨a, b⟩",
@@ -171,7 +186,8 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP2:
       "Pinta cada nó pela primeira letra da sua palavra e divides F₂ em quatro peças disjuntas W(a), W(a⁻¹), W(b), W(b⁻¹). O paradoxo é puramente combinatório: multiplicar W(a⁻¹) à esquerda por a (o seu inverso) cobre toda palavra que não começa por a — isto é, as outras três peças mais a identidade. Uma peça, deslocada, são três peças mais um ponto. Sobe isto do grupo para a esfera via Hausdorff (1914), depois para a bola — e uma bola torna-se duas.",
     overlayMsg: (h, inv) => `W(${h}) deslocada por ${inv} cobre F₂ ∖ W(${inv})`,
-    overlaySubMsg: "esta peça, multiplicada pelo seu gerador inverso, é a árvore inteira",
+    overlaySubMsg:
+      "esta peça, deslocada pelo seu gerador inverso, torna-se as outras três peças mais a identidade",
   },
   sv: {
     cayleyBadge: "Cayley-träd · F₂ = ⟨a, b⟩",
@@ -190,7 +206,8 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP2:
       "Färga varje nod efter första bokstaven i dess ord och du delar F₂ i fyra disjunkta bitar W(a), W(a⁻¹), W(b), W(b⁻¹). Paradoxen är rent kombinatorisk: att multiplicera W(a⁻¹) från vänster med a (dess invers) täcker varje ord som inte börjar med a — alltså de tre andra bitarna plus identiteten. En bit, förskjuten, är tre bitar plus en punkt. Lyft detta från gruppen till sfären via Hausdorff (1914), sedan till klotet — och ett klot blir två.",
     overlayMsg: (h, inv) => `W(${h}) förskjuten med ${inv} täcker F₂ ∖ W(${inv})`,
-    overlaySubMsg: "denna bit, multiplicerad med sin inversa generator, är hela trädet",
+    overlaySubMsg:
+      "denna bit, förskjuten med sin inversa generator, blir de tre andra bitarna plus identiteten",
   },
   no: {
     cayleyBadge: "Cayley-tre · F₂ = ⟨a, b⟩",
@@ -209,7 +226,8 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP2:
       "Fargelegg hver node etter første bokstav i dens ord, og du splitter F₂ i fire disjunkte biter W(a), W(a⁻¹), W(b), W(b⁻¹). Paradokset er rent kombinatorisk: å multiplisere W(a⁻¹) fra venstre med a (dens invers) dekker hvert ord som ikke begynner med a — altså de tre andre bitene pluss identiteten. Én bit, forskjøvet, er tre biter pluss et punkt. Løft dette fra gruppen til sfæren via Hausdorff (1914), så til kulen — og én kule blir til to.",
     overlayMsg: (h, inv) => `W(${h}) forskjøvet med ${inv} dekker F₂ ∖ W(${inv})`,
-    overlaySubMsg: "denne biten, multiplisert med sin inverse generator, er hele treet",
+    overlaySubMsg:
+      "denne biten, forskjøvet med sin inverse generator, blir de tre andre bitene pluss identiteten",
   },
 };
 
@@ -230,6 +248,13 @@ export default function BanachExplorer() {
   const playTheTrick = () => {
     if (highlight === null) return;
     if (shiftRaf.current !== null) cancelAnimationFrame(shiftRaf.current);
+    // Reduced-motion users get the meaningful end state (the shifted piece and
+    // its overlay text) without the 1.4s slide, matching the repo convention
+    // that canvas components freeze under prefers-reduced-motion.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setShift(1);
+      return;
+    }
     const start = performance.now();
     const DURATION = 1400;
     const tick = (now: number) => {
@@ -280,7 +305,7 @@ export default function BanachExplorer() {
       ctx.fillRect(0, 0, W, H);
 
       // Faint background grid
-      ctx.strokeStyle = "rgba(138,144,164,0.07)";
+      ctx.strokeStyle = rgba(palette.canvas.muted, 0.07);
       ctx.lineWidth = 1;
       for (let i = 0; i <= 12; i++) {
         const xg = (i / 12) * W;
@@ -297,6 +322,12 @@ export default function BanachExplorer() {
 
       const cx = W / 2;
       const cy = H / 2;
+
+      // Scale the root branch length to the canvas so the tree (max cardinal
+      // extent = rootLen / (1 − SHRINK) = rootLen·2) fills but never overruns
+      // the smaller half-dimension. A fixed 150px root clipped the a/a⁻¹ arms
+      // on phone-width canvases.
+      const rootLen = Math.min(W, H) / 4;
 
       // Collect every (parent → child) segment along with the first-letter
       // class so we can colour by piece without rerunning the recursion.
@@ -332,19 +363,19 @@ export default function BanachExplorer() {
         }
       };
 
-      walk(0, 0, null, null, ROOT_LEN, 0);
+      walk(0, 0, null, null, rootLen, 0);
 
       // When "the trick" plays, the highlighted piece slides toward the
       // origin: visually, W(g) shifted by g⁻¹ swallows the rest of the tree.
       const shiftDir = highlight !== null ? DIRS[INV[highlight]] : { dx: 0, dy: 0 };
-      const shiftX = shiftDir.dx * ROOT_LEN * shift;
-      const shiftY = shiftDir.dy * ROOT_LEN * shift;
+      const shiftX = shiftDir.dx * rootLen * shift;
+      const shiftY = shiftDir.dy * rootLen * shift;
 
       const colorFor = (first: number, isHighlighted: boolean): string => {
         if (highlight === null) return GEN_COLORS[first];
         if (isHighlighted) return GEN_COLORS[first];
         // Dim non-matching pieces
-        return "rgba(138,144,164,0.18)";
+        return rgba(palette.canvas.muted, 0.18);
       };
 
       // Draw segments
@@ -385,15 +416,15 @@ export default function BanachExplorer() {
       ctx.font = "11px ui-monospace, monospace";
       for (let i = 0; i < 4; i++) {
         const d = DIRS[i];
-        const lx = cx + d.dx * (ROOT_LEN + 18) - 6;
-        const ly = cy + d.dy * (ROOT_LEN + 18) + 4;
+        const lx = cx + d.dx * (rootLen + 18) - 6;
+        const ly = cy + d.dy * (rootLen + 18) + 4;
         ctx.fillStyle = GEN_COLORS[i];
         ctx.fillText(GEN_LABELS[i], lx, ly);
       }
 
       // Overlay text when the trick is playing
       if (highlight !== null && shift > 0.02) {
-        ctx.fillStyle = "rgba(6,7,13,0.78)";
+        ctx.fillStyle = rgba(palette.canvas.bg, 0.78);
         ctx.fillRect(0, H - 56, W, 56);
         ctx.fillStyle = "#fff";
         ctx.font = "12px ui-monospace, monospace";
@@ -422,7 +453,12 @@ export default function BanachExplorer() {
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={canvasRef} className="block h-full w-full" />
+            <canvas
+              ref={canvasRef}
+              className="block h-full w-full"
+              role="img"
+              aria-label={x.cayleyBadge}
+            />
           </div>
           <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
             {x.canvasFooter}
@@ -452,6 +488,7 @@ export default function BanachExplorer() {
               min={1}
               max={7}
               step={1}
+              aria-label={x.depthLabel}
               onChange={(e) => setDepth(parseInt(e.target.value, 10))}
               className="w-full accent-signal-rose"
             />
@@ -469,6 +506,7 @@ export default function BanachExplorer() {
                   <button
                     key={label}
                     onClick={() => setHighlight(active ? null : i)}
+                    aria-pressed={active}
                     className={`rounded-md border px-3 py-2 text-left font-mono transition-colors ${
                       active
                         ? "border-signal-rose/60 bg-signal-rose/10"

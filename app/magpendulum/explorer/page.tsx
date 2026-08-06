@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import type { Locale } from "@/lib/i18n/types";
 
 // Magnet colours — three distinct hues.
 const MAGNET_COLORS = [
@@ -12,6 +13,148 @@ const MAGNET_COLORS = [
   { rgb: [125, 243, 255], name: "cyan" },
   { rgb: [160, 232, 154], name: "green" },
 ];
+
+// Per-locale control-panel copy. The story page localises the very same
+// vocabulary in its RICH_STORY, so keeping the explorer in sync avoids a
+// German user reading "Dämpfung γ" on the story page and "Damping γ" here.
+type ExplorerDict = {
+  basinMap: string;
+  computing: string;
+  ready: string;
+  strength: string;
+  damping: string;
+  restoring: string;
+  height: string;
+  span: string;
+  resolution: string;
+  shade: string;
+  recompute: string;
+  legend: string;
+  canvasLabel: string;
+};
+
+const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
+  en: {
+    basinMap: "basin map",
+    computing: "computing",
+    ready: "ready",
+    strength: "Magnet strength k",
+    damping: "Damping γ",
+    restoring: "Restoring ω²",
+    height: "Pendulum height h",
+    span: "View span ±",
+    resolution: "Resolution",
+    shade: "Shade by capture time",
+    recompute: "⟳ Recompute",
+    legend: "Magnet legend",
+    canvasLabel: "Basin map of the magnetic pendulum",
+  },
+  de: {
+    basinMap: "Bassin-Karte",
+    computing: "rechne",
+    ready: "bereit",
+    strength: "Magnetstärke k",
+    damping: "Dämpfung γ",
+    restoring: "Rückstellung ω²",
+    height: "Pendelhöhe h",
+    span: "Ausschnitt ±",
+    resolution: "Auflösung",
+    shade: "Nach Einfangzeit einfärben",
+    recompute: "⟳ Neu berechnen",
+    legend: "Magnet-Legende",
+    canvasLabel: "Bassin-Karte des magnetischen Pendels",
+  },
+  es: {
+    basinMap: "mapa de cuencas",
+    computing: "calculando",
+    ready: "listo",
+    strength: "Fuerza del imán k",
+    damping: "Amortiguación γ",
+    restoring: "Restauración ω²",
+    height: "Altura del péndulo h",
+    span: "Ventana ±",
+    resolution: "Resolución",
+    shade: "Sombrear por tiempo de captura",
+    recompute: "⟳ Recalcular",
+    legend: "Leyenda de imanes",
+    canvasLabel: "Mapa de cuencas del péndulo magnético",
+  },
+  fr: {
+    basinMap: "carte de bassins",
+    computing: "calcul",
+    ready: "prêt",
+    strength: "Force d'aimant k",
+    damping: "Amortissement γ",
+    restoring: "Rappel ω²",
+    height: "Hauteur du pendule h",
+    span: "Fenêtre ±",
+    resolution: "Résolution",
+    shade: "Ombrer par temps de capture",
+    recompute: "⟳ Recalculer",
+    legend: "Légende des aimants",
+    canvasLabel: "Carte de bassins du pendule magnétique",
+  },
+  it: {
+    basinMap: "mappa di bacini",
+    computing: "calcolo",
+    ready: "pronto",
+    strength: "Forza magnete k",
+    damping: "Smorzamento γ",
+    restoring: "Richiamo ω²",
+    height: "Altezza del pendolo h",
+    span: "Finestra ±",
+    resolution: "Risoluzione",
+    shade: "Ombreggia per tempo di cattura",
+    recompute: "⟳ Ricalcola",
+    legend: "Legenda magneti",
+    canvasLabel: "Mappa di bacini del pendolo magnetico",
+  },
+  pt: {
+    basinMap: "mapa de bacias",
+    computing: "a calcular",
+    ready: "pronto",
+    strength: "Força do íman k",
+    damping: "Amortecimento γ",
+    restoring: "Restauração ω²",
+    height: "Altura do pêndulo h",
+    span: "Janela ±",
+    resolution: "Resolução",
+    shade: "Sombrear por tempo de captura",
+    recompute: "⟳ Recalcular",
+    legend: "Legenda de ímanes",
+    canvasLabel: "Mapa de bacias do pêndulo magnético",
+  },
+  sv: {
+    basinMap: "bäckenkarta",
+    computing: "räknar",
+    ready: "klar",
+    strength: "Magnetstyrka k",
+    damping: "Dämpning γ",
+    restoring: "Återföring ω²",
+    height: "Pendelhöjd h",
+    span: "Vy ±",
+    resolution: "Upplösning",
+    shade: "Skugga efter infångningstid",
+    recompute: "⟳ Räkna om",
+    legend: "Magnetlegend",
+    canvasLabel: "Bäckenkarta för den magnetiska pendeln",
+  },
+  no: {
+    basinMap: "bekkenkart",
+    computing: "regner",
+    ready: "klar",
+    strength: "Magnetstyrke k",
+    damping: "Demping γ",
+    restoring: "Tilbakestilling ω²",
+    height: "Pendelhøyde h",
+    span: "Utsnitt ±",
+    resolution: "Oppløsning",
+    shade: "Skyggelegg etter innfangingstid",
+    recompute: "⟳ Beregn på nytt",
+    legend: "Magnetlegende",
+    canvasLabel: "Bekkenkart for den magnetiske pendelen",
+  },
+};
 
 interface Magnet {
   x: number;
@@ -88,8 +231,9 @@ function simulateUntilSettled(
 }
 
 export default function MagpendulumExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.magpendulum;
+  const ex = RICH_EXPLORER[locale];
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
 
@@ -121,6 +265,13 @@ export default function MagpendulumExplorer() {
     const H = Math.floor(canvas.clientHeight * dpr);
     canvas.width = W;
     canvas.height = H;
+
+    // The domain x,y ∈ [−span, span] is square; letterbox it into the largest
+    // centred square so the equilateral magnet triangle and the basins are not
+    // anisotropically stretched onto the non-square pane.
+    const side = Math.min(W, H);
+    const offX = (W - side) / 2;
+    const offY = (H - side) / 2;
 
     setComputing(true);
     setProgress(0);
@@ -177,16 +328,16 @@ export default function MagpendulumExplorer() {
         }
       }
       tctx.putImageData(img, 0, 0);
-      // upscale paint
+      // upscale paint into the centred square (letterboxed on the long axis)
       ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(tmp, 0, 0, W, H);
+      ctx.drawImage(tmp, offX, offY, side, side);
 
-      // overlay magnets every redraw
+      // overlay magnets every redraw, through the same square transform
       const drawMagnets = () => {
         for (let i = 0; i < magnets.length; i++) {
           const m = magnets[i];
-          const px = ((m.x + span) / (2 * span)) * W;
-          const py = ((m.y + span) / (2 * span)) * H;
+          const px = offX + ((m.x + span) / (2 * span)) * side;
+          const py = offY + ((m.y + span) / (2 * span)) * side;
           ctx.fillStyle = "rgba(5, 6, 10, 0.6)";
           ctx.beginPath();
           ctx.arc(px, py, 7 * dpr, 0, Math.PI * 2);
@@ -214,17 +365,38 @@ export default function MagpendulumExplorer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [k, gamma, omega2, h, resolution, span, shade, rev, dpr]);
 
+  // The render effect reads clientWidth/clientHeight but has no size signal in
+  // its deps, so without this the bitmap is left CSS-stretched after a window
+  // resize until the user touches a slider. Retrigger it on any pane resize.
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || typeof ResizeObserver === "undefined") return;
+    let last = 0;
+    const ro = new ResizeObserver(() => {
+      // Ignore the initial observation (already drawn by the render effect).
+      if (last) setRev((r) => r + 1);
+      last = 1;
+    });
+    ro.observe(canvas);
+    return () => ro.disconnect();
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col pt-14">
       <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         <div className="relative min-h-[60vh] bg-ink-950 lg:min-h-[calc(100vh-3.5rem)]">
-          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            className="absolute inset-0 block h-full w-full"
+            role="img"
+            aria-label={ex.canvasLabel}
+          />
           <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              basin map · {resolution} × {resolution}
+              {ex.basinMap} · {resolution} × {resolution}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-              {computing ? `computing ${(progress * 100).toFixed(0)}%` : "ready"}
+              {computing ? `${ex.computing} ${(progress * 100).toFixed(0)}%` : ex.ready}
             </div>
           </div>
         </div>
@@ -240,7 +412,7 @@ export default function MagpendulumExplorer() {
 
           <div className="hairline space-y-4 border-b p-5">
             <SliderRow
-              label="Magnet strength k"
+              label={ex.strength}
               value={k}
               min={0.05}
               max={1.5}
@@ -249,7 +421,7 @@ export default function MagpendulumExplorer() {
               onChange={setK}
             />
             <SliderRow
-              label="Damping γ"
+              label={ex.damping}
               value={gamma}
               min={0.01}
               max={0.6}
@@ -258,7 +430,7 @@ export default function MagpendulumExplorer() {
               onChange={setGamma}
             />
             <SliderRow
-              label="Restoring ω²"
+              label={ex.restoring}
               value={omega2}
               min={0.05}
               max={2}
@@ -267,7 +439,7 @@ export default function MagpendulumExplorer() {
               onChange={setOmega2}
             />
             <SliderRow
-              label="Pendulum height h"
+              label={ex.height}
               value={h}
               min={0.05}
               max={0.6}
@@ -276,7 +448,7 @@ export default function MagpendulumExplorer() {
               onChange={setH}
             />
             <SliderRow
-              label="View span ±"
+              label={ex.span}
               value={span}
               min={0.8}
               max={4}
@@ -285,7 +457,7 @@ export default function MagpendulumExplorer() {
               onChange={setSpan}
             />
             <SliderRow
-              label="Resolution"
+              label={ex.resolution}
               value={resolution}
               min={60}
               max={360}
@@ -303,19 +475,19 @@ export default function MagpendulumExplorer() {
                 onChange={(e) => setShade(e.target.checked)}
                 className="accent-signal-coral"
               />
-              <span>Shade by capture time</span>
+              <span>{ex.shade}</span>
             </label>
             <button
               onClick={() => setRev((r) => r + 1)}
               className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
-              ⟳ Recompute
+              {ex.recompute}
             </button>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Magnet legend
+              {ex.legend}
             </div>
             <div className="grid grid-cols-3 gap-2">
               {MAGNET_COLORS.map((c, i) => (
@@ -372,6 +544,7 @@ function SliderRow({
       </div>
       <input
         type="range"
+        aria-label={label}
         value={value}
         min={min}
         max={max}

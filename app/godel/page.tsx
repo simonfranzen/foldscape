@@ -29,7 +29,6 @@ type MeaningKey =
   | "zero"
   | "successor"
   | "plus"
-  | "times"
   | "open";
 
 const GODEL_SYMBOL_TABLE: Array<{ symbol: string; meaningKey: MeaningKey; code: number }> = [
@@ -41,8 +40,9 @@ const GODEL_SYMBOL_TABLE: Array<{ symbol: string; meaningKey: MeaningKey; code: 
   { symbol: "0", meaningKey: "zero", code: 6 },
   { symbol: "S", meaningKey: "successor", code: 7 },
   { symbol: "+", meaningKey: "plus", code: 8 },
-  { symbol: "·", meaningKey: "times", code: 9 },
-  { symbol: "(", meaningKey: "open", code: 10 },
+  // Codes stay a strict subset of the explorer's alphabet (app/godel/explorer)
+  // so "(" carries the same code (9) in both rooms of this topic.
+  { symbol: "(", meaningKey: "open", code: 9 },
 ];
 
 // --------------------------------------------------------------------------
@@ -94,7 +94,6 @@ const FIGURES: Record<Locale, RichFigures> = {
       zero: "zero",
       successor: "successor",
       plus: "plus",
-      times: "times",
       open: "open",
     },
     exampleHead: "Example: the tiny formula",
@@ -132,7 +131,6 @@ const FIGURES: Record<Locale, RichFigures> = {
       zero: "null",
       successor: "Nachfolger",
       plus: "plus",
-      times: "mal",
       open: "auf",
     },
     exampleHead: "Beispiel: die winzige Formel",
@@ -170,7 +168,6 @@ const FIGURES: Record<Locale, RichFigures> = {
       zero: "cero",
       successor: "sucesor",
       plus: "más",
-      times: "por",
       open: "abrir",
     },
     exampleHead: "Ejemplo: la pequeña fórmula",
@@ -208,7 +205,6 @@ const FIGURES: Record<Locale, RichFigures> = {
       zero: "zéro",
       successor: "successeur",
       plus: "plus",
-      times: "fois",
       open: "ouvrir",
     },
     exampleHead: "Exemple : la minuscule formule",
@@ -246,7 +242,6 @@ const FIGURES: Record<Locale, RichFigures> = {
       zero: "zero",
       successor: "successore",
       plus: "più",
-      times: "per",
       open: "apri",
     },
     exampleHead: "Esempio: la minuscola formula",
@@ -284,7 +279,6 @@ const FIGURES: Record<Locale, RichFigures> = {
       zero: "zero",
       successor: "sucessor",
       plus: "mais",
-      times: "vezes",
       open: "abrir",
     },
     exampleHead: "Exemplo: a pequena fórmula",
@@ -322,7 +316,6 @@ const FIGURES: Record<Locale, RichFigures> = {
       zero: "noll",
       successor: "efterföljare",
       plus: "plus",
-      times: "gånger",
       open: "öppen",
     },
     exampleHead: "Exempel: den lilla formeln",
@@ -360,7 +353,6 @@ const FIGURES: Record<Locale, RichFigures> = {
       zero: "null",
       successor: "etterfølger",
       plus: "pluss",
-      times: "ganger",
       open: "åpen",
     },
     exampleHead: "Eksempel: den lille formelen",

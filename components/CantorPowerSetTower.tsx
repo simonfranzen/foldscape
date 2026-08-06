@@ -29,6 +29,14 @@ interface Props {
 // mathematical notation, not translated copy.
 const CARD_LABELS = ["ℵ₀", "2^ℵ₀", "2^(2^ℵ₀)", "2^(2^(2^ℵ₀))", "2^(2^(2^(2^ℵ₀)))", "⋯", "⋯", "⋯"];
 
+// The set each rung actually names: rung 0 is ℕ itself, rung 1 is ℝ = 𝒫(ℕ),
+// then iterated power sets. A rung at level ≥ 1 is the power set of the rung
+// below it, so its expand note reads "𝒫 of <previous set>". Universal
+// notation, not translated. Rung 0 is the base (ℵ₀ = |ℕ|), NOT a power set —
+// Cantor's theorem is |𝒫(ℕ)| > |ℕ|, so labelling ℕ as a power set would
+// contradict the very result this widget illustrates.
+const SET_SYMBOLS = ["ℕ", "ℝ", "𝒫(ℝ)", "𝒫(𝒫(ℝ))", "𝒫³(ℝ)", "𝒫⁴(ℝ)", "𝒫⁵(ℝ)", "⋯"];
+
 const COLORS = [
   palette.signal.cyan, // ℵ₀
   palette.signal.violet, // c
@@ -74,6 +82,7 @@ export function CantorPowerSetTower({
             <button
               key={rung.level}
               onClick={() => setOpen(isOpen ? null : rung.level)}
+              aria-expanded={isOpen}
               className="hairline block w-full rounded-md border bg-ink-950/60 p-3 text-left transition-colors hover:border-signal-rose/40"
             >
               <div className="flex flex-wrap items-center gap-3">
@@ -97,14 +106,21 @@ export function CantorPowerSetTower({
               </div>
               {isOpen && (
                 <div className="mt-3 border-t border-ink-700/40 pt-3 text-xs leading-relaxed text-ink-200">
-                  <span className="mr-1 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
-                    𝒫
-                  </span>
-                  {ofLabel}
-                  <span className="mx-1 font-mono text-ink-100">
-                    {rung.level === 0 ? "ℕ" : (CARD_LABELS[rung.level - 1] ?? "⋯")}
-                  </span>
-                  · {rung.note}
+                  {/* Rung 0 (ℵ₀ = |ℕ|) is the base of the tower, not a power
+                      set of anything — only rungs ≥ 1 carry the "𝒫 of …" prefix. */}
+                  {rung.level > 0 && (
+                    <>
+                      <span className="mr-1 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
+                        𝒫
+                      </span>
+                      {ofLabel}
+                      <span className="mx-1 font-mono text-ink-100">
+                        {SET_SYMBOLS[rung.level - 1] ?? "⋯"}
+                      </span>
+                      ·{" "}
+                    </>
+                  )}
+                  {rung.note}
                 </div>
               )}
             </button>

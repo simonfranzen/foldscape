@@ -5,24 +5,212 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import type { Locale } from "@/lib/i18n/types";
 
-const FAMOUS_R = [
-  { r: 2.5, label: "Calm fixed point" },
-  { r: 3.0, label: "First bifurcation" },
-  { r: 3.45, label: "4-cycle" },
-  { r: 3.56995, label: "Onset of chaos" },
-  { r: 3.7, label: "Deep chaos" },
-  { r: 3.8284, label: "Period-3 window" },
-  { r: 3.9, label: "Chaos again" },
-  { r: 4.0, label: "Full chaos" },
-];
+// Fixed r values for the preset buttons. The human-readable labels live in
+// RICH_EXPLORER (per-locale, index-aligned with this array).
+const FAMOUS_R = [2.5, 3.0, 3.45, 3.56995, 3.7, 3.8284, 3.9, 4.0];
+
+// Locale-aware room copy. The story page explicitly points visitors at this
+// side panel, so its labels must not be hardcoded English.
+type RichExplorer = {
+  famous: string[]; // index-aligned with FAMOUS_R
+  bifurcationDiagram: string;
+  timeSeries: (show: number, burn: number) => string;
+  growthRate: string;
+  startingPoint: string;
+  burnIn: string;
+  show: string;
+  iterUnit: string;
+  ariaBifCanvas: string;
+  ariaTimeSeriesCanvas: string;
+};
+
+const RICH_EXPLORER: Record<Locale, RichExplorer> = {
+  en: {
+    famous: [
+      "Calm fixed point",
+      "First bifurcation",
+      "4-cycle",
+      "Onset of chaos",
+      "Deep chaos",
+      "Period-3 window",
+      "Chaos again",
+      "Full chaos",
+    ],
+    bifurcationDiagram: "Bifurcation diagram",
+    timeSeries: (show, burn) => `Time series · last ${show} iterations (after ${burn} burn-in)`,
+    growthRate: "Growth rate r",
+    startingPoint: "x₀ · starting point",
+    burnIn: "Burn-in",
+    show: "Show",
+    iterUnit: "iter",
+    ariaBifCanvas: "Bifurcation diagram of the logistic map, r from 2.5 to 4",
+    ariaTimeSeriesCanvas: "Time series of the logistic map orbit",
+  },
+  de: {
+    famous: [
+      "Ruhiger Fixpunkt",
+      "Erste Bifurkation",
+      "4-Zyklus",
+      "Beginn des Chaos",
+      "Tiefes Chaos",
+      "Periode-3-Fenster",
+      "Wieder Chaos",
+      "Volles Chaos",
+    ],
+    bifurcationDiagram: "Bifurkationsdiagramm",
+    timeSeries: (show, burn) =>
+      `Zeitreihe · letzte ${show} Iterationen (nach ${burn} Einschwingen)`,
+    growthRate: "Wachstumsrate r",
+    startingPoint: "x₀ · Startpunkt",
+    burnIn: "Einschwingen",
+    show: "Anzeigen",
+    iterUnit: "Iter.",
+    ariaBifCanvas: "Bifurkationsdiagramm der logistischen Abbildung, r von 2,5 bis 4",
+    ariaTimeSeriesCanvas: "Zeitreihe der Bahn der logistischen Abbildung",
+  },
+  es: {
+    famous: [
+      "Punto fijo tranquilo",
+      "Primera bifurcación",
+      "4-ciclo",
+      "Inicio del caos",
+      "Caos profundo",
+      "Ventana de periodo 3",
+      "Caos de nuevo",
+      "Caos pleno",
+    ],
+    bifurcationDiagram: "Diagrama de bifurcación",
+    timeSeries: (show, burn) =>
+      `Serie temporal · últimas ${show} iteraciones (tras ${burn} de calentamiento)`,
+    growthRate: "Tasa de crecimiento r",
+    startingPoint: "x₀ · punto inicial",
+    burnIn: "Calentamiento",
+    show: "Mostrar",
+    iterUnit: "iter",
+    ariaBifCanvas: "Diagrama de bifurcación de la aplicación logística, r de 2,5 a 4",
+    ariaTimeSeriesCanvas: "Serie temporal de la órbita de la aplicación logística",
+  },
+  fr: {
+    famous: [
+      "Point fixe calme",
+      "Première bifurcation",
+      "4-cycle",
+      "Début du chaos",
+      "Chaos profond",
+      "Fenêtre de période 3",
+      "À nouveau le chaos",
+      "Chaos complet",
+    ],
+    bifurcationDiagram: "Diagramme de bifurcation",
+    timeSeries: (show, burn) =>
+      `Série temporelle · ${show} dernières itérations (après ${burn} de rodage)`,
+    growthRate: "Taux de croissance r",
+    startingPoint: "x₀ · point de départ",
+    burnIn: "Rodage",
+    show: "Afficher",
+    iterUnit: "itér.",
+    ariaBifCanvas: "Diagramme de bifurcation de l'application logistique, r de 2,5 à 4",
+    ariaTimeSeriesCanvas: "Série temporelle de l'orbite de l'application logistique",
+  },
+  it: {
+    famous: [
+      "Punto fisso calmo",
+      "Prima biforcazione",
+      "4-ciclo",
+      "Inizio del caos",
+      "Caos profondo",
+      "Finestra di periodo 3",
+      "Di nuovo caos",
+      "Caos pieno",
+    ],
+    bifurcationDiagram: "Diagramma di biforcazione",
+    timeSeries: (show, burn) =>
+      `Serie temporale · ultime ${show} iterazioni (dopo ${burn} di assestamento)`,
+    growthRate: "Tasso di crescita r",
+    startingPoint: "x₀ · punto iniziale",
+    burnIn: "Assestamento",
+    show: "Mostra",
+    iterUnit: "iter",
+    ariaBifCanvas: "Diagramma di biforcazione della mappa logistica, r da 2,5 a 4",
+    ariaTimeSeriesCanvas: "Serie temporale dell'orbita della mappa logistica",
+  },
+  pt: {
+    famous: [
+      "Ponto fixo calmo",
+      "Primeira bifurcação",
+      "4-ciclo",
+      "Início do caos",
+      "Caos profundo",
+      "Janela de período 3",
+      "Caos de novo",
+      "Caos pleno",
+    ],
+    bifurcationDiagram: "Diagrama de bifurcação",
+    timeSeries: (show, burn) =>
+      `Série temporal · últimas ${show} iterações (após ${burn} de aquecimento)`,
+    growthRate: "Taxa de crescimento r",
+    startingPoint: "x₀ · ponto inicial",
+    burnIn: "Aquecimento",
+    show: "Mostrar",
+    iterUnit: "iter",
+    ariaBifCanvas: "Diagrama de bifurcação da aplicação logística, r de 2,5 a 4",
+    ariaTimeSeriesCanvas: "Série temporal da órbita da aplicação logística",
+  },
+  sv: {
+    famous: [
+      "Lugn fixpunkt",
+      "Första bifurkationen",
+      "4-cykel",
+      "Kaoset börjar",
+      "Djupt kaos",
+      "Period-3-fönster",
+      "Kaos igen",
+      "Fullt kaos",
+    ],
+    bifurcationDiagram: "Bifurkationsdiagram",
+    timeSeries: (show, burn) =>
+      `Tidsserie · senaste ${show} iterationerna (efter ${burn} inkörning)`,
+    growthRate: "Tillväxttakt r",
+    startingPoint: "x₀ · startpunkt",
+    burnIn: "Inkörning",
+    show: "Visa",
+    iterUnit: "iter",
+    ariaBifCanvas: "Bifurkationsdiagram för den logistiska avbildningen, r från 2,5 till 4",
+    ariaTimeSeriesCanvas: "Tidsserie för den logistiska avbildningens bana",
+  },
+  no: {
+    famous: [
+      "Rolig fastpunkt",
+      "Første bifurkasjon",
+      "4-syklus",
+      "Kaos starter",
+      "Dypt kaos",
+      "Periode-3-vindu",
+      "Kaos igjen",
+      "Fullt kaos",
+    ],
+    bifurcationDiagram: "Bifurkasjonsdiagram",
+    timeSeries: (show, burn) =>
+      `Tidsserie · siste ${show} iterasjoner (etter ${burn} innkjøring)`,
+    growthRate: "Vekstrate r",
+    startingPoint: "x₀ · startpunkt",
+    burnIn: "Innkjøring",
+    show: "Vis",
+    iterUnit: "iter",
+    ariaBifCanvas: "Bifurkasjonsdiagram for den logistiske avbildningen, r fra 2,5 til 4",
+    ariaTimeSeriesCanvas: "Tidsserie for banen til den logistiske avbildningen",
+  },
+};
 
 const BIFURCATION_R_MIN = 2.5;
 const BIFURCATION_R_MAX = 4.0;
 
 export default function LogisticExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.logistic;
+  const ex = RICH_EXPLORER[locale];
   const bifurcationRef = useRef<HTMLCanvasElement | null>(null);
   const timeSeriesRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
@@ -84,7 +272,9 @@ export default function LogisticExplorer() {
     const ro = new ResizeObserver(renderHeavy);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, []);
+    // dpr is a dependency so the backing store re-renders at full resolution
+    // when the window moves to a screen with a different devicePixelRatio.
+  }, [dpr]);
 
   // Light render: cursor only, cheap, runs on every r change.
   useEffect(() => {
@@ -169,7 +359,7 @@ export default function LogisticExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [r, x0, skipIter, showCount]);
+  }, [r, x0, skipIter, showCount, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
@@ -177,20 +367,30 @@ export default function LogisticExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              Bifurcation diagram · r ∈ [{BIFURCATION_R_MIN}, {BIFURCATION_R_MAX}]
+              {ex.bifurcationDiagram} · r ∈ [{BIFURCATION_R_MIN}, {BIFURCATION_R_MAX}]
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
               xₙ₊₁ = r · xₙ (1 − xₙ)
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={bifurcationRef} className="block h-full w-full" />
+            <canvas
+              ref={bifurcationRef}
+              role="img"
+              aria-label={ex.ariaBifCanvas}
+              className="block h-full w-full"
+            />
           </div>
           <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-            Time series · last {showCount} iterations (after {skipIter} burn-in)
+            {ex.timeSeries(showCount, skipIter)}
           </div>
           <div className="hairline h-44 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={timeSeriesRef} className="block h-full w-full" />
+            <canvas
+              ref={timeSeriesRef}
+              role="img"
+              aria-label={ex.ariaTimeSeriesCanvas}
+              className="block h-full w-full"
+            />
           </div>
         </div>
 
@@ -205,13 +405,14 @@ export default function LogisticExplorer() {
 
           <div className="hairline space-y-4 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Growth rate r
+              {ex.growthRate}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-coral">{r.toFixed(4)}</span>
             </div>
             <input
               type="range"
+              aria-label={ex.growthRate}
               value={r}
               min={2.5}
               max={4.0}
@@ -220,18 +421,18 @@ export default function LogisticExplorer() {
               className="w-full accent-signal-coral"
             />
             <div className="grid grid-cols-2 gap-2">
-              {FAMOUS_R.map((p) => (
+              {FAMOUS_R.map((pr, i) => (
                 <button
-                  key={p.r}
-                  onClick={() => setR(p.r)}
+                  key={pr}
+                  onClick={() => setR(pr)}
                   className={`rounded-md border px-3 py-2 text-left transition-colors ${
-                    Math.abs(r - p.r) < 0.001
+                    Math.abs(r - pr) < 0.001
                       ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
                       : "hairline text-ink-200 hover:border-signal-coral/40 hover:text-ink-100"
                   }`}
                 >
-                  <div className="font-mono text-xs">{p.r}</div>
-                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">{p.label}</div>
+                  <div className="font-mono text-xs">{pr}</div>
+                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">{ex.famous[i]}</div>
                 </button>
               ))}
             </div>
@@ -239,13 +440,14 @@ export default function LogisticExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              x₀ — starting point
+              {ex.startingPoint}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-amber">{x0.toFixed(3)}</span>
             </div>
             <input
               type="range"
+              aria-label={ex.startingPoint}
               value={x0}
               min={0.001}
               max={0.999}
@@ -257,10 +459,11 @@ export default function LogisticExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Burn-in
+              {ex.burnIn}
             </div>
             <input
               type="range"
+              aria-label={ex.burnIn}
               value={skipIter}
               min={0}
               max={2000}
@@ -268,12 +471,15 @@ export default function LogisticExplorer() {
               onChange={(e) => setSkipIter(parseInt(e.target.value))}
               className="w-full accent-signal-amber"
             />
-            <div className="text-right font-mono text-[10px] text-ink-400">{skipIter} iter</div>
+            <div className="text-right font-mono text-[10px] text-ink-400">
+              {skipIter} {ex.iterUnit}
+            </div>
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Show
+              {ex.show}
             </div>
             <input
               type="range"
+              aria-label={ex.show}
               value={showCount}
               min={20}
               max={1000}
@@ -281,7 +487,9 @@ export default function LogisticExplorer() {
               onChange={(e) => setShowCount(parseInt(e.target.value))}
               className="w-full accent-signal-amber"
             />
-            <div className="text-right font-mono text-[10px] text-ink-400">{showCount} iter</div>
+            <div className="text-right font-mono text-[10px] text-ink-400">
+              {showCount} {ex.iterUnit}
+            </div>
           </div>
 
           <div className="p-5">

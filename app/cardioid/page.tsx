@@ -82,12 +82,12 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · The catacaustic",
       title: "Light, a circle, and the curve that catches it",
-      body: "Place a point light source on the rim of a circular mirror. Every ray from the source bounces off the inside wall and crosses every other reflected ray; the family of reflected rays envelopes a smooth curve — the catacaustic of the circle. That envelope is a cardioid, with its cusp at the source. It is not an approximation; it is exact.",
+      body: "Place a point light source on the rim of a circular mirror. Every ray from the source bounces off the inside wall and crosses every other reflected ray; the family of reflected rays envelopes a smooth curve — the catacaustic of the circle. That envelope is a cardioid: its smooth far tip touches the rim at the source, while its cusp points away from the light, a third of a radius past the centre. It is not an approximation; it is exact.",
     },
     {
       pretitle: "Section 02 · The equation",
       title: "r = 2a (1 − cos θ)",
-      body: "In polar coordinates centred at the cusp, the cardioid is r(θ) = 2a(1 − cos θ). At θ = 0 the radius is 0 — the cusp itself. At θ = π the radius is 4a — the far tip. The number a is the radius of a parent circle; the cardioid is twice as wide, and its perimeter equals 8a — exactly eight times the parent radius.",
+      body: "In polar coordinates centred at the cusp, the cardioid is r(θ) = 2a(1 − cos θ). At θ = 0 the radius is 0 — the cusp itself. At θ = π the radius is 4a — the far tip. The number a is the radius of a parent circle; the cardioid is twice as wide, and its perimeter equals 16a, sixteen times the parent radius.",
     },
     {
       pretitle: "Section 03 · The rolling-circle definition",
@@ -102,7 +102,7 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · Other catacaustics",
       title: "A small zoo of envelopes",
-      body: "Change the light and you change the curve. Parallel rays into a half-cup give the nephroid (two cusps, not one). A cardioid rolling around a circle traces the astroid. Each envelope is the fingerprint of its source — and once you know to look, you start spotting them in shop windows, polished pans, and rainbows.",
+      body: "Change the light and you change the curve. Parallel rays into a half-cup give the nephroid (two cusps, not one). A circle rolling inside another four times its radius traces the astroid. Each envelope is the fingerprint of its source — and once you know to look, you start spotting them in shop windows, polished pans, and rainbows.",
     },
     {
       pretitle: "Section 06 · History",
@@ -119,7 +119,7 @@ const en: RichStory = {
   lightRayCountLabel: "Rays",
   lightEnvelopeLabel: "Show envelope",
   lightHint:
-    "Add rays and the envelope crystallises. Cusp at the source on the rim, far tip at distance 2R on the opposite wall.",
+    "Add rays and the envelope crystallises. The smooth far tip touches the rim at the source; the cusp sits inside the cup, a third of a radius past the centre, pointing away from the light. The whole axis spans only 4R/3.",
   lightPretitle: "Interactive · the heart in the cup",
   lightTitle: "Add light, watch the heart appear",
   lightBody:
@@ -170,12 +170,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die Katakaustik",
       title: "Licht, ein Kreis und die Kurve, die es einfängt",
-      body: "Setz eine punktförmige Lichtquelle auf den Rand eines kreisförmigen Spiegels. Jeder Strahl reflektiert an der Innenwand, und alle reflektierten Strahlen kreuzen einander; die Familie umhüllt eine glatte Kurve — die Katakaustik des Kreises. Diese Hüllkurve ist eine Kardioide, mit ihrer Spitze an der Lichtquelle. Keine Näherung, sondern exakt.",
+      body: "Setz eine punktförmige Lichtquelle auf den Rand eines kreisförmigen Spiegels. Jeder Strahl reflektiert an der Innenwand, und alle reflektierten Strahlen kreuzen einander; die Familie umhüllt eine glatte Kurve — die Katakaustik des Kreises. Diese Hüllkurve ist eine Kardioide: ihre runde Spitze berührt den Rand an der Lichtquelle, während die Rückkehrspitze vom Licht weg zeigt, ein Drittel des Radius hinter der Mitte. Keine Näherung, sondern exakt.",
     },
     {
       pretitle: "Abschnitt 02 · Die Gleichung",
       title: "r = 2a (1 − cos θ)",
-      body: "In Polarkoordinaten mit Ursprung in der Spitze lautet die Kardioide r(θ) = 2a(1 − cos θ). Bei θ = 0 ist r = 0 — die Spitze. Bei θ = π ist r = 4a — die ferne Spitze. Die Größe a ist der Radius eines Mutterkreises; die Kardioide ist doppelt so breit, und ihr Umfang beträgt 8a — also achtmal den Radius des Mutterkreises.",
+      body: "In Polarkoordinaten mit Ursprung in der Spitze lautet die Kardioide r(θ) = 2a(1 − cos θ). Bei θ = 0 ist r = 0 — die Spitze. Bei θ = π ist r = 4a — die ferne Spitze. Die Größe a ist der Radius eines Mutterkreises; die Kardioide ist doppelt so breit, und ihr Umfang beträgt 16a, also sechzehnmal den Radius des Mutterkreises.",
     },
     {
       pretitle: "Abschnitt 03 · Die rollende Definition",
@@ -190,7 +190,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Andere Katakaustiken",
       title: "Ein kleines Zoo von Hüllkurven",
-      body: "Ändere das Licht, und du änderst die Kurve. Parallele Strahlen in eine halbe Tasse ergeben die Nephroide (zwei Spitzen statt einer). Eine Kardioide, die um einen Kreis rollt, zeichnet die Astroide. Jede Hüllkurve ist der Fingerabdruck ihrer Quelle — und wer einmal hinsieht, findet sie in Schaufenstern, polierten Pfannen, Regenbögen.",
+      body: "Ändere das Licht, und du änderst die Kurve. Parallele Strahlen in eine halbe Tasse ergeben die Nephroide (zwei Spitzen statt einer). Ein Kreis, der in einem viermal so großen Kreis rollt, zeichnet die Astroide. Jede Hüllkurve ist der Fingerabdruck ihrer Quelle — und wer einmal hinsieht, findet sie in Schaufenstern, polierten Pfannen, Regenbögen.",
     },
     {
       pretitle: "Abschnitt 06 · Geschichte",
@@ -207,7 +207,7 @@ const de: RichStory = {
   lightRayCountLabel: "Strahlen",
   lightEnvelopeLabel: "Hüllkurve zeigen",
   lightHint:
-    "Mehr Strahlen, klarere Hülle. Spitze bei der Lichtquelle am Rand, ferner Punkt in Abstand 2R auf der gegenüberliegenden Wand.",
+    "Mehr Strahlen, klarere Hülle. Die runde Spitze berührt den Rand an der Lichtquelle; die Rückkehrspitze liegt im Inneren der Tasse, ein Drittel des Radius hinter der Mitte, vom Licht abgewandt. Die ganze Achse misst nur 4R/3.",
   lightPretitle: "Interaktiv · das Herz in der Tasse",
   lightTitle: "Mach Licht, sieh das Herz erscheinen",
   lightBody:
@@ -258,12 +258,12 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · La catacáustica",
       title: "Luz, un círculo y la curva que la atrapa",
-      body: "Coloca una fuente puntual de luz en el borde de un espejo circular. Cada rayo rebota en la pared interior, y los rayos reflejados se cruzan unos con otros; la familia envuelve una curva suave — la catacáustica del círculo. Esa envolvente es una cardioide, con su cúspide en la fuente. No es una aproximación, es exacto.",
+      body: "Coloca una fuente puntual de luz en el borde de un espejo circular. Cada rayo rebota en la pared interior, y los rayos reflejados se cruzan unos con otros; la familia envuelve una curva suave — la catacáustica del círculo. Esa envolvente es una cardioide: su punta lisa toca el borde en la fuente, mientras que su cúspide apunta en dirección opuesta a la luz, a un tercio de radio más allá del centro. No es una aproximación, es exacto.",
     },
     {
       pretitle: "Sección 02 · La ecuación",
       title: "r = 2a (1 − cos θ)",
-      body: "En coordenadas polares centradas en la cúspide, la cardioide es r(θ) = 2a(1 − cos θ). En θ = 0 el radio es 0 — la cúspide. En θ = π el radio es 4a — el extremo lejano. El número a es el radio de un círculo madre; la cardioide es el doble de ancha, y su perímetro vale 8a — ocho veces el radio del círculo madre.",
+      body: "En coordenadas polares centradas en la cúspide, la cardioide es r(θ) = 2a(1 − cos θ). En θ = 0 el radio es 0 — la cúspide. En θ = π el radio es 4a — el extremo lejano. El número a es el radio de un círculo madre; la cardioide es el doble de ancha, y su perímetro vale 16a, dieciséis veces el radio del círculo madre.",
     },
     {
       pretitle: "Sección 03 · La definición rodante",
@@ -278,7 +278,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · Otras catacáusticas",
       title: "Un pequeño zoo de envolventes",
-      body: "Cambia la luz y cambias la curva. Rayos paralelos en media taza dan la nefroide (dos cúspides en vez de una). Una cardioide rodando alrededor de un círculo traza la astroide. Cada envolvente es la huella de su fuente — y, una vez sabes mirar, las ves en escaparates, sartenes pulidas y arcoíris.",
+      body: "Cambia la luz y cambias la curva. Rayos paralelos en media taza dan la nefroide (dos cúspides en vez de una). Un círculo que rueda dentro de otro cuatro veces mayor traza la astroide. Cada envolvente es la huella de su fuente — y, una vez sabes mirar, las ves en escaparates, sartenes pulidas y arcoíris.",
     },
     {
       pretitle: "Sección 06 · Historia",
@@ -295,7 +295,7 @@ const es: RichStory = {
   lightRayCountLabel: "Rayos",
   lightEnvelopeLabel: "Mostrar envolvente",
   lightHint:
-    "Añade rayos y la envolvente se cristaliza. Cúspide en la fuente sobre el borde, extremo lejano a distancia 2R en la pared opuesta.",
+    "Añade rayos y la envolvente se cristaliza. La punta lisa toca el borde en la fuente; la cúspide queda dentro de la taza, a un tercio de radio más allá del centro, apuntando en dirección opuesta a la luz. Todo el eje mide solo 4R/3.",
   lightPretitle: "Interactivo · el corazón en la taza",
   lightTitle: "Pon luz, mira aparecer el corazón",
   lightBody:
@@ -346,12 +346,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · La catacaustique",
       title: "Lumière, un cercle et la courbe qui l'attrape",
-      body: "Place une source ponctuelle sur le bord d'un miroir circulaire. Chaque rayon rebondit sur la paroi intérieure, et les rayons réfléchis se croisent les uns les autres ; la famille enveloppe une courbe lisse — la catacaustique du cercle. Cette enveloppe est une cardioïde, son rebroussement à la source. Aucune approximation : c'est exact.",
+      body: "Place une source ponctuelle sur le bord d'un miroir circulaire. Chaque rayon rebondit sur la paroi intérieure, et les rayons réfléchis se croisent les uns les autres ; la famille enveloppe une courbe lisse — la catacaustique du cercle. Cette enveloppe est une cardioïde : sa pointe lisse touche le bord à la source, tandis que son rebroussement pointe à l'opposé de la lumière, à un tiers de rayon au-delà du centre. Aucune approximation : c'est exact.",
     },
     {
       pretitle: "Section 02 · L'équation",
       title: "r = 2a (1 − cos θ)",
-      body: "En coordonnées polaires centrées au rebroussement, la cardioïde est r(θ) = 2a(1 − cos θ). En θ = 0 le rayon est 0 — le rebroussement. En θ = π il vaut 4a — la pointe opposée. Le nombre a est le rayon d'un cercle parent ; la cardioïde est deux fois plus large, et son périmètre vaut 8a — soit huit fois le rayon du cercle parent.",
+      body: "En coordonnées polaires centrées au rebroussement, la cardioïde est r(θ) = 2a(1 − cos θ). En θ = 0 le rayon est 0 — le rebroussement. En θ = π il vaut 4a — la pointe opposée. Le nombre a est le rayon d'un cercle parent ; la cardioïde est deux fois plus large, et son périmètre vaut 16a, soit seize fois le rayon du cercle parent.",
     },
     {
       pretitle: "Section 03 · La définition par roulement",
@@ -366,7 +366,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Autres catacaustiques",
       title: "Un petit zoo d'enveloppes",
-      body: "Change la lumière, tu changes la courbe. Des rayons parallèles dans une demi-tasse donnent la néphroïde (deux rebroussements au lieu d'un). Une cardioïde qui roule autour d'un cercle trace l'astroïde. Chaque enveloppe est l'empreinte de sa source — et dès qu'on sait regarder, on les voit dans les vitrines, les poêles polies, les arcs-en-ciel.",
+      body: "Change la lumière, tu changes la courbe. Des rayons parallèles dans une demi-tasse donnent la néphroïde (deux rebroussements au lieu d'un). Un cercle qui roule dans un autre quatre fois plus grand trace l'astroïde. Chaque enveloppe est l'empreinte de sa source — et dès qu'on sait regarder, on les voit dans les vitrines, les poêles polies, les arcs-en-ciel.",
     },
     {
       pretitle: "Section 06 · Histoire",
@@ -383,7 +383,7 @@ const fr: RichStory = {
   lightRayCountLabel: "Rayons",
   lightEnvelopeLabel: "Afficher l'enveloppe",
   lightHint:
-    "Ajoute des rayons et l'enveloppe se cristallise. Rebroussement à la source sur le bord, pointe lointaine à distance 2R sur la paroi opposée.",
+    "Ajoute des rayons et l'enveloppe se cristallise. La pointe lisse touche le bord à la source ; le rebroussement se trouve dans la tasse, à un tiers de rayon au-delà du centre, pointant à l'opposé de la lumière. Tout l'axe ne mesure que 4R/3.",
   lightPretitle: "Interactif · le cœur dans la tasse",
   lightTitle: "Mets de la lumière, regarde apparaître le cœur",
   lightBody:
@@ -433,12 +433,12 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · La catacaustica",
       title: "Luce, un cerchio e la curva che la cattura",
-      body: "Metti una sorgente puntiforme sul bordo di uno specchio circolare. Ogni raggio rimbalza sulla parete interna, e i raggi riflessi si incrociano tra loro; la famiglia avvolge una curva liscia — la catacaustica del cerchio. Quella inviluppo è una cardioide, con la cuspide sulla sorgente. Non un'approssimazione: è esatta.",
+      body: "Metti una sorgente puntiforme sul bordo di uno specchio circolare. Ogni raggio rimbalza sulla parete interna, e i raggi riflessi si incrociano tra loro; la famiglia avvolge una curva liscia — la catacaustica del cerchio. Quell'inviluppo è una cardioide: la sua punta liscia tocca il bordo sulla sorgente, mentre la cuspide punta in direzione opposta alla luce, a un terzo di raggio oltre il centro. Non un'approssimazione: è esatta.",
     },
     {
       pretitle: "Sezione 02 · L'equazione",
       title: "r = 2a (1 − cos θ)",
-      body: "In coordinate polari centrate nella cuspide, la cardioide è r(θ) = 2a(1 − cos θ). A θ = 0 il raggio è 0 — la cuspide. A θ = π vale 4a — la punta lontana. Il numero a è il raggio del cerchio madre; la cardioide è larga il doppio, e il suo perimetro vale 8a — otto volte il raggio del cerchio madre.",
+      body: "In coordinate polari centrate nella cuspide, la cardioide è r(θ) = 2a(1 − cos θ). A θ = 0 il raggio è 0 — la cuspide. A θ = π vale 4a — la punta lontana. Il numero a è il raggio del cerchio madre; la cardioide è larga il doppio, e il suo perimetro vale 16a, sedici volte il raggio del cerchio madre.",
     },
     {
       pretitle: "Sezione 03 · La definizione per rotolamento",
@@ -453,7 +453,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · Altre catacaustiche",
       title: "Un piccolo zoo di inviluppi",
-      body: "Cambia la luce, cambi la curva. Raggi paralleli in mezza tazza danno la nefroide (due cuspidi invece di una). Una cardioide che rotola attorno a un cerchio traccia l'astroide. Ogni inviluppo è l'impronta della sua sorgente — e quando impari a guardare, li vedi nelle vetrine, nelle pentole lucide, negli arcobaleni.",
+      body: "Cambia la luce, cambi la curva. Raggi paralleli in mezza tazza danno la nefroide (due cuspidi invece di una). Un cerchio che rotola dentro un altro quattro volte più grande traccia l'astroide. Ogni inviluppo è l'impronta della sua sorgente — e quando impari a guardare, li vedi nelle vetrine, nelle pentole lucide, negli arcobaleni.",
     },
     {
       pretitle: "Sezione 06 · Storia",
@@ -470,7 +470,7 @@ const it: RichStory = {
   lightRayCountLabel: "Raggi",
   lightEnvelopeLabel: "Mostra inviluppo",
   lightHint:
-    "Aggiungi raggi e l'inviluppo si cristallizza. Cuspide sulla sorgente al bordo, punta lontana a distanza 2R sulla parete opposta.",
+    "Aggiungi raggi e l'inviluppo si cristallizza. La punta liscia tocca il bordo sulla sorgente; la cuspide sta dentro la tazza, a un terzo di raggio oltre il centro, rivolta in direzione opposta alla luce. L'intero asse misura solo 4R/3.",
   lightPretitle: "Interattivo · il cuore nella tazza",
   lightTitle: "Metti luce, guarda il cuore apparire",
   lightBody:
@@ -520,12 +520,12 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · A catacáustica",
       title: "Luz, um círculo e a curva que a apanha",
-      body: "Põe uma fonte pontual na borda de um espelho circular. Cada raio salta da parede interior e os raios refletidos cruzam-se uns com os outros; a família envolve uma curva suave — a catacáustica do círculo. Essa envolvente é uma cardioide, com a cúspide na fonte. Nada de aproximações: é exata.",
+      body: "Põe uma fonte pontual na borda de um espelho circular. Cada raio salta da parede interior e os raios refletidos cruzam-se uns com os outros; a família envolve uma curva suave — a catacáustica do círculo. Essa envolvente é uma cardioide: a sua ponta lisa toca a borda na fonte, enquanto a cúspide aponta no sentido oposto à luz, a um terço de raio para lá do centro. Nada de aproximações: é exata.",
     },
     {
       pretitle: "Secção 02 · A equação",
       title: "r = 2a (1 − cos θ)",
-      body: "Em coordenadas polares centradas na cúspide, a cardioide é r(θ) = 2a(1 − cos θ). Em θ = 0 o raio é 0 — a cúspide. Em θ = π vale 4a — a ponta oposta. O número a é o raio de um círculo-mãe; a cardioide tem o dobro da largura, e o seu perímetro vale 8a — oito vezes o raio do círculo-mãe.",
+      body: "Em coordenadas polares centradas na cúspide, a cardioide é r(θ) = 2a(1 − cos θ). Em θ = 0 o raio é 0 — a cúspide. Em θ = π vale 4a — a ponta oposta. O número a é o raio de um círculo-mãe; a cardioide tem o dobro da largura, e o seu perímetro vale 16a, dezasseis vezes o raio do círculo-mãe.",
     },
     {
       pretitle: "Secção 03 · A definição por rolamento",
@@ -540,7 +540,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · Outras catacáusticas",
       title: "Um pequeno zoo de envolventes",
-      body: "Muda a luz e mudas a curva. Raios paralelos em meia chávena dão a nefroide (duas cúspides em vez de uma). Uma cardioide a rolar em torno de um círculo traça a astroide. Cada envolvente é a impressão digital da sua fonte — e, assim que aprendes a olhar, vês-as em montras, frigideiras polidas, arco-íris.",
+      body: "Muda a luz e mudas a curva. Raios paralelos em meia chávena dão a nefroide (duas cúspides em vez de uma). Um círculo a rolar dentro de outro quatro vezes maior traça a astroide. Cada envolvente é a impressão digital da sua fonte — e, assim que aprendes a olhar, vês-as em montras, frigideiras polidas, arco-íris.",
     },
     {
       pretitle: "Secção 06 · História",
@@ -557,7 +557,7 @@ const pt: RichStory = {
   lightRayCountLabel: "Raios",
   lightEnvelopeLabel: "Mostrar envolvente",
   lightHint:
-    "Junta raios e a envolvente cristaliza. Cúspide na fonte sobre a borda, ponta distante a 2R na parede oposta.",
+    "Junta raios e a envolvente cristaliza. A ponta lisa toca a borda na fonte; a cúspide fica dentro da chávena, a um terço de raio para lá do centro, apontando no sentido oposto à luz. Todo o eixo mede apenas 4R/3.",
   lightPretitle: "Interativo · o coração na chávena",
   lightTitle: "Põe luz, vê aparecer o coração",
   lightBody:
@@ -607,12 +607,12 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Katakaustiken",
       title: "Ljus, en cirkel och kurvan som fångar det",
-      body: "Sätt en punktformig ljuskälla på kanten av en cirkelformad spegel. Varje stråle studsar mot innerväggen och de reflekterade strålarna korsar varandra; familjen omsluter en slät kurva — cirkelns katakaustik. Den höljekurvan är en kardioid, med spetsen vid källan. Ingen approximation, det är exakt.",
+      body: "Sätt en punktformig ljuskälla på kanten av en cirkelformad spegel. Varje stråle studsar mot innerväggen och de reflekterade strålarna korsar varandra; familjen omsluter en slät kurva — cirkelns katakaustik. Den höljekurvan är en kardioid: dess mjuka udde nuddar kanten vid källan, medan spetsen pekar bort från ljuset, en tredjedels radie bortom mitten. Ingen approximation, det är exakt.",
     },
     {
       pretitle: "Avsnitt 02 · Ekvationen",
       title: "r = 2a (1 − cos θ)",
-      body: "I polära koordinater med ursprung i spetsen är kardioiden r(θ) = 2a(1 − cos θ). Vid θ = 0 är radien 0 — spetsen själv. Vid θ = π är den 4a — den bortre udden. Talet a är modercirkelns radie; kardioiden är dubbelt så bred, och dess omkrets är 8a — åtta gånger modercirkelns radie.",
+      body: "I polära koordinater med ursprung i spetsen är kardioiden r(θ) = 2a(1 − cos θ). Vid θ = 0 är radien 0 — spetsen själv. Vid θ = π är den 4a — den bortre udden. Talet a är modercirkelns radie; kardioiden är dubbelt så bred, och dess omkrets är 16a, sexton gånger modercirkelns radie.",
     },
     {
       pretitle: "Avsnitt 03 · Den rullande definitionen",
@@ -627,7 +627,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Andra katakaustiker",
       title: "Ett litet zoo av höljekurvor",
-      body: "Byt ljus, så byter du kurva. Parallella strålar in i en halv kopp ger nefroiden (två spetsar istället för en). En kardioid som rullar runt en cirkel tecknar astroiden. Varje hölje är sin källas fingeravtryck — och när du väl lärt dig titta ser du dem i skyltfönster, polerade stekpannor, regnbågar.",
+      body: "Byt ljus, så byter du kurva. Parallella strålar in i en halv kopp ger nefroiden (två spetsar istället för en). En cirkel som rullar inuti en fyra gånger så stor cirkel tecknar astroiden. Varje hölje är sin källas fingeravtryck — och när du väl lärt dig titta ser du dem i skyltfönster, polerade stekpannor, regnbågar.",
     },
     {
       pretitle: "Avsnitt 06 · Historia",
@@ -644,7 +644,7 @@ const sv: RichStory = {
   lightRayCountLabel: "Strålar",
   lightEnvelopeLabel: "Visa höljekurva",
   lightHint:
-    "Lägg till strålar så kristalliseras höljet. Spets vid källan på kanten, bortre udde på avstånd 2R på motsatta väggen.",
+    "Lägg till strålar så kristalliseras höljet. Den mjuka udden nuddar kanten vid källan; spetsen ligger inne i koppen, en tredjedels radie bortom mitten, bortvänd från ljuset. Hela axeln mäter bara 4R/3.",
   lightPretitle: "Interaktivt · hjärtat i koppen",
   lightTitle: "Sätt på ljus, se hjärtat dyka upp",
   lightBody:
@@ -694,12 +694,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Katakaustikken",
       title: "Lys, en sirkel og kurven som fanger det",
-      body: "Sett en punktformet lyskilde på kanten av et sirkelformet speil. Hver stråle spretter av innerveggen, og de reflekterte strålene krysser hverandre; familien omslutter en glatt kurve — sirkelens katakaustikk. Den hyllingskurven er en kardioide, med spissen ved kilden. Ingen tilnærming: det er eksakt.",
+      body: "Sett en punktformet lyskilde på kanten av et sirkelformet speil. Hver stråle spretter av innerveggen, og de reflekterte strålene krysser hverandre; familien omslutter en glatt kurve — sirkelens katakaustikk. Den hyllingskurven er en kardioide: den myke enden nuddar kanten ved kilden, mens spissen peker bort fra lyset, en tredjedels radius bortenfor midten. Ingen tilnærming: det er eksakt.",
     },
     {
       pretitle: "Avsnitt 02 · Ligningen",
       title: "r = 2a (1 − cos θ)",
-      body: "I polare koordinater med utgangspunkt i spissen er kardioiden r(θ) = 2a(1 − cos θ). Ved θ = 0 er radien 0 — spissen. Ved θ = π er den 4a — den bortre spissen. Tallet a er radius på morsirkelen; kardioiden er dobbelt så bred, og omkretsen er 8a — åtte ganger morsirkelens radius.",
+      body: "I polare koordinater med utgangspunkt i spissen er kardioiden r(θ) = 2a(1 − cos θ). Ved θ = 0 er radien 0 — spissen. Ved θ = π er den 4a — den bortre spissen. Tallet a er radius på morsirkelen; kardioiden er dobbelt så bred, og omkretsen er 16a, seksten ganger morsirkelens radius.",
     },
     {
       pretitle: "Avsnitt 03 · Den rullende definisjonen",
@@ -714,7 +714,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Andre katakaustikker",
       title: "Et lite zoo av hyllingskurver",
-      body: "Skift lys, og du skifter kurve. Parallelle stråler i en halv kopp gir nefroiden (to spisser i stedet for én). En kardioide som ruller rundt en sirkel tegner astroiden. Hver hylling er sin kildes fingeravtrykk — og når du først lærer å se, dukker de opp i utstillingsvinduer, polerte panner, regnbuer.",
+      body: "Skift lys, og du skifter kurve. Parallelle stråler i en halv kopp gir nefroiden (to spisser i stedet for én). En sirkel som ruller inne i en fire ganger så stor sirkel tegner astroiden. Hver hylling er sin kildes fingeravtrykk — og når du først lærer å se, dukker de opp i utstillingsvinduer, polerte panner, regnbuer.",
     },
     {
       pretitle: "Avsnitt 06 · Historie",
@@ -731,7 +731,7 @@ const no: RichStory = {
   lightRayCountLabel: "Stråler",
   lightEnvelopeLabel: "Vis hylling",
   lightHint:
-    "Legg til stråler, og hyllingen krystalliseres. Spiss ved kilden på kanten, bortre spiss i avstand 2R på motsatt vegg.",
+    "Legg til stråler, og hyllingen krystalliseres. Den myke enden nuddar kanten ved kilden; spissen ligger inne i koppen, en tredjedels radius bortenfor midten, vendt bort fra lyset. Hele aksen måler bare 4R/3.",
   lightPretitle: "Interaktivt · hjertet i koppen",
   lightTitle: "Sett på lys, se hjertet dukke opp",
   lightBody:
@@ -868,7 +868,7 @@ export default function CardioidStory() {
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
               Cusp at θ = 0, far tip at θ = π with radius 4a. The parent circle has radius a; the
-              cardioid is twice as wide, and its perimeter is exactly 8a — eight times the parent
+              cardioid is twice as wide, and its perimeter is exactly 16a, sixteen times the parent
               radius.
             </p>
           </div>

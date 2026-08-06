@@ -8,10 +8,33 @@ import { palette } from "@/lib/visual/palette";
 // Renders to a small canvas (~340×280), with Play/Pause, Step, Reset and a
 // steps-per-frame slider. Shows step counter and current heading.
 
+export interface RunnerLabels {
+  play: string;
+  pause: string;
+  step: string;
+  reset: string;
+  speed: string;
+  stepReadout: string;
+  dirReadout: string;
+  canvasLabel: string;
+}
+
+const DEFAULT_LABELS: RunnerLabels = {
+  play: "Play",
+  pause: "Pause",
+  step: "step",
+  reset: "reset",
+  speed: "speed",
+  stepReadout: "step",
+  dirReadout: "dir",
+  canvasLabel: "Langton's ant simulation, classic RL rule",
+};
+
 interface Props {
   label?: string;
   caption?: string;
   initialStepsPerFrame?: number;
+  labels?: RunnerLabels;
 }
 
 const CELL = 5; // CSS px per cell
@@ -30,6 +53,7 @@ export function LangtonMiniRunner({
   label = "Mini runner · classic RL",
   caption,
   initialStepsPerFrame = 8,
+  labels = DEFAULT_LABELS,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
@@ -47,6 +71,16 @@ export function LangtonMiniRunner({
   runningRef.current = running;
   spfRef.current = stepsPerFrame;
 
+  // Respect prefers-reduced-motion: do not auto-play. The loop still paints one
+  // static frame and Play/step stay available as explicit opt-ins. (Repo
+  // convention: per-component canvases freeze under reduced motion.)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setRunning(false);
+    }
+  }, []);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -56,21 +90,28 @@ export function LangtonMiniRunner({
     const cellPx = CELL * dpr;
     let raf = 0;
 
+    // Assign width/height only when it actually changed (any assignment clears
+    // the bitmap). Returns whether a change happened.
     const resize = () => {
       const w = Math.floor(canvas.clientWidth * dpr);
       const h = Math.floor(canvas.clientHeight * dpr);
-      if (canvas.width !== w) canvas.width = w;
-      if (canvas.height !== h) canvas.height = h;
+      let changed = false;
+      if (canvas.width !== w) {
+        canvas.width = w;
+        changed = true;
+      }
+      if (canvas.height !== h) {
+        canvas.height = h;
+        changed = true;
+      }
+      return changed;
     };
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
 
-    let gridW = Math.max(20, Math.floor(canvas.width / cellPx));
-    let gridH = Math.max(20, Math.floor(canvas.height / cellPx));
-    let grid = new Uint8Array(gridW * gridH);
-    let ax = Math.floor(gridW / 2);
-    let ay = Math.floor(gridH / 2);
+    let gridW = 0;
+    let gridH = 0;
+    let grid = new Uint8Array(0);
+    let ax = 0;
+    let ay = 0;
     let antDir = 0; // 0=N 1=E 2=S 3=W
     let total = 0;
 
@@ -97,7 +138,38 @@ export function LangtonMiniRunner({
       total = 0;
       paintAll();
     };
+
+    // Grow/shrink the grid to a new canvas size, preserving cells and clamping
+    // the ant, then repaint so a genuine resize keeps the trail.
+    const refit = () => {
+      const newW = Math.max(20, Math.floor(canvas.width / cellPx));
+      const newH = Math.max(20, Math.floor(canvas.height / cellPx));
+      if (newW === gridW && newH === gridH) {
+        paintAll();
+        return;
+      }
+      const next = new Uint8Array(newW * newH);
+      const copyW = Math.min(gridW, newW);
+      const copyH = Math.min(gridH, newH);
+      for (let y = 0; y < copyH; y++) {
+        for (let x = 0; x < copyW; x++) next[y * newW + x] = grid[y * gridW + x];
+      }
+      grid = next;
+      gridW = newW;
+      gridH = newH;
+      ax = Math.min(ax, gridW - 1);
+      ay = Math.min(ay, gridH - 1);
+      paintAll();
+    };
+
+    resize();
     reseed();
+    // First observe callback fires right after reseed(); resize() reports no
+    // change there, so the fresh fill is not wiped.
+    const ro = new ResizeObserver(() => {
+      if (resize()) refit();
+    });
+    ro.observe(canvas);
 
     const stepOnce = () => {
       const idx = ay * gridW + ax;
@@ -173,14 +245,19 @@ export function LangtonMiniRunner({
           {label}
         </div>
         <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-          step <span className="text-signal-violet">{stepCount.toLocaleString()}</span>
+          {labels.stepReadout} <span className="text-signal-violet">{stepCount.toLocaleString()}</span>
           {"  ·  "}
-          dir <span className="text-signal-violet">{DIR_GLYPH[dir]}</span>
+          {labels.dirReadout} <span className="text-signal-violet">{DIR_GLYPH[dir]}</span>
         </div>
       </div>
 
       <div className="hairline relative aspect-[17/14] w-full overflow-hidden rounded-md border bg-ink-950">
-        <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+        <canvas
+          ref={canvasRef}
+          role="img"
+          aria-label={labels.canvasLabel}
+          className="absolute inset-0 block h-full w-full"
+        />
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
@@ -192,7 +269,7 @@ export function LangtonMiniRunner({
               : "border-signal-violet/60 bg-signal-violet/10 text-signal-violet hover:bg-signal-violet/20"
           }`}
         >
-          {running ? "❚❚ Pause" : "▶ Play"}
+          {running ? `❚❚ ${labels.pause}` : `▶ ${labels.play}`}
         </button>
         <button
           onClick={() => {
@@ -200,7 +277,7 @@ export function LangtonMiniRunner({
           }}
           className="hairline rounded-md border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-violet/40 hover:text-signal-violet"
         >
-          step
+          {labels.step}
         </button>
         <button
           onClick={() => {
@@ -214,11 +291,11 @@ export function LangtonMiniRunner({
           onClick={() => setResetTick((t) => t + 1)}
           className="hairline hover:text-ink-50 rounded-md border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-ink-300/50"
         >
-          ⟳ reset
+          ⟳ {labels.reset}
         </button>
         <div className="flex min-w-[140px] flex-1 items-center gap-2">
           <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-            speed
+            {labels.speed}
           </span>
           <input
             type="range"
@@ -226,6 +303,7 @@ export function LangtonMiniRunner({
             max={120}
             step={1}
             value={stepsPerFrame}
+            aria-label={labels.speed}
             onChange={(e) => setStepsPerFrame(parseInt(e.target.value, 10))}
             className="flex-1 accent-signal-violet"
           />

@@ -17,7 +17,7 @@ interface Preset {
 const DEFAULT_PRESETS: Preset[] = [
   { id: "spots", label: "Spots", F: 0.025, k: 0.06 },
   { id: "stripes", label: "Stripes", F: 0.029, k: 0.057 },
-  { id: "coral", label: "Coral", F: 0.062, k: 0.062 },
+  { id: "coral", label: "Coral", F: 0.0545, k: 0.062 },
   { id: "mitosis", label: "Mitosis", F: 0.0367, k: 0.0649 },
 ];
 
@@ -106,6 +106,16 @@ export function TuringGrayScott({
   const [paused, setPaused] = useState(false);
   const [resetTick, setResetTick] = useState(0);
   const [activePreset, setActivePreset] = useState("spots");
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  // Track the reduced-motion preference live so we can freeze / resume.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = (): void => setReducedMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const presets = useMemo<Preset[]>(
     () =>
@@ -151,54 +161,47 @@ export function TuringGrayScott({
     const Db = 0.08;
     const dt = 1.0;
 
-    let raf = 0;
-    const step = (): void => {
+    // One explicit-Euler sub-step over the whole grid, reading live F/k.
+    const advance = (): void => {
       const p = paramsRef.current;
-      if (!p.paused) {
-        const aCur = aRef.current;
-        const bCur = bRef.current;
-        let aNext = aNextRef.current;
-        let bNext = bNextRef.current;
-        for (let s = 0; s < STEPS_PER_FRAME; s++) {
-          for (let y = 0; y < H; y++) {
-            const yUp = y === 0 ? H - 1 : y - 1;
-            const yDn = y === H - 1 ? 0 : y + 1;
-            const row = y * W;
-            const rowU = yUp * W;
-            const rowD = yDn * W;
-            for (let x = 0; x < W; x++) {
-              const xL = x === 0 ? W - 1 : x - 1;
-              const xR = x === W - 1 ? 0 : x + 1;
-              const i = row + x;
-              const aC = aCur[i];
-              const bC = bCur[i];
-              const lapA =
-                aCur[row + xL] + aCur[row + xR] + aCur[rowU + x] + aCur[rowD + x] - 4 * aC;
-              const lapB =
-                bCur[row + xL] + bCur[row + xR] + bCur[rowU + x] + bCur[rowD + x] - 4 * bC;
-              const abb = aC * bC * bC;
-              let aN = aC + dt * (Da * lapA - abb + p.F * (1 - aC));
-              let bN = bC + dt * (Db * lapB + abb - (p.F + p.k) * bC);
-              // Hard-clamp to [0,1] — keeps the explicit Euler stable
-              // and prevents NaN/Inf cascades when seeds are sharp.
-              if (aN < 0) aN = 0;
-              else if (aN > 1) aN = 1;
-              if (bN < 0) bN = 0;
-              else if (bN > 1) bN = 1;
-              aNext[i] = aN;
-              bNext[i] = bN;
-            }
-          }
-          const tmpA = aRef.current;
-          const tmpB = bRef.current;
-          aRef.current = aNext;
-          bRef.current = bNext;
-          aNextRef.current = tmpA;
-          bNextRef.current = tmpB;
-          aNext = aNextRef.current;
-          bNext = bNextRef.current;
+      const aCur = aRef.current;
+      const bCur = bRef.current;
+      const aNext = aNextRef.current;
+      const bNext = bNextRef.current;
+      for (let y = 0; y < H; y++) {
+        const yUp = y === 0 ? H - 1 : y - 1;
+        const yDn = y === H - 1 ? 0 : y + 1;
+        const row = y * W;
+        const rowU = yUp * W;
+        const rowD = yDn * W;
+        for (let x = 0; x < W; x++) {
+          const xL = x === 0 ? W - 1 : x - 1;
+          const xR = x === W - 1 ? 0 : x + 1;
+          const i = row + x;
+          const aC = aCur[i];
+          const bC = bCur[i];
+          const lapA = aCur[row + xL] + aCur[row + xR] + aCur[rowU + x] + aCur[rowD + x] - 4 * aC;
+          const lapB = bCur[row + xL] + bCur[row + xR] + bCur[rowU + x] + bCur[rowD + x] - 4 * bC;
+          const abb = aC * bC * bC;
+          let aN = aC + dt * (Da * lapA - abb + p.F * (1 - aC));
+          let bN = bC + dt * (Db * lapB + abb - (p.F + p.k) * bC);
+          // Hard-clamp to [0,1] keeps the explicit Euler stable
+          // and prevents NaN/Inf cascades when seeds are sharp.
+          if (aN < 0) aN = 0;
+          else if (aN > 1) aN = 1;
+          if (bN < 0) bN = 0;
+          else if (bN > 1) bN = 1;
+          aNext[i] = aN;
+          bNext[i] = bN;
         }
       }
+      aRef.current = aNext;
+      bRef.current = bNext;
+      aNextRef.current = aCur;
+      bNextRef.current = bCur;
+    };
+
+    const paint = (): void => {
       const b = bRef.current;
       for (let i = 0; i < SIZE; i++) {
         let v = b[i] * 3.5;
@@ -213,11 +216,27 @@ export function TuringGrayScott({
         data[o + 3] = 255;
       }
       ctx.putImageData(image, 0, 0);
+    };
+
+    if (reducedMotion) {
+      // Run to a near-stationary pattern once, then freeze (no perpetual rAF).
+      for (let s = 0; s < 1800; s++) advance();
+      paint();
+      return;
+    }
+
+    let raf = 0;
+    const step = (): void => {
+      const p = paramsRef.current;
+      if (!p.paused) {
+        for (let s = 0; s < STEPS_PER_FRAME; s++) advance();
+      }
+      paint();
       raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [lut]);
+  }, [lut, reducedMotion, resetTick]);
 
   const applyPreset = (preset: Preset) => {
     setF(preset.F);
@@ -235,6 +254,8 @@ export function TuringGrayScott({
         <div className="hairline overflow-hidden rounded-xl border bg-ink-950">
           <canvas
             ref={canvasRef}
+            role="img"
+            aria-label="Live Gray-Scott reaction-diffusion simulation"
             className="block w-full"
             style={{
               imageRendering: "pixelated",
@@ -270,6 +291,7 @@ export function TuringGrayScott({
             </div>
             <input
               type="range"
+              aria-label={feedLabel}
               value={F}
               min={0.01}
               max={0.08}
@@ -288,6 +310,7 @@ export function TuringGrayScott({
             </div>
             <input
               type="range"
+              aria-label={killLabel}
               value={k}
               min={0.04}
               max={0.075}

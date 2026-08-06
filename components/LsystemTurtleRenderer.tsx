@@ -35,9 +35,11 @@ const PRESETS: Preset[] = [
   },
   {
     id: "hilbert",
+    // Non-drawing state variables X/Y keep A/B free to mean "draw forward"
+    // elsewhere; here only F draws, which is what makes this a real Hilbert curve.
     label: "Hilbert curve",
-    axiom: "A",
-    rules: { A: "+BF-AFA-FB+", B: "-AF+BFB+FA-" },
+    axiom: "X",
+    rules: { X: "+YF-XFX-FY+", Y: "-XF+YFY+FX-" },
     angle: 90,
     startAngle: 0,
     defaultIter: 5,
@@ -235,7 +237,12 @@ export function LsystemTurtleRenderer({
       <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-12">
         <div className="md:col-span-7">
           <div className="hairline aspect-square overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={canvasRef} className="block h-full w-full" />
+            <canvas
+              ref={canvasRef}
+              role="img"
+              aria-label={`${preset.label}, ${depthLabel} ${clampedIter}, ${angleLabel} ${preset.angle}°`}
+              className="block h-full w-full"
+            />
           </div>
         </div>
 

@@ -103,11 +103,13 @@ function MiniCell({
   active,
   onActivate,
   colorIdx,
+  reducedMotion,
 }: {
   regime: Regime;
   active: boolean;
   onActivate: () => void;
   colorIdx: number;
+  reducedMotion: boolean;
 }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const lut = useMemo(() => buildLUT(COLOR_STOPS[colorIdx]), [colorIdx]);
@@ -140,47 +142,44 @@ function MiniCell({
     const F = regime.F;
     const k = regime.k;
 
-    let raf = 0;
-    const step = (): void => {
+    // One explicit-Euler sub-step over the whole grid.
+    const advance = (): void => {
       const aCur = aRef.current;
       const bCur = bRef.current;
-      let aNext = aNextRef.current;
-      let bNext = bNextRef.current;
-      for (let s = 0; s < STEPS_PER_FRAME; s++) {
-        for (let y = 0; y < H; y++) {
-          const yUp = y === 0 ? H - 1 : y - 1;
-          const yDn = y === H - 1 ? 0 : y + 1;
-          const row = y * W;
-          const rowU = yUp * W;
-          const rowD = yDn * W;
-          for (let x = 0; x < W; x++) {
-            const xL = x === 0 ? W - 1 : x - 1;
-            const xR = x === W - 1 ? 0 : x + 1;
-            const i = row + x;
-            const aC = aCur[i];
-            const bC = bCur[i];
-            const lapA = aCur[row + xL] + aCur[row + xR] + aCur[rowU + x] + aCur[rowD + x] - 4 * aC;
-            const lapB = bCur[row + xL] + bCur[row + xR] + bCur[rowU + x] + bCur[rowD + x] - 4 * bC;
-            const abb = aC * bC * bC;
-            let aN = aC + dt * (Da * lapA - abb + F * (1 - aC));
-            let bN = bC + dt * (Db * lapB + abb - (F + k) * bC);
-            if (aN < 0) aN = 0;
-            else if (aN > 1) aN = 1;
-            if (bN < 0) bN = 0;
-            else if (bN > 1) bN = 1;
-            aNext[i] = aN;
-            bNext[i] = bN;
-          }
+      const aNext = aNextRef.current;
+      const bNext = bNextRef.current;
+      for (let y = 0; y < H; y++) {
+        const yUp = y === 0 ? H - 1 : y - 1;
+        const yDn = y === H - 1 ? 0 : y + 1;
+        const row = y * W;
+        const rowU = yUp * W;
+        const rowD = yDn * W;
+        for (let x = 0; x < W; x++) {
+          const xL = x === 0 ? W - 1 : x - 1;
+          const xR = x === W - 1 ? 0 : x + 1;
+          const i = row + x;
+          const aC = aCur[i];
+          const bC = bCur[i];
+          const lapA = aCur[row + xL] + aCur[row + xR] + aCur[rowU + x] + aCur[rowD + x] - 4 * aC;
+          const lapB = bCur[row + xL] + bCur[row + xR] + bCur[rowU + x] + bCur[rowD + x] - 4 * bC;
+          const abb = aC * bC * bC;
+          let aN = aC + dt * (Da * lapA - abb + F * (1 - aC));
+          let bN = bC + dt * (Db * lapB + abb - (F + k) * bC);
+          if (aN < 0) aN = 0;
+          else if (aN > 1) aN = 1;
+          if (bN < 0) bN = 0;
+          else if (bN > 1) bN = 1;
+          aNext[i] = aN;
+          bNext[i] = bN;
         }
-        const tmpA = aRef.current;
-        const tmpB = bRef.current;
-        aRef.current = aNext;
-        bRef.current = bNext;
-        aNextRef.current = tmpA;
-        bNextRef.current = tmpB;
-        aNext = aNextRef.current;
-        bNext = bNextRef.current;
       }
+      aRef.current = aNext;
+      bRef.current = bNext;
+      aNextRef.current = aCur;
+      bNextRef.current = bCur;
+    };
+
+    const paint = (): void => {
       const b = bRef.current;
       for (let i = 0; i < SIZE; i++) {
         let v = b[i] * 3.5;
@@ -195,11 +194,24 @@ function MiniCell({
         data[o + 3] = 255;
       }
       ctx.putImageData(image, 0, 0);
+    };
+
+    if (reducedMotion) {
+      // Run to a near-stationary pattern once, then freeze (no perpetual rAF).
+      for (let s = 0; s < 2000; s++) advance();
+      paint();
+      return;
+    }
+
+    let raf = 0;
+    const step = (): void => {
+      for (let s = 0; s < STEPS_PER_FRAME; s++) advance();
+      paint();
       raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [lut, regime.F, regime.k]);
+  }, [lut, regime.F, regime.k, reducedMotion]);
 
   return (
     <button
@@ -245,6 +257,16 @@ interface Props {
 export function TuringGallery({ caption, regimes, hint }: Props) {
   const [activeId, setActiveId] = useState(regimes[0]?.id ?? "");
   const active = regimes.find((r) => r.id === activeId) ?? regimes[0];
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  // Track the reduced-motion preference live; when set, each cell freezes.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = (): void => setReducedMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   return (
     <div className="hairline space-y-5 rounded-2xl border bg-ink-950/40 p-6">
@@ -259,6 +281,7 @@ export function TuringGallery({ caption, regimes, hint }: Props) {
             active={r.id === activeId}
             onActivate={() => setActiveId(r.id)}
             colorIdx={i % COLOR_STOPS.length}
+            reducedMotion={reducedMotion}
           />
         ))}
       </div>

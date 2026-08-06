@@ -72,12 +72,15 @@ export function ConstellationScene({ category, index, onProgress }: Props) {
     | "categoryParadox";
   const categoryName = (a.landing as unknown as Record<string, string>)[categoryKey] ?? category;
 
-  // Reveal progress windows. Hubs fade in 0.05→0.25, satellites 0.20→0.45,
-  // edges draw 0.30→0.70. Tuned so the cluster builds itself as the scene
-  // enters and stays "completed" through the middle of the section.
-  const hubReveal = Math.max(0, Math.min(1, (progress - 0.05) / 0.2));
-  const satReveal = Math.max(0, Math.min(1, (progress - 0.2) / 0.25));
-  const edgeReveal = Math.max(0, Math.min(1, (progress - 0.3) / 0.4));
+  // Reveal progress windows, tuned against the 230vh section (see
+  // .cosmos-scene): the sticky child is pinned roughly over progress
+  // 0.30..0.70. Hubs fade in while the scene slides up (0.08→0.26),
+  // satellites cascade in as the pin engages (staggered from 0.20, see the
+  // star loop below), edges draw during the first half of the pin
+  // (0.30→0.58) — so the finished constellation stands complete and still
+  // for the back half of the dwell.
+  const hubReveal = Math.max(0, Math.min(1, (progress - 0.08) / 0.18));
+  const edgeReveal = Math.max(0, Math.min(1, (progress - 0.3) / 0.28));
 
   return (
     <section
@@ -182,9 +185,15 @@ export function ConstellationScene({ category, index, onProgress }: Props) {
               ))}
             </g>
 
-            {/* Stars */}
-            {layout.map((l) => {
-              const reveal = l.isHub ? hubReveal : satReveal;
+            {/* Stars. Satellites cascade in one after another (per-star
+                progress stagger) instead of as one block — now that the
+                scene is pinned, the eye actually has time to watch the
+                cluster assemble itself. */}
+            {layout.map((l, li) => {
+              const stagger = (li % 5) * 0.035;
+              const reveal = l.isHub
+                ? hubReveal
+                : Math.max(0, Math.min(1, (progress - (0.2 + stagger)) / 0.2));
               if (reveal <= 0) return null;
               const meta = a.topics[l.topic.id];
               return (

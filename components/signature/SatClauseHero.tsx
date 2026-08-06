@@ -63,6 +63,15 @@ const GREEN = palette.signal.teal;
 const VIOLET = palette.signal.violet;
 const DIM = `${palette.canvas.muted}80`;
 
+// Keep every fill/stroke derived from the shared palette so the satisfied
+// clause box uses the same green as the literals it contains.
+const withAlpha = (hex: string, a: number) => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
+};
+
 export function SatClauseHero() {
   const [reduced, setReduced] = useState(false);
   const [n, setN] = useState(0);
@@ -137,8 +146,10 @@ export function SatClauseHero() {
                 width={chipW}
                 height={34}
                 rx="8"
-                fill={val ? "rgba(125,243,255,0.14)" : "rgba(15,18,28,0.85)"}
-                stroke={val ? "rgba(125,243,255,0.55)" : "rgba(138,144,164,0.28)"}
+                fill={val ? withAlpha(palette.signal.cyan, 0.14) : withAlpha(palette.ink[950], 0.85)}
+                stroke={
+                  val ? withAlpha(palette.signal.cyan, 0.55) : withAlpha(palette.canvas.muted, 0.28)
+                }
                 strokeWidth="1"
               />
               <text
@@ -147,7 +158,7 @@ export function SatClauseHero() {
                 textAnchor="middle"
                 fontFamily="var(--font-mono)"
                 fontSize="14"
-                fill={val ? palette.signal.cyan : "rgba(234,236,243,0.6)"}
+                fill={val ? palette.signal.cyan : withAlpha(palette.ink[100], 0.6)}
               >
                 {name}={val ? "T" : "F"}
               </text>
@@ -163,7 +174,7 @@ export function SatClauseHero() {
           fontFamily="var(--font-mono)"
           fontSize="11"
           letterSpacing="3"
-          fill="rgba(234,236,243,0.4)"
+          fill={withAlpha(palette.ink[100], 0.4)}
         >
           {solved ? "ALL CLAUSES TRUE" : "EVALUATE EACH CLAUSE"}
         </text>
@@ -178,8 +189,8 @@ export function SatClauseHero() {
                 width={cW}
                 height={cH}
                 rx="10"
-                fill={sat ? "rgba(166,225,161,0.12)" : "rgba(15,18,28,0.7)"}
-                stroke={sat ? "rgba(166,225,161,0.65)" : "rgba(138,144,164,0.26)"}
+                fill={sat ? withAlpha(GREEN, 0.12) : withAlpha(palette.ink[950], 0.7)}
+                stroke={sat ? withAlpha(GREEN, 0.65) : withAlpha(palette.canvas.muted, 0.26)}
                 strokeWidth={sat ? "1.4" : "1"}
               />
               <text
@@ -210,13 +221,22 @@ export function SatClauseHero() {
           fontFamily="var(--font-mono)"
           fontSize="11"
           letterSpacing="3.4"
-          fill={solved ? VIOLET : "rgba(234,236,243,0.45)"}
+          fill={solved ? VIOLET : withAlpha(palette.ink[100], 0.45)}
         >
           {solved ? "⊨  SATISFIABLE — assignment found" : "searching assignments…  2⁴ = 16 to try"}
         </text>
         {solved && (
+          // Reduced motion gets a static full-opacity dot: SMIL <animate> is not
+          // covered by the global prefers-reduced-motion CSS, so it is gated here.
           <circle cx={W / 2 - 132} cy={H - 30} r="3.5" fill={VIOLET}>
-            <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite" />
+            {!reduced && (
+              <animate
+                attributeName="opacity"
+                values="0.3;1;0.3"
+                dur="1.2s"
+                repeatCount="indefinite"
+              />
+            )}
           </circle>
         )}
       </svg>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
@@ -10,19 +11,22 @@ const X_MIN = 1;
 const LOG_X_MAX_MIN = Math.log10(1.5);
 const LOG_X_MAX_MAX = Math.log10(1000);
 
-// Simpson's rule with N subintervals (N even). Computes the exact lateral
-// surface area integral A = 2π ∫₁^{xMax} (1/x) · √(1 + 1/x⁴) dx.
+// Lateral surface area A = 2π ∫₁^{xMax} (1/x) · √(1 + 1/x⁴) dx. We substitute
+// u = ln x, giving A = 2π ∫₀^{ln xMax} √(1 + e^{-4u}) du. In u the integrand is
+// smooth and bounded, so a uniform Simpson grid stays accurate even at large
+// xMax (the raw x-grid undersampled the head near x = 1 and drifted in the 4th
+// significant digit past xMax ≈ 100). N even.
 function surfaceArea(xMax: number, N = 2000): number {
   if (xMax <= X_MIN) return 0;
-  const a = X_MIN;
-  const b = xMax;
+  const a = 0;
+  const b = Math.log(xMax);
   const n = N % 2 === 0 ? N : N + 1;
   const h = (b - a) / n;
-  const f = (x: number) => (1 / x) * Math.sqrt(1 + 1 / (x * x * x * x));
+  const f = (u: number) => Math.sqrt(1 + Math.exp(-4 * u));
   let sum = f(a) + f(b);
   for (let i = 1; i < n; i++) {
-    const x = a + i * h;
-    sum += (i % 2 === 0 ? 2 : 4) * f(x);
+    const u = a + i * h;
+    sum += (i % 2 === 0 ? 2 : 4) * f(u);
   }
   return 2 * Math.PI * (h / 3) * sum;
 }
@@ -34,9 +38,244 @@ function sig6(x: number): string {
   return x.toPrecision(6);
 }
 
+// --------------------------------------------------------------------------
+// Per-locale UI strings for the explorer. Kept inline (the documented
+// RICH_EXPLORER pattern) so the translations sit next to the controls they
+// label instead of fattening the shared i18n bundles. Math-only tokens
+// (formulas, "V → π · A → ∞") stay literal.
+// --------------------------------------------------------------------------
+
+type RichExplorer = {
+  badge3d: string;
+  badge2d: string;
+  convergence: string;
+  view: string;
+  spin: string;
+  hold: string;
+  reset: string;
+  xMaxTitle: string;
+  animate: string;
+  stop: string;
+  liveValues: string;
+  vCut: string;
+  aExact: string;
+  liveNote: string;
+  painterParadox: string;
+  epsilon: string;
+  paintCoat: string;
+  paintFill: string;
+  paintNote: string;
+  canvas3dLabel: string;
+  canvas2dLabel: string;
+};
+
+const RICH_EXPLORER: Record<Locale, RichExplorer> = {
+  en: {
+    badge3d: "Solid of revolution · drag to rotate",
+    badge2d: "Side view · y = ±1/x · x ∈ [1, x_max]",
+    convergence: "V → π · A → ∞",
+    view: "View",
+    spin: "Spin",
+    hold: "Hold",
+    reset: "Reset",
+    xMaxTitle: "x_max, cutoff (log scale)",
+    animate: "Animate growth",
+    stop: "Stop",
+    liveValues: "Live values",
+    vCut: "V (cut)",
+    aExact: "A (exact)",
+    liveNote:
+      "As x_max → ∞: V → π (finite), A → ∞ (the harmonic integral diverges). The lower bound 2π · ln(x_max) makes the divergence visible.",
+    painterParadox: "Painter's paradox",
+    epsilon: "ε (paint thickness)",
+    paintCoat: "Paint to coat at ε",
+    paintFill: "Paint to fill (V)",
+    paintNote:
+      "Honest paint has nonzero thickness. Coating an infinite surface then already costs infinite volume, and the paradox dissolves.",
+    canvas3dLabel: "Gabriel's Horn as a 3D solid of revolution, cut off at x_max",
+    canvas2dLabel: "Side profile of Gabriel's Horn, y = ±1/x for x from 1 to x_max",
+  },
+  de: {
+    badge3d: "Rotationskörper · ziehen zum Drehen",
+    badge2d: "Seitenansicht · y = ±1/x · x ∈ [1, x_max]",
+    convergence: "V → π · A → ∞",
+    view: "Ansicht",
+    spin: "Dreht",
+    hold: "Hält",
+    reset: "Zurücksetzen",
+    xMaxTitle: "x_max, Abschneidung (log. Skala)",
+    animate: "Wachstum animieren",
+    stop: "Stopp",
+    liveValues: "Live-Werte",
+    vCut: "V (Schnitt)",
+    aExact: "A (exakt)",
+    liveNote:
+      "Für x_max → ∞: V → π (endlich), A → ∞ (das harmonische Integral divergiert). Die untere Schranke 2π · ln(x_max) macht die Divergenz sichtbar.",
+    painterParadox: "Malerparadoxon",
+    epsilon: "ε (Farbdicke)",
+    paintCoat: "Farbe zum Streichen bei ε",
+    paintFill: "Farbe zum Füllen (V)",
+    paintNote:
+      "Echte Farbe hat eine Dicke ungleich null. Eine unendliche Fläche zu überziehen kostet dann schon unendliches Volumen, und das Paradoxon löst sich auf.",
+    canvas3dLabel: "Gabriels Horn als 3D-Rotationskörper, abgeschnitten bei x_max",
+    canvas2dLabel: "Seitenprofil von Gabriels Horn, y = ±1/x für x von 1 bis x_max",
+  },
+  es: {
+    badge3d: "Sólido de revolución · arrastra para girar",
+    badge2d: "Vista lateral · y = ±1/x · x ∈ [1, x_max]",
+    convergence: "V → π · A → ∞",
+    view: "Vista",
+    spin: "Gira",
+    hold: "Fija",
+    reset: "Reiniciar",
+    xMaxTitle: "x_max, corte (escala log)",
+    animate: "Animar crecimiento",
+    stop: "Detener",
+    liveValues: "Valores en vivo",
+    vCut: "V (corte)",
+    aExact: "A (exacta)",
+    liveNote:
+      "Cuando x_max → ∞: V → π (finito), A → ∞ (la integral armónica diverge). La cota inferior 2π · ln(x_max) hace visible la divergencia.",
+    painterParadox: "Paradoja del pintor",
+    epsilon: "ε (grosor de pintura)",
+    paintCoat: "Pintura para cubrir con ε",
+    paintFill: "Pintura para llenar (V)",
+    paintNote:
+      "La pintura real tiene grosor no nulo. Cubrir una superficie infinita ya cuesta entonces volumen infinito, y la paradoja se disuelve.",
+    canvas3dLabel: "El cuerno de Gabriel como sólido de revolución 3D, cortado en x_max",
+    canvas2dLabel: "Perfil lateral del cuerno de Gabriel, y = ±1/x para x de 1 a x_max",
+  },
+  fr: {
+    badge3d: "Solide de révolution · glisse pour tourner",
+    badge2d: "Vue de côté · y = ±1/x · x ∈ [1, x_max]",
+    convergence: "V → π · A → ∞",
+    view: "Vue",
+    spin: "Tourne",
+    hold: "Fige",
+    reset: "Réinitialiser",
+    xMaxTitle: "x_max, coupure (échelle log)",
+    animate: "Animer la croissance",
+    stop: "Arrêter",
+    liveValues: "Valeurs en direct",
+    vCut: "V (coupe)",
+    aExact: "A (exacte)",
+    liveNote:
+      "Quand x_max → ∞ : V → π (fini), A → ∞ (l'intégrale harmonique diverge). La borne inférieure 2π · ln(x_max) rend la divergence visible.",
+    painterParadox: "Paradoxe du peintre",
+    epsilon: "ε (épaisseur de peinture)",
+    paintCoat: "Peinture pour couvrir à ε",
+    paintFill: "Peinture pour remplir (V)",
+    paintNote:
+      "La vraie peinture a une épaisseur non nulle. Couvrir une surface infinie coûte alors déjà un volume infini, et le paradoxe se dissout.",
+    canvas3dLabel: "La trompette de Gabriel comme solide de révolution 3D, coupée à x_max",
+    canvas2dLabel: "Profil latéral de la trompette de Gabriel, y = ±1/x pour x de 1 à x_max",
+  },
+  it: {
+    badge3d: "Solido di rotazione · trascina per ruotare",
+    badge2d: "Vista laterale · y = ±1/x · x ∈ [1, x_max]",
+    convergence: "V → π · A → ∞",
+    view: "Vista",
+    spin: "Ruota",
+    hold: "Ferma",
+    reset: "Reimposta",
+    xMaxTitle: "x_max, taglio (scala log)",
+    animate: "Anima la crescita",
+    stop: "Ferma",
+    liveValues: "Valori dal vivo",
+    vCut: "V (taglio)",
+    aExact: "A (esatta)",
+    liveNote:
+      "Per x_max → ∞: V → π (finito), A → ∞ (l'integrale armonico diverge). L'estremo inferiore 2π · ln(x_max) rende visibile la divergenza.",
+    painterParadox: "Paradosso del pittore",
+    epsilon: "ε (spessore vernice)",
+    paintCoat: "Vernice per rivestire a ε",
+    paintFill: "Vernice per riempire (V)",
+    paintNote:
+      "La vernice vera ha spessore non nullo. Rivestire una superficie infinita costa allora già volume infinito, e il paradosso si dissolve.",
+    canvas3dLabel: "Il corno di Gabriele come solido di rotazione 3D, tagliato a x_max",
+    canvas2dLabel: "Profilo laterale del corno di Gabriele, y = ±1/x per x da 1 a x_max",
+  },
+  pt: {
+    badge3d: "Sólido de revolução · arrasta para rodar",
+    badge2d: "Vista lateral · y = ±1/x · x ∈ [1, x_max]",
+    convergence: "V → π · A → ∞",
+    view: "Vista",
+    spin: "Roda",
+    hold: "Fixa",
+    reset: "Repor",
+    xMaxTitle: "x_max, corte (escala log)",
+    animate: "Animar crescimento",
+    stop: "Parar",
+    liveValues: "Valores ao vivo",
+    vCut: "V (corte)",
+    aExact: "A (exata)",
+    liveNote:
+      "Quando x_max → ∞: V → π (finito), A → ∞ (o integral harmónico diverge). O limite inferior 2π · ln(x_max) torna a divergência visível.",
+    painterParadox: "Paradoxo do pintor",
+    epsilon: "ε (espessura da tinta)",
+    paintCoat: "Tinta para cobrir a ε",
+    paintFill: "Tinta para encher (V)",
+    paintNote:
+      "A tinta real tem espessura não nula. Cobrir uma superfície infinita custa então já volume infinito, e o paradoxo dissolve-se.",
+    canvas3dLabel: "A trombeta de Gabriel como sólido de revolução 3D, cortada em x_max",
+    canvas2dLabel: "Perfil lateral da trombeta de Gabriel, y = ±1/x para x de 1 a x_max",
+  },
+  sv: {
+    badge3d: "Rotationskropp · dra för att rotera",
+    badge2d: "Sidvy · y = ±1/x · x ∈ [1, x_max]",
+    convergence: "V → π · A → ∞",
+    view: "Vy",
+    spin: "Snurrar",
+    hold: "Stilla",
+    reset: "Återställ",
+    xMaxTitle: "x_max, avskärning (log-skala)",
+    animate: "Animera tillväxt",
+    stop: "Stopp",
+    liveValues: "Livevärden",
+    vCut: "V (kapad)",
+    aExact: "A (exakt)",
+    liveNote:
+      "När x_max → ∞: V → π (ändlig), A → ∞ (den harmoniska integralen divergerar). Den nedre gränsen 2π · ln(x_max) gör divergensen synlig.",
+    painterParadox: "Målarens paradox",
+    epsilon: "ε (färgtjocklek)",
+    paintCoat: "Färg för att täcka vid ε",
+    paintFill: "Färg för att fylla (V)",
+    paintNote:
+      "Riktig färg har tjocklek skild från noll. Att täcka en oändlig yta kostar då redan oändlig volym, och paradoxen löses upp.",
+    canvas3dLabel: "Gabriels horn som en 3D-rotationskropp, avskuren vid x_max",
+    canvas2dLabel: "Sidoprofil av Gabriels horn, y = ±1/x för x från 1 till x_max",
+  },
+  no: {
+    badge3d: "Rotasjonslegeme · dra for å rotere",
+    badge2d: "Sidevisning · y = ±1/x · x ∈ [1, x_max]",
+    convergence: "V → π · A → ∞",
+    view: "Visning",
+    spin: "Snurrer",
+    hold: "Fast",
+    reset: "Nullstill",
+    xMaxTitle: "x_max, avskjæring (log-skala)",
+    animate: "Animer vekst",
+    stop: "Stopp",
+    liveValues: "Sanntidsverdier",
+    vCut: "V (kuttet)",
+    aExact: "A (eksakt)",
+    liveNote:
+      "Når x_max → ∞: V → π (endelig), A → ∞ (det harmoniske integralet divergerer). Den nedre grensen 2π · ln(x_max) gjør divergensen synlig.",
+    painterParadox: "Malerens paradoks",
+    epsilon: "ε (malingstykkelse)",
+    paintCoat: "Maling for å dekke ved ε",
+    paintFill: "Maling for å fylle (V)",
+    paintNote:
+      "Ekte maling har tykkelse ulik null. Å dekke en uendelig flate koster da allerede uendelig volum, og paradokset løser seg opp.",
+    canvas3dLabel: "Gabriels horn som et 3D-rotasjonslegeme, kuttet ved x_max",
+    canvas2dLabel: "Sideprofil av Gabriels horn, y = ±1/x for x fra 1 til x_max",
+  },
+};
+
 export default function GabrielsHornExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.gabrielshorn;
+  const tr = RICH_EXPLORER[locale];
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [logXMax, setLogXMax] = useState<number>(Math.log10(10));
@@ -47,11 +286,33 @@ export default function GabrielsHornExplorer() {
   const animRef = useRef<number | null>(null);
   const dpr = useDpr();
 
+  // Honour prefers-reduced-motion: freeze the auto-spin and the growth
+  // animation, but keep drag-to-rotate and the sliders working. Re-subscribe
+  // on change so toggling the OS setting live takes effect without a reload.
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(m.matches);
+    const h = (e: MediaQueryListEvent) => setReduced(e.matches);
+    m.addEventListener?.("change", h);
+    return () => m.removeEventListener?.("change", h);
+  }, []);
+  useEffect(() => {
+    if (reduced) {
+      setSpin(false);
+      setAnimate(false);
+    }
+  }, [reduced]);
+
   // 3D rotation state.
   const yawRef = useRef(0.7);
   const pitchRef = useRef(0.25);
   const draggingRef = useRef(false);
   const lastRef = useRef({ x: 0, y: 0 });
+  // Exposed so drag handlers can repaint on demand while the rAF loop is off
+  // (reduced motion).
+  const drawRef = useRef<() => void>(() => {});
 
   const xMax = Math.pow(10, logXMax);
 
@@ -255,6 +516,8 @@ export default function GabrielsHornExplorer() {
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
       canvas.height = Math.floor(canvas.clientHeight * dpr);
+      // Under reduced motion the loop won't repaint, so redraw on resize.
+      if (reduced) drawRef.current();
     };
     resize();
     const ro = new ResizeObserver(resize);
@@ -278,9 +541,15 @@ export default function GabrielsHornExplorer() {
     const draw = () => {
       const W = canvas.width;
       const H = canvas.height;
-      // Slight trail clear for motion blur.
-      ctx.fillStyle = "rgba(6, 7, 13, 0.28)";
-      ctx.fillRect(0, 0, W, H);
+      if (reduced) {
+        // Static frame: opaque clear so drag repaints leave no motion trail.
+        ctx.fillStyle = palette.canvas.bg;
+        ctx.fillRect(0, 0, W, H);
+      } else {
+        // Slight trail clear for motion blur.
+        ctx.fillStyle = "rgba(6, 7, 13, 0.28)";
+        ctx.fillRect(0, 0, W, H);
+      }
 
       const yaw = yawRef.current;
       const pitch = pitchRef.current;
@@ -394,46 +663,46 @@ export default function GabrielsHornExplorer() {
       }
       ctx.stroke();
 
-      // Auto-spin if not dragging and spin is enabled.
-      if (!draggingRef.current && spin) yawRef.current += 0.004;
-
-      raf = requestAnimationFrame(draw);
+      // Auto-spin if not dragging and spin is enabled (never under reduced
+      // motion, where the rAF loop is not scheduled at all).
+      if (!reduced) {
+        if (!draggingRef.current && spin) yawRef.current += 0.004;
+        raf = requestAnimationFrame(draw);
+      }
     };
-    raf = requestAnimationFrame(draw);
+    drawRef.current = draw;
+    if (!reduced) raf = requestAnimationFrame(draw);
+    else draw();
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [xMax, view, spin, dpr]);
+  }, [xMax, view, spin, dpr, reduced]);
 
-  // Window-level drag listeners (only active when view is 3D).
-  useEffect(() => {
-    if (view !== "3d") return;
-    const onMove = (e: MouseEvent) => {
-      if (!draggingRef.current) return;
-      const dx = e.clientX - lastRef.current.x;
-      const dy = e.clientY - lastRef.current.y;
-      lastRef.current = { x: e.clientX, y: e.clientY };
-      yawRef.current += dx * 0.01;
-      pitchRef.current = Math.max(-0.9, Math.min(0.9, pitchRef.current + dy * 0.01));
-    };
-    const onUp = () => {
-      draggingRef.current = false;
-    };
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseup", onUp);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseup", onUp);
-      draggingRef.current = false;
-    };
-  }, [view]);
-
-  const onCanvasMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  // Pointer-based drag so touch devices can rotate too (the old mouse-only
+  // listeners were dead on phones/tablets). setPointerCapture keeps the drag
+  // alive if the pointer leaves the canvas; touch-none on the canvas stops the
+  // page from scrolling mid-rotate.
+  const onCanvasPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (view !== "3d") return;
     draggingRef.current = true;
     lastRef.current = { x: e.clientX, y: e.clientY };
+    (e.target as HTMLCanvasElement).setPointerCapture?.(e.pointerId);
+  };
+  const onCanvasPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (view !== "3d" || !draggingRef.current) return;
+    const dx = e.clientX - lastRef.current.x;
+    const dy = e.clientY - lastRef.current.y;
+    lastRef.current = { x: e.clientX, y: e.clientY };
+    yawRef.current += dx * 0.01;
+    pitchRef.current = Math.max(-0.9, Math.min(0.9, pitchRef.current + dy * 0.01));
+    // Under reduced motion the rAF loop is off, so repaint on each drag step.
+    if (reduced) drawRef.current();
+  };
+  const onCanvasPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    draggingRef.current = false;
+    (e.target as HTMLCanvasElement).releasePointerCapture?.(e.pointerId);
   };
 
   const resetRotation = () => {
@@ -452,19 +721,22 @@ export default function GabrielsHornExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {view === "3d"
-                ? "Solid of revolution · drag to rotate"
-                : "Side view · y = ±1/x  ·  x ∈ [1, x_max]"}
+              {view === "3d" ? tr.badge3d : tr.badge2d}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              V → π · A → ∞
+              {tr.convergence}
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
             <canvas
               ref={canvasRef}
-              className={`block h-full w-full ${view === "3d" ? "cursor-grab active:cursor-grabbing" : ""}`}
-              onMouseDown={onCanvasMouseDown}
+              role="img"
+              aria-label={view === "3d" ? tr.canvas3dLabel : tr.canvas2dLabel}
+              className={`block h-full w-full ${view === "3d" ? "cursor-grab touch-none active:cursor-grabbing" : ""}`}
+              onPointerDown={onCanvasPointerDown}
+              onPointerMove={onCanvasPointerMove}
+              onPointerUp={onCanvasPointerUp}
+              onPointerLeave={onCanvasPointerUp}
             />
           </div>
         </div>
@@ -480,7 +752,7 @@ export default function GabrielsHornExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              View
+              {tr.view}
             </div>
             <div className="flex items-center gap-2">
               <div className="hairline inline-flex overflow-hidden rounded-md border">
@@ -515,13 +787,13 @@ export default function GabrielsHornExplorer() {
                         : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
                     }`}
                   >
-                    {spin ? "Spin" : "Hold"}
+                    {spin ? tr.spin : tr.hold}
                   </button>
                   <button
                     onClick={resetRotation}
                     className="hairline rounded-md border px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-amber/40 hover:text-ink-100"
                   >
-                    Reset
+                    {tr.reset}
                   </button>
                 </>
               )}
@@ -530,7 +802,7 @@ export default function GabrielsHornExplorer() {
 
           <div className="hairline space-y-4 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              x_max — cutoff (log scale)
+              {tr.xMaxTitle}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-amber">{sig6(xMax)}</span>
@@ -542,7 +814,7 @@ export default function GabrielsHornExplorer() {
                     : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
                 }`}
               >
-                {animate ? "Stop" : "Animate growth"}
+                {animate ? tr.stop : tr.animate}
               </button>
             </div>
             <input
@@ -551,6 +823,7 @@ export default function GabrielsHornExplorer() {
               min={LOG_X_MAX_MIN}
               max={LOG_X_MAX_MAX}
               step={0.001}
+              aria-label={tr.xMaxTitle}
               onChange={(e) => setLogXMax(parseFloat(e.target.value))}
               className="w-full accent-signal-amber"
             />
@@ -564,13 +837,13 @@ export default function GabrielsHornExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Live values
+              {tr.liveValues}
             </div>
             <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 font-mono text-xs">
-              <span className="text-ink-300">V (cut)</span>
+              <span className="text-ink-300">{tr.vCut}</span>
               <span className="text-signal-amber">π · (1 − 1/x_max) = {sig6(V)}</span>
 
-              <span className="text-ink-300">A (exact)</span>
+              <span className="text-ink-300">{tr.aExact}</span>
               <span className="text-signal-amber">{sig6(A)}</span>
 
               <span className="text-ink-300">A ≥ 2π ln(x_max)</span>
@@ -579,18 +852,15 @@ export default function GabrielsHornExplorer() {
               <span className="text-ink-300">V / π</span>
               <span className="text-ink-200">{sig6(V / Math.PI)}</span>
             </div>
-            <p className="pt-2 text-[11px] leading-relaxed text-ink-400">
-              As x_max → ∞: V → π (finite), A → ∞ (the harmonic integral diverges). The lower bound
-              2π · ln(x_max) makes the divergence visible.
-            </p>
+            <p className="pt-2 text-[11px] leading-relaxed text-ink-400">{tr.liveNote}</p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Painter's paradox
+              {tr.painterParadox}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-ink-300">ε (paint thickness)</span>
+              <span className="text-ink-300">{tr.epsilon}</span>
               <span className="text-signal-amber">{sig6(epsilon)}</span>
             </div>
             <input
@@ -599,19 +869,17 @@ export default function GabrielsHornExplorer() {
               min={0.001}
               max={0.1}
               step={0.001}
+              aria-label={tr.epsilon}
               onChange={(e) => setEpsilon(parseFloat(e.target.value))}
               className="w-full accent-signal-amber"
             />
             <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 font-mono text-xs">
-              <span className="text-ink-300">Paint to coat at ε</span>
+              <span className="text-ink-300">{tr.paintCoat}</span>
               <span className="text-signal-amber">A · ε = {sig6(paintVol)}</span>
-              <span className="text-ink-300">Paint to fill (V)</span>
+              <span className="text-ink-300">{tr.paintFill}</span>
               <span className="text-ink-200">{sig6(V)}</span>
             </div>
-            <p className="pt-1 text-[11px] leading-relaxed text-ink-400">
-              Honest paint has nonzero thickness. Over an infinite surface that already costs
-              infinite volume — and the paradox dissolves.
-            </p>
+            <p className="pt-1 text-[11px] leading-relaxed text-ink-400">{tr.paintNote}</p>
           </div>
 
           <div className="p-5">

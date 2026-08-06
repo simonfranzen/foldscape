@@ -12,6 +12,11 @@ import type { StoryPage } from "@/lib/i18n/stories";
 
 const ACCENT = "text-signal-amber";
 
+const withAlpha = (hex: string, a: number) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+};
+
 // --------------------------------------------------------------------------
 // Rich, per-locale story content. The hero (pretitle/title/tagline/intro)
 // still comes from the shared stories.ts; everything below the hero is
@@ -55,6 +60,15 @@ type RichStory = {
   integerTableNote: string;
   integerTableSeedHead: string;
   integerTableRestHead: string;
+  // Strings that used to be hardcoded English inside the story JSX.
+  extras: {
+    keyCurvature: string;
+    keyEncloses: string;
+    descartesExplain: string;
+    hausdorffLabel: string;
+    hausdorffCaption: string;
+    seedTripleLabel: string;
+  };
   closingPretitle: string;
   closingTitle: string;
   closingBody: string;
@@ -147,7 +161,17 @@ const en: RichStory = {
     hint: "Each step fills every curved-triangle gap with its inscribed circle. The colour sweeps with the log of the curvature: rose for the outer ring, then amber, cyan, violet for finer and finer detail.",
     pretitle: "Interactive · the recursive picture",
     title: "Pick a seed, turn the depth knob",
-    body: "Choose one of the four classical integer seeds, then slide the recursion depth up and down. At depth 1 you see the seed itself; at depth 6 a coral of thousands of circles. The renderer is the same one that powers the full Explorer — only the depth ceiling is lower so the story page stays responsive.",
+    body: "Choose one of the four classical integer seeds, then slide the recursion depth up and down. At depth 1 the first generations already fill the gaps; at depth 6 a coral of thousands of circles. The renderer is the same one that powers the full Explorer — only the depth ceiling is lower so the story page stays responsive.",
+  },
+  extras: {
+    keyCurvature: "k = 1/r · the curvature",
+    keyEncloses: "k < 0 · circle encloses the others",
+    descartesExplain:
+      "Two solutions: the + sign drops the small inscribed circle into the gap; the − sign gives the other tangent circle on the opposite side of the triple.",
+    hausdorffLabel: "Hausdorff dimension",
+    hausdorffCaption:
+      "Strictly between a curve (dimension 1) and a region (dimension 2). The Apollonian residual set has measure zero but is fractally dense at every scale.",
+    seedTripleLabel: "seed triple",
   },
   integerTableLabel: "Integer seed packings",
   integerTableNote:
@@ -247,7 +271,17 @@ const de: RichStory = {
     hint: "Jeder Schritt füllt jede gekrümmte Dreieckslücke mit ihrem eingeschriebenen Kreis. Die Farbe folgt dem Log der Krümmung: Rosa für den Außenring, dann Amber, Cyan, Violett bei immer feineren Details.",
     pretitle: "Interaktiv · das rekursive Bild",
     title: "Wähl einen Keim, dreh am Tiefen-Regler",
-    body: "Wähl einen der vier klassischen Ganzzahl-Keime, und zieh dann den Rekursionsschieber rauf und runter. Bei Tiefe 1 siehst du nur den Keim, bei Tiefe 6 eine Koralle aus Tausenden Kreisen. Der Renderer ist derselbe wie im großen Explorer — nur die Tiefen-Obergrenze ist niedriger, damit die Story-Seite flüssig bleibt.",
+    body: "Wähl einen der vier klassischen Ganzzahl-Keime, und zieh dann den Rekursionsschieber rauf und runter. Bei Tiefe 1 füllen die ersten Generationen bereits die Lücken, bei Tiefe 6 eine Koralle aus Tausenden Kreisen. Der Renderer ist derselbe wie im großen Explorer — nur die Tiefen-Obergrenze ist niedriger, damit die Story-Seite flüssig bleibt.",
+  },
+  extras: {
+    keyCurvature: "k = 1/r · die Krümmung",
+    keyEncloses: "k < 0 · Kreis umschließt die anderen",
+    descartesExplain:
+      "Zwei Lösungen: das +-Zeichen setzt den kleinen eingeschriebenen Kreis in die Lücke, das −-Zeichen liefert den anderen Tangentialkreis auf der gegenüberliegenden Seite des Tripels.",
+    hausdorffLabel: "Hausdorff-Dimension",
+    hausdorffCaption:
+      "Streng zwischen einer Kurve (Dimension 1) und einer Fläche (Dimension 2). Die Apollonische Restmenge hat Maß null, ist aber auf jeder Skala fraktal dicht.",
+    seedTripleLabel: "Keim-Tripel",
   },
   integerTableLabel: "Ganzzahlige Keim-Packungen",
   integerTableNote:
@@ -347,7 +381,17 @@ const es: RichStory = {
     hint: "Cada paso rellena cada hueco triangular curvado con su círculo inscrito. El color sigue el logaritmo de la curvatura: rosa para el aro exterior, luego ámbar, cian, violeta para los detalles cada vez más finos.",
     pretitle: "Interactivo · la imagen recursiva",
     title: "Elige una semilla, gira la perilla de profundidad",
-    body: "Elige una de las cuatro semillas enteras clásicas y luego desliza la profundidad arriba y abajo. A profundidad 1 ves solo la semilla; a 6, un coral de miles de círculos. El renderizador es el mismo del Explorador grande — solo el tope de profundidad es menor para que la página siga ligera.",
+    body: "Elige una de las cuatro semillas enteras clásicas y luego desliza la profundidad arriba y abajo. A profundidad 1 las primeras generaciones ya rellenan los huecos; a 6, un coral de miles de círculos. El renderizador es el mismo del Explorador grande — solo el tope de profundidad es menor para que la página siga ligera.",
+  },
+  extras: {
+    keyCurvature: "k = 1/r · la curvatura",
+    keyEncloses: "k < 0 · el círculo encierra a los demás",
+    descartesExplain:
+      "Dos soluciones: el signo + mete el pequeño círculo inscrito en el hueco; el signo − da el otro círculo tangente al lado opuesto del trío.",
+    hausdorffLabel: "Dimensión de Hausdorff",
+    hausdorffCaption:
+      "Estrictamente entre una curva (dimensión 1) y una región (dimensión 2). El conjunto residual apoloniano tiene medida cero pero es fractalmente denso a toda escala.",
+    seedTripleLabel: "trío semilla",
   },
   integerTableLabel: "Semillas enteras",
   integerTableNote:
@@ -447,7 +491,17 @@ const fr: RichStory = {
     hint: "Chaque pas remplit chaque vide triangulaire courbe avec son cercle inscrit. La couleur suit le log de la courbure : rose pour l'anneau extérieur, puis ambre, cyan, violet pour les détails de plus en plus fins.",
     pretitle: "Interactif · l'image récursive",
     title: "Choisis une graine, tourne la molette de profondeur",
-    body: "Choisis l'une des quatre graines entières classiques, puis glisse la profondeur de récursion vers le haut et le bas. À profondeur 1 tu vois la graine ; à 6, un corail de milliers de cercles. Le moteur est le même que dans le grand Explorateur — seul le plafond de profondeur est plus bas pour que la page reste fluide.",
+    body: "Choisis l'une des quatre graines entières classiques, puis glisse la profondeur de récursion vers le haut et le bas. À profondeur 1 les premières générations comblent déjà les vides ; à 6, un corail de milliers de cercles. Le moteur est le même que dans le grand Explorateur — seul le plafond de profondeur est plus bas pour que la page reste fluide.",
+  },
+  extras: {
+    keyCurvature: "k = 1/r · la courbure",
+    keyEncloses: "k < 0 · le cercle enferme les autres",
+    descartesExplain:
+      "Deux solutions : le signe + place le petit cercle inscrit dans le vide ; le signe − donne l'autre cercle tangent du côté opposé au triplet.",
+    hausdorffLabel: "Dimension de Hausdorff",
+    hausdorffCaption:
+      "Strictement entre une courbe (dimension 1) et une région (dimension 2). L'ensemble résiduel apollonien est de mesure nulle mais fractalement dense à toute échelle.",
+    seedTripleLabel: "triplet germe",
   },
   integerTableLabel: "Graines entières",
   integerTableNote:
@@ -547,7 +601,17 @@ const it: RichStory = {
     hint: "Ogni passo riempie ogni vuoto triangolare curvo con il suo cerchio inscritto. Il colore segue il log della curvatura: rosa per l'anello esterno, poi ambra, ciano, violetto per i dettagli sempre più fini.",
     pretitle: "Interattivo · l'immagine ricorsiva",
     title: "Scegli un seme, gira la manopola della profondità",
-    body: "Scegli uno dei quattro semi interi classici, poi muovi su e giù il cursore della profondità. A profondità 1 vedi solo il seme; a 6 un corallo di migliaia di cerchi. Il renderer è lo stesso del grande Esploratore — solo il tetto di profondità è più basso perché la pagina resti reattiva.",
+    body: "Scegli uno dei quattro semi interi classici, poi muovi su e giù il cursore della profondità. A profondità 1 le prime generazioni riempiono già i vuoti; a 6 un corallo di migliaia di cerchi. Il renderer è lo stesso del grande Esploratore — solo il tetto di profondità è più basso perché la pagina resti reattiva.",
+  },
+  extras: {
+    keyCurvature: "k = 1/r · la curvatura",
+    keyEncloses: "k < 0 · il cerchio racchiude gli altri",
+    descartesExplain:
+      "Due soluzioni: il segno + inserisce il piccolo cerchio inscritto nella lacuna; il segno − dà l'altro cerchio tangente sul lato opposto della terna.",
+    hausdorffLabel: "Dimensione di Hausdorff",
+    hausdorffCaption:
+      "Rigorosamente tra una curva (dimensione 1) e una regione (dimensione 2). L'insieme residuo apollineo ha misura nulla ma è frattalmente denso a ogni scala.",
+    seedTripleLabel: "terna seme",
   },
   integerTableLabel: "Semi interi",
   integerTableNote:
@@ -647,7 +711,17 @@ const pt: RichStory = {
     hint: "Cada passo enche cada vazio triangular curvo com o seu círculo inscrito. A cor segue o log da curvatura: rosa para o anel exterior, depois âmbar, ciano, violeta para os detalhes cada vez mais finos.",
     pretitle: "Interativo · a imagem recursiva",
     title: "Escolhe uma semente, roda o botão da profundidade",
-    body: "Escolhe uma das quatro sementes inteiras clássicas e depois desliza a profundidade para cima e para baixo. Na profundidade 1 vês só a semente; em 6, um coral de milhares de círculos. O motor é o mesmo do grande Explorador — só o tecto de profundidade é mais baixo para a página continuar fluida.",
+    body: "Escolhe uma das quatro sementes inteiras clássicas e depois desliza a profundidade para cima e para baixo. Na profundidade 1 as primeiras gerações já enchem os vazios; em 6, um coral de milhares de círculos. O motor é o mesmo do grande Explorador — só o tecto de profundidade é mais baixo para a página continuar fluida.",
+  },
+  extras: {
+    keyCurvature: "k = 1/r · a curvatura",
+    keyEncloses: "k < 0 · o círculo envolve os outros",
+    descartesExplain:
+      "Duas soluções: o sinal + coloca o pequeno círculo inscrito na lacuna; o sinal − dá o outro círculo tangente do lado oposto do trio.",
+    hausdorffLabel: "Dimensão de Hausdorff",
+    hausdorffCaption:
+      "Estritamente entre uma curva (dimensão 1) e uma região (dimensão 2). O conjunto residual apoloniano tem medida nula mas é fractalmente denso a qualquer escala.",
+    seedTripleLabel: "trio semente",
   },
   integerTableLabel: "Sementes inteiras",
   integerTableNote:
@@ -747,7 +821,17 @@ const sv: RichStory = {
     hint: "Varje steg fyller varje krökt triangeltomrum med sin inskrivna cirkel. Färgen följer logaritmen av krökningen: rosa för yttre ringen, sedan bärnsten, cyan, violett för allt finare detaljer.",
     pretitle: "Interaktivt · den rekursiva bilden",
     title: "Välj ett frö, vrid på djupreglaget",
-    body: "Välj ett av de fyra klassiska heltalsfröna och dra sedan djupreglaget upp och ner. Vid djup 1 ser du bara fröet; vid 6 en korall av tusentals cirklar. Renderaren är samma som i stora Utforskaren — bara djupgränsen är lägre för att sidan ska förbli följsam.",
+    body: "Välj ett av de fyra klassiska heltalsfröna och dra sedan djupreglaget upp och ner. Vid djup 1 fyller de första generationerna redan tomrummen; vid 6 en korall av tusentals cirklar. Renderaren är samma som i stora Utforskaren — bara djupgränsen är lägre för att sidan ska förbli följsam.",
+  },
+  extras: {
+    keyCurvature: "k = 1/r · krökningen",
+    keyEncloses: "k < 0 · cirkeln omsluter de andra",
+    descartesExplain:
+      "Två lösningar: plustecknet placerar den lilla inskrivna cirkeln i tomrummet; minustecknet ger den andra tangerande cirkeln på trippelns motsatta sida.",
+    hausdorffLabel: "Hausdorffdimension",
+    hausdorffCaption:
+      "Strikt mellan en kurva (dimension 1) och en yta (dimension 2). Den apollonska restmängden har mått noll men är fraktalt tät på varje skala.",
+    seedTripleLabel: "frötrippel",
   },
   integerTableLabel: "Heltalsfrö",
   integerTableNote:
@@ -847,7 +931,17 @@ const no: RichStory = {
     hint: "Hvert trinn fyller hvert krummede trekant-tomrom med sin innskrevne sirkel. Fargen følger logaritmen til krumningen: rosa for ytterringen, så rav, cyan, fiolett for stadig finere detaljer.",
     pretitle: "Interaktivt · det rekursive bildet",
     title: "Velg et frø, vri på dybde-rattet",
-    body: "Velg ett av de fire klassiske heltallsfrøene, og dra så rekursjonsdybden opp og ned. Ved dybde 1 ser du bare frøet; ved 6 en korall av tusenvis av sirkler. Rendereren er den samme som i den store Utforskeren — bare dybdegrensen er lavere så historiesiden holder seg responsiv.",
+    body: "Velg ett av de fire klassiske heltallsfrøene, og dra så rekursjonsdybden opp og ned. Ved dybde 1 fyller de første generasjonene allerede tomrommene; ved 6 en korall av tusenvis av sirkler. Rendereren er den samme som i den store Utforskeren — bare dybdegrensen er lavere så historiesiden holder seg responsiv.",
+  },
+  extras: {
+    keyCurvature: "k = 1/r · krumningen",
+    keyEncloses: "k < 0 · sirkelen omslutter de andre",
+    descartesExplain:
+      "To løsninger: plusstegnet plasserer den lille innskrevne sirkelen i tomrommet; minustegnet gir den andre tangerende sirkelen på motsatt side av trippelen.",
+    hausdorffLabel: "Hausdorff-dimensjon",
+    hausdorffCaption:
+      "Strengt mellom en kurve (dimensjon 1) og et område (dimensjon 2). Den apollonske restmengden har mål null, men er fraktalt tett på enhver skala.",
+    seedTripleLabel: "frøtrippel",
   },
   integerTableLabel: "Heltallsfrø",
   integerTableNote:
@@ -874,11 +968,11 @@ function SeedSVG({ withLabels = true }: { withLabels?: boolean }) {
   const cy = 130;
   const map = (x: number, y: number) => [cx + x * S, cy - y * S] as const;
   const circles: Array<{ x: number; y: number; r: number; k: number; color: string }> = [
-    { x: 0, y: 0, r: 1, k: -1, color: "rgba(255,122,182,0.85)" },
-    { x: -0.5, y: 0, r: 0.5, k: 2, color: "rgba(125,243,255,0.85)" },
-    { x: 0.5, y: 0, r: 0.5, k: 2, color: "rgba(125,243,255,0.85)" },
-    { x: 0, y: 2 / 3, r: 1 / 3, k: 3, color: "rgba(255,209,102,0.95)" },
-    { x: 0, y: -2 / 3, r: 1 / 3, k: 3, color: "rgba(255,209,102,0.6)" },
+    { x: 0, y: 0, r: 1, k: -1, color: withAlpha(palette.signal.rose, 0.85) },
+    { x: -0.5, y: 0, r: 0.5, k: 2, color: withAlpha(palette.signal.cyan, 0.85) },
+    { x: 0.5, y: 0, r: 0.5, k: 2, color: withAlpha(palette.signal.cyan, 0.85) },
+    { x: 0, y: 2 / 3, r: 1 / 3, k: 3, color: withAlpha(palette.signal.amber, 0.95) },
+    { x: 0, y: -2 / 3, r: 1 / 3, k: 3, color: withAlpha(palette.signal.amber, 0.6) },
   ];
   return (
     <svg
@@ -913,7 +1007,7 @@ function SeedSVG({ withLabels = true }: { withLabels?: boolean }) {
               textAnchor="middle"
               fontFamily="ui-monospace, monospace"
               fontSize={11}
-              fill="#e8eaf2"
+              fill={palette.ink[100]}
             >
               k = {c.k}
             </text>
@@ -987,8 +1081,8 @@ export default function ApollonianStory() {
                       <SeedSVG withLabels />
                     </div>
                     <div className="hairline mt-3 space-y-1 rounded-md border bg-ink-950/60 p-3 font-mono text-[11px] text-ink-100">
-                      <div>k = 1/r · the curvature</div>
-                      <div>k &lt; 0 · circle encloses the others</div>
+                      <div>{story.extras.keyCurvature}</div>
+                      <div>{story.extras.keyEncloses}</div>
                     </div>
                   </>
                 ) : (
@@ -1030,8 +1124,7 @@ export default function ApollonianStory() {
               k₄ = k₁ + k₂ + k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁)
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Two solutions: the + sign drops the small inscribed circle into the gap; the − sign
-              gives the other tangent circle on the opposite side of the triple.
+              {story.extras.descartesExplain}
             </p>
           </div>
         </Reveal>
@@ -1062,6 +1155,7 @@ export default function ApollonianStory() {
             plusLabel={story.descartes.plusLabel}
             minusLabel={story.descartes.minusLabel}
             noteText={story.descartes.noteText}
+            seedTripleLabel={story.extras.seedTripleLabel}
           />
         </Reveal>
       </section>
@@ -1127,10 +1221,10 @@ export default function ApollonianStory() {
               <tbody>
                 {[
                   ["(−1, 2, 2, 3)", "3, 6, 6, 11, 14, 15, 18, 23, …"],
-                  ["(−2, 3, 6, 7)", "7, 10, 15, 19, 22, 27, 34, 35, …"],
-                  ["(−3, 5, 8, 8)", "8, 12, 17, 20, 24, 32, 33, …"],
-                  ["(−4, 8, 9, 9)", "9, 12, 17, 24, 25, 28, 33, …"],
-                  ["(−6, 11, 14, 15)", "15, 18, 23, 26, 30, 35, 38, …"],
+                  ["(−2, 3, 6, 7)", "7, 10, 15, 19, 22, 27, 31, 34, …"],
+                  ["(−3, 5, 8, 8)", "8, 12, 12, 20, 21, 29, 32, 44, …"],
+                  ["(−4, 8, 9, 9)", "9, 17, 17, 20, 33, 36, 41, 56, …"],
+                  ["(−6, 11, 14, 15)", "15, 23, 26, 35, 42, 47, 51, 59, …"],
                 ].map(([seed, rest]) => (
                   <tr key={seed} className="border-b border-ink-700/30 last:border-0">
                     <td className="px-2 py-2 text-signal-amber">{seed}</td>
@@ -1155,12 +1249,11 @@ export default function ApollonianStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Hausdorff dimension
+              {story.extras.hausdorffLabel}
             </div>
             <div className="math-italic text-6xl text-ink-100 md:text-7xl">≈ 1.3056867</div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Strictly between a curve (dimension 1) and a region (dimension 2). The Apollonian
-              residual set has measure zero but is fractally dense at every scale.
+              {story.extras.hausdorffCaption}
             </p>
           </div>
         </Reveal>

@@ -297,7 +297,7 @@ export default function RsaExplorer() {
             {derived.valid && euclid && (
               <div className="hairline space-y-3 rounded-md border bg-ink-950/60 p-4">
                 <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-                  Extended Euclidean · finding d so that e·d + φ(n)·t = 1
+                  Extended Euclidean · finding s so that e·s + φ(n)·t = 1, then d = s mod φ(n)
                 </div>
                 {euclid.g !== 1n ? (
                   <div className="font-mono text-xs text-signal-rose">
@@ -522,10 +522,14 @@ export default function RsaExplorer() {
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+            <label
+              htmlFor="rsa-e"
+              className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+            >
               Public exponent e
-            </div>
+            </label>
             <select
+              id="rsa-e"
               value={effectiveE.toString()}
               onChange={(ev) => setEVal(BigInt(ev.target.value))}
               disabled={!derived.valid || validEs.length === 0}
@@ -547,10 +551,14 @@ export default function RsaExplorer() {
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+            <label
+              htmlFor="rsa-m"
+              className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+            >
               Plaintext m (integer, 0 ≤ m &lt; n)
-            </div>
+            </label>
             <input
+              id="rsa-m"
               type="text"
               inputMode="numeric"
               value={m}
@@ -564,10 +572,14 @@ export default function RsaExplorer() {
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+            <label
+              htmlFor="rsa-text"
+              className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+            >
               Try as text
-            </div>
+            </label>
             <input
+              id="rsa-text"
               type="text"
               value={textInput}
               onChange={(ev) => setTextInput(ev.target.value)}
@@ -605,14 +617,18 @@ export default function RsaExplorer() {
             <button
               type="button"
               onClick={() => {
-                // Force a state update so the UI re-runs the memos — same as
-                // touching any of the inputs. Useful after editing the text
-                // field, to make it obvious recompute happened.
-                setM((cur) => cur);
+                // All derived values are already fully reactive, so a plain
+                // "recompute" would be a no-op. Reset every input back to the
+                // textbook key instead, which is a real state change.
+                setP(17n);
+                setQ(11n);
+                setEVal(7n);
+                setM("88");
+                setTextInput("rsa");
               }}
               className="w-full rounded-md border border-signal-cyan/40 bg-signal-cyan/5 px-3 py-2 font-mono text-xs uppercase tracking-widest2 text-signal-cyan transition-colors hover:bg-signal-cyan/15"
             >
-              Recompute
+              Reset to defaults
             </button>
           </div>
 

@@ -4,6 +4,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
+const withAlpha = (hex: string, a: number) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+};
+
 // Inline Apollonian gasket renderer for the story page. A scaled-down sibling
 // of the full explorer canvas: we share the geometry logic but limit depth and
 // expose only seed + depth as controls. The maths is exactly the same as
@@ -46,6 +51,10 @@ const cSqrt = (a: CNum): CNum => {
   return { re, im };
 };
 
+// In the complex Descartes theorem the centre-equation sign (linear ± 2√disc)
+// is independent of the curvature-equation sign (sumK ± 2√inner), so we return
+// both curvature roots plus the raw `linear` and `sq = 2√disc` terms and let
+// placeSeed pick the correct centre via a tangency test. See the explorer file.
 function descartesFourthZ(
   k1: number,
   k2: number,
@@ -53,7 +62,7 @@ function descartesFourthZ(
   z1: CNum,
   z2: CNum,
   z3: CNum,
-): { kPlus: number; kMinus: number; zPlus: CNum; zMinus: CNum } {
+): { kPlus: number; kMinus: number; linear: CNum; sq: CNum } {
   const sumK = k1 + k2 + k3;
   const inner = k1 * k2 + k2 * k3 + k3 * k1;
   const root = 2 * Math.sqrt(Math.max(0, inner));
@@ -65,14 +74,7 @@ function descartesFourthZ(
     cScale(cMul(z3, z1), k3 * k1),
   );
   const sq = cScale(cSqrt(disc), 2);
-  const zNumPlus = cAdd(linear, sq);
-  const zNumMinus = cSub(linear, sq);
-  return {
-    kPlus,
-    kMinus,
-    zPlus: cScale(zNumPlus, 1 / kPlus),
-    zMinus: cScale(zNumMinus, 1 / kMinus),
-  };
+  return { kPlus, kMinus, linear, sq };
 }
 
 function placeSeed(seeds: [number, number, number, number]): Circle[] {
@@ -96,15 +98,25 @@ function placeSeed(seeds: [number, number, number, number]): Circle[] {
   const z1: CNum = { re: c1.x, im: c1.y };
   const z2: CNum = { re: c2.x, im: c2.y };
   const cand = descartesFourthZ(c0.k, c1.k, c2.k, z0, z1, z2);
-  let z3pick: CNum;
-  if (Math.abs(cand.kPlus - k3) <= Math.abs(cand.kMinus - k3)) {
-    z3pick = cand.zPlus;
-  } else {
-    z3pick = cand.zMinus;
-  }
-  if (Math.sign(z3pick.im || 1) === Math.sign(z2.im || 1) && Math.abs(z3pick.im) > 1e-9) {
-    z3pick = { re: z3pick.re, im: -z3pick.im };
-  }
+  const kMatched =
+    Math.abs(cand.kPlus - k3) <= Math.abs(cand.kMinus - k3) ? cand.kPlus : cand.kMinus;
+  // Both (linear ± 2√disc)/kMatched are valid centres for the matched curvature;
+  // keep the one that is actually tangent to all three parent circles.
+  const candidates: CNum[] = [
+    cScale(cAdd(cand.linear, cand.sq), 1 / kMatched),
+    cScale(cSub(cand.linear, cand.sq), 1 / kMatched),
+  ];
+  const parents = [c0, c1, c2];
+  const tangencyResidual = (z: CNum): number =>
+    parents.reduce((sum, p) => {
+      const d = Math.hypot(z.re - p.x, z.im - p.y);
+      const expected = p.k < 0 ? p.r - r3 : p.r + r3;
+      return sum + Math.abs(d - expected);
+    }, 0);
+  const z3pick =
+    tangencyResidual(candidates[0]!) <= tangencyResidual(candidates[1]!)
+      ? candidates[0]!
+      : candidates[1]!;
   const c3: Circle = { x: z3pick.re, y: z3pick.im, r: r3, k: k3 };
   return [c0, c1, c2, c3];
 }
@@ -187,7 +199,10 @@ export function ApollonianGasket({ caption, seedLabel, depthLabel, countLabel, h
       ctx.fillRect(0, 0, W, H);
 
       const margin = 0.92;
-      const scale = (Math.min(W, H) / 2) * margin;
+      // Normalise by the outer-disc radius (1/|k_outer|) so every preset fills
+      // the frame; without this the −6 packing would draw at a sixth scale.
+      const outerR = circles[0]?.r ?? 1;
+      const scale = ((Math.min(W, H) / 2) * margin) / outerR;
       const cx = W / 2;
       const cy = H / 2;
       const toPx = (x: number, y: number): [number, number] => [cx + x * scale, cy - y * scale];
@@ -206,9 +221,9 @@ export function ApollonianGasket({ caption, seedLabel, depthLabel, countLabel, h
         const radiusPx = c.r * scale;
         if (radiusPx < 0.4) continue;
 
-        let stroke = "rgba(232, 234, 242, 0.85)";
+        let stroke = withAlpha(palette.ink[100], 0.85);
         if (c.k < 0) {
-          stroke = "rgba(255, 122, 182, 0.95)";
+          stroke = withAlpha(palette.signal.rose, 0.95);
         } else {
           const t = Math.min(1, Math.log10(Math.max(1, c.k)) / maxLog);
           const hue = (350 + t * 280) % 360;
@@ -236,7 +251,12 @@ export function ApollonianGasket({ caption, seedLabel, depthLabel, countLabel, h
 
       <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-[1fr_220px]">
         <div className="hairline mx-auto aspect-square w-full max-w-[360px] overflow-hidden rounded-xl border bg-ink-950">
-          <canvas ref={canvasRef} className="block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            className="block h-full w-full"
+            role="img"
+            aria-label={`${caption}: ${PRESETS[presetIdx]!.label}, ${countLabel(circles.length)}`}
+          />
         </div>
 
         <div className="space-y-4">
@@ -247,6 +267,7 @@ export function ApollonianGasket({ caption, seedLabel, depthLabel, countLabel, h
             <select
               value={presetIdx}
               onChange={(e) => setPresetIdx(parseInt(e.target.value, 10))}
+              aria-label={seedLabel}
               className="hairline w-full rounded-md border bg-ink-950 px-2 py-2 font-mono text-xs text-ink-100 focus:border-signal-rose/70 focus:outline-none"
             >
               {PRESETS.map((p, i) => (
@@ -272,6 +293,7 @@ export function ApollonianGasket({ caption, seedLabel, depthLabel, countLabel, h
               step={1}
               value={depth}
               onChange={(e) => setDepth(parseInt(e.target.value, 10))}
+              aria-label={depthLabel}
               className="w-full accent-signal-rose"
             />
           </div>

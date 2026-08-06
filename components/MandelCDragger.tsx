@@ -16,6 +16,9 @@ interface Props {
   maxSteps?: number;
   speedMs?: number;
   showSilhouette?: boolean;
+  // Localized status text. Defaults keep the component usable standalone.
+  statusEscaped?: (n: number) => string;
+  statusBounded?: (n: number) => string;
 }
 
 const ESCAPE_RADIUS = 2.0;
@@ -41,6 +44,8 @@ export function MandelCDragger({
   maxSteps = 200,
   speedMs = 80,
   showSilhouette = true,
+  statusEscaped = (n) => `escaped @ ${n}`,
+  statusBounded = (n) => `bounded · step ${n}`,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
@@ -49,6 +54,17 @@ export function MandelCDragger({
   const [tick, setTick] = useState(0);
   const [escaped, setEscaped] = useState(false);
   const [steps, setSteps] = useState(0);
+  const [reduced, setReduced] = useState(false);
+
+  // Honour prefers-reduced-motion: freeze the animation and draw one static
+  // frame. Re-subscribe so a live preference change flips the mode.
+  useEffect(() => {
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(m.matches);
+    const onChange = () => setReduced(m.matches);
+    m.addEventListener?.("change", onChange);
+    return () => m.removeEventListener?.("change", onChange);
+  }, []);
 
   // Coordinate helpers depend on canvas size at draw time; we compute them
   // inside the loop. Pointer handlers below need the inverse.
@@ -69,9 +85,6 @@ export function MandelCDragger({
       canvas.height = canvas.clientHeight * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
 
     const W = () => canvas.clientWidth;
     const H = () => canvas.clientHeight;
@@ -203,6 +216,44 @@ export function MandelCDragger({
       ctx.fillText("c", px(c[0]) + 10, py(c[1]) - 8);
     };
 
+    // Reduced motion: run the whole orbit once (stopping at escape) and draw a
+    // single static frame instead of the continuous animation.
+    const renderStatic = () => {
+      const c = cRef.current;
+      orbit = [[0, 0]];
+      escapedLocal = false;
+      let esc = false;
+      let n = 0;
+      for (let k = 0; k < maxSteps; k++) {
+        const [zx, zy] = orbit[orbit.length - 1];
+        const nx = zx * zx - zy * zy + c[0];
+        const ny = 2 * zx * zy + c[1];
+        orbit.push([nx, ny]);
+        n = k + 1;
+        if (Math.hypot(nx, ny) > ESCAPE_RADIUS) {
+          esc = true;
+          break;
+        }
+      }
+      escapedLocal = esc;
+      setEscaped(esc);
+      setSteps(n);
+      draw();
+    };
+
+    // When c moves (pointer or keyboard) re-seed for the current mode.
+    const applyC = () => {
+      if (reduced) renderStatic();
+      else restart();
+    };
+
+    resize();
+    const ro = new ResizeObserver(() => {
+      resize();
+      if (reduced) renderStatic();
+    });
+    ro.observe(canvas);
+
     const loop = (now: number) => {
       acc += now - last;
       last = now;
@@ -213,7 +264,6 @@ export function MandelCDragger({
       draw();
       raf = requestAnimationFrame(loop);
     };
-    raf = requestAnimationFrame(loop);
 
     // pointer handling
     const toPlane = (clientX: number, clientY: number) => {
@@ -227,7 +277,7 @@ export function MandelCDragger({
     };
     const setC = (clientX: number, clientY: number) => {
       cRef.current = toPlane(clientX, clientY);
-      restart();
+      applyC();
       setTick((t) => t + 1);
     };
     const onDown = (e: PointerEvent) => {
@@ -247,10 +297,32 @@ export function MandelCDragger({
         // pointer might already be released; safe to ignore.
       }
     };
+    // Keyboard operability: arrow keys nudge c (Shift for a coarser step) so
+    // the picker works without a pointer.
+    const onKey = (e: KeyboardEvent) => {
+      const nudge = (e.shiftKey ? 0.1 : 0.02) * bound;
+      let [x, y] = cRef.current;
+      if (e.key === "ArrowLeft") x -= nudge;
+      else if (e.key === "ArrowRight") x += nudge;
+      else if (e.key === "ArrowUp") y += nudge;
+      else if (e.key === "ArrowDown") y -= nudge;
+      else return;
+      e.preventDefault();
+      cRef.current = [x, y];
+      applyC();
+      setTick((t) => t + 1);
+    };
     canvas.addEventListener("pointerdown", onDown);
     canvas.addEventListener("pointermove", onMove);
     canvas.addEventListener("pointerup", onUp);
     canvas.addEventListener("pointercancel", onUp);
+    canvas.addEventListener("keydown", onKey);
+
+    if (reduced) {
+      renderStatic();
+    } else {
+      raf = requestAnimationFrame(loop);
+    }
 
     return () => {
       cancelAnimationFrame(raf);
@@ -259,8 +331,9 @@ export function MandelCDragger({
       canvas.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerup", onUp);
       canvas.removeEventListener("pointercancel", onUp);
+      canvas.removeEventListener("keydown", onKey);
     };
-  }, [bound, maxSteps, speedMs, showSilhouette]);
+  }, [bound, maxSteps, speedMs, showSilhouette, reduced]);
 
   const c = cRef.current;
   // re-render text on tick
@@ -269,14 +342,20 @@ export function MandelCDragger({
     <div ref={wrapRef} className="hairline space-y-2 rounded-2xl border bg-ink-950/40 p-4">
       <div className={`font-mono text-[10px] uppercase tracking-widest2 ${accent}`}>{label}</div>
       <div className="hairline aspect-square w-full cursor-crosshair touch-none overflow-hidden rounded-md border bg-ink-950">
-        <canvas ref={canvasRef} className="block h-full w-full" />
+        <canvas
+          ref={canvasRef}
+          tabIndex={0}
+          role="img"
+          aria-label={label}
+          className="block h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-coral"
+        />
       </div>
       <div className="flex items-center justify-between font-mono text-[10px] text-ink-300">
         <span>
           c = {c[0].toFixed(3)} {c[1] >= 0 ? "+" : "−"} {Math.abs(c[1]).toFixed(3)}i
         </span>
         <span className={escaped ? "text-signal-rose" : "text-signal-violet"}>
-          {escaped ? `escaped @ ${steps}` : `bounded · step ${steps}`}
+          {escaped ? statusEscaped(steps) : statusBounded(steps)}
         </span>
       </div>
     </div>

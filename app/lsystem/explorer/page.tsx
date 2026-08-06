@@ -73,9 +73,12 @@ const PRESETS: Preset[] = [
   },
   {
     id: "hilbert",
+    // Hilbert uses non-drawing state variables X/Y so only F draws; if X/Y
+    // shared A/B's drawing role (as the arrowhead needs) the curve would fill
+    // with spurious segments and stop being a Hilbert curve.
     label: "Hilbert curve",
-    axiom: "A",
-    rules: { A: "+BF-AFA-FB+", B: "-AF+BFB+FA-" },
+    axiom: "X",
+    rules: { X: "+YF-XFX-FY+", Y: "-XF+YFY+FX-" },
     angle: 90,
     iterations: 5,
     startAngle: 0,
@@ -335,7 +338,12 @@ export default function LsystemExplorer() {
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={canvasRef} className="block h-full w-full" />
+            <canvas
+              ref={canvasRef}
+              role="img"
+              aria-label={`${preset.label}, ${iterations} iterations, ${angle} degrees`}
+              className="block h-full w-full"
+            />
           </div>
           <div className="grid grid-cols-2 gap-2 font-mono text-[10px] uppercase tracking-widest2 md:grid-cols-4">
             <div className="glass hairline rounded-md border px-3 py-2 text-ink-200">
@@ -407,7 +415,7 @@ export default function LsystemExplorer() {
               type="range"
               value={iterations}
               min={1}
-              max={8}
+              max={12}
               step={1}
               onChange={(e) => setIterations(parseInt(e.target.value, 10))}
               className="w-full accent-signal-cyan"
@@ -425,7 +433,7 @@ export default function LsystemExplorer() {
               type="range"
               value={angle}
               min={15}
-              max={90}
+              max={120}
               step={1}
               onChange={(e) => setAngle(parseInt(e.target.value, 10))}
               className="w-full accent-signal-cyan"

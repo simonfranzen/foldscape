@@ -96,6 +96,7 @@ export function SierpinskiSubdivision({ caption, depthLabel, triangleLabel, hint
               step={1}
               value={depth}
               onChange={(e) => setDepth(Number(e.target.value))}
+              aria-label={depthLabel}
               className="w-full accent-signal-amber"
             />
             <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest2 text-ink-300">

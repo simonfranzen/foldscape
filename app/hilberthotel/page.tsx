@@ -55,6 +55,20 @@ type RichStory = {
   cardinalityUncountable: string;
   cardinalityBijection: string;
   cardinalityNoBijection: string;
+  // Section 05 prime-power table (the maths columns 2ⁿ / "2, 4, 8 …" stay literal)
+  primeTableTitle: string;
+  primeTableHeadWho: string;
+  primeTableHeadRoom: string;
+  primeTableHeadFirst: string;
+  primeTableRowExisting: string;
+  primeTableRowBus1: string;
+  primeTableRowBus2: string;
+  primeTableRowBus3: string;
+  primeTableRowBusK: string;
+  primeTableNote: string;
+  // Section 06 link + closing CTA heading
+  cantorLinkLabel: string;
+  takeItFurther: string;
 };
 
 // ---------------- English ----------------
@@ -150,6 +164,19 @@ const en: RichStory = {
   cardinalityUncountable: "uncountable",
   cardinalityBijection: "bijection",
   cardinalityNoBijection: "no bijection",
+  primeTableTitle: "Prime-power assignment",
+  primeTableHeadWho: "Who",
+  primeTableHeadRoom: "Room",
+  primeTableHeadFirst: "First rooms",
+  primeTableRowExisting: "Existing guest n",
+  primeTableRowBus1: "Bus 1 passenger m",
+  primeTableRowBus2: "Bus 2 passenger m",
+  primeTableRowBus3: "Bus 3 passenger m",
+  primeTableRowBusK: "Bus k passenger m",
+  primeTableNote:
+    "Unique prime factorisation guarantees no two passengers ever request the same room. Many room numbers (6, 10, 12, 14, …) stay vacant: there is slack to spare.",
+  cantorLinkLabel: "→ /cantor · the full diagonal argument",
+  takeItFurther: "Take it further",
 };
 
 // ---------------- Deutsch ----------------
@@ -194,7 +221,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Ein neuer Gast",
       title: "Verschiebung n → n+1",
-      body: "Ein Reisender klopft. Der Empfang gibt eine einzige Anweisung durch: jeder Gast, geh von Zimmer n nach Zimmer n+1. Niemand wird verdrängt — es wartet immer ein höher nummeriertes Zimmer — und Zimmer 1 ist frei für den Neuen.",
+      body: "Eine reisende Person klopft. Der Empfang gibt eine einzige Anweisung durch: jeder Gast, geh von Zimmer n nach Zimmer n+1. Niemand wird verdrängt, es wartet immer ein höher nummeriertes Zimmer, und Zimmer 1 ist frei für den neuen Gast.",
     },
     {
       pretitle: "Abschnitt 03 · k neue Gäste",
@@ -229,7 +256,7 @@ const de: RichStory = {
   inlineReset: "↺ zurücksetzen",
   inlineFormulaLabel: "Verschiebung",
   inlineHint:
-    "Wähl ein Szenario. Der Bernstein-Puls zeigt die Verschiebung, cyanfarbene Felder sind Neuankömmlinge, Rose ist ein Buspassagier. Die Beschriftung zeigt die ursprüngliche Zimmernummer (bzw. Bus·Sitz bei Buspassagieren).",
+    "Wähl ein Szenario. Der Bernstein-Puls zeigt die Verschiebung, cyanfarbene Felder sind Neuankömmlinge, Rose ist ein Gast aus dem Bus. Die Beschriftung zeigt die ursprüngliche Zimmernummer (bzw. Bus·Sitz bei Busgästen).",
   inlineNewGuest: "neu",
   inlineExistingGuest: "bestehend",
   inlineBusGuest: "Bus",
@@ -246,6 +273,19 @@ const de: RichStory = {
   cardinalityUncountable: "überabzählbar",
   cardinalityBijection: "Bijektion",
   cardinalityNoBijection: "keine Bijektion",
+  primeTableTitle: "Primzahlpotenz-Zuteilung",
+  primeTableHeadWho: "Wer",
+  primeTableHeadRoom: "Zimmer",
+  primeTableHeadFirst: "Erste Zimmer",
+  primeTableRowExisting: "Bisheriger Gast n",
+  primeTableRowBus1: "Bus 1, Gast m",
+  primeTableRowBus2: "Bus 2, Gast m",
+  primeTableRowBus3: "Bus 3, Gast m",
+  primeTableRowBusK: "Bus k, Gast m",
+  primeTableNote:
+    "Die eindeutige Primfaktorzerlegung garantiert, dass nie zwei Gäste dasselbe Zimmer verlangen. Viele Zimmernummern (6, 10, 12, 14, …) bleiben frei: es ist Spielraum im Überfluss da.",
+  cantorLinkLabel: "→ /cantor · das vollständige Diagonalargument",
+  takeItFurther: "Geh weiter",
 };
 
 // ---------------- Español ----------------
@@ -342,6 +382,19 @@ const es: RichStory = {
   cardinalityUncountable: "no numerable",
   cardinalityBijection: "biyección",
   cardinalityNoBijection: "sin biyección",
+  primeTableTitle: "Asignación por potencias de primos",
+  primeTableHeadWho: "Quién",
+  primeTableHeadRoom: "Habitación",
+  primeTableHeadFirst: "Primeras habitaciones",
+  primeTableRowExisting: "Huésped existente n",
+  primeTableRowBus1: "Autocar 1, pasajero m",
+  primeTableRowBus2: "Autocar 2, pasajero m",
+  primeTableRowBus3: "Autocar 3, pasajero m",
+  primeTableRowBusK: "Autocar k, pasajero m",
+  primeTableNote:
+    "La factorización única en primos garantiza que dos pasajeros nunca pidan la misma habitación. Muchos números de habitación (6, 10, 12, 14, …) quedan vacíos: sobra margen.",
+  cantorLinkLabel: "→ /cantor · el argumento diagonal completo",
+  takeItFurther: "Ve más allá",
 };
 
 // ---------------- Français ----------------
@@ -438,6 +491,19 @@ const fr: RichStory = {
   cardinalityUncountable: "non dénombrable",
   cardinalityBijection: "bijection",
   cardinalityNoBijection: "pas de bijection",
+  primeTableTitle: "Attribution par puissances de premiers",
+  primeTableHeadWho: "Qui",
+  primeTableHeadRoom: "Chambre",
+  primeTableHeadFirst: "Premières chambres",
+  primeTableRowExisting: "Client existant n",
+  primeTableRowBus1: "Car 1, passager m",
+  primeTableRowBus2: "Car 2, passager m",
+  primeTableRowBus3: "Car 3, passager m",
+  primeTableRowBusK: "Car k, passager m",
+  primeTableNote:
+    "La factorisation unique en nombres premiers garantit que deux passagers ne demandent jamais la même chambre. Beaucoup de numéros (6, 10, 12, 14, …) restent vacants : il y a de la marge à revendre.",
+  cantorLinkLabel: "→ /cantor · l'argument diagonal complet",
+  takeItFurther: "Va plus loin",
 };
 
 // ---------------- Italiano ----------------
@@ -534,6 +600,19 @@ const it: RichStory = {
   cardinalityUncountable: "non numerabile",
   cardinalityBijection: "biiezione",
   cardinalityNoBijection: "nessuna biiezione",
+  primeTableTitle: "Assegnazione per potenze di primi",
+  primeTableHeadWho: "Chi",
+  primeTableHeadRoom: "Stanza",
+  primeTableHeadFirst: "Prime stanze",
+  primeTableRowExisting: "Ospite esistente n",
+  primeTableRowBus1: "Pullman 1, passeggero m",
+  primeTableRowBus2: "Pullman 2, passeggero m",
+  primeTableRowBus3: "Pullman 3, passeggero m",
+  primeTableRowBusK: "Pullman k, passeggero m",
+  primeTableNote:
+    "La fattorizzazione unica in primi garantisce che due passeggeri non chiedano mai la stessa stanza. Molti numeri di stanza (6, 10, 12, 14, …) restano vuoti: c'è margine in abbondanza.",
+  cantorLinkLabel: "→ /cantor · l'argomento diagonale completo",
+  takeItFurther: "Vai oltre",
 };
 
 // ---------------- Português ----------------
@@ -603,7 +682,7 @@ const pt: RichStory = {
   ],
   closingTitle: "Abre o Explorador.",
   closingBody:
-    "Repete os quatro deslocamentos, vê a atribuição por potências de primos aterrar autocarro a autocarro, e passa depois à diagonal de Cantor para perceber por que este truco em particular deixa de funcionar.",
+    "Repete os quatro deslocamentos, vê a atribuição por potências de primos aterrar autocarro a autocarro, e passa depois à diagonal de Cantor para perceber por que este truque em particular deixa de funcionar.",
   ctaLabel: "→ Abrir o Explorador",
   inlineCaption: "Hotel de Hilbert — animar um deslocamento",
   inlineOne: "+1 hóspede",
@@ -630,6 +709,19 @@ const pt: RichStory = {
   cardinalityUncountable: "não numerável",
   cardinalityBijection: "bijecção",
   cardinalityNoBijection: "sem bijecção",
+  primeTableTitle: "Atribuição por potências de primos",
+  primeTableHeadWho: "Quem",
+  primeTableHeadRoom: "Quarto",
+  primeTableHeadFirst: "Primeiros quartos",
+  primeTableRowExisting: "Hóspede existente n",
+  primeTableRowBus1: "Autocarro 1, passageiro m",
+  primeTableRowBus2: "Autocarro 2, passageiro m",
+  primeTableRowBus3: "Autocarro 3, passageiro m",
+  primeTableRowBusK: "Autocarro k, passageiro m",
+  primeTableNote:
+    "A factorização única em primos garante que dois passageiros nunca pedem o mesmo quarto. Muitos números de quarto (6, 10, 12, 14, …) ficam vagos: há folga de sobra.",
+  cantorLinkLabel: "→ /cantor · o argumento diagonal completo",
+  takeItFurther: "Vai mais longe",
 };
 
 // ---------------- Svenska ----------------
@@ -678,7 +770,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 03 · k nya gäster",
       title: "Förskjutning n → n+k",
-      body: "En buss anländer med k passagerare. Skicka varje befintlig gäst från rum n till rum n+k. Rum 1 till k tömmas i en rörelse; de k nykomna går rakt in.",
+      body: "En buss anländer med k passagerare. Skicka varje befintlig gäst från rum n till rum n+k. Rum 1 till k töms i en rörelse; de k nykomna går rakt in.",
     },
     {
       pretitle: "Avsnitt 04 · ℵ₀ nya gäster",
@@ -725,6 +817,19 @@ const sv: RichStory = {
   cardinalityUncountable: "överuppräknelig",
   cardinalityBijection: "bijektion",
   cardinalityNoBijection: "ingen bijektion",
+  primeTableTitle: "Primtalspotens-tilldelning",
+  primeTableHeadWho: "Vem",
+  primeTableHeadRoom: "Rum",
+  primeTableHeadFirst: "Första rummen",
+  primeTableRowExisting: "Befintlig gäst n",
+  primeTableRowBus1: "Buss 1, passagerare m",
+  primeTableRowBus2: "Buss 2, passagerare m",
+  primeTableRowBus3: "Buss 3, passagerare m",
+  primeTableRowBusK: "Buss k, passagerare m",
+  primeTableNote:
+    "Den unika primtalsfaktoriseringen garanterar att två passagerare aldrig begär samma rum. Många rumsnummer (6, 10, 12, 14, …) förblir tomma: det finns gott om marginal.",
+  cantorLinkLabel: "→ /cantor · hela diagonalargumentet",
+  takeItFurther: "Gå vidare",
 };
 
 // ---------------- Norsk ----------------
@@ -786,9 +891,9 @@ const no: RichStory = {
       body: "En flåte på ℵ₀ busser kjører frem, hver med ℵ₀ passasjerer. Send hver eksisterende gjest n til rom 2ⁿ, så passasjer m i buss k til rom pₖᵐ, der pₖ er det k-te oddetallsprimtallet. Aritmetikkens fundamentalteorem sikrer at ingen to gjester kolliderer — ℵ₀ × ℵ₀ = ℵ₀.",
     },
     {
-      pretitle: "Avsnitt 06 · Den oversettbare broen",
+      pretitle: "Avsnitt 06 · Den overtellbare broen",
       title: "ℝ slår hotellet",
-      body: "Ta ett skritt til, og trikset brekker. Cantors diagonalargument fra 1891 viser at de reelle tallene i [0,1] ikke engang kan listes — for enhver foreslått oppramsing skiller et nytt reelt tall seg fra rad n ved det n-te sifferet. De reelle er oversettbare; hotellet er ikke stort nok.",
+      body: "Ta ett skritt til, og trikset brekker. Cantors diagonalargument fra 1891 viser at de reelle tallene i [0,1] ikke engang kan listes: for enhver foreslått oppramsing skiller et nytt reelt tall seg fra rad n ved det n-te sifferet. De reelle er overtellbare; hotellet er ikke stort nok.",
     },
   ],
   closingTitle: "Åpne Utforskeren.",
@@ -817,9 +922,22 @@ const no: RichStory = {
   cardinalityHint:
     "De to første modusene viser en ren bijeksjon — tellbar. Den tredje prøver å ramse opp de reelle; det diagonale reelle tallet nederst skiller seg fra hver rad, så ingen liste over reelle tall kan være fullstendig. Se /cantor for hele argumentet.",
   cardinalityCountable: "ℵ₀",
-  cardinalityUncountable: "oversettbar",
+  cardinalityUncountable: "overtellbar",
   cardinalityBijection: "bijeksjon",
   cardinalityNoBijection: "ingen bijeksjon",
+  primeTableTitle: "Primtallspotens-tildeling",
+  primeTableHeadWho: "Hvem",
+  primeTableHeadRoom: "Rom",
+  primeTableHeadFirst: "Første rom",
+  primeTableRowExisting: "Eksisterende gjest n",
+  primeTableRowBus1: "Buss 1, passasjer m",
+  primeTableRowBus2: "Buss 2, passasjer m",
+  primeTableRowBus3: "Buss 3, passasjer m",
+  primeTableRowBusK: "Buss k, passasjer m",
+  primeTableNote:
+    "Den entydige primtallsfaktoriseringen garanterer at to passasjerer aldri ber om samme rom. Mange romnummer (6, 10, 12, 14, …) forblir tomme: det er rikelig med slark.",
+  cantorLinkLabel: "→ /cantor · hele diagonalargumentet",
+  takeItFurther: "Gå videre",
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
@@ -947,27 +1065,29 @@ export default function HilbertHotelStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Prime-power assignment
+              {story.primeTableTitle}
             </div>
             <table className="w-full font-mono text-sm">
               <thead className="hairline border-b text-ink-300">
                 <tr>
-                  <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">Who</th>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    Room
+                    {story.primeTableHeadWho}
                   </th>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    First rooms
+                    {story.primeTableHeadRoom}
+                  </th>
+                  <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
+                    {story.primeTableHeadFirst}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ["Existing guest n", "2ⁿ", "2, 4, 8, 16, 32, …"],
-                  ["Bus 1 passenger m", "3ᵐ", "3, 9, 27, 81, …"],
-                  ["Bus 2 passenger m", "5ᵐ", "5, 25, 125, 625, …"],
-                  ["Bus 3 passenger m", "7ᵐ", "7, 49, 343, …"],
-                  ["Bus k passenger m", "pₖᵐ", "pₖ, pₖ², pₖ³, …"],
+                  [story.primeTableRowExisting, "2ⁿ", "2, 4, 8, 16, 32, …"],
+                  [story.primeTableRowBus1, "3ᵐ", "3, 9, 27, 81, …"],
+                  [story.primeTableRowBus2, "5ᵐ", "5, 25, 125, 625, …"],
+                  [story.primeTableRowBus3, "7ᵐ", "7, 49, 343, …"],
+                  [story.primeTableRowBusK, "pₖᵐ", "pₖ, pₖ², pₖ³, …"],
                 ].map(([who, room, first]) => (
                   <tr key={who} className="border-b border-ink-700/30 last:border-0">
                     <td className="px-2 py-2 text-ink-200">{who}</td>
@@ -977,10 +1097,7 @@ export default function HilbertHotelStory() {
                 ))}
               </tbody>
             </table>
-            <p className="pt-2 text-xs leading-relaxed text-ink-400">
-              Unique prime factorisation guarantees no two passengers ever request the same room.
-              Many room numbers (6, 10, 12, 14, …) stay vacant — there is slack to spare.
-            </p>
+            <p className="pt-2 text-xs leading-relaxed text-ink-400">{story.primeTableNote}</p>
           </div>
         </Reveal>
       </section>
@@ -1013,7 +1130,7 @@ export default function HilbertHotelStory() {
               href="/cantor"
               className="hairline inline-block rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-rose/50 hover:text-signal-rose"
             >
-              → /cantor · the full diagonal argument
+              {story.cantorLinkLabel}
             </Link>
           </div>
         </Reveal>
@@ -1023,7 +1140,7 @@ export default function HilbertHotelStory() {
       <Reveal>
         <section className="glass hairline mx-auto mb-16 max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-            Take it further
+            {story.takeItFurther}
           </div>
           <div className="math-italic shimmer-text text-3xl leading-tight md:text-5xl">
             {story.closingTitle}

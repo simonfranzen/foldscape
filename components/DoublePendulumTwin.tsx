@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useDpr } from "@/lib/hooks/useDpr";
 
-// Twin double pendulum demo. Two identical systems integrated in lockstep —
-// one starts at θ₁ = 90°, the other at θ₁ = 90° + 10⁻⁵°. For ~5 seconds
+// Twin double pendulum demo. Two identical systems integrated in lockstep,
+// one starting at θ₁ = 120°, the other at θ₁ = 120° + 10⁻⁵°. For ~5 seconds
 // they look indistinguishable. Then the chaos catches up and the two
 // pendulums dance very different dances.
 
@@ -74,6 +74,8 @@ function rk4(s: State, h: number): State {
 interface Props {
   captionA?: string;
   captionB?: string;
+  canvasLabelA?: string;
+  canvasLabelB?: string;
   playLabel?: string;
   pauseLabel?: string;
   resetLabel?: string;
@@ -81,9 +83,15 @@ interface Props {
   divergenceLabel?: string;
 }
 
+const INIT_TH1 = (INIT_TH1_DEG * Math.PI) / 180;
+const INIT_TH2 = (INIT_TH2_DEG * Math.PI) / 180;
+const INIT_TH1_B = INIT_TH1 + (EPS_DEG * Math.PI) / 180;
+
 export function DoublePendulumTwin({
   captionA,
   captionB,
+  canvasLabelA,
+  canvasLabelB,
   playLabel,
   pauseLabel,
   resetLabel,
@@ -96,6 +104,43 @@ export function DoublePendulumTwin({
   const [resetTick, setResetTick] = useState(0);
   const [stats, setStats] = useState({ t: 0, dist: 0 });
   const dpr = useDpr();
+
+  // Simulation state lives in refs so that toggling Pause (or any re-render)
+  // freezes the experiment in place instead of restarting both pendulums from
+  // t = 0. The rAF loop reads `runningRef` rather than depending on `running`,
+  // and only the reset effect below re-seeds these.
+  const aRef = useRef<State>({ th1: INIT_TH1, th2: INIT_TH2, w1: 0, w2: 0 });
+  const bRef = useRef<State>({ th1: INIT_TH1_B, th2: INIT_TH2, w1: 0, w2: 0 });
+  const simTRef = useRef(0);
+  const lastStatsTRef = useRef(0);
+  const trailARef = useRef<Array<[number, number]>>([]);
+  const trailBRef = useRef<Array<[number, number]>>([]);
+  const runningRef = useRef(true);
+
+  useEffect(() => {
+    runningRef.current = running;
+  }, [running]);
+
+  // Respect prefers-reduced-motion: start paused and let the user opt in.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setRunning(false);
+    }
+  }, []);
+
+  // Re-seed both pendulums to the initial configuration on mount and on Reset
+  // only. Pause/Play never runs this, so the divergence you were watching is
+  // preserved across a pause.
+  useEffect(() => {
+    aRef.current = { th1: INIT_TH1, th2: INIT_TH2, w1: 0, w2: 0 };
+    bRef.current = { th1: INIT_TH1_B, th2: INIT_TH2, w1: 0, w2: 0 };
+    simTRef.current = 0;
+    lastStatsTRef.current = 0;
+    trailARef.current = [];
+    trailBRef.current = [];
+    setStats({ t: 0, dist: 0 });
+  }, [resetTick]);
 
   useEffect(() => {
     const cA = canvasARef.current;
@@ -117,21 +162,12 @@ export function DoublePendulumTwin({
     ro.observe(cA);
     ro.observe(cB);
 
-    const th1 = (INIT_TH1_DEG * Math.PI) / 180;
-    const th2 = (INIT_TH2_DEG * Math.PI) / 180;
-    let a: State = { th1, th2, w1: 0, w2: 0 };
-    let b: State = { th1: th1 + (EPS_DEG * Math.PI) / 180, th2, w1: 0, w2: 0 };
-    let simT = 0;
-    let lastStatsT = 0;
-
-    const trailA: Array<[number, number]> = [];
-    const trailB: Array<[number, number]> = [];
-
     const drawPendulum = (
       ctx: CanvasRenderingContext2D,
       canvas: HTMLCanvasElement,
       s: State,
       trail: Array<[number, number]>,
+      record: boolean,
       rodAColor: string,
       rodBColor: string,
       bobAColor: string,
@@ -154,8 +190,12 @@ export function DoublePendulumTwin({
       const x2 = x1 + scale * L2 * Math.sin(s.th2);
       const y2 = y1 + scale * L2 * Math.cos(s.th2);
 
-      trail.push([x2, y2]);
-      if (trail.length > TRAIL_MAX) trail.shift();
+      // Only extend the trail while running, otherwise a paused sim keeps
+      // pushing the frozen tip and erodes the whole trail within seconds.
+      if (record) {
+        trail.push([x2, y2]);
+        if (trail.length > TRAIL_MAX) trail.shift();
+      }
 
       for (let i = 1; i < trail.length; i++) {
         const t = i / trail.length;
@@ -202,20 +242,36 @@ export function DoublePendulumTwin({
       ctx.fill();
     };
 
-    const step = () => {
-      if (running) {
-        for (let i = 0; i < SUBSTEPS; i++) {
-          a = rk4(a, DT);
-          b = rk4(b, DT);
-          simT += DT;
+    // Advance by real elapsed time so the divergence clock ticks at the same
+    // wall-clock rate on 60 Hz and 120 Hz displays.
+    let last = performance.now();
+    let acc = 0;
+
+    const step = (now: number) => {
+      const run = runningRef.current;
+      if (run) {
+        const dtReal = Math.min((now - last) / 1000, 0.05);
+        acc += dtReal;
+        let steps = Math.floor(acc / DT);
+        const maxSteps = 4 * SUBSTEPS;
+        if (steps > maxSteps) steps = maxSteps;
+        acc -= steps * DT;
+        for (let i = 0; i < steps; i++) {
+          aRef.current = rk4(aRef.current, DT);
+          bRef.current = rk4(bRef.current, DT);
+          simTRef.current += DT;
         }
       }
+      last = now;
 
+      const a = aRef.current;
+      const b = bRef.current;
       drawPendulum(
         ctxA,
         cA,
         a,
-        trailA,
+        trailARef.current,
+        run,
         "rgba(125, 243, 255, 0.85)",
         "rgba(125, 243, 255, 0.85)",
         "rgba(125, 243, 255, 0.95)",
@@ -226,7 +282,8 @@ export function DoublePendulumTwin({
         ctxB,
         cB,
         b,
-        trailB,
+        trailBRef.current,
+        run,
         "rgba(179, 136, 255, 0.85)",
         "rgba(179, 136, 255, 0.85)",
         "rgba(179, 136, 255, 0.95)",
@@ -234,14 +291,14 @@ export function DoublePendulumTwin({
         "rgba(255, 122, 182, ",
       );
 
-      if (running && simT - lastStatsT > 0.1) {
-        lastStatsT = simT;
+      if (run && simTRef.current - lastStatsTRef.current > 0.1) {
+        lastStatsTRef.current = simTRef.current;
         const d1 = a.th1 - b.th1;
         const d2 = a.th2 - b.th2;
         const dw1 = a.w1 - b.w1;
         const dw2 = a.w2 - b.w2;
         const d = Math.sqrt(d1 * d1 + d2 * d2 + dw1 * dw1 + dw2 * dw2);
-        setStats({ t: simT, dist: d });
+        setStats({ t: simTRef.current, dist: d });
       }
 
       raf = requestAnimationFrame(step);
@@ -252,10 +309,11 @@ export function DoublePendulumTwin({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [running, resetTick, dpr]);
+    // Note: `running` is deliberately NOT a dependency. The loop reads it via
+    // runningRef so pausing freezes the sim instead of tearing this down.
+  }, [dpr]);
 
   const reset = () => {
-    setStats({ t: 0, dist: 0 });
     setResetTick((x) => x + 1);
   };
 
@@ -268,6 +326,8 @@ export function DoublePendulumTwin({
           </div>
           <canvas
             ref={canvasARef}
+            role="img"
+            aria-label={canvasLabelA ?? captionA ?? "Pendulum A"}
             className="hairline mx-auto aspect-square w-full max-w-[280px] rounded-md border bg-ink-950/80"
           />
         </div>
@@ -277,6 +337,8 @@ export function DoublePendulumTwin({
           </div>
           <canvas
             ref={canvasBRef}
+            role="img"
+            aria-label={canvasLabelB ?? captionB ?? "Pendulum B"}
             className="hairline mx-auto aspect-square w-full max-w-[280px] rounded-md border bg-ink-950/80"
           />
         </div>

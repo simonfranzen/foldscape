@@ -57,6 +57,11 @@ type RichStory = {
   // progression
   progressionLabel: string;
   progressionRows: string[];
+  // inline diagram captions (were English literals in the JSX)
+  quarterTurnNote: string;
+  walkStart: string;
+  walkHalfTurn: string;
+  walkLand: string;
 };
 
 const en: RichStory = {
@@ -85,7 +90,7 @@ const en: RichStory = {
       {
         label: "03",
         title: "Why it matters",
-        body: 'Feynman called it "the most remarkable formula in mathematics" — "our jewel." A 1990 Mathematical Intelligencer poll of working mathematicians voted it the most beautiful theorem ever proved. It is a bridge: algebra writes the symbols, geometry walks the circle, analysis supplies the infinite series that makes it all click.',
+        body: 'Feynman called the formula e^(iθ) = cos θ + i sin θ, of which this identity is the θ = π case, "the most remarkable formula in mathematics", "our jewel." A 1990 Mathematical Intelligencer poll of working mathematicians voted this identity the most beautiful theorem ever proved. It is a bridge: algebra writes the symbols, geometry walks the circle, analysis supplies the infinite series that makes it all click.',
       },
     ],
     tryIt:
@@ -183,6 +188,10 @@ const en: RichStory = {
     "Euler's formula shows growth in the imaginary direction = rotation in the plane.",
     "Set θ = π. All five constants meet.",
   ],
+  quarterTurnNote: "Four quarter-turns close the loop. Each ×i is a 90° rotation; i² = −1 is two of them.",
+  walkStart: "start",
+  walkHalfTurn: "half-turn",
+  walkLand: "land",
 };
 
 const de: RichStory = {
@@ -211,7 +220,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: 'Feynman nannte sie „die bemerkenswerteste Formel der Mathematik“ — „unser Juwel.“ Eine Umfrage im Mathematical Intelligencer von 1990 unter arbeitenden Mathematiker:innen wählte sie zum schönsten je bewiesenen Satz. Sie ist eine Brücke: Algebra schreibt die Symbole, Geometrie läuft den Kreis, Analysis liefert die unendliche Reihe, die alles einrasten lässt.',
+        body: 'Feynman nannte die Formel e^(iθ) = cos θ + i sin θ, von der diese Identität der Fall θ = π ist, „die bemerkenswerteste Formel der Mathematik“, „unser Juwel.“ Eine Umfrage im Mathematical Intelligencer von 1990 unter arbeitenden Mathematiker:innen wählte diese Identität zum schönsten je bewiesenen Satz. Sie ist eine Brücke: Algebra schreibt die Symbole, Geometrie läuft den Kreis, Analysis liefert die unendliche Reihe, die alles einrasten lässt.',
       },
     ],
     tryIt:
@@ -241,7 +250,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Verbindungen überall",
       title: "Wo die Identität in der Welt vorkommt",
-      body: "Sobald du e^(iθ) hast, ist es keine Kuriosität mehr, sondern unverzichtbares Werkzeug. Elektrotechniker schreiben die Impedanz einer Schaltung als komplexe Zahl Z = R + iX, sodass Spannungen und Ströme zu rotierenden Phasoren V·e^(iωt) werden und Kirchhoffs Regeln zu linearer Algebra. Die Quantenmechanik schreibt die Zeitentwicklung eines Zustands als ψ(t) = e^(−iHt/ℏ) ψ(0) — die Schrödinger-Gleichung, mit e^(iθ) als alleinigem Rotator im Hilbertraum. Die Fourier-Analyse zerlegt jedes vernünftige Signal in eine Summe (oder ein Integral) von e^(iωt)-Moden, und jedes JPEG, jedes MP3, jeder MRT-Scanner und jeder WLAN-Handschlag des Planeten baut darauf auf. Die Identität ist der Grenzstein, an dem alle vier Straßen — Arithmetik, Algebra, Geometrie, Analysis — zusammenlaufen.",
+      body: "Sobald du e^(iθ) hast, ist es keine Kuriosität mehr, sondern unverzichtbares Werkzeug. Elektrotechniker:innen schreiben die Impedanz einer Schaltung als komplexe Zahl Z = R + iX, sodass Spannungen und Ströme zu rotierenden Phasoren V·e^(iωt) werden und Kirchhoffs Regeln zu linearer Algebra. Die Quantenmechanik schreibt die Zeitentwicklung eines Zustands als ψ(t) = e^(−iHt/ℏ) ψ(0) — die Schrödinger-Gleichung, mit e^(iθ) als alleinigem Rotator im Hilbertraum. Die Fourier-Analyse zerlegt jedes vernünftige Signal in eine Summe (oder ein Integral) von e^(iωt)-Moden, und jedes JPEG, jedes MP3, jeder MRT-Scanner und jeder WLAN-Handschlag des Planeten baut darauf auf. Die Identität ist der Grenzstein, an dem alle vier Straßen — Arithmetik, Algebra, Geometrie, Analysis — zusammenlaufen.",
     },
     {
       pretitle: "Abschnitt 06 · Wo sie steht",
@@ -309,6 +318,10 @@ const de: RichStory = {
     "Eulers Formel zeigt: Wachstum in imaginärer Richtung = Drehung in der Ebene.",
     "Setze θ = π. Alle fünf Konstanten treffen sich.",
   ],
+  quarterTurnNote: "Vier Vierteldrehungen schließen den Kreis. Jedes ×i ist eine 90°-Drehung; i² = −1 sind zwei davon.",
+  walkStart: "Start",
+  walkHalfTurn: "Halbdrehung",
+  walkLand: "Ziel",
 };
 
 const es: RichStory = {
@@ -337,7 +350,7 @@ const es: RichStory = {
       {
         label: "03",
         title: "Por qué importa",
-        body: "Feynman la llamó «la fórmula más notable de la matemática» — «nuestra joya». Una encuesta del Mathematical Intelligencer de 1990 entre matemáticos en ejercicio la votó como el teorema más bello jamás demostrado. Es un puente: el álgebra escribe los símbolos, la geometría recorre el círculo, el análisis aporta la serie infinita que hace que todo encaje.",
+        body: "Feynman llamó a la fórmula e^(iθ) = cos θ + i sin θ, de la que esta identidad es el caso θ = π, «la fórmula más notable de la matemática», «nuestra joya». Una encuesta del Mathematical Intelligencer de 1990 entre matemáticos en ejercicio votó esta identidad como el teorema más bello jamás demostrado. Es un puente: el álgebra escribe los símbolos, la geometría recorre el círculo, el análisis aporta la serie infinita que hace que todo encaje.",
       },
     ],
     tryIt:
@@ -435,6 +448,10 @@ const es: RichStory = {
     "La fórmula de Euler muestra que crecer en imaginario = rotar en el plano.",
     "Pon θ = π. Las cinco constantes se encuentran.",
   ],
+  quarterTurnNote: "Cuatro cuartos de vuelta cierran el ciclo. Cada ×i es una rotación de 90°; i² = −1 son dos de ellas.",
+  walkStart: "inicio",
+  walkHalfTurn: "media vuelta",
+  walkLand: "llegada",
 };
 
 const fr: RichStory = {
@@ -463,7 +480,7 @@ const fr: RichStory = {
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "Feynman l'a appelée « la formule la plus remarquable des mathématiques » — « notre joyau ». Un sondage du Mathematical Intelligencer en 1990, auprès de mathématiciens en exercice, l'a élue plus beau théorème jamais démontré. Elle est un pont : l'algèbre écrit les symboles, la géométrie parcourt le cercle, l'analyse fournit la série infinie qui fait tout claquer en place.",
+        body: "Feynman a appelé la formule e^(iθ) = cos θ + i sin θ, dont cette identité est le cas θ = π, « la formule la plus remarquable des mathématiques », « notre joyau ». Un sondage du Mathematical Intelligencer en 1990, auprès de mathématiciens en exercice, a élu cette identité plus beau théorème jamais démontré. Elle est un pont : l'algèbre écrit les symboles, la géométrie parcourt le cercle, l'analyse fournit la série infinie qui fait tout claquer en place.",
       },
     ],
     tryIt:
@@ -561,6 +578,10 @@ const fr: RichStory = {
     "La formule d'Euler montre que croître en imaginaire = tourner dans le plan.",
     "Pose θ = π. Les cinq constantes se rencontrent.",
   ],
+  quarterTurnNote: "Quatre quarts de tour bouclent la boucle. Chaque ×i est une rotation de 90° ; i² = −1 en fait deux.",
+  walkStart: "départ",
+  walkHalfTurn: "demi-tour",
+  walkLand: "arrivée",
 };
 
 const it: RichStory = {
@@ -589,7 +610,7 @@ const it: RichStory = {
       {
         label: "03",
         title: "Perché conta",
-        body: "Feynman la chiamò «la formula più notevole della matematica» — «il nostro gioiello». Un sondaggio del Mathematical Intelligencer del 1990 fra matematici in attività la votò come il più bel teorema mai dimostrato. È un ponte: l'algebra scrive i simboli, la geometria percorre il cerchio, l'analisi fornisce la serie infinita che fa quadrare tutto.",
+        body: "Feynman chiamò la formula e^(iθ) = cos θ + i sin θ, di cui questa identità è il caso θ = π, «la formula più notevole della matematica», «il nostro gioiello». Un sondaggio del Mathematical Intelligencer del 1990 fra matematici in attività votò questa identità come il più bel teorema mai dimostrato. È un ponte: l'algebra scrive i simboli, la geometria percorre il cerchio, l'analisi fornisce la serie infinita che fa quadrare tutto.",
       },
     ],
     tryIt:
@@ -599,7 +620,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · Cinque personaggi",
       title: "Chi compare in questa equazione",
-      body: "Ciascuno dei cinque numeri arriva da un paese diverso della matematica. 0 è l'identità additiva — sommarlo non cambia nulla. 1 è l'identità moltiplicativa — moltiplicare per esso non cambia nulla. e ≈ 2,71828 è la base naturale, il numero la cui derivata è sé stesso, nato nell'analisi dall'interesse composto e dalla crescita continua. i è l'unità immaginaria, definita da i² = −1, nata nell'algebra quando Cardano servì una radice di un negativo per risolvere le cubiche. π ≈ 3,14159 è il mezzo giro del cerchio, il rapporto tra circonferenza e diametro, nato nella geometria. Normalmente non condividono mai una stanza. L'identità è quella stanza.",
+      body: "Ciascuno dei cinque numeri arriva da un paese diverso della matematica. 0 è l'identità additiva — sommarlo non cambia nulla. 1 è l'identità moltiplicativa — moltiplicare per esso non cambia nulla. e ≈ 2,71828 è la base naturale, il numero la cui derivata è sé stesso, nato nell'analisi dall'interesse composto e dalla crescita continua. i è l'unità immaginaria, definita da i² = −1, nata nell'algebra quando a Cardano servì una radice di un numero negativo per risolvere le cubiche. π ≈ 3,14159 è il mezzo giro del cerchio, il rapporto tra circonferenza e diametro, nato nella geometria. Normalmente non condividono mai una stanza. L'identità è quella stanza.",
     },
     {
       pretitle: "Sezione 02 · Moltiplicazione complessa",
@@ -687,6 +708,10 @@ const it: RichStory = {
     "La formula di Eulero mostra che crescere in immaginario = ruotare nel piano.",
     "Poni θ = π. Le cinque costanti si incontrano.",
   ],
+  quarterTurnNote: "Quattro quarti di giro chiudono il cerchio. Ogni ×i è una rotazione di 90°; i² = −1 ne sono due.",
+  walkStart: "inizio",
+  walkHalfTurn: "mezzo giro",
+  walkLand: "arrivo",
 };
 
 const pt: RichStory = {
@@ -715,7 +740,7 @@ const pt: RichStory = {
       {
         label: "03",
         title: "Porque importa",
-        body: "Feynman chamou-lhe «a fórmula mais notável da matemática» — «a nossa joia». Um inquérito do Mathematical Intelligencer em 1990, junto a matemáticos em atividade, votou-a como o teorema mais belo alguma vez provado. É uma ponte: a álgebra escreve os símbolos, a geometria percorre o círculo, a análise fornece a série infinita que faz tudo encaixar.",
+        body: "Feynman chamou à fórmula e^(iθ) = cos θ + i sin θ, de que esta identidade é o caso θ = π, «a fórmula mais notável da matemática», «a nossa joia». Um inquérito do Mathematical Intelligencer em 1990, junto a matemáticos em atividade, votou esta identidade como o teorema mais belo alguma vez provado. É uma ponte: a álgebra escreve os símbolos, a geometria percorre o círculo, a análise fornece a série infinita que faz tudo encaixar.",
       },
     ],
     tryIt:
@@ -813,6 +838,10 @@ const pt: RichStory = {
     "A fórmula de Euler mostra que crescer em imaginário = rodar no plano.",
     "Põe θ = π. As cinco constantes encontram-se.",
   ],
+  quarterTurnNote: "Quatro quartos de volta fecham o ciclo. Cada ×i é uma rotação de 90°; i² = −1 são dois deles.",
+  walkStart: "início",
+  walkHalfTurn: "meia-volta",
+  walkLand: "chegada",
 };
 
 const sv: RichStory = {
@@ -841,7 +870,7 @@ const sv: RichStory = {
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "Feynman kallade den ”matematikens mest anmärkningsvärda formel” — ”vår juvel”. En undersökning i Mathematical Intelligencer 1990 bland yrkesverksamma matematiker röstade fram den som den vackraste sats som någonsin bevisats. Den är en bro: algebran skriver symbolerna, geometrin går runt cirkeln, analysen levererar den oändliga serie som får allt att klicka.",
+        body: "Feynman kallade formeln e^(iθ) = cos θ + i sin θ, där denna identitet är specialfallet θ = π, ”matematikens mest anmärkningsvärda formel”, ”vår juvel”. En undersökning i Mathematical Intelligencer 1990 bland yrkesverksamma matematiker röstade fram denna identitet som den vackraste sats som någonsin bevisats. Den är en bro: algebran skriver symbolerna, geometrin går runt cirkeln, analysen levererar den oändliga serie som får allt att klicka.",
       },
     ],
     tryIt: "Nedan: dra θ runt cirkeln själv, och se Taylorserien bygga den term för term.",
@@ -938,6 +967,10 @@ const sv: RichStory = {
     "Eulers formel visar att växa i imaginär riktning = rotera i planet.",
     "Sätt θ = π. De fem konstanterna möts.",
   ],
+  quarterTurnNote: "Fyra kvartsvarv sluter cirkeln. Varje ×i är en 90°-rotation; i² = −1 är två av dem.",
+  walkStart: "start",
+  walkHalfTurn: "halvvarv",
+  walkLand: "mål",
 };
 
 const no: RichStory = {
@@ -966,7 +999,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Feynman kalte den «matematikkens mest bemerkelsesverdige formel» — «vårt juvel». En undersøkelse i Mathematical Intelligencer i 1990 blant yrkesmatematikere kåret den til det vakreste teoremet som noen gang er bevist. Den er en bro: algebraen skriver symbolene, geometrien går rundt sirkelen, analysen leverer den uendelige rekken som får alt til å klikke på plass.",
+        body: "Feynman kalte formelen e^(iθ) = cos θ + i sin θ, der denne identiteten er spesialtilfellet θ = π, «matematikkens mest bemerkelsesverdige formel», «vår juvel». En undersøkelse i Mathematical Intelligencer i 1990 blant yrkesmatematikere kåret denne identiteten til det vakreste teoremet som noen gang er bevist. Den er en bro: algebraen skriver symbolene, geometrien går rundt sirkelen, analysen leverer den uendelige rekken som får alt til å klikke på plass.",
       },
     ],
     tryIt: "Under: dra θ rundt sirkelen selv, og se Taylor-rekken bygge den ledd for ledd.",
@@ -1050,7 +1083,7 @@ const no: RichStory = {
     },
     {
       field: "Tallteori",
-      body: "Enhetsrøtter e^(2πik/n) parametriserer enhver løsning av z^n = 1 og avler sykliske kropper.",
+      body: "Enhetsrøtter e^(2πik/n) parametriserer enhver løsning av z^n = 1 og avler syklotomiske kropper.",
     },
   ],
   progressionLabel: "Buen som fører hit",
@@ -1062,6 +1095,10 @@ const no: RichStory = {
     "Eulers formel viser at å vokse i imaginær retning = å rotere i planet.",
     "Sett θ = π. De fem konstantene møtes.",
   ],
+  quarterTurnNote: "Fire kvartsomdreininger lukker sirkelen. Hver ×i er en 90°-rotasjon; i² = −1 er to av dem.",
+  walkStart: "start",
+  walkHalfTurn: "halvomdreining",
+  walkLand: "mål",
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
@@ -1145,13 +1182,13 @@ export default function EulerStory() {
                     <p>{card.body}</p>
                     <div className="hairline mt-4 space-y-1 rounded-md border bg-ink-950/60 p-3 font-mono text-[11px] text-ink-100">
                       <div>
-                        start · <span className="text-signal-cyan">1</span>
+                        {story.walkStart} · <span className="text-signal-cyan">1</span>
                       </div>
                       <div>
-                        × e^(iπ) · <span className="text-signal-teal">half-turn</span>
+                        × e^(iπ) · <span className="text-signal-teal">{story.walkHalfTurn}</span>
                       </div>
                       <div>
-                        land · <span className="text-signal-rose">−1</span>
+                        {story.walkLand} · <span className="text-signal-rose">−1</span>
                       </div>
                       <div>
                         + 1 · <span className="text-signal-violet">0</span>
@@ -1227,7 +1264,7 @@ export default function EulerStory() {
               <span className="text-signal-cyan">1</span>
             </div>
             <p className="mx-auto max-w-xl text-xs leading-relaxed text-ink-300">
-              Four quarter-turns close the loop. Each ×i is a 90° rotation; i² = −1 is two of them.
+              {story.quarterTurnNote}
             </p>
           </div>
         </Reveal>

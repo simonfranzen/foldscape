@@ -12,6 +12,9 @@ const WAVE_LABEL: Record<WaveType, string> = {
   triangle: "Triangle",
 };
 
+const DEFAULT_LEGEND =
+  "White: the target. Violet: each individual harmonic. Amber: their sum. Push N up and the corners sharpen, yet the overshoot at the discontinuities never quite goes away (Gibbs phenomenon, ≈ 8.95%).";
+
 // Returns the k-th sine coefficient for the target waveform.
 // All waveforms are pure-sine series in t ∈ [0,1).
 function coeff(wave: WaveType, k: number): number {
@@ -34,8 +37,9 @@ function target(wave: WaveType, t: number): number {
   const u = ((t % 1) + 1) % 1;
   if (wave === "square") return u < 0.5 ? 1 : -1;
   if (wave === "sawtooth") return 2 * (u - Math.floor(u + 0.5));
-  // triangle, peak ±1
-  return 4 * Math.abs(u - 0.5) - 1;
+  // triangle, peak ±1 — sine-phase so it matches the series above:
+  // 0 at t=0, +1 at t=0.25, −1 at t=0.75.
+  return u < 0.25 ? 4 * u : u < 0.75 ? 2 - 4 * u : 4 * u - 4;
 }
 
 function partial(wave: WaveType, N: number, t: number): number {
@@ -51,9 +55,16 @@ function partial(wave: WaveType, N: number, t: number): number {
 interface Props {
   caption?: string;
   height?: number;
+  waveLabels?: Record<WaveType, string>;
+  legend?: string;
 }
 
-export function FourierHarmonicBuilder({ caption, height = 180 }: Props) {
+export function FourierHarmonicBuilder({
+  caption,
+  height = 180,
+  waveLabels = WAVE_LABEL,
+  legend = DEFAULT_LEGEND,
+}: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [wave, setWave] = useState<WaveType>("square");
   const [N, setN] = useState(5);
@@ -160,20 +171,26 @@ export function FourierHarmonicBuilder({ caption, height = 180 }: Props) {
                 : "hairline text-ink-300 hover:text-ink-100"
             }`}
           >
-            {WAVE_LABEL[w]}
+            {waveLabels[w]}
           </button>
         ))}
       </div>
       <canvas
         ref={canvasRef}
         style={{ height }}
+        role="img"
+        aria-label={legend}
         className="hairline block w-full rounded-lg border"
       />
       <div className="flex items-center gap-4">
-        <label className="shrink-0 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+        <label
+          htmlFor="fourier-builder-n"
+          className="shrink-0 font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+        >
           N = <span className="text-signal-amber">{N}</span>
         </label>
         <input
+          id="fourier-builder-n"
           type="range"
           min={1}
           max={30}
@@ -182,11 +199,7 @@ export function FourierHarmonicBuilder({ caption, height = 180 }: Props) {
           className="w-full accent-signal-amber"
         />
       </div>
-      <p className="text-[11px] leading-relaxed text-ink-400">
-        White: the target. Violet: each individual harmonic. Amber: their sum. Push N up and the
-        corners sharpen — but the overshoot at the discontinuities never quite goes away (Gibbs
-        phenomenon, ≈ 8.95%).
-      </p>
+      <p className="text-[11px] leading-relaxed text-ink-400">{legend}</p>
     </div>
   );
 }

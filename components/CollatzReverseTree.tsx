@@ -123,7 +123,8 @@ export function CollatzReverseTree({ caption, depthLabel, nodeLabel, hint, maxDe
               viewBox={`0 0 ${SIZE} ${SIZE}`}
               width="100%"
               style={{ maxWidth: SIZE, display: "block" }}
-              aria-label="Reverse Collatz coral tree"
+              role="img"
+              aria-label={caption}
             >
               <rect x={0} y={0} width={SIZE} height={SIZE} fill={palette.canvas.bg} />
               {edges.map(([a, b], i) => {
@@ -162,7 +163,7 @@ export function CollatzReverseTree({ caption, depthLabel, nodeLabel, hint, maxDe
                 textAnchor="middle"
                 fontFamily="ui-monospace, monospace"
                 fontSize={10}
-                fill="#e8eaf2"
+                fill={palette.ink[100]}
               >
                 1
               </text>
@@ -181,6 +182,7 @@ export function CollatzReverseTree({ caption, depthLabel, nodeLabel, hint, maxDe
               max={maxDepth}
               step={1}
               value={depth}
+              aria-label={depthLabel}
               onChange={(e) => setDepth(Number(e.target.value))}
               className="w-full accent-signal-rose"
             />

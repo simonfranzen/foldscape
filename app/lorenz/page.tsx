@@ -11,6 +11,13 @@ import type { Locale } from "@/lib/i18n/types";
 
 const ACCENT = "text-signal-coral";
 
+// Derive translucent stroke colours from the shared palette so the decorative
+// SVGs track a palette change instead of drifting as raw rgba literals.
+const withAlpha = (hex: string, a: number) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+};
+
 // -----------------------------------------------------------------------------
 // Rich, locale-aware story content extending the four-section base in
 // stories.ts. We keep the canonical hero (s.pages.lorenz) untouched and
@@ -41,6 +48,12 @@ type RichStory = {
   };
   dimensionCaption: string;
   dimensionNote: string;
+  dimCurveLabel: string;
+  dimSolidLabel: string;
+  systemLabel: string;
+  wingsLabel: string;
+  wingsCaption: string;
+  jumpLabel: string;
   rhoBoringLabel: string;
   rhoBoringBody: string;
   rhoChaosLabel: string;
@@ -65,7 +78,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "02 · A concrete example",
           title: "Two near-identical worlds drift apart",
-          body: "Start two simulations with positions that differ by 0.00001 — about the width of a virus. For 20 seconds of simulated time the two paths trace the same butterfly wing. Then, almost without warning, one trajectory leaps to the other wing while the second stays put. After 30 seconds they are on opposite sides of the butterfly, totally uncorrelated.",
+          body: "Start two simulations with positions that differ by 0.00001, about the width of a bacterium. For 20 seconds of simulated time the two paths trace the same butterfly wing. Then, almost without warning, one trajectory leaps to the other wing while the second stays put. After 30 seconds they are on opposite sides of the butterfly, totally uncorrelated.",
         },
         {
           label: "03 · Why it matters",
@@ -94,7 +107,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       },
       {
         pretitle: "Section four · Sensitive dependence",
-        title: "Why a virus-sized error becomes catastrophic",
+        title: "Why a bacterium-sized error becomes catastrophic",
         body: "Two trajectories separated by ε grow apart roughly like ε·eλt, where λ ≈ 0.906 is the leading Lyapunov exponent. That sounds tame until you do the arithmetic: in about 16 simulated seconds the gap multiplies by a million. Any uncertainty in the initial state — measurement noise, rounding in a computer, a butterfly flapping in Brazil — is amplified at this rate. Weather forecasts decay because the real atmosphere has its own positive Lyapunov exponent, and no amount of better sensors can outrun an exponential.",
       },
       {
@@ -122,11 +135,18 @@ const RICH_STORY: Record<Locale, RichStory> = {
       timeLabel: "t",
       divergenceLabel: "|Δ|",
       legend:
-        "Two trajectories. Same equations. Initial positions differ by a hundredth of a millionth.",
+        "Two trajectories. Same equations. Initial positions differ by a hundred-thousandth (10⁻⁵).",
     },
     dimensionCaption: "Hausdorff dimension",
     dimensionNote:
       "Strictly between a surface (2) and a solid (3). Infinitely thin in one direction, fractally layered in another.",
+    dimCurveLabel: "curve",
+    dimSolidLabel: "solid",
+    systemLabel: "The system",
+    wingsLabel: "C₊ and C₋ · the two unstable fixed points",
+    wingsCaption:
+      "Each wing forms around one of the equilibria at (±√(β(ρ−1)), ±√(β(ρ−1)), ρ−1). They repel, and that repulsion is what keeps the trajectory in motion.",
+    jumpLabel: "jump",
     rhoBoringLabel: "ρ < 1",
     rhoBoringBody: "No convection. Every trajectory dies into the origin.",
     rhoChaosLabel: "ρ = 28",
@@ -150,7 +170,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "02 · Ein konkretes Beispiel",
           title: "Zwei fast identische Welten driften auseinander",
-          body: "Starte zwei Simulationen mit Positionen, die sich um 0,00001 unterscheiden — etwa der Breite eines Virus. 20 simulierte Sekunden lang zeichnen beide Bahnen denselben Schmetterlingsflügel. Dann, fast ohne Vorwarnung, springt eine Bahn auf den anderen Flügel, während die zweite bleibt. Nach 30 Sekunden sind sie auf gegenüberliegenden Seiten des Schmetterlings, völlig unkorreliert.",
+          body: "Starte zwei Simulationen mit Positionen, die sich um 0,00001 unterscheiden, etwa die Breite eines Bakteriums. 20 simulierte Sekunden lang zeichnen beide Bahnen denselben Schmetterlingsflügel. Dann, fast ohne Vorwarnung, springt eine Bahn auf den anderen Flügel, während die zweite bleibt. Nach 30 Sekunden sind sie auf gegenüberliegenden Seiten des Schmetterlings, völlig unkorreliert.",
         },
         {
           label: "03 · Warum es zählt",
@@ -179,7 +199,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       },
       {
         pretitle: "Abschnitt vier · Sensitive Abhängigkeit",
-        title: "Warum ein virusgroßer Fehler katastrophal wird",
+        title: "Warum ein bakteriengroßer Fehler katastrophal wird",
         body: "Zwei Bahnen, durch ε getrennt, wachsen ungefähr wie ε·eλt auseinander, wobei λ ≈ 0,906 der größte Lyapunov-Exponent ist. Das klingt zahm, bis du rechnest: in etwa 16 simulierten Sekunden multipliziert sich der Abstand um eine Million. Jede Unsicherheit im Anfangszustand — Messrauschen, Rundung im Computer, ein Schmetterlingsflügel in Brasilien — wird mit dieser Rate verstärkt. Wettervorhersagen zerfallen, weil die reale Atmosphäre ihren eigenen positiven Lyapunov-Exponenten hat, und keine besseren Sensoren können einer Exponentialfunktion davonlaufen.",
       },
       {
@@ -207,11 +227,18 @@ const RICH_STORY: Record<Locale, RichStory> = {
       timeLabel: "t",
       divergenceLabel: "|Δ|",
       legend:
-        "Zwei Bahnen. Dieselben Gleichungen. Anfangspositionen unterscheiden sich um ein Hundertstel eines Millionstels.",
+        "Zwei Bahnen. Dieselben Gleichungen. Anfangspositionen unterscheiden sich um ein Hunderttausendstel (10⁻⁵).",
     },
     dimensionCaption: "Hausdorff-Dimension",
     dimensionNote:
       "Streng zwischen Fläche (2) und Volumen (3). Unendlich dünn in einer Richtung, fraktal geschichtet in einer anderen.",
+    dimCurveLabel: "Kurve",
+    dimSolidLabel: "Volumen",
+    systemLabel: "Das System",
+    wingsLabel: "C₊ und C₋ · die zwei instabilen Fixpunkte",
+    wingsCaption:
+      "Jeder Flügel bildet sich um eines der Gleichgewichte bei (±√(β(ρ−1)), ±√(β(ρ−1)), ρ−1). Sie stoßen sich ab, und diese Abstoßung hält die Bahn in Bewegung.",
+    jumpLabel: "Sprung",
     rhoBoringLabel: "ρ < 1",
     rhoBoringBody: "Keine Konvektion. Jede Bahn stirbt in den Ursprung.",
     rhoChaosLabel: "ρ = 28",
@@ -235,7 +262,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "02 · Un ejemplo concreto",
           title: "Dos mundos casi idénticos se separan",
-          body: "Lanza dos simulaciones cuyas posiciones difieran en 0,00001 — el ancho aproximado de un virus. Durante 20 segundos simulados ambas trayectorias dibujan la misma ala de la mariposa. Después, casi sin aviso, una salta al otro lado mientras la otra se queda. Tras 30 segundos están en alas opuestas, completamente descorrelacionadas.",
+          body: "Lanza dos simulaciones cuyas posiciones difieran en 0,00001, el ancho aproximado de una bacteria. Durante 20 segundos simulados ambas trayectorias dibujan la misma ala de la mariposa. Después, casi sin aviso, una salta al otro lado mientras la otra se queda. Tras 30 segundos están en alas opuestas, completamente descorrelacionadas.",
         },
         {
           label: "03 · Por qué importa",
@@ -264,7 +291,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       },
       {
         pretitle: "Sección cuatro · Dependencia sensible",
-        title: "Por qué un error del tamaño de un virus se vuelve catastrófico",
+        title: "Por qué un error del tamaño de una bacteria se vuelve catastrófico",
         body: "Dos trayectorias separadas por ε se alejan aproximadamente como ε·eλt, donde λ ≈ 0,906 es el exponente de Lyapunov dominante. Suena manso hasta que haces la cuenta: en unos 16 segundos simulados la separación se multiplica por un millón. Cualquier incertidumbre en el estado inicial — ruido de medición, redondeo en el ordenador, una mariposa aleteando en Brasil — se amplifica a este ritmo. Los pronósticos meteorológicos se degradan porque la atmósfera real tiene su propio exponente de Lyapunov positivo, y ningún sensor mejor le gana a una exponencial.",
       },
       {
@@ -292,11 +319,18 @@ const RICH_STORY: Record<Locale, RichStory> = {
       timeLabel: "t",
       divergenceLabel: "|Δ|",
       legend:
-        "Dos trayectorias. Las mismas ecuaciones. Posiciones iniciales que difieren en una centésima de millonésima.",
+        "Dos trayectorias. Las mismas ecuaciones. Posiciones iniciales que difieren en una cienmilésima (10⁻⁵).",
     },
     dimensionCaption: "Dimensión de Hausdorff",
     dimensionNote:
       "Estrictamente entre superficie (2) y sólido (3). Infinitamente delgada en una dirección, fractalmente laminada en otra.",
+    dimCurveLabel: "curva",
+    dimSolidLabel: "sólido",
+    systemLabel: "El sistema",
+    wingsLabel: "C₊ y C₋ · los dos puntos fijos inestables",
+    wingsCaption:
+      "Cada ala se forma alrededor de uno de los equilibrios en (±√(β(ρ−1)), ±√(β(ρ−1)), ρ−1). Se repelen, y esa repulsión es lo que mantiene la trayectoria en movimiento.",
+    jumpLabel: "salto",
     rhoBoringLabel: "ρ < 1",
     rhoBoringBody: "Sin convección. Toda trayectoria muere en el origen.",
     rhoChaosLabel: "ρ = 28",
@@ -320,7 +354,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "02 · Un exemple concret",
           title: "Deux mondes presque identiques s'écartent",
-          body: "Lance deux simulations dont les positions diffèrent de 0,00001 — environ la largeur d'un virus. Pendant 20 secondes simulées, les deux trajectoires dessinent la même aile du papillon. Puis, presque sans prévenir, l'une bondit sur l'autre aile, tandis que la seconde reste. Après 30 secondes, elles sont sur des ailes opposées, complètement décorrélées.",
+          body: "Lance deux simulations dont les positions diffèrent de 0,00001, environ la largeur d'une bactérie. Pendant 20 secondes simulées, les deux trajectoires dessinent la même aile du papillon. Puis, presque sans prévenir, l'une bondit sur l'autre aile, tandis que la seconde reste. Après 30 secondes, elles sont sur des ailes opposées, complètement décorrélées.",
         },
         {
           label: "03 · Pourquoi c'est important",
@@ -349,7 +383,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       },
       {
         pretitle: "Section quatre · Dépendance sensible",
-        title: "Pourquoi une erreur de la taille d'un virus devient catastrophique",
+        title: "Pourquoi une erreur de la taille d'une bactérie devient catastrophique",
         body: "Deux trajectoires séparées par ε s'écartent approximativement comme ε·eλt, où λ ≈ 0,906 est l'exposant de Lyapunov dominant. Cela paraît docile jusqu'au calcul : en environ 16 secondes simulées, l'écart est multiplié par un million. Toute incertitude initiale — bruit de mesure, arrondi machine, un papillon battant des ailes au Brésil — est amplifiée à ce rythme. Les prévisions météo se dégradent parce que l'atmosphère réelle a son propre exposant de Lyapunov positif, et aucun meilleur capteur ne distance une exponentielle.",
       },
       {
@@ -377,11 +411,18 @@ const RICH_STORY: Record<Locale, RichStory> = {
       timeLabel: "t",
       divergenceLabel: "|Δ|",
       legend:
-        "Deux trajectoires. Mêmes équations. Positions initiales différant d'un centième de millionième.",
+        "Deux trajectoires. Mêmes équations. Positions initiales différant d'un cent-millième (10⁻⁵).",
     },
     dimensionCaption: "Dimension de Hausdorff",
     dimensionNote:
       "Strictement entre surface (2) et solide (3). Infiniment mince dans une direction, fractalement feuilletée dans une autre.",
+    dimCurveLabel: "courbe",
+    dimSolidLabel: "solide",
+    systemLabel: "Le système",
+    wingsLabel: "C₊ et C₋ · les deux points fixes instables",
+    wingsCaption:
+      "Chaque aile se forme autour de l'un des équilibres en (±√(β(ρ−1)), ±√(β(ρ−1)), ρ−1). Ils se repoussent, et cette répulsion est ce qui maintient la trajectoire en mouvement.",
+    jumpLabel: "saut",
     rhoBoringLabel: "ρ < 1",
     rhoBoringBody: "Pas de convection. Toute trajectoire meurt à l'origine.",
     rhoChaosLabel: "ρ = 28",
@@ -405,7 +446,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "02 · Un esempio concreto",
           title: "Due mondi quasi identici si allontanano",
-          body: "Avvia due simulazioni con posizioni che differiscono di 0,00001 — circa la larghezza di un virus. Per 20 secondi simulati le due traiettorie disegnano la stessa ala della farfalla. Poi, quasi senza preavviso, una salta sull'altra ala mentre la seconda resta. Dopo 30 secondi sono su ali opposte, del tutto scorrelate.",
+          body: "Avvia due simulazioni con posizioni che differiscono di 0,00001, circa la larghezza di un batterio. Per 20 secondi simulati le due traiettorie disegnano la stessa ala della farfalla. Poi, quasi senza preavviso, una salta sull'altra ala mentre la seconda resta. Dopo 30 secondi sono su ali opposte, del tutto scorrelate.",
         },
         {
           label: "03 · Perché conta",
@@ -434,7 +475,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       },
       {
         pretitle: "Sezione quattro · Dipendenza sensibile",
-        title: "Perché un errore di grandezza virale diventa catastrofico",
+        title: "Perché un errore grande come un batterio diventa catastrofico",
         body: "Due traiettorie separate da ε si allontanano grossomodo come ε·eλt, dove λ ≈ 0,906 è l'esponente di Lyapunov dominante. Sembra mansueto finché non fai il conto: in circa 16 secondi simulati la separazione si moltiplica per un milione. Ogni incertezza iniziale — rumore di misura, arrotondamento di macchina, una farfalla che batte le ali in Brasile — è amplificata a questo ritmo. Le previsioni meteo decadono perché l'atmosfera reale ha il proprio esponente di Lyapunov positivo, e nessun sensore migliore batte un esponenziale.",
       },
       {
@@ -462,11 +503,18 @@ const RICH_STORY: Record<Locale, RichStory> = {
       timeLabel: "t",
       divergenceLabel: "|Δ|",
       legend:
-        "Due traiettorie. Stesse equazioni. Posizioni iniziali che differiscono di un centesimo di milionesimo.",
+        "Due traiettorie. Stesse equazioni. Posizioni iniziali che differiscono di un centomillesimo (10⁻⁵).",
     },
     dimensionCaption: "Dimensione di Hausdorff",
     dimensionNote:
       "Strettamente fra superficie (2) e solido (3). Infinitamente sottile in una direzione, frattalmente stratificata in un'altra.",
+    dimCurveLabel: "curva",
+    dimSolidLabel: "solido",
+    systemLabel: "Il sistema",
+    wingsLabel: "C₊ e C₋ · i due punti fissi instabili",
+    wingsCaption:
+      "Ogni ala si forma attorno a uno degli equilibri in (±√(β(ρ−1)), ±√(β(ρ−1)), ρ−1). Si respingono, e questa repulsione è ciò che tiene la traiettoria in movimento.",
+    jumpLabel: "salto",
     rhoBoringLabel: "ρ < 1",
     rhoBoringBody: "Niente convezione. Ogni traiettoria muore nell'origine.",
     rhoChaosLabel: "ρ = 28",
@@ -490,7 +538,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "02 · Um exemplo concreto",
           title: "Dois mundos quase idênticos se afastam",
-          body: "Inicie duas simulações com posições que diferem em 0,00001 — cerca da largura de um vírus. Durante 20 segundos simulados as duas trajetórias traçam a mesma asa da borboleta. Depois, quase sem aviso, uma salta para a outra asa enquanto a outra permanece. Após 30 segundos estão em asas opostas, totalmente descorrelacionadas.",
+          body: "Inicie duas simulações com posições que diferem em 0,00001, cerca da largura de uma bactéria. Durante 20 segundos simulados as duas trajetórias traçam a mesma asa da borboleta. Depois, quase sem aviso, uma salta para a outra asa enquanto a outra permanece. Após 30 segundos estão em asas opostas, totalmente descorrelacionadas.",
         },
         {
           label: "03 · Por que importa",
@@ -519,7 +567,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       },
       {
         pretitle: "Seção quatro · Dependência sensível",
-        title: "Por que um erro do tamanho de um vírus se torna catastrófico",
+        title: "Por que um erro do tamanho de uma bactéria se torna catastrófico",
         body: "Duas trajetórias separadas por ε se afastam aproximadamente como ε·eλt, onde λ ≈ 0,906 é o expoente de Lyapunov dominante. Parece manso até você fazer a conta: em cerca de 16 segundos simulados o intervalo se multiplica por um milhão. Qualquer incerteza inicial — ruído de medição, arredondamento do computador, uma borboleta batendo as asas no Brasil — é amplificada a esse ritmo. Previsões meteorológicas decaem porque a atmosfera real tem seu próprio expoente de Lyapunov positivo, e nenhum sensor melhor vence uma exponencial.",
       },
       {
@@ -547,11 +595,18 @@ const RICH_STORY: Record<Locale, RichStory> = {
       timeLabel: "t",
       divergenceLabel: "|Δ|",
       legend:
-        "Duas trajetórias. As mesmas equações. Posições iniciais que diferem em um centésimo de milionésimo.",
+        "Duas trajetórias. As mesmas equações. Posições iniciais que diferem em um centomilésimo (10⁻⁵).",
     },
     dimensionCaption: "Dimensão de Hausdorff",
     dimensionNote:
       "Estritamente entre superfície (2) e sólido (3). Infinitamente fina em uma direção, fractalmente estratificada em outra.",
+    dimCurveLabel: "curva",
+    dimSolidLabel: "sólido",
+    systemLabel: "O sistema",
+    wingsLabel: "C₊ e C₋ · os dois pontos fixos instáveis",
+    wingsCaption:
+      "Cada asa se forma em torno de um dos equilíbrios em (±√(β(ρ−1)), ±√(β(ρ−1)), ρ−1). Eles se repelem, e essa repulsão é o que mantém a trajetória em movimento.",
+    jumpLabel: "salto",
     rhoBoringLabel: "ρ < 1",
     rhoBoringBody: "Sem convecção. Toda trajetória morre na origem.",
     rhoChaosLabel: "ρ = 28",
@@ -575,7 +630,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "02 · Ett konkret exempel",
           title: "Två nästan identiska världar driver isär",
-          body: "Starta två simuleringar vars positioner skiljer sig med 0,00001 — ungefär bredden på ett virus. Under 20 simulerade sekunder ritar båda banorna samma fjärilsvinge. Sedan, nästan utan förvarning, hoppar den ena till den andra vingen medan den andra stannar. Efter 30 sekunder är de på motsatta vingar, helt okorrelerade.",
+          body: "Starta två simuleringar vars positioner skiljer sig med 0,00001, ungefär bredden på en bakterie. Under 20 simulerade sekunder ritar båda banorna samma fjärilsvinge. Sedan, nästan utan förvarning, hoppar den ena till den andra vingen medan den andra stannar. Efter 30 sekunder är de på motsatta vingar, helt okorrelerade.",
         },
         {
           label: "03 · Varför det spelar roll",
@@ -604,7 +659,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       },
       {
         pretitle: "Avsnitt fyra · Känslig beroende",
-        title: "Varför ett virusstort fel blir katastrofalt",
+        title: "Varför ett bakteriestort fel blir katastrofalt",
         body: "Två banor separerade med ε växer isär ungefär som ε·eλt, där λ ≈ 0,906 är den ledande Lyapunov-exponenten. Det låter tamt tills du räknar: på cirka 16 simulerade sekunder multipliceras gapet med en miljon. Varje osäkerhet i utgångsläget — mätbrus, datorns avrundning, en fjäril som slår med vingarna i Brasilien — förstärks i denna takt. Väderprognoser sönderfaller eftersom den verkliga atmosfären har sin egen positiva Lyapunov-exponent, och inga bättre sensorer kan springa ifrån en exponential.",
       },
       {
@@ -632,11 +687,18 @@ const RICH_STORY: Record<Locale, RichStory> = {
       timeLabel: "t",
       divergenceLabel: "|Δ|",
       legend:
-        "Två banor. Samma ekvationer. Startpositioner som skiljer sig en hundradel av en miljondel.",
+        "Två banor. Samma ekvationer. Startpositioner som skiljer sig med en hundratusendel (10⁻⁵).",
     },
     dimensionCaption: "Hausdorff-dimension",
     dimensionNote:
       "Strikt mellan yta (2) och solid (3). Oändligt tunn i en riktning, fraktalt skiktad i en annan.",
+    dimCurveLabel: "kurva",
+    dimSolidLabel: "solid",
+    systemLabel: "Systemet",
+    wingsLabel: "C₊ och C₋ · de två instabila fixpunkterna",
+    wingsCaption:
+      "Varje vinge formas kring en av jämvikterna vid (±√(β(ρ−1)), ±√(β(ρ−1)), ρ−1). De stöter bort varandra, och den avstötningen är det som håller banan i rörelse.",
+    jumpLabel: "hopp",
     rhoBoringLabel: "ρ < 1",
     rhoBoringBody: "Ingen konvektion. Varje bana dör i origo.",
     rhoChaosLabel: "ρ = 28",
@@ -660,7 +722,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "02 · Et konkret eksempel",
           title: "To nesten identiske verdener driver fra hverandre",
-          body: "Start to simuleringer der posisjonene skiller seg med 0,00001 — omtrent bredden på et virus. I 20 simulerte sekunder tegner begge banene den samme sommerfuglvingen. Så, nesten uten forvarsel, hopper den ene over til den andre vingen mens den andre blir igjen. Etter 30 sekunder er de på motsatte vinger, fullstendig ukorrelerte.",
+          body: "Start to simuleringer der posisjonene skiller seg med 0,00001, omtrent bredden på en bakterie. I 20 simulerte sekunder tegner begge banene den samme sommerfuglvingen. Så, nesten uten forvarsel, hopper den ene over til den andre vingen mens den andre blir igjen. Etter 30 sekunder er de på motsatte vinger, fullstendig ukorrelerte.",
         },
         {
           label: "03 · Hvorfor det betyr noe",
@@ -689,7 +751,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       },
       {
         pretitle: "Del fire · Sensitiv avhengighet",
-        title: "Hvorfor en virusstor feil blir katastrofal",
+        title: "Hvorfor en bakteriestor feil blir katastrofal",
         body: "To baner adskilt av ε vokser fra hverandre omtrent som ε·eλt, der λ ≈ 0,906 er den ledende Lyapunov-eksponenten. Det høres tamt ut til du gjør regnestykket: på rundt 16 simulerte sekunder ganges avstanden med en million. Enhver usikkerhet i utgangstilstanden — målestøy, avrunding i datamaskinen, en sommerfugl som slår med vingene i Brasil — forsterkes i dette tempoet. Værvarsler forfaller fordi den virkelige atmosfæren har sin egen positive Lyapunov-eksponent, og ingen bedre sensorer kan løpe fra en eksponentialfunksjon.",
       },
       {
@@ -717,11 +779,18 @@ const RICH_STORY: Record<Locale, RichStory> = {
       timeLabel: "t",
       divergenceLabel: "|Δ|",
       legend:
-        "To baner. Samme ligninger. Startposisjoner som skiller seg med en hundredel av en milliondel.",
+        "To baner. Samme ligninger. Startposisjoner som skiller seg med en hundretusendel (10⁻⁵).",
     },
     dimensionCaption: "Hausdorff-dimensjon",
     dimensionNote:
       "Strengt mellom flate (2) og solid (3). Uendelig tynn i én retning, fraktalt lagdelt i en annen.",
+    dimCurveLabel: "kurve",
+    dimSolidLabel: "solid",
+    systemLabel: "Systemet",
+    wingsLabel: "C₊ og C₋ · de to ustabile faste punktene",
+    wingsCaption:
+      "Hver vinge dannes rundt ett av likevektspunktene ved (±√(β(ρ−1)), ±√(β(ρ−1)), ρ−1). De frastøter hverandre, og den frastøtingen er det som holder banen i bevegelse.",
+    jumpLabel: "hopp",
     rhoBoringLabel: "ρ < 1",
     rhoBoringBody: "Ingen konveksjon. Hver bane dør i origo.",
     rhoChaosLabel: "ρ = 28",
@@ -801,7 +870,7 @@ export default function LorenzStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              The system
+              {story.systemLabel}
             </div>
             <pre className="hairline overflow-x-auto rounded-md border bg-ink-950/60 p-4 font-mono text-base leading-relaxed text-ink-100">
               {`  dx/dt = σ (y − x)
@@ -846,12 +915,11 @@ export default function LorenzStory() {
         <Reveal delay={120}>
           <div className="hairline flex flex-col items-center gap-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              C₊ and C₋ · the two unstable fixed points
+              {story.wingsLabel}
             </div>
-            <WingsSVG />
+            <WingsSVG jumpLabel={story.jumpLabel} />
             <p className="max-w-md text-center text-xs leading-relaxed text-ink-300">
-              Each wing forms around one of the equilibria at (±√(β(ρ−1)), ±√(β(ρ−1)), ρ−1). They
-              repel — and the repulsion is what keeps the trajectory in motion.
+              {story.wingsCaption}
             </p>
           </div>
         </Reveal>
@@ -891,9 +959,9 @@ export default function LorenzStory() {
               {story.dimensionNote}
             </p>
             <div className="mx-auto grid max-w-md grid-cols-3 gap-3 pt-4 text-center">
-              <DimDot label="curve" value="1" />
+              <DimDot label={story.dimCurveLabel} value="1" />
               <DimDot label="Lorenz" value="2.06" highlight />
-              <DimDot label="solid" value="3" />
+              <DimDot label={story.dimSolidLabel} value="3" />
             </div>
           </div>
         </Reveal>
@@ -977,7 +1045,12 @@ function RegimeMini({ variant }: { variant: "stable" | "chaos" }) {
     return (
       <svg viewBox="0 0 220 140" className="h-auto w-full" role="img" aria-label="Stable spiral">
         <rect width="220" height="140" fill={palette.canvas.bg} rx="6" />
-        <path d={path.join(" ")} fill="none" stroke="rgba(125,243,255,0.7)" strokeWidth="1.1" />
+        <path
+          d={path.join(" ")}
+          fill="none"
+          stroke={withAlpha(palette.signal.cyan, 0.7)}
+          strokeWidth="1.1"
+        />
         <circle cx="110" cy="70" r="2.4" fill={palette.signal.amber} />
       </svg>
     );
@@ -1001,13 +1074,18 @@ function RegimeMini({ variant }: { variant: "stable" | "chaos" }) {
       aria-label="Butterfly schematic"
     >
       <rect width="220" height="140" fill={palette.canvas.bg} rx="6" />
-      <path d={path.join(" ")} fill="none" stroke="rgba(255,122,182,0.6)" strokeWidth="0.9" />
+      <path
+        d={path.join(" ")}
+        fill="none"
+        stroke={withAlpha(palette.signal.rose, 0.6)}
+        strokeWidth="0.9"
+      />
     </svg>
   );
 }
 
 // Tiny SVG marking the two unstable fixed points around which the wings form.
-function WingsSVG() {
+function WingsSVG({ jumpLabel }: { jumpLabel: string }) {
   return (
     <svg
       viewBox="0 0 320 180"
@@ -1023,7 +1101,7 @@ function WingsSVG() {
         rx="60"
         ry="42"
         fill="none"
-        stroke="rgba(125,243,255,0.7)"
+        stroke={withAlpha(palette.signal.cyan, 0.7)}
         strokeWidth="1.1"
       />
       <ellipse
@@ -1032,7 +1110,7 @@ function WingsSVG() {
         rx="42"
         ry="28"
         fill="none"
-        stroke="rgba(125,243,255,0.4)"
+        stroke={withAlpha(palette.signal.cyan, 0.4)}
         strokeWidth="0.9"
       />
       <ellipse
@@ -1041,7 +1119,7 @@ function WingsSVG() {
         rx="22"
         ry="14"
         fill="none"
-        stroke="rgba(125,243,255,0.25)"
+        stroke={withAlpha(palette.signal.cyan, 0.25)}
         strokeWidth="0.7"
       />
       <circle cx="110" cy="90" r="2.6" fill={palette.signal.rose} />
@@ -1063,7 +1141,7 @@ function WingsSVG() {
         rx="60"
         ry="42"
         fill="none"
-        stroke="rgba(179,136,255,0.7)"
+        stroke={withAlpha(palette.signal.violet, 0.7)}
         strokeWidth="1.1"
       />
       <ellipse
@@ -1072,7 +1150,7 @@ function WingsSVG() {
         rx="42"
         ry="28"
         fill="none"
-        stroke="rgba(179,136,255,0.4)"
+        stroke={withAlpha(palette.signal.violet, 0.4)}
         strokeWidth="0.9"
       />
       <ellipse
@@ -1081,7 +1159,7 @@ function WingsSVG() {
         rx="22"
         ry="14"
         fill="none"
-        stroke="rgba(179,136,255,0.25)"
+        stroke={withAlpha(palette.signal.violet, 0.25)}
         strokeWidth="0.7"
       />
       <circle cx="210" cy="90" r="2.6" fill={palette.signal.rose} />
@@ -1100,7 +1178,7 @@ function WingsSVG() {
       <path
         d="M 158 76 Q 160 60 162 76"
         fill="none"
-        stroke="rgba(255,209,102,0.6)"
+        stroke={withAlpha(palette.signal.amber, 0.6)}
         strokeWidth="0.8"
         strokeDasharray="2 2"
       />
@@ -1112,7 +1190,7 @@ function WingsSVG() {
         fontSize="8"
         fill={palette.signal.amber}
       >
-        jump
+        {jumpLabel}
       </text>
     </svg>
   );

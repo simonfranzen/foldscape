@@ -48,6 +48,16 @@ type RichStory = {
   towerOf: string;
   towerHierarchy: string;
   towerRungs: Array<{ pretty: string; note: string }>;
+  // Section 04 continuum card
+  continuumTitle: string;
+  continuumBody: string;
+  // Section 05 CH-independence table
+  chTitle: string;
+  chYear: string;
+  chWho: string;
+  chResult: string;
+  chRows: Array<{ year: string; who: string; result: string }>;
+  chFootnote: string;
 };
 
 // ---------------- English ----------------
@@ -110,7 +120,7 @@ const en: RichStory = {
     },
     {
       pretitle: "Section 06 · The hierarchy",
-      title: "ℵ₀ < ℵ₁ < ℵ₂ < ⋯ forever",
+      title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ forever",
       body: "Cantor's theorem says |𝒫(X)| > |X| for every set X — the power set is always strictly larger. Iterating gives an unending ladder of ever-larger infinities: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … There is no biggest one.",
     },
   ],
@@ -159,6 +169,28 @@ const en: RichStory = {
       note: "Cantor's theorem guarantees: no matter how high you climb, |𝒫(X)| > |X|.",
     },
   ],
+  continuumTitle: "Cardinality of the continuum",
+  continuumBody:
+    "Strictly larger than ℵ₀, the size of the naturals. The first uncountable infinity mathematics actually hands you.",
+  chTitle: "Independence of CH from ZFC",
+  chYear: "Year",
+  chWho: "Who",
+  chResult: "Result",
+  chRows: [
+    { year: "1878", who: "Cantor", result: "Asks whether any size lives strictly between ℵ₀ and c." },
+    { year: "1891", who: "Cantor", result: "Diagonal argument: |ℝ| > |ℕ|." },
+    {
+      year: "1940",
+      who: "Gödel",
+      result: "CH cannot be disproved from ZFC (constructible universe L).",
+    },
+    {
+      year: "1963",
+      who: "Cohen",
+      result: "CH cannot be proved from ZFC (forcing). Fields medal 1966.",
+    },
+  ],
+  chFootnote: "The continuum hypothesis is independent of ZFC: the axioms simply don't decide it.",
 };
 
 // ---------------- Deutsch ----------------
@@ -201,7 +233,7 @@ const de: RichStory = {
       body: "Die natürlichen Zahlen sind die kleinste unendliche Menge. Ihre Größe heißt ℵ₀ — aleph-null — und jede Menge, die du mit den Natürlichen abzählen kannst (die Ganzen, die Rationalen, alle endlichen Wörter), hat dieselbe Größe. Abzählbar heißt: klein genug zum Aufzählen.",
     },
     {
-      pretitle: "Abschnitt 02 · Nimm an, du listest alle reellen",
+      pretitle: "Abschnitt 02 · Nimm an, du listest alle reellen Zahlen",
       title: "Egal in welcher Reihenfolge",
       body: "Wir nehmen widerspruchshalber an, die reellen Zahlen in [0,1] seien abzählbar: eine Folge r₁, r₂, r₃, …, in der jede reelle Zahl genau einmal vorkommt. Die Reihenfolge bestimmst du. Schreib jede Zeile als Dezimalentwicklung 0,d_{n,1} d_{n,2} d_{n,3} … und leg sie als unendliche Tabelle aus.",
     },
@@ -211,9 +243,9 @@ const de: RichStory = {
       body: "Lies entlang der Diagonale: d_{1,1}, d_{2,2}, d_{3,3}, …. Bau eine neue reelle Zahl s, deren n-te Ziffer s_n sich von d_{n,n} unterscheidet — für jedes n. Ein sicherer Trick: tausch jede Ziffer gegen eine, die nicht 0 oder 9 ist (um die Mehrdeutigkeit 0,999… = 1,000… zu vermeiden). Per Konstruktion gilt s ≠ r_n an der n-ten Stelle — und doch ist s eine vollkommen reguläre reelle Zahl in [0,1].",
     },
     {
-      pretitle: "Abschnitt 04 · Die reellen sind überabzählbar",
+      pretitle: "Abschnitt 04 · Die Reellen sind überabzählbar",
       title: "|ℝ| = 2^ℵ₀ = c > ℵ₀",
-      body: "Die Liste sollte jede reelle Zahl enthalten — und wir haben gerade eine gebaut, die ihr entging. Die Annahme bricht zusammen: keine Aufzählung der reellen Zahlen kann vollständig sein. Die reellen haben Mächtigkeit c = 2^ℵ₀, strikt größer als ℵ₀. Eine neue Art von Unendlichkeit, frisch ausgeliefert.",
+      body: "Die Liste sollte jede reelle Zahl enthalten, und wir haben gerade eine gebaut, die ihr entging. Die Annahme bricht zusammen: keine Aufzählung der reellen Zahlen kann vollständig sein. Die Reellen haben Mächtigkeit c = 2^ℵ₀, strikt größer als ℵ₀. Eine neue Art von Unendlichkeit, frisch ausgeliefert.",
     },
     {
       pretitle: "Abschnitt 05 · Die Kontinuumshypothese",
@@ -222,7 +254,7 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 06 · Die Hierarchie",
-      title: "ℵ₀ < ℵ₁ < ℵ₂ < ⋯ für immer",
+      title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ für immer",
       body: "Cantors Satz sagt: |𝒫(X)| > |X| für jede Menge X — die Potenzmenge ist immer strikt größer. Iterieren liefert eine endlose Leiter immer größerer Unendlichkeiten: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Es gibt keine größte.",
     },
   ],
@@ -257,7 +289,7 @@ const de: RichStory = {
     },
     {
       pretty: "𝒫(ℝ)",
-      note: "Funktionen ℝ → {0,1}. Die Potenzmenge der reellen — wieder strikt größer.",
+      note: "Funktionen ℝ → {0,1}. Die Potenzmenge der Reellen, wieder strikt größer.",
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "Und so weiter. Jede Stufe lässt die vorherige verschwinden." },
     {
@@ -274,6 +306,29 @@ const de: RichStory = {
       note: "Cantors Satz garantiert: egal wie hoch du steigst, |𝒫(X)| > |X|.",
     },
   ],
+  continuumTitle: "Mächtigkeit des Kontinuums",
+  continuumBody:
+    "Strikt größer als ℵ₀, die Größe der Natürlichen. Die erste überabzählbare Unendlichkeit, die die Mathematik dir tatsächlich in die Hand gibt.",
+  chTitle: "Unabhängigkeit von CH von ZFC",
+  chYear: "Jahr",
+  chWho: "Wer",
+  chResult: "Ergebnis",
+  chRows: [
+    { year: "1878", who: "Cantor", result: "Fragt, ob eine Größe strikt zwischen ℵ₀ und c liegt." },
+    { year: "1891", who: "Cantor", result: "Diagonalargument: |ℝ| > |ℕ|." },
+    {
+      year: "1940",
+      who: "Gödel",
+      result: "CH lässt sich aus ZFC nicht widerlegen (konstruierbares Universum L).",
+    },
+    {
+      year: "1963",
+      who: "Cohen",
+      result: "CH lässt sich aus ZFC nicht beweisen (Forcing). Fields-Medaille 1966.",
+    },
+  ],
+  chFootnote:
+    "Die Kontinuumshypothese ist unabhängig von ZFC: die Axiome entscheiden sie schlicht nicht.",
 };
 
 // ---------------- Español ----------------
@@ -337,7 +392,7 @@ const es: RichStory = {
     },
     {
       pretitle: "Sección 06 · La jerarquía",
-      title: "ℵ₀ < ℵ₁ < ℵ₂ < ⋯ para siempre",
+      title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ para siempre",
       body: "El teorema de Cantor dice |𝒫(X)| > |X| para todo conjunto X — el conjunto de partes es siempre estrictamente mayor. Iterando se obtiene una escalera sin fin de infinitos cada vez mayores: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … No hay un máximo.",
     },
   ],
@@ -386,6 +441,33 @@ const es: RichStory = {
       note: "El teorema de Cantor garantiza: por alto que subas, |𝒫(X)| > |X|.",
     },
   ],
+  continuumTitle: "Cardinalidad del continuo",
+  continuumBody:
+    "Estrictamente mayor que ℵ₀, el tamaño de los naturales. El primer infinito no numerable que las matemáticas te entregan de verdad.",
+  chTitle: "Independencia de CH respecto de ZFC",
+  chYear: "Año",
+  chWho: "Quién",
+  chResult: "Resultado",
+  chRows: [
+    {
+      year: "1878",
+      who: "Cantor",
+      result: "Pregunta si algún tamaño vive estrictamente entre ℵ₀ y c.",
+    },
+    { year: "1891", who: "Cantor", result: "Argumento diagonal: |ℝ| > |ℕ|." },
+    {
+      year: "1940",
+      who: "Gödel",
+      result: "CH no puede refutarse desde ZFC (universo construible L).",
+    },
+    {
+      year: "1963",
+      who: "Cohen",
+      result: "CH no puede probarse desde ZFC (forcing). Medalla Fields 1966.",
+    },
+  ],
+  chFootnote:
+    "La hipótesis del continuo es independiente de ZFC: los axiomas simplemente no la deciden.",
 };
 
 // ---------------- Français ----------------
@@ -449,7 +531,7 @@ const fr: RichStory = {
     },
     {
       pretitle: "Section 06 · La hiérarchie",
-      title: "ℵ₀ < ℵ₁ < ℵ₂ < ⋯ pour toujours",
+      title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ pour toujours",
       body: "Le théorème de Cantor dit |𝒫(X)| > |X| pour tout ensemble X — l'ensemble des parties est toujours strictement plus grand. En itérant, on obtient une échelle sans fin d'infinités toujours plus grandes : ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Il n'y a pas de plus grande.",
     },
   ],
@@ -498,6 +580,29 @@ const fr: RichStory = {
       note: "Le théorème de Cantor garantit : aussi haut que tu montes, |𝒫(X)| > |X|.",
     },
   ],
+  continuumTitle: "Cardinalité du continu",
+  continuumBody:
+    "Strictement plus grande que ℵ₀, la taille des naturels. La première infinité indénombrable que les mathématiques te livrent vraiment.",
+  chTitle: "Indépendance de CH vis-à-vis de ZFC",
+  chYear: "Année",
+  chWho: "Qui",
+  chResult: "Résultat",
+  chRows: [
+    { year: "1878", who: "Cantor", result: "Demande si une taille vit strictement entre ℵ₀ et c." },
+    { year: "1891", who: "Cantor", result: "Argument diagonal : |ℝ| > |ℕ|." },
+    {
+      year: "1940",
+      who: "Gödel",
+      result: "CH ne peut être réfutée depuis ZFC (univers constructible L).",
+    },
+    {
+      year: "1963",
+      who: "Cohen",
+      result: "CH ne peut être démontrée depuis ZFC (forcing). Médaille Fields 1966.",
+    },
+  ],
+  chFootnote:
+    "L'hypothèse du continu est indépendante de ZFC : les axiomes ne la décident tout simplement pas.",
 };
 
 // ---------------- Italiano ----------------
@@ -561,7 +666,7 @@ const it: RichStory = {
     },
     {
       pretitle: "Sezione 06 · La gerarchia",
-      title: "ℵ₀ < ℵ₁ < ℵ₂ < ⋯ per sempre",
+      title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ per sempre",
       body: "Il teorema di Cantor dice |𝒫(X)| > |X| per ogni insieme X — l'insieme delle parti è sempre strettamente più grande. Iterando si ottiene una scala senza fine di infiniti sempre più grandi: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Non c'è un massimo.",
     },
   ],
@@ -610,6 +715,29 @@ const it: RichStory = {
       note: "Il teorema di Cantor garantisce: a qualunque altezza, |𝒫(X)| > |X|.",
     },
   ],
+  continuumTitle: "Cardinalità del continuo",
+  continuumBody:
+    "Strettamente maggiore di ℵ₀, la taglia dei naturali. Il primo infinito non numerabile che la matematica ti consegna davvero.",
+  chTitle: "Indipendenza di CH da ZFC",
+  chYear: "Anno",
+  chWho: "Chi",
+  chResult: "Risultato",
+  chRows: [
+    { year: "1878", who: "Cantor", result: "Chiede se una taglia viva strettamente tra ℵ₀ e c." },
+    { year: "1891", who: "Cantor", result: "Argomento diagonale: |ℝ| > |ℕ|." },
+    {
+      year: "1940",
+      who: "Gödel",
+      result: "CH non può essere confutata in ZFC (universo costruibile L).",
+    },
+    {
+      year: "1963",
+      who: "Cohen",
+      result: "CH non può essere dimostrata in ZFC (forcing). Medaglia Fields 1966.",
+    },
+  ],
+  chFootnote:
+    "L'ipotesi del continuo è indipendente da ZFC: gli assiomi semplicemente non la decidono.",
 };
 
 // ---------------- Português ----------------
@@ -673,7 +801,7 @@ const pt: RichStory = {
     },
     {
       pretitle: "Secção 06 · A hierarquia",
-      title: "ℵ₀ < ℵ₁ < ℵ₂ < ⋯ para sempre",
+      title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ para sempre",
       body: "O teorema de Cantor diz |𝒫(X)| > |X| para todo conjunto X — o conjunto das partes é sempre estritamente maior. Iterando obtém-se uma escada sem fim de infinitos cada vez maiores: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Não há um maior.",
     },
   ],
@@ -722,6 +850,33 @@ const pt: RichStory = {
       note: "O teorema de Cantor garante: por mais alto que subas, |𝒫(X)| > |X|.",
     },
   ],
+  continuumTitle: "Cardinalidade do contínuo",
+  continuumBody:
+    "Estritamente maior que ℵ₀, o tamanho dos naturais. O primeiro infinito não-numerável que a matemática realmente te entrega.",
+  chTitle: "Independência de CH em relação a ZFC",
+  chYear: "Ano",
+  chWho: "Quem",
+  chResult: "Resultado",
+  chRows: [
+    {
+      year: "1878",
+      who: "Cantor",
+      result: "Pergunta se algum tamanho vive estritamente entre ℵ₀ e c.",
+    },
+    { year: "1891", who: "Cantor", result: "Argumento diagonal: |ℝ| > |ℕ|." },
+    {
+      year: "1940",
+      who: "Gödel",
+      result: "CH não pode ser refutada em ZFC (universo construtível L).",
+    },
+    {
+      year: "1963",
+      who: "Cohen",
+      result: "CH não pode ser provada em ZFC (forcing). Medalha Fields 1966.",
+    },
+  ],
+  chFootnote:
+    "A hipótese do contínuo é independente de ZFC: os axiomas simplesmente não a decidem.",
 };
 
 // ---------------- Svenska ----------------
@@ -785,7 +940,7 @@ const sv: RichStory = {
     },
     {
       pretitle: "Avsnitt 06 · Hierarkin",
-      title: "ℵ₀ < ℵ₁ < ℵ₂ < ⋯ för alltid",
+      title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ för alltid",
       body: "Cantors sats säger |𝒫(X)| > |X| för varje mängd X — potensmängden är alltid strikt större. Iterera och du får en oändlig stege av allt större oändligheter: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Det finns ingen största.",
     },
   ],
@@ -831,6 +986,28 @@ const sv: RichStory = {
       note: "Cantors sats garanterar: hur högt du än klättrar, |𝒫(X)| > |X|.",
     },
   ],
+  continuumTitle: "Kontinuumets kardinalitet",
+  continuumBody:
+    "Strikt större än ℵ₀, storleken på de naturliga talen. Den första överuppräkneliga oändligheten som matematiken faktiskt räcker dig.",
+  chTitle: "CH:s oberoende av ZFC",
+  chYear: "År",
+  chWho: "Vem",
+  chResult: "Resultat",
+  chRows: [
+    { year: "1878", who: "Cantor", result: "Frågar om någon storlek bor strikt mellan ℵ₀ och c." },
+    { year: "1891", who: "Cantor", result: "Diagonalargument: |ℝ| > |ℕ|." },
+    {
+      year: "1940",
+      who: "Gödel",
+      result: "CH kan inte motbevisas i ZFC (konstruerbara universum L).",
+    },
+    {
+      year: "1963",
+      who: "Cohen",
+      result: "CH kan inte bevisas i ZFC (forcing). Fieldsmedaljen 1966.",
+    },
+  ],
+  chFootnote: "Kontinuumhypotesen är oberoende av ZFC: axiomen avgör den helt enkelt inte.",
 };
 
 // ---------------- Norsk ----------------
@@ -894,7 +1071,7 @@ const no: RichStory = {
     },
     {
       pretitle: "Avsnitt 06 · Hierarkiet",
-      title: "ℵ₀ < ℵ₁ < ℵ₂ < ⋯ for alltid",
+      title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ for alltid",
       body: "Cantors teorem sier |𝒫(X)| > |X| for hver mengde X — potensmengden er alltid strengt større. Iterer, og du får en uendelig stige av stadig større uendeligheter: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Det finnes ingen største.",
     },
   ],
@@ -943,6 +1120,28 @@ const no: RichStory = {
       note: "Cantors teorem garanterer: uansett hvor høyt du klatrer, |𝒫(X)| > |X|.",
     },
   ],
+  continuumTitle: "Kontinuumets kardinalitet",
+  continuumBody:
+    "Strengt større enn ℵ₀, størrelsen til de naturlige tallene. Den første overtellbare uendeligheten matematikken faktisk rekker deg.",
+  chTitle: "CH-uavhengighet av ZFC",
+  chYear: "År",
+  chWho: "Hvem",
+  chResult: "Resultat",
+  chRows: [
+    { year: "1878", who: "Cantor", result: "Spør om noen størrelse bor strengt mellom ℵ₀ og c." },
+    { year: "1891", who: "Cantor", result: "Diagonalargument: |ℝ| > |ℕ|." },
+    {
+      year: "1940",
+      who: "Gödel",
+      result: "CH kan ikke motbevises i ZFC (konstruerbart univers L).",
+    },
+    {
+      year: "1963",
+      who: "Cohen",
+      result: "CH kan ikke bevises i ZFC (forcing). Fields-medaljen 1966.",
+    },
+  ],
+  chFootnote: "Kontinuumshypotesen er uavhengig av ZFC: aksiomene avgjør den ganske enkelt ikke.",
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
@@ -1056,12 +1255,11 @@ export default function CantorStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Cardinality of the continuum
+              {story.continuumTitle}
             </div>
             <div className="math-italic text-5xl text-ink-100 md:text-6xl">|ℝ| = 2^ℵ₀ = c</div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Strictly larger than ℵ₀, the size of the naturals. The first uncountable infinity
-              mathematics actually hands you.
+              {story.continuumBody}
             </p>
           </div>
         </Reveal>
@@ -1078,38 +1276,33 @@ export default function CantorStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Independence of CH from ZFC
+              {story.chTitle}
             </div>
             <table className="w-full font-mono text-sm">
               <thead className="hairline border-b text-ink-300">
                 <tr>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    Year
+                    {story.chYear}
                   </th>
-                  <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">Who</th>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    Result
+                    {story.chWho}
+                  </th>
+                  <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
+                    {story.chResult}
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {[
-                  ["1878", "Cantor", "Asks whether any size lives strictly between ℵ₀ and c."],
-                  ["1891", "Cantor", "Diagonal argument: |ℝ| > |ℕ|."],
-                  ["1940", "Gödel", "CH cannot be disproved from ZFC (constructible universe L)."],
-                  ["1963", "Cohen", "CH cannot be proved from ZFC (forcing) — Fields medal 1966."],
-                ].map(([year, who, result]) => (
-                  <tr key={year} className="border-b border-ink-700/30 last:border-0">
-                    <td className="px-2 py-2 text-signal-rose">{year}</td>
-                    <td className="px-2 py-2 text-ink-200">{who}</td>
-                    <td className="px-2 py-2 text-ink-300">{result}</td>
+                {story.chRows.map((row) => (
+                  <tr key={row.year} className="border-b border-ink-700/30 last:border-0">
+                    <td className="px-2 py-2 text-signal-rose">{row.year}</td>
+                    <td className="px-2 py-2 text-ink-200">{row.who}</td>
+                    <td className="px-2 py-2 text-ink-300">{row.result}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <p className="pt-2 text-xs leading-relaxed text-ink-400">
-              The continuum hypothesis is independent of ZFC: the axioms simply don't decide it.
-            </p>
+            <p className="pt-2 text-xs leading-relaxed text-ink-400">{story.chFootnote}</p>
           </div>
         </Reveal>
       </section>

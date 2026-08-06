@@ -5,11 +5,18 @@ import { useI18n } from "@/lib/i18n/context";
 import { palette } from "@/lib/visual/palette";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
-import { DlaMiniSim } from "@/components/DlaMiniSim";
+import { DlaMiniSim, type DlaMiniSimLabels } from "@/components/DlaMiniSim";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
 const ACCENT = "text-signal-coral";
+
+// The static SVGs draw with per-stroke alpha, so derive rgba() from the palette
+// tokens rather than hardcoding hex triples that can drift from the design system.
+function rgba(hex: string, alpha: number) {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
+}
 
 // --------------------------------------------------------------------------
 // Hand-drawn dendrite. Static, deterministic, used as a quiet visual cue
@@ -79,7 +86,7 @@ function DendriteSVG() {
           y1={y1}
           x2={x2}
           y2={y2}
-          stroke="rgba(255,122,182,0.7)"
+          stroke={rgba(palette.signal.rose, 0.7)}
           strokeWidth={1.1}
         />
       ))}
@@ -124,7 +131,14 @@ function TipsVsValleysSVG() {
     >
       <rect width={W} height={H} fill={palette.canvas.bg} rx={10} />
       {/* trunk */}
-      <line x1={cx} y1={cy} x2={cx} y2={cy - 30} stroke="rgba(255,122,182,0.7)" strokeWidth={2} />
+      <line
+        x1={cx}
+        y1={cy}
+        x2={cx}
+        y2={cy - 30}
+        stroke={rgba(palette.signal.rose, 0.7)}
+        strokeWidth={2}
+      />
       {tips.map((t, i) => (
         <g key={i}>
           <line
@@ -132,7 +146,7 @@ function TipsVsValleysSVG() {
             y1={cy - 30}
             x2={t.x}
             y2={t.y}
-            stroke="rgba(255,122,182,0.75)"
+            stroke={rgba(palette.signal.rose, 0.75)}
             strokeWidth={1.6}
           />
           <circle cx={t.x} cy={t.y} r={3.2} fill={palette.signal.rose} />
@@ -146,7 +160,7 @@ function TipsVsValleysSVG() {
           y1={y1}
           x2={x2}
           y2={y2}
-          stroke="rgba(125,243,255,0.55)"
+          stroke={rgba(palette.signal.cyan, 0.55)}
           strokeWidth={1}
           strokeDasharray="3 3"
         />
@@ -157,7 +171,7 @@ function TipsVsValleysSVG() {
         y1={cy - 20}
         x2={cx - 8}
         y2={cy - 28}
-        stroke="rgba(179,136,255,0.35)"
+        stroke={rgba(palette.signal.violet, 0.35)}
         strokeWidth={1}
         strokeDasharray="2 3"
       />
@@ -166,7 +180,7 @@ function TipsVsValleysSVG() {
         y1={cy - 20}
         x2={cx + 8}
         y2={cy - 28}
-        stroke="rgba(179,136,255,0.35)"
+        stroke={rgba(palette.signal.violet, 0.35)}
         strokeWidth={1}
         strokeDasharray="2 3"
       />
@@ -175,7 +189,7 @@ function TipsVsValleysSVG() {
         y={H - 4}
         textAnchor="middle"
         fontSize="9"
-        fill="rgba(255,209,102,0.7)"
+        fill={rgba(palette.signal.amber, 0.7)}
         fontFamily="monospace"
       >
         seed
@@ -207,7 +221,9 @@ type RichStory = {
   tipsCaption: string;
   tipsHint: string;
   dimensionCaption: string;
+  dimensionValue: string;
   dimensionBody: string;
+  miniSim: DlaMiniSimLabels;
 };
 
 const en: RichStory = {
@@ -284,8 +300,20 @@ const en: RichStory = {
   tipsHint:
     "Walkers drift in from far away. Tips that stick out catch them first; valleys between arms see almost nothing.",
   dimensionCaption: "Witten–Sander, 1981",
+  dimensionValue: "≈ 1.71",
   dimensionBody:
     "The Hausdorff dimension of a 2D DLA cluster. Universal across seed shapes and lattice types.",
+  miniSim: {
+    seedBadge: "centre seed",
+    stuck: "stuck",
+    walkers: "Walkers / frame",
+    stickiness: "Stickiness",
+    pause: "❚❚ Pause",
+    play: "▶ Play",
+    reset: "⟳ Reset",
+    hint: "More walkers · faster growth. Lower stickiness · denser, blobbier cluster: walkers slip past tips before freezing.",
+    canvasLabel: "Live DLA simulation growing from a centre seed",
+  },
 };
 
 const de: RichStory = {
@@ -363,8 +391,20 @@ const de: RichStory = {
   tipsHint:
     "Wanderer treiben von weit her ein. Herausragende Spitzen fangen sie zuerst; Täler zwischen den Armen sehen fast nichts.",
   dimensionCaption: "Witten–Sander, 1981",
+  dimensionValue: "≈ 1,71",
   dimensionBody:
     "Die Hausdorff-Dimension eines 2D-DLA-Clusters. Universell über Keimformen und Gittertypen hinweg.",
+  miniSim: {
+    seedBadge: "Mittelpunkt-Keim",
+    stuck: "geheftet",
+    walkers: "Wanderer / Frame",
+    stickiness: "Haftung",
+    pause: "❚❚ Pause",
+    play: "▶ Start",
+    reset: "⟳ Zurück",
+    hint: "Mehr Wanderer · schnelleres Wachstum. Weniger Haftung · dichterer, blobbigerer Cluster: Wanderer rutschen an Spitzen vorbei, bevor sie festfrieren.",
+    canvasLabel: "Live-DLA-Simulation, die aus einem Mittelpunkt-Keim wächst",
+  },
 };
 
 const es: RichStory = {
@@ -442,8 +482,20 @@ const es: RichStory = {
   tipsHint:
     "Los caminantes llegan de lejos. Las puntas salientes los atrapan primero; los valles entre brazos casi no ven nada.",
   dimensionCaption: "Witten–Sander, 1981",
+  dimensionValue: "≈ 1,71",
   dimensionBody:
     "La dimensión de Hausdorff de un cúmulo DLA en 2D. Universal sobre formas de semilla y tipos de red.",
+  miniSim: {
+    seedBadge: "semilla central",
+    stuck: "pegados",
+    walkers: "Caminantes / cuadro",
+    stickiness: "Adherencia",
+    pause: "❚❚ Pausa",
+    play: "▶ Jugar",
+    reset: "⟳ Reiniciar",
+    hint: "Más caminantes · crecimiento más rápido. Menos adherencia · cúmulo más denso y blobby: los caminantes pasan de largo las puntas antes de congelarse.",
+    canvasLabel: "Simulación DLA en vivo que crece desde una semilla central",
+  },
 };
 
 const fr: RichStory = {
@@ -521,8 +573,20 @@ const fr: RichStory = {
   tipsHint:
     "Les marcheurs arrivent de loin. Les pointes qui dépassent les attrapent d'abord ; les vallées entre les bras ne voient presque rien.",
   dimensionCaption: "Witten–Sander, 1981",
+  dimensionValue: "≈ 1,71",
   dimensionBody:
     "La dimension de Hausdorff d'un amas DLA en 2D. Universelle sur les graines et les réseaux.",
+  miniSim: {
+    seedBadge: "graine centrale",
+    stuck: "collés",
+    walkers: "Marcheurs / image",
+    stickiness: "Adhérence",
+    pause: "❚❚ Pause",
+    play: "▶ Lire",
+    reset: "⟳ Réinit.",
+    hint: "Plus de marcheurs · croissance plus rapide. Moins d'adhérence · amas plus dense et compact : les marcheurs glissent au-delà des pointes avant de geler.",
+    canvasLabel: "Simulation DLA en direct qui pousse depuis une graine centrale",
+  },
 };
 
 const it: RichStory = {
@@ -599,8 +663,20 @@ const it: RichStory = {
   tipsHint:
     "I camminatori arrivano da lontano. Le punte sporgenti li acchiappano prime; le valli tra i bracci non vedono quasi niente.",
   dimensionCaption: "Witten–Sander, 1981",
+  dimensionValue: "≈ 1,71",
   dimensionBody:
     "La dimensione di Hausdorff di un ammasso DLA in 2D. Universale su forme di seme e reticoli.",
+  miniSim: {
+    seedBadge: "seme centrale",
+    stuck: "fissati",
+    walkers: "Camminatori / frame",
+    stickiness: "Aderenza",
+    pause: "❚❚ Pausa",
+    play: "▶ Vai",
+    reset: "⟳ Reset",
+    hint: "Più camminatori · crescita più rapida. Meno aderenza · ammasso più denso e compatto: i camminatori scivolano oltre le punte prima di gelare.",
+    canvasLabel: "Simulazione DLA dal vivo che cresce da un seme centrale",
+  },
 };
 
 const pt: RichStory = {
@@ -678,8 +754,20 @@ const pt: RichStory = {
   tipsHint:
     "Os caminhantes vêm de longe. As pontas salientes apanham-nos primeiro; os vales entre braços quase não veem nada.",
   dimensionCaption: "Witten–Sander, 1981",
+  dimensionValue: "≈ 1,71",
   dimensionBody:
     "A dimensão de Hausdorff de um aglomerado DLA em 2D. Universal sobre formas de semente e redes.",
+  miniSim: {
+    seedBadge: "semente central",
+    stuck: "fixados",
+    walkers: "Caminhantes / quadro",
+    stickiness: "Aderência",
+    pause: "❚❚ Pausa",
+    play: "▶ Jogar",
+    reset: "⟳ Repor",
+    hint: "Mais caminhantes · crescimento mais rápido. Menos aderência · aglomerado mais denso e compacto: os caminhantes passam pelas pontas antes de congelar.",
+    canvasLabel: "Simulação DLA ao vivo a crescer a partir de uma semente central",
+  },
 };
 
 const sv: RichStory = {
@@ -757,7 +845,19 @@ const sv: RichStory = {
   tipsHint:
     "Vandrarna driver in från långt håll. Utstickande spetsar fångar dem först; dalarna mellan armarna ser nästan inget.",
   dimensionCaption: "Witten–Sander, 1981",
+  dimensionValue: "≈ 1,71",
   dimensionBody: "Hausdorff-dimensionen för en 2D-DLA-klump. Universell över fröformer och gitter.",
+  miniSim: {
+    seedBadge: "centerfrö",
+    stuck: "fastnade",
+    walkers: "Vandrare / bildruta",
+    stickiness: "Klibbighet",
+    pause: "❚❚ Paus",
+    play: "▶ Spela",
+    reset: "⟳ Återställ",
+    hint: "Fler vandrare · snabbare tillväxt. Lägre klibbighet · tätare, blobbigare klump: vandrarna glider förbi spetsarna innan de fryser.",
+    canvasLabel: "Live-DLA-simulering som växer från ett centerfrö",
+  },
 };
 
 const no: RichStory = {
@@ -835,7 +935,19 @@ const no: RichStory = {
   tipsHint:
     "Vandrerne driver inn fra langt hold. Utstikkende spisser fanger dem først; dalene mellom armene ser nesten ingenting.",
   dimensionCaption: "Witten–Sander, 1981",
+  dimensionValue: "≈ 1,71",
   dimensionBody: "Hausdorff-dimensjonen til en 2D-DLA-klump. Universell over frøformer og gittere.",
+  miniSim: {
+    seedBadge: "senterfrø",
+    stuck: "festet",
+    walkers: "Vandrere / ramme",
+    stickiness: "Klebrighet",
+    pause: "❚❚ Pause",
+    play: "▶ Spill",
+    reset: "⟳ Nullstill",
+    hint: "Flere vandrere · raskere vekst. Lavere klebrighet · tettere, mer klumpete klump: vandrerne glir forbi spissene før de fryser.",
+    canvasLabel: "Live-DLA-simulering som vokser fra et senterfrø",
+  },
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
@@ -913,7 +1025,7 @@ export default function DlaStory() {
       {/* INTERACTIVE 1 · the live mini-sim */}
       <section className="mx-auto mb-32 max-w-5xl">
         <Reveal>
-          <DlaMiniSim caption={story.miniSimCaption} />
+          <DlaMiniSim caption={story.miniSimCaption} labels={story.miniSim} />
         </Reveal>
       </section>
 
@@ -941,7 +1053,9 @@ export default function DlaStory() {
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
               {story.dimensionCaption}
             </div>
-            <div className="math-italic text-6xl text-ink-100 md:text-7xl">≈ 1.71</div>
+            <div className="math-italic text-6xl text-ink-100 md:text-7xl">
+              {story.dimensionValue}
+            </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
               {story.dimensionBody}
             </p>

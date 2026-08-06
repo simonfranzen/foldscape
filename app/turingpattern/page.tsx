@@ -86,7 +86,7 @@ const en: RichStory = {
       {
         label: "03",
         title: "Why it matters",
-        body: "Turing wrote this down in his last paper, 'The Chemical Basis of Morphogenesis' (1952), before any biology supported it. Modern molecular biology has since found the activator–inhibitor pairs he predicted, in zebrafish skin, mouse hair follicles, and digit spacing in vertebrate limbs. The same mathematics also appears in seashell pigmentation, sand-ripple physics, and density patterns in the early universe.",
+        body: "Turing wrote this down in 1952, in 'The Chemical Basis of Morphogenesis', before any biology supported it. Modern molecular biology has since found the activator–inhibitor pairs he predicted, in zebrafish skin, mouse hair follicles, and digit spacing in vertebrate limbs. The same mathematics also appears in seashell pigmentation and sand-ripple physics.",
       },
     ],
     tryIt:
@@ -116,7 +116,7 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · Biology and beyond",
       title: "Embryos, fish skin, seashells, sand",
-      body: "Hans Meinhardt spent decades fitting reaction–diffusion models to morphogenesis — limb formation, leaf venation, seashell pigment lines drawn out as a wavefront on a growing edge. Kondo and Asai showed in 1995 that the stripes on Pomacanthus angelfish rearrange exactly as a reaction–diffusion model predicts when the fish grows. The same mathematics describes sand ripples in shallow water, density variations in convecting fluids, and even the cosmic web of galaxies sketched out by gravitational instability in the early universe.",
+      body: "Hans Meinhardt spent decades fitting reaction–diffusion models to morphogenesis — limb formation, leaf venation, seashell pigment lines drawn out as a wavefront on a growing edge. Kondo and Asai showed in 1995 that the stripes on Pomacanthus angelfish rearrange exactly as a reaction–diffusion model predicts when the fish grows. The same mathematics describes sand ripples in shallow water and density variations in convecting fluids.",
     },
     {
       pretitle: "Section 06 · What we still don't know",
@@ -210,7 +210,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Turing schrieb das in seinem letzten Aufsatz, «The Chemical Basis of Morphogenesis» (1952), bevor irgendeine Biologie ihn stützte. Die moderne Molekularbiologie hat seitdem die Aktivator-Inhibitor-Paare gefunden, die er vorhersagte — in Zebrafischhaut, Maus-Haarfollikeln, Fingerabständen in Wirbeltier-Gliedmaßen. Dieselbe Mathematik taucht in Schneckenhausmustern, Sandrippeln und Dichtemustern des frühen Universums wieder auf.",
+        body: "Turing schrieb das 1952 in «The Chemical Basis of Morphogenesis», bevor irgendeine Biologie ihn stützte. Die moderne Molekularbiologie hat seitdem die Aktivator-Inhibitor-Paare gefunden, die er vorhersagte — in Zebrafischhaut, Maus-Haarfollikeln, Fingerabständen in Wirbeltier-Gliedmaßen. Dieselbe Mathematik taucht in Schneckenhausmustern und Sandrippeln wieder auf.",
       },
     ],
     tryIt:
@@ -240,7 +240,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Biologie und darüber hinaus",
       title: "Embryonen, Fischhäute, Schneckenhäuser, Sand",
-      body: "Hans Meinhardt hat Jahrzehnte damit verbracht, Reaktions-Diffusions-Modelle an die Morphogenese anzupassen — Gliedmaßenbildung, Blattadern, Schneckenpigmentlinien, die als Wellenfront an einer wachsenden Kante gemalt werden. Kondo und Asai zeigten 1995, dass sich die Streifen von Pomacanthus-Kaiserfischen exakt so umordnen, wie ein Reaktions-Diffusions-Modell vorhersagt, wenn der Fisch wächst. Dieselbe Mathematik beschreibt Sandrippeln im flachen Wasser, Dichteunterschiede in konvektierenden Flüssigkeiten — und selbst das kosmische Netz von Galaxien, das die gravitative Instabilität im frühen Universum skizzierte.",
+      body: "Hans Meinhardt hat Jahrzehnte damit verbracht, Reaktions-Diffusions-Modelle an die Morphogenese anzupassen — Gliedmaßenbildung, Blattadern, Schneckenpigmentlinien, die als Wellenfront an einer wachsenden Kante gemalt werden. Kondo und Asai zeigten 1995, dass sich die Streifen von Pomacanthus-Kaiserfischen exakt so umordnen, wie ein Reaktions-Diffusions-Modell vorhersagt, wenn der Fisch wächst. Dieselbe Mathematik beschreibt Sandrippeln im flachen Wasser und Dichteunterschiede in konvektierenden Flüssigkeiten.",
     },
     {
       pretitle: "Abschnitt 06 · Was wir noch nicht wissen",
@@ -334,7 +334,7 @@ const es: RichStory = {
       {
         label: "03",
         title: "Por qué importa",
-        body: "Turing lo escribió en su último artículo, «The Chemical Basis of Morphogenesis» (1952), antes de que ninguna biología lo respaldara. La biología molecular moderna ha encontrado desde entonces los pares activador-inhibidor que predijo: en piel de pez cebra, folículos pilosos de ratón, espaciado de dedos en extremidades de vertebrados. La misma matemática también aparece en pigmentación de caracolas, física de rizos de arena y patrones de densidad en el universo temprano.",
+        body: "Turing lo escribió en 1952, en «The Chemical Basis of Morphogenesis», antes de que ninguna biología lo respaldara. La biología molecular moderna ha encontrado desde entonces los pares activador-inhibidor que predijo: en piel de pez cebra, folículos pilosos de ratón, espaciado de dedos en extremidades de vertebrados. La misma matemática también aparece en pigmentación de caracolas y física de rizos de arena.",
       },
     ],
     tryIt:
@@ -364,7 +364,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · Biología y más allá",
       title: "Embriones, piel de pez, caracolas, arena",
-      body: "Hans Meinhardt pasó décadas ajustando modelos de reacción-difusión a la morfogénesis — formación de extremidades, nervadura de hojas, líneas de pigmento de caracolas dibujadas como un frente de onda en un borde que crece. Kondo y Asai mostraron en 1995 que las rayas del pez ángel Pomacanthus se reorganizan exactamente como predice un modelo de reacción-difusión cuando el pez crece. La misma matemática describe rizos de arena en aguas someras, variaciones de densidad en fluidos convectivos — e incluso la red cósmica de galaxias dibujada por la inestabilidad gravitatoria del universo temprano.",
+      body: "Hans Meinhardt pasó décadas ajustando modelos de reacción-difusión a la morfogénesis — formación de extremidades, nervadura de hojas, líneas de pigmento de caracolas dibujadas como un frente de onda en un borde que crece. Kondo y Asai mostraron en 1995 que las rayas del pez ángel Pomacanthus se reorganizan exactamente como predice un modelo de reacción-difusión cuando el pez crece. La misma matemática describe rizos de arena en aguas someras y variaciones de densidad en fluidos convectivos.",
     },
     {
       pretitle: "Sección 06 · Lo que aún no sabemos",
@@ -459,7 +459,7 @@ const fr: RichStory = {
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "Turing a écrit ça dans son dernier article, «The Chemical Basis of Morphogenesis» (1952), avant qu'aucune biologie ne le confirme. La biologie moléculaire moderne a depuis trouvé les couples activateur-inhibiteur qu'il prédisait — dans la peau du poisson-zèbre, les follicules pileux de la souris, l'espacement des doigts dans les membres de vertébrés. La même mathématique réapparaît dans la pigmentation des coquillages, la physique des rides de sable et les motifs de densité de l'univers primordial.",
+        body: "Turing a écrit ça en 1952, dans «The Chemical Basis of Morphogenesis», avant qu'aucune biologie ne le confirme. La biologie moléculaire moderne a depuis trouvé les couples activateur-inhibiteur qu'il prédisait — dans la peau du poisson-zèbre, les follicules pileux de la souris, l'espacement des doigts dans les membres de vertébrés. La même mathématique réapparaît dans la pigmentation des coquillages et la physique des rides de sable.",
       },
     ],
     tryIt:
@@ -489,7 +489,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Biologie et au-delà",
       title: "Embryons, peaux de poissons, coquillages, sable",
-      body: "Hans Meinhardt a passé des décennies à ajuster des modèles de réaction-diffusion à la morphogenèse — formation des membres, nervures des feuilles, lignes de pigment des coquillages tracées comme un front d'onde sur un bord en croissance. Kondo et Asai ont montré en 1995 que les rayures des poissons-anges Pomacanthus se réorganisent exactement comme le prédit un modèle de réaction-diffusion lorsque le poisson grandit. La même mathématique décrit les rides de sable dans les eaux peu profondes, les variations de densité dans les fluides convectifs — et même la toile cosmique des galaxies esquissée par l'instabilité gravitationnelle dans l'univers primordial.",
+      body: "Hans Meinhardt a passé des décennies à ajuster des modèles de réaction-diffusion à la morphogenèse — formation des membres, nervures des feuilles, lignes de pigment des coquillages tracées comme un front d'onde sur un bord en croissance. Kondo et Asai ont montré en 1995 que les rayures des poissons-anges Pomacanthus se réorganisent exactement comme le prédit un modèle de réaction-diffusion lorsque le poisson grandit. La même mathématique décrit les rides de sable dans les eaux peu profondes et les variations de densité dans les fluides convectifs.",
     },
     {
       pretitle: "Section 06 · Ce que l'on ignore encore",
@@ -583,7 +583,7 @@ const it: RichStory = {
       {
         label: "03",
         title: "Perché conta",
-        body: "Turing lo scrisse nel suo ultimo articolo, «The Chemical Basis of Morphogenesis» (1952), prima che alcuna biologia lo confermasse. La biologia molecolare moderna ha poi trovato le coppie attivatore-inibitore che aveva previsto — nella pelle del pesce zebra, nei follicoli del topo, nello spaziamento delle dita degli arti dei vertebrati. La stessa matematica riappare nella pigmentazione delle conchiglie, nella fisica delle increspature di sabbia e nei pattern di densità dell'universo primordiale.",
+        body: "Turing lo scrisse nel 1952, in «The Chemical Basis of Morphogenesis», prima che alcuna biologia lo confermasse. La biologia molecolare moderna ha poi trovato le coppie attivatore-inibitore che aveva previsto — nella pelle del pesce zebra, nei follicoli del topo, nello spaziamento delle dita degli arti dei vertebrati. La stessa matematica riappare nella pigmentazione delle conchiglie e nella fisica delle increspature di sabbia.",
       },
     ],
     tryIt:
@@ -613,7 +613,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · Biologia e oltre",
       title: "Embrioni, pelli di pesce, conchiglie, sabbia",
-      body: "Hans Meinhardt ha passato decenni a calibrare modelli di reazione-diffusione sulla morfogenesi — formazione degli arti, nervature delle foglie, linee di pigmento delle conchiglie tracciate come un fronte d'onda su un bordo che cresce. Kondo e Asai hanno mostrato nel 1995 che le strisce dei pesci angelo Pomacanthus si riorganizzano esattamente come predice un modello di reazione-diffusione quando il pesce cresce. La stessa matematica descrive le increspature di sabbia in acque basse, le variazioni di densità in fluidi convettivi — e perfino la ragnatela cosmica delle galassie tracciata dall'instabilità gravitazionale nell'universo primordiale.",
+      body: "Hans Meinhardt ha passato decenni a calibrare modelli di reazione-diffusione sulla morfogenesi — formazione degli arti, nervature delle foglie, linee di pigmento delle conchiglie tracciate come un fronte d'onda su un bordo che cresce. Kondo e Asai hanno mostrato nel 1995 che le strisce dei pesci angelo Pomacanthus si riorganizzano esattamente come predice un modello di reazione-diffusione quando il pesce cresce. La stessa matematica descrive le increspature di sabbia in acque basse e le variazioni di densità in fluidi convettivi.",
     },
     {
       pretitle: "Sezione 06 · Quello che ancora non sappiamo",
@@ -707,7 +707,7 @@ const pt: RichStory = {
       {
         label: "03",
         title: "Porque importa",
-        body: "Turing escreveu isto no seu último artigo, «The Chemical Basis of Morphogenesis» (1952), antes de qualquer biologia o apoiar. A biologia molecular moderna já encontrou desde então os pares ativador-inibidor que previa — em pele de peixe-zebra, folículos de pelo do rato, espaçamento dos dedos em membros de vertebrados. A mesma matemática aparece também na pigmentação de conchas, na física de ondulações de areia e em padrões de densidade do universo primordial.",
+        body: "Turing escreveu isto em 1952, em «The Chemical Basis of Morphogenesis», antes de qualquer biologia o apoiar. A biologia molecular moderna já encontrou desde então os pares ativador-inibidor que previa — em pele de peixe-zebra, folículos de pelo do rato, espaçamento dos dedos em membros de vertebrados. A mesma matemática aparece também na pigmentação de conchas e na física de ondulações de areia.",
       },
     ],
     tryIt:
@@ -737,7 +737,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · Biologia e mais além",
       title: "Embriões, peles de peixe, conchas, areia",
-      body: "Hans Meinhardt passou décadas a ajustar modelos de reação-difusão à morfogénese — formação de membros, nervuras de folhas, linhas de pigmento de conchas traçadas como uma frente de onda numa borda em crescimento. Kondo e Asai mostraram em 1995 que as riscas dos peixes-anjo Pomacanthus se reorganizam exatamente como um modelo de reação-difusão prevê quando o peixe cresce. A mesma matemática descreve ondulações de areia em águas rasas, variações de densidade em fluidos convectivos — e até a teia cósmica de galáxias esboçada pela instabilidade gravitacional no universo primordial.",
+      body: "Hans Meinhardt passou décadas a ajustar modelos de reação-difusão à morfogénese — formação de membros, nervuras de folhas, linhas de pigmento de conchas traçadas como uma frente de onda numa borda em crescimento. Kondo e Asai mostraram em 1995 que as riscas dos peixes-anjo Pomacanthus se reorganizam exatamente como um modelo de reação-difusão prevê quando o peixe cresce. A mesma matemática descreve ondulações de areia em águas rasas e variações de densidade em fluidos convectivos.",
     },
     {
       pretitle: "Secção 06 · O que ainda não sabemos",
@@ -831,7 +831,7 @@ const sv: RichStory = {
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "Turing skrev ned detta i sin sista artikel, «The Chemical Basis of Morphogenesis» (1952), innan någon biologi backade upp honom. Modern molekylärbiologi har sedan hittat aktivator-inhibitor-paren han förutsade — i zebrafiskhud, mushårsäckar, fingerspridning i ryggradsdjurs lemmar. Samma matematik dyker upp i snäckpigmentering, sandripplor och täthetsmönster i det tidiga universum.",
+        body: "Turing skrev ned detta 1952, i «The Chemical Basis of Morphogenesis», innan någon biologi backade upp honom. Modern molekylärbiologi har sedan hittat aktivator-inhibitor-paren han förutsade — i zebrafiskhud, mushårsäckar, fingerspridning i ryggradsdjurs lemmar. Samma matematik dyker upp i snäckpigmentering och sandripplor.",
       },
     ],
     tryIt:
@@ -861,7 +861,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Biologi och bortom",
       title: "Embryon, fiskhud, snäckor, sand",
-      body: "Hans Meinhardt tillbringade årtionden med att anpassa reaktions-diffusionsmodeller till morfogenesen — lembildning, bladnervatur, snäckpigmentlinjer ritade som en vågfront längs en växande kant. Kondo och Asai visade 1995 att ränderna på Pomacanthus-kejsarfiskar omorganiseras exakt som en reaktions-diffusionsmodell förutsäger när fisken växer. Samma matematik beskriver sandripplor i grunda vatten, täthetsvariationer i konvektiva vätskor — och till och med kosmiska galaxnätet som skissats av gravitationsinstabilitet i det tidiga universum.",
+      body: "Hans Meinhardt tillbringade årtionden med att anpassa reaktions-diffusionsmodeller till morfogenesen — lembildning, bladnervatur, snäckpigmentlinjer ritade som en vågfront längs en växande kant. Kondo och Asai visade 1995 att ränderna på Pomacanthus-kejsarfiskar omorganiseras exakt som en reaktions-diffusionsmodell förutsäger när fisken växer. Samma matematik beskriver sandripplor i grunda vatten och täthetsvariationer i konvektiva vätskor.",
     },
     {
       pretitle: "Avsnitt 06 · Vad vi fortfarande inte vet",
@@ -955,7 +955,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Turing skrev dette ned i sin siste artikkel, «The Chemical Basis of Morphogenesis» (1952), før noen biologi støttet ham. Moderne molekylærbiologi har siden funnet aktivator-inhibitor-parene han forutsa — i sebrafiskhud, mus-hårsekker, fingeravstand i virveldyrlemmer. Den samme matematikken dukker opp i snegleskall-pigmentering, sandkrusninger og tetthetsmønstre i det tidlige universet.",
+        body: "Turing skrev dette ned i 1952, i «The Chemical Basis of Morphogenesis», før noen biologi støttet ham. Moderne molekylærbiologi har siden funnet aktivator-inhibitor-parene han forutsa — i sebrafiskhud, mus-hårsekker, fingeravstand i virveldyrlemmer. Den samme matematikken dukker opp i snegleskall-pigmentering og sandkrusninger.",
       },
     ],
     tryIt:
@@ -985,7 +985,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Biologi og videre",
       title: "Embryoer, fiskehud, snegleskall, sand",
-      body: "Hans Meinhardt brukte tiår på å tilpasse reaksjons-diffusjonsmodeller til morfogenese — lemdannelse, blanervatur, snegleskallpigmentlinjer tegnet som en bølgefront langs en voksende kant. Kondo og Asai viste i 1995 at stripene på Pomacanthus-keiserfisk omorganiserer seg nøyaktig som en reaksjons-diffusjonsmodell forutsier når fisken vokser. Den samme matematikken beskriver sandkrusninger i grunt vann, tetthetsvariasjoner i konvektive væsker — og til og med det kosmiske galakse-nettet skissert av gravitasjonsinstabilitet i det tidlige universet.",
+      body: "Hans Meinhardt brukte tiår på å tilpasse reaksjons-diffusjonsmodeller til morfogenese — lemdannelse, blanervatur, snegleskallpigmentlinjer tegnet som en bølgefront langs en voksende kant. Kondo og Asai viste i 1995 at stripene på Pomacanthus-keiserfisk omorganiserer seg nøyaktig som en reaksjons-diffusjonsmodell forutsier når fisken vokser. Den samme matematikken beskriver sandkrusninger i grunt vann og tetthetsvariasjoner i konvektive væsker.",
     },
     {
       pretitle: "Avsnitt 06 · Hva vi ennå ikke vet",

@@ -10,6 +10,12 @@ import { palette } from "@/lib/visual/palette";
 // State is exposed through an optional callback so the convergence-plot
 // sibling can plot the same run if desired.
 
+// Layout constants at module scope. d = line spacing, ell = needle length
+// (ell <= d). Module scope keeps them referentially stable so the rAF loop
+// effect does not need them in its dependency array.
+const D = 38;
+const ELL = D * 0.85;
+
 interface Props {
   caption: string;
   playLabel: string;
@@ -38,6 +44,7 @@ export function BuffonNeedleSim({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
   const [running, setRunning] = useState(true);
+  const [reduced, setReduced] = useState(false);
   const [drops, setDrops] = useState(0);
   const [crossings, setCrossings] = useState(0);
   const [resetTick, setResetTick] = useState(0);
@@ -46,10 +53,16 @@ export function BuffonNeedleSim({
   const dropsRef = useRef(0);
   const crossingsRef = useRef(0);
 
-  // Layout constants. d = line spacing, ell = needle length (ell <= d).
-  // Fixed inside the component to keep the story tight.
-  const D = 38;
-  const ELL = D * 0.85;
+  // Respect prefers-reduced-motion: the global CSS rule cannot stop a canvas
+  // rAF loop, so we track the query ourselves and freeze on a static frame.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(m.matches);
+    const h = (e: MediaQueryListEvent) => setReduced(e.matches);
+    m.addEventListener?.("change", h);
+    return () => m.removeEventListener?.("change", h);
+  }, []);
 
   // Draw the lined paper background on mount and on reset.
   useEffect(() => {
@@ -109,6 +122,33 @@ export function BuffonNeedleSim({
     return () => cancelAnimationFrame(raf);
   }, [running, onSample]);
 
+  // When reduced motion is requested, stop the loop and paint one static
+  // batch of needles so the figure still tells its story without animation.
+  useEffect(() => {
+    if (!reduced) return;
+    setRunning(false);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const W = canvas.clientWidth;
+    const H = canvas.clientHeight;
+    ctx.fillStyle = palette.canvas.bg;
+    ctx.fillRect(0, 0, W, H);
+    drawLines(ctx, W, H, D);
+    const SEED = 300;
+    let c = 0;
+    for (let i = 0; i < SEED; i++) {
+      dropOne(ctx, W, H, D, ELL, (cross) => {
+        if (cross) c += 1;
+      });
+    }
+    dropsRef.current = SEED;
+    crossingsRef.current = c;
+    setDrops(SEED);
+    setCrossings(c);
+  }, [reduced]);
+
   const reset = () => {
     dropsRef.current = 0;
     crossingsRef.current = 0;
@@ -140,12 +180,16 @@ export function BuffonNeedleSim({
           if (cross) crossingsRef.current += 1;
         });
       } else {
-        // Probabilistic crossing without drawing.
-        const cy = Math.random() * H;
+        // Probabilistic crossing without drawing. Same unbiased test as
+        // dropOne: sample the centre over whole line-periods, then compare the
+        // distance to the nearest grid line against the vertical half-extent.
+        const rows = Math.max(1, Math.floor(H / D));
+        const cy = Math.random() * rows * D;
         const theta = Math.random() * Math.PI;
-        const lineYs = computeLines(H, D);
         const half = (ELL / 2) * Math.sin(theta);
-        const cross = lineYs.some((ly) => cy - half <= ly && cy + half >= ly);
+        const yMod = ((cy % D) + D) % D;
+        const dist = Math.min(yMod, D - yMod);
+        const cross = dist <= half;
         dropsRef.current += 1;
         if (cross) crossingsRef.current += 1;
       }
@@ -167,6 +211,8 @@ export function BuffonNeedleSim({
         <div className="flex justify-center md:col-span-7">
           <canvas
             ref={canvasRef}
+            role="img"
+            aria-label={caption}
             className="hairline block rounded-md border"
             style={{ width: 360, height: 280, maxWidth: "100%", background: palette.canvas.bg }}
           />
@@ -235,8 +281,10 @@ function Stat({ label, value, color }: { label: string; value: string; color: st
 
 function computeLines(H: number, d: number): number[] {
   const lines: number[] = [];
-  // Lines at y = d, 2d, 3d, ... starting a bit below the top edge.
-  for (let y = d; y < H; y += d) lines.push(y);
+  // Lines at every multiple of d, including y = 0: the visible copy of the
+  // virtual infinite grid the crossing test samples against. Drawing from 0
+  // keeps the picture consistent with the modular test in dropOne.
+  for (let y = 0; y < H; y += d) lines.push(y);
   return lines;
 }
 
@@ -255,7 +303,7 @@ function drawLines(ctx: CanvasRenderingContext2D, W: number, H: number, d: numbe
 function drawBackground(ctx: CanvasRenderingContext2D, W: number, H: number) {
   ctx.fillStyle = palette.canvas.bg;
   ctx.fillRect(0, 0, W, H);
-  drawLines(ctx, W, H, 38);
+  drawLines(ctx, W, H, D);
 }
 
 function dropOne(
@@ -267,12 +315,19 @@ function dropOne(
   onResult: (cross: boolean) => void,
 ) {
   const cx = Math.random() * W;
-  const cy = Math.random() * H;
+  // Sample the centre over a whole number of line-periods so y mod d is truly
+  // uniform. Over the full canvas height it is not (H is not a multiple of d),
+  // which would leave the crossing probability, and thus π, permanently biased.
+  const rows = Math.max(1, Math.floor(H / d));
+  const cy = Math.random() * rows * d;
   const theta = Math.random() * Math.PI;
   const dx = (ell / 2) * Math.cos(theta);
   const dy = (ell / 2) * Math.sin(theta);
-  const lineYs = computeLines(H, d);
-  const cross = lineYs.some((ly) => cy - Math.abs(dy) <= ly && cy + Math.abs(dy) >= ly);
+  // Crossing = distance to the nearest line of the grid at every multiple of d
+  // (line at y = 0 included) is within the needle's vertical half-extent.
+  const yMod = ((cy % d) + d) % d;
+  const dist = Math.min(yMod, d - yMod);
+  const cross = dist <= Math.abs(dy);
 
   ctx.strokeStyle = cross ? palette.signal.amber : "rgba(176,182,200,0.55)";
   ctx.fillStyle = cross ? palette.signal.amber : "rgba(176,182,200,0.55)";

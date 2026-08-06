@@ -5,8 +5,19 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import type { Locale } from "@/lib/i18n/types";
 
 type Panel = "spiral" | "ratios" | "sunflower";
+
+// Derive an rgba() string from a palette hex token so canvas/SVG colours stay
+// in sync with the palette rather than restating the channel literals.
+function withAlpha(hex: string, alpha: number): string {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
 
 const PHI = (1 + Math.sqrt(5)) / 2;
 const PHI_STR = "1.618033988749";
@@ -21,9 +32,307 @@ const FIB: number[] = (() => {
   return out;
 })();
 
+// --------------------------------------------------------------------------
+// Explorer UI copy per locale. This room carries enough prose (panel labels,
+// control captions, three explanatory paragraphs, status bar + canvas
+// annotations) that it declares its own RICH_EXPLORER, mirroring the
+// eulerchar/mobius explorers.
+// --------------------------------------------------------------------------
+
+type RichExplorer = {
+  panels: { spiral: string; ratios: string; sunflower: string };
+  panelHeading: string;
+  status: {
+    spiral: (depth: number, ratio: string) => string;
+    ratios: (n: number) => string;
+    sunflower: (alpha: string, seeds: number) => string;
+  };
+  spiral: { depthLabel: string; side: (s: number) => string; note: string };
+  ratios: { termsLabel: string; note: string };
+  sunflower: {
+    angleLabel: string;
+    snap: string;
+    note: string;
+    seedCountLabel: string;
+    annotationGolden: string;
+    annotationOff: (alpha: string, delta: string) => string;
+    goldenAngleRad: (rad: string) => string;
+  };
+  constant: string;
+  aria: { spiral: string; ratios: string; sunflower: string };
+};
+
+const RICH_EXPLORER: Record<Locale, RichExplorer> = {
+  en: {
+    panels: { spiral: "Spiral", ratios: "Ratios", sunflower: "Sunflower" },
+    panelHeading: "Panel",
+    status: {
+      spiral: (d, r) => `Fibonacci squares · depth ${d} · golden rectangle ratio ${r}`,
+      ratios: (n) => `Ratios Fₙ₊₁/Fₙ for n = 1 … ${n} · target φ ≈ ${PHI_STR}`,
+      sunflower: (a, s) => `Vogel phyllotaxis · α = ${a}° · ${s} seeds`,
+    },
+    spiral: {
+      depthLabel: "Depth · squares to show",
+      side: (s) => `side ${s}`,
+      note: "Each square's side is the next Fibonacci number; a quarter-circle inside each connects into the golden spiral. The outer rectangle's aspect ratio approaches φ.",
+    },
+    ratios: {
+      termsLabel: "n · terms",
+      note: "Each ratio sits above or below φ alternately and the gap shrinks by a factor of ψ² ≈ 0.382 each step.",
+    },
+    sunflower: {
+      angleLabel: "Divergence angle α",
+      snap: "Snap to φ angle (360°/φ²)",
+      note: "At the golden angle (137.5078°) seeds pack without gaps or preferred direction. Nudge by even a hundredth of a degree and clear spiral arms appear.",
+      seedCountLabel: "Seed count",
+      annotationGolden: "α = golden angle (137.5078°), no spiral arms",
+      annotationOff: (a, d) => `α = ${a}° (Δ ${d}°), spiral arms appear`,
+      goldenAngleRad: (r) => `golden angle = π(3 − √5) ≈ ${r} rad`,
+    },
+    constant: "The constant",
+    aria: {
+      spiral: "Golden spiral built from nested Fibonacci squares",
+      ratios: "Line chart of consecutive Fibonacci ratios approaching φ",
+      sunflower: "Sunflower phyllotaxis with adjustable divergence angle",
+    },
+  },
+  de: {
+    panels: { spiral: "Spirale", ratios: "Verhältnisse", sunflower: "Sonnenblume" },
+    panelHeading: "Ansicht",
+    status: {
+      spiral: (d, r) => `Fibonacci-Quadrate · Tiefe ${d} · Verhältnis des goldenen Rechtecks ${r}`,
+      ratios: (n) => `Verhältnisse Fₙ₊₁/Fₙ für n = 1 … ${n} · Ziel φ ≈ ${PHI_STR}`,
+      sunflower: (a, s) => `Vogel-Phyllotaxis · α = ${a}° · ${s} Samen`,
+    },
+    spiral: {
+      depthLabel: "Tiefe · sichtbare Quadrate",
+      side: (s) => `Seite ${s}`,
+      note: "Die Seite jedes Quadrats ist die nächste Fibonacci-Zahl; ein Viertelkreis in jedem verbindet sich zur goldenen Spirale. Das Seitenverhältnis des äußeren Rechtecks nähert sich φ.",
+    },
+    ratios: {
+      termsLabel: "n · Glieder",
+      note: "Jedes Verhältnis liegt abwechselnd über oder unter φ, und der Abstand schrumpft pro Schritt um den Faktor ψ² ≈ 0,382.",
+    },
+    sunflower: {
+      angleLabel: "Divergenzwinkel α",
+      snap: "Auf φ-Winkel springen (360°/φ²)",
+      note: "Beim goldenen Winkel (137,5078°) packen sich die Samen ohne Lücken oder Vorzugsrichtung. Schon eine hundertstel Grad daneben, und klare Spiralarme erscheinen.",
+      seedCountLabel: "Samenanzahl",
+      annotationGolden: "α = goldener Winkel (137,5078°), keine Spiralarme",
+      annotationOff: (a, d) => `α = ${a}° (Δ ${d}°), Spiralarme erscheinen`,
+      goldenAngleRad: (r) => `goldener Winkel = π(3 − √5) ≈ ${r} rad`,
+    },
+    constant: "Die Konstante",
+    aria: {
+      spiral: "Goldene Spirale aus verschachtelten Fibonacci-Quadraten",
+      ratios: "Liniendiagramm aufeinanderfolgender Fibonacci-Verhältnisse, die sich φ nähern",
+      sunflower: "Sonnenblumen-Phyllotaxis mit einstellbarem Divergenzwinkel",
+    },
+  },
+  es: {
+    panels: { spiral: "Espiral", ratios: "Razones", sunflower: "Girasol" },
+    panelHeading: "Panel",
+    status: {
+      spiral: (d, r) => `Cuadrados de Fibonacci · profundidad ${d} · razón del rectángulo áureo ${r}`,
+      ratios: (n) => `Razones Fₙ₊₁/Fₙ para n = 1 … ${n} · objetivo φ ≈ ${PHI_STR}`,
+      sunflower: (a, s) => `Filotaxis de Vogel · α = ${a}° · ${s} semillas`,
+    },
+    spiral: {
+      depthLabel: "Profundidad · cuadrados a mostrar",
+      side: (s) => `lado ${s}`,
+      note: "El lado de cada cuadrado es el siguiente número de Fibonacci; un cuarto de círculo en cada uno se une en la espiral áurea. La razón del rectángulo exterior se acerca a φ.",
+    },
+    ratios: {
+      termsLabel: "n · términos",
+      note: "Cada razón queda alternativamente por encima o por debajo de φ y la brecha se reduce por un factor ψ² ≈ 0,382 en cada paso.",
+    },
+    sunflower: {
+      angleLabel: "Ángulo de divergencia α",
+      snap: "Ir al ángulo φ (360°/φ²)",
+      note: "En el ángulo áureo (137,5078°) las semillas se empaquetan sin huecos ni dirección preferida. Muévelo aunque sea una centésima de grado y aparecen brazos espirales claros.",
+      seedCountLabel: "Número de semillas",
+      annotationGolden: "α = ángulo áureo (137,5078°), sin brazos espirales",
+      annotationOff: (a, d) => `α = ${a}° (Δ ${d}°), aparecen brazos espirales`,
+      goldenAngleRad: (r) => `ángulo áureo = π(3 − √5) ≈ ${r} rad`,
+    },
+    constant: "La constante",
+    aria: {
+      spiral: "Espiral áurea construida con cuadrados de Fibonacci anidados",
+      ratios: "Gráfico de líneas de razones de Fibonacci consecutivas acercándose a φ",
+      sunflower: "Filotaxis de girasol con ángulo de divergencia ajustable",
+    },
+  },
+  fr: {
+    panels: { spiral: "Spirale", ratios: "Rapports", sunflower: "Tournesol" },
+    panelHeading: "Panneau",
+    status: {
+      spiral: (d, r) => `Carrés de Fibonacci · profondeur ${d} · rapport du rectangle d'or ${r}`,
+      ratios: (n) => `Rapports Fₙ₊₁/Fₙ pour n = 1 … ${n} · cible φ ≈ ${PHI_STR}`,
+      sunflower: (a, s) => `Phyllotaxie de Vogel · α = ${a}° · ${s} graines`,
+    },
+    spiral: {
+      depthLabel: "Profondeur · carrés à afficher",
+      side: (s) => `côté ${s}`,
+      note: "Le côté de chaque carré est le nombre de Fibonacci suivant ; un quart de cercle dans chacun se raccorde en la spirale d'or. Le rapport du rectangle extérieur tend vers φ.",
+    },
+    ratios: {
+      termsLabel: "n · termes",
+      note: "Chaque rapport se place alternativement au-dessus ou en dessous de φ et l'écart se réduit d'un facteur ψ² ≈ 0,382 à chaque pas.",
+    },
+    sunflower: {
+      angleLabel: "Angle de divergence α",
+      snap: "Aller à l'angle φ (360°/φ²)",
+      note: "À l'angle d'or (137,5078°) les graines s'empilent sans vides ni direction privilégiée. Décale-le d'un centième de degré et des bras spiraux nets apparaissent.",
+      seedCountLabel: "Nombre de graines",
+      annotationGolden: "α = angle d'or (137,5078°), aucun bras spiral",
+      annotationOff: (a, d) => `α = ${a}° (Δ ${d}°), des bras spiraux apparaissent`,
+      goldenAngleRad: (r) => `angle d'or = π(3 − √5) ≈ ${r} rad`,
+    },
+    constant: "La constante",
+    aria: {
+      spiral: "Spirale d'or construite à partir de carrés de Fibonacci imbriqués",
+      ratios: "Graphique des rapports de Fibonacci consécutifs se rapprochant de φ",
+      sunflower: "Phyllotaxie de tournesol avec angle de divergence réglable",
+    },
+  },
+  it: {
+    panels: { spiral: "Spirale", ratios: "Rapporti", sunflower: "Girasole" },
+    panelHeading: "Pannello",
+    status: {
+      spiral: (d, r) => `Quadrati di Fibonacci · profondità ${d} · rapporto del rettangolo aureo ${r}`,
+      ratios: (n) => `Rapporti Fₙ₊₁/Fₙ per n = 1 … ${n} · obiettivo φ ≈ ${PHI_STR}`,
+      sunflower: (a, s) => `Fillotassi di Vogel · α = ${a}° · ${s} semi`,
+    },
+    spiral: {
+      depthLabel: "Profondità · quadrati da mostrare",
+      side: (s) => `lato ${s}`,
+      note: "Il lato di ogni quadrato è il numero di Fibonacci successivo; un quarto di cerchio in ciascuno si collega nella spirale aurea. Il rapporto del rettangolo esterno si avvicina a φ.",
+    },
+    ratios: {
+      termsLabel: "n · termini",
+      note: "Ogni rapporto sta alternativamente sopra o sotto φ e il divario si riduce di un fattore ψ² ≈ 0,382 a ogni passo.",
+    },
+    sunflower: {
+      angleLabel: "Angolo di divergenza α",
+      snap: "Vai all'angolo φ (360°/φ²)",
+      note: "All'angolo aureo (137,5078°) i semi si impacchettano senza vuoti né direzione preferita. Spostalo anche di un centesimo di grado e compaiono bracci a spirale netti.",
+      seedCountLabel: "Numero di semi",
+      annotationGolden: "α = angolo aureo (137,5078°), nessun braccio a spirale",
+      annotationOff: (a, d) => `α = ${a}° (Δ ${d}°), compaiono bracci a spirale`,
+      goldenAngleRad: (r) => `angolo aureo = π(3 − √5) ≈ ${r} rad`,
+    },
+    constant: "La costante",
+    aria: {
+      spiral: "Spirale aurea costruita con quadrati di Fibonacci annidati",
+      ratios: "Grafico a linee dei rapporti di Fibonacci consecutivi che si avvicinano a φ",
+      sunflower: "Fillotassi del girasole con angolo di divergenza regolabile",
+    },
+  },
+  pt: {
+    panels: { spiral: "Espiral", ratios: "Razões", sunflower: "Girassol" },
+    panelHeading: "Painel",
+    status: {
+      spiral: (d, r) => `Quadrados de Fibonacci · profundidade ${d} · razão do retângulo áureo ${r}`,
+      ratios: (n) => `Razões Fₙ₊₁/Fₙ para n = 1 … ${n} · alvo φ ≈ ${PHI_STR}`,
+      sunflower: (a, s) => `Filotaxia de Vogel · α = ${a}° · ${s} sementes`,
+    },
+    spiral: {
+      depthLabel: "Profundidade · quadrados a mostrar",
+      side: (s) => `lado ${s}`,
+      note: "O lado de cada quadrado é o número de Fibonacci seguinte; um quarto de círculo em cada um liga-se na espiral áurea. A razão do retângulo exterior aproxima-se de φ.",
+    },
+    ratios: {
+      termsLabel: "n · termos",
+      note: "Cada razão fica alternadamente acima ou abaixo de φ e a diferença reduz-se por um fator ψ² ≈ 0,382 a cada passo.",
+    },
+    sunflower: {
+      angleLabel: "Ângulo de divergência α",
+      snap: "Ir para o ângulo φ (360°/φ²)",
+      note: "No ângulo áureo (137,5078°) as sementes empacotam-se sem vazios nem direção preferida. Desloca-o mesmo um centésimo de grau e surgem braços espirais nítidos.",
+      seedCountLabel: "Número de sementes",
+      annotationGolden: "α = ângulo áureo (137,5078°), sem braços espirais",
+      annotationOff: (a, d) => `α = ${a}° (Δ ${d}°), surgem braços espirais`,
+      goldenAngleRad: (r) => `ângulo áureo = π(3 − √5) ≈ ${r} rad`,
+    },
+    constant: "A constante",
+    aria: {
+      spiral: "Espiral áurea construída com quadrados de Fibonacci aninhados",
+      ratios: "Gráfico de linhas das razões de Fibonacci consecutivas a aproximarem-se de φ",
+      sunflower: "Filotaxia de girassol com ângulo de divergência ajustável",
+    },
+  },
+  sv: {
+    panels: { spiral: "Spiral", ratios: "Kvoter", sunflower: "Solros" },
+    panelHeading: "Panel",
+    status: {
+      spiral: (d, r) => `Fibonacci-kvadrater · djup ${d} · gyllene rektangelns förhållande ${r}`,
+      ratios: (n) => `Kvoter Fₙ₊₁/Fₙ för n = 1 … ${n} · mål φ ≈ ${PHI_STR}`,
+      sunflower: (a, s) => `Vogel-fyllotaxi · α = ${a}° · ${s} frön`,
+    },
+    spiral: {
+      depthLabel: "Djup · kvadrater att visa",
+      side: (s) => `sida ${s}`,
+      note: "Varje kvadrats sida är nästa Fibonacci-tal; en fjärdedelscirkel i var och en fogas ihop till den gyllene spiralen. Den yttre rektangelns sidoförhållande närmar sig φ.",
+    },
+    ratios: {
+      termsLabel: "n · termer",
+      note: "Varje kvot ligger omväxlande över eller under φ och gapet krymper med en faktor ψ² ≈ 0,382 för varje steg.",
+    },
+    sunflower: {
+      angleLabel: "Divergensvinkel α",
+      snap: "Hoppa till φ-vinkeln (360°/φ²)",
+      note: "Vid den gyllene vinkeln (137,5078°) packas fröna utan luckor eller föredragen riktning. Rubba den bara en hundradels grad så framträder tydliga spiralarmar.",
+      seedCountLabel: "Antal frön",
+      annotationGolden: "α = gyllene vinkeln (137,5078°), inga spiralarmar",
+      annotationOff: (a, d) => `α = ${a}° (Δ ${d}°), spiralarmar framträder`,
+      goldenAngleRad: (r) => `gyllene vinkeln = π(3 − √5) ≈ ${r} rad`,
+    },
+    constant: "Konstanten",
+    aria: {
+      spiral: "Gyllene spiral byggd av nästlade Fibonacci-kvadrater",
+      ratios: "Linjediagram över på varandra följande Fibonacci-kvoter som närmar sig φ",
+      sunflower: "Solrosens fyllotaxi med justerbar divergensvinkel",
+    },
+  },
+  no: {
+    panels: { spiral: "Spiral", ratios: "Forhold", sunflower: "Solsikke" },
+    panelHeading: "Panel",
+    status: {
+      spiral: (d, r) => `Fibonacci-kvadrater · dybde ${d} · gyllen rektangels forhold ${r}`,
+      ratios: (n) => `Forhold Fₙ₊₁/Fₙ for n = 1 … ${n} · mål φ ≈ ${PHI_STR}`,
+      sunflower: (a, s) => `Vogel-fyllotaksi · α = ${a}° · ${s} frø`,
+    },
+    spiral: {
+      depthLabel: "Dybde · kvadrater å vise",
+      side: (s) => `side ${s}`,
+      note: "Hver kvadrats side er det neste Fibonacci-tallet; en kvartsirkel i hver forbindes til den gylne spiralen. Det ytre rektangelets sideforhold nærmer seg φ.",
+    },
+    ratios: {
+      termsLabel: "n · ledd",
+      note: "Hvert forhold ligger vekselvis over eller under φ, og gapet krymper med en faktor ψ² ≈ 0,382 for hvert steg.",
+    },
+    sunflower: {
+      angleLabel: "Divergensvinkel α",
+      snap: "Hopp til φ-vinkelen (360°/φ²)",
+      note: "Ved den gylne vinkelen (137,5078°) pakker frøene seg uten tomrom eller foretrukket retning. Flytt den bare et hundredels grad, og tydelige spiralarmer dukker opp.",
+      seedCountLabel: "Antall frø",
+      annotationGolden: "α = gylden vinkel (137,5078°), ingen spiralarmer",
+      annotationOff: (a, d) => `α = ${a}° (Δ ${d}°), spiralarmer dukker opp`,
+      goldenAngleRad: (r) => `gylden vinkel = π(3 − √5) ≈ ${r} rad`,
+    },
+    constant: "Konstanten",
+    aria: {
+      spiral: "Gylden spiral bygd av nøstede Fibonacci-kvadrater",
+      ratios: "Linjediagram over påfølgende Fibonacci-forhold som nærmer seg φ",
+      sunflower: "Solsikkens fyllotaksi med justerbar divergensvinkel",
+    },
+  },
+};
+
 export default function PhiExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.phi;
+  const t = RICH_EXPLORER[locale];
 
   const [panel, setPanel] = useState<Panel>("spiral");
 
@@ -45,9 +354,9 @@ export default function PhiExplorer() {
             <div className="flex gap-2">
               {(
                 [
-                  { key: "spiral", label: "Spiral" },
-                  { key: "ratios", label: "Ratios" },
-                  { key: "sunflower", label: "Sunflower" },
+                  { key: "spiral", label: t.panels.spiral },
+                  { key: "ratios", label: t.panels.ratios },
+                  { key: "sunflower", label: t.panels.sunflower },
                 ] as ReadonlyArray<{ key: Panel; label: string }>
               ).map((t) => (
                 <button
@@ -69,19 +378,25 @@ export default function PhiExplorer() {
           </div>
 
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            {panel === "spiral" && <SpiralPanel depth={spiralDepth} />}
-            {panel === "ratios" && <RatiosPanel n={ratiosN} />}
-            {panel === "sunflower" && <SunflowerPanel angleDeg={angleDeg} count={seedCount} />}
+            {panel === "spiral" && <SpiralPanel depth={spiralDepth} ariaLabel={t.aria.spiral} />}
+            {panel === "ratios" && <RatiosPanel n={ratiosN} ariaLabel={t.aria.ratios} />}
+            {panel === "sunflower" && (
+              <SunflowerPanel
+                angleDeg={angleDeg}
+                count={seedCount}
+                ariaLabel={t.aria.sunflower}
+                annotationGolden={t.sunflower.annotationGolden}
+                annotationOff={t.sunflower.annotationOff}
+                goldenAngleRad={t.sunflower.goldenAngleRad}
+              />
+            )}
           </div>
 
           <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
             {panel === "spiral" &&
-              `Fibonacci squares · depth ${spiralDepth} · golden rectangle ratio ${(
-                FIB[spiralDepth + 1] / FIB[spiralDepth]
-              ).toFixed(8)}`}
-            {panel === "ratios" && `Ratios Fₙ₊₁/Fₙ for n = 1 … ${ratiosN} · target φ ≈ ${PHI_STR}`}
-            {panel === "sunflower" &&
-              `Vogel phyllotaxis · α = ${angleDeg.toFixed(4)}° · ${seedCount} seeds`}
+              t.status.spiral(spiralDepth, (FIB[spiralDepth + 1] / FIB[spiralDepth]).toFixed(8))}
+            {panel === "ratios" && t.status.ratios(ratiosN)}
+            {panel === "sunflower" && t.status.sunflower(angleDeg.toFixed(4), seedCount)}
           </div>
         </div>
 
@@ -96,14 +411,14 @@ export default function PhiExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Panel
+              {t.panelHeading}
             </div>
             <div className="grid grid-cols-3 gap-2">
               {(
                 [
-                  { key: "spiral", label: "Spiral" },
-                  { key: "ratios", label: "Ratios" },
-                  { key: "sunflower", label: "Sunflower" },
+                  { key: "spiral", label: t.panels.spiral },
+                  { key: "ratios", label: t.panels.ratios },
+                  { key: "sunflower", label: t.panels.sunflower },
                 ] as ReadonlyArray<{ key: Panel; label: string }>
               ).map((t) => (
                 <button
@@ -123,14 +438,18 @@ export default function PhiExplorer() {
 
           {panel === "spiral" && (
             <div className="hairline space-y-3 border-b p-5">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Depth · squares to show
-              </div>
+              <label
+                htmlFor="phi-exp-depth"
+                className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+              >
+                {t.spiral.depthLabel}
+              </label>
               <div className="flex items-center justify-between font-mono text-sm">
                 <span className="text-signal-amber">{spiralDepth}</span>
-                <span className="text-xs text-ink-400">side {FIB[spiralDepth]}</span>
+                <span className="text-xs text-ink-400">{t.spiral.side(FIB[spiralDepth])}</span>
               </div>
               <input
+                id="phi-exp-depth"
                 type="range"
                 value={spiralDepth}
                 min={3}
@@ -139,18 +458,18 @@ export default function PhiExplorer() {
                 onChange={(e) => setSpiralDepth(parseInt(e.target.value))}
                 className="w-full accent-signal-amber"
               />
-              <p className="text-[11px] leading-relaxed text-ink-400">
-                Each square's side is the next Fibonacci number; a quarter-circle inside each
-                connects into the golden spiral. The outer rectangle's aspect ratio approaches φ.
-              </p>
+              <p className="text-[11px] leading-relaxed text-ink-400">{t.spiral.note}</p>
             </div>
           )}
 
           {panel === "ratios" && (
             <div className="hairline space-y-3 border-b p-5">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                n — terms
-              </div>
+              <label
+                htmlFor="phi-exp-n"
+                className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+              >
+                {t.ratios.termsLabel}
+              </label>
               <div className="flex items-center justify-between font-mono text-sm">
                 <span className="text-signal-amber">{ratiosN}</span>
                 <span className="text-xs text-ink-400">
@@ -158,6 +477,7 @@ export default function PhiExplorer() {
                 </span>
               </div>
               <input
+                id="phi-exp-n"
                 type="range"
                 value={ratiosN}
                 min={2}
@@ -166,19 +486,19 @@ export default function PhiExplorer() {
                 onChange={(e) => setRatiosN(parseInt(e.target.value))}
                 className="w-full accent-signal-amber"
               />
-              <p className="text-[11px] leading-relaxed text-ink-400">
-                Each ratio sits above or below φ alternately and the gap shrinks by a factor of ψ² ≈
-                0.382 each step.
-              </p>
+              <p className="text-[11px] leading-relaxed text-ink-400">{t.ratios.note}</p>
             </div>
           )}
 
           {panel === "sunflower" && (
             <>
               <div className="hairline space-y-3 border-b p-5">
-                <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                  Divergence angle α
-                </div>
+                <label
+                  htmlFor="phi-exp-angle"
+                  className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+                >
+                  {t.sunflower.angleLabel}
+                </label>
                 <div className="flex items-center justify-between font-mono text-sm">
                   <span className="text-signal-amber">{angleDeg.toFixed(4)}°</span>
                   <span className="text-xs text-ink-400">
@@ -186,6 +506,7 @@ export default function PhiExplorer() {
                   </span>
                 </div>
                 <input
+                  id="phi-exp-angle"
                   type="range"
                   value={angleDeg}
                   min={137.4}
@@ -198,22 +519,23 @@ export default function PhiExplorer() {
                   onClick={() => setAngleDeg(GOLDEN_ANGLE_DEG)}
                   className="w-full rounded-md border border-signal-amber/40 bg-signal-amber/10 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber transition-colors hover:bg-signal-amber/20"
                 >
-                  Snap to φ angle (360°/φ²)
+                  {t.sunflower.snap}
                 </button>
-                <p className="text-[11px] leading-relaxed text-ink-400">
-                  At the golden angle (137.5078°) seeds pack without gaps or preferred direction.
-                  Nudge by even a hundredth of a degree and clear spiral arms appear.
-                </p>
+                <p className="text-[11px] leading-relaxed text-ink-400">{t.sunflower.note}</p>
               </div>
 
               <div className="hairline space-y-3 border-b p-5">
-                <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                  Seed count
-                </div>
+                <label
+                  htmlFor="phi-exp-seeds"
+                  className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+                >
+                  {t.sunflower.seedCountLabel}
+                </label>
                 <div className="flex items-center justify-between font-mono text-sm">
                   <span className="text-signal-amber">{seedCount}</span>
                 </div>
                 <input
+                  id="phi-exp-seeds"
                   type="range"
                   value={seedCount}
                   min={50}
@@ -228,7 +550,7 @@ export default function PhiExplorer() {
 
           <div className="hairline space-y-2 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              The constant
+              {t.constant}
             </div>
             <div className="hairline rounded-md border bg-ink-950/60 p-3 text-center font-mono text-base text-signal-amber">
               φ = {PHI_STR}
@@ -394,7 +716,7 @@ function buildFibSpiral(n: number): { squares: Sq[]; arcs: Arc[]; bx: number; by
   return { squares, arcs, bx, by, bw, bh };
 }
 
-function SpiralPanel({ depth }: { depth: number }) {
+function SpiralPanel({ depth, ariaLabel }: { depth: number; ariaLabel: string }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
 
@@ -425,7 +747,7 @@ function SpiralPanel({ depth }: { depth: number }) {
       const ty = (y: number) => oy + y * scale;
 
       // Outer golden rectangle
-      ctx.strokeStyle = "rgba(255, 209, 102, 0.35)";
+      ctx.strokeStyle = withAlpha(palette.signal.amber, 0.35);
       ctx.lineWidth = 1.4;
       ctx.strokeRect(tx(bx), ty(by), bw * scale, bh * scale);
 
@@ -434,8 +756,8 @@ function SpiralPanel({ depth }: { depth: number }) {
       for (let i = 0; i < squares.length; i++) {
         const r = squares[i];
         const alpha = 0.18 + (i / squares.length) * 0.35;
-        ctx.strokeStyle = `rgba(255, 209, 102, ${alpha})`;
-        ctx.fillStyle = `rgba(255, 209, 102, ${0.04 + (i / squares.length) * 0.08})`;
+        ctx.strokeStyle = withAlpha(palette.signal.amber, alpha);
+        ctx.fillStyle = withAlpha(palette.signal.amber, 0.04 + (i / squares.length) * 0.08);
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.rect(tx(r.x), ty(r.y), r.s * scale, r.s * scale);
@@ -450,7 +772,7 @@ function SpiralPanel({ depth }: { depth: number }) {
       // Quarter-circle spiral - one continuous chained path. moveTo to the
       // first start, then ctx.arc per square (each arc starts exactly where
       // the previous ended, so no spurious straight lines).
-      ctx.strokeStyle = "rgba(255, 122, 182, 0.95)";
+      ctx.strokeStyle = withAlpha(palette.signal.rose, 0.95);
       ctx.lineWidth = 2;
       ctx.beginPath();
       if (arcs.length > 0) {
@@ -471,14 +793,14 @@ function SpiralPanel({ depth }: { depth: number }) {
     return () => ro.disconnect();
   }, [depth, dpr]);
 
-  return <canvas ref={canvasRef} className="block h-full w-full" />;
+  return <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className="block h-full w-full" />;
 }
 
 // ----------------------------------------------------------------------------
 // Ratios panel — line chart of F_{n+1}/F_n approaching φ
 // ----------------------------------------------------------------------------
 
-function RatiosPanel({ n }: { n: number }) {
+function RatiosPanel({ n, ariaLabel }: { n: number; ariaLabel: string }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
   const ratios = useMemo(() => {
@@ -517,7 +839,7 @@ function RatiosPanel({ n }: { n: number }) {
       const yOf = (v: number) => padT + (1 - (v - yMin) / (yMax - yMin)) * innerH;
 
       // Grid + y labels
-      ctx.strokeStyle = "rgba(138,144,164,0.1)";
+      ctx.strokeStyle = withAlpha(palette.canvas.muted, 0.1);
       ctx.lineWidth = 1;
       ctx.font = "10px ui-monospace, monospace";
       ctx.fillStyle = "rgba(180,188,210,0.6)";
@@ -532,7 +854,7 @@ function RatiosPanel({ n }: { n: number }) {
       }
 
       // φ line
-      ctx.strokeStyle = "rgba(125, 243, 255, 0.7)";
+      ctx.strokeStyle = withAlpha(palette.signal.cyan, 0.7);
       ctx.setLineDash([4, 4]);
       ctx.lineWidth = 1.2;
       ctx.beginPath();
@@ -544,7 +866,7 @@ function RatiosPanel({ n }: { n: number }) {
       ctx.fillText(`φ ≈ ${PHI_STR}`, W - padR - 130, yOf(PHI) - 6);
 
       // Line of ratios
-      ctx.strokeStyle = "rgba(255, 209, 102, 0.85)";
+      ctx.strokeStyle = withAlpha(palette.signal.amber, 0.85);
       ctx.lineWidth = 1.8;
       ctx.beginPath();
       for (let i = 0; i < ratios.length; i++) {
@@ -560,7 +882,7 @@ function RatiosPanel({ n }: { n: number }) {
         const px = xOf(i);
         const py = yOf(ratios[i]);
         const isLast = i === ratios.length - 1;
-        ctx.fillStyle = isLast ? palette.signal.amber : "rgba(255, 209, 102, 0.6)";
+        ctx.fillStyle = isLast ? palette.signal.amber : withAlpha(palette.signal.amber, 0.6);
         ctx.beginPath();
         ctx.arc(px, py, isLast ? 4 : 2.2, 0, Math.PI * 2);
         ctx.fill();
@@ -596,14 +918,28 @@ function RatiosPanel({ n }: { n: number }) {
     return () => ro.disconnect();
   }, [ratios, dpr]);
 
-  return <canvas ref={canvasRef} className="block h-full w-full" />;
+  return <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className="block h-full w-full" />;
 }
 
 // ----------------------------------------------------------------------------
 // Sunflower panel — Vogel phyllotaxis
 // ----------------------------------------------------------------------------
 
-function SunflowerPanel({ angleDeg, count }: { angleDeg: number; count: number }) {
+function SunflowerPanel({
+  angleDeg,
+  count,
+  ariaLabel,
+  annotationGolden,
+  annotationOff,
+  goldenAngleRad,
+}: {
+  angleDeg: number;
+  count: number;
+  ariaLabel: string;
+  annotationGolden: string;
+  annotationOff: (alpha: string, delta: string) => string;
+  goldenAngleRad: (rad: string) => string;
+}) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
 
@@ -629,7 +965,7 @@ function SunflowerPanel({ angleDeg, count }: { angleDeg: number; count: number }
       const alpha = (angleDeg * Math.PI) / 180;
 
       // Subtle disc backdrop
-      ctx.strokeStyle = "rgba(138,144,164,0.15)";
+      ctx.strokeStyle = withAlpha(palette.canvas.muted, 0.15);
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
@@ -659,22 +995,25 @@ function SunflowerPanel({ angleDeg, count }: { angleDeg: number; count: number }
       ctx.fillStyle = isGolden ? palette.signal.amber : "rgba(180,188,210,0.8)";
       ctx.fillText(
         isGolden
-          ? `α = golden angle (137.5078°) — no spiral arms`
-          : `α = ${angleDeg.toFixed(4)}° (Δ ${(angleDeg - GOLDEN_ANGLE_DEG).toFixed(4)}°) — spiral arms appear`,
+          ? annotationGolden
+          : annotationOff(
+              angleDeg.toFixed(4),
+              (angleDeg - GOLDEN_ANGLE_DEG).toFixed(4),
+            ),
         14,
         20,
       );
 
       // Reference: also annotate golden angle in radians
       ctx.fillStyle = "rgba(180,188,210,0.6)";
-      ctx.fillText(`golden angle = π(3 − √5) ≈ ${GOLDEN_ANGLE_RAD.toFixed(6)} rad`, 14, H - 12);
+      ctx.fillText(goldenAngleRad(GOLDEN_ANGLE_RAD.toFixed(6)), 14, H - 12);
     };
 
     render();
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [angleDeg, count, dpr]);
+  }, [angleDeg, count, dpr, annotationGolden, annotationOff, goldenAngleRad]);
 
-  return <canvas ref={canvasRef} className="block h-full w-full" />;
+  return <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className="block h-full w-full" />;
 }

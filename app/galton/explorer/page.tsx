@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import type { Locale } from "@/lib/i18n/types";
 
 interface Ball {
   x: number; // peg-grid x (0..rows)
@@ -15,11 +16,170 @@ interface Ball {
   bin: number;
 }
 
+// Binomial PMF C(n, k) p^k (1-p)^{n-k}, log form for stability up to n = 40.
+// p is clamped off the 0/1 endpoints so an extreme bias slider never hits log(0).
+function binomPMF(n: number, k: number, p: number): number {
+  const q = Math.min(Math.max(p, 1e-9), 1 - 1e-9);
+  let logC = 0;
+  for (let i = 1; i <= k; i++) logC += Math.log((n - k + i) / i);
+  return Math.exp(logC + k * Math.log(q) + (n - k) * Math.log(1 - q));
+}
+
+// Explorer UI copy per locale. The story page carries a full RICH_STORY, so the
+// interactive room it links to must speak every locale too, not just English.
+type ExplorerStrings = {
+  rowsLabel: string;
+  spawnLabel: string;
+  biasLabel: string;
+  overlayLabel: string;
+  pause: string;
+  play: string;
+  clear: string;
+  rowsUnit: string;
+  ballsUnit: string;
+  binsWord: string;
+  landedWord: string;
+  canvasLabel: string;
+};
+
+const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
+  en: {
+    rowsLabel: "Rows N",
+    spawnLabel: "Spawn / step",
+    biasLabel: "Right-bias p",
+    overlayLabel: "Overlay 𝒩(Np, Np(1−p))",
+    pause: "❚❚ Pause",
+    play: "▶ Play",
+    clear: "⟳ Clear histogram",
+    rowsUnit: "rows",
+    ballsUnit: "balls",
+    binsWord: "bins",
+    landedWord: "landed",
+    canvasLabel: "Galton board simulation: balls fall through pegs and fill a histogram.",
+  },
+  de: {
+    rowsLabel: "Reihen N",
+    spawnLabel: "Spawn / Schritt",
+    biasLabel: "Rechts-Bias p",
+    overlayLabel: "Überlagerung 𝒩(Np, Np(1−p))",
+    pause: "❚❚ Pause",
+    play: "▶ Start",
+    clear: "⟳ Histogramm leeren",
+    rowsUnit: "Reihen",
+    ballsUnit: "Kugeln",
+    binsWord: "Fächer",
+    landedWord: "gelandet",
+    canvasLabel: "Galton-Brett-Simulation: Kugeln fallen durch Stifte und füllen ein Histogramm.",
+  },
+  es: {
+    rowsLabel: "Filas N",
+    spawnLabel: "Spawn / paso",
+    biasLabel: "Sesgo derecha p",
+    overlayLabel: "Superponer 𝒩(Np, Np(1−p))",
+    pause: "❚❚ Pausa",
+    play: "▶ Reproducir",
+    clear: "⟳ Limpiar histograma",
+    rowsUnit: "filas",
+    ballsUnit: "bolas",
+    binsWord: "casillas",
+    landedWord: "caídas",
+    canvasLabel: "Simulación del tablero de Galton: las bolas caen entre clavos y llenan un histograma.",
+  },
+  fr: {
+    rowsLabel: "Rangées N",
+    spawnLabel: "Spawn / pas",
+    biasLabel: "Biais droite p",
+    overlayLabel: "Superposer 𝒩(Np, Np(1−p))",
+    pause: "❚❚ Pause",
+    play: "▶ Lecture",
+    clear: "⟳ Effacer l'histogramme",
+    rowsUnit: "rangées",
+    ballsUnit: "billes",
+    binsWord: "casiers",
+    landedWord: "tombées",
+    canvasLabel: "Simulation de la planche de Galton : les billes tombent entre les clous et remplissent un histogramme.",
+  },
+  it: {
+    rowsLabel: "File N",
+    spawnLabel: "Spawn / passo",
+    biasLabel: "Bias a destra p",
+    overlayLabel: "Sovrapponi 𝒩(Np, Np(1−p))",
+    pause: "❚❚ Pausa",
+    play: "▶ Riproduci",
+    clear: "⟳ Pulisci istogramma",
+    rowsUnit: "file",
+    ballsUnit: "palline",
+    binsWord: "vaschette",
+    landedWord: "cadute",
+    canvasLabel: "Simulazione della macchina di Galton: le palline cadono tra i chiodi e riempiono un istogramma.",
+  },
+  pt: {
+    rowsLabel: "Filas N",
+    spawnLabel: "Spawn / passo",
+    biasLabel: "Viés à direita p",
+    overlayLabel: "Sobrepor 𝒩(Np, Np(1−p))",
+    pause: "❚❚ Pausa",
+    play: "▶ Reproduzir",
+    clear: "⟳ Limpar histograma",
+    rowsUnit: "filas",
+    ballsUnit: "bolas",
+    binsWord: "casas",
+    landedWord: "caídas",
+    canvasLabel: "Simulação da placa de Galton: as bolas caem entre os pinos e enchem um histograma.",
+  },
+  sv: {
+    rowsLabel: "Rader N",
+    spawnLabel: "Spawn / steg",
+    biasLabel: "Högerbias p",
+    overlayLabel: "Överlagra 𝒩(Np, Np(1−p))",
+    pause: "❚❚ Paus",
+    play: "▶ Spela",
+    clear: "⟳ Rensa histogram",
+    rowsUnit: "rader",
+    ballsUnit: "kulor",
+    binsWord: "fack",
+    landedWord: "landade",
+    canvasLabel: "Galtonbräde-simulering: kulor faller mellan pinnar och fyller ett histogram.",
+  },
+  no: {
+    rowsLabel: "Rader N",
+    spawnLabel: "Spawn / steg",
+    biasLabel: "Høyrebias p",
+    overlayLabel: "Overlegg 𝒩(Np, Np(1−p))",
+    pause: "❚❚ Pause",
+    play: "▶ Spill",
+    clear: "⟳ Tøm histogram",
+    rowsUnit: "rader",
+    ballsUnit: "kuler",
+    binsWord: "båser",
+    landedWord: "landet",
+    canvasLabel: "Galton-brett-simulering: kuler faller mellom pinner og fyller et histogram.",
+  },
+};
+
 export default function GaltonExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.galton;
+  const tx = RICH_EXPLORER[locale];
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
+
+  // The draw loop reads locale-dependent labels through a ref so switching
+  // language never has to tear down and rebuild the animation.
+  const txRef = useRef(tx);
+  txRef.current = tx;
+
+  // Honour prefers-reduced-motion: freeze the board on the exact binomial for
+  // the current N and p instead of autoplaying an endless spawn loop.
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(m.matches);
+    const h = (e: MediaQueryListEvent) => setReduced(e.matches);
+    m.addEventListener?.("change", h);
+    return () => m.removeEventListener?.("change", h);
+  }, []);
 
   const [rows, setRows] = useState(16);
   // Default + slider max trimmed for the same reason as the inline sim:
@@ -36,6 +196,11 @@ export default function GaltonExplorer() {
   paramsRef.current = { spawnRate, bias, showGaussian, running };
 
   const histRef = useRef<number[]>([]);
+
+  // Reduced motion implies no autoplay: reflect that in the Play/Pause control.
+  useEffect(() => {
+    if (reduced) setRunning(false);
+  }, [reduced]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -56,6 +221,19 @@ export default function GaltonExplorer() {
     setTotalLanded(0);
     let balls: Ball[] = [];
     let landed = 0;
+    // Reduced motion: pre-fill the histogram with the exact binomial for the
+    // current N and p, then draw a single static frame (no rAF loop below).
+    if (reduced) {
+      const total = 5000;
+      let sum = 0;
+      for (let k = 0; k <= rows; k++) {
+        const c = Math.round(binomPMF(rows, k, paramsRef.current.bias) * total);
+        histRef.current[k] = c;
+        sum += c;
+      }
+      landed = sum;
+      setTotalLanded(sum);
+    }
     // Sub-frame-rate fall: balls advance one row only every STEP_EVERY frames so
     // the eye can follow a single path through N rows (~1.5s at N=22 instead of
     // ~0.37s). Keep this gate — do not "optimise" by moving b.y++ back per-frame.
@@ -107,8 +285,9 @@ export default function GaltonExplorer() {
         ctx.stroke();
       }
 
-      // simulate ball movement + spawn — physics gated to every 4th frame
-      if (cfg.running) {
+      // simulate ball movement + spawn — physics gated to every 4th frame.
+      // Reduced motion never spawns; the pre-filled histogram stands in.
+      if (cfg.running && !reduced) {
         frame++;
         if (frame % STEP_EVERY === 0) {
           // spawn
@@ -194,7 +373,9 @@ export default function GaltonExplorer() {
       ctx.fillStyle = "rgba(232, 234, 242, 0.45)";
       ctx.font = `${10 * dpr}px ui-monospace, monospace`;
       ctx.fillText(
-        `bins · ${histRef.current.reduce((a, c) => a + c, 0).toLocaleString()} landed`,
+        `${txRef.current.binsWord} · ${histRef.current
+          .reduce((a, c) => a + c, 0)
+          .toLocaleString()} ${txRef.current.landedWord}`,
         10 * dpr,
         histTop - 8 * dpr,
       );
@@ -209,25 +390,32 @@ export default function GaltonExplorer() {
       }
       raf = requestAnimationFrame(loop);
     };
-    raf = requestAnimationFrame(loop);
+    // Reduced motion: draw one static frame and stop; otherwise run the loop.
+    if (reduced) draw();
+    else raf = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [rows, resetTick, dpr]);
+  }, [rows, resetTick, dpr, reduced]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
       <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         <div className="relative min-h-[60vh] bg-ink-950 lg:min-h-[calc(100vh-3.5rem)]">
-          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            role="img"
+            aria-label={tx.canvasLabel}
+            className="absolute inset-0 block h-full w-full"
+          />
           <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {rows} rows · p = {bias.toFixed(2)}
+              {rows} {tx.rowsUnit} · p = {bias.toFixed(2)}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
-              {totalLanded.toLocaleString()} balls
+              {totalLanded.toLocaleString()} {tx.ballsUnit}
             </div>
           </div>
         </div>
@@ -243,7 +431,7 @@ export default function GaltonExplorer() {
 
           <div className="hairline space-y-4 border-b p-5">
             <SliderRow
-              label="Rows N"
+              label={tx.rowsLabel}
               value={rows}
               min={4}
               max={40}
@@ -255,7 +443,7 @@ export default function GaltonExplorer() {
               }}
             />
             <SliderRow
-              label="Spawn / frame"
+              label={tx.spawnLabel}
               value={spawnRate}
               min={1}
               max={12}
@@ -264,13 +452,18 @@ export default function GaltonExplorer() {
               onChange={setSpawnRate}
             />
             <SliderRow
-              label="Right-bias p"
+              label={tx.biasLabel}
               value={bias}
               min={0}
               max={1}
               step={0.01}
               display={bias.toFixed(2)}
-              onChange={setBias}
+              // Clearing on bias change stops the Gaussian overlay from fitting a
+              // mixture of counts sampled under different p values.
+              onChange={(v) => {
+                setBias(v);
+                setResetTick((t) => t + 1);
+              }}
             />
           </div>
 
@@ -282,7 +475,7 @@ export default function GaltonExplorer() {
                 onChange={(e) => setShowGaussian(e.target.checked)}
                 className="accent-signal-teal"
               />
-              <span>Overlay 𝒩(Np, Np(1−p))</span>
+              <span>{tx.overlayLabel}</span>
             </label>
           </div>
 
@@ -295,13 +488,13 @@ export default function GaltonExplorer() {
                   : "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
               }`}
             >
-              {running ? "❚❚ Pause" : "▶ Play"}
+              {running ? tx.pause : tx.play}
             </button>
             <button
               onClick={() => setResetTick((t) => t + 1)}
               className="hairline hover:text-ink-50 w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-ink-300/50"
             >
-              ⟳ Clear histogram
+              {tx.clear}
             </button>
           </div>
 
@@ -348,6 +541,7 @@ function SliderRow({
         min={min}
         max={max}
         step={step}
+        aria-label={label}
         onChange={(e) => onChange(parseFloat(e.target.value))}
         className="w-full accent-signal-teal"
       />

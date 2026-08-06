@@ -22,8 +22,18 @@ const COLORS: DotColor[] = [
   { id: "rose", label: "rose", css: "bg-signal-rose", draw: "rgba(255, 122, 182, 0.55)" },
 ];
 
+// Magic jump ratio for a regular n-gon. The update is p' = p + r·(v − p), so
+// each map's sub-copy shrinks by sₙ = 1/(2·(1 + Σ_{k=1..⌊n/4⌋} cos(2πk/n))),
+// and the ratio that makes the copies just kiss (a clean self-similar
+// attractor, not a filled polygon) is rₙ = 1 − sₙ: 0.5, 0.5, 1/φ, 2/3, 0.692,
+// 1/√2 for n = 3..8. The old 1/(1+2cos(π/n)) was only correct at n = 3.
 function magicRatio(n: number): number {
-  return 1 / (1 + 2 * Math.cos(Math.PI / n));
+  let sum = 0;
+  for (let k = 1; k <= Math.floor(n / 4); k++) {
+    sum += Math.cos((2 * Math.PI * k) / n);
+  }
+  const s = 1 / (2 * (1 + sum));
+  return 1 - s;
 }
 
 interface Preset {
@@ -373,7 +383,7 @@ export default function ChaosGameExplorer() {
                 onChange={(e) => setAutoMagic(e.target.checked)}
                 className="accent-signal-cyan"
               />
-              <span>Auto magic ratio · 1 / (1 + 2·cos(π/n))</span>
+              <span>Auto magic ratio · rₙ = 1 − sₙ</span>
             </label>
           </div>
 

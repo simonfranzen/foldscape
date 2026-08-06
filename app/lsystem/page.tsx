@@ -166,7 +166,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es wichtig ist",
-        body: "Aristid Lindenmayer war ein ungarischer Biologe in Utrecht, der eine formale Sprache für das Wachstum von Pflanzen wollte. 1968 veröffentlichte er den Formalismus, um die zellweise Entwicklung von Algen zu modellieren. Heute wächst dieselbe Idee die Bäume in deinem Lieblings-Videospiel, die Farne in Animationsfilmen und die prozeduralen Städte der Demoszene. Aus einer Grammatik für Zellen wurde eine Grammatik für Welten.",
+        body: "Aristid Lindenmayer war ein ungarischer Biologe in Utrecht, der eine formale Sprache für das Wachstum von Pflanzen wollte. 1968 veröffentlichte er den Formalismus, um die zellweise Entwicklung von Algen zu modellieren. Heute lässt dieselbe Idee die Bäume in deinem Lieblings-Videospiel wachsen, die Farne in Animationsfilmen und die prozeduralen Städte der Demoszene. Aus einer Grammatik für Zellen wurde eine Grammatik für Welten.",
       },
     ],
     tryIt:

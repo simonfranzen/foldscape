@@ -31,7 +31,11 @@ interface Props {
 
 const ROOMS = 12;
 const K_SHIFT = 3;
-const BUS_PRIMES = [3, 5, 7];
+// Include prime 11 so bus 4 passenger 1 lands in room 11 (= 11¹). Without it
+// room 11 sat empty even though 11 IS a prime power, contradicting the gap note
+// that every ∅ room is a non-prime-power. With [3,5,7,11] the only empty rooms
+// within the window are 1, 6, 10, 12, all genuinely non-prime-powers.
+const BUS_PRIMES = [3, 5, 7, 11];
 
 type GuestKind = "existing" | "new" | "bus";
 
@@ -50,7 +54,7 @@ const NEW = palette.signal.cyan;
 // Deliberately avoids amber (the shift pulse) and cyan (new guests) so every
 // colour in the widget means exactly one thing. Bus 1 = rose keeps the hint
 // copy ("rose is a bus passenger") true.
-const BUS_COLORS = [palette.signal.rose, palette.signal.violet, "#a6e3a1"];
+const BUS_COLORS = [palette.signal.rose, palette.signal.violet, "#a6e3a1", "#89b4fa"];
 
 function initialRooms(): (Guest | null)[] {
   return Array.from({ length: ROOMS }, (_, i) => ({

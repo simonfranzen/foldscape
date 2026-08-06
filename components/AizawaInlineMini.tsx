@@ -37,6 +37,9 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
   const yawRef = useRef(0.7);
   const draggingRef = useRef(false);
   const lastXRef = useRef(0);
+  // Set while prefers-reduced-motion is active so a drag can repaint the frozen
+  // frame; null while the live animation loop runs.
+  const repaintRef = useRef<(() => void) | null>(null);
   const dpr = useDpr();
 
   useEffect(() => {
@@ -49,6 +52,9 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
       canvas.height = Math.floor(canvas.clientHeight * dpr);
+      // A resize wipes the canvas; the animated loop redraws next frame, but the
+      // frozen (reduced-motion) frame must be repainted explicitly.
+      repaintRef.current?.();
     };
     resize();
     const ro = new ResizeObserver(resize);
@@ -65,26 +71,23 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
       pts.push([...p] as Vec3);
     }
 
-    let headT = 0;
-    const draw = () => {
+    const reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    // The Aizawa attractor lives roughly in [-1.7, 1.7]³. Build a projector for
+    // the current yaw/canvas size; both the live loop and the frozen frame use it.
+    const makeProject = () => {
       const W = canvas.width;
       const H = canvas.height;
-      ctx.fillStyle = "rgba(6, 7, 13, 0.22)";
-      ctx.fillRect(0, 0, W, H);
-
       const yaw = yawRef.current;
       const cy = Math.cos(yaw);
       const sy = Math.sin(yaw);
       const tilt = 0.45;
       const ct = Math.cos(tilt);
       const st = Math.sin(tilt);
-
-      // The Aizawa attractor lives roughly in [-1.7, 1.7]³. Pick scale to fit.
       const scale = Math.min(W, H) / 4.2;
       const ox = W / 2;
       const oy = H / 2 + scale * 0.1;
-
-      const project = ([x, y, z]: Vec3): [number, number] => {
+      return ([x, y, z]: Vec3): [number, number] => {
         const xr = cy * x - sy * y;
         const yr = sy * x + cy * y;
         const yt = ct * yr - st * z;
@@ -93,28 +96,46 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
         const k = 4 / depth;
         return [ox + xr * scale * k, oy - yt * scale * k];
       };
+    };
 
+    const drawSegments = (project: (p: Vec3) => [number, number]) => {
       ctx.lineWidth = 1.0 * dpr;
       ctx.lineCap = "round";
-
       for (let i = 1; i < pts.length; i++) {
         const [ax, ay] = project(pts[i - 1]);
         const [bx, by] = project(pts[i]);
         const t = i / pts.length;
         const r = Math.floor(125 + (179 - 125) * t);
         const g = Math.floor(243 + (136 - 243) * t);
-        const bl = Math.floor(255 + (255 - 255) * t);
-        ctx.strokeStyle = `rgba(${r}, ${g}, ${bl}, ${0.18 + 0.55 * t})`;
+        ctx.strokeStyle = `rgba(${r}, ${g}, 255, ${0.18 + 0.55 * t})`;
         ctx.beginPath();
         ctx.moveTo(ax, ay);
         ctx.lineTo(bx, by);
         ctx.stroke();
       }
+    };
+
+    // Reduced motion: one frozen full-orbit frame, no fade trail, no travelling
+    // head, no auto-yaw. Repainted on drag/resize via repaintRef.
+    const paintStatic = () => {
+      ctx.fillStyle = "rgb(6, 7, 13)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      drawSegments(makeProject());
+    };
+
+    let headT = 0;
+    const draw = () => {
+      const W = canvas.width;
+      const H = canvas.height;
+      ctx.fillStyle = "rgba(6, 7, 13, 0.22)";
+      ctx.fillRect(0, 0, W, H);
+
+      const project = makeProject();
+      drawSegments(project);
 
       // Travelling head marker.
-      // Was +7 per frame — at 60fps that's 420 indices/s through a 5000-pt
-      // orbit, ~1.4 laps per second, fast enough to look hectic. +2.2 lands
-      // at ~0.45 laps/s — comfortably watchable while still showing the flow.
+      // +2.2 per frame lands at ~0.45 laps/s through the 5000-pt orbit,
+      // comfortably watchable while still showing the flow.
       headT = (headT + 2.2) % pts.length;
       const head = pts[Math.floor(headT)];
       const [hx, hy] = project(head);
@@ -123,16 +144,29 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
       ctx.arc(hx, hy, 2.6 * dpr, 0, Math.PI * 2);
       ctx.fill();
 
-      // Was 0.003 — that's ~10°/s; halve it so the rotation feels closer
-      // to a contemplative drift than a spin.
+      // 0.0015 rad/frame is ~5°/s, a contemplative drift rather than a spin.
       if (!draggingRef.current) yawRef.current += 0.0015;
       raf = requestAnimationFrame(draw);
     };
-    raf = requestAnimationFrame(draw);
+
+    const start = () => {
+      cancelAnimationFrame(raf);
+      if (reduceMq.matches) {
+        repaintRef.current = paintStatic;
+        paintStatic();
+      } else {
+        repaintRef.current = null;
+        raf = requestAnimationFrame(draw);
+      }
+    };
+    start();
+    reduceMq.addEventListener("change", start);
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      reduceMq.removeEventListener("change", start);
+      repaintRef.current = null;
     };
   }, [b, dpr]);
 
@@ -146,6 +180,8 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
     yawRef.current += dx * 0.01;
+    // No animation loop under reduced motion, so repaint on the drag itself.
+    repaintRef.current?.();
   };
   const onPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = false;
@@ -161,6 +197,8 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
       )}
       <canvas
         ref={canvasRef}
+        role="img"
+        aria-label={caption ?? "Aizawa attractor"}
         className="hairline mx-auto block h-[340px] w-full max-w-[340px] cursor-grab touch-none rounded-md border bg-ink-950/80 active:cursor-grabbing"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -173,6 +211,7 @@ export function AizawaInlineMini({ caption, bLabel, hint }: Props) {
         </div>
         <input
           type="range"
+          aria-label={bLabel ?? "b"}
           min={0.3}
           max={1.2}
           step={0.01}

@@ -12,25 +12,55 @@ import { palette } from "@/lib/visual/palette";
 // Colours mirror the design system: rose for the cluster, faint rose for
 // drifting walkers, deep ink as background.
 
+// All visible strings are supplied per-locale by the story page so the mini-sim
+// stays translated in step with the surrounding prose.
+export interface DlaMiniSimLabels {
+  seedBadge: string;
+  stuck: string;
+  walkers: string;
+  stickiness: string;
+  pause: string;
+  play: string;
+  reset: string;
+  hint: string;
+  canvasLabel: string;
+}
+
 interface Props {
   caption: string;
+  labels: DlaMiniSimLabels;
   className?: string;
 }
 
-const ROSE_RGB = "255, 122, 182";
+// palette.signal.rose is hex; the canvas fills need an "r, g, b" triple.
+const ROSE_RGB = (() => {
+  const n = parseInt(palette.signal.rose.slice(1), 16);
+  return `${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}`;
+})();
 const CELL_PX = 3; // CSS px per grid cell — small canvas, chunky cells
 
-export function DlaMiniSim({ caption, className = "" }: Props) {
+export function DlaMiniSim({ caption, labels, className = "" }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [walkers, setWalkers] = useState(120);
   const [stickiness, setStickiness] = useState(1.0);
   const [running, setRunning] = useState(true);
   const [stuck, setStuck] = useState(1);
   const [resetTick, setResetTick] = useState(0);
+  const [reduced, setReduced] = useState(false);
   const dpr = useDpr();
 
   const paramsRef = useRef({ walkers, stickiness, running });
   paramsRef.current = { walkers, stickiness, running };
+
+  // JS-driven canvases must honour prefers-reduced-motion themselves; the global
+  // CSS rule can't stop a rAF loop. Re-subscribe so a live toggle is respected.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -102,20 +132,32 @@ export function DlaMiniSim({ caption, className = "" }: Props) {
 
       for (let i = live.length - 1; i >= 0; i--) {
         const w = live[i];
+        let nx = w.x;
+        let ny = w.y;
         const r = Math.random();
-        if (r < 0.25) w.x++;
-        else if (r < 0.5) w.x--;
-        else if (r < 0.75) w.y++;
-        else w.y--;
-        if (w.x < 0) w.x = 0;
-        else if (w.x >= gridW) w.x = gridW - 1;
-        if (w.y < 0) w.y = 0;
-        else if (w.y >= gridH) w.y = gridH - 1;
+        if (r < 0.25) nx++;
+        else if (r < 0.5) nx--;
+        else if (r < 0.75) ny++;
+        else ny--;
+        if (nx < 0) nx = 0;
+        else if (nx >= gridW) nx = gridW - 1;
+        if (ny < 0) ny = 0;
+        else if (ny >= gridH) ny = gridH - 1;
+        // The cluster is impenetrable: reject steps onto frozen cells so a
+        // walker can't tunnel through an arm even when stickiness < 1.
+        if (grid[ny * gridW + nx] === 0) {
+          w.x = nx;
+          w.y = ny;
+        }
         if (hasStuckNeighbour(w.x, w.y) && Math.random() < p.stickiness) {
           const idx = w.y * gridW + w.x;
-          const age = Math.min(255, 1 + Math.floor((frame / 60) * 4));
-          grid[idx] = age;
-          stuckCount++;
+          // Only freeze (and count) a genuinely empty cell so stuck stays equal
+          // to the true cluster size.
+          if (grid[idx] === 0) {
+            const age = Math.min(255, 1 + Math.floor((frame / 60) * 4));
+            grid[idx] = age;
+            stuckCount++;
+          }
           live.splice(i, 1);
         }
       }
@@ -142,22 +184,30 @@ export function DlaMiniSim({ caption, className = "" }: Props) {
     };
 
     let lastReport = 0;
-    const loop = () => {
-      step();
+    if (reduced) {
+      // Reduced motion: grow the cluster synchronously, then paint one static
+      // frame instead of running an animation loop.
+      for (let n = 0; n < 800; n++) step();
       draw();
-      if (frame - lastReport > 20) {
-        setStuck(stuckCount);
-        lastReport = frame;
-      }
+      setStuck(stuckCount);
+    } else {
+      const loop = () => {
+        step();
+        draw();
+        if (frame - lastReport > 20) {
+          setStuck(stuckCount);
+          lastReport = frame;
+        }
+        raf = requestAnimationFrame(loop);
+      };
       raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
+    }
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [resetTick, dpr]);
+  }, [resetTick, dpr, reduced]);
 
   return (
     <div className={`hairline space-y-4 rounded-2xl border bg-ink-950/40 p-5 ${className}`}>
@@ -166,19 +216,24 @@ export function DlaMiniSim({ caption, className = "" }: Props) {
       </div>
       <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-[280px_1fr]">
         <div className="hairline relative mx-auto aspect-square w-full max-w-[280px] overflow-hidden rounded-md border bg-ink-950 md:mx-0">
-          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            role="img"
+            aria-label={labels.canvasLabel}
+            className="absolute inset-0 block h-full w-full"
+          />
           <div className="pointer-events-none absolute left-2 right-2 top-2 flex items-center justify-between gap-2">
             <div className="glass hairline rounded-sm border px-2 py-1 font-mono text-[9px] uppercase tracking-widest2 text-ink-200">
-              centre seed
+              {labels.seedBadge}
             </div>
             <div className="glass hairline rounded-sm border px-2 py-1 font-mono text-[9px] uppercase tracking-widest2 text-signal-rose">
-              {stuck.toLocaleString()} stuck
+              {stuck.toLocaleString()} {labels.stuck}
             </div>
           </div>
         </div>
         <div className="space-y-4">
           <SliderRow
-            label="Walkers / frame"
+            label={labels.walkers}
             value={walkers}
             min={20}
             max={400}
@@ -187,7 +242,7 @@ export function DlaMiniSim({ caption, className = "" }: Props) {
             onChange={setWalkers}
           />
           <SliderRow
-            label="Stickiness"
+            label={labels.stickiness}
             value={stickiness}
             min={0.1}
             max={1}
@@ -204,19 +259,16 @@ export function DlaMiniSim({ caption, className = "" }: Props) {
                   : "hover:text-ink-50 border-ink-500/50 text-ink-200 hover:border-ink-300/50"
               }`}
             >
-              {running ? "❚❚ Pause" : "▶ Play"}
+              {running ? labels.pause : labels.play}
             </button>
             <button
               onClick={() => setResetTick((t) => t + 1)}
               className="hairline flex-1 rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-rose/40 hover:text-signal-rose"
             >
-              ⟳ Reset
+              {labels.reset}
             </button>
           </div>
-          <p className="font-mono text-[10px] leading-relaxed text-ink-400">
-            More walkers · faster growth. Lower stickiness · denser, blobbier cluster — walkers slip
-            past tips before freezing.
-          </p>
+          <p className="font-mono text-[10px] leading-relaxed text-ink-400">{labels.hint}</p>
         </div>
       </div>
     </div>
@@ -248,6 +300,7 @@ function SliderRow({
       </div>
       <input
         type="range"
+        aria-label={label}
         value={value}
         min={min}
         max={max}

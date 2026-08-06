@@ -196,19 +196,36 @@ export default function BzrExplorer() {
   const [colourMap, setColourMap] = useState<ColourMap>("rose");
   const [iter, setIter] = useState(0);
   const [presetIdx, setPresetIdx] = useState(0);
+  // prefers-reduced-motion: when set we paint a single static frame and never
+  // schedule the RAF loop, so the full-viewport automaton does not animate
+  // (the CSS reduced-motion rule cannot stop a canvas RAF loop).
+  const [reduced, setReduced] = useState(false);
+  // Bumped by restart/seed so the static (reduced-motion) render repaints even
+  // though those actions do not change any of the animation-effect deps.
+  const [staticTick, setStaticTick] = useState(0);
 
   const lut = useMemo(() => buildLUT(colourMap), [colourMap]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const restart = useCallback(() => {
     bufRef.current = randomGrid();
     iterRef.current = 0;
     setIter(0);
+    setStaticTick((t) => t + 1);
   }, []);
 
   const seedSpiral = useCallback(() => {
     bufRef.current = spiralSeed();
     iterRef.current = 0;
     setIter(0);
+    setStaticTick((t) => t + 1);
   }, []);
 
   const applyPreset = useCallback((i: number) => {
@@ -246,6 +263,12 @@ export default function BzrExplorer() {
       ctx.putImageData(imgData, 0, 0);
     };
 
+    // Reduced-motion users get one static frame and no loop.
+    if (reduced) {
+      draw();
+      return;
+    }
+
     const tick = () => {
       if (running) {
         for (let i = 0; i < speed; i++) {
@@ -265,7 +288,7 @@ export default function BzrExplorer() {
     return () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
-  }, [k1, k2, g, speed, running, lut]);
+  }, [k1, k2, g, speed, running, lut, reduced, staticTick]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
@@ -282,6 +305,8 @@ export default function BzrExplorer() {
           <div className="hairline flex flex-1 items-center justify-center overflow-hidden rounded-2xl border bg-ink-950">
             <canvas
               ref={canvasRef}
+              role="img"
+              aria-label={`Hodgepodge cellular automaton on a ${GRID} by ${GRID} grid, colour map ${colourMap}`}
               className="block"
               style={{
                 width: "min(100%, calc(100vh - 12rem))",
@@ -361,6 +386,7 @@ export default function BzrExplorer() {
             </div>
             <input
               type="range"
+              aria-label="k₁ · infected weight"
               value={k1}
               min={1}
               max={8}
@@ -377,6 +403,7 @@ export default function BzrExplorer() {
             </div>
             <input
               type="range"
+              aria-label="k₂ · ill weight"
               value={k2}
               min={1}
               max={8}
@@ -393,6 +420,7 @@ export default function BzrExplorer() {
             </div>
             <input
               type="range"
+              aria-label="g · reaction rate"
               value={g}
               min={1}
               max={60}
@@ -408,6 +436,7 @@ export default function BzrExplorer() {
             </div>
             <input
               type="range"
+              aria-label="Speed · steps per frame"
               value={speed}
               min={1}
               max={8}

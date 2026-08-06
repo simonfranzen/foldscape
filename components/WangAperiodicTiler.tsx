@@ -2,18 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 import { palette } from "@/lib/visual/palette";
+import { useDpr } from "@/lib/hooks/useDpr";
 
 // ─── Palette ─────────────────────────────────────────────────────────────────
-const COLOURS = [palette.signal.cyan, palette.signal.violet, palette.signal.amber, palette.signal.rose, "#9ad7ff"] as const;
+// Four edge colours: both demo tile sets only reference indices 0 to 3.
+const COLOURS = [palette.signal.cyan, palette.signal.violet, palette.signal.amber, palette.signal.rose] as const;
 
 // ─── Tile sets ───────────────────────────────────────────────────────────────
-// Two demo sets in the spirit of the modern aperiodic Wang records:
-//   • Kari–Culik 1996 — 13 tiles, 4 colours.
-//   • Jeandel–Rao 2015 — 11 tiles (the proven minimum).
-// The numeric assignments below are illustrative — designed to be reasonably
-// restrictive so the random tiling visibly backtracks rather than being
-// a perfectly faithful reproduction of either published table. Either way
-// the resulting patches never settle into a tiny repeating block.
+// Two demo sets loosely inspired by the modern aperiodic Wang records:
+//   • Kari-Culik 1996, 13 tiles.
+//   • Jeandel-Rao 2015, 11 tiles (the proven minimum).
+// The numeric edge assignments below are illustrative, NOT the published
+// tables: they are chosen only to be restrictive enough that the random search
+// visibly backtracks. They are not proven aperiodic (in fact a small periodic
+// block does exist), so the labels, attributions and hint copy describe them as
+// being "in the spirit of" those records rather than the real sets.
 type Tile = readonly [n: number, e: number, s: number, w: number];
 
 const CULIK13: Tile[] = [
@@ -54,12 +57,12 @@ interface SetDef {
 }
 
 const SETS: SetDef[] = [
-  { key: "culik", label: "Culik · 13", tiles: CULIK13, attrib: "Culik 1996" },
+  { key: "culik", label: "13 tiles · Culik-style", tiles: CULIK13, attrib: "in the spirit of Culik 1996" },
   {
     key: "jeandel",
-    label: "Jeandel–Rao · 11",
+    label: "11 tiles · Jeandel-Rao-style",
     tiles: JEANDEL_RAO11,
-    attrib: "Jeandel–Rao 2015",
+    attrib: "in the spirit of Jeandel-Rao 2015",
   },
 ];
 
@@ -189,10 +192,15 @@ interface Props {
   hint: string;
 }
 
+// CSS pixel size of the canvas; the backing store scales with devicePixelRatio.
+const CSS_W = 360;
+const CSS_H = 280;
+
 export function WangAperiodicTiler({ caption, randomizeLabel, setLabel, hint }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [setKey, setSetKey] = useState<SetDef["key"]>("culik");
   const [seed, setSeed] = useState(0xc0ffee);
+  const dpr = useDpr();
 
   const setDef = SETS.find((s) => s.key === setKey)!;
 
@@ -202,8 +210,14 @@ export function WangAperiodicTiler({ caption, randomizeLabel, setLabel, hint }: 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const W = canvas.width;
-    const H = canvas.height;
+    // Size the backing store to CSS size * dpr so the patch stays crisp on
+    // hi-DPI displays, then draw in CSS pixels via setTransform.
+    canvas.width = Math.floor(CSS_W * dpr);
+    canvas.height = Math.floor(CSS_H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const W = CSS_W;
+    const H = CSS_H;
     const tileSize = 20;
     const cols = Math.floor(W / tileSize);
     const rows = Math.floor(H / tileSize);
@@ -223,7 +237,7 @@ export function WangAperiodicTiler({ caption, randomizeLabel, setLabel, hint }: 
         drawTile(ctx, offsetX + c * tileSize, offsetY + r * tileSize, tileSize, setDef.tiles[t]);
       }
     }
-  }, [setDef, seed]);
+  }, [setDef, seed, dpr]);
 
   function randomize() {
     setSeed((Math.random() * 0xffffffff) | 0);
@@ -238,7 +252,15 @@ export function WangAperiodicTiler({ caption, randomizeLabel, setLabel, hint }: 
       <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-12">
         <div className="flex justify-center md:col-span-7">
           <div className="hairline overflow-hidden rounded-md border bg-ink-950">
-            <canvas ref={canvasRef} width={360} height={280} className="block" />
+            <canvas
+              ref={canvasRef}
+              width={CSS_W}
+              height={CSS_H}
+              style={{ width: CSS_W, height: CSS_H }}
+              className="block"
+              role="img"
+              aria-label={caption}
+            />
           </div>
         </div>
         <div className="space-y-4 md:col-span-5">

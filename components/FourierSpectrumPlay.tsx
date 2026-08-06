@@ -14,11 +14,17 @@ const COLORS = [
   palette.signal.cyan,
 ];
 
+const DEFAULT_EXPLAIN =
+  "Top: the waveform you just synthesised. Bottom: the same signal in frequency-space, one bar per harmonic. The two pictures carry the same information.";
+
 interface Props {
   caption?: string;
   topHeight?: number;
   bottomHeight?: number;
   baseFreq?: number; // Hz, for optional audio
+  explain?: string;
+  hearLabel?: string;
+  stopLabel?: string;
 }
 
 // A custom slider styled to match the rest of the page.
@@ -42,6 +48,7 @@ function Knob({
         max={1}
         step={0.01}
         value={value}
+        aria-label={label}
         onChange={(e) => onChange(parseFloat(e.target.value))}
         className="w-full"
         style={{ accentColor: color }}
@@ -56,6 +63,9 @@ export function FourierSpectrumPlay({
   topHeight = 100,
   bottomHeight = 120,
   baseFreq = 220,
+  explain = DEFAULT_EXPLAIN,
+  hearLabel = "▶ Hear it",
+  stopLabel = "■ Stop",
 }: Props) {
   const waveRef = useRef<HTMLCanvasElement | null>(null);
   const specRef = useRef<HTMLCanvasElement | null>(null);
@@ -270,11 +280,15 @@ export function FourierSpectrumPlay({
       <canvas
         ref={waveRef}
         style={{ height: topHeight }}
+        role="img"
+        aria-label={explain}
         className="hairline block w-full rounded-lg border"
       />
       <canvas
         ref={specRef}
         style={{ height: bottomHeight }}
+        role="img"
+        aria-label={caption ?? explain}
         className="hairline block w-full rounded-lg border"
       />
       <div className="grid grid-cols-5 gap-3 pt-1">
@@ -293,10 +307,7 @@ export function FourierSpectrumPlay({
         ))}
       </div>
       <div className="flex items-center justify-between gap-3 pt-1">
-        <p className="max-w-md text-[11px] leading-relaxed text-ink-400">
-          Top: the waveform you just synthesised. Bottom: the same signal in frequency-space — one
-          bar per harmonic. The two pictures contain the same information.
-        </p>
+        <p className="max-w-md text-[11px] leading-relaxed text-ink-400">{explain}</p>
         <button
           onClick={() => (playing ? stop() : start())}
           className={`shrink-0 rounded-md border px-4 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
@@ -305,7 +316,7 @@ export function FourierSpectrumPlay({
               : "border-signal-amber/70 bg-signal-amber/10 text-signal-amber hover:bg-signal-amber/20"
           }`}
         >
-          {playing ? "■ Stop" : "▶ Hear it"}
+          {playing ? stopLabel : hearLabel}
         </button>
       </div>
     </div>

@@ -11,13 +11,31 @@ import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-cyan";
 
+// Build an rgba() string from a palette hex so the SVG shares the same tokens
+// as the rest of the app instead of re-encoding channel values inline.
+const rgba = (hex: string, alpha: number) => {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
 // --------------------------------------------------------------------------
 // One small SVG vignette per rule. Each shows the focus boid (cyan) with
 // neighbours (grey) inside a perception circle, and the steering arrow that
 // rule produces. Kept inline because nothing else in the app needs it.
 // --------------------------------------------------------------------------
 
-function RuleSVG({ kind }: { kind: "separation" | "alignment" | "cohesion" }) {
+function RuleSVG({
+  kind,
+  label,
+  ariaLabel,
+}: {
+  kind: "separation" | "alignment" | "cohesion";
+  label: string;
+  ariaLabel: string;
+}) {
   const W = 220;
   const H = 140;
   const cx = W / 2;
@@ -30,7 +48,7 @@ function RuleSVG({ kind }: { kind: "separation" | "alignment" | "cohesion" }) {
   ];
   const focus = { x: cx, y: cy, vx: 0.6, vy: 0.1 };
 
-  let arrow: { dx: number; dy: number; label: string };
+  let arrow: { dx: number; dy: number };
   if (kind === "separation") {
     let dx = 0;
     let dy = 0;
@@ -42,7 +60,7 @@ function RuleSVG({ kind }: { kind: "separation" | "alignment" | "cohesion" }) {
       dy += ddy / d2;
     }
     const m = Math.hypot(dx, dy) || 1;
-    arrow = { dx: (dx / m) * 34, dy: (dy / m) * 34, label: "push away" };
+    arrow = { dx: (dx / m) * 34, dy: (dy / m) * 34 };
   } else if (kind === "alignment") {
     let dx = 0;
     let dy = 0;
@@ -51,7 +69,7 @@ function RuleSVG({ kind }: { kind: "separation" | "alignment" | "cohesion" }) {
       dy += n.vy;
     }
     const m = Math.hypot(dx, dy) || 1;
-    arrow = { dx: (dx / m) * 34, dy: (dy / m) * 34, label: "match heading" };
+    arrow = { dx: (dx / m) * 34, dy: (dy / m) * 34 };
   } else {
     let sx = 0;
     let sy = 0;
@@ -64,7 +82,7 @@ function RuleSVG({ kind }: { kind: "separation" | "alignment" | "cohesion" }) {
     const ddx = sx - focus.x;
     const ddy = sy - focus.y;
     const m = Math.hypot(ddx, ddy) || 1;
-    arrow = { dx: (ddx / m) * 34, dy: (ddy / m) * 34, label: "steer to centre" };
+    arrow = { dx: (ddx / m) * 34, dy: (ddy / m) * 34 };
   }
 
   const ax = focus.x + arrow.dx;
@@ -81,18 +99,18 @@ function RuleSVG({ kind }: { kind: "separation" | "alignment" | "cohesion" }) {
   const radius = 52;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={`${kind} rule`}>
+    <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={ariaLabel}>
       <rect width={W} height={H} fill={palette.canvas.bg} rx={10} />
       <circle
         cx={cx}
         cy={cy}
         r={radius}
         fill="none"
-        stroke="rgba(125,243,255,0.18)"
+        stroke={rgba(palette.signal.cyan, 0.18)}
         strokeDasharray="2 3"
       />
       {neighbours.map((n, i) => (
-        <path key={i} d={boidPath(n.x, n.y, n.vx, n.vy)} fill="rgba(232,234,242,0.55)" />
+        <path key={i} d={boidPath(n.x, n.y, n.vx, n.vy)} fill={rgba(palette.ink[100], 0.55)} />
       ))}
       <path d={boidPath(focus.x, focus.y, focus.vx, focus.vy, 6)} fill={palette.signal.cyan} />
       <line x1={focus.x} y1={focus.y} x2={ax} y2={ay} stroke={palette.signal.cyan} strokeWidth={1.6} />
@@ -117,9 +135,9 @@ function RuleSVG({ kind }: { kind: "separation" | "alignment" | "cohesion" }) {
         textAnchor="middle"
         fontFamily="ui-monospace, monospace"
         fontSize={9}
-        fill="#9aa0b4"
+        fill={palette.canvas.muted}
       >
-        {arrow.label}
+        {label}
       </text>
     </svg>
   );
@@ -140,6 +158,12 @@ type RichStory = {
     tryIt: string;
   };
   sections: Array<{ pretitle: string; title: string; body: string }>;
+  // The three rule vignettes (separation, alignment, cohesion in order):
+  // localized rule name, caption, and in-SVG arrow label. `ruleWord` is the
+  // word for "Rule" used in the "Rule 1 · …" badge.
+  ruleWord: string;
+  rules: Array<{ name: string; caption: string; arrow: string }>;
+  resetLabel: string;
   demoCaption: string;
   closingTitle: string;
   closingBody: string;
@@ -187,7 +211,7 @@ const en: RichStory = {
     {
       pretitle: "Section 02 · Rule 1",
       title: "Separation",
-      body: "Look at neighbours that are too close — the ones inside a tighter avoidance radius. Sum a steering vector that points away from each, weighted by 1/distance² so closer neighbours push harder. Without separation, the flock collapses to a single point.",
+      body: "Look at neighbours that are too close — the ones inside a tighter avoidance radius. Sum a steering vector that points away from each, weighted by the inverse of the distance so closer neighbours push harder. Without separation, the flock collapses to a single point.",
     },
     {
       pretitle: "Section 03 · Rule 2",
@@ -207,7 +231,7 @@ const en: RichStory = {
     {
       pretitle: "Section 06 · Emergence and applications",
       title: "From SIGGRAPH to drone shows",
-      body: "Reynolds presented boids at SIGGRAPH 1987; six years later the bats of Batman Returns (1992) and the wildebeest stampede of The Lion King (1994) used the same engine. Today the descendants steer Intel's Shooting Star drone swarms, simulate crowd evacuations, and power particle-swarm optimization — a search algorithm where candidate solutions «flock» toward the best one.",
+      body: "Reynolds presented boids at SIGGRAPH 1987; five and seven years later the bats of Batman Returns (1992) and the wildebeest stampede of The Lion King (1994) used the same engine. Today the descendants steer Intel's Shooting Star drone swarms, simulate crowd evacuations, and power particle-swarm optimization — a search algorithm where candidate solutions «flock» toward the best one.",
     },
   ],
   demoCaption: "Live · 120 boids, three rules",
@@ -215,6 +239,25 @@ const en: RichStory = {
   closingBody:
     "Tune the weights, the perception radius, the avoidance distance. Watch one rule at a time, then add the others back in and see how the flock changes character.",
   ctaLabel: "→ Open the Explorer",
+  ruleWord: "Rule",
+  rules: [
+    {
+      name: "Separation",
+      caption: "Closer neighbours push the focus harder away.",
+      arrow: "push away",
+    },
+    {
+      name: "Alignment",
+      caption: "Velocity rotates toward the mean heading.",
+      arrow: "match heading",
+    },
+    {
+      name: "Cohesion",
+      caption: "Steers toward the neighbourhood centroid.",
+      arrow: "steer to centre",
+    },
+  ],
+  resetLabel: "Restart",
 };
 
 const de: RichStory = {
@@ -258,7 +301,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Regel 1",
       title: "Trennung",
-      body: "Schau auf die Nachbarn, die zu nah sind — die im engeren Vermeidungsradius. Summiere einen Steuervektor, der von jedem weg zeigt, gewichtet mit 1/Distanz², damit nähere stärker drücken. Ohne Trennung kollabiert der Schwarm zu einem Punkt.",
+      body: "Schau auf die Nachbarn, die zu nah sind — die im engeren Vermeidungsradius. Summiere einen Steuervektor, der von jedem weg zeigt, gewichtet mit dem Kehrwert der Distanz, damit nähere stärker drücken. Ohne Trennung kollabiert der Schwarm zu einem Punkt.",
     },
     {
       pretitle: "Abschnitt 03 · Regel 2",
@@ -278,7 +321,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Emergenz und Anwendungen",
       title: "Von SIGGRAPH zu Drohnenshows",
-      body: "Reynolds präsentierte Boids 1987 auf der SIGGRAPH; sechs Jahre später nutzten die Fledermäuse in Batman Returns (1992) und der Gnustampede in König der Löwen (1994) dieselbe Engine. Heute steuern Nachkommen Intels Shooting-Star-Drohnenschwärme, simulieren Menschenmengen-Evakuierungen und treiben Particle-Swarm-Optimization an — einen Suchalgorithmus, bei dem Lösungskandidaten zur besten «schwärmen».",
+      body: "Reynolds präsentierte Boids 1987 auf der SIGGRAPH; fünf und sieben Jahre später nutzten die Fledermäuse in Batman Returns (1992) und der Gnustampede in König der Löwen (1994) dieselbe Engine. Heute steuern Nachkommen Intels Shooting-Star-Drohnenschwärme, simulieren Menschenmengen-Evakuierungen und treiben Particle-Swarm-Optimization an — einen Suchalgorithmus, bei dem Lösungskandidaten zur besten «schwärmen».",
     },
   ],
   demoCaption: "Live · 120 Boids, drei Regeln",
@@ -286,6 +329,25 @@ const de: RichStory = {
   closingBody:
     "Stell die Gewichte, den Wahrnehmungsradius, den Vermeidungsabstand ein. Schalte eine Regel nach der anderen ab, schalt sie wieder dazu, und sieh, wie sich der Charakter des Schwarms ändert.",
   ctaLabel: "→ Explorer öffnen",
+  ruleWord: "Regel",
+  rules: [
+    {
+      name: "Trennung",
+      caption: "Nähere Nachbarn drücken den Fokus stärker weg.",
+      arrow: "wegdrücken",
+    },
+    {
+      name: "Ausrichtung",
+      caption: "Die Geschwindigkeit dreht in die mittlere Flugrichtung.",
+      arrow: "Kurs angleichen",
+    },
+    {
+      name: "Zusammenhalt",
+      caption: "Steuert zum Zentrum der Nachbarschaft.",
+      arrow: "zum Zentrum",
+    },
+  ],
+  resetLabel: "Neu starten",
 };
 
 const es: RichStory = {
@@ -329,7 +391,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 02 · Regla 1",
       title: "Separación",
-      body: "Mira a los vecinos que están demasiado cerca — los del radio de evitación más estrecho. Suma un vector de dirección que apunte lejos de cada uno, pesado por 1/distancia² para que los más cercanos empujen más fuerte. Sin separación, la bandada colapsa en un punto.",
+      body: "Mira a los vecinos que están demasiado cerca — los del radio de evitación más estrecho. Suma un vector de dirección que apunte lejos de cada uno, pesado por el inverso de la distancia para que los más cercanos empujen más fuerte. Sin separación, la bandada colapsa en un punto.",
     },
     {
       pretitle: "Sección 03 · Regla 2",
@@ -349,7 +411,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 06 · Emergencia y aplicaciones",
       title: "De SIGGRAPH a los espectáculos de drones",
-      body: "Reynolds presentó los boids en SIGGRAPH 1987; seis años después los murciélagos de Batman Returns (1992) y la estampida de ñus de El Rey León (1994) usaban el mismo motor. Hoy los descendientes pilotan los enjambres de drones Shooting Star de Intel, simulan evacuaciones y alimentan la optimización por enjambre de partículas — un algoritmo de búsqueda donde las soluciones candidatas «vuelan en bandada» hacia la mejor.",
+      body: "Reynolds presentó los boids en SIGGRAPH 1987; cinco y siete años después los murciélagos de Batman Returns (1992) y la estampida de ñus de El Rey León (1994) usaban el mismo motor. Hoy los descendientes pilotan los enjambres de drones Shooting Star de Intel, simulan evacuaciones y alimentan la optimización por enjambre de partículas — un algoritmo de búsqueda donde las soluciones candidatas «vuelan en bandada» hacia la mejor.",
     },
   ],
   demoCaption: "En vivo · 120 boids, tres reglas",
@@ -357,6 +419,25 @@ const es: RichStory = {
   closingBody:
     "Ajusta los pesos, el radio de percepción, la distancia de evitación. Apaga una regla, vuelve a encenderla, y mira cómo cambia el carácter de la bandada.",
   ctaLabel: "→ Abrir el Explorador",
+  ruleWord: "Regla",
+  rules: [
+    {
+      name: "Separación",
+      caption: "Los vecinos más cercanos empujan al foco con más fuerza.",
+      arrow: "alejar",
+    },
+    {
+      name: "Alineación",
+      caption: "La velocidad gira hacia el rumbo medio.",
+      arrow: "igualar rumbo",
+    },
+    {
+      name: "Cohesión",
+      caption: "Dirige hacia el centroide del vecindario.",
+      arrow: "al centro",
+    },
+  ],
+  resetLabel: "Reiniciar",
 };
 
 const fr: RichStory = {
@@ -400,7 +481,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 02 · Règle 1",
       title: "Séparation",
-      body: "Regarde les voisins trop proches — ceux dans le rayon d'évitement plus serré. Somme un vecteur de direction pointant loin de chacun, pondéré par 1/distance² pour que les plus proches poussent plus fort. Sans séparation, la nuée s'effondre en un point.",
+      body: "Regarde les voisins trop proches — ceux dans le rayon d'évitement plus serré. Somme un vecteur de direction pointant loin de chacun, pondéré par l'inverse de la distance pour que les plus proches poussent plus fort. Sans séparation, la nuée s'effondre en un point.",
     },
     {
       pretitle: "Section 03 · Règle 2",
@@ -420,7 +501,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 06 · Émergence et applications",
       title: "De SIGGRAPH aux spectacles de drones",
-      body: "Reynolds a présenté les boids à SIGGRAPH 1987 ; six ans plus tard, les chauves-souris de Batman, le défi (1992) et la ruée des gnous du Roi Lion (1994) tournaient sur le même moteur. Aujourd'hui leurs descendants pilotent les essaims de drones Shooting Star d'Intel, simulent les évacuations de foule et alimentent l'optimisation par essaim de particules — un algorithme où les solutions candidates «volent en nuée» vers la meilleure.",
+      body: "Reynolds a présenté les boids à SIGGRAPH 1987 ; cinq et sept ans plus tard, les chauves-souris de Batman, le défi (1992) et la ruée des gnous du Roi Lion (1994) tournaient sur le même moteur. Aujourd'hui leurs descendants pilotent les essaims de drones Shooting Star d'Intel, simulent les évacuations de foule et alimentent l'optimisation par essaim de particules — un algorithme où les solutions candidates «volent en nuée» vers la meilleure.",
     },
   ],
   demoCaption: "En direct · 120 boids, trois règles",
@@ -428,6 +509,25 @@ const fr: RichStory = {
   closingBody:
     "Règle les poids, le rayon de perception, la distance d'évitement. Coupe une règle, rallume-la, et observe comme la nuée change de caractère.",
   ctaLabel: "→ Ouvrir l'Explorateur",
+  ruleWord: "Règle",
+  rules: [
+    {
+      name: "Séparation",
+      caption: "Les voisins plus proches repoussent le focus plus fort.",
+      arrow: "repousser",
+    },
+    {
+      name: "Alignement",
+      caption: "La vitesse tourne vers le cap moyen.",
+      arrow: "aligner le cap",
+    },
+    {
+      name: "Cohésion",
+      caption: "Oriente vers le centroïde du voisinage.",
+      arrow: "vers le centre",
+    },
+  ],
+  resetLabel: "Redémarrer",
 };
 
 const it: RichStory = {
@@ -470,7 +570,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 02 · Regola 1",
       title: "Separazione",
-      body: "Guarda i vicini troppo vicini — quelli nel raggio di evitamento più stretto. Somma un vettore di sterzata che punti lontano da ciascuno, pesato per 1/distanza² così i più vicini spingono di più. Senza separazione lo stormo collassa in un punto.",
+      body: "Guarda i vicini troppo vicini — quelli nel raggio di evitamento più stretto. Somma un vettore di sterzata che punti lontano da ciascuno, pesato per l'inverso della distanza così i più vicini spingono di più. Senza separazione lo stormo collassa in un punto.",
     },
     {
       pretitle: "Sezione 03 · Regola 2",
@@ -490,7 +590,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 06 · Emergenza e applicazioni",
       title: "Da SIGGRAPH agli spettacoli di droni",
-      body: "Reynolds presentò i boids a SIGGRAPH 1987; sei anni dopo i pipistrelli di Batman - Il ritorno (1992) e la fuga degli gnu del Re Leone (1994) usavano lo stesso motore. Oggi i discendenti pilotano gli sciami di droni Shooting Star di Intel, simulano evacuazioni di folla e alimentano la particle-swarm optimization — un algoritmo di ricerca in cui le soluzioni candidate «sciamano» verso la migliore.",
+      body: "Reynolds presentò i boids a SIGGRAPH 1987; cinque e sette anni dopo i pipistrelli di Batman: Il ritorno (1992) e la fuga degli gnu del Re Leone (1994) usavano lo stesso motore. Oggi i discendenti pilotano gli sciami di droni Shooting Star di Intel, simulano evacuazioni di folla e alimentano la particle-swarm optimization — un algoritmo di ricerca in cui le soluzioni candidate «sciamano» verso la migliore.",
     },
   ],
   demoCaption: "Dal vivo · 120 boid, tre regole",
@@ -498,6 +598,25 @@ const it: RichStory = {
   closingBody:
     "Regola i pesi, il raggio di percezione, la distanza di evitamento. Spegni una regola, riaccendila, e guarda come cambia il carattere dello stormo.",
   ctaLabel: "→ Apri l'Esploratore",
+  ruleWord: "Regola",
+  rules: [
+    {
+      name: "Separazione",
+      caption: "I vicini più vicini spingono il focus via più forte.",
+      arrow: "allontana",
+    },
+    {
+      name: "Allineamento",
+      caption: "La velocità ruota verso la direzione media.",
+      arrow: "allinea rotta",
+    },
+    {
+      name: "Coesione",
+      caption: "Sterza verso il centroide del vicinato.",
+      arrow: "verso il centro",
+    },
+  ],
+  resetLabel: "Riavvia",
 };
 
 const pt: RichStory = {
@@ -541,7 +660,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 02 · Regra 1",
       title: "Separação",
-      body: "Olha para os vizinhos demasiado perto — os do raio de evitamento mais apertado. Soma um vetor de direção que aponta para longe de cada um, ponderado por 1/distância² para que os mais próximos empurrem mais. Sem separação, o bando colapsa num ponto.",
+      body: "Olha para os vizinhos demasiado perto — os do raio de evitamento mais apertado. Soma um vetor de direção que aponta para longe de cada um, ponderado pelo inverso da distância para que os mais próximos empurrem mais. Sem separação, o bando colapsa num ponto.",
     },
     {
       pretitle: "Secção 03 · Regra 2",
@@ -561,7 +680,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 06 · Emergência e aplicações",
       title: "De SIGGRAPH aos espetáculos de drones",
-      body: "Reynolds apresentou os boids no SIGGRAPH 1987; seis anos depois, os morcegos de Batman - O Regresso (1992) e a debandada dos gnus de O Rei Leão (1994) usavam o mesmo motor. Hoje os descendentes pilotam os enxames Shooting Star da Intel, simulam evacuações de multidões e alimentam a otimização por enxame de partículas — um algoritmo onde soluções candidatas «voam em bando» até à melhor.",
+      body: "Reynolds apresentou os boids no SIGGRAPH 1987; cinco e sete anos depois, os morcegos de Batman: O Regresso (1992) e a debandada dos gnus de O Rei Leão (1994) usavam o mesmo motor. Hoje os descendentes pilotam os enxames Shooting Star da Intel, simulam evacuações de multidões e alimentam a otimização por enxame de partículas — um algoritmo onde soluções candidatas «voam em bando» até à melhor.",
     },
   ],
   demoCaption: "Ao vivo · 120 boids, três regras",
@@ -569,6 +688,25 @@ const pt: RichStory = {
   closingBody:
     "Afina os pesos, o raio de percepção, a distância de evitamento. Desliga uma regra, religa, e vê como muda o carácter do bando.",
   ctaLabel: "→ Abrir o Explorador",
+  ruleWord: "Regra",
+  rules: [
+    {
+      name: "Separação",
+      caption: "Os vizinhos mais próximos empurram o foco com mais força.",
+      arrow: "afastar",
+    },
+    {
+      name: "Alinhamento",
+      caption: "A velocidade roda para o rumo médio.",
+      arrow: "igualar rumo",
+    },
+    {
+      name: "Coesão",
+      caption: "Dirige para o centroide da vizinhança.",
+      arrow: "ao centro",
+    },
+  ],
+  resetLabel: "Reiniciar",
 };
 
 const sv: RichStory = {
@@ -612,7 +750,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 02 · Regel 1",
       title: "Separation",
-      body: "Titta på grannarna som är för nära — de inom den snävare undvikelseradien. Summera en styrvektor som pekar bort från var och en, viktad med 1/avstånd² så att närmare grannar trycker hårdare. Utan separation kollapsar flocken till en enda punkt.",
+      body: "Titta på grannarna som är för nära — de inom den snävare undvikelseradien. Summera en styrvektor som pekar bort från var och en, viktad med inversen av avståndet så att närmare grannar trycker hårdare. Utan separation kollapsar flocken till en enda punkt.",
     },
     {
       pretitle: "Avsnitt 03 · Regel 2",
@@ -632,7 +770,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 06 · Emergens och tillämpningar",
       title: "Från SIGGRAPH till drönaruppvisningar",
-      body: "Reynolds presenterade boids på SIGGRAPH 1987; sex år senare körde fladdermössen i Batman — återkomsten (1992) och gnustampeden i Lejonkungen (1994) på samma motor. Idag styr ättlingarna Intels Shooting Star-drönarsvärmar, simulerar folkmassevakueringar och driver particle-swarm-optimering — en sökalgoritm där kandidatlösningar «flockas» mot den bästa.",
+      body: "Reynolds presenterade boids på SIGGRAPH 1987; fem och sju år senare körde fladdermössen i Batman: återkomsten (1992) och gnustampeden i Lejonkungen (1994) på samma motor. Idag styr ättlingarna Intels Shooting Star-drönarsvärmar, simulerar folkmassevakueringar och driver particle-swarm-optimering — en sökalgoritm där kandidatlösningar «flockas» mot den bästa.",
     },
   ],
   demoCaption: "Live · 120 boids, tre regler",
@@ -640,6 +778,25 @@ const sv: RichStory = {
   closingBody:
     "Vrid på vikterna, perceptionsradien, undvikelseavståndet. Stäng av en regel, slå på den igen, och se hur flockens karaktär förändras.",
   ctaLabel: "→ Öppna Utforskaren",
+  ruleWord: "Regel",
+  rules: [
+    {
+      name: "Separation",
+      caption: "Närmare grannar trycker fokuset hårdare bort.",
+      arrow: "tryck bort",
+    },
+    {
+      name: "Riktning",
+      caption: "Hastigheten vrider mot medelkursen.",
+      arrow: "matcha kurs",
+    },
+    {
+      name: "Sammanhållning",
+      caption: "Styr mot grannskapets centroid.",
+      arrow: "mot centrum",
+    },
+  ],
+  resetLabel: "Starta om",
 };
 
 const no: RichStory = {
@@ -683,7 +840,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Regel 1",
       title: "Separasjon",
-      body: "Se på naboene som er for nære — de innenfor den strammere unngåelsesradien. Summer en styrvektor som peker bort fra hver, vektet med 1/avstand² slik at nærmere naboer dytter hardere. Uten separasjon kollapser flokken til ett punkt.",
+      body: "Se på naboene som er for nære — de innenfor den strammere unngåelsesradien. Summer en styrvektor som peker bort fra hver, vektet med den inverse av avstanden slik at nærmere naboer dytter hardere. Uten separasjon kollapser flokken til ett punkt.",
     },
     {
       pretitle: "Avsnitt 03 · Regel 2",
@@ -703,7 +860,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Emergens og anvendelser",
       title: "Fra SIGGRAPH til droneshow",
-      body: "Reynolds presenterte boids på SIGGRAPH 1987; seks år senere brukte flaggermusene i Batman — Returns (1992) og gnustampeden i Løvenes konge (1994) den samme motoren. I dag styrer etterkommerne Intels Shooting Star-droneflokker, simulerer folkemengde-evakueringer og driver particle-swarm-optimering — en søkealgoritme der kandidatløsninger «flokker» mot den beste.",
+      body: "Reynolds presenterte boids på SIGGRAPH 1987; fem og sju år senere brukte flaggermusene i Batman: Returns (1992) og gnustampeden i Løvenes konge (1994) den samme motoren. I dag styrer etterkommerne Intels Shooting Star-droneflokker, simulerer folkemengde-evakueringer og driver particle-swarm-optimering — en søkealgoritme der kandidatløsninger «flokker» mot den beste.",
     },
   ],
   demoCaption: "Live · 120 boids, tre regler",
@@ -711,6 +868,25 @@ const no: RichStory = {
   closingBody:
     "Juster vektene, persepsjonsradien, unngåelsesavstanden. Slå av en regel, slå den på igjen, og se hvordan flokken endrer karakter.",
   ctaLabel: "→ Åpne Utforskeren",
+  ruleWord: "Regel",
+  rules: [
+    {
+      name: "Separasjon",
+      caption: "Nærmere naboer dytter fokuset hardere bort.",
+      arrow: "dytt bort",
+    },
+    {
+      name: "Retning",
+      caption: "Hastigheten dreier mot gjennomsnittskursen.",
+      arrow: "match kurs",
+    },
+    {
+      name: "Samhold",
+      caption: "Styrer mot nabolagets sentroide.",
+      arrow: "mot senteret",
+    },
+  ],
+  resetLabel: "Start på nytt",
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
@@ -738,11 +914,10 @@ function EncounterCard({
 const RULE_KINDS: Array<{
   index: number;
   kind: "separation" | "alignment" | "cohesion";
-  caption: string;
 }> = [
-  { index: 1, kind: "separation", caption: "Closer neighbours push the focus harder away." },
-  { index: 2, kind: "alignment", caption: "Velocity rotates toward the mean heading." },
-  { index: 3, kind: "cohesion", caption: "Steers toward the neighbourhood centroid." },
+  { index: 1, kind: "separation" },
+  { index: 2, kind: "alignment" },
+  { index: 3, kind: "cohesion" },
 ];
 
 export default function BoidsStory() {
@@ -815,11 +990,15 @@ export default function BoidsStory() {
         <Reveal delay={120}>
           <div className="hairline mx-auto flex max-w-md flex-col items-center gap-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Rule 1 · {RULE_KINDS[0]!.kind}
+              {story.ruleWord} {RULE_KINDS[0]!.index} · {story.rules[0]!.name}
             </div>
-            <RuleSVG kind="separation" />
+            <RuleSVG
+              kind="separation"
+              label={story.rules[0]!.arrow}
+              ariaLabel={`${story.ruleWord} ${RULE_KINDS[0]!.index}: ${story.rules[0]!.name}`}
+            />
             <p className="text-center font-mono text-[11px] leading-relaxed text-ink-300">
-              {RULE_KINDS[0]!.caption}
+              {story.rules[0]!.caption}
             </p>
           </div>
         </Reveal>
@@ -836,11 +1015,15 @@ export default function BoidsStory() {
         <Reveal delay={120}>
           <div className="hairline mx-auto flex max-w-md flex-col items-center gap-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Rule 2 · {RULE_KINDS[1]!.kind}
+              {story.ruleWord} {RULE_KINDS[1]!.index} · {story.rules[1]!.name}
             </div>
-            <RuleSVG kind="alignment" />
+            <RuleSVG
+              kind="alignment"
+              label={story.rules[1]!.arrow}
+              ariaLabel={`${story.ruleWord} ${RULE_KINDS[1]!.index}: ${story.rules[1]!.name}`}
+            />
             <p className="text-center font-mono text-[11px] leading-relaxed text-ink-300">
-              {RULE_KINDS[1]!.caption}
+              {story.rules[1]!.caption}
             </p>
           </div>
         </Reveal>
@@ -857,11 +1040,15 @@ export default function BoidsStory() {
         <Reveal delay={120}>
           <div className="hairline mx-auto flex max-w-md flex-col items-center gap-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Rule 3 · {RULE_KINDS[2]!.kind}
+              {story.ruleWord} {RULE_KINDS[2]!.index} · {story.rules[2]!.name}
             </div>
-            <RuleSVG kind="cohesion" />
+            <RuleSVG
+              kind="cohesion"
+              label={story.rules[2]!.arrow}
+              ariaLabel={`${story.ruleWord} ${RULE_KINDS[2]!.index}: ${story.rules[2]!.name}`}
+            />
             <p className="text-center font-mono text-[11px] leading-relaxed text-ink-300">
-              {RULE_KINDS[2]!.caption}
+              {story.rules[2]!.caption}
             </p>
           </div>
         </Reveal>
@@ -881,7 +1068,12 @@ export default function BoidsStory() {
               {story.demoCaption}
             </div>
             <div className="hairline overflow-hidden rounded-xl border bg-ink-950/80">
-              <BoidsDemo className="block h-[420px] w-full" count={120} />
+              <BoidsDemo
+                className="block h-[420px] w-full"
+                count={120}
+                resetLabel={story.resetLabel}
+                ariaLabel={story.demoCaption}
+              />
             </div>
           </div>
         </Reveal>

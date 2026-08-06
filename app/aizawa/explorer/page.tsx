@@ -5,6 +5,14 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import type { Locale } from "@/lib/i18n/types";
+
+// Build an rgba() string from a palette hex token so canvas colours stay in
+// sync with the shared palette instead of duplicating literal channel values.
+function hexToRgba(hex: string, alpha: number): string {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
+}
 
 interface ParamSpec {
   label: string;
@@ -100,7 +108,9 @@ const ATTRACTORS: Record<string, Attractor> = {
     paramSpecs: [{ label: "a", min: 0.5, max: 3.0, step: 0.01 }],
     step: 0.005,
     dtMin: 0.002,
-    dtMax: 0.02,
+    // Forward Euler on Halvorsen diverges well before 0.02 even at the default
+    // a=1.4; cap dt at a stable range so the default no longer blows up to NaN.
+    dtMax: 0.008,
     scale: 28,
     trailFade: 0.06,
     step1: (x, y, z, p, dt) => {
@@ -113,8 +123,124 @@ const ATTRACTORS: Record<string, Attractor> = {
   },
 };
 
+// Explorer UI strings, kept local (repo's RICH_EXPLORER pattern) so the whole
+// interface is localized like the rest of the page instead of falling back to
+// English literals.
+type ExplorerStrings = {
+  attractor: string;
+  parameters: string;
+  resetParams: string;
+  stepsPerFrame: string;
+  autoRotateOn: string;
+  autoRotateOff: string;
+  clearRestart: string;
+  dragToRotate: string;
+  stepsFrame: string;
+  canvasLabel: string;
+};
+
+const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
+  en: {
+    attractor: "Attractor",
+    parameters: "Parameters",
+    resetParams: "Reset parameters",
+    stepsPerFrame: "Steps / frame",
+    autoRotateOn: "Auto-rotate on",
+    autoRotateOff: "Auto-rotate off",
+    clearRestart: "Clear & restart",
+    dragToRotate: "drag to rotate",
+    stepsFrame: "steps/frame",
+    canvasLabel: "Live 3D strange attractor, drag to rotate",
+  },
+  de: {
+    attractor: "Attraktor",
+    parameters: "Parameter",
+    resetParams: "Parameter zurücksetzen",
+    stepsPerFrame: "Schritte / Frame",
+    autoRotateOn: "Auto-Rotation an",
+    autoRotateOff: "Auto-Rotation aus",
+    clearRestart: "Löschen & neu starten",
+    dragToRotate: "zum Drehen ziehen",
+    stepsFrame: "Schritte/Frame",
+    canvasLabel: "Live-3D-Attraktor, zum Drehen ziehen",
+  },
+  es: {
+    attractor: "Atractor",
+    parameters: "Parámetros",
+    resetParams: "Restablecer parámetros",
+    stepsPerFrame: "Pasos / fotograma",
+    autoRotateOn: "Auto-rotación activada",
+    autoRotateOff: "Auto-rotación desactivada",
+    clearRestart: "Borrar y reiniciar",
+    dragToRotate: "arrastra para girar",
+    stepsFrame: "pasos/fotograma",
+    canvasLabel: "Atractor 3D en vivo, arrastra para girar",
+  },
+  fr: {
+    attractor: "Attracteur",
+    parameters: "Paramètres",
+    resetParams: "Réinitialiser les paramètres",
+    stepsPerFrame: "Pas / image",
+    autoRotateOn: "Rotation auto activée",
+    autoRotateOff: "Rotation auto désactivée",
+    clearRestart: "Effacer et redémarrer",
+    dragToRotate: "glisse pour tourner",
+    stepsFrame: "pas/image",
+    canvasLabel: "Attracteur 3D en direct, glisse pour tourner",
+  },
+  it: {
+    attractor: "Attrattore",
+    parameters: "Parametri",
+    resetParams: "Reimposta parametri",
+    stepsPerFrame: "Passi / frame",
+    autoRotateOn: "Rotazione auto attiva",
+    autoRotateOff: "Rotazione auto disattivata",
+    clearRestart: "Cancella e riavvia",
+    dragToRotate: "trascina per ruotare",
+    stepsFrame: "passi/frame",
+    canvasLabel: "Attrattore 3D dal vivo, trascina per ruotare",
+  },
+  pt: {
+    attractor: "Atrator",
+    parameters: "Parâmetros",
+    resetParams: "Redefinir parâmetros",
+    stepsPerFrame: "Passos / quadro",
+    autoRotateOn: "Rotação automática ligada",
+    autoRotateOff: "Rotação automática desligada",
+    clearRestart: "Limpar e reiniciar",
+    dragToRotate: "arraste para girar",
+    stepsFrame: "passos/quadro",
+    canvasLabel: "Atrator 3D ao vivo, arraste para girar",
+  },
+  sv: {
+    attractor: "Attraktor",
+    parameters: "Parametrar",
+    resetParams: "Återställ parametrar",
+    stepsPerFrame: "Steg / bildruta",
+    autoRotateOn: "Autorotation på",
+    autoRotateOff: "Autorotation av",
+    clearRestart: "Rensa och starta om",
+    dragToRotate: "dra för att rotera",
+    stepsFrame: "steg/bildruta",
+    canvasLabel: "Live 3D-attraktor, dra för att rotera",
+  },
+  no: {
+    attractor: "Attraktor",
+    parameters: "Parametere",
+    resetParams: "Nullstill parametere",
+    stepsPerFrame: "Steg / bilde",
+    autoRotateOn: "Autorotasjon på",
+    autoRotateOff: "Autorotasjon av",
+    clearRestart: "Tøm og start på nytt",
+    dragToRotate: "dra for å rotere",
+    stepsFrame: "steg/bilde",
+    canvasLabel: "Live 3D-attraktor, dra for å rotere",
+  },
+};
+
 export default function AizawaExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
+  const tx = RICH_EXPLORER[locale];
   const topic = a.topics.aizawa;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -131,6 +257,10 @@ export default function AizawaExplorer() {
 
   // Drag-to-rotate
   const rotRef = useRef({ yaw: 0.6, pitch: 0.4, dragging: false, lx: 0, ly: 0 });
+  // Set by the render effect while prefers-reduced-motion is active so control
+  // changes (params, dt, attractor) can repaint the frozen frame; null when the
+  // live animation loop is running.
+  const staticPaintRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -153,30 +283,51 @@ export default function AizawaExplorer() {
       z = 0;
     let raf = 0;
 
-    const onDown = (e: MouseEvent) => {
+    const reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    // Pointer events (not mouse-only) so touch devices can rotate too; capture
+    // keeps the drag alive when the finger leaves the canvas.
+    const onDown = (e: PointerEvent) => {
       rotRef.current.dragging = true;
       rotRef.current.lx = e.clientX;
       rotRef.current.ly = e.clientY;
+      canvas.setPointerCapture(e.pointerId);
     };
-    const onUp = () => {
+    const onUp = (e: PointerEvent) => {
       rotRef.current.dragging = false;
+      if (canvas.hasPointerCapture(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
     };
-    const onMove = (e: MouseEvent) => {
+    const onMove = (e: PointerEvent) => {
       if (!rotRef.current.dragging) return;
       rotRef.current.yaw += (e.clientX - rotRef.current.lx) * 0.005;
       rotRef.current.pitch += (e.clientY - rotRef.current.ly) * 0.005;
       rotRef.current.lx = e.clientX;
       rotRef.current.ly = e.clientY;
+      // Reduced motion has no rAF loop, so repaint on the drag itself.
+      if (reduceMq.matches) staticPaintRef.current?.();
     };
-    canvas.addEventListener("mousedown", onDown);
-    window.addEventListener("mouseup", onUp);
-    window.addEventListener("mousemove", onMove);
+    canvas.addEventListener("pointerdown", onDown);
+    canvas.addEventListener("pointermove", onMove);
+    canvas.addEventListener("pointerup", onUp);
+    canvas.addEventListener("pointercancel", onUp);
+
+    // Re-seed the orbit whenever Euler diverges past the finite range so the
+    // canvas recovers instead of silently blanking on a NaN cascade (a known
+    // failure at aggressive dt/params, e.g. Halvorsen). Mirrors the clamping
+    // convention in TuringGrayScott.
+    const guard = () => {
+      if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(z)) {
+        x = 0.1;
+        y = 0;
+        z = 0;
+      }
+    };
 
     const loop = () => {
       const cfg = stateRef.current;
       const { attractor, params, stepsPerFrame, autoRotate, dt } = cfg;
-      // fade trail
-      ctx.fillStyle = `rgba(5, 6, 10, ${attractor.trailFade})`;
+      // fade trail toward the canvas background so trails clear to the same black
+      ctx.fillStyle = hexToRgba(palette.canvas.bg, attractor.trailFade);
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       if (autoRotate) rotRef.current.yaw += 0.003;
@@ -189,11 +340,11 @@ export default function AizawaExplorer() {
       const cy = canvas.height / 2;
       const scale = attractor.scale * dpr;
 
-      ctx.fillStyle = "rgba(255, 122, 182, 0.78)";
       const dotSize = 1.4 * dpr;
 
       for (let i = 0; i < stepsPerFrame; i++) {
         [x, y, z] = attractor.step1(x, y, z, params, dt);
+        guard();
         // 3D → 2D: rotate around Y then around X
         const rx = x * cosY - y * sinY;
         const rz = x * sinY + y * cosY;
@@ -203,23 +354,82 @@ export default function AizawaExplorer() {
         // depth shade
         const depth = (z * sinP + (x * sinY + y * cosY) * cosP) / 4 + 0.5;
         const dc = Math.max(0.25, Math.min(1, depth));
-        ctx.fillStyle = `rgba(255, 122, 182, ${0.25 + dc * 0.7})`;
+        ctx.fillStyle = hexToRgba(palette.signal.rose, 0.25 + dc * 0.7);
         ctx.fillRect(sx - dotSize / 2, sy - dotSize / 2, dotSize, dotSize);
       }
 
       raf = requestAnimationFrame(loop);
     };
-    raf = requestAnimationFrame(loop);
+
+    // Reduced motion: integrate a fixed point cloud once and draw a single
+    // frozen frame (no auto-rotate, no trail animation). Repainted on drag and
+    // on control changes via staticPaintRef.
+    const paintStatic = () => {
+      const { attractor, params, dt } = stateRef.current;
+      ctx.fillStyle = palette.canvas.bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const cosY = Math.cos(rotRef.current.yaw);
+      const sinY = Math.sin(rotRef.current.yaw);
+      const cosP = Math.cos(rotRef.current.pitch);
+      const sinP = Math.sin(rotRef.current.pitch);
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+      const scale = attractor.scale * dpr;
+      const dotSize = 1.4 * dpr;
+      let sx2 = 0.1,
+        sy2 = 0,
+        sz2 = 0;
+      const total = 24000;
+      for (let i = 0; i < total; i++) {
+        [sx2, sy2, sz2] = attractor.step1(sx2, sy2, sz2, params, dt);
+        if (!Number.isFinite(sx2) || !Number.isFinite(sy2) || !Number.isFinite(sz2)) {
+          sx2 = 0.1;
+          sy2 = 0;
+          sz2 = 0;
+        }
+        if (i < 600) continue; // let the transient settle before drawing
+        const rx = sx2 * cosY - sy2 * sinY;
+        const rz = sx2 * sinY + sy2 * cosY;
+        const ry = sz2 * cosP - rz * sinP;
+        const px = cx + rx * scale;
+        const py = cy - ry * scale;
+        const depth = (sz2 * sinP + (sx2 * sinY + sy2 * cosY) * cosP) / 4 + 0.5;
+        const dc = Math.max(0.25, Math.min(1, depth));
+        ctx.fillStyle = hexToRgba(palette.signal.rose, 0.25 + dc * 0.7);
+        ctx.fillRect(px - dotSize / 2, py - dotSize / 2, dotSize, dotSize);
+      }
+    };
+
+    const start = () => {
+      cancelAnimationFrame(raf);
+      if (reduceMq.matches) {
+        staticPaintRef.current = paintStatic;
+        paintStatic();
+      } else {
+        staticPaintRef.current = null;
+        raf = requestAnimationFrame(loop);
+      }
+    };
+    start();
+    reduceMq.addEventListener("change", start);
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
-      canvas.removeEventListener("mousedown", onDown);
-      window.removeEventListener("mouseup", onUp);
-      window.removeEventListener("mousemove", onMove);
+      reduceMq.removeEventListener("change", start);
+      staticPaintRef.current = null;
+      canvas.removeEventListener("pointerdown", onDown);
+      canvas.removeEventListener("pointermove", onMove);
+      canvas.removeEventListener("pointerup", onUp);
+      canvas.removeEventListener("pointercancel", onUp);
     };
-     
   }, [resetTick, dpr]);
+
+  // Under reduced motion the frozen frame must follow control changes, since
+  // there is no animation loop reading the live state each frame.
+  useEffect(() => {
+    staticPaintRef.current?.();
+  }, [params, dt, attractorId]);
 
   const attractor = ATTRACTORS[attractorId];
 
@@ -229,14 +439,16 @@ export default function AizawaExplorer() {
         <div className="relative min-h-[60vh] bg-ink-950 lg:min-h-[calc(100vh-3.5rem)]">
           <canvas
             ref={canvasRef}
-            className="absolute inset-0 block h-full w-full cursor-grab active:cursor-grabbing"
+            role="img"
+            aria-label={`${attractor.label}: ${tx.canvasLabel}`}
+            className="absolute inset-0 block h-full w-full cursor-grab touch-none active:cursor-grabbing"
           />
           <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {attractor.label} · drag to rotate
+              {attractor.label} · {tx.dragToRotate}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-              {stepsPerFrame.toLocaleString()} steps/frame
+              {stepsPerFrame.toLocaleString()} {tx.stepsFrame}
             </div>
           </div>
         </div>
@@ -252,7 +464,7 @@ export default function AizawaExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Attractor
+              {tx.attractor}
             </div>
             <div className="grid grid-cols-2 gap-2">
               {Object.values(ATTRACTORS).map((at) => (
@@ -278,7 +490,7 @@ export default function AizawaExplorer() {
 
           <div className="hairline space-y-4 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Parameters
+              {tx.parameters}
             </div>
             {params.map((value, i) => {
               const spec = attractor.paramSpecs[i];
@@ -313,13 +525,13 @@ export default function AizawaExplorer() {
               }}
               className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
-              ⟲ Reset parameters
+              ⟲ {tx.resetParams}
             </button>
           </div>
 
           <div className="hairline space-y-4 border-b p-5">
             <SliderRow
-              label="Steps / frame"
+              label={tx.stepsPerFrame}
               value={stepsPerFrame}
               min={200}
               max={6000}
@@ -335,13 +547,13 @@ export default function AizawaExplorer() {
                   : "hairline hover:text-ink-50 text-ink-200 hover:border-ink-300/50"
               }`}
             >
-              {autoRotate ? "↻ Auto-rotate on" : "○ Auto-rotate off"}
+              {autoRotate ? `↻ ${tx.autoRotateOn}` : `○ ${tx.autoRotateOff}`}
             </button>
             <button
               onClick={() => setResetTick((t) => t + 1)}
               className="hairline hover:text-ink-50 w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-ink-300/50"
             >
-              ⟳ Clear & restart
+              ⟳ {tx.clearRestart}
             </button>
           </div>
 
@@ -382,6 +594,7 @@ function ParamSlider({
       </div>
       <input
         type="range"
+        aria-label={label}
         value={value}
         min={min}
         max={max}
@@ -418,6 +631,7 @@ function SliderRow({
       </div>
       <input
         type="range"
+        aria-label={label}
         value={value}
         min={min}
         max={max}

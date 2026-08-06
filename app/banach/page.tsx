@@ -30,6 +30,7 @@ type RichStory = {
   freeGroupReset: string;
   freeGroupHint: string;
   freeGroupWordLabel: string;
+  freeGroupLengthLabel: string;
   robinsonNote: string;
   closingPretitle: string;
   closingTitle: string;
@@ -88,7 +89,7 @@ const en: RichStory = {
     {
       pretitle: "Section 04 · The free group F₂",
       title: "Two rotations, no relations",
-      body: "Pick two rotations a and b of the unit sphere — for instance both through the angle θ = arccos(1/3), about two perpendicular axes. No matter how you compose them — aba⁻¹b, b²a⁻³, anything — you never get back to the identity except by trivially cancelling inverses. The group they generate is the free group F₂ on two letters: every reduced word in a, a⁻¹, b, b⁻¹ is a distinct rotation. F₂ has a paradoxical decomposition: split it into the four subsets of words starting with each generator, apply a single shift, and each subset covers what was the rest of the group. The sphere inherits the same property — and then the ball.",
+      body: "Pick two rotations a and b of the unit sphere — for instance both through the angle θ = arccos(1/3), about two perpendicular axes. No matter how you compose them — aba⁻¹b, b²a⁻³, anything — you never get back to the identity except by trivially cancelling inverses. The group they generate is the free group F₂ on two letters: every reduced word in a, a⁻¹, b, b⁻¹ is a distinct rotation. F₂ has a paradoxical decomposition: split it into the four pieces of words starting with each generator. Shift the a⁻¹-piece by a and it turns into every word that does not start with a, that is the other three pieces plus the identity, so W(a) together with that shifted piece already fills all of F₂. Do the same with b and you fill F₂ a second time, so two of the four pieces rebuild the whole group and the other two rebuild it again. The sphere inherits the same property, and then the ball.",
     },
     {
       pretitle: "Section 05 · The actual decomposition",
@@ -106,6 +107,7 @@ const en: RichStory = {
   freeGroupHint:
     "Every reduced word in a, a⁻¹, b, b⁻¹ is a unique vertex, and every vertex has the same four neighbours — one per generator. Drawn with the identity at the root, the picture fans into four directions; at every further node three new branches open (the fourth would just retrace your last step). The whole infinite tree contains four shrunken copies of itself, and that self-similarity is the paradox.",
   freeGroupWordLabel: "current word",
+  freeGroupLengthLabel: "length",
 
   robinsonNote: "Minimum number of pieces. Four are dense non-measurable point-clouds carved by the F₂ action; the fifth is a single point at the centre, an artefact of rotations fixing the origin.",
   closingPretitle: "See the engine",
@@ -167,7 +169,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Die freie Gruppe F₂",
       title: "Zwei Drehungen, keine Beziehungen",
-      body: "Wähle zwei Drehungen a und b der Einheitssphäre — zum Beispiel beide um den Winkel θ = arccos(1/3), um zwei zueinander senkrechte Achsen. Egal wie du sie verkettest — aba⁻¹b, b²a⁻³, was auch immer — du kommst nie zur Identität zurück, außer indem du Inverse trivial kürzt. Die Gruppe, die sie erzeugen, ist die freie Gruppe F₂ über zwei Buchstaben: jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine andere Drehung. F₂ hat eine paradoxe Zerlegung: zerteile sie in die vier Teilmengen der Wörter, die mit je einem Erzeuger beginnen, wende eine einzige Verschiebung an, und jede Teilmenge überdeckt den Rest der Gruppe. Die Sphäre erbt dieselbe Eigenschaft — und danach die Kugel.",
+      body: "Wähle zwei Drehungen a und b der Einheitssphäre — zum Beispiel beide um den Winkel θ = arccos(1/3), um zwei zueinander senkrechte Achsen. Egal wie du sie verkettest — aba⁻¹b, b²a⁻³, was auch immer — du kommst nie zur Identität zurück, außer indem du Inverse trivial kürzt. Die Gruppe, die sie erzeugen, ist die freie Gruppe F₂ über zwei Buchstaben: jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine andere Drehung. F₂ hat eine paradoxe Zerlegung: zerteile sie in die vier Stücke der Wörter, die mit je einem Erzeuger beginnen. Verschiebe das a⁻¹-Stück um a, und es wird zu jedem Wort, das nicht mit a beginnt, also den drei anderen Stücken plus der Identität, sodass W(a) zusammen mit diesem verschobenen Stück bereits ganz F₂ ausfüllt. Mach dasselbe mit b, und du füllst F₂ ein zweites Mal, sodass zwei der vier Stücke die ganze Gruppe wieder aufbauen und die anderen zwei sie erneut. Die Sphäre erbt dieselbe Eigenschaft, und danach die Kugel.",
     },
     {
       pretitle: "Abschnitt 05 · Die tatsächliche Zerlegung",
@@ -177,7 +179,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Warum es kein Widerspruch ist",
       title: "Verschiedene Welten, verschiedene Regeln",
-      body: "Physikalische Stücke haben ein Maß: man kann sie wiegen, ihr Volumen messen, ihre Atome zählen. Banach–Tarski-Stücke haben kein Maß — sie sind überabzählbare, dichte, unphysikalische Mengen. Volumenerhaltung ist eine Aussage über messbare Dinge, und der Satz behauptet nie, dass die Stücke messbar seien; er behauptet das Gegenteil. Materie hat Atome, die Mengenlehre nicht. Das Paradox ist eine exakte, formale Warnung: das Kontinuum hat Strukturen, die wir nicht anfassen können, und die beruhigende Gleichung „Volumen rein = Volumen raus« ist eine Eigenschaft braver Mengen, nicht aller Mengen. Das ist die ganze Lektion.",
+      body: "Physikalische Stücke haben ein Maß: man kann sie wiegen, ihr Volumen messen, ihre Atome zählen. Banach–Tarski-Stücke haben kein Maß — sie sind überabzählbare, dichte, unphysikalische Mengen. Volumenerhaltung ist eine Aussage über messbare Dinge, und der Satz behauptet nie, dass die Stücke messbar seien; er behauptet das Gegenteil. Materie hat Atome, die Mengenlehre nicht. Das Paradox ist eine exakte, formale Warnung: das Kontinuum hat Strukturen, die wir nicht anfassen können, und die beruhigende Gleichung «Volumen rein = Volumen raus» ist eine Eigenschaft braver Mengen, nicht aller Mengen. Das ist die ganze Lektion.",
     },
   ],
   freeGroupCaption: "Cayley-Graph von F₂",
@@ -185,6 +187,7 @@ const de: RichStory = {
   freeGroupHint:
     "Jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine eigene Ecke, und jede Ecke hat dieselben vier Nachbarn — einen pro Erzeuger. Zeichnet man das Bild mit der Identität als Wurzel, fächert es in vier Richtungen auf; an jedem weiteren Knoten öffnen sich drei neue Äste (der vierte würde nur den letzten Schritt zurücknehmen). Der ganze unendliche Baum enthält vier verkleinerte Kopien seiner selbst, und genau diese Selbstähnlichkeit ist das Paradox.",
   freeGroupWordLabel: "aktuelles Wort",
+  freeGroupLengthLabel: "Länge",
 
   robinsonNote: "Minimale Stückzahl. Vier sind dichte, nichtmessbare Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet; das fünfte ist ein einzelner Punkt im Zentrum — ein Artefakt der Drehungen, die den Ursprung fixieren.",
   closingPretitle: "Sieh die Maschine",
@@ -246,7 +249,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 04 · El grupo libre F₂",
       title: "Dos rotaciones, sin relaciones",
-      body: "Elige dos rotaciones a y b de la esfera unidad — por ejemplo ambas por el ángulo θ = arccos(1/3), en torno a dos ejes perpendiculares. Sin importar cómo las compongas — aba⁻¹b, b²a⁻³, lo que sea — nunca regresas a la identidad salvo cancelando inversos trivialmente. El grupo que generan es el grupo libre F₂ sobre dos letras: cada palabra reducida en a, a⁻¹, b, b⁻¹ es una rotación distinta. F₂ admite una descomposición paradójica: divídelo en los cuatro subconjuntos de palabras que empiezan por cada generador, aplica un único desplazamiento, y cada subconjunto cubre el resto del grupo. La esfera hereda la misma propiedad — y luego la bola.",
+      body: "Elige dos rotaciones a y b de la esfera unidad — por ejemplo ambas por el ángulo θ = arccos(1/3), en torno a dos ejes perpendiculares. Sin importar cómo las compongas — aba⁻¹b, b²a⁻³, lo que sea — nunca regresas a la identidad salvo cancelando inversos trivialmente. El grupo que generan es el grupo libre F₂ sobre dos letras: cada palabra reducida en a, a⁻¹, b, b⁻¹ es una rotación distinta. F₂ admite una descomposición paradójica: divídelo en las cuatro piezas de palabras que empiezan por cada generador. Desplaza la pieza de a⁻¹ por a y se convierte en toda palabra que no empieza por a, es decir, las otras tres piezas más la identidad, de modo que W(a) junto con esa pieza desplazada ya llena todo F₂. Haz lo mismo con b y llenas F₂ una segunda vez, así que dos de las cuatro piezas reconstruyen todo el grupo y las otras dos lo reconstruyen de nuevo. La esfera hereda la misma propiedad, y luego la bola.",
     },
     {
       pretitle: "Sección 05 · La descomposición real",
@@ -264,6 +267,7 @@ const es: RichStory = {
   freeGroupHint:
     "Cada palabra reducida en a, a⁻¹, b, b⁻¹ es un vértice único, y cada vértice tiene los mismos cuatro vecinos — uno por generador. Dibujado con la identidad en la raíz, el cuadro se abre en cuatro direcciones; en cada nodo posterior se abren tres nuevas ramas (la cuarta solo desharía el último paso). El árbol infinito completo contiene cuatro copias reducidas de sí mismo, y esa autosimilaridad es la paradoja.",
   freeGroupWordLabel: "palabra actual",
+  freeGroupLengthLabel: "longitud",
 
   robinsonNote: "Número mínimo de piezas. Cuatro son nubes densas no medibles talladas por la acción de F₂; la quinta es un único punto en el centro, un artefacto de las rotaciones que fijan el origen.",
   closingPretitle: "Mira el motor",
@@ -325,7 +329,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 04 · Le groupe libre F₂",
       title: "Deux rotations, aucune relation",
-      body: "Choisis deux rotations a et b de la sphère unité — par exemple toutes deux par l'angle θ = arccos(1/3), autour de deux axes perpendiculaires. Quelle que soit la façon dont tu les composes — aba⁻¹b, b²a⁻³, n'importe quoi — tu ne reviens jamais à l'identité sauf par annulation triviale des inverses. Le groupe qu'elles engendrent est le groupe libre F₂ sur deux lettres : chaque mot réduit en a, a⁻¹, b, b⁻¹ est une rotation distincte. F₂ admet une décomposition paradoxale : sépare-le en quatre sous-ensembles selon le générateur initial de chaque mot, applique un unique décalage, et chaque sous-ensemble recouvre le reste du groupe. La sphère hérite de la même propriété — puis la boule.",
+      body: "Choisis deux rotations a et b de la sphère unité — par exemple toutes deux par l'angle θ = arccos(1/3), autour de deux axes perpendiculaires. Quelle que soit la façon dont tu les composes — aba⁻¹b, b²a⁻³, n'importe quoi — tu ne reviens jamais à l'identité sauf par annulation triviale des inverses. Le groupe qu'elles engendrent est le groupe libre F₂ sur deux lettres : chaque mot réduit en a, a⁻¹, b, b⁻¹ est une rotation distincte. F₂ admet une décomposition paradoxale : sépare-le en quatre pièces selon le générateur initial de chaque mot. Décale la pièce de a⁻¹ par a et elle devient tout mot qui ne commence pas par a, c'est-à-dire les trois autres pièces plus l'identité, de sorte que W(a) avec cette pièce décalée remplit déjà tout F₂. Fais de même avec b et tu remplis F₂ une deuxième fois, donc deux des quatre pièces reconstruisent le groupe entier et les deux autres le reconstruisent encore. La sphère hérite de la même propriété, puis la boule.",
     },
     {
       pretitle: "Section 05 · La décomposition réelle",
@@ -343,6 +347,7 @@ const fr: RichStory = {
   freeGroupHint:
     "Chaque mot réduit en a, a⁻¹, b, b⁻¹ est un sommet unique, et chaque sommet a les mêmes quatre voisins — un par générateur. Dessiné avec l'identité à la racine, l'image s'ouvre en quatre directions ; à chaque nœud suivant trois nouvelles branches s'ouvrent (la quatrième ne ferait que reprendre ton dernier pas). L'arbre infini entier contient quatre copies réduites de lui-même, et cette auto-similarité est le paradoxe.",
   freeGroupWordLabel: "mot courant",
+  freeGroupLengthLabel: "longueur",
 
   robinsonNote: "Nombre minimum de morceaux. Quatre sont des nuages denses non mesurables découpés par l’action de F₂ ; le cinquième est un unique point au centre, artefact des rotations qui fixent l’origine.",
   closingPretitle: "Vois le moteur",
@@ -404,7 +409,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 04 · Il gruppo libero F₂",
       title: "Due rotazioni, nessuna relazione",
-      body: "Scegli due rotazioni a e b della sfera unitaria — ad esempio entrambe dell'angolo θ = arccos(1/3), attorno a due assi perpendicolari. Comunque le componi — aba⁻¹b, b²a⁻³, qualsiasi cosa — non torni mai all'identità se non cancellando inversi in modo banale. Il gruppo che generano è il gruppo libero F₂ su due lettere: ogni parola ridotta in a, a⁻¹, b, b⁻¹ è una rotazione diversa. F₂ ammette una decomposizione paradossale: dividilo nei quattro sottoinsiemi delle parole che iniziano con ciascun generatore, applica un singolo spostamento, e ogni sottoinsieme copre il resto del gruppo. La sfera eredita la stessa proprietà — e poi la palla.",
+      body: "Scegli due rotazioni a e b della sfera unitaria — ad esempio entrambe dell'angolo θ = arccos(1/3), attorno a due assi perpendicolari. Comunque le componi — aba⁻¹b, b²a⁻³, qualsiasi cosa — non torni mai all'identità se non cancellando inversi in modo banale. Il gruppo che generano è il gruppo libero F₂ su due lettere: ogni parola ridotta in a, a⁻¹, b, b⁻¹ è una rotazione diversa. F₂ ammette una decomposizione paradossale: dividilo nei quattro pezzi delle parole che iniziano con ciascun generatore. Trasla il pezzo di a⁻¹ di a e diventa ogni parola che non inizia con a, cioè gli altri tre pezzi più l'identità, così che W(a) insieme a quel pezzo traslato riempie già tutto F₂. Fai lo stesso con b e riempi F₂ una seconda volta, quindi due dei quattro pezzi ricostruiscono l'intero gruppo e gli altri due lo ricostruiscono di nuovo. La sfera eredita la stessa proprietà, e poi la palla.",
     },
     {
       pretitle: "Sezione 05 · La decomposizione vera",
@@ -422,6 +427,7 @@ const it: RichStory = {
   freeGroupHint:
     "Ogni parola ridotta in a, a⁻¹, b, b⁻¹ è un vertice unico, e ogni vertice ha gli stessi quattro vicini — uno per generatore. Disegnato con l'identità alla radice, il quadro si apre in quattro direzioni; a ogni nodo successivo si aprono tre nuovi rami (il quarto si limiterebbe a riavvolgere l'ultimo passo). L'intero albero infinito contiene quattro copie rimpicciolite di sé, e questa autosimilarità è il paradosso.",
   freeGroupWordLabel: "parola corrente",
+  freeGroupLengthLabel: "lunghezza",
 
   robinsonNote: "Numero minimo di pezzi. Quattro sono nuvole dense e non misurabili scolpite dall’azione di F₂; il quinto è un singolo punto al centro, un artefatto delle rotazioni che fissano l’origine.",
   closingPretitle: "Vedi il motore",
@@ -483,7 +489,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 04 · O grupo livre F₂",
       title: "Duas rotações, sem relações",
-      body: "Escolhe duas rotações a e b da esfera unitária — por exemplo ambas pelo ângulo θ = arccos(1/3), em torno de dois eixos perpendiculares. Por mais que as componhas — aba⁻¹b, b²a⁻³, o que for — nunca regressas à identidade salvo cancelando inversos de forma trivial. O grupo que geram é o grupo livre F₂ sobre duas letras: cada palavra reduzida em a, a⁻¹, b, b⁻¹ é uma rotação distinta. F₂ admite uma decomposição paradoxal: divide-o nos quatro subconjuntos das palavras que começam por cada gerador, aplica um único deslocamento, e cada subconjunto cobre o resto do grupo. A esfera herda a mesma propriedade — e depois a bola.",
+      body: "Escolhe duas rotações a e b da esfera unitária — por exemplo ambas pelo ângulo θ = arccos(1/3), em torno de dois eixos perpendiculares. Por mais que as componhas — aba⁻¹b, b²a⁻³, o que for — nunca regressas à identidade salvo cancelando inversos de forma trivial. O grupo que geram é o grupo livre F₂ sobre duas letras: cada palavra reduzida em a, a⁻¹, b, b⁻¹ é uma rotação distinta. F₂ admite uma decomposição paradoxal: divide-o nas quatro peças das palavras que começam por cada gerador. Desloca a peça de a⁻¹ por a e ela torna-se toda palavra que não começa por a, isto é, as outras três peças mais a identidade, de modo que W(a) junto com essa peça deslocada já preenche todo o F₂. Faz o mesmo com b e preenches F₂ uma segunda vez, portanto duas das quatro peças reconstroem o grupo inteiro e as outras duas reconstroem-no de novo. A esfera herda a mesma propriedade, e depois a bola.",
     },
     {
       pretitle: "Secção 05 · A decomposição real",
@@ -501,6 +507,7 @@ const pt: RichStory = {
   freeGroupHint:
     "Cada palavra reduzida em a, a⁻¹, b, b⁻¹ é um vértice único, e cada vértice tem os mesmos quatro vizinhos — um por gerador. Desenhado com a identidade na raiz, o quadro abre-se em quatro direcções; em cada nó seguinte abrem-se três novos ramos (o quarto apenas desfaria o último passo). Toda a árvore infinita contém quatro cópias reduzidas de si mesma, e essa autossimilaridade é o paradoxo.",
   freeGroupWordLabel: "palavra atual",
+  freeGroupLengthLabel: "comprimento",
 
   robinsonNote: "Número mínimo de peças. Quatro são nuvens densas não mensuráveis recortadas pela acção de F₂; a quinta é um único ponto no centro, um artefacto das rotações que fixam a origem.",
   closingPretitle: "Vê o motor",
@@ -562,7 +569,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 04 · Den fria gruppen F₂",
       title: "Två rotationer, inga relationer",
-      body: "Välj två rotationer a och b av enhetssfären — till exempel båda med vinkeln θ = arccos(1/3), kring två vinkelräta axlar. Hur du än sammansätter dem — aba⁻¹b, b²a⁻³, vad som helst — kommer du aldrig tillbaka till identiteten utom genom triviala inversförkortningar. Gruppen de genererar är den fria gruppen F₂ över två bokstäver: varje reducerat ord i a, a⁻¹, b, b⁻¹ är en distinkt rotation. F₂ tillåter en paradoxal sönderdelning: dela den i de fyra delmängderna av ord som börjar med varje generator, tillämpa en enda förskjutning, och varje delmängd täcker resten av gruppen. Sfären ärver samma egenskap — och sedan klotet.",
+      body: "Välj två rotationer a och b av enhetssfären — till exempel båda med vinkeln θ = arccos(1/3), kring två vinkelräta axlar. Hur du än sammansätter dem — aba⁻¹b, b²a⁻³, vad som helst — kommer du aldrig tillbaka till identiteten utom genom triviala inversförkortningar. Gruppen de genererar är den fria gruppen F₂ över två bokstäver: varje reducerat ord i a, a⁻¹, b, b⁻¹ är en distinkt rotation. F₂ tillåter en paradoxal sönderdelning: dela den i de fyra bitarna av ord som börjar med varje generator. Förskjut a⁻¹-biten med a och den blir varje ord som inte börjar med a, alltså de tre andra bitarna plus identiteten, så att W(a) tillsammans med den förskjutna biten redan fyller hela F₂. Gör samma sak med b och du fyller F₂ en andra gång, så två av de fyra bitarna bygger upp hela gruppen och de andra två bygger upp den igen. Sfären ärver samma egenskap, och sedan klotet.",
     },
     {
       pretitle: "Avsnitt 05 · Den faktiska sönderdelningen",
@@ -580,6 +587,7 @@ const sv: RichStory = {
   freeGroupHint:
     "Varje reducerat ord i a, a⁻¹, b, b⁻¹ är en unik nod, och varje nod har samma fyra grannar — en per generator. Ritat med identiteten i roten fläktar bilden ut i fyra riktningar; vid varje vidare nod öppnas tre nya grenar (den fjärde skulle bara vända det senaste steget). Hela det oändliga trädet innehåller fyra förminskade kopior av sig självt, och just den självlikheten är paradoxen.",
   freeGroupWordLabel: "aktuellt ord",
+  freeGroupLengthLabel: "längd",
 
   robinsonNote: "Minimalt antal bitar. Fyra är täta, icke-mätbara punktmoln som F₂-verkan skär ut; den femte är en enda punkt i centrum, en artefakt av rotationerna som fixerar origo.",
   closingPretitle: "Se motorn",
@@ -641,7 +649,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Den frie gruppen F₂",
       title: "To rotasjoner, ingen relasjoner",
-      body: "Velg to rotasjoner a og b av enhetssfæren — for eksempel begge med vinkelen θ = arccos(1/3), om to vinkelrette akser. Uansett hvordan du komponerer dem — aba⁻¹b, b²a⁻³, hva det skal være — kommer du aldri tilbake til identiteten utenom triviell inverskansellering. Gruppen de genererer er den frie gruppen F₂ over to bokstaver: hvert redusert ord i a, a⁻¹, b, b⁻¹ er en distinkt rotasjon. F₂ har en paradoksal dekomposisjon: del den i de fire delmengdene av ord som starter med hver generator, anvend ett enkelt skift, og hver delmengde dekker resten av gruppen. Sfæren arver samme egenskap — og deretter kulen.",
+      body: "Velg to rotasjoner a og b av enhetssfæren — for eksempel begge med vinkelen θ = arccos(1/3), om to vinkelrette akser. Uansett hvordan du komponerer dem — aba⁻¹b, b²a⁻³, hva det skal være — kommer du aldri tilbake til identiteten utenom triviell inverskansellering. Gruppen de genererer er den frie gruppen F₂ over to bokstaver: hvert redusert ord i a, a⁻¹, b, b⁻¹ er en distinkt rotasjon. F₂ har en paradoksal dekomposisjon: del den i de fire bitene av ord som starter med hver generator. Forskyv a⁻¹-biten med a, og den blir hvert ord som ikke starter med a, altså de tre andre bitene pluss identiteten, slik at W(a) sammen med den forskjøvne biten allerede fyller hele F₂. Gjør det samme med b, og du fyller F₂ en gang til, så to av de fire bitene bygger opp hele gruppen og de andre to bygger den opp igjen. Sfæren arver samme egenskap, og deretter kulen.",
     },
     {
       pretitle: "Avsnitt 05 · Den faktiske dekomposisjonen",
@@ -659,6 +667,7 @@ const no: RichStory = {
   freeGroupHint:
     "Hvert redusert ord i a, a⁻¹, b, b⁻¹ er en unik node, og hver node har de samme fire naboene — én per generator. Tegnet med identiteten i roten vifter bildet ut i fire retninger; ved hver videre node åpnes tre nye grener (den fjerde ville bare angre det siste steget). Hele det uendelige treet inneholder fire forminskede kopier av seg selv, og nettopp den selvlikheten er paradokset.",
   freeGroupWordLabel: "gjeldende ord",
+  freeGroupLengthLabel: "lengde",
 
   robinsonNote: "Minimum antall biter. Fire er tette, ikke-målbare punktskyer som F₂-virkningen skjærer ut; den femte er et enkelt punkt i sentrum, en artefakt av rotasjonene som fester origo.",
   closingPretitle: "Se motoren",
@@ -764,6 +773,7 @@ export default function BanachStory() {
             resetLabel={story.freeGroupReset}
             hintLabel={story.freeGroupHint}
             wordLabel={story.freeGroupWordLabel}
+            lengthLabel={story.freeGroupLengthLabel}
           />
         </Reveal>
       </section>

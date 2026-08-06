@@ -2,6 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import { getDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
+
+// rgba() from a palette hex so the canvas shares tokens instead of re-encoding
+// channel values inline.
+const rgba = (hex: string, alpha: number) => {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
 
 interface Props {
   count?: number;
@@ -9,10 +20,27 @@ interface Props {
   // Label for the reset button. Defaults to EN; pass a locale-aware string
   // from the story page (e.g. "Neu starten" in DE).
   resetLabel?: string;
+  // Accessible description of the canvas. Pass a locale-aware string.
+  ariaLabel?: string;
 }
 
-export function BoidsDemo({ count = 120, className = "", resetLabel = "Restart" }: Props) {
+export function BoidsDemo({
+  count = 120,
+  className = "",
+  resetLabel = "Restart",
+  ariaLabel = "Boids flocking animation",
+}: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  // Freeze the swarm for motion-sensitive users (CLAUDE.md: per-component
+  // canvases check the media query and freeze).
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduced(mq.matches);
+    on();
+    mq.addEventListener?.("change", on);
+    return () => mq.removeEventListener?.("change", on);
+  }, []);
   // Bumping this tears down + restarts the simulation effect — flocks
   // re-seed from random positions so the user can watch the swarm form
   // from scratch.
@@ -34,6 +62,19 @@ export function BoidsDemo({ count = 120, className = "", resetLabel = "Restart" 
     resize();
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
+
+    // ResizeObserver misses a pure DPR change (browser zoom, moving to a
+    // monitor with a different devicePixelRatio), so watch it explicitly and
+    // re-subscribe with the new DPR each time (a fixed MQ matches only one).
+    let mq: MediaQueryList | null = null;
+    const onDprChange = () => {
+      resize();
+      mq?.removeEventListener?.("change", onDprChange);
+      mq = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+      mq.addEventListener?.("change", onDprChange);
+    };
+    mq = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+    mq.addEventListener?.("change", onDprChange);
 
     // Float32Array layout: [x, y, vx, vy] × count. Faster than object array
     // and lets the per-frame inner loop stay in cache.
@@ -171,10 +212,10 @@ export function BoidsDemo({ count = 120, className = "", resetLabel = "Restart" 
       const W = canvas.width;
       const H = canvas.height;
       // Soft fade — gives motion trails without ghosting permanently.
-      ctx.fillStyle = "rgba(5, 6, 10, 0.25)";
+      ctx.fillStyle = rgba(palette.ink[950], 0.25);
       ctx.fillRect(0, 0, W, H);
 
-      ctx.fillStyle = "rgba(125, 243, 255, 0.92)";
+      ctx.fillStyle = rgba(palette.signal.cyan, 0.92);
       const size = 2.8 * dpr;
       for (let i = 0; i < count; i++) {
         const x = boids[i * 4];
@@ -196,17 +237,28 @@ export function BoidsDemo({ count = 120, className = "", resetLabel = "Restart" 
       draw();
       raf = requestAnimationFrame(loop);
     };
-    raf = requestAnimationFrame(loop);
+
+    if (reduced) {
+      // Reduced motion: settle to a representative frame and draw it once, no
+      // rAF loop — the swarm is frozen mid-flock instead of swirling forever.
+      for (let k = 0; k < 400; k++) step();
+      ctx.fillStyle = palette.ink[950];
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      draw();
+    } else {
+      raf = requestAnimationFrame(loop);
+    }
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      mq?.removeEventListener?.("change", onDprChange);
     };
-  }, [count, resetTick]);
+  }, [count, resetTick, reduced]);
 
   return (
     <div className={`relative ${className}`}>
-      <canvas ref={canvasRef} className="block h-full w-full" />
+      <canvas ref={canvasRef} className="block h-full w-full" role="img" aria-label={ariaLabel} />
       <button
         type="button"
         onClick={() => setResetTick((n) => n + 1)}

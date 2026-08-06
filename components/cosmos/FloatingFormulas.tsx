@@ -29,7 +29,9 @@ const PIECES: {
   { glyph: "\\aleph_0", x: 70, y: 78, size: 38, delay: 2, duration: 64, variant: 3 },
   { glyph: "\\nabla^2 u", x: 14, y: 84, size: 26, delay: 6, duration: 56, variant: 4 },
   { glyph: "\\varphi", x: 50, y: 30, size: 30, delay: 10, duration: 78, variant: 2 },
-  { glyph: "P \\stackrel{?}{=} NP", x: 88, y: 42, size: 22, delay: 8, duration: 68, variant: 1 },
+  // x kept clear of the right edge — the desktop compass (right-6,
+  // vertically centred) lives at ~95% x, and the drift adds up to ~8%.
+  { glyph: "P \\stackrel{?}{=} NP", x: 76, y: 58, size: 22, delay: 8, duration: 68, variant: 1 },
   { glyph: "\\sigma(y-x)", x: 22, y: 48, size: 22, delay: 12, duration: 62, variant: 3 },
   { glyph: "\\chi = V-E+F", x: 60, y: 60, size: 20, delay: 14, duration: 70, variant: 4 },
 ];

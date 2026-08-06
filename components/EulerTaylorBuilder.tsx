@@ -209,7 +209,9 @@ export function EulerTaylorBuilder({
       <div className="flex justify-center">
         <canvas
           ref={canvasRef}
-          style={{ width: W, height: H }}
+          // maxWidth stops the fixed-W canvas overflowing narrow phones;
+          // height:auto + the W:H aspect-ratio scale it down without distortion.
+          style={{ width: W, height: "auto", maxWidth: "100%", aspectRatio: `${W} / ${H}` }}
           className="hairline rounded-lg border"
           aria-label="Taylor partial sums for exp, cos, sin"
         />

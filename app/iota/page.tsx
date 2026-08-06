@@ -52,6 +52,55 @@ type RichStory = {
   closingTitle: string;
   closingBody: string;
   ctaLabel: string;
+  // Localized chrome for the inline mini-reducer (IotaReducerMini).
+  reducerLabels: {
+    customExpression: string;
+    stepStatus: string;
+    normalForm: string;
+    stepLimit: string;
+    done: string;
+    reducing: string;
+    next: string;
+    parseError: string;
+    reset: string;
+    back: string;
+    step: string;
+    toEnd: string;
+    ruleIntro: string;
+    ruleThen: string;
+    ruleAnd: string;
+    ruleOrder: string;
+  };
+  // Prose/labels for the explainer asides that used to be hardcoded English.
+  explainers: {
+    everyComputable: string;
+    lambdaCaption: string;
+    abstraction: string;
+    abstractionDesc: string;
+    application: string;
+    applicationDesc: string;
+    combinatorPre: string;
+    combinatorEmph: string;
+    combinatorPost: string;
+    kLabel: string;
+    sLabel: string;
+    barkerLine1: string;
+    barkerLine2: string;
+    kCaption: string;
+    kAnn: [string, string, string, string, string];
+    kNotePre: string;
+    kNoteLink: string;
+    kNotePost: string;
+    sCaption: string;
+    sAnn: [string, string, string, string];
+    sNotePre: string;
+    sNoteLink: string;
+    sNotePost: string;
+    chainCaption: string;
+    chainAnn: [string, string, string, string, string];
+    chainNotePre: string;
+    chainNoteEmph: string;
+  };
 };
 
 // --------------------------------------------------------------------------
@@ -99,7 +148,7 @@ const en: RichStory = {
     {
       pretitle: "Section 04 · Deriving K",
       title: "A small nest of iotas gives K",
-      body: "Take ℩(℩(℩℩)). Each outer iota fires the rule ℩x = xSK: the outermost peels off as (℩(℩ι)) S K, then again, and again. After a few S- and K-reductions the dust settles on the bare combinator K. The leftmost-outermost trace runs about nine steps from start to finish — a short chain, all bookkeeping. From three strokes of one symbol, the constant function falls out.",
+      body: "Take ℩(℩(℩℩)). Each outer iota fires the rule ℩x = xSK: the outermost peels off as (℩(℩ι)) S K, then again, and again. After a few S- and K-reductions the dust settles on the bare combinator K. The leftmost-outermost trace runs about nine steps from start to finish — a short chain, all bookkeeping. From four strokes of one symbol, the constant function falls out.",
     },
     {
       pretitle: "Section 05 · Deriving S",
@@ -143,6 +192,72 @@ const en: RichStory = {
   closingBody:
     "The Reducer lets you type any SKI or iota expression and watch it rewrite, step by step, to its normal form when one exists. The famous derivations are pre-loaded; the rest is yours to discover.",
   ctaLabel: "→ Open the Reducer",
+  reducerLabels: {
+    customExpression: "custom expression (overrides preset)",
+    stepStatus: "step",
+    normalForm: "normal form",
+    stepLimit: "step limit",
+    done: "done",
+    reducing: "reducing…",
+    next: "next",
+    parseError: "parse error",
+    reset: "reset",
+    back: "back",
+    step: "step",
+    toEnd: "to end",
+    ruleIntro: "Reduction rule applied at each step:",
+    ruleThen: "then",
+    ruleAnd: "and",
+    ruleOrder: "leftmost-outermost",
+  },
+  explainers: {
+    everyComputable: "every computable function",
+    lambdaCaption: "λ-calculus · the two moves",
+    abstraction: "abstraction",
+    abstractionDesc: "a function from x to M",
+    application: "application",
+    applicationDesc: "apply M to N",
+    combinatorPre: "A combinator is a λ-term with ",
+    combinatorEmph: "no free variables",
+    combinatorPost: ". It carries no context, only structure.",
+    kLabel: "K · the constant",
+    sLabel: "S · substitution-with-sharing",
+    barkerLine1: "One symbol. One rewrite rule:",
+    barkerLine2: "The rest of computation falls out as a corollary.",
+    kCaption: "ι (ι (ι ι)) · the K derivation",
+    kAnn: [
+      "outer ι fires, x = ι (ι ι)",
+      "and again",
+      "and again",
+      "now S-reductions take over",
+      "only K left",
+    ],
+    kNotePre: "The exact chain depends on the reduction strategy; the ",
+    kNoteLink: "full Reducer",
+    kNotePost: " uses leftmost-outermost and lands on K in a small handful of steps.",
+    sCaption: "ι (ι (ι (ι ι))) · the S derivation",
+    sAnn: [
+      "outermost ι fires",
+      "repeat on the next layer",
+      "several S and K reductions later …",
+      "bare combinator S falls out",
+    ],
+    sNotePre:
+      "Five iotas, no other primitives, and S appears. Plug the same expression into the ",
+    sNoteLink: "Reducer",
+    sNotePost: " and walk every step.",
+    chainCaption: "the chain · written out",
+    chainAnn: [
+      "one symbol, one rule",
+      "both derivable from ι",
+      "Curry & Feys, 1958",
+      "Kleene, 1936",
+      "Church-Turing thesis",
+    ],
+    chainNotePre:
+      "The last three arrows are textbook results; the first is Barker's contribution. The composition is the proof that ",
+    chainNoteEmph: "ι alone is Turing-complete",
+  },
 };
 
 // --------------------------------------------------------------------------
@@ -191,7 +306,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · K herleiten",
       title: "Eine kleine Iota-Schachtelung ergibt K",
-      body: "Nimm ℩(℩(℩℩)). Jedes äußere Iota feuert die Regel ℩x = xSK: das äußerste schält sich als (℩(℩ι)) S K ab, dann noch einmal, dann noch einmal. Nach ein paar S- und K-Reduktionen bleibt am Ende der nackte Kombinator K übrig. Die Linksaußen-Spur läuft etwa neun Schritte von Anfang bis Ende — eine kurze Kette, alles Buchhaltung. Aus drei Strichen eines einzigen Symbols fällt die Konstantenfunktion heraus.",
+      body: "Nimm ℩(℩(℩℩)). Jedes äußere Iota feuert die Regel ℩x = xSK: das äußerste schält sich als (℩(℩ι)) S K ab, dann noch einmal, dann noch einmal. Nach ein paar S- und K-Reduktionen bleibt am Ende der nackte Kombinator K übrig. Die Linksaußen-Spur läuft etwa neun Schritte von Anfang bis Ende — eine kurze Kette, alles Buchhaltung. Aus vier Strichen eines einzigen Symbols fällt die Konstantenfunktion heraus.",
     },
     {
       pretitle: "Abschnitt 05 · S herleiten",
@@ -235,6 +350,72 @@ const de: RichStory = {
   closingBody:
     "Der Reduzierer lässt dich jeden SKI- oder Iota-Ausdruck tippen und schreibt ihn Schritt für Schritt in die Normalform um, wann immer es eine gibt. Die berühmten Herleitungen sind vorgeladen; den Rest entdeckst du selbst.",
   ctaLabel: "→ Öffne den Reduzierer",
+  reducerLabels: {
+    customExpression: "eigener Ausdruck (überschreibt Vorlage)",
+    stepStatus: "Schritt",
+    normalForm: "Normalform",
+    stepLimit: "Schrittlimit",
+    done: "fertig",
+    reducing: "reduziert…",
+    next: "weiter",
+    parseError: "Parse-Fehler",
+    reset: "Zurücksetzen",
+    back: "zurück",
+    step: "Schritt",
+    toEnd: "ans Ende",
+    ruleIntro: "In jedem Schritt angewandte Reduktionsregel:",
+    ruleThen: "dann",
+    ruleAnd: "und",
+    ruleOrder: "Linksaußen",
+  },
+  explainers: {
+    everyComputable: "jede berechenbare Funktion",
+    lambdaCaption: "λ-Kalkül · die zwei Züge",
+    abstraction: "Abstraktion",
+    abstractionDesc: "eine Funktion von x nach M",
+    application: "Anwendung",
+    applicationDesc: "wende M auf N an",
+    combinatorPre: "Ein Kombinator ist ein λ-Term mit ",
+    combinatorEmph: "keinen freien Variablen",
+    combinatorPost: ". Er trägt keinen Kontext, nur Struktur.",
+    kLabel: "K · die Konstante",
+    sLabel: "S · Substitution-mit-Teilen",
+    barkerLine1: "Ein Symbol. Eine Umschreiberegel:",
+    barkerLine2: "Der Rest der Berechnung folgt als Korollar.",
+    kCaption: "ι (ι (ι ι)) · die K-Herleitung",
+    kAnn: [
+      "äußeres ι feuert, x = ι (ι ι)",
+      "und nochmal",
+      "und nochmal",
+      "jetzt übernehmen die S-Reduktionen",
+      "nur noch K übrig",
+    ],
+    kNotePre: "Die genaue Kette hängt von der Reduktionsstrategie ab; der ",
+    kNoteLink: "vollständige Reduzierer",
+    kNotePost: " nutzt Linksaußen und landet in wenigen Schritten bei K.",
+    sCaption: "ι (ι (ι (ι ι))) · die S-Herleitung",
+    sAnn: [
+      "äußerstes ι feuert",
+      "auf der nächsten Schicht wiederholen",
+      "einige S- und K-Reduktionen später …",
+      "der nackte Kombinator S fällt heraus",
+    ],
+    sNotePre:
+      "Fünf Iotas, keine weiteren Primitive, und S erscheint. Gib denselben Ausdruck in den ",
+    sNoteLink: "Reduzierer",
+    sNotePost: " ein und geh jeden Schritt durch.",
+    chainCaption: "die Kette · ausgeschrieben",
+    chainAnn: [
+      "ein Symbol, eine Regel",
+      "beide aus ι herleitbar",
+      "Curry & Feys, 1958",
+      "Kleene, 1936",
+      "Church-Turing-These",
+    ],
+    chainNotePre:
+      "Die letzten drei Pfeile sind Lehrbuchresultate; der erste ist Barkers Beitrag. Die Komposition ist der Beweis, dass ",
+    chainNoteEmph: "ι allein Turing-vollständig ist",
+  },
 };
 
 // --------------------------------------------------------------------------
@@ -282,7 +463,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 04 · Derivar K",
       title: "Un pequeño anidamiento de iotas da K",
-      body: "Toma ℩(℩(℩℩)). Cada iota externo dispara la regla ℩x = xSK: el más externo se desprende como (℩(℩ι)) S K, luego otra vez, y otra. Tras unas pocas reducciones S y K, queda el combinador desnudo K. La traza más-a-la-izquierda recorre unos nueve pasos de principio a fin — una cadena corta, pura contabilidad. De tres trazos de un solo símbolo cae la función constante.",
+      body: "Toma ℩(℩(℩℩)). Cada iota externo dispara la regla ℩x = xSK: el más externo se desprende como (℩(℩ι)) S K, luego otra vez, y otra. Tras unas pocas reducciones S y K, queda el combinador desnudo K. La traza más-a-la-izquierda recorre unos nueve pasos de principio a fin — una cadena corta, pura contabilidad. De cuatro trazos de un solo símbolo cae la función constante.",
     },
     {
       pretitle: "Sección 05 · Derivar S",
@@ -326,6 +507,72 @@ const es: RichStory = {
   closingBody:
     "El Reductor te permite escribir cualquier expresión SKI o iota y verla reescribirse, paso a paso, hasta su forma normal cuando existe. Las derivaciones famosas vienen precargadas; lo demás está por descubrir.",
   ctaLabel: "→ Abre el Reductor",
+  reducerLabels: {
+    customExpression: "expresión propia (anula el preajuste)",
+    stepStatus: "paso",
+    normalForm: "forma normal",
+    stepLimit: "límite de pasos",
+    done: "listo",
+    reducing: "reduciendo…",
+    next: "siguiente",
+    parseError: "error de análisis",
+    reset: "reiniciar",
+    back: "atrás",
+    step: "Paso",
+    toEnd: "al final",
+    ruleIntro: "Regla de reducción aplicada en cada paso:",
+    ruleThen: "luego",
+    ruleAnd: "y",
+    ruleOrder: "más-a-la-izquierda",
+  },
+  explainers: {
+    everyComputable: "toda función computable",
+    lambdaCaption: "cálculo λ · los dos movimientos",
+    abstraction: "abstracción",
+    abstractionDesc: "una función de x a M",
+    application: "aplicación",
+    applicationDesc: "aplica M a N",
+    combinatorPre: "Un combinador es un λ-término ",
+    combinatorEmph: "sin variables libres",
+    combinatorPost: ". No lleva contexto, solo estructura.",
+    kLabel: "K · la constante",
+    sLabel: "S · sustitución-con-compartición",
+    barkerLine1: "Un símbolo. Una regla de reescritura:",
+    barkerLine2: "El resto de la computación se sigue como corolario.",
+    kCaption: "ι (ι (ι ι)) · la derivación de K",
+    kAnn: [
+      "el ι externo dispara, x = ι (ι ι)",
+      "y otra vez",
+      "y otra vez",
+      "ahora toman el relevo las reducciones S",
+      "solo queda K",
+    ],
+    kNotePre: "La cadena exacta depende de la estrategia de reducción; el ",
+    kNoteLink: "Reductor completo",
+    kNotePost: " usa más-a-la-izquierda y aterriza en K en unos pocos pasos.",
+    sCaption: "ι (ι (ι (ι ι))) · la derivación de S",
+    sAnn: [
+      "el ι más externo dispara",
+      "repite en la siguiente capa",
+      "varias reducciones S y K después …",
+      "el combinador desnudo S sale",
+    ],
+    sNotePre:
+      "Cinco iotas, ninguna otra primitiva, y aparece S. Introduce la misma expresión en el ",
+    sNoteLink: "Reductor",
+    sNotePost: " y recorre cada paso.",
+    chainCaption: "la cadena · escrita",
+    chainAnn: [
+      "un símbolo, una regla",
+      "ambos derivables de ι",
+      "Curry & Feys, 1958",
+      "Kleene, 1936",
+      "tesis de Church-Turing",
+    ],
+    chainNotePre:
+      "Las tres últimas flechas son resultados de manual; la primera es la aportación de Barker. La composición es la prueba de que ",
+    chainNoteEmph: "ι por sí solo es Turing-completo",
+  },
 };
 
 // --------------------------------------------------------------------------
@@ -339,7 +586,7 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Un seul minuscule symbole — ℩ (iota) — suffit à encoder n'importe quel programme informatique jamais écrit, ou jamais écrit. Comme NAND pour le matériel, mais pour le calcul lui-même : une seule primitive, tout le reste n'est que réarrangement.",
+        body: "Un seul minuscule symbole — ℩ (iota) — suffit à encoder n'importe quel programme informatique jamais écrit, ou qui pourrait jamais l'être. Comme NAND pour le matériel, mais pour le calcul lui-même : une seule primitive, tout le reste n'est que réarrangement.",
       },
       {
         label: "02",
@@ -374,7 +621,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 04 · Dériver K",
       title: "Un petit emboîtement d'iotas donne K",
-      body: "Prends ℩(℩(℩℩)). Chaque iota externe déclenche la règle ℩x = xSK : le plus externe s'écaille en (℩(℩ι)) S K, puis encore, et encore. Après quelques réductions S et K, il reste le combinateur nu K. La trace la-plus-à-gauche tient en environ neuf étapes du début à la fin — une chaîne courte, pure comptabilité. De trois traits d'un seul symbole tombe la fonction constante.",
+      body: "Prends ℩(℩(℩℩)). Chaque iota externe déclenche la règle ℩x = xSK : le plus externe s'écaille en (℩(℩ι)) S K, puis encore, et encore. Après quelques réductions S et K, il reste le combinateur nu K. La trace la-plus-à-gauche tient en environ neuf étapes du début à la fin — une chaîne courte, pure comptabilité. De quatre traits d'un seul symbole tombe la fonction constante.",
     },
     {
       pretitle: "Section 05 · Dériver S",
@@ -418,6 +665,72 @@ const fr: RichStory = {
   closingBody:
     "Le Réducteur te laisse taper n'importe quelle expression SKI ou iota et la voir se réécrire, pas à pas, jusqu'à sa forme normale quand elle existe. Les dérivations célèbres sont pré-chargées ; le reste t'appartient.",
   ctaLabel: "→ Ouvre le Réducteur",
+  reducerLabels: {
+    customExpression: "expression personnalisée (remplace le préréglage)",
+    stepStatus: "étape",
+    normalForm: "forme normale",
+    stepLimit: "limite d'étapes",
+    done: "terminé",
+    reducing: "réduction…",
+    next: "suivant",
+    parseError: "erreur d'analyse",
+    reset: "réinitialiser",
+    back: "retour",
+    step: "Étape",
+    toEnd: "à la fin",
+    ruleIntro: "Règle de réduction appliquée à chaque étape :",
+    ruleThen: "puis",
+    ruleAnd: "et",
+    ruleOrder: "la-plus-à-gauche",
+  },
+  explainers: {
+    everyComputable: "toute fonction calculable",
+    lambdaCaption: "λ-calcul · les deux mouvements",
+    abstraction: "abstraction",
+    abstractionDesc: "une fonction de x vers M",
+    application: "application",
+    applicationDesc: "applique M à N",
+    combinatorPre: "Un combinateur est un λ-terme ",
+    combinatorEmph: "sans variables libres",
+    combinatorPost: ". Il ne porte aucun contexte, seulement de la structure.",
+    kLabel: "K · la constante",
+    sLabel: "S · substitution-avec-partage",
+    barkerLine1: "Un symbole. Une règle de réécriture :",
+    barkerLine2: "Le reste du calcul en découle comme corollaire.",
+    kCaption: "ι (ι (ι ι)) · la dérivation de K",
+    kAnn: [
+      "le ι externe se déclenche, x = ι (ι ι)",
+      "et encore",
+      "et encore",
+      "les réductions S prennent le relais",
+      "il ne reste que K",
+    ],
+    kNotePre: "La chaîne exacte dépend de la stratégie de réduction ; le ",
+    kNoteLink: "Réducteur complet",
+    kNotePost: " suit la-plus-à-gauche et atterrit sur K en quelques étapes.",
+    sCaption: "ι (ι (ι (ι ι))) · la dérivation de S",
+    sAnn: [
+      "le ι le plus externe se déclenche",
+      "répète sur la couche suivante",
+      "plusieurs réductions S et K plus tard …",
+      "le combinateur nu S apparaît",
+    ],
+    sNotePre:
+      "Cinq iotas, aucune autre primitive, et S apparaît. Mets la même expression dans le ",
+    sNoteLink: "Réducteur",
+    sNotePost: " et parcours chaque étape.",
+    chainCaption: "la chaîne · écrite",
+    chainAnn: [
+      "un symbole, une règle",
+      "les deux dérivables de ι",
+      "Curry & Feys, 1958",
+      "Kleene, 1936",
+      "thèse de Church-Turing",
+    ],
+    chainNotePre:
+      "Les trois dernières flèches sont des résultats de manuel ; la première est la contribution de Barker. La composition est la preuve que ",
+    chainNoteEmph: "ι seul est Turing-complet",
+  },
 };
 
 // --------------------------------------------------------------------------
@@ -465,7 +778,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 04 · Derivare K",
       title: "Un piccolo annidamento di iote dà K",
-      body: "Prendi ℩(℩(℩℩)). Ogni iota esterno fa scattare la regola ℩x = xSK: il più esterno si stacca come (℩(℩ι)) S K, poi di nuovo, e di nuovo. Dopo poche riduzioni S e K resta il combinatore nudo K. La traccia più-a-sinistra corre per circa nove passi dall'inizio alla fine — una catena breve, pura contabilità. Da tre tratti di un solo simbolo cade fuori la funzione costante.",
+      body: "Prendi ℩(℩(℩℩)). Ogni iota esterno fa scattare la regola ℩x = xSK: il più esterno si stacca come (℩(℩ι)) S K, poi di nuovo, e di nuovo. Dopo poche riduzioni S e K resta il combinatore nudo K. La traccia più-a-sinistra corre per circa nove passi dall'inizio alla fine — una catena breve, pura contabilità. Da quattro tratti di un solo simbolo cade fuori la funzione costante.",
     },
     {
       pretitle: "Sezione 05 · Derivare S",
@@ -509,6 +822,72 @@ const it: RichStory = {
   closingBody:
     "Il Riduttore ti lascia digitare qualunque espressione SKI o iota e la riscrive, passo dopo passo, fino alla forma normale quando esiste. Le derivazioni famose sono precaricate; il resto è da scoprire.",
   ctaLabel: "→ Apri il Riduttore",
+  reducerLabels: {
+    customExpression: "espressione personalizzata (sovrascrive il preset)",
+    stepStatus: "passo",
+    normalForm: "forma normale",
+    stepLimit: "limite di passi",
+    done: "fatto",
+    reducing: "riduzione…",
+    next: "successivo",
+    parseError: "errore di analisi",
+    reset: "reimposta",
+    back: "indietro",
+    step: "Passo",
+    toEnd: "alla fine",
+    ruleIntro: "Regola di riduzione applicata a ogni passo:",
+    ruleThen: "poi",
+    ruleAnd: "e",
+    ruleOrder: "più-a-sinistra",
+  },
+  explainers: {
+    everyComputable: "ogni funzione calcolabile",
+    lambdaCaption: "λ-calcolo · le due mosse",
+    abstraction: "astrazione",
+    abstractionDesc: "una funzione da x a M",
+    application: "applicazione",
+    applicationDesc: "applica M a N",
+    combinatorPre: "Un combinatore è un λ-termine ",
+    combinatorEmph: "senza variabili libere",
+    combinatorPost: ". Non porta contesto, solo struttura.",
+    kLabel: "K · la costante",
+    sLabel: "S · sostituzione-con-condivisione",
+    barkerLine1: "Un simbolo. Una regola di riscrittura:",
+    barkerLine2: "Il resto della computazione segue come corollario.",
+    kCaption: "ι (ι (ι ι)) · la derivazione di K",
+    kAnn: [
+      "il ι esterno scatta, x = ι (ι ι)",
+      "e di nuovo",
+      "e di nuovo",
+      "ora subentrano le riduzioni S",
+      "resta solo K",
+    ],
+    kNotePre: "La catena esatta dipende dalla strategia di riduzione; il ",
+    kNoteLink: "Riduttore completo",
+    kNotePost: " usa più-a-sinistra e atterra su K in pochi passi.",
+    sCaption: "ι (ι (ι (ι ι))) · la derivazione di S",
+    sAnn: [
+      "il ι più esterno scatta",
+      "ripeti sullo strato successivo",
+      "diverse riduzioni S e K dopo …",
+      "il combinatore nudo S salta fuori",
+    ],
+    sNotePre:
+      "Cinque iote, nessun'altra primitiva, e appare S. Inserisci la stessa espressione nel ",
+    sNoteLink: "Riduttore",
+    sNotePost: " e percorri ogni passo.",
+    chainCaption: "la catena · scritta",
+    chainAnn: [
+      "un simbolo, una regola",
+      "entrambi derivabili da ι",
+      "Curry & Feys, 1958",
+      "Kleene, 1936",
+      "tesi di Church-Turing",
+    ],
+    chainNotePre:
+      "Le ultime tre frecce sono risultati da manuale; la prima è il contributo di Barker. La composizione è la prova che ",
+    chainNoteEmph: "ι da solo è Turing-completo",
+  },
 };
 
 // --------------------------------------------------------------------------
@@ -556,7 +935,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 04 · Derivar K",
       title: "Um pequeno aninhamento de iotas dá K",
-      body: "Toma ℩(℩(℩℩)). Cada iota externo dispara a regra ℩x = xSK: o mais externo descasca-se como (℩(℩ι)) S K, depois outra vez, e outra. Após algumas reduções S e K, fica o combinador nu K. O traço mais-à-esquerda corre cerca de nove passos do início ao fim — uma cadeia curta, pura contabilidade. De três pinceladas de um só símbolo cai a função constante.",
+      body: "Toma ℩(℩(℩℩)). Cada iota externo dispara a regra ℩x = xSK: o mais externo descasca-se como (℩(℩ι)) S K, depois outra vez, e outra. Após algumas reduções S e K, fica o combinador nu K. O traço mais-à-esquerda corre cerca de nove passos do início ao fim — uma cadeia curta, pura contabilidade. De quatro pinceladas de um só símbolo cai a função constante.",
     },
     {
       pretitle: "Secção 05 · Derivar S",
@@ -600,6 +979,72 @@ const pt: RichStory = {
   closingBody:
     "O Redutor deixa-te escrever qualquer expressão SKI ou iota e vê-la reescrever-se, passo a passo, até à sua forma normal quando existe. As derivações famosas estão precarregadas; o resto é por descobrir.",
   ctaLabel: "→ Abre o Redutor",
+  reducerLabels: {
+    customExpression: "expressão própria (substitui a predefinição)",
+    stepStatus: "passo",
+    normalForm: "forma normal",
+    stepLimit: "limite de passos",
+    done: "concluído",
+    reducing: "a reduzir…",
+    next: "seguinte",
+    parseError: "erro de análise",
+    reset: "repor",
+    back: "voltar",
+    step: "Passo",
+    toEnd: "até ao fim",
+    ruleIntro: "Regra de redução aplicada em cada passo:",
+    ruleThen: "depois",
+    ruleAnd: "e",
+    ruleOrder: "mais-à-esquerda",
+  },
+  explainers: {
+    everyComputable: "toda função computável",
+    lambdaCaption: "cálculo λ · os dois movimentos",
+    abstraction: "abstração",
+    abstractionDesc: "uma função de x para M",
+    application: "aplicação",
+    applicationDesc: "aplica M a N",
+    combinatorPre: "Um combinador é um λ-termo ",
+    combinatorEmph: "sem variáveis livres",
+    combinatorPost: ". Não carrega contexto, apenas estrutura.",
+    kLabel: "K · a constante",
+    sLabel: "S · substituição-com-partilha",
+    barkerLine1: "Um símbolo. Uma regra de reescrita:",
+    barkerLine2: "O resto da computação decorre como corolário.",
+    kCaption: "ι (ι (ι ι)) · a derivação de K",
+    kAnn: [
+      "o ι externo dispara, x = ι (ι ι)",
+      "e outra vez",
+      "e outra vez",
+      "agora as reduções S assumem",
+      "só resta K",
+    ],
+    kNotePre: "A cadeia exata depende da estratégia de redução; o ",
+    kNoteLink: "Redutor completo",
+    kNotePost: " usa mais-à-esquerda e aterra em K em poucos passos.",
+    sCaption: "ι (ι (ι (ι ι))) · a derivação de S",
+    sAnn: [
+      "o ι mais externo dispara",
+      "repete na camada seguinte",
+      "várias reduções S e K depois …",
+      "o combinador nu S surge",
+    ],
+    sNotePre:
+      "Cinco iotas, nenhuma outra primitiva, e S aparece. Coloca a mesma expressão no ",
+    sNoteLink: "Redutor",
+    sNotePost: " e percorre cada passo.",
+    chainCaption: "a cadeia · escrita",
+    chainAnn: [
+      "um símbolo, uma regra",
+      "ambos deriváveis de ι",
+      "Curry & Feys, 1958",
+      "Kleene, 1936",
+      "tese de Church-Turing",
+    ],
+    chainNotePre:
+      "As três últimas setas são resultados de manual; a primeira é o contributo de Barker. A composição é a prova de que ",
+    chainNoteEmph: "ι sozinho é Turing-completo",
+  },
 };
 
 // --------------------------------------------------------------------------
@@ -647,7 +1092,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 04 · Härleda K",
       title: "En liten nästning av iota ger K",
-      body: "Ta ℩(℩(℩℩)). Varje yttre iota avfyrar regeln ℩x = xSK: det yttersta skalas av som (℩(℩ι)) S K, sedan igen, och igen. Efter några S- och K-reduktioner ligger den nakna kombinatorn K kvar. Det vänstermest-yttersta spåret går runt nio steg från början till slut — en kort kedja, ren bokföring. Ur tre streck av en enda symbol faller den konstanta funktionen ut.",
+      body: "Ta ℩(℩(℩℩)). Varje yttre iota avfyrar regeln ℩x = xSK: det yttersta skalas av som (℩(℩ι)) S K, sedan igen, och igen. Efter några S- och K-reduktioner ligger den nakna kombinatorn K kvar. Det vänstermest-yttersta spåret går runt nio steg från början till slut — en kort kedja, ren bokföring. Ur fyra streck av en enda symbol faller den konstanta funktionen ut.",
     },
     {
       pretitle: "Avsnitt 05 · Härleda S",
@@ -691,6 +1136,71 @@ const sv: RichStory = {
   closingBody:
     "Reduceraren låter dig skriva vilket SKI- eller iota-uttryck som helst och se det skrivas om, steg för steg, till sin normalform när en sådan finns. De berömda härledningarna är förladdade; resten är ditt att upptäcka.",
   ctaLabel: "→ Öppna Reduceraren",
+  reducerLabels: {
+    customExpression: "eget uttryck (åsidosätter förvalet)",
+    stepStatus: "steg",
+    normalForm: "normalform",
+    stepLimit: "steggräns",
+    done: "klar",
+    reducing: "reducerar…",
+    next: "nästa",
+    parseError: "tolkningsfel",
+    reset: "återställ",
+    back: "tillbaka",
+    step: "Steg",
+    toEnd: "till slutet",
+    ruleIntro: "Reduktionsregel som tillämpas vid varje steg:",
+    ruleThen: "sedan",
+    ruleAnd: "och",
+    ruleOrder: "vänstermest-yttersta",
+  },
+  explainers: {
+    everyComputable: "varje beräkningsbar funktion",
+    lambdaCaption: "λ-kalkyl · de två dragen",
+    abstraction: "abstraktion",
+    abstractionDesc: "en funktion från x till M",
+    application: "applikation",
+    applicationDesc: "tillämpa M på N",
+    combinatorPre: "En kombinator är en λ-term ",
+    combinatorEmph: "utan fria variabler",
+    combinatorPost: ". Den bär ingen kontext, bara struktur.",
+    kLabel: "K · konstanten",
+    sLabel: "S · substitution-med-delning",
+    barkerLine1: "En symbol. En omskrivningsregel:",
+    barkerLine2: "Resten av beräkningen följer som en följdsats.",
+    kCaption: "ι (ι (ι ι)) · K-härledningen",
+    kAnn: [
+      "yttre ι avfyras, x = ι (ι ι)",
+      "och igen",
+      "och igen",
+      "nu tar S-reduktionerna över",
+      "bara K kvar",
+    ],
+    kNotePre: "Den exakta kedjan beror på reduktionsstrategin; den ",
+    kNoteLink: "fullständiga Reduceraren",
+    kNotePost: " använder vänstermest-yttersta och landar på K på en handfull steg.",
+    sCaption: "ι (ι (ι (ι ι))) · S-härledningen",
+    sAnn: [
+      "yttersta ι avfyras",
+      "upprepa på nästa lager",
+      "flera S- och K-reduktioner senare …",
+      "den nakna kombinatorn S faller ut",
+    ],
+    sNotePre: "Fem iota, inga andra primitiver, och S dyker upp. Mata in samma uttryck i ",
+    sNoteLink: "Reduceraren",
+    sNotePost: " och gå igenom varje steg.",
+    chainCaption: "kedjan · utskriven",
+    chainAnn: [
+      "en symbol, en regel",
+      "båda härledbara ur ι",
+      "Curry & Feys, 1958",
+      "Kleene, 1936",
+      "Church-Turing-tesen",
+    ],
+    chainNotePre:
+      "De tre sista pilarna är läroboksresultat; den första är Barkers bidrag. Kompositionen är beviset för att ",
+    chainNoteEmph: "ι ensam är Turing-komplett",
+  },
 };
 
 // --------------------------------------------------------------------------
@@ -738,7 +1248,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Utlede K",
       title: "En liten nøsting av iota gir K",
-      body: "Ta ℩(℩(℩℩)). Hvert ytre iota fyrer av regelen ℩x = xSK: det ytterste skreller av som (℩(℩ι)) S K, så igjen, og igjen. Etter noen få S- og K-reduksjoner ligger den nakne kombinatoren K igjen. Det venstre-ytterste sporet løper rundt ni steg fra start til slutt — en kort kjede, ren bokføring. Av tre streker av ett symbol faller den konstante funksjonen ut.",
+      body: "Ta ℩(℩(℩℩)). Hvert ytre iota fyrer av regelen ℩x = xSK: det ytterste skreller av som (℩(℩ι)) S K, så igjen, og igjen. Etter noen få S- og K-reduksjoner ligger den nakne kombinatoren K igjen. Det venstre-ytterste sporet løper rundt ni steg fra start til slutt — en kort kjede, ren bokføring. Av fire streker av ett symbol faller den konstante funksjonen ut.",
     },
     {
       pretitle: "Avsnitt 05 · Utlede S",
@@ -782,6 +1292,71 @@ const no: RichStory = {
   closingBody:
     "Reduseren lar deg skrive hvilket som helst SKI- eller iota-uttrykk og se det skrives om, steg for steg, til normalform når den finnes. De berømte utledningene er forhåndslastet; resten er ditt å oppdage.",
   ctaLabel: "→ Åpne Reduseren",
+  reducerLabels: {
+    customExpression: "eget uttrykk (overstyrer forvalget)",
+    stepStatus: "steg",
+    normalForm: "normalform",
+    stepLimit: "steggrense",
+    done: "ferdig",
+    reducing: "reduserer…",
+    next: "neste",
+    parseError: "tolkefeil",
+    reset: "nullstill",
+    back: "tilbake",
+    step: "Steg",
+    toEnd: "til slutten",
+    ruleIntro: "Reduksjonsregel anvendt ved hvert steg:",
+    ruleThen: "så",
+    ruleAnd: "og",
+    ruleOrder: "venstre-ytterste",
+  },
+  explainers: {
+    everyComputable: "enhver beregnbar funksjon",
+    lambdaCaption: "λ-kalkyle · de to trekkene",
+    abstraction: "abstraksjon",
+    abstractionDesc: "en funksjon fra x til M",
+    application: "anvendelse",
+    applicationDesc: "anvend M på N",
+    combinatorPre: "En kombinator er en λ-term ",
+    combinatorEmph: "uten frie variabler",
+    combinatorPost: ". Den bærer ingen kontekst, bare struktur.",
+    kLabel: "K · konstanten",
+    sLabel: "S · substitusjon-med-deling",
+    barkerLine1: "Ett symbol. Én omskrivingsregel:",
+    barkerLine2: "Resten av beregningen følger som et korollar.",
+    kCaption: "ι (ι (ι ι)) · K-utledningen",
+    kAnn: [
+      "ytre ι fyrer av, x = ι (ι ι)",
+      "og igjen",
+      "og igjen",
+      "nå tar S-reduksjonene over",
+      "bare K igjen",
+    ],
+    kNotePre: "Den nøyaktige kjeden avhenger av reduksjonsstrategien; den ",
+    kNoteLink: "fullstendige Reduseren",
+    kNotePost: " bruker venstre-ytterste og lander på K på en håndfull steg.",
+    sCaption: "ι (ι (ι (ι ι))) · S-utledningen",
+    sAnn: [
+      "ytterste ι fyrer av",
+      "gjenta på neste lag",
+      "flere S- og K-reduksjoner senere …",
+      "den nakne kombinatoren S faller ut",
+    ],
+    sNotePre: "Fem iota, ingen andre primitiver, og S dukker opp. Legg det samme uttrykket inn i ",
+    sNoteLink: "Reduseren",
+    sNotePost: " og gå gjennom hvert steg.",
+    chainCaption: "kjeden · skrevet ut",
+    chainAnn: [
+      "ett symbol, én regel",
+      "begge utledbare fra ι",
+      "Curry & Feys, 1958",
+      "Kleene, 1936",
+      "Church-Turing-tesen",
+    ],
+    chainNotePre:
+      "De tre siste pilene er læreboksresultater; den første er Barkers bidrag. Komposisjonen er beviset på at ",
+    chainNoteEmph: "ι alene er Turing-fullstendig",
+  },
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
@@ -792,6 +1367,7 @@ export default function IotaStory() {
   const { locale, s, u } = useI18n();
   const page = s.pages.iota;
   const story = RICH_STORY[locale];
+  const e = story.explainers;
   const [sec0, sec1, sec2, sec3, sec4, sec5] = story.sections;
 
   return (
@@ -872,7 +1448,7 @@ export default function IotaStory() {
                       </div>
                       <div>
                         S + K · →{" "}
-                        <span className="text-signal-amber">every computable function</span>
+                        <span className="text-signal-amber">{e.everyComputable}</span>
                       </div>
                     </div>
                   </>
@@ -894,27 +1470,28 @@ export default function IotaStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              λ-calculus · the two moves
+              {e.lambdaCaption}
             </div>
             <div className="grid grid-cols-1 gap-3 font-mono text-sm md:grid-cols-2">
               <div className="hairline space-y-1 rounded-md border bg-ink-950/60 p-3">
                 <div className={`text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                  abstraction
+                  {e.abstraction}
                 </div>
                 <div className="text-ink-100">λx. M</div>
-                <div className="text-[11px] text-ink-400">a function from x to M</div>
+                <div className="text-[11px] text-ink-400">{e.abstractionDesc}</div>
               </div>
               <div className="hairline space-y-1 rounded-md border bg-ink-950/60 p-3">
                 <div className={`text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                  application
+                  {e.application}
                 </div>
                 <div className="text-ink-100">(M N)</div>
-                <div className="text-[11px] text-ink-400">apply M to N</div>
+                <div className="text-[11px] text-ink-400">{e.applicationDesc}</div>
               </div>
             </div>
             <p className="text-xs leading-relaxed text-ink-300">
-              A combinator is a λ-term with <span className={ACCENT}>no free variables</span>. It
-              carries no context, only structure.
+              {e.combinatorPre}
+              <span className={ACCENT}>{e.combinatorEmph}</span>
+              {e.combinatorPost}
             </p>
           </div>
         </Reveal>
@@ -927,7 +1504,7 @@ export default function IotaStory() {
           <div className="hairline grid grid-cols-1 gap-4 rounded-2xl border bg-ink-950/40 p-6 md:grid-cols-2">
             <div className="hairline space-y-2 rounded-md border bg-ink-950/60 p-4">
               <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                K · the constant
+                {e.kLabel}
               </div>
               <div className="font-mono text-base text-ink-100">K x y = x</div>
               <div className="font-mono text-[11px] text-ink-300">≡ λx. λy. x</div>
@@ -935,7 +1512,7 @@ export default function IotaStory() {
             </div>
             <div className="hairline space-y-2 rounded-md border bg-ink-950/60 p-4">
               <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                S · substitution-with-sharing
+                {e.sLabel}
               </div>
               <div className="font-mono text-base text-ink-100">S x y z = x z (y z)</div>
               <div className="font-mono text-[11px] text-ink-300">≡ λx. λy. λz. x z (y z)</div>
@@ -973,9 +1550,8 @@ export default function IotaStory() {
               ℩ ≡ λx. x S K
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              One symbol. One rewrite rule:{" "}
-              <span className="font-mono text-signal-cyan">ι x → x S K</span>. The rest of
-              computation falls out as a corollary.
+              {e.barkerLine1}{" "}
+              <span className="font-mono text-signal-cyan">ι x → x S K</span>. {e.barkerLine2}
             </p>
           </div>
         </Reveal>
@@ -987,30 +1563,29 @@ export default function IotaStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              ι (ι (ι ι)) · the K derivation
+              {e.kCaption}
             </div>
             <pre className="hairline overflow-x-auto rounded-md border bg-ink-950/60 p-4 font-mono text-xs leading-relaxed text-ink-100 md:text-sm">
               {`ι (ι (ι ι))
-  → (ι (ι ι)) S K       — outer ι fires, x = ι (ι ι)
-  → (ι ι) S K S K       — and again
-  → ι S K S K S K       — and again
-  → S S K K S K S K     — now S-reductions take over
+  → (ι (ι ι)) S K       — ${e.kAnn[0]}
+  → (ι ι) S K S K       — ${e.kAnn[1]}
+  → ι S K S K S K       — ${e.kAnn[2]}
+  → S S K K S K S K     — ${e.kAnn[3]}
   → S K (K K) S K S K
   → K S (K K S) K S K
   → S K S K
   → K K (S K)
-  → K                   — only K left`}
+  → K                   — ${e.kAnn[4]}`}
             </pre>
             <p className="text-xs leading-relaxed text-ink-400">
-              The exact chain depends on the reduction strategy; the {""}
+              {e.kNotePre}
               <Link
                 href="/iota/reducer"
                 className={`underline decoration-signal-cyan/40 hover:${ACCENT}`}
               >
-                full Reducer
-              </Link>{" "}
-              {""}
-              uses leftmost-outermost and lands on K in a small handful of steps.
+                {e.kNoteLink}
+              </Link>
+              {e.kNotePost}
             </p>
           </div>
         </Reveal>
@@ -1022,27 +1597,24 @@ export default function IotaStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              ι (ι (ι (ι ι))) · the S derivation
+              {e.sCaption}
             </div>
             <pre className="hairline overflow-x-auto rounded-md border bg-ink-950/60 p-4 font-mono text-xs leading-relaxed text-ink-100 md:text-sm">
               {`ι (ι (ι (ι ι)))
-  → (ι (ι (ι ι))) S K     — outermost ι fires
-  → (ι (ι ι)) S K (S K)   — repeat on the next layer
-  → … several S and K
-       reductions later …
-  → S                     — bare combinator S falls out`}
+  → (ι (ι (ι ι))) S K     — ${e.sAnn[0]}
+  → (ι (ι ι)) S K S K     — ${e.sAnn[1]}
+  → …   ${e.sAnn[2]}
+  → S                     — ${e.sAnn[3]}`}
             </pre>
             <p className="text-xs leading-relaxed text-ink-400">
-              Four iotas, no other primitives — and S appears. Plug the same expression into the{" "}
-              {""}
+              {e.sNotePre}
               <Link
                 href="/iota/reducer"
                 className={`underline decoration-signal-cyan/40 hover:${ACCENT}`}
               >
-                Reducer
-              </Link>{" "}
-              {""}
-              and walk every step.
+                {e.sNoteLink}
+              </Link>
+              {e.sNotePost}
             </p>
           </div>
         </Reveal>
@@ -1062,7 +1634,7 @@ export default function IotaStory() {
           </div>
         </Reveal>
         <Reveal delay={120}>
-          <IotaReducerMini caption={story.reducerCaption} />
+          <IotaReducerMini caption={story.reducerCaption} labels={story.reducerLabels} />
         </Reveal>
       </section>
 
@@ -1072,19 +1644,18 @@ export default function IotaStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              the chain · written out
+              {e.chainCaption}
             </div>
             <pre className="hairline overflow-x-auto rounded-md border bg-ink-950/60 p-4 font-mono text-xs leading-relaxed text-ink-100 md:text-sm">
-              {`ι             — one symbol, one rule
-  ⇒ S, K       — both derivable from ι
-  ⇒ λ-calculus — Curry & Feys, 1958
-  ⇒ recursive  — Kleene, 1936
-  ⇒ Turing     — Church–Turing thesis`}
+              {`ι             — ${e.chainAnn[0]}
+  ⇒ S, K       — ${e.chainAnn[1]}
+  ⇒ λ-calculus — ${e.chainAnn[2]}
+  ⇒ recursive  — ${e.chainAnn[3]}
+  ⇒ Turing     — ${e.chainAnn[4]}`}
             </pre>
             <p className="text-xs leading-relaxed text-ink-400">
-              The last three arrows are textbook results; the first is Barker's contribution. The
-              composition is the proof that{" "}
-              <span className={ACCENT}>ι alone is Turing-complete</span>.
+              {e.chainNotePre}
+              <span className={ACCENT}>{e.chainNoteEmph}</span>.
             </p>
           </div>
         </Reveal>

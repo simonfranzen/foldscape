@@ -24,6 +24,23 @@ const PANE = 260;
 
 type Point = [number, number];
 
+// Build an rgba() string from a palette hex token so canvas colours stay in
+// sync with the Tailwind signal-* classes instead of drifting via literals.
+function hexToRgba(hex: string, alpha: number): string {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function prefersReducedMotion(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
 function triangleVertices(W: number, H: number, margin = 10): [Point, Point, Point] {
   const w = W - 2 * margin;
   const triH = (w * Math.sqrt(3)) / 2;
@@ -55,7 +72,12 @@ function SubdivisionPane() {
   }, []);
 
   return (
-    <svg viewBox={`0 0 ${PANE} ${PANE}`} width="100%" style={{ display: "block" }}>
+    <svg
+      viewBox={`0 0 ${PANE} ${PANE}`}
+      width="100%"
+      style={{ display: "block" }}
+      aria-hidden="true"
+    >
       <rect x={0} y={0} width={PANE} height={PANE} fill={palette.canvas.bg} />
       {triangles.map((tri, i) => (
         <polygon
@@ -77,63 +99,13 @@ function PascalPane() {
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const W = canvas.clientWidth;
-    const H = canvas.clientHeight;
-    canvas.width = Math.max(1, Math.floor(W * dpr));
-    canvas.height = Math.max(1, Math.floor(H * dpr));
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.fillStyle = palette.canvas.bg;
-    ctx.fillRect(0, 0, W, H);
-
-    const rows = 64;
-    const margin = 8;
-    const cellW = (W - 2 * margin) / rows;
-    const cellH = (H - 2 * margin) / rows;
-    const cell = Math.max(1, Math.min(cellW, cellH));
-    const totalW = cell * rows;
-    const totalH = cell * rows;
-    const ox = (W - totalW) / 2;
-    const oy = (H - totalH) / 2;
-
-    ctx.fillStyle = "rgba(255, 209, 102, 0.88)";
-    let row: number[] = [1];
-    for (let r = 0; r < rows; r++) {
-      const rowOffsetX = ox + ((rows - r - 1) * cell) / 2;
-      for (let k = 0; k <= r; k++) {
-        if (row[k] === 1) {
-          ctx.fillRect(rowOffsetX + k * cell, oy + r * cell, Math.max(1, cell), Math.max(1, cell));
-        }
-      }
-      const next: number[] = new Array(r + 2).fill(0);
-      for (let k = 0; k <= r + 1; k++) {
-        const left = k === 0 ? 0 : row[k - 1];
-        const right = k > r ? 0 : row[k];
-        next[k] = left ^ right;
-      }
-      row = next;
-    }
-  }, [dpr]);
-
-  return (
-    <div style={{ width: "100%", aspectRatio: "1 / 1" }}>
-      <canvas ref={ref} className="block h-full w-full" />
-    </div>
-  );
-}
-
-// ---------- Chaos Game (animated, ~500 dots fade in) ----------
-function ChaosPane() {
-  const ref = useRef<HTMLCanvasElement | null>(null);
-  const dpr = useDpr();
-
-  useEffect(() => {
-    const canvas = ref.current;
-    if (!canvas) return;
-    const resize = () => {
+    // Drive sizing + drawing from a ResizeObserver: on mobile this pane mounts
+    // display:none (0×0) and only gets real layout when its tab is selected, so
+    // we redraw the moment it becomes visible instead of baking in a 1px canvas.
+    const draw = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
+      if (W === 0 || H === 0) return;
       canvas.width = Math.max(1, Math.floor(W * dpr));
       canvas.height = Math.max(1, Math.floor(H * dpr));
       const ctx = canvas.getContext("2d");
@@ -141,52 +113,130 @@ function ChaosPane() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
-    };
-    resize();
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+      const rows = 64;
+      const margin = 8;
+      const cellW = (W - 2 * margin) / rows;
+      const cellH = (H - 2 * margin) / rows;
+      const cell = Math.max(1, Math.min(cellW, cellH));
+      const totalW = cell * rows;
+      const totalH = cell * rows;
+      const ox = (W - totalW) / 2;
+      const oy = (H - totalH) / 2;
 
-    const W = canvas.clientWidth;
-    const H = canvas.clientHeight;
-    const verts = triangleVertices(W, H, 12);
-
-    // Burn-in so the early stray points don't sit outside the attractor
-    let x = W / 2;
-    let y = H / 2;
-    for (let i = 0; i < 30; i++) {
-      const v = verts[(Math.random() * 3) | 0];
-      x = (x + v[0]) / 2;
-      y = (y + v[1]) / 2;
-    }
-
-    const TOTAL = 2400;
-    const PER_FRAME = 18;
-    let placed = 0;
-    let raf = 0;
-
-    const tick = () => {
-      const alpha = Math.min(0.9, 0.25 + (placed / TOTAL) * 0.6);
-      ctx.fillStyle = `rgba(255, 209, 102, ${alpha})`;
-      for (let i = 0; i < PER_FRAME && placed < TOTAL; i++) {
-        const v = verts[(Math.random() * 3) | 0];
-        x = (x + v[0]) / 2;
-        y = (y + v[1]) / 2;
-        ctx.fillRect(x - 0.5, y - 0.5, 1.6, 1.6);
-        placed++;
-      }
-      if (placed < TOTAL) {
-        raf = requestAnimationFrame(tick);
+      ctx.fillStyle = hexToRgba(palette.signal.amber, 0.88);
+      let row: number[] = [1];
+      for (let r = 0; r < rows; r++) {
+        const rowOffsetX = ox + ((rows - r - 1) * cell) / 2;
+        for (let k = 0; k <= r; k++) {
+          if (row[k] === 1) {
+            ctx.fillRect(rowOffsetX + k * cell, oy + r * cell, Math.max(1, cell), Math.max(1, cell));
+          }
+        }
+        const next: number[] = new Array(r + 2).fill(0);
+        for (let k = 0; k <= r + 1; k++) {
+          const left = k === 0 ? 0 : row[k - 1];
+          const right = k > r ? 0 : row[k];
+          next[k] = left ^ right;
+        }
+        row = next;
       }
     };
-    raf = requestAnimationFrame(tick);
 
-    return () => cancelAnimationFrame(raf);
+    draw();
+    const ro = new ResizeObserver(draw);
+    ro.observe(canvas);
+    return () => ro.disconnect();
   }, [dpr]);
 
   return (
     <div style={{ width: "100%", aspectRatio: "1 / 1" }}>
-      <canvas ref={ref} className="block h-full w-full" />
+      <canvas ref={ref} className="block h-full w-full" aria-hidden="true" />
+    </div>
+  );
+}
+
+// ---------- Chaos Game (animated, ~2400 dots fade in) ----------
+function ChaosPane() {
+  const ref = useRef<HTMLCanvasElement | null>(null);
+  const dpr = useDpr();
+
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    let raf = 0;
+    const reduce = prefersReducedMotion();
+
+    // ResizeObserver drives (re)start so a mobile tab that mounts hidden (0×0)
+    // draws as soon as it is shown, rather than sizing to a blank 1px canvas.
+    const start = () => {
+      const W = canvas.clientWidth;
+      const H = canvas.clientHeight;
+      if (W === 0 || H === 0) return;
+      cancelAnimationFrame(raf);
+      canvas.width = Math.max(1, Math.floor(W * dpr));
+      canvas.height = Math.max(1, Math.floor(H * dpr));
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.fillStyle = palette.canvas.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      const verts = triangleVertices(W, H, 12);
+      // Burn-in so the early stray points don't sit outside the attractor
+      let x = W / 2;
+      let y = H / 2;
+      for (let i = 0; i < 30; i++) {
+        const v = verts[(Math.random() * 3) | 0];
+        x = (x + v[0]) / 2;
+        y = (y + v[1]) / 2;
+      }
+
+      const TOTAL = 2400;
+
+      // Reduced motion: plot the whole attractor at once, no rAF loop.
+      if (reduce) {
+        ctx.fillStyle = hexToRgba(palette.signal.amber, 0.85);
+        for (let i = 0; i < TOTAL; i++) {
+          const v = verts[(Math.random() * 3) | 0];
+          x = (x + v[0]) / 2;
+          y = (y + v[1]) / 2;
+          ctx.fillRect(x - 0.5, y - 0.5, 1.6, 1.6);
+        }
+        return;
+      }
+
+      const PER_FRAME = 18;
+      let placed = 0;
+      const tick = () => {
+        const alpha = Math.min(0.9, 0.25 + (placed / TOTAL) * 0.6);
+        ctx.fillStyle = hexToRgba(palette.signal.amber, alpha);
+        for (let i = 0; i < PER_FRAME && placed < TOTAL; i++) {
+          const v = verts[(Math.random() * 3) | 0];
+          x = (x + v[0]) / 2;
+          y = (y + v[1]) / 2;
+          ctx.fillRect(x - 0.5, y - 0.5, 1.6, 1.6);
+          placed++;
+        }
+        if (placed < TOTAL) {
+          raf = requestAnimationFrame(tick);
+        }
+      };
+      raf = requestAnimationFrame(tick);
+    };
+
+    start();
+    const ro = new ResizeObserver(start);
+    ro.observe(canvas);
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+    };
+  }, [dpr]);
+
+  return (
+    <div style={{ width: "100%", aspectRatio: "1 / 1" }}>
+      <canvas ref={ref} className="block h-full w-full" aria-hidden="true" />
     </div>
   );
 }

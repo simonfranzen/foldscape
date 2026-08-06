@@ -15,6 +15,8 @@ interface Props {
   hint?: string;
   legendBinomial?: string;
   legendNormal?: string;
+  canvasLabel?: string;
+  sliderLabel?: string;
 }
 
 // log of binomial coefficient via log-gamma — avoids overflow for N up to 40.
@@ -39,6 +41,8 @@ export function GaltonNormalOverlay({
   hint,
   legendBinomial = "binomial",
   legendNormal = "normal",
+  canvasLabel = "Binomial distribution with matching normal curve",
+  sliderLabel = "Number of rows N",
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
@@ -151,6 +155,8 @@ export function GaltonNormalOverlay({
       )}
       <canvas
         ref={canvasRef}
+        role="img"
+        aria-label={canvasLabel}
         className="hairline mx-auto block h-[260px] w-full max-w-[420px] rounded-md border bg-ink-950/80"
       />
       <div className="flex items-center justify-center gap-5 pt-1 font-mono text-[10px] uppercase tracking-widest2">
@@ -176,6 +182,7 @@ export function GaltonNormalOverlay({
           max={40}
           step={1}
           value={N}
+          aria-label={sliderLabel}
           onChange={(e) => setN(parseInt(e.target.value))}
           className="w-full accent-signal-cyan"
         />

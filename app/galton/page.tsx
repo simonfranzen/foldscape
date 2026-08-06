@@ -46,6 +46,18 @@ type RichStory = {
   overlayPretitle: string;
   overlayTitle: string;
   overlayBody: string;
+  // Inline callout boxes (previously hardcoded English in the JSX).
+  pascalRowLabel: string;
+  pascalBinsLabel: string;
+  pascalBinsNote: string;
+  cltNote: string;
+  breakLabel: string;
+  breakNote: string;
+  // Accessible names for the interactive canvases and icon-only controls.
+  simCanvasLabel: string;
+  simResetLabel: string;
+  overlayCanvasLabel: string;
+  overlaySliderLabel: string;
 };
 
 const en: RichStory = {
@@ -83,7 +95,7 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · The setup",
       title: "N rows of pegs, one fair coin at each",
-      body: "Francis Galton's 1889 quincunx is a board of N staggered rows of pegs. Release a marble at the apex and watch it strike exactly one peg per row, veering left or right with probability 1/2 at each impact — every collision an independent coin flip. After N rows the marble has dropped into one of N+1 catch bins along the floor, indexed by how many right-veers it took.",
+      body: "Francis Galton's quincunx, built in 1873 and popularised in his 1889 Natural Inheritance, is a board of N staggered rows of pegs. Release a marble at the apex and watch it strike exactly one peg per row, veering left or right with probability 1/2 at each impact, every collision an independent coin flip. After N rows the marble has dropped into one of N+1 catch bins along the floor, indexed by how many right-veers it took.",
     },
     {
       pretitle: "Section 02 · Pascal landing",
@@ -118,7 +130,7 @@ const en: RichStory = {
   ctaLabel: "→ Open the Explorer",
   simCaption: "Interactive · drop balls live",
   simRowsLabel: "Rows N",
-  simSpawnLabel: "Spawn / frame",
+  simSpawnLabel: "Spawn / step",
   simBallsLabel: (n) => `${n.toLocaleString()} balls landed`,
   simHint:
     "Pegs in cyan, falling balls in amber, the histogram fills in cyan below. The shape sharpens with every drop.",
@@ -136,6 +148,20 @@ const en: RichStory = {
   overlayTitle: "Crank N — the binomial becomes a Gaussian",
   overlayBody:
     "At N = 4 the binomial is a coarse staircase; by N = 40 the Gaussian curve hugs every bar. This is the convergence De Moivre proved in 1733 — the first Central Limit Theorem in disguise.",
+  pascalRowLabel: "N = 10 · row of Pascal",
+  pascalBinsLabel: "N = 10 · bin probabilities × 1024",
+  pascalBinsNote:
+    "Total = 1024 = 2¹⁰. The centre fattens; the edges starve. Already a bell, and N is still tiny.",
+  cltNote:
+    "Independent, finite variance, any distribution. The standardised sum always converges to the standard normal: the bell is the universal attractor of averaging.",
+  breakLabel: "Where the bell breaks",
+  breakNote:
+    "Cauchy · Lévy · Pareto · stable distributions with infinite variance. Mandelbrot, 1963: financial returns are «wild», not «mild».",
+  simCanvasLabel: "Galton board simulation: balls fall through pegs and fill a histogram below.",
+  simResetLabel: "Reset the histogram",
+  overlayCanvasLabel:
+    "Binomial distribution as cyan bars with the matching normal density as a violet curve.",
+  overlaySliderLabel: "Number of rows N",
 };
 
 const de: RichStory = {
@@ -174,7 +200,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Der Aufbau",
       title: "N Reihen Stifte, je ein fairer Münzwurf",
-      body: "Francis Galtons Quincunx von 1889 ist ein Brett mit N versetzten Reihen von Stiften. Eine vom Scheitel losgelassene Kugel trifft pro Reihe einen Stift und springt unabhängig mit Wahrscheinlichkeit 1/2 links oder rechts. Nach N Reihen landet sie in einem von N+1 Sammelfächern, indiziert durch die Zahl ihrer Rechtssprünge.",
+      body: "Francis Galtons Quincunx, 1873 gebaut und 1889 in Natural Inheritance bekannt gemacht, ist ein Brett mit N versetzten Reihen von Stiften. Eine vom Scheitel losgelassene Kugel trifft pro Reihe einen Stift und springt unabhängig mit Wahrscheinlichkeit 1/2 links oder rechts. Nach N Reihen landet sie in einem von N+1 Sammelfächern, indiziert durch die Zahl ihrer Rechtssprünge.",
     },
     {
       pretitle: "Abschnitt 02 · Pascal-Landung",
@@ -209,7 +235,7 @@ const de: RichStory = {
   ctaLabel: "→ Explorer öffnen",
   simCaption: "Interaktiv · live Kugeln fallen lassen",
   simRowsLabel: "Reihen N",
-  simSpawnLabel: "Spawn / Frame",
+  simSpawnLabel: "Spawn / Schritt",
   simBallsLabel: (n) => `${n.toLocaleString()} Kugeln gelandet`,
   simHint:
     "Stifte in Cyan, fallende Kugeln in Amber, das Histogramm füllt sich darunter in Cyan. Die Form wird mit jeder Kugel schärfer.",
@@ -227,6 +253,21 @@ const de: RichStory = {
   overlayTitle: "Dreh N hoch — die Binomial wird zur Gauß",
   overlayBody:
     "Bei N = 4 ist die Binomial eine grobe Treppe; bei N = 40 schmiegt sich die Gauß-Kurve an jeden Balken. Das ist die Konvergenz, die de Moivre 1733 bewies — der erste Zentrale Grenzwertsatz, verkleidet.",
+  pascalRowLabel: "N = 10 · Zeile von Pascal",
+  pascalBinsLabel: "N = 10 · Fach-Wahrscheinlichkeiten × 1024",
+  pascalBinsNote:
+    "Summe = 1024 = 2¹⁰. Die Mitte wird dick, die Ränder darben. Schon eine Glocke, und N ist noch winzig.",
+  cltNote:
+    "Unabhängig, endliche Varianz, jede Verteilung. Die standardisierte Summe konvergiert stets gegen die Standardnormale: die Glocke ist der universelle Attraktor des Mittelns.",
+  breakLabel: "Wo die Glocke bricht",
+  breakNote:
+    "Cauchy · Lévy · Pareto · stabile Verteilungen mit unendlicher Varianz. Mandelbrot, 1963: Finanzrenditen sind «wild», nicht «mild».",
+  simCanvasLabel:
+    "Galton-Brett-Simulation: Kugeln fallen durch Stifte und füllen darunter ein Histogramm.",
+  simResetLabel: "Histogramm zurücksetzen",
+  overlayCanvasLabel:
+    "Binomialverteilung als cyane Balken mit der passenden Normaldichte als violette Kurve.",
+  overlaySliderLabel: "Anzahl der Reihen N",
 };
 
 const es: RichStory = {
@@ -265,7 +306,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · El montaje",
       title: "N filas de clavos, una moneda justa en cada uno",
-      body: "El quincuncio de Francis Galton de 1889 es un tablero con N filas de clavos desplazadas. Una bola soltada en el vértice golpea un clavo por fila y rebota a izquierda o derecha con probabilidad 1/2, independientemente. Tras N filas cae en una de N+1 casillas, indexada por el número de rebotes a la derecha.",
+      body: "El quincuncio de Francis Galton, construido en 1873 y popularizado en su Natural Inheritance de 1889, es un tablero con N filas de clavos desplazadas. Una bola soltada en el vértice golpea un clavo por fila y rebota a izquierda o derecha con probabilidad 1/2, independientemente. Tras N filas cae en una de N+1 casillas, indexada por el número de rebotes a la derecha.",
     },
     {
       pretitle: "Sección 02 · Aterrizaje en Pascal",
@@ -300,7 +341,7 @@ const es: RichStory = {
   ctaLabel: "→ Abrir el Explorador",
   simCaption: "Interactivo · soltar bolas en vivo",
   simRowsLabel: "Filas N",
-  simSpawnLabel: "Spawn / frame",
+  simSpawnLabel: "Spawn / paso",
   simBallsLabel: (n) => `${n.toLocaleString()} bolas caídas`,
   simHint:
     "Clavos en cian, bolas cayendo en ámbar, el histograma se llena en cian abajo. La forma se afila con cada bola.",
@@ -318,6 +359,21 @@ const es: RichStory = {
   overlayTitle: "Sube N — la binomial se vuelve gaussiana",
   overlayBody:
     "Con N = 4 la binomial es una escalera tosca; con N = 40 la curva gaussiana abraza cada barra. Es la convergencia que de Moivre probó en 1733 — el primer Teorema Central del Límite, disfrazado.",
+  pascalRowLabel: "N = 10 · fila de Pascal",
+  pascalBinsLabel: "N = 10 · probabilidades de casilla × 1024",
+  pascalBinsNote:
+    "Total = 1024 = 2¹⁰. El centro engorda; los bordes se mueren de hambre. Ya es una campana, y N sigue siendo diminuto.",
+  cltNote:
+    "Independientes, varianza finita, cualquier distribución. La suma estandarizada siempre converge a la normal estándar: la campana es el atractor universal del promediar.",
+  breakLabel: "Donde la campana se rompe",
+  breakNote:
+    "Cauchy · Lévy · Pareto · distribuciones estables con varianza infinita. Mandelbrot, 1963: los rendimientos financieros son «salvajes», no «mansos».",
+  simCanvasLabel:
+    "Simulación del tablero de Galton: las bolas caen entre clavos y llenan un histograma debajo.",
+  simResetLabel: "Reiniciar el histograma",
+  overlayCanvasLabel:
+    "Distribución binomial en barras cian con la densidad normal correspondiente en curva violeta.",
+  overlaySliderLabel: "Número de filas N",
 };
 
 const fr: RichStory = {
@@ -356,7 +412,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · Le montage",
       title: "N rangées de clous, une pièce équilibrée à chaque clou",
-      body: "Le quinconce de Francis Galton, 1889, est une planche à N rangées de clous décalées. Une bille lâchée au sommet frappe un clou par rangée et rebondit à gauche ou à droite avec probabilité 1/2, indépendamment. Après N rangées elle se loge dans l'un des N+1 casiers, indexé par le nombre de rebonds à droite.",
+      body: "Le quinconce de Francis Galton, construit en 1873 et popularisé dans son Natural Inheritance de 1889, est une planche à N rangées de clous décalées. Une bille lâchée au sommet frappe un clou par rangée et rebondit à gauche ou à droite avec probabilité 1/2, indépendamment. Après N rangées elle se loge dans l'un des N+1 casiers, indexé par le nombre de rebonds à droite.",
     },
     {
       pretitle: "Section 02 · L'atterrissage de Pascal",
@@ -391,7 +447,7 @@ const fr: RichStory = {
   ctaLabel: "→ Ouvrir l'Explorateur",
   simCaption: "Interactif · lâcher des billes en direct",
   simRowsLabel: "Rangées N",
-  simSpawnLabel: "Spawn / frame",
+  simSpawnLabel: "Spawn / pas",
   simBallsLabel: (n) => `${n.toLocaleString()} billes tombées`,
   simHint:
     "Clous en cyan, billes en ambre, l'histogramme se remplit en cyan dessous. La forme s'affûte à chaque chute.",
@@ -409,6 +465,21 @@ const fr: RichStory = {
   overlayTitle: "Pousse N — la binomiale devient gaussienne",
   overlayBody:
     "À N = 4 la binomiale est un escalier grossier ; à N = 40 la courbe gaussienne épouse chaque barre. C'est la convergence que de Moivre démontra en 1733 — le premier Théorème Central Limite, déguisé.",
+  pascalRowLabel: "N = 10 · rangée de Pascal",
+  pascalBinsLabel: "N = 10 · probabilités de casier × 1024",
+  pascalBinsNote:
+    "Total = 1024 = 2¹⁰. Le centre grossit ; les bords s'affament. Déjà une cloche, et N est encore minuscule.",
+  cltNote:
+    "Indépendantes, variance finie, n'importe quelle loi. La somme standardisée converge toujours vers la normale centrée réduite : la cloche est l'attracteur universel de la moyenne.",
+  breakLabel: "Là où la cloche se brise",
+  breakNote:
+    "Cauchy · Lévy · Pareto · lois stables à variance infinie. Mandelbrot, 1963 : les rendements financiers sont «sauvages», pas «doux».",
+  simCanvasLabel:
+    "Simulation de la planche de Galton : les billes tombent entre les clous et remplissent un histogramme en dessous.",
+  simResetLabel: "Réinitialiser l'histogramme",
+  overlayCanvasLabel:
+    "Distribution binomiale en barres cyan avec la densité normale correspondante en courbe violette.",
+  overlaySliderLabel: "Nombre de rangées N",
 };
 
 const it: RichStory = {
@@ -447,7 +518,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · Il dispositivo",
       title: "N file di chiodi, una moneta equa per ciascuno",
-      body: "Il quincunx di Francis Galton del 1889 è una tavola con N file di chiodi sfalsate. Una pallina lasciata cadere dall'apice colpisce un chiodo per fila e rimbalza a sinistra o a destra con probabilità 1/2, in modo indipendente. Dopo N file cade in una di N+1 vaschette di raccolta, indicizzata dal numero di rimbalzi a destra.",
+      body: "Il quincunx di Francis Galton, costruito nel 1873 e reso celebre nel suo Natural Inheritance del 1889, è una tavola con N file di chiodi sfalsate. Una pallina lasciata cadere dall'apice colpisce un chiodo per fila e rimbalza a sinistra o a destra con probabilità 1/2, in modo indipendente. Dopo N file cade in una di N+1 vaschette di raccolta, indicizzata dal numero di rimbalzi a destra.",
     },
     {
       pretitle: "Sezione 02 · Atterraggio su Pascal",
@@ -472,7 +543,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 06 · Limiti",
       title: "Le code pesanti rifiutano la campana",
-      body: "Il TLC richiede varianza finita. Cadi quest'ipotesi e prendono il sopravvento attrattori più strani: le distribuzioni stabili, con Cauchy e Lévy agli estremi. La critica di Mandelbrot alla finanza — che i rendimenti hanno code «selvagge» a legge di potenza — è esattamente questo punto. Quando un singolo contributo può sovrastare la somma, nessuna campana appare.",
+      body: "Il TLC richiede varianza finita. Lascia cadere quest'ipotesi e prendono il sopravvento attrattori più strani: le distribuzioni stabili, con Cauchy e Lévy agli estremi. La critica di Mandelbrot alla finanza — che i rendimenti hanno code «selvagge» a legge di potenza — è esattamente questo punto. Quando un singolo contributo può sovrastare la somma, nessuna campana appare.",
     },
   ],
   closingPretitle: "Vai oltre",
@@ -482,7 +553,7 @@ const it: RichStory = {
   ctaLabel: "→ Apri l'Esploratore",
   simCaption: "Interattivo · far cadere palline dal vivo",
   simRowsLabel: "File N",
-  simSpawnLabel: "Spawn / frame",
+  simSpawnLabel: "Spawn / passo",
   simBallsLabel: (n) => `${n.toLocaleString()} palline cadute`,
   simHint:
     "Chiodi in ciano, palline in ambra, l'istogramma si riempie in ciano sotto. La forma si affila a ogni caduta.",
@@ -500,6 +571,21 @@ const it: RichStory = {
   overlayTitle: "Alza N — la binomiale diventa gaussiana",
   overlayBody:
     "A N = 4 la binomiale è una scala grezza; a N = 40 la curva gaussiana abbraccia ogni barra. È la convergenza che de Moivre dimostrò nel 1733 — il primo Teorema del Limite Centrale, in incognito.",
+  pascalRowLabel: "N = 10 · riga di Pascal",
+  pascalBinsLabel: "N = 10 · probabilità di vaschetta × 1024",
+  pascalBinsNote:
+    "Totale = 1024 = 2¹⁰. Il centro si ingrossa; i bordi si assottigliano. Già una campana, e N è ancora minuscolo.",
+  cltNote:
+    "Indipendenti, varianza finita, qualsiasi distribuzione. La somma standardizzata converge sempre alla normale standard: la campana è l'attrattore universale del fare la media.",
+  breakLabel: "Dove la campana si rompe",
+  breakNote:
+    "Cauchy · Lévy · Pareto · distribuzioni stabili a varianza infinita. Mandelbrot, 1963: i rendimenti finanziari sono «selvaggi», non «miti».",
+  simCanvasLabel:
+    "Simulazione della macchina di Galton: le palline cadono tra i chiodi e riempiono un istogramma sotto.",
+  simResetLabel: "Reimposta l'istogramma",
+  overlayCanvasLabel:
+    "Distribuzione binomiale in barre ciano con la densità normale corrispondente in curva viola.",
+  overlaySliderLabel: "Numero di file N",
 };
 
 const pt: RichStory = {
@@ -537,7 +623,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · A montagem",
       title: "N filas de pinos, uma moeda justa em cada um",
-      body: "O quincunx de Francis Galton de 1889 é uma placa com N filas de pinos desfasadas. Uma bola largada no topo bate num pino por fila e ressalta para a esquerda ou para a direita com probabilidade 1/2, de forma independente. Após N filas cai numa de N+1 casas de recolha, indexada pelo número de ressaltos à direita.",
+      body: "O quincunx de Francis Galton, construído em 1873 e popularizado no seu Natural Inheritance de 1889, é uma placa com N filas de pinos desfasadas. Uma bola largada no topo bate num pino por fila e ressalta para a esquerda ou para a direita com probabilidade 1/2, de forma independente. Após N filas cai numa de N+1 casas de recolha, indexada pelo número de ressaltos à direita.",
     },
     {
       pretitle: "Secção 02 · Aterragem em Pascal",
@@ -572,7 +658,7 @@ const pt: RichStory = {
   ctaLabel: "→ Abrir o Explorador",
   simCaption: "Interativo · largar bolas ao vivo",
   simRowsLabel: "Filas N",
-  simSpawnLabel: "Spawn / frame",
+  simSpawnLabel: "Spawn / passo",
   simBallsLabel: (n) => `${n.toLocaleString()} bolas caídas`,
   simHint:
     "Pinos a ciano, bolas em âmbar, o histograma enche-se a ciano em baixo. A forma afia-se a cada queda.",
@@ -590,6 +676,21 @@ const pt: RichStory = {
   overlayTitle: "Empurra N — a binomial torna-se gaussiana",
   overlayBody:
     "Em N = 4 a binomial é uma escadaria grosseira; em N = 40 a curva gaussiana abraça cada barra. É a convergência que de Moivre provou em 1733 — o primeiro Teorema do Limite Central, disfarçado.",
+  pascalRowLabel: "N = 10 · linha de Pascal",
+  pascalBinsLabel: "N = 10 · probabilidades de casa × 1024",
+  pascalBinsNote:
+    "Total = 1024 = 2¹⁰. O centro engorda; as bordas definham. Já um sino, e N ainda é minúsculo.",
+  cltNote:
+    "Independentes, variância finita, qualquer distribuição. A soma padronizada converge sempre para a normal padrão: o sino é o atrator universal da média.",
+  breakLabel: "Onde o sino se quebra",
+  breakNote:
+    "Cauchy · Lévy · Pareto · distribuições estáveis com variância infinita. Mandelbrot, 1963: os retornos financeiros são «selvagens», não «mansos».",
+  simCanvasLabel:
+    "Simulação da placa de Galton: as bolas caem entre os pinos e enchem um histograma em baixo.",
+  simResetLabel: "Reiniciar o histograma",
+  overlayCanvasLabel:
+    "Distribuição binomial em barras ciano com a densidade normal correspondente em curva violeta.",
+  overlaySliderLabel: "Número de filas N",
 };
 
 const sv: RichStory = {
@@ -627,7 +728,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Uppställningen",
       title: "N rader av pinnar, ett rättvist mynt vid varje",
-      body: "Francis Galtons quincunx från 1889 är ett bräde med N förskjutna rader av pinnar. En kula släppt vid spetsen träffar en pinne per rad och studsar till vänster eller höger med sannolikhet 1/2, oberoende. Efter N rader hamnar den i ett av N+1 uppsamlingsfack, indexerat av antalet högerstudsar.",
+      body: "Francis Galtons quincunx, byggd 1873 och spridd genom hans Natural Inheritance 1889, är ett bräde med N förskjutna rader av pinnar. En kula släppt vid spetsen träffar en pinne per rad och studsar till vänster eller höger med sannolikhet 1/2, oberoende. Efter N rader hamnar den i ett av N+1 uppsamlingsfack, indexerat av antalet högerstudsar.",
     },
     {
       pretitle: "Avsnitt 02 · Landning i Pascal",
@@ -662,7 +763,7 @@ const sv: RichStory = {
   ctaLabel: "→ Öppna Utforskaren",
   simCaption: "Interaktivt · släpp kulor live",
   simRowsLabel: "Rader N",
-  simSpawnLabel: "Spawn / frame",
+  simSpawnLabel: "Spawn / steg",
   simBallsLabel: (n) => `${n.toLocaleString()} kulor landade`,
   simHint:
     "Pinnar i cyan, fallande kulor i bärnsten, histogrammet fylls i cyan nedanför. Formen vässas vid varje fall.",
@@ -680,6 +781,21 @@ const sv: RichStory = {
   overlayTitle: "Veva upp N — binomialen blir gaussisk",
   overlayBody:
     "Vid N = 4 är binomialen en grov trappa; vid N = 40 omfamnar Gausskurvan varje stapel. Det är konvergensen som de Moivre bevisade 1733 — den första centrala gränsvärdessatsen, förklädd.",
+  pascalRowLabel: "N = 10 · rad i Pascal",
+  pascalBinsLabel: "N = 10 · facksannolikheter × 1024",
+  pascalBinsNote:
+    "Summa = 1024 = 2¹⁰. Mitten blir tjock, kanterna svälter. Redan en klocka, och N är fortfarande litet.",
+  cltNote:
+    "Oberoende, ändlig varians, vilken fördelning som helst. Den standardiserade summan konvergerar alltid mot standardnormalen: klockan är medelvärdets universella attraktor.",
+  breakLabel: "Där klockan brister",
+  breakNote:
+    "Cauchy · Lévy · Pareto · stabila fördelningar med oändlig varians. Mandelbrot, 1963: finansiella avkastningar är «vilda», inte «milda».",
+  simCanvasLabel:
+    "Galtonbräde-simulering: kulor faller mellan pinnar och fyller ett histogram nedanför.",
+  simResetLabel: "Nollställ histogrammet",
+  overlayCanvasLabel:
+    "Binomialfördelning som cyanstaplar med motsvarande normaltäthet som violett kurva.",
+  overlaySliderLabel: "Antal rader N",
 };
 
 const no: RichStory = {
@@ -717,7 +833,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Oppsettet",
       title: "N rader med pinner, ett rettferdig myntkast ved hver",
-      body: "Francis Galtons quincunx fra 1889 er et brett med N forskjøvne rader pinner. En kule sluppet fra toppen treffer én pinne per rad og spretter til venstre eller høyre med sannsynlighet 1/2, uavhengig. Etter N rader lander den i en av N+1 oppsamlingsbåser, indeksert av antall høyresprett.",
+      body: "Francis Galtons quincunx, bygget i 1873 og gjort kjent i hans Natural Inheritance i 1889, er et brett med N forskjøvne rader pinner. En kule sluppet fra toppen treffer én pinne per rad og spretter til venstre eller høyre med sannsynlighet 1/2, uavhengig. Etter N rader lander den i en av N+1 oppsamlingsbåser, indeksert av antall høyresprett.",
     },
     {
       pretitle: "Avsnitt 02 · Landing hos Pascal",
@@ -727,12 +843,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · De Moivre–Laplace, 1733",
       title: "Binomial → normal",
-      body: "Abraham de Moivre beviste i 1733 at C(N, k)/2ᴺ, når N vokser, konvergerer mot Gauss-tettheten (1/√(2π·N/4)) · exp(−(k − N/2)² / (N/2)). Laplace generaliserte til skjeve mynter i 1810. Dette er den første instansen av den sentrale grenseverdisetningen — et århundre før den generelle utsagnet.",
+      body: "Abraham de Moivre beviste i 1733 at C(N, k)/2ᴺ, når N vokser, konvergerer mot Gauss-tettheten (1/√(2π·N/4)) · exp(−(k − N/2)² / (N/2)). Laplace generaliserte til skjeve mynter i 1810. Dette er den første instansen av den sentrale grenseverdisetningen — et århundre før det generelle utsagnet.",
     },
     {
       pretitle: "Avsnitt 04 · Sentrale grenseverdisetning",
       title: "Hvilken som helst endelig varians, hvilken som helst fordeling → klokke",
-      body: "Den generelle SGS, strengt bevist av Lyapunov i 1901 og skarpsleipet av Lindeberg i 1922, sier mye mer: ta HVILKE som helst uavhengige stokastiske variable med endelig varians — skjeve, diskrete, stygge — summer N av dem, skaler om. Grensen er en Gauss. Klokken er den universelle attraktoren for å ta gjennomsnitt.",
+      body: "Den generelle SGS, strengt bevist av Lyapunov i 1901 og skjerpet av Lindeberg i 1922, sier mye mer: ta HVILKE som helst uavhengige stokastiske variable med endelig varians — skjeve, diskrete, stygge — summer N av dem, skaler om. Grensen er en Gauss. Klokken er den universelle attraktoren for å ta gjennomsnitt.",
     },
     {
       pretitle: "Avsnitt 05 · Hvorfor den dukker opp overalt",
@@ -752,7 +868,7 @@ const no: RichStory = {
   ctaLabel: "→ Åpne Utforskeren",
   simCaption: "Interaktivt · slipp kuler live",
   simRowsLabel: "Rader N",
-  simSpawnLabel: "Spawn / frame",
+  simSpawnLabel: "Spawn / steg",
   simBallsLabel: (n) => `${n.toLocaleString()} kuler landet`,
   simHint:
     "Pinner i cyan, fallende kuler i rav, histogrammet fylles i cyan under. Formen kvesses ved hvert fall.",
@@ -770,6 +886,21 @@ const no: RichStory = {
   overlayTitle: "Skru opp N — binomialen blir gaussisk",
   overlayBody:
     "Ved N = 4 er binomialen en grov trapp; ved N = 40 omfavner Gauss-kurven hver søyle. Det er konvergensen de Moivre beviste i 1733 — den første sentrale grenseverdisetningen, i forkledning.",
+  pascalRowLabel: "N = 10 · rad i Pascal",
+  pascalBinsLabel: "N = 10 · bås-sannsynligheter × 1024",
+  pascalBinsNote:
+    "Sum = 1024 = 2¹⁰. Midten legger på seg, kantene sulter. Allerede en klokke, og N er fortsatt bitteliten.",
+  cltNote:
+    "Uavhengige, endelig varians, hvilken som helst fordeling. Den standardiserte summen konvergerer alltid mot standardnormalen: klokken er den universelle attraktoren for å ta gjennomsnitt.",
+  breakLabel: "Der klokken brister",
+  breakNote:
+    "Cauchy · Lévy · Pareto · stabile fordelinger med uendelig varians. Mandelbrot, 1963: finansielle avkastninger er «ville», ikke «milde».",
+  simCanvasLabel:
+    "Galton-brett-simulering: kuler faller mellom pinner og fyller et histogram under.",
+  simResetLabel: "Nullstill histogrammet",
+  overlayCanvasLabel:
+    "Binomialfordeling som cyan-søyler med tilsvarende normaltetthet som fiolett kurve.",
+  overlaySliderLabel: "Antall rader N",
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
@@ -841,7 +972,7 @@ export default function GaltonStory() {
                     <p>{card.body}</p>
                     <div className="hairline mt-4 space-y-1 rounded-md border bg-ink-950/60 p-3 text-center font-mono text-[11px] leading-relaxed text-signal-teal">
                       <div className="text-[10px] uppercase tracking-widest2 text-ink-300">
-                        N = 10 · row of Pascal
+                        {story.pascalRowLabel}
                       </div>
                       <div>1 · 10 · 45 · 120 · 210 · 252 · 210 · 120 · 45 · 10 · 1</div>
                     </div>
@@ -888,6 +1019,8 @@ export default function GaltonStory() {
             spawnLabel={story.simSpawnLabel}
             ballsLabel={story.simBallsLabel}
             hint={story.simHint}
+            canvasLabel={story.simCanvasLabel}
+            resetLabel={story.simResetLabel}
           />
         </Reveal>
       </section>
@@ -903,16 +1036,13 @@ export default function GaltonStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              N = 10 · bin probabilities × 1024
+              {story.pascalBinsLabel}
             </div>
             <div className="font-mono text-sm leading-relaxed text-ink-100 md:text-base">
               1 · 10 · 45 · 120 · 210 · <span className="text-signal-teal">252</span> · 210 · 120 ·
               45 · 10 · 1
             </div>
-            <p className="mx-auto max-w-xl text-xs text-ink-400">
-              Total = 1024 = 2¹⁰. The centre fattens; the edges starve. Already a bell — and N is
-              still tiny.
-            </p>
+            <p className="mx-auto max-w-xl text-xs text-ink-400">{story.pascalBinsNote}</p>
           </div>
         </Reveal>
       </section>
@@ -947,6 +1077,8 @@ export default function GaltonStory() {
             hint={story.overlayHint}
             legendBinomial={story.overlayLegendBinomial}
             legendNormal={story.overlayLegendNormal}
+            canvasLabel={story.overlayCanvasLabel}
+            sliderLabel={story.overlaySliderLabel}
           />
         </Reveal>
       </section>
@@ -965,12 +1097,9 @@ export default function GaltonStory() {
               Lyapunov 1901 · Lindeberg 1922
             </div>
             <div className="math-italic text-2xl leading-tight text-ink-100 md:text-3xl">
-              (X₁ + X₂ + … + Xₙ − nμ) / (σ√n) → 𝒩(0, 1)
+              (X₁ + X₂ + … + Xₙ − Σμᵢ) / √(Σσᵢ²) → 𝒩(0, 1)
             </div>
-            <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Independent, finite variance, any distribution. The standardised sum always converges
-              to the standard normal — the bell is the universal attractor of averaging.
-            </p>
+            <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">{story.cltNote}</p>
           </div>
         </Reveal>
       </section>
@@ -996,11 +1125,10 @@ export default function GaltonStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-2 rounded-2xl border bg-ink-950/40 p-6 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Where the bell breaks
+              {story.breakLabel}
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-200">
-              Cauchy · Lévy · Pareto · stable distributions with infinite variance. Mandelbrot,
-              1963: financial returns are «wild», not «mild».
+              {story.breakNote}
             </p>
           </div>
         </Reveal>

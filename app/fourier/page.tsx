@@ -34,6 +34,20 @@ type RichStory = {
     apps: Array<{ what: string; how: string }>;
     duality: { time: string; freq: string };
     fftRow: { naive: string; fft: string; speedup: string };
+    // Prose that used to be hardcoded English inline / inside the demo components.
+    seriesLabel: string;
+    seriesNote: string;
+    gibbsNote: string;
+    timeNote: string;
+    freqNote: string;
+    fftNote: string;
+    uncertaintyMultiply: string;
+    uncertaintyNote: string;
+    waveLabels: { square: string; sawtooth: string; triangle: string };
+    builderLegend: string;
+    spectrumExplain: string;
+    hearIt: string;
+    stopIt: string;
   };
 };
 
@@ -70,7 +84,7 @@ const en: RichStory = {
     {
       pretitle: "Step two · Building a square wave",
       title: "Sharp corners are the hardest part",
-      body: "A square wave is the cleanest test of the principle: pure +1 and −1, with infinitely sharp jumps. Its Fourier series is 4/π · Σ sin((2k−1)·2πt)/(2k−1), summed over k = 1, 2, 3, … At one harmonic the answer is a single rolling sine. At three, the corners begin to appear. At seven, you can read it as a square — except for a stubborn 8.95% overshoot at every edge. That overshoot never disappears: Gibbs proved in 1899 that at a jump discontinuity the partial sums always overshoot by exactly this constant, however many harmonics you add. The corner is the cost of representing 'instant' in a basis of smooth waves.",
+      body: "A square wave is the cleanest test of the principle: pure +1 and −1, with infinitely sharp jumps. Its Fourier series is 4/π · Σ sin((2k−1)·2πt)/(2k−1), summed over k = 1, 2, 3, … At one harmonic the answer is a single rolling sine. At three, the corners begin to appear. At seven, you can read it as a square — except for a stubborn 8.95% overshoot at every edge. That overshoot never disappears: Gibbs described in 1899 how at a jump discontinuity the partial sums always overshoot by exactly this constant, however many harmonics you add. The corner is the cost of representing 'instant' in a basis of smooth waves.",
     },
     {
       pretitle: "Step three · Time-domain ↔ Frequency-domain",
@@ -90,7 +104,7 @@ const en: RichStory = {
     {
       pretitle: "Step six · Cultural impact",
       title: "Every camera, every microphone, every Wi-Fi packet",
-      body: "Almost every signal humans store, transmit, or process today passes through a Fourier transform on the way. The camera in your phone runs a discrete cosine transform on every 8×8 block before saving the JPEG. The microphone driver does a thousand short-time FFTs per second on your voice. The Wi-Fi chip uses OFDM, breaking each packet into thousands of carrier frequencies that are turned back into bits with one inverse FFT per symbol. MRI machines literally collect samples in frequency-space — k-space — and apply an inverse Fourier transform to make the image of you. One theorem, three centuries old, holds the modern world together.",
+      body: "Almost every signal humans store, transmit, or process today passes through a Fourier transform on the way. The camera in your phone runs a discrete cosine transform on every 8×8 block before saving the JPEG. The microphone driver does a thousand short-time FFTs per second on your voice. The Wi-Fi chip uses OFDM, breaking each packet into thousands of carrier frequencies that are turned back into bits with one inverse FFT per symbol. MRI machines literally collect samples in frequency-space — k-space — and apply an inverse Fourier transform to make the image of you. One theorem, two centuries old, holds the modern world together.",
     },
   ],
   closingTitle: "Open the Explorer",
@@ -115,6 +129,25 @@ const en: RichStory = {
     ],
     duality: { time: "Time domain", freq: "Frequency domain" },
     fftRow: { naive: "N² · naïve DFT", fft: "N log N · FFT", speedup: "speed-up" },
+    seriesLabel: "Fourier series",
+    seriesNote:
+      "Each k is one independent axis. The amplitudes aₖ are the coordinates of the signal in that basis; the phases φₖ shift each axis along itself.",
+    gibbsNote:
+      "The constant is exact and independent of N. Sharpness in time costs spread in frequency, and the next section turns that trade-off into a law.",
+    timeNote: "What an oscilloscope or a microphone records.",
+    freqNote: "What a spectrum analyser or your inner ear sees.",
+    fftNote:
+      "The FFT is not faster mathematics, it is the same DFT computed by reusing every partial product instead of redoing it. The exponent drops from 2 to 1, and real-time signal processing opens up.",
+    uncertaintyMultiply: "Multiply by ℏ. Read the same inequality.",
+    uncertaintyNote:
+      "The Gaussian minimises both. Position and momentum are Fourier duals, and the quantum bound is the same theorem on a different axis.",
+    waveLabels: { square: "Square", sawtooth: "Sawtooth", triangle: "Triangle" },
+    builderLegend:
+      "White: the target. Violet: each individual harmonic. Amber: their sum. Push N up and the corners sharpen, yet the overshoot at the discontinuities never quite goes away (Gibbs phenomenon, ≈ 8.95%).",
+    spectrumExplain:
+      "Top: the waveform you just synthesised. Bottom: the same signal in frequency-space, one bar per harmonic. The two pictures carry the same information.",
+    hearIt: "▶ Hear it",
+    stopIt: "■ Stop",
   },
 };
 
@@ -151,7 +184,7 @@ const de: RichStory = {
     {
       pretitle: "Schritt zwei · Eine Rechteckwelle bauen",
       title: "Scharfe Kanten sind das Schwerste",
-      body: "Eine Rechteckwelle ist der sauberste Test des Prinzips: reines +1 und −1, mit unendlich scharfen Sprüngen. Ihre Fourier-Reihe ist 4/π · Σ sin((2k−1)·2πt)/(2k−1), summiert über k = 1, 2, 3, … Bei einer Harmonischen ist die Antwort eine einzelne Sinuswelle. Bei drei beginnen die Ecken aufzutauchen. Bei sieben kann man es als Rechteck lesen — bis auf einen hartnäckigen Überschwinger von 8,95 % an jeder Kante. Dieser Überschwinger verschwindet nie: Gibbs bewies 1899, dass an jeder Sprungstelle die Partialsummen immer um exakt diese Konstante überschießen, egal wie viele Harmonische man addiert. Die Ecke ist der Preis dafür, 'sofort' in einer Basis glatter Wellen darzustellen.",
+      body: "Eine Rechteckwelle ist der sauberste Test des Prinzips: reines +1 und −1, mit unendlich scharfen Sprüngen. Ihre Fourier-Reihe ist 4/π · Σ sin((2k−1)·2πt)/(2k−1), summiert über k = 1, 2, 3, … Bei einer Harmonischen ist die Antwort eine einzelne Sinuswelle. Bei drei beginnen die Ecken aufzutauchen. Bei sieben kann man es als Rechteck lesen — bis auf einen hartnäckigen Überschwinger von 8,95 % an jeder Kante. Dieser Überschwinger verschwindet nie: Gibbs beschrieb 1899, dass an jeder Sprungstelle die Partialsummen immer um exakt diese Konstante überschießen, egal wie viele Harmonische man addiert. Die Ecke ist der Preis dafür, 'sofort' in einer Basis glatter Wellen darzustellen.",
     },
     {
       pretitle: "Schritt drei · Zeitbereich ↔ Frequenzbereich",
@@ -171,7 +204,7 @@ const de: RichStory = {
     {
       pretitle: "Schritt sechs · Kultureller Einfluss",
       title: "Jede Kamera, jedes Mikrofon, jedes WLAN-Paket",
-      body: "Fast jedes Signal, das Menschen heute speichern, übertragen oder verarbeiten, läuft auf seinem Weg durch eine Fourier-Transformation. Die Kamera in deinem Telefon rechnet eine diskrete Kosinus-Transformation auf jedem 8×8-Block, bevor das JPEG geschrieben wird. Der Mikrofontreiber führt tausend Kurzzeit-FFTs pro Sekunde auf deiner Stimme aus. Der WLAN-Chip nutzt OFDM, bricht jedes Paket in Tausende Trägerfrequenzen und gewinnt mit je einer inversen FFT pro Symbol die Bits zurück. MRT-Geräte sammeln buchstäblich Stichproben im Frequenzraum — k-Raum — und wenden eine inverse Fourier-Transformation an, um dein Bild zu erzeugen. Ein Theorem, drei Jahrhunderte alt, hält die moderne Welt zusammen.",
+      body: "Fast jedes Signal, das Menschen heute speichern, übertragen oder verarbeiten, läuft auf seinem Weg durch eine Fourier-Transformation. Die Kamera in deinem Telefon rechnet eine diskrete Kosinus-Transformation auf jedem 8×8-Block, bevor das JPEG geschrieben wird. Der Mikrofontreiber führt tausend Kurzzeit-FFTs pro Sekunde auf deiner Stimme aus. Der WLAN-Chip nutzt OFDM, bricht jedes Paket in Tausende Trägerfrequenzen und gewinnt mit je einer inversen FFT pro Symbol die Bits zurück. MRT-Geräte sammeln buchstäblich Stichproben im Frequenzraum — k-Raum — und wenden eine inverse Fourier-Transformation an, um dein Bild zu erzeugen. Ein Theorem, zwei Jahrhunderte alt, hält die moderne Welt zusammen.",
     },
   ],
   closingTitle: "Explorer öffnen",
@@ -196,6 +229,25 @@ const de: RichStory = {
     ],
     duality: { time: "Zeitbereich", freq: "Frequenzbereich" },
     fftRow: { naive: "N² · naive DFT", fft: "N log N · FFT", speedup: "Beschleunigung" },
+    seriesLabel: "Fourier-Reihe",
+    seriesNote:
+      "Jedes k ist eine unabhängige Achse. Die Amplituden aₖ sind die Koordinaten des Signals in dieser Basis; die Phasen φₖ verschieben jede Achse entlang sich selbst.",
+    gibbsNote:
+      "Die Konstante ist exakt und unabhängig von N. Schärfe in der Zeit kostet Ausbreitung in der Frequenz, und der nächste Abschnitt macht aus diesem Handel ein Gesetz.",
+    timeNote: "Was ein Oszilloskop oder ein Mikrofon aufzeichnet.",
+    freqNote: "Was ein Spektrumanalysator oder dein Innenohr sieht.",
+    fftNote:
+      "Die FFT ist keine schnellere Mathematik, sie ist dieselbe DFT, berechnet durch Wiederverwenden jedes Teilprodukts statt es neu zu rechnen. Der Exponent sinkt von 2 auf 1, und die Echtzeit-Signalverarbeitung öffnet sich.",
+    uncertaintyMultiply: "Multipliziere mit ℏ. Lies dieselbe Ungleichung.",
+    uncertaintyNote:
+      "Die Gauß-Funktion minimiert beides. Ort und Impuls sind Fourier-Duale, und die Quantenschranke ist dasselbe Theorem auf einer anderen Achse.",
+    waveLabels: { square: "Rechteck", sawtooth: "Sägezahn", triangle: "Dreieck" },
+    builderLegend:
+      "Weiß: das Ziel. Violett: jede einzelne Harmonische. Bernstein: ihre Summe. Erhöhe N und die Ecken schärfen sich, doch der Überschwinger an den Sprüngen verschwindet nie ganz (Gibbs-Phänomen, ≈ 8,95 %).",
+    spectrumExplain:
+      "Oben: die Wellenform, die du gerade synthetisiert hast. Unten: dasselbe Signal im Frequenzraum, ein Balken pro Harmonische. Beide Bilder tragen dieselbe Information.",
+    hearIt: "▶ Anhören",
+    stopIt: "■ Stopp",
   },
 };
 
@@ -232,7 +284,7 @@ const es: RichStory = {
     {
       pretitle: "Paso dos · Construir una onda cuadrada",
       title: "Las esquinas afiladas son lo más difícil",
-      body: "La onda cuadrada es la prueba más limpia del principio: +1 y −1 puros, con saltos infinitamente afilados. Su serie de Fourier es 4/π · Σ sin((2k−1)·2πt)/(2k−1), sumada sobre k = 1, 2, 3, … Con un armónico la respuesta es un seno solitario. Con tres empiezan a aparecer las esquinas. Con siete ya se lee como cuadrada — salvo por un sobreimpulso del 8,95 % que se aferra a cada borde. Ese exceso no desaparece nunca: Gibbs demostró en 1899 que en una discontinuidad las sumas parciales rebasan justo esa constante, sumes los armónicos que sumes. La esquina es el precio de representar lo 'instantáneo' en una base de ondas suaves.",
+      body: "La onda cuadrada es la prueba más limpia del principio: +1 y −1 puros, con saltos infinitamente afilados. Su serie de Fourier es 4/π · Σ sin((2k−1)·2πt)/(2k−1), sumada sobre k = 1, 2, 3, … Con un armónico la respuesta es un seno solitario. Con tres empiezan a aparecer las esquinas. Con siete ya se lee como cuadrada — salvo por un sobreimpulso del 8,95 % que se aferra a cada borde. Ese exceso no desaparece nunca: Gibbs describió en 1899 que en una discontinuidad las sumas parciales rebasan justo esa constante, sumes los armónicos que sumes. La esquina es el precio de representar lo 'instantáneo' en una base de ondas suaves.",
     },
     {
       pretitle: "Paso tres · Dominio del tiempo ↔ dominio de la frecuencia",
@@ -252,7 +304,7 @@ const es: RichStory = {
     {
       pretitle: "Paso seis · Impacto cultural",
       title: "Cada cámara, cada micrófono, cada paquete Wi-Fi",
-      body: "Casi toda señal que hoy almacenamos, transmitimos o procesamos pasa por una transformada de Fourier. La cámara de tu teléfono aplica una transformada coseno discreta a cada bloque 8×8 antes de escribir el JPEG. El driver del micrófono hace mil FFT cortas por segundo sobre tu voz. El chip Wi-Fi usa OFDM, parte cada paquete en miles de portadoras y recupera los bits con una FFT inversa por símbolo. Las máquinas de RM recogen literalmente muestras en el espacio de frecuencias — el espacio k — y aplican una transformada inversa para fabricar tu imagen. Un teorema, de tres siglos, sostiene el mundo moderno.",
+      body: "Casi toda señal que hoy almacenamos, transmitimos o procesamos pasa por una transformada de Fourier. La cámara de tu teléfono aplica una transformada coseno discreta a cada bloque 8×8 antes de escribir el JPEG. El driver del micrófono hace mil FFT cortas por segundo sobre tu voz. El chip Wi-Fi usa OFDM, parte cada paquete en miles de portadoras y recupera los bits con una FFT inversa por símbolo. Las máquinas de RM recogen literalmente muestras en el espacio de frecuencias — el espacio k — y aplican una transformada inversa para fabricar tu imagen. Un teorema, de dos siglos, sostiene el mundo moderno.",
     },
   ],
   closingTitle: "Abre el Explorador",
@@ -276,6 +328,25 @@ const es: RichStory = {
     ],
     duality: { time: "Dominio del tiempo", freq: "Dominio de la frecuencia" },
     fftRow: { naive: "N² · DFT ingenua", fft: "N log N · FFT", speedup: "aceleración" },
+    seriesLabel: "Serie de Fourier",
+    seriesNote:
+      "Cada k es un eje independiente. Las amplitudes aₖ son las coordenadas de la señal en esa base; las fases φₖ desplazan cada eje a lo largo de sí mismo.",
+    gibbsNote:
+      "La constante es exacta e independiente de N. La nitidez en el tiempo cuesta dispersión en la frecuencia, y la próxima sección convierte ese compromiso en una ley.",
+    timeNote: "Lo que registra un osciloscopio o un micrófono.",
+    freqNote: "Lo que ve un analizador de espectro o tu oído interno.",
+    fftNote:
+      "La FFT no es una matemática más rápida, es la misma DFT calculada reutilizando cada producto parcial en vez de rehacerlo. El exponente baja de 2 a 1, y el procesamiento de señal en tiempo real se abre.",
+    uncertaintyMultiply: "Multiplica por ℏ. Lee la misma desigualdad.",
+    uncertaintyNote:
+      "La gaussiana minimiza ambas. Posición y momento son duales de Fourier, y la cota cuántica es el mismo teorema en otro eje.",
+    waveLabels: { square: "Cuadrada", sawtooth: "Diente de sierra", triangle: "Triangular" },
+    builderLegend:
+      "Blanco: la diana. Violeta: cada armónico individual. Ámbar: su suma. Sube N y las esquinas se afilan, pero el sobreimpulso en las discontinuidades nunca desaparece del todo (fenómeno de Gibbs, ≈ 8,95 %).",
+    spectrumExplain:
+      "Arriba: la forma de onda que acabas de sintetizar. Abajo: la misma señal en el espacio de frecuencias, una barra por armónico. Ambas imágenes llevan la misma información.",
+    hearIt: "▶ Escuchar",
+    stopIt: "■ Parar",
   },
 };
 
@@ -312,7 +383,7 @@ const fr: RichStory = {
     {
       pretitle: "Étape deux · Construire une onde carrée",
       title: "Les coins nets sont le plus dur",
-      body: "L'onde carrée est l'épreuve la plus propre du principe : +1 et −1 purs, avec des sauts infiniment nets. Sa série de Fourier est 4/π · Σ sin((2k−1)·2πt)/(2k−1), sommée sur k = 1, 2, 3, … À un harmonique, la réponse est un seul sinus qui roule. À trois, les coins commencent à apparaître. À sept, on lit déjà du carré — sauf un dépassement obstiné de 8,95 % à chaque bord. Ce dépassement ne disparaît jamais : Gibbs a prouvé en 1899 qu'en une discontinuité les sommes partielles dépassent exactement de cette constante, peu importe le nombre d'harmoniques. Le coin est le prix de représenter 'l'instant' dans une base d'ondes lisses.",
+      body: "L'onde carrée est l'épreuve la plus propre du principe : +1 et −1 purs, avec des sauts infiniment nets. Sa série de Fourier est 4/π · Σ sin((2k−1)·2πt)/(2k−1), sommée sur k = 1, 2, 3, … À un harmonique, la réponse est un seul sinus qui roule. À trois, les coins commencent à apparaître. À sept, on lit déjà du carré — sauf un dépassement obstiné de 8,95 % à chaque bord. Ce dépassement ne disparaît jamais : Gibbs a décrit en 1899 comment, à une discontinuité, les sommes partielles dépassent exactement de cette constante, peu importe le nombre d'harmoniques. Le coin est le prix de représenter 'l'instant' dans une base d'ondes lisses.",
     },
     {
       pretitle: "Étape trois · Domaine temporel ↔ domaine fréquentiel",
@@ -332,7 +403,7 @@ const fr: RichStory = {
     {
       pretitle: "Étape six · Impact culturel",
       title: "Chaque caméra, chaque micro, chaque paquet Wi-Fi",
-      body: "Presque tout signal que nous stockons, transmettons ou traitons aujourd'hui passe par une transformée de Fourier. La caméra de votre téléphone applique une transformée en cosinus discrète à chaque bloc 8×8 avant d'écrire le JPEG. Le pilote du micro fait mille FFT courtes par seconde sur votre voix. La puce Wi-Fi utilise OFDM, casse chaque paquet en milliers de porteuses, et récupère les bits par une FFT inverse par symbole. Les IRM collectent littéralement des échantillons dans l'espace des fréquences — l'espace k — et appliquent une transformée inverse pour fabriquer votre image. Un théorème, vieux de trois siècles, soutient le monde moderne.",
+      body: "Presque tout signal que nous stockons, transmettons ou traitons aujourd'hui passe par une transformée de Fourier. La caméra de votre téléphone applique une transformée en cosinus discrète à chaque bloc 8×8 avant d'écrire le JPEG. Le pilote du micro fait mille FFT courtes par seconde sur votre voix. La puce Wi-Fi utilise OFDM, casse chaque paquet en milliers de porteuses, et récupère les bits par une FFT inverse par symbole. Les IRM collectent littéralement des échantillons dans l'espace des fréquences — l'espace k — et appliquent une transformée inverse pour fabriquer votre image. Un théorème, vieux de deux siècles, soutient le monde moderne.",
     },
   ],
   closingTitle: "Ouvrir l'Explorateur",
@@ -356,6 +427,25 @@ const fr: RichStory = {
     ],
     duality: { time: "Domaine temporel", freq: "Domaine fréquentiel" },
     fftRow: { naive: "N² · DFT naïve", fft: "N log N · FFT", speedup: "accélération" },
+    seriesLabel: "Série de Fourier",
+    seriesNote:
+      "Chaque k est un axe indépendant. Les amplitudes aₖ sont les coordonnées du signal dans cette base ; les phases φₖ décalent chaque axe le long de lui-même.",
+    gibbsNote:
+      "La constante est exacte et indépendante de N. La netteté dans le temps coûte de l'étalement en fréquence, et la section suivante fait de ce compromis une loi.",
+    timeNote: "Ce qu'enregistrent un oscilloscope ou un microphone.",
+    freqNote: "Ce que voient un analyseur de spectre ou votre oreille interne.",
+    fftNote:
+      "La FFT n'est pas une mathématique plus rapide, c'est la même DFT calculée en réutilisant chaque produit partiel au lieu de le refaire. L'exposant passe de 2 à 1, et le traitement du signal en temps réel s'ouvre.",
+    uncertaintyMultiply: "Multipliez par ℏ. Lisez la même inégalité.",
+    uncertaintyNote:
+      "La gaussienne minimise les deux. Position et impulsion sont des duaux de Fourier, et la borne quantique est le même théorème sur un autre axe.",
+    waveLabels: { square: "Carrée", sawtooth: "Dent de scie", triangle: "Triangle" },
+    builderLegend:
+      "Blanc : la cible. Violet : chaque harmonique individuelle. Ambre : leur somme. Montez N et les coins s'affinent, mais le dépassement aux discontinuités ne disparaît jamais tout à fait (phénomène de Gibbs, ≈ 8,95 %).",
+    spectrumExplain:
+      "En haut : la forme d'onde que vous venez de synthétiser. En bas : le même signal dans l'espace des fréquences, une barre par harmonique. Les deux images portent la même information.",
+    hearIt: "▶ Écouter",
+    stopIt: "■ Arrêter",
   },
 };
 
@@ -392,7 +482,7 @@ const it: RichStory = {
     {
       pretitle: "Passo due · Costruire un'onda quadra",
       title: "Gli spigoli affilati sono la parte più dura",
-      body: "L'onda quadra è la prova più pulita del principio: +1 e −1 puri, con salti infinitamente affilati. La sua serie di Fourier è 4/π · Σ sin((2k−1)·2πt)/(2k−1), sommata su k = 1, 2, 3, … Con un'armonica la risposta è un singolo seno che rotola. Con tre, gli angoli iniziano a comparire. Con sette si legge già come quadra — tranne un ostinato sovrasbalzo dell'8,95 % a ogni bordo. Questo sovrasbalzo non sparisce mai: Gibbs dimostrò nel 1899 che a una discontinuità le somme parziali superano esattamente di questa costante, qualunque numero di armoniche si sommi. L'angolo è il prezzo per rappresentare l'istante in una base di onde lisce.",
+      body: "L'onda quadra è la prova più pulita del principio: +1 e −1 puri, con salti infinitamente affilati. La sua serie di Fourier è 4/π · Σ sin((2k−1)·2πt)/(2k−1), sommata su k = 1, 2, 3, … Con un'armonica la risposta è un singolo seno che rotola. Con tre, gli angoli iniziano a comparire. Con sette si legge già come quadra — tranne un ostinato sovrasbalzo dell'8,95 % a ogni bordo. Questo sovrasbalzo non sparisce mai: Gibbs descrisse nel 1899 come a una discontinuità le somme parziali superino esattamente di questa costante, qualunque numero di armoniche si sommi. L'angolo è il prezzo per rappresentare l'istante in una base di onde lisce.",
     },
     {
       pretitle: "Passo tre · Dominio del tempo ↔ dominio delle frequenze",
@@ -407,12 +497,12 @@ const it: RichStory = {
     {
       pretitle: "Passo cinque · Il principio di indeterminazione",
       title: "Un segnale non può essere affilato in entrambi i mondi",
-      body: "Stringi un segnale in una finestra temporale stretta e la sua trasformata si spalmare necessariamente su molte frequenze — e viceversa. Siano σ_t la dispersione nel tempo e σ_f la dispersione in frequenza. Vale σ_t · σ_f ≥ 1/(4π) (oppure, in convenzione angolare, σ_t · σ_ω ≥ 1/2), e l'uguaglianza è raggiunta solo dalla gaussiana — che, splendidamente, è la propria trasformata di Fourier. Moltiplica entrambi i lati per ℏ e ottieni la disuguaglianza posizione-impulso di Heisenberg: il principio quantistico è la stessa disuguaglianza in un altro abito. Tempo e frequenza sono coordinate duali, e il compromesso fra loro è matematica, non ingegneria.",
+      body: "Stringi un segnale in una finestra temporale stretta e la sua trasformata si spalma necessariamente su molte frequenze — e viceversa. Siano σ_t la dispersione nel tempo e σ_f la dispersione in frequenza. Vale σ_t · σ_f ≥ 1/(4π) (oppure, in convenzione angolare, σ_t · σ_ω ≥ 1/2), e l'uguaglianza è raggiunta solo dalla gaussiana — che, splendidamente, è la propria trasformata di Fourier. Moltiplica entrambi i lati per ℏ e ottieni la disuguaglianza posizione-impulso di Heisenberg: il principio quantistico è la stessa disuguaglianza in un altro abito. Tempo e frequenza sono coordinate duali, e il compromesso fra loro è matematica, non ingegneria.",
     },
     {
       pretitle: "Passo sei · Impatto culturale",
       title: "Ogni fotocamera, ogni microfono, ogni pacchetto Wi-Fi",
-      body: "Quasi ogni segnale che oggi memorizziamo, trasmettiamo o elaboriamo passa per una trasformata di Fourier. La fotocamera del telefono applica una trasformata coseno discreta a ogni blocco 8×8 prima di scrivere il JPEG. Il driver del microfono fa mille FFT brevi al secondo sulla tua voce. Il chip Wi-Fi usa OFDM, spezza ogni pacchetto in migliaia di portanti e recupera i bit con una FFT inversa per simbolo. Le macchine MRI raccolgono letteralmente campioni nello spazio delle frequenze — lo spazio k — e applicano una trasformata inversa per fabbricare la tua immagine. Un teorema, vecchio di tre secoli, tiene insieme il mondo moderno.",
+      body: "Quasi ogni segnale che oggi memorizziamo, trasmettiamo o elaboriamo passa per una trasformata di Fourier. La fotocamera del telefono applica una trasformata coseno discreta a ogni blocco 8×8 prima di scrivere il JPEG. Il driver del microfono fa mille FFT brevi al secondo sulla tua voce. Il chip Wi-Fi usa OFDM, spezza ogni pacchetto in migliaia di portanti e recupera i bit con una FFT inversa per simbolo. Le macchine MRI raccolgono letteralmente campioni nello spazio delle frequenze — lo spazio k — e applicano una trasformata inversa per fabbricare la tua immagine. Un teorema, vecchio di due secoli, tiene insieme il mondo moderno.",
     },
   ],
   closingTitle: "Apri l'Explorer",
@@ -436,6 +526,25 @@ const it: RichStory = {
     ],
     duality: { time: "Dominio del tempo", freq: "Dominio delle frequenze" },
     fftRow: { naive: "N² · DFT ingenua", fft: "N log N · FFT", speedup: "accelerazione" },
+    seriesLabel: "Serie di Fourier",
+    seriesNote:
+      "Ogni k è un asse indipendente. Le ampiezze aₖ sono le coordinate del segnale in quella base; le fasi φₖ traslano ciascun asse lungo se stesso.",
+    gibbsNote:
+      "La costante è esatta e indipendente da N. La nitidezza nel tempo costa dispersione in frequenza, e la sezione seguente trasforma questo compromesso in una legge.",
+    timeNote: "Ciò che registra un oscilloscopio o un microfono.",
+    freqNote: "Ciò che vede un analizzatore di spettro o il tuo orecchio interno.",
+    fftNote:
+      "La FFT non è una matematica più veloce, è la stessa DFT calcolata riusando ogni prodotto parziale invece di rifarlo. L'esponente scende da 2 a 1, e l'elaborazione del segnale in tempo reale si apre.",
+    uncertaintyMultiply: "Moltiplica per ℏ. Leggi la stessa disuguaglianza.",
+    uncertaintyNote:
+      "La gaussiana minimizza entrambe. Posizione e impulso sono duali di Fourier, e il limite quantistico è lo stesso teorema su un altro asse.",
+    waveLabels: { square: "Quadra", sawtooth: "Dente di sega", triangle: "Triangolare" },
+    builderLegend:
+      "Bianco: il bersaglio. Viola: ogni singola armonica. Ambra: la loro somma. Alza N e gli angoli si affilano, ma il sovrasbalzo alle discontinuità non sparisce mai del tutto (fenomeno di Gibbs, ≈ 8,95 %).",
+    spectrumExplain:
+      "Sopra: la forma d'onda che hai appena sintetizzato. Sotto: lo stesso segnale nello spazio delle frequenze, una barra per armonica. Le due immagini portano la stessa informazione.",
+    hearIt: "▶ Ascolta",
+    stopIt: "■ Ferma",
   },
 };
 
@@ -472,7 +581,7 @@ const pt: RichStory = {
     {
       pretitle: "Passo dois · Construir uma onda quadrada",
       title: "Cantos afiados são a parte mais difícil",
-      body: "A onda quadrada é o teste mais limpo do princípio: +1 e −1 puros, com saltos infinitamente afiados. A sua série de Fourier é 4/π · Σ sin((2k−1)·2πt)/(2k−1), somada sobre k = 1, 2, 3, … Com um harmônico a resposta é um único seno rolando. Com três, os cantos começam a aparecer. Com sete já se lê como quadrada — exceto por um teimoso sobressinal de 8,95 % em cada borda. Esse sobressinal nunca desaparece: Gibbs provou em 1899 que numa descontinuidade as somas parciais ultrapassam exatamente essa constante, somando quantos harmônicos se queira. O canto é o preço de representar 'o instante' numa base de ondas suaves.",
+      body: "A onda quadrada é o teste mais limpo do princípio: +1 e −1 puros, com saltos infinitamente afiados. A sua série de Fourier é 4/π · Σ sin((2k−1)·2πt)/(2k−1), somada sobre k = 1, 2, 3, … Com um harmônico a resposta é um único seno rolando. Com três, os cantos começam a aparecer. Com sete já se lê como quadrada — exceto por um teimoso sobressinal de 8,95 % em cada borda. Esse sobressinal nunca desaparece: Gibbs descreveu em 1899 como numa descontinuidade as somas parciais ultrapassam exatamente essa constante, somando quantos harmônicos se queira. O canto é o preço de representar 'o instante' numa base de ondas suaves.",
     },
     {
       pretitle: "Passo três · Domínio do tempo ↔ domínio da frequência",
@@ -492,7 +601,7 @@ const pt: RichStory = {
     {
       pretitle: "Passo seis · Impacto cultural",
       title: "Cada câmera, cada microfone, cada pacote Wi-Fi",
-      body: "Quase todo sinal que hoje armazenamos, transmitimos ou processamos passa por uma transformada de Fourier. A câmera do seu telefone aplica uma transformada cosseno discreta a cada bloco 8×8 antes de gravar o JPEG. O driver do microfone faz mil FFTs curtas por segundo sobre sua voz. O chip Wi-Fi usa OFDM, quebra cada pacote em milhares de portadoras e recupera os bits com uma FFT inversa por símbolo. Aparelhos de RM literalmente coletam amostras no espaço de frequências — o espaço k — e aplicam uma transformada inversa para fabricar a sua imagem. Um teorema, com três séculos, sustenta o mundo moderno.",
+      body: "Quase todo sinal que hoje armazenamos, transmitimos ou processamos passa por uma transformada de Fourier. A câmera do seu telefone aplica uma transformada cosseno discreta a cada bloco 8×8 antes de gravar o JPEG. O driver do microfone faz mil FFTs curtas por segundo sobre sua voz. O chip Wi-Fi usa OFDM, quebra cada pacote em milhares de portadoras e recupera os bits com uma FFT inversa por símbolo. Aparelhos de RM literalmente coletam amostras no espaço de frequências — o espaço k — e aplicam uma transformada inversa para fabricar a sua imagem. Um teorema, com dois séculos, sustenta o mundo moderno.",
     },
   ],
   closingTitle: "Abrir o Explorer",
@@ -516,6 +625,25 @@ const pt: RichStory = {
     ],
     duality: { time: "Domínio do tempo", freq: "Domínio da frequência" },
     fftRow: { naive: "N² · DFT ingênua", fft: "N log N · FFT", speedup: "aceleração" },
+    seriesLabel: "Série de Fourier",
+    seriesNote:
+      "Cada k é um eixo independente. As amplitudes aₖ são as coordenadas do sinal nessa base; as fases φₖ deslocam cada eixo ao longo de si mesmo.",
+    gibbsNote:
+      "A constante é exata e independente de N. A nitidez no tempo custa espalhamento na frequência, e a próxima seção transforma esse compromisso em lei.",
+    timeNote: "O que um osciloscópio ou um microfone registra.",
+    freqNote: "O que um analisador de espectro ou o seu ouvido interno vê.",
+    fftNote:
+      "A FFT não é uma matemática mais rápida, é a mesma DFT calculada reaproveitando cada produto parcial em vez de refazê-lo. O expoente cai de 2 para 1, e o processamento de sinal em tempo real se abre.",
+    uncertaintyMultiply: "Multiplique por ℏ. Leia a mesma desigualdade.",
+    uncertaintyNote:
+      "A gaussiana minimiza ambas. Posição e momento são duais de Fourier, e o limite quântico é o mesmo teorema em outro eixo.",
+    waveLabels: { square: "Quadrada", sawtooth: "Dente de serra", triangle: "Triangular" },
+    builderLegend:
+      "Branco: o alvo. Violeta: cada harmônico individual. Âmbar: a soma deles. Aumente N e os cantos se afiam, mas o sobressinal nas descontinuidades nunca desaparece de todo (fenômeno de Gibbs, ≈ 8,95 %).",
+    spectrumExplain:
+      "Em cima: a forma de onda que você acabou de sintetizar. Embaixo: o mesmo sinal no espaço de frequências, uma barra por harmônico. As duas imagens carregam a mesma informação.",
+    hearIt: "▶ Ouvir",
+    stopIt: "■ Parar",
   },
 };
 
@@ -552,7 +680,7 @@ const sv: RichStory = {
     {
       pretitle: "Steg två · Bygg en fyrkantsvåg",
       title: "Skarpa hörn är det svåraste",
-      body: "Fyrkantsvågen är det renaste testet på principen: rena +1 och −1 med oändligt skarpa hopp. Dess Fourierserie är 4/π · Σ sin((2k−1)·2πt)/(2k−1), summerad över k = 1, 2, 3, … Med en överton är svaret en ensam rullande sinus. Med tre börjar hörnen synas. Med sju kan man läsa fyrkant — utom en envis översläng på 8,95 % vid varje kant. Den övre översvängningen försvinner aldrig: Gibbs bevisade 1899 att vid ett hopp överskjuter partialsummorna alltid exakt denna konstant, hur många övertoner man än lägger till. Hörnet är priset för att representera 'ögonblickligt' i en bas av släta vågor.",
+      body: "Fyrkantsvågen är det renaste testet på principen: rena +1 och −1 med oändligt skarpa hopp. Dess Fourierserie är 4/π · Σ sin((2k−1)·2πt)/(2k−1), summerad över k = 1, 2, 3, … Med en överton är svaret en ensam rullande sinus. Med tre börjar hörnen synas. Med sju kan man läsa fyrkant — utom en envis översläng på 8,95 % vid varje kant. Den övre översvängningen försvinner aldrig: Gibbs beskrev 1899 hur partialsummorna vid ett hopp alltid överskjuter exakt denna konstant, hur många övertoner man än lägger till. Hörnet är priset för att representera 'ögonblickligt' i en bas av släta vågor.",
     },
     {
       pretitle: "Steg tre · Tidsdomän ↔ frekvensdomän",
@@ -572,7 +700,7 @@ const sv: RichStory = {
     {
       pretitle: "Steg sex · Kulturell betydelse",
       title: "Varje kamera, varje mikrofon, varje Wi-Fi-paket",
-      body: "Nästan varje signal vi lagrar, sänder eller bearbetar idag passerar en Fouriertransform på vägen. Kameran i din telefon kör en diskret kosinustransform på varje 8×8-block innan JPEG:n skrivs. Mikrofondrivrutinen gör tusen korta FFT:er per sekund på din röst. Wi-Fi-chippet använder OFDM, bryter varje paket i tusentals bärvågor och får tillbaka bitarna med en invers FFT per symbol. MRI-maskiner samlar bokstavligen prover i frekvensrymden — k-rummet — och tillämpar en invers Fouriertransform för att skapa bilden av dig. Ett teorem, tre sekler gammalt, håller den moderna världen samman.",
+      body: "Nästan varje signal vi lagrar, sänder eller bearbetar idag passerar en Fouriertransform på vägen. Kameran i din telefon kör en diskret kosinustransform på varje 8×8-block innan JPEG:n skrivs. Mikrofondrivrutinen gör tusen korta FFT:er per sekund på din röst. Wi-Fi-chippet använder OFDM, bryter varje paket i tusentals bärvågor och får tillbaka bitarna med en invers FFT per symbol. MRI-maskiner samlar bokstavligen prover i frekvensrymden — k-rummet — och tillämpar en invers Fouriertransform för att skapa bilden av dig. Ett teorem, två sekler gammalt, håller den moderna världen samman.",
     },
   ],
   closingTitle: "Öppna Utforskaren",
@@ -596,6 +724,25 @@ const sv: RichStory = {
     ],
     duality: { time: "Tidsdomän", freq: "Frekvensdomän" },
     fftRow: { naive: "N² · naiv DFT", fft: "N log N · FFT", speedup: "snabbare" },
+    seriesLabel: "Fourierserie",
+    seriesNote:
+      "Varje k är en oberoende axel. Amplituderna aₖ är signalens koordinater i den basen; faserna φₖ förskjuter varje axel längs sig själv.",
+    gibbsNote:
+      "Konstanten är exakt och oberoende av N. Skärpa i tid kostar spridning i frekvens, och nästa avsnitt gör den avvägningen till en lag.",
+    timeNote: "Vad ett oscilloskop eller en mikrofon spelar in.",
+    freqNote: "Vad en spektrumanalysator eller ditt inneröra ser.",
+    fftNote:
+      "FFT är inte snabbare matematik, det är samma DFT beräknad genom att återanvända varje delprodukt i stället för att räkna om den. Exponenten faller från 2 till 1, och realtidssignalbehandling öppnar sig.",
+    uncertaintyMultiply: "Multiplicera med ℏ. Läs samma olikhet.",
+    uncertaintyNote:
+      "Gaussfunktionen minimerar båda. Läge och rörelsemängd är Fourierdualer, och kvantgränsen är samma teorem på en annan axel.",
+    waveLabels: { square: "Fyrkant", sawtooth: "Sågtand", triangle: "Triangel" },
+    builderLegend:
+      "Vitt: målet. Violett: varje enskild överton. Bärnsten: deras summa. Höj N och hörnen skärps, men överslängen vid hoppen försvinner aldrig helt (Gibbs fenomen, ≈ 8,95 %).",
+    spectrumExplain:
+      "Överst: vågformen du just syntetiserade. Nederst: samma signal i frekvensrummet, en stapel per överton. De två bilderna bär samma information.",
+    hearIt: "▶ Lyssna",
+    stopIt: "■ Stopp",
   },
 };
 
@@ -633,7 +780,7 @@ const no: RichStory = {
     {
       pretitle: "Trinn to · Bygg en firkantbølge",
       title: "Skarpe hjørner er det vanskeligste",
-      body: "Firkantbølgen er den reneste testen på prinsippet: ren +1 og −1 med uendelig skarpe hopp. Dens Fourierrekke er 4/π · Σ sin((2k−1)·2πt)/(2k−1), summert over k = 1, 2, 3, … Med én overtone er svaret en enslig rullende sinus. Med tre begynner hjørnene å dukke opp. Med sju kan du lese det som firkant — bortsett fra et seigt oversving på 8,95 % ved hver kant. Det oversvinget forsvinner aldri: Gibbs beviste i 1899 at ved et hopp overskyter delsummene alltid akkurat denne konstanten, uansett hvor mange overtoner du legger til. Hjørnet er prisen for å representere 'øyeblikket' i en base av glatte bølger.",
+      body: "Firkantbølgen er den reneste testen på prinsippet: ren +1 og −1 med uendelig skarpe hopp. Dens Fourierrekke er 4/π · Σ sin((2k−1)·2πt)/(2k−1), summert over k = 1, 2, 3, … Med én overtone er svaret en enslig rullende sinus. Med tre begynner hjørnene å dukke opp. Med sju kan du lese det som firkant — bortsett fra et seigt oversving på 8,95 % ved hver kant. Det oversvinget forsvinner aldri: Gibbs beskrev i 1899 hvordan delsummene ved et hopp alltid overskyter akkurat denne konstanten, uansett hvor mange overtoner du legger til. Hjørnet er prisen for å representere 'øyeblikket' i en base av glatte bølger.",
     },
     {
       pretitle: "Trinn tre · Tidsdomene ↔ frekvensdomene",
@@ -653,7 +800,7 @@ const no: RichStory = {
     {
       pretitle: "Trinn seks · Kulturell innflytelse",
       title: "Hvert kamera, hver mikrofon, hver Wi-Fi-pakke",
-      body: "Nesten hvert signal vi lagrer, sender eller behandler i dag passerer en Fouriertransformasjon på veien. Kameraet i telefonen din kjører en diskret cosinustransform på hvert 8×8-blokk før JPEG-en skrives. Mikrofondriveren gjør tusen korte FFT-er i sekundet på stemmen din. Wi-Fi-brikken bruker OFDM, deler hver pakke i tusenvis av bærebølger og henter bitene tilbake med én invers FFT per symbol. MR-maskiner samler bokstavelig talt prøver i frekvensrommet — k-rommet — og bruker en invers Fouriertransformasjon for å lage bildet av deg. Ett teorem, tre århundrer gammelt, holder den moderne verden sammen.",
+      body: "Nesten hvert signal vi lagrer, sender eller behandler i dag passerer en Fouriertransformasjon på veien. Kameraet i telefonen din kjører en diskret cosinustransform på hvert 8×8-blokk før JPEG-en skrives. Mikrofondriveren gjør tusen korte FFT-er i sekundet på stemmen din. Wi-Fi-brikken bruker OFDM, deler hver pakke i tusenvis av bærebølger og henter bitene tilbake med én invers FFT per symbol. MR-maskiner samler bokstavelig talt prøver i frekvensrommet — k-rommet — og bruker en invers Fouriertransformasjon for å lage bildet av deg. Ett teorem, to århundrer gammelt, holder den moderne verden sammen.",
     },
   ],
   closingTitle: "Åpne Utforskeren",
@@ -677,6 +824,25 @@ const no: RichStory = {
     ],
     duality: { time: "Tidsdomene", freq: "Frekvensdomene" },
     fftRow: { naive: "N² · naiv DFT", fft: "N log N · FFT", speedup: "akselerasjon" },
+    seriesLabel: "Fourierrekke",
+    seriesNote:
+      "Hver k er en uavhengig akse. Amplitudene aₖ er signalets koordinater i den basen; fasene φₖ forskyver hver akse langs seg selv.",
+    gibbsNote:
+      "Konstanten er eksakt og uavhengig av N. Skarphet i tid koster spredning i frekvens, og neste avsnitt gjør den avveiningen til en lov.",
+    timeNote: "Det et oscilloskop eller en mikrofon tar opp.",
+    freqNote: "Det en spektrumanalysator eller ditt indre øre ser.",
+    fftNote:
+      "FFT er ikke raskere matematikk, det er samme DFT beregnet ved å gjenbruke hvert delprodukt i stedet for å regne det på nytt. Eksponenten faller fra 2 til 1, og sanntids signalbehandling åpner seg.",
+    uncertaintyMultiply: "Multipliser med ℏ. Les samme ulikhet.",
+    uncertaintyNote:
+      "Gaussfunksjonen minimerer begge. Posisjon og bevegelsesmengde er Fourierdualer, og kvantegrensen er samme teorem på en annen akse.",
+    waveLabels: { square: "Firkant", sawtooth: "Sagtann", triangle: "Trekant" },
+    builderLegend:
+      "Hvitt: målet. Fiolett: hver enkelt overtone. Rav: summen deres. Øk N og hjørnene skjerpes, men oversvinget ved hoppene forsvinner aldri helt (Gibbs' fenomen, ≈ 8,95 %).",
+    spectrumExplain:
+      "Øverst: bølgeformen du nettopp syntetiserte. Nederst: samme signal i frekvensrommet, én stolpe per overtone. De to bildene bærer samme informasjon.",
+    hearIt: "▶ Hør",
+    stopIt: "■ Stopp",
   },
 };
 
@@ -795,14 +961,13 @@ export default function FourierStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Fourier series
+              {story.labels.seriesLabel}
             </div>
             <div className="math-italic text-2xl leading-tight text-ink-100 md:text-3xl">
               f(t) = Σₖ aₖ sin(kωt + φₖ)
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Each k is one independent axis. The amplitudes aₖ are the coordinates of the signal in
-              that basis; the phases φₖ shift each axis along itself.
+              {story.labels.seriesNote}
             </p>
           </div>
         </Reveal>
@@ -812,7 +977,11 @@ export default function FourierStory() {
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...sec1} accent={ACCENT} />
         <Reveal delay={120}>
-          <FourierHarmonicBuilder caption={story.labels.builderCaption} />
+          <FourierHarmonicBuilder
+            caption={story.labels.builderCaption}
+            waveLabels={story.labels.waveLabels}
+            legend={story.labels.builderLegend}
+          />
         </Reveal>
         <Reveal delay={200}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6 text-center">
@@ -820,11 +989,10 @@ export default function FourierStory() {
               {story.labels.gibbsCaption}
             </div>
             <div className="math-italic text-2xl leading-tight text-ink-100">
-              max overshoot / jump = (2/π) ∫₀^π sinc(x) dx − 1 ≈ 0.08949
+              max overshoot / jump = (1/π) ∫₀^π sinc(x) dx − 1/2 ≈ 0.08949
             </div>
             <p className="mx-auto max-w-xl text-xs leading-relaxed text-ink-300">
-              The constant is exact and independent of N. Sharpness in time costs spread in
-              frequency — the next section makes that trade-off into a law.
+              {story.labels.gibbsNote}
             </p>
           </div>
         </Reveal>
@@ -834,7 +1002,12 @@ export default function FourierStory() {
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...sec2} accent={ACCENT} />
         <Reveal delay={120}>
-          <FourierSpectrumPlay caption={story.labels.spectrumCaption} />
+          <FourierSpectrumPlay
+            caption={story.labels.spectrumCaption}
+            explain={story.labels.spectrumExplain}
+            hearLabel={story.labels.hearIt}
+            stopLabel={story.labels.stopIt}
+          />
         </Reveal>
         <Reveal delay={200}>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -846,7 +1019,7 @@ export default function FourierStory() {
                 {`f(t) =  amplitude
         vs. time`}
               </pre>
-              <p className="text-xs text-ink-300">What an oscilloscope or a microphone records.</p>
+              <p className="text-xs text-ink-300">{story.labels.timeNote}</p>
             </div>
             <div className="hairline space-y-2 rounded-2xl border bg-ink-950/40 p-5">
               <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
@@ -856,9 +1029,7 @@ export default function FourierStory() {
                 {`f̂(ξ) = amplitude
         vs. frequency`}
               </pre>
-              <p className="text-xs text-ink-300">
-                What a spectrum analyser or your inner ear sees.
-              </p>
+              <p className="text-xs text-ink-300">{story.labels.freqNote}</p>
             </div>
           </div>
         </Reveal>
@@ -902,11 +1073,7 @@ export default function FourierStory() {
                 ))}
               </tbody>
             </table>
-            <p className="pt-2 text-xs leading-relaxed text-ink-400">
-              The FFT is not faster mathematics — it is the same DFT, computed by reusing every
-              partial product instead of redoing it. The exponent changes from 2 to 1, and the world
-              of real-time signal processing opens up.
-            </p>
+            <p className="pt-2 text-xs leading-relaxed text-ink-400">{story.labels.fftNote}</p>
           </div>
         </Reveal>
       </section>
@@ -922,15 +1089,12 @@ export default function FourierStory() {
             <div className="math-italic text-3xl leading-tight text-ink-100 md:text-4xl">
               σ_t · σ_ω ≥ ½
             </div>
-            <div className="text-base italic text-ink-300">
-              Multiply by ℏ. Read the same inequality.
-            </div>
+            <div className="text-base italic text-ink-300">{story.labels.uncertaintyMultiply}</div>
             <div className="math-italic text-2xl leading-tight text-signal-teal md:text-3xl">
               σ_x · σ_p ≥ ℏ / 2
             </div>
             <p className="mx-auto max-w-xl pt-2 text-xs leading-relaxed text-ink-300">
-              The Gaussian minimises both. Position and momentum are Fourier duals, and the quantum
-              bound is the same theorem on a different axis.
+              {story.labels.uncertaintyNote}
             </p>
           </div>
         </Reveal>

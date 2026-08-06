@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import type { Locale } from "@/lib/i18n/types";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -20,8 +21,6 @@ type TileSetKey = "A" | "B" | "C";
 
 interface TileSetDef {
   key: TileSetKey;
-  name: string;
-  description: string;
   tiles: Tile[];
 }
 
@@ -51,7 +50,7 @@ const SET_A_TILES: Tile[] = [
   { id: 4, N: 0, E: 1, S: 1, W: 0 },
 ];
 
-// Set B: a 13-tile, 4-colour set designed in the spirit of the Kari–Culik 1996
+// Set B: a 13-tile, 4-colour set designed in the spirit of the Kari-Culik 1996
 // aperiodic record. The matching constraints are tight enough that random
 // search frequently needs to backtrack; the search makes the difficulty visible
 // without claiming this exact list is provably aperiodic.
@@ -85,32 +84,329 @@ function buildSetC(): Tile[] {
 }
 
 const SETS: Record<TileSetKey, TileSetDef> = {
-  A: {
-    key: "A",
-    name: "Set A · periodic, 5 tiles",
-    description: "Two colours, five tiles — every placement easy, tiling is periodic.",
-    tiles: SET_A_TILES,
+  A: { key: "A", tiles: SET_A_TILES },
+  B: { key: "B", tiles: SET_B_TILES },
+  C: { key: "C", tiles: buildSetC() },
+};
+
+// ─── Localized UI strings ─────────────────────────────────────────────────────
+// The explorer has many UI strings, so per repo convention it carries its own
+// RICH_EXPLORER keyed by Locale rather than fattening the shared bundles.
+
+interface ExplorerStrings {
+  sets: Record<TileSetKey, { name: string; description: string }>;
+  searchLabel: string;
+  matchLabel: string;
+  statPlaced: string;
+  statBacktracks: string;
+  statProgress: string;
+  statStatus: string;
+  statusComplete: string;
+  statusStuck: string;
+  statusSearching: string;
+  tileSetLabel: string;
+  tilesUnit: string;
+  gridSizeLabel: string;
+  speedLabel: string;
+  restartLabel: string;
+  paletteLabel: string;
+  edgeColoursLabel: string;
+  canvasAria: string;
+}
+
+const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
+  en: {
+    sets: {
+      A: {
+        name: "Set A · periodic, 5 tiles",
+        description: "Two colours, five tiles. Every placement is easy and the tiling is periodic.",
+      },
+      B: {
+        name: "Set B · aperiodic-style, 13 tiles",
+        description:
+          "Four colours, 13 tiles in the spirit of the Kari-Culik 1996 set. It backtracks visibly.",
+      },
+      C: {
+        name: "Set C · all 2-colour tiles, 16",
+        description: "Every combination of two colours on each edge. It always tiles, periodically.",
+      },
+    },
+    searchLabel: "Tiling search",
+    matchLabel: "↑ ↓ ← → match",
+    statPlaced: "Placed",
+    statBacktracks: "Backtracks",
+    statProgress: "Progress",
+    statStatus: "Status",
+    statusComplete: "complete",
+    statusStuck: "no tiling found",
+    statusSearching: "searching",
+    tileSetLabel: "Tile set",
+    tilesUnit: "tiles",
+    gridSizeLabel: "Grid size",
+    speedLabel: "Speed",
+    restartLabel: "Restart",
+    paletteLabel: "Show the tile palette",
+    edgeColoursLabel: "Edge colours",
+    canvasAria:
+      "Backtracking search filling a grid with Wang tiles whose touching edges match by colour.",
   },
-  B: {
-    key: "B",
-    name: "Set B · aperiodic-style, 13 tiles",
-    description:
-      "Four colours, 13 tiles in the spirit of the Kari–Culik 1996 set. Backtracks visibly.",
-    tiles: SET_B_TILES,
+  de: {
+    sets: {
+      A: {
+        name: "Satz A · periodisch, 5 Kacheln",
+        description:
+          "Zwei Farben, fünf Kacheln. Jede Platzierung ist leicht und die Kachelung ist periodisch.",
+      },
+      B: {
+        name: "Satz B · aperiodisch anmutend, 13 Kacheln",
+        description:
+          "Vier Farben, 13 Kacheln im Geiste des Kari-Culik-Satzes von 1996. Sie backtrackt sichtbar.",
+      },
+      C: {
+        name: "Satz C · alle 2-Farben-Kacheln, 16",
+        description: "Jede Kombination zweier Farben pro Kante. Kachelt immer, periodisch.",
+      },
+    },
+    searchLabel: "Kachelsuche",
+    matchLabel: "↑ ↓ ← → passen",
+    statPlaced: "Gelegt",
+    statBacktracks: "Backtracks",
+    statProgress: "Fortschritt",
+    statStatus: "Status",
+    statusComplete: "fertig",
+    statusStuck: "keine Kachelung gefunden",
+    statusSearching: "sucht",
+    tileSetLabel: "Kachelsatz",
+    tilesUnit: "Kacheln",
+    gridSizeLabel: "Gittergröße",
+    speedLabel: "Geschwindigkeit",
+    restartLabel: "Neustart",
+    paletteLabel: "Kachelpalette anzeigen",
+    edgeColoursLabel: "Kantenfarben",
+    canvasAria:
+      "Backtracking-Suche, die ein Gitter mit Wang-Kacheln füllt, deren berührende Kanten farblich passen.",
   },
-  C: {
-    key: "C",
-    name: "Set C · all 2-colour tiles, 16",
-    description: "Every combination of two colours on each edge. Always tiles, periodically.",
-    tiles: buildSetC(),
+  es: {
+    sets: {
+      A: {
+        name: "Conjunto A · periódico, 5 teselas",
+        description:
+          "Dos colores, cinco teselas. Cada colocación es fácil y la teselación es periódica.",
+      },
+      B: {
+        name: "Conjunto B · estilo aperiódico, 13 teselas",
+        description:
+          "Cuatro colores, 13 teselas al estilo del conjunto de Kari-Culik de 1996. Retrocede de forma visible.",
+      },
+      C: {
+        name: "Conjunto C · todas las teselas de 2 colores, 16",
+        description:
+          "Cada combinación de dos colores en cada arista. Siempre tesela, de forma periódica.",
+      },
+    },
+    searchLabel: "Búsqueda de teselación",
+    matchLabel: "↑ ↓ ← → encajan",
+    statPlaced: "Colocadas",
+    statBacktracks: "Retrocesos",
+    statProgress: "Progreso",
+    statStatus: "Estado",
+    statusComplete: "completo",
+    statusStuck: "sin teselación",
+    statusSearching: "buscando",
+    tileSetLabel: "Conjunto de teselas",
+    tilesUnit: "teselas",
+    gridSizeLabel: "Tamaño de la malla",
+    speedLabel: "Velocidad",
+    restartLabel: "Reiniciar",
+    paletteLabel: "Mostrar la paleta de teselas",
+    edgeColoursLabel: "Colores de arista",
+    canvasAria:
+      "Búsqueda con retroceso que llena una malla con teselas de Wang cuyas aristas en contacto coinciden en color.",
+  },
+  fr: {
+    sets: {
+      A: {
+        name: "Jeu A · périodique, 5 tuiles",
+        description: "Deux couleurs, cinq tuiles. Chaque placement est facile et le pavage est périodique.",
+      },
+      B: {
+        name: "Jeu B · style apériodique, 13 tuiles",
+        description:
+          "Quatre couleurs, 13 tuiles dans l'esprit du jeu de Kari-Culik de 1996. Il revient visiblement en arrière.",
+      },
+      C: {
+        name: "Jeu C · toutes les tuiles à 2 couleurs, 16",
+        description:
+          "Toutes les combinaisons de deux couleurs par bord. Il pave toujours, de façon périodique.",
+      },
+    },
+    searchLabel: "Recherche de pavage",
+    matchLabel: "↑ ↓ ← → correspondent",
+    statPlaced: "Placées",
+    statBacktracks: "Retours",
+    statProgress: "Progression",
+    statStatus: "État",
+    statusComplete: "terminé",
+    statusStuck: "aucun pavage trouvé",
+    statusSearching: "recherche",
+    tileSetLabel: "Jeu de tuiles",
+    tilesUnit: "tuiles",
+    gridSizeLabel: "Taille de la grille",
+    speedLabel: "Vitesse",
+    restartLabel: "Redémarrer",
+    paletteLabel: "Afficher la palette de tuiles",
+    edgeColoursLabel: "Couleurs de bord",
+    canvasAria:
+      "Recherche avec retour arrière remplissant une grille de tuiles de Wang dont les bords en contact correspondent par la couleur.",
+  },
+  it: {
+    sets: {
+      A: {
+        name: "Insieme A · periodico, 5 tasselli",
+        description: "Due colori, cinque tasselli. Ogni posa è facile e il rivestimento è periodico.",
+      },
+      B: {
+        name: "Insieme B · stile aperiodico, 13 tasselli",
+        description:
+          "Quattro colori, 13 tasselli nello spirito dell'insieme di Kari-Culik del 1996. Fa backtracking in modo visibile.",
+      },
+      C: {
+        name: "Insieme C · tutti i tasselli a 2 colori, 16",
+        description: "Ogni combinazione di due colori per bordo. Riveste sempre, in modo periodico.",
+      },
+    },
+    searchLabel: "Ricerca del rivestimento",
+    matchLabel: "↑ ↓ ← → combaciano",
+    statPlaced: "Posati",
+    statBacktracks: "Backtrack",
+    statProgress: "Avanzamento",
+    statStatus: "Stato",
+    statusComplete: "completo",
+    statusStuck: "nessun rivestimento",
+    statusSearching: "in ricerca",
+    tileSetLabel: "Insieme di tasselli",
+    tilesUnit: "tasselli",
+    gridSizeLabel: "Dimensione griglia",
+    speedLabel: "Velocità",
+    restartLabel: "Riavvia",
+    paletteLabel: "Mostra la tavolozza dei tasselli",
+    edgeColoursLabel: "Colori di bordo",
+    canvasAria:
+      "Ricerca con backtracking che riempie una griglia con tasselli di Wang i cui bordi a contatto combaciano per colore.",
+  },
+  pt: {
+    sets: {
+      A: {
+        name: "Conjunto A · periódico, 5 tijolos",
+        description: "Duas cores, cinco tijolos. Cada colocação é fácil e o ladrilhamento é periódico.",
+      },
+      B: {
+        name: "Conjunto B · estilo aperiódico, 13 tijolos",
+        description:
+          "Quatro cores, 13 tijolos ao estilo do conjunto de Kari-Culik de 1996. Recua de forma visível.",
+      },
+      C: {
+        name: "Conjunto C · todos os tijolos de 2 cores, 16",
+        description: "Cada combinação de duas cores por borda. Ladrilha sempre, de forma periódica.",
+      },
+    },
+    searchLabel: "Procura de ladrilhamento",
+    matchLabel: "↑ ↓ ← → combinam",
+    statPlaced: "Colocados",
+    statBacktracks: "Retrocessos",
+    statProgress: "Progresso",
+    statStatus: "Estado",
+    statusComplete: "completo",
+    statusStuck: "sem ladrilhamento",
+    statusSearching: "a procurar",
+    tileSetLabel: "Conjunto de tijolos",
+    tilesUnit: "tijolos",
+    gridSizeLabel: "Tamanho da grelha",
+    speedLabel: "Velocidade",
+    restartLabel: "Reiniciar",
+    paletteLabel: "Mostrar a paleta de tijolos",
+    edgeColoursLabel: "Cores de borda",
+    canvasAria:
+      "Procura com retrocesso a encher uma grelha com tijolos de Wang cujas bordas em contacto combinam na cor.",
+  },
+  sv: {
+    sets: {
+      A: {
+        name: "Uppsättning A · periodisk, 5 plattor",
+        description: "Två färger, fem plattor. Varje placering är enkel och täckningen är periodisk.",
+      },
+      B: {
+        name: "Uppsättning B · aperiodiskt anlagd, 13 plattor",
+        description:
+          "Fyra färger, 13 plattor i andan av Kari-Culik-uppsättningen från 1996. Den backar synligt.",
+      },
+      C: {
+        name: "Uppsättning C · alla 2-färgsplattor, 16",
+        description: "Varje kombination av två färger per kant. Täcker alltid, periodiskt.",
+      },
+    },
+    searchLabel: "Täckningssökning",
+    matchLabel: "↑ ↓ ← → matchar",
+    statPlaced: "Lagda",
+    statBacktracks: "Backningar",
+    statProgress: "Framsteg",
+    statStatus: "Status",
+    statusComplete: "klar",
+    statusStuck: "ingen täckning",
+    statusSearching: "söker",
+    tileSetLabel: "Plattuppsättning",
+    tilesUnit: "plattor",
+    gridSizeLabel: "Rutnätsstorlek",
+    speedLabel: "Hastighet",
+    restartLabel: "Starta om",
+    paletteLabel: "Visa plattpaletten",
+    edgeColoursLabel: "Kantfärger",
+    canvasAria:
+      "Backtracking-sökning som fyller ett rutnät med Wang-plattor vars kanter som möts matchar i färg.",
+  },
+  no: {
+    sets: {
+      A: {
+        name: "Sett A · periodisk, 5 fliser",
+        description: "To farger, fem fliser. Hver plassering er lett og dekkingen er periodisk.",
+      },
+      B: {
+        name: "Sett B · aperiodisk stil, 13 fliser",
+        description:
+          "Fire farger, 13 fliser i ånden til Kari-Culik-settet fra 1996. Det rygger synlig.",
+      },
+      C: {
+        name: "Sett C · alle 2-fargersfliser, 16",
+        description: "Hver kombinasjon av to farger per kant. Dekker alltid, periodisk.",
+      },
+    },
+    searchLabel: "Dekkingssøk",
+    matchLabel: "↑ ↓ ← → matcher",
+    statPlaced: "Lagt",
+    statBacktracks: "Tilbakespor",
+    statProgress: "Framgang",
+    statStatus: "Status",
+    statusComplete: "ferdig",
+    statusStuck: "ingen dekking",
+    statusSearching: "søker",
+    tileSetLabel: "Flisesett",
+    tilesUnit: "fliser",
+    gridSizeLabel: "Rutenettstørrelse",
+    speedLabel: "Hastighet",
+    restartLabel: "Start på nytt",
+    paletteLabel: "Vis flispaletten",
+    edgeColoursLabel: "Kantfarger",
+    canvasAria:
+      "Backtracking-søk som fyller et rutenett med Wang-fliser der kantene som møtes matcher i farge.",
   },
 };
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function WangExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.wang;
+  const ex = RICH_EXPLORER[locale];
   const dpr = useDpr();
 
   const [setKey, setSetKey] = useState<TileSetKey>("A");
@@ -122,6 +418,18 @@ export default function WangExplorer() {
   const [backtracks, setBacktracks] = useState<number>(0);
   const [done, setDone] = useState<boolean>(false);
   const [stuck, setStuck] = useState<boolean>(false);
+  // Honour prefers-reduced-motion: solve synchronously and draw once instead
+  // of animating placement by placement (repo convention for canvases).
+  const [reduceMotion, setReduceMotion] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   // Stateful refs for the animation loop.
@@ -144,7 +452,7 @@ export default function WangExplorer() {
     return g;
   }, []);
 
-  // Helper: shuffle in place (Fisher–Yates).
+  // Helper: shuffle in place (Fisher-Yates).
   const shuffle = useCallback(<T,>(arr: T[]): T[] => {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -288,20 +596,42 @@ export default function WangExplorer() {
     return true;
   }, [activeSet, gridSize, compatibleTileIndices, shuffle]);
 
-  // Reset state when set / size / restart changes.
+  // Reset state when set / size / restart / motion preference changes.
   useEffect(() => {
     gridRef.current = blankGrid(gridSize);
     stackRef.current = [];
-    setPlacedCount(0);
     setBacktracks(0);
     setDone(false);
     setStuck(false);
     lastStepTimeRef.current = 0;
-    draw(0, 0);
-  }, [setKey, gridSize, restartTick, blankGrid, draw]);
 
-  // RAF loop.
+    if (reduceMotion) {
+      // Run the whole backtracking search in one synchronous pass and draw the
+      // finished patch once, so the canvas never animates for reduced-motion users.
+      const guardMax = gridSize * gridSize * activeSet.tiles.length * 50;
+      let working = true;
+      let guard = 0;
+      while (working && guard < guardMax) {
+        working = step();
+        guard++;
+      }
+      const stack = stackRef.current;
+      setPlacedCount(stack.length);
+      if (stack.length === gridSize * gridSize) setDone(true);
+      else setStuck(true);
+      draw(-1, -1); // -1 cursor: no highlight in the static render
+      return;
+    }
+
+    setPlacedCount(0);
+    draw(0, 0);
+  }, [setKey, gridSize, restartTick, reduceMotion, blankGrid, draw, step, activeSet]);
+
+  // RAF loop. Skipped entirely under reduced motion (solved synchronously above)
+  // and torn down once the search has finished or got stuck, so it stops
+  // scheduling frames instead of spinning forever.
   useEffect(() => {
+    if (reduceMotion || done || stuck) return;
     let cancelled = false;
     const loop = (t: number) => {
       if (cancelled) return;
@@ -344,7 +674,7 @@ export default function WangExplorer() {
       cancelled = true;
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
-  }, [step, speed, draw, gridSize, done, stuck]);
+  }, [step, speed, draw, gridSize, done, stuck, reduceMotion]);
 
   // Re-render when the canvas resizes.
   useEffect(() => {
@@ -369,30 +699,35 @@ export default function WangExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              Tiling search · {activeSet.name}
+              {ex.searchLabel} · {ex.sets[setKey].name}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
-              ↑ ↓ ← → match
+              {ex.matchLabel}
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={canvasRef} className="block h-full w-full" />
+            <canvas
+              ref={canvasRef}
+              className="block h-full w-full"
+              role="img"
+              aria-label={ex.canvasAria}
+            />
           </div>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             <Stat
-              label="Placed"
+              label={ex.statPlaced}
               value={`${placedCount} / ${totalCells}`}
               accent="text-signal-violet"
             />
-            <Stat label="Backtracks" value={String(backtracks)} accent="text-signal-rose" />
+            <Stat label={ex.statBacktracks} value={String(backtracks)} accent="text-signal-rose" />
             <Stat
-              label="Progress"
+              label={ex.statProgress}
               value={`${progressPct.toFixed(1)}%`}
               accent="text-signal-amber"
             />
             <Stat
-              label="Status"
-              value={done ? "complete" : stuck ? "no tiling found" : "searching"}
+              label={ex.statStatus}
+              value={done ? ex.statusComplete : stuck ? ex.statusStuck : ex.statusSearching}
               accent={done ? "text-signal-cyan" : stuck ? "text-signal-rose" : "text-ink-200"}
             />
           </div>
@@ -409,7 +744,7 @@ export default function WangExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Tile set
+              {ex.tileSetLabel}
             </div>
             <div className="grid grid-cols-3 gap-2">
               {(["A", "B", "C"] as TileSetKey[]).map((k) => (
@@ -424,18 +759,18 @@ export default function WangExplorer() {
                 >
                   <div className="font-mono text-xs">Set {k}</div>
                   <div className="mt-0.5 font-mono text-[9px] text-ink-400">
-                    {SETS[k].tiles.length} tiles
+                    {SETS[k].tiles.length} {ex.tilesUnit}
                   </div>
                 </button>
               ))}
             </div>
-            <p className="text-xs leading-relaxed text-ink-300">{activeSet.description}</p>
+            <p className="text-xs leading-relaxed text-ink-300">{ex.sets[setKey].description}</p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="flex items-center justify-between">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Grid size
+                {ex.gridSizeLabel}
               </div>
               <div className="font-mono text-xs text-signal-amber">
                 {gridSize} × {gridSize}
@@ -448,6 +783,7 @@ export default function WangExplorer() {
               max={24}
               step={1}
               onChange={(e) => setGridSize(parseInt(e.target.value))}
+              aria-label={ex.gridSizeLabel}
               className="w-full accent-signal-amber"
             />
           </div>
@@ -455,7 +791,7 @@ export default function WangExplorer() {
           <div className="hairline space-y-3 border-b p-5">
             <div className="flex items-center justify-between">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Speed
+                {ex.speedLabel}
               </div>
               <div className="font-mono text-xs text-signal-amber">{speed} / s</div>
             </div>
@@ -466,6 +802,7 @@ export default function WangExplorer() {
               max={400}
               step={1}
               onChange={(e) => setSpeed(parseInt(e.target.value))}
+              aria-label={ex.speedLabel}
               className="w-full accent-signal-amber"
             />
           </div>
@@ -475,13 +812,13 @@ export default function WangExplorer() {
               onClick={() => setRestartTick((n) => n + 1)}
               className="w-full rounded-md border border-signal-violet/60 bg-signal-violet/10 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet transition-colors hover:bg-signal-violet/20"
             >
-              Restart
+              {ex.restartLabel}
             </button>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Show the tile palette
+              {ex.paletteLabel}
             </div>
             <div className="grid grid-cols-4 gap-2">
               {activeSet.tiles.map((t) => (
@@ -495,7 +832,7 @@ export default function WangExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Edge colours
+              {ex.edgeColoursLabel}
             </div>
             <div className="grid grid-cols-2 gap-2">
               {paletteEntries.map((p, i) => (

@@ -78,6 +78,17 @@ type RichStory = {
   aperiodicHint: string;
   aperiodicSetLabel: string;
   aperiodicRandomize: string;
+  // Labels that used to be hardcoded English inside the JSX.
+  validPatchLabel: string;
+  bergerBoxBody: string;
+  recordCaption: string;
+  recordYear: string;
+  recordAuthor: string;
+  recordTiles: string;
+  recordWang: string;
+  recordBerger: string;
+  recordJeandel: string;
+  monotileBody: string;
 };
 
 const en: RichStory = {
@@ -102,7 +113,7 @@ const en: RichStory = {
       {
         label: "02",
         title: "A concrete example",
-        body: "Three tiles, four edge colours. The bottom row is two copies of tile A; the top row is two copies of tile B. A's east edge matches A's west; B's east matches B's west; and A's north matches B's south. One small patch — and you have already discovered that some tile sets click together and others can't.",
+        body: "Three tiles, two edge colours. The bottom row is two copies of tile A; the top row is two copies of tile B. A's east edge matches A's west; B's east matches B's west; and A's north matches B's south. One small patch, and you have already discovered that some tile sets click together and others can't.",
       },
       {
         label: "03",
@@ -111,7 +122,7 @@ const en: RichStory = {
       },
     ],
     tryIt:
-      "Below: place tiles yourself so every shared edge matches, then watch an 11- or 13-tile aperiodic set fill a region.",
+      "Below: place tiles yourself so every shared edge matches, then watch a backtracking search fill a region with a demo set built in the spirit of the Culik and Jeandel-Rao records.",
   },
   sections: [
     {
@@ -137,7 +148,7 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · Quasicrystals",
       title: "Penrose, Shechtman, and patterns that refuse to repeat",
-      body: "In 1974 Roger Penrose published an aperiodic tiling using just two rhombi — a kinder, more geometric cousin of Berger's monsters. Ten years later, in 1984, Dan Shechtman observed sharp diffraction patterns with five-fold symmetry in a rapidly cooled aluminium-manganese alloy — physically forbidden for any periodic crystal. The structure he had found was a quasicrystal: matter arranged in an aperiodic pattern. Wang tiles had been the conceptual ancestor of both. A combinatorial game about coloured edges turned out to describe a phase of matter that won Shechtman the 2011 Nobel Prize in Chemistry.",
+      body: "In 1974 Roger Penrose published his first aperiodic tiling, a set of six tiles, which he soon refined down to just two rhombi, a kinder, more geometric cousin of Berger's monsters. In 1982 Dan Shechtman observed sharp diffraction patterns with five-fold symmetry in a rapidly cooled aluminium-manganese alloy (he published the result in 1984), something physically forbidden for any periodic crystal. The structure he had found was a quasicrystal: matter arranged in an aperiodic pattern. Wang tiles had been the conceptual ancestor of both. A combinatorial game about coloured edges turned out to describe a phase of matter that won Shechtman the 2011 Nobel Prize in Chemistry.",
     },
     {
       pretitle: "Section 06 · The aperiodic monotile",
@@ -147,7 +158,7 @@ const en: RichStory = {
   ],
   closingTitle: "Place a tile. The plane decides.",
   closingBody:
-    "The Explorer lets you switch between an explicitly periodic set and the aperiodic ones, watch the algorithm backtrack live when it paints itself into a corner, and zoom into any region of the growing patch. Everything you just read is one click away.",
+    "The Explorer lets you switch between an explicitly periodic set and aperiodic-style ones, and watch the algorithm backtrack live when it paints itself into a corner. Everything you just read is one click away.",
   ctaLabel: "→ Open the Explorer",
   tilingCaption: "Interactive · place tiles, edges must match",
   tilingPalette: "Palette · 8 tiles",
@@ -161,7 +172,19 @@ const en: RichStory = {
   aperiodicSetLabel: "Tile set",
   aperiodicRandomize: "New seed",
   aperiodicHint:
-    "A randomised backtracking search fills the canvas, cell by cell, with tiles drawn from the chosen set. Whichever set you pick, the patch never settles into a small repeating block — that is what aperiodic means.",
+    "A randomised backtracking search fills the canvas, cell by cell, with tiles from the chosen set. These are illustrative demo sets in the spirit of the Culik and Jeandel-Rao records, not the exact published tables, so read the growing patch as a feel for how edge-matching search behaves rather than a proof of aperiodicity.",
+  validPatchLabel: "valid 2×2",
+  bergerBoxBody:
+    "No algorithm decides, in general, whether a finite Wang tile set tiles the plane. The proof reduces the halting problem to a tiling question.",
+  recordCaption: "Shrinking the aperiodic record",
+  recordYear: "Year",
+  recordAuthor: "Author",
+  recordTiles: "Tiles",
+  recordWang: "Hao Wang: conjecture, no such set exists",
+  recordBerger: "Robert Berger: first aperiodic set",
+  recordJeandel: "Jeandel & Rao: proven minimum",
+  monotileBody:
+    "The «hat» (March 2023) tiles only aperiodically, using reflections. The «spectre» (May 2023) removes even that requirement.",
 };
 
 const de: RichStory = {
@@ -186,7 +209,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Drei Kacheln, vier Kantenfarben. Untere Reihe: zwei Kopien von Kachel A. Obere Reihe: zwei Kopien von Kachel B. A.Ost passt zu A.West, B.Ost zu B.West, und A.Nord passt zu B.Süd. Ein kleiner Ausschnitt — und schon hast du entdeckt, dass manche Kachelsätze ineinandergreifen und andere nicht.",
+        body: "Drei Kacheln, zwei Kantenfarben. Untere Reihe: zwei Kopien von Kachel A. Obere Reihe: zwei Kopien von Kachel B. A.Ost passt zu A.West, B.Ost zu B.West, und A.Nord passt zu B.Süd. Ein kleiner Ausschnitt, und schon hast du entdeckt, dass manche Kachelsätze ineinandergreifen und andere nicht.",
       },
       {
         label: "03",
@@ -195,7 +218,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: leg selbst Kacheln so, dass jede gemeinsame Kante passt, dann sieh einem 11- oder 13-Kacheln-Satz beim Füllen einer Fläche zu.",
+      "Unten: leg selbst Kacheln so, dass jede gemeinsame Kante passt, dann sieh einer Backtracking-Suche zu, wie sie eine Fläche mit einem Demosatz im Geiste der Rekorde von Culik und Jeandel-Rao füllt.",
   },
   sections: [
     {
@@ -221,7 +244,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Quasikristalle",
       title: "Penrose, Shechtman und Muster, die sich weigern zu wiederholen",
-      body: "1974 veröffentlichte Roger Penrose eine aperiodische Kachelung mit nur zwei Rauten — ein freundlicherer, geometrischerer Cousin von Bergers Monstern. Zehn Jahre später, 1984, beobachtete Dan Shechtman in einer schnell abgekühlten Aluminium-Mangan-Legierung scharfe Beugungsmuster mit fünfzähliger Symmetrie — für jeden periodischen Kristall physikalisch verboten. Die Struktur, die er gefunden hatte, war ein Quasikristall: Materie in einem aperiodischen Muster angeordnet. Wang-Kacheln waren der gedankliche Ahn von beidem. Ein kombinatorisches Spiel über gefärbte Kanten beschrieb plötzlich eine Phase der Materie, für die Shechtman 2011 den Nobelpreis für Chemie erhielt.",
+      body: "1974 veröffentlichte Roger Penrose seine erste aperiodische Kachelung, einen Satz aus sechs Kacheln, den er bald auf nur zwei Rauten verkleinerte, einen freundlicheren, geometrischeren Cousin von Bergers Monstern. 1982 beobachtete Dan Shechtman in einer schnell abgekühlten Aluminium-Mangan-Legierung scharfe Beugungsmuster mit fünfzähliger Symmetrie (veröffentlicht 1984), für jeden periodischen Kristall physikalisch verboten. Die Struktur, die er gefunden hatte, war ein Quasikristall: Materie in einem aperiodischen Muster angeordnet. Wang-Kacheln waren der gedankliche Ahn von beidem. Ein kombinatorisches Spiel über gefärbte Kanten beschrieb plötzlich eine Phase der Materie, für die Shechtman 2011 den Nobelpreis für Chemie erhielt.",
     },
     {
       pretitle: "Abschnitt 06 · Die aperiodische Monokachel",
@@ -231,7 +254,7 @@ const de: RichStory = {
   ],
   closingTitle: "Leg eine Kachel. Die Ebene entscheidet.",
   closingBody:
-    "Der Explorer lässt dich zwischen einem explizit periodischen und den aperiodischen Sätzen wechseln, dem Algorithmus live beim Backtracking zusehen, wenn er sich verläuft, und in jede Region der wachsenden Fläche zoomen. Alles, was du gerade gelesen hast, ist einen Klick entfernt.",
+    "Der Explorer lässt dich zwischen einem explizit periodischen und aperiodisch anmutenden Sätzen wechseln und dem Algorithmus live beim Backtracking zusehen, wenn er sich verläuft. Alles, was du gerade gelesen hast, ist einen Klick entfernt.",
   ctaLabel: "→ Explorer öffnen",
   tilingCaption: "Interaktiv · Kacheln legen, Kanten müssen passen",
   tilingPalette: "Palette · 8 Kacheln",
@@ -245,7 +268,19 @@ const de: RichStory = {
   aperiodicSetLabel: "Kachelsatz",
   aperiodicRandomize: "Neuer Seed",
   aperiodicHint:
-    "Eine randomisierte Backtracking-Suche füllt die Leinwand Zelle für Zelle mit Kacheln aus dem gewählten Satz. Egal welchen Satz du wählst, die Fläche fällt nie in einen kleinen sich wiederholenden Block — genau das heißt aperiodisch.",
+    "Eine randomisierte Backtracking-Suche füllt die Leinwand Zelle für Zelle mit Kacheln aus dem gewählten Satz. Das sind illustrative Demosätze im Geiste der Rekorde von Culik und Jeandel-Rao, nicht die tatsächlich veröffentlichten Tabellen. Lies die wachsende Fläche also als Gefühl dafür, wie eine kantenabgleichende Suche arbeitet, nicht als Beweis für Aperiodizität.",
+  validPatchLabel: "gültiges 2×2",
+  bergerBoxBody:
+    "Kein Algorithmus entscheidet allgemein, ob ein endlicher Wang-Kachelsatz die Ebene kachelt. Der Beweis führt das Halteproblem auf eine Kachelungsfrage zurück.",
+  recordCaption: "Der aperiodische Rekord schrumpft",
+  recordYear: "Jahr",
+  recordAuthor: "Autor:in",
+  recordTiles: "Kacheln",
+  recordWang: "Hao Wang: Vermutung, kein solcher Satz existiert",
+  recordBerger: "Robert Berger: erster aperiodischer Satz",
+  recordJeandel: "Jeandel & Rao: bewiesenes Minimum",
+  monotileBody:
+    "Der «Hut» (März 2023) kachelt nur aperiodisch, mit Spiegelungen. Der «Spectre» (Mai 2023) macht selbst das überflüssig.",
 };
 
 const es: RichStory = {
@@ -270,7 +305,7 @@ const es: RichStory = {
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: "Tres teselas, cuatro colores de arista. Fila de abajo: dos copias de la tesela A. Fila de arriba: dos copias de la tesela B. A.este encaja con A.oeste, B.este con B.oeste, y A.norte encaja con B.sur. Un pequeño parche — y ya descubriste que hay conjuntos que encajan y otros que no.",
+        body: "Tres teselas, dos colores de arista. Fila de abajo: dos copias de la tesela A. Fila de arriba: dos copias de la tesela B. A.este encaja con A.oeste, B.este con B.oeste, y A.norte encaja con B.sur. Un pequeño parche, y ya descubriste que hay conjuntos que encajan y otros que no.",
       },
       {
         label: "03",
@@ -279,7 +314,7 @@ const es: RichStory = {
       },
     ],
     tryIt:
-      "Abajo: coloca tú mismo las teselas para que toda arista compartida encaje, y luego mira a un conjunto de 11 o 13 teselas aperiódicas llenar una región.",
+      "Abajo: coloca tú mismo las teselas para que toda arista compartida encaje, y luego mira una búsqueda con retroceso llenar una región con un conjunto de muestra al estilo de los récords de Culik y Jeandel-Rao.",
   },
   sections: [
     {
@@ -305,7 +340,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · Cuasicristales",
       title: "Penrose, Shechtman y patrones que se niegan a repetirse",
-      body: "En 1974 Roger Penrose publicó una teselación aperiódica con apenas dos rombos — un primo más amable y geométrico de los monstruos de Berger. Diez años después, en 1984, Dan Shechtman observó patrones de difracción nítidos con simetría quíntuple en una aleación de aluminio-manganeso enfriada de golpe — físicamente prohibidos para cualquier cristal periódico. Lo que había encontrado era un cuasicristal: materia dispuesta en un patrón aperiódico. Las teselas de Wang fueron el ancestro conceptual de ambos. Un juego combinatorio sobre aristas coloreadas describía, de pronto, una fase de la materia que valió a Shechtman el Nobel de Química de 2011.",
+      body: "En 1974 Roger Penrose publicó su primera teselación aperiódica, un conjunto de seis teselas, que pronto redujo a apenas dos rombos, un primo más amable y geométrico de los monstruos de Berger. En 1982 Dan Shechtman observó patrones de difracción nítidos con simetría quíntuple en una aleación de aluminio-manganeso enfriada de golpe (lo publicó en 1984), algo físicamente prohibido para cualquier cristal periódico. Lo que había encontrado era un cuasicristal: materia dispuesta en un patrón aperiódico. Las teselas de Wang fueron el ancestro conceptual de ambos. Un juego combinatorio sobre aristas coloreadas describía, de pronto, una fase de la materia que valió a Shechtman el Nobel de Química de 2011.",
     },
     {
       pretitle: "Sección 06 · El monotile aperiódico",
@@ -315,7 +350,7 @@ const es: RichStory = {
   ],
   closingTitle: "Coloca una tesela. El plano decide.",
   closingBody:
-    "El Explorador deja cambiar entre un conjunto explícitamente periódico y los aperiódicos, ver al algoritmo retroceder en vivo cuando se mete en un callejón, y hacer zoom en cualquier región del parche que crece. Todo lo que acabas de leer está a un clic.",
+    "El Explorador deja cambiar entre un conjunto explícitamente periódico y otros de estilo aperiódico, y ver al algoritmo retroceder en vivo cuando se mete en un callejón. Todo lo que acabas de leer está a un clic.",
   ctaLabel: "→ Abrir el Explorador",
   tilingCaption: "Interactivo · coloca teselas, las aristas deben encajar",
   tilingPalette: "Paleta · 8 teselas",
@@ -329,7 +364,19 @@ const es: RichStory = {
   aperiodicSetLabel: "Conjunto",
   aperiodicRandomize: "Nueva semilla",
   aperiodicHint:
-    "Una búsqueda con retroceso aleatorizada llena el lienzo, celda a celda, con teselas del conjunto elegido. Sea cual sea el conjunto, el parche no se asienta nunca en un bloque pequeño que se repite — eso es lo que significa aperiódico.",
+    "Una búsqueda con retroceso aleatorizada llena el lienzo, celda a celda, con teselas del conjunto elegido. Son conjuntos de muestra ilustrativos al estilo de los récords de Culik y Jeandel-Rao, no las tablas realmente publicadas, así que lee el parche que crece como una intuición de cómo se comporta una búsqueda por coincidencia de aristas, no como una prueba de aperiodicidad.",
+  validPatchLabel: "2×2 válido",
+  bergerBoxBody:
+    "Ningún algoritmo decide, en general, si un conjunto finito de teselas de Wang tesela el plano. La prueba reduce el problema de la parada a una cuestión de teselación.",
+  recordCaption: "El récord aperiódico se encoge",
+  recordYear: "Año",
+  recordAuthor: "Autoría",
+  recordTiles: "Teselas",
+  recordWang: "Hao Wang: conjetura, no existe tal conjunto",
+  recordBerger: "Robert Berger: primer conjunto aperiódico",
+  recordJeandel: "Jeandel & Rao: mínimo demostrado",
+  monotileBody:
+    "El «sombrero» (marzo de 2023) tesela solo de forma aperiódica, con reflexiones. El «espectro» (mayo de 2023) elimina incluso ese requisito.",
 };
 
 const fr: RichStory = {
@@ -354,7 +401,7 @@ const fr: RichStory = {
       {
         label: "02",
         title: "Un exemple concret",
-        body: "Trois tuiles, quatre couleurs de bord. Rangée du bas : deux copies de la tuile A. Rangée du haut : deux copies de la tuile B. A.est s'accorde avec A.ouest, B.est avec B.ouest, et A.nord avec B.sud. Un petit patch — et tu as déjà découvert que certains jeux de tuiles s'imbriquent et d'autres pas.",
+        body: "Trois tuiles, deux couleurs de bord. Rangée du bas : deux copies de la tuile A. Rangée du haut : deux copies de la tuile B. A.est s'accorde avec A.ouest, B.est avec B.ouest, et A.nord avec B.sud. Un petit patch, et tu as déjà découvert que certains jeux de tuiles s'imbriquent et d'autres pas.",
       },
       {
         label: "03",
@@ -363,7 +410,7 @@ const fr: RichStory = {
       },
     ],
     tryIt:
-      "Ci-dessous : pose toi-même les tuiles pour que chaque bord partagé corresponde, puis regarde un jeu apériodique de 11 ou 13 tuiles remplir une région.",
+      "Ci-dessous : pose toi-même les tuiles pour que chaque bord partagé corresponde, puis regarde une recherche avec retour arrière remplir une région avec un jeu de démonstration dans l'esprit des records de Culik et Jeandel-Rao.",
   },
   sections: [
     {
@@ -389,7 +436,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Quasicristaux",
       title: "Penrose, Shechtman et les motifs qui refusent de se répéter",
-      body: "En 1974, Roger Penrose publie un pavage apériodique avec seulement deux losanges — un cousin plus aimable, plus géométrique, des monstres de Berger. Dix ans plus tard, en 1984, Dan Shechtman observe des figures de diffraction nettes à symétrie d'ordre cinq dans un alliage aluminium-manganèse trempé — physiquement interdites pour tout cristal périodique. Ce qu'il avait trouvé, c'était un quasicristal : de la matière disposée selon un motif apériodique. Les tuiles de Wang étaient l'ancêtre conceptuel des deux. Un jeu combinatoire sur des bords colorés décrivait soudain une phase de la matière qui a valu à Shechtman le Nobel de chimie 2011.",
+      body: "En 1974, Roger Penrose publie son premier pavage apériodique, un jeu de six tuiles, qu'il réduit bientôt à seulement deux losanges, un cousin plus aimable, plus géométrique, des monstres de Berger. En 1982, Dan Shechtman observe des figures de diffraction nettes à symétrie d'ordre cinq dans un alliage aluminium-manganèse trempé (résultat publié en 1984), ce qui est physiquement interdit pour tout cristal périodique. Ce qu'il avait trouvé, c'était un quasicristal : de la matière disposée selon un motif apériodique. Les tuiles de Wang étaient l'ancêtre conceptuel des deux. Un jeu combinatoire sur des bords colorés décrivait soudain une phase de la matière qui a valu à Shechtman le Nobel de chimie 2011.",
     },
     {
       pretitle: "Section 06 · La monotile apériodique",
@@ -399,7 +446,7 @@ const fr: RichStory = {
   ],
   closingTitle: "Pose une tuile. Le plan tranche.",
   closingBody:
-    "L'Explorateur permet de basculer entre un jeu explicitement périodique et les apériodiques, de voir l'algorithme rebrousser chemin en direct quand il se peint dans un coin, et de zoomer dans n'importe quelle région du patch en croissance. Tout ce que tu viens de lire est à un clic.",
+    "L'Explorateur permet de basculer entre un jeu explicitement périodique et des jeux de style apériodique, et de voir l'algorithme rebrousser chemin en direct quand il se peint dans un coin. Tout ce que tu viens de lire est à un clic.",
   ctaLabel: "→ Ouvrir l'Explorateur",
   tilingCaption: "Interactif · pose les tuiles, les bords doivent s'accorder",
   tilingPalette: "Palette · 8 tuiles",
@@ -413,7 +460,19 @@ const fr: RichStory = {
   aperiodicSetLabel: "Jeu de tuiles",
   aperiodicRandomize: "Nouvelle graine",
   aperiodicHint:
-    "Une recherche avec retour arrière aléatoire remplit le canevas, cellule par cellule, avec les tuiles du jeu choisi. Quel que soit le jeu, le patch ne s'installe jamais dans un petit bloc qui se répète — c'est cela, apériodique.",
+    "Une recherche avec retour arrière aléatoire remplit le canevas, cellule par cellule, avec les tuiles du jeu choisi. Ce sont des jeux de démonstration illustratifs dans l'esprit des records de Culik et Jeandel-Rao, pas les tables réellement publiées : lis donc le patch qui grandit comme une intuition du comportement d'une recherche par correspondance des bords, pas comme une preuve d'apériodicité.",
+  validPatchLabel: "2×2 valide",
+  bergerBoxBody:
+    "Aucun algorithme ne décide, en général, si un jeu fini de tuiles de Wang pave le plan. La preuve réduit le problème de l'arrêt à une question de pavage.",
+  recordCaption: "Le record apériodique rétrécit",
+  recordYear: "Année",
+  recordAuthor: "Auteur ou autrice",
+  recordTiles: "Tuiles",
+  recordWang: "Hao Wang : conjecture, aucun tel jeu n'existe",
+  recordBerger: "Robert Berger : premier jeu apériodique",
+  recordJeandel: "Jeandel & Rao : minimum prouvé",
+  monotileBody:
+    "Le « chapeau » (mars 2023) ne pave que de façon apériodique, avec des réflexions. Le « spectre » (mai 2023) supprime même cette exigence.",
 };
 
 const it: RichStory = {
@@ -438,7 +497,7 @@ const it: RichStory = {
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "Tre tasselli, quattro colori di bordo. Riga in basso: due copie del tassello A. Riga in alto: due copie del tassello B. A.est combacia con A.ovest, B.est con B.ovest, A.nord con B.sud. Una piccola pezza — e hai già scoperto che alcuni insiemi si incastrano, altri no.",
+        body: "Tre tasselli, due colori di bordo. Riga in basso: due copie del tassello A. Riga in alto: due copie del tassello B. A.est combacia con A.ovest, B.est con B.ovest, A.nord con B.sud. Una piccola pezza, e hai già scoperto che alcuni insiemi si incastrano, altri no.",
       },
       {
         label: "03",
@@ -447,7 +506,7 @@ const it: RichStory = {
       },
     ],
     tryIt:
-      "Sotto: posa tu stesso i tasselli in modo che ogni bordo condiviso combaci, poi guarda un insieme aperiodico da 11 o 13 tasselli riempire una regione.",
+      "Sotto: posa tu stesso i tasselli in modo che ogni bordo condiviso combaci, poi guarda una ricerca con backtracking riempire una regione con un insieme dimostrativo nello spirito dei record di Culik e Jeandel-Rao.",
   },
   sections: [
     {
@@ -473,7 +532,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · Quasicristalli",
       title: "Penrose, Shechtman e i motivi che si rifiutano di ripetersi",
-      body: "Nel 1974 Roger Penrose pubblicò un mosaico aperiodico con appena due rombi — un cugino più gentile e geometrico dei mostri di Berger. Dieci anni dopo, nel 1984, Dan Shechtman osservò figure di diffrazione nitide con simmetria pentagonale in una lega di alluminio-manganese temprata — fisicamente proibite per qualsiasi cristallo periodico. Quel che aveva trovato era un quasicristallo: materia disposta in un motivo aperiodico. I tasselli di Wang erano l'antenato concettuale di entrambi. Un gioco combinatorio sui bordi colorati descriveva all'improvviso una fase della materia che valse a Shechtman il Nobel per la chimica del 2011.",
+      body: "Nel 1974 Roger Penrose pubblicò il suo primo mosaico aperiodico, un insieme di sei tasselli, che presto ridusse ad appena due rombi, un cugino più gentile e geometrico dei mostri di Berger. Nel 1982 Dan Shechtman osservò figure di diffrazione nitide con simmetria pentagonale in una lega di alluminio-manganese temprata (pubblicò il risultato nel 1984), qualcosa di fisicamente proibito per qualsiasi cristallo periodico. Quel che aveva trovato era un quasicristallo: materia disposta in un motivo aperiodico. I tasselli di Wang erano l'antenato concettuale di entrambi. Un gioco combinatorio sui bordi colorati descriveva all'improvviso una fase della materia che valse a Shechtman il Nobel per la chimica del 2011.",
     },
     {
       pretitle: "Sezione 06 · Il monotile aperiodico",
@@ -483,7 +542,7 @@ const it: RichStory = {
   ],
   closingTitle: "Posa un tassello. Il piano decide.",
   closingBody:
-    "L'Esploratore lascia passare da un insieme esplicitamente periodico a quelli aperiodici, guardare l'algoritmo tornare indietro in diretta quando si dipinge in un angolo, e zoomare in qualsiasi regione della macchia che cresce. Tutto ciò che hai appena letto è a un clic.",
+    "L'Esploratore lascia passare da un insieme esplicitamente periodico a insiemi di stile aperiodico, e guardare l'algoritmo tornare indietro in diretta quando si dipinge in un angolo. Tutto ciò che hai appena letto è a un clic.",
   ctaLabel: "→ Apri l'Esploratore",
   tilingCaption: "Interattivo · posa i tasselli, i bordi devono combaciare",
   tilingPalette: "Tavolozza · 8 tasselli",
@@ -497,7 +556,19 @@ const it: RichStory = {
   aperiodicSetLabel: "Insieme",
   aperiodicRandomize: "Nuovo seme",
   aperiodicHint:
-    "Una ricerca con backtracking randomizzato riempie la tela, cella per cella, coi tasselli dell'insieme scelto. Qualunque insieme scegli, la macchia non si assesta mai in un piccolo blocco che si ripete — è questo che vuol dire aperiodico.",
+    "Una ricerca con backtracking randomizzato riempie la tela, cella per cella, coi tasselli dell'insieme scelto. Sono insiemi dimostrativi illustrativi nello spirito dei record di Culik e Jeandel-Rao, non le tabelle davvero pubblicate: leggi quindi la macchia che cresce come un'idea di come si comporta una ricerca per corrispondenza dei bordi, non come una prova di aperiodicità.",
+  validPatchLabel: "2×2 valido",
+  bergerBoxBody:
+    "Nessun algoritmo decide, in generale, se un insieme finito di tasselli di Wang riveste il piano. La dimostrazione riduce il problema della fermata a una questione di rivestimento.",
+  recordCaption: "Il record aperiodico si restringe",
+  recordYear: "Anno",
+  recordAuthor: "Autore",
+  recordTiles: "Tasselli",
+  recordWang: "Hao Wang: congettura, nessun insieme del genere esiste",
+  recordBerger: "Robert Berger: primo insieme aperiodico",
+  recordJeandel: "Jeandel & Rao: minimo dimostrato",
+  monotileBody:
+    "Il «cappello» (marzo 2023) riveste solo in modo aperiodico, con riflessioni. Lo «spettro» (maggio 2023) elimina perfino quel requisito.",
 };
 
 const pt: RichStory = {
@@ -522,7 +593,7 @@ const pt: RichStory = {
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: "Três tijolos, quatro cores de borda. Linha de baixo: duas cópias do tijolo A. Linha de cima: duas cópias do tijolo B. A.este casa com A.oeste, B.este com B.oeste, A.norte com B.sul. Um pequeno remendo — e já descobriste que há conjuntos que encaixam e outros que não.",
+        body: "Três tijolos, duas cores de borda. Linha de baixo: duas cópias do tijolo A. Linha de cima: duas cópias do tijolo B. A.este casa com A.oeste, B.este com B.oeste, A.norte com B.sul. Um pequeno remendo, e já descobriste que há conjuntos que encaixam e outros que não.",
       },
       {
         label: "03",
@@ -531,7 +602,7 @@ const pt: RichStory = {
       },
     ],
     tryIt:
-      "Abaixo: coloca tu mesmo os tijolos para que toda borda partilhada combine, e depois vê um conjunto aperiódico de 11 ou 13 tijolos a encher uma região.",
+      "Abaixo: coloca tu mesmo os tijolos para que toda borda partilhada combine, e depois vê uma busca com retrocesso a encher uma região com um conjunto de amostra ao estilo dos recordes de Culik e Jeandel-Rao.",
   },
   sections: [
     {
@@ -557,7 +628,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · Quasicristais",
       title: "Penrose, Shechtman e padrões que se recusam a repetir",
-      body: "Em 1974 Roger Penrose publicou um ladrilhamento aperiódico só com dois losangos — um primo mais gentil e geométrico dos monstros de Berger. Dez anos depois, em 1984, Dan Shechtman observou padrões de difracção nítidos com simetria quíntupla numa liga de alumínio-manganês temperada — fisicamente proibidos para qualquer cristal periódico. O que tinha encontrado era um quasicristal: matéria arranjada num padrão aperiódico. Os tijolos de Wang foram o ancestral conceptual de ambos. Um jogo combinatório sobre bordas coloridas descrevia, de súbito, uma fase da matéria que valeu a Shechtman o Nobel da Química de 2011.",
+      body: "Em 1974 Roger Penrose publicou o seu primeiro ladrilhamento aperiódico, um conjunto de seis peças, que em breve reduziu a apenas dois losangos, um primo mais gentil e geométrico dos monstros de Berger. Em 1982 Dan Shechtman observou padrões de difracção nítidos com simetria quíntupla numa liga de alumínio-manganês temperada (publicou o resultado em 1984), algo fisicamente proibido para qualquer cristal periódico. O que tinha encontrado era um quasicristal: matéria arranjada num padrão aperiódico. Os tijolos de Wang foram o ancestral conceptual de ambos. Um jogo combinatório sobre bordas coloridas descrevia, de súbito, uma fase da matéria que valeu a Shechtman o Nobel da Química de 2011.",
     },
     {
       pretitle: "Secção 06 · O monotile aperiódico",
@@ -567,7 +638,7 @@ const pt: RichStory = {
   ],
   closingTitle: "Coloca um tijolo. O plano decide.",
   closingBody:
-    "O Explorador deixa alternar entre um conjunto explicitamente periódico e os aperiódicos, ver o algoritmo a recuar em direto quando se pinta num canto, e ampliar qualquer região do remendo a crescer. Tudo o que acabaste de ler está a um clique.",
+    "O Explorador deixa alternar entre um conjunto explicitamente periódico e conjuntos de estilo aperiódico, e ver o algoritmo a recuar em direto quando se pinta num canto. Tudo o que acabaste de ler está a um clique.",
   ctaLabel: "→ Abrir o Explorador",
   tilingCaption: "Interativo · coloca tijolos, as bordas têm de casar",
   tilingPalette: "Paleta · 8 tijolos",
@@ -581,7 +652,19 @@ const pt: RichStory = {
   aperiodicSetLabel: "Conjunto",
   aperiodicRandomize: "Nova semente",
   aperiodicHint:
-    "Uma busca com retrocesso aleatorizada enche a tela, célula a célula, com tijolos do conjunto escolhido. Seja qual for o conjunto, o remendo nunca assenta num bloco pequeno que se repete — é isso que quer dizer aperiódico.",
+    "Uma busca com retrocesso aleatorizada enche a tela, célula a célula, com tijolos do conjunto escolhido. São conjuntos de amostra ilustrativos ao estilo dos recordes de Culik e Jeandel-Rao, não as tabelas realmente publicadas, por isso lê o remendo que cresce como uma intuição de como se comporta uma busca por correspondência de bordas, não como uma prova de aperiodicidade.",
+  validPatchLabel: "2×2 válido",
+  bergerBoxBody:
+    "Nenhum algoritmo decide, em geral, se um conjunto finito de tijolos de Wang ladrilha o plano. A prova reduz o problema da paragem a uma questão de ladrilhamento.",
+  recordCaption: "O recorde aperiódico encolhe",
+  recordYear: "Ano",
+  recordAuthor: "Autoria",
+  recordTiles: "Tijolos",
+  recordWang: "Hao Wang: conjetura, não existe tal conjunto",
+  recordBerger: "Robert Berger: primeiro conjunto aperiódico",
+  recordJeandel: "Jeandel & Rao: mínimo provado",
+  monotileBody:
+    "O «chapéu» (março de 2023) só ladrilha de forma aperiódica, com reflexões. O «espectro» (maio de 2023) elimina até esse requisito.",
 };
 
 const sv: RichStory = {
@@ -590,7 +673,7 @@ const sv: RichStory = {
     title: "Wang-plattor",
     tagline: "Kvadrater med färgade kanter som tyst bär vilken beräkning som helst.",
     intro:
-      "Hao Wangs gåta från 1961 — matcha färgerna på kanter som möts — gömde halterproblemet i ett barnspel. Nedan: reglerna, överraskningen och två interaktioner där du lägger plattor själv och ser en aperiodisk yta växa fram.",
+      "Hao Wangs gåta från 1961 — matcha färgerna på kanter som möts — gömde stopproblemet i ett barnspel. Nedan: reglerna, överraskningen och två interaktioner där du lägger plattor själv och ser en aperiodisk yta växa fram.",
     ctaInteractive: "→ Öppna utforskaren",
     sections: [],
   },
@@ -606,7 +689,7 @@ const sv: RichStory = {
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "Tre plattor, fyra kantfärger. Nedersta raden: två kopior av platta A. Översta raden: två kopior av platta B. A:s öst matchar A:s väst, B:s öst matchar B:s väst, och A:s nord matchar B:s syd. En liten lapp — och du har redan upptäckt att vissa plattuppsättningar klickar samman och andra inte.",
+        body: "Tre plattor, två kantfärger. Nedersta raden: två kopior av platta A. Översta raden: två kopior av platta B. A:s öst matchar A:s väst, B:s öst matchar B:s väst, och A:s nord matchar B:s syd. En liten lapp, och du har redan upptäckt att vissa plattuppsättningar klickar samman och andra inte.",
       },
       {
         label: "03",
@@ -615,7 +698,7 @@ const sv: RichStory = {
       },
     ],
     tryIt:
-      "Nedan: lägg själv plattor så att varje delad kant stämmer, och se sedan en aperiodisk uppsättning med 11 eller 13 plattor fylla en yta.",
+      "Nedan: lägg själv plattor så att varje delad kant stämmer, och se sedan en backtracking-sökning fylla en yta med en demouppsättning i andan av Culiks och Jeandel-Raos rekord.",
   },
   sections: [
     {
@@ -631,7 +714,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 03 · Beräkning i mönstret",
       title: "Turingmaskiner målade på kanterna",
-      body: "Bergers konstruktion är en översättning: ta vilken Turingmaskin som helst och producera en Wang-uppsättning som täcker det övre halvplanet om och endast om maskinen aldrig stannar på tom indata. Varje rad plattor stavar ut en hel maskinkonfiguration — bandets innehåll och huvudets position — och varje övergång från rad till rad tvingas av kantfärgerna att vara exakt ett maskinsteg. Den oändliga täckningen, om den finns, är den oändliga beräkningen. « Täcker den här uppsättningen? » blir « kör den här maskinen i evighet? » — och det är halterproblemet.",
+      body: "Bergers konstruktion är en översättning: ta vilken Turingmaskin som helst och producera en Wang-uppsättning som täcker det övre halvplanet om och endast om maskinen aldrig stannar på tom indata. Varje rad plattor stavar ut en hel maskinkonfiguration — bandets innehåll och huvudets position — och varje övergång från rad till rad tvingas av kantfärgerna att vara exakt ett maskinsteg. Den oändliga täckningen, om den finns, är den oändliga beräkningen. « Täcker den här uppsättningen? » blir « kör den här maskinen i evighet? » — och det är stopproblemet.",
     },
     {
       pretitle: "Avsnitt 04 · Från 20 426 till 11",
@@ -641,7 +724,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Kvasikristaller",
       title: "Penrose, Shechtman och mönster som vägrar upprepa sig",
-      body: "1974 publicerade Roger Penrose en aperiodisk täckning med bara två romber — en snällare, mer geometrisk kusin till Bergers monster. Tio år senare, 1984, observerade Dan Shechtman skarpa diffraktionsmönster med femfaldig symmetri i en snabbkyld aluminium-mangan-legering — fysiskt förbjudna för varje periodisk kristall. Det han hade hittat var en kvasikristall: materia ordnad i ett aperiodiskt mönster. Wang-plattorna var den begreppsmässiga förfadern till båda. Ett kombinatoriskt spel om färgade kanter beskrev plötsligt en fas av materia som gav Shechtman Nobelpriset i kemi 2011.",
+      body: "1974 publicerade Roger Penrose sin första aperiodiska täckning, en uppsättning på sex plattor, som han snart krympte till bara två romber, en snällare, mer geometrisk kusin till Bergers monster. 1982 observerade Dan Shechtman skarpa diffraktionsmönster med femfaldig symmetri i en snabbkyld aluminium-mangan-legering (resultatet publicerades 1984), något fysiskt förbjudet för varje periodisk kristall. Det han hade hittat var en kvasikristall: materia ordnad i ett aperiodiskt mönster. Wang-plattorna var den begreppsmässiga förfadern till båda. Ett kombinatoriskt spel om färgade kanter beskrev plötsligt en fas av materia som gav Shechtman Nobelpriset i kemi 2011.",
     },
     {
       pretitle: "Avsnitt 06 · Den aperiodiska monoplattan",
@@ -651,7 +734,7 @@ const sv: RichStory = {
   ],
   closingTitle: "Lägg en platta. Planet avgör.",
   closingBody:
-    "Utforskaren låter dig växla mellan en uttryckligen periodisk uppsättning och de aperiodiska, se algoritmen backa i realtid när den målar in sig i ett hörn, och zooma in i vilken som helst region av den växande ytan. Allt du just läst är ett klick bort.",
+    "Utforskaren låter dig växla mellan en uttryckligen periodisk uppsättning och aperiodiskt anlagda uppsättningar, och se algoritmen backa i realtid när den målar in sig i ett hörn. Allt du just läst är ett klick bort.",
   ctaLabel: "→ Öppna utforskaren",
   tilingCaption: "Interaktivt · lägg plattor, kanterna måste matcha",
   tilingPalette: "Palett · 8 plattor",
@@ -665,7 +748,19 @@ const sv: RichStory = {
   aperiodicSetLabel: "Plattuppsättning",
   aperiodicRandomize: "Nytt frö",
   aperiodicHint:
-    "En randomiserad backtracking-sökning fyller arbetsytan, cell för cell, med plattor ur den valda uppsättningen. Vilken uppsättning du än väljer slår sig lappen aldrig till ro i ett litet upprepande block — det är vad aperiodisk betyder.",
+    "En randomiserad backtracking-sökning fyller arbetsytan, cell för cell, med plattor ur den valda uppsättningen. Det här är illustrativa demouppsättningar i andan av Culiks och Jeandel-Raos rekord, inte de faktiskt publicerade tabellerna, så läs den växande lappen som en känsla för hur en kantmatchande sökning beter sig, inte som ett bevis för aperiodicitet.",
+  validPatchLabel: "giltig 2×2",
+  bergerBoxBody:
+    "Ingen algoritm avgör i allmänhet om en ändlig Wang-uppsättning täcker planet. Beviset reducerar stopproblemet till en täckningsfråga.",
+  recordCaption: "Det aperiodiska rekordet krymper",
+  recordYear: "År",
+  recordAuthor: "Upphovsperson",
+  recordTiles: "Plattor",
+  recordWang: "Hao Wang: förmodan, ingen sådan uppsättning finns",
+  recordBerger: "Robert Berger: första aperiodiska uppsättningen",
+  recordJeandel: "Jeandel & Rao: bevisat minimum",
+  monotileBody:
+    "«Hatten» (mars 2023) täcker bara aperiodiskt, med speglingar. «Spöket» (maj 2023) tar bort även det kravet.",
 };
 
 const no: RichStory = {
@@ -690,7 +785,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Tre fliser, fire kantfarger. Nederste rad: to kopier av flis A. Øverste rad: to kopier av flis B. A.øst matcher A.vest, B.øst matcher B.vest, og A.nord matcher B.sør. En liten lapp — og du har allerede oppdaget at noen flisesett klikker sammen og andre ikke.",
+        body: "Tre fliser, to kantfarger. Nederste rad: to kopier av flis A. Øverste rad: to kopier av flis B. A.øst matcher A.vest, B.øst matcher B.vest, og A.nord matcher B.sør. En liten lapp, og du har allerede oppdaget at noen flisesett klikker sammen og andre ikke.",
       },
       {
         label: "03",
@@ -699,7 +794,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Under: legg selv fliser slik at hver delt kant stemmer, og se så et aperiodisk sett med 11 eller 13 fliser fylle en flate.",
+      "Under: legg selv fliser slik at hver delt kant stemmer, og se så et backtracking-søk fylle en flate med et demosett i ånden til rekordene fra Culik og Jeandel-Rao.",
   },
   sections: [
     {
@@ -725,7 +820,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Kvasikrystaller",
       title: "Penrose, Shechtman og mønstre som nekter å gjenta seg",
-      body: "I 1974 publiserte Roger Penrose en aperiodisk dekking med bare to romber — en snillere, mer geometrisk fetter til Bergers monstre. Ti år senere, i 1984, observerte Dan Shechtman skarpe diffraksjonsmønstre med femfoldig symmetri i en hurtigkjølt aluminium-mangan-legering — fysisk forbudt for enhver periodisk krystall. Det han hadde funnet var en kvasikrystall: materie ordnet i et aperiodisk mønster. Wang-flisene var den begrepsmessige forfaren til begge. Et kombinatorisk spill om fargede kanter beskrev plutselig en fase av materien som ga Shechtman Nobelprisen i kjemi i 2011.",
+      body: "I 1974 publiserte Roger Penrose sin første aperiodiske dekking, et sett på seks fliser, som han snart krympet til bare to romber, en snillere, mer geometrisk fetter til Bergers monstre. I 1982 observerte Dan Shechtman skarpe diffraksjonsmønstre med femfoldig symmetri i en hurtigkjølt aluminium-mangan-legering (resultatet ble publisert i 1984), noe som er fysisk forbudt for enhver periodisk krystall. Det han hadde funnet var en kvasikrystall: materie ordnet i et aperiodisk mønster. Wang-flisene var den begrepsmessige forfaren til begge. Et kombinatorisk spill om fargede kanter beskrev plutselig en fase av materien som ga Shechtman Nobelprisen i kjemi i 2011.",
     },
     {
       pretitle: "Avsnitt 06 · Den aperiodiske monoflisen",
@@ -735,7 +830,7 @@ const no: RichStory = {
   ],
   closingTitle: "Legg en flis. Planet bestemmer.",
   closingBody:
-    "Utforskeren lar deg veksle mellom et eksplisitt periodisk sett og de aperiodiske, se algoritmen rygge i sanntid når den maler seg inn i et hjørne, og zoome inn i en hvilken som helst region av den voksende flaten. Alt du nettopp leste er ett klikk unna.",
+    "Utforskeren lar deg veksle mellom et eksplisitt periodisk sett og sett i aperiodisk stil, og se algoritmen rygge i sanntid når den maler seg inn i et hjørne. Alt du nettopp leste er ett klikk unna.",
   ctaLabel: "→ Åpne utforskeren",
   tilingCaption: "Interaktivt · legg fliser, kantene må matche",
   tilingPalette: "Palett · 8 fliser",
@@ -749,7 +844,19 @@ const no: RichStory = {
   aperiodicSetLabel: "Flisesett",
   aperiodicRandomize: "Nytt frø",
   aperiodicHint:
-    "Et randomisert backtracking-søk fyller lerretet, celle for celle, med fliser fra det valgte settet. Uansett hvilket sett du velger, slår lappen seg aldri til ro i en liten blokk som gjentar seg — det er det aperiodisk betyr.",
+    "Et randomisert backtracking-søk fyller lerretet, celle for celle, med fliser fra det valgte settet. Dette er illustrative demosett i ånden til rekordene fra Culik og Jeandel-Rao, ikke de faktisk publiserte tabellene, så les den voksende lappen som en følelse av hvordan et kantmatchende søk oppfører seg, ikke som et bevis på aperiodisitet.",
+  validPatchLabel: "gyldig 2×2",
+  bergerBoxBody:
+    "Ingen algoritme avgjør generelt om et endelig Wang-sett dekker planet. Beviset reduserer stoppproblemet til et dekkingsspørsmål.",
+  recordCaption: "Den aperiodiske rekorden krymper",
+  recordYear: "År",
+  recordAuthor: "Opphavsperson",
+  recordTiles: "Fliser",
+  recordWang: "Hao Wang: formodning, ikke noe slikt sett finnes",
+  recordBerger: "Robert Berger: første aperiodiske sett",
+  recordJeandel: "Jeandel & Rao: bevist minimum",
+  monotileBody:
+    "«Hatten» (mars 2023) dekker bare aperiodisk, med speilinger. «Spøkelset» (mai 2023) fjerner selv det kravet.",
 };
 
 const RICH_STORY: Record<Locale, RichStory> = {
@@ -851,7 +958,7 @@ export default function WangStory() {
                         </div>
                       </div>
                       <div className="text-center font-mono text-[10px] text-ink-400">
-                        valid 2×2
+                        {story.validPatchLabel}
                       </div>
                     </div>
                   </>
@@ -894,8 +1001,7 @@ export default function WangStory() {
               Domino Problem ∈ undecidable
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              No algorithm decides, in general, whether a finite Wang tile set tiles the plane. The
-              proof reduces the halting problem to a tiling question.
+              {story.bergerBoxBody}
             </p>
           </div>
         </Reveal>
@@ -937,30 +1043,30 @@ export default function WangStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Shrinking the aperiodic record
+              {story.recordCaption}
             </div>
             <table className="w-full font-mono text-sm">
               <thead className="hairline border-b text-ink-300">
                 <tr>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    Year
+                    {story.recordYear}
                   </th>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    Author
+                    {story.recordAuthor}
                   </th>
                   <th className="px-2 py-2 text-right text-[10px] uppercase tracking-widest">
-                    Tiles
+                    {story.recordTiles}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ["1961", "Hao Wang — conjecture: none exist", "—"],
-                  ["1966", "Robert Berger — first aperiodic set", "20,426"],
+                  ["1961", story.recordWang, "n/a"],
+                  ["1966", story.recordBerger, "20,426"],
                   ["1971", "Raphael Robinson", "56"],
                   ["1996", "Jarkko Kari", "14"],
                   ["1996", "Karel Culik II", "13"],
-                  ["2015", "Jeandel & Rao — proven minimum", "11"],
+                  ["2015", story.recordJeandel, "11"],
                 ].map(([yr, who, n]) => (
                   <tr key={yr + who} className="border-b border-ink-700/30 last:border-0">
                     <td className="px-2 py-2 text-signal-cyan">{yr}</td>
@@ -1013,8 +1119,7 @@ export default function WangStory() {
               ein Stein · 1
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              The «hat» (March 2023) tiles only aperiodically using reflections. The «spectre» (May
-              2023) removes even that requirement.
+              {story.monotileBody}
             </p>
           </div>
         </Reveal>

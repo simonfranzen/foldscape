@@ -7,11 +7,14 @@ import { palette } from "@/lib/visual/palette";
 // Sensitive dependence on initial conditions for the logistic map.
 // Two parallel orbits start at x₀ and x₀ + 10⁻⁶ and advance one iteration
 // per animation tick. At r ≈ 3.9 the two trajectories visually separate
-// within ~25 iterations and stay uncorrelated thereafter.
+// within ~25 iterations and stay uncorrelated thereafter. Under
+// prefers-reduced-motion the demo starts paused and paints the full orbit
+// as a single static frame instead of animating (repo a11y invariant).
 
 interface Props {
   captionA?: string;
   captionB?: string;
+  rAriaLabel?: string;
   playLabel?: string;
   pauseLabel?: string;
   resetLabel?: string;
@@ -27,9 +30,13 @@ const STEP_MS = 90;
 const W = 360;
 const H = 100;
 
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export function LogisticDivergeDemo({
   captionA,
   captionB,
+  rAriaLabel,
   playLabel,
   pauseLabel,
   resetLabel,
@@ -40,10 +47,22 @@ export function LogisticDivergeDemo({
   const canvasARef = useRef<HTMLCanvasElement | null>(null);
   const canvasBRef = useRef<HTMLCanvasElement | null>(null);
   const [r, setR] = useState(3.9);
-  const [running, setRunning] = useState(true);
+  // Start paused when the user asked for reduced motion; otherwise auto-run.
+  const [running, setRunning] = useState(() => !prefersReducedMotion());
   const [resetTick, setResetTick] = useState(0);
   const [stats, setStats] = useState({ n: 0, dist: EPSILON });
   const dpr = useDpr();
+
+  // Track prefers-reduced-motion reactively so the canvases freeze/thaw when
+  // the OS setting flips without a remount.
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const rRef = useRef(r);
   rRef.current = r;
@@ -52,6 +71,8 @@ export function LogisticDivergeDemo({
   const dprRef = useRef(dpr);
   dprRef.current = dpr;
 
+  // dpr and reducedMotion are dependencies so backing stores re-scale on a
+  // DPR change and the loop freezes/resumes when the motion setting flips.
   useEffect(() => {
     const cA = canvasARef.current;
     const cB = canvasBRef.current;
@@ -116,8 +137,26 @@ export function LogisticDivergeDemo({
       }
     };
 
-    drawHist(ctxA, histA, "rgba(125,243,255,0.85)", palette.signal.cyan);
-    drawHist(ctxB, histB, "rgba(179,136,255,0.85)", palette.signal.violet);
+    const paint = () => {
+      drawHist(ctxA, histA, "rgba(125,243,255,0.85)", palette.signal.cyan);
+      drawHist(ctxB, histB, "rgba(179,136,255,0.85)", palette.signal.violet);
+    };
+
+    // Reduced motion: precompute the whole orbit and paint one static frame.
+    if (reducedMotion) {
+      const rNow = rRef.current;
+      for (let i = 0; i < MAX_ITER - 1; i++) {
+        xa = rNow * xa * (1 - xa);
+        xb = rNow * xb * (1 - xb);
+        histA.push(xa);
+        histB.push(xb);
+      }
+      paint();
+      setStats({ n: MAX_ITER - 1, dist: Math.abs(xa - xb) });
+      return;
+    }
+
+    paint();
 
     const step = (t: number) => {
       if (runningRef.current && t - lastT > STEP_MS) {
@@ -129,8 +168,7 @@ export function LogisticDivergeDemo({
           histA.push(xa);
           histB.push(xb);
           n++;
-          drawHist(ctxA, histA, "rgba(125,243,255,0.85)", palette.signal.cyan);
-          drawHist(ctxB, histB, "rgba(179,136,255,0.85)", palette.signal.violet);
+          paint();
           setStats({ n, dist: Math.abs(xa - xb) });
         }
       }
@@ -139,7 +177,7 @@ export function LogisticDivergeDemo({
     raf = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(raf);
-  }, [resetTick]);
+  }, [resetTick, dpr, reducedMotion]);
 
   const reset = () => {
     setStats({ n: 0, dist: EPSILON });
@@ -155,7 +193,8 @@ export function LogisticDivergeDemo({
           </div>
           <canvas
             ref={canvasARef}
-            style={{ width: W, height: H }}
+            role="img"
+            aria-label={captionA ?? "Orbit A · x₀ = 0.200000"}
             className="hairline h-[100px] w-full max-w-[360px] rounded-md border bg-ink-950/80"
           />
         </div>
@@ -165,7 +204,8 @@ export function LogisticDivergeDemo({
           </div>
           <canvas
             ref={canvasBRef}
-            style={{ width: W, height: H }}
+            role="img"
+            aria-label={captionB ?? "Orbit B · x₀ = 0.200001"}
             className="hairline h-[100px] w-full max-w-[360px] rounded-md border bg-ink-950/80"
           />
         </div>
@@ -179,6 +219,7 @@ export function LogisticDivergeDemo({
         </div>
         <input
           type="range"
+          aria-label={rAriaLabel ?? rLabel ?? "Growth rate r"}
           value={r}
           min={2.5}
           max={4.0}

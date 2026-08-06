@@ -59,6 +59,17 @@ export function BzrOregonator({
   const [q, setQ] = useState(8e-4); // small parameter
   const [paused, setPaused] = useState(false);
   const [resetTick, setResetTick] = useState(0);
+  // Honour prefers-reduced-motion: paint one settled trace and never start the
+  // RAF loop, so the animated plot freezes for motion-sensitive users.
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const stateRef = useRef({ x: 0.5, y: 1e-4, z: 0.5 });
   const histRef = useRef({
@@ -101,46 +112,47 @@ export function BzrOregonator({
 
     let raf = 0;
     let stepCounter = 0;
-    const step = (): void => {
+
+    // Advance the integrator by STEPS_PER_FRAME, appending history samples.
+    const integrate = (): void => {
       const p = paramsRef.current;
-      if (!p.paused) {
-        const eps = Math.max(1e-3, p.epsilon);
-        const epsP = eps * 0.5; // eps' a bit faster than eps -> Br- relaxes quickly
-        const qq = Math.max(1e-6, p.q);
-        let { x, y, z } = stateRef.current;
-        for (let s = 0; s < STEPS_PER_FRAME; s++) {
-          // Forward Euler on dimensionless Oregonator. Clamp to keep the
-          // stiff system from blowing up at the slider edges.
-          const dx = (qq * y - x * y + x * (1 - x)) / eps;
-          const dy = (-qq * y - x * y + f * z) / epsP;
-          const dz = x - z;
-          x = Math.max(0, x + dx * dt);
-          y = Math.max(0, y + dy * dt);
-          z = Math.max(0, z + dz * dt);
-          if (!isFinite(x)) x = 0.5;
-          if (!isFinite(y)) y = 1e-4;
-          if (!isFinite(z)) z = 0.1;
+      const eps = Math.max(1e-3, p.epsilon);
+      const epsP = eps * 0.5; // eps' a bit faster than eps -> Br- relaxes quickly
+      const qq = Math.max(1e-6, p.q);
+      let { x, y, z } = stateRef.current;
+      for (let s = 0; s < STEPS_PER_FRAME; s++) {
+        // Forward Euler on dimensionless Oregonator. Clamp to keep the
+        // stiff system from blowing up at the slider edges.
+        const dx = (qq * y - x * y + x * (1 - x)) / eps;
+        const dy = (-qq * y - x * y + f * z) / epsP;
+        const dz = x - z;
+        x = Math.max(0, x + dx * dt);
+        y = Math.max(0, y + dy * dt);
+        z = Math.max(0, z + dz * dt);
+        if (!isFinite(x)) x = 0.5;
+        if (!isFinite(y)) y = 1e-4;
+        if (!isFinite(z)) z = 0.1;
 
-          stepCounter++;
-          if (stepCounter >= SAMPLE_EVERY) {
-            stepCounter = 0;
-            const h = histRef.current;
-            const idx = h.n % HISTORY;
-            h.x[idx] = x;
-            h.y[idx] = y;
-            h.z[idx] = z;
-            h.n++;
-          }
+        stepCounter++;
+        if (stepCounter >= SAMPLE_EVERY) {
+          stepCounter = 0;
+          const h = histRef.current;
+          const idx = h.n % HISTORY;
+          h.x[idx] = x;
+          h.y[idx] = y;
+          h.z[idx] = z;
+          h.n++;
         }
-        stateRef.current = { x, y, z };
       }
+      stateRef.current = { x, y, z };
+    };
 
-      // Draw
+    const render = (): void => {
       ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
-      // Grid
-      ctx.strokeStyle = "rgba(232,234,242,0.07)";
+      // Grid (faint ink-100 tint derived from the palette token)
+      ctx.strokeStyle = `${palette.ink[100]}12`;
       ctx.lineWidth = 1;
       for (let i = 1; i < 4; i++) {
         const yy = (H * i) / 4;
@@ -153,10 +165,7 @@ export function BzrOregonator({
       const h = histRef.current;
       const n = h.n;
       const count = Math.min(n, HISTORY);
-      if (count < 2) {
-        raf = requestAnimationFrame(step);
-        return;
-      }
+      if (count < 2) return;
       const startIdx = (n - count + HISTORY) % HISTORY;
 
       const drawTrace = (arr: Float32Array, color: string) => {
@@ -177,12 +186,24 @@ export function BzrOregonator({
       drawTrace(h.z, TRACE_COLORS.z);
       drawTrace(h.y, TRACE_COLORS.y);
       drawTrace(h.x, TRACE_COLORS.x);
+    };
 
+    // Reduced motion: settle a full screen of history synchronously, paint it
+    // once, and never start the RAF loop.
+    if (reduced) {
+      for (let i = 0; i < HISTORY * SAMPLE_EVERY; i++) integrate();
+      render();
+      return;
+    }
+
+    const step = (): void => {
+      if (!paramsRef.current.paused) integrate();
+      render();
       raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [reduced, resetTick]);
 
   const legend = useMemo(
     () => [
@@ -200,7 +221,13 @@ export function BzrOregonator({
       </div>
       <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-[360px_1fr]">
         <div className="hairline overflow-hidden rounded-xl border bg-ink-950">
-          <canvas ref={canvasRef} className="block w-full" style={{ aspectRatio: `${W} / ${H}` }} />
+          <canvas
+            ref={canvasRef}
+            role="img"
+            aria-label={caption}
+            className="block w-full"
+            style={{ aspectRatio: `${W} / ${H}` }}
+          />
         </div>
         <div className="space-y-4">
           <div>

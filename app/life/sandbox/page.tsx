@@ -61,7 +61,6 @@ export default function LifePage() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const gridARef = useRef<Grid>(makeGrid());
   const gridBRef = useRef<Grid>(makeGrid());
-  const cellSizeRef = useRef(1);
 
   const [generation, setGeneration] = useState(0);
   const [population, setPopulation] = useState(0);
@@ -99,12 +98,11 @@ export default function LifePage() {
       }
       const ctx = canvas.getContext("2d")!;
       const cellSize = Math.min(canvas.width / COLS, canvas.height / ROWS);
-      cellSizeRef.current = cellSize;
       const offX = (canvas.width - cellSize * COLS) / 2;
       const offY = (canvas.height - cellSize * ROWS) / 2;
 
       const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      grad.addColorStop(0, "#070811");
+      grad.addColorStop(0, colorPalette.canvas.bg);
       grad.addColorStop(1, colorPalette.ink[950]);
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -185,12 +183,14 @@ export default function LifePage() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-    const dpr = getDpr();
-    const cellSize = cellSizeRef.current;
-    const offX = (canvas.width - cellSize * COLS) / 2;
-    const offY = (canvas.height - cellSize * ROWS) / 2;
-    const cx = ((e.clientX - rect.left) * dpr - offX) / cellSize;
-    const cy = ((e.clientY - rect.top) * dpr - offY) / cellSize;
+    // Work in CSS pixels from the live rect: canvas.width (the backing store) is
+    // only re-synced inside draw(), so a resize while paused would map clicks to
+    // the wrong cell. rect is always current.
+    const cellSize = Math.min(rect.width / COLS, rect.height / ROWS);
+    const offX = (rect.width - cellSize * COLS) / 2;
+    const offY = (rect.height - cellSize * ROWS) / 2;
+    const cx = (e.clientX - rect.left - offX) / cellSize;
+    const cy = (e.clientY - rect.top - offY) / cellSize;
     if (cx < 0 || cx >= COLS || cy < 0 || cy >= ROWS) return;
     const gx = Math.floor(cx);
     const gy = Math.floor(cy);
@@ -255,6 +255,8 @@ export default function LifePage() {
           <canvas
             ref={canvasRef}
             className="absolute inset-0 block h-full w-full"
+            role="img"
+            aria-label={u.life.drawHint}
             onPointerDown={(e) => onPointerEvent(e, "down")}
             onPointerMove={(e) => onPointerEvent(e, "move")}
             onPointerUp={() => setDrawMode(null)}
@@ -346,6 +348,7 @@ export default function LifePage() {
                 max={60}
                 step={1}
                 onChange={(e) => setSpeed(parseInt(e.target.value))}
+                aria-label={u.life.speed}
                 className="w-full accent-signal-cyan"
               />
             </div>

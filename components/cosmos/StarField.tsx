@@ -43,10 +43,11 @@ function hash01(seed: number): number {
 }
 
 // Virtual sky height: total scrollable sky in CSS pixels. The slowest layer
-// moves at 0.08 × scrollY; the page is ~9 viewports (~9000px on desktop).
-// 0.08 * 9000 = 720, so giving each layer 1600px of vertical sky means
-// no star ever wraps mid-scroll — wrap math kicks in only after the user
-// has scrolled past the end and rewound (or on resize).
+// moves at 0.05 × scrollY; the page is ~17 viewports (~16500px on desktop
+// since the scenes grew to 230vh for sticky pinning). 0.05 * 16500 ≈ 825,
+// so the slowest layer never wraps mid-scroll. Faster layers do wrap, but
+// the wrap point sits outside the ±200px draw margin, so stars re-enter
+// off-screen rather than popping.
 const VIRTUAL_H = 1800;
 
 // Dimmer, sparser layers — a real cosmos is mostly empty. Counts trimmed

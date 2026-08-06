@@ -189,6 +189,7 @@ export function CardioidMandelbrotBridge({ caption, paramLabel, hint }: Props) {
               step={1}
               value={tDeg}
               onChange={(e) => setTDeg(Number(e.target.value))}
+              aria-label={paramLabel}
               className="w-full accent-signal-amber"
             />
             <div className="font-mono text-[10px] text-ink-400">

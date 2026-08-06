@@ -8,8 +8,17 @@ import { CollatzTrajectoryPlot } from "@/components/CollatzTrajectoryPlot";
 import { CollatzReverseTree } from "@/components/CollatzReverseTree";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
+import { palette } from "@/lib/visual/palette";
 
 const ACCENT = "text-signal-coral";
+
+function withAlpha(hex: string, alpha: number): string {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
 
 // --------------------------------------------------------------------------
 // Per-locale story content. The hero copy (pretitle/title/tagline/intro)
@@ -29,6 +38,7 @@ type RichStory = {
   closingTitle: string;
   closingBody: string;
   ctaLabel: string;
+  conjectureNote: string;
   trajectoryCaption: string;
   trajectoryTitle: string;
   trajectoryBody: string;
@@ -97,12 +107,12 @@ const en: RichStory = {
     {
       pretitle: "Section 03 · The conjecture",
       title: "Every road leads to 4 → 2 → 1",
-      body: "Lothar Collatz wrote the rule down in 1937, two years after his doctorate in Berlin. The same beast was rediscovered independently by Kakutani, Ulam, and the Syracuse number theorists, which is why the literature also calls it the Syracuse problem, Kakutani's problem and the Ulam conjecture. The claim is the same in every name: for every positive integer n, the iteration T(n) eventually reaches 1, and then loops forever on the cycle 4 → 2 → 1. As of 2025 it has been verified by direct computation for every integer up to about 2.36 × 10²¹. No counterexample. No proof either.",
+      body: "Lothar Collatz wrote the rule down in 1937, two years after his doctorate in Berlin. The same beast was rediscovered independently by Kakutani, Ulam, and the Syracuse number theorists, which is why the literature also calls it the Syracuse problem, Kakutani's problem and the Ulam conjecture. The claim is the same in every name: for every positive integer n, the iteration T(n) eventually reaches 1, and then loops forever on the cycle 4 → 2 → 1. As of 2025 it has been verified by direct computation for every integer up to 2⁶⁸. No counterexample. No proof either.",
     },
     {
       pretitle: "Section 04 · Tao's 2019 result",
       title: "Almost all orbits, almost all the way home",
-      body: "The deepest progress came in 2019 from Terence Tao. His paper ‘Almost all orbits of the Collatz map attain almost bounded values’ shows that for any function f(n) tending to infinity, the set of starting integers whose Collatz orbit eventually drops below f(n) has natural density 1. In plain language: pick a random starting integer; almost certainly its orbit eventually shrinks below any target you set in advance. This is a probabilistic near-miss, not a proof. The remaining counterexamples — if they exist — would form a measure-zero exceptional set, but measure zero is not empty, and Tao's argument explicitly cannot rule them out.",
+      body: "The deepest progress came in 2019 from Terence Tao. His paper ‘Almost all orbits of the Collatz map attain almost bounded values’ shows that for any function f(n) tending to infinity, the set of starting integers whose Collatz orbit eventually drops below f(n) has logarithmic density 1. In plain language: pick a random starting integer; almost certainly its orbit eventually shrinks below any target you set in advance. This is a probabilistic near-miss, not a proof. The remaining counterexamples — if they exist — would form a measure-zero exceptional set, but measure zero is not empty, and Tao's argument explicitly cannot rule them out.",
     },
     {
       pretitle: "Section 05 · The reverse coral",
@@ -117,8 +127,10 @@ const en: RichStory = {
   ],
   closingTitle: "Watch it fall.",
   closingBody:
-    "The Explorer plots the hailstone trajectory of any starting number on a wider canvas, grows the reverse coral to far greater depths, and lets you race seeds side by side. Everything you just read is one click away.",
+    "The Explorer plots the hailstone trajectory of any starting number on a wider canvas and grows the same reverse coral beside a live stats panel. Everything you just read is one click away.",
   ctaLabel: "→ Open the Explorer",
+  conjectureNote:
+    "For every positive integer n there is a finite number of steps k after which T iterated k times lands on 1. Verified for n ≤ 2⁶⁸. Never proved.",
   trajectoryCaption: "Interactive · trajectory plotter",
   trajectoryTitle: "Drop a seed, watch the hailstorm",
   trajectoryBody:
@@ -132,7 +144,7 @@ const en: RichStory = {
   treeCaption: "Interactive · reverse coral tree",
   treeTitle: "Run the rule backwards from 1",
   treeBody:
-    "Every integer in the Collatz universe is somewhere in this tree — assuming the conjecture is true. Slide the depth knob and watch the coral fan outward from 1 at the centre. At depth 14 the tree already holds hundreds of integers.",
+    "Every integer in the Collatz universe is somewhere in this tree — assuming the conjecture is true. Slide the depth knob and watch the coral fan outward from 1 at the centre. At depth 14 the tree already holds 79 integers.",
   treeDepthLabel: "Reverse depth",
   treeNodeLabel: "Integers reached",
   treeHint:
@@ -192,12 +204,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Die Vermutung",
       title: "Jeder Weg führt zu 4 → 2 → 1",
-      body: "Lothar Collatz notierte die Regel 1937 in Berlin, zwei Jahre nach seiner Promotion. Dasselbe Biest wurde unabhängig von Kakutani, Ulam und den Zahlentheoretikern in Syracuse wiederentdeckt — deshalb heißt es in der Literatur auch Syracuse-Problem, Kakutani-Problem und Ulam-Vermutung. Die Behauptung ist überall dieselbe: für jede positive ganze Zahl n erreicht die Iteration T(n) am Ende 1 und kreist dann für immer im Zyklus 4 → 2 → 1. Stand 2025 ist sie für jede ganze Zahl bis etwa 2,36 × 10²¹ direkt durchgerechnet. Kein Gegenbeispiel. Auch kein Beweis.",
+      body: "Lothar Collatz notierte die Regel 1937 in Berlin, zwei Jahre nach seiner Promotion. Dasselbe Biest wurde unabhängig von Kakutani, Ulam und den Zahlentheoretiker:innen in Syracuse wiederentdeckt — deshalb heißt es in der Literatur auch Syracuse-Problem, Kakutani-Problem und Ulam-Vermutung. Die Behauptung ist überall dieselbe: für jede positive ganze Zahl n erreicht die Iteration T(n) am Ende 1 und kreist dann für immer im Zyklus 4 → 2 → 1. Stand 2025 ist sie für jede ganze Zahl bis 2⁶⁸ direkt durchgerechnet. Kein Gegenbeispiel. Auch kein Beweis.",
     },
     {
       pretitle: "Abschnitt 04 · Taos Ergebnis von 2019",
       title: "Fast alle Bahnen, fast bis nach Hause",
-      body: "Den tiefsten Fortschritt brachte 2019 Terence Tao. Seine Arbeit ‚Almost all orbits of the Collatz map attain almost bounded values‘ zeigt: für jede Funktion f(n), die gegen unendlich strebt, hat die Menge der Startzahlen, deren Collatz-Bahn schließlich unter f(n) fällt, natürliche Dichte 1. Im Klartext: wähl eine Startzahl zufällig — fast sicher schrumpft ihre Bahn irgendwann unter jede vorher gesetzte Schranke. Das ist eine probabilistische Knapp-vorbei-Aussage, kein Beweis. Etwaige Gegenbeispiele würden eine Maß-null-Ausnahmemenge bilden, aber Maß null heißt nicht leer, und Taos Argument schließt sie ausdrücklich nicht aus.",
+      body: "Den tiefsten Fortschritt brachte 2019 Terence Tao. Seine Arbeit ‚Almost all orbits of the Collatz map attain almost bounded values‘ zeigt: für jede Funktion f(n), die gegen unendlich strebt, hat die Menge der Startzahlen, deren Collatz-Bahn schließlich unter f(n) fällt, logarithmische Dichte 1. Im Klartext: wähl eine Startzahl zufällig — fast sicher schrumpft ihre Bahn irgendwann unter jede vorher gesetzte Schranke. Das ist eine probabilistische Knapp-vorbei-Aussage, kein Beweis. Etwaige Gegenbeispiele würden eine Maß-null-Ausnahmemenge bilden, aber Maß null heißt nicht leer, und Taos Argument schließt sie ausdrücklich nicht aus.",
     },
     {
       pretitle: "Abschnitt 05 · Die Rückwärts-Koralle",
@@ -212,8 +224,10 @@ const de: RichStory = {
   ],
   closingTitle: "Sieh es fallen.",
   closingBody:
-    "Der Explorer plottet die Hagelbahn jeder Startzahl auf größerer Leinwand, lässt die Rückwärts-Koralle deutlich tiefer wachsen und stellt Keime im Rennen nebeneinander. Alles, was du gerade gelesen hast, ist einen Klick entfernt.",
+    "Der Explorer plottet die Hagelbahn jeder Startzahl auf größerer Leinwand und lässt dieselbe Rückwärts-Koralle neben einem Live-Statistikfeld wachsen. Alles, was du gerade gelesen hast, ist einen Klick entfernt.",
   ctaLabel: "→ Explorer öffnen",
+  conjectureNote:
+    "Für jede positive ganze Zahl n gibt es eine endliche Zahl von Schritten k, nach denen T, k-mal iteriert, auf 1 landet. Verifiziert für n ≤ 2⁶⁸. Nie bewiesen.",
   trajectoryCaption: "Interaktiv · Bahn-Plotter",
   trajectoryTitle: "Wirf einen Keim in den Hagel",
   trajectoryBody:
@@ -227,7 +241,7 @@ const de: RichStory = {
   treeCaption: "Interaktiv · Rückwärts-Koralle",
   treeTitle: "Lass die Regel von 1 aus rückwärts laufen",
   treeBody:
-    "Jede ganze Zahl im Collatz-Universum liegt irgendwo in diesem Baum — wenn die Vermutung stimmt. Schieb am Tiefenregler und sieh die Koralle von der zentralen 1 nach außen fächern. Bei Tiefe 14 hält der Baum schon hunderte ganze Zahlen.",
+    "Jede ganze Zahl im Collatz-Universum liegt irgendwo in diesem Baum — wenn die Vermutung stimmt. Schieb am Tiefenregler und sieh die Koralle von der zentralen 1 nach außen fächern. Bei Tiefe 14 hält der Baum schon 79 ganze Zahlen.",
   treeDepthLabel: "Rückwärtstiefe",
   treeNodeLabel: "Erreichte Zahlen",
   treeHint:
@@ -287,12 +301,12 @@ const es: RichStory = {
     {
       pretitle: "Sección 03 · La conjetura",
       title: "Todos los caminos llevan a 4 → 2 → 1",
-      body: "Lothar Collatz anotó la regla en 1937, dos años después de doctorarse en Berlín. La misma bestia fue redescubierta de forma independiente por Kakutani, Ulam y los teóricos de números de Syracuse, por eso la literatura también la llama problema de Syracuse, problema de Kakutani y conjetura de Ulam. La afirmación es la misma con cualquier nombre: para todo entero positivo n, la iteración T(n) termina llegando a 1 y entra para siempre en el ciclo 4 → 2 → 1. A 2025 está comprobada por cálculo directo para cada entero hasta unos 2,36 × 10²¹. Sin contraejemplo. Tampoco hay demostración.",
+      body: "Lothar Collatz anotó la regla en 1937, dos años después de doctorarse en Berlín. La misma bestia fue redescubierta de forma independiente por Kakutani, Ulam y los teóricos de números de Syracuse, por eso la literatura también la llama problema de Syracuse, problema de Kakutani y conjetura de Ulam. La afirmación es la misma con cualquier nombre: para todo entero positivo n, la iteración T(n) termina llegando a 1 y entra para siempre en el ciclo 4 → 2 → 1. A 2025 está comprobada por cálculo directo para cada entero hasta 2⁶⁸. Sin contraejemplo. Tampoco hay demostración.",
     },
     {
       pretitle: "Sección 04 · El resultado de Tao de 2019",
       title: "Casi todas las órbitas, casi hasta el final",
-      body: "El avance más profundo llegó en 2019 de la mano de Terence Tao. Su artículo ‘Almost all orbits of the Collatz map attain almost bounded values’ demuestra que para toda función f(n) que tienda a infinito, el conjunto de enteros de partida cuya órbita de Collatz acaba por bajar de f(n) tiene densidad natural 1. En cristiano: elige un entero al azar; casi seguro su órbita termina por encogerse bajo cualquier cota que fijes de antemano. Es un casi-roce probabilístico, no una demostración. Los posibles contraejemplos formarían un conjunto excepcional de medida cero, pero medida cero no es vacío, y el argumento de Tao no los descarta.",
+      body: "El avance más profundo llegó en 2019 de la mano de Terence Tao. Su artículo ‘Almost all orbits of the Collatz map attain almost bounded values’ demuestra que para toda función f(n) que tienda a infinito, el conjunto de enteros de partida cuya órbita de Collatz acaba por bajar de f(n) tiene densidad logarítmica 1. En cristiano: elige un entero al azar; casi seguro su órbita termina por encogerse bajo cualquier cota que fijes de antemano. Es un casi-roce probabilístico, no una demostración. Los posibles contraejemplos formarían un conjunto excepcional de medida cero, pero medida cero no es vacío, y el argumento de Tao no los descarta.",
     },
     {
       pretitle: "Sección 05 · El coral inverso",
@@ -307,8 +321,10 @@ const es: RichStory = {
   ],
   closingTitle: "Mírala caer.",
   closingBody:
-    "El Explorador grafica la trayectoria de granizo de cualquier número en un lienzo más amplio, hace crecer el coral inverso a profundidades mucho mayores y permite enfrentar semillas en paralelo. Todo lo que acabas de leer está a un clic.",
+    "El Explorador grafica la trayectoria de granizo de cualquier número en un lienzo más amplio y hace crecer el mismo coral inverso junto a un panel de estadísticas en vivo. Todo lo que acabas de leer está a un clic.",
   ctaLabel: "→ Abrir el Explorador",
+  conjectureNote:
+    "Para todo entero positivo n existe un número finito de pasos k tras los cuales T, iterada k veces, cae en 1. Verificada para n ≤ 2⁶⁸. Nunca demostrada.",
   trajectoryCaption: "Interactivo · graficador de órbita",
   trajectoryTitle: "Lanza una semilla al granizo",
   trajectoryBody:
@@ -322,7 +338,7 @@ const es: RichStory = {
   treeCaption: "Interactivo · coral inverso",
   treeTitle: "Corre la regla al revés desde 1",
   treeBody:
-    "Todo entero del universo Collatz está en algún lugar de este árbol — si la conjetura es cierta. Mueve el control de profundidad y mira el coral abrirse desde el 1 central. A profundidad 14 el árbol ya alberga cientos de enteros.",
+    "Todo entero del universo Collatz está en algún lugar de este árbol — si la conjetura es cierta. Mueve el control de profundidad y mira el coral abrirse desde el 1 central. A profundidad 14 el árbol ya alberga 79 enteros.",
   treeDepthLabel: "Profundidad inversa",
   treeNodeLabel: "Enteros alcanzados",
   treeHint:
@@ -382,12 +398,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · La conjecture",
       title: "Tous les chemins mènent à 4 → 2 → 1",
-      body: "Lothar Collatz a noté la règle en 1937 à Berlin, deux ans après sa thèse. La même bête fut redécouverte indépendamment par Kakutani, Ulam et les théoriciens des nombres de Syracuse, d'où les autres noms : problème de Syracuse, problème de Kakutani, conjecture d'Ulam. L'énoncé est partout le même : pour tout entier positif n, l'itération T(n) finit par atteindre 1 et tourne ensuite pour toujours dans le cycle 4 → 2 → 1. En 2025 elle est vérifiée par calcul direct pour tout entier jusqu'à environ 2,36 × 10²¹. Aucun contre-exemple. Aucune preuve non plus.",
+      body: "Lothar Collatz a noté la règle en 1937 à Berlin, deux ans après sa thèse. La même bête fut redécouverte indépendamment par Kakutani, Ulam et les théoriciens des nombres de Syracuse, d'où les autres noms : problème de Syracuse, problème de Kakutani, conjecture d'Ulam. L'énoncé est partout le même : pour tout entier positif n, l'itération T(n) finit par atteindre 1 et tourne ensuite pour toujours dans le cycle 4 → 2 → 1. En 2025 elle est vérifiée par calcul direct pour tout entier jusqu'à 2⁶⁸. Aucun contre-exemple. Aucune preuve non plus.",
     },
     {
       pretitle: "Section 04 · Le résultat de Tao en 2019",
       title: "Presque toutes les orbites, presque jusqu'au bout",
-      body: "Le progrès le plus profond vient de Terence Tao en 2019. Son article ‘Almost all orbits of the Collatz map attain almost bounded values’ montre que pour toute fonction f(n) tendant vers l'infini, l'ensemble des entiers de départ dont l'orbite de Collatz finit par tomber sous f(n) a densité naturelle 1. En clair : tire un entier au hasard ; presque sûrement son orbite finit par passer sous n'importe quelle borne fixée à l'avance. C'est un quasi-passé probabiliste, pas une preuve. Les contre-exemples éventuels formeraient un ensemble exceptionnel de mesure nulle, mais mesure nulle ne veut pas dire vide, et l'argument de Tao ne les exclut pas.",
+      body: "Le progrès le plus profond vient de Terence Tao en 2019. Son article ‘Almost all orbits of the Collatz map attain almost bounded values’ montre que pour toute fonction f(n) tendant vers l'infini, l'ensemble des entiers de départ dont l'orbite de Collatz finit par tomber sous f(n) a densité logarithmique 1. En clair : tire un entier au hasard ; presque sûrement son orbite finit par passer sous n'importe quelle borne fixée à l'avance. C'est un quasi-passé probabiliste, pas une preuve. Les contre-exemples éventuels formeraient un ensemble exceptionnel de mesure nulle, mais mesure nulle ne veut pas dire vide, et l'argument de Tao ne les exclut pas.",
     },
     {
       pretitle: "Section 05 · Le corail inverse",
@@ -402,8 +418,10 @@ const fr: RichStory = {
   ],
   closingTitle: "Regarde-la tomber.",
   closingBody:
-    "L'Explorateur trace la grêle de n'importe quelle graine sur une plus grande toile, fait pousser le corail inverse beaucoup plus profondément et te laisse comparer plusieurs graines côte à côte. Tout ce que tu viens de lire est à un clic.",
+    "L'Explorateur trace la grêle de n'importe quelle graine sur une plus grande toile et fait pousser le même corail inverse à côté d'un panneau de statistiques en direct. Tout ce que tu viens de lire est à un clic.",
   ctaLabel: "→ Ouvrir l'Explorateur",
+  conjectureNote:
+    "Pour tout entier positif n, il existe un nombre fini d'étapes k après lesquelles T, itérée k fois, retombe sur 1. Vérifié pour n ≤ 2⁶⁸. Jamais prouvé.",
   trajectoryCaption: "Interactif · traceur d'orbite",
   trajectoryTitle: "Lance une graine dans la grêle",
   trajectoryBody:
@@ -417,7 +435,7 @@ const fr: RichStory = {
   treeCaption: "Interactif · corail inverse",
   treeTitle: "Inverse la règle depuis 1",
   treeBody:
-    "Tout entier de l'univers Collatz est quelque part dans cet arbre — si la conjecture est vraie. Glisse la profondeur et regarde le corail s'ouvrir depuis le 1 central. À profondeur 14, l'arbre contient déjà des centaines d'entiers.",
+    "Tout entier de l'univers Collatz est quelque part dans cet arbre — si la conjecture est vraie. Glisse la profondeur et regarde le corail s'ouvrir depuis le 1 central. À profondeur 14, l'arbre contient déjà 79 entiers.",
   treeDepthLabel: "Profondeur inverse",
   treeNodeLabel: "Entiers atteints",
   treeHint:
@@ -477,12 +495,12 @@ const it: RichStory = {
     {
       pretitle: "Sezione 03 · La congettura",
       title: "Ogni strada porta a 4 → 2 → 1",
-      body: "Lothar Collatz annotò la regola nel 1937, a Berlino, due anni dopo il dottorato. La stessa bestia fu riscoperta indipendentemente da Kakutani, Ulam e dai teorici dei numeri di Siracusa: ecco perché in letteratura compare anche come problema di Siracusa, problema di Kakutani e congettura di Ulam. L'affermazione è sempre la stessa: per ogni intero positivo n, l'iterazione T(n) raggiunge alla fine 1 e poi gira per sempre nel ciclo 4 → 2 → 1. Al 2025 è verificata per calcolo diretto per ogni intero fino a circa 2,36 × 10²¹. Nessun controesempio. Neppure una dimostrazione.",
+      body: "Lothar Collatz annotò la regola nel 1937, a Berlino, due anni dopo il dottorato. La stessa bestia fu riscoperta indipendentemente da Kakutani, Ulam e dai teorici dei numeri di Siracusa: ecco perché in letteratura compare anche come problema di Siracusa, problema di Kakutani e congettura di Ulam. L'affermazione è sempre la stessa: per ogni intero positivo n, l'iterazione T(n) raggiunge alla fine 1 e poi gira per sempre nel ciclo 4 → 2 → 1. Al 2025 è verificata per calcolo diretto per ogni intero fino a 2⁶⁸. Nessun controesempio. Neppure una dimostrazione.",
     },
     {
       pretitle: "Sezione 04 · Il risultato di Tao del 2019",
       title: "Quasi tutte le orbite, quasi fino a casa",
-      body: "Il progresso più profondo è arrivato nel 2019 da Terence Tao. Il suo articolo ‘Almost all orbits of the Collatz map attain almost bounded values’ mostra che per ogni funzione f(n) che tende all'infinito, l'insieme degli interi di partenza la cui orbita di Collatz finisce sotto f(n) ha densità naturale 1. In chiaro: prendi un intero a caso; quasi sicuramente la sua orbita finisce per scendere sotto qualsiasi soglia tu fissi prima. È un quasi-passaggio probabilistico, non una dimostrazione. Gli eventuali controesempi formerebbero un insieme eccezionale di misura nulla, ma misura nulla non significa vuoto, e l'argomento di Tao non li esclude.",
+      body: "Il progresso più profondo è arrivato nel 2019 da Terence Tao. Il suo articolo ‘Almost all orbits of the Collatz map attain almost bounded values’ mostra che per ogni funzione f(n) che tende all'infinito, l'insieme degli interi di partenza la cui orbita di Collatz finisce sotto f(n) ha densità logaritmica 1. In chiaro: prendi un intero a caso; quasi sicuramente la sua orbita finisce per scendere sotto qualsiasi soglia tu fissi prima. È un quasi-passaggio probabilistico, non una dimostrazione. Gli eventuali controesempi formerebbero un insieme eccezionale di misura nulla, ma misura nulla non significa vuoto, e l'argomento di Tao non li esclude.",
     },
     {
       pretitle: "Sezione 05 · Il corallo inverso",
@@ -497,8 +515,10 @@ const it: RichStory = {
   ],
   closingTitle: "Guardala cadere.",
   closingBody:
-    "L'Esploratore traccia la grandine di qualsiasi numero su una tela più ampia, fa crescere il corallo inverso a profondità molto maggiori e ti lascia gareggiare semi affiancati. Tutto quello che hai appena letto è a un clic.",
+    "L'Esploratore traccia la grandine di qualsiasi numero su una tela più ampia e fa crescere lo stesso corallo inverso accanto a un pannello di statistiche dal vivo. Tutto quello che hai appena letto è a un clic.",
   ctaLabel: "→ Apri l'Esploratore",
+  conjectureNote:
+    "Per ogni intero positivo n esiste un numero finito di passi k dopo i quali T, iterata k volte, cade su 1. Verificata per n ≤ 2⁶⁸. Mai dimostrata.",
   trajectoryCaption: "Interattivo · tracciatore di orbita",
   trajectoryTitle: "Butta un seme nella grandine",
   trajectoryBody:
@@ -512,7 +532,7 @@ const it: RichStory = {
   treeCaption: "Interattivo · corallo inverso",
   treeTitle: "Inverti la regola partendo da 1",
   treeBody:
-    "Ogni intero dell'universo Collatz sta da qualche parte in questo albero — se la congettura è vera. Sposta la profondità e guarda il corallo aprirsi dal centrale 1. A profondità 14 l'albero raccoglie già centinaia di interi.",
+    "Ogni intero dell'universo Collatz sta da qualche parte in questo albero — se la congettura è vera. Sposta la profondità e guarda il corallo aprirsi dal centrale 1. A profondità 14 l'albero raccoglie già 79 interi.",
   treeDepthLabel: "Profondità inversa",
   treeNodeLabel: "Interi raggiunti",
   treeHint:
@@ -572,12 +592,12 @@ const pt: RichStory = {
     {
       pretitle: "Secção 03 · A conjetura",
       title: "Todos os caminhos levam a 4 → 2 → 1",
-      body: "Lothar Collatz anotou a regra em 1937, em Berlim, dois anos depois do doutoramento. A mesma besta foi redescoberta independentemente por Kakutani, Ulam e pelos teóricos dos números de Syracuse — daí na literatura aparecer também como problema de Syracuse, problema de Kakutani e conjetura de Ulam. A afirmação é sempre a mesma: para todo inteiro positivo n, a iteração T(n) acaba por chegar a 1 e gira para sempre no ciclo 4 → 2 → 1. Em 2025 está verificada por cálculo direto para cada inteiro até cerca de 2,36 × 10²¹. Sem contraexemplo. Sem demonstração também.",
+      body: "Lothar Collatz anotou a regra em 1937, em Berlim, dois anos depois do doutoramento. A mesma besta foi redescoberta independentemente por Kakutani, Ulam e pelos teóricos dos números de Syracuse — daí na literatura aparecer também como problema de Syracuse, problema de Kakutani e conjetura de Ulam. A afirmação é sempre a mesma: para todo inteiro positivo n, a iteração T(n) acaba por chegar a 1 e gira para sempre no ciclo 4 → 2 → 1. Em 2025 está verificada por cálculo direto para cada inteiro até 2⁶⁸. Sem contraexemplo. Sem demonstração também.",
     },
     {
       pretitle: "Secção 04 · O resultado de Tao de 2019",
       title: "Quase todas as órbitas, quase até ao fim",
-      body: "O progresso mais profundo veio em 2019 da mão de Terence Tao. O seu artigo ‘Almost all orbits of the Collatz map attain almost bounded values’ mostra que para qualquer função f(n) que tende a infinito, o conjunto dos inteiros de partida cuja órbita de Collatz acaba por descer abaixo de f(n) tem densidade natural 1. Em claro: escolhe um inteiro ao acaso; quase de certeza a sua órbita acaba por encolher abaixo de qualquer limite fixado de antemão. É um quase-falhanço probabilístico, não uma demonstração. Os contraexemplos eventuais formariam um conjunto excepcional de medida zero, mas medida zero não é vazio, e o argumento de Tao não os exclui.",
+      body: "O progresso mais profundo veio em 2019 da mão de Terence Tao. O seu artigo ‘Almost all orbits of the Collatz map attain almost bounded values’ mostra que para qualquer função f(n) que tende a infinito, o conjunto dos inteiros de partida cuja órbita de Collatz acaba por descer abaixo de f(n) tem densidade logarítmica 1. Em claro: escolhe um inteiro ao acaso; quase de certeza a sua órbita acaba por encolher abaixo de qualquer limite fixado de antemão. É um quase-falhanço probabilístico, não uma demonstração. Os contraexemplos eventuais formariam um conjunto excepcional de medida zero, mas medida zero não é vazio, e o argumento de Tao não os exclui.",
     },
     {
       pretitle: "Secção 05 · O coral inverso",
@@ -592,8 +612,10 @@ const pt: RichStory = {
   ],
   closingTitle: "Vê-a cair.",
   closingBody:
-    "O Explorador traça o granizo de qualquer semente numa tela maior, faz crescer o coral inverso a profundidades muito maiores e deixa-te correr sementes lado a lado. Tudo o que acabaste de ler está a um clique.",
+    "O Explorador traça o granizo de qualquer semente numa tela maior e faz crescer o mesmo coral inverso ao lado de um painel de estatísticas ao vivo. Tudo o que acabaste de ler está a um clique.",
   ctaLabel: "→ Abrir o Explorador",
+  conjectureNote:
+    "Para todo inteiro positivo n existe um número finito de passos k após os quais T, iterada k vezes, cai em 1. Verificada para n ≤ 2⁶⁸. Nunca demonstrada.",
   trajectoryCaption: "Interativo · traçador de órbita",
   trajectoryTitle: "Lança uma semente para o granizo",
   trajectoryBody:
@@ -607,7 +629,7 @@ const pt: RichStory = {
   treeCaption: "Interativo · coral inverso",
   treeTitle: "Inverte a regra a partir de 1",
   treeBody:
-    "Todo inteiro do universo Collatz está nalgum lugar desta árvore — se a conjetura for verdadeira. Desliza a profundidade e vê o coral abrir-se do 1 central. À profundidade 14 a árvore já guarda centenas de inteiros.",
+    "Todo inteiro do universo Collatz está nalgum lugar desta árvore — se a conjetura for verdadeira. Desliza a profundidade e vê o coral abrir-se do 1 central. À profundidade 14 a árvore já guarda 79 inteiros.",
   treeDepthLabel: "Profundidade inversa",
   treeNodeLabel: "Inteiros alcançados",
   treeHint:
@@ -667,12 +689,12 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 03 · Förmodan",
       title: "Varje väg leder till 4 → 2 → 1",
-      body: "Lothar Collatz nedtecknade regeln 1937 i Berlin, två år efter doktorsdisputationen. Samma odjur återupptäcktes oberoende av Kakutani, Ulam och talteoretikerna i Syracuse, vilket är varför litteraturen också kallar det Syracuse-problemet, Kakutanis problem och Ulams förmodan. Påståendet är överallt detsamma: för varje positivt heltal n når iterationen T(n) till slut 1, och cyklar sedan för evigt i 4 → 2 → 1. Per 2025 är den verifierad genom direkt beräkning för varje heltal upp till cirka 2,36 × 10²¹. Inget motexempel. Inget bevis heller.",
+      body: "Lothar Collatz nedtecknade regeln 1937 i Berlin, två år efter doktorsdisputationen. Samma odjur återupptäcktes oberoende av Kakutani, Ulam och talteoretikerna i Syracuse, vilket är varför litteraturen också kallar det Syracuse-problemet, Kakutanis problem och Ulams förmodan. Påståendet är överallt detsamma: för varje positivt heltal n når iterationen T(n) till slut 1, och cyklar sedan för evigt i 4 → 2 → 1. Per 2025 är den verifierad genom direkt beräkning för varje heltal upp till 2⁶⁸. Inget motexempel. Inget bevis heller.",
     },
     {
       pretitle: "Avsnitt 04 · Taos resultat från 2019",
       title: "Nästan alla banor, nästan hela vägen hem",
-      body: "Det djupaste framsteget kom 2019 från Terence Tao. Hans artikel ‘Almost all orbits of the Collatz map attain almost bounded values’ visar att för varje funktion f(n) som går mot oändligheten har mängden av starttal vilkas Collatz-bana till slut sjunker under f(n) naturlig täthet 1. På klarspråk: dra ett heltal slumpvis; nästan säkert sjunker dess bana till sist under vilken gräns du än sätter i förväg. Det är en probabilistisk nästan-träff, inget bevis. Eventuella motexempel skulle bilda en undantagsmängd av mått noll, men mått noll är inte tomt, och Taos argument utesluter dem inte uttryckligen.",
+      body: "Det djupaste framsteget kom 2019 från Terence Tao. Hans artikel ‘Almost all orbits of the Collatz map attain almost bounded values’ visar att för varje funktion f(n) som går mot oändligheten har mängden av starttal vilkas Collatz-bana till slut sjunker under f(n) logaritmisk täthet 1. På klarspråk: dra ett heltal slumpvis; nästan säkert sjunker dess bana till sist under vilken gräns du än sätter i förväg. Det är en probabilistisk nästan-träff, inget bevis. Eventuella motexempel skulle bilda en undantagsmängd av mått noll, men mått noll är inte tomt, och Taos argument utesluter dem inte uttryckligen.",
     },
     {
       pretitle: "Avsnitt 05 · Den omvända korallen",
@@ -687,8 +709,10 @@ const sv: RichStory = {
   ],
   closingTitle: "Se den falla.",
   closingBody:
-    "Utforskaren ritar hagelbanan för vilket starttal som helst på en större duk, växer den omvända korallen till mycket större djup och låter dig köra frön parallellt. Allt du nyss läste är ett klick bort.",
+    "Utforskaren ritar hagelbanan för vilket starttal som helst på en större duk och växer samma omvända korall bredvid en levande statistikpanel. Allt du nyss läste är ett klick bort.",
   ctaLabel: "→ Öppna utforskaren",
+  conjectureNote:
+    "För varje positivt heltal n finns ett ändligt antal steg k efter vilka T, itererad k gånger, landar på 1. Verifierad för n ≤ 2⁶⁸. Aldrig bevisad.",
   trajectoryCaption: "Interaktivt · banplottare",
   trajectoryTitle: "Släpp ett frö i hagelstormen",
   trajectoryBody:
@@ -702,7 +726,7 @@ const sv: RichStory = {
   treeCaption: "Interaktivt · omvänd korall",
   treeTitle: "Kör regeln baklänges från 1",
   treeBody:
-    "Varje heltal i Collatz-universum ligger någonstans i detta träd — om förmodan stämmer. Dra i djupreglaget och se korallen vecka ut sig från 1:an i mitten. Vid djup 14 håller trädet redan hundratals heltal.",
+    "Varje heltal i Collatz-universum ligger någonstans i detta träd — om förmodan stämmer. Dra i djupreglaget och se korallen vecka ut sig från 1:an i mitten. Vid djup 14 håller trädet redan 79 heltal.",
   treeDepthLabel: "Omvänt djup",
   treeNodeLabel: "Nådda heltal",
   treeHint:
@@ -762,12 +786,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Formodningen",
       title: "Hver vei leder til 4 → 2 → 1",
-      body: "Lothar Collatz skrev ned regelen i 1937 i Berlin, to år etter doktorgraden. Samme udyr ble gjenoppdaget uavhengig av Kakutani, Ulam og talleteoretikerne i Syracuse, og derfor kaller litteraturen den også Syracuse-problemet, Kakutanis problem og Ulam-formodningen. Påstanden er den samme overalt: for hvert positivt heltall n når iterasjonen T(n) til slutt 1 og roterer deretter for alltid i sløyfen 4 → 2 → 1. Per 2025 er den verifisert ved direkte regning for hvert heltall opp til omtrent 2,36 × 10²¹. Ingen motrepresentanter. Heller intet bevis.",
+      body: "Lothar Collatz skrev ned regelen i 1937 i Berlin, to år etter doktorgraden. Samme udyr ble gjenoppdaget uavhengig av Kakutani, Ulam og talleteoretikerne i Syracuse, og derfor kaller litteraturen den også Syracuse-problemet, Kakutanis problem og Ulam-formodningen. Påstanden er den samme overalt: for hvert positivt heltall n når iterasjonen T(n) til slutt 1 og roterer deretter for alltid i sløyfen 4 → 2 → 1. Per 2025 er den verifisert ved direkte regning for hvert heltall opp til 2⁶⁸. Ingen motrepresentanter. Heller intet bevis.",
     },
     {
       pretitle: "Avsnitt 04 · Taos resultat fra 2019",
       title: "Nesten alle baner, nesten hele veien hjem",
-      body: "Det dypeste framskrittet kom i 2019 fra Terence Tao. Artikkelen ‘Almost all orbits of the Collatz map attain almost bounded values’ viser at for hver funksjon f(n) som går mot uendelig har mengden av startheltall hvis Collatz-bane til slutt synker under f(n) naturlig tetthet 1. På klarspråk: trekk et heltall tilfeldig; nesten sikkert ender banen med å krympe under hvilken som helst grense du setter på forhånd. Det er et sannsynlighetsteoretisk nesten-treff, ikke et bevis. Eventuelle motrepresentanter ville danne en unntaksmengde av mål null, men mål null er ikke tom, og Taos argument utelukker dem ikke.",
+      body: "Det dypeste framskrittet kom i 2019 fra Terence Tao. Artikkelen ‘Almost all orbits of the Collatz map attain almost bounded values’ viser at for hver funksjon f(n) som går mot uendelig har mengden av startheltall hvis Collatz-bane til slutt synker under f(n) logaritmisk tetthet 1. På klarspråk: trekk et heltall tilfeldig; nesten sikkert ender banen med å krympe under hvilken som helst grense du setter på forhånd. Det er et sannsynlighetsteoretisk nesten-treff, ikke et bevis. Eventuelle motrepresentanter ville danne en unntaksmengde av mål null, men mål null er ikke tom, og Taos argument utelukker dem ikke.",
     },
     {
       pretitle: "Avsnitt 05 · Den omvendte korallen",
@@ -782,8 +806,10 @@ const no: RichStory = {
   ],
   closingTitle: "Se den falle.",
   closingBody:
-    "Utforskeren tegner hagelbanen for hvert starttall på et større lerret, vokser den omvendte korallen til langt større dybder og lar deg kjøre frø i parallell. Alt du akkurat leste er ett klikk unna.",
+    "Utforskeren tegner hagelbanen for hvert starttall på et større lerret og vokser den samme omvendte korallen ved siden av et levende statistikkpanel. Alt du akkurat leste er ett klikk unna.",
   ctaLabel: "→ Åpne utforskeren",
+  conjectureNote:
+    "For hvert positivt heltall n finnes et endelig antall trinn k, hvoretter T, iterert k ganger, lander på 1. Verifisert for n ≤ 2⁶⁸. Aldri bevist.",
   trajectoryCaption: "Interaktivt · baneplotter",
   trajectoryTitle: "Kast et frø i hagelet",
   trajectoryBody:
@@ -797,7 +823,7 @@ const no: RichStory = {
   treeCaption: "Interaktivt · omvendt korall",
   treeTitle: "Kjør regelen baklengs fra 1",
   treeBody:
-    "Hvert heltall i Collatz-universet ligger et sted i dette treet — hvis formodningen er sann. Dra i dybdereguleringen og se korallen folde seg ut fra 1-eren i midten. Ved dybde 14 holder treet allerede hundrevis av heltall.",
+    "Hvert heltall i Collatz-universet ligger et sted i dette treet — hvis formodningen er sann. Dra i dybdereguleringen og se korallen folde seg ut fra 1-eren i midten. Ved dybde 14 holder treet allerede 79 heltall.",
   treeDepthLabel: "Omvendt dybde",
   treeNodeLabel: "Nådde heltall",
   treeHint:
@@ -855,8 +881,8 @@ function Trajectory27Mini() {
       role="img"
       aria-label="Trajectory of n = 27 on a log scale"
     >
-      <rect x={0} y={0} width={W} height={H} fill="#06070d" />
-      <path d={path} fill="none" stroke="rgba(255,122,182,0.9)" strokeWidth={1.2} />
+      <rect x={0} y={0} width={W} height={H} fill={palette.canvas.bg} />
+      <path d={path} fill="none" stroke={withAlpha(palette.signal.rose, 0.9)} strokeWidth={1.2} />
     </svg>
   );
 }
@@ -1004,8 +1030,7 @@ export default function CollatzStory() {
               ∀ n ∈ ℕ⁺ &nbsp; ∃ k ∈ ℕ : T^k(n) = 1
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              For every positive integer n there is a finite number of steps k after which T
-              iterated k times lands on 1. Verified for n ≤ 2.36 × 10²¹. Never proved.
+              {story.conjectureNote}
             </p>
           </div>
         </Reveal>

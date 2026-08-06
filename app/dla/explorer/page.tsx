@@ -44,13 +44,14 @@ type ExplorerCopy = {
   statusCell: string;
   statusStuck: string;
   statusWalkers: string;
+  canvasLabel: string;
 };
 
 const COPY: Record<Locale, ExplorerCopy> = {
   en: {
     presets: {
       classic: { label: "Centre seed", note: "single point, slow" },
-      fast: { label: "Centre · fast", note: "80 walkers/frame" },
+      fast: { label: "Centre · fast", note: "300 walkers/frame" },
       line: { label: "Bottom line", note: "crystal growth" },
       ring: { label: "Ring seed", note: "inside-out coral" },
     },
@@ -68,11 +69,12 @@ const COPY: Record<Locale, ExplorerCopy> = {
     statusCell: "cell",
     statusStuck: "stuck",
     statusWalkers: "walkers",
+    canvasLabel: "Live DLA simulation canvas",
   },
   de: {
     presets: {
       classic: { label: "Mittelkeim", note: "Einzelpunkt, langsam" },
-      fast: { label: "Mitte · schnell", note: "80 Wanderer/Frame" },
+      fast: { label: "Mitte · schnell", note: "300 Wanderer/Frame" },
       line: { label: "Bodenlinie", note: "Kristallwachstum" },
       ring: { label: "Ringkeim", note: "Koralle von innen heraus" },
     },
@@ -90,11 +92,12 @@ const COPY: Record<Locale, ExplorerCopy> = {
     statusCell: "Zelle",
     statusStuck: "geheftet",
     statusWalkers: "Wanderer",
+    canvasLabel: "Live-DLA-Simulationsfläche",
   },
   es: {
     presets: {
       classic: { label: "Semilla central", note: "punto único, lento" },
-      fast: { label: "Centro · rápido", note: "80 caminantes/cuadro" },
+      fast: { label: "Centro · rápido", note: "300 caminantes/cuadro" },
       line: { label: "Línea inferior", note: "crecimiento cristalino" },
       ring: { label: "Semilla anillo", note: "coral de dentro hacia fuera" },
     },
@@ -112,11 +115,12 @@ const COPY: Record<Locale, ExplorerCopy> = {
     statusCell: "celda",
     statusStuck: "pegados",
     statusWalkers: "caminantes",
+    canvasLabel: "Lienzo de simulación DLA en vivo",
   },
   fr: {
     presets: {
       classic: { label: "Graine centrale", note: "point unique, lent" },
-      fast: { label: "Centre · rapide", note: "80 marcheurs/image" },
+      fast: { label: "Centre · rapide", note: "300 marcheurs/image" },
       line: { label: "Ligne du bas", note: "croissance cristalline" },
       ring: { label: "Graine anneau", note: "corail de l'intérieur" },
     },
@@ -134,11 +138,12 @@ const COPY: Record<Locale, ExplorerCopy> = {
     statusCell: "cellule",
     statusStuck: "collés",
     statusWalkers: "marcheurs",
+    canvasLabel: "Zone de simulation DLA en direct",
   },
   it: {
     presets: {
       classic: { label: "Seme centrale", note: "punto singolo, lento" },
-      fast: { label: "Centro · veloce", note: "80 camminatori/frame" },
+      fast: { label: "Centro · veloce", note: "300 camminatori/frame" },
       line: { label: "Linea inferiore", note: "crescita cristallina" },
       ring: { label: "Seme ad anello", note: "corallo dall'interno" },
     },
@@ -156,11 +161,12 @@ const COPY: Record<Locale, ExplorerCopy> = {
     statusCell: "cella",
     statusStuck: "fissati",
     statusWalkers: "camminatori",
+    canvasLabel: "Area di simulazione DLA dal vivo",
   },
   pt: {
     presets: {
       classic: { label: "Semente central", note: "ponto único, lento" },
-      fast: { label: "Centro · rápido", note: "80 caminhantes/quadro" },
+      fast: { label: "Centro · rápido", note: "300 caminhantes/quadro" },
       line: { label: "Linha inferior", note: "crescimento cristalino" },
       ring: { label: "Semente anel", note: "coral de dentro para fora" },
     },
@@ -178,11 +184,12 @@ const COPY: Record<Locale, ExplorerCopy> = {
     statusCell: "célula",
     statusStuck: "fixados",
     statusWalkers: "caminhantes",
+    canvasLabel: "Tela de simulação DLA ao vivo",
   },
   sv: {
     presets: {
       classic: { label: "Mittfrö", note: "enstaka punkt, långsamt" },
-      fast: { label: "Mitten · snabbt", note: "80 vandrare/bildruta" },
+      fast: { label: "Mitten · snabbt", note: "300 vandrare/bildruta" },
       line: { label: "Bottenlinje", note: "kristalltillväxt" },
       ring: { label: "Ringfrö", note: "korall inifrån och ut" },
     },
@@ -200,11 +207,12 @@ const COPY: Record<Locale, ExplorerCopy> = {
     statusCell: "cell",
     statusStuck: "fastnade",
     statusWalkers: "vandrare",
+    canvasLabel: "Live-DLA-simuleringsyta",
   },
   no: {
     presets: {
       classic: { label: "Sentrum-frø", note: "enkelt punkt, sakte" },
-      fast: { label: "Sentrum · rask", note: "80 vandrere/ramme" },
+      fast: { label: "Sentrum · rask", note: "300 vandrere/ramme" },
       line: { label: "Bunnlinje", note: "krystallvekst" },
       ring: { label: "Ringfrø", note: "korall fra innsiden og ut" },
     },
@@ -222,33 +230,42 @@ const COPY: Record<Locale, ExplorerCopy> = {
     statusCell: "celle",
     statusStuck: "festet",
     statusWalkers: "vandrere",
+    canvasLabel: "Live-DLA-simuleringsflate",
   },
 };
 
+// palette.signal.* are hex; the canvas fills need "r, g, b" triples for rgba(),
+// so derive them from the tokens rather than re-typing literals that can drift
+// out of sync with the Tailwind swatch/border classes (the coral entry did).
+const rgbTriple = (hex: string) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}`;
+};
+
 const COLORS = {
-  rose: {
-    rgb: "255, 122, 182",
+  coral: {
+    rgb: rgbTriple(palette.signal.coral),
     tw: "text-signal-coral",
     border: "border-signal-coral/60",
     bg: "bg-signal-coral/10",
     swatch: "bg-signal-coral",
   },
   cyan: {
-    rgb: "125, 243, 255",
+    rgb: rgbTriple(palette.signal.cyan),
     tw: "text-signal-cyan",
     border: "border-signal-cyan/60",
     bg: "bg-signal-cyan/10",
     swatch: "bg-signal-cyan",
   },
   violet: {
-    rgb: "179, 136, 255",
+    rgb: rgbTriple(palette.signal.violet),
     tw: "text-signal-violet",
     border: "border-signal-violet/60",
     bg: "bg-signal-violet/10",
     swatch: "bg-signal-violet",
   },
   amber: {
-    rgb: "255, 209, 102",
+    rgb: rgbTriple(palette.signal.amber),
     tw: "text-signal-amber",
     border: "border-signal-amber/60",
     bg: "bg-signal-amber/10",
@@ -268,13 +285,24 @@ export default function DlaExplorer() {
   const [walkers, setWalkers] = useState(150);
   const [stickiness, setStickiness] = useState(1.0);
   const [cell, setCell] = useState(3); // px per grid cell
-  const [color, setColor] = useState<ColorKey>("rose");
+  const [color, setColor] = useState<ColorKey>("coral");
   const [running, setRunning] = useState(true);
   const [stuck, setStuck] = useState(0);
   const [resetTick, setResetTick] = useState(0);
+  const [reduced, setReduced] = useState(false);
 
   const paramsRef = useRef({ walkers, stickiness, color, running });
   paramsRef.current = { walkers, stickiness, color, running };
+
+  // JS-driven canvases must honour prefers-reduced-motion themselves; the global
+  // CSS rule can't stop a rAF loop. Re-subscribe so a live toggle is respected.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -316,7 +344,9 @@ export default function DlaExplorer() {
         const cx = gridW / 2;
         const cy = gridH / 2;
         const r = Math.min(gridW, gridH) / 3;
-        const steps = 360;
+        // Sample densely enough that the ring stays gap-free at any radius:
+        // a fixed 360 steps leaves holes once the circumference exceeds it.
+        const steps = Math.ceil(2 * Math.PI * r * 2);
         for (let i = 0; i < steps; i++) {
           const a = (i / steps) * Math.PI * 2;
           const x = Math.round(cx + Math.cos(a) * r);
@@ -346,6 +376,17 @@ export default function DlaExplorer() {
       }
       const cx = gridW / 2;
       const cy = gridH / 2;
+      if (seed === "ring") {
+        // The ring grows inwards: spawn uniformly inside the ring so walkers
+        // accrete on its inner wall (sqrt keeps the disc sample uniform).
+        const rInner = Math.min(gridW, gridH) / 3 - 2;
+        const rr = rInner * Math.sqrt(Math.random());
+        const ang = Math.random() * Math.PI * 2;
+        return {
+          x: Math.floor(cx + Math.cos(ang) * rr),
+          y: Math.floor(cy + Math.sin(ang) * rr),
+        };
+      }
       const R = Math.min(gridW, gridH) / 2 - 2;
       const ang = Math.random() * Math.PI * 2;
       return {
@@ -376,22 +417,35 @@ export default function DlaExplorer() {
 
       for (let i = live.length - 1; i >= 0; i--) {
         const w = live[i];
+        let nx = w.x;
+        let ny = w.y;
         const r = Math.random();
-        if (r < 0.25) w.x++;
-        else if (r < 0.5) w.x--;
-        else if (r < 0.75) w.y++;
-        else w.y--;
+        if (r < 0.25) nx++;
+        else if (r < 0.5) nx--;
+        else if (r < 0.75) ny++;
+        else ny--;
         // reflect at walls
-        if (w.x < 0) w.x = 0;
-        else if (w.x >= gridW) w.x = gridW - 1;
-        if (w.y < 0) w.y = 0;
-        else if (w.y >= gridH) w.y = gridH - 1;
+        if (nx < 0) nx = 0;
+        else if (nx >= gridW) nx = gridW - 1;
+        if (ny < 0) ny = 0;
+        else if (ny >= gridH) ny = gridH - 1;
+        // The cluster is impenetrable: reject steps onto frozen cells so a
+        // walker can't tunnel through an arm. Low stickiness only delays
+        // surface attachment, it must never let walkers freeze in the interior.
+        if (grid[ny * gridW + nx] === 0) {
+          w.x = nx;
+          w.y = ny;
+        }
         // stick?
         if (hasStuckNeighbour(w.x, w.y) && Math.random() < p.stickiness) {
           const idx = w.y * gridW + w.x;
-          const age = Math.min(255, 1 + Math.floor((frame / 60) * 4));
-          grid[idx] = age;
-          stuckCount++;
+          // Only freeze (and count) a genuinely empty cell so stuckCount stays
+          // equal to the true cluster size.
+          if (grid[idx] === 0) {
+            const age = Math.min(255, 1 + Math.floor((frame / 60) * 4));
+            grid[idx] = age;
+            stuckCount++;
+          }
           live.splice(i, 1);
         }
       }
@@ -422,23 +476,30 @@ export default function DlaExplorer() {
     };
 
     let lastReport = 0;
-    const loop = () => {
-      step();
+    if (reduced) {
+      // Reduced motion: grow the cluster synchronously, then paint one static
+      // frame instead of running an animation loop.
+      for (let n = 0; n < 1200; n++) step();
       draw();
-      if (frame - lastReport > 30) {
-        setStuck(stuckCount);
-        lastReport = frame;
-      }
+      setStuck(stuckCount);
+    } else {
+      const loop = () => {
+        step();
+        draw();
+        if (frame - lastReport > 30) {
+          setStuck(stuckCount);
+          lastReport = frame;
+        }
+        raf = requestAnimationFrame(loop);
+      };
       raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
+    }
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-     
-  }, [seed, cell, resetTick, dpr]);
+  }, [seed, cell, resetTick, dpr, reduced]);
 
   const applyPreset = (p: Preset) => {
     setSeed(p.seed);
@@ -453,7 +514,12 @@ export default function DlaExplorer() {
     <main className="flex min-h-screen flex-col pt-14">
       <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         <div className="relative min-h-[60vh] bg-ink-950 lg:min-h-[calc(100vh-3.5rem)]">
-          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            role="img"
+            aria-label={copy.canvasLabel}
+            className="absolute inset-0 block h-full w-full"
+          />
           <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               DLA · {copy.statusSeed} = {copy.seedLabels[seed]} · {copy.statusCell} {cell}px
@@ -633,6 +699,7 @@ function SliderRow({
       </div>
       <input
         type="range"
+        aria-label={label}
         value={value}
         min={min}
         max={max}

@@ -18,6 +18,19 @@ interface Props {
   presets?: number[];
 }
 
+function withAlpha(hex: string, alpha: number): string {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+// Doubles stay exact below 2^53, so orbits beyond ~5.7e10 (the worst excursion
+// reachable from a seed ≤ MAX_SEED) would round and give a wrong trajectory.
+// The input is clamped to MAX_SEED to keep every plotted orbit exact.
+const MAX_SEED = 1_000_000;
+
 const W = 360;
 const H = 220;
 const PAD_L = 36;
@@ -88,7 +101,7 @@ export function CollatzTrajectoryPlot({
     const yAt = (v: number) => PAD_T + innerH - (Math.log10(Math.max(1, v)) / yMax) * innerH;
 
     // grid lines at powers of 10
-    ctx.strokeStyle = "rgba(138,144,164,0.18)";
+    ctx.strokeStyle = withAlpha(palette.canvas.muted, 0.18);
     ctx.lineWidth = 1;
     ctx.font = "9px ui-monospace, monospace";
     ctx.fillStyle = palette.canvas.muted;
@@ -104,7 +117,7 @@ export function CollatzTrajectoryPlot({
     }
 
     // orbit line
-    ctx.strokeStyle = "rgba(255,122,182,0.9)";
+    ctx.strokeStyle = withAlpha(palette.signal.rose, 0.9);
     ctx.lineWidth = 1.4;
     ctx.beginPath();
     for (let i = 0; i < orbit.length; i++) {
@@ -154,25 +167,32 @@ export function CollatzTrajectoryPlot({
           <div className="hairline overflow-hidden rounded-xl border bg-ink-950">
             <canvas
               ref={canvasRef}
+              role="img"
               style={{ width: W, height: H, display: "block", maxWidth: "100%" }}
-              aria-label="Collatz trajectory"
+              aria-label={caption}
             />
           </div>
         </div>
         <div className="space-y-4 md:col-span-5">
           <div className="space-y-2">
-            <label className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+            <label
+              htmlFor="collatz-seed"
+              className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+            >
               {inputLabel}
             </label>
             <input
+              id="collatz-seed"
               type="number"
               min={1}
-              max={1_000_000_000}
+              max={MAX_SEED}
               step={1}
               value={seed}
+              aria-label={inputLabel}
               onChange={(e) => {
                 const v = Number(e.target.value);
-                if (Number.isFinite(v) && v >= 1) setSeed(Math.floor(v));
+                // Clamp to MAX_SEED so the orbit never exceeds 2^53 and rounds.
+                if (Number.isFinite(v) && v >= 1) setSeed(Math.min(MAX_SEED, Math.floor(v)));
               }}
               className="hairline w-full rounded-md border bg-ink-950 px-3 py-2 font-mono text-sm text-ink-100 focus:border-signal-rose/60 focus:outline-none"
             />

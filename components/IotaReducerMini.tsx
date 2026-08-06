@@ -30,11 +30,53 @@ const PRESETS: Preset[] = [
   { id: "i-from-skk", label: "S K K x  →  x", src: "S K K I", note: "Identity in disguise." },
 ];
 
-interface Props {
-  caption?: string;
+// The reducer chrome is localized by the host page: it passes a labels object
+// pulled from the same RICH_STORY bundle as the surrounding prose, so a German
+// reader sees "Schritt drücken" and the button that actually matches it.
+export interface ReducerMiniLabels {
+  customExpression: string;
+  stepStatus: string;
+  normalForm: string;
+  stepLimit: string;
+  done: string;
+  reducing: string;
+  next: string;
+  parseError: string;
+  reset: string;
+  back: string;
+  step: string;
+  toEnd: string;
+  ruleIntro: string;
+  ruleThen: string;
+  ruleAnd: string;
+  ruleOrder: string;
 }
 
-export function IotaReducerMini({ caption }: Props) {
+const DEFAULT_LABELS: ReducerMiniLabels = {
+  customExpression: "custom expression (overrides preset)",
+  stepStatus: "step",
+  normalForm: "normal form",
+  stepLimit: "step limit",
+  done: "done",
+  reducing: "reducing…",
+  next: "next",
+  parseError: "parse error",
+  reset: "reset",
+  back: "back",
+  step: "step",
+  toEnd: "to end",
+  ruleIntro: "Reduction rule applied at each step:",
+  ruleThen: "then",
+  ruleAnd: "and",
+  ruleOrder: "leftmost-outermost",
+};
+
+interface Props {
+  caption?: string;
+  labels?: ReducerMiniLabels;
+}
+
+export function IotaReducerMini({ caption, labels = DEFAULT_LABELS }: Props) {
   const [presetId, setPresetId] = useState<string>(PRESETS[0].id);
   const [custom, setCustom] = useState<string>("");
   const [step, setStep] = useState(0);
@@ -97,10 +139,14 @@ export function IotaReducerMini({ caption }: Props) {
       </div>
 
       <div>
-        <label className="mb-1 block font-mono text-[10px] uppercase tracking-widest2 text-ink-400">
-          custom expression (overrides preset)
+        <label
+          htmlFor="iota-mini-custom"
+          className="mb-1 block font-mono text-[10px] uppercase tracking-widest2 text-ink-400"
+        >
+          {labels.customExpression}
         </label>
         <input
+          id="iota-mini-custom"
           type="text"
           value={custom}
           onChange={(e) => {
@@ -114,24 +160,26 @@ export function IotaReducerMini({ caption }: Props) {
       </div>
 
       <div
-        className="flex min-h-[110px] flex-col gap-3 rounded-md border bg-ink-950/70 p-4"
-        style={{ borderColor: result.ok ? "rgba(125,243,255,0.35)" : "rgba(255,122,182,0.45)" }}
+        className={`flex min-h-[110px] flex-col gap-3 rounded-md border bg-ink-950/70 p-4 ${
+          result.ok ? "border-signal-cyan/35" : "border-signal-rose/45"
+        }`}
       >
         {result.ok ? (
           <>
             <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest2">
               <span className="text-ink-400">
-                step <span className="text-signal-cyan">{clamped.toString().padStart(2, "0")}</span>{" "}
+                {labels.stepStatus}{" "}
+                <span className="text-signal-cyan">{clamped.toString().padStart(2, "0")}</span>{" "}
                 / {(result.steps.length - 1).toString().padStart(2, "0")}
               </span>
               <span className={result.normal ? "text-signal-cyan" : "text-signal-amber"}>
                 {atEnd
                   ? result.normal
-                    ? "normal form"
+                    ? labels.normalForm
                     : result.hitLimit
-                      ? "step limit"
-                      : "done"
-                  : "reducing…"}
+                      ? labels.stepLimit
+                      : labels.done
+                  : labels.reducing}
               </span>
             </div>
             <pre
@@ -142,13 +190,13 @@ export function IotaReducerMini({ caption }: Props) {
             </pre>
             {next && (
               <pre className="hairline whitespace-pre-wrap break-words border-t pt-2 font-mono text-xs leading-snug text-ink-400">
-                <span className="text-ink-500">next →</span> {next}
+                <span className="text-ink-500">{labels.next} →</span> {next}
               </pre>
             )}
           </>
         ) : (
           <div className="font-mono text-xs leading-relaxed text-signal-rose">
-            parse error: {result.error}
+            {labels.parseError}: {result.error}
           </div>
         )}
       </div>
@@ -160,7 +208,7 @@ export function IotaReducerMini({ caption }: Props) {
           disabled={!result.ok || clamped === 0}
           className="hairline rounded-md border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-ink-100 disabled:cursor-not-allowed disabled:opacity-30"
         >
-          ↺ reset
+          ↺ {labels.reset}
         </button>
         <button
           type="button"
@@ -168,7 +216,7 @@ export function IotaReducerMini({ caption }: Props) {
           disabled={!result.ok || clamped === 0}
           className="hairline rounded-md border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-ink-100 disabled:cursor-not-allowed disabled:opacity-30"
         >
-          ← back
+          ← {labels.back}
         </button>
         <button
           type="button"
@@ -176,7 +224,7 @@ export function IotaReducerMini({ caption }: Props) {
           disabled={!result.ok || atEnd}
           className="rounded-md border border-signal-cyan/60 bg-signal-cyan/10 px-4 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan transition-colors hover:bg-signal-cyan/20 disabled:cursor-not-allowed disabled:opacity-30"
         >
-          step →
+          {labels.step} →
         </button>
         <button
           type="button"
@@ -184,16 +232,15 @@ export function IotaReducerMini({ caption }: Props) {
           disabled={!result.ok || atEnd}
           className="hairline rounded-md border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-ink-100 disabled:cursor-not-allowed disabled:opacity-30"
         >
-          ⇥ to end
+          ⇥ {labels.toEnd}
         </button>
       </div>
 
       <p className="font-mono text-[11px] leading-relaxed text-ink-400">
-        Reduction rule applied at each step: <span className="text-signal-cyan">ι x → x S K</span>,
-        then <span className="text-signal-cyan">K x y → x</span> and{" "}
-        <span className="text-signal-cyan">S x y z → x z (y z)</span>, leftmost-outermost.
+        {labels.ruleIntro} <span className="text-signal-cyan">ι x → x S K</span>, {labels.ruleThen}{" "}
+        <span className="text-signal-cyan">K x y → x</span> {labels.ruleAnd}{" "}
+        <span className="text-signal-cyan">S x y z → x z (y z)</span>, {labels.ruleOrder}.
       </p>
     </div>
   );
 }
-

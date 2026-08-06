@@ -71,6 +71,7 @@ function rk4(s: State, h: number): State {
 
 interface Props {
   caption?: string;
+  canvasLabel?: string;
   th1Label?: string;
   th2Label?: string;
   playLabel?: string;
@@ -81,6 +82,7 @@ interface Props {
 
 export function DoublePendulumSim({
   caption,
+  canvasLabel,
   th1Label,
   th2Label,
   playLabel,
@@ -96,6 +98,16 @@ export function DoublePendulumSim({
   const [running, setRunning] = useState(true);
   const [tick, setTick] = useState(0);
   const dpr = useDpr();
+
+  // Respect prefers-reduced-motion: do not auto-play. The draw effect still
+  // paints one static frame at the initial pose, and Play stays available as
+  // an explicit opt-in. (Repo convention: canvases freeze under reduced motion.)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setRunning(false);
+    }
+  }, []);
 
   // Whenever the user moves the sliders, reset the simulation so the new
   // initial conditions take effect immediately.
@@ -124,7 +136,12 @@ export function DoublePendulumSim({
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
 
-    const draw = () => {
+    // Advance by real elapsed time (not a fixed count per frame) so the swing
+    // runs at the same wall-clock rate on 60 Hz and 120 Hz displays.
+    let last = performance.now();
+    let acc = 0;
+
+    const draw = (now: number) => {
       const W = canvas.width;
       const H = canvas.height;
 
@@ -133,10 +150,19 @@ export function DoublePendulumSim({
       ctx.fillRect(0, 0, W, H);
 
       if (running) {
-        for (let i = 0; i < SUBSTEPS; i++) {
+        // Clamp the frame delta so a backgrounded tab does not integrate a huge
+        // jump on return; SUBSTEPS * DT is the nominal 60 Hz budget per frame.
+        const dtReal = Math.min((now - last) / 1000, 0.05);
+        acc += dtReal;
+        let steps = Math.floor(acc / DT);
+        const maxSteps = 4 * SUBSTEPS;
+        if (steps > maxSteps) steps = maxSteps;
+        acc -= steps * DT;
+        for (let i = 0; i < steps; i++) {
           stateRef.current = rk4(stateRef.current, DT);
         }
       }
+      last = now;
 
       const { th1, th2 } = stateRef.current;
       const cx = W / 2;
@@ -148,10 +174,13 @@ export function DoublePendulumSim({
       const x2 = x1 + scale * L2 * Math.sin(th2);
       const y2 = y1 + scale * L2 * Math.cos(th2);
 
-      // Trail of tip.
+      // Trail of tip. Only record while running, otherwise a paused sim keeps
+      // pushing the frozen tip and erodes the whole trail within a few seconds.
       const trail = trailRef.current;
-      trail.push([x2, y2]);
-      if (trail.length > TRAIL_MAX) trail.shift();
+      if (running) {
+        trail.push([x2, y2]);
+        if (trail.length > TRAIL_MAX) trail.shift();
+      }
 
       // Draw trail (older = dimmer).
       for (let i = 1; i < trail.length; i++) {
@@ -220,6 +249,8 @@ export function DoublePendulumSim({
       <div className="flex justify-center">
         <canvas
           ref={canvasRef}
+          role="img"
+          aria-label={canvasLabel ?? caption ?? "Double pendulum simulation"}
           className="hairline aspect-square w-full max-w-[360px] rounded-md border bg-ink-950/80"
         />
       </div>
@@ -235,6 +266,7 @@ export function DoublePendulumSim({
             step={1}
             value={th1Deg}
             onChange={(e) => setTh1Deg(parseFloat(e.target.value))}
+            aria-label={`${th1Label ?? "θ₁"}, ${th1Deg.toFixed(0)}°`}
             className="flex-1 accent-signal-cyan"
           />
         </div>
@@ -249,6 +281,7 @@ export function DoublePendulumSim({
             step={1}
             value={th2Deg}
             onChange={(e) => setTh2Deg(parseFloat(e.target.value))}
+            aria-label={`${th2Label ?? "θ₂"}, ${th2Deg.toFixed(0)}°`}
             className="flex-1 accent-signal-violet"
           />
         </div>

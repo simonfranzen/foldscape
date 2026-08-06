@@ -78,20 +78,27 @@ export function TopicStar({ topic, x, y, isHub, title, tagline, category }: Prop
         {/* Generous hit-area first so the cursor doesn't have to be on the
             tiny circle to register a hover. Drawn under the visible star. */}
         <circle r={Math.max(haloR + 4, 18)} fill="rgba(0,0,0,0.001)" />
-        {/* Outer halo */}
-        <circle
-          r={haloR * 1.6}
-          fill={color}
-          opacity={hover ? 0.16 : isHub ? 0.05 : 0.02}
-          style={{ transition: "opacity 220ms ease" }}
-        />
-        {/* Inner halo */}
-        <circle
-          r={haloR}
-          fill={color}
-          opacity={hover ? 0.4 : isHub ? 0.18 : 0.08}
-          style={{ transition: "opacity 220ms ease" }}
-        />
+        {/* Halos — hubs breathe slowly (see .cosmos-halo-breathe); the
+            per-star negative delay desynchronises neighbours. */}
+        <g
+          className={isHub ? "cosmos-halo-breathe" : undefined}
+          style={isHub ? { animationDelay: `-${((x + y) % 7).toFixed(2)}s` } : undefined}
+        >
+          {/* Outer halo */}
+          <circle
+            r={haloR * 1.6}
+            fill={color}
+            opacity={hover ? 0.16 : isHub ? 0.05 : 0.02}
+            style={{ transition: "opacity 220ms ease" }}
+          />
+          {/* Inner halo */}
+          <circle
+            r={haloR}
+            fill={color}
+            opacity={hover ? 0.4 : isHub ? 0.18 : 0.08}
+            style={{ transition: "opacity 220ms ease" }}
+          />
+        </g>
         {/* Bright bloom ring for hubs */}
         {isHub && (
           <circle

@@ -21,7 +21,13 @@ interface Props {
   plusLabel: string;
   minusLabel: string;
   noteText: string;
+  seedTripleLabel: string;
 }
+
+const withAlpha = (hex: string, a: number) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+};
 
 type Triple = { k1: number; k2: number; k3: number };
 
@@ -45,10 +51,10 @@ function MiniSeed({ curvatures, highlight }: { curvatures: number[]; highlight?:
   const cx = W / 2;
   const cy = H / 2;
   const circleColors = [
-    "rgba(255,122,182,0.95)", // outer / rose
-    "rgba(125,243,255,0.95)", // cyan
-    "rgba(179,136,255,0.95)", // violet
-    "rgba(255,209,102,0.95)", // amber
+    withAlpha(palette.signal.rose, 0.95), // outer / rose
+    withAlpha(palette.signal.cyan, 0.95), // cyan
+    withAlpha(palette.signal.violet, 0.95), // violet
+    withAlpha(palette.signal.amber, 0.95), // amber
   ];
   const radii = curvatures.map((k, i) => {
     const r = 1 / Math.max(Math.abs(k), TINY);
@@ -123,10 +129,20 @@ export function ApollonianDescartes({
   plusLabel,
   minusLabel,
   noteText,
+  seedTripleLabel,
 }: Props) {
-  const [k1, setK1] = useState(-1);
-  const [k2, setK2] = useState(2);
-  const [k3, setK3] = useState(2);
+  // Keep the raw field text so a partial entry like "-" (or an empty field on
+  // the way to a negative number) is preserved instead of being coerced to 0
+  // and written back over what the user is typing.
+  const [raw, setRaw] = useState<[string, string, string]>(["-1", "2", "2"]);
+  const [k1, k2, k3] = useMemo(
+    () =>
+      raw.map((s) => {
+        const v = parseFloat(s);
+        return Number.isFinite(v) ? v : 0;
+      }) as [number, number, number],
+    [raw],
+  );
 
   const result = useMemo(() => {
     const sum = k1 + k2 + k3;
@@ -146,9 +162,15 @@ export function ApollonianDescartes({
   }, [k1, k2, k3]);
 
   const applyPreset = (p: Triple) => {
-    setK1(p.k1);
-    setK2(p.k2);
-    setK3(p.k3);
+    setRaw([`${p.k1}`, `${p.k2}`, `${p.k3}`]);
+  };
+
+  const setField = (idx: number, value: string) => {
+    setRaw((prev) => {
+      const next = [...prev] as [string, string, string];
+      next[idx] = value;
+      return next;
+    });
   };
 
   const fmt = (n: number) => {
@@ -172,22 +194,18 @@ export function ApollonianDescartes({
           <div className="grid grid-cols-3 gap-2">
             {(
               [
-                ["k₁", k1, setK1],
-                ["k₂", k2, setK2],
-                ["k₃", k3, setK3],
+                ["k₁", 0],
+                ["k₂", 1],
+                ["k₃", 2],
               ] as const
-            ).map(([label, val, setter]) => (
+            ).map(([label, idx]) => (
               <label key={label} className="block">
                 <span className="font-mono text-[10px] text-signal-rose">{label}</span>
                 <input
                   type="number"
-                  value={val}
+                  value={raw[idx]}
                   step={1}
-                  onChange={(e) => {
-                    const v = parseFloat(e.target.value);
-                    if (Number.isFinite(v)) setter(v);
-                    else setter(0);
-                  }}
+                  onChange={(e) => setField(idx, e.target.value)}
                   className="hairline mt-1 w-full rounded-md border bg-ink-950 px-2 py-1.5 font-mono text-sm text-ink-100 focus:border-signal-rose/70 focus:outline-none"
                 />
               </label>
@@ -217,7 +235,7 @@ export function ApollonianDescartes({
             <MiniSeed curvatures={[k1, k2, k3]} />
           </div>
           <div className="font-mono text-[10px] uppercase tracking-widest text-ink-400">
-            seed triple
+            {seedTripleLabel}
           </div>
         </div>
 

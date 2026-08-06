@@ -325,12 +325,14 @@ export function LifeMiniSandbox({ labels }: Props) {
     const canvas = canvasRef.current;
     if (!canvas) return null;
     const rect = canvas.getBoundingClientRect();
-    const dpr = getDpr();
-    const px = (clientX - rect.left) * dpr;
-    const py = (clientY - rect.top) * dpr;
-    const cellSize = Math.min(canvas.width / COLS, canvas.height / ROWS);
-    const offX = (canvas.width - cellSize * COLS) / 2;
-    const offY = (canvas.height - cellSize * ROWS) / 2;
+    // Work in CSS pixels from the live rect: canvas.width (the backing store) is
+    // only re-synced inside draw(), so a resize while paused would leave it stale
+    // and map clicks to the wrong cell. rect is always current.
+    const px = clientX - rect.left;
+    const py = clientY - rect.top;
+    const cellSize = Math.min(rect.width / COLS, rect.height / ROWS);
+    const offX = (rect.width - cellSize * COLS) / 2;
+    const offY = (rect.height - cellSize * ROWS) / 2;
     const x = Math.floor((px - offX) / cellSize);
     const y = Math.floor((py - offY) / cellSize);
     if (x < 0 || x >= COLS || y < 0 || y >= ROWS) return null;
@@ -376,6 +378,8 @@ export function LifeMiniSandbox({ labels }: Props) {
         <canvas
           ref={canvasRef}
           className="block h-full w-full cursor-crosshair"
+          role="img"
+          aria-label={L.hint}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}

@@ -70,7 +70,7 @@ const en: RichStory = {
       {
         label: "02",
         title: "Ulam, 1963",
-        body: "Stanisław Ulam doodled this during a tedious seminar on the back of a napkin. The next year he, Stein and Wells printed a 65 000-cell version in «Scientific American». The diagonals had been hiding in the integers the whole time.",
+        body: "Stanisław Ulam doodled this during a tedious seminar on the back of a napkin. The next year he, Stein and Wells published it in the American Mathematical Monthly, and Martin Gardner's Scientific American column made the 65 000-cell picture famous the same year. The diagonals had been hiding in the integers the whole time.",
       },
       {
         label: "03",
@@ -84,7 +84,7 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · The construction",
       title: "Start at 1, spiral out",
-      body: "Write 1 in the middle of squared paper. Step right for 2, up for 3, left for 4 and 5, down for 6, 7, 8, then right for 9, 10, 11, 12. Keep walking outward in a square spiral — every integer lands in exactly one cell.",
+      body: "Write 1 in the middle of squared paper. Step right for 2, up for 3, left for 4 and 5, down for 6 and 7, right for 8, 9, 10, then up for 11, 12, 13. Keep walking outward in a square spiral — every integer lands in exactly one cell.",
     },
     {
       pretitle: "Section 02 · The diagonals",
@@ -94,7 +94,7 @@ const en: RichStory = {
     {
       pretitle: "Section 03 · Famous quadratics",
       title: "Euler's n² − n + 41",
-      body: "In 1772 Euler noticed that n² − n + 41 is prime for every integer n from 0 to 39 — forty consecutive prime values from a single quadratic. On the spiral this is a single uninterrupted diagonal streak. No other simple quadratic has yet beaten it.",
+      body: "In 1772 Euler noticed that n² − n + 41 is prime for every integer n from 0 to 40: forty-one consecutive prime values from a single quadratic, first failing at n = 41 (which lands on 41²). On the spiral this is a single uninterrupted diagonal streak. No other simple quadratic has yet beaten it.",
     },
     {
       pretitle: "Section 04 · Bunyakovsky's conjecture",
@@ -133,7 +133,7 @@ const en: RichStory = {
   quadraticFormulaLabel: "the quadratic",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} prime · ${pct}`,
   quadraticNote:
-    "Each cell shows n on top and a·n² + b·n + c below. Amber cells are prime. Euler's quadratic hits 40 / 41 — an outrageously good rate. Try your own.",
+    "Each cell shows n on top and a·n² + b·n + c below. Amber cells are prime. Euler's quadratic scores a perfect 41 / 41, with 41 itself appearing at both n = 0 and n = 1. Try your own.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -171,7 +171,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ulam, 1963",
-        body: "Stanisław Ulam kritzelte das während eines langweiligen Seminars auf eine Serviette. Ein Jahr später druckte er mit Stein und Wells eine Version mit 65 000 Zellen in «Scientific American». Die Diagonalen lagen die ganze Zeit in den ganzen Zahlen verborgen.",
+        body: "Stanisław Ulam kritzelte das während eines langweiligen Seminars auf eine Serviette. Ein Jahr später veröffentlichte er mit Stein und Wells das Ganze im American Mathematical Monthly, und Martin Gardners Kolumne in Scientific American machte das Bild mit 65 000 Zellen im selben Jahr berühmt. Die Diagonalen lagen die ganze Zeit in den ganzen Zahlen verborgen.",
       },
       {
         label: "03",
@@ -186,7 +186,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die Konstruktion",
       title: "Starte bei 1, spiral nach außen",
-      body: "Schreib 1 in die Mitte von kariertem Papier. Schritt rechts für 2, hoch für 3, links für 4 und 5, runter für 6, 7, 8, dann rechts für 9, 10, 11, 12. Lauf in einer quadratischen Spirale nach außen — jede ganze Zahl landet in genau einem Feld.",
+      body: "Schreib 1 in die Mitte von kariertem Papier. Schritt rechts für 2, hoch für 3, links für 4 und 5, runter für 6 und 7, rechts für 8, 9, 10, dann hoch für 11, 12, 13. Lauf in einer quadratischen Spirale nach außen — jede ganze Zahl landet in genau einem Feld.",
     },
     {
       pretitle: "Abschnitt 02 · Die Diagonalen",
@@ -196,7 +196,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Berühmte Quadratiken",
       title: "Eulers n² − n + 41",
-      body: "Euler bemerkte 1772, dass n² − n + 41 für jedes n von 0 bis 39 prim ist — vierzig aufeinanderfolgende Primwerte aus einem einzigen Polynom. Auf der Spirale ist das ein durchgehender diagonaler Streifen. Keine andere einfache Quadratik hat es bis heute geschlagen.",
+      body: "Euler bemerkte 1772, dass n² − n + 41 für jedes n von 0 bis 40 prim ist: einundvierzig aufeinanderfolgende Primwerte aus einem einzigen Polynom, erstmals scheiternd bei n = 41 (das auf 41² fällt). Auf der Spirale ist das ein durchgehender diagonaler Streifen. Keine andere einfache Quadratik hat es bis heute geschlagen.",
     },
     {
       pretitle: "Abschnitt 04 · Bunjakowskis Vermutung",
@@ -235,7 +235,7 @@ const de: RichStory = {
   quadraticFormulaLabel: "das Polynom",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} prim · ${pct}`,
   quadraticNote:
-    "Jede Zelle zeigt n oben und a·n² + b·n + c unten. Bernsteinfarbene Zellen sind prim. Eulers Polynom trifft 40 / 41 — eine unverschämt gute Quote. Probier dein eigenes.",
+    "Jede Zelle zeigt n oben und a·n² + b·n + c unten. Bernsteinfarbene Zellen sind prim. Eulers Polynom trifft alle 41 / 41, wobei die 41 selbst bei n = 0 und n = 1 auftaucht. Probier dein eigenes.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -273,7 +273,7 @@ const es: RichStory = {
       {
         label: "02",
         title: "Ulam, 1963",
-        body: "Stanisław Ulam lo garabateó durante un seminario tedioso en una servilleta. Al año siguiente él, Stein y Wells imprimieron una versión de 65 000 celdas en «Scientific American». Las diagonales llevaban escondidas todo el tiempo dentro de los enteros.",
+        body: "Stanisław Ulam lo garabateó durante un seminario tedioso en una servilleta. Al año siguiente él, Stein y Wells lo publicaron en el American Mathematical Monthly, y la columna de Martin Gardner en Scientific American hizo famosa la imagen de 65 000 celdas ese mismo año. Las diagonales llevaban escondidas todo el tiempo dentro de los enteros.",
       },
       {
         label: "03",
@@ -288,7 +288,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · La construcción",
       title: "Empieza en 1, sal en espiral",
-      body: "Escribe 1 en el centro del papel cuadriculado. Paso a la derecha para el 2, arriba para el 3, izquierda para 4 y 5, abajo para 6, 7, 8, luego derecha para 9, 10, 11, 12. Sigue caminando en espiral cuadrada hacia fuera — cada entero ocupa exactamente una casilla.",
+      body: "Escribe 1 en el centro del papel cuadriculado. Paso a la derecha para el 2, arriba para el 3, izquierda para 4 y 5, abajo para 6 y 7, derecha para 8, 9, 10, luego arriba para 11, 12, 13. Sigue caminando en espiral cuadrada hacia fuera — cada entero ocupa exactamente una casilla.",
     },
     {
       pretitle: "Sección 02 · Las diagonales",
@@ -298,7 +298,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 03 · Cuadráticas célebres",
       title: "La n² − n + 41 de Euler",
-      body: "En 1772 Euler observó que n² − n + 41 es primo para todo n entero de 0 a 39 — cuarenta valores primos consecutivos de un solo polinomio. En la espiral es una raya diagonal ininterrumpida. Ninguna otra cuadrática simple lo ha batido todavía.",
+      body: "En 1772 Euler observó que n² − n + 41 es primo para todo n entero de 0 a 40: cuarenta y un valores primos consecutivos de un solo polinomio, fallando por primera vez en n = 41 (que cae en 41²). En la espiral es una raya diagonal ininterrumpida. Ninguna otra cuadrática simple lo ha batido todavía.",
     },
     {
       pretitle: "Sección 04 · La conjetura de Bunyakovsky",
@@ -337,7 +337,7 @@ const es: RichStory = {
   quadraticFormulaLabel: "la cuadrática",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} primos · ${pct}`,
   quadraticNote:
-    "Cada celda muestra n arriba y a·n² + b·n + c abajo. Las ámbar son primos. La cuadrática de Euler acierta 40 / 41 — una tasa escandalosa. Prueba la tuya.",
+    "Cada celda muestra n arriba y a·n² + b·n + c abajo. Las ámbar son primos. La cuadrática de Euler acierta las 41 / 41, con el 41 apareciendo en n = 0 y n = 1. Prueba la tuya.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -375,7 +375,7 @@ const fr: RichStory = {
       {
         label: "02",
         title: "Ulam, 1963",
-        body: "Stanisław Ulam a griffonné ça pendant un séminaire ennuyeux au dos d'une serviette. L'année suivante, avec Stein et Wells, il a fait imprimer une version à 65 000 cases dans «Scientific American». Les diagonales se cachaient depuis toujours dans les entiers.",
+        body: "Stanisław Ulam a griffonné ça pendant un séminaire ennuyeux au dos d'une serviette. L'année suivante, avec Stein et Wells, il l'a publiée dans l'American Mathematical Monthly, et la chronique de Martin Gardner dans Scientific American a rendu célèbre l'image à 65 000 cases la même année. Les diagonales se cachaient depuis toujours dans les entiers.",
       },
       {
         label: "03",
@@ -390,7 +390,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · La construction",
       title: "Pars de 1, spirale vers l'extérieur",
-      body: "Écris 1 au milieu d'une feuille quadrillée. Un pas à droite pour 2, en haut pour 3, à gauche pour 4 et 5, en bas pour 6, 7, 8, puis à droite pour 9, 10, 11, 12. Continue en spirale carrée vers l'extérieur — chaque entier occupe exactement une case.",
+      body: "Écris 1 au milieu d'une feuille quadrillée. Un pas à droite pour 2, en haut pour 3, à gauche pour 4 et 5, en bas pour 6 et 7, à droite pour 8, 9, 10, puis en haut pour 11, 12, 13. Continue en spirale carrée vers l'extérieur — chaque entier occupe exactement une case.",
     },
     {
       pretitle: "Section 02 · Les diagonales",
@@ -400,7 +400,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · Quadratiques célèbres",
       title: "Le n² − n + 41 d'Euler",
-      body: "En 1772 Euler a remarqué que n² − n + 41 est premier pour tout entier n de 0 à 39 — quarante valeurs premières consécutives d'un seul polynôme. Sur la spirale c'est une seule traînée diagonale ininterrompue. Aucune autre quadratique simple ne l'a battu à ce jour.",
+      body: "En 1772 Euler a remarqué que n² − n + 41 est premier pour tout entier n de 0 à 40 : quarante et une valeurs premières consécutives d'un seul polynôme, échouant pour la première fois à n = 41 (qui tombe sur 41²). Sur la spirale c'est une seule traînée diagonale ininterrompue. Aucune autre quadratique simple ne l'a battu à ce jour.",
     },
     {
       pretitle: "Section 04 · La conjecture de Bouniakovski",
@@ -439,7 +439,7 @@ const fr: RichStory = {
   quadraticFormulaLabel: "la quadratique",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} premiers · ${pct}`,
   quadraticNote:
-    "Chaque case montre n en haut et a·n² + b·n + c en bas. Les cases ambrées sont premières. La quadratique d'Euler fait 40 / 41 — un taux scandaleux. Essaie la tienne.",
+    "Chaque case montre n en haut et a·n² + b·n + c en bas. Les cases ambrées sont premières. La quadratique d'Euler fait 41 / 41, le 41 apparaissant à n = 0 et n = 1. Essaie la tienne.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -477,7 +477,7 @@ const it: RichStory = {
       {
         label: "02",
         title: "Ulam, 1963",
-        body: "Stanisław Ulam lo scarabocchiò durante un noioso seminario sul retro di un tovagliolo. L'anno dopo, con Stein e Wells, stampò una versione da 65 000 celle su «Scientific American». Le diagonali stavano nascoste negli interi da sempre.",
+        body: "Stanisław Ulam lo scarabocchiò durante un noioso seminario sul retro di un tovagliolo. L'anno dopo, con Stein e Wells, lo pubblicò sull'American Mathematical Monthly, e la rubrica di Martin Gardner su Scientific American rese celebre l'immagine da 65 000 celle lo stesso anno. Le diagonali stavano nascoste negli interi da sempre.",
       },
       {
         label: "03",
@@ -492,7 +492,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · La costruzione",
       title: "Parti da 1, vai a spirale verso l'esterno",
-      body: "Scrivi 1 al centro di un foglio a quadretti. Un passo a destra per il 2, su per il 3, a sinistra per 4 e 5, giù per 6, 7, 8, poi a destra per 9, 10, 11, 12. Continua a camminare in spirale quadrata verso l'esterno — ogni intero finisce in esattamente una casella.",
+      body: "Scrivi 1 al centro di un foglio a quadretti. Un passo a destra per il 2, su per il 3, a sinistra per 4 e 5, giù per 6 e 7, a destra per 8, 9, 10, poi su per 11, 12, 13. Continua a camminare in spirale quadrata verso l'esterno — ogni intero finisce in esattamente una casella.",
     },
     {
       pretitle: "Sezione 02 · Le diagonali",
@@ -502,7 +502,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 03 · Quadratiche celebri",
       title: "L'n² − n + 41 di Eulero",
-      body: "Nel 1772 Eulero notò che n² − n + 41 è primo per ogni n intero da 0 a 39 — quaranta valori primi consecutivi da un solo polinomio. Sulla spirale è un'unica scia diagonale ininterrotta. Nessuna altra quadratica semplice l'ha ancora battuta.",
+      body: "Nel 1772 Eulero notò che n² − n + 41 è primo per ogni n intero da 0 a 40: quarantuno valori primi consecutivi da un solo polinomio, fallendo per la prima volta a n = 41 (che cade su 41²). Sulla spirale è un'unica scia diagonale ininterrotta. Nessuna altra quadratica semplice l'ha ancora battuta.",
     },
     {
       pretitle: "Sezione 04 · La congettura di Bunjakovskij",
@@ -541,7 +541,7 @@ const it: RichStory = {
   quadraticFormulaLabel: "la quadratica",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} primi · ${pct}`,
   quadraticNote:
-    "Ogni cella mostra n sopra e a·n² + b·n + c sotto. Le celle ambra sono prime. La quadratica di Eulero fa 40 / 41 — una percentuale scandalosa. Prova la tua.",
+    "Ogni cella mostra n sopra e a·n² + b·n + c sotto. Le celle ambra sono prime. La quadratica di Eulero fa 41 / 41, con il 41 che compare a n = 0 e n = 1. Prova la tua.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -579,7 +579,7 @@ const pt: RichStory = {
       {
         label: "02",
         title: "Ulam, 1963",
-        body: "Stanisław Ulam rabiscou isto durante um seminário tedioso nas costas de um guardanapo. No ano seguinte, com Stein e Wells, imprimiu uma versão de 65 000 células na «Scientific American». As diagonais andavam escondidas nos inteiros desde sempre.",
+        body: "Stanisław Ulam rabiscou isto durante um seminário tedioso nas costas de um guardanapo. No ano seguinte, com Stein e Wells, publicou-o no American Mathematical Monthly, e a coluna de Martin Gardner na Scientific American tornou famosa a imagem de 65 000 células no mesmo ano. As diagonais andavam escondidas nos inteiros desde sempre.",
       },
       {
         label: "03",
@@ -594,7 +594,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · A construção",
       title: "Começa em 1, sai em espiral",
-      body: "Escreve 1 no centro de papel quadriculado. Um passo à direita para o 2, cima para o 3, esquerda para 4 e 5, baixo para 6, 7, 8, depois direita para 9, 10, 11, 12. Continua a caminhar em espiral quadrada para fora — cada inteiro ocupa exatamente uma casa.",
+      body: "Escreve 1 no centro de papel quadriculado. Um passo à direita para o 2, cima para o 3, esquerda para 4 e 5, baixo para 6 e 7, direita para 8, 9, 10, depois cima para 11, 12, 13. Continua a caminhar em espiral quadrada para fora — cada inteiro ocupa exatamente uma casa.",
     },
     {
       pretitle: "Secção 02 · As diagonais",
@@ -604,7 +604,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 03 · Quadráticas célebres",
       title: "O n² − n + 41 de Euler",
-      body: "Em 1772 Euler reparou que n² − n + 41 é primo para todo o n inteiro de 0 a 39 — quarenta valores primos consecutivos de um único polinómio. Na espiral é uma única risca diagonal ininterrupta. Nenhuma outra quadrática simples a venceu ainda.",
+      body: "Em 1772 Euler reparou que n² − n + 41 é primo para todo o n inteiro de 0 a 40: quarenta e um valores primos consecutivos de um único polinómio, falhando pela primeira vez em n = 41 (que cai em 41²). Na espiral é uma única risca diagonal ininterrupta. Nenhuma outra quadrática simples a venceu ainda.",
     },
     {
       pretitle: "Secção 04 · A conjetura de Buniakovski",
@@ -643,7 +643,7 @@ const pt: RichStory = {
   quadraticFormulaLabel: "a quadrática",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} primos · ${pct}`,
   quadraticNote:
-    "Cada célula mostra n em cima e a·n² + b·n + c em baixo. As âmbar são primas. A quadrática de Euler acerta 40 / 41 — uma taxa escandalosa. Tenta a tua.",
+    "Cada célula mostra n em cima e a·n² + b·n + c em baixo. As âmbar são primas. A quadrática de Euler acerta 41 / 41, com o 41 a aparecer em n = 0 e n = 1. Tenta a tua.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -681,7 +681,7 @@ const sv: RichStory = {
       {
         label: "02",
         title: "Ulam, 1963",
-        body: "Stanisław Ulam klottrade ner det under ett tråkigt seminarium på baksidan av en servett. Året därpå tryckte han, Stein och Wells en version med 65 000 celler i «Scientific American». Diagonalerna hade legat gömda i heltalen hela tiden.",
+        body: "Stanisław Ulam klottrade ner det under ett tråkigt seminarium på baksidan av en servett. Året därpå publicerade han, Stein och Wells det i American Mathematical Monthly, och Martin Gardners spalt i Scientific American gjorde bilden med 65 000 celler berömd samma år. Diagonalerna hade legat gömda i heltalen hela tiden.",
       },
       {
         label: "03",
@@ -696,7 +696,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Konstruktionen",
       title: "Börja på 1, spirala utåt",
-      body: "Skriv 1 mitt på rutigt papper. Steg höger för 2, upp för 3, vänster för 4 och 5, ner för 6, 7, 8, sedan höger för 9, 10, 11, 12. Fortsätt gå utåt i en kvadratisk spiral — varje heltal hamnar i exakt en cell.",
+      body: "Skriv 1 mitt på rutigt papper. Steg höger för 2, upp för 3, vänster för 4 och 5, ner för 6 och 7, höger för 8, 9, 10, sedan upp för 11, 12, 13. Fortsätt gå utåt i en kvadratisk spiral — varje heltal hamnar i exakt en cell.",
     },
     {
       pretitle: "Avsnitt 02 · Diagonalerna",
@@ -706,7 +706,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 03 · Berömda kvadrater",
       title: "Eulers n² − n + 41",
-      body: "År 1772 noterade Euler att n² − n + 41 är primtal för varje heltal n från 0 till 39 — fyrtio på varandra följande primvärden från ett enda polynom. På spiralen är det ett enda obrutet diagonalstreck. Ingen annan enkel kvadrat har slagit den än.",
+      body: "År 1772 noterade Euler att n² − n + 41 är primtal för varje heltal n från 0 till 40: fyrtioett på varandra följande primvärden från ett enda polynom, och missar först vid n = 41 (som hamnar på 41²). På spiralen är det ett enda obrutet diagonalstreck. Ingen annan enkel kvadrat har slagit den än.",
     },
     {
       pretitle: "Avsnitt 04 · Bunjakovskijs förmodan",
@@ -745,7 +745,7 @@ const sv: RichStory = {
   quadraticFormulaLabel: "kvadraten",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} primtal · ${pct}`,
   quadraticNote:
-    "Varje cell visar n överst och a·n² + b·n + c under. Bärnstensfärgade celler är primtal. Eulers kvadrat klarar 40 / 41 — en skandalöst bra träffsäkerhet. Pröva din egen.",
+    "Varje cell visar n överst och a·n² + b·n + c under. Bärnstensfärgade celler är primtal. Eulers kvadrat klarar alla 41 / 41, där 41 dyker upp vid både n = 0 och n = 1. Pröva din egen.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -783,7 +783,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Ulam, 1963",
-        body: "Stanisław Ulam krotet det ned under et kjedelig seminar på baksiden av en serviett. Året etter trykte han, Stein og Wells en utgave med 65 000 celler i «Scientific American». Diagonalene hadde ligget skjult i heltallene hele tiden.",
+        body: "Stanisław Ulam krotet det ned under et kjedelig seminar på baksiden av en serviett. Året etter publiserte han, Stein og Wells det i American Mathematical Monthly, og Martin Gardners spalte i Scientific American gjorde bildet med 65 000 celler berømt samme år. Diagonalene hadde ligget skjult i heltallene hele tiden.",
       },
       {
         label: "03",
@@ -798,7 +798,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Konstruksjonen",
       title: "Start på 1, spiral utover",
-      body: "Skriv 1 midt på rutete papir. Steg høyre for 2, opp for 3, venstre for 4 og 5, ned for 6, 7, 8, så høyre for 9, 10, 11, 12. Fortsett å gå utover i en kvadratisk spiral — hvert heltall havner i nøyaktig én rute.",
+      body: "Skriv 1 midt på rutete papir. Steg høyre for 2, opp for 3, venstre for 4 og 5, ned for 6 og 7, høyre for 8, 9, 10, så opp for 11, 12, 13. Fortsett å gå utover i en kvadratisk spiral — hvert heltall havner i nøyaktig én rute.",
     },
     {
       pretitle: "Avsnitt 02 · Diagonalene",
@@ -808,7 +808,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Berømte kvadrater",
       title: "Eulers n² − n + 41",
-      body: "I 1772 la Euler merke til at n² − n + 41 er primtall for hvert heltall n fra 0 til 39 — førti etterfølgende primverdier fra et eneste polynom. På spiralen er det én ubrutt diagonal stripe. Ingen annen enkel kvadrat har slått den ennå.",
+      body: "I 1772 la Euler merke til at n² − n + 41 er primtall for hvert heltall n fra 0 til 40: førtién etterfølgende primverdier fra et eneste polynom, og bommer først ved n = 41 (som havner på 41²). På spiralen er det én ubrutt diagonal stripe. Ingen annen enkel kvadrat har slått den ennå.",
     },
     {
       pretitle: "Avsnitt 04 · Bunjakovskijs formodning",
@@ -847,7 +847,7 @@ const no: RichStory = {
   quadraticFormulaLabel: "kvadraten",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} primtall · ${pct}`,
   quadraticNote:
-    "Hver celle viser n øverst og a·n² + b·n + c under. Ravfargede celler er primtall. Eulers kvadrat klarer 40 / 41 — en skandaløst god treffrate. Prøv din egen.",
+    "Hver celle viser n øverst og a·n² + b·n + c under. Ravfargede celler er primtall. Eulers kvadrat klarer alle 41 / 41, der 41 dukker opp ved både n = 0 og n = 1. Prøv din egen.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -953,6 +953,7 @@ export default function UlamStory() {
             numbersLabel={story.spiralNumbers}
             hint={story.spiralHint}
             quadratics={story.spiralQuadratics}
+            ariaLabel={story.page.title}
           />
         </Reveal>
       </section>
@@ -972,7 +973,7 @@ export default function UlamStory() {
             </div>
             <div className="math-italic text-3xl text-ink-100 md:text-4xl">n² − n + 41</div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Prime for every n from 0 to 39 — a single uninterrupted diagonal streak.
+              Prime for every n from 0 to 40: a single uninterrupted diagonal streak.
             </p>
           </div>
         </Reveal>

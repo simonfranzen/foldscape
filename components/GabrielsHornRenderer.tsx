@@ -14,11 +14,10 @@ interface Props {
   volumeLabel?: string;
   areaLabel?: string;
   hint?: string;
+  canvasLabel?: string;
 }
 
 // V(X) = π · (1 − 1/X), A(X) = 2π ∫₁^X (1/x) · √(1 + 1/x⁴) dx.
-// We integrate the surface area with Simpson's rule because the integrand
-// is smooth (√(1 + 1/x⁴) > 1 always).
 function volumeUpTo(X: number): number {
   if (X <= 1) return 0;
   return Math.PI * (1 - 1 / X);
@@ -26,22 +25,31 @@ function volumeUpTo(X: number): number {
 
 function surfaceUpTo(X: number): number {
   if (X <= 1) return 0;
-  // Simpson's rule with adaptive step count — denser near x = 1 where the
-  // integrand spikes. For our range [1, 50] a log-spaced grid is plenty.
+  // Substitute u = ln x so A = 2π ∫₀^{ln X} √(1 + e^{-4u}) du. The transformed
+  // integrand is smooth and bounded (it never spikes near x = 1 the way the
+  // raw (1/x)·√(1+1/x⁴) does), so a plain uniform Simpson grid reaches full
+  // precision across the whole X range rather than undersampling the head.
   const N = 600;
-  const a = 1;
-  const b = X;
-  const f = (x: number) => (1 / x) * Math.sqrt(1 + 1 / (x * x * x * x));
+  const a = 0;
+  const b = Math.log(X);
+  const f = (u: number) => Math.sqrt(1 + Math.exp(-4 * u));
   const h = (b - a) / N;
   let s = f(a) + f(b);
   for (let i = 1; i < N; i++) {
-    const x = a + i * h;
-    s += (i % 2 === 0 ? 2 : 4) * f(x);
+    const u = a + i * h;
+    s += (i % 2 === 0 ? 2 : 4) * f(u);
   }
   return (2 * Math.PI * (s * h)) / 3;
 }
 
-export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabel, hint }: Props) {
+export function GabrielsHornRenderer({
+  caption,
+  xMaxLabel,
+  volumeLabel,
+  areaLabel,
+  hint,
+  canvasLabel,
+}: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [xMax, setXMax] = useState(8);
   const yawRef = useRef(0.7);
@@ -49,6 +57,22 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
   const draggingRef = useRef(false);
   const lastRef = useRef({ x: 0, y: 0 });
   const dpr = useDpr();
+
+  // Honour prefers-reduced-motion: freeze the auto-spin and render a single
+  // static frame, but keep drag-to-rotate working. Re-subscribe on change so
+  // toggling the OS setting live takes effect without a reload.
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(m.matches);
+    const h = (e: MediaQueryListEvent) => setReduced(e.matches);
+    m.addEventListener?.("change", h);
+    return () => m.removeEventListener?.("change", h);
+  }, []);
+
+  // Exposed so drag handlers can repaint on demand while the rAF loop is off.
+  const drawRef = useRef<() => void>(() => {});
 
   const V = volumeUpTo(xMax);
   const A = surfaceUpTo(xMax);
@@ -59,14 +83,6 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
     let raf = 0;
-
-    const resize = () => {
-      canvas.width = Math.floor(canvas.clientWidth * dpr);
-      canvas.height = Math.floor(canvas.clientHeight * dpr);
-    };
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
 
     // Build a parametric mesh: x ∈ [1, xMax] log-spaced (so we get detail
     // near the flared mouth), θ ∈ [0, 2π]. Each vertex is (x, (1/x)cosθ,
@@ -84,9 +100,14 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
     const draw = () => {
       const W = canvas.width;
       const H = canvas.height;
-      // Faint trail clear
-      ctx.fillStyle = "rgba(5, 6, 10, 0.25)";
-      ctx.fillRect(0, 0, W, H);
+      if (reduced) {
+        // Static frame: hard clear so repeated drag repaints leave no trail.
+        ctx.clearRect(0, 0, W, H);
+      } else {
+        // Faint trail clear for the motion-blur look while spinning.
+        ctx.fillStyle = "rgba(5, 6, 10, 0.25)";
+        ctx.fillRect(0, 0, W, H);
+      }
 
       const yaw = yawRef.current;
       const pitch = pitchRef.current;
@@ -189,18 +210,32 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
       }
       ctx.stroke();
 
-      // Auto-spin if not dragging.
-      if (!draggingRef.current) yawRef.current += 0.004;
-
-      raf = requestAnimationFrame(draw);
+      // Auto-spin if not dragging (skipped entirely under reduced motion).
+      if (!reduced) {
+        if (!draggingRef.current) yawRef.current += 0.004;
+        raf = requestAnimationFrame(draw);
+      }
     };
-    raf = requestAnimationFrame(draw);
+    drawRef.current = draw;
+
+    const resize = () => {
+      canvas.width = Math.floor(canvas.clientWidth * dpr);
+      canvas.height = Math.floor(canvas.clientHeight * dpr);
+      // Resizing clears the canvas; under reduced motion the loop won't
+      // repaint, so redraw the static frame here.
+      if (reduced) draw();
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
+
+    if (!reduced) raf = requestAnimationFrame(draw);
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [xMax, dpr]);
+  }, [xMax, dpr, reduced]);
 
   const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = true;
@@ -214,6 +249,8 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
     lastRef.current = { x: e.clientX, y: e.clientY };
     yawRef.current += dx * 0.01;
     pitchRef.current = Math.max(-0.9, Math.min(0.9, pitchRef.current + dy * 0.01));
+    // Under reduced motion the rAF loop is off, so repaint on each drag step.
+    if (reduced) drawRef.current();
   };
   const onPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = false;
@@ -229,6 +266,8 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
       )}
       <canvas
         ref={canvasRef}
+        role="img"
+        aria-label={canvasLabel ?? caption ?? "Gabriel's Horn, 3D solid of revolution"}
         className="hairline h-[280px] w-full cursor-grab touch-none rounded-md border bg-ink-950/80 active:cursor-grabbing"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -245,6 +284,7 @@ export function GabrielsHornRenderer({ caption, xMaxLabel, volumeLabel, areaLabe
           max={50}
           step={0.1}
           value={xMax}
+          aria-label={xMaxLabel ?? "X_max"}
           onChange={(e) => setXMax(parseFloat(e.target.value))}
           className="flex-1 accent-signal-rose"
         />

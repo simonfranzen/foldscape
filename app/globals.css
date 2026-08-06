@@ -333,15 +333,31 @@ svg g[role="link"]:focus-visible {
   opacity: 1;
 }
 
-/* Each per-category constellation scene is a tall section (~1×100vh) that
-   sticky-pins its inner SVG cluster. Without `position: sticky` the
-   constellation would just scroll past with the page.
+/* Each per-category constellation scene is a tall section that sticky-pins
+   its inner h-screen cluster. The section MUST be taller than 100vh or the
+   pin never engages: at exactly 100vh the sticky child has zero travel and
+   the constellation just scrolls past with the page (mid-scene the screen
+   was mostly empty black). 230vh gives the cluster ~1.3 viewports of
+   pinned dwell — it builds itself while standing still, then releases.
    v2: dropped `content-visibility: auto`. It saved layout work, but on
    back-navigation it kept the scrolled-to scene logically "skipped" past
    the React paint window, so the IntersectionObserver in useScrollProgress
    reported 0 progress → the topic stars never revealed (user feedback). */
 .cosmos-scene {
-  min-height: 100vh;
+  min-height: 230vh;
+}
+/* Phones: thumb-scrolling six 230vh scenes is a workout — shorter dwell. */
+@media (max-width: 720px) {
+  .cosmos-scene {
+    min-height: 170vh;
+  }
+}
+/* Reduced motion renders every scene at full reveal (progress frozen at
+   0.5), so the extra dwell height would only be dead scrolling. */
+@media (prefers-reduced-motion: reduce) {
+  .cosmos-scene {
+    min-height: 100vh;
+  }
 }
 
 /* Hit / focus target for the SVG topic stars. Tailwind's focus utilities
@@ -446,6 +462,23 @@ a.cosmos-star-label {
 }
 .cosmos-pulse-slow {
   animation: cosmosPulseSlow 6s ease-in-out infinite;
+}
+/* Hub-star halos breathe — group opacity 0.7..1 over ~7 s. Applied to a
+   wrapping <g> so the circles inside keep their own hover transitions
+   (group × circle opacity multiply). Each hub carries a negative
+   animation-delay derived from its position so the sky never pulses in
+   lockstep. Reduced motion is covered by the global blanket rule. */
+@keyframes cosmosHaloBreathe {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.cosmos-halo-breathe {
+  animation: cosmosHaloBreathe 7s ease-in-out infinite;
 }
 @keyframes cosmosGliderDrift {
   0% {

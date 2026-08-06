@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { palette } from "@/lib/visual/palette";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 
 type Scenario = "one" | "k" | "infinite" | "buses";
 
@@ -61,9 +62,403 @@ function makeExistingGuests(): Guest[] {
   return out;
 }
 
+// The explorer UI is string-heavy, so it carries its own local 8-locale bundle
+// (same pattern as app/mobius/explorer and app/eulerchar/explorer). The maths
+// formulas (n → 2n, pₖᵐ, 2ⁿ …) stay literal and are not translated.
+type ExplorerDict = {
+  header: string; // "{n}" placeholder = VISIBLE_ROOMS
+  scenarioLabels: Record<Scenario, string>;
+  scenarioDescs: Record<Scenario, string>;
+  scenarioTitle: string;
+  controlsTitle: string;
+  speedTitle: string;
+  legendTitle: string;
+  kTitle: string;
+  btnStep: string;
+  btnPlay: string;
+  btnPause: string;
+  btnReset: string;
+  stepsUnit: string;
+  lobby: string;
+  moreWord: string;
+  allCheckedIn: string;
+  guestOne: string;
+  guestMany: string;
+  roomsBeyond: string;
+  stepWord: string;
+  legExisting: string;
+  legNew: string;
+  newGuestShort: string;
+  busWord: string;
+  primeWord: string;
+  roomsWord: string;
+  roomWord: string;
+  passengerWord: string;
+  wasInWord: string;
+  ariaK: string;
+  ariaSpeed: string;
+  storyLink: string;
+};
+
+const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
+  en: {
+    header: "Hilbert Hotel · rooms 1…{n} (continues ad infinitum)",
+    scenarioLabels: {
+      one: "1 new guest",
+      k: "k new guests",
+      infinite: "ℵ₀ new guests",
+      buses: "ℵ₀ buses × ℵ₀ guests",
+    },
+    scenarioDescs: {
+      one: "shift n → n + 1, room 1 opens",
+      k: "shift n → n + k, rooms 1…k open",
+      infinite: "n → 2n, every odd room opens",
+      buses: "guest n → 2ⁿ, bus k passenger m → pₖᵐ",
+    },
+    scenarioTitle: "Scenario",
+    controlsTitle: "Controls",
+    speedTitle: "Speed",
+    legendTitle: "Legend",
+    kTitle: "k · new guests",
+    btnStep: "Step",
+    btnPlay: "Play",
+    btnPause: "Pause",
+    btnReset: "Reset",
+    stepsUnit: "steps/s",
+    lobby: "Lobby queue",
+    moreWord: "more",
+    allCheckedIn: "all checked in",
+    guestOne: "guest",
+    guestMany: "guests",
+    roomsBeyond: "in rooms beyond #",
+    stepWord: "Step",
+    legExisting: "Existing guest",
+    legNew: "New guest (one / k / ℵ₀)",
+    newGuestShort: "New guest",
+    busWord: "Bus",
+    primeWord: "prime",
+    roomsWord: "rooms",
+    roomWord: "room",
+    passengerWord: "passenger",
+    wasInWord: "was in",
+    ariaK: "k, number of new guests",
+    ariaSpeed: "playback speed, steps per second",
+    storyLink: "← Story",
+  },
+  de: {
+    header: "Hilberts Hotel · Zimmer 1…{n} (setzt sich unendlich fort)",
+    scenarioLabels: {
+      one: "1 neuer Gast",
+      k: "k neue Gäste",
+      infinite: "ℵ₀ neue Gäste",
+      buses: "ℵ₀ Busse × ℵ₀ Gäste",
+    },
+    scenarioDescs: {
+      one: "Verschiebung n → n + 1, Zimmer 1 wird frei",
+      k: "Verschiebung n → n + k, Zimmer 1…k werden frei",
+      infinite: "n → 2n, jedes ungerade Zimmer wird frei",
+      buses: "Gast n → 2ⁿ, Bus k Gast m → pₖᵐ",
+    },
+    scenarioTitle: "Szenario",
+    controlsTitle: "Steuerung",
+    speedTitle: "Tempo",
+    legendTitle: "Legende",
+    kTitle: "k · neue Gäste",
+    btnStep: "Schritt",
+    btnPlay: "Start",
+    btnPause: "Pause",
+    btnReset: "Zurück",
+    stepsUnit: "Schritte/s",
+    lobby: "Lobby-Warteschlange",
+    moreWord: "weitere",
+    allCheckedIn: "alle eingecheckt",
+    guestOne: "Gast",
+    guestMany: "Gäste",
+    roomsBeyond: "in Zimmern jenseits von #",
+    stepWord: "Schritt",
+    legExisting: "Bisheriger Gast",
+    legNew: "Neuer Gast (eins / k / ℵ₀)",
+    newGuestShort: "Neuer Gast",
+    busWord: "Bus",
+    primeWord: "Primzahl",
+    roomsWord: "Zimmer",
+    roomWord: "Zimmer",
+    passengerWord: "Gast",
+    wasInWord: "war in",
+    ariaK: "k, Anzahl neuer Gäste",
+    ariaSpeed: "Abspielgeschwindigkeit, Schritte pro Sekunde",
+    storyLink: "← Story",
+  },
+  es: {
+    header: "Hotel de Hilbert · habitaciones 1…{n} (continúa hasta el infinito)",
+    scenarioLabels: {
+      one: "1 huésped nuevo",
+      k: "k huéspedes nuevos",
+      infinite: "ℵ₀ huéspedes nuevos",
+      buses: "ℵ₀ autocares × ℵ₀ huéspedes",
+    },
+    scenarioDescs: {
+      one: "desplazamiento n → n + 1, se abre la habitación 1",
+      k: "desplazamiento n → n + k, se abren 1…k",
+      infinite: "n → 2n, se abre cada habitación impar",
+      buses: "huésped n → 2ⁿ, autocar k pasajero m → pₖᵐ",
+    },
+    scenarioTitle: "Escenario",
+    controlsTitle: "Controles",
+    speedTitle: "Velocidad",
+    legendTitle: "Leyenda",
+    kTitle: "k · huéspedes nuevos",
+    btnStep: "Paso",
+    btnPlay: "Reproducir",
+    btnPause: "Pausa",
+    btnReset: "Reiniciar",
+    stepsUnit: "pasos/s",
+    lobby: "Cola del vestíbulo",
+    moreWord: "más",
+    allCheckedIn: "todos registrados",
+    guestOne: "huésped",
+    guestMany: "huéspedes",
+    roomsBeyond: "en habitaciones más allá de #",
+    stepWord: "Paso",
+    legExisting: "Huésped existente",
+    legNew: "Huésped nuevo (uno / k / ℵ₀)",
+    newGuestShort: "Huésped nuevo",
+    busWord: "Autocar",
+    primeWord: "primo",
+    roomsWord: "habitaciones",
+    roomWord: "habitación",
+    passengerWord: "pasajero",
+    wasInWord: "estaba en",
+    ariaK: "k, número de huéspedes nuevos",
+    ariaSpeed: "velocidad de reproducción, pasos por segundo",
+    storyLink: "← Historia",
+  },
+  fr: {
+    header: "Hôtel de Hilbert · chambres 1…{n} (se poursuit à l'infini)",
+    scenarioLabels: {
+      one: "1 nouveau client",
+      k: "k nouveaux clients",
+      infinite: "ℵ₀ nouveaux clients",
+      buses: "ℵ₀ cars × ℵ₀ clients",
+    },
+    scenarioDescs: {
+      one: "décalage n → n + 1, la chambre 1 se libère",
+      k: "décalage n → n + k, les chambres 1…k se libèrent",
+      infinite: "n → 2n, chaque chambre impaire se libère",
+      buses: "client n → 2ⁿ, car k passager m → pₖᵐ",
+    },
+    scenarioTitle: "Scénario",
+    controlsTitle: "Commandes",
+    speedTitle: "Vitesse",
+    legendTitle: "Légende",
+    kTitle: "k · nouveaux clients",
+    btnStep: "Pas",
+    btnPlay: "Lecture",
+    btnPause: "Pause",
+    btnReset: "Réinit.",
+    stepsUnit: "pas/s",
+    lobby: "File du hall",
+    moreWord: "de plus",
+    allCheckedIn: "tous enregistrés",
+    guestOne: "client",
+    guestMany: "clients",
+    roomsBeyond: "dans les chambres au-delà de #",
+    stepWord: "Pas",
+    legExisting: "Client existant",
+    legNew: "Nouveau client (un / k / ℵ₀)",
+    newGuestShort: "Nouveau client",
+    busWord: "Car",
+    primeWord: "premier",
+    roomsWord: "chambres",
+    roomWord: "chambre",
+    passengerWord: "passager",
+    wasInWord: "était en",
+    ariaK: "k, nombre de nouveaux clients",
+    ariaSpeed: "vitesse de lecture, pas par seconde",
+    storyLink: "← Récit",
+  },
+  it: {
+    header: "Hotel di Hilbert · stanze 1…{n} (prosegue all'infinito)",
+    scenarioLabels: {
+      one: "1 ospite nuovo",
+      k: "k ospiti nuovi",
+      infinite: "ℵ₀ ospiti nuovi",
+      buses: "ℵ₀ pullman × ℵ₀ ospiti",
+    },
+    scenarioDescs: {
+      one: "spostamento n → n + 1, si libera la stanza 1",
+      k: "spostamento n → n + k, si liberano 1…k",
+      infinite: "n → 2n, si libera ogni stanza dispari",
+      buses: "ospite n → 2ⁿ, pullman k passeggero m → pₖᵐ",
+    },
+    scenarioTitle: "Scenario",
+    controlsTitle: "Controlli",
+    speedTitle: "Velocità",
+    legendTitle: "Legenda",
+    kTitle: "k · ospiti nuovi",
+    btnStep: "Passo",
+    btnPlay: "Play",
+    btnPause: "Pausa",
+    btnReset: "Azzera",
+    stepsUnit: "passi/s",
+    lobby: "Coda nella hall",
+    moreWord: "altri",
+    allCheckedIn: "tutti registrati",
+    guestOne: "ospite",
+    guestMany: "ospiti",
+    roomsBeyond: "in stanze oltre la #",
+    stepWord: "Passo",
+    legExisting: "Ospite esistente",
+    legNew: "Ospite nuovo (uno / k / ℵ₀)",
+    newGuestShort: "Ospite nuovo",
+    busWord: "Pullman",
+    primeWord: "primo",
+    roomsWord: "stanze",
+    roomWord: "stanza",
+    passengerWord: "passeggero",
+    wasInWord: "era in",
+    ariaK: "k, numero di ospiti nuovi",
+    ariaSpeed: "velocità di riproduzione, passi al secondo",
+    storyLink: "← Racconto",
+  },
+  pt: {
+    header: "Hotel de Hilbert · quartos 1…{n} (continua até ao infinito)",
+    scenarioLabels: {
+      one: "1 hóspede novo",
+      k: "k hóspedes novos",
+      infinite: "ℵ₀ hóspedes novos",
+      buses: "ℵ₀ autocarros × ℵ₀ hóspedes",
+    },
+    scenarioDescs: {
+      one: "deslocamento n → n + 1, abre o quarto 1",
+      k: "deslocamento n → n + k, abrem 1…k",
+      infinite: "n → 2n, abre cada quarto ímpar",
+      buses: "hóspede n → 2ⁿ, autocarro k passageiro m → pₖᵐ",
+    },
+    scenarioTitle: "Cenário",
+    controlsTitle: "Controlos",
+    speedTitle: "Velocidade",
+    legendTitle: "Legenda",
+    kTitle: "k · hóspedes novos",
+    btnStep: "Passo",
+    btnPlay: "Reproduzir",
+    btnPause: "Pausa",
+    btnReset: "Reiniciar",
+    stepsUnit: "passos/s",
+    lobby: "Fila do átrio",
+    moreWord: "mais",
+    allCheckedIn: "todos com check-in",
+    guestOne: "hóspede",
+    guestMany: "hóspedes",
+    roomsBeyond: "em quartos para além do #",
+    stepWord: "Passo",
+    legExisting: "Hóspede existente",
+    legNew: "Hóspede novo (um / k / ℵ₀)",
+    newGuestShort: "Hóspede novo",
+    busWord: "Autocarro",
+    primeWord: "primo",
+    roomsWord: "quartos",
+    roomWord: "quarto",
+    passengerWord: "passageiro",
+    wasInWord: "estava em",
+    ariaK: "k, número de hóspedes novos",
+    ariaSpeed: "velocidade de reprodução, passos por segundo",
+    storyLink: "← História",
+  },
+  sv: {
+    header: "Hilberts hotell · rum 1…{n} (fortsätter i oändlighet)",
+    scenarioLabels: {
+      one: "1 ny gäst",
+      k: "k nya gäster",
+      infinite: "ℵ₀ nya gäster",
+      buses: "ℵ₀ bussar × ℵ₀ gäster",
+    },
+    scenarioDescs: {
+      one: "förskjutning n → n + 1, rum 1 blir ledigt",
+      k: "förskjutning n → n + k, rum 1…k blir lediga",
+      infinite: "n → 2n, varje udda rum blir ledigt",
+      buses: "gäst n → 2ⁿ, buss k passagerare m → pₖᵐ",
+    },
+    scenarioTitle: "Scenario",
+    controlsTitle: "Kontroller",
+    speedTitle: "Hastighet",
+    legendTitle: "Teckenförklaring",
+    kTitle: "k · nya gäster",
+    btnStep: "Steg",
+    btnPlay: "Spela",
+    btnPause: "Paus",
+    btnReset: "Återställ",
+    stepsUnit: "steg/s",
+    lobby: "Lobbykö",
+    moreWord: "till",
+    allCheckedIn: "alla incheckade",
+    guestOne: "gäst",
+    guestMany: "gäster",
+    roomsBeyond: "i rum bortom #",
+    stepWord: "Steg",
+    legExisting: "Befintlig gäst",
+    legNew: "Ny gäst (en / k / ℵ₀)",
+    newGuestShort: "Ny gäst",
+    busWord: "Buss",
+    primeWord: "primtal",
+    roomsWord: "rum",
+    roomWord: "rum",
+    passengerWord: "passagerare",
+    wasInWord: "var i",
+    ariaK: "k, antal nya gäster",
+    ariaSpeed: "uppspelningshastighet, steg per sekund",
+    storyLink: "← Berättelse",
+  },
+  no: {
+    header: "Hilberts hotell · rom 1…{n} (fortsetter i det uendelige)",
+    scenarioLabels: {
+      one: "1 ny gjest",
+      k: "k nye gjester",
+      infinite: "ℵ₀ nye gjester",
+      buses: "ℵ₀ busser × ℵ₀ gjester",
+    },
+    scenarioDescs: {
+      one: "forskyvning n → n + 1, rom 1 blir ledig",
+      k: "forskyvning n → n + k, rom 1…k blir ledige",
+      infinite: "n → 2n, hvert oddetallsrom blir ledig",
+      buses: "gjest n → 2ⁿ, buss k passasjer m → pₖᵐ",
+    },
+    scenarioTitle: "Scenario",
+    controlsTitle: "Kontroller",
+    speedTitle: "Hastighet",
+    legendTitle: "Tegnforklaring",
+    kTitle: "k · nye gjester",
+    btnStep: "Steg",
+    btnPlay: "Spill",
+    btnPause: "Pause",
+    btnReset: "Nullstill",
+    stepsUnit: "steg/s",
+    lobby: "Lobbykø",
+    moreWord: "til",
+    allCheckedIn: "alle innsjekket",
+    guestOne: "gjest",
+    guestMany: "gjester",
+    roomsBeyond: "i rom bortenfor #",
+    stepWord: "Steg",
+    legExisting: "Eksisterende gjest",
+    legNew: "Ny gjest (én / k / ℵ₀)",
+    newGuestShort: "Ny gjest",
+    busWord: "Buss",
+    primeWord: "primtall",
+    roomsWord: "rom",
+    roomWord: "rom",
+    passengerWord: "passasjer",
+    wasInWord: "var i",
+    ariaK: "k, antall nye gjester",
+    ariaSpeed: "avspillingshastighet, steg per sekund",
+    storyLink: "← Fortelling",
+  },
+};
+
 export default function HilbertHotelExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.hilberthotel;
+  const x = RICH_EXPLORER[locale];
 
   const [scenario, setScenario] = useState<Scenario>("one");
   const [k, setK] = useState(3);
@@ -285,12 +680,7 @@ export default function HilbertHotelExplorer() {
     [guests],
   );
 
-  const scenarioLabels: Record<Scenario, string> = {
-    one: "1 new guest",
-    k: "k new guests",
-    infinite: "ℵ₀ new guests",
-    buses: "ℵ₀ buses × ℵ₀ guests",
-  };
+  const scenarioLabels = x.scenarioLabels;
 
   const scenarioFormula: Record<Scenario, string> = {
     one: "n → n + 1",
@@ -306,7 +696,7 @@ export default function HilbertHotelExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              Hilbert Hotel · rooms 1…{VISIBLE_ROOMS} (continues ad infinitum)
+              {x.header.replace("{n}", String(VISIBLE_ROOMS))}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               {scenarioFormula[scenario]}
@@ -351,10 +741,10 @@ export default function HilbertHotelExplorer() {
                           }}
                           title={
                             g.origin === "existing"
-                              ? `Existing guest (was in ${g.index})`
+                              ? `${x.legExisting} (${x.wasInWord} ${g.index})`
                               : g.origin === "bus"
-                                ? `Bus ${g.bus} · passenger ${g.index}`
-                                : `New guest #${g.index}`
+                                ? `${x.busWord} ${g.bus} · ${x.passengerWord} ${g.index}`
+                                : `${x.newGuestShort} #${g.index}`
                           }
                         />
                       ))}
@@ -382,7 +772,7 @@ export default function HilbertHotelExplorer() {
           {/* Lobby / queue strip */}
           <div className="glass hairline flex flex-wrap items-center gap-3 rounded-md border px-3 py-2">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Lobby queue ({queue.length})
+              {x.lobby} ({queue.length})
             </div>
             <div className="flex flex-1 flex-wrap items-center gap-1">
               {queue.slice(0, 40).map((g) => (
@@ -397,25 +787,26 @@ export default function HilbertHotelExplorer() {
                   }}
                   title={
                     g.origin === "bus"
-                      ? `Bus ${g.bus} · passenger ${g.index} → room ${
+                      ? `${x.busWord} ${g.bus} · ${x.passengerWord} ${g.index} → ${x.roomWord} ${
                           g.bus ? Math.pow(BUS_PRIMES[g.bus - 1], g.index) : "?"
                         }`
-                      : `New guest #${g.index}`
+                      : `${x.newGuestShort} #${g.index}`
                   }
                 />
               ))}
               {queue.length > 40 && (
                 <span className="font-mono text-[10px] text-ink-400">
-                  +{queue.length - 40} more · ℵ₀
+                  +{queue.length - 40} {x.moreWord} · ℵ₀
                 </span>
               )}
               {queue.length === 0 && (
-                <span className="font-mono text-[10px] text-ink-500">— all checked in —</span>
+                <span className="font-mono text-[10px] text-ink-500">{x.allCheckedIn}</span>
               )}
             </div>
             {offScreenGuests > 0 && (
               <div className="font-mono text-[10px] text-ink-400">
-                {offScreenGuests} guest{offScreenGuests === 1 ? "" : "s"} in rooms beyond #
+                {offScreenGuests} {offScreenGuests === 1 ? x.guestOne : x.guestMany}{" "}
+                {x.roomsBeyond}
                 {VISIBLE_ROOMS}
               </div>
             )}
@@ -424,7 +815,7 @@ export default function HilbertHotelExplorer() {
           {/* Step progress */}
           <div className="glass hairline flex items-center justify-between gap-3 rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
             <span>
-              Step {step} / {totalSteps}
+              {x.stepWord} {step} / {totalSteps}
             </span>
             <div className="mx-3 h-1 flex-1 overflow-hidden rounded bg-ink-800">
               <div
@@ -449,32 +840,23 @@ export default function HilbertHotelExplorer() {
           {/* Scenario picker */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Scenario
+              {x.scenarioTitle}
             </div>
             <div className="grid grid-cols-1 gap-2">
-              {(
-                [
-                  { id: "one", label: "1 new guest", desc: "shift n → n + 1, room 1 opens" },
-                  { id: "k", label: "k new guests", desc: "shift n → n + k, rooms 1…k open" },
-                  { id: "infinite", label: "ℵ₀ new guests", desc: "n → 2n, every odd room opens" },
-                  {
-                    id: "buses",
-                    label: "ℵ₀ buses, ℵ₀ guests",
-                    desc: "guest n → 2ⁿ, bus k passenger m → pₖᵐ",
-                  },
-                ] as const
-              ).map((opt) => (
+              {(["one", "k", "infinite", "buses"] as const).map((id) => (
                 <button
-                  key={opt.id}
-                  onClick={() => setScenario(opt.id)}
+                  key={id}
+                  onClick={() => setScenario(id)}
                   className={`rounded-md border px-3 py-2 text-left transition-colors ${
-                    scenario === opt.id
+                    scenario === id
                       ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
                       : "hairline text-ink-200 hover:border-signal-cyan/40 hover:text-ink-100"
                   }`}
                 >
-                  <div className="font-mono text-xs">{opt.label}</div>
-                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">{opt.desc}</div>
+                  <div className="font-mono text-xs">{x.scenarioLabels[id]}</div>
+                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">
+                    {x.scenarioDescs[id]}
+                  </div>
                 </button>
               ))}
             </div>
@@ -484,13 +866,14 @@ export default function HilbertHotelExplorer() {
           {scenario === "k" && (
             <div className="hairline space-y-3 border-b p-5">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                k — new guests
+                {x.kTitle}
               </div>
               <div className="flex items-center justify-between font-mono text-sm">
                 <span className="text-signal-cyan">{k}</span>
               </div>
               <input
                 type="range"
+                aria-label={x.ariaK}
                 value={k}
                 min={1}
                 max={10}
@@ -504,7 +887,7 @@ export default function HilbertHotelExplorer() {
           {/* Controls */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Controls
+              {x.controlsTitle}
             </div>
             <div className="grid grid-cols-4 gap-2">
               <button
@@ -515,27 +898,27 @@ export default function HilbertHotelExplorer() {
                 disabled={step >= totalSteps}
                 className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-200 hover:border-signal-cyan/50 hover:text-signal-cyan disabled:opacity-40 disabled:hover:border-ink-700 disabled:hover:text-ink-200"
               >
-                Step
+                {x.btnStep}
               </button>
               <button
                 onClick={() => setPlaying(true)}
                 disabled={step >= totalSteps || playing}
                 className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-200 hover:border-signal-cyan/50 hover:text-signal-cyan disabled:opacity-40"
               >
-                Play
+                {x.btnPlay}
               </button>
               <button
                 onClick={() => setPlaying(false)}
                 disabled={!playing}
                 className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-200 hover:border-signal-cyan/50 hover:text-signal-cyan disabled:opacity-40"
               >
-                Pause
+                {x.btnPause}
               </button>
               <button
                 onClick={() => resetScenario(scenario, k)}
                 className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-200 hover:border-signal-rose/50 hover:text-signal-rose"
               >
-                Reset
+                {x.btnReset}
               </button>
             </div>
           </div>
@@ -543,13 +926,16 @@ export default function HilbertHotelExplorer() {
           {/* Speed */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Speed
+              {x.speedTitle}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-amber">{speed} steps/s</span>
+              <span className="text-signal-amber">
+                {speed} {x.stepsUnit}
+              </span>
             </div>
             <input
               type="range"
+              aria-label={x.ariaSpeed}
               value={speed}
               min={1}
               max={40}
@@ -562,7 +948,7 @@ export default function HilbertHotelExplorer() {
           {/* Legend */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Legend
+              {x.legendTitle}
             </div>
             <div className="space-y-2 font-mono text-[10px] text-ink-200">
               <div className="flex items-center gap-2">
@@ -570,14 +956,14 @@ export default function HilbertHotelExplorer() {
                   className="inline-block rounded-full"
                   style={{ background: EXISTING_COLOR, width: 10, height: 10 }}
                 />
-                Existing guest
+                {x.legExisting}
               </div>
               <div className="flex items-center gap-2">
                 <span
                   className="inline-block rounded-full"
                   style={{ background: NEW_GUEST_COLOR, width: 10, height: 10 }}
                 />
-                New guest (one / k / ℵ₀)
+                {x.legNew}
               </div>
               {scenario === "buses" &&
                 BUS_PRIMES.slice(0, 4).map((p, i) => (
@@ -586,7 +972,8 @@ export default function HilbertHotelExplorer() {
                       className="inline-block rounded-full"
                       style={{ background: BUS_COLORS[i], width: 10, height: 10 }}
                     />
-                    Bus {i + 1} · prime {p} (rooms {p}, {p * p}, {p * p * p}, …)
+                    {x.busWord} {i + 1} · {x.primeWord} {p} ({x.roomsWord} {p}, {p * p}, {p * p * p},
+                    …)
                   </div>
                 ))}
             </div>
@@ -597,7 +984,7 @@ export default function HilbertHotelExplorer() {
               href="/hilberthotel"
               className="hairline mb-2 block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
             >
-              ← Story
+              {x.storyLink}
             </Link>
             <Link
               href="/"

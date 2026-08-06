@@ -15,8 +15,11 @@ interface Preset {
 }
 
 const PRESETS: Preset[] = [
-  { name: "Spots", desc: "Discrete round dots, like a leopard.", F: 0.0367, k: 0.0649 },
-  { name: "Mitosis", desc: "Dots split, replicate, fill the plane.", F: 0.0545, k: 0.062 },
+  // Canonical Pearson regimes: stable spots sit near F≈0.025/k≈0.06, while
+  // the self-replicating F=0.0367/k=0.0649 point is the well-known "mitosis"
+  // regime. Both must agree with the story gallery on the same topic.
+  { name: "Spots", desc: "Discrete round dots, like a leopard.", F: 0.025, k: 0.06 },
+  { name: "Mitosis", desc: "Dots split, replicate, fill the plane.", F: 0.0367, k: 0.0649 },
   { name: "Maze", desc: "Pearson zeta — winding labyrinth.", F: 0.029, k: 0.057 },
   { name: "Worms", desc: "Curling stripe segments.", F: 0.078, k: 0.061 },
   { name: "U-skate world", desc: "Glider-like solitons drifting.", F: 0.062, k: 0.0609 },
@@ -146,6 +149,16 @@ export default function TuringPatternExplorer() {
   const [paused, setPaused] = useState(false);
   const [resetTick, setResetTick] = useState(0);
   const [seedMode, setSeedMode] = useState<"random" | "centered">("random");
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  // Track the reduced-motion preference live so we can freeze / resume.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = (): void => setReducedMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   // Mutable simulation state — kept in refs so re-renders don't reset it.
   const aRef = useRef<Float32Array>(new Float32Array(SIZE));
@@ -169,7 +182,9 @@ export default function TuringPatternExplorer() {
     bNextRef.current.set(bRef.current);
   }, [resetTick, seedMode]);
 
-  // Animation / simulation loop.
+  // Animation / simulation loop. Respects prefers-reduced-motion: when reduce
+  // is requested we settle the field with one fixed batch of steps and paint a
+  // single static frame, then leave the rAF loop unscheduled.
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -180,60 +195,49 @@ export default function TuringPatternExplorer() {
     const image = ctx.createImageData(N, N);
     const data = image.data;
 
-    let raf = 0;
-
-    const step = (): void => {
+    // One explicit-Euler sub-step over the whole grid, reading live params.
+    const advance = (): void => {
       const p = paramsRef.current;
-      if (!p.paused) {
-        const aCur = aRef.current;
-        const bCur = bRef.current;
-        let aNext = aNextRef.current;
-        let bNext = bNextRef.current;
-        const steps = Math.max(1, Math.floor(p.speed));
-        for (let s = 0; s < steps; s++) {
-          // 5-point Laplacian with toroidal wrap.
-          for (let y = 0; y < N; y++) {
-            const yUp = y === 0 ? N - 1 : y - 1;
-            const yDn = y === N - 1 ? 0 : y + 1;
-            const row = y * N;
-            const rowU = yUp * N;
-            const rowD = yDn * N;
-            for (let x = 0; x < N; x++) {
-              const xL = x === 0 ? N - 1 : x - 1;
-              const xR = x === N - 1 ? 0 : x + 1;
-              const i = row + x;
-              const aC = aCur[i];
-              const bC = bCur[i];
-              const lapA =
-                aCur[row + xL] + aCur[row + xR] + aCur[rowU + x] + aCur[rowD + x] - 4 * aC;
-              const lapB =
-                bCur[row + xL] + bCur[row + xR] + bCur[rowU + x] + bCur[rowD + x] - 4 * bC;
-              const abb = aC * bC * bC;
-              // dt = 1 with Karl Sims style scaling. Hard-clamp keeps
-              // the explicit Euler stable through sharp transients.
-              let aN = aC + (p.Da * lapA - abb + p.F * (1 - aC));
-              let bN = bC + (p.Db * lapB + abb - (p.F + p.k) * bC);
-              if (aN < 0) aN = 0;
-              else if (aN > 1) aN = 1;
-              if (bN < 0) bN = 0;
-              else if (bN > 1) bN = 1;
-              aNext[i] = aN;
-              bNext[i] = bN;
-            }
-          }
-          // Swap.
-          const tmpA = aRef.current;
-          const tmpB = bRef.current;
-          aRef.current = aNext;
-          bRef.current = bNext;
-          aNextRef.current = tmpA;
-          bNextRef.current = tmpB;
-          aNext = aNextRef.current;
-          bNext = bNextRef.current;
+      const aCur = aRef.current;
+      const bCur = bRef.current;
+      const aNext = aNextRef.current;
+      const bNext = bNextRef.current;
+      // 5-point Laplacian with toroidal wrap.
+      for (let y = 0; y < N; y++) {
+        const yUp = y === 0 ? N - 1 : y - 1;
+        const yDn = y === N - 1 ? 0 : y + 1;
+        const row = y * N;
+        const rowU = yUp * N;
+        const rowD = yDn * N;
+        for (let x = 0; x < N; x++) {
+          const xL = x === 0 ? N - 1 : x - 1;
+          const xR = x === N - 1 ? 0 : x + 1;
+          const i = row + x;
+          const aC = aCur[i];
+          const bC = bCur[i];
+          const lapA = aCur[row + xL] + aCur[row + xR] + aCur[rowU + x] + aCur[rowD + x] - 4 * aC;
+          const lapB = bCur[row + xL] + bCur[row + xR] + bCur[rowU + x] + bCur[rowD + x] - 4 * bC;
+          const abb = aC * bC * bC;
+          // dt = 1 with Karl Sims style scaling. Hard-clamp keeps
+          // the explicit Euler stable through sharp transients.
+          let aN = aC + (p.Da * lapA - abb + p.F * (1 - aC));
+          let bN = bC + (p.Db * lapB + abb - (p.F + p.k) * bC);
+          if (aN < 0) aN = 0;
+          else if (aN > 1) aN = 1;
+          if (bN < 0) bN = 0;
+          else if (bN > 1) bN = 1;
+          aNext[i] = aN;
+          bNext[i] = bN;
         }
       }
+      // Swap.
+      aRef.current = aNext;
+      bRef.current = bNext;
+      aNextRef.current = aCur;
+      bNextRef.current = bCur;
+    };
 
-      // Render b through the LUT.
+    const paint = (): void => {
       const b = bRef.current;
       const tbl = lutRef.current;
       for (let i = 0; i < SIZE; i++) {
@@ -249,13 +253,29 @@ export default function TuringPatternExplorer() {
         data[o + 3] = 255;
       }
       ctx.putImageData(image, 0, 0);
+    };
 
+    if (reducedMotion) {
+      // Run to a near-stationary pattern once, then freeze (no perpetual rAF).
+      for (let s = 0; s < 1400; s++) advance();
+      paint();
+      return;
+    }
+
+    let raf = 0;
+    const step = (): void => {
+      const p = paramsRef.current;
+      if (!p.paused) {
+        const steps = Math.max(1, Math.floor(p.speed));
+        for (let s = 0; s < steps; s++) advance();
+      }
+      paint();
       raf = requestAnimationFrame(step);
     };
 
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [reducedMotion, resetTick, presetIdx, seedMode]);
 
   const applyPreset = (idx: number): void => {
     setPresetIdx(idx);
@@ -278,6 +298,8 @@ export default function TuringPatternExplorer() {
           <div className="hairline flex flex-1 items-center justify-center overflow-hidden rounded-2xl border bg-ink-950">
             <canvas
               ref={canvasRef}
+              role="img"
+              aria-label="Live Gray-Scott reaction-diffusion simulation"
               className="block h-full w-full"
               style={{
                 imageRendering: "pixelated",
@@ -336,6 +358,7 @@ export default function TuringPatternExplorer() {
               </div>
               <input
                 type="range"
+                aria-label="F, feed rate"
                 value={F}
                 min={0}
                 max={0.1}
@@ -353,6 +376,7 @@ export default function TuringPatternExplorer() {
               </div>
               <input
                 type="range"
+                aria-label="k, kill rate"
                 value={k}
                 min={0}
                 max={0.08}
@@ -363,13 +387,14 @@ export default function TuringPatternExplorer() {
             </div>
             <div>
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                D_a · activator diffusion
+                D_a · substrate (inhibitor) diffusion
               </div>
               <div className="flex items-center justify-between font-mono text-sm">
                 <span className="text-signal-teal">{Da.toFixed(3)}</span>
               </div>
               <input
                 type="range"
+                aria-label="D_a, substrate (inhibitor) diffusion rate"
                 value={Da}
                 min={0.05}
                 max={0.25}
@@ -380,13 +405,14 @@ export default function TuringPatternExplorer() {
             </div>
             <div>
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                D_b · inhibitor diffusion
+                D_b · activator diffusion
               </div>
               <div className="flex items-center justify-between font-mono text-sm">
                 <span className="text-signal-teal">{Db.toFixed(3)}</span>
               </div>
               <input
                 type="range"
+                aria-label="D_b, activator diffusion rate"
                 value={Db}
                 min={0.02}
                 max={0.12}
@@ -429,6 +455,7 @@ export default function TuringPatternExplorer() {
             </div>
             <input
               type="range"
+              aria-label="Simulation speed, steps per frame"
               value={speed}
               min={1}
               max={20}

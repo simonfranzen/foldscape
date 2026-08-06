@@ -3,6 +3,16 @@
 import { useMemo, useState } from "react";
 import { palette } from "@/lib/visual/palette";
 
+// Derive an rgba() string from a palette hex token so the stroke colour stays
+// in sync if the palette shifts (rather than restating the channel literals).
+function withAlpha(hex: string, alpha: number): string {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 // Fibonacci ratio convergence table + a small golden-spiral SVG. The user
 // drags an N slider; we show every consecutive ratio F(n+1)/F(n) up to N,
 // the decimal expansion, and the signed distance to phi. The spiral on the
@@ -206,14 +216,13 @@ export function PhiFibonacciConvergence({
 
   const rows = useMemo(() => {
     const out: Array<{ n: number; fn: number; ratio: number | null }> = [];
-    let prev = 1;
-    let curr = 1;
-    // n starts at 1; F1 = 1, F2 = 1, F3 = 2, ...
-    out.push({ n: 1, fn: 1, ratio: null });
-    for (let n = 2; n <= N + 1; n++) {
-      const ratio = prev === 0 ? null : curr / prev;
-      out.push({ n, fn: curr, ratio });
-      const next = prev + curr;
+    // Row n shows Fₙ and the forward ratio Fₙ₊₁/Fₙ, matching the "Fₙ₊₁ / Fₙ"
+    // header (and the explorer's RatiosPanel, which labels FIB[n+1]/FIB[n] as n).
+    let prev = 0; // F(n-1)
+    let curr = 1; // F(n), starting at F1 = 1
+    for (let n = 1; n <= N; n++) {
+      const next = prev + curr; // F(n+1)
+      out.push({ n, fn: curr, ratio: curr === 0 ? null : next / curr });
       prev = curr;
       curr = next;
     }
@@ -316,7 +325,7 @@ export function PhiFibonacciConvergence({
                   width={sq.s}
                   height={sq.s}
                   fill="none"
-                  stroke="rgba(125,243,255,0.35)"
+                  stroke={withAlpha(palette.signal.cyan, 0.35)}
                   strokeWidth={Math.max(0.05, sq.s * 0.012)}
                 />
               ))}

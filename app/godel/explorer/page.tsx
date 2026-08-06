@@ -33,7 +33,8 @@ type MeaningKey =
   | "successor"
   | "plus"
   | "open"
-  | "close";
+  | "close"
+  | "variable";
 
 interface Symbol {
   glyph: string;
@@ -52,6 +53,10 @@ const ALPHABET: Symbol[] = [
   { glyph: "+", meaningKey: "plus", code: 8 },
   { glyph: "(", meaningKey: "open", code: 9 },
   { glyph: ")", meaningKey: "close", code: 10 },
+  // A single object variable, so the quantified formula ∀x (0 = 0) can encode
+  // the x it advertises. Without this the displayed number would silently drop
+  // the variable, contradicting the "encoding is reversible" lesson.
+  { glyph: "x", meaningKey: "variable", code: 11 },
 ];
 
 // The first ten primes — enough for the longest formula on offer.
@@ -79,7 +84,7 @@ const FORMULAS: FormulaChoice[] = [
     id: "forall",
     labelKey: "forall",
     expr: "∀x (0 = 0)",
-    tokens: ["∀", "(", "0", "=", "0", ")"],
+    tokens: ["∀", "x", "(", "0", "=", "0", ")"],
   },
 ];
 
@@ -210,6 +215,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       plus: "plus",
       open: "open",
       close: "close",
+      variable: "variable",
     },
     formulaLabels: {
       "0eq0": "0 = 0  (true)",
@@ -230,7 +236,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "The alphabet of arithmetic",
     step1Title: "Give every symbol a number.",
     step1Body:
-      "Pick any reasonable convention. Here are ten symbols of a simple arithmetic language, each assigned a natural number. Once symbols are numbers, sequences of symbols (i.e. formulae) are sequences of numbers — and any sequence of numbers can be packed into a single natural number.",
+      "Pick any reasonable convention. Here are eleven symbols of a simple arithmetic language, each assigned a natural number. Once symbols are numbers, sequences of symbols (i.e. formulae) are sequences of numbers — and any sequence of numbers can be packed into a single natural number.",
     step1Code: "code",
     step1Footer1: "Next: pick a small formula like ",
     step1Footer2: " or ",
@@ -310,6 +316,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       plus: "plus",
       open: "auf",
       close: "zu",
+      variable: "Variable",
     },
     formulaLabels: {
       "0eq0": "0 = 0  (wahr)",
@@ -330,7 +337,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "Das Alphabet der Arithmetik",
     step1Title: "Gib jedem Symbol eine Zahl.",
     step1Body:
-      "Wähle eine beliebige sinnvolle Konvention. Hier sind zehn Symbole einer einfachen Arithmetik-Sprache, jedem ist eine natürliche Zahl zugeordnet. Sobald Symbole Zahlen sind, sind Folgen von Symbolen (also Formeln) Folgen von Zahlen — und jede Zahlenfolge lässt sich zu einer einzigen natürlichen Zahl zusammenpacken.",
+      "Wähle eine beliebige sinnvolle Konvention. Hier sind elf Symbole einer einfachen Arithmetik-Sprache, jedem ist eine natürliche Zahl zugeordnet. Sobald Symbole Zahlen sind, sind Folgen von Symbolen (also Formeln) Folgen von Zahlen — und jede Zahlenfolge lässt sich zu einer einzigen natürlichen Zahl zusammenpacken.",
     step1Code: "Code",
     step1Footer1: "Als Nächstes: Wähle eine kleine Formel wie ",
     step1Footer2: " oder ",
@@ -414,6 +421,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       plus: "más",
       open: "abrir",
       close: "cerrar",
+      variable: "variable",
     },
     formulaLabels: {
       "0eq0": "0 = 0  (verdadera)",
@@ -434,7 +442,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "El alfabeto de la aritmética",
     step1Title: "Dale un número a cada símbolo.",
     step1Body:
-      "Elige cualquier convención razonable. Aquí tienes diez símbolos de un lenguaje aritmético simple, cada uno con un número natural asignado. Una vez que los símbolos son números, las secuencias de símbolos (las fórmulas) son secuencias de números — y toda secuencia de números puede empaquetarse en un único número natural.",
+      "Elige cualquier convención razonable. Aquí tienes once símbolos de un lenguaje aritmético simple, cada uno con un número natural asignado. Una vez que los símbolos son números, las secuencias de símbolos (las fórmulas) son secuencias de números — y toda secuencia de números puede empaquetarse en un único número natural.",
     step1Code: "código",
     step1Footer1: "A continuación: elige una pequeña fórmula como ",
     step1Footer2: " o ",
@@ -522,6 +530,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       plus: "plus",
       open: "ouvrir",
       close: "fermer",
+      variable: "variable",
     },
     formulaLabels: {
       "0eq0": "0 = 0  (vraie)",
@@ -542,7 +551,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "L'alphabet de l'arithmétique",
     step1Title: "Donne un nombre à chaque symbole.",
     step1Body:
-      "Choisis une convention raisonnable. Voici dix symboles d'un langage arithmétique simple, chacun associé à un nombre entier. Une fois que les symboles sont des nombres, les suites de symboles (c'est-à-dire les formules) sont des suites de nombres — et toute suite de nombres peut être empaquetée en un seul nombre entier.",
+      "Choisis une convention raisonnable. Voici onze symboles d'un langage arithmétique simple, chacun associé à un nombre entier. Une fois que les symboles sont des nombres, les suites de symboles (c'est-à-dire les formules) sont des suites de nombres — et toute suite de nombres peut être empaquetée en un seul nombre entier.",
     step1Code: "code",
     step1Footer1: "Ensuite : choisis une petite formule comme ",
     step1Footer2: " ou ",
@@ -630,6 +639,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       plus: "più",
       open: "apri",
       close: "chiudi",
+      variable: "variabile",
     },
     formulaLabels: {
       "0eq0": "0 = 0  (vera)",
@@ -650,7 +660,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "L'alfabeto dell'aritmetica",
     step1Title: "Dài un numero a ogni simbolo.",
     step1Body:
-      "Scegli una convenzione qualsiasi. Ecco dieci simboli di un semplice linguaggio aritmetico, a ciascuno è assegnato un numero naturale. Una volta che i simboli sono numeri, le sequenze di simboli (cioè le formule) sono sequenze di numeri — e ogni sequenza di numeri può essere impacchettata in un unico numero naturale.",
+      "Scegli una convenzione qualsiasi. Ecco undici simboli di un semplice linguaggio aritmetico, a ciascuno è assegnato un numero naturale. Una volta che i simboli sono numeri, le sequenze di simboli (cioè le formule) sono sequenze di numeri — e ogni sequenza di numeri può essere impacchettata in un unico numero naturale.",
     step1Code: "codice",
     step1Footer1: "Prossimo passo: scegli una piccola formula come ",
     step1Footer2: " o ",
@@ -738,6 +748,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       plus: "mais",
       open: "abrir",
       close: "fechar",
+      variable: "variável",
     },
     formulaLabels: {
       "0eq0": "0 = 0  (verdadeira)",
@@ -758,7 +769,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "O alfabeto da aritmética",
     step1Title: "Dá um número a cada símbolo.",
     step1Body:
-      "Escolhe uma convenção razoável. Aqui estão dez símbolos de uma linguagem aritmética simples, cada um com um número natural atribuído. Quando os símbolos são números, as sequências de símbolos (isto é, as fórmulas) são sequências de números — e toda sequência de números pode ser empacotada num único número natural.",
+      "Escolhe uma convenção razoável. Aqui estão onze símbolos de uma linguagem aritmética simples, cada um com um número natural atribuído. Quando os símbolos são números, as sequências de símbolos (isto é, as fórmulas) são sequências de números — e toda sequência de números pode ser empacotada num único número natural.",
     step1Code: "código",
     step1Footer1: "A seguir: escolhe uma pequena fórmula como ",
     step1Footer2: " ou ",
@@ -846,6 +857,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       plus: "plus",
       open: "öppen",
       close: "sluten",
+      variable: "variabel",
     },
     formulaLabels: {
       "0eq0": "0 = 0  (sann)",
@@ -866,7 +878,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "Aritmetikens alfabet",
     step1Title: "Ge varje symbol ett tal.",
     step1Body:
-      "Välj vilken rimlig konvention som helst. Här är tio symboler från ett enkelt aritmetiskt språk, var och en tilldelad ett naturligt tal. När symboler är tal är följder av symboler (dvs. formler) följder av tal — och varje följd av tal kan packas till ett enda naturligt tal.",
+      "Välj vilken rimlig konvention som helst. Här är elva symboler från ett enkelt aritmetiskt språk, var och en tilldelad ett naturligt tal. När symboler är tal är följder av symboler (dvs. formler) följder av tal — och varje följd av tal kan packas till ett enda naturligt tal.",
     step1Code: "kod",
     step1Footer1: "Härnäst: välj en liten formel som ",
     step1Footer2: " eller ",
@@ -953,6 +965,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       plus: "pluss",
       open: "åpen",
       close: "lukket",
+      variable: "variabel",
     },
     formulaLabels: {
       "0eq0": "0 = 0  (sann)",
@@ -973,7 +986,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "Aritmetikkens alfabet",
     step1Title: "Gi hvert symbol et tall.",
     step1Body:
-      "Velg en hvilken som helst fornuftig konvensjon. Her er ti symboler i et enkelt aritmetisk språk, hvert tilordnet et naturlig tall. Når symboler er tall, er følger av symboler (dvs. formler) følger av tall — og hver tallrekke kan pakkes inn i ett enkelt naturlig tall.",
+      "Velg en hvilken som helst fornuftig konvensjon. Her er elleve symboler i et enkelt aritmetisk språk, hvert tilordnet et naturlig tall. Når symboler er tall, er følger av symboler (dvs. formler) følger av tall — og hver tallrekke kan pakkes inn i ett enkelt naturlig tall.",
     step1Code: "kode",
     step1Footer1: "Neste: velg en liten formel som ",
     step1Footer2: " eller ",

@@ -33,6 +33,20 @@ type RichStory = {
   miniCaption: string;
   miniHint: string;
   miniLabel: string;
+  // Infographic captions and labels, localized like the rest of the story.
+  canonicalLabel: string;
+  schematicLabel: string;
+  schematicCaption: string;
+  sweepLabel: string;
+  sweepNote: string;
+  kaplanYorkeLabel: string;
+  dimHeadline: string;
+  dimBody: string;
+  dimCurve: string;
+  dimSolid: string;
+  // Shape descriptors for the chaos-zoo grid (Lorenz, Rössler, Aizawa, Thomas,
+  // Halvorsen, Lorenz-84 — proper names/years stay as-is).
+  zooShapes: [string, string, string, string, string, string];
 };
 
 const RICH_STORY: Record<Locale, RichStory> = {
@@ -52,7 +66,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · The big idea",
           title: "Lorenz's stranger cousin",
-          body: "Yoshisuke Aizawa and collaborators formulated this 3D system in the early 1980s; like Lorenz's butterfly it never settles and never repeats. But where Lorenz's attractor looks like two flat wings, Aizawa's looks like a torus threaded by a vertical spike — a geometry so distinctive it became a staple of strange-attractor galleries.",
+          body: "Yoji Aizawa and collaborators formulated this 3D system in the early 1980s; like Lorenz's butterfly it never settles and never repeats. But where Lorenz's attractor looks like two flat wings, Aizawa's looks like a torus threaded by a vertical spike — a geometry so distinctive it became a staple of strange-attractor galleries.",
         },
         {
           label: "02 · Concrete",
@@ -72,7 +86,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section one · The equations",
         title: "Three rates, six dials",
-        body: "Each line says how fast one coordinate changes. The cross-terms (x·y, x²+y², z³, z·x³) are where the chaos lives — strip them and the system collapses to a damped spiral. Six parameters (a, b, c, d, e, f) give you a small kingdom of behaviours; the integrator step dt is a numerical knob, not a dynamical one.",
+        body: "Each line says how fast one coordinate changes. The cross-terms (z·x, z·y, x²+y², z³, z·x³) are where the chaos lives; strip them and the x, y plane collapses to a damped spiral. Six parameters (a, b, c, d, e, f) give you a small kingdom of behaviours; the integrator step dt is a numerical knob, not a dynamical one.",
       },
       {
         pretitle: "Section two · Default geometry",
@@ -102,12 +116,33 @@ const RICH_STORY: Record<Locale, RichStory> = {
     ],
     closingTitle: "Spin the basket yourself",
     closingBody:
-      "The Explorer integrates the equations live, lets you sweep all six parameters, and rotates the attractor freely in 3D. Switch between Aizawa, Rössler, Thomas, Halvorsen and Lorenz-84 to feel the whole family.",
+      "The Explorer integrates the equations live, lets you sweep all six parameters, and rotates the attractor freely in 3D. Switch between Aizawa, Rössler, Thomas and Halvorsen to feel the whole family.",
     ctaLabel: "→ Open the Explorer",
     miniCaption: "Live · drag to rotate · vary b",
     miniHint:
       "Lower b thins the torus toward a ring; higher b puffs it into a fuller basket. The vertical spike persists across the whole range.",
     miniLabel: "b",
+    canonicalLabel: "Aizawa 1982 · canonical dials",
+    schematicLabel: "Basket-handled torus · vertical spike",
+    schematicCaption:
+      "A schematic of the canonical shape: a thick toroidal weave around the z-axis, pierced by a thin column that the orbit visits between long episodes around the rim.",
+    sweepLabel: "b sweep · 0.3 → 1.2",
+    sweepNote:
+      "Same three equations, same five other dials. Only b changes, and the geometry breathes continuously.",
+    kaplanYorkeLabel: "Kaplan-Yorke dimension",
+    dimHeadline: "just over 2",
+    dimBody:
+      "Just above a surface, well below a solid. Computed from the Lyapunov spectrum (leading exponent positive, around 0.1; second near zero; third strongly negative).",
+    dimCurve: "curve",
+    dimSolid: "solid",
+    zooShapes: [
+      "butterfly",
+      "band + spiral",
+      "basket + spike",
+      "cyclically symmetric",
+      "tetrahedral",
+      "atmospheric",
+    ],
   },
   de: {
     page: {
@@ -125,7 +160,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · Die große Idee",
           title: "Lorenz' seltsamerer Cousin",
-          body: "Yoshisuke Aizawa und Kolleg:innen formulierten dieses 3D-System in den frühen 1980er-Jahren; wie Lorenz' Schmetterling kommt es nie zur Ruhe und wiederholt sich nie. Doch wo Lorenz zwei flache Flügel zeigt, zeigt Aizawa einen Torus, von einer vertikalen Spitze durchstochen — eine Geometrie, die zu einem Klassiker der Attraktor-Galerien wurde.",
+          body: "Yoji Aizawa und Kolleg:innen formulierten dieses 3D-System in den frühen 1980er-Jahren; wie Lorenz' Schmetterling kommt es nie zur Ruhe und wiederholt sich nie. Doch wo Lorenz zwei flache Flügel zeigt, zeigt Aizawa einen Torus, von einer vertikalen Spitze durchstochen — eine Geometrie, die zu einem Klassiker der Attraktor-Galerien wurde.",
         },
         {
           label: "02 · Konkret",
@@ -145,7 +180,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt eins · Die Gleichungen",
         title: "Drei Raten, sechs Regler",
-        body: "Jede Zeile sagt, wie schnell sich eine Koordinate ändert. Die Mischterme (x·y, x²+y², z³, z·x³) sind, wo das Chaos lebt — entferne sie, und das System fällt zu einer gedämpften Spirale zusammen. Sechs Parameter (a, b, c, d, e, f) geben dir ein kleines Königreich von Verhalten; der Integrator-Schritt dt ist ein numerischer Knopf, kein dynamischer Parameter.",
+        body: "Jede Zeile sagt, wie schnell sich eine Koordinate ändert. Die Mischterme (z·x, z·y, x²+y², z³, z·x³) sind, wo das Chaos lebt; entferne sie, und die x, y-Ebene fällt zu einer gedämpften Spirale zusammen. Sechs Parameter (a, b, c, d, e, f) geben dir ein kleines Königreich von Verhalten; der Integrator-Schritt dt ist ein numerischer Knopf, kein dynamischer Parameter.",
       },
       {
         pretitle: "Abschnitt zwei · Standardgeometrie",
@@ -170,17 +205,38 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt sechs · Warum es zählt",
         title: "Visualisierung, Regelung, Musik",
-        body: "Aizawa ist ein Aushängeschild zum Vermitteln von 3D-Chaos — die Form spricht auf einen Blick. Regelungstheoretiker nutzen solche Systeme als Maßstäbe nichtlinearer Stabilisierung. Und die sanften, nie wiederkehrenden Wellen der Bahn liefern schönes Material für prozedurale Animation und analogartige Klangsynthese.",
+        body: "Aizawa ist ein Aushängeschild zum Vermitteln von 3D-Chaos — die Form spricht auf einen Blick. Regelungstheoretiker:innen nutzen solche Systeme als Maßstäbe nichtlinearer Stabilisierung. Und die sanften, nie wiederkehrenden Wellen der Bahn liefern schönes Material für prozedurale Animation und analogartige Klangsynthese.",
       },
     ],
     closingTitle: "Dreh den Korb selbst",
     closingBody:
-      "Der Explorer integriert die Gleichungen live, lässt dich alle sechs Parameter durchstreichen und den Attraktor frei in 3D drehen. Wechsle zwischen Aizawa, Rössler, Thomas, Halvorsen und Lorenz-84, um die ganze Familie zu spüren.",
+      "Der Explorer integriert die Gleichungen live, lässt dich alle sechs Parameter durchstreichen und den Attraktor frei in 3D drehen. Wechsle zwischen Aizawa, Rössler, Thomas und Halvorsen, um die ganze Familie zu spüren.",
     ctaLabel: "→ Explorer öffnen",
     miniCaption: "Live · zum Drehen ziehen · b variieren",
     miniHint:
       "Kleineres b verdünnt den Torus zu einem Ring; größeres b bläht ihn zu einem volleren Korb. Die vertikale Spitze bleibt über den gesamten Bereich.",
     miniLabel: "b",
+    canonicalLabel: "Aizawa 1982 · kanonische Regler",
+    schematicLabel: "Korbgeflochtener Torus · vertikale Spitze",
+    schematicCaption:
+      "Ein Schema der kanonischen Form: ein dickes Torusgeflecht um die z-Achse, durchstochen von einer dünnen Säule, die die Bahn zwischen langen Episoden um den Rand besucht.",
+    sweepLabel: "b-Verlauf · 0,3 → 1,2",
+    sweepNote:
+      "Dieselben drei Gleichungen, dieselben fünf anderen Regler. Nur b ändert sich, und die Geometrie atmet kontinuierlich.",
+    kaplanYorkeLabel: "Kaplan-Yorke-Dimension",
+    dimHeadline: "knapp über 2",
+    dimBody:
+      "Knapp über einer Fläche, weit unter einem Körper. Berechnet aus dem Lyapunov-Spektrum (führender Exponent positiv, um 0,1; zweiter nahe null; dritter stark negativ).",
+    dimCurve: "Kurve",
+    dimSolid: "Körper",
+    zooShapes: [
+      "Schmetterling",
+      "Band + Spirale",
+      "Korb + Spitze",
+      "zyklisch symmetrisch",
+      "tetraedrisch",
+      "atmosphärisch",
+    ],
   },
   es: {
     page: {
@@ -198,7 +254,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · La gran idea",
           title: "El primo más extraño de Lorenz",
-          body: "Yoshisuke Aizawa y colaboradores formularon este sistema 3D a principios de los años 1980; como la mariposa de Lorenz, nunca se asienta y nunca se repite. Pero donde el atractor de Lorenz tiene dos alas planas, el de Aizawa parece un toro atravesado por una espiga vertical — una geometría tan distintiva que se volvió un clásico en galerías de atractores extraños.",
+          body: "Yoji Aizawa y colaboradores formularon este sistema 3D a principios de los años 1980; como la mariposa de Lorenz, nunca se asienta y nunca se repite. Pero donde el atractor de Lorenz tiene dos alas planas, el de Aizawa parece un toro atravesado por una espiga vertical — una geometría tan distintiva que se volvió un clásico en galerías de atractores extraños.",
         },
         {
           label: "02 · Concreto",
@@ -218,7 +274,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sección uno · Las ecuaciones",
         title: "Tres tasas, seis diales",
-        body: "Cada línea dice a qué velocidad cambia una coordenada. Los términos cruzados (x·y, x²+y², z³, z·x³) son donde vive el caos — quítalos y el sistema cae a una espiral amortiguada. Seis parámetros (a, b, c, d, e, f) te dan un pequeño reino de comportamientos; el paso dt del integrador es un mando numérico, no un parámetro dinámico.",
+        body: "Cada línea dice a qué velocidad cambia una coordenada. Los términos cruzados (z·x, z·y, x²+y², z³, z·x³) son donde vive el caos; quítalos y el plano x, y cae a una espiral amortiguada. Seis parámetros (a, b, c, d, e, f) te dan un pequeño reino de comportamientos; el paso dt del integrador es un mando numérico, no un parámetro dinámico.",
       },
       {
         pretitle: "Sección dos · Geometría por defecto",
@@ -248,12 +304,33 @@ const RICH_STORY: Record<Locale, RichStory> = {
     ],
     closingTitle: "Gira la cesta tú mismo",
     closingBody:
-      "El Explorer integra las ecuaciones en vivo, te deja barrer los seis parámetros y rotar el atractor libremente en 3D. Cambia entre Aizawa, Rössler, Thomas, Halvorsen y Lorenz-84 para sentir a toda la familia.",
+      "El Explorer integra las ecuaciones en vivo, te deja barrer los seis parámetros y rotar el atractor libremente en 3D. Cambia entre Aizawa, Rössler, Thomas y Halvorsen para sentir a toda la familia.",
     ctaLabel: "→ Abrir el Explorer",
     miniCaption: "En vivo · arrastra para girar · varía b",
     miniHint:
       "Una b menor adelgaza el toro hacia un anillo; una mayor lo hincha en una cesta más llena. La espiga vertical persiste en todo el rango.",
     miniLabel: "b",
+    canonicalLabel: "Aizawa 1982 · diales canónicos",
+    schematicLabel: "Toro tejido como cesta · espiga vertical",
+    schematicCaption:
+      "Un esquema de la forma canónica: una gruesa trama toroidal alrededor del eje z, atravesada por una columna fina que la órbita visita entre largos episodios alrededor del borde.",
+    sweepLabel: "barrido de b · 0,3 → 1,2",
+    sweepNote:
+      "Las mismas tres ecuaciones, los mismos cinco diales. Solo cambia b, y la geometría respira de forma continua.",
+    kaplanYorkeLabel: "Dimensión de Kaplan-Yorke",
+    dimHeadline: "apenas más de 2",
+    dimBody:
+      "Apenas por encima de una superficie, muy por debajo de un sólido. Calculada a partir del espectro de Lyapunov (exponente dominante positivo, en torno a 0,1; segundo cerca de cero; tercero fuertemente negativo).",
+    dimCurve: "curva",
+    dimSolid: "sólido",
+    zooShapes: [
+      "mariposa",
+      "banda + espiral",
+      "cesta + espiga",
+      "cíclicamente simétrico",
+      "tetraédrico",
+      "atmosférico",
+    ],
   },
   fr: {
     page: {
@@ -271,7 +348,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · La grande idée",
           title: "Le cousin plus étrange de Lorenz",
-          body: "Yoshisuke Aizawa et ses collaborateurs ont formulé ce système 3D au début des années 1980 ; comme le papillon de Lorenz, il ne se pose jamais et ne se répète jamais. Mais là où l'attracteur de Lorenz a deux ailes plates, celui d'Aizawa ressemble à un tore traversé par une pointe verticale — une géométrie si distinctive qu'elle est devenue un classique des galeries d'attracteurs étranges.",
+          body: "Yoji Aizawa et ses collaborateurs ont formulé ce système 3D au début des années 1980 ; comme le papillon de Lorenz, il ne se pose jamais et ne se répète jamais. Mais là où l'attracteur de Lorenz a deux ailes plates, celui d'Aizawa ressemble à un tore traversé par une pointe verticale — une géométrie si distinctive qu'elle est devenue un classique des galeries d'attracteurs étranges.",
         },
         {
           label: "02 · Concret",
@@ -291,7 +368,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section un · Les équations",
         title: "Trois taux, six molettes",
-        body: "Chaque ligne dit à quelle vitesse une coordonnée change. Les termes croisés (x·y, x²+y², z³, z·x³) sont là où vit le chaos — enlève-les et le système retombe en spirale amortie. Six paramètres (a, b, c, d, e, f) te donnent un petit royaume de comportements ; le pas dt de l'intégrateur est un bouton numérique, pas un paramètre dynamique.",
+        body: "Chaque ligne dit à quelle vitesse une coordonnée change. Les termes croisés (z·x, z·y, x²+y², z³, z·x³) sont là où vit le chaos ; enlève-les et le plan x, y retombe en spirale amortie. Six paramètres (a, b, c, d, e, f) te donnent un petit royaume de comportements ; le pas dt de l'intégrateur est un bouton numérique, pas un paramètre dynamique.",
       },
       {
         pretitle: "Section deux · Géométrie par défaut",
@@ -321,12 +398,33 @@ const RICH_STORY: Record<Locale, RichStory> = {
     ],
     closingTitle: "Fais tourner le panier toi-même",
     closingBody:
-      "L'Explorer intègre les équations en direct, te laisse balayer les six paramètres et fait tourner librement l'attracteur en 3D. Passe d'Aizawa à Rössler, Thomas, Halvorsen, Lorenz-84 pour sentir toute la famille.",
+      "L'Explorer intègre les équations en direct, te laisse balayer les six paramètres et fait tourner librement l'attracteur en 3D. Passe d'Aizawa à Rössler, Thomas et Halvorsen pour sentir toute la famille.",
     ctaLabel: "→ Ouvrir l'Explorer",
     miniCaption: "En direct · glisse pour tourner · varie b",
     miniHint:
       "Un b plus petit amincit le tore en anneau ; plus grand, il le gonfle en panier plus plein. La pointe verticale persiste sur toute la plage.",
     miniLabel: "b",
+    canonicalLabel: "Aizawa 1982 · molettes canoniques",
+    schematicLabel: "Tore tressé en panier · pointe verticale",
+    schematicCaption:
+      "Un schéma de la forme canonique : un épais tressage toroïdal autour de l'axe z, percé d'une fine colonne que l'orbite visite entre de longs épisodes autour du bord.",
+    sweepLabel: "balayage de b · 0,3 → 1,2",
+    sweepNote:
+      "Les mêmes trois équations, les mêmes cinq autres molettes. Seul b change, et la géométrie respire en continu.",
+    kaplanYorkeLabel: "Dimension de Kaplan-Yorke",
+    dimHeadline: "juste au-dessus de 2",
+    dimBody:
+      "Juste au-dessus d'une surface, bien en dessous d'un solide. Calculée à partir du spectre de Lyapunov (exposant dominant positif, autour de 0,1 ; deuxième près de zéro ; troisième fortement négatif).",
+    dimCurve: "courbe",
+    dimSolid: "solide",
+    zooShapes: [
+      "papillon",
+      "bande + spirale",
+      "panier + pointe",
+      "cycliquement symétrique",
+      "tétraédrique",
+      "atmosphérique",
+    ],
   },
   it: {
     page: {
@@ -344,7 +442,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · La grande idea",
           title: "Il cugino più strano di Lorenz",
-          body: "Yoshisuke Aizawa e collaboratori formularono questo sistema 3D nei primi anni 1980; come la farfalla di Lorenz, non si stabilizza mai e non si ripete mai. Ma dove l'attrattore di Lorenz mostra due ali piatte, quello di Aizawa sembra un toro infilato da una punta verticale — una geometria così distintiva da diventare un classico delle gallerie di attrattori strani.",
+          body: "Yoji Aizawa e collaboratori formularono questo sistema 3D nei primi anni 1980; come la farfalla di Lorenz, non si stabilizza mai e non si ripete mai. Ma dove l'attrattore di Lorenz mostra due ali piatte, quello di Aizawa sembra un toro infilato da una punta verticale — una geometria così distintiva da diventare un classico delle gallerie di attrattori strani.",
         },
         {
           label: "02 · Concreto",
@@ -364,7 +462,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sezione uno · Le equazioni",
         title: "Tre tassi, sei manopole",
-        body: "Ogni riga dice a quale velocità cambia una coordinata. I termini incrociati (x·y, x²+y², z³, z·x³) sono dove vive il caos — toglili e il sistema collassa in una spirale smorzata. Sei parametri (a, b, c, d, e, f) ti danno un piccolo regno di comportamenti; il passo dt dell'integratore è una manopola numerica, non un parametro dinamico.",
+        body: "Ogni riga dice a quale velocità cambia una coordinata. I termini incrociati (z·x, z·y, x²+y², z³, z·x³) sono dove vive il caos; toglili e il piano x, y collassa in una spirale smorzata. Sei parametri (a, b, c, d, e, f) ti danno un piccolo regno di comportamenti; il passo dt dell'integratore è una manopola numerica, non un parametro dinamico.",
       },
       {
         pretitle: "Sezione due · Geometria di default",
@@ -394,12 +492,33 @@ const RICH_STORY: Record<Locale, RichStory> = {
     ],
     closingTitle: "Fai ruotare il cesto tu",
     closingBody:
-      "L'Explorer integra le equazioni in tempo reale, ti lascia scorrere tutti i sei parametri e ruota liberamente l'attrattore in 3D. Passa fra Aizawa, Rössler, Thomas, Halvorsen e Lorenz-84 per sentire l'intera famiglia.",
+      "L'Explorer integra le equazioni in tempo reale, ti lascia scorrere tutti i sei parametri e ruota liberamente l'attrattore in 3D. Passa fra Aizawa, Rössler, Thomas e Halvorsen per sentire l'intera famiglia.",
     ctaLabel: "→ Apri l'Explorer",
     miniCaption: "Live · trascina per ruotare · varia b",
     miniHint:
       "Un b minore assottiglia il toro fino a un anello; uno maggiore lo gonfia in un cesto più pieno. La punta verticale persiste su tutto il range.",
     miniLabel: "b",
+    canonicalLabel: "Aizawa 1982 · manopole canoniche",
+    schematicLabel: "Toro intrecciato a cesto · punta verticale",
+    schematicCaption:
+      "Uno schema della forma canonica: un fitto intreccio toroidale attorno all'asse z, perforato da una sottile colonna che l'orbita visita tra lunghi episodi attorno al bordo.",
+    sweepLabel: "scansione di b · 0,3 → 1,2",
+    sweepNote:
+      "Le stesse tre equazioni, le stesse cinque manopole. Cambia solo b, e la geometria respira con continuità.",
+    kaplanYorkeLabel: "Dimensione di Kaplan-Yorke",
+    dimHeadline: "poco più di 2",
+    dimBody:
+      "Appena sopra una superficie, ben al di sotto di un solido. Calcolata dallo spettro di Lyapunov (esponente dominante positivo, intorno a 0,1; secondo vicino a zero; terzo fortemente negativo).",
+    dimCurve: "curva",
+    dimSolid: "solido",
+    zooShapes: [
+      "farfalla",
+      "banda + spirale",
+      "cesto + punta",
+      "ciclicamente simmetrico",
+      "tetraedrico",
+      "atmosferico",
+    ],
   },
   pt: {
     page: {
@@ -417,7 +536,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · A grande ideia",
           title: "O primo mais estranho de Lorenz",
-          body: "Yoshisuke Aizawa e colaboradores formularam este sistema 3D no início dos anos 1980; como a borboleta de Lorenz, nunca se acomoda e nunca se repete. Mas onde o atrator de Lorenz mostra duas asas planas, o de Aizawa parece um toro atravessado por uma espiga vertical — uma geometria tão distintiva que se tornou clássica em galerias de atratores estranhos.",
+          body: "Yoji Aizawa e colaboradores formularam este sistema 3D no início dos anos 1980; como a borboleta de Lorenz, nunca se acomoda e nunca se repete. Mas onde o atrator de Lorenz mostra duas asas planas, o de Aizawa parece um toro atravessado por uma espiga vertical — uma geometria tão distintiva que se tornou clássica em galerias de atratores estranhos.",
         },
         {
           label: "02 · Concreto",
@@ -437,7 +556,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Seção um · As equações",
         title: "Três taxas, seis botões",
-        body: "Cada linha diz a que velocidade uma coordenada muda. Os termos cruzados (x·y, x²+y², z³, z·x³) são onde o caos vive — remova-os e o sistema colapsa numa espiral amortecida. Seis parâmetros (a, b, c, d, e, f) dão um pequeno reino de comportamentos; o passo dt do integrador é um botão numérico, não um parâmetro dinâmico.",
+        body: "Cada linha diz a que velocidade uma coordenada muda. Os termos cruzados (z·x, z·y, x²+y², z³, z·x³) são onde o caos vive; remova-os e o plano x, y colapsa numa espiral amortecida. Seis parâmetros (a, b, c, d, e, f) dão um pequeno reino de comportamentos; o passo dt do integrador é um botão numérico, não um parâmetro dinâmico.",
       },
       {
         pretitle: "Seção dois · Geometria padrão",
@@ -467,12 +586,33 @@ const RICH_STORY: Record<Locale, RichStory> = {
     ],
     closingTitle: "Gire o cesto você mesmo",
     closingBody:
-      "O Explorer integra as equações ao vivo, deixa você varrer todos os seis parâmetros e gira o atrator livremente em 3D. Alterne entre Aizawa, Rössler, Thomas, Halvorsen e Lorenz-84 para sentir a família inteira.",
+      "O Explorer integra as equações ao vivo, deixa você varrer todos os seis parâmetros e gira o atrator livremente em 3D. Alterne entre Aizawa, Rössler, Thomas e Halvorsen para sentir a família inteira.",
     ctaLabel: "→ Abrir o Explorer",
     miniCaption: "Ao vivo · arraste para girar · varie b",
     miniHint:
       "Um b menor afina o toro até um anel; um maior o infla num cesto mais cheio. A espiga vertical persiste em toda a faixa.",
     miniLabel: "b",
+    canonicalLabel: "Aizawa 1982 · botões canônicos",
+    schematicLabel: "Toro trançado como cesto · espiga vertical",
+    schematicCaption:
+      "Um esquema da forma canônica: uma trama toroidal espessa ao redor do eixo z, atravessada por uma coluna fina que a órbita visita entre longos episódios ao redor da borda.",
+    sweepLabel: "varredura de b · 0,3 → 1,2",
+    sweepNote:
+      "As mesmas três equações, os mesmos cinco botões. Só b muda, e a geometria respira continuamente.",
+    kaplanYorkeLabel: "Dimensão de Kaplan-Yorke",
+    dimHeadline: "pouco acima de 2",
+    dimBody:
+      "Logo acima de uma superfície, bem abaixo de um sólido. Calculada a partir do espectro de Lyapunov (expoente dominante positivo, em torno de 0,1; segundo perto de zero; terceiro fortemente negativo).",
+    dimCurve: "curva",
+    dimSolid: "sólido",
+    zooShapes: [
+      "borboleta",
+      "banda + espiral",
+      "cesto + espiga",
+      "ciclicamente simétrico",
+      "tetraédrico",
+      "atmosférico",
+    ],
   },
   sv: {
     page: {
@@ -490,7 +630,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · Den stora idén",
           title: "Lorenz mer sällsamma kusin",
-          body: "Yoshisuke Aizawa och medarbetare formulerade detta 3D-system i början av 1980-talet; likt Lorenz fjäril lägger det sig aldrig till ro och upprepar sig aldrig. Men där Lorenz attraktor har två platta vingar liknar Aizawas en torus trädd på en lodrät spets — en geometri så distinkt att den blev en klassiker i attraktorgallerier.",
+          body: "Yoji Aizawa och medarbetare formulerade detta 3D-system i början av 1980-talet; likt Lorenz fjäril lägger det sig aldrig till ro och upprepar sig aldrig. Men där Lorenz attraktor har två platta vingar liknar Aizawas en torus trädd på en lodrät spets — en geometri så distinkt att den blev en klassiker i attraktorgallerier.",
         },
         {
           label: "02 · Konkret",
@@ -510,7 +650,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Avsnitt ett · Ekvationerna",
         title: "Tre takter, sex rattar",
-        body: "Varje rad säger hur snabbt en koordinat ändras. Korstermerna (x·y, x²+y², z³, z·x³) är där kaoset bor — ta bort dem och systemet faller till en dämpad spiral. Sex parametrar (a, b, c, d, e, f) ger dig ett litet kungarike av beteenden; integratorns steg dt är en numerisk ratt, inte en dynamisk parameter.",
+        body: "Varje rad säger hur snabbt en koordinat ändras. Korstermerna (z·x, z·y, x²+y², z³, z·x³) är där kaoset bor; ta bort dem och x, y-planet faller till en dämpad spiral. Sex parametrar (a, b, c, d, e, f) ger dig ett litet kungarike av beteenden; integratorns steg dt är en numerisk ratt, inte en dynamisk parameter.",
       },
       {
         pretitle: "Avsnitt två · Standardgeometri",
@@ -540,12 +680,33 @@ const RICH_STORY: Record<Locale, RichStory> = {
     ],
     closingTitle: "Snurra korgen själv",
     closingBody:
-      "Explorern integrerar ekvationerna live, låter dig svepa över alla sex parametrarna och roterar attraktorn fritt i 3D. Växla mellan Aizawa, Rössler, Thomas, Halvorsen och Lorenz-84 för att känna hela familjen.",
+      "Explorern integrerar ekvationerna live, låter dig svepa över alla sex parametrarna och roterar attraktorn fritt i 3D. Växla mellan Aizawa, Rössler, Thomas och Halvorsen för att känna hela familjen.",
     ctaLabel: "→ Öppna Explorer",
     miniCaption: "Live · dra för att rotera · variera b",
     miniHint:
       "Lägre b drar ihop torusen mot en ring; högre b puffar ut den till en fylligare korg. Den lodräta spetsen finns kvar i hela intervallet.",
     miniLabel: "b",
+    canonicalLabel: "Aizawa 1982 · kanoniska rattar",
+    schematicLabel: "Korgflätad torus · lodrät spets",
+    schematicCaption:
+      "Ett schema av den kanoniska formen: en tjock toroidal flätning runt z-axeln, genomborrad av en tunn pelare som banan besöker mellan långa episoder runt kanten.",
+    sweepLabel: "b-svep · 0,3 → 1,2",
+    sweepNote:
+      "Samma tre ekvationer, samma fem andra rattar. Bara b ändras, och geometrin andas kontinuerligt.",
+    kaplanYorkeLabel: "Kaplan-Yorke-dimension",
+    dimHeadline: "knappt över 2",
+    dimBody:
+      "Knappt över en yta, långt under en kropp. Beräknad ur Lyapunov-spektrumet (ledande exponent positiv, runt 0,1; andra nära noll; tredje starkt negativ).",
+    dimCurve: "kurva",
+    dimSolid: "kropp",
+    zooShapes: [
+      "fjäril",
+      "band + spiral",
+      "korg + spets",
+      "cykliskt symmetrisk",
+      "tetraedrisk",
+      "atmosfärisk",
+    ],
   },
   no: {
     page: {
@@ -563,7 +724,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · Den store idéen",
           title: "Lorenz' selsommere fetter",
-          body: "Yoshisuke Aizawa og medarbeidere formulerte dette 3D-systemet på begynnelsen av 1980-tallet; lik Lorenz-sommerfuglen faller det aldri til ro og gjentar seg aldri. Men der Lorenz-attraktoren har to flate vinger, ligner Aizawas en torus tredd på en loddrett spiss — en geometri så distinkt at den ble en klassiker i attraktorgallerier.",
+          body: "Yoji Aizawa og medarbeidere formulerte dette 3D-systemet på begynnelsen av 1980-tallet; lik Lorenz-sommerfuglen faller det aldri til ro og gjentar seg aldri. Men der Lorenz-attraktoren har to flate vinger, ligner Aizawas en torus tredd på en loddrett spiss — en geometri så distinkt at den ble en klassiker i attraktorgallerier.",
         },
         {
           label: "02 · Konkret",
@@ -583,7 +744,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del én · Ligningene",
         title: "Tre rater, seks rattenheter",
-        body: "Hver linje sier hvor raskt en koordinat endrer seg. Kryssleddene (x·y, x²+y², z³, z·x³) er der kaoset bor — fjern dem og systemet faller til en dempet spiral. Seks parametere (a, b, c, d, e, f) gir deg et lite kongerike av oppførsel; integratorens skritt dt er en numerisk ratt, ikke en dynamisk parameter.",
+        body: "Hver linje sier hvor raskt en koordinat endrer seg. Kryssleddene (z·x, z·y, x²+y², z³, z·x³) er der kaoset bor; fjern dem og x, y-planet faller til en dempet spiral. Seks parametere (a, b, c, d, e, f) gir deg et lite kongerike av oppførsel; integratorens skritt dt er en numerisk ratt, ikke en dynamisk parameter.",
       },
       {
         pretitle: "Del to · Standardgeometri",
@@ -613,12 +774,33 @@ const RICH_STORY: Record<Locale, RichStory> = {
     ],
     closingTitle: "Snurr kurven selv",
     closingBody:
-      "Explorer integrerer ligningene live, lar deg sveipe alle seks parametrene og roterer attraktoren fritt i 3D. Veksle mellom Aizawa, Rössler, Thomas, Halvorsen og Lorenz-84 for å kjenne hele familien.",
+      "Explorer integrerer ligningene live, lar deg sveipe alle seks parametrene og roterer attraktoren fritt i 3D. Veksle mellom Aizawa, Rössler, Thomas og Halvorsen for å kjenne hele familien.",
     ctaLabel: "→ Åpne Explorer",
     miniCaption: "Live · dra for å rotere · varier b",
     miniHint:
       "Lavere b tynner torusen mot en ring; høyere b puffer den ut til en fyldigere kurv. Den loddrette spissen vedvarer over hele området.",
     miniLabel: "b",
+    canonicalLabel: "Aizawa 1982 · kanoniske rattenheter",
+    schematicLabel: "Kurvflettet torus · loddrett spiss",
+    schematicCaption:
+      "Et skjema av den kanoniske formen: en tykk toroidal fletting rundt z-aksen, gjennomboret av en tynn søyle som banen besøker mellom lange episoder rundt kanten.",
+    sweepLabel: "b-sveip · 0,3 → 1,2",
+    sweepNote:
+      "De samme tre ligningene, de samme fem andre rattenhetene. Bare b endres, og geometrien puster kontinuerlig.",
+    kaplanYorkeLabel: "Kaplan-Yorke-dimensjon",
+    dimHeadline: "så vidt over 2",
+    dimBody:
+      "Så vidt over en flate, langt under et legeme. Beregnet fra Lyapunov-spekteret (ledende eksponent positiv, rundt 0,1; andre nær null; tredje sterkt negativ).",
+    dimCurve: "kurve",
+    dimSolid: "legeme",
+    zooShapes: [
+      "sommerfugl",
+      "bånd + spiral",
+      "kurv + spiss",
+      "syklisk symmetrisk",
+      "tetraedrisk",
+      "atmosfærisk",
+    ],
   },
 };
 
@@ -682,7 +864,7 @@ export default function AizawaStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-4 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Aizawa 1982 · canonical dials
+              {story.canonicalLabel}
             </div>
             <pre className="hairline overflow-x-auto rounded-md border bg-ink-950/60 p-4 font-mono text-sm leading-relaxed text-ink-100 md:text-base">
               {`  dx/dt = (z − b) x − d y
@@ -714,13 +896,10 @@ export default function AizawaStory() {
           <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-[1fr_340px]">
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
               <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                Basket-handled torus · vertical spike
+                {story.schematicLabel}
               </div>
               <TorusSpikeSVG />
-              <p className="text-xs leading-relaxed text-ink-300">
-                A schematic of the canonical shape: a thick toroidal weave around the z-axis,
-                pierced by a thin column that the orbit visits between long episodes around the rim.
-              </p>
+              <p className="text-xs leading-relaxed text-ink-300">{story.schematicCaption}</p>
             </div>
             <AizawaInlineMini
               caption={story.miniCaption}
@@ -737,17 +916,14 @@ export default function AizawaStory() {
         <Reveal delay={120}>
           <div className="hairline rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT} mb-4`}>
-              b sweep · 0.3 → 1.2
+              {story.sweepLabel}
             </div>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
               {[0.4, 0.7, 0.95, 1.15].map((bv) => (
                 <SweepCell key={bv} b={bv} />
               ))}
             </div>
-            <p className="mt-4 text-xs leading-relaxed text-ink-300">
-              Same three equations, same five other dials. Only b changes — and the geometry
-              breathes continuously.
-            </p>
+            <p className="mt-4 text-xs leading-relaxed text-ink-300">{story.sweepNote}</p>
           </div>
         </Reveal>
       </section>
@@ -757,14 +933,16 @@ export default function AizawaStory() {
         <StoryCard {...story.sections[3]} accent={ACCENT} />
         <Reveal delay={120}>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-            {[
-              ["Lorenz", "1963", "butterfly"],
-              ["Rössler", "1976", "band + spiral"],
-              ["Aizawa", "1982", "basket + spike"],
-              ["Thomas", "—", "cyclically symmetric"],
-              ["Halvorsen", "—", "tetrahedral"],
-              ["Lorenz-84", "1984", "atmospheric"],
-            ].map(([name, year, shape]) => (
+            {(
+              [
+                ["Lorenz", "1963"],
+                ["Rössler", "1976"],
+                ["Aizawa", "1982"],
+                ["Thomas", "—"],
+                ["Halvorsen", "—"],
+                ["Lorenz-84", "1984"],
+              ] as const
+            ).map(([name, year], i) => (
               <div
                 key={name}
                 className="hairline space-y-1 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-signal-coral/40"
@@ -773,7 +951,7 @@ export default function AizawaStory() {
                   {year}
                 </div>
                 <div className="math-italic text-lg text-ink-100">{name}</div>
-                <div className="text-xs text-ink-300">{shape}</div>
+                <div className="text-xs text-ink-300">{story.zooShapes[i]}</div>
               </div>
             ))}
           </div>
@@ -786,17 +964,14 @@ export default function AizawaStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Kaplan-Yorke dimension
+              {story.kaplanYorkeLabel}
             </div>
-            <div className="math-italic text-6xl text-ink-100 md:text-7xl">just over 2</div>
-            <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Just above a surface, well below a solid. Computed from the Lyapunov spectrum (leading
-              exponent positive, around 0.1; second near zero; third strongly negative).
-            </p>
+            <div className="math-italic text-6xl text-ink-100 md:text-7xl">{story.dimHeadline}</div>
+            <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">{story.dimBody}</p>
             <div className="mx-auto grid max-w-md grid-cols-3 gap-3 pt-4 text-center">
-              <DimDot label="curve" value="1" />
+              <DimDot label={story.dimCurve} value="1" />
               <DimDot label="Aizawa" value="~2.0" highlight />
-              <DimDot label="solid" value="3" />
+              <DimDot label={story.dimSolid} value="3" />
             </div>
           </div>
         </Reveal>
@@ -811,7 +986,7 @@ export default function AizawaStory() {
       <Reveal>
         <section className="glass hairline mx-auto mb-16 max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-            Open the Explorer
+            {story.page.ctaInteractive}
           </div>
           <h2 className="math-italic text-3xl leading-tight md:text-5xl">{story.closingTitle}</h2>
           <p className="mx-auto max-w-2xl leading-relaxed text-ink-200">{story.closingBody}</p>

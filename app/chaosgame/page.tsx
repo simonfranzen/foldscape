@@ -171,7 +171,7 @@ const en: RichStory = {
     {
       pretitle: "Section 04 · Beyond triangles",
       title: "When halving fails — and the rule that fixes it",
-      body: 'Try four vertices at the corners of a square with the same r = 1/2 step. The result is no fractal at all: the dots fill the interior uniformly. The reason is that the four halving maps on a square cover the whole square — their attractor is the filled square. The fix is a restriction rule. Forbid the next vertex from equalling the previous one ("no repeat") and a delicate Sierpiński-carpet relative appears. Each n-gon has its own magic jump ratio rₙ = 1 / (1 + 2·cos(π/n)) that yields a clean self-similar attractor without restrictions. For n = 3 this is 1/2; for n = 5 it is 1/φ² ≈ 0.382; for n = 6, 1/(1 + √3); and so on.',
+      body: 'Try four vertices at the corners of a square with the same r = 1/2 step. The result is no fractal at all: the dots fill the interior uniformly. The reason is that the four halving maps on a square cover the whole square — their attractor is the filled square. The fix is a restriction rule. Forbid the next vertex from equalling the previous one ("no repeat") and a delicate Sierpiński-carpet relative appears. Each n-gon has its own magic jump ratio rₙ = 1 − sₙ that yields a clean self-similar attractor without restrictions. For n = 3 this is 1/2; for n = 5 it is 1/φ ≈ 0.618; for n = 6, 2/3; and so on.',
     },
     {
       pretitle: "Section 05 · Barnsley's fern",
@@ -257,7 +257,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Jenseits des Dreiecks",
       title: "Wenn Halbieren scheitert – und die Regel, die es rettet",
-      body: 'Versuch vier Ecken am Quadrat mit demselben Schritt r = 1/2. Das Ergebnis ist kein Fraktal: die Punkte füllen das Innere gleichmäßig. Der Grund: die vier Halbierungsabbildungen auf dem Quadrat überdecken das ganze Quadrat – ihr Attraktor ist das gefüllte Quadrat. Die Lösung ist eine Beschränkungsregel. Verbiete, dass die nächste Ecke gleich der vorigen ist ("no repeat"), und ein zartes Sierpiński-Teppich-Verwandtes erscheint. Jedes n-Eck hat seinen eigenen magischen Sprungfaktor rₙ = 1 / (1 + 2·cos(π/n)), der ohne Beschränkungen einen sauberen selbstähnlichen Attraktor liefert. Für n = 3 ist das 1/2; für n = 5 ist es 1/φ² ≈ 0,382; für n = 6, 1/(1 + √3); und so weiter.',
+      body: 'Versuch vier Ecken am Quadrat mit demselben Schritt r = 1/2. Das Ergebnis ist kein Fraktal: die Punkte füllen das Innere gleichmäßig. Der Grund: die vier Halbierungsabbildungen auf dem Quadrat überdecken das ganze Quadrat – ihr Attraktor ist das gefüllte Quadrat. Die Lösung ist eine Beschränkungsregel. Verbiete, dass die nächste Ecke gleich der vorigen ist ("no repeat"), und ein zartes Sierpiński-Teppich-Verwandtes erscheint. Jedes n-Eck hat seinen eigenen magischen Sprungfaktor rₙ = 1 − sₙ, der ohne Beschränkungen einen sauberen selbstähnlichen Attraktor liefert. Für n = 3 ist das 1/2; für n = 5 ist es 1/φ ≈ 0,618; für n = 6, 2/3; und so weiter.',
     },
     {
       pretitle: "Abschnitt 05 · Barnsleys Farn",
@@ -343,7 +343,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 04 · Más allá del triángulo",
       title: "Cuando halviar falla — y la regla que lo arregla",
-      body: 'Prueba cuatro esquinas en un cuadrado con el mismo paso r = 1/2. El resultado no es ningún fractal: los puntos llenan el interior de manera uniforme. La razón es que las cuatro contracciones por la mitad sobre el cuadrado cubren todo el cuadrado — su atractor es el cuadrado lleno. La solución es una regla de restricción. Prohíbe que el siguiente vértice sea igual al anterior ("no repetir") y aparece una delicada prima de la alfombra de Sierpiński. Cada n-gono tiene su factor de salto mágico rₙ = 1 / (1 + 2·cos(π/n)) que da un atractor autosemejante limpio sin restricciones. Para n = 3 es 1/2; para n = 5 es 1/φ² ≈ 0,382; para n = 6, 1/(1 + √3); y así.',
+      body: 'Prueba cuatro esquinas en un cuadrado con el mismo paso r = 1/2. El resultado no es ningún fractal: los puntos llenan el interior de manera uniforme. La razón es que las cuatro contracciones por la mitad sobre el cuadrado cubren todo el cuadrado — su atractor es el cuadrado lleno. La solución es una regla de restricción. Prohíbe que el siguiente vértice sea igual al anterior ("no repetir") y aparece una delicada prima de la alfombra de Sierpiński. Cada n-gono tiene su factor de salto mágico rₙ = 1 − sₙ que da un atractor autosemejante limpio sin restricciones. Para n = 3 es 1/2; para n = 5 es 1/φ ≈ 0,618; para n = 6, 2/3; y así.',
     },
     {
       pretitle: "Sección 05 · El helecho de Barnsley",
@@ -429,7 +429,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 04 · Au-delà du triangle",
       title: "Quand la moitié échoue — et la règle qui répare",
-      body: "Essaie quatre coins au carré avec le même pas r = 1/2. Le résultat n'est aucun fractal : les points remplissent l'intérieur de façon uniforme. La raison : les quatre applications de moitié sur le carré couvrent le carré entier — leur attracteur, c'est le carré plein. Le remède est une règle de restriction. Interdis que le sommet suivant soit égal au précédent (\"pas de répétition\") et un cousin délicat du tapis de Sierpiński apparaît. Chaque n-gone a son propre facteur de saut magique rₙ = 1 / (1 + 2·cos(π/n)) qui donne un attracteur autosemblable propre sans restriction. Pour n = 3, c'est 1/2 ; pour n = 5, c'est 1/φ² ≈ 0,382 ; pour n = 6, 1/(1 + √3) ; et ainsi de suite.",
+      body: "Essaie quatre coins au carré avec le même pas r = 1/2. Le résultat n'est aucun fractal : les points remplissent l'intérieur de façon uniforme. La raison : les quatre applications de moitié sur le carré couvrent le carré entier — leur attracteur, c'est le carré plein. Le remède est une règle de restriction. Interdis que le sommet suivant soit égal au précédent (\"pas de répétition\") et un cousin délicat du tapis de Sierpiński apparaît. Chaque n-gone a son propre facteur de saut magique rₙ = 1 − sₙ qui donne un attracteur autosemblable propre sans restriction. Pour n = 3, c'est 1/2 ; pour n = 5, c'est 1/φ ≈ 0,618 ; pour n = 6, 2/3 ; et ainsi de suite.",
     },
     {
       pretitle: "Section 05 · La fougère de Barnsley",
@@ -515,7 +515,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 04 · Oltre il triangolo",
       title: "Quando dimezzare fallisce — e la regola che lo aggiusta",
-      body: "Prova quattro angoli al quadrato con lo stesso passo r = 1/2. Il risultato non è alcun frattale: i punti riempiono l'interno uniformemente. Il motivo è che le quattro mappe di dimezzamento sul quadrato coprono l'intero quadrato — il loro attrattore è il quadrato pieno. La cura è una regola di restrizione. Vieta che il vertice successivo sia uguale al precedente (\"non ripetere\") e appare un delicato cugino del tappeto di Sierpiński. Ogni n-gono ha il proprio rapporto di salto magico rₙ = 1 / (1 + 2·cos(π/n)) che dà un attrattore autosimile pulito senza restrizioni. Per n = 3 è 1/2; per n = 5 è 1/φ² ≈ 0,382; per n = 6, 1/(1 + √3); e così via.",
+      body: "Prova quattro angoli al quadrato con lo stesso passo r = 1/2. Il risultato non è alcun frattale: i punti riempiono l'interno uniformemente. Il motivo è che le quattro mappe di dimezzamento sul quadrato coprono l'intero quadrato — il loro attrattore è il quadrato pieno. La cura è una regola di restrizione. Vieta che il vertice successivo sia uguale al precedente (\"non ripetere\") e appare un delicato cugino del tappeto di Sierpiński. Ogni n-gono ha il proprio rapporto di salto magico rₙ = 1 − sₙ che dà un attrattore autosimile pulito senza restrizioni. Per n = 3 è 1/2; per n = 5 è 1/φ ≈ 0,618; per n = 6, 2/3; e così via.",
     },
     {
       pretitle: "Sezione 05 · La felce di Barnsley",
@@ -601,7 +601,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 04 · Para além do triângulo",
       title: "Quando dividir ao meio falha — e a regra que conserta",
-      body: 'Tenta quatro cantos num quadrado com o mesmo passo r = 1/2. O resultado não é qualquer fractal: os pontos enchem o interior de forma uniforme. A razão é que as quatro aplicações de meio sobre o quadrado cobrem o quadrado todo — o atrator delas é o quadrado cheio. A cura é uma regra de restrição. Proíbe que o próximo vértice seja igual ao anterior ("não repetir") e aparece um delicado primo do tapete de Sierpiński. Cada n-gono tem o seu fator de salto mágico rₙ = 1 / (1 + 2·cos(π/n)) que dá um atrator auto-semelhante limpo sem restrições. Para n = 3 é 1/2; para n = 5 é 1/φ² ≈ 0,382; para n = 6, 1/(1 + √3); e por aí adiante.',
+      body: 'Tenta quatro cantos num quadrado com o mesmo passo r = 1/2. O resultado não é qualquer fractal: os pontos enchem o interior de forma uniforme. A razão é que as quatro aplicações de meio sobre o quadrado cobrem o quadrado todo — o atrator delas é o quadrado cheio. A cura é uma regra de restrição. Proíbe que o próximo vértice seja igual ao anterior ("não repetir") e aparece um delicado primo do tapete de Sierpiński. Cada n-gono tem o seu fator de salto mágico rₙ = 1 − sₙ que dá um atrator auto-semelhante limpo sem restrições. Para n = 3 é 1/2; para n = 5 é 1/φ ≈ 0,618; para n = 6, 2/3; e por aí adiante.',
     },
     {
       pretitle: "Secção 05 · O feto de Barnsley",
@@ -687,7 +687,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 04 · Bortom triangeln",
       title: "När halvering misslyckas — och regeln som lagar",
-      body: 'Prova fyra hörn på en kvadrat med samma steg r = 1/2. Resultatet är ingen fraktal alls: punkterna fyller insidan jämnt. Skälet är att de fyra halveringsavbildningarna på kvadraten täcker hela kvadraten — deras attraktor är den fyllda kvadraten. Boten är en begränsningsregel. Förbjud att nästa hörn är samma som föregående ("ingen upprepning") och en delikat kusin till Sierpiński-mattan dyker upp. Varje n-hörning har sitt eget magiska hoppförhållande rₙ = 1 / (1 + 2·cos(π/n)) som ger en ren självlik attraktor utan restriktioner. För n = 3 är det 1/2; för n = 5 är det 1/φ² ≈ 0,382; för n = 6, 1/(1 + √3); och så vidare.',
+      body: 'Prova fyra hörn på en kvadrat med samma steg r = 1/2. Resultatet är ingen fraktal alls: punkterna fyller insidan jämnt. Skälet är att de fyra halveringsavbildningarna på kvadraten täcker hela kvadraten — deras attraktor är den fyllda kvadraten. Boten är en begränsningsregel. Förbjud att nästa hörn är samma som föregående ("ingen upprepning") och en delikat kusin till Sierpiński-mattan dyker upp. Varje n-hörning har sitt eget magiska hoppförhållande rₙ = 1 − sₙ som ger en ren självlik attraktor utan restriktioner. För n = 3 är det 1/2; för n = 5 är det 1/φ ≈ 0,618; för n = 6, 2/3; och så vidare.',
     },
     {
       pretitle: "Avsnitt 05 · Barnsleys ormbunke",
@@ -773,7 +773,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Forbi triangelen",
       title: "Når halvering svikter — og regelen som fikser det",
-      body: 'Prøv fire hjørner på et kvadrat med samme steg r = 1/2. Resultatet er ingen fraktal: punktene fyller innsiden jevnt. Grunnen er at de fire halveringsavbildningene på kvadratet dekker hele kvadratet — attraktoren deres er det fylte kvadratet. Boten er en restriksjonsregel. Forby at neste hjørne er likt det forrige ("ingen gjentakelse") og en delikat slektning av Sierpiński-teppet dukker opp. Hver n-kant har sitt eget magiske hoppforhold rₙ = 1 / (1 + 2·cos(π/n)) som gir en ren selvlignende attraktor uten restriksjoner. For n = 3 er det 1/2; for n = 5 er det 1/φ² ≈ 0,382; for n = 6, 1/(1 + √3); og så videre.',
+      body: 'Prøv fire hjørner på et kvadrat med samme steg r = 1/2. Resultatet er ingen fraktal: punktene fyller innsiden jevnt. Grunnen er at de fire halveringsavbildningene på kvadratet dekker hele kvadratet — attraktoren deres er det fylte kvadratet. Boten er en restriksjonsregel. Forby at neste hjørne er likt det forrige ("ingen gjentakelse") og en delikat slektning av Sierpiński-teppet dukker opp. Hver n-kant har sitt eget magiske hoppforhold rₙ = 1 − sₙ som gir en ren selvlignende attraktor uten restriksjoner. For n = 3 er det 1/2; for n = 5 er det 1/φ ≈ 0,618; for n = 6, 2/3; og så videre.',
     },
     {
       pretitle: "Avsnitt 05 · Barnsleys bregne",
@@ -949,7 +949,7 @@ export default function ChaosGameStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Magic ratio · rₙ = 1 / (1 + 2·cos(π/n))
+              Magic ratio · rₙ = 1 − sₙ
             </div>
             <table className="w-full font-mono text-sm">
               <thead className="hairline border-b text-ink-300">
@@ -964,13 +964,17 @@ export default function ChaosGameStory() {
               <tbody>
                 {[
                   { n: 3, note: "Sierpiński triangle" },
-                  { n: 4, note: "1 / (1 + √2)" },
-                  { n: 5, note: "1 / φ² (pentagon)" },
-                  { n: 6, note: "1 / (1 + √3)" },
+                  { n: 4, note: "1/2 (fills the square)" },
+                  { n: 5, note: "1/φ (pentaflake)" },
+                  { n: 6, note: "2/3 (hexaflake)" },
                   { n: 7, note: "heptagon" },
-                  { n: 8, note: "octagon" },
+                  { n: 8, note: "1/√2 (octagon)" },
                 ].map(({ n, note }) => {
-                  const r = 1 / (1 + 2 * Math.cos(Math.PI / n));
+                  let sum = 0;
+                  for (let k = 1; k <= Math.floor(n / 4); k++) {
+                    sum += Math.cos((2 * Math.PI * k) / n);
+                  }
+                  const r = 1 - 1 / (2 * (1 + sum));
                   return (
                     <tr key={n} className="border-b border-ink-700/30 last:border-0">
                       <td className="px-2 py-2 text-signal-cyan">{n}</td>

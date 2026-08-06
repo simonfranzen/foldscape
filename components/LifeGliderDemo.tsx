@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
@@ -49,6 +49,17 @@ export function LifeGliderDemo({
   accent = "text-signal-cyan",
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [reduced, setReduced] = useState(false);
+
+  // JS-driven canvases must honour prefers-reduced-motion themselves; the global
+  // CSS rule can't stop a rAF loop. Re-subscribe so a live toggle is respected.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -79,8 +90,6 @@ export function LifeGliderDemo({
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
 
     const colorMap: Record<string, string> = {
       "text-signal-violet": palette.signal.violet,
@@ -93,7 +102,7 @@ export function LifeGliderDemo({
     const draw = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
-      ctx.fillStyle = "#070811";
+      ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
       const cellSize = Math.min(W / cols, H / rows);
       const offX = (W - cellSize * cols) / 2;
@@ -120,6 +129,21 @@ export function LifeGliderDemo({
       ctx.fillText(`gen ${gen}`, 8, H - 8);
     };
 
+    // Redraw on resize so the static (reduced-motion) frame stays crisp too.
+    const ro = new ResizeObserver(() => {
+      resize();
+      draw();
+    });
+    ro.observe(canvas);
+
+    // Reduced-motion: paint a single static seed frame, no animation loop.
+    if (reduced) {
+      draw();
+      return () => {
+        ro.disconnect();
+      };
+    }
+
     const loop = (now: number) => {
       acc += now - last;
       last = now;
@@ -143,13 +167,13 @@ export function LifeGliderDemo({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [cells, cols, rows, speedMs, accent]);
+  }, [cells, cols, rows, speedMs, accent, reduced]);
 
   return (
     <div className="hairline space-y-2 rounded-2xl border bg-ink-950/40 p-4">
       <div className={`font-mono text-[10px] uppercase tracking-widest2 ${accent}`}>{label}</div>
       <div className="hairline aspect-[16/10] w-full overflow-hidden rounded-md border bg-ink-950">
-        <canvas ref={canvasRef} className="block h-full w-full" />
+        <canvas ref={canvasRef} className="block h-full w-full" role="img" aria-label={caption} />
       </div>
       <div className="text-xs text-ink-200">{caption}</div>
     </div>

@@ -5,15 +5,12 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import type { Locale } from "@/lib/i18n/types";
 
-type WaveType = "square" | "sawtooth" | "triangle" | "pulse";
-
-const WAVE_LABELS: Record<WaveType, string> = {
-  square: "Square wave",
-  sawtooth: "Sawtooth",
-  triangle: "Triangle",
-  pulse: "Single pulse",
-};
+// Only pure-sine (odd-about-t=0.5) targets: every one converges under the
+// sine-only partial sum below. A Gaussian pulse is even about t=0.5 and needs
+// cosine + DC terms this model cannot represent, so it is intentionally absent.
+type WaveType = "square" | "sawtooth" | "triangle";
 
 // Truth: each waveform's Fourier series coefficients (for sin(k·2π·t/T))
 function harmonics(wave: WaveType, N: number): { k: number; a: number }[] {
@@ -32,9 +29,6 @@ function harmonics(wave: WaveType, N: number): { k: number; a: number }[] {
         const m = (k - 1) / 2;
         a = ((8 / (Math.PI * Math.PI)) * (m % 2 === 0 ? 1 : -1)) / (k * k);
       }
-    } else if (wave === "pulse") {
-      // narrow pulse: roughly constant amplitude across k (DC-removed)
-      a = 0.4 / k;
     }
     out.push({ k, a });
   }
@@ -52,14 +46,156 @@ function target(wave: WaveType, t: number) {
   const u = ((t % 1) + 1) % 1;
   if (wave === "square") return u < 0.5 ? 1 : -1;
   if (wave === "sawtooth") return 2 * (u - Math.floor(u + 0.5));
-  if (wave === "triangle") return 4 * Math.abs(u - 0.5) - 1;
-  if (wave === "pulse") return Math.exp(-200 * (u - 0.5) ** 2) * 2 - 1;
+  // triangle in sine phase: 0 at t=0, +1 at t=0.25, −1 at t=0.75,
+  // matching the (−1)^m sin((2m+1)·2πt) series above.
+  if (wave === "triangle") return u < 0.25 ? 4 * u : u < 0.75 ? 2 - 4 * u : 4 * u - 4;
   return 0;
 }
 
+// Explorer-local UI strings, following the RICH_EXPLORER convention. The story
+// page's atlas copy is already localised via useI18n; the interactive chrome is
+// not covered by any shared bundle, so it lives here for all 8 locales.
+type ExplorerDict = {
+  waveLabels: Record<WaveType, string>;
+  targetWave: string;
+  harmonics: string;
+  layers: string;
+  spectrumLabel: string;
+  targetToggle: string;
+  harmonicsToggle: string;
+  gibbsHint: string;
+  harmonicsCount: (n: number) => string;
+  waveCanvasLabel: string;
+  spectrumCanvasLabel: string;
+};
+
+const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
+  en: {
+    waveLabels: { square: "Square wave", sawtooth: "Sawtooth", triangle: "Triangle" },
+    targetWave: "Target wave",
+    harmonics: "Harmonics",
+    layers: "Layers",
+    spectrumLabel: "Spectrum · amplitude per harmonic",
+    targetToggle: "Target (white)",
+    harmonicsToggle: "Individual harmonics (cyan)",
+    gibbsHint:
+      "Adding more harmonics sharpens the corners. Notice the small overshoot near jumps, Gibbs' phenomenon.",
+    harmonicsCount: (n) => `${n} harmonic${n === 1 ? "" : "s"}`,
+    waveCanvasLabel:
+      "Waveform: the white target with the amber partial sum of harmonics converging onto it.",
+    spectrumCanvasLabel: "Bar chart of harmonic amplitudes.",
+  },
+  de: {
+    waveLabels: { square: "Rechteckwelle", sawtooth: "Sägezahn", triangle: "Dreieck" },
+    targetWave: "Zielwelle",
+    harmonics: "Harmonische",
+    layers: "Ebenen",
+    spectrumLabel: "Spektrum · Amplitude je Harmonische",
+    targetToggle: "Ziel (weiß)",
+    harmonicsToggle: "Einzelne Harmonische (cyan)",
+    gibbsHint:
+      "Mehr Harmonische schärfen die Ecken. Beachte den kleinen Überschwinger nahe den Sprüngen, das Gibbs-Phänomen.",
+    harmonicsCount: (n) => `${n} Harmonische`,
+    waveCanvasLabel:
+      "Wellenform: die weiße Zielkurve, auf die sich die bernsteinfarbene Partialsumme der Harmonischen zubewegt.",
+    spectrumCanvasLabel: "Balkendiagramm der Amplituden je Harmonische.",
+  },
+  es: {
+    waveLabels: { square: "Onda cuadrada", sawtooth: "Diente de sierra", triangle: "Triangular" },
+    targetWave: "Onda objetivo",
+    harmonics: "Armónicos",
+    layers: "Capas",
+    spectrumLabel: "Espectro · amplitud por armónico",
+    targetToggle: "Objetivo (blanco)",
+    harmonicsToggle: "Armónicos individuales (cian)",
+    gibbsHint:
+      "Añadir más armónicos afila las esquinas. Fíjate en el pequeño sobreimpulso cerca de los saltos, el fenómeno de Gibbs.",
+    harmonicsCount: (n) => `${n} armónico${n === 1 ? "" : "s"}`,
+    waveCanvasLabel:
+      "Forma de onda: el objetivo blanco con la suma parcial ámbar de armónicos convergiendo hacia él.",
+    spectrumCanvasLabel: "Gráfico de barras de las amplitudes de los armónicos.",
+  },
+  fr: {
+    waveLabels: { square: "Onde carrée", sawtooth: "Dent de scie", triangle: "Triangle" },
+    targetWave: "Onde cible",
+    harmonics: "Harmoniques",
+    layers: "Couches",
+    spectrumLabel: "Spectre · amplitude par harmonique",
+    targetToggle: "Cible (blanc)",
+    harmonicsToggle: "Harmoniques individuelles (cyan)",
+    gibbsHint:
+      "Ajouter des harmoniques affine les coins. Remarquez le petit dépassement près des sauts, le phénomène de Gibbs.",
+    harmonicsCount: (n) => `${n} harmonique${n === 1 ? "" : "s"}`,
+    waveCanvasLabel:
+      "Forme d'onde : la cible blanche vers laquelle converge la somme partielle ambre des harmoniques.",
+    spectrumCanvasLabel: "Diagramme en barres des amplitudes des harmoniques.",
+  },
+  it: {
+    waveLabels: { square: "Onda quadra", sawtooth: "Dente di sega", triangle: "Triangolare" },
+    targetWave: "Onda bersaglio",
+    harmonics: "Armoniche",
+    layers: "Livelli",
+    spectrumLabel: "Spettro · ampiezza per armonica",
+    targetToggle: "Bersaglio (bianco)",
+    harmonicsToggle: "Armoniche individuali (ciano)",
+    gibbsHint:
+      "Aggiungere armoniche affila gli angoli. Nota il piccolo sovrasbalzo vicino ai salti, il fenomeno di Gibbs.",
+    harmonicsCount: (n) => `${n} armonic${n === 1 ? "a" : "he"}`,
+    waveCanvasLabel:
+      "Forma d'onda: il bersaglio bianco verso cui converge la somma parziale ambra delle armoniche.",
+    spectrumCanvasLabel: "Grafico a barre delle ampiezze delle armoniche.",
+  },
+  pt: {
+    waveLabels: { square: "Onda quadrada", sawtooth: "Dente de serra", triangle: "Triangular" },
+    targetWave: "Onda alvo",
+    harmonics: "Harmônicos",
+    layers: "Camadas",
+    spectrumLabel: "Espectro · amplitude por harmônico",
+    targetToggle: "Alvo (branco)",
+    harmonicsToggle: "Harmônicos individuais (ciano)",
+    gibbsHint:
+      "Adicionar mais harmônicos afia os cantos. Repare no pequeno sobressinal perto dos saltos, o fenômeno de Gibbs.",
+    harmonicsCount: (n) => `${n} harmônico${n === 1 ? "" : "s"}`,
+    waveCanvasLabel:
+      "Forma de onda: o alvo branco com a soma parcial âmbar dos harmônicos convergindo para ele.",
+    spectrumCanvasLabel: "Gráfico de barras das amplitudes dos harmônicos.",
+  },
+  sv: {
+    waveLabels: { square: "Fyrkantsvåg", sawtooth: "Sågtand", triangle: "Triangel" },
+    targetWave: "Målvåg",
+    harmonics: "Övertoner",
+    layers: "Lager",
+    spectrumLabel: "Spektrum · amplitud per överton",
+    targetToggle: "Mål (vitt)",
+    harmonicsToggle: "Enskilda övertoner (cyan)",
+    gibbsHint:
+      "Fler övertoner skärper hörnen. Lägg märke till den lilla överslängen nära hoppen, Gibbs fenomen.",
+    harmonicsCount: (n) => `${n} överton${n === 1 ? "" : "er"}`,
+    waveCanvasLabel:
+      "Vågform: den vita målkurvan som den bärnstensfärgade partialsumman av övertoner närmar sig.",
+    spectrumCanvasLabel: "Stapeldiagram över övertonernas amplituder.",
+  },
+  no: {
+    waveLabels: { square: "Firkantbølge", sawtooth: "Sagtann", triangle: "Trekant" },
+    targetWave: "Målbølge",
+    harmonics: "Overtoner",
+    layers: "Lag",
+    spectrumLabel: "Spektrum · amplitude per overtone",
+    targetToggle: "Mål (hvitt)",
+    harmonicsToggle: "Enkelte overtoner (cyan)",
+    gibbsHint:
+      "Flere overtoner skjerper hjørnene. Legg merke til det lille oversvinget nær hoppene, Gibbs' fenomen.",
+    harmonicsCount: (n) => `${n} overtone${n === 1 ? "" : "r"}`,
+    waveCanvasLabel:
+      "Bølgeform: den hvite målkurven som den ravfargede delsummen av overtoner nærmer seg.",
+    spectrumCanvasLabel: "Stolpediagram over overtonenes amplituder.",
+  },
+};
+
 export default function FourierExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.fourier;
+  const ex = RICH_EXPLORER[locale];
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const spectrumRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
@@ -191,20 +327,30 @@ export default function FourierExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {WAVE_LABELS[wave]} · {N} harmonic{N === 1 ? "" : "s"}
+              {ex.waveLabels[wave]} · {ex.harmonicsCount(N)}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               Σₖ aₖ sin(2πk t)
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={canvasRef} className="block h-full w-full" />
+            <canvas
+              ref={canvasRef}
+              role="img"
+              aria-label={ex.waveCanvasLabel}
+              className="block h-full w-full"
+            />
           </div>
           <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-            Spectrum · amplitude per harmonic
+            {ex.spectrumLabel}
           </div>
           <div className="hairline h-32 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={spectrumRef} className="block h-full w-full" />
+            <canvas
+              ref={spectrumRef}
+              role="img"
+              aria-label={ex.spectrumCanvasLabel}
+              className="block h-full w-full"
+            />
           </div>
         </div>
 
@@ -219,10 +365,10 @@ export default function FourierExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Target wave
+              {ex.targetWave}
             </div>
             <div className="grid grid-cols-2 gap-2">
-              {(Object.keys(WAVE_LABELS) as WaveType[]).map((w) => (
+              {(Object.keys(ex.waveLabels) as WaveType[]).map((w) => (
                 <button
                   key={w}
                   onClick={() => setWave(w)}
@@ -232,7 +378,7 @@ export default function FourierExplorer() {
                       : "hairline text-ink-300 hover:text-ink-100"
                   }`}
                 >
-                  {WAVE_LABELS[w]}
+                  {ex.waveLabels[w]}
                 </button>
               ))}
             </div>
@@ -240,7 +386,7 @@ export default function FourierExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Harmonics
+              {ex.harmonics}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-cyan">{N}</span>
@@ -251,6 +397,7 @@ export default function FourierExplorer() {
               min={1}
               max={48}
               step={1}
+              aria-label={ex.harmonics}
               onChange={(e) => setN(parseInt(e.target.value))}
               className="w-full accent-signal-cyan"
             />
@@ -269,24 +416,21 @@ export default function FourierExplorer() {
                 </button>
               ))}
             </div>
-            <p className="pt-2 text-[11px] text-ink-400">
-              Adding more harmonics sharpens the corners. Notice the small overshoot near jumps —
-              Gibbs' phenomenon.
-            </p>
+            <p className="pt-2 text-[11px] text-ink-400">{ex.gibbsHint}</p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Layers
+              {ex.layers}
             </div>
             <Toggle
-              label="Target (white)"
+              label={ex.targetToggle}
               on={showTarget}
               onChange={setShowTarget}
               accent="text-ink-200"
             />
             <Toggle
-              label="Individual harmonics (cyan)"
+              label={ex.harmonicsToggle}
               on={showHarmonics}
               onChange={setShowHarmonics}
               accent="text-signal-cyan"

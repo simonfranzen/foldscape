@@ -4,36 +4,46 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { getDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 type ColorKey = "cyan" | "violet" | "amber" | "rose";
+
+// "r, g, b" triplet from a palette hex, for the canvas rgba() fills — keeps the
+// swatch colours in sync with the palette tokens instead of re-encoding them.
+const rgbTriplet = (hex: string) => {
+  const h = hex.replace("#", "");
+  return `${parseInt(h.slice(0, 2), 16)}, ${parseInt(h.slice(2, 4), 16)}, ${parseInt(h.slice(4, 6), 16)}`;
+};
+
+const rgba = (hex: string, alpha: number) => `rgba(${rgbTriplet(hex)}, ${alpha})`;
 
 const COLORS: Record<
   ColorKey,
   { rgb: string; tw: string; border: string; bg: string; swatch: string }
 > = {
   cyan: {
-    rgb: "125, 243, 255",
+    rgb: rgbTriplet(palette.signal.cyan),
     tw: "text-signal-cyan",
     border: "border-signal-cyan/60",
     bg: "bg-signal-cyan/10",
     swatch: "bg-signal-cyan",
   },
   violet: {
-    rgb: "179, 136, 255",
+    rgb: rgbTriplet(palette.signal.violet),
     tw: "text-signal-violet",
     border: "border-signal-violet/60",
     bg: "bg-signal-violet/10",
     swatch: "bg-signal-violet",
   },
   amber: {
-    rgb: "255, 209, 102",
+    rgb: rgbTriplet(palette.signal.amber),
     tw: "text-signal-amber",
     border: "border-signal-amber/60",
     bg: "bg-signal-amber/10",
     swatch: "bg-signal-amber",
   },
   rose: {
-    rgb: "255, 122, 182",
+    rgb: rgbTriplet(palette.signal.rose),
     tw: "text-signal-rose",
     border: "border-signal-rose/60",
     bg: "bg-signal-rose/10",
@@ -56,7 +66,12 @@ export default function BoidsExplorer() {
   const [maxSpeed, setMaxSpeed] = useState(4);
   const [wrap, setWrap] = useState(true);
   const [color, setColor] = useState<ColorKey>("cyan");
-  const [running, setRunning] = useState(true);
+  // Start paused for motion-sensitive users so the swarm doesn't auto-swirl;
+  // the Play button still lets them opt in.
+  const [running, setRunning] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
   const [useSep, setUseSep] = useState(true);
   const [useAli, setUseAli] = useState(true);
   const [useCoh, setUseCoh] = useState(true);
@@ -181,8 +196,11 @@ export default function BoidsExplorer() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const dpr = getDpr();
+    let dpr = getDpr();
     const resize = () => {
+      // Re-read DPR each resize so browser zoom / a monitor with a different
+      // devicePixelRatio rescales the backing store and the dpr-scaled physics.
+      dpr = getDpr();
       canvas.width = Math.floor(canvas.clientWidth * dpr);
       canvas.height = Math.floor(canvas.clientHeight * dpr);
       const w = canvas.width;
@@ -198,6 +216,18 @@ export default function BoidsExplorer() {
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
 
+    // ResizeObserver misses a pure DPR change (no box-size change), so watch
+    // the resolution media query and re-subscribe with the new DPR each time.
+    let mq: MediaQueryList | null = null;
+    const onDprChange = () => {
+      resize();
+      mq?.removeEventListener?.("change", onDprChange);
+      mq = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+      mq.addEventListener?.("change", onDprChange);
+    };
+    mq = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+    mq.addEventListener?.("change", onDprChange);
+
     let raf = 0;
     const step = () => {
       const p = paramsRef.current;
@@ -205,8 +235,10 @@ export default function BoidsExplorer() {
       const boids = boidsRef.current;
       const n = boids.length / 4;
 
-      // Fade-trail background — paint each frame so old triangles soften out.
-      ctx.fillStyle = "rgba(5, 6, 10, 0.20)";
+      // While running: fade-trail background so old triangles soften out.
+      // While paused: solid clear so the frozen frame stays crisp instead of
+      // fading to black — the static frame reduced-motion users see by default.
+      ctx.fillStyle = p.running ? rgba(palette.ink[950], 0.2) : palette.ink[950];
       ctx.fillRect(0, 0, w, h);
 
       if (p.running && n > 0) {
@@ -215,6 +247,8 @@ export default function BoidsExplorer() {
         const perR2 = perR * perR;
         const sepR2 = sepR * sepR;
         const maxV = p.maxSpeed * dpr;
+        const halfW = w / 2;
+        const halfH = h / 2;
 
         // Buffer for new velocities so updates use the same snapshot.
         const newV = new Float32Array(n * 2);
@@ -236,15 +270,26 @@ export default function BoidsExplorer() {
 
           for (let j = 0; j < n; j++) {
             if (j === i) continue;
-            const dx = boids[j * 4] - ix;
-            const dy = boids[j * 4 + 1] - iy;
+            let dx = boids[j * 4] - ix;
+            let dy = boids[j * 4 + 1] - iy;
+            if (p.wrap) {
+              // Shortest vector on the torus — otherwise a boid and its
+              // flockmate straddling a seam look ~w apart and stop interacting,
+              // so flocks fragment every time they cross an edge.
+              if (dx > halfW) dx -= w;
+              else if (dx < -halfW) dx += w;
+              if (dy > halfH) dy -= h;
+              else if (dy < -halfH) dy += h;
+            }
             const d2 = dx * dx + dy * dy;
             if (d2 > perR2 || d2 === 0) continue;
             perCount++;
             aliX += boids[j * 4 + 2];
             aliY += boids[j * 4 + 3];
-            cohX += boids[j * 4];
-            cohY += boids[j * 4 + 1];
+            // Accumulate wrapped displacement, not absolute position, so the
+            // centroid of a seam-straddling flock is not yanked across screen.
+            cohX += dx;
+            cohY += dy;
             if (d2 < sepR2) {
               sepX += -dx / d2;
               sepY += -dy / d2;
@@ -262,16 +307,19 @@ export default function BoidsExplorer() {
               ay += (avgVY - ivy) * p.wAli * 0.05;
             }
             if (p.useCoh) {
-              const avgPX = cohX / perCount;
-              const avgPY = cohY / perCount;
-              ax += ((avgPX - ix) / 100) * p.wCoh;
-              ay += ((avgPY - iy) / 100) * p.wCoh;
+              // cohX/cohY are already mean-displacements toward the centroid.
+              const avgDX = cohX / perCount;
+              const avgDY = cohY / perCount;
+              ax += (avgDX / 100) * p.wCoh;
+              ay += (avgDY / 100) * p.wCoh;
             }
           }
           if (sepCount > 0 && p.useSep) {
+            // Scale by dpr like the other accelerations (they act on device-px
+            // velocities) so separation keeps the same relative strength.
             const sm = Math.hypot(sepX, sepY) || 1;
-            ax += (sepX / sm) * p.wSep * 0.6;
-            ay += (sepY / sm) * p.wSep * 0.6;
+            ax += (sepX / sm) * p.wSep * 0.6 * dpr;
+            ay += (sepY / sm) * p.wSep * 0.6 * dpr;
           }
 
           let nvx = ivx + ax;
@@ -280,10 +328,12 @@ export default function BoidsExplorer() {
           if (spd > maxV) {
             nvx = (nvx / spd) * maxV;
             nvy = (nvy / spd) * maxV;
-          } else if (spd < 0.1) {
+          } else if (spd < 0.1 * dpr) {
+            // Re-kick a stalled boid; dpr-scaled so the floor speed matches the
+            // device-px velocity scale on high-DPR displays.
             const a0 = Math.random() * Math.PI * 2;
-            nvx = Math.cos(a0) * 0.5;
-            nvy = Math.sin(a0) * 0.5;
+            nvx = Math.cos(a0) * 0.5 * dpr;
+            nvy = Math.sin(a0) * 0.5 * dpr;
           }
           newV[i * 2] = nvx;
           newV[i * 2 + 1] = nvy;
@@ -360,6 +410,7 @@ export default function BoidsExplorer() {
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      mq?.removeEventListener?.("change", onDprChange);
     };
     // The rAF loop reads from refs, so it does not need to restart on param change.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -371,7 +422,12 @@ export default function BoidsExplorer() {
     <main className="flex min-h-screen flex-col pt-14">
       <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         <div className="relative min-h-[60vh] bg-ink-950 lg:min-h-[calc(100vh-3.5rem)]">
-          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            role="img"
+            aria-label={topic.tagline}
+            className="absolute inset-0 block h-full w-full"
+          />
           <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               n = {count} · sep {wSep.toFixed(1)} · ali {wAli.toFixed(1)} · coh {wCoh.toFixed(1)}
@@ -477,6 +533,7 @@ export default function BoidsExplorer() {
                 <button
                   key={label}
                   onClick={() => set(!on)}
+                  aria-pressed={on}
                   className={`rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest transition-colors ${
                     on ? `${c.border} ${c.tw} ${c.bg}` : "hairline text-ink-500 hover:text-ink-200"
                   }`}
@@ -494,6 +551,7 @@ export default function BoidsExplorer() {
             </div>
             <button
               onClick={() => setWrap((v) => !v)}
+              aria-pressed={wrap}
               className={`w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
                 wrap ? `${c.border} ${c.tw} ${c.bg}` : "hairline text-ink-300 hover:text-ink-100"
               }`}
@@ -534,6 +592,7 @@ export default function BoidsExplorer() {
           <div className="hairline space-y-2 border-b p-5">
             <button
               onClick={() => setRunning((v) => !v)}
+              aria-pressed={running}
               className={`w-full rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
                 running
                   ? "border-signal-rose/60 bg-signal-rose/10 text-signal-rose"
@@ -597,6 +656,7 @@ function Slider({
       </div>
       <input
         type="range"
+        aria-label={label}
         value={value}
         min={min}
         max={max}

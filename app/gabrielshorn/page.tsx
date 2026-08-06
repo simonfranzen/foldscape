@@ -26,6 +26,10 @@ type RichStory = {
     tryIt: string;
   };
   sections: Array<{ pretitle: string; title: string; body: string }>;
+  volumeIntegralPretitle: string;
+  volumeIntegralNote: string;
+  surfaceIntegralPretitle: string;
+  surfaceIntegralNote: string;
   hornCaption: string;
   hornXMaxLabel: string;
   hornVolumeLabel: string;
@@ -104,6 +108,12 @@ const en: RichStory = {
       body: "The Koch snowflake encloses a finite area inside an infinite perimeter — the same finite-vs-infinite split, one dimension lower. Both are early hints that measure and shape can disagree in surprising ways. Torricelli's horn was the first; the snowflake came in 1904.",
     },
   ],
+  volumeIntegralPretitle: "The volume integral",
+  volumeIntegralNote:
+    "Each cross-section is a disc of radius 1/x. Squaring sends the radii toward zero fast enough for the sum to converge.",
+  surfaceIntegralPretitle: "The surface integral",
+  surfaceIntegralNote:
+    "The lower bound is the harmonic integral, the continuous cousin of 1 + 1/2 + 1/3 + … It diverges, and it drags the surface area to infinity with it.",
   hornCaption: "Interactive · drag to rotate, slide X_max",
   hornXMaxLabel: "X_max",
   hornVolumeLabel: "V(X) → π",
@@ -183,7 +193,13 @@ const de: RichStory = {
       body: "Die Koch-Schneeflocke umschließt eine endliche Fläche bei unendlichem Umfang — derselbe Endlich-gegen-Unendlich-Bruch, eine Dimension tiefer. Beide sind frühe Hinweise, dass Maß und Form auf überraschende Weise auseinanderfallen können. Torricellis Horn war das erste; die Schneeflocke kam 1904.",
     },
   ],
-  hornCaption: "Interaktiv · drehen ziehen, X_max schieben",
+  volumeIntegralPretitle: "Das Volumenintegral",
+  volumeIntegralNote:
+    "Jeder Querschnitt ist eine Scheibe vom Radius 1/x. Das Quadrieren treibt die Radien schnell genug gegen null, sodass die Summe konvergiert.",
+  surfaceIntegralPretitle: "Das Oberflächenintegral",
+  surfaceIntegralNote:
+    "Die untere Schranke ist das harmonische Integral, der stetige Vetter von 1 + 1/2 + 1/3 + … Es divergiert und zieht die Oberfläche mit sich ins Unendliche.",
+  hornCaption: "Interaktiv · ziehen zum Drehen, X_max schieben",
   hornXMaxLabel: "X_max",
   hornVolumeLabel: "V(X) → π",
   hornAreaLabel: "A(X) → ∞",
@@ -263,6 +279,12 @@ const es: RichStory = {
       body: "El copo de Koch encierra área finita con perímetro infinito — la misma escisión finito-vs-infinito, una dimensión más abajo. Ambas son indicios tempranos de que medida y forma pueden discrepar de modo sorprendente. El cuerno de Torricelli fue el primero; el copo llegó en 1904.",
     },
   ],
+  volumeIntegralPretitle: "La integral de volumen",
+  volumeIntegralNote:
+    "Cada sección es un disco de radio 1/x. Elevar al cuadrado lleva los radios hacia cero lo bastante rápido para que la suma converja.",
+  surfaceIntegralPretitle: "La integral de superficie",
+  surfaceIntegralNote:
+    "La cota inferior es la integral armónica, la prima continua de 1 + 1/2 + 1/3 + … Diverge, y arrastra el área de la superficie al infinito con ella.",
   hornCaption: "Interactivo · arrastra para girar, desliza X_max",
   hornXMaxLabel: "X_max",
   hornVolumeLabel: "V(X) → π",
@@ -282,10 +304,10 @@ const es: RichStory = {
 const fr: RichStory = {
   page: {
     pretitle: "Thème · Paradoxe",
-    title: "La corne de Gabriel",
+    title: "La trompette de Gabriel",
     tagline: "Volume fini, surface infinie.",
     intro:
-      "Une forme de 1641 qui a englouti toute intuition que les mathématiciens avaient sur l'infini. L'Explorateur coupe la corne à un x variable, dessine la vue de côté et calcule en direct le volume et l'aire de la surface — regarde l'un rester sage et l'autre s'enfuir.",
+      "Une forme de 1641 qui a englouti toute intuition que les mathématiciens avaient sur l'infini. L'Explorateur coupe la trompette à un x variable, dessine la vue de côté et calcule en direct le volume et l'aire de la surface : regarde l'un rester sage et l'autre s'enfuir.",
     ctaInteractive: "→ Ouvre l'Explorateur",
   },
   encounter: {
@@ -295,7 +317,7 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Fais tourner la courbe y = 1/x autour de son axe. Le solide obtenu a un volume fini mais une surface infinie. Verses-y π unités de peinture, la corne est pleine ; essaie d'en peindre l'extérieur et tu ne finis jamais.",
+        body: "Fais tourner la courbe y = 1/x autour de son axe. Le solide obtenu a un volume fini mais une surface infinie. Verses-y π unités de peinture, la trompette est pleine ; essaie d'en peindre l'extérieur et tu ne finis jamais.",
       },
       {
         label: "02",
@@ -309,18 +331,18 @@ const fr: RichStory = {
       },
     ],
     tryIt:
-      "Ci-dessous : tourne la corne, glisse X_max, et regarde un nombre se poser pendant que l'autre s'enfuit.",
+      "Ci-dessous : tourne la trompette, glisse X_max, et regarde un nombre se poser pendant que l'autre s'enfuit.",
   },
   sections: [
     {
       pretitle: "Section 01 · La forme",
       title: "y = 1/x, tournée autour de l'axe",
-      body: "Prends l'hyperbole y = 1/x sur x ∈ [1, ∞). Fais-la tourner autour de l'axe des x. Chaque section perpendiculaire à l'axe est un disque de rayon 1/x. La corne s'évase en x = 1 vers une bouche de rayon 1 et s'effile pour toujours vers zéro — une trompette mince qui ne se ferme jamais tout à fait.",
+      body: "Prends l'hyperbole y = 1/x sur x ∈ [1, ∞). Fais-la tourner autour de l'axe des x. Chaque section perpendiculaire à l'axe est un disque de rayon 1/x. La trompette s'évase en x = 1 vers une bouche de rayon 1 et s'effile pour toujours vers zéro, un pavillon mince qui ne se ferme jamais tout à fait.",
     },
     {
       pretitle: "Section 02 · Volume par disques",
       title: "V = π ∫₁^∞ 1/x² dx = π",
-      body: "Tranche la corne en disques fins d'épaisseur dx. Chacun a pour aire π/x² et pour volume π/x² · dx. La somme vaut π · [−1/x]₁^∞ = π. Les carrés s'annulent assez vite — l'intégrale converge. La corne infinie tient en exactement π unités cubiques.",
+      body: "Tranche la trompette en disques fins d'épaisseur dx. Chacun a pour aire π/x² et pour volume π/x² · dx. La somme vaut π · [−1/x]₁^∞ = π. Les carrés s'annulent assez vite, l'intégrale converge. La trompette infinie tient en exactement π unités cubiques.",
     },
     {
       pretitle: "Section 03 · Surface par troncs",
@@ -340,9 +362,15 @@ const fr: RichStory = {
     {
       pretitle: "Section 06 · Connexions",
       title: "Flocon de Koch — le cousin 2D",
-      body: "Le flocon de Koch enferme une aire finie sous un périmètre infini — la même scission fini-vs-infini, une dimension plus bas. Tous deux signalent tôt que mesure et forme peuvent se contredire de façons surprenantes. La corne de Torricelli est la première ; le flocon date de 1904.",
+      body: "Le flocon de Koch enferme une aire finie sous un périmètre infini, la même scission fini-vs-infini, une dimension plus bas. Tous deux signalent tôt que mesure et forme peuvent se contredire de façons surprenantes. La trompette de Torricelli est la première ; le flocon date de 1904.",
     },
   ],
+  volumeIntegralPretitle: "L'intégrale de volume",
+  volumeIntegralNote:
+    "Chaque section est un disque de rayon 1/x. L'élévation au carré pousse les rayons vers zéro assez vite pour que la somme converge.",
+  surfaceIntegralPretitle: "L'intégrale de surface",
+  surfaceIntegralNote:
+    "La borne inférieure est l'intégrale harmonique, la cousine continue de 1 + 1/2 + 1/3 + … Elle diverge et entraîne l'aire de la surface vers l'infini avec elle.",
   hornCaption: "Interactif · fais tourner, glisse X_max",
   hornXMaxLabel: "X_max",
   hornVolumeLabel: "V(X) → π",
@@ -354,7 +382,7 @@ const fr: RichStory = {
   closingPretitle: "Aller plus loin",
   closingTitle: "Ouvre l'Explorateur.",
   closingBody:
-    "L'Explorateur coupe la corne à n'importe quel X, en dessine le profil et suit V et A en direct. Pousse X vers l'horizon et sens l'asymétrie atterrir.",
+    "L'Explorateur coupe la trompette à n'importe quel X, en dessine le profil et suit V et A en direct. Pousse X vers l'horizon et sens l'asymétrie atterrir.",
   closingCta: "→ Ouvrir l'Explorateur",
 };
 
@@ -422,6 +450,12 @@ const it: RichStory = {
       body: "Il fiocco di Koch racchiude un'area finita con perimetro infinito — la stessa scissione finito-vs-infinito, una dimensione più in basso. Entrambi anticipano che misura e forma possono divergere in modi sorprendenti. Il corno di Torricelli fu il primo; il fiocco arrivò nel 1904.",
     },
   ],
+  volumeIntegralPretitle: "L'integrale di volume",
+  volumeIntegralNote:
+    "Ogni sezione è un disco di raggio 1/x. Elevare al quadrato spinge i raggi verso zero abbastanza in fretta perché la somma converga.",
+  surfaceIntegralPretitle: "L'integrale di superficie",
+  surfaceIntegralNote:
+    "L'estremo inferiore è l'integrale armonico, il cugino continuo di 1 + 1/2 + 1/3 + … Diverge, e trascina con sé l'area della superficie all'infinito.",
   hornCaption: "Interattivo · trascina per ruotare, sposta X_max",
   hornXMaxLabel: "X_max",
   hornVolumeLabel: "V(X) → π",
@@ -454,7 +488,7 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A ideia central",
-        body: "Roda a curva y = 1/x em torno do seu eixo. O sólido obtido tem volume finito mas superfície infinita. Despeja π unidades de tinta, a corneta enche; tenta pintá-la por fora e nunca acabas.",
+        body: "Roda a curva y = 1/x em torno do seu eixo. O sólido obtido tem volume finito mas superfície infinita. Despeja π unidades de tinta, a trombeta enche; tenta pintá-la por fora e nunca acabas.",
       },
       {
         label: "02",
@@ -468,18 +502,18 @@ const pt: RichStory = {
       },
     ],
     tryIt:
-      "Abaixo: arrasta a corneta, desliza X_max, e vê um número assentar enquanto o outro foge.",
+      "Abaixo: arrasta a trombeta, desliza X_max, e vê um número assentar enquanto o outro foge.",
   },
   sections: [
     {
       pretitle: "Secção 01 · A forma",
       title: "y = 1/x, rodada em torno do eixo",
-      body: "Toma a hipérbole y = 1/x em x ∈ [1, ∞). Roda-a em torno do eixo x. Cada secção perpendicular ao eixo é um disco de raio 1/x. A corneta abre-se em x = 1 numa boca de raio 1 e afina para sempre em direção a zero — uma trombeta esguia que nunca se fecha totalmente.",
+      body: "Toma a hipérbole y = 1/x em x ∈ [1, ∞). Roda-a em torno do eixo x. Cada secção perpendicular ao eixo é um disco de raio 1/x. A trombeta abre-se em x = 1 numa boca de raio 1 e afina para sempre em direção a zero, um pavilhão esguio que nunca se fecha totalmente.",
     },
     {
       pretitle: "Secção 02 · Volume por discos",
       title: "V = π ∫₁^∞ 1/x² dx = π",
-      body: "Corta a corneta em discos finos de espessura dx. Cada um tem área π/x² e volume π/x² · dx. A soma é π · [−1/x]₁^∞ = π. Os quadrados anulam-se depressa que chegue — o integral converge. A corneta infinita cabe em exatamente π unidades cúbicas.",
+      body: "Corta a trombeta em discos finos de espessura dx. Cada um tem área π/x² e volume π/x² · dx. A soma é π · [−1/x]₁^∞ = π. Os quadrados anulam-se depressa que chegue, o integral converge. A trombeta infinita cabe em exatamente π unidades cúbicas.",
     },
     {
       pretitle: "Secção 03 · Superfície por troncos",
@@ -499,9 +533,15 @@ const pt: RichStory = {
     {
       pretitle: "Secção 06 · Ligações",
       title: "Floco de Koch — o primo 2D",
-      body: "O floco de Koch encerra uma área finita num perímetro infinito — a mesma cisão finito-vs-infinito, uma dimensão abaixo. Ambos são pistas precoces de que medida e forma podem divergir de modos surpreendentes. A corneta de Torricelli foi a primeira; o floco apareceu em 1904.",
+      body: "O floco de Koch encerra uma área finita num perímetro infinito, a mesma cisão finito-vs-infinito, uma dimensão abaixo. Ambos são pistas precoces de que medida e forma podem divergir de modos surpreendentes. A trombeta de Torricelli foi a primeira; o floco apareceu em 1904.",
     },
   ],
+  volumeIntegralPretitle: "O integral de volume",
+  volumeIntegralNote:
+    "Cada secção é um disco de raio 1/x. Elevar ao quadrado leva os raios a zero depressa que chegue para a soma convergir.",
+  surfaceIntegralPretitle: "O integral de superfície",
+  surfaceIntegralNote:
+    "O limite inferior é o integral harmónico, o primo contínuo de 1 + 1/2 + 1/3 + … Diverge, e arrasta a área da superfície para o infinito com ele.",
   hornCaption: "Interativo · arrasta para rodar, desliza X_max",
   hornXMaxLabel: "X_max",
   hornVolumeLabel: "V(X) → π",
@@ -514,7 +554,7 @@ const pt: RichStory = {
   closingPretitle: "Vai mais longe",
   closingTitle: "Abre o Explorador.",
   closingBody:
-    "O Explorador corta a corneta em qualquer X que escolheres, desenha o perfil e segue V e A ao vivo. Empurra X até ao horizonte e sente a assimetria aterrar.",
+    "O Explorador corta a trombeta em qualquer X que escolheres, desenha o perfil e segue V e A ao vivo. Empurra X até ao horizonte e sente a assimetria aterrar.",
   closingCta: "→ Abrir o Explorador",
 };
 
@@ -581,6 +621,12 @@ const sv: RichStory = {
       body: "Kochs snöflinga omsluter en ändlig area med oändlig omkrets — samma ändligt-mot-oändligt-klyvning, ett steg ner i dimension. Båda är tidiga tecken på att mått och form kan dra åt olika håll på överraskande sätt. Torricellis horn kom först; snöflingan dök upp 1904.",
     },
   ],
+  volumeIntegralPretitle: "Volymintegralen",
+  volumeIntegralNote:
+    "Varje tvärsnitt är en skiva med radie 1/x. Kvadreringen driver radierna mot noll snabbt nog för att summan ska konvergera.",
+  surfaceIntegralPretitle: "Ytintegralen",
+  surfaceIntegralNote:
+    "Den nedre gränsen är den harmoniska integralen, den kontinuerliga kusinen till 1 + 1/2 + 1/3 + … Den divergerar och drar med sig ytan mot oändligheten.",
   hornCaption: "Interaktivt · dra för att rotera, dra X_max",
   hornXMaxLabel: "X_max",
   hornVolumeLabel: "V(X) → π",
@@ -660,6 +706,12 @@ const no: RichStory = {
       body: "Kochs snøfnugg omslutter et endelig areal med uendelig omkrets — samme endelig-mot-uendelig-spalting, ett hakk ned i dimensjon. Begge er tidlige hint om at mål og form kan dra i ulike retninger på overraskende vis. Torricellis horn kom først; snøfnugget dukket opp i 1904.",
     },
   ],
+  volumeIntegralPretitle: "Volumintegralet",
+  volumeIntegralNote:
+    "Hvert tverrsnitt er en skive med radius 1/x. Kvadreringen driver radiene mot null raskt nok til at summen konvergerer.",
+  surfaceIntegralPretitle: "Overflateintegralet",
+  surfaceIntegralNote:
+    "Den nedre grensen er det harmoniske integralet, den kontinuerlige fetteren til 1 + 1/2 + 1/3 + … Det divergerer og drar overflaten med seg mot uendeligheten.",
   hornCaption: "Interaktivt · dra for å rotere, dra X_max",
   hornXMaxLabel: "X_max",
   hornVolumeLabel: "V(X) → π",
@@ -752,14 +804,13 @@ export default function GabrielsHornStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              The volume integral
+              {story.volumeIntegralPretitle}
             </div>
             <div className="math-italic text-2xl leading-snug text-ink-100 md:text-3xl">
               V = π ∫₁^∞ (1/x)² dx = π · [−1/x]₁^∞ = π
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Each cross-section is a disc of radius 1/x. Squaring sends the radii toward zero fast
-              enough for the sum to converge.
+              {story.volumeIntegralNote}
             </p>
           </div>
         </Reveal>
@@ -776,14 +827,13 @@ export default function GabrielsHornStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              The surface integral
+              {story.surfaceIntegralPretitle}
             </div>
             <div className="math-italic text-xl leading-snug text-ink-100 md:text-2xl">
               A = 2π ∫₁^∞ (1/x) · √(1 + 1/x⁴) dx ≥ 2π ∫₁^∞ (1/x) dx = ∞
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              The lower bound is the harmonic integral — the continuous cousin of 1 + 1/2 + 1/3 + …
-              It diverges, and it drags the surface area to infinity with it.
+              {story.surfaceIntegralNote}
             </p>
           </div>
         </Reveal>

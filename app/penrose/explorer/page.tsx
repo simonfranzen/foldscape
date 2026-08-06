@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
@@ -97,21 +98,16 @@ function buildTiling(depth: number, rotation: number): Tri[] {
 }
 
 // ---------------------------------------------------------------------------
-// P2 (kite + dart) Penrose tiling via Robinson half-triangle deflation.
+// "Half-triangles" view of the SAME P3 tiling.
 //
-//   type 0  →  half of a KITE  (golden triangle, 36° at A)
-//   type 1  →  half of a DART  (golden gnomon,  108° at A)
-//
-// The deflation rules are the same Robinson-triangle subdivisions used by
-// the P3 inflation above — the difference is purely interpretation: here
-// we keep the half-triangles as kite/dart halves rather than pairing them
-// into rhombi. Two mirrored type-0 halves form one kite; two mirrored
-// type-1 halves form one dart.
-//
-// We re-use seedSun() and inflate() since the geometry is identical.
+// This mode does not build a different tiling: it renders the Robinson
+// half-rhombi (golden triangles) directly instead of pairing them into full
+// rhombi. Two mirrored type-0 halves make one thin rhombus; two mirrored
+// type-1 halves make one thick rhombus. It is the same deflation, shown one
+// abstraction level lower, the triangles the rhombi are cut from.
 // ---------------------------------------------------------------------------
 
-function buildP2Tiling(depth: number, rotation: number): Tri[] {
+function buildHalfTriangles(depth: number, rotation: number): Tri[] {
   let tris = seedSun(rotation);
   for (let i = 0; i < depth; i++) tris = inflate(tris);
   return tris;
@@ -168,6 +164,256 @@ function trianglesToRhombi(tris: Tri[]): Rhomb[] {
 // Component
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Inline per-locale UI copy for the explorer sidebar (mirrors the story page's
+// RICH_STORY pattern so the room is fully localized, not English-only).
+// ---------------------------------------------------------------------------
+
+type ExplorerCopy = {
+  mode: string;
+  modeRhombi: string;
+  modeTriangles: string;
+  trianglesNote: string;
+  depth: string;
+  rhombiWord: string;
+  halvesWord: string;
+  depthNote: string;
+  rotation: string;
+  display: string;
+  outlines: string;
+  colors: string;
+  arrows: string;
+  arrowsNote: string;
+  center: string;
+  thick: string;
+  thin: string;
+  thickHalves: string;
+  thinHalves: string;
+  ratioNote: string;
+  on: string;
+  off: string;
+  canvasLabel: string;
+};
+
+const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
+  en: {
+    mode: "Mode",
+    modeRhombi: "Rhombi",
+    modeTriangles: "Half-triangles",
+    trianglesNote:
+      "The Robinson half-triangles the rhombi are cut from. Thick halves violet, thin halves amber; the thick/thin count ratio converges to φ ≈ 1.618.",
+    depth: "Deflation depth",
+    rhombiWord: "rhombi",
+    halvesWord: "half-tiles",
+    depthNote: "Depth 6 is already about 1,200 rhombi; the count grows by φ² ≈ 2.618 each step.",
+    rotation: "Seed rotation",
+    display: "Display",
+    outlines: "Show outlines",
+    colors: "Show colors",
+    arrows: "Matching markers",
+    arrowsNote:
+      "Single marker = thick-rhombus edge · double = thin. Conway-style hint: markers must agree across a shared edge.",
+    center: "Centre · reset rotation",
+    thick: "thick",
+    thin: "thin",
+    thickHalves: "thick halves",
+    thinHalves: "thin halves",
+    ratioNote: "thick / thin → φ",
+    on: "on",
+    off: "off",
+    canvasLabel: "Penrose P3 rhombus tiling",
+  },
+  de: {
+    mode: "Modus",
+    modeRhombi: "Rhomben",
+    modeTriangles: "Halbdreiecke",
+    trianglesNote:
+      "Die Robinson-Halbdreiecke, aus denen die Rhomben geschnitten sind. Dicke Hälften violett, dünne bernstein; das Verhältnis dick/dünn konvergiert gegen φ ≈ 1,618.",
+    depth: "Deflationstiefe",
+    rhombiWord: "Rhomben",
+    halvesWord: "Halbkacheln",
+    depthNote: "Tiefe 6 sind schon etwa 1.200 Rhomben; die Anzahl wächst pro Schritt um φ² ≈ 2,618.",
+    rotation: "Keim-Drehung",
+    display: "Anzeige",
+    outlines: "Umrisse zeigen",
+    colors: "Farben zeigen",
+    arrows: "Anlegemarken",
+    arrowsNote:
+      "Einfache Marke = Kante des dicken Rhombus · doppelte = dünn. Conway-artiger Hinweis: die Marken müssen über eine geteilte Kante zusammenpassen.",
+    center: "Zentrieren · Drehung zurücksetzen",
+    thick: "dick",
+    thin: "dünn",
+    thickHalves: "dicke Hälften",
+    thinHalves: "dünne Hälften",
+    ratioNote: "dick / dünn → φ",
+    on: "an",
+    off: "aus",
+    canvasLabel: "Penrose-P3-Rhombenparkettierung",
+  },
+  es: {
+    mode: "Modo",
+    modeRhombi: "Rombos",
+    modeTriangles: "Medios triángulos",
+    trianglesNote:
+      "Los medios triángulos de Robinson de los que se recortan los rombos. Mitades gruesas en violeta, finas en ámbar; la razón grueso/fino converge a φ ≈ 1,618.",
+    depth: "Profundidad de deflación",
+    rhombiWord: "rombos",
+    halvesWord: "medias-piezas",
+    depthNote: "La profundidad 6 ya son unos 1200 rombos; el número crece por φ² ≈ 2,618 en cada paso.",
+    rotation: "Rotación de la semilla",
+    display: "Visualización",
+    outlines: "Mostrar contornos",
+    colors: "Mostrar colores",
+    arrows: "Marcas de encaje",
+    arrowsNote:
+      "Marca simple = arista del rombo grueso · doble = fino. Pista al estilo Conway: las marcas deben coincidir a través de una arista compartida.",
+    center: "Centrar · restablecer rotación",
+    thick: "grueso",
+    thin: "fino",
+    thickHalves: "mitades gruesas",
+    thinHalves: "mitades finas",
+    ratioNote: "grueso / fino → φ",
+    on: "sí",
+    off: "no",
+    canvasLabel: "Teselado de rombos Penrose P3",
+  },
+  fr: {
+    mode: "Mode",
+    modeRhombi: "Losanges",
+    modeTriangles: "Demi-triangles",
+    trianglesNote:
+      "Les demi-triangles de Robinson dont on découpe les losanges. Moitiés épaisses en violet, fines en ambre ; le rapport épais/fin converge vers φ ≈ 1,618.",
+    depth: "Profondeur de déflation",
+    rhombiWord: "losanges",
+    halvesWord: "demi-tuiles",
+    depthNote: "La profondeur 6 fait déjà environ 1 200 losanges ; le nombre croît de φ² ≈ 2,618 à chaque étape.",
+    rotation: "Rotation de la graine",
+    display: "Affichage",
+    outlines: "Afficher les contours",
+    colors: "Afficher les couleurs",
+    arrows: "Marques d'accord",
+    arrowsNote:
+      "Marque simple = arête du losange épais · double = fin. Indice façon Conway : les marques doivent concorder de part et d'autre d'une arête partagée.",
+    center: "Centrer · réinitialiser la rotation",
+    thick: "épais",
+    thin: "fin",
+    thickHalves: "moitiés épaisses",
+    thinHalves: "moitiés fines",
+    ratioNote: "épais / fin → φ",
+    on: "oui",
+    off: "non",
+    canvasLabel: "Pavage de losanges Penrose P3",
+  },
+  it: {
+    mode: "Modalità",
+    modeRhombi: "Rombi",
+    modeTriangles: "Mezzi triangoli",
+    trianglesNote:
+      "I mezzi triangoli di Robinson da cui si ritagliano i rombi. Metà spesse in viola, sottili in ambra; il rapporto spesso/sottile converge a φ ≈ 1,618.",
+    depth: "Profondità di deflazione",
+    rhombiWord: "rombi",
+    halvesWord: "mezze-piastrelle",
+    depthNote: "La profondità 6 sono già circa 1200 rombi; il numero cresce di φ² ≈ 2,618 a ogni passo.",
+    rotation: "Rotazione del seme",
+    display: "Visualizzazione",
+    outlines: "Mostra contorni",
+    colors: "Mostra colori",
+    arrows: "Marche di incastro",
+    arrowsNote:
+      "Marca singola = lato del rombo spesso · doppia = sottile. Suggerimento alla Conway: le marche devono combaciare su un lato condiviso.",
+    center: "Centra · azzera rotazione",
+    thick: "spesso",
+    thin: "sottile",
+    thickHalves: "metà spesse",
+    thinHalves: "metà sottili",
+    ratioNote: "spesso / sottile → φ",
+    on: "sì",
+    off: "no",
+    canvasLabel: "Tassellatura di rombi Penrose P3",
+  },
+  pt: {
+    mode: "Modo",
+    modeRhombi: "Losangos",
+    modeTriangles: "Meios triângulos",
+    trianglesNote:
+      "Os meios triângulos de Robinson de que se recortam os losangos. Metades espessas em violeta, finas em âmbar; a razão espesso/fino converge para φ ≈ 1,618.",
+    depth: "Profundidade de deflação",
+    rhombiWord: "losangos",
+    halvesWord: "meias-peças",
+    depthNote: "A profundidade 6 já são cerca de 1200 losangos; o número cresce por φ² ≈ 2,618 a cada passo.",
+    rotation: "Rotação da semente",
+    display: "Visualização",
+    outlines: "Mostrar contornos",
+    colors: "Mostrar cores",
+    arrows: "Marcas de encaixe",
+    arrowsNote:
+      "Marca simples = aresta do losango espesso · dupla = fino. Dica ao estilo Conway: as marcas têm de coincidir através de uma aresta partilhada.",
+    center: "Centrar · repor rotação",
+    thick: "espesso",
+    thin: "fino",
+    thickHalves: "metades espessas",
+    thinHalves: "metades finas",
+    ratioNote: "espesso / fino → φ",
+    on: "sim",
+    off: "não",
+    canvasLabel: "Tiling de losangos Penrose P3",
+  },
+  sv: {
+    mode: "Läge",
+    modeRhombi: "Romber",
+    modeTriangles: "Halvtrianglar",
+    trianglesNote:
+      "Robinson-halvtrianglarna som romberna skärs ur. Tjocka halvor i violett, tunna i bärnsten; förhållandet tjock/tunn konvergerar mot φ ≈ 1,618.",
+    depth: "Deflationsdjup",
+    rhombiWord: "romber",
+    halvesWord: "halvplattor",
+    depthNote: "Djup 6 är redan omkring 1 200 romber; antalet växer med φ² ≈ 2,618 per steg.",
+    rotation: "Frörotation",
+    display: "Visning",
+    outlines: "Visa konturer",
+    colors: "Visa färger",
+    arrows: "Matchmarkeringar",
+    arrowsNote:
+      "Enkel markering = kant på den tjocka romben · dubbel = tunn. Conway-liknande ledtråd: markeringarna måste stämma över en delad kant.",
+    center: "Centrera · nollställ rotation",
+    thick: "tjock",
+    thin: "tunn",
+    thickHalves: "tjocka halvor",
+    thinHalves: "tunna halvor",
+    ratioNote: "tjock / tunn → φ",
+    on: "på",
+    off: "av",
+    canvasLabel: "Penrose P3-rombparkettering",
+  },
+  no: {
+    mode: "Modus",
+    modeRhombi: "Romber",
+    modeTriangles: "Halvtrekanter",
+    trianglesNote:
+      "Robinson-halvtrekantene som rombene skjæres ut av. Tykke halvdeler i fiolett, tynne i rav; forholdet tykk/tynn konvergerer mot φ ≈ 1,618.",
+    depth: "Deflasjonsdybde",
+    rhombiWord: "romber",
+    halvesWord: "halvfliser",
+    depthNote: "Dybde 6 er allerede omtrent 1200 romber; antallet vokser med φ² ≈ 2,618 per trinn.",
+    rotation: "Frørotasjon",
+    display: "Visning",
+    outlines: "Vis omriss",
+    colors: "Vis farger",
+    arrows: "Matchmarkeringer",
+    arrowsNote:
+      "Enkel markering = kant på den tykke romben · dobbel = tynn. Conway-aktig hint: markeringene må stemme over en delt kant.",
+    center: "Sentrer · nullstill rotasjon",
+    thick: "tykk",
+    thin: "tynn",
+    thickHalves: "tykke halvdeler",
+    thinHalves: "tynne halvdeler",
+    ratioNote: "tykk / tynn → φ",
+    on: "på",
+    off: "av",
+    canvasLabel: "Penrose P3-rombeflislegging",
+  },
+};
+
 type Mode = "P3" | "P2";
 
 const FAT_FILL = "rgba(167, 139, 250, 0.30)"; // violet
@@ -177,15 +423,16 @@ const THIN_STROKE = "rgba(255, 110, 196, 0.95)";
 const ARROW_SINGLE = "rgba(255, 209, 102, 0.9)";
 const ARROW_DOUBLE = "rgba(125, 243, 255, 0.9)";
 
-// P2 kite + dart palette
-const KITE_FILL = "rgba(255, 209, 102, 0.15)"; // amber
-const KITE_STROKE = palette.signal.amber;
-const DART_FILL = "rgba(179, 136, 255, 0.15)"; // violet
-const DART_STROKE = palette.signal.violet;
+// Half-triangle palette: thick halves violet, thin halves amber
+const THICK_HALF_FILL = "rgba(179, 136, 255, 0.15)"; // violet
+const THICK_HALF_STROKE = palette.signal.violet;
+const THIN_HALF_FILL = "rgba(255, 209, 102, 0.15)"; // amber
+const THIN_HALF_STROKE = palette.signal.amber;
 
 export default function PenroseExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.penrose;
+  const copy = RICH_EXPLORER[locale];
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
 
@@ -207,7 +454,7 @@ export default function PenroseExplorer() {
 
   const p2Tris = useMemo<Tri[]>(() => {
     if (mode !== "P2") return [];
-    return buildP2Tiling(depth, rotationRad);
+    return buildHalfTriangles(depth, rotationRad);
   }, [mode, depth, rotationRad]);
 
   useEffect(() => {
@@ -235,16 +482,14 @@ export default function PenroseExplorer() {
       const py = (p: Complex) => cy - p.im * scale;
 
       if (mode === "P2") {
-        const kiteFill = showColors ? KITE_FILL : "rgba(205, 210, 224, 0.10)";
-        const dartFill = showColors ? DART_FILL : "rgba(205, 210, 224, 0.06)";
+        const thickFill = showColors ? THICK_HALF_FILL : "rgba(205, 210, 224, 0.10)";
+        const thinFill = showColors ? THIN_HALF_FILL : "rgba(205, 210, 224, 0.06)";
 
-        // Type-1 half-triangles multiply faster under the Robinson deflation
-        // (transition matrix [[1,1],[1,2]] has eigenvector [1, φ]), so we
-        // label them KITES and type-0 DARTS. With this convention the
-        // kite/dart count ratio converges to φ ≈ 1.618 — the canonical
-        // Penrose result. The geometric labelling is conventional; the
-        // deflation rules are the same Robinson half-triangles either way.
-        const isKite = (t: 0 | 1) => t === 1;
+        // Type-1 half-triangles (thick-rhombus halves) multiply faster under
+        // the Robinson deflation (transition matrix [[1,1],[1,2]] has
+        // eigenvector [1, φ]), so thick outnumber thin and the thick/thin
+        // count ratio converges to φ ≈ 1.618, the canonical Penrose result.
+        const isThick = (t: 0 | 1) => t === 1;
 
         // Pass 1: fills (half-triangles tile cleanly).
         for (const tr of p2Tris) {
@@ -253,17 +498,17 @@ export default function PenroseExplorer() {
           ctx.lineTo(px(tr.b), py(tr.b));
           ctx.lineTo(px(tr.c), py(tr.c));
           ctx.closePath();
-          ctx.fillStyle = isKite(tr.t) ? kiteFill : dartFill;
+          ctx.fillStyle = isThick(tr.t) ? thickFill : thinFill;
           ctx.fill();
         }
 
-        // Pass 2: outlines — draw only the two equal-length sides (A→B and A→C)
-        // so the internal symmetry-axis seams (B–C) are hidden, giving the
-        // illusion of full kites + darts without the pairing pass.
+        // Pass 2: outlines. Draw only the two rhombus sides (A→B and A→C) so
+        // the internal symmetry-axis seams (B to C) are hidden, showing each
+        // half-triangle cleanly.
         if (showOutlines) {
           ctx.lineWidth = Math.max(0.5, Math.min(1.4, 1.6 - depth * 0.15));
           for (const tr of p2Tris) {
-            ctx.strokeStyle = isKite(tr.t) ? KITE_STROKE : DART_STROKE;
+            ctx.strokeStyle = isThick(tr.t) ? THICK_HALF_STROKE : THIN_HALF_STROKE;
             ctx.globalAlpha = showColors ? 0.85 : 0.6;
             ctx.beginPath();
             ctx.moveTo(px(tr.a), py(tr.a));
@@ -295,11 +540,11 @@ export default function PenroseExplorer() {
         ctx.lineTo(px(r.pts[2]), py(r.pts[2]));
         ctx.lineTo(px(r.pts[3]), py(r.pts[3]));
         ctx.closePath();
-        ctx.fillStyle = r.t === 0 ? fatFill : thinFill;
+        ctx.fillStyle = r.t === 1 ? fatFill : thinFill;
         ctx.fill();
         if (showOutlines) {
           ctx.lineWidth = 0.8;
-          ctx.strokeStyle = r.t === 0 ? FAT_STROKE : THIN_STROKE;
+          ctx.strokeStyle = r.t === 1 ? FAT_STROKE : THIN_STROKE;
           ctx.globalAlpha = showColors ? 0.7 : 0.55;
           ctx.stroke();
           ctx.globalAlpha = 1;
@@ -346,7 +591,7 @@ export default function PenroseExplorer() {
           }
         };
         for (const r of rhombi) {
-          const single = r.t === 0; // fat → single arrows
+          const single = r.t === 1; // thick (fat) → single arrows
           const colour = single ? ARROW_SINGLE : ARROW_DOUBLE;
           drawArrow(r.pts[0], r.pts[1], colour, !single);
           drawArrow(r.pts[2], r.pts[3], colour, single);
@@ -368,19 +613,17 @@ export default function PenroseExplorer() {
   }, [rhombi, p2Tris, mode, depth, showOutlines, showColors, showArrows, recenterTick, dpr]);
 
   const tileCount = rhombi.length;
-  const fatCount = rhombi.filter((r) => r.t === 0).length;
-  const thinCount = rhombi.filter((r) => r.t === 1).length;
+  // type 1 → thick rhombus, type 0 → thin rhombus. Thick outnumber thin by φ.
+  const fatCount = rhombi.filter((r) => r.t === 1).length;
+  const thinCount = rhombi.filter((r) => r.t === 0).length;
   const ratio = thinCount > 0 ? (fatCount / thinCount).toFixed(4) : "—";
 
-  // P2 counts: two mirrored half-triangles pair into one full kite/dart, so
-  // round the halves down. With type-1 = kite, type-0 = dart the
-  // kite:dart ratio converges to φ ≈ 1.618.
-  const kiteHalves = p2Tris.filter((t) => t.t === 1).length;
-  const dartHalves = p2Tris.filter((t) => t.t === 0).length;
-  const kiteCount = Math.round(kiteHalves / 2);
-  const dartCount = Math.round(dartHalves / 2);
-  const p2Ratio = dartCount > 0 ? (kiteCount / dartCount).toFixed(4) : "—";
-  const p2TileCount = kiteCount + dartCount;
+  // Half-triangle counts: type 1 = thick-rhombus halves, type 0 = thin. The
+  // thick/thin count ratio converges to φ ≈ 1.618.
+  const thickHalfCount = p2Tris.filter((t) => t.t === 1).length;
+  const thinHalfCount = p2Tris.filter((t) => t.t === 0).length;
+  const p2Ratio = thinHalfCount > 0 ? (thickHalfCount / thinHalfCount).toFixed(4) : "—";
+  const halfCount = p2Tris.length;
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
@@ -389,43 +632,48 @@ export default function PenroseExplorer() {
           <div className="flex items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {mode === "P3"
-                ? `Penrose P3 · inflation depth ${depth} · ${tileCount} rhombi`
-                : `Penrose P2 · deflation depth ${depth} · ${p2TileCount} tiles`}
+                ? `Penrose P3 · ${copy.depth} ${depth} · ${tileCount} ${copy.rhombiWord}`
+                : `Penrose P3 · ${copy.depth} ${depth} · ${halfCount} ${copy.halvesWord}`}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
               φ = (1 + √5) / 2
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={canvasRef} className="block h-full w-full" />
+            <canvas
+              ref={canvasRef}
+              className="block h-full w-full"
+              role="img"
+              aria-label={`${copy.canvasLabel} · ${copy.depth} ${depth}`}
+            />
           </div>
           {mode === "P3" ? (
             <div className="grid grid-cols-3 gap-3">
               <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase text-ink-300">
-                <div className="text-signal-violet">fat (thick)</div>
+                <div className="text-signal-violet">{copy.thick}</div>
                 <div className="mt-1 font-mono text-sm normal-case text-ink-100">{fatCount}</div>
               </div>
               <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase text-ink-300">
-                <div className="text-signal-rose">thin</div>
+                <div className="text-signal-rose">{copy.thin}</div>
                 <div className="mt-1 font-mono text-sm normal-case text-ink-100">{thinCount}</div>
               </div>
               <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase text-ink-300">
-                <div>fat / thin → φ</div>
+                <div>{copy.ratioNote}</div>
                 <div className="mt-1 font-mono text-sm normal-case text-ink-100">{ratio}</div>
               </div>
             </div>
           ) : (
             <div className="grid grid-cols-3 gap-3">
               <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase text-ink-300">
-                <div className="text-signal-amber">kites</div>
-                <div className="mt-1 font-mono text-sm normal-case text-ink-100">{kiteCount}</div>
+                <div className="text-signal-violet">{copy.thickHalves}</div>
+                <div className="mt-1 font-mono text-sm normal-case text-ink-100">{thickHalfCount}</div>
               </div>
               <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase text-ink-300">
-                <div className="text-signal-violet">darts</div>
-                <div className="mt-1 font-mono text-sm normal-case text-ink-100">{dartCount}</div>
+                <div className="text-signal-amber">{copy.thinHalves}</div>
+                <div className="mt-1 font-mono text-sm normal-case text-ink-100">{thinHalfCount}</div>
               </div>
               <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase text-ink-300">
-                <div>kite / dart → φ</div>
+                <div>{copy.ratioNote}</div>
                 <div className="mt-1 font-mono text-sm normal-case text-ink-100">{p2Ratio}</div>
               </div>
             </div>
@@ -443,39 +691,41 @@ export default function PenroseExplorer() {
 
           <div className="hairline space-y-4 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Mode
+              {copy.mode}
             </div>
             <div className="grid grid-cols-2 gap-2">
               {(["P3", "P2"] as Mode[]).map((m) => (
                 <button
                   key={m}
                   onClick={() => setMode(m)}
+                  aria-pressed={mode === m}
                   className={`rounded-md border px-3 py-2 font-mono text-xs transition-colors ${
                     mode === m
                       ? "border-signal-violet/60 bg-signal-violet/10 text-signal-violet"
                       : "hairline text-ink-200 hover:border-signal-violet/40 hover:text-ink-100"
                   }`}
                 >
-                  {m === "P3" ? "P3 rhombi" : "P2 kite + dart"}
+                  {m === "P3" ? copy.modeRhombi : copy.modeTriangles}
                 </button>
               ))}
             </div>
             {mode === "P2" && (
               <p className="font-mono text-[10px] leading-relaxed text-ink-400">
-                Robinson half-triangle deflation from the sun seed — amber kites, violet darts.
-                Kite/dart ratio converges to φ ≈ 1.618.
+                {copy.trianglesNote}
               </p>
             )}
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Inflation depth
+              {copy.depth}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-violet">{depth}</span>
               <span className="text-[10px] text-ink-400">
-                {mode === "P3" ? `${tileCount} rhombi` : `${p2TileCount} tiles`}
+                {mode === "P3"
+                  ? `${tileCount} ${copy.rhombiWord}`
+                  : `${halfCount} ${copy.halvesWord}`}
               </span>
             </div>
             <input
@@ -486,22 +736,16 @@ export default function PenroseExplorer() {
               step={1}
               onChange={(e) => setDepth(parseInt(e.target.value, 10))}
               className="w-full accent-signal-violet"
+              aria-label={copy.depth}
             />
-            {depth > 6 && (
-              <p className="font-mono text-[10px] leading-relaxed text-signal-amber">
-                Depths above 6 may stutter — the tile count grows by φ² ≈ 2.618 each step.
-              </p>
-            )}
-            {depth === 6 && (
-              <p className="font-mono text-[10px] leading-relaxed text-ink-400">
-                Depth 6 already exceeds 10 000 tiles — denser is slower.
-              </p>
+            {depth >= 5 && (
+              <p className="font-mono text-[10px] leading-relaxed text-ink-400">{copy.depthNote}</p>
             )}
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Seed rotation
+              {copy.rotation}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-amber">{rotation}°</span>
@@ -514,20 +758,18 @@ export default function PenroseExplorer() {
               step={1}
               onChange={(e) => setRotation(parseInt(e.target.value, 10))}
               className="w-full accent-signal-amber"
+              aria-label={copy.rotation}
             />
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Display
+              {copy.display}
             </div>
-            <Toggle label="Show outlines" value={showOutlines} onChange={setShowOutlines} />
-            <Toggle label="Show colors" value={showColors} onChange={setShowColors} />
-            <Toggle label="Matching arrows" value={showArrows} onChange={setShowArrows} />
-            <p className="pt-1 font-mono text-[10px] leading-relaxed text-ink-400">
-              Single arrow = fat-rhombus edge marker · double = thin. Conway's rule: arrows must
-              point the same way across a shared edge.
-            </p>
+            <Toggle label={copy.outlines} value={showOutlines} onChange={setShowOutlines} on={copy.on} off={copy.off} />
+            <Toggle label={copy.colors} value={showColors} onChange={setShowColors} on={copy.on} off={copy.off} />
+            <Toggle label={copy.arrows} value={showArrows} onChange={setShowArrows} on={copy.on} off={copy.off} />
+            <p className="pt-1 font-mono text-[10px] leading-relaxed text-ink-400">{copy.arrowsNote}</p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
@@ -538,7 +780,7 @@ export default function PenroseExplorer() {
               }}
               className="hairline block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-violet/40 hover:text-signal-violet"
             >
-              Centre · reset rotation
+              {copy.center}
             </button>
           </div>
 
@@ -560,14 +802,19 @@ function Toggle({
   label,
   value,
   onChange,
+  on,
+  off,
 }: {
   label: string;
   value: boolean;
   onChange: (v: boolean) => void;
+  on: string;
+  off: string;
 }) {
   return (
     <button
       onClick={() => onChange(!value)}
+      aria-pressed={value}
       className={`flex w-full items-center justify-between rounded-md border px-3 py-2 font-mono text-xs transition-colors ${
         value
           ? "border-signal-violet/50 bg-signal-violet/10 text-signal-violet"
@@ -575,7 +822,7 @@ function Toggle({
       }`}
     >
       <span>{label}</span>
-      <span className="text-[10px] uppercase tracking-widest2">{value ? "on" : "off"}</span>
+      <span className="text-[10px] uppercase tracking-widest2">{value ? on : off}</span>
     </button>
   );
 }

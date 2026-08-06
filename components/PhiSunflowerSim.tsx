@@ -5,9 +5,9 @@ import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
 // Vogel-model sunflower phyllotaxis renderer for the φ story page. Seeds are
-// placed at (r, θ) = (c·√n, n·α). The user controls α from 137.0° to 138.0°
-// in tenths of a degree — the golden angle 137.508° produces dense, gap-free
-// packing; any other value reveals visible radial spokes or clumps.
+// placed at (r, θ) = (c·√n, n·α). The user controls α from 136.5° to 138.5°
+// in hundredths of a degree. The golden angle 137.508° produces dense, gap-free
+// packing; a full degree either way reveals visible radial spokes or clumps.
 
 interface Props {
   caption: string;
@@ -24,8 +24,10 @@ const GOLDEN_DEG = 137.507764;
 export function PhiSunflowerSim({ caption, angleLabel, seedsLabel, hint, goldenLabel }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
-  // Step in hundredths of a degree so 137.5077 (golden) is reachable exactly.
-  const [angle, setAngle] = useState<number>(137.51);
+  // Start exactly at the golden angle; the "Golden" button restores it (the
+  // range input accepts off-step values set programmatically, so the exact
+  // 137.507764 lands even though the slider itself steps in hundredths).
+  const [angle, setAngle] = useState<number>(GOLDEN_DEG);
   const [seedCount, setSeedCount] = useState<number>(640);
 
   useEffect(() => {
@@ -91,7 +93,8 @@ export function PhiSunflowerSim({ caption, angleLabel, seedsLabel, hint, goldenL
           <canvas
             ref={canvasRef}
             className="hairline rounded-xl border bg-ink-950"
-            aria-label="Sunflower phyllotaxis simulation"
+            role="img"
+            aria-label={caption}
           />
         </div>
 
@@ -109,18 +112,18 @@ export function PhiSunflowerSim({ caption, angleLabel, seedsLabel, hint, goldenL
             <input
               id="phi-sun-angle"
               type="range"
-              min={137.0}
-              max={138.0}
+              min={136.5}
+              max={138.5}
               step={0.01}
               value={angle}
               onChange={(e) => setAngle(parseFloat(e.target.value))}
               className="w-full accent-signal-amber"
             />
             <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-ink-400">
-              <span>137.00°</span>
+              <span>136.50°</span>
               <button
                 type="button"
-                onClick={() => setAngle(137.51)}
+                onClick={() => setAngle(GOLDEN_DEG)}
                 className={`hairline rounded border px-2 py-1 transition-colors ${
                   isGolden
                     ? "border-signal-amber/70 bg-signal-amber/10 text-signal-amber"
@@ -129,7 +132,7 @@ export function PhiSunflowerSim({ caption, angleLabel, seedsLabel, hint, goldenL
               >
                 {goldenLabel}
               </button>
-              <span>138.00°</span>
+              <span>138.50°</span>
             </div>
           </div>
 

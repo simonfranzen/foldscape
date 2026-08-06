@@ -85,7 +85,7 @@ const en: RichStory = {
     {
       pretitle: "Section 03 · The first domino",
       title: "Cook–Levin and NP-completeness",
-      body: "Cook (1971) and, independently behind the Iron Curtain, Levin (1973) proved the pivotal fact: you can encode the entire run of any polynomial-time non-deterministic machine as a Boolean formula — variables for the tape, the head and the clock; clauses that force the rules of computation — so that the formula is satisfiable exactly when the machine accepts. Hence every problem in NP reduces to SAT. The year after, Richard Karp showed 21 famous problems — graph colouring, Hamiltonian path, subset sum — reduce to it too. SAT is the first domino: knock it over quickly and the whole row falls.",
+      body: "Cook (1971) and, independently behind the Iron Curtain, Levin (1973) proved the pivotal fact: you can encode the entire run of any polynomial-time non-deterministic machine as a Boolean formula — variables for the tape, the head and the clock; clauses that force the rules of computation — so that the formula is satisfiable exactly when the machine accepts. Hence every problem in NP reduces to SAT. The year after, Richard Karp showed 21 famous problems — graph colouring, Hamiltonian cycle, subset sum — reduce to it too. SAT is the first domino: knock it over quickly and the whole row falls.",
     },
     {
       pretitle: "Section 04 · How solvers actually win",
@@ -95,7 +95,7 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · Where it gets hard",
       title: "Tractable islands and the phase transition",
-      body: "Not all of SAT is hard. 2-SAT — at most two literals per clause — is solvable in linear time; so are Horn and XOR formulas. Schaefer's 1978 dichotomy theorem is startling: every Boolean constraint problem of this shape is either in P or NP-complete, with nothing in between. And randomly generated 3-SAT shows a phase transition: as the ratio of clauses to variables crosses about 4.27, formulas flip sharply from almost-always-satisfiable to almost-always-unsatisfiable — and the very hardest instances cluster right at that threshold, like water poised exactly at freezing.",
+      body: "Not all of SAT is hard. 2-SAT — at most two literals per clause — is solvable in linear time, as are Horn formulas; XOR formulas fall in polynomial time via Gaussian elimination over GF(2). Schaefer's 1978 dichotomy theorem is startling: every Boolean constraint problem of this shape is either in P or NP-complete, with nothing in between. And randomly generated 3-SAT shows a phase transition: as the ratio of clauses to variables crosses about 4.27, formulas flip sharply from almost-always-satisfiable to almost-always-unsatisfiable — and the very hardest instances cluster right at that threshold, like water poised exactly at freezing.",
     },
   ],
   toggleCaption: "Satisfy it by hand",
@@ -159,7 +159,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Der erste Dominostein",
       title: "Cook–Levin und NP-Vollständigkeit",
-      body: "Cook (1971) und, unabhängig hinter dem Eisernen Vorhang, Levin (1973) bewiesen das Entscheidende: Man kann den gesamten Lauf jeder nichtdeterministischen Polynomialzeit-Maschine als boolesche Formel kodieren — Variablen für Band, Kopf und Takt; Klauseln, die die Rechenregeln erzwingen — sodass die Formel genau dann erfüllbar ist, wenn die Maschine akzeptiert. Also lässt sich jedes Problem in NP auf SAT zurückführen. Im Jahr darauf zeigte Richard Karp, dass 21 berühmte Probleme — Graphenfärbung, Hamilton-Pfad, Teilsummen — sich ebenfalls darauf reduzieren. SAT ist der erste Dominostein: Kippt er schnell, fällt die ganze Reihe.",
+      body: "Cook (1971) und, unabhängig hinter dem Eisernen Vorhang, Levin (1973) bewiesen das Entscheidende: Man kann den gesamten Lauf jeder nichtdeterministischen Polynomialzeit-Maschine als boolesche Formel kodieren — Variablen für Band, Kopf und Takt; Klauseln, die die Rechenregeln erzwingen — sodass die Formel genau dann erfüllbar ist, wenn die Maschine akzeptiert. Also lässt sich jedes Problem in NP auf SAT zurückführen. Im Jahr darauf zeigte Richard Karp, dass 21 berühmte Probleme — Graphenfärbung, Hamilton-Kreis, Teilsummen — sich ebenfalls darauf reduzieren. SAT ist der erste Dominostein: Kippt er schnell, fällt die ganze Reihe.",
     },
     {
       pretitle: "Abschnitt 04 · Wie Solver wirklich gewinnen",
@@ -169,7 +169,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Wo es schwer wird",
       title: "Inseln der Leichtigkeit und der Phasenübergang",
-      body: "Nicht alles an SAT ist schwer. 2-SAT — höchstens zwei Literale pro Klausel — ist in Linearzeit lösbar; Horn- und XOR-Formeln ebenso. Schaefers Dichotomie-Satz von 1978 ist verblüffend: Jedes boolesche Constraint-Problem dieser Bauart ist entweder in P oder NP-vollständig, nichts dazwischen. Und zufällig erzeugtes 3-SAT zeigt einen Phasenübergang: Sobald das Verhältnis von Klauseln zu Variablen etwa 4,27 überschreitet, kippen Formeln abrupt von fast-immer-erfüllbar zu fast-immer-unerfüllbar — und die allerschwersten Instanzen drängen sich genau an dieser Schwelle, wie Wasser exakt am Gefrierpunkt.",
+      body: "Nicht alles an SAT ist schwer. 2-SAT — höchstens zwei Literale pro Klausel — ist in Linearzeit lösbar, Horn-Formeln ebenso; XOR-Formeln liegen in Polynomialzeit dank Gauß-Elimination über GF(2). Schaefers Dichotomie-Satz von 1978 ist verblüffend: Jedes boolesche Constraint-Problem dieser Bauart ist entweder in P oder NP-vollständig, nichts dazwischen. Und zufällig erzeugtes 3-SAT zeigt einen Phasenübergang: Sobald das Verhältnis von Klauseln zu Variablen etwa 4,27 überschreitet, kippen Formeln abrupt von fast-immer-erfüllbar zu fast-immer-unerfüllbar — und die allerschwersten Instanzen drängen sich genau an dieser Schwelle, wie Wasser exakt am Gefrierpunkt.",
     },
   ],
   toggleCaption: "Von Hand erfüllen",
@@ -233,7 +233,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 03 · La primera ficha de dominó",
       title: "Cook–Levin y la NP-completitud",
-      body: "Cook (1971) y, de forma independiente tras el Telón de Acero, Levin (1973) probaron lo decisivo: puedes codificar la ejecución completa de cualquier máquina no determinista de tiempo polinómico como una fórmula booleana — variables para la cinta, el cabezal y el reloj; cláusulas que imponen las reglas del cómputo — de modo que la fórmula es satisfacible exactamente cuando la máquina acepta. Así, todo problema de NP se reduce a SAT. Al año siguiente, Richard Karp mostró que 21 problemas famosos — coloreo de grafos, camino hamiltoniano, suma de subconjuntos — también se reducen a él. SAT es la primera ficha: derríbala rápido y cae la fila entera.",
+      body: "Cook (1971) y, de forma independiente tras el Telón de Acero, Levin (1973) probaron lo decisivo: puedes codificar la ejecución completa de cualquier máquina no determinista de tiempo polinómico como una fórmula booleana — variables para la cinta, el cabezal y el reloj; cláusulas que imponen las reglas del cómputo — de modo que la fórmula es satisfacible exactamente cuando la máquina acepta. Así, todo problema de NP se reduce a SAT. Al año siguiente, Richard Karp mostró que 21 problemas famosos — coloreo de grafos, ciclo hamiltoniano, suma de subconjuntos — también se reducen a él. SAT es la primera ficha: derríbala rápido y cae la fila entera.",
     },
     {
       pretitle: "Sección 04 · Cómo ganan de verdad los solvers",
@@ -243,7 +243,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · Dónde se pone difícil",
       title: "Islas tratables y la transición de fase",
-      body: "No todo SAT es difícil. 2-SAT — a lo sumo dos literales por cláusula — se resuelve en tiempo lineal; también las fórmulas de Horn y XOR. El teorema de dicotomía de Schaefer (1978) es asombroso: todo problema booleano de restricciones de esta forma está en P o es NP-completo, sin nada en medio. Y el 3-SAT generado al azar muestra una transición de fase: cuando la razón de cláusulas a variables cruza alrededor de 4,27, las fórmulas saltan bruscamente de casi-siempre-satisfacibles a casi-siempre-insatisfacibles — y las instancias más difíciles se agolpan justo en ese umbral, como agua al borde mismo de la congelación.",
+      body: "No todo SAT es difícil. 2-SAT — a lo sumo dos literales por cláusula — se resuelve en tiempo lineal, igual que las fórmulas de Horn; las fórmulas XOR quedan en tiempo polinómico mediante eliminación gaussiana sobre GF(2). El teorema de dicotomía de Schaefer (1978) es asombroso: todo problema booleano de restricciones de esta forma está en P o es NP-completo, sin nada en medio. Y el 3-SAT generado al azar muestra una transición de fase: cuando la razón de cláusulas a variables cruza alrededor de 4,27, las fórmulas saltan bruscamente de casi-siempre-satisfacibles a casi-siempre-insatisfacibles — y las instancias más difíciles se agolpan justo en ese umbral, como agua al borde mismo de la congelación.",
     },
   ],
   toggleCaption: "Satisfácela a mano",
@@ -307,7 +307,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · Le premier domino",
       title: "Cook–Levin et la NP-complétude",
-      body: "Cook (1971) et, indépendamment derrière le rideau de fer, Levin (1973) ont prouvé l'essentiel : on peut encoder l'exécution entière de toute machine non déterministe en temps polynomial comme une formule booléenne — variables pour le ruban, la tête et l'horloge ; clauses imposant les règles du calcul — de sorte que la formule est satisfaisable exactement quand la machine accepte. Donc tout problème de NP se ramène à SAT. L'année suivante, Richard Karp a montré que 21 problèmes célèbres — coloration de graphes, chemin hamiltonien, somme de sous-ensembles — s'y ramènent aussi. SAT est le premier domino : fais-le tomber vite et toute la rangée suit.",
+      body: "Cook (1971) et, indépendamment derrière le rideau de fer, Levin (1973) ont prouvé l'essentiel : on peut encoder l'exécution entière de toute machine non déterministe en temps polynomial comme une formule booléenne — variables pour le ruban, la tête et l'horloge ; clauses imposant les règles du calcul — de sorte que la formule est satisfaisable exactement quand la machine accepte. Donc tout problème de NP se ramène à SAT. L'année suivante, Richard Karp a montré que 21 problèmes célèbres — coloration de graphes, cycle hamiltonien, somme de sous-ensembles — s'y ramènent aussi. SAT est le premier domino : fais-le tomber vite et toute la rangée suit.",
     },
     {
       pretitle: "Section 04 · Comment les solveurs gagnent vraiment",
@@ -317,7 +317,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Là où ça devient dur",
       title: "Îlots traitables et transition de phase",
-      body: "Tout SAT n'est pas dur. 2-SAT — au plus deux littéraux par clause — se résout en temps linéaire ; de même les formules de Horn et XOR. Le théorème de dichotomie de Schaefer (1978) est saisissant : tout problème de contraintes booléennes de cette forme est soit dans P, soit NP-complet, sans rien entre les deux. Et le 3-SAT engendré au hasard montre une transition de phase : quand le rapport clauses/variables franchit environ 4,27, les formules basculent brusquement de presque-toujours-satisfaisables à presque-toujours-insatisfaisables — et les instances les plus dures se massent juste à ce seuil, comme l'eau exactement au point de gel.",
+      body: "Tout SAT n'est pas dur. 2-SAT — au plus deux littéraux par clause — se résout en temps linéaire, tout comme les formules de Horn ; les formules XOR relèvent du temps polynomial via l'élimination de Gauss sur GF(2). Le théorème de dichotomie de Schaefer (1978) est saisissant : tout problème de contraintes booléennes de cette forme est soit dans P, soit NP-complet, sans rien entre les deux. Et le 3-SAT engendré au hasard montre une transition de phase : quand le rapport clauses/variables franchit environ 4,27, les formules basculent brusquement de presque-toujours-satisfaisables à presque-toujours-insatisfaisables — et les instances les plus dures se massent juste à ce seuil, comme l'eau exactement au point de gel.",
     },
   ],
   toggleCaption: "Satisfais-la à la main",
@@ -381,7 +381,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 03 · Il primo domino",
       title: "Cook–Levin e la NP-completezza",
-      body: "Cook (1971) e, indipendentemente dietro la cortina di ferro, Levin (1973) dimostrarono il punto cruciale: si può codificare l'intera esecuzione di qualsiasi macchina non deterministica polinomiale come formula booleana — variabili per il nastro, la testina e il clock; clausole che impongono le regole del calcolo — così che la formula è soddisfacibile esattamente quando la macchina accetta. Quindi ogni problema in NP si riduce a SAT. L'anno dopo, Richard Karp mostrò che 21 problemi celebri — colorazione di grafi, cammino hamiltoniano, somma di sottoinsiemi — vi si riducono pure. SAT è il primo domino: abbattilo in fretta e cade l'intera fila.",
+      body: "Cook (1971) e, indipendentemente dietro la cortina di ferro, Levin (1973) dimostrarono il punto cruciale: si può codificare l'intera esecuzione di qualsiasi macchina non deterministica polinomiale come formula booleana — variabili per il nastro, la testina e il clock; clausole che impongono le regole del calcolo — così che la formula è soddisfacibile esattamente quando la macchina accetta. Quindi ogni problema in NP si riduce a SAT. L'anno dopo, Richard Karp mostrò che 21 problemi celebri — colorazione di grafi, ciclo hamiltoniano, somma di sottoinsiemi — vi si riducono pure. SAT è il primo domino: abbattilo in fretta e cade l'intera fila.",
     },
     {
       pretitle: "Sezione 04 · Come vincono davvero i solver",
@@ -391,7 +391,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · Dove diventa difficile",
       title: "Isole trattabili e la transizione di fase",
-      body: "Non tutto SAT è difficile. 2-SAT — al più due letterali per clausola — si risolve in tempo lineare; così le formule di Horn e XOR. Il teorema di dicotomia di Schaefer (1978) è sorprendente: ogni problema di vincoli booleani di questa forma è in P oppure NP-completo, senza nulla in mezzo. E il 3-SAT generato a caso mostra una transizione di fase: quando il rapporto clausole/variabili supera circa 4,27, le formule passano bruscamente da quasi-sempre-soddisfacibili a quasi-sempre-insoddisfacibili — e le istanze più difficili si accalcano proprio a quella soglia, come acqua esattamente al punto di congelamento.",
+      body: "Non tutto SAT è difficile. 2-SAT — al più due letterali per clausola — si risolve in tempo lineare, come le formule di Horn; le formule XOR ricadono nel tempo polinomiale tramite l'eliminazione di Gauss su GF(2). Il teorema di dicotomia di Schaefer (1978) è sorprendente: ogni problema di vincoli booleani di questa forma è in P oppure NP-completo, senza nulla in mezzo. E il 3-SAT generato a caso mostra una transizione di fase: quando il rapporto clausole/variabili supera circa 4,27, le formule passano bruscamente da quasi-sempre-soddisfacibili a quasi-sempre-insoddisfacibili — e le istanze più difficili si accalcano proprio a quella soglia, come acqua esattamente al punto di congelamento.",
     },
   ],
   toggleCaption: "Soddisfala a mano",
@@ -455,7 +455,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 03 · O primeiro dominó",
       title: "Cook–Levin e a NP-completude",
-      body: "Cook (1971) e, de forma independente atrás da Cortina de Ferro, Levin (1973) provaram o essencial: pode-se codificar a execução inteira de qualquer máquina não determinista de tempo polinomial como uma fórmula booleana — variáveis para a fita, a cabeça e o relógio; cláusulas que impõem as regras do cálculo — de modo que a fórmula é satisfazível exatamente quando a máquina aceita. Assim, todo problema em NP reduz-se a SAT. No ano seguinte, Richard Karp mostrou que 21 problemas famosos — coloração de grafos, caminho hamiltoniano, soma de subconjuntos — também se reduzem a ele. SAT é o primeiro dominó: derruba-o depressa e cai a fila inteira.",
+      body: "Cook (1971) e, de forma independente atrás da Cortina de Ferro, Levin (1973) provaram o essencial: pode-se codificar a execução inteira de qualquer máquina não determinista de tempo polinomial como uma fórmula booleana — variáveis para a fita, a cabeça e o relógio; cláusulas que impõem as regras do cálculo — de modo que a fórmula é satisfazível exatamente quando a máquina aceita. Assim, todo problema em NP reduz-se a SAT. No ano seguinte, Richard Karp mostrou que 21 problemas famosos — coloração de grafos, ciclo hamiltoniano, soma de subconjuntos — também se reduzem a ele. SAT é o primeiro dominó: derruba-o depressa e cai a fila inteira.",
     },
     {
       pretitle: "Secção 04 · Como os solvers vencem de facto",
@@ -465,7 +465,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · Onde se torna difícil",
       title: "Ilhas tratáveis e a transição de fase",
-      body: "Nem todo o SAT é difícil. 2-SAT — no máximo dois literais por cláusula — resolve-se em tempo linear; também as fórmulas de Horn e XOR. O teorema de dicotomia de Schaefer (1978) é impressionante: todo problema de restrições booleanas desta forma está em P ou é NP-completo, sem nada pelo meio. E o 3-SAT gerado ao acaso mostra uma transição de fase: quando a razão de cláusulas para variáveis cruza cerca de 4,27, as fórmulas saltam bruscamente de quase-sempre-satisfazíveis a quase-sempre-insatisfazíveis — e as instâncias mais difíceis amontoam-se mesmo nesse limiar, como água exatamente no ponto de congelação.",
+      body: "Nem todo o SAT é difícil. 2-SAT — no máximo dois literais por cláusula — resolve-se em tempo linear, tal como as fórmulas de Horn; as fórmulas XOR ficam em tempo polinomial via eliminação de Gauss sobre GF(2). O teorema de dicotomia de Schaefer (1978) é impressionante: todo problema de restrições booleanas desta forma está em P ou é NP-completo, sem nada pelo meio. E o 3-SAT gerado ao acaso mostra uma transição de fase: quando a razão de cláusulas para variáveis cruza cerca de 4,27, as fórmulas saltam bruscamente de quase-sempre-satisfazíveis a quase-sempre-insatisfazíveis — e as instâncias mais difíceis amontoam-se mesmo nesse limiar, como água exatamente no ponto de congelação.",
     },
   ],
   toggleCaption: "Satisfaz à mão",
@@ -529,7 +529,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 03 · Den första brickan",
       title: "Cook–Levin och NP-fullständighet",
-      body: "Cook (1971) och, oberoende bakom järnridån, Levin (1973) bevisade det avgörande: man kan koda hela körningen av vilken icke-deterministisk polynomtidsmaskin som helst som en boolesk formel — variabler för bandet, huvudet och klockan; klausuler som tvingar fram beräkningsreglerna — så att formeln är satisfierbar exakt när maskinen accepterar. Alltså reduceras varje problem i NP till SAT. Året därpå visade Richard Karp att 21 berömda problem — graffärgning, hamiltonsk väg, delmängdssumma — också reduceras till det. SAT är den första brickan: fäll den snabbt och hela raden faller.",
+      body: "Cook (1971) och, oberoende bakom järnridån, Levin (1973) bevisade det avgörande: man kan koda hela körningen av vilken icke-deterministisk polynomtidsmaskin som helst som en boolesk formel — variabler för bandet, huvudet och klockan; klausuler som tvingar fram beräkningsreglerna — så att formeln är satisfierbar exakt när maskinen accepterar. Alltså reduceras varje problem i NP till SAT. Året därpå visade Richard Karp att 21 berömda problem — graffärgning, hamiltonsk cykel, delmängdssumma — också reduceras till det. SAT är den första brickan: fäll den snabbt och hela raden faller.",
     },
     {
       pretitle: "Avsnitt 04 · Hur lösare faktiskt vinner",
@@ -539,7 +539,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Där det blir svårt",
       title: "Lösbara öar och fasövergången",
-      body: "Allt SAT är inte svårt. 2-SAT — högst två literaler per klausul — löses i linjär tid; likaså Horn- och XOR-formler. Schaefers dikotomisats (1978) är häpnadsväckande: varje booleskt villkorsproblem av den här formen är antingen i P eller NP-fullständigt, med ingenting däremellan. Och slumpmässigt genererad 3-SAT visar en fasövergång: när förhållandet mellan klausuler och variabler passerar omkring 4,27 vänder formler tvärt från nästan-alltid-satisfierbara till nästan-alltid-osatisfierbara — och de allra svåraste instanserna trängs precis vid den tröskeln, som vatten exakt vid fryspunkten.",
+      body: "Allt SAT är inte svårt. 2-SAT — högst två literaler per klausul — löses i linjär tid, liksom Horn-formler; XOR-formler ligger i polynomtid via gausselimination över GF(2). Schaefers dikotomisats (1978) är häpnadsväckande: varje booleskt villkorsproblem av den här formen är antingen i P eller NP-fullständigt, med ingenting däremellan. Och slumpmässigt genererad 3-SAT visar en fasövergång: när förhållandet mellan klausuler och variabler passerar omkring 4,27 vänder formler tvärt från nästan-alltid-satisfierbara till nästan-alltid-osatisfierbara — och de allra svåraste instanserna trängs precis vid den tröskeln, som vatten exakt vid fryspunkten.",
     },
   ],
   toggleCaption: "Satisfiera för hand",
@@ -603,7 +603,7 @@ const no: RichStory = {
     {
       pretitle: "Del 03 · Den første brikken",
       title: "Cook–Levin og NP-fullstendighet",
-      body: "Cook (1971) og, uavhengig bak jernteppet, Levin (1973) beviste det avgjørende: man kan kode hele kjøringen av enhver ikke-deterministisk polynomtidsmaskin som en boolsk formel — variabler for båndet, hodet og klokken; klausuler som tvinger fram beregningsreglene — slik at formelen er oppfyllbar nøyaktig når maskinen aksepterer. Altså reduseres ethvert problem i NP til SAT. Året etter viste Richard Karp at 21 berømte problemer — graffarging, hamiltonsk sti, delmengdesum — også reduseres til det. SAT er den første brikken: velt den raskt, så faller hele rekken.",
+      body: "Cook (1971) og, uavhengig bak jernteppet, Levin (1973) beviste det avgjørende: man kan kode hele kjøringen av enhver ikke-deterministisk polynomtidsmaskin som en boolsk formel — variabler for båndet, hodet og klokken; klausuler som tvinger fram beregningsreglene — slik at formelen er oppfyllbar nøyaktig når maskinen aksepterer. Altså reduseres ethvert problem i NP til SAT. Året etter viste Richard Karp at 21 berømte problemer — graffarging, hamiltonsk sykel, delmengdesum — også reduseres til det. SAT er den første brikken: velt den raskt, så faller hele rekken.",
     },
     {
       pretitle: "Del 04 · Hvordan løsere faktisk vinner",
@@ -613,7 +613,7 @@ const no: RichStory = {
     {
       pretitle: "Del 05 · Der det blir vanskelig",
       title: "Løsbare øyer og faseovergangen",
-      body: "Ikke alt SAT er vanskelig. 2-SAT — høyst to literaler per klausul — løses i lineær tid; det samme gjelder Horn- og XOR-formler. Schaefers dikotomiteorem (1978) er forbløffende: ethvert boolsk skrankeproblem av denne formen er enten i P eller NP-fullstendig, med ingenting imellom. Og tilfeldig generert 3-SAT viser en faseovergang: når forholdet mellom klausuler og variabler krysser omtrent 4,27, vipper formler brått fra nesten-alltid-oppfyllbare til nesten-alltid-uoppfyllbare — og de aller vanskeligste instansene trengs nøyaktig ved den terskelen, som vann akkurat ved frysepunktet.",
+      body: "Ikke alt SAT er vanskelig. 2-SAT — høyst to literaler per klausul — løses i lineær tid, det samme gjelder Horn-formler; XOR-formler ligger i polynomtid via gausseliminasjon over GF(2). Schaefers dikotomiteorem (1978) er forbløffende: ethvert boolsk skrankeproblem av denne formen er enten i P eller NP-fullstendig, med ingenting imellom. Og tilfeldig generert 3-SAT viser en faseovergang: når forholdet mellom klausuler og variabler krysser omtrent 4,27, vipper formler brått fra nesten-alltid-oppfyllbare til nesten-alltid-uoppfyllbare — og de aller vanskeligste instansene trengs nøyaktig ved den terskelen, som vann akkurat ved frysepunktet.",
     },
   ],
   toggleCaption: "Oppfyll for hånd",

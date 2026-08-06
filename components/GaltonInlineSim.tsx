@@ -21,18 +21,42 @@ interface Props {
   spawnLabel?: string;
   ballsLabel?: (n: number) => string;
   hint?: string;
+  canvasLabel?: string;
+  resetLabel?: string;
+}
+
+// Exact binomial C(n, k) / 2^n for the fair-coin board. Log form stays stable
+// across the full slider range (n up to 28) instead of overflowing a factorial.
+function binomHalf(n: number, k: number): number {
+  let logC = 0;
+  for (let i = 1; i <= k; i++) logC += Math.log((n - k + i) / i);
+  return Math.exp(logC - n * Math.log(2));
 }
 
 export function GaltonInlineSim({
   caption,
   rowsLabel = "Rows N",
-  spawnLabel = "Spawn / frame",
+  spawnLabel = "Spawn / step",
   ballsLabel = (n) => `${n.toLocaleString()} balls`,
   hint,
+  canvasLabel = "Galton board simulation",
+  resetLabel = "Reset the histogram",
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
   const [rows, setRows] = useState(14);
+
+  // Honour prefers-reduced-motion: freeze the board and show the exact binomial
+  // instead of an endless spawn loop (repo convention for rAF canvases).
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(m.matches);
+    const h = (e: MediaQueryListEvent) => setReduced(e.matches);
+    m.addEventListener?.("change", h);
+    return () => m.removeEventListener?.("change", h);
+  }, []);
   // Default + max trimmed: spawn=4 with rows=22 was ~250 balls/s on screen
   // simultaneously, which choked weaker laptops. 1 by default lets you watch
   // individual paths; 6 is the new fast end.
@@ -65,6 +89,18 @@ export function GaltonInlineSim({
     let balls: Ball[] = [];
     let landedLocal = 0;
     let lastReport = 0;
+    // Reduced motion: pre-fill the histogram with the exact binomial so the bell
+    // is visible immediately, then draw a single static frame (no rAF loop).
+    if (reduced) {
+      const total = 4096;
+      let sum = 0;
+      for (let k = 0; k <= rows; k++) {
+        const c = Math.round(binomHalf(rows, k) * total);
+        histRef.current[k] = c;
+        sum += c;
+      }
+      setLanded(sum);
+    }
     // Sub-frame-rate fall: at 60fps a one-row-per-frame ball clears N=22 rows in
     // ~0.37s — too fast to follow a single path. Stepping every 4th frame slows
     // each ball to 25% speed without touching spawn rate or visual style.
@@ -114,9 +150,10 @@ export function GaltonInlineSim({
         ctx.stroke();
       }
 
-      // spawn + step balls — physics gated to every 4th frame (see STEP_EVERY)
+      // spawn + step balls — physics gated to every 4th frame (see STEP_EVERY).
+      // Skipped entirely under reduced motion: the pre-filled histogram stands in.
       frame++;
-      if (frame % STEP_EVERY === 0) {
+      if (!reduced && frame % STEP_EVERY === 0) {
         for (let i = 0; i < cfg.spawnRate; i++) {
           balls.push({ x: 0, y: 0, done: false, bin: 0 });
         }
@@ -175,7 +212,8 @@ export function GaltonInlineSim({
         lastReport = landedLocal;
       }
 
-      raf = requestAnimationFrame(draw);
+      // Under reduced motion draw exactly one static frame and stop.
+      if (!reduced) raf = requestAnimationFrame(draw);
     };
     raf = requestAnimationFrame(draw);
 
@@ -183,7 +221,7 @@ export function GaltonInlineSim({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [rows, resetTick, dpr]);
+  }, [rows, resetTick, dpr, reduced]);
 
   return (
     <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5 md:p-6">
@@ -194,6 +232,8 @@ export function GaltonInlineSim({
       )}
       <canvas
         ref={canvasRef}
+        role="img"
+        aria-label={canvasLabel}
         className="hairline mx-auto block h-[400px] w-full max-w-[320px] rounded-md border bg-ink-950/80"
       />
       <div className="flex items-center justify-between gap-3 pt-1">
@@ -202,6 +242,7 @@ export function GaltonInlineSim({
         </div>
         <button
           onClick={() => setResetTick((t) => t + 1)}
+          aria-label={resetLabel}
           className="hairline rounded-md border px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
         >
           ⟳
@@ -221,6 +262,7 @@ export function GaltonInlineSim({
             max={28}
             step={1}
             value={rows}
+            aria-label={rowsLabel}
             onChange={(e) => {
               setRows(parseInt(e.target.value));
               setResetTick((t) => t + 1);
@@ -241,6 +283,7 @@ export function GaltonInlineSim({
             max={6}
             step={1}
             value={spawnRate}
+            aria-label={spawnLabel}
             onChange={(e) => setSpawnRate(parseInt(e.target.value))}
             className="w-full accent-signal-cyan"
           />

@@ -25,10 +25,10 @@ const PRESETS: Preset[] = [
   },
   {
     id: "sierpinski",
-    label: "Sierpiński · F→F+F−F+F",
-    axiom: "F-F-F",
-    rules: { F: "F+F-F+F" },
-    note: "Turn angle 60°. After a few steps a Sierpiński curve appears.",
+    label: "Sierpiński · A→B−A−B, B→A+B+A",
+    axiom: "A",
+    rules: { A: "B-A-B", B: "A+B+A" },
+    note: "Turn angle 60°. A and B both draw forward; the alternating parity traces the Sierpiński arrowhead.",
   },
   {
     id: "koch",

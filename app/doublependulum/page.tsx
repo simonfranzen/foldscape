@@ -52,6 +52,12 @@ type RichStory = {
   regimeQuasiBody: string;
   regimeChaosLabel: string;
   regimeChaosBody: string;
+  lagExplain: string;
+  odeLabel: string;
+  odeExplain: string;
+  poincareHeading: string;
+  poincareCaption: string;
+  poincareSvgLabel: string;
   closingPill: string;
   closingTitle: string;
   closingBody: string;
@@ -138,7 +144,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section five · Phase space and Poincaré",
         title: "Slicing the dance to see its shape",
-        body: "The state lives in a 4D space (θ₁, θ₂, ω₁, ω₂). Pick a hyperplane — say, the moments when θ₁ = 0 with ω₁ > 0 — and record where the trajectory crosses it. The collection of crossings is a Poincaré section: at low energy a clean closed curve (the torus sliced once), at high energy a fuzzy two-dimensional cloud (the chaotic attractor), and at the critical energy a beautiful mix of curves and clouds — the geometric signature of the KAM transition.",
+        body: "The state lives in a 4D space (θ₁, θ₂, ω₁, ω₂). Pick a hyperplane — say, the moments when θ₁ = 0 with ω₁ > 0 — and record where the trajectory crosses it. The collection of crossings is a Poincaré section: at low energy a clean closed curve (the torus sliced once), at high energy a fuzzy two-dimensional cloud (the chaotic sea), and at the critical energy a beautiful mix of curves and clouds — the geometric signature of the KAM transition.",
       },
       {
         pretitle: "Section six · Connections",
@@ -173,10 +179,19 @@ const RICH_STORY: Record<Locale, RichStory> = {
     regimeChaosLabel: "High energy",
     regimeChaosBody:
       "Chaos. The torus has shredded; trajectories fill a fuzzy region of phase space, and no two starts agree for long.",
+    lagExplain:
+      "One scalar L on the (θ₁, θ₂, θ̇₁, θ̇₂) phase space. Plug into Euler-Lagrange and the equations of motion drop out.",
+    odeLabel: "Equations of motion",
+    odeExplain:
+      "Two coupled second-order nonlinear ODEs. No elementary closed form. The sim above and the twin demo below both integrate them with 4th-order Runge-Kutta.",
+    poincareHeading: "Poincaré section · θ₁ = 0, ω₁ > 0",
+    poincareCaption:
+      "Closed loops at low energy (intact KAM tori), a scattering of points at high energy (chaotic sea), and a mixed-phase mosaic in between.",
+    poincareSvgLabel: "KAM islands · stochastic sea",
     closingPill: "Open the Explorer",
     closingTitle: "Hold the chaos in your hands",
     closingBody:
-      "The Explorer integrates the equations live, lets you tune masses, lengths, and the two initial angles, and races two near-identical starts side by side. You can also draw Poincaré sections and watch the KAM tori shred as you crank up the energy.",
+      "The Explorer integrates the equations live, lets you tune the masses, rod lengths, gravity, and the two initial angles, and overlays a ghost twin whose start differs by a millionth of a radian so you can watch the two trails peel apart. Energy and divergence read out live as you push the settings.",
     closingCta: "→ Open the Explorer",
     finalLabel: "Let it loose.",
   },
@@ -222,8 +237,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
         {
           label: "02 · Ein konkretes Beispiel",
-          title: "90°, 90° gegen 90°, 90.00001°",
-          body: "Starte ein Pendel bei θ₁ = 90°, θ₂ = 90°. Die Spitze zeichnet eine schöne, verschlungene Kurve. Neustart mit θ₂ = 90.00001° — ein Hunderttausendstel Grad Unterschied. Die beiden Kurven decken sich ein paar Sekunden, lösen sich dann ab, und nach zehn Sekunden haben sie einander nichts mehr zu sagen.",
+          title: "90°, 90° gegen 90°, 90,00001°",
+          body: "Starte ein Pendel bei θ₁ = 90°, θ₂ = 90°. Die Spitze zeichnet eine schöne, verschlungene Kurve. Neustart mit θ₂ = 90,00001° — ein Hunderttausendstel Grad Unterschied. Die beiden Kurven decken sich ein paar Sekunden, lösen sich dann ab, und nach zehn Sekunden haben sie einander nichts mehr zu sagen.",
         },
         {
           label: "03 · Warum es zählt",
@@ -258,12 +273,12 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt fünf · Phasenraum und Poincaré",
         title: "Den Tanz aufschneiden, um seine Form zu sehen",
-        body: "Der Zustand lebt in einem 4D-Raum (θ₁, θ₂, ω₁, ω₂). Wähl eine Hyperebene — etwa die Momente, in denen θ₁ = 0 mit ω₁ > 0 — und vermerke, wo die Bahn sie kreuzt. Die Sammlung der Schnittpunkte ist ein Poincaré-Schnitt: bei niedriger Energie eine saubere geschlossene Kurve (der Torus einmal angeschnitten), bei hoher Energie eine flauschige zweidimensionale Wolke (der chaotische Attraktor), bei kritischer Energie eine schöne Mischung aus Kurven und Wolken — das geometrische Signal des KAM-Übergangs.",
+        body: "Der Zustand lebt in einem 4D-Raum (θ₁, θ₂, ω₁, ω₂). Wähl eine Hyperebene — etwa die Momente, in denen θ₁ = 0 mit ω₁ > 0 — und vermerke, wo die Bahn sie kreuzt. Die Sammlung der Schnittpunkte ist ein Poincaré-Schnitt: bei niedriger Energie eine saubere geschlossene Kurve (der Torus einmal angeschnitten), bei hoher Energie eine flauschige zweidimensionale Wolke (das chaotische Meer), bei kritischer Energie eine schöne Mischung aus Kurven und Wolken — das geometrische Signal des KAM-Übergangs.",
       },
       {
         pretitle: "Abschnitt sechs · Verbindungen",
         title: "Von Roboterarmen über Hirnrhythmen zum Chaos im Sonnensystem",
-        body: "Dieselbe gekoppelte Mathematik regelt zweigliedrige Roboterarme (wo Regelungstechniker das Chaos bekämpfen), den menschlichen Gang (wo das schwingende Bein im Wesentlichen ein passives Doppelpendel ist) und Ketten gekoppelter Oszillatoren in Stromnetzen, Herzschrittmachern und Kuramotos universeller Synchronisation. Der KAM-Mechanismus hinter dem Regimewechsel läuft auch im Sonnensystem: die Planeten, sorgfältig modelliert, sind auf Gigajahre-Skalen chaotisch.",
+        body: "Dieselbe gekoppelte Mathematik regelt zweigliedrige Roboterarme (wo Regelungstechniker:innen das Chaos bekämpfen), den menschlichen Gang (wo das schwingende Bein im Wesentlichen ein passives Doppelpendel ist) und Ketten gekoppelter Oszillatoren in Stromnetzen, Herzschrittmachern und Kuramotos universeller Synchronisation. Der KAM-Mechanismus hinter dem Regimewechsel läuft auch im Sonnensystem: die Planeten, sorgfältig modelliert, sind auf Gigajahre-Skalen chaotisch.",
       },
     ],
     simCaption: "Live · Doppelpendel",
@@ -293,10 +308,19 @@ const RICH_STORY: Record<Locale, RichStory> = {
     regimeChaosLabel: "Hohe Energie",
     regimeChaosBody:
       "Chaos. Der Torus ist zerrissen; Bahnen füllen einen flauschigen Bereich des Phasenraums, und keine zwei Starts bleiben lange einig.",
+    lagExplain:
+      "Ein Skalar L auf dem Phasenraum (θ₁, θ₂, θ̇₁, θ̇₂). In Euler-Lagrange eingesetzt, fallen die Bewegungsgleichungen heraus.",
+    odeLabel: "Bewegungsgleichungen",
+    odeExplain:
+      "Zwei gekoppelte nichtlineare ODEs zweiter Ordnung. Keine elementare geschlossene Form. Die Simulation oben und die Zwillingsdemo unten integrieren beide mit Runge-Kutta vierter Ordnung.",
+    poincareHeading: "Poincaré-Schnitt · θ₁ = 0, ω₁ > 0",
+    poincareCaption:
+      "Geschlossene Schleifen bei niedriger Energie (intakte KAM-Tori), eine Streuung von Punkten bei hoher Energie (chaotisches Meer) und dazwischen ein Mosaik gemischter Phasen.",
+    poincareSvgLabel: "KAM-Inseln · stochastisches Meer",
     closingPill: "Explorer öffnen",
     closingTitle: "Halt das Chaos in den Händen",
     closingBody:
-      "Der Explorer integriert die Gleichungen live, lässt dich Massen, Längen und die zwei Startwinkel stellen und stellt zwei fast identische Starts nebeneinander. Du kannst auch Poincaré-Schnitte zeichnen und den KAM-Tori beim Zerfetzen zuschauen, während du die Energie hochdrehst.",
+      "Der Explorer integriert die Gleichungen live, lässt dich Massen, Stablängen, Schwerkraft und die zwei Startwinkel stellen und legt einen Geisterzwilling darüber, dessen Start sich um ein Millionstel Radiant unterscheidet, sodass du zusiehst, wie die beiden Spuren auseinanderdriften. Energie und Divergenz werden live angezeigt, während du an den Reglern drehst.",
     closingCta: "→ Explorer öffnen",
     finalLabel: "Lass es los.",
   },
@@ -342,8 +366,8 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
         {
           label: "02 · Un ejemplo concreto",
-          title: "90°, 90° frente a 90°, 90.00001°",
-          body: "Arranca un péndulo en θ₁ = 90°, θ₂ = 90°. La punta dibuja una curva bonita y enredada. Reinicia con θ₂ = 90.00001° — una cienmilésima de grado de diferencia. Las dos curvas coinciden unos segundos, luego se separan, y a los diez segundos ya no tienen nada en común.",
+          title: "90°, 90° frente a 90°, 90,00001°",
+          body: "Arranca un péndulo en θ₁ = 90°, θ₂ = 90°. La punta dibuja una curva bonita y enredada. Reinicia con θ₂ = 90,00001° — una cienmilésima de grado de diferencia. Las dos curvas coinciden unos segundos, luego se separan, y a los diez segundos ya no tienen nada en común.",
         },
         {
           label: "03 · Por qué importa",
@@ -378,7 +402,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sección cinco · Espacio de fases y Poincaré",
         title: "Cortar la danza para ver su forma",
-        body: "El estado vive en un espacio 4D (θ₁, θ₂, ω₁, ω₂). Elige un hiperplano — por ejemplo los instantes en que θ₁ = 0 con ω₁ > 0 — y anota dónde lo cruza la trayectoria. El conjunto de cruces es una sección de Poincaré: a baja energía una curva cerrada limpia (el toro cortado una vez), a alta energía una nube borrosa 2D (el atractor caótico), y a energía crítica una mezcla preciosa de curvas y nubes — la firma geométrica de la transición KAM.",
+        body: "El estado vive en un espacio 4D (θ₁, θ₂, ω₁, ω₂). Elige un hiperplano — por ejemplo los instantes en que θ₁ = 0 con ω₁ > 0 — y anota dónde lo cruza la trayectoria. El conjunto de cruces es una sección de Poincaré: a baja energía una curva cerrada limpia (el toro cortado una vez), a alta energía una nube borrosa 2D (el mar caótico), y a energía crítica una mezcla preciosa de curvas y nubes — la firma geométrica de la transición KAM.",
       },
       {
         pretitle: "Sección seis · Conexiones",
@@ -413,10 +437,19 @@ const RICH_STORY: Record<Locale, RichStory> = {
     regimeChaosLabel: "Energía alta",
     regimeChaosBody:
       "Caos. El toro se ha rasgado; las trayectorias llenan una región borrosa del espacio de fases y ningún par de arranques se mantiene de acuerdo.",
+    lagExplain:
+      "Un único escalar L sobre el espacio de fases (θ₁, θ₂, θ̇₁, θ̇₂). Métele Euler-Lagrange y las ecuaciones de movimiento salen solas.",
+    odeLabel: "Ecuaciones de movimiento",
+    odeExplain:
+      "Dos EDO no lineales de segundo orden acopladas. Sin forma cerrada elemental. La simulación de arriba y la demo gemela de abajo las integran con Runge-Kutta de cuarto orden.",
+    poincareHeading: "Sección de Poincaré · θ₁ = 0, ω₁ > 0",
+    poincareCaption:
+      "Bucles cerrados a baja energía (toros KAM intactos), una dispersión de puntos a alta energía (mar caótico) y un mosaico de fase mixta en medio.",
+    poincareSvgLabel: "Islas KAM · mar estocástico",
     closingPill: "Abrir el Explorer",
     closingTitle: "Sostén el caos entre las manos",
     closingBody:
-      "El Explorer integra las ecuaciones en vivo, te deja afinar masas, longitudes y los dos ángulos iniciales, y enfrenta dos arranques casi idénticos lado a lado. También puedes dibujar secciones de Poincaré y ver los toros KAM rasgarse al subir la energía.",
+      "El Explorer integra las ecuaciones en vivo, te deja ajustar las masas, las longitudes de las varillas, la gravedad y los dos ángulos iniciales, y superpone un gemelo fantasma cuyo arranque difiere en una millonésima de radián, para que veas cómo las dos trazas se separan. La energía y la divergencia se muestran en vivo mientras mueves los controles.",
     closingCta: "→ Abrir el Explorer",
     finalLabel: "Suéltalo.",
   },
@@ -498,7 +531,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section cinq · Espace de phase et Poincaré",
         title: "Trancher la danse pour en voir la forme",
-        body: "L'état vit dans un espace 4D (θ₁, θ₂, ω₁, ω₂). Choisis un hyperplan — disons les instants où θ₁ = 0 avec ω₁ > 0 — et note où la trajectoire le coupe. La collection des intersections est une section de Poincaré : à basse énergie une courbe fermée nette (le tore tranché une fois), à haute énergie un nuage flou 2D (l'attracteur chaotique), à énergie critique un mélange superbe de courbes et de nuages — la signature géométrique de la transition KAM.",
+        body: "L'état vit dans un espace 4D (θ₁, θ₂, ω₁, ω₂). Choisis un hyperplan — disons les instants où θ₁ = 0 avec ω₁ > 0 — et note où la trajectoire le coupe. La collection des intersections est une section de Poincaré : à basse énergie une courbe fermée nette (le tore tranché une fois), à haute énergie un nuage flou 2D (la mer chaotique), à énergie critique un mélange superbe de courbes et de nuages — la signature géométrique de la transition KAM.",
       },
       {
         pretitle: "Section six · Connexions",
@@ -533,10 +566,19 @@ const RICH_STORY: Record<Locale, RichStory> = {
     regimeChaosLabel: "Haute énergie",
     regimeChaosBody:
       "Chaos. Le tore est déchiré ; les trajectoires remplissent une région floue de l'espace de phase, et deux départs ne s'accordent pas longtemps.",
+    lagExplain:
+      "Un seul scalaire L sur l'espace de phase (θ₁, θ₂, θ̇₁, θ̇₂). Injecte-le dans Euler-Lagrange et les équations du mouvement en tombent.",
+    odeLabel: "Équations du mouvement",
+    odeExplain:
+      "Deux EDO non linéaires d'ordre deux couplées. Aucune forme close élémentaire. La simulation ci-dessus et la démo jumelle ci-dessous les intègrent toutes deux avec Runge-Kutta d'ordre quatre.",
+    poincareHeading: "Section de Poincaré · θ₁ = 0, ω₁ > 0",
+    poincareCaption:
+      "Des boucles fermées à basse énergie (tores KAM intacts), une dispersion de points à haute énergie (mer chaotique) et une mosaïque de phases mixtes entre les deux.",
+    poincareSvgLabel: "Îles KAM · mer stochastique",
     closingPill: "Ouvrir l'Explorer",
     closingTitle: "Tiens le chaos entre tes mains",
     closingBody:
-      "L'Explorer intègre les équations en direct, te laisse régler masses, longueurs et les deux angles initiaux, et oppose deux départs presque identiques côte à côte. Tu peux aussi tracer des sections de Poincaré et regarder les tores KAM se déchirer en montant l'énergie.",
+      "L'Explorer intègre les équations en direct, te laisse régler les masses, les longueurs des tiges, la gravité et les deux angles initiaux, et superpose un jumeau fantôme dont le départ diffère d'un millionième de radian, pour que tu regardes les deux traces se séparer. L'énergie et la divergence s'affichent en direct pendant que tu pousses les réglages.",
     closingCta: "→ Ouvrir l'Explorer",
     finalLabel: "Lâche-le.",
   },
@@ -618,7 +660,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sezione cinque · Spazio delle fasi e Poincaré",
         title: "Fettare la danza per vederne la forma",
-        body: "Lo stato vive in uno spazio 4D (θ₁, θ₂, ω₁, ω₂). Scegli un iperpiano — diciamo gli istanti in cui θ₁ = 0 con ω₁ > 0 — e segna dove la traiettoria lo attraversa. L'insieme degli attraversamenti è una sezione di Poincaré: a bassa energia una curva chiusa pulita (il toro tagliato una volta), ad alta energia una nuvola sfocata 2D (l'attrattore caotico), e all'energia critica una bella mescolanza di curve e nuvole — la firma geometrica della transizione KAM.",
+        body: "Lo stato vive in uno spazio 4D (θ₁, θ₂, ω₁, ω₂). Scegli un iperpiano — diciamo gli istanti in cui θ₁ = 0 con ω₁ > 0 — e segna dove la traiettoria lo attraversa. L'insieme degli attraversamenti è una sezione di Poincaré: a bassa energia una curva chiusa pulita (il toro tagliato una volta), ad alta energia una nuvola sfocata 2D (il mare caotico), e all'energia critica una bella mescolanza di curve e nuvole — la firma geometrica della transizione KAM.",
       },
       {
         pretitle: "Sezione sei · Connessioni",
@@ -653,10 +695,19 @@ const RICH_STORY: Record<Locale, RichStory> = {
     regimeChaosLabel: "Alta energia",
     regimeChaosBody:
       "Caos. Il toro è strappato; le traiettorie riempiono una regione sfocata dello spazio delle fasi e nessuna coppia di partenze resta d'accordo a lungo.",
+    lagExplain:
+      "Un solo scalare L sullo spazio delle fasi (θ₁, θ₂, θ̇₁, θ̇₂). Mettilo in Euler-Lagrange e le equazioni del moto vengono fuori.",
+    odeLabel: "Equazioni del moto",
+    odeExplain:
+      "Due EDO non lineari del secondo ordine accoppiate. Nessuna forma chiusa elementare. La simulazione qui sopra e la demo gemella qui sotto le integrano entrambe con Runge-Kutta del quarto ordine.",
+    poincareHeading: "Sezione di Poincaré · θ₁ = 0, ω₁ > 0",
+    poincareCaption:
+      "Anelli chiusi a bassa energia (tori KAM intatti), una dispersione di punti ad alta energia (mare caotico) e un mosaico di fase mista nel mezzo.",
+    poincareSvgLabel: "Isole KAM · mare stocastico",
     closingPill: "Apri l'Explorer",
     closingTitle: "Tieni il caos tra le mani",
     closingBody:
-      "L'Explorer integra le equazioni in tempo reale, ti lascia regolare masse, lunghezze e i due angoli iniziali, e mette a confronto due partenze quasi identiche. Puoi anche disegnare sezioni di Poincaré e vedere i tori KAM strapparsi mentre alzi l'energia.",
+      "L'Explorer integra le equazioni in tempo reale, ti lascia regolare le masse, le lunghezze delle aste, la gravità e i due angoli iniziali, e sovrappone un gemello fantasma la cui partenza differisce di un milionesimo di radiante, così guardi le due tracce separarsi. Energia e divergenza si leggono in tempo reale mentre spingi le impostazioni.",
     closingCta: "→ Apri l'Explorer",
     finalLabel: "Lascialo andare.",
   },
@@ -738,7 +789,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Seção cinco · Espaço de fases e Poincaré",
         title: "Fatiar a dança para ver sua forma",
-        body: "O estado vive num espaço 4D (θ₁, θ₂, ω₁, ω₂). Escolha um hiperplano — digamos os instantes em que θ₁ = 0 com ω₁ > 0 — e marque onde a trajetória o cruza. A coleção dos cruzamentos é uma seção de Poincaré: em baixa energia uma curva fechada limpa (o toro fatiado uma vez), em alta energia uma nuvem desfocada 2D (o atrator caótico), em energia crítica uma mistura bonita de curvas e nuvens — a assinatura geométrica da transição KAM.",
+        body: "O estado vive num espaço 4D (θ₁, θ₂, ω₁, ω₂). Escolha um hiperplano — digamos os instantes em que θ₁ = 0 com ω₁ > 0 — e marque onde a trajetória o cruza. A coleção dos cruzamentos é uma seção de Poincaré: em baixa energia uma curva fechada limpa (o toro fatiado uma vez), em alta energia uma nuvem desfocada 2D (o mar caótico), em energia crítica uma mistura bonita de curvas e nuvens — a assinatura geométrica da transição KAM.",
       },
       {
         pretitle: "Seção seis · Conexões",
@@ -773,10 +824,19 @@ const RICH_STORY: Record<Locale, RichStory> = {
     regimeChaosLabel: "Energia alta",
     regimeChaosBody:
       "Caos. O toro foi rasgado; as trajetórias preenchem uma região desfocada do espaço de fases e duas partidas não concordam por muito tempo.",
+    lagExplain:
+      "Um único escalar L sobre o espaço de fases (θ₁, θ₂, θ̇₁, θ̇₂). Coloque em Euler-Lagrange e as equações do movimento saem.",
+    odeLabel: "Equações do movimento",
+    odeExplain:
+      "Duas EDOs não lineares de segunda ordem acopladas. Sem forma fechada elementar. A simulação acima e a demo gêmea abaixo as integram com Runge-Kutta de quarta ordem.",
+    poincareHeading: "Seção de Poincaré · θ₁ = 0, ω₁ > 0",
+    poincareCaption:
+      "Laços fechados em baixa energia (toros KAM intactos), uma dispersão de pontos em alta energia (mar caótico) e um mosaico de fase mista no meio.",
+    poincareSvgLabel: "Ilhas KAM · mar estocástico",
     closingPill: "Abrir o Explorer",
     closingTitle: "Segure o caos nas mãos",
     closingBody:
-      "O Explorer integra as equações ao vivo, deixa você ajustar massas, comprimentos e os dois ângulos iniciais, e coloca duas partidas quase idênticas lado a lado. Você também pode desenhar seções de Poincaré e ver os toros KAM rasgando enquanto sobe a energia.",
+      "O Explorer integra as equações ao vivo, deixa você ajustar as massas, os comprimentos das hastes, a gravidade e os dois ângulos iniciais, e sobrepõe um gêmeo fantasma cuja partida difere por um milionésimo de radiano, para você ver as duas trilhas se separarem. Energia e divergência aparecem ao vivo enquanto você mexe nos controles.",
     closingCta: "→ Abrir o Explorer",
     finalLabel: "Solte-o.",
   },
@@ -858,7 +918,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Avsnitt fem · Fasrum och Poincaré",
         title: "Skär dansen för att se dess form",
-        body: "Tillståndet bor i ett 4D-rum (θ₁, θ₂, ω₁, ω₂). Välj ett hyperplan — säg ögonblicken då θ₁ = 0 med ω₁ > 0 — och anteckna var banan korsar det. Mängden av korsningar är en Poincaré-sektion: vid låg energi en ren sluten kurva (torus skuren en gång), vid hög energi ett luddigt 2D-moln (den kaotiska attraktorn), och vid kritisk energi en vacker blandning av kurvor och moln — den geometriska signaturen av KAM-övergången.",
+        body: "Tillståndet bor i ett 4D-rum (θ₁, θ₂, ω₁, ω₂). Välj ett hyperplan — säg ögonblicken då θ₁ = 0 med ω₁ > 0 — och anteckna var banan korsar det. Mängden av korsningar är en Poincaré-sektion: vid låg energi en ren sluten kurva (torus skuren en gång), vid hög energi ett luddigt 2D-moln (det kaotiska havet), och vid kritisk energi en vacker blandning av kurvor och moln — den geometriska signaturen av KAM-övergången.",
       },
       {
         pretitle: "Avsnitt sex · Kopplingar",
@@ -893,10 +953,19 @@ const RICH_STORY: Record<Locale, RichStory> = {
     regimeChaosLabel: "Hög energi",
     regimeChaosBody:
       "Kaos. Torus är riven; banor fyller en luddig region av fasrummet och två starter förblir inte överens länge.",
+    lagExplain:
+      "En enda skalär L över fasrummet (θ₁, θ₂, θ̇₁, θ̇₂). Stoppa in i Euler-Lagrange så faller rörelseekvationerna ut.",
+    odeLabel: "Rörelseekvationer",
+    odeExplain:
+      "Två kopplade icke-linjära ODE:er av andra ordningen. Ingen elementär sluten form. Simuleringen ovan och tvillingdemon nedan integrerar båda med Runge-Kutta av fjärde ordningen.",
+    poincareHeading: "Poincaré-sektion · θ₁ = 0, ω₁ > 0",
+    poincareCaption:
+      "Slutna öglor vid låg energi (intakta KAM-tori), en spridning av punkter vid hög energi (kaotiskt hav) och en blandfasmosaik däremellan.",
+    poincareSvgLabel: "KAM-öar · stokastiskt hav",
     closingPill: "Öppna Explorer",
     closingTitle: "Håll kaoset i händerna",
     closingBody:
-      "Explorern integrerar ekvationerna live, låter dig ställa massor, längder och de två startvinklarna, och kör två nästan identiska starter sida vid sida. Du kan också rita Poincaré-sektioner och se KAM-tori slitas sönder medan du höjer energin.",
+      "Explorern integrerar ekvationerna live, låter dig ställa massor, stånglängder, gravitation och de två startvinklarna, och lägger en spöktvilling över vars start skiljer sig med en miljondels radian, så att du ser de två spåren glida isär. Energi och divergens visas live medan du skruvar på inställningarna.",
     closingCta: "→ Öppna Explorer",
     finalLabel: "Släpp det loss.",
   },
@@ -978,7 +1047,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del fem · Faserom og Poincaré",
         title: "Skjær dansen for å se formen",
-        body: "Tilstanden bor i et 4D-rom (θ₁, θ₂, ω₁, ω₂). Velg et hyperplan — for eksempel øyeblikkene der θ₁ = 0 med ω₁ > 0 — og noter hvor banen krysser det. Samlingen av kryssinger er et Poincaré-snitt: ved lav energi en ren lukket kurve (torusen skåret én gang), ved høy energi en lodden 2D-sky (den kaotiske attraktoren), og ved kritisk energi en vakker blanding av kurver og skyer — den geometriske signaturen til KAM-overgangen.",
+        body: "Tilstanden bor i et 4D-rom (θ₁, θ₂, ω₁, ω₂). Velg et hyperplan — for eksempel øyeblikkene der θ₁ = 0 med ω₁ > 0 — og noter hvor banen krysser det. Samlingen av kryssinger er et Poincaré-snitt: ved lav energi en ren lukket kurve (torusen skåret én gang), ved høy energi en lodden 2D-sky (det kaotiske havet), og ved kritisk energi en vakker blanding av kurver og skyer — den geometriske signaturen til KAM-overgangen.",
       },
       {
         pretitle: "Del seks · Forbindelser",
@@ -1013,10 +1082,19 @@ const RICH_STORY: Record<Locale, RichStory> = {
     regimeChaosLabel: "Høy energi",
     regimeChaosBody:
       "Kaos. Torus er revnet; banene fyller en lodden del av faserommet, og to starter forblir ikke enige lenge.",
+    lagExplain:
+      "En enkelt skalar L over faserommet (θ₁, θ₂, θ̇₁, θ̇₂). Sett inn i Euler-Lagrange, og bevegelseslikningene faller ut.",
+    odeLabel: "Bevegelseslikninger",
+    odeExplain:
+      "To koblede ikke-lineære ODEer av andre orden. Ingen elementær lukket form. Simuleringen over og tvillingdemoen under integrerer begge med Runge-Kutta av fjerde orden.",
+    poincareHeading: "Poincaré-snitt · θ₁ = 0, ω₁ > 0",
+    poincareCaption:
+      "Lukkede løkker ved lav energi (intakte KAM-tori), en spredning av punkter ved høy energi (kaotisk hav) og en blandingsfasemosaikk imellom.",
+    poincareSvgLabel: "KAM-øyer · stokastisk hav",
     closingPill: "Åpne Explorer",
     closingTitle: "Hold kaoset i hendene",
     closingBody:
-      "Explorer integrerer ligningene live, lar deg justere masser, lengder og de to startvinklene, og kjører to nesten identiske starter side om side. Du kan også tegne Poincaré-snitt og se KAM-toriene revne mens du skrur opp energien.",
+      "Explorer integrerer ligningene live, lar deg justere masser, stanglengder, tyngdekraft og de to startvinklene, og legger en spøkelsestvilling oppå med en start som skiller seg med en milliondels radian, slik at du ser de to sporene skille lag. Energi og divergens vises live mens du justerer innstillingene.",
     closingCta: "→ Åpne Explorer",
     finalLabel: "Slipp det løs.",
   },
@@ -1104,10 +1182,7 @@ V = − (m₁ + m₂) g L₁ cos θ₁
 
 L = T − V`}
             </pre>
-            <p className="text-xs leading-relaxed text-ink-300">
-              One scalar L on the (θ₁, θ₂, θ̇₁, θ̇₂) phase space. Plug into Euler-Lagrange and the
-              equations of motion drop out.
-            </p>
+            <p className="text-xs leading-relaxed text-ink-300">{story.lagExplain}</p>
           </div>
         </Reveal>
       </section>
@@ -1118,7 +1193,7 @@ L = T − V`}
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Equations of motion
+              {story.odeLabel}
             </div>
             <pre className="overflow-x-auto whitespace-pre font-mono text-[11px] leading-relaxed text-ink-100 md:text-xs">
               {`Let Δ = θ₁ − θ₂ ,   M = 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂)
@@ -1136,10 +1211,7 @@ L = T − V`}
         + ω₂² L₂ m₂ cos Δ ) )
   /  ( L₂ · M )`}
             </pre>
-            <p className="text-xs leading-relaxed text-ink-300">
-              Two coupled second-order nonlinear ODEs. No elementary closed form. The sim above and
-              the twin demo below both integrate them with 4th-order Runge-Kutta.
-            </p>
+            <p className="text-xs leading-relaxed text-ink-300">{story.odeExplain}</p>
           </div>
         </Reveal>
       </section>
@@ -1212,12 +1284,11 @@ L = T − V`}
         <Reveal delay={120}>
           <div className="hairline flex flex-col items-center gap-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Poincaré section · θ₁ = 0, ω₁ &gt; 0
+              {story.poincareHeading}
             </div>
-            <PoincareSVG />
+            <PoincareSVG label={story.poincareSvgLabel} />
             <p className="max-w-md text-center text-xs leading-relaxed text-ink-300">
-              Closed loops at low energy (intact KAM tori), a scattering of points at high energy
-              (chaotic sea), and a mixed-phase mosaic in between.
+              {story.poincareCaption}
             </p>
           </div>
         </Reveal>
@@ -1300,7 +1371,7 @@ function RegimeMini({ variant }: { variant: "torus" | "chaos" }) {
 
 // Sketch of a Poincaré section — a few invariant curves (intact tori) sit
 // inside a fuzzy band of scattered crossings (chaotic sea). Pure decoration.
-function PoincareSVG() {
+function PoincareSVG({ label }: { label: string }) {
   const islands: string[] = [];
   // Three nested elliptical curves (KAM tori).
   for (let k = 0; k < 3; k++) {
@@ -1363,7 +1434,7 @@ function PoincareSVG() {
         fontSize="9"
         fill={palette.signal.amber}
       >
-        KAM islands · stochastic sea
+        {label}
       </text>
     </svg>
   );

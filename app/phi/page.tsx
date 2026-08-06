@@ -41,6 +41,8 @@ type RichStory = {
     hint: string;
     spiralCaption: string;
   };
+  firstNumbersLabel: string;
+  continuedFractionLabel: string;
   closingPretitle: string;
   closingTitle: string;
   closingBody: string;
@@ -68,7 +70,7 @@ const en: RichStory = {
       {
         label: "02",
         title: "A concrete example",
-        body: "1, 1, 2, 3, 5, 8, 13, 21 — divide each by the one before: 1, 2, 1.5, 1.667, 1.6, 1.625, 1.615, 1.619. The ratios bounce above and below φ and tighten on it geometrically.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Divide each by the one before: 1, 2, 1.5, 1.667, 1.6, 1.625, 1.615, 1.619. The ratios bounce above and below φ and tighten on it geometrically.",
       },
       {
         label: "03",
@@ -126,10 +128,12 @@ const en: RichStory = {
     hint: "The error alternates sign and shrinks by |ψ/φ| ≈ 0.382 each step; over two steps (same sign) that compounds to (ψ/φ)² ≈ 0.146 — a clean geometric convergence. The spiral on the right is built from the first few Fibonacci squares.",
     spiralCaption: "Golden spiral from Fibonacci squares",
   },
+  firstNumbersLabel: "First Fibonacci numbers",
+  continuedFractionLabel: "Continued fraction",
   closingPretitle: "Take it further",
   closingTitle: "Open the Explorer.",
   closingBody:
-    "The Explorer lets you sweep the divergence angle continuously, watch the Binet formula track Fₙ exactly, and zoom into the golden spiral at any depth. Everything you just read is one click away.",
+    "The Explorer lets you sweep the divergence angle continuously, watch the consecutive ratios close in on φ, and grow the golden spiral to any depth. Everything you just read is one click away.",
   closingCta: "→ Open the Explorer",
 };
 
@@ -154,7 +158,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "1, 1, 2, 3, 5, 8, 13, 21 — teile jedes durch das vorherige: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Die Verhältnisse springen über und unter φ und ziehen sich geometrisch um φ zusammen.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Teile jedes durch das vorherige: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Die Verhältnisse springen über und unter φ und ziehen sich geometrisch um φ zusammen.",
       },
       {
         label: "03",
@@ -212,10 +216,12 @@ const de: RichStory = {
     hint: "Der Fehler wechselt das Vorzeichen und schrumpft pro Schritt um |ψ/φ| ≈ 0,382; über zwei Schritte (gleiches Vorzeichen) ergibt das den Faktor (ψ/φ)² ≈ 0,146 — eine saubere geometrische Konvergenz. Die Spirale rechts entsteht aus den ersten Fibonacci-Quadraten.",
     spiralCaption: "Goldene Spirale aus Fibonacci-Quadraten",
   },
+  firstNumbersLabel: "Erste Fibonacci-Zahlen",
+  continuedFractionLabel: "Kettenbruch",
   closingPretitle: "Geh weiter",
   closingTitle: "Öffne den Explorer.",
   closingBody:
-    "Der Explorer lässt dich den Divergenzwinkel kontinuierlich durchziehen, Binets Formel exakt mit Fₙ vergleichen und in die goldene Spirale auf jede Tiefe hineinzoomen. Alles, was du gerade gelesen hast, ist einen Klick entfernt.",
+    "Der Explorer lässt dich den Divergenzwinkel kontinuierlich durchziehen, den aufeinanderfolgenden Verhältnissen beim Zulaufen auf φ zusehen und die goldene Spirale auf jede Tiefe wachsen lassen. Alles, was du gerade gelesen hast, ist einen Klick entfernt.",
   closingCta: "→ Explorer öffnen",
 };
 
@@ -240,7 +246,7 @@ const es: RichStory = {
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: "1, 1, 2, 3, 5, 8, 13, 21 — divide cada uno por el anterior: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Las razones rebotan por encima y debajo de φ y se ajustan a él geométricamente.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Divide cada uno por el anterior: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Las razones rebotan por encima y debajo de φ y se ajustan a él geométricamente.",
       },
       {
         label: "03",
@@ -298,10 +304,12 @@ const es: RichStory = {
     hint: "El error alterna de signo y encoge en |ψ/φ| ≈ 0,382 a cada paso; en dos pasos (mismo signo) eso compone (ψ/φ)² ≈ 0,146 — una convergencia geométrica limpia. La espiral de la derecha sale de los primeros cuadrados de Fibonacci.",
     spiralCaption: "Espiral áurea desde cuadrados de Fibonacci",
   },
+  firstNumbersLabel: "Primeros números de Fibonacci",
+  continuedFractionLabel: "Fracción continua",
   closingPretitle: "Ve más lejos",
   closingTitle: "Abre el Explorador.",
   closingBody:
-    "El Explorador te deja barrer el ángulo de divergencia de continuo, ver la fórmula de Binet seguir a Fₙ con exactitud y hacer zoom en la espiral áurea a cualquier profundidad. Todo lo que acabas de leer está a un clic.",
+    "El Explorador te deja barrer el ángulo de divergencia de continuo, ver las razones consecutivas acercarse a φ y hacer crecer la espiral áurea a cualquier profundidad. Todo lo que acabas de leer está a un clic.",
   closingCta: "→ Abrir el Explorador",
 };
 
@@ -326,7 +334,7 @@ const fr: RichStory = {
       {
         label: "02",
         title: "Un exemple concret",
-        body: "1, 1, 2, 3, 5, 8, 13, 21 — divise chacun par le précédent : 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Les rapports rebondissent au-dessus et en dessous de φ et se resserrent géométriquement autour.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Divise chacun par le précédent : 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Les rapports rebondissent au-dessus et en dessous de φ et se resserrent géométriquement autour.",
       },
       {
         label: "03",
@@ -384,10 +392,12 @@ const fr: RichStory = {
     hint: "L'erreur change de signe et rétrécit d'environ |ψ/φ| ≈ 0,382 à chaque pas ; sur deux pas (même signe) cela donne le facteur (ψ/φ)² ≈ 0,146 — une convergence géométrique nette. La spirale à droite est faite des premiers carrés de Fibonacci.",
     spiralCaption: "Spirale d'or à partir des carrés de Fibonacci",
   },
+  firstNumbersLabel: "Premiers nombres de Fibonacci",
+  continuedFractionLabel: "Fraction continue",
   closingPretitle: "Aller plus loin",
   closingTitle: "Ouvre l'Explorateur.",
   closingBody:
-    "L'Explorateur te laisse balayer l'angle de divergence en continu, voir la formule de Binet coller exactement à Fₙ, et zoomer dans la spirale d'or à toute profondeur. Tout ce que tu viens de lire est à un clic.",
+    "L'Explorateur te laisse balayer l'angle de divergence en continu, voir les rapports consécutifs se rapprocher de φ, et faire grandir la spirale d'or à toute profondeur. Tout ce que tu viens de lire est à un clic.",
   closingCta: "→ Ouvrir l'Explorateur",
 };
 
@@ -412,7 +422,7 @@ const it: RichStory = {
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "1, 1, 2, 3, 5, 8, 13, 21 — dividi ciascuno per il precedente: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. I rapporti rimbalzano sopra e sotto φ e si stringono geometricamente attorno a esso.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Dividi ciascuno per il precedente: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. I rapporti rimbalzano sopra e sotto φ e si stringono geometricamente attorno a esso.",
       },
       {
         label: "03",
@@ -470,10 +480,12 @@ const it: RichStory = {
     hint: "L'errore alterna segno e si restringe di |ψ/φ| ≈ 0,382 a ogni passo; su due passi (stesso segno) si compone in (ψ/φ)² ≈ 0,146 — una convergenza geometrica pulita. La spirale a destra nasce dai primi quadrati di Fibonacci.",
     spiralCaption: "Spirale aurea dai quadrati di Fibonacci",
   },
+  firstNumbersLabel: "Primi numeri di Fibonacci",
+  continuedFractionLabel: "Frazione continua",
   closingPretitle: "Vai oltre",
   closingTitle: "Apri l'Esploratore.",
   closingBody:
-    "L'Esploratore ti lascia spazzolare l'angolo di divergenza in continuo, vedere la formula di Binet seguire Fₙ esattamente e zoomare nella spirale aurea a ogni profondità. Tutto ciò che hai appena letto è a un clic.",
+    "L'Esploratore ti lascia spazzolare l'angolo di divergenza in continuo, vedere i rapporti consecutivi avvicinarsi a φ e far crescere la spirale aurea a ogni profondità. Tutto ciò che hai appena letto è a un clic.",
   closingCta: "→ Apri l'Esploratore",
 };
 
@@ -498,7 +510,7 @@ const pt: RichStory = {
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: "1, 1, 2, 3, 5, 8, 13, 21 — divide cada um pelo anterior: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. As razões saltam acima e abaixo de φ e apertam-se geometricamente em torno dele.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Divide cada um pelo anterior: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. As razões saltam acima e abaixo de φ e apertam-se geometricamente em torno dele.",
       },
       {
         label: "03",
@@ -556,10 +568,12 @@ const pt: RichStory = {
     hint: "O erro troca de sinal e encolhe |ψ/φ| ≈ 0,382 a cada passo; em dois passos (mesmo sinal) isso compõe (ψ/φ)² ≈ 0,146 — uma convergência geométrica limpa. A espiral à direita nasce dos primeiros quadrados de Fibonacci.",
     spiralCaption: "Espiral áurea a partir de quadrados de Fibonacci",
   },
+  firstNumbersLabel: "Primeiros números de Fibonacci",
+  continuedFractionLabel: "Fração contínua",
   closingPretitle: "Vai mais longe",
   closingTitle: "Abre o Explorador.",
   closingBody:
-    "O Explorador deixa-te varrer o ângulo de divergência em contínuo, ver a fórmula de Binet seguir Fₙ exatamente e fazer zoom na espiral áurea a qualquer profundidade. Tudo o que acabaste de ler está a um clique.",
+    "O Explorador deixa-te varrer o ângulo de divergência em contínuo, ver as razões consecutivas aproximarem-se de φ e fazer crescer a espiral áurea a qualquer profundidade. Tudo o que acabaste de ler está a um clique.",
   closingCta: "→ Abrir o Explorador",
 };
 
@@ -584,7 +598,7 @@ const sv: RichStory = {
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "1, 1, 2, 3, 5, 8, 13, 21 — dela vart och ett med det föregående: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Kvoterna studsar över och under φ och drar ihop sig geometriskt runt det.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Dela vart och ett med det föregående: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Kvoterna studsar över och under φ och drar ihop sig geometriskt runt det.",
       },
       {
         label: "03",
@@ -642,10 +656,12 @@ const sv: RichStory = {
     hint: "Felet växlar tecken och krymper med |ψ/φ| ≈ 0,382 per steg; över två steg (samma tecken) ger det faktorn (ψ/φ)² ≈ 0,146 — en ren geometrisk konvergens. Spiralen till höger byggs av de första Fibonacci-kvadraterna.",
     spiralCaption: "Gyllene spiralen från Fibonacci-kvadrater",
   },
+  firstNumbersLabel: "Första Fibonacci-talen",
+  continuedFractionLabel: "Kedjebråk",
   closingPretitle: "Gå vidare",
   closingTitle: "Öppna Utforskaren.",
   closingBody:
-    "Utforskaren låter dig svepa divergensvinkeln kontinuerligt, se Binets formel följa Fₙ exakt och zooma in i den gyllene spiralen på vilket djup som helst. Allt du just läst är ett klick bort.",
+    "Utforskaren låter dig svepa divergensvinkeln kontinuerligt, se de på varandra följande kvoterna närma sig φ och låta den gyllene spiralen växa till valfritt djup. Allt du just läst är ett klick bort.",
   closingCta: "→ Öppna Utforskaren",
 };
 
@@ -670,7 +686,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "1, 1, 2, 3, 5, 8, 13, 21 — del hvert på det forrige: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Forholdene spretter over og under φ og strammer seg geometrisk rundt det.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Del hvert på det forrige: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Forholdene spretter over og under φ og strammer seg geometrisk rundt det.",
       },
       {
         label: "03",
@@ -728,10 +744,12 @@ const no: RichStory = {
     hint: "Feilen veksler fortegn og krymper med |ψ/φ| ≈ 0,382 per steg; over to steg (samme fortegn) gir det faktoren (ψ/φ)² ≈ 0,146 — en ren geometrisk konvergens. Spiralen til høyre er bygget av de første Fibonacci-kvadratene.",
     spiralCaption: "Gylden spiral fra Fibonacci-kvadrater",
   },
+  firstNumbersLabel: "Første Fibonacci-tall",
+  continuedFractionLabel: "Kjedebrøk",
   closingPretitle: "Gå videre",
   closingTitle: "Åpne Utforskeren.",
   closingBody:
-    "Utforskeren lar deg sveipe divergensvinkelen kontinuerlig, se Binets formel følge Fₙ eksakt og zoome inn i den gylne spiralen på et hvilket som helst dyp. Alt du nettopp leste er ett klikk unna.",
+    "Utforskeren lar deg sveipe divergensvinkelen kontinuerlig, se de påfølgende forholdene nærme seg φ og la den gylne spiralen vokse til et hvilket som helst dyp. Alt du nettopp leste er ett klikk unna.",
   closingCta: "→ Åpne Utforskeren",
 };
 
@@ -817,7 +835,7 @@ export default function PhiStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              First Fibonacci numbers
+              {story.firstNumbersLabel}
             </div>
             <div className="math-italic text-2xl leading-tight text-ink-100 md:text-3xl">
               0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, …
@@ -847,7 +865,7 @@ export default function PhiStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Continued fraction
+              {story.continuedFractionLabel}
             </div>
             <div className="math-italic text-2xl leading-tight text-ink-100 md:text-3xl">
               φ = 1 + 1 / (1 + 1 / (1 + 1 / (1 + …)))

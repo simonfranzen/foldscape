@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
@@ -16,9 +17,154 @@ const SPECIAL_ANGLES: Array<{ theta: number; label: string; z: string }> = [
   { theta: TAU, label: "2π", z: "1" },
 ];
 
+// --------------------------------------------------------------------------
+// Per-locale UI strings for the explorer. Kept inline (the repo's RICH_EXPLORER
+// pattern) so every control label, caption and aria-name is translated next to
+// its use instead of leaking English into the other seven locales.
+// --------------------------------------------------------------------------
+type RichExplorer = {
+  planeCaption: string;
+  stripCaption: string;
+  angleLabel: string;
+  play: string;
+  pause: string;
+  reset: string;
+  speedLabel: string;
+  identityTitle: string;
+  identityBody: string;
+  ariaAngle: string;
+  ariaSpeed: string;
+  ariaPlane: string;
+  ariaStrip: string;
+};
+
+const RICH_EXPLORER: Record<Locale, RichExplorer> = {
+  en: {
+    planeCaption: "Complex plane · unit circle",
+    stripCaption: "cos θ and sin θ · θ ∈ [0, 2π]",
+    angleLabel: "Angle θ",
+    play: "▶ Play",
+    pause: "❚❚ Pause",
+    reset: "⟳ Reset",
+    speedLabel: "Speed · rad/s",
+    identityTitle: "The identity moment",
+    identityBody: "At θ = π the point lands exactly at z = −1. Adding 1 gives 0:",
+    ariaAngle: "angle theta",
+    ariaSpeed: "animation speed in radians per second",
+    ariaPlane: "complex plane with the point e^(i theta) on the unit circle",
+    ariaStrip: "cos theta and sin theta plotted over 0 to 2 pi",
+  },
+  de: {
+    planeCaption: "Komplexe Ebene · Einheitskreis",
+    stripCaption: "cos θ und sin θ · θ ∈ [0, 2π]",
+    angleLabel: "Winkel θ",
+    play: "▶ Start",
+    pause: "❚❚ Pause",
+    reset: "⟳ Zurücksetzen",
+    speedLabel: "Geschwindigkeit · rad/s",
+    identityTitle: "Der Moment der Identität",
+    identityBody: "Bei θ = π landet der Punkt genau auf z = −1. Addiert man 1, ergibt sich 0:",
+    ariaAngle: "Winkel Theta",
+    ariaSpeed: "Animationsgeschwindigkeit in Radiant pro Sekunde",
+    ariaPlane: "Komplexe Ebene mit dem Punkt e^(i Theta) auf dem Einheitskreis",
+    ariaStrip: "cos Theta und sin Theta aufgetragen über 0 bis 2 pi",
+  },
+  es: {
+    planeCaption: "Plano complejo · círculo unidad",
+    stripCaption: "cos θ y sin θ · θ ∈ [0, 2π]",
+    angleLabel: "Ángulo θ",
+    play: "▶ Reproducir",
+    pause: "❚❚ Pausa",
+    reset: "⟳ Reiniciar",
+    speedLabel: "Velocidad · rad/s",
+    identityTitle: "El momento de la identidad",
+    identityBody: "En θ = π el punto cae exactamente en z = −1. Al sumar 1 se obtiene 0:",
+    ariaAngle: "ángulo theta",
+    ariaSpeed: "velocidad de la animación en radianes por segundo",
+    ariaPlane: "plano complejo con el punto e^(i theta) en el círculo unidad",
+    ariaStrip: "cos theta y sin theta representados de 0 a 2 pi",
+  },
+  fr: {
+    planeCaption: "Plan complexe · cercle unité",
+    stripCaption: "cos θ et sin θ · θ ∈ [0, 2π]",
+    angleLabel: "Angle θ",
+    play: "▶ Lecture",
+    pause: "❚❚ Pause",
+    reset: "⟳ Réinitialiser",
+    speedLabel: "Vitesse · rad/s",
+    identityTitle: "Le moment de l'identité",
+    identityBody: "À θ = π le point tombe exactement sur z = −1. En ajoutant 1 on obtient 0 :",
+    ariaAngle: "angle thêta",
+    ariaSpeed: "vitesse de l'animation en radians par seconde",
+    ariaPlane: "plan complexe avec le point e^(i thêta) sur le cercle unité",
+    ariaStrip: "cos thêta et sin thêta tracés de 0 à 2 pi",
+  },
+  it: {
+    planeCaption: "Piano complesso · cerchio unitario",
+    stripCaption: "cos θ e sin θ · θ ∈ [0, 2π]",
+    angleLabel: "Angolo θ",
+    play: "▶ Avvia",
+    pause: "❚❚ Pausa",
+    reset: "⟳ Reimposta",
+    speedLabel: "Velocità · rad/s",
+    identityTitle: "Il momento dell'identità",
+    identityBody: "A θ = π il punto cade esattamente su z = −1. Aggiungendo 1 si ottiene 0:",
+    ariaAngle: "angolo theta",
+    ariaSpeed: "velocità dell'animazione in radianti al secondo",
+    ariaPlane: "piano complesso con il punto e^(i theta) sul cerchio unitario",
+    ariaStrip: "cos theta e sin theta tracciati da 0 a 2 pi",
+  },
+  pt: {
+    planeCaption: "Plano complexo · círculo unitário",
+    stripCaption: "cos θ e sin θ · θ ∈ [0, 2π]",
+    angleLabel: "Ângulo θ",
+    play: "▶ Reproduzir",
+    pause: "❚❚ Pausa",
+    reset: "⟳ Repor",
+    speedLabel: "Velocidade · rad/s",
+    identityTitle: "O momento da identidade",
+    identityBody: "Em θ = π o ponto cai exatamente em z = −1. Somando 1 obtém-se 0:",
+    ariaAngle: "ângulo teta",
+    ariaSpeed: "velocidade da animação em radianos por segundo",
+    ariaPlane: "plano complexo com o ponto e^(i teta) no círculo unitário",
+    ariaStrip: "cos teta e sin teta traçados de 0 a 2 pi",
+  },
+  sv: {
+    planeCaption: "Komplexa planet · enhetscirkeln",
+    stripCaption: "cos θ och sin θ · θ ∈ [0, 2π]",
+    angleLabel: "Vinkel θ",
+    play: "▶ Spela",
+    pause: "❚❚ Paus",
+    reset: "⟳ Återställ",
+    speedLabel: "Hastighet · rad/s",
+    identityTitle: "Identitetens ögonblick",
+    identityBody: "Vid θ = π hamnar punkten exakt på z = −1. Adderar man 1 blir det 0:",
+    ariaAngle: "vinkel theta",
+    ariaSpeed: "animeringshastighet i radianer per sekund",
+    ariaPlane: "komplexa planet med punkten e^(i theta) på enhetscirkeln",
+    ariaStrip: "cos theta och sin theta uppritade över 0 till 2 pi",
+  },
+  no: {
+    planeCaption: "Det komplekse planet · enhetssirkelen",
+    stripCaption: "cos θ og sin θ · θ ∈ [0, 2π]",
+    angleLabel: "Vinkel θ",
+    play: "▶ Spill",
+    pause: "❚❚ Pause",
+    reset: "⟳ Nullstill",
+    speedLabel: "Fart · rad/s",
+    identityTitle: "Identitetens øyeblikk",
+    identityBody: "Ved θ = π lander punktet nøyaktig på z = −1. Legger man til 1, blir det 0:",
+    ariaAngle: "vinkel theta",
+    ariaSpeed: "animasjonsfart i radianer per sekund",
+    ariaPlane: "det komplekse planet med punktet e^(i theta) på enhetssirkelen",
+    ariaStrip: "cos theta og sin theta tegnet over 0 til 2 pi",
+  },
+};
+
 export default function EulerExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.euler;
+  const rx = RICH_EXPLORER[locale];
   const planeRef = useRef<HTMLCanvasElement | null>(null);
   const stripRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
@@ -31,30 +177,27 @@ export default function EulerExplorer() {
 
   const thetaRef = useRef(theta);
   thetaRef.current = theta;
-  const runningRef = useRef(running);
-  runningRef.current = running;
   const speedRef = useRef(speed);
   speedRef.current = speed;
 
-  // Animate θ when running
+  // Animate θ only while running. The loop is gated on `running` so a paused
+  // explorer schedules no frames at all. dt is clamped and θ is wrapped with a
+  // modulo so a background-tab frame gap (rAF halts while hidden, then fires
+  // once with the whole elapsed duration) can't fling θ far outside [0, 2π].
   useEffect(() => {
+    if (!running) return;
     let raf = 0;
     let prev = performance.now();
     const tick = (now: number) => {
-      const dt = (now - prev) / 1000;
+      const dt = Math.min((now - prev) / 1000, 0.05);
       prev = now;
-      if (runningRef.current) {
-        let next = thetaRef.current + speedRef.current * dt;
-        // Wrap to [0, 2π] so the slider stays in range
-        if (next > TAU) next -= TAU;
-        if (next < 0) next += TAU;
-        setTheta(next);
-      }
+      const next = thetaRef.current + speedRef.current * dt;
+      setTheta(((next % TAU) + TAU) % TAU);
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [running]);
 
   // Complex plane canvas
   useEffect(() => {
@@ -64,8 +207,14 @@ export default function EulerExplorer() {
     const render = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
-      canvas.width = Math.floor(W * dpr);
-      canvas.height = Math.floor(H * dpr);
+      // Only resize the backing store when it actually changed — reassigning
+      // canvas.width/height every frame would reallocate the bitmap needlessly.
+      const bw = Math.floor(W * dpr);
+      const bh = Math.floor(H * dpr);
+      if (canvas.width !== bw || canvas.height !== bh) {
+        canvas.width = bw;
+        canvas.height = bh;
+      }
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -203,21 +352,15 @@ export default function EulerExplorer() {
     };
 
     render();
+    // Re-render on size change; the θ dependency below repaints on every angle
+    // change, so no perpetual rAF loop is needed (idle explorer draws nothing).
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
 
-    let raf = 0;
-    const loop = () => {
-      render();
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
-
     return () => {
-      cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [resetTick, dpr]);
+  }, [theta, resetTick, dpr]);
 
   // Strip canvas — cos θ and sin θ over [0, 2π]
   useEffect(() => {
@@ -227,8 +370,13 @@ export default function EulerExplorer() {
     const render = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
-      canvas.width = Math.floor(W * dpr);
-      canvas.height = Math.floor(H * dpr);
+      // Only resize when the backing store actually changed (see plane canvas).
+      const bw = Math.floor(W * dpr);
+      const bh = Math.floor(H * dpr);
+      if (canvas.width !== bw || canvas.height !== bh) {
+        canvas.width = bw;
+        canvas.height = bh;
+      }
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -325,18 +473,10 @@ export default function EulerExplorer() {
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
 
-    let raf = 0;
-    const loop = () => {
-      render();
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
-
     return () => {
-      cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [resetTick, dpr]);
+  }, [theta, resetTick, dpr]);
 
   const reset = () => {
     setTheta(0);
@@ -349,20 +489,30 @@ export default function EulerExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              Complex plane · unit circle
+              {rx.planeCaption}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               e^(iθ) = cos θ + i sin θ
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={planeRef} className="block h-full w-full" />
+            <canvas
+              ref={planeRef}
+              className="block h-full w-full"
+              role="img"
+              aria-label={rx.ariaPlane}
+            />
           </div>
           <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-            cos θ and sin θ · θ ∈ [0, 2π]
+            {rx.stripCaption}
           </div>
           <div className="hairline h-40 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={stripRef} className="block h-full w-full" />
+            <canvas
+              ref={stripRef}
+              className="block h-full w-full"
+              role="img"
+              aria-label={rx.ariaStrip}
+            />
           </div>
         </div>
 
@@ -377,7 +527,7 @@ export default function EulerExplorer() {
 
           <div className="hairline space-y-4 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Angle θ
+              {rx.angleLabel}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-teal">{theta.toFixed(3)} rad</span>
@@ -391,6 +541,7 @@ export default function EulerExplorer() {
               step={0.01}
               onChange={(e) => setTheta(parseFloat(e.target.value))}
               className="w-full accent-signal-teal"
+              aria-label={rx.ariaAngle}
             />
             <div className="grid grid-cols-5 gap-2">
               {SPECIAL_ANGLES.map((a2) => {
@@ -423,17 +574,17 @@ export default function EulerExplorer() {
                     : "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
                 }`}
               >
-                {running ? "❚❚ Pause" : "▶ Play"}
+                {running ? rx.pause : rx.play}
               </button>
               <button
                 onClick={reset}
                 className="hairline flex-1 rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
               >
-                ⟳ Reset
+                {rx.reset}
               </button>
             </div>
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Speed · rad/s
+              {rx.speedLabel}
             </div>
             <input
               type="range"
@@ -443,6 +594,7 @@ export default function EulerExplorer() {
               step={0.05}
               onChange={(e) => setSpeed(parseFloat(e.target.value))}
               className="w-full accent-signal-teal"
+              aria-label={rx.ariaSpeed}
             />
             <div className="text-right font-mono text-[10px] text-ink-400">
               {speed.toFixed(2)} rad/s
@@ -451,10 +603,10 @@ export default function EulerExplorer() {
 
           <div className="hairline space-y-2 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              The identity moment
+              {rx.identityTitle}
             </div>
             <p className="text-sm leading-relaxed text-ink-200">
-              At θ = π the point lands exactly at z = −1. Adding 1 gives 0:
+              {rx.identityBody}
               <span className="mt-2 block font-mono text-signal-teal">e^(iπ) + 1 = 0</span>
             </p>
           </div>

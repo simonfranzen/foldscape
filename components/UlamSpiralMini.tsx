@@ -26,6 +26,8 @@ interface Props {
   numbersLabel: (n: number) => string;
   hint: string;
   quadratics: Quadratic[];
+  // Localized accessible name for the canvas; falls back to "Ulam spiral".
+  ariaLabel?: string;
 }
 
 const SIZE = 340;
@@ -56,7 +58,9 @@ function spiralCoord(n: number): [number, number] {
   if (off < sideLen) {
     y += off;
   } else if (off < 2 * sideLen) {
-    y += sideLen;
+    // Top row sits at y = k: the right column already climbed to (k, k), so
+    // this leftward run must stay on that row, not one above it.
+    y += sideLen - 1;
     x -= off - sideLen + 1;
   } else if (off < 3 * sideLen) {
     y = k - (off - 2 * sideLen + 1);
@@ -76,6 +80,7 @@ export function UlamSpiralMini({
   numbersLabel,
   hint,
   quadratics,
+  ariaLabel = "Ulam spiral",
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
@@ -157,7 +162,8 @@ export function UlamSpiralMini({
             ref={canvasRef}
             style={{ width: SIZE, height: SIZE }}
             className="hairline rounded-md border"
-            aria-label="Ulam spiral"
+            role="img"
+            aria-label={ariaLabel}
           />
           <div className="flex gap-4 font-mono text-[10px] uppercase tracking-widest2">
             <span className="text-signal-amber">{primesLabel(primesCount)}</span>
@@ -183,6 +189,7 @@ export function UlamSpiralMini({
               step={2}
               onChange={(e) => setSide(parseInt(e.target.value))}
               className="w-full accent-signal-amber"
+              aria-label={sideLabel}
             />
           </div>
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 
 // ── DPLL solver, stepped and visualised ────────────────────────────────────
 // A literal is a variable index plus a sign. A clause is a disjunction of
@@ -190,9 +191,487 @@ function step(p: Preset, s: State): State {
 
 const litText = (l: Lit, p: Preset) => (l.neg ? "¬" : "") + p.vars[l.v];
 
+// --------------------------------------------------------------------------
+// Per-locale UI strings for the DPLL explorer. Kept inline (the repo's
+// RICH_EXPLORER pattern, see app/eulerchar/explorer) so every control, legend
+// entry, tooltip and narration line is translated next to where it is used
+// rather than leaking English into seven localized pages.
+// --------------------------------------------------------------------------
+type RichExplorer = {
+  presets: Record<string, string>;
+  vars: string;
+  clauses: string;
+  decisions: string;
+  propagations: string;
+  statusSat: string;
+  statusUnsat: string;
+  statusSolving: string;
+  assignment: string;
+  formulaUnderAssignment: string;
+  formula: string;
+  controls: string;
+  speed: string;
+  stepsPerSecond: string;
+  speedLabel: string;
+  step: string;
+  play: string;
+  pause: string;
+  reset: string;
+  clauseColour: string;
+  searchPath: string;
+  legendSatisfied: string;
+  legendUnit: string;
+  legendConflict: string;
+  legendOpen: string;
+  legendDecision: string;
+  legendPropagation: string;
+  tipSatisfied: string;
+  tipConflict: string;
+  tipUnit: string;
+  tipOpen: string;
+  tipPropagation: string;
+  tipDecision: (level: number) => string;
+  trailEmpty: string;
+  story: string;
+  narrateStart: string;
+  narrateDecide: (v: string, level: number) => string;
+  narrateUnit: (clause: number, v: string, value: boolean) => string;
+  narrateBacktrack: (clause: number, v: string, value: boolean) => string;
+  narrateSat: string;
+  narrateUnsat: string;
+};
+
+const RICH_EXPLORER: Record<Locale, RichExplorer> = {
+  en: {
+    presets: {
+      sat: "Satisfiable: forces a backtrack",
+      unsat: "Unsatisfiable: every assignment ruled out",
+      big: "Satisfiable: five variables",
+    },
+    vars: "vars",
+    clauses: "clauses",
+    decisions: "decisions",
+    propagations: "propagations",
+    statusSat: "⊨ SATISFIABLE",
+    statusUnsat: "⊭ UNSATISFIABLE",
+    statusSolving: "solving…",
+    assignment: "Assignment",
+    formulaUnderAssignment: "Formula · each clause under the current assignment",
+    formula: "Formula",
+    controls: "Controls",
+    speed: "Speed",
+    stepsPerSecond: "steps/s",
+    speedLabel: "Steps per second",
+    step: "Step",
+    play: "Play",
+    pause: "Pause",
+    reset: "Reset",
+    clauseColour: "Clause colour",
+    searchPath: "Search path",
+    legendSatisfied: "satisfied",
+    legendUnit: "unit: one literal forced",
+    legendConflict: "conflict: all false",
+    legendOpen: "open: undecided",
+    legendDecision: "▼ decision · ⤺ flipped",
+    legendPropagation: "unit propagation",
+    tipSatisfied: "satisfied",
+    tipConflict: "conflict: all literals false",
+    tipUnit: "unit: one literal forced",
+    tipOpen: "open",
+    tipPropagation: "unit propagation",
+    tipDecision: (level) => `decision · level ${level}`,
+    trailEmpty: "(empty)",
+    story: "← Story",
+    narrateStart:
+      "Pick a formula and press Step. The solver decides a variable, propagates the forced consequences, and backtracks out of every contradiction.",
+    narrateDecide: (v, level) =>
+      `Decision: no clause forces anything, so guess ${v} = true and open decision level ${level}.`,
+    narrateUnit: (clause, v, value) =>
+      `Unit propagation: clause ${clause} has one literal left, forcing ${v} = ${value ? "true" : "false"}.`,
+    narrateBacktrack: (clause, v, value) =>
+      `Conflict in clause ${clause}: every literal is false. Backtrack and flip the last open decision: ${v} = ${value ? "true" : "false"}.`,
+    narrateSat:
+      "Every variable is assigned and every clause is satisfied: the formula is SATISFIABLE. The assignment is a certificate anyone can check in one pass.",
+    narrateUnsat:
+      "Backtracking ran past the root: every branch ends in conflict. The formula is UNSATISFIABLE, and the search just proved it, the hard direction.",
+  },
+  de: {
+    presets: {
+      sat: "Erfüllbar: erzwingt ein Backtracking",
+      unsat: "Unerfüllbar: jede Belegung ausgeschlossen",
+      big: "Erfüllbar: fünf Variablen",
+    },
+    vars: "Variablen",
+    clauses: "Klauseln",
+    decisions: "Entscheidungen",
+    propagations: "Propagationen",
+    statusSat: "⊨ ERFÜLLBAR",
+    statusUnsat: "⊭ UNERFÜLLBAR",
+    statusSolving: "löse…",
+    assignment: "Belegung",
+    formulaUnderAssignment: "Formel · jede Klausel unter der aktuellen Belegung",
+    formula: "Formel",
+    controls: "Steuerung",
+    speed: "Tempo",
+    stepsPerSecond: "Schritte/s",
+    speedLabel: "Schritte pro Sekunde",
+    step: "Schritt",
+    play: "Los",
+    pause: "Pause",
+    reset: "Zurücksetzen",
+    clauseColour: "Klauselfarbe",
+    searchPath: "Suchpfad",
+    legendSatisfied: "erfüllt",
+    legendUnit: "Unit: ein Literal erzwungen",
+    legendConflict: "Konflikt: alle falsch",
+    legendOpen: "offen: unentschieden",
+    legendDecision: "▼ Entscheidung · ⤺ umgekippt",
+    legendPropagation: "Unit-Propagation",
+    tipSatisfied: "erfüllt",
+    tipConflict: "Konflikt: alle Literale falsch",
+    tipUnit: "Unit: ein Literal erzwungen",
+    tipOpen: "offen",
+    tipPropagation: "Unit-Propagation",
+    tipDecision: (level) => `Entscheidung · Ebene ${level}`,
+    trailEmpty: "(leer)",
+    story: "← Zur Story",
+    narrateStart:
+      "Wähle eine Formel und drücke Schritt. Der Solver entscheidet eine Variable, propagiert die erzwungenen Konsequenzen und setzt aus jedem Widerspruch zurück.",
+    narrateDecide: (v, level) =>
+      `Entscheidung: Keine Klausel erzwingt etwas, also rate ${v} = wahr und öffne Entscheidungsebene ${level}.`,
+    narrateUnit: (clause, v, value) =>
+      `Unit-Propagation: Klausel ${clause} hat nur noch ein Literal, das ${v} = ${value ? "wahr" : "falsch"} erzwingt.`,
+    narrateBacktrack: (clause, v, value) =>
+      `Konflikt in Klausel ${clause}: Jedes Literal ist falsch. Setze zurück und kippe die letzte offene Entscheidung: ${v} = ${value ? "wahr" : "falsch"}.`,
+    narrateSat:
+      "Jede Variable ist belegt und jede Klausel erfüllt: Die Formel ist ERFÜLLBAR. Die Belegung ist ein Zertifikat, das jede:r in einem Durchgang prüfen kann.",
+    narrateUnsat:
+      "Das Backtracking lief über die Wurzel hinaus: Jeder Zweig endet im Konflikt. Die Formel ist UNERFÜLLBAR, und die Suche hat es gerade bewiesen, die schwere Richtung.",
+  },
+  es: {
+    presets: {
+      sat: "Satisfacible: fuerza un retroceso",
+      unsat: "Insatisfacible: toda asignación descartada",
+      big: "Satisfacible: cinco variables",
+    },
+    vars: "vars",
+    clauses: "cláusulas",
+    decisions: "decisiones",
+    propagations: "propagaciones",
+    statusSat: "⊨ SATISFACIBLE",
+    statusUnsat: "⊭ INSATISFACIBLE",
+    statusSolving: "resolviendo…",
+    assignment: "Asignación",
+    formulaUnderAssignment: "Fórmula · cada cláusula bajo la asignación actual",
+    formula: "Fórmula",
+    controls: "Controles",
+    speed: "Velocidad",
+    stepsPerSecond: "pasos/s",
+    speedLabel: "Pasos por segundo",
+    step: "Paso",
+    play: "Reproducir",
+    pause: "Pausa",
+    reset: "Reiniciar",
+    clauseColour: "Color de cláusula",
+    searchPath: "Ruta de búsqueda",
+    legendSatisfied: "satisfecha",
+    legendUnit: "unitaria: un literal forzado",
+    legendConflict: "conflicto: todos falsos",
+    legendOpen: "abierta: indecisa",
+    legendDecision: "▼ decisión · ⤺ volteada",
+    legendPropagation: "propagación unitaria",
+    tipSatisfied: "satisfecha",
+    tipConflict: "conflicto: todos los literales falsos",
+    tipUnit: "unitaria: un literal forzado",
+    tipOpen: "abierta",
+    tipPropagation: "propagación unitaria",
+    tipDecision: (level) => `decisión · nivel ${level}`,
+    trailEmpty: "(vacío)",
+    story: "← Historia",
+    narrateStart:
+      "Elige una fórmula y pulsa Paso. El solver decide una variable, propaga las consecuencias forzadas y retrocede de cada contradicción.",
+    narrateDecide: (v, level) =>
+      `Decisión: ninguna cláusula fuerza nada, así que supón ${v} = verdadero y abre el nivel de decisión ${level}.`,
+    narrateUnit: (clause, v, value) =>
+      `Propagación unitaria: a la cláusula ${clause} le queda un literal, forzando ${v} = ${value ? "verdadero" : "falso"}.`,
+    narrateBacktrack: (clause, v, value) =>
+      `Conflicto en la cláusula ${clause}: todos los literales son falsos. Retrocede y voltea la última decisión abierta: ${v} = ${value ? "verdadero" : "falso"}.`,
+    narrateSat:
+      "Cada variable está asignada y cada cláusula satisfecha: la fórmula es SATISFACIBLE. La asignación es un certificado que cualquiera comprueba en una pasada.",
+    narrateUnsat:
+      "El retroceso pasó de la raíz: toda rama acaba en conflicto. La fórmula es INSATISFACIBLE, y la búsqueda acaba de probarlo, la dirección difícil.",
+  },
+  fr: {
+    presets: {
+      sat: "Satisfaisable : force un retour arrière",
+      unsat: "Insatisfaisable : toute affectation écartée",
+      big: "Satisfaisable : cinq variables",
+    },
+    vars: "vars",
+    clauses: "clauses",
+    decisions: "décisions",
+    propagations: "propagations",
+    statusSat: "⊨ SATISFAISABLE",
+    statusUnsat: "⊭ INSATISFAISABLE",
+    statusSolving: "résolution…",
+    assignment: "Affectation",
+    formulaUnderAssignment: "Formule · chaque clause sous l'affectation actuelle",
+    formula: "Formule",
+    controls: "Commandes",
+    speed: "Vitesse",
+    stepsPerSecond: "pas/s",
+    speedLabel: "Pas par seconde",
+    step: "Pas",
+    play: "Lecture",
+    pause: "Pause",
+    reset: "Réinitialiser",
+    clauseColour: "Couleur de clause",
+    searchPath: "Chemin de recherche",
+    legendSatisfied: "satisfaite",
+    legendUnit: "unitaire : un littéral forcé",
+    legendConflict: "conflit : tous faux",
+    legendOpen: "ouverte : indécise",
+    legendDecision: "▼ décision · ⤺ inversée",
+    legendPropagation: "propagation unitaire",
+    tipSatisfied: "satisfaite",
+    tipConflict: "conflit : tous les littéraux faux",
+    tipUnit: "unitaire : un littéral forcé",
+    tipOpen: "ouverte",
+    tipPropagation: "propagation unitaire",
+    tipDecision: (level) => `décision · niveau ${level}`,
+    trailEmpty: "(vide)",
+    story: "← Récit",
+    narrateStart:
+      "Choisis une formule et presse Pas. Le solveur décide une variable, propage les conséquences forcées et rebrousse chemin à chaque contradiction.",
+    narrateDecide: (v, level) =>
+      `Décision : aucune clause n'impose rien, alors devine ${v} = vrai et ouvre le niveau de décision ${level}.`,
+    narrateUnit: (clause, v, value) =>
+      `Propagation unitaire : il reste un littéral à la clause ${clause}, forçant ${v} = ${value ? "vrai" : "faux"}.`,
+    narrateBacktrack: (clause, v, value) =>
+      `Conflit dans la clause ${clause} : tous les littéraux sont faux. Rebrousse chemin et inverse la dernière décision ouverte : ${v} = ${value ? "vrai" : "faux"}.`,
+    narrateSat:
+      "Chaque variable est affectée et chaque clause satisfaite : la formule est SATISFAISABLE. L'affectation est un certificat que chacun vérifie en un passage.",
+    narrateUnsat:
+      "Le retour arrière a dépassé la racine : chaque branche finit en conflit. La formule est INSATISFAISABLE, et la recherche vient de le prouver, la direction difficile.",
+  },
+  it: {
+    presets: {
+      sat: "Soddisfacibile: forza un backtracking",
+      unsat: "Insoddisfacibile: ogni assegnamento escluso",
+      big: "Soddisfacibile: cinque variabili",
+    },
+    vars: "var",
+    clauses: "clausole",
+    decisions: "decisioni",
+    propagations: "propagazioni",
+    statusSat: "⊨ SODDISFACIBILE",
+    statusUnsat: "⊭ INSODDISFACIBILE",
+    statusSolving: "risolvo…",
+    assignment: "Assegnamento",
+    formulaUnderAssignment: "Formula · ogni clausola sotto l'assegnamento attuale",
+    formula: "Formula",
+    controls: "Controlli",
+    speed: "Velocità",
+    stepsPerSecond: "passi/s",
+    speedLabel: "Passi al secondo",
+    step: "Passo",
+    play: "Avvia",
+    pause: "Pausa",
+    reset: "Azzera",
+    clauseColour: "Colore della clausola",
+    searchPath: "Percorso di ricerca",
+    legendSatisfied: "soddisfatta",
+    legendUnit: "unitaria: un letterale forzato",
+    legendConflict: "conflitto: tutti falsi",
+    legendOpen: "aperta: indecisa",
+    legendDecision: "▼ decisione · ⤺ ribaltata",
+    legendPropagation: "propagazione unitaria",
+    tipSatisfied: "soddisfatta",
+    tipConflict: "conflitto: tutti i letterali falsi",
+    tipUnit: "unitaria: un letterale forzato",
+    tipOpen: "aperta",
+    tipPropagation: "propagazione unitaria",
+    tipDecision: (level) => `decisione · livello ${level}`,
+    trailEmpty: "(vuoto)",
+    story: "← Racconto",
+    narrateStart:
+      "Scegli una formula e premi Passo. Il solver decide una variabile, propaga le conseguenze forzate e torna indietro da ogni contraddizione.",
+    narrateDecide: (v, level) =>
+      `Decisione: nessuna clausola forza nulla, quindi indovina ${v} = vero e apri il livello di decisione ${level}.`,
+    narrateUnit: (clause, v, value) =>
+      `Propagazione unitaria: alla clausola ${clause} resta un letterale, forzando ${v} = ${value ? "vero" : "falso"}.`,
+    narrateBacktrack: (clause, v, value) =>
+      `Conflitto nella clausola ${clause}: ogni letterale è falso. Torna indietro e ribalta l'ultima decisione aperta: ${v} = ${value ? "vero" : "falso"}.`,
+    narrateSat:
+      "Ogni variabile è assegnata e ogni clausola soddisfatta: la formula è SODDISFACIBILE. L'assegnamento è un certificato che chiunque verifica in un passaggio.",
+    narrateUnsat:
+      "Il backtracking è andato oltre la radice: ogni ramo finisce in conflitto. La formula è INSODDISFACIBILE, e la ricerca l'ha appena dimostrato, la direzione difficile.",
+  },
+  pt: {
+    presets: {
+      sat: "Satisfazível: força um retrocesso",
+      unsat: "Insatisfazível: toda atribuição descartada",
+      big: "Satisfazível: cinco variáveis",
+    },
+    vars: "vars",
+    clauses: "cláusulas",
+    decisions: "decisões",
+    propagations: "propagações",
+    statusSat: "⊨ SATISFAZÍVEL",
+    statusUnsat: "⊭ INSATISFAZÍVEL",
+    statusSolving: "a resolver…",
+    assignment: "Atribuição",
+    formulaUnderAssignment: "Fórmula · cada cláusula sob a atribuição atual",
+    formula: "Fórmula",
+    controls: "Controlos",
+    speed: "Velocidade",
+    stepsPerSecond: "passos/s",
+    speedLabel: "Passos por segundo",
+    step: "Passo",
+    play: "Reproduzir",
+    pause: "Pausa",
+    reset: "Reiniciar",
+    clauseColour: "Cor da cláusula",
+    searchPath: "Caminho de busca",
+    legendSatisfied: "satisfeita",
+    legendUnit: "unitária: um literal forçado",
+    legendConflict: "conflito: todos falsos",
+    legendOpen: "aberta: indecisa",
+    legendDecision: "▼ decisão · ⤺ invertida",
+    legendPropagation: "propagação unitária",
+    tipSatisfied: "satisfeita",
+    tipConflict: "conflito: todos os literais falsos",
+    tipUnit: "unitária: um literal forçado",
+    tipOpen: "aberta",
+    tipPropagation: "propagação unitária",
+    tipDecision: (level) => `decisão · nível ${level}`,
+    trailEmpty: "(vazio)",
+    story: "← História",
+    narrateStart:
+      "Escolhe uma fórmula e carrega em Passo. O solver decide uma variável, propaga as consequências forçadas e recua de cada contradição.",
+    narrateDecide: (v, level) =>
+      `Decisão: nenhuma cláusula força nada, então adivinha ${v} = verdadeiro e abre o nível de decisão ${level}.`,
+    narrateUnit: (clause, v, value) =>
+      `Propagação unitária: à cláusula ${clause} resta um literal, forçando ${v} = ${value ? "verdadeiro" : "falso"}.`,
+    narrateBacktrack: (clause, v, value) =>
+      `Conflito na cláusula ${clause}: cada literal é falso. Recua e inverte a última decisão aberta: ${v} = ${value ? "verdadeiro" : "falso"}.`,
+    narrateSat:
+      "Cada variável está atribuída e cada cláusula satisfeita: a fórmula é SATISFAZÍVEL. A atribuição é um certificado que qualquer pessoa verifica numa passagem.",
+    narrateUnsat:
+      "O retrocesso passou da raiz: cada ramo acaba em conflito. A fórmula é INSATISFAZÍVEL, e a busca acabou de o provar, a direção difícil.",
+  },
+  sv: {
+    presets: {
+      sat: "Satisfierbar: tvingar fram en backtrack",
+      unsat: "Osatisfierbar: varje tilldelning utesluten",
+      big: "Satisfierbar: fem variabler",
+    },
+    vars: "var",
+    clauses: "klausuler",
+    decisions: "beslut",
+    propagations: "propageringar",
+    statusSat: "⊨ SATISFIERBAR",
+    statusUnsat: "⊭ OSATISFIERBAR",
+    statusSolving: "löser…",
+    assignment: "Tilldelning",
+    formulaUnderAssignment: "Formel · varje klausul under den aktuella tilldelningen",
+    formula: "Formel",
+    controls: "Kontroller",
+    speed: "Hastighet",
+    stepsPerSecond: "steg/s",
+    speedLabel: "Steg per sekund",
+    step: "Steg",
+    play: "Spela",
+    pause: "Paus",
+    reset: "Återställ",
+    clauseColour: "Klausulfärg",
+    searchPath: "Sökväg",
+    legendSatisfied: "satisfierad",
+    legendUnit: "enhet: en literal tvingad",
+    legendConflict: "konflikt: alla falska",
+    legendOpen: "öppen: obestämd",
+    legendDecision: "▼ beslut · ⤺ vänd",
+    legendPropagation: "enhetspropagering",
+    tipSatisfied: "satisfierad",
+    tipConflict: "konflikt: alla literaler falska",
+    tipUnit: "enhet: en literal tvingad",
+    tipOpen: "öppen",
+    tipPropagation: "enhetspropagering",
+    tipDecision: (level) => `beslut · nivå ${level}`,
+    trailEmpty: "(tomt)",
+    story: "← Berättelse",
+    narrateStart:
+      "Välj en formel och tryck Steg. Lösaren beslutar en variabel, propagerar de tvingade följderna och backar ur varje motsägelse.",
+    narrateDecide: (v, level) =>
+      `Beslut: ingen klausul tvingar något, så gissa ${v} = sant och öppna beslutsnivå ${level}.`,
+    narrateUnit: (clause, v, value) =>
+      `Enhetspropagering: klausul ${clause} har en literal kvar, vilket tvingar ${v} = ${value ? "sant" : "falskt"}.`,
+    narrateBacktrack: (clause, v, value) =>
+      `Konflikt i klausul ${clause}: varje literal är falsk. Backa och vänd det senaste öppna beslutet: ${v} = ${value ? "sant" : "falskt"}.`,
+    narrateSat:
+      "Varje variabel är tilldelad och varje klausul satisfierad: formeln är SATISFIERBAR. Tilldelningen är ett certifikat som vem som helst kontrollerar i ett svep.",
+    narrateUnsat:
+      "Backtrackningen gick förbi roten: varje gren slutar i konflikt. Formeln är OSATISFIERBAR, och sökningen bevisade det just, den svåra riktningen.",
+  },
+  no: {
+    presets: {
+      sat: "Oppfyllbar: tvinger fram en backtrack",
+      unsat: "Uoppfyllbar: hver tildeling utelukket",
+      big: "Oppfyllbar: fem variabler",
+    },
+    vars: "var",
+    clauses: "klausuler",
+    decisions: "beslutninger",
+    propagations: "propageringer",
+    statusSat: "⊨ OPPFYLLBAR",
+    statusUnsat: "⊭ UOPPFYLLBAR",
+    statusSolving: "løser…",
+    assignment: "Tildeling",
+    formulaUnderAssignment: "Formel · hver klausul under den gjeldende tildelingen",
+    formula: "Formel",
+    controls: "Kontroller",
+    speed: "Hastighet",
+    stepsPerSecond: "steg/s",
+    speedLabel: "Steg per sekund",
+    step: "Steg",
+    play: "Spill",
+    pause: "Pause",
+    reset: "Nullstill",
+    clauseColour: "Klausulfarge",
+    searchPath: "Søkesti",
+    legendSatisfied: "oppfylt",
+    legendUnit: "enhet: én literal tvunget",
+    legendConflict: "konflikt: alle usanne",
+    legendOpen: "åpen: ubestemt",
+    legendDecision: "▼ beslutning · ⤺ vendt",
+    legendPropagation: "enhetspropagering",
+    tipSatisfied: "oppfylt",
+    tipConflict: "konflikt: alle literaler usanne",
+    tipUnit: "enhet: én literal tvunget",
+    tipOpen: "åpen",
+    tipPropagation: "enhetspropagering",
+    tipDecision: (level) => `beslutning · nivå ${level}`,
+    trailEmpty: "(tomt)",
+    story: "← Fortelling",
+    narrateStart:
+      "Velg en formel og trykk Steg. Løseren beslutter en variabel, propagerer de tvungne følgene og går tilbake fra hver motsigelse.",
+    narrateDecide: (v, level) =>
+      `Beslutning: ingen klausul tvinger noe, så gjett ${v} = sann og åpne beslutningsnivå ${level}.`,
+    narrateUnit: (clause, v, value) =>
+      `Enhetspropagering: klausul ${clause} har én literal igjen, som tvinger ${v} = ${value ? "sann" : "usann"}.`,
+    narrateBacktrack: (clause, v, value) =>
+      `Konflikt i klausul ${clause}: hver literal er usann. Gå tilbake og vend den siste åpne beslutningen: ${v} = ${value ? "sann" : "usann"}.`,
+    narrateSat:
+      "Hver variabel er tildelt og hver klausul oppfylt: formelen er OPPFYLLBAR. Tildelingen er et sertifikat som hvem som helst kan sjekke i ett gjennomløp.",
+    narrateUnsat:
+      "Backtrackingen gikk forbi roten: hver gren ender i konflikt. Formelen er UOPPFYLLBAR, og søket beviste det nettopp, den vanskelige retningen.",
+  },
+};
+
 export default function SatExplorer() {
-  const { a: atlas, u } = useI18n();
+  const { a: atlas, u, locale } = useI18n();
   const topic = atlas.topics.sat;
+  const tr = RICH_EXPLORER[locale];
 
   const [presetId, setPresetId] = useState("sat");
   const preset = useMemo(() => PRESETS.find((x) => x.id === presetId)!, [presetId]);
@@ -200,11 +679,15 @@ export default function SatExplorer() {
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(3); // steps per second
 
-  // Reset whenever the preset changes.
-  useEffect(() => {
-    setPlaying(false);
+  // Reset synchronously when the preset changes (React's store-previous-value
+  // pattern) so no frame paints the new formula against the old assignment.
+  // An effect-based reset runs after paint and flashes stale solver state.
+  const [prevPresetId, setPrevPresetId] = useState(presetId);
+  if (presetId !== prevPresetId) {
+    setPrevPresetId(presetId);
     setState(initState(preset));
-  }, [preset]);
+    setPlaying(false);
+  }
 
   // Play loop — recreated each step so the closure sees fresh state.
   useEffect(() => {
@@ -227,7 +710,7 @@ export default function SatExplorer() {
   const decisions = state.trail.filter((t) => t.reason === "decide").length;
   const props = state.trail.filter((t) => t.reason === "unit").length;
 
-  const narration = describe(state.action, preset);
+  const narration = describe(state.action, preset, tr);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
@@ -236,7 +719,7 @@ export default function SatExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-5 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              CNF · {preset.vars.length} vars · {preset.clauses.length} clauses
+              CNF · {preset.vars.length} {tr.vars} · {preset.clauses.length} {tr.clauses}
             </div>
             <div
               className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${
@@ -248,17 +731,17 @@ export default function SatExplorer() {
               }`}
             >
               {state.status === "sat"
-                ? "⊨ SATISFIABLE"
+                ? tr.statusSat
                 : state.status === "unsat"
-                  ? "⊭ UNSATISFIABLE"
-                  : "solving…"}
+                  ? tr.statusUnsat
+                  : tr.statusSolving}
             </div>
           </div>
 
           {/* Current assignment */}
           <div className="hairline rounded-2xl border bg-ink-950/60 p-4">
             <div className="mb-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-400">
-              Assignment
+              {tr.assignment}
             </div>
             <div className="flex flex-wrap gap-2">
               {preset.vars.map((name, i) => {
@@ -286,7 +769,7 @@ export default function SatExplorer() {
           {/* Clauses */}
           <div className="hairline flex-1 overflow-auto rounded-2xl border bg-ink-950/60 p-4">
             <div className="mb-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-400">
-              Formula · each clause under the current assignment
+              {tr.formulaUnderAssignment}
             </div>
             <div className="flex flex-wrap items-center gap-x-1.5 gap-y-2.5">
               {preset.clauses.map((clause, j) => {
@@ -305,12 +788,12 @@ export default function SatExplorer() {
                       className={`inline-flex items-center rounded-md border px-2.5 py-1.5 font-mono text-sm ${border}`}
                       title={
                         st.kind === "sat"
-                          ? "satisfied"
+                          ? tr.tipSatisfied
                           : st.kind === "conflict"
-                            ? "conflict — all literals false"
+                            ? tr.tipConflict
                             : st.kind === "unit"
-                              ? "unit — one literal forced"
-                              : "open"
+                              ? tr.tipUnit
+                              : tr.tipOpen
                       }
                     >
                       <span className="text-ink-500">(</span>
@@ -347,11 +830,11 @@ export default function SatExplorer() {
           {/* Decision trail */}
           <div className="hairline rounded-2xl border bg-ink-950/60 p-4">
             <div className="mb-3 font-mono text-[10px] uppercase tracking-widest2 text-ink-400">
-              Search path · {decisions} decisions · {props} propagations
+              {tr.searchPath} · {decisions} {tr.decisions} · {props} {tr.propagations}
             </div>
             <div className="flex flex-wrap items-center gap-1.5">
               {state.trail.length === 0 && (
-                <span className="font-mono text-[11px] text-ink-500">— empty —</span>
+                <span className="font-mono text-[11px] text-ink-500">{tr.trailEmpty}</span>
               )}
               {state.trail.map((t, i) => (
                 <span
@@ -361,7 +844,7 @@ export default function SatExplorer() {
                       ? "border-signal-violet/50 bg-signal-violet/10 text-signal-violet"
                       : "border-signal-cyan/40 bg-signal-cyan/10 text-signal-cyan"
                   }`}
-                  title={t.reason === "decide" ? `decision · level ${t.level}` : "unit propagation"}
+                  title={t.reason === "decide" ? tr.tipDecision(t.level) : tr.tipPropagation}
                 >
                   {preset.vars[t.v]}={t.value ? "T" : "F"}
                   {t.reason === "decide" ? (t.flipped ? " ⤺" : " ▼") : ""}
@@ -397,7 +880,7 @@ export default function SatExplorer() {
           {/* Formula picker */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Formula
+              {tr.formula}
             </div>
             <div className="grid grid-cols-1 gap-2">
               {PRESETS.map((p) => (
@@ -410,7 +893,7 @@ export default function SatExplorer() {
                       : "hairline text-ink-200 hover:border-signal-violet/40 hover:text-ink-100"
                   }`}
                 >
-                  <div className="font-mono text-xs">{p.label}</div>
+                  <div className="font-mono text-xs">{tr.presets[p.id]}</div>
                 </button>
               ))}
             </div>
@@ -419,7 +902,7 @@ export default function SatExplorer() {
           {/* Controls */}
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Controls
+              {tr.controls}
             </div>
             <div className="grid grid-cols-4 gap-2">
               <button
@@ -430,36 +913,40 @@ export default function SatExplorer() {
                 disabled={state.status !== "running"}
                 className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-200 hover:border-signal-violet/50 hover:text-signal-violet disabled:opacity-40"
               >
-                Step
+                {tr.step}
               </button>
               <button
                 onClick={() => setPlaying(true)}
                 disabled={state.status !== "running" || playing}
                 className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-200 hover:border-signal-violet/50 hover:text-signal-violet disabled:opacity-40"
               >
-                Play
+                {tr.play}
               </button>
               <button
                 onClick={() => setPlaying(false)}
                 disabled={!playing}
                 className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-200 hover:border-signal-violet/50 hover:text-signal-violet disabled:opacity-40"
               >
-                Pause
+                {tr.pause}
               </button>
               <button
                 onClick={reset}
                 className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-200 hover:border-signal-rose/50 hover:text-signal-rose"
               >
-                Reset
+                {tr.reset}
               </button>
             </div>
           </div>
 
           {/* Speed */}
           <div className="hairline space-y-3 border-b p-5">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">Speed</div>
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+              {tr.speed}
+            </div>
             <div className="flex items-center justify-between font-mono text-sm">
-              <span className="text-signal-violet">{speed} steps/s</span>
+              <span className="text-signal-violet">
+                {speed} {tr.stepsPerSecond}
+              </span>
             </div>
             <input
               type="range"
@@ -467,6 +954,7 @@ export default function SatExplorer() {
               min={1}
               max={12}
               step={1}
+              aria-label={tr.speedLabel}
               onChange={(e) => setSpeed(parseInt(e.target.value))}
               className="w-full accent-signal-violet"
             />
@@ -474,14 +962,14 @@ export default function SatExplorer() {
 
           {/* Legend */}
           <div className="hairline space-y-2 border-b p-5 font-mono text-[10px] text-ink-200">
-            <div className="uppercase tracking-widest2 text-ink-300">Clause colour</div>
-            <Legend swatch="bg-signal-teal/30 border-signal-teal/60" label="satisfied" />
-            <Legend swatch="bg-signal-amber/20 border-signal-amber/60" label="unit — one literal forced" />
-            <Legend swatch="bg-signal-rose/20 border-signal-rose/70" label="conflict — all false" />
-            <Legend swatch="bg-ink-900 border-ink-500/40" label="open — undecided" />
-            <div className="pt-2 uppercase tracking-widest2 text-ink-300">Search path</div>
-            <Legend swatch="bg-signal-violet/20 border-signal-violet/60" label="▼ decision · ⤺ flipped" />
-            <Legend swatch="bg-signal-cyan/20 border-signal-cyan/50" label="unit propagation" />
+            <div className="uppercase tracking-widest2 text-ink-300">{tr.clauseColour}</div>
+            <Legend swatch="bg-signal-teal/30 border-signal-teal/60" label={tr.legendSatisfied} />
+            <Legend swatch="bg-signal-amber/20 border-signal-amber/60" label={tr.legendUnit} />
+            <Legend swatch="bg-signal-rose/20 border-signal-rose/70" label={tr.legendConflict} />
+            <Legend swatch="bg-ink-900 border-ink-500/40" label={tr.legendOpen} />
+            <div className="pt-2 uppercase tracking-widest2 text-ink-300">{tr.searchPath}</div>
+            <Legend swatch="bg-signal-violet/20 border-signal-violet/60" label={tr.legendDecision} />
+            <Legend swatch="bg-signal-cyan/20 border-signal-cyan/50" label={tr.legendPropagation} />
           </div>
 
           <div className="p-5">
@@ -489,7 +977,7 @@ export default function SatExplorer() {
               href="/sat"
               className="hairline mb-2 block w-full rounded-md border py-2 text-center font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-violet/40 hover:text-signal-violet"
             >
-              ← Story
+              {tr.story}
             </Link>
             <Link
               href="/"
@@ -513,19 +1001,19 @@ function Legend({ swatch, label }: { swatch: string; label: string }) {
   );
 }
 
-function describe(action: Action, p: Preset): string {
+function describe(action: Action, p: Preset, tr: RichExplorer): string {
   switch (action.type) {
     case "start":
-      return "Pick a formula and press Step. The solver decides a variable, propagates the forced consequences, and backtracks out of every contradiction.";
+      return tr.narrateStart;
     case "decide":
-      return `Decision: no clause forces anything, so guess ${p.vars[action.v]} = true and open decision level ${action.level}.`;
+      return tr.narrateDecide(p.vars[action.v], action.level);
     case "unit":
-      return `Unit propagation: clause ${action.clause + 1} has one literal left, forcing ${p.vars[action.v]} = ${action.value ? "true" : "false"}.`;
+      return tr.narrateUnit(action.clause + 1, p.vars[action.v], action.value);
     case "backtrack":
-      return `Conflict in clause ${action.clause + 1} — every literal is false. Backtrack and flip the last open decision: ${p.vars[action.v]} = ${action.value ? "true" : "false"}.`;
+      return tr.narrateBacktrack(action.clause + 1, p.vars[action.v], action.value);
     case "sat":
-      return "Every variable is assigned and every clause is satisfied — the formula is SATISFIABLE. The assignment is a certificate anyone can check in one pass.";
+      return tr.narrateSat;
     case "unsat":
-      return "Backtracking ran past the root: every branch ends in conflict. The formula is UNSATISFIABLE — and the search just proved it, the hard direction.";
+      return tr.narrateUnsat;
   }
 }

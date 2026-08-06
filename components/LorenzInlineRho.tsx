@@ -2,16 +2,33 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
 
 // Live ρ slider with a small canvas trajectory rendering. RK4 integration of
-// the Lorenz system. Drag the canvas to rotate the camera around the
-// vertical (z) axis. Kept deliberately small so it can sit inline in the
-// story page.
+// the Lorenz system. Drag the canvas (or use the arrow keys when focused) to
+// rotate the camera around the vertical (z) axis. Kept deliberately small so
+// it can sit inline in the story page.
 
 type Vec3 = [number, number, number];
 
 const SIGMA = 10;
 const BETA = 8 / 3;
+
+// Colours pulled from the shared palette so they follow a palette change
+// instead of drifting as raw rgba literals.
+const channels = (hex: string): [number, number, number] => {
+  const n = parseInt(hex.slice(1), 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+};
+const withAlpha = (hex: string, a: number) => {
+  const [r, g, b] = channels(hex);
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
+};
+const [C0R, C0G, C0B] = channels(palette.signal.cyan);
+const [C1R, C1G, C1B] = channels(palette.signal.rose);
+const BG_FADE = withAlpha(palette.canvas.bg, 0.18);
+const BG_SOLID = palette.canvas.bg;
+const HEAD_COLOR = withAlpha(palette.signal.amber, 0.95);
 
 function deriv([x, y, z]: Vec3, rho: number): Vec3 {
   return [SIGMA * (y - x), x * (rho - z) - y, x * y - BETA * z];
@@ -36,20 +53,37 @@ interface Props {
   caption?: string;
   rhoLabel?: string;
   hint?: string;
+  canvasLabel?: string;
 }
 
-export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
+export function LorenzInlineRho({ caption, rhoLabel, hint, canvasLabel }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [rho, setRho] = useState(28);
+  const [reduced, setReduced] = useState(false);
   const yawRef = useRef(0.6);
   const draggingRef = useRef(false);
   const lastXRef = useRef(0);
+  // When reduced-motion is on there is no rAF loop, so keyboard/drag rotation
+  // re-renders through this stored function instead.
+  const redrawRef = useRef<(() => void) | null>(null);
   const dpr = useDpr();
+
+  // Track prefers-reduced-motion and re-subscribe so a system-setting change
+  // swaps between the animated loop and a single static frame.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduced(m.matches);
+    on();
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d", { alpha: true })!;
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
     let raf = 0;
 
     const resize = () => {
@@ -60,8 +94,8 @@ export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
 
-    // Pre-integrate a buffer of points each frame; the buffer is reset when
-    // rho changes (handled via dependency rebuild below).
+    // Pre-integrate a buffer of points; the buffer is rebuilt when rho changes
+    // (handled via dependency rebuild below).
     const N = 4000;
     const pts: Vec3[] = [];
     let p: Vec3 = [0.1, 0, 1];
@@ -73,10 +107,11 @@ export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
     }
 
     let headT = 0;
-    const draw = () => {
+
+    const paint = (fadeStyle: string) => {
       const W = canvas.width;
       const H = canvas.height;
-      ctx.fillStyle = "rgba(5, 6, 10, 0.18)";
+      ctx.fillStyle = fadeStyle;
       ctx.fillRect(0, 0, W, H);
 
       // Camera: yaw rotation around z, slight tilt.
@@ -110,9 +145,9 @@ export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
         const [ax, ay] = project(pts[i - 1]);
         const [bx, by] = project(pts[i]);
         const t = i / pts.length;
-        const r = Math.floor(125 + (255 - 125) * t);
-        const g = Math.floor(243 + (122 - 243) * t);
-        const b = Math.floor(255 + (182 - 255) * t);
+        const r = Math.floor(C0R + (C1R - C0R) * t);
+        const g = Math.floor(C0G + (C1G - C0G) * t);
+        const b = Math.floor(C0B + (C1B - C0B) * t);
         ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.18 + 0.5 * t})`;
         ctx.beginPath();
         ctx.moveTo(ax, ay);
@@ -120,18 +155,33 @@ export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
         ctx.stroke();
       }
 
-      // Animated head marker — moves along the buffer to show motion.
-      headT = (headT + 6) % pts.length;
+      // Head marker showing motion (or a fixed point in reduced-motion mode).
       const head = pts[Math.floor(headT)];
       const [hx, hy] = project(head);
-      ctx.fillStyle = "rgba(255, 209, 102, 0.95)";
+      ctx.fillStyle = HEAD_COLOR;
       ctx.beginPath();
       ctx.arc(hx, hy, 2.4 * dpr, 0, Math.PI * 2);
       ctx.fill();
+    };
 
+    // Reduced motion: render one static frame, no fade, no drift, no loop.
+    // Rotation via drag/keys re-renders through redrawRef.
+    if (reduced) {
+      headT = 0;
+      redrawRef.current = () => paint(BG_SOLID);
+      redrawRef.current();
+      return () => {
+        redrawRef.current = null;
+        ro.disconnect();
+      };
+    }
+
+    redrawRef.current = null;
+    const draw = () => {
+      headT = (headT + 6) % pts.length;
+      paint(BG_FADE);
       // Slow continuous yaw drift if user isn't dragging.
       if (!draggingRef.current) yawRef.current += 0.0028;
-
       raf = requestAnimationFrame(draw);
     };
     raf = requestAnimationFrame(draw);
@@ -140,7 +190,7 @@ export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [rho, dpr]);
+  }, [rho, dpr, reduced]);
 
   const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = true;
@@ -152,10 +202,22 @@ export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
     yawRef.current += dx * 0.01;
+    redrawRef.current?.();
   };
   const onPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
     draggingRef.current = false;
     e.currentTarget.releasePointerCapture(e.pointerId);
+  };
+  const onKeyDown = (e: React.KeyboardEvent<HTMLCanvasElement>) => {
+    if (e.key === "ArrowLeft") {
+      yawRef.current -= 0.12;
+      e.preventDefault();
+      redrawRef.current?.();
+    } else if (e.key === "ArrowRight") {
+      yawRef.current += 0.12;
+      e.preventDefault();
+      redrawRef.current?.();
+    }
   };
 
   return (
@@ -167,11 +229,15 @@ export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
       )}
       <canvas
         ref={canvasRef}
-        className="hairline h-[220px] w-full cursor-grab touch-none rounded-md border bg-ink-950/80 active:cursor-grabbing"
+        role="img"
+        aria-label={canvasLabel ?? caption ?? "Lorenz attractor, drag or use arrow keys to rotate"}
+        tabIndex={0}
+        className="hairline h-[220px] w-full cursor-grab touch-none rounded-md border bg-ink-950/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-signal-rose active:cursor-grabbing"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerLeave={onPointerUp}
+        onKeyDown={onKeyDown}
       />
       <div className="flex items-center gap-4 pt-1">
         <div className="whitespace-nowrap font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
@@ -183,6 +249,7 @@ export function LorenzInlineRho({ caption, rhoLabel, hint }: Props) {
           max={35}
           step={0.1}
           value={rho}
+          aria-label={rhoLabel ?? "ρ"}
           onChange={(e) => setRho(parseFloat(e.target.value))}
           className="flex-1 accent-signal-rose"
         />

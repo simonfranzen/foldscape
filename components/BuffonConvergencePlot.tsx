@@ -92,6 +92,8 @@ export function BuffonConvergencePlot({
         <div className="relative">
           <canvas
             ref={canvasRef}
+            role="img"
+            aria-label={caption}
             className="hairline block w-full rounded-md border"
             style={{ height: 140, background: palette.canvas.bg }}
           />
@@ -107,18 +109,23 @@ export function BuffonConvergencePlot({
         </div>
         <div className="space-y-1.5">
           <div className="flex items-baseline justify-between">
-            <label className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+            <label
+              htmlFor="buffon-convergence-n"
+              className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+            >
               {nLabel}
             </label>
             <span className="font-mono text-sm text-signal-amber">{N.toLocaleString()}</span>
           </div>
           <input
+            id="buffon-convergence-n"
             type="range"
             min={2}
             max={5}
             step={0.05}
             value={logN}
             onChange={(e) => setLogN(parseFloat(e.target.value))}
+            aria-label={nLabel}
             className="w-full accent-signal-amber"
           />
         </div>

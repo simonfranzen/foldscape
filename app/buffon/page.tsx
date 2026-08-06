@@ -121,6 +121,25 @@ type RichStory = {
   convergenceYLabel: string;
   convergenceXLabel: string;
   convergenceFinal: string;
+  // Exact-probability callout (Section 02)
+  exactProb: { title: string; body: string };
+  // Lazzarini convergence table (Section 05)
+  lazzarini: {
+    caption: string;
+    colN: string;
+    colErr: string;
+    lastRowN: string;
+    claimed: string;
+    footnote: string;
+  };
+  // Bertrand paradox table (Section 06)
+  bertrand: {
+    caption: string;
+    colProc: string;
+    colP: string;
+    rows: [string, string, string];
+    footnote: string;
+  };
 };
 
 const en: RichStory = {
@@ -179,12 +198,12 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · Lazzarini's 1901 'experiment'",
       title: "Six decimal places from 3408 drops — too good to be true",
-      body: "In 1901 the Italian mathematician Mario Lazzarini published an experiment in which he claimed to have computed π ≈ 3.1415929 from just 3408 needle drops — six correct digits, agreeing exactly with the famous Chinese-era approximation 355 / 113. That accuracy from a Buffon trial would require something like 10¹⁰ drops by honest convergence. The trick: Lazzarini's design used N = 213 · 16 = 3408 drops with a needle-to-line ratio ℓ/d = 5/6, chosen so that, the moment the running count happened to hit C = 1808 crossings, the estimator π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 landed on the famous fraction by construction. He almost certainly stopped at the right moment. The episode is famous as the cleanest cautionary tale in experimental statistics — and as evidence that Buffon's needle, honestly conducted, converges painfully slowly. Pierre-Simon Laplace had already extended the problem in 1812 to a square grid of lines, where two crossings (horizontal and vertical) can be counted independently and the variance is halved; Laplace's variant is the one a serious experimenter would actually run.",
+      body: "In 1901 the Italian mathematician Mario Lazzarini published an experiment in which he claimed to have computed π ≈ 3.1415929 from just 3408 needle drops — six correct digits, agreeing exactly with the famous Chinese-era approximation 355 / 113. That accuracy from a Buffon trial would require something like 10¹⁴ drops by honest convergence. The trick: Lazzarini's design used N = 213 · 16 = 3408 drops with a needle-to-line ratio ℓ/d = 5/6, chosen so that, the moment the running count happened to hit C = 1808 crossings, the estimator π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 landed on the famous fraction by construction. He almost certainly stopped at the right moment. The episode is famous as the cleanest cautionary tale in experimental statistics — and as evidence that Buffon's needle, honestly conducted, converges painfully slowly. Pierre-Simon Laplace had already extended the problem in 1812 to a square grid of lines, where two crossings (horizontal and vertical) can be counted independently and the variance is halved; Laplace's variant is the one a serious experimenter would actually run.",
     },
     {
       pretitle: "Section 06 · Other geometric probabilities",
       title: "Bertrand's paradox and the trap of 'random'",
-      body: "Buffon's needle works because the words 'uniform position, uniform angle' fix the sample space precisely. Other geometric-probability problems are not so kind. Joseph Bertrand published a paradox in 1888: what is the probability that a random chord of a unit circle is longer than the side of the inscribed equilateral triangle? Three natural procedures — pick two random endpoints on the circle, pick a random midpoint inside the disk, pick a random distance from the centre — give three different answers (1/3, 1/4, 1/2). All three are correct given their own definition of 'random chord'; the paradox is that the phrase, without a procedure, is ambiguous. Edwin Jaynes argued in 1973 for the 1/2 answer on grounds of maximum-entropy invariance, but the deeper lesson stands: geometric probability is only well-defined once the sampling procedure is fully specified. Buffon's needle is famous partly because that specification is so transparent — and the answer, 2 ℓ / (π d), does not depend on which natural procedure you pick.",
+      body: "Buffon's needle works because the words 'uniform position, uniform angle' fix the sample space precisely. Other geometric-probability problems are not so kind. Joseph Bertrand published a paradox in 1889: what is the probability that a random chord of a unit circle is longer than the side of the inscribed equilateral triangle? Three natural procedures — pick two random endpoints on the circle, pick a random midpoint inside the disk, pick a random distance from the centre — give three different answers (1/3, 1/4, 1/2). All three are correct given their own definition of 'random chord'; the paradox is that the phrase, without a procedure, is ambiguous. Edwin Jaynes argued in 1973 for the 1/2 answer on grounds of maximum-entropy invariance, but the deeper lesson stands: geometric probability is only well-defined once the sampling procedure is fully specified. Buffon's needle is famous partly because that specification is so transparent — and the answer, 2 ℓ / (π d), does not depend on which natural procedure you pick.",
     },
   ],
   closingPretitle: "Take it further",
@@ -206,6 +225,31 @@ const en: RichStory = {
   convergenceYLabel: "estimate",
   convergenceXLabel: "log N",
   convergenceFinal: "Final estimate",
+  exactProb: {
+    title: "The exact probability",
+    body: "A sine, an integral, a uniform density: π emerges from straight lines.",
+  },
+  lazzarini: {
+    caption: "Lazzarini, 1901 · honest convergence",
+    colN: "N drops",
+    colErr: "typical |Δπ|",
+    lastRowN: "3 408 (Lazzarini)",
+    claimed: "claimed 0.0000003",
+    footnote:
+      "The last row is not a fact about randomness: it is a fact about a man stopping at exactly the right needle.",
+  },
+  bertrand: {
+    caption: "Bertrand 1889 · three answers to one question",
+    colProc: "procedure",
+    colP: "P(longer than side)",
+    rows: [
+      "two random endpoints on the circle",
+      "random midpoint uniform in the disk",
+      "random distance from centre",
+    ],
+    footnote:
+      "Same words, three sample spaces, three answers. Buffon's needle is famous in part because its sampling procedure is so unambiguous, and the answer the same.",
+  },
 };
 
 const de: RichStory = {
@@ -264,12 +308,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Lazzarinis 'Experiment' 1901",
       title: "Sechs Nachkommastellen aus 3408 Würfen – zu schön um wahr zu sein",
-      body: "1901 veröffentlichte der italienische Mathematiker Mario Lazzarini ein Experiment, in dem er behauptete, π ≈ 3,1415929 aus nur 3408 Nadelwürfen berechnet zu haben – sechs korrekte Stellen, exakt übereinstimmend mit der berühmten chinesischen Näherung 355 / 113. Solche Genauigkeit aus einem Buffon-Versuch würde bei ehrlicher Konvergenz rund 10¹⁰ Würfe erfordern. Der Trick: Lazzarinis Design nutzte N = 213 · 16 = 3408 Würfe mit einem Nadel-zu-Linien-Verhältnis ℓ/d = 5/6, so gewählt, dass in dem Moment, in dem die laufende Zählung gerade C = 1808 Kreuzungen erreichte, der Schätzer π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 per Konstruktion auf der berühmten Näherung landete. Er hörte mit ziemlicher Sicherheit im richtigen Moment auf. Die Episode ist berühmt als die sauberste Warnung in experimenteller Statistik – und als Beleg, dass Buffons Nadel, ehrlich durchgeführt, qualvoll langsam konvergiert. Pierre-Simon Laplace hatte das Problem schon 1812 auf ein quadratisches Gitter erweitert, in dem zwei Kreuzungen (horizontal und vertikal) unabhängig gezählt werden können und die Varianz halbiert wird; Laplaces Variante ist die, die ein ernsthafter Experimentator tatsächlich laufen lassen würde.",
+      body: "1901 veröffentlichte der italienische Mathematiker Mario Lazzarini ein Experiment, in dem er behauptete, π ≈ 3,1415929 aus nur 3408 Nadelwürfen berechnet zu haben – sechs korrekte Stellen, exakt übereinstimmend mit der berühmten chinesischen Näherung 355 / 113. Solche Genauigkeit aus einem Buffon-Versuch würde bei ehrlicher Konvergenz rund 10¹⁴ Würfe erfordern. Der Trick: Lazzarinis Design nutzte N = 213 · 16 = 3408 Würfe mit einem Nadel-zu-Linien-Verhältnis ℓ/d = 5/6, so gewählt, dass in dem Moment, in dem die laufende Zählung gerade C = 1808 Kreuzungen erreichte, der Schätzer π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 per Konstruktion auf der berühmten Näherung landete. Er hörte mit ziemlicher Sicherheit im richtigen Moment auf. Die Episode ist berühmt als die sauberste Warnung in experimenteller Statistik – und als Beleg, dass Buffons Nadel, ehrlich durchgeführt, qualvoll langsam konvergiert. Pierre-Simon Laplace hatte das Problem schon 1812 auf ein quadratisches Gitter erweitert, in dem zwei Kreuzungen (horizontal und vertikal) unabhängig gezählt werden können und die Varianz halbiert wird; Laplaces Variante ist die, die man bei einem ernsthaften Experiment tatsächlich laufen lassen würde.",
     },
     {
       pretitle: "Abschnitt 06 · Andere geometrische Wahrscheinlichkeiten",
       title: "Bertrands Paradox und die Falle des Worts 'zufällig'",
-      body: "Buffons Nadel funktioniert, weil die Worte 'gleichverteilte Position, gleichverteilter Winkel' den Stichprobenraum genau festlegen. Andere Aufgaben der geometrischen Wahrscheinlichkeit sind nicht so freundlich. Joseph Bertrand veröffentlichte 1888 ein Paradox: wie groß ist die Wahrscheinlichkeit, dass eine zufällige Sehne eines Einheitskreises länger ist als die Seite des einbeschriebenen gleichseitigen Dreiecks? Drei natürliche Vorgehensweisen – zwei zufällige Endpunkte auf dem Kreis wählen, einen zufälligen Mittelpunkt im Inneren wählen, einen zufälligen Abstand vom Zentrum wählen – ergeben drei verschiedene Antworten (1/3, 1/4, 1/2). Alle drei sind unter der jeweiligen Definition von 'zufällige Sehne' korrekt; das Paradox ist, dass der Ausdruck ohne Verfahren mehrdeutig ist. Edwin Jaynes argumentierte 1973 aus Maximum-Entropie-Invarianzgründen für die 1/2-Antwort, aber die tiefere Lehre bleibt: geometrische Wahrscheinlichkeit ist erst wohldefiniert, wenn das Stichprobenverfahren vollständig spezifiziert ist. Buffons Nadel ist teilweise deshalb berühmt, weil diese Spezifikation so transparent ist – und die Antwort, 2 ℓ / (π d), nicht davon abhängt, welches natürliche Verfahren man wählt.",
+      body: "Buffons Nadel funktioniert, weil die Worte 'gleichverteilte Position, gleichverteilter Winkel' den Stichprobenraum genau festlegen. Andere Aufgaben der geometrischen Wahrscheinlichkeit sind nicht so freundlich. Joseph Bertrand veröffentlichte 1889 ein Paradox: wie groß ist die Wahrscheinlichkeit, dass eine zufällige Sehne eines Einheitskreises länger ist als die Seite des einbeschriebenen gleichseitigen Dreiecks? Drei natürliche Vorgehensweisen – zwei zufällige Endpunkte auf dem Kreis wählen, einen zufälligen Mittelpunkt im Inneren wählen, einen zufälligen Abstand vom Zentrum wählen – ergeben drei verschiedene Antworten (1/3, 1/4, 1/2). Alle drei sind unter der jeweiligen Definition von 'zufällige Sehne' korrekt; das Paradox ist, dass der Ausdruck ohne Verfahren mehrdeutig ist. Edwin Jaynes argumentierte 1973 aus Maximum-Entropie-Invarianzgründen für die 1/2-Antwort, aber die tiefere Lehre bleibt: geometrische Wahrscheinlichkeit ist erst wohldefiniert, wenn das Stichprobenverfahren vollständig spezifiziert ist. Buffons Nadel ist teilweise deshalb berühmt, weil diese Spezifikation so transparent ist – und die Antwort, 2 ℓ / (π d), nicht davon abhängt, welches natürliche Verfahren man wählt.",
     },
   ],
   closingPretitle: "Geh weiter",
@@ -291,6 +335,31 @@ const de: RichStory = {
   convergenceYLabel: "Schätzung",
   convergenceXLabel: "log N",
   convergenceFinal: "Endschätzung",
+  exactProb: {
+    title: "Die exakte Wahrscheinlichkeit",
+    body: "Ein Sinus, ein Integral, eine gleichförmige Dichte: π taucht aus geraden Linien auf.",
+  },
+  lazzarini: {
+    caption: "Lazzarini, 1901 · ehrliche Konvergenz",
+    colN: "N Würfe",
+    colErr: "typisches |Δπ|",
+    lastRowN: "3 408 (Lazzarini)",
+    claimed: "behauptet 0.0000003",
+    footnote:
+      "Die letzte Zeile ist keine Aussage über den Zufall: sie ist eine Aussage über einen Mann, der bei genau der richtigen Nadel aufhört.",
+  },
+  bertrand: {
+    caption: "Bertrand 1889 · drei Antworten auf eine Frage",
+    colProc: "Verfahren",
+    colP: "P(länger als Seite)",
+    rows: [
+      "zwei zufällige Endpunkte auf dem Kreis",
+      "zufälliger Mittelpunkt gleichverteilt in der Scheibe",
+      "zufälliger Abstand vom Zentrum",
+    ],
+    footnote:
+      "Dieselben Worte, drei Stichprobenräume, drei Antworten. Buffons Nadel ist teils deshalb berühmt, weil ihr Stichprobenverfahren so eindeutig ist, und die Antwort dieselbe.",
+  },
 };
 
 const es: RichStory = {
@@ -349,12 +418,12 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · El 'experimento' de Lazzarini 1901",
       title: "Seis decimales de 3408 caídas — demasiado bueno para ser cierto",
-      body: "En 1901 el matemático italiano Mario Lazzarini publicó un experimento en el que decía haber calculado π ≈ 3,1415929 desde solo 3408 caídas de aguja — seis dígitos correctos, coincidiendo exactamente con la famosa aproximación de la era china 355 / 113. Esa precisión en una prueba de Buffon requeriría unas 10¹⁰ caídas con convergencia honesta. El truco: el diseño de Lazzarini usó N = 213 · 16 = 3408 lanzamientos con una razón aguja-línea ℓ/d = 5/6, elegida para que, en el instante en que el conteo en curso alcanzaba C = 1808 cruces, el estimador π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 aterrizara en la famosa fracción por construcción. Casi con seguridad detuvo el experimento en el momento adecuado. El episodio es famoso como la advertencia más limpia en estadística experimental — y como prueba de que la aguja de Buffon, hecha con honestidad, converge dolorosamente despacio. Pierre-Simon Laplace ya había extendido el problema en 1812 a una cuadrícula de líneas, donde dos cruces (horizontal y vertical) pueden contarse independientemente y la varianza se reduce a la mitad; la variante de Laplace es la que un experimentador serio correría de verdad.",
+      body: "En 1901 el matemático italiano Mario Lazzarini publicó un experimento en el que decía haber calculado π ≈ 3,1415929 desde solo 3408 caídas de aguja — seis dígitos correctos, coincidiendo exactamente con la famosa aproximación de la era china 355 / 113. Esa precisión en una prueba de Buffon requeriría unas 10¹⁴ caídas con convergencia honesta. El truco: el diseño de Lazzarini usó N = 213 · 16 = 3408 lanzamientos con una razón aguja-línea ℓ/d = 5/6, elegida para que, en el instante en que el conteo en curso alcanzaba C = 1808 cruces, el estimador π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 aterrizara en la famosa fracción por construcción. Casi con seguridad detuvo el experimento en el momento adecuado. El episodio es famoso como la advertencia más limpia en estadística experimental — y como prueba de que la aguja de Buffon, hecha con honestidad, converge dolorosamente despacio. Pierre-Simon Laplace ya había extendido el problema en 1812 a una cuadrícula de líneas, donde dos cruces (horizontal y vertical) pueden contarse independientemente y la varianza se reduce a la mitad; la variante de Laplace es la que un experimentador serio correría de verdad.",
     },
     {
       pretitle: "Sección 06 · Otras probabilidades geométricas",
       title: "La paradoja de Bertrand y la trampa del 'al azar'",
-      body: "La aguja de Buffon funciona porque las palabras 'posición uniforme, ángulo uniforme' fijan el espacio muestral con precisión. Otros problemas de probabilidad geométrica no son tan amables. Joseph Bertrand publicó una paradoja en 1888: ¿cuál es la probabilidad de que una cuerda aleatoria de un círculo unitario sea más larga que el lado del triángulo equilátero inscrito? Tres procedimientos naturales — tomar dos extremos al azar sobre el círculo, tomar un punto medio al azar dentro del disco, tomar una distancia al azar del centro — dan tres respuestas distintas (1/3, 1/4, 1/2). Las tres son correctas con su propia definición de 'cuerda al azar'; la paradoja es que la frase, sin un procedimiento, es ambigua. Edwin Jaynes argumentó en 1973 a favor del 1/2 por invariancia de máxima entropía, pero la lección profunda permanece: la probabilidad geométrica solo queda bien definida cuando el procedimiento de muestreo se especifica por completo. La aguja de Buffon es célebre en parte porque esa especificación es transparente — y la respuesta, 2 ℓ / (π d), no depende del procedimiento natural elegido.",
+      body: "La aguja de Buffon funciona porque las palabras 'posición uniforme, ángulo uniforme' fijan el espacio muestral con precisión. Otros problemas de probabilidad geométrica no son tan amables. Joseph Bertrand publicó una paradoja en 1889: ¿cuál es la probabilidad de que una cuerda aleatoria de un círculo unitario sea más larga que el lado del triángulo equilátero inscrito? Tres procedimientos naturales — tomar dos extremos al azar sobre el círculo, tomar un punto medio al azar dentro del disco, tomar una distancia al azar del centro — dan tres respuestas distintas (1/3, 1/4, 1/2). Las tres son correctas con su propia definición de 'cuerda al azar'; la paradoja es que la frase, sin un procedimiento, es ambigua. Edwin Jaynes argumentó en 1973 a favor del 1/2 por invariancia de máxima entropía, pero la lección profunda permanece: la probabilidad geométrica solo queda bien definida cuando el procedimiento de muestreo se especifica por completo. La aguja de Buffon es célebre en parte porque esa especificación es transparente — y la respuesta, 2 ℓ / (π d), no depende del procedimiento natural elegido.",
     },
   ],
   closingPretitle: "Ve más lejos",
@@ -376,6 +445,31 @@ const es: RichStory = {
   convergenceYLabel: "estimación",
   convergenceXLabel: "log N",
   convergenceFinal: "Estimación final",
+  exactProb: {
+    title: "La probabilidad exacta",
+    body: "Un seno, una integral, una densidad uniforme: π aparece de líneas rectas.",
+  },
+  lazzarini: {
+    caption: "Lazzarini, 1901 · convergencia honesta",
+    colN: "N caídas",
+    colErr: "|Δπ| típico",
+    lastRowN: "3 408 (Lazzarini)",
+    claimed: "declarado 0.0000003",
+    footnote:
+      "La última fila no es un hecho sobre el azar: es un hecho sobre un hombre que se detuvo justo en la aguja correcta.",
+  },
+  bertrand: {
+    caption: "Bertrand 1889 · tres respuestas a una pregunta",
+    colProc: "procedimiento",
+    colP: "P(más larga que el lado)",
+    rows: [
+      "dos extremos al azar en el círculo",
+      "punto medio al azar uniforme en el disco",
+      "distancia al azar del centro",
+    ],
+    footnote:
+      "Las mismas palabras, tres espacios muestrales, tres respuestas. La aguja de Buffon es célebre en parte porque su procedimiento de muestreo es tan inequívoco, y la respuesta la misma.",
+  },
 };
 
 const fr: RichStory = {
@@ -434,12 +528,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · L'« expérience » de Lazzarini 1901",
       title: "Six décimales pour 3408 lancers — trop beau pour être vrai",
-      body: "En 1901 le mathématicien italien Mario Lazzarini publia une expérience où il prétendait avoir calculé π ≈ 3,1415929 à partir de seulement 3408 lancers d'aiguille — six chiffres corrects, en accord exact avec la célèbre approximation chinoise 355 / 113. Une telle précision avec un essai de Buffon exigerait de l'ordre de 10¹⁰ lancers par convergence honnête. L'astuce : le plan de Lazzarini utilisa N = 213 · 16 = 3408 lancers avec un rapport aiguille-ligne ℓ/d = 5/6, choisi pour que, au moment où le compteur courant atteignait C = 1808 croisements, l'estimateur π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 tombe sur la fameuse fraction par construction. Il s'est arrêté presque à coup sûr au bon moment. L'épisode est célèbre comme le récit-avertissement le plus net en statistique expérimentale — et comme preuve que l'aiguille de Buffon, conduite honnêtement, converge atrocement lentement. Pierre-Simon Laplace avait déjà étendu le problème en 1812 à une grille carrée de lignes, où deux croisements (horizontal et vertical) peuvent être comptés indépendamment et la variance est divisée par deux ; la variante de Laplace est celle qu'un expérimentateur sérieux ferait vraiment tourner.",
+      body: "En 1901 le mathématicien italien Mario Lazzarini publia une expérience où il prétendait avoir calculé π ≈ 3,1415929 à partir de seulement 3408 lancers d'aiguille — six chiffres corrects, en accord exact avec la célèbre approximation chinoise 355 / 113. Une telle précision avec un essai de Buffon exigerait de l'ordre de 10¹⁴ lancers par convergence honnête. L'astuce : le plan de Lazzarini utilisa N = 213 · 16 = 3408 lancers avec un rapport aiguille-ligne ℓ/d = 5/6, choisi pour que, au moment où le compteur courant atteignait C = 1808 croisements, l'estimateur π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 tombe sur la fameuse fraction par construction. Il s'est arrêté presque à coup sûr au bon moment. L'épisode est célèbre comme le récit-avertissement le plus net en statistique expérimentale — et comme preuve que l'aiguille de Buffon, conduite honnêtement, converge atrocement lentement. Pierre-Simon Laplace avait déjà étendu le problème en 1812 à une grille carrée de lignes, où deux croisements (horizontal et vertical) peuvent être comptés indépendamment et la variance est divisée par deux ; la variante de Laplace est celle qu'un expérimentateur sérieux ferait vraiment tourner.",
     },
     {
       pretitle: "Section 06 · Autres probabilités géométriques",
       title: "Le paradoxe de Bertrand et le piège du « au hasard »",
-      body: "L'aiguille de Buffon marche parce que les mots « position uniforme, angle uniforme » fixent précisément l'espace d'échantillonnage. D'autres problèmes de probabilité géométrique ne sont pas aussi aimables. Joseph Bertrand publia un paradoxe en 1888 : quelle est la probabilité qu'une corde aléatoire d'un cercle unité soit plus longue que le côté du triangle équilatéral inscrit ? Trois procédés naturels — tirer deux extrémités au hasard sur le cercle, tirer un point milieu au hasard dans le disque, tirer une distance au hasard depuis le centre — donnent trois réponses différentes (1/3, 1/4, 1/2). Les trois sont correctes pour leur propre définition de « corde aléatoire » ; le paradoxe est que la phrase, sans procédé, est ambiguë. Edwin Jaynes argumenta en 1973 en faveur de la réponse 1/2 par invariance d'entropie maximale, mais la leçon profonde tient : la probabilité géométrique n'est bien définie qu'une fois le procédé d'échantillonnage entièrement spécifié. L'aiguille de Buffon est en partie célèbre parce que cette spécification est transparente — et la réponse, 2 ℓ / (π d), ne dépend pas du procédé naturel choisi.",
+      body: "L'aiguille de Buffon marche parce que les mots « position uniforme, angle uniforme » fixent précisément l'espace d'échantillonnage. D'autres problèmes de probabilité géométrique ne sont pas aussi aimables. Joseph Bertrand publia un paradoxe en 1889 : quelle est la probabilité qu'une corde aléatoire d'un cercle unité soit plus longue que le côté du triangle équilatéral inscrit ? Trois procédés naturels — tirer deux extrémités au hasard sur le cercle, tirer un point milieu au hasard dans le disque, tirer une distance au hasard depuis le centre — donnent trois réponses différentes (1/3, 1/4, 1/2). Les trois sont correctes pour leur propre définition de « corde aléatoire » ; le paradoxe est que la phrase, sans procédé, est ambiguë. Edwin Jaynes argumenta en 1973 en faveur de la réponse 1/2 par invariance d'entropie maximale, mais la leçon profonde tient : la probabilité géométrique n'est bien définie qu'une fois le procédé d'échantillonnage entièrement spécifié. L'aiguille de Buffon est en partie célèbre parce que cette spécification est transparente — et la réponse, 2 ℓ / (π d), ne dépend pas du procédé naturel choisi.",
     },
   ],
   closingPretitle: "Aller plus loin",
@@ -461,6 +555,31 @@ const fr: RichStory = {
   convergenceYLabel: "estimation",
   convergenceXLabel: "log N",
   convergenceFinal: "Estimation finale",
+  exactProb: {
+    title: "La probabilité exacte",
+    body: "Un sinus, une intégrale, une densité uniforme : π émerge de lignes droites.",
+  },
+  lazzarini: {
+    caption: "Lazzarini, 1901 · convergence honnête",
+    colN: "N lancers",
+    colErr: "|Δπ| typique",
+    lastRowN: "3 408 (Lazzarini)",
+    claimed: "annoncé 0.0000003",
+    footnote:
+      "La dernière ligne n'est pas un fait sur le hasard : c'est un fait sur un homme qui s'est arrêté à exactement la bonne aiguille.",
+  },
+  bertrand: {
+    caption: "Bertrand 1889 · trois réponses à une question",
+    colProc: "procédé",
+    colP: "P(plus longue que le côté)",
+    rows: [
+      "deux extrémités au hasard sur le cercle",
+      "point milieu au hasard uniforme dans le disque",
+      "distance au hasard depuis le centre",
+    ],
+    footnote:
+      "Les mêmes mots, trois espaces d'échantillonnage, trois réponses. L'aiguille de Buffon est célèbre en partie parce que son procédé d'échantillonnage est si univoque, et la réponse la même.",
+  },
 };
 
 const it: RichStory = {
@@ -519,12 +638,12 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · L'«esperimento» di Lazzarini 1901",
       title: "Sei decimali da 3408 lanci — troppo bello per essere vero",
-      body: "Nel 1901 il matematico italiano Mario Lazzarini pubblicò un esperimento in cui sosteneva di aver calcolato π ≈ 3,1415929 da soli 3408 lanci di ago — sei cifre corrette, in accordo esatto con la celebre approssimazione cinese 355 / 113. Quella precisione da un test di Buffon richiederebbe nell'ordine di 10¹⁰ lanci con convergenza onesta. Il trucco: il disegno di Lazzarini usò N = 213 · 16 = 3408 lanci con un rapporto ago-linea ℓ/d = 5/6, scelto perché, nel momento in cui il conteggio in corso toccava C = 1808 incroci, lo stimatore π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 atterrasse sulla famosa frazione per costruzione. Quasi certamente si fermò al momento giusto. L'episodio è famoso come il monito più pulito della statistica sperimentale — e come prova che l'ago di Buffon, condotto onestamente, converge dolorosamente lento. Pierre-Simon Laplace aveva già esteso il problema nel 1812 a una griglia quadrata di linee, dove due incroci (orizzontale e verticale) possono essere contati indipendentemente e la varianza è dimezzata; la variante di Laplace è quella che uno sperimentatore serio farebbe davvero girare.",
+      body: "Nel 1901 il matematico italiano Mario Lazzarini pubblicò un esperimento in cui sosteneva di aver calcolato π ≈ 3,1415929 da soli 3408 lanci di ago — sei cifre corrette, in accordo esatto con la celebre approssimazione cinese 355 / 113. Quella precisione da un test di Buffon richiederebbe nell'ordine di 10¹⁴ lanci con convergenza onesta. Il trucco: il disegno di Lazzarini usò N = 213 · 16 = 3408 lanci con un rapporto ago-linea ℓ/d = 5/6, scelto perché, nel momento in cui il conteggio in corso toccava C = 1808 incroci, lo stimatore π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 atterrasse sulla famosa frazione per costruzione. Quasi certamente si fermò al momento giusto. L'episodio è famoso come il monito più pulito della statistica sperimentale — e come prova che l'ago di Buffon, condotto onestamente, converge dolorosamente lento. Pierre-Simon Laplace aveva già esteso il problema nel 1812 a una griglia quadrata di linee, dove due incroci (orizzontale e verticale) possono essere contati indipendentemente e la varianza è dimezzata; la variante di Laplace è quella che uno sperimentatore serio farebbe davvero girare.",
     },
     {
       pretitle: "Sezione 06 · Altre probabilità geometriche",
       title: "Il paradosso di Bertrand e la trappola del «a caso»",
-      body: "L'ago di Buffon funziona perché le parole «posizione uniforme, angolo uniforme» fissano con precisione lo spazio dei campioni. Altri problemi di probabilità geometrica non sono così gentili. Joseph Bertrand pubblicò un paradosso nel 1888: qual è la probabilità che una corda casuale di un cerchio unitario sia più lunga del lato del triangolo equilatero inscritto? Tre procedure naturali — scegliere due estremi a caso sul cerchio, scegliere un punto medio a caso dentro il disco, scegliere una distanza a caso dal centro — danno tre risposte diverse (1/3, 1/4, 1/2). Tutte e tre sono corrette per la loro definizione di «corda casuale»; il paradosso è che la frase, senza procedura, è ambigua. Edwin Jaynes argomentò nel 1973 a favore del 1/2 per invarianza di massima entropia, ma la lezione profonda resta: la probabilità geometrica è ben definita solo quando la procedura di campionamento è specificata interamente. L'ago di Buffon è celebre in parte perché quella specifica è trasparente — e la risposta, 2 ℓ / (π d), non dipende dalla procedura naturale scelta.",
+      body: "L'ago di Buffon funziona perché le parole «posizione uniforme, angolo uniforme» fissano con precisione lo spazio dei campioni. Altri problemi di probabilità geometrica non sono così gentili. Joseph Bertrand pubblicò un paradosso nel 1889: qual è la probabilità che una corda casuale di un cerchio unitario sia più lunga del lato del triangolo equilatero inscritto? Tre procedure naturali — scegliere due estremi a caso sul cerchio, scegliere un punto medio a caso dentro il disco, scegliere una distanza a caso dal centro — danno tre risposte diverse (1/3, 1/4, 1/2). Tutte e tre sono corrette per la loro definizione di «corda casuale»; il paradosso è che la frase, senza procedura, è ambigua. Edwin Jaynes argomentò nel 1973 a favore del 1/2 per invarianza di massima entropia, ma la lezione profonda resta: la probabilità geometrica è ben definita solo quando la procedura di campionamento è specificata interamente. L'ago di Buffon è celebre in parte perché quella specifica è trasparente — e la risposta, 2 ℓ / (π d), non dipende dalla procedura naturale scelta.",
     },
   ],
   closingPretitle: "Vai oltre",
@@ -546,6 +665,31 @@ const it: RichStory = {
   convergenceYLabel: "stima",
   convergenceXLabel: "log N",
   convergenceFinal: "Stima finale",
+  exactProb: {
+    title: "La probabilità esatta",
+    body: "Un seno, un integrale, una densità uniforme: π emerge da linee dritte.",
+  },
+  lazzarini: {
+    caption: "Lazzarini, 1901 · convergenza onesta",
+    colN: "N lanci",
+    colErr: "|Δπ| tipico",
+    lastRowN: "3 408 (Lazzarini)",
+    claimed: "dichiarato 0.0000003",
+    footnote:
+      "L'ultima riga non è un fatto sul caso: è un fatto su un uomo che si è fermato esattamente all'ago giusto.",
+  },
+  bertrand: {
+    caption: "Bertrand 1889 · tre risposte a una domanda",
+    colProc: "procedura",
+    colP: "P(più lunga del lato)",
+    rows: [
+      "due estremi a caso sul cerchio",
+      "punto medio a caso uniforme nel disco",
+      "distanza a caso dal centro",
+    ],
+    footnote:
+      "Le stesse parole, tre spazi campionari, tre risposte. L'ago di Buffon è celebre in parte perché la sua procedura di campionamento è così univoca, e la risposta la stessa.",
+  },
 };
 
 const pt: RichStory = {
@@ -604,12 +748,12 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · A 'experiência' de Lazzarini 1901",
       title: "Seis casas decimais de 3408 lançamentos — bom demais para ser verdade",
-      body: "Em 1901 o matemático italiano Mario Lazzarini publicou uma experiência em que afirmava ter calculado π ≈ 3,1415929 a partir de apenas 3408 lançamentos de agulha — seis dígitos corretos, em acordo exato com a famosa aproximação chinesa 355 / 113. Essa precisão num ensaio de Buffon exigiria algo como 10¹⁰ lançamentos por convergência honesta. O truque: o desenho de Lazzarini usou N = 213 · 16 = 3408 lançamentos com uma razão agulha-linha ℓ/d = 5/6, escolhida para que, no instante em que a contagem em curso atingia C = 1808 cruzamentos, o estimador π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 caísse na famosa fração por construção. Quase de certeza parou no momento certo. O episódio é famoso como o aviso mais limpo na estatística experimental — e como prova de que a agulha de Buffon, feita com honestidade, converge dolorosamente devagar. Pierre-Simon Laplace já tinha estendido o problema em 1812 a uma grelha quadrada de linhas, onde dois cruzamentos (horizontal e vertical) podem ser contados independentemente e a variância é dividida ao meio; a variante de Laplace é a que um experimentador sério realmente correria.",
+      body: "Em 1901 o matemático italiano Mario Lazzarini publicou uma experiência em que afirmava ter calculado π ≈ 3,1415929 a partir de apenas 3408 lançamentos de agulha — seis dígitos corretos, em acordo exato com a famosa aproximação chinesa 355 / 113. Essa precisão num ensaio de Buffon exigiria algo como 10¹⁴ lançamentos por convergência honesta. O truque: o desenho de Lazzarini usou N = 213 · 16 = 3408 lançamentos com uma razão agulha-linha ℓ/d = 5/6, escolhida para que, no instante em que a contagem em curso atingia C = 1808 cruzamentos, o estimador π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 caísse na famosa fração por construção. Quase de certeza parou no momento certo. O episódio é famoso como o aviso mais limpo na estatística experimental — e como prova de que a agulha de Buffon, feita com honestidade, converge dolorosamente devagar. Pierre-Simon Laplace já tinha estendido o problema em 1812 a uma grelha quadrada de linhas, onde dois cruzamentos (horizontal e vertical) podem ser contados independentemente e a variância é dividida ao meio; a variante de Laplace é a que um experimentador sério realmente correria.",
     },
     {
       pretitle: "Secção 06 · Outras probabilidades geométricas",
       title: "O paradoxo de Bertrand e a armadilha do 'ao acaso'",
-      body: "A agulha de Buffon funciona porque as palavras 'posição uniforme, ângulo uniforme' fixam com precisão o espaço amostral. Outros problemas de probabilidade geométrica não são tão simpáticos. Joseph Bertrand publicou um paradoxo em 1888: qual é a probabilidade de uma corda aleatória de um círculo unitário ser mais longa do que o lado do triângulo equilátero inscrito? Três procedimentos naturais — escolher dois extremos ao acaso no círculo, escolher um ponto médio ao acaso dentro do disco, escolher uma distância ao acaso ao centro — dão três respostas diferentes (1/3, 1/4, 1/2). Os três estão corretos para a sua própria definição de 'corda aleatória'; o paradoxo é que a frase, sem procedimento, é ambígua. Edwin Jaynes argumentou em 1973 a favor do 1/2 por invariância de máxima entropia, mas a lição mais profunda mantém-se: a probabilidade geométrica só é bem definida quando o procedimento de amostragem é totalmente especificado. A agulha de Buffon é célebre em parte porque essa especificação é transparente — e a resposta, 2 ℓ / (π d), não depende de qual procedimento natural se escolhe.",
+      body: "A agulha de Buffon funciona porque as palavras 'posição uniforme, ângulo uniforme' fixam com precisão o espaço amostral. Outros problemas de probabilidade geométrica não são tão simpáticos. Joseph Bertrand publicou um paradoxo em 1889: qual é a probabilidade de uma corda aleatória de um círculo unitário ser mais longa do que o lado do triângulo equilátero inscrito? Três procedimentos naturais — escolher dois extremos ao acaso no círculo, escolher um ponto médio ao acaso dentro do disco, escolher uma distância ao acaso ao centro — dão três respostas diferentes (1/3, 1/4, 1/2). Os três estão corretos para a sua própria definição de 'corda aleatória'; o paradoxo é que a frase, sem procedimento, é ambígua. Edwin Jaynes argumentou em 1973 a favor do 1/2 por invariância de máxima entropia, mas a lição mais profunda mantém-se: a probabilidade geométrica só é bem definida quando o procedimento de amostragem é totalmente especificado. A agulha de Buffon é célebre em parte porque essa especificação é transparente — e a resposta, 2 ℓ / (π d), não depende de qual procedimento natural se escolhe.",
     },
   ],
   closingPretitle: "Vai mais longe",
@@ -631,6 +775,31 @@ const pt: RichStory = {
   convergenceYLabel: "estimativa",
   convergenceXLabel: "log N",
   convergenceFinal: "Estimativa final",
+  exactProb: {
+    title: "A probabilidade exata",
+    body: "Um seno, um integral, uma densidade uniforme: π emerge de linhas direitas.",
+  },
+  lazzarini: {
+    caption: "Lazzarini, 1901 · convergência honesta",
+    colN: "N lançamentos",
+    colErr: "|Δπ| típico",
+    lastRowN: "3 408 (Lazzarini)",
+    claimed: "alegado 0.0000003",
+    footnote:
+      "A última linha não é um facto sobre o acaso: é um facto sobre um homem que parou exatamente na agulha certa.",
+  },
+  bertrand: {
+    caption: "Bertrand 1889 · três respostas a uma pergunta",
+    colProc: "procedimento",
+    colP: "P(mais longa que o lado)",
+    rows: [
+      "dois extremos ao acaso no círculo",
+      "ponto médio ao acaso uniforme no disco",
+      "distância ao acaso ao centro",
+    ],
+    footnote:
+      "As mesmas palavras, três espaços amostrais, três respostas. A agulha de Buffon é célebre em parte porque o seu procedimento de amostragem é tão inequívoco, e a resposta a mesma.",
+  },
 };
 
 const sv: RichStory = {
@@ -689,12 +858,12 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Lazzarinis 'experiment' 1901",
       title: "Sex decimaler från 3408 släpp — för bra för att vara sant",
-      body: "År 1901 publicerade den italienske matematikern Mario Lazzarini ett experiment där han hävdade att han hade beräknat π ≈ 3,1415929 från endast 3408 nålsläpp — sex korrekta siffror, i exakt överensstämmelse med den berömda kinesiska approximationen 355 / 113. Den noggrannheten ur ett Buffon-försök skulle kräva i storleksordningen 10¹⁰ släpp vid ärlig konvergens. Tricket: Lazzarinis upplägg använde N = 213 · 16 = 3408 släpp med ett nål-till-linje-förhållande ℓ/d = 5/6, valt så att, i det ögonblick det pågående räknet råkade hamna på C = 1808 korsningar, skattaren π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 landade på den berömda bråkdelen per konstruktion. Han stannade nästan säkert i rätt ögonblick. Episoden är ökänd som den renaste varningssagan i experimentell statistik — och som bevis för att Buffons nål, ärligt genomförd, konvergerar plågsamt långsamt. Pierre-Simon Laplace hade redan 1812 utvidgat problemet till ett kvadratiskt rutnät av linjer, där två korsningar (horisontell och vertikal) kan räknas oberoende och variansen halveras; Laplaces variant är den en seriös experimentör faktiskt skulle köra.",
+      body: "År 1901 publicerade den italienske matematikern Mario Lazzarini ett experiment där han hävdade att han hade beräknat π ≈ 3,1415929 från endast 3408 nålsläpp — sex korrekta siffror, i exakt överensstämmelse med den berömda kinesiska approximationen 355 / 113. Den noggrannheten ur ett Buffon-försök skulle kräva i storleksordningen 10¹⁴ släpp vid ärlig konvergens. Tricket: Lazzarinis upplägg använde N = 213 · 16 = 3408 släpp med ett nål-till-linje-förhållande ℓ/d = 5/6, valt så att, i det ögonblick det pågående räknet råkade hamna på C = 1808 korsningar, skattaren π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 landade på den berömda bråkdelen per konstruktion. Han stannade nästan säkert i rätt ögonblick. Episoden är ökänd som den renaste varningssagan i experimentell statistik — och som bevis för att Buffons nål, ärligt genomförd, konvergerar plågsamt långsamt. Pierre-Simon Laplace hade redan 1812 utvidgat problemet till ett kvadratiskt rutnät av linjer, där två korsningar (horisontell och vertikal) kan räknas oberoende och variansen halveras; Laplaces variant är den en seriös experimentör faktiskt skulle köra.",
     },
     {
       pretitle: "Avsnitt 06 · Andra geometriska sannolikheter",
       title: "Bertrands paradox och fällan med 'slumpmässig'",
-      body: "Buffons nål fungerar för att orden 'likformigt läge, likformig vinkel' fixerar sampelrummet exakt. Andra problem i geometrisk sannolikhet är inte lika vänliga. Joseph Bertrand publicerade en paradox 1888: vad är sannolikheten att en slumpmässig korda till en enhetscirkel är längre än sidan i den inskrivna liksidiga triangeln? Tre naturliga procedurer — välj två slumpmässiga ändpunkter på cirkeln, välj en slumpmässig mittpunkt inuti skivan, välj ett slumpmässigt avstånd från centrum — ger tre olika svar (1/3, 1/4, 1/2). Alla tre är korrekta givet sin egen definition av 'slumpmässig korda'; paradoxen är att frasen utan procedur är tvetydig. Edwin Jaynes argumenterade 1973 för 1/2-svaret på grund av maximentropi-invarians, men den djupare lärdomen står kvar: geometrisk sannolikhet är välddefinierad först när samplingsproceduren är fullt specificerad. Buffons nål är delvis berömd för att den specifikationen är så transparent — och svaret, 2 ℓ / (π d), beror inte på vilken naturlig procedur du väljer.",
+      body: "Buffons nål fungerar för att orden 'likformigt läge, likformig vinkel' fixerar sampelrummet exakt. Andra problem i geometrisk sannolikhet är inte lika vänliga. Joseph Bertrand publicerade en paradox 1889: vad är sannolikheten att en slumpmässig korda till en enhetscirkel är längre än sidan i den inskrivna liksidiga triangeln? Tre naturliga procedurer — välj två slumpmässiga ändpunkter på cirkeln, välj en slumpmässig mittpunkt inuti skivan, välj ett slumpmässigt avstånd från centrum — ger tre olika svar (1/3, 1/4, 1/2). Alla tre är korrekta givet sin egen definition av 'slumpmässig korda'; paradoxen är att frasen utan procedur är tvetydig. Edwin Jaynes argumenterade 1973 för 1/2-svaret på grund av maximentropi-invarians, men den djupare lärdomen står kvar: geometrisk sannolikhet är välddefinierad först när samplingsproceduren är fullt specificerad. Buffons nål är delvis berömd för att den specifikationen är så transparent — och svaret, 2 ℓ / (π d), beror inte på vilken naturlig procedur du väljer.",
     },
   ],
   closingPretitle: "Gå vidare",
@@ -716,6 +885,31 @@ const sv: RichStory = {
   convergenceYLabel: "skattning",
   convergenceXLabel: "log N",
   convergenceFinal: "Slutskattning",
+  exactProb: {
+    title: "Den exakta sannolikheten",
+    body: "En sinus, en integral, en likformig täthet: π träder fram ur raka linjer.",
+  },
+  lazzarini: {
+    caption: "Lazzarini, 1901 · ärlig konvergens",
+    colN: "N släpp",
+    colErr: "typiskt |Δπ|",
+    lastRowN: "3 408 (Lazzarini)",
+    claimed: "påstått 0.0000003",
+    footnote:
+      "Den sista raden är inte ett faktum om slumpen: den är ett faktum om en man som stannade vid exakt rätt nål.",
+  },
+  bertrand: {
+    caption: "Bertrand 1889 · tre svar på en fråga",
+    colProc: "procedur",
+    colP: "P(längre än sidan)",
+    rows: [
+      "två slumpmässiga ändpunkter på cirkeln",
+      "slumpmässig mittpunkt likformig i skivan",
+      "slumpmässigt avstånd från centrum",
+    ],
+    footnote:
+      "Samma ord, tre sampelrum, tre svar. Buffons nål är delvis berömd för att dess samplingsprocedur är så entydig, och svaret detsamma.",
+  },
 };
 
 const no: RichStory = {
@@ -774,12 +968,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Lazzarinis 'eksperiment' 1901",
       title: "Seks desimaler fra 3408 slipp — for godt til å være sant",
-      body: "I 1901 publiserte den italienske matematikeren Mario Lazzarini et eksperiment der han hevdet å ha regnet ut π ≈ 3,1415929 fra bare 3408 nålslipp — seks korrekte siffer, i nøyaktig samsvar med den berømte kinesiske tilnærmingen 355 / 113. Den nøyaktigheten fra et Buffon-forsøk ville kreve i størrelsesorden 10¹⁰ slipp ved ærlig konvergens. Trikset: Lazzarinis design brukte N = 213 · 16 = 3408 slipp med et nål-til-linje-forhold ℓ/d = 5/6, valgt slik at i det øyeblikket det løpende telleverket traff C = 1808 kryssinger, landet estimatoren π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 på den berømte brøken ved konstruksjon. Han stoppet nesten sikkert i riktig øyeblikk. Episoden er kjent som den reneste advarselen i eksperimentell statistikk — og som bevis for at Buffons nål, ærlig gjennomført, konvergerer smertefullt sent. Pierre-Simon Laplace hadde allerede utvidet problemet i 1812 til et kvadratisk rutenett av linjer, der to kryssinger (horisontal og vertikal) kan telles uavhengig og variansen halveres; Laplaces variant er den en seriøs eksperimentator faktisk ville kjørt.",
+      body: "I 1901 publiserte den italienske matematikeren Mario Lazzarini et eksperiment der han hevdet å ha regnet ut π ≈ 3,1415929 fra bare 3408 nålslipp — seks korrekte siffer, i nøyaktig samsvar med den berømte kinesiske tilnærmingen 355 / 113. Den nøyaktigheten fra et Buffon-forsøk ville kreve i størrelsesorden 10¹⁴ slipp ved ærlig konvergens. Trikset: Lazzarinis design brukte N = 213 · 16 = 3408 slipp med et nål-til-linje-forhold ℓ/d = 5/6, valgt slik at i det øyeblikket det løpende telleverket traff C = 1808 kryssinger, landet estimatoren π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 på den berømte brøken ved konstruksjon. Han stoppet nesten sikkert i riktig øyeblikk. Episoden er kjent som den reneste advarselen i eksperimentell statistikk — og som bevis for at Buffons nål, ærlig gjennomført, konvergerer smertefullt sent. Pierre-Simon Laplace hadde allerede utvidet problemet i 1812 til et kvadratisk rutenett av linjer, der to kryssinger (horisontal og vertikal) kan telles uavhengig og variansen halveres; Laplaces variant er den en seriøs eksperimentator faktisk ville kjørt.",
     },
     {
       pretitle: "Avsnitt 06 · Andre geometriske sannsynligheter",
       title: "Bertrands paradoks og fellen med 'tilfeldig'",
-      body: "Buffons nål fungerer fordi ordene 'jevnt fordelt posisjon, jevnt fordelt vinkel' fester utvalgsrommet presist. Andre geometriske sannsynlighetsproblemer er ikke like greie. Joseph Bertrand publiserte et paradoks i 1888: hva er sannsynligheten for at en tilfeldig korde i en enhetssirkel er lengre enn siden i den innskrevne likesidede trekanten? Tre naturlige prosedyrer — velg to tilfeldige endepunkt på sirkelen, velg et tilfeldig midtpunkt inne i skiven, velg en tilfeldig avstand fra sentrum — gir tre forskjellige svar (1/3, 1/4, 1/2). Alle tre er riktige gitt sin egen definisjon av 'tilfeldig korde'; paradokset er at uttrykket uten en prosedyre er tvetydig. Edwin Jaynes argumenterte i 1973 for 1/2-svaret på grunn av maks-entropi-invarians, men den dypere lærdommen står ved lag: geometrisk sannsynlighet er først veldefinert når samplingsprosedyren er fullstendig spesifisert. Buffons nål er delvis berømt fordi den spesifikasjonen er så gjennomsiktig — og svaret, 2 ℓ / (π d), avhenger ikke av hvilken naturlig prosedyre du velger.",
+      body: "Buffons nål fungerer fordi ordene 'jevnt fordelt posisjon, jevnt fordelt vinkel' fester utvalgsrommet presist. Andre geometriske sannsynlighetsproblemer er ikke like greie. Joseph Bertrand publiserte et paradoks i 1889: hva er sannsynligheten for at en tilfeldig korde i en enhetssirkel er lengre enn siden i den innskrevne likesidede trekanten? Tre naturlige prosedyrer — velg to tilfeldige endepunkt på sirkelen, velg et tilfeldig midtpunkt inne i skiven, velg en tilfeldig avstand fra sentrum — gir tre forskjellige svar (1/3, 1/4, 1/2). Alle tre er riktige gitt sin egen definisjon av 'tilfeldig korde'; paradokset er at uttrykket uten en prosedyre er tvetydig. Edwin Jaynes argumenterte i 1973 for 1/2-svaret på grunn av maks-entropi-invarians, men den dypere lærdommen står ved lag: geometrisk sannsynlighet er først veldefinert når samplingsprosedyren er fullstendig spesifisert. Buffons nål er delvis berømt fordi den spesifikasjonen er så gjennomsiktig — og svaret, 2 ℓ / (π d), avhenger ikke av hvilken naturlig prosedyre du velger.",
     },
   ],
   closingPretitle: "Gå videre",
@@ -801,6 +995,31 @@ const no: RichStory = {
   convergenceYLabel: "estimat",
   convergenceXLabel: "log N",
   convergenceFinal: "Sluttestimat",
+  exactProb: {
+    title: "Den eksakte sannsynligheten",
+    body: "En sinus, et integral, en jevn tetthet: π trer fram av rette linjer.",
+  },
+  lazzarini: {
+    caption: "Lazzarini, 1901 · ærlig konvergens",
+    colN: "N slipp",
+    colErr: "typisk |Δπ|",
+    lastRowN: "3 408 (Lazzarini)",
+    claimed: "påstått 0.0000003",
+    footnote:
+      "Den siste raden er ikke et faktum om tilfeldigheten: den er et faktum om en mann som stoppet ved nøyaktig riktig nål.",
+  },
+  bertrand: {
+    caption: "Bertrand 1889 · tre svar på ett spørsmål",
+    colProc: "prosedyre",
+    colP: "P(lengre enn siden)",
+    rows: [
+      "to tilfeldige endepunkt på sirkelen",
+      "tilfeldig midtpunkt jevnt i skiven",
+      "tilfeldig avstand fra sentrum",
+    ],
+    footnote:
+      "De samme ordene, tre utvalgsrom, tre svar. Buffons nål er delvis berømt fordi samplingsprosedyren er så entydig, og svaret det samme.",
+  },
 };
 
 const RICH_STORY: Record<Locale, RichStory> = {
@@ -885,13 +1104,13 @@ export default function BuffonStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              The exact probability
+              {story.exactProb.title}
             </div>
             <div className="math-italic text-4xl text-ink-100 md:text-5xl">
               P(cross) = 2 ℓ / (π d)
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              A sine, an integral, a uniform density — and π emerges from straight lines.
+              {story.exactProb.body}
             </p>
           </div>
         </Reveal>
@@ -943,16 +1162,16 @@ export default function BuffonStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Lazzarini, 1901 · honest convergence
+              {story.lazzarini.caption}
             </div>
             <table className="w-full font-mono text-sm">
               <thead className="hairline border-b text-ink-300">
                 <tr>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    N drops
+                    {story.lazzarini.colN}
                   </th>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    typical |Δπ|
+                    {story.lazzarini.colErr}
                   </th>
                 </tr>
               </thead>
@@ -963,7 +1182,7 @@ export default function BuffonStory() {
                   ["10 000", "~0.01"],
                   ["100 000", "~0.003"],
                   ["1 000 000", "~0.001"],
-                  ["3 408 (Lazzarini)", "claimed 0.0000003"],
+                  [story.lazzarini.lastRowN, story.lazzarini.claimed],
                 ].map(([n, err]) => (
                   <tr key={n} className="border-b border-ink-700/30 last:border-0">
                     <td className="px-2 py-2 text-signal-amber">{n}</td>
@@ -972,10 +1191,7 @@ export default function BuffonStory() {
                 ))}
               </tbody>
             </table>
-            <p className="text-[11px] leading-relaxed text-ink-400">
-              The last row is not a fact about randomness — it is a fact about a man stopping at
-              exactly the right needle.
-            </p>
+            <p className="text-[11px] leading-relaxed text-ink-400">{story.lazzarini.footnote}</p>
           </div>
         </Reveal>
       </section>
@@ -986,36 +1202,33 @@ export default function BuffonStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Bertrand 1888 · three answers to one question
+              {story.bertrand.caption}
             </div>
             <table className="w-full font-mono text-sm">
               <thead className="hairline border-b text-ink-300">
                 <tr>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    procedure
+                    {story.bertrand.colProc}
                   </th>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    P(longer than side)
+                    {story.bertrand.colP}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ["two random endpoints on the circle", "1 / 3"],
-                  ["random midpoint uniform in the disk", "1 / 4"],
-                  ["random distance from centre", "1 / 2"],
+                  [story.bertrand.rows[0], "1 / 3"],
+                  [story.bertrand.rows[1], "1 / 4"],
+                  [story.bertrand.rows[2], "1 / 2"],
                 ].map(([proc, p]) => (
-                  <tr key={proc} className="border-b border-ink-700/30 last:border-0">
+                  <tr key={p} className="border-b border-ink-700/30 last:border-0">
                     <td className="px-2 py-2 text-ink-200">{proc}</td>
                     <td className="px-2 py-2 text-signal-amber">{p}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <p className="text-[11px] leading-relaxed text-ink-400">
-              Same words, three sample spaces, three answers. Buffon&apos;s needle is famous in part
-              because its sampling procedure is so unambiguous — and the answer the same.
-            </p>
+            <p className="text-[11px] leading-relaxed text-ink-400">{story.bertrand.footnote}</p>
           </div>
         </Reveal>
       </section>

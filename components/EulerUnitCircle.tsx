@@ -162,7 +162,9 @@ export function EulerUnitCircle({ caption, identityHint }: Props) {
       <div className="flex justify-center">
         <canvas
           ref={canvasRef}
-          style={{ width: SIZE, height: SIZE }}
+          // maxWidth keeps the fixed-SIZE canvas from overflowing narrow phones;
+          // height:auto + the square aspect-ratio scale it down without distortion.
+          style={{ width: SIZE, height: "auto", maxWidth: "100%", aspectRatio: "1 / 1" }}
           className="hairline rounded-lg border"
           aria-label="Unit circle with point e^(i theta)"
         />

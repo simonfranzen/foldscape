@@ -30,8 +30,8 @@ type RichStory = {
     caption: string;
     depthLabel: string;
     tilesLabel: (n: number) => string;
-    kiteLabel: string;
-    dartLabel: string;
+    thickLabel: string;
+    thinLabel: string;
     hint: string;
     pretitle: string;
     title: string;
@@ -46,6 +46,17 @@ type RichStory = {
     title: string;
     body: string;
   };
+  crystal: { title: string; note: string };
+  race: {
+    title: string;
+    colYear: string;
+    colWho: string;
+    colTiles: string;
+    rows: Array<[string, string, string]>;
+  };
+  cardBox: { line1: string; line2: string };
+  inflationBox: { title: string; note: string };
+  timeline: { title: string; entries: Array<{ year: string; text: string }> };
   closingPretitle: string;
   closingTitle: string;
   closingBody: string;
@@ -105,12 +116,12 @@ const en: RichStory = {
     {
       pretitle: "Section 04 · Inflation and deflation",
       title: "Every tiling has a unique parent and unique children",
-      body: "Penrose's deepest move was the inflation rule. Take any kite-and-dart tiling. Group the tiles into clusters by a fixed recipe — split each kite into two half-kites and a half-dart, each dart into two half-darts. Reassemble the pieces and you get a new kite-and-dart tiling at exactly φ times the original scale. Run the rule backwards (deflation) and you get a child tiling at scale 1/φ. The inflated tiling is unique: there is only one way to coarsen a Penrose tiling into a Penrose tiling. This is what locks the pattern into aperiodicity — any periodic tiling would inflate into itself eventually, but the φ-scaling is irrational and never closes.",
+      body: "Penrose's deepest move was the deflation rule. Take any kite-and-dart tiling and subdivide every tile by a fixed recipe: each half-kite becomes two smaller half-kites and one half-dart, each half-dart becomes one half-kite and one half-dart. The pieces reassemble into a Penrose tiling at 1/φ the scale. Run the recipe backwards (inflation) and neighbouring tiles merge into a unique parent tiling at φ times the scale. The parent is unique: there is only one way to coarsen a Penrose tiling into a Penrose tiling. That is what locks the pattern into aperiodicity, because any periodic tiling would eventually inflate into itself, yet the φ-scaling is irrational and never closes.",
     },
     {
       pretitle: "Section 05 · The golden ratio everywhere",
       title: "Every measurement ratio contains φ",
-      body: "Once you start looking, φ = (1+√5)/2 is everywhere in the tiling. The number of kites divided by the number of darts in any large patch converges to φ. The side-length ratios inside the underlying Robinson triangles are 1 : φ. The inflation rule scales every length by exactly φ. The kite's diagonals are in golden ratio; so are the dart's. φ-scaling is also why you can prove the tiling is aperiodic without any geometry at all: a periodic tiling would force kites/darts to be a rational number, and φ is the most irrational number there is — its continued-fraction expansion is [1; 1, 1, 1, …], the slowest convergent in all of mathematics.",
+      body: "Once you start looking, φ = (1+√5)/2 is everywhere in the tiling. The number of kites divided by the number of darts in any large patch converges to φ. The side-length ratios inside the underlying Robinson triangles are 1 : φ. The inflation rule scales every length by exactly φ. The kite covers exactly φ times the area of the dart, and every tile is built from just two edge lengths whose ratio is φ. φ-scaling is also why you can prove the tiling is aperiodic without any geometry at all: a periodic tiling would force kites/darts to be a rational number, and φ is the most irrational number there is — its continued-fraction expansion is [1; 1, 1, 1, …], the slowest convergent in all of mathematics.",
     },
     {
       pretitle: "Section 06 · Quasicrystals — the picture became matter",
@@ -119,15 +130,15 @@ const en: RichStory = {
     },
   ],
   tiling: {
-    caption: "Interactive · grow the tiling",
-    depthLabel: "Inflation depth",
+    caption: "Interactive · deflate the tiling",
+    depthLabel: "Deflation depth",
     tilesLabel: (n: number) => `${n} half-tiles`,
-    kiteLabel: "kites",
-    dartLabel: "darts",
-    hint: "Each inflation step subdivides every tile into pieces 1/φ times smaller. The kite-to-dart ratio walks toward φ ≈ 1.618 as depth grows. Five-fold symmetry is preserved exactly at every step.",
-    pretitle: "Interactive · the inflation rule",
-    title: "Start with a sun, inflate by φ, watch a tiling appear",
-    body: "Begin with the canonical sun seed — ten kite-halves around the origin, forming a perfect five-fold star. Each inflation step subdivides every tile into smaller pieces according to Penrose's rules. Slide the depth up: at level 1 you can still see the seed; by level 6 you are looking at a few thousand tiles and the kite/dart ratio is already several digits of φ.",
+    thickLabel: "thick rhombi",
+    thinLabel: "thin rhombi",
+    hint: "Each deflation step subdivides every tile into pieces 1/φ times smaller. Thick rhombi outnumber thin ones, so the thick-to-thin count ratio walks toward φ ≈ 1.618 as depth grows. Five-fold symmetry is preserved exactly at every step.",
+    pretitle: "Interactive · the deflation rule",
+    title: "Start with a sun, deflate by 1/φ, watch a tiling appear",
+    body: "This grows the P3 rhombus form, the thin-and-thick sibling of the kite and dart, from the canonical sun seed: a five-fold star of ten half-rhombi around the origin. Each deflation step subdivides every tile by Penrose's rules. Slide the depth up: at level 1 you can still see the seed; by level 6 you are looking at a few thousand half-tiles and the thick/thin ratio is already several digits of φ.",
   },
   golden: {
     caption: "Interactive · the golden ratio",
@@ -138,10 +149,45 @@ const en: RichStory = {
     title: "1, 1, 2, 3, 5, 8, 13 … and the spiral that converges to φ",
     body: "Place a 1×1 square. Next to it, another 1×1. Then a 2×2 along their joined edge. Then a 3×3, then 5×5, then 8×8 — each new square's side length is the sum of the previous two. Inside each square draw a quarter-circle. The arcs join into a logarithmic spiral whose growth factor is φ. Slide the level up to watch the ratio of consecutive Fibonacci numbers crash into φ exponentially fast.",
   },
+  crystal: {
+    title: "Crystallographic restriction",
+    note: "Only 2-, 3-, 4-, and 6-fold rotations are compatible with a 2-D lattice. Five-fold is the simplest forbidden order, and the one Penrose tilings deliver anyway.",
+  },
+  race: {
+    title: "The tile-count race",
+    colYear: "year",
+    colWho: "who",
+    colTiles: "tiles",
+    rows: [
+      ["1961", "Wang · question posed", "?"],
+      ["1966", "Berger · first answer", "20,426"],
+      ["1968", "Knuth", "92"],
+      ["1971", "Robinson", "6"],
+      ["1974", "Penrose · kite + dart", "2"],
+      ["2023", "Smith / einstein", "1"],
+      ["2023", "Smith / spectre", "1 (no reflections)"],
+    ],
+  },
+  cardBox: { line1: "kites / darts → φ", line2: "each deflation scales by 1/φ" },
+  inflationBox: {
+    title: "Inflation",
+    note: "Inflation grows the tiling by exactly φ each step. Because φ is irrational, no inflated copy ever lines up with itself, and that is the formal reason the tiling cannot be periodic.",
+  },
+  timeline: {
+    title: "Timeline · paper → matter → Nobel",
+    entries: [
+      { year: "1974", text: "Penrose publishes the kite and dart aperiodic tiling." },
+      { year: "1982", text: "Shechtman records 5-fold electron diffraction in Al-Mn." },
+      { year: "1984", text: "Shechtman et al. publish; the term quasicrystal is coined." },
+      { year: "2009", text: "Natural quasicrystal found in a Russian meteorite (icosahedrite)." },
+      { year: "2011", text: "Shechtman receives the Nobel Prize in Chemistry." },
+      { year: "2023", text: "Smith, Goodman-Strauss et al. announce the einstein and the spectre." },
+    ],
+  },
   closingPretitle: "Take it further",
   closingTitle: "Open the Explorer.",
   closingBody:
-    "The Explorer lets you push inflation deeper, switch between the kite + dart (P2) and the rhombi (P3) variants, toggle Conway's matching arrows, and rotate the seed. Every claim on this page becomes a knob there.",
+    "The Explorer lets you push the deflation deeper, toggle between the full rhombi and the Robinson half-triangles that build them, switch on Conway's matching markers, and rotate the seed. Every claim on this page becomes a knob there.",
   closingCta: "→ Open the Explorer",
   finalLabel: "Inflate a tiling.",
 };
@@ -199,12 +245,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Inflation und Deflation",
       title: "Jede Parkettierung hat eindeutige Eltern und eindeutige Kinder",
-      body: "Penroses tiefster Zug war die Inflationsregel. Nimm irgendeine Drache-Pfeil-Parkettierung. Gruppiere die Kacheln nach einem festen Rezept — teile jeden Drachen in zwei Halb-Drachen und einen Halb-Pfeil, jeden Pfeil in zwei Halb-Pfeile. Setz die Teile neu zusammen, und du bekommst eine neue Drache-Pfeil-Parkettierung mit genau φ-mal der Originalskala. Lauf die Regel rückwärts (Deflation), und du erhältst eine Kind-Parkettierung mit Skala 1/φ. Die inflatierte Parkettierung ist eindeutig: es gibt nur eine Art, eine Penrose-Parkettierung in eine Penrose-Parkettierung zu vergröbern. Genau das schließt das Muster in die Aperiodizität ein — jede periodische Parkettierung würde sich irgendwann in sich selbst inflatieren, aber die φ-Skalierung ist irrational und schließt sich nie.",
+      body: "Penroses tiefster Zug war die Deflationsregel. Nimm irgendeine Drache-Pfeil-Parkettierung und unterteile jede Kachel nach einem festen Rezept: jeder Halb-Drache wird zu zwei kleineren Halb-Drachen und einem Halb-Pfeil, jeder Halb-Pfeil zu einem Halb-Drachen und einem Halb-Pfeil. Die Teile fügen sich zu einer Penrose-Parkettierung mit Skala 1/φ zusammen. Lauf das Rezept rückwärts (Inflation), und benachbarte Kacheln verschmelzen zu einer eindeutigen Eltern-Parkettierung mit φ-facher Skala. Die Eltern-Parkettierung ist eindeutig: es gibt nur eine Art, eine Penrose-Parkettierung in eine Penrose-Parkettierung zu vergröbern. Genau das schließt das Muster in die Aperiodizität ein, denn jede periodische Parkettierung würde sich irgendwann in sich selbst inflatieren, doch die φ-Skalierung ist irrational und schließt sich nie.",
     },
     {
       pretitle: "Abschnitt 05 · Der goldene Schnitt überall",
       title: "Jedes Längenverhältnis enthält φ",
-      body: "Sobald du anfängst zu schauen, ist φ = (1+√5)/2 überall in der Parkettierung. Die Anzahl Drachen geteilt durch die Anzahl Pfeile in jedem großen Ausschnitt konvergiert gegen φ. Die Seitenverhältnisse in den darunterliegenden Robinson-Dreiecken sind 1 : φ. Die Inflationsregel skaliert jede Länge exakt um φ. Die Diagonalen des Drachens stehen im goldenen Schnitt; die des Pfeils ebenso. Die φ-Skalierung ist auch der Grund, warum man die Aperiodizität ohne jede Geometrie beweisen kann: eine periodische Parkettierung würde Drachen/Pfeile rational machen, und φ ist die irrationalste Zahl, die es gibt — ihre Kettenbruchentwicklung ist [1; 1, 1, 1, …], die langsamste Konvergenz in der ganzen Mathematik.",
+      body: "Sobald du anfängst zu schauen, ist φ = (1+√5)/2 überall in der Parkettierung. Die Anzahl Drachen geteilt durch die Anzahl Pfeile in jedem großen Ausschnitt konvergiert gegen φ. Die Seitenverhältnisse in den darunterliegenden Robinson-Dreiecken sind 1 : φ. Die Inflationsregel skaliert jede Länge exakt um φ. Der Drache bedeckt genau φ-mal die Fläche des Pfeils, und jede Kachel besteht aus nur zwei Kantenlängen, deren Verhältnis φ ist. Die φ-Skalierung ist auch der Grund, warum man die Aperiodizität ohne jede Geometrie beweisen kann: eine periodische Parkettierung würde Drachen/Pfeile rational machen, und φ ist die irrationalste Zahl, die es gibt — ihre Kettenbruchentwicklung ist [1; 1, 1, 1, …], die langsamste Konvergenz in der ganzen Mathematik.",
     },
     {
       pretitle: "Abschnitt 06 · Quasikristalle — das Bild wurde Materie",
@@ -213,15 +259,15 @@ const de: RichStory = {
     },
   ],
   tiling: {
-    caption: "Interaktiv · Parkettierung wachsen lassen",
-    depthLabel: "Inflationstiefe",
+    caption: "Interaktiv · Parkettierung unterteilen",
+    depthLabel: "Deflationstiefe",
     tilesLabel: (n: number) => `${n} Halbkacheln`,
-    kiteLabel: "Drachen",
-    dartLabel: "Pfeile",
-    hint: "Jeder Inflationsschritt teilt jede Kachel in 1/φ-mal kleinere Stücke auf. Das Verhältnis Drachen/Pfeile wandert mit wachsender Tiefe Richtung φ ≈ 1,618. Die fünfzählige Symmetrie bleibt auf jeder Stufe exakt erhalten.",
-    pretitle: "Interaktiv · die Inflationsregel",
-    title: "Beginn mit einer Sonne, inflatiere um φ, sieh die Parkettierung entstehen",
-    body: "Starte mit dem klassischen Sonnen-Keim — zehn Drachen-Hälften um den Ursprung, perfekt fünfzählig. Jeder Inflationsschritt zerlegt jede Kachel nach Penroses Regeln in kleinere Teile. Schieb die Tiefe hoch: auf Stufe 1 erkennst du noch den Keim, auf Stufe 6 schaust du auf einige Tausend Kacheln, und das Drachen/Pfeil-Verhältnis trifft schon mehrere Stellen von φ.",
+    thickLabel: "dicke Rhomben",
+    thinLabel: "dünne Rhomben",
+    hint: "Jeder Deflationsschritt teilt jede Kachel in 1/φ-mal kleinere Stücke auf. Dicke Rhomben überwiegen die dünnen, also wandert das Verhältnis dick zu dünn mit wachsender Tiefe Richtung φ ≈ 1,618. Die fünfzählige Symmetrie bleibt auf jeder Stufe exakt erhalten.",
+    pretitle: "Interaktiv · die Deflationsregel",
+    title: "Beginn mit einer Sonne, unterteile um 1/φ, sieh die Parkettierung entstehen",
+    body: "Das lässt die P3-Rhombenform wachsen, die dünn-und-dicke Schwester von Drache und Pfeil, aus dem klassischen Sonnen-Keim: ein fünfzähliger Stern aus zehn Halb-Rhomben um den Ursprung. Jeder Deflationsschritt unterteilt jede Kachel nach Penroses Regeln. Schieb die Tiefe hoch: auf Stufe 1 erkennst du noch den Keim, auf Stufe 6 schaust du auf einige Tausend Halbkacheln, und das Dick/Dünn-Verhältnis trifft schon mehrere Stellen von φ.",
   },
   golden: {
     caption: "Interaktiv · der goldene Schnitt",
@@ -232,10 +278,45 @@ const de: RichStory = {
     title: "1, 1, 2, 3, 5, 8, 13 … und die Spirale, die gegen φ konvergiert",
     body: "Leg ein 1×1-Quadrat. Daneben ein zweites 1×1. Dann ein 2×2 entlang ihrer gemeinsamen Kante. Dann 3×3, dann 5×5, dann 8×8 — jede neue Seitenlänge ist die Summe der zwei vorigen. In jedes Quadrat zeichnest du einen Viertelkreis. Die Bögen verbinden sich zu einer logarithmischen Spirale mit Wachstumsfaktor φ. Zieh die Stufe hoch und sieh, wie das Verhältnis aufeinanderfolgender Fibonacci-Zahlen exponentiell schnell in φ einrastet.",
   },
+  crystal: {
+    title: "Kristallographische Einschränkung",
+    note: "Nur 2-, 3-, 4- und 6-zählige Drehungen sind mit einem 2-D-Gitter verträglich. Fünfzählig ist die einfachste verbotene Ordnung, und genau die liefern Penrose-Parkettierungen trotzdem.",
+  },
+  race: {
+    title: "Das Rennen um die Kachelzahl",
+    colYear: "Jahr",
+    colWho: "wer",
+    colTiles: "Kacheln",
+    rows: [
+      ["1961", "Wang · Frage gestellt", "?"],
+      ["1966", "Berger · erste Antwort", "20.426"],
+      ["1968", "Knuth", "92"],
+      ["1971", "Robinson", "6"],
+      ["1974", "Penrose · Drache + Pfeil", "2"],
+      ["2023", "Smith / einstein", "1"],
+      ["2023", "Smith / spectre", "1 (ohne Spiegelungen)"],
+    ],
+  },
+  cardBox: { line1: "Drachen / Pfeile → φ", line2: "jede Deflation skaliert um 1/φ" },
+  inflationBox: {
+    title: "Inflation",
+    note: "Inflation vergrößert die Parkettierung pro Schritt um genau φ. Weil φ irrational ist, deckt sich keine inflatierte Kopie je mit sich selbst, und das ist der formale Grund, warum die Parkettierung nicht periodisch sein kann.",
+  },
+  timeline: {
+    title: "Zeitleiste · Papier → Materie → Nobel",
+    entries: [
+      { year: "1974", text: "Penrose veröffentlicht die aperiodische Drache-und-Pfeil-Parkettierung." },
+      { year: "1982", text: "Shechtman misst fünfzählige Elektronenbeugung in Al-Mn." },
+      { year: "1984", text: "Shechtman u.a. publizieren; der Begriff Quasikristall entsteht." },
+      { year: "2009", text: "Natürlicher Quasikristall in einem russischen Meteoriten gefunden (Ikosaedrit)." },
+      { year: "2011", text: "Shechtman erhält den Nobelpreis für Chemie." },
+      { year: "2023", text: "Smith, Goodman-Strauss u.a. verkünden den einstein und den spectre." },
+    ],
+  },
   closingPretitle: "Geh weiter",
   closingTitle: "Öffne den Explorer.",
   closingBody:
-    "Der Explorer lässt dich die Inflation tiefer treiben, zwischen Drache + Pfeil (P2) und den Rhomben (P3) wechseln, Conways Anlegepfeile einblenden und den Keim drehen. Jede Behauptung dieser Seite wird dort zu einem Regler.",
+    "Der Explorer lässt dich die Deflation tiefer treiben, zwischen den vollen Rhomben und den Robinson-Halbdreiecken wechseln, aus denen sie bestehen, Conways Anlegemarken einblenden und den Keim drehen. Jede Behauptung dieser Seite wird dort zu einem Regler.",
   closingCta: "→ Explorer öffnen",
   finalLabel: "Inflatiere eine Parkettierung.",
 };
@@ -293,12 +374,12 @@ const es: RichStory = {
     {
       pretitle: "Sección 04 · Inflación y deflación",
       title: "Cada teselado tiene un único padre y únicos hijos",
-      body: "El movimiento más profundo de Penrose fue la regla de inflación. Toma cualquier teselado cometa-dardo. Agrupa las baldosas según una receta fija — divide cada cometa en dos medio-cometas y un medio-dardo, cada dardo en dos medio-dardos. Vuelve a montar las piezas y obtienes un nuevo teselado cometa-dardo a exactamente φ veces la escala original. Aplica la regla al revés (deflación) y obtienes un teselado hijo a escala 1/φ. El teselado inflado es único: solo hay una forma de engrosar un teselado de Penrose en otro teselado de Penrose. Eso es lo que ata el patrón a la aperiodicidad — cualquier teselado periódico acabaría inflándose a sí mismo, pero la escala φ es irracional y nunca cierra.",
+      body: "El movimiento más profundo de Penrose fue la regla de deflación. Toma cualquier teselado cometa-dardo y subdivide cada baldosa según una receta fija: cada media-cometa se convierte en dos medias-cometas más pequeñas y una media-dardo, cada media-dardo en una media-cometa y una media-dardo. Las piezas se recomponen en un teselado de Penrose a escala 1/φ. Aplica la receta al revés (inflación) y las baldosas vecinas se funden en un único teselado padre a φ veces la escala. El padre es único: solo hay una forma de engrosar un teselado de Penrose en otro teselado de Penrose. Eso es lo que ata el patrón a la aperiodicidad, porque cualquier teselado periódico acabaría inflándose a sí mismo, pero la escala φ es irracional y nunca cierra.",
     },
     {
       pretitle: "Sección 05 · La proporción áurea por todas partes",
       title: "Cada razón de medidas contiene φ",
-      body: "En cuanto empiezas a mirar, φ = (1+√5)/2 está por todas partes en el teselado. El número de cometas dividido por el de dardos en cualquier región grande converge a φ. Las razones de lados en los triángulos de Robinson subyacentes son 1 : φ. La regla de inflación escala cada longitud exactamente por φ. Las diagonales de la cometa están en proporción áurea; las del dardo también. La escala por φ es también el motivo por el que se puede probar la aperiodicidad sin geometría: un teselado periódico forzaría cometas/dardos a ser racional, y φ es el número más irracional que existe — su desarrollo en fracción continua es [1; 1, 1, 1, …], la convergencia más lenta de toda la matemática.",
+      body: "En cuanto empiezas a mirar, φ = (1+√5)/2 está por todas partes en el teselado. El número de cometas dividido por el de dardos en cualquier región grande converge a φ. Las razones de lados en los triángulos de Robinson subyacentes son 1 : φ. La regla de inflación escala cada longitud exactamente por φ. La cometa cubre exactamente φ veces el área del dardo, y cada baldosa se construye con solo dos longitudes de arista cuya razón es φ. La escala por φ es también el motivo por el que se puede probar la aperiodicidad sin geometría: un teselado periódico forzaría cometas/dardos a ser racional, y φ es el número más irracional que existe — su desarrollo en fracción continua es [1; 1, 1, 1, …], la convergencia más lenta de toda la matemática.",
     },
     {
       pretitle: "Sección 06 · Cuasicristales — la imagen se hizo materia",
@@ -307,15 +388,15 @@ const es: RichStory = {
     },
   ],
   tiling: {
-    caption: "Interactivo · hacer crecer el teselado",
-    depthLabel: "Profundidad de inflación",
+    caption: "Interactivo · subdividir el teselado",
+    depthLabel: "Profundidad de deflación",
     tilesLabel: (n: number) => `${n} medias-baldosas`,
-    kiteLabel: "cometas",
-    dartLabel: "dardos",
-    hint: "Cada paso de inflación subdivide cada baldosa en piezas 1/φ veces menores. La razón cometas/dardos camina hacia φ ≈ 1,618 al crecer la profundidad. La simetría de orden cinco se conserva exactamente en cada nivel.",
-    pretitle: "Interactivo · la regla de inflación",
-    title: "Empieza con un sol, infla por φ, mira aparecer el teselado",
-    body: "Empieza con la semilla canónica del sol — diez medias-cometas alrededor del origen, formando una estrella perfecta de cinco puntas. Cada paso de inflación divide cada baldosa en piezas menores según las reglas de Penrose. Desliza la profundidad arriba: en el nivel 1 todavía ves la semilla; en el 6 miras unos miles de baldosas, y la razón cometas/dardos ya acierta varios dígitos de φ.",
+    thickLabel: "rombos gruesos",
+    thinLabel: "rombos finos",
+    hint: "Cada paso de deflación subdivide cada baldosa en piezas 1/φ veces menores. Los rombos gruesos superan a los finos, así que la razón grueso/fino camina hacia φ ≈ 1,618 al crecer la profundidad. La simetría de orden cinco se conserva exactamente en cada nivel.",
+    pretitle: "Interactivo · la regla de deflación",
+    title: "Empieza con un sol, subdivide por 1/φ, mira aparecer el teselado",
+    body: "Esto hace crecer la forma de rombos P3, la hermana fina-y-gruesa de la cometa y el dardo, a partir de la semilla canónica del sol: una estrella de cinco puntas de diez medios-rombos alrededor del origen. Cada paso de deflación subdivide cada baldosa según las reglas de Penrose. Desliza la profundidad arriba: en el nivel 1 todavía ves la semilla; en el 6 miras unos miles de medias-baldosas, y la razón grueso/fino ya acierta varios dígitos de φ.",
   },
   golden: {
     caption: "Interactivo · la proporción áurea",
@@ -326,10 +407,45 @@ const es: RichStory = {
     title: "1, 1, 2, 3, 5, 8, 13 … y la espiral que converge a φ",
     body: "Coloca un cuadrado 1×1. Al lado, otro 1×1. Luego un 2×2 a lo largo de su lado compartido. Después 3×3, 5×5, 8×8 — cada nuevo lado es la suma de los dos anteriores. Dentro de cada cuadrado dibuja un cuarto de círculo. Los arcos se unen en una espiral logarítmica con factor de crecimiento φ. Sube el nivel y mira cómo la razón de Fibonacci consecutiva se clava en φ exponencialmente rápido.",
   },
+  crystal: {
+    title: "Restricción cristalográfica",
+    note: "Solo las rotaciones de orden 2, 3, 4 y 6 son compatibles con una red 2-D. El orden cinco es el más simple prohibido, y el que los teselados de Penrose entregan de todos modos.",
+  },
+  race: {
+    title: "La carrera por el número de baldosas",
+    colYear: "año",
+    colWho: "quién",
+    colTiles: "baldosas",
+    rows: [
+      ["1961", "Wang · pregunta planteada", "?"],
+      ["1966", "Berger · primera respuesta", "20 426"],
+      ["1968", "Knuth", "92"],
+      ["1971", "Robinson", "6"],
+      ["1974", "Penrose · cometa + dardo", "2"],
+      ["2023", "Smith / einstein", "1"],
+      ["2023", "Smith / spectre", "1 (sin reflexiones)"],
+    ],
+  },
+  cardBox: { line1: "cometas / dardos → φ", line2: "cada deflación escala por 1/φ" },
+  inflationBox: {
+    title: "Inflación",
+    note: "La inflación agranda el teselado exactamente por φ en cada paso. Como φ es irracional, ninguna copia inflada coincide jamás consigo misma, y esa es la razón formal de que el teselado no pueda ser periódico.",
+  },
+  timeline: {
+    title: "Cronología · papel → materia → Nobel",
+    entries: [
+      { year: "1974", text: "Penrose publica el teselado aperiódico de cometa y dardo." },
+      { year: "1982", text: "Shechtman registra difracción electrónica de cinco pliegues en Al-Mn." },
+      { year: "1984", text: "Shechtman et al. publican; se acuña el término cuasicristal." },
+      { year: "2009", text: "Cuasicristal natural hallado en un meteorito ruso (icosaedrita)." },
+      { year: "2011", text: "Shechtman recibe el Nobel de Química." },
+      { year: "2023", text: "Smith, Goodman-Strauss et al. anuncian el einstein y el spectre." },
+    ],
+  },
   closingPretitle: "Ve más lejos",
   closingTitle: "Abre el Explorador.",
   closingBody:
-    "El Explorador te deja empujar la inflación más hondo, cambiar entre cometa + dardo (P2) y rombos (P3), activar las flechas de encaje de Conway y girar la semilla. Cada afirmación de esta página se convierte allí en una perilla.",
+    "El Explorador te deja empujar la deflación más hondo, alternar entre los rombos completos y los medios triángulos de Robinson que los forman, activar las marcas de encaje de Conway y girar la semilla. Cada afirmación de esta página se convierte allí en una perilla.",
   closingCta: "→ Abrir el Explorador",
   finalLabel: "Infla un teselado.",
 };
@@ -387,12 +503,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 04 · Inflation et déflation",
       title: "Tout pavage a un unique parent et d'uniques enfants",
-      body: "Le geste le plus profond de Penrose, c'est la règle d'inflation. Prends n'importe quel pavage cerf-volant–flèche. Regroupe les tuiles selon une recette fixe — sépare chaque cerf-volant en deux demi-cerfs-volants et un demi-flèche, chaque flèche en deux demi-flèches. Réassemble les morceaux et tu obtiens un nouveau pavage cerf-volant–flèche à exactement φ fois l'échelle d'origine. Joue la règle à l'envers (déflation) et tu obtiens un pavage enfant à l'échelle 1/φ. Le pavage inflé est unique : il n'y a qu'une façon de grossir un pavage de Penrose en un pavage de Penrose. C'est ce qui enferme le motif dans l'apériodicité — un pavage périodique finirait par s'inflater en lui-même, mais l'échelle φ est irrationnelle et ne se referme jamais.",
+      body: "Le geste le plus profond de Penrose, c'est la règle de déflation. Prends n'importe quel pavage de cerfs-volants et flèches et subdivise chaque tuile selon une recette fixe : chaque demi-cerf-volant devient deux demi-cerfs-volants plus petits et une demi-flèche, chaque demi-flèche devient un demi-cerf-volant et une demi-flèche. Les morceaux se recomposent en un pavage de Penrose à l'échelle 1/φ. Joue la recette à l'envers (inflation) et les tuiles voisines fusionnent en un unique pavage parent à φ fois l'échelle. Le parent est unique : il n'y a qu'une façon de grossir un pavage de Penrose en un pavage de Penrose. C'est ce qui enferme le motif dans l'apériodicité, car un pavage périodique finirait par s'inflater en lui-même, mais l'échelle φ est irrationnelle et ne se referme jamais.",
     },
     {
       pretitle: "Section 05 · Le nombre d'or partout",
       title: "Chaque rapport de mesures contient φ",
-      body: "Dès que tu commences à regarder, φ = (1+√5)/2 est partout dans le pavage. Le nombre de cerfs-volants divisé par celui des flèches dans tout grand morceau converge vers φ. Les rapports de côtés dans les triangles de Robinson sous-jacents valent 1 : φ. La règle d'inflation multiplie chaque longueur exactement par φ. Les diagonales du cerf-volant sont en rapport doré ; celles de la flèche aussi. La mise à l'échelle par φ explique aussi qu'on puisse prouver l'apériodicité sans la moindre géométrie : un pavage périodique forcerait cerfs-volants/flèches à être rationnel, et φ est le nombre le plus irrationnel qui existe — son développement en fraction continue est [1; 1, 1, 1, …], la convergence la plus lente de toute la mathématique.",
+      body: "Dès que tu commences à regarder, φ = (1+√5)/2 est partout dans le pavage. Le nombre de cerfs-volants divisé par celui des flèches dans tout grand morceau converge vers φ. Les rapports de côtés dans les triangles de Robinson sous-jacents valent 1 : φ. La règle d'inflation multiplie chaque longueur exactement par φ. Le cerf-volant couvre exactement φ fois l'aire de la flèche, et chaque tuile est bâtie sur seulement deux longueurs d'arête dont le rapport vaut φ. La mise à l'échelle par φ explique aussi qu'on puisse prouver l'apériodicité sans la moindre géométrie : un pavage périodique forcerait cerfs-volants/flèches à être rationnel, et φ est le nombre le plus irrationnel qui existe — son développement en fraction continue est [1; 1, 1, 1, …], la convergence la plus lente de toute la mathématique.",
     },
     {
       pretitle: "Section 06 · Quasi-cristaux — l'image est devenue matière",
@@ -401,15 +517,15 @@ const fr: RichStory = {
     },
   ],
   tiling: {
-    caption: "Interactif · faire pousser le pavage",
-    depthLabel: "Profondeur d'inflation",
+    caption: "Interactif · subdiviser le pavage",
+    depthLabel: "Profondeur de déflation",
     tilesLabel: (n: number) => `${n} demi-tuiles`,
-    kiteLabel: "cerfs-volants",
-    dartLabel: "flèches",
-    hint: "Chaque étape d'inflation subdivise chaque tuile en pièces 1/φ fois plus petites. Le rapport cerfs-volants/flèches marche vers φ ≈ 1,618 à mesure que la profondeur grandit. La symétrie d'ordre cinq est conservée exactement à chaque étape.",
-    pretitle: "Interactif · la règle d'inflation",
-    title: "Commence par un soleil, inflate par φ, regarde un pavage apparaître",
-    body: "Commence par la graine canonique du soleil — dix moitiés de cerfs-volants autour de l'origine, formant une étoile parfaite à cinq branches. Chaque étape d'inflation subdivise chaque tuile selon les règles de Penrose. Pousse la profondeur : au niveau 1 tu vois encore la graine ; au niveau 6 tu regardes quelques milliers de tuiles, et le rapport cerfs-volants/flèches accroche déjà plusieurs chiffres de φ.",
+    thickLabel: "losanges épais",
+    thinLabel: "losanges fins",
+    hint: "Chaque étape de déflation subdivise chaque tuile en pièces 1/φ fois plus petites. Les losanges épais l'emportent sur les fins, donc le rapport épais/fin marche vers φ ≈ 1,618 à mesure que la profondeur grandit. La symétrie d'ordre cinq est conservée exactement à chaque étape.",
+    pretitle: "Interactif · la règle de déflation",
+    title: "Commence par un soleil, subdivise par 1/φ, regarde un pavage apparaître",
+    body: "Cela fait pousser la forme en losanges P3, la sœur fine-et-épaisse du cerf-volant et de la flèche, à partir de la graine canonique du soleil : une étoile à cinq branches de dix demi-losanges autour de l'origine. Chaque étape de déflation subdivise chaque tuile selon les règles de Penrose. Pousse la profondeur : au niveau 1 tu vois encore la graine ; au niveau 6 tu regardes quelques milliers de demi-tuiles, et le rapport épais/fin accroche déjà plusieurs chiffres de φ.",
   },
   golden: {
     caption: "Interactif · le nombre d'or",
@@ -420,10 +536,45 @@ const fr: RichStory = {
     title: "1, 1, 2, 3, 5, 8, 13 … et la spirale qui converge vers φ",
     body: "Pose un carré 1×1. À côté, un autre 1×1. Puis un 2×2 le long de leur arête commune. Puis 3×3, 5×5, 8×8 — chaque nouveau côté est la somme des deux précédents. Dans chaque carré, trace un quart de cercle. Les arcs se rejoignent en une spirale logarithmique de facteur de croissance φ. Pousse le niveau et regarde le rapport de Fibonacci consécutif claquer dans φ à vitesse exponentielle.",
   },
+  crystal: {
+    title: "Restriction cristallographique",
+    note: "Seules les rotations d'ordre 2, 3, 4 et 6 sont compatibles avec un réseau 2-D. L'ordre cinq est le plus simple des ordres interdits, et celui que les pavages de Penrose livrent malgré tout.",
+  },
+  race: {
+    title: "La course au nombre de tuiles",
+    colYear: "année",
+    colWho: "qui",
+    colTiles: "tuiles",
+    rows: [
+      ["1961", "Wang · question posée", "?"],
+      ["1966", "Berger · première réponse", "20 426"],
+      ["1968", "Knuth", "92"],
+      ["1971", "Robinson", "6"],
+      ["1974", "Penrose · cerf-volant + flèche", "2"],
+      ["2023", "Smith / einstein", "1"],
+      ["2023", "Smith / spectre", "1 (sans réflexions)"],
+    ],
+  },
+  cardBox: { line1: "cerfs-volants / flèches → φ", line2: "chaque déflation met à l'échelle 1/φ" },
+  inflationBox: {
+    title: "Inflation",
+    note: "L'inflation agrandit le pavage d'exactement φ à chaque étape. Comme φ est irrationnel, aucune copie inflée ne coïncide jamais avec elle-même, et c'est la raison formelle pour laquelle le pavage ne peut pas être périodique.",
+  },
+  timeline: {
+    title: "Chronologie · papier → matière → Nobel",
+    entries: [
+      { year: "1974", text: "Penrose publie le pavage apériodique cerf-volant et flèche." },
+      { year: "1982", text: "Shechtman enregistre une diffraction électronique d'ordre cinq dans Al-Mn." },
+      { year: "1984", text: "Shechtman et al. publient ; le terme quasi-cristal est forgé." },
+      { year: "2009", text: "Quasi-cristal naturel trouvé dans une météorite russe (icosaédrite)." },
+      { year: "2011", text: "Shechtman reçoit le prix Nobel de chimie." },
+      { year: "2023", text: "Smith, Goodman-Strauss et al. annoncent l'einstein et le spectre." },
+    ],
+  },
   closingPretitle: "Aller plus loin",
   closingTitle: "Ouvre l'Explorateur.",
   closingBody:
-    "L'Explorateur te laisse pousser l'inflation plus loin, basculer entre cerf-volant + flèche (P2) et losanges (P3), afficher les flèches d'accord de Conway et tourner la graine. Chaque affirmation de cette page devient là-bas une molette.",
+    "L'Explorateur te laisse pousser la déflation plus loin, basculer entre les losanges entiers et les demi-triangles de Robinson qui les composent, afficher les marques d'accord de Conway et tourner la graine. Chaque affirmation de cette page devient là-bas une molette.",
   closingCta: "→ Ouvrir l'Explorateur",
   finalLabel: "Inflate un pavage.",
 };
@@ -481,12 +632,12 @@ const it: RichStory = {
     {
       pretitle: "Sezione 04 · Inflazione e deflazione",
       title: "Ogni tassellatura ha un unico genitore e unici figli",
-      body: "La mossa più profonda di Penrose è stata la regola di inflazione. Prendi una tassellatura aquilone-dardo qualsiasi. Raggruppa le piastrelle secondo una ricetta fissa — dividi ogni aquilone in due mezzi-aquiloni e un mezzo-dardo, ogni dardo in due mezzi-dardi. Rimonta i pezzi e ottieni una nuova tassellatura aquilone-dardo a esattamente φ volte la scala originale. Esegui la regola al contrario (deflazione) e ottieni una tassellatura figlia a scala 1/φ. La tassellatura inflazionata è unica: c'è un solo modo di ingrandire una tassellatura di Penrose in un'altra. È questo che chiude il motivo nell'aperiodicità — una tassellatura periodica finirebbe per inflazionarsi in se stessa, ma la scala φ è irrazionale e non chiude mai.",
+      body: "La mossa più profonda di Penrose è stata la regola di deflazione. Prendi una tassellatura aquilone-dardo qualsiasi e suddividi ogni piastrella secondo una ricetta fissa: ogni mezzo-aquilone diventa due mezzi-aquiloni più piccoli e un mezzo-dardo, ogni mezzo-dardo diventa un mezzo-aquilone e un mezzo-dardo. I pezzi si ricompongono in una tassellatura di Penrose a scala 1/φ. Esegui la ricetta al contrario (inflazione) e le piastrelle vicine si fondono in un'unica tassellatura genitrice a φ volte la scala. La genitrice è unica: c'è un solo modo di ingrandire una tassellatura di Penrose in un'altra. È questo che chiude il motivo nell'aperiodicità, perché una tassellatura periodica finirebbe per inflazionarsi in se stessa, ma la scala φ è irrazionale e non chiude mai.",
     },
     {
       pretitle: "Sezione 05 · La sezione aurea ovunque",
       title: "Ogni rapporto di misura contiene φ",
-      body: "Appena inizi a guardare, φ = (1+√5)/2 è ovunque nella tassellatura. Il numero di aquiloni diviso quello dei dardi in qualunque grande regione converge a φ. I rapporti tra i lati nei triangoli di Robinson sottostanti sono 1 : φ. La regola di inflazione scala ogni lunghezza esattamente di φ. Le diagonali dell'aquilone stanno in rapporto aureo; anche quelle del dardo. La scala per φ è anche il motivo per cui si può dimostrare l'aperiodicità senza alcuna geometria: una tassellatura periodica costringerebbe aquiloni/dardi a essere razionale, e φ è il numero più irrazionale che esista — il suo sviluppo in frazione continua è [1; 1, 1, 1, …], la convergenza più lenta di tutta la matematica.",
+      body: "Appena inizi a guardare, φ = (1+√5)/2 è ovunque nella tassellatura. Il numero di aquiloni diviso quello dei dardi in qualunque grande regione converge a φ. I rapporti tra i lati nei triangoli di Robinson sottostanti sono 1 : φ. La regola di inflazione scala ogni lunghezza esattamente di φ. L'aquilone copre esattamente φ volte l'area del dardo, e ogni piastrella è costruita con solo due lunghezze di lato il cui rapporto è φ. La scala per φ è anche il motivo per cui si può dimostrare l'aperiodicità senza alcuna geometria: una tassellatura periodica costringerebbe aquiloni/dardi a essere razionale, e φ è il numero più irrazionale che esista — il suo sviluppo in frazione continua è [1; 1, 1, 1, …], la convergenza più lenta di tutta la matematica.",
     },
     {
       pretitle: "Sezione 06 · Quasicristalli — l'immagine è diventata materia",
@@ -495,15 +646,15 @@ const it: RichStory = {
     },
   ],
   tiling: {
-    caption: "Interattivo · far crescere la tassellatura",
-    depthLabel: "Profondità di inflazione",
+    caption: "Interattivo · suddividere la tassellatura",
+    depthLabel: "Profondità di deflazione",
     tilesLabel: (n: number) => `${n} mezze-piastrelle`,
-    kiteLabel: "aquiloni",
-    dartLabel: "dardi",
-    hint: "Ogni passo di inflazione suddivide ogni piastrella in pezzi 1/φ volte più piccoli. Il rapporto aquiloni/dardi cammina verso φ ≈ 1,618 con la profondità. La simmetria a cinque pieghe è conservata esattamente a ogni livello.",
-    pretitle: "Interattivo · la regola di inflazione",
-    title: "Parti da un sole, inflaziona di φ, guarda apparire la tassellatura",
-    body: "Parti dal seme canonico del sole — dieci mezzi-aquiloni attorno all'origine, formando una stella perfetta a cinque punte. Ogni passo di inflazione divide ogni piastrella in pezzi più piccoli secondo Penrose. Spingi su la profondità: al livello 1 vedi ancora il seme; al 6 guardi qualche migliaio di piastrelle, e il rapporto aquiloni/dardi azzecca già diverse cifre di φ.",
+    thickLabel: "rombi spessi",
+    thinLabel: "rombi sottili",
+    hint: "Ogni passo di deflazione suddivide ogni piastrella in pezzi 1/φ volte più piccoli. I rombi spessi superano i sottili, quindi il rapporto spesso/sottile cammina verso φ ≈ 1,618 con la profondità. La simmetria a cinque pieghe è conservata esattamente a ogni livello.",
+    pretitle: "Interattivo · la regola di deflazione",
+    title: "Parti da un sole, suddividi di 1/φ, guarda apparire la tassellatura",
+    body: "Questo fa crescere la forma a rombi P3, la sorella sottile-e-spessa dell'aquilone e del dardo, dal seme canonico del sole: una stella a cinque punte di dieci mezzi-rombi attorno all'origine. Ogni passo di deflazione suddivide ogni piastrella secondo Penrose. Spingi su la profondità: al livello 1 vedi ancora il seme; al 6 guardi qualche migliaio di mezze-piastrelle, e il rapporto spesso/sottile azzecca già diverse cifre di φ.",
   },
   golden: {
     caption: "Interattivo · la sezione aurea",
@@ -514,10 +665,45 @@ const it: RichStory = {
     title: "1, 1, 2, 3, 5, 8, 13 … e la spirale che converge a φ",
     body: "Metti un quadrato 1×1. Accanto, un altro 1×1. Poi un 2×2 lungo il loro lato comune. Poi 3×3, 5×5, 8×8 — ogni nuovo lato è la somma dei due precedenti. In ogni quadrato traccia un quarto di cerchio. Gli archi si collegano in una spirale logaritmica con fattore di crescita φ. Sali con il livello e guarda il rapporto Fibonacci consecutivo schiantarsi in φ esponenzialmente.",
   },
+  crystal: {
+    title: "Restrizione cristallografica",
+    note: "Solo le rotazioni di ordine 2, 3, 4 e 6 sono compatibili con un reticolo 2-D. L'ordine cinque è il più semplice tra quelli vietati, e quello che le tassellature di Penrose realizzano comunque.",
+  },
+  race: {
+    title: "La corsa al numero di piastrelle",
+    colYear: "anno",
+    colWho: "chi",
+    colTiles: "piastrelle",
+    rows: [
+      ["1961", "Wang · domanda posta", "?"],
+      ["1966", "Berger · prima risposta", "20 426"],
+      ["1968", "Knuth", "92"],
+      ["1971", "Robinson", "6"],
+      ["1974", "Penrose · aquilone + dardo", "2"],
+      ["2023", "Smith / einstein", "1"],
+      ["2023", "Smith / spectre", "1 (senza riflessioni)"],
+    ],
+  },
+  cardBox: { line1: "aquiloni / dardi → φ", line2: "ogni deflazione scala di 1/φ" },
+  inflationBox: {
+    title: "Inflazione",
+    note: "L'inflazione ingrandisce la tassellatura esattamente di φ a ogni passo. Poiché φ è irrazionale, nessuna copia inflazionata coincide mai con se stessa, ed è la ragione formale per cui la tassellatura non può essere periodica.",
+  },
+  timeline: {
+    title: "Cronologia · carta → materia → Nobel",
+    entries: [
+      { year: "1974", text: "Penrose pubblica la tassellatura aperiodica ad aquilone e dardo." },
+      { year: "1982", text: "Shechtman registra una diffrazione elettronica a cinque pieghe in Al-Mn." },
+      { year: "1984", text: "Shechtman et al. pubblicano; si conia il termine quasicristallo." },
+      { year: "2009", text: "Quasicristallo naturale trovato in un meteorite russo (icosaedrite)." },
+      { year: "2011", text: "Shechtman riceve il Nobel per la Chimica." },
+      { year: "2023", text: "Smith, Goodman-Strauss et al. annunciano l'einstein e lo spectre." },
+    ],
+  },
   closingPretitle: "Vai oltre",
   closingTitle: "Apri l'Esploratore.",
   closingBody:
-    "L'Esploratore ti lascia spingere l'inflazione più in profondità, alternare tra aquilone + dardo (P2) e rombi (P3), accendere le frecce di Conway e ruotare il seme. Ogni affermazione di questa pagina diventa lì una manopola.",
+    "L'Esploratore ti lascia spingere la deflazione più in profondità, alternare tra i rombi interi e i mezzi triangoli di Robinson che li compongono, accendere le marche di Conway e ruotare il seme. Ogni affermazione di questa pagina diventa lì una manopola.",
   closingCta: "→ Apri l'Esploratore",
   finalLabel: "Inflaziona una tassellatura.",
 };
@@ -575,12 +761,12 @@ const pt: RichStory = {
     {
       pretitle: "Secção 04 · Inflação e deflação",
       title: "Cada tiling tem um único pai e únicos filhos",
-      body: "A jogada mais funda de Penrose foi a regra de inflação. Pega num tiling papagaio-dardo qualquer. Agrupa as peças segundo uma receita fixa — divide cada papagaio em dois meios-papagaios e um meio-dardo, cada dardo em dois meios-dardos. Junta as peças e obténs um novo tiling papagaio-dardo a exatamente φ vezes a escala original. Faz a regra ao contrário (deflação) e obténs um tiling filho a escala 1/φ. O tiling inflado é único: só há uma forma de engrossar um tiling de Penrose noutro tiling de Penrose. É isto que prende o padrão na aperiodicidade — qualquer tiling periódico acabaria por inflar-se a si mesmo, mas a escala φ é irracional e nunca fecha.",
+      body: "A jogada mais funda de Penrose foi a regra de deflação. Pega num tiling papagaio-dardo qualquer e subdivide cada peça segundo uma receita fixa: cada meio-papagaio torna-se dois meios-papagaios mais pequenos e um meio-dardo, cada meio-dardo torna-se um meio-papagaio e um meio-dardo. As peças recompõem-se num tiling de Penrose à escala 1/φ. Faz a receita ao contrário (inflação) e as peças vizinhas fundem-se num único tiling pai a φ vezes a escala. O pai é único: só há uma forma de engrossar um tiling de Penrose noutro tiling de Penrose. É isto que prende o padrão na aperiodicidade, porque qualquer tiling periódico acabaria por inflar-se a si mesmo, mas a escala φ é irracional e nunca fecha.",
     },
     {
       pretitle: "Secção 05 · A razão de ouro em todo o lado",
       title: "Cada razão de medidas contém φ",
-      body: "Assim que começas a olhar, φ = (1+√5)/2 está em todo o lado no tiling. O número de papagaios dividido pelo de dardos em qualquer região grande converge para φ. As razões de lados nos triângulos de Robinson subjacentes são 1 : φ. A regra de inflação escala cada comprimento exatamente por φ. As diagonais do papagaio estão em razão de ouro; as do dardo também. A escala por φ é também o motivo de se poder provar a aperiodicidade sem geometria nenhuma: um tiling periódico forçaria papagaios/dardos a serem racional, e φ é o número mais irracional que existe — o seu desenvolvimento em fração contínua é [1; 1, 1, 1, …], a convergência mais lenta de toda a matemática.",
+      body: "Assim que começas a olhar, φ = (1+√5)/2 está em todo o lado no tiling. O número de papagaios dividido pelo de dardos em qualquer região grande converge para φ. As razões de lados nos triângulos de Robinson subjacentes são 1 : φ. A regra de inflação escala cada comprimento exatamente por φ. O papagaio cobre exatamente φ vezes a área do dardo, e cada peça é construída com apenas dois comprimentos de aresta cuja razão é φ. A escala por φ é também o motivo de se poder provar a aperiodicidade sem geometria nenhuma: um tiling periódico forçaria papagaios/dardos a serem racional, e φ é o número mais irracional que existe — o seu desenvolvimento em fração contínua é [1; 1, 1, 1, …], a convergência mais lenta de toda a matemática.",
     },
     {
       pretitle: "Secção 06 · Quasicristais — a imagem virou matéria",
@@ -589,15 +775,15 @@ const pt: RichStory = {
     },
   ],
   tiling: {
-    caption: "Interativo · fazer crescer o tiling",
-    depthLabel: "Profundidade de inflação",
+    caption: "Interativo · subdividir o tiling",
+    depthLabel: "Profundidade de deflação",
     tilesLabel: (n: number) => `${n} meias-peças`,
-    kiteLabel: "papagaios",
-    dartLabel: "dardos",
-    hint: "Cada passo de inflação subdivide cada peça em pedaços 1/φ vezes menores. A razão papagaios/dardos caminha para φ ≈ 1,618 com o aumento da profundidade. A simetria de ordem cinco preserva-se exatamente em cada nível.",
-    pretitle: "Interativo · a regra de inflação",
-    title: "Começa por um sol, infla por φ, vê o tiling aparecer",
-    body: "Começa pela semente canónica do sol — dez meios-papagaios à volta da origem, formando uma estrela perfeita de cinco pontas. Cada passo de inflação divide cada peça segundo Penrose. Empurra a profundidade: no nível 1 ainda vês a semente; no 6 olhas para uns milhares de peças, e a razão papagaios/dardos já apanha vários dígitos de φ.",
+    thickLabel: "losangos espessos",
+    thinLabel: "losangos finos",
+    hint: "Cada passo de deflação subdivide cada peça em pedaços 1/φ vezes menores. Os losangos espessos superam os finos, por isso a razão espesso/fino caminha para φ ≈ 1,618 com o aumento da profundidade. A simetria de ordem cinco preserva-se exatamente em cada nível.",
+    pretitle: "Interativo · a regra de deflação",
+    title: "Começa por um sol, subdivide por 1/φ, vê o tiling aparecer",
+    body: "Isto faz crescer a forma de losangos P3, a irmã fina-e-espessa do papagaio e do dardo, a partir da semente canónica do sol: uma estrela de cinco pontas de dez meios-losangos à volta da origem. Cada passo de deflação subdivide cada peça segundo Penrose. Empurra a profundidade: no nível 1 ainda vês a semente; no 6 olhas para uns milhares de meias-peças, e a razão espesso/fino já apanha vários dígitos de φ.",
   },
   golden: {
     caption: "Interativo · a razão de ouro",
@@ -608,10 +794,45 @@ const pt: RichStory = {
     title: "1, 1, 2, 3, 5, 8, 13 … e a espiral que converge para φ",
     body: "Coloca um quadrado 1×1. Ao lado, outro 1×1. Depois um 2×2 ao longo do lado comum. Depois 3×3, 5×5, 8×8 — cada novo lado é a soma dos dois anteriores. Em cada quadrado desenha um quarto de círculo. Os arcos ligam-se numa espiral logarítmica com fator de crescimento φ. Sobe o nível e vê a razão Fibonacci consecutiva colar-se a φ exponencialmente rápido.",
   },
+  crystal: {
+    title: "Restrição cristalográfica",
+    note: "Apenas as rotações de ordem 2, 3, 4 e 6 são compatíveis com uma rede 2-D. A ordem cinco é a mais simples das proibidas, e a que os tilings de Penrose entregam mesmo assim.",
+  },
+  race: {
+    title: "A corrida ao número de peças",
+    colYear: "ano",
+    colWho: "quem",
+    colTiles: "peças",
+    rows: [
+      ["1961", "Wang · pergunta colocada", "?"],
+      ["1966", "Berger · primeira resposta", "20 426"],
+      ["1968", "Knuth", "92"],
+      ["1971", "Robinson", "6"],
+      ["1974", "Penrose · papagaio + dardo", "2"],
+      ["2023", "Smith / einstein", "1"],
+      ["2023", "Smith / spectre", "1 (sem reflexões)"],
+    ],
+  },
+  cardBox: { line1: "papagaios / dardos → φ", line2: "cada deflação escala por 1/φ" },
+  inflationBox: {
+    title: "Inflação",
+    note: "A inflação aumenta o tiling exatamente por φ a cada passo. Como φ é irracional, nenhuma cópia inflada coincide alguma vez consigo mesma, e é essa a razão formal de o tiling não poder ser periódico.",
+  },
+  timeline: {
+    title: "Cronologia · papel → matéria → Nobel",
+    entries: [
+      { year: "1974", text: "Penrose publica o tiling aperiódico de papagaio e dardo." },
+      { year: "1982", text: "Shechtman regista difração eletrónica de cinco dobras em Al-Mn." },
+      { year: "1984", text: "Shechtman et al. publicam; cunha-se o termo quasicristal." },
+      { year: "2009", text: "Quasicristal natural encontrado num meteorito russo (icosaedrite)." },
+      { year: "2011", text: "Shechtman recebe o Nobel da Química." },
+      { year: "2023", text: "Smith, Goodman-Strauss et al. anunciam o einstein e o spectre." },
+    ],
+  },
   closingPretitle: "Vai mais longe",
   closingTitle: "Abre o Explorador.",
   closingBody:
-    "O Explorador deixa-te empurrar a inflação mais fundo, alternar entre papagaio + dardo (P2) e losangos (P3), ligar as setas de Conway e rodar a semente. Cada afirmação desta página torna-se ali um botão.",
+    "O Explorador deixa-te empurrar a deflação mais fundo, alternar entre os losangos inteiros e os meios triângulos de Robinson que os formam, ligar as marcas de encaixe de Conway e rodar a semente. Cada afirmação desta página torna-se ali um botão.",
   closingCta: "→ Abrir o Explorador",
   finalLabel: "Infla um tiling.",
 };
@@ -669,12 +890,12 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 04 · Inflation och deflation",
       title: "Varje parkettering har en unik förälder och unika barn",
-      body: "Penroses djupaste drag var inflationsregeln. Ta vilken drake-pil-parkettering som helst. Gruppera plattorna efter ett fixt recept — dela varje drake i två halvdrakar och en halvpil, varje pil i två halvpilar. Sätt ihop bitarna igen och du får en ny drake-pil-parkettering i exakt φ gånger ursprungsskalan. Kör regeln baklänges (deflation) och du får en barn-parkettering i skala 1/φ. Den inflaterade parketteringen är unik: det finns bara ett sätt att grovkorna en Penrose-parkettering till en Penrose-parkettering. Det är detta som låser mönstret i aperiodicitet — vilken periodisk parkettering som helst skulle till slut inflateras in i sig själv, men φ-skalningen är irrationell och sluts aldrig.",
+      body: "Penroses djupaste drag var deflationsregeln. Ta vilken drake-pil-parkettering som helst och dela upp varje platta efter ett fixt recept: varje halvdrake blir två mindre halvdrakar och en halvpil, varje halvpil blir en halvdrake och en halvpil. Bitarna fogas ihop till en Penrose-parkettering i skala 1/φ. Kör receptet baklänges (inflation) och grannplattorna smälter samman till en unik förälder-parkettering i φ gånger skalan. Föräldern är unik: det finns bara ett sätt att grovkorna en Penrose-parkettering till en Penrose-parkettering. Det är detta som låser mönstret i aperiodicitet, eftersom vilken periodisk parkettering som helst till slut skulle inflateras in i sig själv, men φ-skalningen är irrationell och sluts aldrig.",
     },
     {
       pretitle: "Avsnitt 05 · Gyllene snittet överallt",
       title: "Varje mätningsförhållande innehåller φ",
-      body: "Så snart du börjar titta är φ = (1+√5)/2 överallt i parketteringen. Antalet drakar dividerat med antalet pilar i vilken stor lapp som helst konvergerar mot φ. Sidolängdsförhållandena i de underliggande Robinson-trianglarna är 1 : φ. Inflationsregeln skalar varje längd exakt med φ. Drakens diagonaler står i gyllene snittet; pilens också. φ-skalningen är också skälet till att man kan bevisa aperiodicitet utan någon geometri alls: en periodisk parkettering skulle tvinga drakar/pilar att vara rationellt, och φ är det mest irrationella tal som finns — dess kedjebråksutveckling är [1; 1, 1, 1, …], den långsammaste konvergensen i hela matematiken.",
+      body: "Så snart du börjar titta är φ = (1+√5)/2 överallt i parketteringen. Antalet drakar dividerat med antalet pilar i vilken stor lapp som helst konvergerar mot φ. Sidolängdsförhållandena i de underliggande Robinson-trianglarna är 1 : φ. Inflationsregeln skalar varje längd exakt med φ. Draken täcker exakt φ gånger pilens area, och varje platta byggs av bara två kantlängder vars förhållande är φ. φ-skalningen är också skälet till att man kan bevisa aperiodicitet utan någon geometri alls: en periodisk parkettering skulle tvinga drakar/pilar att vara rationellt, och φ är det mest irrationella tal som finns — dess kedjebråksutveckling är [1; 1, 1, 1, …], den långsammaste konvergensen i hela matematiken.",
     },
     {
       pretitle: "Avsnitt 06 · Kvasikristaller — bilden blev materia",
@@ -683,15 +904,15 @@ const sv: RichStory = {
     },
   ],
   tiling: {
-    caption: "Interaktivt · låt parketteringen växa",
-    depthLabel: "Inflationsdjup",
+    caption: "Interaktivt · dela upp parketteringen",
+    depthLabel: "Deflationsdjup",
     tilesLabel: (n: number) => `${n} halvplattor`,
-    kiteLabel: "drakar",
-    dartLabel: "pilar",
-    hint: "Varje inflationssteg delar varje platta i 1/φ-gånger mindre bitar. Förhållandet drakar/pilar vandrar mot φ ≈ 1,618 med växande djup. Den femtaliga symmetrin bevaras exakt på varje nivå.",
-    pretitle: "Interaktivt · inflationsregeln",
-    title: "Börja med en sol, inflatera med φ, se en parkettering träda fram",
-    body: "Börja med det kanoniska sol-fröet — tio halv-drakar runt origo, som bildar en perfekt femuddig stjärna. Varje inflationssteg delar varje platta efter Penroses regler. Skjut djupet uppåt: på nivå 1 ser du fortfarande fröet; på nivå 6 tittar du på några tusen plattor och drake/pil-förhållandet träffar redan flera siffror av φ.",
+    thickLabel: "tjocka romber",
+    thinLabel: "tunna romber",
+    hint: "Varje deflationssteg delar varje platta i 1/φ-gånger mindre bitar. De tjocka romberna överväger de tunna, så förhållandet tjock/tunn vandrar mot φ ≈ 1,618 med växande djup. Den femtaliga symmetrin bevaras exakt på varje nivå.",
+    pretitle: "Interaktivt · deflationsregeln",
+    title: "Börja med en sol, dela upp med 1/φ, se en parkettering träda fram",
+    body: "Detta låter P3-rombformen växa fram, den tunna-och-tjocka systern till drake och pil, ur det kanoniska sol-fröet: en femuddig stjärna av tio halvromber runt origo. Varje deflationssteg delar varje platta efter Penroses regler. Skjut djupet uppåt: på nivå 1 ser du fortfarande fröet; på nivå 6 tittar du på några tusen halvplattor och tjock/tunn-förhållandet träffar redan flera siffror av φ.",
   },
   golden: {
     caption: "Interaktivt · gyllene snittet",
@@ -702,10 +923,45 @@ const sv: RichStory = {
     title: "1, 1, 2, 3, 5, 8, 13 … och spiralen som konvergerar mot φ",
     body: "Placera en kvadrat 1×1. Bredvid, en till 1×1. Sedan en 2×2 längs deras gemensamma kant. Sedan 3×3, 5×5, 8×8 — varje ny sida är summan av de två föregående. I varje kvadrat ritas en kvartscirkel. Bågarna binds samman i en logaritmisk spiral med tillväxtfaktor φ. Skjut upp nivån och se förhållandet mellan Fibonacci-tal slå an i φ exponentiellt snabbt.",
   },
+  crystal: {
+    title: "Den kristallografiska restriktionen",
+    note: "Bara rotationer av ordning 2, 3, 4 och 6 är förenliga med ett 2-D-gitter. Femtalig är den enklaste av de förbjudna ordningarna, och den som Penrose-parketteringar ändå levererar.",
+  },
+  race: {
+    title: "Kapplöpningen om plattantalet",
+    colYear: "år",
+    colWho: "vem",
+    colTiles: "plattor",
+    rows: [
+      ["1961", "Wang · frågan ställd", "?"],
+      ["1966", "Berger · första svaret", "20 426"],
+      ["1968", "Knuth", "92"],
+      ["1971", "Robinson", "6"],
+      ["1974", "Penrose · drake + pil", "2"],
+      ["2023", "Smith / einstein", "1"],
+      ["2023", "Smith / spectre", "1 (utan reflektioner)"],
+    ],
+  },
+  cardBox: { line1: "drakar / pilar → φ", line2: "varje deflation skalar med 1/φ" },
+  inflationBox: {
+    title: "Inflation",
+    note: "Inflation förstorar parketteringen med exakt φ i varje steg. Eftersom φ är irrationellt sammanfaller ingen inflaterad kopia någonsin med sig själv, och det är det formella skälet till att parketteringen inte kan vara periodisk.",
+  },
+  timeline: {
+    title: "Tidslinje · papper → materia → Nobel",
+    entries: [
+      { year: "1974", text: "Penrose publicerar den aperiodiska drake-och-pil-parketteringen." },
+      { year: "1982", text: "Shechtman registrerar femtalig elektrondiffraktion i Al-Mn." },
+      { year: "1984", text: "Shechtman m.fl. publicerar; termen kvasikristall myntas." },
+      { year: "2009", text: "Naturlig kvasikristall hittad i en rysk meteorit (icosahedrit)." },
+      { year: "2011", text: "Shechtman får Nobelpriset i kemi." },
+      { year: "2023", text: "Smith, Goodman-Strauss m.fl. tillkännager einsteinet och spectre." },
+    ],
+  },
   closingPretitle: "Gå vidare",
   closingTitle: "Öppna Utforskaren.",
   closingBody:
-    "Utforskaren låter dig pressa inflationen djupare, växla mellan drake + pil (P2) och romber (P3), slå på Conways matchningspilar och rotera fröet. Varje påstående på denna sida blir där en vridreglage.",
+    "Utforskaren låter dig pressa deflationen djupare, växla mellan de hela romberna och Robinson-halvtrianglarna som bygger dem, slå på Conways matchmarkeringar och rotera fröet. Varje påstående på denna sida blir där ett vridreglage.",
   closingCta: "→ Öppna Utforskaren",
   finalLabel: "Inflatera en parkettering.",
 };
@@ -728,7 +984,7 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Ta to enkle former — en drage og en pil, klippet ut av samme rombe. Legg dem ved siden av hverandre med noen matchregler langs kantene. De dekker hele det uendelige planet uten hull, som vanlige fliser. Men vrien: ingen endelig bit av mønsteret dukker noen gang opp to ganger i samme orientering. Ingen steder. Aldri. Roger Penrose fant dette i 1974, og det knuste et tiår gammelt spørsmål.",
+        body: "Ta to enkle former — en drage og en pil, klippet ut av samme rombe. Legg dem ved siden av hverandre med noen matchregler langs kantene. De dekker hele det uendelige planet uten hull, som vanlige fliser. Men vrien: ingen endelig bit av mønsteret dukker noen gang opp to ganger i samme orientering. Ingen steder. Aldri. Roger Penrose fant dette i 1974, og det knuste et flere tiår gammelt spørsmål.",
       },
       {
         label: "02",
@@ -738,7 +994,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "I 20 år lurte matematikere på: kan en endelig flismengde tvinge bare aperiodiske flisleggings? Berger svarte ja med 20 426 fliser i 1966; Penrose dro det ned til to i 1974. Så i 1982 skjøt Dan Shechtman elektroner mot en aluminium-mangan-legering og så femfoldig diffraksjon — umulig i klassisk krystallografi. Penroses flisleggings var den ferdige papirmatematikken som viste at naturen hadde lov. Shechtman fikk Nobelprisen i 2011.",
+        body: "I 20 år lurte matematikere på: kan en endelig flismengde tvinge bare aperiodiske flislegginger? Berger svarte ja med 20 426 fliser i 1966; Penrose dro det ned til to i 1974. Så i 1982 skjøt Dan Shechtman elektroner mot en aluminium-mangan-legering og så femfoldig diffraksjon — umulig i klassisk krystallografi. Penroses flislegginger var den ferdige papirmatematikken som viste at naturen hadde lov. Shechtman fikk Nobelprisen i 2011.",
       },
     ],
     tryIt: "Under: la en flislegging vokse ved inflasjon, se så φ tre frem fra Fibonacci-spiralen.",
@@ -762,12 +1018,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Inflasjon og deflasjon",
       title: "Hver flislegging har en unik forelder og unike barn",
-      body: "Penroses dypeste trekk var inflasjonsregelen. Ta hvilken som helst drage-pil-flislegging. Grupper flisene etter en fast oppskrift — del hver drage i to halv-drager og en halv-pil, hver pil i to halv-piler. Sett bitene sammen igjen og du får en ny drage-pil-flislegging i nøyaktig φ ganger original-skalaen. Kjør regelen baklengs (deflasjon) og du får en barn-flislegging i skala 1/φ. Den inflaterte flisleggingen er unik: det finnes bare én måte å gjøre en Penrose-flislegging grovere til en Penrose-flislegging. Det er dette som låser mønsteret i aperiodisitet — enhver periodisk flislegging ville før eller siden inflatere seg inn i seg selv, men φ-skaleringen er irrasjonell og lukker seg aldri.",
+      body: "Penroses dypeste trekk var deflasjonsregelen. Ta hvilken som helst drage-pil-flislegging og del opp hver flis etter en fast oppskrift: hver halv-drage blir to mindre halv-drager og en halv-pil, hver halv-pil blir en halv-drage og en halv-pil. Bitene settes sammen til en Penrose-flislegging i skala 1/φ. Kjør oppskriften baklengs (inflasjon), og nabofliser smelter sammen til en unik forelder-flislegging i φ ganger skalaen. Forelderen er unik: det finnes bare én måte å gjøre en Penrose-flislegging grovere til en Penrose-flislegging. Det er dette som låser mønsteret i aperiodisitet, for enhver periodisk flislegging ville før eller siden inflatere seg inn i seg selv, men φ-skaleringen er irrasjonell og lukker seg aldri.",
     },
     {
       pretitle: "Avsnitt 05 · Det gylne snittet overalt",
       title: "Hvert måleforhold inneholder φ",
-      body: "Så snart du begynner å se, er φ = (1+√5)/2 overalt i flisleggingen. Antall drager delt på antall piler i hvilken som helst stor flekk konvergerer mot φ. Sidelengdeforholdene i de underliggende Robinson-trekantene er 1 : φ. Inflasjonsregelen skalerer hver lengde nøyaktig med φ. Dragens diagonaler står i det gylne snitt; pilens også. φ-skaleringen er også grunnen til at man kan bevise aperiodisitet uten noen geometri i det hele tatt: en periodisk flislegging ville tvinge drager/piler til å være rasjonelt, og φ er det mest irrasjonelle tallet som finnes — dens kjedebrøkutvikling er [1; 1, 1, 1, …], den tregeste konvergensen i hele matematikken.",
+      body: "Så snart du begynner å se, er φ = (1+√5)/2 overalt i flisleggingen. Antall drager delt på antall piler i hvilken som helst stor flekk konvergerer mot φ. Sidelengdeforholdene i de underliggende Robinson-trekantene er 1 : φ. Inflasjonsregelen skalerer hver lengde nøyaktig med φ. Dragen dekker nøyaktig φ ganger arealet til pilen, og hver flis er bygd av bare to kantlengder med forhold φ. φ-skaleringen er også grunnen til at man kan bevise aperiodisitet uten noen geometri i det hele tatt: en periodisk flislegging ville tvinge drager/piler til å være rasjonelt, og φ er det mest irrasjonelle tallet som finnes — dens kjedebrøkutvikling er [1; 1, 1, 1, …], den tregeste konvergensen i hele matematikken.",
     },
     {
       pretitle: "Avsnitt 06 · Kvasikrystaller — bildet ble materie",
@@ -776,15 +1032,15 @@ const no: RichStory = {
     },
   ],
   tiling: {
-    caption: "Interaktivt · la flisleggingen vokse",
-    depthLabel: "Inflasjonsdybde",
+    caption: "Interaktivt · del opp flisleggingen",
+    depthLabel: "Deflasjonsdybde",
     tilesLabel: (n: number) => `${n} halvfliser`,
-    kiteLabel: "drager",
-    dartLabel: "piler",
-    hint: "Hvert inflasjonstrinn deler hver flis i biter 1/φ ganger mindre. Forholdet drager/piler går mot φ ≈ 1,618 ettersom dybden vokser. Den femfoldige symmetrien bevares nøyaktig på hvert nivå.",
-    pretitle: "Interaktivt · inflasjonsregelen",
-    title: "Start med en sol, inflater med φ, se en flislegging dukke opp",
-    body: "Start med det kanoniske sol-frøet — ti halv-drager rundt origo, som danner en perfekt femtakket stjerne. Hvert inflasjonstrinn deler hver flis etter Penroses regler. Dra opp dybden: på nivå 1 ser du fortsatt frøet; på nivå 6 ser du på noen tusen fliser, og drage/pil-forholdet treffer allerede flere sifre av φ.",
+    thickLabel: "tykke romber",
+    thinLabel: "tynne romber",
+    hint: "Hvert deflasjonstrinn deler hver flis i biter 1/φ ganger mindre. De tykke rombene er flere enn de tynne, så forholdet tykk/tynn går mot φ ≈ 1,618 ettersom dybden vokser. Den femfoldige symmetrien bevares nøyaktig på hvert nivå.",
+    pretitle: "Interaktivt · deflasjonsregelen",
+    title: "Start med en sol, del opp med 1/φ, se en flislegging dukke opp",
+    body: "Dette lar P3-rombeformen vokse frem, den tynne-og-tykke søsteren til drage og pil, fra det kanoniske sol-frøet: en femtakket stjerne av ti halvromber rundt origo. Hvert deflasjonstrinn deler hver flis etter Penroses regler. Dra opp dybden: på nivå 1 ser du fortsatt frøet; på nivå 6 ser du på noen tusen halvfliser, og tykk/tynn-forholdet treffer allerede flere sifre av φ.",
   },
   golden: {
     caption: "Interaktivt · det gylne snitt",
@@ -795,10 +1051,45 @@ const no: RichStory = {
     title: "1, 1, 2, 3, 5, 8, 13 … og spiralen som konvergerer mot φ",
     body: "Plasser et kvadrat 1×1. Ved siden av, et til 1×1. Så et 2×2 langs deres felles kant. Så 3×3, 5×5, 8×8 — hver ny side er summen av de to forrige. I hvert kvadrat tegner du en kvartsirkel. Buene bindes sammen i en logaritmisk spiral med vekstfaktor φ. Skyv nivået opp og se forholdet mellom påfølgende Fibonacci-tall slå inn i φ eksponentielt raskt.",
   },
+  crystal: {
+    title: "Den krystallografiske begrensningen",
+    note: "Bare rotasjoner av orden 2, 3, 4 og 6 er forenlige med et 2-D-gitter. Femfoldig er den enkleste av de forbudte ordenene, og den Penrose-flislegginger likevel gir.",
+  },
+  race: {
+    title: "Kappløpet om flisantallet",
+    colYear: "år",
+    colWho: "hvem",
+    colTiles: "fliser",
+    rows: [
+      ["1961", "Wang · spørsmålet stilt", "?"],
+      ["1966", "Berger · første svar", "20 426"],
+      ["1968", "Knuth", "92"],
+      ["1971", "Robinson", "6"],
+      ["1974", "Penrose · drage + pil", "2"],
+      ["2023", "Smith / einstein", "1"],
+      ["2023", "Smith / spectre", "1 (uten refleksjoner)"],
+    ],
+  },
+  cardBox: { line1: "drager / piler → φ", line2: "hver deflasjon skalerer med 1/φ" },
+  inflationBox: {
+    title: "Inflasjon",
+    note: "Inflasjon forstørrer flisleggingen med nøyaktig φ hvert trinn. Fordi φ er irrasjonell, faller ingen inflatert kopi noen gang sammen med seg selv, og det er den formelle grunnen til at flisleggingen ikke kan være periodisk.",
+  },
+  timeline: {
+    title: "Tidslinje · papir → materie → Nobel",
+    entries: [
+      { year: "1974", text: "Penrose publiserer den aperiodiske drage-og-pil-flisleggingen." },
+      { year: "1982", text: "Shechtman registrerer femfoldig elektrondiffraksjon i Al-Mn." },
+      { year: "1984", text: "Shechtman m.fl. publiserer; begrepet kvasikrystall myntes." },
+      { year: "2009", text: "Naturlig kvasikrystall funnet i en russisk meteoritt (ikosaedritt)." },
+      { year: "2011", text: "Shechtman mottar Nobelprisen i kjemi." },
+      { year: "2023", text: "Smith, Goodman-Strauss m.fl. kunngjør einsteinet og spectre." },
+    ],
+  },
   closingPretitle: "Gå videre",
   closingTitle: "Åpne Utforskeren.",
   closingBody:
-    "Utforskeren lar deg presse inflasjonen dypere, veksle mellom drage + pil (P2) og romber (P3), slå på Conways matchpiler og rotere frøet. Hver påstand på denne siden blir der en knapp.",
+    "Utforskeren lar deg presse deflasjonen dypere, veksle mellom de hele rombene og Robinson-halvtrekantene som bygger dem, slå på Conways matchmarkeringer og rotere frøet. Hver påstand på denne siden blir der en knapp.",
   closingCta: "→ Åpne Utforskeren",
   finalLabel: "Inflater en flislegging.",
 };
@@ -846,7 +1137,7 @@ function InflationMiniSVG() {
       viewBox="0 0 160 160"
       className="mx-auto h-auto w-full max-w-[140px]"
       role="img"
-      aria-label="Penrose inflation rule mini diagram"
+      aria-label="Penrose deflation rule mini diagram"
     >
       <rect width="160" height="160" fill="#06070d" rx="10" />
       <polygon
@@ -941,8 +1232,8 @@ export default function PenroseStory() {
                       <InflationMiniSVG />
                     </div>
                     <div className="hairline mt-3 space-y-1 rounded-md border bg-ink-950/60 p-3 font-mono text-[11px] text-ink-100">
-                      <div>kites / darts → φ</div>
-                      <div>each inflation scales by φ</div>
+                      <div>{story.cardBox.line1}</div>
+                      <div>{story.cardBox.line2}</div>
                     </div>
                   </>
                 ) : (
@@ -968,7 +1259,7 @@ export default function PenroseStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Crystallographic restriction
+              {story.crystal.title}
             </div>
             <div className="font-mono text-sm text-ink-200">
               allowed: <span className="text-signal-cyan">2</span> ·{" "}
@@ -982,8 +1273,7 @@ export default function PenroseStory() {
               <span className="text-signal-rose">…</span>
             </div>
             <p className="mx-auto max-w-xl text-xs leading-relaxed text-ink-300">
-              Only 2-, 3-, 4-, 6-fold rotations are compatible with a 2-D lattice. Five-fold is the
-              simplest forbidden order — and the one Penrose tilings deliver anyway.
+              {story.crystal.note}
             </p>
           </div>
         </Reveal>
@@ -1000,30 +1290,24 @@ export default function PenroseStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              The tile-count race
+              {story.race.title}
             </div>
             <table className="w-full font-mono text-sm">
               <thead className="hairline border-b text-ink-300">
                 <tr>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    year
+                    {story.race.colYear}
                   </th>
-                  <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">who</th>
+                  <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
+                    {story.race.colWho}
+                  </th>
                   <th className="px-2 py-2 text-right text-[10px] uppercase tracking-widest">
-                    tiles
+                    {story.race.colTiles}
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {[
-                  ["1961", "Wang · question posed", "—"],
-                  ["1966", "Berger · first answer", "20,426"],
-                  ["1968", "Knuth", "92"],
-                  ["1971", "Robinson", "6"],
-                  ["1974", "Penrose · kite + dart", "2"],
-                  ["2023", "Smith / einstein", "1"],
-                  ["2023", "Smith / spectre", "1 (no reflections)"],
-                ].map(([year, who, tiles]) => (
+                {story.race.rows.map(([year, who, tiles]) => (
                   <tr key={year + who} className="border-b border-ink-700/30 last:border-0">
                     <td className="px-2 py-2 text-signal-amber">{year}</td>
                     <td className="px-2 py-2 text-ink-200">{who}</td>
@@ -1064,8 +1348,8 @@ export default function PenroseStory() {
             caption={story.tiling.caption}
             depthLabel={story.tiling.depthLabel}
             tilesLabel={story.tiling.tilesLabel}
-            kiteLabel={story.tiling.kiteLabel}
-            dartLabel={story.tiling.dartLabel}
+            thickLabel={story.tiling.thickLabel}
+            thinLabel={story.tiling.thinLabel}
             hint={story.tiling.hint}
           />
         </Reveal>
@@ -1082,15 +1366,13 @@ export default function PenroseStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Inflation
+              {story.inflationBox.title}
             </div>
             <div className="math-italic text-3xl text-ink-100 md:text-4xl">
               length<sub>n+1</sub> = φ · length<sub>n</sub>
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Inflation grows the tiling by exactly φ each step. Because φ is irrational, no
-              inflated copy ever lines up with itself — and that is the formal reason the tiling
-              cannot be periodic.
+              {story.inflationBox.note}
             </p>
           </div>
         </Reveal>
@@ -1140,45 +1422,15 @@ export default function PenroseStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Timeline · paper → matter → Nobel
+              {story.timeline.title}
             </div>
             <ul className="space-y-2 font-mono text-sm">
-              <li className="flex gap-3">
-                <span className="w-16 shrink-0 text-signal-amber">1974</span>
-                <span className="text-ink-200">
-                  Penrose publishes the kite + dart aperiodic tiling.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="w-16 shrink-0 text-signal-amber">1982</span>
-                <span className="text-ink-200">
-                  Shechtman records 5-fold electron diffraction in Al–Mn.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="w-16 shrink-0 text-signal-amber">1984</span>
-                <span className="text-ink-200">
-                  Shechtman et al. publish; the term <em>quasicrystal</em> is coined.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="w-16 shrink-0 text-signal-amber">2009</span>
-                <span className="text-ink-200">
-                  Natural quasicrystal found in a Russian meteorite (icosahedrite).
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="w-16 shrink-0 text-signal-amber">2011</span>
-                <span className="text-ink-200">
-                  Shechtman receives the Nobel Prize in Chemistry.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="w-16 shrink-0 text-signal-amber">2023</span>
-                <span className="text-ink-200">
-                  Smith / Goodman-Strauss et al. announce the einstein and the spectre.
-                </span>
-              </li>
+              {story.timeline.entries.map((entry) => (
+                <li key={entry.year + entry.text} className="flex gap-3">
+                  <span className="w-16 shrink-0 text-signal-amber">{entry.year}</span>
+                  <span className="text-ink-200">{entry.text}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </Reveal>

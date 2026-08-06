@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { MandelOrbitDemo } from "@/components/MandelOrbitDemo";
 import { MandelMini } from "@/components/MandelMini";
@@ -42,6 +42,21 @@ type RichStory = {
   juliaTitle: string;
   juliaBody: string;
   juliaCaptions: { c1: string; c2: string; c3: string };
+  // Localized UI strings for the two interactive sections (were hardcoded EN).
+  orbitLabels: { inside: string; boundary: string; outside: string };
+  legend: {
+    web: string;
+    webNote: string;
+    flash: string;
+    flashNote: string;
+    dot: string;
+    dotNote: string;
+  };
+  hintLabel: string;
+  exBounded: string;
+  exEscape: string;
+  draggerStatusEscaped: (n: number) => string;
+  draggerStatusBounded: (n: number) => string;
   zoomLabel: string;
   zoomBody: string;
   bulbsLabel: string;
@@ -127,7 +142,8 @@ const en: RichStory = {
     draggerTitle: "Find the edge with your finger",
     draggerBody:
       "The dim shape behind the canvas hints at the set. Drag the bright yellow dot anywhere — inside the cardioid, into a bulb, off in the void — and watch the orbit decide. Bounded orbits trace a violet web; escaping orbits flash rose, then reset so you can try again.",
-    draggerHint: "Try just outside the cardioid's tip — that's where the period-2 bulb attaches.",
+    draggerHint:
+      "Try just left of the cardioid, near c = −0.75, where the period-2 bulb attaches.",
     iterLabel: "Turn the iteration knob",
     iterPretitle: "Interactive · slider",
     iterTitle: "How many steps before we call it bounded?",
@@ -138,12 +154,26 @@ const en: RichStory = {
   juliaPretitle: "Section 06 · Julia gallery",
   juliaTitle: "One Julia per c",
   juliaBody:
-    "Three values of c, three Julia sets. The first c sits inside the main cardioid — a connected, nearly-circular Julia. The second sits in the period-3 bulb — a shape called Douady's rabbit. The third is just outside the set — the Julia set shatters into disconnected Fatou dust.",
+    "Three values of c, three Julia sets. The first c sits inside the main cardioid, giving a connected, nearly circular Julia. The second sits in the period-3 bulb, a shape called Douady's rabbit. The third is just outside the set, so its Julia set shatters into disconnected Cantor dust.",
   juliaCaptions: {
-    c1: "c = −0.4 + 0.6i · connected",
+    c1: "c = −0.12 + 0.24i · connected",
     c2: "c = −0.123 + 0.745i · the rabbit",
-    c3: "c = 0.3 + 0.5i · disconnected",
+    c3: "c = 0.3 + 0.6i · disconnected",
   },
+  orbitLabels: { inside: "inside the set", boundary: "on the boundary", outside: "outside the set" },
+  legend: {
+    web: "violet web",
+    webNote: "orbit bounded",
+    flash: "rose flash",
+    flashNote: "orbit escaped",
+    dot: "yellow dot",
+    dotNote: "your c",
+  },
+  hintLabel: "hint",
+  exBounded: "bounded",
+  exEscape: "escape",
+  draggerStatusEscaped: (n: number) => `escaped @ ${n}`,
+  draggerStatusBounded: (n: number) => `bounded · step ${n}`,
   zoomLabel: "Zoom ladder · same point, ten times deeper at each step",
   zoomBody:
     "The structure does not simplify. Each step finds new spirals, new mini-Mandelbrots, new filigree.",
@@ -238,7 +268,8 @@ const de: RichStory = {
     draggerTitle: "Find den Rand mit dem Finger",
     draggerBody:
       "Die schwache Form hinter der Leinwand deutet die Menge an. Zieh den hellgelben Punkt irgendwohin — in die Kardioide, in eine Knospe, ab in die Leere — und sieh die Bahn entscheiden. Beschränkte Bahnen zeichnen ein violettes Netz; flüchtende Bahnen blitzen rosa und starten neu, damit du es noch einmal versuchen kannst.",
-    draggerHint: "Probier knapp außerhalb der Kardioidenspitze — da setzt die Periode-2-Knospe an.",
+    draggerHint:
+      "Zieh nach links neben die Kardioide, etwa zu c = −0,75, dort setzt die Periode-2-Knospe an.",
     iterLabel: "Dreh am Iterations-Regler",
     iterPretitle: "Interaktiv · Schieberegler",
     iterTitle: "Wie viele Schritte, bevor wir beschränkt sagen?",
@@ -249,12 +280,26 @@ const de: RichStory = {
   juliaPretitle: "Abschnitt 06 · Julia-Galerie",
   juliaTitle: "Eine Julia-Menge pro c",
   juliaBody:
-    "Drei Werte von c, drei Julia-Mengen. Das erste c liegt im Inneren der Kardioide — eine zusammenhängende, fast kreisförmige Julia. Das zweite liegt in der 3er-Knospe — eine Form namens Douadys Hase. Das dritte liegt knapp außerhalb — die Julia zerfällt in unzusammenhängenden Fatou-Staub.",
+    "Drei Werte von c, drei Julia-Mengen. Das erste c liegt im Inneren der Kardioide und ergibt eine zusammenhängende, fast kreisförmige Julia. Das zweite liegt in der 3er-Knospe, eine Form namens Douadys Hase. Das dritte liegt knapp außerhalb, sodass die Julia-Menge in unzusammenhängenden Cantor-Staub zerfällt.",
   juliaCaptions: {
-    c1: "c = −0,4 + 0,6i · zusammenhängend",
+    c1: "c = −0,12 + 0,24i · zusammenhängend",
     c2: "c = −0,123 + 0,745i · der Hase",
-    c3: "c = 0,3 + 0,5i · zerfallen",
+    c3: "c = 0,3 + 0,6i · zerfallen",
   },
+  orbitLabels: { inside: "in der Menge", boundary: "auf dem Rand", outside: "außerhalb der Menge" },
+  legend: {
+    web: "violettes Netz",
+    webNote: "Bahn beschränkt",
+    flash: "rosa Blitz",
+    flashNote: "Bahn geflohen",
+    dot: "gelber Punkt",
+    dotNote: "dein c",
+  },
+  hintLabel: "Tipp",
+  exBounded: "beschränkt",
+  exEscape: "Flucht",
+  draggerStatusEscaped: (n: number) => `geflohen @ ${n}`,
+  draggerStatusBounded: (n: number) => `beschränkt · Schritt ${n}`,
   zoomLabel: "Zoom-Leiter · derselbe Punkt, jeweils zehnmal tiefer",
   zoomBody:
     "Die Struktur wird nicht einfacher. Jeder Schritt findet neue Spiralen, neue Mini-Mandelbrots, neues Filigran.",
@@ -351,7 +396,7 @@ const es: RichStory = {
     draggerBody:
       "La forma tenue tras el lienzo sugiere el conjunto. Arrastra el punto amarillo a cualquier sitio — al cardioide, a un bulbo, al vacío — y mira decidir a la órbita. Las órbitas acotadas tejen una telaraña violeta; las que escapan brillan en rosa y se reinician para que vuelvas a probar.",
     draggerHint:
-      "Prueba justo fuera de la punta del cardioide — ahí engancha el bulbo de período 2.",
+      "Prueba justo a la izquierda del cardioide, cerca de c = −0,75, ahí engancha el bulbo de período 2.",
     iterLabel: "Gira la perilla de iteraciones",
     iterPretitle: "Interactivo · deslizador",
     iterTitle: "¿Cuántos pasos antes de declarar acotado?",
@@ -362,12 +407,30 @@ const es: RichStory = {
   juliaPretitle: "Sección 06 · Galería de Julia",
   juliaTitle: "Un Julia por cada c",
   juliaBody:
-    "Tres valores de c, tres conjuntos de Julia. El primer c está dentro del cardioide principal — una Julia conexa, casi circular. El segundo está en el bulbo de período 3 — una forma llamada el conejo de Douady. El tercero está justo fuera — la Julia se rompe en polvo de Fatou desconectado.",
+    "Tres valores de c, tres conjuntos de Julia. El primer c está dentro del cardioide principal y da una Julia conexa, casi circular. El segundo está en el bulbo de período 3, una forma llamada el conejo de Douady. El tercero está justo fuera, así que su conjunto de Julia se rompe en polvo de Cantor desconectado.",
   juliaCaptions: {
-    c1: "c = −0,4 + 0,6i · conexa",
+    c1: "c = −0,12 + 0,24i · conexa",
     c2: "c = −0,123 + 0,745i · el conejo",
-    c3: "c = 0,3 + 0,5i · desconexa",
+    c3: "c = 0,3 + 0,6i · desconexa",
   },
+  orbitLabels: {
+    inside: "dentro del conjunto",
+    boundary: "en la frontera",
+    outside: "fuera del conjunto",
+  },
+  legend: {
+    web: "telaraña violeta",
+    webNote: "órbita acotada",
+    flash: "destello rosa",
+    flashNote: "órbita escapada",
+    dot: "punto amarillo",
+    dotNote: "tu c",
+  },
+  hintLabel: "pista",
+  exBounded: "acotado",
+  exEscape: "escapa",
+  draggerStatusEscaped: (n: number) => `escapada @ ${n}`,
+  draggerStatusBounded: (n: number) => `acotada · paso ${n}`,
   zoomLabel: "Escalera de zoom · mismo punto, diez veces más profundo en cada paso",
   zoomBody:
     "La estructura no se simplifica. Cada paso descubre nuevas espirales, nuevos mini-Mandelbrots, nuevos filigranas.",
@@ -464,7 +527,7 @@ const fr: RichStory = {
     draggerBody:
       "La forme estompée derrière le canevas évoque l'ensemble. Glisse le point jaune n'importe où — dans la cardioïde, dans un bulbe, dans le vide — et regarde l'orbite trancher. Les orbites bornées tissent une toile violette ; celles qui s'enfuient virent au rose puis repartent, pour que tu retentes.",
     draggerHint:
-      "Essaie juste au-delà de la pointe de la cardioïde — c'est là que s'accroche le bulbe de période 2.",
+      "Essaie juste à gauche de la cardioïde, vers c = −0,75, c'est là que s'accroche le bulbe de période 2.",
     iterLabel: "Tourne la molette d'itération",
     iterPretitle: "Interactif · curseur",
     iterTitle: "Combien de pas avant de dire « borné » ?",
@@ -475,12 +538,30 @@ const fr: RichStory = {
   juliaPretitle: "Section 06 · Galerie de Julia",
   juliaTitle: "Un Julia par c",
   juliaBody:
-    "Trois valeurs de c, trois ensembles de Julia. Le premier c est dans la cardioïde principale — un Julia connexe, presque circulaire. Le deuxième est dans le bulbe de période 3 — la forme dite lapin de Douady. Le troisième est juste à l'extérieur — le Julia se brise en poussière de Fatou disjointe.",
+    "Trois valeurs de c, trois ensembles de Julia. Le premier c est dans la cardioïde principale et donne un Julia connexe, presque circulaire. Le deuxième est dans le bulbe de période 3, la forme dite lapin de Douady. Le troisième est juste à l'extérieur, si bien que son ensemble de Julia se brise en poussière de Cantor disjointe.",
   juliaCaptions: {
-    c1: "c = −0,4 + 0,6i · connexe",
+    c1: "c = −0,12 + 0,24i · connexe",
     c2: "c = −0,123 + 0,745i · le lapin",
-    c3: "c = 0,3 + 0,5i · disjoint",
+    c3: "c = 0,3 + 0,6i · disjoint",
   },
+  orbitLabels: {
+    inside: "dans l'ensemble",
+    boundary: "sur la frontière",
+    outside: "hors de l'ensemble",
+  },
+  legend: {
+    web: "toile violette",
+    webNote: "orbite bornée",
+    flash: "éclat rose",
+    flashNote: "orbite évadée",
+    dot: "point jaune",
+    dotNote: "ton c",
+  },
+  hintLabel: "astuce",
+  exBounded: "borné",
+  exEscape: "évasion",
+  draggerStatusEscaped: (n: number) => `évadée @ ${n}`,
+  draggerStatusBounded: (n: number) => `bornée · étape ${n}`,
   zoomLabel: "Échelle de zoom · même point, dix fois plus profond à chaque palier",
   zoomBody:
     "La structure ne se simplifie pas. Chaque palier découvre de nouvelles spirales, de nouveaux mini-Mandelbrots, de nouveaux filigranes.",
@@ -577,7 +658,7 @@ const it: RichStory = {
     draggerBody:
       "La forma sfocata dietro la tela suggerisce l'insieme. Trascina il punto giallo ovunque — nella cardioide, in un bulbo, nel vuoto — e guarda l'orbita decidere. Le orbite limitate tessono una ragnatela viola; quelle in fuga lampeggiano rosa e ripartono, così puoi riprovare.",
     draggerHint:
-      "Prova subito fuori dalla punta della cardioide — è lì che si aggancia il bulbo di periodo 2.",
+      "Prova appena a sinistra della cardioide, verso c = −0,75, è lì che si aggancia il bulbo di periodo 2.",
     iterLabel: "Gira la manopola delle iterazioni",
     iterPretitle: "Interattivo · cursore",
     iterTitle: "Quanti passi prima di chiamarlo limitato?",
@@ -588,12 +669,30 @@ const it: RichStory = {
   juliaPretitle: "Sezione 06 · Galleria di Julia",
   juliaTitle: "Un Julia per ogni c",
   juliaBody:
-    "Tre valori di c, tre insiemi di Julia. Il primo c sta dentro la cardioide principale — un Julia connesso, quasi circolare. Il secondo sta nel bulbo di periodo 3 — la forma detta coniglio di Douady. Il terzo è appena fuori — il Julia si frantuma in polvere di Fatou disconnessa.",
+    "Tre valori di c, tre insiemi di Julia. Il primo c sta dentro la cardioide principale e dà un Julia connesso, quasi circolare. Il secondo sta nel bulbo di periodo 3, la forma detta coniglio di Douady. Il terzo è appena fuori, così il suo insieme di Julia si frantuma in polvere di Cantor disconnessa.",
   juliaCaptions: {
-    c1: "c = −0,4 + 0,6i · connesso",
+    c1: "c = −0,12 + 0,24i · connesso",
     c2: "c = −0,123 + 0,745i · il coniglio",
-    c3: "c = 0,3 + 0,5i · disconnesso",
+    c3: "c = 0,3 + 0,6i · disconnesso",
   },
+  orbitLabels: {
+    inside: "dentro l'insieme",
+    boundary: "sul bordo",
+    outside: "fuori dall'insieme",
+  },
+  legend: {
+    web: "ragnatela viola",
+    webNote: "orbita limitata",
+    flash: "lampo rosa",
+    flashNote: "orbita fuggita",
+    dot: "punto giallo",
+    dotNote: "il tuo c",
+  },
+  hintLabel: "suggerimento",
+  exBounded: "limitato",
+  exEscape: "fuga",
+  draggerStatusEscaped: (n: number) => `fuggita @ ${n}`,
+  draggerStatusBounded: (n: number) => `limitata · passo ${n}`,
   zoomLabel: "Scala di zoom · stesso punto, dieci volte più profondo a ogni passo",
   zoomBody:
     "La struttura non si semplifica. Ogni passo scopre nuove spirali, nuovi mini-Mandelbrot, nuovi filigrana.",
@@ -690,7 +789,7 @@ const pt: RichStory = {
     draggerBody:
       "A forma esbatida atrás da tela sugere o conjunto. Arrasta o ponto amarelo para onde quiseres — para a cardioide, para um bolbo, para o vazio — e vê a órbita decidir. Órbitas limitadas tecem uma teia violeta; as que escapam piscam rosa e reiniciam, para tentares de novo.",
     draggerHint:
-      "Tenta logo a seguir à ponta da cardioide — é aí que se prende o bolbo de período 2.",
+      "Tenta mesmo à esquerda da cardioide, perto de c = −0,75, é aí que se prende o bolbo de período 2.",
     iterLabel: "Roda o botão das iterações",
     iterPretitle: "Interativo · cursor",
     iterTitle: "Quantos passos antes de lhe chamar limitado?",
@@ -701,12 +800,30 @@ const pt: RichStory = {
   juliaPretitle: "Secção 06 · Galeria de Julia",
   juliaTitle: "Um Julia por c",
   juliaBody:
-    "Três valores de c, três conjuntos de Julia. O primeiro c está dentro da cardioide principal — um Julia conexo, quase circular. O segundo está no bolbo de período 3 — uma forma chamada coelho de Douady. O terceiro está logo fora — o Julia parte-se em pó de Fatou desconexo.",
+    "Três valores de c, três conjuntos de Julia. O primeiro c está dentro da cardioide principal e dá um Julia conexo, quase circular. O segundo está no bolbo de período 3, uma forma chamada coelho de Douady. O terceiro está logo fora, por isso o seu conjunto de Julia parte-se em pó de Cantor desconexo.",
   juliaCaptions: {
-    c1: "c = −0,4 + 0,6i · conexo",
+    c1: "c = −0,12 + 0,24i · conexo",
     c2: "c = −0,123 + 0,745i · o coelho",
-    c3: "c = 0,3 + 0,5i · desconexo",
+    c3: "c = 0,3 + 0,6i · desconexo",
   },
+  orbitLabels: {
+    inside: "dentro do conjunto",
+    boundary: "na fronteira",
+    outside: "fora do conjunto",
+  },
+  legend: {
+    web: "teia violeta",
+    webNote: "órbita limitada",
+    flash: "flash rosa",
+    flashNote: "órbita fugida",
+    dot: "ponto amarelo",
+    dotNote: "o teu c",
+  },
+  hintLabel: "dica",
+  exBounded: "limitado",
+  exEscape: "fuga",
+  draggerStatusEscaped: (n: number) => `fugida @ ${n}`,
+  draggerStatusBounded: (n: number) => `limitada · passo ${n}`,
   zoomLabel: "Escada de zoom · mesmo ponto, dez vezes mais fundo a cada passo",
   zoomBody:
     "A estrutura não simplifica. Cada passo descobre novas espirais, novos mini-Mandelbrots, novas filigranas.",
@@ -802,7 +919,8 @@ const sv: RichStory = {
     draggerTitle: "Hitta kanten med fingret",
     draggerBody:
       "Den svaga formen bakom duken antyder mängden. Dra den ljusgula punkten vart du vill — in i kardioiden, in i en knopp, ut i tomheten — och se banan avgöra. Begränsade banor väver ett violett nät; flyende banor blinkar rosa och startar om så du kan försöka igen.",
-    draggerHint: "Prova precis utanför kardioidens spets — där fäster periodknopp 2.",
+    draggerHint:
+      "Prova strax till vänster om kardioiden, nära c = −0,75, där fäster periodknopp 2.",
     iterLabel: "Vrid på iterationsratten",
     iterPretitle: "Interaktivt · reglage",
     iterTitle: "Hur många steg innan vi kallar den begränsad?",
@@ -813,12 +931,30 @@ const sv: RichStory = {
   juliaPretitle: "Avsnitt 06 · Juliagalleri",
   juliaTitle: "Ett Julia per c",
   juliaBody:
-    "Tre värden på c, tre Juliamängder. Det första c ligger inuti huvudkardioiden — ett sammanhängande, nästan cirkulärt Julia. Det andra ligger i periodknopp 3 — en form som kallas Douadys kanin. Det tredje ligger precis utanför — Julia faller sönder till osammanhängande Fatoustoft.",
+    "Tre värden på c, tre Juliamängder. Det första c ligger inuti huvudkardioiden och ger ett sammanhängande, nästan cirkulärt Julia. Det andra ligger i periodknopp 3, en form som kallas Douadys kanin. Det tredje ligger precis utanför, så dess Juliamängd faller sönder till osammanhängande Cantorstoft.",
   juliaCaptions: {
-    c1: "c = −0,4 + 0,6i · sammanhängande",
+    c1: "c = −0,12 + 0,24i · sammanhängande",
     c2: "c = −0,123 + 0,745i · kaninen",
-    c3: "c = 0,3 + 0,5i · osammanhängande",
+    c3: "c = 0,3 + 0,6i · osammanhängande",
   },
+  orbitLabels: {
+    inside: "inuti mängden",
+    boundary: "på gränsen",
+    outside: "utanför mängden",
+  },
+  legend: {
+    web: "violett nät",
+    webNote: "bana begränsad",
+    flash: "rosa blink",
+    flashNote: "bana flydd",
+    dot: "gul punkt",
+    dotNote: "ditt c",
+  },
+  hintLabel: "tips",
+  exBounded: "begränsad",
+  exEscape: "flykt",
+  draggerStatusEscaped: (n: number) => `flydd @ ${n}`,
+  draggerStatusBounded: (n: number) => `begränsad · steg ${n}`,
   zoomLabel: "Zoomstege · samma punkt, tio gånger djupare vid varje steg",
   zoomBody:
     "Strukturen förenklas inte. Varje steg hittar nya spiraler, nya mini-Mandelbrots, nya filigraner.",
@@ -914,7 +1050,8 @@ const no: RichStory = {
     draggerTitle: "Finn kanten med fingeren",
     draggerBody:
       "Den svake formen bak lerretet antyder mengden. Dra det lysegule punktet hvor du vil — inn i kardioiden, inn i en knopp, ut i tomheten — og se banen bestemme seg. Begrensede baner vever et fiolett nett; baner som flykter blinker rosa og starter på nytt, så du kan prøve igjen.",
-    draggerHint: "Prøv like utenfor kardioidespissen — der fester periodeknopp 2 seg.",
+    draggerHint:
+      "Prøv rett til venstre for kardioiden, nær c = −0,75, der fester periodeknopp 2 seg.",
     iterLabel: "Vri på iterasjonsrattet",
     iterPretitle: "Interaktivt · glidebryter",
     iterTitle: "Hvor mange steg før vi kaller den begrenset?",
@@ -925,12 +1062,30 @@ const no: RichStory = {
   juliaPretitle: "Avsnitt 06 · Julia-galleri",
   juliaTitle: "Én Julia per c",
   juliaBody:
-    "Tre verdier av c, tre Julia-mengder. Den første c-en ligger inne i hovedkardioiden — en sammenhengende, nesten sirkulær Julia. Den andre ligger i periodeknopp 3 — formen kalt Douadys kanin. Den tredje ligger like utenfor — Julia smuldrer til frakoblet Fatou-støv.",
+    "Tre verdier av c, tre Julia-mengder. Den første c-en ligger inne i hovedkardioiden og gir en sammenhengende, nesten sirkulær Julia. Den andre ligger i periodeknopp 3, formen kalt Douadys kanin. Den tredje ligger like utenfor, så Julia-mengden smuldrer til frakoblet Cantor-støv.",
   juliaCaptions: {
-    c1: "c = −0,4 + 0,6i · sammenhengende",
+    c1: "c = −0,12 + 0,24i · sammenhengende",
     c2: "c = −0,123 + 0,745i · kaninen",
-    c3: "c = 0,3 + 0,5i · frakoblet",
+    c3: "c = 0,3 + 0,6i · frakoblet",
   },
+  orbitLabels: {
+    inside: "inne i mengden",
+    boundary: "på grensen",
+    outside: "utenfor mengden",
+  },
+  legend: {
+    web: "fiolett nett",
+    webNote: "bane begrenset",
+    flash: "rosa blink",
+    flashNote: "bane flyktet",
+    dot: "gul prikk",
+    dotNote: "ditt c",
+  },
+  hintLabel: "tips",
+  exBounded: "begrenset",
+  exEscape: "flukt",
+  draggerStatusEscaped: (n: number) => `flyktet @ ${n}`,
+  draggerStatusBounded: (n: number) => `begrenset · steg ${n}`,
   zoomLabel: "Zoom-stige · samme punkt, ti ganger dypere ved hvert steg",
   zoomBody:
     "Strukturen forenkles ikke. Hvert steg finner nye spiraler, nye mini-Mandelbroter, nye filigraner.",
@@ -1049,11 +1204,11 @@ export default function MandelbrotStory() {
                     <div className="hairline mt-4 space-y-1 rounded-md border bg-ink-950/60 p-3 font-mono text-[11px] text-ink-100">
                       <div>
                         c = −0.5 · 0 → −0.5 → −0.25 → −0.4375 →{" "}
-                        <span className="text-signal-coral">bounded</span>
+                        <span className="text-signal-coral">{story.exBounded}</span>
                       </div>
                       <div>
                         c = 1 · 0 → 1 → 2 → 5 → 26 →{" "}
-                        <span className="text-signal-rose">escape</span>
+                        <span className="text-signal-rose">{story.exEscape}</span>
                       </div>
                     </div>
                   </>
@@ -1115,7 +1270,7 @@ return "bounded"`}
           <Reveal delay={80}>
             <MandelOrbitDemo
               c={[-0.5, 0]}
-              label="inside the set"
+              label={story.orbitLabels.inside}
               accent="text-signal-cyan"
               maxSteps={80}
               bound={1.6}
@@ -1125,7 +1280,7 @@ return "bounded"`}
           <Reveal delay={200}>
             <MandelOrbitDemo
               c={[-0.745, 0.113]}
-              label="on the boundary"
+              label={story.orbitLabels.boundary}
               accent="text-signal-violet"
               maxSteps={120}
               bound={1.6}
@@ -1135,7 +1290,7 @@ return "bounded"`}
           <Reveal delay={320}>
             <MandelOrbitDemo
               c={[0.4, 0.3]}
-              label="outside the set"
+              label={story.orbitLabels.outside}
               accent="text-signal-rose"
               maxSteps={40}
               bound={2.2}
@@ -1162,25 +1317,33 @@ return "bounded"`}
         </Reveal>
         <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-2">
           <Reveal delay={120}>
-            <MandelCDragger label={story.interactive.draggerLabel} accent="text-signal-coral" />
+            <MandelCDragger
+              label={story.interactive.draggerLabel}
+              accent="text-signal-coral"
+              statusEscaped={story.draggerStatusEscaped}
+              statusBounded={story.draggerStatusBounded}
+            />
           </Reveal>
           <Reveal delay={220}>
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-                hint
+                {story.hintLabel}
               </div>
               <p className="text-sm leading-relaxed text-ink-200">
                 {story.interactive.draggerHint}
               </p>
               <div className="hairline space-y-1 border-t pt-3 font-mono text-[11px] text-ink-300">
                 <div>
-                  <span className="text-signal-violet">violet web</span> · orbit bounded
+                  <span className="text-signal-violet">{story.legend.web}</span> ·{" "}
+                  {story.legend.webNote}
                 </div>
                 <div>
-                  <span className="text-signal-rose">rose flash</span> · orbit escaped
+                  <span className="text-signal-rose">{story.legend.flash}</span> ·{" "}
+                  {story.legend.flashNote}
                 </div>
                 <div>
-                  <span className="text-signal-coral">yellow dot</span> · your c
+                  <span className="text-signal-coral">{story.legend.dot}</span> ·{" "}
+                  {story.legend.dotNote}
                 </div>
               </div>
             </div>
@@ -1277,6 +1440,7 @@ return "bounded"`}
                   step={5}
                   value={iter}
                   onChange={(e) => setIter(parseInt(e.target.value, 10))}
+                  aria-label={story.interactive.iterLabel}
                   className="w-full accent-signal-coral"
                 />
                 <p className="text-xs leading-relaxed text-ink-300">{story.iterSliderNote}</p>
@@ -1435,9 +1599,9 @@ return "bounded"`}
               {story.juliaPretitle}
             </div>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-              <JuliaPanel c={[-0.4, 0.6]} caption={story.juliaCaptions.c1} />
+              <JuliaPanel c={[-0.12, 0.24]} caption={story.juliaCaptions.c1} />
               <JuliaPanel c={[-0.123, 0.745]} caption={story.juliaCaptions.c2} />
-              <JuliaPanel c={[0.3, 0.5]} caption={story.juliaCaptions.c3} />
+              <JuliaPanel c={[0.3, 0.6]} caption={story.juliaCaptions.c3} />
             </div>
             <div className="text-xs leading-relaxed text-ink-300">{story.juliaBody}</div>
           </div>
@@ -1491,7 +1655,7 @@ function JuliaPanel({ c, caption }: { c: [number, number]; caption: string }) {
   return (
     <div className="space-y-1">
       <div className="hairline aspect-square w-full overflow-hidden rounded-md border bg-ink-950">
-        <JuliaMini c={c} className="h-full w-full" />
+        <JuliaMini c={c} label={caption} className="h-full w-full" />
       </div>
       <div className="font-mono text-[10px] uppercase tracking-widest text-ink-300">{caption}</div>
     </div>
@@ -1499,19 +1663,38 @@ function JuliaPanel({ c, caption }: { c: [number, number]; caption: string }) {
 }
 
 // Inline Julia renderer. Kept inside this file because no other page needs it.
-function JuliaMini({ c, className = "" }: { c: [number, number]; className?: string }) {
-  return <JuliaCanvas c={c} className={className} />;
+function JuliaMini({
+  c,
+  label,
+  className = "",
+}: {
+  c: [number, number];
+  label: string;
+  className?: string;
+}) {
+  return <JuliaCanvas c={c} label={label} className={className} />;
 }
 
-function JuliaCanvas({ c, className }: { c: [number, number]; className: string }) {
-  const ref = useRefCanvas(c);
-  return <canvas ref={ref} className={`block ${className}`} />;
-}
+// A proper ref + effect component keyed on the numeric c coordinates. The old
+// implementation returned a fresh ref callback every render, so any page
+// re-render (e.g. dragging the iteration slider elsewhere) re-ran a full
+// CPU render of all three Julia sets. Keying the effect on cx/cy means a
+// re-render with an unchanged c does no work.
+function JuliaCanvas({
+  c,
+  label,
+  className,
+}: {
+  c: [number, number];
+  label: string;
+  className: string;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const cx = c[0];
+  const cy = c[1];
 
-// Custom hook: render a Julia set on a canvas. We keep it tiny so the page
-// stays responsive — render once on mount + on size changes.
-function useRefCanvas(c: [number, number]) {
-  const ref = (canvas: HTMLCanvasElement | null) => {
+  useEffect(() => {
+    const canvas = canvasRef.current;
     if (!canvas) return;
     let cancelled = false;
     const ctx = canvas.getContext("2d");
@@ -1542,8 +1725,8 @@ function useRefCanvas(c: [number, number]) {
           for (; i < maxIter; i++) {
             const r2 = zx * zx + zy * zy;
             if (r2 > 256) break;
-            const nzx = zx * zx - zy * zy + c[0];
-            zy = 2 * zx * zy + c[1];
+            const nzx = zx * zx - zy * zy + cx;
+            zy = 2 * zx * zy + cy;
             zx = nzx;
           }
           const idx = (y * W + x) * 4;
@@ -1577,6 +1760,9 @@ function useRefCanvas(c: [number, number]) {
       cancelled = true;
       ro.disconnect();
     };
-  };
-  return ref;
+  }, [cx, cy]);
+
+  return (
+    <canvas ref={canvasRef} className={`block ${className}`} role="img" aria-label={label} />
+  );
 }

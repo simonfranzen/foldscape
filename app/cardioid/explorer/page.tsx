@@ -32,9 +32,27 @@ export default function CardioidExplorer() {
     if (!ctx) return;
     let raf = 0;
 
+    // Redraw bookkeeping: static modes (cup, mandelbrot) only repaint when
+    // their inputs change, so we don't burn the CPU re-rendering a still image
+    // every frame. `dirty` forces one repaint after a resize or mode switch.
+    let lastSig = "";
+    let dirty = true;
+
+    // Cached Mandelbrot pixels, keyed on canvas size. The escape-time pass is
+    // the expensive part; recompute it only when the size (its only input)
+    // changes, then just putImageData on subsequent paints.
+    let mandelData: ImageData | null = null;
+    let mandelKey = "";
+
+    const reduceMotion =
+      typeof window !== "undefined"
+        ? window.matchMedia("(prefers-reduced-motion: reduce)")
+        : null;
+
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
       canvas.height = Math.floor(canvas.clientHeight * dpr);
+      dirty = true;
     };
     resize();
     const ro = new ResizeObserver(resize);
@@ -63,8 +81,11 @@ export default function CardioidExplorer() {
         ctx.strokeStyle = "rgba(255, 209, 102, 0.20)";
         ctx.lineWidth = 0.6 * dpr;
         for (let i = 0; i < cfg.rayCount; i++) {
-          // ray hits the right hemisphere at angle phi ∈ (-π/2, π/2) from +x axis
-          const phi = -Math.PI / 2 + (i / cfg.rayCount) * Math.PI;
+          // Light entering an open cup crosses the interior and reflects off
+          // the FAR (left) hemisphere, phi ∈ (π/2, 3π/2) from +x axis. A ray at
+          // height py = R sin(phi) enters from the right and its far-wall hit is
+          // the left intersection at that same height.
+          const phi = Math.PI / 2 + (i / cfg.rayCount) * Math.PI;
           const px = cx + R * Math.cos(phi);
           const py = cy + R * Math.sin(phi);
           // incoming horizontal ray from x=+inf moving in -x direction → entry from far right
@@ -180,37 +201,45 @@ export default function CardioidExplorer() {
       const scale = Math.min(W, H) / 3.4;
       const reCenter = -0.55;
       const imCenter = 0;
-      const maxIter = 40;
-      const imgData = ctx.createImageData(W, H);
-      const data = imgData.data;
-      for (let py = 0; py < H; py++) {
-        for (let px = 0; px < W; px++) {
-          const cre = reCenter + (px - cx) / scale;
-          const cim = imCenter + (py - cy) / scale;
-          let x = 0,
-            y = 0;
-          let it = 0;
-          while (x * x + y * y < 4 && it < maxIter) {
-            const xt = x * x - y * y + cre;
-            y = 2 * x * y + cim;
-            x = xt;
-            it++;
+
+      // Recompute the escape-time pixels only when the canvas size changes;
+      // otherwise reuse the cached ImageData.
+      const key = `${W}x${H}`;
+      if (!mandelData || mandelKey !== key) {
+        const maxIter = 40;
+        const imgData = ctx.createImageData(W, H);
+        const data = imgData.data;
+        for (let py = 0; py < H; py++) {
+          for (let px = 0; px < W; px++) {
+            const cre = reCenter + (px - cx) / scale;
+            const cim = imCenter + (py - cy) / scale;
+            let x = 0,
+              y = 0;
+            let it = 0;
+            while (x * x + y * y < 4 && it < maxIter) {
+              const xt = x * x - y * y + cre;
+              y = 2 * x * y + cim;
+              x = xt;
+              it++;
+            }
+            const idx = (py * W + px) * 4;
+            if (it === maxIter) {
+              data[idx] = 5;
+              data[idx + 1] = 6;
+              data[idx + 2] = 12;
+            } else {
+              const v = it / maxIter;
+              data[idx] = Math.floor(20 + v * 80);
+              data[idx + 1] = Math.floor(8 + v * 30);
+              data[idx + 2] = Math.floor(30 + v * 100);
+            }
+            data[idx + 3] = 255;
           }
-          const idx = (py * W + px) * 4;
-          if (it === maxIter) {
-            data[idx] = 5;
-            data[idx + 1] = 6;
-            data[idx + 2] = 12;
-          } else {
-            const v = it / maxIter;
-            data[idx] = Math.floor(20 + v * 80);
-            data[idx + 1] = Math.floor(8 + v * 30);
-            data[idx + 2] = Math.floor(30 + v * 100);
-          }
-          data[idx + 3] = 255;
         }
+        mandelData = imgData;
+        mandelKey = key;
       }
-      ctx.putImageData(imgData, 0, 0);
+      ctx.putImageData(mandelData, 0, 0);
 
       // Overlay the main cardioid in amber
       ctx.strokeStyle = palette.signal.amber;
@@ -232,11 +261,40 @@ export default function CardioidExplorer() {
 
     const loop = () => {
       const cfg = cfgRef.current;
-      if (cfg.mode === "cup") drawCup();
-      else if (cfg.mode === "rolling") {
-        if (cfg.running && cfg.rolling) tRef.current = (tRef.current + 0.012) % (Math.PI * 2);
-        drawRolling();
-      } else drawMandelbrot();
+      const W = canvas.width;
+      const H = canvas.height;
+      const reduce = reduceMotion?.matches ?? false;
+
+      if (cfg.mode === "rolling") {
+        // Freeze the rolling animation to a single static frame under
+        // prefers-reduced-motion (and while paused); otherwise advance t.
+        const animating = cfg.running && cfg.rolling && !reduce;
+        if (animating) {
+          tRef.current = (tRef.current + 0.012) % (Math.PI * 2);
+          drawRolling();
+        } else {
+          const sig = `rolling|${W}x${H}`;
+          if (dirty || sig !== lastSig) {
+            drawRolling();
+            lastSig = sig;
+            dirty = false;
+          }
+        }
+      } else if (cfg.mode === "cup") {
+        const sig = `cup|${W}x${H}|${cfg.rayCount}|${cfg.showRays}|${cfg.showCardioid}`;
+        if (dirty || sig !== lastSig) {
+          drawCup();
+          lastSig = sig;
+          dirty = false;
+        }
+      } else {
+        const sig = `mandel|${W}x${H}`;
+        if (dirty || sig !== lastSig) {
+          drawMandelbrot();
+          lastSig = sig;
+          dirty = false;
+        }
+      }
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -251,7 +309,17 @@ export default function CardioidExplorer() {
     <main className="flex min-h-screen flex-col pt-14">
       <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         <div className="relative min-h-[60vh] bg-ink-950 lg:min-h-[calc(100vh-3.5rem)]">
-          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            className="absolute inset-0 block h-full w-full"
+            aria-label={
+              mode === "cup"
+                ? "Coffee cup optics: parallel rays reflecting off the far wall to a nephroid envelope"
+                : mode === "rolling"
+                  ? "A point on a rolling circle tracing a cardioid"
+                  : "The Mandelbrot set with its main cardioid bulb outlined"
+            }
+          />
           <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {mode === "cup"
@@ -319,6 +387,7 @@ export default function CardioidExplorer() {
                   max={300}
                   step={2}
                   onChange={(e) => setRayCount(parseInt(e.target.value))}
+                  aria-label="Number of rays"
                   className="w-full accent-signal-amber"
                 />
               </div>

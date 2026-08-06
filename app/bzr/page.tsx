@@ -151,7 +151,7 @@ const en: RichStory = {
   closingPretitle: "Take it further",
   closingTitle: "Stir the dish.",
   closingBody:
-    "The Explorer gives you the full reaction-diffusion field, multiple colour palettes for the catalyst, control over the diffusion ratios and the Oregonator f parameter, and the freedom to plant several defects and watch them compete for the medium.",
+    "The Explorer runs a Hodgepodge cellular automaton, a Greenberg-Hastings style excitable grid where each cell is healthy, infected or ill. Three sliders shape the rhythm: k1 (infected weight), k2 (ill weight) and g (reaction rate). Pick one of four colour maps, load a preset, restart from random noise or seed a clean spiral, then watch the rotors take over the whole field.",
   ctaLabel: "→ Open the Explorer",
 };
 
@@ -183,7 +183,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Die BZ-Reaktion war der erste unmissverständliche Labornachweis, dass sich ein chemisches System fernab vom Gleichgewicht in Zeit und Raum von selbst organisieren kann. Dieselben Gleichungen, die ihre Spiralen erzeugen, regieren auch die Spiralen einer Herzkammerflimmerns, die Aggregationsringe der Schleimpilze und die rotierenden Erregungen auf der Großhirnrinde bei Epilepsie. Ilya Prigogine bekam 1977 den Nobelpreis für die zugrundeliegende Theorie dissipativer Strukturen. Die Chemie kam zuerst; die Mathematik kam später, um sie zu erklären.",
+        body: "Die BZ-Reaktion war der erste unmissverständliche Labornachweis, dass sich ein chemisches System fernab vom Gleichgewicht in Zeit und Raum von selbst organisieren kann. Dieselben Gleichungen, die ihre Spiralen erzeugen, regieren auch die Spiralwellen des Herzkammerflimmerns, die Aggregationsringe der Schleimpilze und die rotierenden Erregungen auf der Großhirnrinde bei Epilepsie. Ilya Prigogine bekam 1977 den Nobelpreis für die zugrundeliegende Theorie dissipativer Strukturen. Die Chemie kam zuerst; die Mathematik kam später, um sie zu erklären.",
       },
     ],
     tryIt:
@@ -248,7 +248,7 @@ const de: RichStory = {
   closingPretitle: "Geh weiter",
   closingTitle: "Rühr die Schale.",
   closingBody:
-    "Der Explorer gibt dir das volle Reaktions-Diffusionsfeld, mehrere Farbpaletten für den Katalysator, Kontrolle über die Diffusionsverhältnisse und den Oregonator-Parameter f und die Freiheit, mehrere Defekte zu setzen und ihnen beim Konkurrieren ums Medium zuzusehen.",
+    "Der Explorer läuft als Hodgepodge-Zellularautomat, ein erregbares Gitter im Greenberg-Hastings-Stil, in dem jede Zelle gesund, infiziert oder krank ist. Drei Regler formen den Takt: k1 (Gewicht infizierter Nachbarn), k2 (Gewicht kranker Nachbarn) und g (Reaktionsrate). Wähle eine von vier Farbpaletten, lade ein Preset, starte neu aus Zufallsrauschen oder setze eine saubere Spirale, und sieh zu, wie die Rotoren das ganze Feld übernehmen.",
   ctaLabel: "→ Explorer öffnen",
 };
 
@@ -345,7 +345,7 @@ const es: RichStory = {
   closingPretitle: "Ve más lejos",
   closingTitle: "Agita la placa.",
   closingBody:
-    "El Explorador te da el campo completo de reacción-difusión, varias paletas para el catalizador, control sobre las razones de difusión y el parámetro f del Oregonator, y la libertad de plantar varios defectos y verlos competir por el medio.",
+    "El Explorador ejecuta un autómata celular Hodgepodge, una rejilla excitable al estilo Greenberg-Hastings donde cada celda está sana, infectada o enferma. Tres deslizadores moldean el ritmo: k1 (peso de vecinas infectadas), k2 (peso de vecinas enfermas) y g (tasa de reacción). Elige una de cuatro paletas de color, carga un preajuste, reinicia desde ruido aleatorio o siembra una espiral limpia, y observa cómo los rotores se apoderan de todo el campo.",
   ctaLabel: "→ Abrir el Explorador",
 };
 
@@ -442,7 +442,7 @@ const fr: RichStory = {
   closingPretitle: "Va plus loin",
   closingTitle: "Agite la boîte.",
   closingBody:
-    "L'Explorateur te donne le champ complet de réaction-diffusion, plusieurs palettes pour le catalyseur, le contrôle sur les rapports de diffusion et le paramètre f de l'Oregonator, et la liberté de planter plusieurs défauts et de les regarder se disputer le milieu.",
+    "L'Explorateur fait tourner un automate cellulaire Hodgepodge, une grille excitable de style Greenberg-Hastings où chaque cellule est saine, infectée ou malade. Trois curseurs façonnent le rythme : k1 (poids des voisines infectées), k2 (poids des voisines malades) et g (taux de réaction). Choisis une des quatre palettes, charge un préréglage, redémarre depuis du bruit aléatoire ou sème une spirale nette, et regarde les rotors envahir tout le champ.",
   ctaLabel: "→ Ouvrir l'Explorateur",
 };
 
@@ -539,7 +539,7 @@ const it: RichStory = {
   closingPretitle: "Vai oltre",
   closingTitle: "Agita il piatto.",
   closingBody:
-    "L'Esploratore ti dà il campo completo di reazione-diffusione, varie palette per il catalizzatore, controllo sui rapporti di diffusione e sul parametro f dell'Oregonator, e la libertà di piantare più difetti e vederli contendersi il mezzo.",
+    "L'Esploratore fa girare un automa cellulare Hodgepodge, una griglia eccitabile in stile Greenberg-Hastings dove ogni cella è sana, infetta o malata. Tre cursori modellano il ritmo: k1 (peso delle vicine infette), k2 (peso delle vicine malate) e g (tasso di reazione). Scegli una delle quattro palette, carica un preset, riparti dal rumore casuale o semina una spirale pulita, e guarda i rotori impadronirsi di tutto il campo.",
   ctaLabel: "→ Apri l'Esploratore",
 };
 
@@ -636,7 +636,7 @@ const pt: RichStory = {
   closingPretitle: "Vai mais longe",
   closingTitle: "Mexe a caixa.",
   closingBody:
-    "O Explorador dá-te o campo completo de reação-difusão, várias paletas para o catalisador, controlo sobre as razões de difusão e o parâmetro f do Oregonator, e a liberdade de plantar vários defeitos e vê-los disputar o meio.",
+    "O Explorador corre um autómato celular Hodgepodge, uma grelha excitável ao estilo Greenberg-Hastings onde cada célula está saudável, infetada ou doente. Três deslizadores moldam o ritmo: k1 (peso das vizinhas infetadas), k2 (peso das vizinhas doentes) e g (taxa de reação). Escolhe uma de quatro paletas, carrega uma predefinição, reinicia a partir de ruído aleatório ou semeia uma espiral limpa, e vê os rotores tomar conta de todo o campo.",
   ctaLabel: "→ Abrir o Explorador",
 };
 
@@ -733,7 +733,7 @@ const sv: RichStory = {
   closingPretitle: "Gå vidare",
   closingTitle: "Rör om skålen.",
   closingBody:
-    "Utforskaren ger dig hela reaktions-diffusionsfältet, flera färgpaletter för katalysatorn, kontroll över diffusionsförhållandena och Oregonator-parametern f, och friheten att plantera flera defekter och se dem tävla om mediet.",
+    "Utforskaren kör en Hodgepodge-cellulär automat, ett excitabelt rutnät i Greenberg-Hastings-stil där varje cell är frisk, infekterad eller sjuk. Tre reglage formar takten: k1 (vikt för infekterade grannar), k2 (vikt för sjuka grannar) och g (reaktionshastighet). Välj en av fyra färgpaletter, ladda en förinställning, starta om från slumpbrus eller så en ren spiral, och se rotorerna ta över hela fältet.",
   ctaLabel: "→ Öppna utforskaren",
 };
 
@@ -830,7 +830,7 @@ const no: RichStory = {
   closingPretitle: "Gå videre",
   closingTitle: "Rør om i skålen.",
   closingBody:
-    "Utforskeren gir deg hele reaksjons-diffusjonsfeltet, flere fargepaletter for katalysatoren, kontroll over diffusjonsforholdene og Oregonator-parameteren f, og friheten til å plante flere defekter og se dem konkurrere om mediet.",
+    "Utforskeren kjører en Hodgepodge-cellulær automat, et eksiterbart rutenett i Greenberg-Hastings-stil der hver celle er frisk, infisert eller syk. Tre glidere former takten: k1 (vekt for infiserte naboer), k2 (vekt for syke naboer) og g (reaksjonsrate). Velg en av fire fargepaletter, last en forhåndsinnstilling, start på nytt fra tilfeldig støy eller så en ren spiral, og se rotorene ta over hele feltet.",
   ctaLabel: "→ Åpne utforskeren",
 };
 

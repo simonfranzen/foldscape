@@ -27,6 +27,18 @@ export default function MandelbrotExplorer() {
   const [palette, setPalette] = useState(0);
   const [hueShift, setHueShift] = useState(0);
   const [exposure, setExposure] = useState(1.0);
+  const [reduced, setReduced] = useState(false);
+
+  // Honour prefers-reduced-motion. The renderer's start() loop animates the
+  // interior glow via uTime forever; under reduced motion we draw single
+  // frames instead. Re-subscribe so a live preference change flips the mode.
+  useEffect(() => {
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(m.matches);
+    const onChange = () => setReduced(m.matches);
+    m.addEventListener?.("change", onChange);
+    return () => m.removeEventListener?.("change", onChange);
+  }, []);
 
   // Init renderer
   useEffect(() => {
@@ -35,7 +47,6 @@ export default function MandelbrotExplorer() {
     const r = new MandelRenderer(c);
     rendererRef.current = r;
     r.setState({ ...defaultMandel(), center, scale, maxIter, palette, hueShift, exposure });
-    r.start();
     const ro = new ResizeObserver(() => r.render());
     ro.observe(c);
     return () => {
@@ -46,10 +57,24 @@ export default function MandelbrotExplorer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Sync to renderer
+  // Drive the animation loop, or draw one static frame under reduced motion.
+  useEffect(() => {
+    const r = rendererRef.current;
+    if (!r) return;
+    if (reduced) {
+      r.stop();
+      r.render();
+    } else {
+      r.start();
+    }
+  }, [reduced]);
+
+  // Sync to renderer. Under reduced motion there is no rAF loop, so redraw
+  // explicitly whenever a control changes.
   useEffect(() => {
     rendererRef.current?.setState({ center, scale, maxIter, palette, hueShift, exposure });
-  }, [center, scale, maxIter, palette, hueShift, exposure]);
+    if (reduced) rendererRef.current?.render();
+  }, [center, scale, maxIter, palette, hueShift, exposure, reduced]);
 
   // Auto-iteration: bump as we zoom in
   useEffect(() => {
@@ -145,7 +170,12 @@ export default function MandelbrotExplorer() {
           onPointerCancel={onUp}
           onDoubleClick={onDoubleClick}
         >
-          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            role="img"
+            aria-label={`${a.topics.mandelbrot.title}: ${a.topics.mandelbrot.tagline}`}
+            className="absolute inset-0 block h-full w-full"
+          />
 
           {/* Top-left: coords */}
           <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
@@ -259,6 +289,7 @@ export default function MandelbrotExplorer() {
               step={10}
               format={(v) => `${v}`}
               accent="text-signal-coral"
+              label={u.mandel.iterations}
             />
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.mandel.hueShift}
@@ -271,6 +302,7 @@ export default function MandelbrotExplorer() {
               step={0.001}
               format={(v) => v.toFixed(3)}
               accent="text-signal-violet"
+              label={u.mandel.hueShift}
             />
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {u.mandel.exposure}
@@ -283,6 +315,7 @@ export default function MandelbrotExplorer() {
               step={0.01}
               format={(v) => v.toFixed(2)}
               accent="text-signal-cyan"
+              label={u.mandel.exposure}
             />
           </div>
 
@@ -331,6 +364,7 @@ function Slider({
   step,
   format,
   accent,
+  label,
 }: {
   value: number;
   onChange: (v: number) => void;
@@ -339,6 +373,7 @@ function Slider({
   step: number;
   format: (v: number) => string;
   accent: string;
+  label: string;
 }) {
   return (
     <div>
@@ -354,6 +389,7 @@ function Slider({
         max={max}
         step={step}
         onChange={(e) => onChange(parseFloat(e.target.value))}
+        aria-label={label}
         className={`w-full ${accent.replace("text-", "accent-")}`}
       />
     </div>

@@ -79,8 +79,9 @@ export function GodelLoopHero() {
             <stop offset="100%" stopColor={palette.signal.violet} stopOpacity="0.7" />
           </linearGradient>
         </defs>
-        {/* Ghost stroke of the curve */}
-        <use href="#godel-loop" stroke="rgba(179,136,255,0.18)" strokeWidth="1.6" />
+        {/* Ghost stroke of the curve. Colour derives from the palette token so a
+            palette change keeps this in sync; opacity via strokeOpacity. */}
+        <use href="#godel-loop" stroke={palette.signal.violet} strokeOpacity="0.18" strokeWidth="1.6" />
         <use href="#godel-loop" stroke="url(#godel-stroke)" strokeWidth="0.6" opacity="0.5" />
         {/* The sentence laid along the curve, drifting */}
         <text fontFamily="var(--font-serif)" fontStyle="italic" fontSize="17" fill={palette.ink[100]}>
@@ -90,7 +91,7 @@ export function GodelLoopHero() {
         </text>
         {/* G and ⌜G⌝ as twin markers at the figure-8 crossing */}
         <g transform={`translate(${cx} ${cy})`}>
-          <circle r="18" fill="rgba(5,6,10,0.85)" stroke={palette.signal.violet} strokeOpacity="0.75" />
+          <circle r="18" fill={palette.ink[950]} fillOpacity="0.85" stroke={palette.signal.violet} strokeOpacity="0.75" />
           <text
             textAnchor="middle"
             dy="6"

@@ -5,9 +5,9 @@ import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
 // Golden-ratio demo for the Penrose story page.
-// Renders a Fibonacci-rectangle spiral that converges into the golden spiral,
-// alongside the kite/dart edge ratios. Slider sets the number of Fibonacci
-// levels in the spiral.
+// Renders a Fibonacci-square spiral that converges into the golden spiral,
+// with the ratio of consecutive Fibonacci numbers racing to φ. Slider sets
+// the number of Fibonacci levels in the spiral.
 
 interface Props {
   caption: string;
@@ -139,10 +139,12 @@ export function PenroseGoldenRatio({ caption, levelsLabel, ratioLabel, hint }: P
         const sq = squares[i]!;
         const [sx, sy] = toPx(sq.x, sq.y);
         const w = sq.s * scale;
-        // direction-of-placement when this square was added determines arc center
-        // i === 0 → seed; treat like a right arc from bottom-right
-        // dir at placement of squares[i] (for i>0) was (i-1) mod 4
-        const d = i === 0 ? 0 : (i - 1) % 4;
+        // direction-of-placement when this square was added determines arc center.
+        // dir at placement of squares[i] (for i>0) was (i-1) mod 4.
+        // The seed square (i === 0) is treated as d = 1 so its arc ends at the
+        // shared corner where square 1's arc begins; otherwise the spiral's
+        // innermost quarter-arc floats disconnected from the rest.
+        const d = i === 0 ? 1 : (i - 1) % 4;
         // arc center & start/end angles per direction:
         // d=0 (placed right):  center = (sx, sy),                arc from 0 to π/2
         // d=1 (placed up):     center = (sx, sy + w),            arc from -π/2 to 0
@@ -193,7 +195,12 @@ export function PenroseGoldenRatio({ caption, levelsLabel, ratioLabel, hint }: P
 
       <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-[1fr_220px]">
         <div className="hairline mx-auto aspect-[4/3] w-full max-w-[420px] overflow-hidden rounded-xl border bg-ink-950">
-          <canvas ref={canvasRef} className="block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            className="block h-full w-full"
+            role="img"
+            aria-label={caption}
+          />
         </div>
 
         <div className="space-y-4">
@@ -220,6 +227,7 @@ export function PenroseGoldenRatio({ caption, levelsLabel, ratioLabel, hint }: P
               value={levels}
               onChange={(e) => setLevels(parseInt(e.target.value, 10))}
               className="w-full accent-signal-amber"
+              aria-label={levelsLabel}
             />
           </div>
 

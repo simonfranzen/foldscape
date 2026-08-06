@@ -28,6 +28,7 @@ type RichStory = {
     tryIt: string;
   };
   sections: Array<{ pretitle: string; title: string; body: string }>;
+  closingPretitle: string;
   closingTitle: string;
   closingBody: string;
   ctaLabel: string;
@@ -138,7 +139,7 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · The physics",
       title: "Newton, magnets, a little friction",
-      body: "A small iron bob hangs above a plate, free to swing in the plane. Three magnets pull it with a horizontal force component that scales as 1/(r² + h²)^(3/2) — near-cubic when the horizontal distance r is large compared to the plate-to-bob height h, gentler in the near field; a weak spring pulls it back to the centre; air resistance bleeds energy. The equations of motion are clean and deterministic — only the starting position is left free.",
+      body: "A small iron bob hangs above a plate, free to swing in the plane. Each of the three magnets pulls it with a force k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2), so the horizontal magnitude is k·r/(r² + h²)^(3/2), where r is the horizontal distance to the magnet: in the far field (r much larger than the plate-to-bob height h) it falls off like 1/r² (inverse-square), while the h² term softens the pull in the near field. A weak spring draws it back to the centre; air resistance bleeds energy. The equations of motion are clean and deterministic, only the starting position is left free.",
     },
     {
       pretitle: "Section 02 · Deterministic chaos",
@@ -158,7 +159,7 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · Yoneyama, 1917",
       title: "A topology curio that the chaos era weaponised",
-      body: "The first Wada construction was a topology amuse-bouche by Kunizō Yoneyama in 1917: three «lakes» on an island, each carving channels so fine that every land point ends up on all three shores. For seventy years it stayed a curiosity. Then Kennedy and Yorke in 1991 coined the term Wada basins for chaotic dynamics (originally for the Hénon-Heiles system); Aguirre, Vallejo and Sanjuán demonstrated the property explicitly for the magnetic pendulum in the early 2000s — and chaos theory had its first concrete Wada basin in a tabletop experiment.",
+      body: "The first Wada construction was a topology amuse-bouche by Kunizō Yoneyama in 1917: three «lakes» on an island, each carving channels so fine that every land point ends up on all three shores. For seventy years it stayed a curiosity. Then, in 1991, Kennedy and Yorke coined the term Wada basins for chaotic dynamics, working from abstract dynamical-systems examples; a decade later Aguirre, Vallejo and Sanjuán proved that the Hénon-Heiles system carries Wada basins (2001), and Daza and colleagues went on to confirm the magnetic pendulum as a Wada system. Chaos theory had its tabletop fractal.",
     },
     {
       pretitle: "Section 06 · Connections",
@@ -166,6 +167,7 @@ const en: RichStory = {
       body: "The same fractal frontier appears in Newton's-method basins for the roots of a cubic, in long-term integrations of the planets, and in the «leaky» phase space of chaotic billiards. Hsu's cell-mapping method computes these basins by mass production. Wherever attractors compete, their boundaries tend to grow Wada.",
     },
   ],
+  closingPretitle: "The challenge",
   closingTitle: "Find the Wada boundary.",
   closingBody:
     "The Explorer lets you change the magnet strength, the damping, the height of the pendulum above the plate, and the resolution of the basin grid — and watch the fractal sharpen in real time.",
@@ -220,7 +222,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die Physik",
       title: "Newton, Magnete, ein wenig Reibung",
-      body: "Ein kleiner Eisenpendel hängt über einer Platte, frei beweglich in der Ebene. Drei Magnete ziehen ihn an, wobei die horizontale Kraftkomponente wie 1/(r² + h²)^(3/2) skaliert — im Fernfeld (Abstand r groß gegenüber der Höhe h) annähernd 1/r³, im Nahfeld sanfter; eine schwache Feder holt ihn zur Mitte zurück; Luftreibung entzieht ihm Energie. Die Bewegungsgleichungen sind sauber und deterministisch — nur der Startpunkt bleibt frei.",
+      body: "Ein kleines Eisenpendel hängt über einer Platte, frei beweglich in der Ebene. Jeder der drei Magnete zieht es mit einer Kraft k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2) an, sodass der horizontale Betrag k·r/(r² + h²)^(3/2) ist, wobei r der horizontale Abstand zum Magneten ist: im Fernfeld (r viel größer als die Höhe h über der Platte) fällt er wie 1/r² ab (invers-quadratisch), während der h²-Term die Anziehung im Nahfeld abmildert. Eine schwache Feder holt es zur Mitte zurück; Luftreibung entzieht ihm Energie. Die Bewegungsgleichungen sind sauber und deterministisch, nur der Startpunkt bleibt frei.",
     },
     {
       pretitle: "Abschnitt 02 · Deterministisches Chaos",
@@ -240,7 +242,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Yoneyama, 1917",
       title: "Eine topologische Kuriosität, die das Chaos-Zeitalter aufgriff",
-      body: "Die erste Wada-Konstruktion war ein topologisches Häppchen von Kunizō Yoneyama, 1917: drei «Seen» auf einer Insel, jeder gräbt so feine Kanäle, dass jeder Landpunkt am Ende an allen drei Ufern liegt. Siebzig Jahre lang blieb sie Kuriosität. Dann prägten Kennedy und Yorke 1991 den Begriff der Wada-Bassins für chaotische Dynamik (ursprünglich am Hénon-Heiles-System); Aguirre, Vallejo und Sanjuán zeigten die Eigenschaft Anfang der 2000er Jahre explizit am magnetischen Pendel — und die Chaostheorie hatte ihr erstes konkretes Wada-Bassin im Tischexperiment.",
+      body: "Die erste Wada-Konstruktion war ein topologisches Häppchen von Kunizō Yoneyama, 1917: drei «Seen» auf einer Insel, jeder gräbt so feine Kanäle, dass jeder Landpunkt am Ende an allen drei Ufern liegt. Siebzig Jahre lang blieb sie Kuriosität. Dann prägten Kennedy und Yorke 1991 den Begriff der Wada-Bassins für chaotische Dynamik, ausgehend von abstrakten dynamischen Beispielen; ein Jahrzehnt später zeigten Aguirre, Vallejo und Sanjuán, dass das Hénon-Heiles-System Wada-Bassins trägt (2001), und Daza und Kolleg:innen bestätigten später das magnetische Pendel als Wada-System. Die Chaostheorie hatte ihr Tischexperiment-Fraktal.",
     },
     {
       pretitle: "Abschnitt 06 · Verbindungen",
@@ -248,6 +250,7 @@ const de: RichStory = {
       body: "Dieselbe fraktale Front erscheint in den Newton-Bassins für die Wurzeln eines kubischen Polynoms, in Langzeitrechnungen der Planeten und im «leckenden» Phasenraum chaotischer Billards. Hsus Zellenabbildungs-Methode produziert solche Bassins in Serie. Wo Attraktoren konkurrieren, wachsen ihre Grenzen gerne Wada.",
     },
   ],
+  closingPretitle: "Die Herausforderung",
   closingTitle: "Finde die Wada-Grenze.",
   closingBody:
     "Der Explorer lässt dich Magnetstärke, Dämpfung, Pendelhöhe über der Platte und Bassin-Auflösung verändern — und beobachten, wie das Fraktal in Echtzeit schärfer wird.",
@@ -302,7 +305,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · La física",
       title: "Newton, imanes, un poco de fricción",
-      body: "Un pequeño peso de hierro cuelga sobre una placa, libre de oscilar en el plano. Tres imanes tiran de él con una componente horizontal de fuerza que escala como 1/(r² + h²)^(3/2) — casi cúbica cuando la distancia horizontal r es grande comparada con la altura h sobre la placa, más suave en el campo cercano; un resorte débil lo devuelve al centro; el aire le quita energía. Las ecuaciones son limpias y deterministas — solo queda libre el punto de partida.",
+      body: "Un pequeño peso de hierro cuelga sobre una placa, libre de oscilar en el plano. Cada uno de los tres imanes tira de él con una fuerza k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2), de modo que la magnitud horizontal es k·r/(r² + h²)^(3/2), donde r es la distancia horizontal al imán: en el campo lejano (r mucho mayor que la altura h sobre la placa) decae como 1/r² (inverso-cuadrático), mientras que el término h² suaviza la atracción en el campo cercano. Un resorte débil lo devuelve al centro; el aire le quita energía. Las ecuaciones son limpias y deterministas, solo queda libre el punto de partida.",
     },
     {
       pretitle: "Sección 02 · Caos determinista",
@@ -322,7 +325,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · Yoneyama, 1917",
       title: "Una curiosidad topológica que la era del caos rearmó",
-      body: "La primera construcción de Wada fue un bocado topológico de Kunizō Yoneyama en 1917: tres «lagos» en una isla, cada uno cavando canales tan finos que cada punto de tierra acaba en las tres orillas. Setenta años se quedó como curiosidad. Luego Kennedy y Yorke en 1991 acuñaron el término «cuencas de Wada» para la dinámica caótica (originalmente para el sistema Hénon-Heiles); Aguirre, Vallejo y Sanjuán demostraron explícitamente la propiedad en el péndulo magnético a principios de los 2000 — y la teoría del caos tuvo su primera cuenca de Wada concreta en un experimento de mesa.",
+      body: "La primera construcción de Wada fue un bocado topológico de Kunizō Yoneyama en 1917: tres «lagos» en una isla, cada uno cavando canales tan finos que cada punto de tierra acaba en las tres orillas. Setenta años se quedó como curiosidad. Luego, en 1991, Kennedy y Yorke acuñaron el término «cuencas de Wada» para la dinámica caótica, partiendo de ejemplos dinámicos abstractos; una década después Aguirre, Vallejo y Sanjuán demostraron que el sistema de Hénon-Heiles tiene cuencas de Wada (2001), y Daza y sus colegas confirmaron después el péndulo magnético como sistema de Wada. La teoría del caos tuvo su fractal de mesa.",
     },
     {
       pretitle: "Sección 06 · Conexiones",
@@ -330,6 +333,7 @@ const es: RichStory = {
       body: "La misma frontera fractal aparece en las cuencas del método de Newton para las raíces de un cúbico, en integraciones de larga duración de los planetas, y en el espacio de fases «con fugas» de los billares caóticos. El método de mapeo celular de Hsu produce esas cuencas en serie. Donde compiten atractores, sus fronteras tienden a hacerse Wada.",
     },
   ],
+  closingPretitle: "El reto",
   closingTitle: "Encuentra la frontera de Wada.",
   closingBody:
     "El Explorador te deja cambiar la fuerza de los imanes, la amortiguación, la altura del péndulo sobre la placa y la resolución de la rejilla — y ver cómo el fractal se afila en tiempo real.",
@@ -385,7 +389,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · La physique",
       title: "Newton, aimants, un peu de frottement",
-      body: "Un petit bob de fer pend au-dessus d'une plaque, libre d'osciller dans le plan. Trois aimants l'attirent avec une composante horizontale de force qui s'écrit comme 1/(r² + h²)^(3/2) — presque en 1/r³ quand la distance horizontale r est grande devant la hauteur h au-dessus de la plaque, plus douce en champ proche ; un ressort faible le ramène au centre ; l'air lui prend son énergie. Les équations du mouvement sont propres et déterministes — seule la position de départ reste libre.",
+      body: "Un petit bob de fer pend au-dessus d'une plaque, libre d'osciller dans le plan. Chacun des trois aimants l'attire avec une force k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2), si bien que la magnitude horizontale vaut k·r/(r² + h²)^(3/2), où r est la distance horizontale à l'aimant : en champ lointain (r très supérieur à la hauteur h au-dessus de la plaque) elle décroît comme 1/r² (en inverse du carré), tandis que le terme h² adoucit l'attraction en champ proche. Un ressort faible le ramène au centre ; l'air lui prend son énergie. Les équations du mouvement sont propres et déterministes, seule la position de départ reste libre.",
     },
     {
       pretitle: "Section 02 · Chaos déterministe",
@@ -405,7 +409,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Yoneyama, 1917",
       title: "Une curiosité topologique que l'ère du chaos a réarmée",
-      body: "La première construction de Wada fut un amuse-bouche topologique de Kunizō Yoneyama en 1917 : trois «lacs» sur une île, chacun creusant des canaux si fins que tout point de terre finit sur les trois rives. Soixante-dix ans elle resta curiosité. Puis Kennedy et Yorke en 1991 forgent le terme «bassins de Wada» pour la dynamique chaotique (à l'origine pour le système de Hénon-Heiles) ; Aguirre, Vallejo et Sanjuán démontrent explicitement la propriété pour le pendule magnétique au début des années 2000 — et la théorie du chaos a son premier bassin de Wada concret dans une expérience de table.",
+      body: "La première construction de Wada fut un amuse-bouche topologique de Kunizō Yoneyama en 1917 : trois «lacs» sur une île, chacun creusant des canaux si fins que tout point de terre finit sur les trois rives. Soixante-dix ans elle resta curiosité. Puis, en 1991, Kennedy et Yorke forgent le terme «bassins de Wada» pour la dynamique chaotique, à partir d'exemples dynamiques abstraits ; une décennie plus tard, Aguirre, Vallejo et Sanjuán prouvent que le système de Hénon-Heiles porte des bassins de Wada (2001), et Daza et ses collègues confirment ensuite le pendule magnétique comme système de Wada. La théorie du chaos tenait son fractal de table.",
     },
     {
       pretitle: "Section 06 · Connexions",
@@ -413,6 +417,7 @@ const fr: RichStory = {
       body: "La même frontière fractale revient dans les bassins de la méthode de Newton pour les racines d'un cubique, dans les intégrations à long terme des planètes, et dans l'espace des phases «troué» des billards chaotiques. La méthode de cellules de Hsu produit ces bassins en série. Là où les attracteurs sont en compétition, leurs frontières aiment devenir Wada.",
     },
   ],
+  closingPretitle: "Le défi",
   closingTitle: "Trouve la frontière de Wada.",
   closingBody:
     "L'Explorateur te laisse changer la force des aimants, l'amortissement, la hauteur du pendule au-dessus de la plaque et la résolution de la grille — et regarder le fractal s'aiguiser en temps réel.",
@@ -467,7 +472,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · La fisica",
       title: "Newton, magneti, un po' di attrito",
-      body: "Un piccolo peso di ferro pende sopra una piastra, libero di oscillare nel piano. Tre magneti lo attirano con una componente orizzontale di forza che scala come 1/(r² + h²)^(3/2) — quasi cubica quando la distanza orizzontale r è grande rispetto all'altezza h sopra la piastra, più morbida nel campo vicino; una molla debole lo riporta al centro; l'aria gli toglie energia. Le equazioni del moto sono pulite e deterministiche — solo la posizione di partenza resta libera.",
+      body: "Un piccolo peso di ferro pende sopra una piastra, libero di oscillare nel piano. Ognuno dei tre magneti lo attira con una forza k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2), così la magnitudine orizzontale è k·r/(r² + h²)^(3/2), dove r è la distanza orizzontale dal magnete: nel campo lontano (r molto maggiore dell'altezza h sopra la piastra) decade come 1/r² (inverso del quadrato), mentre il termine h² addolcisce l'attrazione nel campo vicino. Una molla debole lo riporta al centro; l'aria gli toglie energia. Le equazioni del moto sono pulite e deterministiche, solo la posizione di partenza resta libera.",
     },
     {
       pretitle: "Sezione 02 · Caos deterministico",
@@ -487,7 +492,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · Yoneyama, 1917",
       title: "Una curiosità topologica che l'era del caos ha riarmato",
-      body: "La prima costruzione di Wada fu uno stuzzichino topologico di Kunizō Yoneyama nel 1917: tre «laghi» su un'isola, ognuno scava canali così fini che ogni punto di terra finisce su tutte e tre le rive. Per settant'anni rimase curiosità. Poi Kennedy e Yorke nel 1991 coniarono il termine «bacini di Wada» per la dinamica caotica (originariamente per il sistema Hénon-Heiles); Aguirre, Vallejo e Sanjuán dimostrarono esplicitamente la proprietà per il pendolo magnetico nei primi anni 2000 — e la teoria del caos ebbe il suo primo bacino di Wada concreto in un esperimento da tavolo.",
+      body: "La prima costruzione di Wada fu uno stuzzichino topologico di Kunizō Yoneyama nel 1917: tre «laghi» su un'isola, ognuno scava canali così fini che ogni punto di terra finisce su tutte e tre le rive. Per settant'anni rimase curiosità. Poi, nel 1991, Kennedy e Yorke coniarono il termine «bacini di Wada» per la dinamica caotica, partendo da esempi dinamici astratti; un decennio dopo Aguirre, Vallejo e Sanjuán dimostrarono che il sistema di Hénon-Heiles porta bacini di Wada (2001), e Daza e colleghi confermarono poi il pendolo magnetico come sistema di Wada. La teoria del caos ebbe il suo frattale da tavolo.",
     },
     {
       pretitle: "Sezione 06 · Connessioni",
@@ -495,6 +500,7 @@ const it: RichStory = {
       body: "La stessa frontiera frattale ricompare nei bacini del metodo di Newton per le radici di un cubico, nelle integrazioni di lungo periodo dei pianeti e nello spazio delle fasi «forato» dei biliardi caotici. Il cell-mapping di Hsu produce questi bacini in serie. Dove gli attrattori competono, i loro confini amano diventare Wada.",
     },
   ],
+  closingPretitle: "La sfida",
   closingTitle: "Trova il confine di Wada.",
   closingBody:
     "L'Esploratore ti lascia cambiare forza dei magneti, smorzamento, altezza del pendolo sopra la piastra e risoluzione della griglia — e vedere il frattale affilarsi in tempo reale.",
@@ -549,7 +555,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · A física",
       title: "Newton, ímanes, um pouco de atrito",
-      body: "Um pequeno peso de ferro pendura-se sobre uma placa, livre de oscilar no plano. Três ímanes atraem-no com uma componente horizontal de força que escala como 1/(r² + h²)^(3/2) — quase cúbica quando a distância horizontal r é grande comparada com a altura h sobre a placa, mais suave no campo próximo; uma mola fraca devolve-o ao centro; o ar tira-lhe energia. As equações do movimento são limpas e deterministas — só o ponto de partida fica livre.",
+      body: "Um pequeno peso de ferro pendura-se sobre uma placa, livre de oscilar no plano. Cada um dos três ímanes atrai-o com uma força k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2), de modo que a magnitude horizontal é k·r/(r² + h²)^(3/2), onde r é a distância horizontal ao íman: no campo distante (r muito maior que a altura h sobre a placa) decai como 1/r² (inverso do quadrado), enquanto o termo h² suaviza a atracção no campo próximo. Uma mola fraca devolve-o ao centro; o ar tira-lhe energia. As equações do movimento são limpas e deterministas, só o ponto de partida fica livre.",
     },
     {
       pretitle: "Secção 02 · Caos determinista",
@@ -569,7 +575,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · Yoneyama, 1917",
       title: "Uma curiosidade topológica que a era do caos rearmou",
-      body: "A primeira construção de Wada foi um aperitivo topológico de Kunizō Yoneyama em 1917: três «lagos» numa ilha, cada um escavando canais tão finos que cada ponto de terra acaba em todas as três margens. Setenta anos ficou como curiosidade. Depois Kennedy e Yorke em 1991 cunharam o termo «bacias de Wada» para a dinâmica caótica (originalmente para o sistema Hénon-Heiles); Aguirre, Vallejo e Sanjuán demonstraram explicitamente a propriedade para o pêndulo magnético no início dos anos 2000 — e a teoria do caos teve a sua primeira bacia de Wada concreta numa experiência de bancada.",
+      body: "A primeira construção de Wada foi um aperitivo topológico de Kunizō Yoneyama em 1917: três «lagos» numa ilha, cada um escavando canais tão finos que cada ponto de terra acaba em todas as três margens. Setenta anos ficou como curiosidade. Depois, em 1991, Kennedy e Yorke cunharam o termo «bacias de Wada» para a dinâmica caótica, a partir de exemplos dinâmicos abstractos; uma década mais tarde Aguirre, Vallejo e Sanjuán provaram que o sistema de Hénon-Heiles tem bacias de Wada (2001), e Daza e colegas confirmaram depois o pêndulo magnético como sistema de Wada. A teoria do caos teve o seu fractal de bancada.",
     },
     {
       pretitle: "Secção 06 · Ligações",
@@ -577,6 +583,7 @@ const pt: RichStory = {
       body: "A mesma fronteira fractal reaparece nas bacias do método de Newton para as raízes de um cúbico, em integrações de longo prazo dos planetas e no espaço de fases «furado» dos bilhares caóticos. O cell-mapping de Hsu produz essas bacias em série. Onde atractores competem, as suas fronteiras gostam de ficar Wada.",
     },
   ],
+  closingPretitle: "O desafio",
   closingTitle: "Encontra a fronteira de Wada.",
   closingBody:
     "O Explorador deixa-te mudar a força dos ímanes, o amortecimento, a altura do pêndulo sobre a placa e a resolução da grelha — e ver o fractal afinar em tempo real.",
@@ -631,7 +638,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Fysiken",
       title: "Newton, magneter, en aning friktion",
-      body: "En liten järnvikt hänger över en platta, fri att svänga i planet. Tre magneter drar i den med en horisontell kraftkomponent som skalar som 1/(r² + h²)^(3/2) — nära kubisk när horisontalavståndet r är stort jämfört med höjden h över plattan, mildare i närfältet; en svag fjäder drar tillbaka den till mitten; luft tar dess energi. Rörelseekvationerna är rena och deterministiska — bara startpunkten är fri.",
+      body: "En liten järnvikt hänger över en platta, fri att svänga i planet. Var och en av de tre magneterna drar i den med en kraft k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2), så den horisontella magnituden är k·r/(r² + h²)^(3/2), där r är det horisontella avståndet till magneten: i fjärrfältet (r mycket större än höjden h över plattan) avtar den som 1/r² (inverskvadratiskt), medan h²-termen mjukar upp dragningen i närfältet. En svag fjäder drar tillbaka den till mitten; luft tar dess energi. Rörelseekvationerna är rena och deterministiska, bara startpunkten är fri.",
     },
     {
       pretitle: "Avsnitt 02 · Deterministisk kaos",
@@ -651,7 +658,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Yoneyama, 1917",
       title: "En topologisk kuriositet som kaos-eran beväpnade",
-      body: "Den första Wada-konstruktionen var en topologisk amuse-bouche av Kunizō Yoneyama 1917: tre «sjöar» på en ö, var och en gräver kanaler så fina att varje landpunkt hamnar på alla tre stränder. I sjuttio år förblev det en kuriositet. Sedan myntade Kennedy och Yorke 1991 begreppet Wada-bäcken för kaotisk dynamik (ursprungligen för Hénon-Heiles-systemet); Aguirre, Vallejo och Sanjuán demonstrerade egenskapen explicit för den magnetiska pendeln i början av 2000-talet — och kaosteorin hade sitt första konkreta Wada-bäcken i ett bordsexperiment.",
+      body: "Den första Wada-konstruktionen var en topologisk amuse-bouche av Kunizō Yoneyama 1917: tre «sjöar» på en ö, var och en gräver kanaler så fina att varje landpunkt hamnar på alla tre stränder. I sjuttio år förblev det en kuriositet. Sedan, 1991, myntade Kennedy och Yorke begreppet Wada-bäcken för kaotisk dynamik, utifrån abstrakta dynamiska exempel; ett decennium senare visade Aguirre, Vallejo och Sanjuán att Hénon-Heiles-systemet bär Wada-bäcken (2001), och Daza med kollegor bekräftade sedan den magnetiska pendeln som ett Wada-system. Kaosteorin hade sin fraktal på bordet.",
     },
     {
       pretitle: "Avsnitt 06 · Kopplingar",
@@ -659,6 +666,7 @@ const sv: RichStory = {
       body: "Samma fraktala front dyker upp i Newton-metodens bäcken för rötterna till ett kubiskt polynom, i långtidsintegrationer av planeterna och i det «läckande» fasrummet hos kaotiska biljarder. Hsus cell-mapping-metod producerar dessa bäcken på löpande band. Där attraktorer konkurrerar tenderar deras gränser att växa Wada.",
     },
   ],
+  closingPretitle: "Utmaningen",
   closingTitle: "Hitta Wada-gränsen.",
   closingBody:
     "Utforskaren låter dig ändra magnetstyrka, dämpning, pendelhöjd över plattan och rutnätets upplösning — och se fraktalen skärpas i realtid.",
@@ -713,7 +721,7 @@ const no: RichStory = {
     {
       pretitle: "Del 01 · Fysikken",
       title: "Newton, magneter, litt friksjon",
-      body: "En liten jernlodd henger over en plate, fri til å svinge i planet. Tre magneter trekker i den med en horisontal kraftkomponent som skalerer som 1/(r² + h²)^(3/2) — nær kubisk når horisontalavstanden r er stor sammenlignet med høyden h over platen, mildere i nærfeltet; en svak fjær drar den tilbake til midten; luft tapper energien. Bevegelsesligningene er rene og deterministiske — bare startpunktet er fritt.",
+      body: "Et lite jernlodd henger over en plate, fritt til å svinge i planet. Hver av de tre magnetene trekker i det med en kraft k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2), slik at den horisontale størrelsen er k·r/(r² + h²)^(3/2), der r er den horisontale avstanden til magneten: i fjernfeltet (r mye større enn høyden h over platen) avtar den som 1/r² (invers kvadratisk), mens h²-leddet demper tiltrekningen i nærfeltet. En svak fjær drar det tilbake til midten; luft tapper energien. Bevegelsesligningene er rene og deterministiske, bare startpunktet er fritt.",
     },
     {
       pretitle: "Del 02 · Deterministisk kaos",
@@ -733,7 +741,7 @@ const no: RichStory = {
     {
       pretitle: "Del 05 · Yoneyama, 1917",
       title: "En topologisk kuriositet som kaos-tiden væpnet opp",
-      body: "Den første Wada-konstruksjonen var en topologisk smakebit fra Kunizō Yoneyama i 1917: tre «sjøer» på en øy, hver graver kanaler så fine at hvert landpunkt ender på alle tre bredder. I sytti år forble det en kuriositet. Så myntet Kennedy og Yorke i 1991 begrepet Wada-bekken for kaotisk dynamikk (opprinnelig for Hénon-Heiles-systemet); Aguirre, Vallejo og Sanjuán viste egenskapen eksplisitt for den magnetiske pendelen tidlig på 2000-tallet — og kaosteorien hadde sitt første konkrete Wada-bekken i et bordeksperiment.",
+      body: "Den første Wada-konstruksjonen var en topologisk smakebit fra Kunizō Yoneyama i 1917: tre «sjøer» på en øy, hver graver kanaler så fine at hvert landpunkt ender på alle tre bredder. I sytti år forble det en kuriositet. Så, i 1991, myntet Kennedy og Yorke begrepet Wada-bekken for kaotisk dynamikk, ut fra abstrakte dynamiske eksempler; et tiår senere viste Aguirre, Vallejo og Sanjuán at Hénon-Heiles-systemet bærer Wada-bekken (2001), og Daza med kolleger bekreftet siden den magnetiske pendelen som et Wada-system. Kaosteorien hadde sin fraktal på bordet.",
     },
     {
       pretitle: "Del 06 · Forbindelser",
@@ -741,6 +749,7 @@ const no: RichStory = {
       body: "Den samme fraktale fronten dukker opp i Newton-metodens bekken for røttene til et tredjegradspolynom, i langtidsintegrasjoner av planetene og i det «lekke» faserommet til kaotiske biljarder. Hsus cellekartlegging produserer slike bekken i serie. Der attraktorer konkurrerer, vokser grensene gjerne Wada.",
     },
   ],
+  closingPretitle: "Utfordringen",
   closingTitle: "Finn Wada-grensen.",
   closingBody:
     "Utforskeren lar deg endre magnetstyrke, demping, pendelhøyde over platen og rutenettets oppløsning — og se fraktalen skjerpe seg i sanntid.",
@@ -780,7 +789,7 @@ export default function MagpendulumStory() {
       bgAccent="bg-signal-coral/10"
       hoverAccent="hover:bg-signal-coral/20"
       gradient="from-signal-coral/10"
-      formulaBadge="m·p̈ = −Σᵢ kᵢ (p − mᵢ) / r³ − γ·ṗ − ω²·p"
+      formulaBadge="p̈ = −Σᵢ kᵢ (p − mᵢ) / r³ − γ·ṗ − ω²·p"
       formulaLatex={
         "\\ddot{\\vec p} = -\\sum_i k_i \\dfrac{\\vec p - \\vec m_i}{|\\vec p - \\vec m_i|^3} - \\gamma \\dot{\\vec p} - \\omega^2 \\vec p"
       }
@@ -877,7 +886,7 @@ export default function MagpendulumStory() {
       <Reveal>
         <section className="glass hairline mx-auto mb-16 max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-            {story.encounter.pretitle}
+            {story.closingPretitle}
           </div>
           <h2 className="math-italic shimmer-text text-3xl leading-tight md:text-5xl">
             {story.closingTitle}

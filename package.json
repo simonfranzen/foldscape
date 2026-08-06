@@ -14,6 +14,7 @@
     "format": "prettier --write \"./app/**/*.{ts,tsx,css}\" \"./components/**/*.{ts,tsx}\" \"./lib/**/*.{ts,tsx}\" \"./tests/**/*.{ts,tsx}\" \"./*.{json,md,mjs,ts}\"",
     "format:check": "prettier --check \"./app/**/*.{ts,tsx,css}\" \"./components/**/*.{ts,tsx}\" \"./lib/**/*.{ts,tsx}\" \"./tests/**/*.{ts,tsx}\" \"./*.{json,md,mjs,ts}\"",
     "video:vo": "tsx --env-file=.env.local video/scripts/generate-vo.ts",
+    "video:tts-test": "tsx --env-file=.env.local video/scripts/tts-test.ts",
     "video:studio": "remotion studio video/src/index.ts",
     "video:render": "remotion render video/src/index.ts"
   },

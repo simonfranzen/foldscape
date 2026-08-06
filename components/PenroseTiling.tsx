@@ -5,14 +5,15 @@ import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
 // Inline Penrose tiling renderer for the story page. Uses Robinson-triangle
-// deflation of the "sun" seed to produce a kite + dart P2 tiling. We pair
-// adjacent half-tiles back into full kites and darts for rendering, and
-// expose only the inflation depth as a control.
+// deflation of the "sun" seed to produce the P3 (thin + thick rhombus) tiling.
+// We render the half-rhombus triangles directly (hiding the internal
+// symmetry-axis seam) and expose only the deflation depth as a control.
 //
 // The maths follows the classic Robinson-triangle formulation:
-//   type 0 (red, A=36°) — half of a KITE
-//   type 1 (blue, A=108°) — half of a DART
-// Deflation rules use the golden ratio φ to subdivide each triangle.
+//   type 0 (apex 36°): half of a THIN  rhombus (angles 36/144)
+//   type 1 (apex 108°): half of a THICK rhombus (angles 72/108)
+// Deflation subdivides every triangle by the golden ratio φ. Thick rhombi
+// outnumber thin ones by φ, so the thick/thin count ratio converges to φ.
 
 const PHI = (1 + Math.sqrt(5)) / 2;
 const INV_PHI = 1 / PHI;
@@ -85,8 +86,8 @@ interface Props {
   caption: string;
   depthLabel: string;
   tilesLabel: (n: number) => string;
-  kiteLabel: string;
-  dartLabel: string;
+  thickLabel: string;
+  thinLabel: string;
   hint: string;
 }
 
@@ -94,8 +95,8 @@ export function PenroseTiling({
   caption,
   depthLabel,
   tilesLabel,
-  kiteLabel,
-  dartLabel,
+  thickLabel,
+  thinLabel,
   hint,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -105,14 +106,14 @@ export function PenroseTiling({
   const tris = useMemo(() => buildTiling(depth), [depth]);
 
   const counts = useMemo(() => {
-    let kites = 0;
-    let darts = 0;
+    let thin = 0; // type 0 → thin rhombus (36/144)
+    let thick = 0; // type 1 → thick rhombus (72/108)
     for (const tr of tris) {
-      if (tr.t === 0) kites++;
-      else darts++;
+      if (tr.t === 0) thin++;
+      else thick++;
     }
-    // Two half-tiles = one full tile. Render gives back rounded full-tile counts.
-    return { kites: Math.round(kites / 2), darts: Math.round(darts / 2) };
+    // Two half-rhombi = one full rhombus. Render gives back rounded full counts.
+    return { thick: Math.round(thick / 2), thin: Math.round(thin / 2) };
   }, [tris]);
 
   useEffect(() => {
@@ -139,12 +140,12 @@ export function PenroseTiling({
       const px = (p: C) => cx + p.re * scale;
       const py = (p: C) => cy - p.im * scale;
 
-      // Fill the half-triangles (they tile cleanly even before pairing).
-      // type 0 = kite halves (amber), type 1 = dart halves (violet).
-      const KITE_FILL = "rgba(255, 209, 102, 0.32)";
-      const KITE_STROKE = "rgba(255, 209, 102, 0.90)";
-      const DART_FILL = "rgba(179, 136, 255, 0.36)";
-      const DART_STROKE = "rgba(179, 136, 255, 0.95)";
+      // Fill the half-rhombi (they tile cleanly even before pairing).
+      // type 0 = thin-rhombus halves (amber), type 1 = thick-rhombus halves (violet).
+      const THIN_FILL = "rgba(255, 209, 102, 0.32)";
+      const THIN_STROKE = "rgba(255, 209, 102, 0.90)";
+      const THICK_FILL = "rgba(179, 136, 255, 0.36)";
+      const THICK_STROKE = "rgba(179, 136, 255, 0.95)";
 
       // Pass 1: fills
       for (const tr of tris) {
@@ -153,16 +154,16 @@ export function PenroseTiling({
         ctx.lineTo(px(tr.b), py(tr.b));
         ctx.lineTo(px(tr.c), py(tr.c));
         ctx.closePath();
-        ctx.fillStyle = tr.t === 0 ? KITE_FILL : DART_FILL;
+        ctx.fillStyle = tr.t === 0 ? THIN_FILL : THICK_FILL;
         ctx.fill();
       }
 
-      // Pass 2: outlines (only the two long sides of each half-triangle,
-      // so the internal symmetry-axis seams don't get drawn — that gives
-      // us the visual look of full kites + darts without the pairing logic).
+      // Pass 2: outlines (only the two rhombus sides of each half, so the
+      // internal symmetry-axis seams aren't drawn: that gives the visual
+      // look of full rhombi without a separate pairing pass).
       ctx.lineWidth = Math.max(0.5, Math.min(1.4, 1.6 - depth * 0.15));
       for (const tr of tris) {
-        ctx.strokeStyle = tr.t === 0 ? KITE_STROKE : DART_STROKE;
+        ctx.strokeStyle = tr.t === 0 ? THIN_STROKE : THICK_STROKE;
         ctx.beginPath();
         ctx.moveTo(px(tr.a), py(tr.a));
         ctx.lineTo(px(tr.b), py(tr.b));
@@ -193,7 +194,12 @@ export function PenroseTiling({
 
       <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-[1fr_220px]">
         <div className="hairline mx-auto aspect-square w-full max-w-[360px] overflow-hidden rounded-xl border bg-ink-950">
-          <canvas ref={canvasRef} className="block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            className="block h-full w-full"
+            role="img"
+            aria-label={`${caption}, ${tilesLabel(tris.length)}`}
+          />
         </div>
 
         <div className="space-y-4">
@@ -213,22 +219,23 @@ export function PenroseTiling({
               value={depth}
               onChange={(e) => setDepth(parseInt(e.target.value, 10))}
               className="w-full accent-signal-amber"
+              aria-label={depthLabel}
             />
           </div>
 
           <div className="hairline space-y-1 rounded-md border bg-ink-950/60 p-3 font-mono text-[11px]">
             <div className="flex items-center justify-between">
-              <span className="text-signal-amber">▰ {kiteLabel}</span>
-              <span className="text-ink-200">{counts.kites}</span>
+              <span className="text-signal-violet">▰ {thickLabel}</span>
+              <span className="text-ink-200">{counts.thick}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-signal-violet">▰ {dartLabel}</span>
-              <span className="text-ink-200">{counts.darts}</span>
+              <span className="text-signal-amber">▰ {thinLabel}</span>
+              <span className="text-ink-200">{counts.thin}</span>
             </div>
             <div className="mt-2 flex items-center justify-between border-t border-ink-700/40 pt-2">
-              <span className="text-ink-400">kites / darts</span>
+              <span className="text-ink-400">thick / thin</span>
               <span className="text-signal-amber">
-                {counts.darts > 0 ? (counts.kites / counts.darts).toFixed(4) : "—"}
+                {counts.thin > 0 ? (counts.thick / counts.thin).toFixed(4) : "—"}
               </span>
             </div>
             <div className="flex items-center justify-between text-ink-500">

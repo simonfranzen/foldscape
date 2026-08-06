@@ -105,21 +105,22 @@ export function CardioidLightDemo({ caption, rayCountLabel, envelopeLabel, hint 
         ctx.stroke();
       }
 
-      // Cardioid envelope: in polar coordinates centred at the source, the
-      // catacaustic is r(θ) = R(1 − cos θ), opening away from the source.
-      // (Standard result for point source on a reflecting circle.) The cusp
-      // sits at the source, the far tip on the opposite wall at distance 2R.
+      // Cardioid envelope: the catacaustic of a circle of radius R with a
+      // point source on the rim is z(t) = R((2/3)e^{it} + (1/3)e^{2it}),
+      // centred at the cup centre (cx, cy). Its smooth far tip is at the
+      // source (t = 0 → (cx + R, cy)); its cusp sits inside the cup at
+      // (cx − R/3, cy), a third of a radius past the centre, pointing away
+      // from the light. The whole curve spans only 4R/3, never reaching the
+      // opposite wall — and it is tangent to every reflected chord above.
       if (showEnvelope) {
         ctx.strokeStyle = palette.signal.amber;
         ctx.lineWidth = 2.2 * dpr;
         ctx.beginPath();
         const steps = 360;
         for (let i = 0; i <= steps; i++) {
-          const theta = (i / steps) * Math.PI * 2;
-          const r = R * (1 - Math.cos(theta));
-          // Source at (sx, sy); the cardioid opens toward −x (into the cup).
-          const px = sx + r * Math.cos(theta + Math.PI);
-          const py = sy + r * Math.sin(theta + Math.PI);
+          const t = (i / steps) * Math.PI * 2;
+          const px = cx + R * ((2 / 3) * Math.cos(t) + (1 / 3) * Math.cos(2 * t));
+          const py = cy + R * ((2 / 3) * Math.sin(t) + (1 / 3) * Math.sin(2 * t));
           if (i === 0) ctx.moveTo(px, py);
           else ctx.lineTo(px, py);
         }
@@ -170,6 +171,7 @@ export function CardioidLightDemo({ caption, rayCountLabel, envelopeLabel, hint 
               step={2}
               value={rays}
               onChange={(e) => setRays(Number(e.target.value))}
+              aria-label={rayCountLabel}
               className="w-full accent-signal-amber"
             />
           </div>

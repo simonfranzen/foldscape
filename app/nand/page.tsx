@@ -49,6 +49,8 @@ type RichStory = {
       countOne: string;
       countN: (n: number) => string;
       description: { NOT: string; AND: string; OR: string; XOR: string };
+      // Accessible name for the whole circuit SVG (localized per gate + count).
+      circuit: (target: string, n: number) => string;
     };
   };
   intuitionLabel: string;
@@ -70,6 +72,8 @@ type RichStory = {
   otherBody: string;
   otherFormulaNor: string;
   otherFormulaNand: string;
+  otherCardNand: string;
+  otherCardNor: string;
   closingPretitle: string;
   closingTitle: string;
   closingBody: string;
@@ -154,6 +158,7 @@ const en: RichStory = {
       xor: "XOR",
       countOne: "1 NAND gate.",
       countN: (n: number) => `${n} NAND gates.`,
+      circuit: (target, n) => `Circuit: ${target} built from ${n} NAND gate${n > 1 ? "s" : ""}`,
       description: {
         NOT: "Tie both inputs of a single NAND to a.",
         AND: "NAND, then NAND-with-tied-inputs (= NOT). Two gates.",
@@ -193,7 +198,11 @@ const en: RichStory = {
     { gate: "NOT", transistors: 2, note: "1 PMOS + 1 NMOS (CMOS inverter)" },
     { gate: "AND", transistors: 6, note: "NAND + inverter" },
     { gate: "OR", transistors: 6, note: "NOR + inverter" },
-    { gate: "XOR", transistors: 12, note: "typically 4 NANDs, or pass-transistor tricks" },
+    {
+      gate: "XOR",
+      transistors: 12,
+      note: "complex-gate (AOI) design; 16 as 4 NANDs, fewer with pass-transistor tricks",
+    },
   ],
   hardwareHead: { gate: "gate", t: "transistors", note: "build" },
   hardwareFoot:
@@ -203,6 +212,8 @@ const en: RichStory = {
     "NAND and NOR are the only binary Boolean operators that are each, on their own, functionally complete. NOR was first noted by Charles Sanders Peirce in a manuscript dated 1880 (published posthumously). NAND was published by Henry Sheffer in 1913, who showed it could replace the entire system of Principia Mathematica's primitives. Russell and Whitehead added a note about it in the second edition.",
   otherFormulaNor: "a ↓ b  =  ¬(a ∨ b)",
   otherFormulaNand: "a ↑ b  =  ¬(a ∧ b)",
+  otherCardNand: "NAND · the chip's choice",
+  otherCardNor: "NOR · Apollo's choice",
   closingPretitle: "Take it further",
   closingTitle: "Open the Builder.",
   closingBody:
@@ -288,6 +299,7 @@ const de: RichStory = {
       xor: "XOR",
       countOne: "1 NAND-Gatter.",
       countN: (n: number) => `${n} NAND-Gatter.`,
+      circuit: (target, n) => `Schaltung: ${target} aus ${n} NAND-Gatter${n > 1 ? "n" : ""}`,
       description: {
         NOT: "Beide Eingänge eines einzigen NAND auf a verbinden.",
         AND: "NAND, dann NAND mit gekoppelten Eingängen (= NOT). Zwei Gatter.",
@@ -331,7 +343,11 @@ const de: RichStory = {
     { gate: "NOT", transistors: 2, note: "1 PMOS + 1 NMOS (CMOS-Inverter)" },
     { gate: "AND", transistors: 6, note: "NAND + Inverter" },
     { gate: "OR", transistors: 6, note: "NOR + Inverter" },
-    { gate: "XOR", transistors: 12, note: "meist 4 NANDs, oder Pass-Transistor-Tricks" },
+    {
+      gate: "XOR",
+      transistors: 12,
+      note: "Complex-Gate-Design (AOI); 16 als 4 NANDs, weniger mit Pass-Transistor-Tricks",
+    },
   ],
   hardwareHead: { gate: "Gatter", t: "Transistoren", note: "Aufbau" },
   hardwareFoot:
@@ -341,6 +357,8 @@ const de: RichStory = {
     "NAND und NOR sind die einzigen binären booleschen Operatoren, die jeder für sich allein funktional vollständig sind. NOR wurde zuerst von Charles Sanders Peirce in einem Manuskript von 1880 notiert (posthum veröffentlicht). NAND wurde 1913 von Henry Sheffer publiziert; er zeigte, dass es das gesamte Primitivsystem der Principia Mathematica ersetzen kann. Russell und Whitehead fügten in der zweiten Auflage eine Notiz dazu an.",
   otherFormulaNor: "a ↓ b  =  ¬(a ∨ b)",
   otherFormulaNand: "a ↑ b  =  ¬(a ∧ b)",
+  otherCardNand: "NAND · die Wahl des Chips",
+  otherCardNor: "NOR · die Wahl von Apollo",
   closingPretitle: "Geh weiter",
   closingTitle: "Öffne den Builder.",
   closingBody:
@@ -426,6 +444,7 @@ const es: RichStory = {
       xor: "XOR",
       countOne: "1 puerta NAND.",
       countN: (n: number) => `${n} puertas NAND.`,
+      circuit: (target, n) => `Circuito: ${target} construido con ${n} puerta${n > 1 ? "s" : ""} NAND`,
       description: {
         NOT: "Une las dos entradas de una sola NAND a la señal a.",
         AND: "NAND, después NAND con entradas unidas (= NOT). Dos puertas.",
@@ -465,7 +484,11 @@ const es: RichStory = {
     { gate: "NOT", transistors: 2, note: "1 PMOS + 1 NMOS (inversor CMOS)" },
     { gate: "AND", transistors: 6, note: "NAND + inversor" },
     { gate: "OR", transistors: 6, note: "NOR + inversor" },
-    { gate: "XOR", transistors: 12, note: "típicamente 4 NAND, o trucos de pass-transistor" },
+    {
+      gate: "XOR",
+      transistors: 12,
+      note: "diseño de puerta compleja (AOI); 16 como 4 NAND, menos con trucos de pass-transistor",
+    },
   ],
   hardwareHead: { gate: "puerta", t: "transistores", note: "construcción" },
   hardwareFoot:
@@ -475,6 +498,8 @@ const es: RichStory = {
     "NAND y NOR son los únicos operadores booleanos binarios funcionalmente completos por sí solos. NOR fue notado por primera vez por Charles Sanders Peirce en un manuscrito de 1880 (publicado póstumamente). NAND fue publicado por Henry Sheffer en 1913, quien mostró que podía reemplazar todo el sistema de primitivas de Principia Mathematica. Russell y Whitehead añadieron una nota al respecto en la segunda edición.",
   otherFormulaNor: "a ↓ b  =  ¬(a ∨ b)",
   otherFormulaNand: "a ↑ b  =  ¬(a ∧ b)",
+  otherCardNand: "NAND · la elección del chip",
+  otherCardNor: "NOR · la elección del Apollo",
   closingPretitle: "Ve más lejos",
   closingTitle: "Abre el Builder.",
   closingBody:
@@ -561,6 +586,7 @@ const fr: RichStory = {
       xor: "XOR",
       countOne: "1 porte NAND.",
       countN: (n: number) => `${n} portes NAND.`,
+      circuit: (target, n) => `Circuit : ${target} construit avec ${n} porte${n > 1 ? "s" : ""} NAND`,
       description: {
         NOT: "Relie les deux entrées d'une seule NAND au signal a.",
         AND: "NAND, puis NAND à entrées reliées (= NOT). Deux portes.",
@@ -600,7 +626,11 @@ const fr: RichStory = {
     { gate: "NOT", transistors: 2, note: "1 PMOS + 1 NMOS (inverseur CMOS)" },
     { gate: "AND", transistors: 6, note: "NAND + inverseur" },
     { gate: "OR", transistors: 6, note: "NOR + inverseur" },
-    { gate: "XOR", transistors: 12, note: "typiquement 4 NAND, ou astuces pass-transistor" },
+    {
+      gate: "XOR",
+      transistors: 12,
+      note: "conception à porte complexe (AOI); 16 en 4 NAND, moins avec des astuces pass-transistor",
+    },
   ],
   hardwareHead: { gate: "porte", t: "transistors", note: "construction" },
   hardwareFoot:
@@ -610,6 +640,8 @@ const fr: RichStory = {
     "NAND et NOR sont les deux seuls opérateurs booléens binaires fonctionnellement complets à eux seuls. NOR fut d'abord noté par Charles Sanders Peirce dans un manuscrit de 1880 (publié à titre posthume). NAND fut publié par Henry Sheffer en 1913, qui montra qu'il pouvait remplacer tout le système de primitives des Principia Mathematica. Russell et Whitehead ajoutèrent une note à ce sujet dans la seconde édition.",
   otherFormulaNor: "a ↓ b  =  ¬(a ∨ b)",
   otherFormulaNand: "a ↑ b  =  ¬(a ∧ b)",
+  otherCardNand: "NAND · le choix de la puce",
+  otherCardNor: "NOR · le choix d'Apollo",
   closingPretitle: "Aller plus loin",
   closingTitle: "Ouvre le Builder.",
   closingBody:
@@ -695,6 +727,7 @@ const it: RichStory = {
       xor: "XOR",
       countOne: "1 porta NAND.",
       countN: (n: number) => `${n} porte NAND.`,
+      circuit: (target, n) => `Circuito: ${target} costruito con ${n} ${n > 1 ? "porte" : "porta"} NAND`,
       description: {
         NOT: "Unisci i due ingressi di una sola NAND al segnale a.",
         AND: "NAND, poi NAND con ingressi uniti (= NOT). Due porte.",
@@ -734,7 +767,11 @@ const it: RichStory = {
     { gate: "NOT", transistors: 2, note: "1 PMOS + 1 NMOS (inverter CMOS)" },
     { gate: "AND", transistors: 6, note: "NAND + inverter" },
     { gate: "OR", transistors: 6, note: "NOR + inverter" },
-    { gate: "XOR", transistors: 12, note: "tipicamente 4 NAND, o trucchi a pass-transistor" },
+    {
+      gate: "XOR",
+      transistors: 12,
+      note: "progetto a porta complessa (AOI); 16 come 4 NAND, meno con trucchi a pass-transistor",
+    },
   ],
   hardwareHead: { gate: "porta", t: "transistor", note: "costruzione" },
   hardwareFoot:
@@ -744,6 +781,8 @@ const it: RichStory = {
     "NAND e NOR sono i due soli operatori booleani binari funzionalmente completi da soli. NOR fu notato per la prima volta da Charles Sanders Peirce in un manoscritto del 1880 (pubblicato postumo). NAND fu pubblicato da Henry Sheffer nel 1913, che mostrò come potesse sostituire l'intero sistema di primitive dei Principia Mathematica. Russell e Whitehead aggiunsero una nota in proposito nella seconda edizione.",
   otherFormulaNor: "a ↓ b  =  ¬(a ∨ b)",
   otherFormulaNand: "a ↑ b  =  ¬(a ∧ b)",
+  otherCardNand: "NAND · la scelta del chip",
+  otherCardNor: "NOR · la scelta dell'Apollo",
   closingPretitle: "Vai oltre",
   closingTitle: "Apri il Builder.",
   closingBody:
@@ -829,6 +868,7 @@ const pt: RichStory = {
       xor: "XOR",
       countOne: "1 porta NAND.",
       countN: (n: number) => `${n} portas NAND.`,
+      circuit: (target, n) => `Circuito: ${target} construído com ${n} porta${n > 1 ? "s" : ""} NAND`,
       description: {
         NOT: "Liga as duas entradas de uma única NAND ao sinal a.",
         AND: "NAND, depois NAND com entradas unidas (= NOT). Duas portas.",
@@ -868,7 +908,11 @@ const pt: RichStory = {
     { gate: "NOT", transistors: 2, note: "1 PMOS + 1 NMOS (inversor CMOS)" },
     { gate: "AND", transistors: 6, note: "NAND + inversor" },
     { gate: "OR", transistors: 6, note: "NOR + inversor" },
-    { gate: "XOR", transistors: 12, note: "tipicamente 4 NAND, ou truques de pass-transistor" },
+    {
+      gate: "XOR",
+      transistors: 12,
+      note: "design de porta complexa (AOI); 16 como 4 NAND, menos com truques de pass-transistor",
+    },
   ],
   hardwareHead: { gate: "porta", t: "transístores", note: "construção" },
   hardwareFoot:
@@ -878,6 +922,8 @@ const pt: RichStory = {
     "NAND e NOR são os únicos dois operadores booleanos binários funcionalmente completos por si só. NOR foi notado pela primeira vez por Charles Sanders Peirce num manuscrito de 1880 (publicado postumamente). NAND foi publicado por Henry Sheffer em 1913, que mostrou poder substituir todo o sistema de primitivas dos Principia Mathematica. Russell e Whitehead acrescentaram uma nota a respeito na segunda edição.",
   otherFormulaNor: "a ↓ b  =  ¬(a ∨ b)",
   otherFormulaNand: "a ↑ b  =  ¬(a ∧ b)",
+  otherCardNand: "NAND · a escolha do chip",
+  otherCardNor: "NOR · a escolha do Apollo",
   closingPretitle: "Vai mais longe",
   closingTitle: "Abre o Builder.",
   closingBody:
@@ -912,7 +958,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Den enda grinden",
       title: "AND, men omvänt",
-      body: "Sheffers strack a ↑ b tar två binära ingångar och ger en binär utgång. Den ger 1 i tre av de fyra möjliga fallen — endast när båda ingångarna är 1 ger den 0. Det är bokstavligen definitionen: a ↑ b = ¬(a ∧ b). Den lilla pilen kallas ibland Sheffer-strack, ibland ritas den som ett streck (a | b). Det är samma operation i alla notationer.",
+      body: "Sheffers streck a ↑ b tar två binära ingångar och ger en binär utgång. Den ger 1 i tre av de fyra möjliga fallen: endast när båda ingångarna är 1 ger den 0. Det är bokstavligen definitionen: a ↑ b = ¬(a ∧ b). Den lilla pilen kallas ibland Sheffer-streck, ibland ritas den som ett streck (a | b). Det är samma operation i alla notationer.",
     },
     {
       pretitle: "Avsnitt 02 · Bygga NOT",
@@ -963,6 +1009,7 @@ const sv: RichStory = {
       xor: "XOR",
       countOne: "1 NAND-grind.",
       countN: (n: number) => `${n} NAND-grindar.`,
+      circuit: (target, n) => `Krets: ${target} byggd av ${n} NAND-grind${n > 1 ? "ar" : ""}`,
       description: {
         NOT: "Koppla båda ingångarna på en enda NAND till signalen a.",
         AND: "NAND, sedan NAND med kopplade ingångar (= NOT). Två grindar.",
@@ -1002,7 +1049,11 @@ const sv: RichStory = {
     { gate: "NOT", transistors: 2, note: "1 PMOS + 1 NMOS (CMOS-inverterare)" },
     { gate: "AND", transistors: 6, note: "NAND + inverterare" },
     { gate: "OR", transistors: 6, note: "NOR + inverterare" },
-    { gate: "XOR", transistors: 12, note: "vanligen 4 NAND, eller pass-transistor-tricks" },
+    {
+      gate: "XOR",
+      transistors: 12,
+      note: "complex-gate-design (AOI); 16 som 4 NAND, färre med pass-transistor-tricks",
+    },
   ],
   hardwareHead: { gate: "grind", t: "transistorer", note: "konstruktion" },
   hardwareFoot:
@@ -1012,6 +1063,8 @@ const sv: RichStory = {
     "NAND och NOR är de enda två binära booleska operatorer som var och en på egen hand är funktionellt fullständig. NOR noterades först av Charles Sanders Peirce i ett manuskript från 1880 (postumt publicerat). NAND publicerades av Henry Sheffer 1913, som visade att det kunde ersätta hela primitivsystemet i Principia Mathematica. Russell och Whitehead lade till en not om det i andra upplagan.",
   otherFormulaNor: "a ↓ b  =  ¬(a ∨ b)",
   otherFormulaNand: "a ↑ b  =  ¬(a ∧ b)",
+  otherCardNand: "NAND · chipets val",
+  otherCardNor: "NOR · Apollos val",
   closingPretitle: "Gå vidare",
   closingTitle: "Öppna Byggaren.",
   closingBody:
@@ -1097,6 +1150,7 @@ const no: RichStory = {
       xor: "XOR",
       countOne: "1 NAND-port.",
       countN: (n: number) => `${n} NAND-porter.`,
+      circuit: (target, n) => `Krets: ${target} bygd av ${n} NAND-port${n > 1 ? "er" : ""}`,
       description: {
         NOT: "Koble begge inngangene på én enkelt NAND til signalet a.",
         AND: "NAND, så NAND med koblede innganger (= NOT). To porter.",
@@ -1136,7 +1190,11 @@ const no: RichStory = {
     { gate: "NOT", transistors: 2, note: "1 PMOS + 1 NMOS (CMOS-inverter)" },
     { gate: "AND", transistors: 6, note: "NAND + inverter" },
     { gate: "OR", transistors: 6, note: "NOR + inverter" },
-    { gate: "XOR", transistors: 12, note: "typisk 4 NAND, eller pass-transistor-triks" },
+    {
+      gate: "XOR",
+      transistors: 12,
+      note: "complex-gate-design (AOI); 16 som 4 NAND, færre med pass-transistor-triks",
+    },
   ],
   hardwareHead: { gate: "port", t: "transistorer", note: "konstruksjon" },
   hardwareFoot:
@@ -1146,6 +1204,8 @@ const no: RichStory = {
     "NAND og NOR er de eneste to binære boolske operatorene som hver for seg alene er funksjonelt fullstendige. NOR ble først notert av Charles Sanders Peirce i et manuskript fra 1880 (publisert posthumt). NAND ble publisert av Henry Sheffer i 1913, som viste at det kunne erstatte hele primitivsystemet i Principia Mathematica. Russell og Whitehead la til en merknad om det i andre utgave.",
   otherFormulaNor: "a ↓ b  =  ¬(a ∨ b)",
   otherFormulaNand: "a ↑ b  =  ¬(a ∧ b)",
+  otherCardNand: "NAND · brikkens valg",
+  otherCardNor: "NOR · Apollos valg",
   closingPretitle: "Gå videre",
   closingTitle: "Åpne Byggeren.",
   closingBody:
@@ -1447,7 +1507,7 @@ export default function NandStory() {
               <div className="math-italic text-2xl text-ink-100 md:text-3xl">
                 {story.otherFormulaNand}
               </div>
-              <div className="text-xs text-ink-300">NAND · the chip's choice</div>
+              <div className="text-xs text-ink-300">{story.otherCardNand}</div>
             </div>
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6 text-center">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
@@ -1456,7 +1516,7 @@ export default function NandStory() {
               <div className="math-italic text-2xl text-ink-100 md:text-3xl">
                 {story.otherFormulaNor}
               </div>
-              <div className="text-xs text-ink-300">NOR · Apollo's choice</div>
+              <div className="text-xs text-ink-300">{story.otherCardNor}</div>
             </div>
           </div>
         </Reveal>

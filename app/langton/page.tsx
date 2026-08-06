@@ -5,7 +5,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { palette } from "@/lib/visual/palette";
 import { StoryPageShell, StoryCard } from "@/components/StoryPageShell";
 import { Reveal } from "@/components/Reveal";
-import { LangtonMiniRunner } from "@/components/LangtonMiniRunner";
+import { LangtonMiniRunner, type RunnerLabels } from "@/components/LangtonMiniRunner";
 import type { Locale } from "@/lib/i18n/types";
 import type { StoryPage } from "@/lib/i18n/stories";
 
@@ -80,10 +80,18 @@ type RichStory = {
   runnerLabel: string;
   runnerCaption: string;
   runnerHint: string;
+  hintLabel: string;
+  liveSuffix: string;
+  runItYourself: string;
+  // Legend rows under the mini runner. Order is fixed: black cells, ant, empty.
+  legend: { black: RunnerLegendRow; ant: RunnerLegendRow; empty: RunnerLegendRow };
+  runnerUi: RunnerLabels;
   closingTitle: string;
   closingBody: string;
   ctaLabel: string;
 };
+
+type RunnerLegendRow = { key: string; desc: string };
 
 const en: RichStory = {
   page: {
@@ -111,7 +119,7 @@ const en: RichStory = {
       {
         label: "03",
         title: "Why it matters",
-        body: "Two lines of code on a napkin secretly contain universal computation — Gajardo, Moreira and Goles proved that generalised ants can simulate any Turing machine. Emergence at its purest, no parameters required.",
+        body: "Two lines of code on a napkin secretly contain universal computation. Gajardo, Moreira and Goles proved the classic two-rule ant itself computes any boolean circuit encoded in its starting grid, so the plain RL ant is already computation-universal. Emergence at its purest, no parameters required.",
       },
     ],
     tryIt: "Below: watch the rule run, step her by hand, then jump to the full Explorer.",
@@ -145,7 +153,7 @@ const en: RichStory = {
     {
       pretitle: "Section 06 · Generalisations",
       title: "n colours, n turns, every possible computer",
-      body: "Replace «two colours» with «n colours» and give each one its own R/L rule. Most of these generalised ants still produce highways, spirals, filled regions. A subset, identified by Gajardo, Moreira and Goles in 2002, is Turing-complete: you can encode any program into the starting grid and the ant's path is its execution.",
+      body: "Replace «two colours» with «n colours» and give each one its own R/L rule. Most of these generalised ants still produce highways, triangles, filled regions. Universality does not even need the extra colours: Gajardo, Moreira and Goles showed in 2002 that the original two-rule ant already runs any boolean circuit encoded in its starting grid, so its path is a computation. The n-colour family widens the zoo of shapes, not the computational power.",
     },
   ],
   rulesGrid: {
@@ -160,11 +168,29 @@ const en: RichStory = {
     { range: "≥ 10 000", phase: "Highway", note: "104-step periodic drift, forever" },
   ],
   highwayCaption: "Schematic · the highway drifts diagonally",
-  highwayDetail: "104 steps per loop · 2 cells of translation · indefinite period.",
+  highwayDetail: "104 steps per loop · 2 cells of translation · repeats forever.",
   runnerLabel: "Mini runner · classic RL ant",
   runnerCaption: "Press play. Watch chaos arrive long before the highway.",
   runnerHint:
-    "Slow the slider down to 1 and use the step button — every individual rule application becomes visible.",
+    "Slow the slider down to 1 and use the step button, every individual rule application becomes visible.",
+  hintLabel: "hint",
+  liveSuffix: "live",
+  runItYourself: "run it yourself",
+  legend: {
+    black: { key: "violet cells", desc: "black squares" },
+    ant: { key: "amber pixel", desc: "the ant" },
+    empty: { key: "empty", desc: "white squares" },
+  },
+  runnerUi: {
+    play: "Play",
+    pause: "Pause",
+    step: "step",
+    reset: "reset",
+    speed: "speed",
+    stepReadout: "step",
+    dirReadout: "dir",
+    canvasLabel: "Langton's ant simulation, classic RL rule",
+  },
   closingTitle: "Run the ant.",
   closingBody:
     "The Explorer lets you switch rule strings, change cell sizes, run millions of steps per second, and watch the highway emerge in real time.",
@@ -197,7 +223,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Zwei Zeilen Code auf einer Serviette enthalten heimlich universelle Berechnung — Gajardo, Moreira und Goles bewiesen, dass verallgemeinerte Ameisen jede Turingmaschine simulieren können. Emergenz in Reinform, ohne Parameter.",
+        body: "Zwei Zeilen Code auf einer Serviette enthalten heimlich universelle Berechnung. Gajardo, Moreira und Goles bewiesen, dass schon die klassische Zwei-Regel-Ameise selbst jede boolesche Schaltung berechnet, die man in ihr Startgitter codiert, die schlichte RL-Ameise ist also bereits berechnungsuniversell. Emergenz in Reinform, ohne Parameter.",
       },
     ],
     tryIt:
@@ -232,7 +258,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Verallgemeinerungen",
       title: "n Farben, n Drehregeln, jeder denkbare Computer",
-      body: "Ersetze «zwei Farben» durch «n Farben» und gib jeder eine eigene R/L-Regel. Die meisten dieser verallgemeinerten Ameisen erzeugen Autobahnen, Spiralen, ausgefüllte Bereiche. Eine Untergruppe, identifiziert von Gajardo, Moreira und Goles 2002, ist Turing-vollständig: jedes Programm lässt sich in das Startgitter codieren, die Bahn der Ameise ist seine Ausführung.",
+      body: "Ersetze «zwei Farben» durch «n Farben» und gib jeder eine eigene R/L-Regel. Die meisten dieser verallgemeinerten Ameisen erzeugen weiterhin Autobahnen, Dreiecke, ausgefüllte Bereiche. Universalität braucht die zusätzlichen Farben gar nicht: Gajardo, Moreira und Goles zeigten 2002, dass schon die ursprüngliche Zwei-Regel-Ameise jede boolesche Schaltung ausführt, die man in ihr Startgitter codiert, ihre Bahn ist also eine Berechnung. Die n-Farben-Familie erweitert den Formenzoo, nicht die Rechenkraft.",
     },
   ],
   rulesGrid: {
@@ -247,11 +273,29 @@ const de: RichStory = {
     { range: "≥ 10 000", phase: "Autobahn", note: "104-Schritt-Drift, für immer" },
   ],
   highwayCaption: "Schema · die Autobahn driftet diagonal",
-  highwayDetail: "104 Schritte pro Schleife · 2 Felder Translation · unbegrenzte Periode.",
+  highwayDetail: "104 Schritte pro Schleife · 2 Felder Translation · wiederholt sich endlos.",
   runnerLabel: "Mini-Lauf · klassische RL-Ameise",
   runnerCaption: "Play drücken. Sieh dem Chaos zu, lange bevor die Autobahn kommt.",
   runnerHint:
-    "Schiebe den Regler auf 1 und benutze den Step-Knopf — jede einzelne Regelanwendung wird sichtbar.",
+    "Schiebe den Regler auf 1 und benutze den Step-Knopf, jede einzelne Regelanwendung wird sichtbar.",
+  hintLabel: "Hinweis",
+  liveSuffix: "live",
+  runItYourself: "selbst ausprobieren",
+  legend: {
+    black: { key: "violette Zellen", desc: "schwarze Felder" },
+    ant: { key: "bernsteinfarbenes Pixel", desc: "die Ameise" },
+    empty: { key: "leer", desc: "weiße Felder" },
+  },
+  runnerUi: {
+    play: "Play",
+    pause: "Pause",
+    step: "Schritt",
+    reset: "Reset",
+    speed: "Tempo",
+    stepReadout: "Schritt",
+    dirReadout: "Richtung",
+    canvasLabel: "Simulation von Langtons Ameise, klassische RL-Regel",
+  },
   closingTitle: "Lass die Ameise laufen.",
   closingBody:
     "Im Explorer kannst du Regelzeichenketten wechseln, Zellgrößen ändern, Millionen Schritte pro Sekunde fahren und der Autobahn live beim Entstehen zusehen.",
@@ -284,7 +328,7 @@ const es: RichStory = {
       {
         label: "03",
         title: "Por qué importa",
-        body: "Dos líneas de código en una servilleta esconden computación universal — Gajardo, Moreira y Goles demostraron que las hormigas generalizadas simulan cualquier máquina de Turing. Emergencia en estado puro, sin parámetros.",
+        body: "Dos líneas de código en una servilleta esconden computación universal. Gajardo, Moreira y Goles demostraron que la propia hormiga clásica de dos reglas calcula cualquier circuito booleano codificado en su rejilla inicial, así que la hormiga RL simple ya es computacionalmente universal. Emergencia en estado puro, sin parámetros.",
       },
     ],
     tryIt: "Abajo: mira correr la regla, dale tú mismo un paso, luego salta al Explorador.",
@@ -318,7 +362,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 06 · Generalizaciones",
       title: "n colores, n giros, cualquier computador imaginable",
-      body: "Cambia «dos colores» por «n colores» y dale a cada uno su regla R/L. La mayoría de estas hormigas generalizadas siguen produciendo autopistas, espirales, regiones rellenas. Un subconjunto, identificado por Gajardo, Moreira y Goles en 2002, es Turing-completo: cualquier programa se codifica en la rejilla inicial y la trayectoria de la hormiga es su ejecución.",
+      body: "Cambia «dos colores» por «n colores» y dale a cada uno su regla R/L. La mayoría de estas hormigas generalizadas siguen produciendo autopistas, triángulos, regiones rellenas. La universalidad no necesita siquiera los colores extra: Gajardo, Moreira y Goles mostraron en 2002 que la hormiga original de dos reglas ya ejecuta cualquier circuito booleano codificado en su rejilla inicial, así que su trayectoria es un cálculo. La familia de n colores amplía el zoo de formas, no la potencia de cálculo.",
     },
   ],
   rulesGrid: {
@@ -333,11 +377,29 @@ const es: RichStory = {
     { range: "≥ 10 000", phase: "Autopista", note: "deriva periódica de 104 pasos, para siempre" },
   ],
   highwayCaption: "Esquema · la autopista deriva en diagonal",
-  highwayDetail: "104 pasos por vuelta · 2 casillas de traslación · período indefinido.",
+  highwayDetail: "104 pasos por vuelta · 2 casillas de traslación · se repite para siempre.",
   runnerLabel: "Mini ejecución · hormiga RL clásica",
   runnerCaption: "Pulsa play. Mira llegar el caos mucho antes que la autopista.",
   runnerHint:
-    "Baja el deslizador a 1 y usa el botón de paso — cada aplicación de la regla se vuelve visible.",
+    "Baja el deslizador a 1 y usa el botón de paso, cada aplicación de la regla se vuelve visible.",
+  hintLabel: "pista",
+  liveSuffix: "en vivo",
+  runItYourself: "pruébalo tú",
+  legend: {
+    black: { key: "celdas violeta", desc: "casillas negras" },
+    ant: { key: "píxel ámbar", desc: "la hormiga" },
+    empty: { key: "vacío", desc: "casillas blancas" },
+  },
+  runnerUi: {
+    play: "Play",
+    pause: "Pausa",
+    step: "paso",
+    reset: "reiniciar",
+    speed: "velocidad",
+    stepReadout: "paso",
+    dirReadout: "dir",
+    canvasLabel: "simulación de la hormiga de Langton, regla RL clásica",
+  },
   closingTitle: "Haz correr la hormiga.",
   closingBody:
     "El Explorador te deja cambiar cadenas de reglas, ajustar el tamaño de celda, correr millones de pasos por segundo y ver la autopista emerger en vivo.",
@@ -370,7 +432,7 @@ const fr: RichStory = {
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "Deux lignes de code sur une serviette contiennent en secret le calcul universel — Gajardo, Moreira et Goles ont prouvé que les fourmis généralisées simulent toute machine de Turing. L'émergence à l'état pur, sans paramètre.",
+        body: "Deux lignes de code sur une serviette contiennent en secret le calcul universel. Gajardo, Moreira et Goles ont prouvé que la fourmi classique à deux règles calcule elle-même tout circuit booléen encodé dans sa grille de départ, si bien que la simple fourmi RL est déjà universelle pour le calcul. L'émergence à l'état pur, sans paramètre.",
       },
     ],
     tryIt:
@@ -405,7 +467,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 06 · Généralisations",
       title: "n couleurs, n tours, tout ordinateur imaginable",
-      body: "Remplace «deux couleurs» par «n couleurs» et donne à chacune sa propre règle R/L. La plupart de ces fourmis généralisées produisent encore autoroutes, spirales, régions remplies. Un sous-ensemble, identifié par Gajardo, Moreira et Goles en 2002, est Turing-complet : tout programme s'encode dans la grille de départ et la trajectoire de la fourmi en est l'exécution.",
+      body: "Remplace «deux couleurs» par «n couleurs» et donne à chacune sa propre règle R/L. La plupart de ces fourmis généralisées produisent encore autoroutes, triangles, régions remplies. L'universalité n'a même pas besoin des couleurs supplémentaires : Gajardo, Moreira et Goles ont montré en 2002 que la fourmi d'origine à deux règles exécute déjà tout circuit booléen encodé dans sa grille de départ, si bien que sa trajectoire est un calcul. La famille à n couleurs élargit le zoo des formes, pas la puissance de calcul.",
     },
   ],
   rulesGrid: {
@@ -420,11 +482,29 @@ const fr: RichStory = {
     { range: "≥ 10 000", phase: "Autoroute", note: "dérive périodique de 104 pas, pour toujours" },
   ],
   highwayCaption: "Schéma · l'autoroute dérive en diagonale",
-  highwayDetail: "104 pas par boucle · 2 cases de translation · période indéfinie.",
+  highwayDetail: "104 pas par boucle · 2 cases de translation · se répète sans fin.",
   runnerLabel: "Mini exécution · fourmi RL classique",
   runnerCaption: "Appuie sur lecture. Regarde le chaos arriver bien avant l'autoroute.",
   runnerHint:
-    "Descends le curseur à 1 et utilise le bouton pas — chaque application de la règle devient visible.",
+    "Descends le curseur à 1 et utilise le bouton pas, chaque application de la règle devient visible.",
+  hintLabel: "astuce",
+  liveSuffix: "en direct",
+  runItYourself: "essaie toi-même",
+  legend: {
+    black: { key: "cases violettes", desc: "cases noires" },
+    ant: { key: "pixel ambre", desc: "la fourmi" },
+    empty: { key: "vide", desc: "cases blanches" },
+  },
+  runnerUi: {
+    play: "Lecture",
+    pause: "Pause",
+    step: "pas",
+    reset: "réinit",
+    speed: "vitesse",
+    stepReadout: "pas",
+    dirReadout: "dir",
+    canvasLabel: "simulation de la fourmi de Langton, règle RL classique",
+  },
   closingTitle: "Lance la fourmi.",
   closingBody:
     "L'Explorateur te permet de changer les chaînes de règles, d'ajuster la taille des cellules, de tourner à des millions de pas par seconde et de voir l'autoroute émerger en direct.",
@@ -457,7 +537,7 @@ const it: RichStory = {
       {
         label: "03",
         title: "Perché conta",
-        body: "Due righe di codice su un tovagliolo nascondono calcolo universale — Gajardo, Moreira e Goles hanno dimostrato che le formiche generalizzate simulano qualsiasi macchina di Turing. Emergenza allo stato puro, senza parametri.",
+        body: "Due righe di codice su un tovagliolo nascondono calcolo universale. Gajardo, Moreira e Goles hanno dimostrato che la stessa formica classica a due regole calcola qualunque circuito booleano codificato nella sua griglia iniziale, quindi la semplice formica RL è già universale per il calcolo. Emergenza allo stato puro, senza parametri.",
       },
     ],
     tryIt:
@@ -492,7 +572,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 06 · Generalizzazioni",
       title: "n colori, n rotazioni, ogni computer immaginabile",
-      body: "Sostituisci «due colori» con «n colori» e dai a ciascuno la propria regola R/L. La maggior parte di queste formiche generalizzate continua a produrre autostrade, spirali, regioni piene. Un sottoinsieme, individuato da Gajardo, Moreira e Goles nel 2002, è Turing-completo: qualunque programma si codifica nella griglia iniziale e la traiettoria della formica è la sua esecuzione.",
+      body: "Sostituisci «due colori» con «n colori» e dai a ciascuno la propria regola R/L. La maggior parte di queste formiche generalizzate continua a produrre autostrade, triangoli, regioni piene. L'universalità non ha nemmeno bisogno dei colori aggiuntivi: Gajardo, Moreira e Goles mostrarono nel 2002 che già la formica originale a due regole esegue qualunque circuito booleano codificato nella sua griglia iniziale, quindi la sua traiettoria è un calcolo. La famiglia a n colori amplia lo zoo delle forme, non la potenza di calcolo.",
     },
   ],
   rulesGrid: {
@@ -507,11 +587,29 @@ const it: RichStory = {
     { range: "≥ 10 000", phase: "Autostrada", note: "deriva periodica di 104 passi, per sempre" },
   ],
   highwayCaption: "Schema · l'autostrada deriva in diagonale",
-  highwayDetail: "104 passi per ciclo · 2 celle di traslazione · periodo indefinito.",
+  highwayDetail: "104 passi per ciclo · 2 celle di traslazione · si ripete all'infinito.",
   runnerLabel: "Mini esecuzione · formica RL classica",
   runnerCaption: "Premi play. Vedi arrivare il caos molto prima dell'autostrada.",
   runnerHint:
-    "Porta il cursore a 1 e usa il bottone passo — ogni singola applicazione della regola diventa visibile.",
+    "Porta il cursore a 1 e usa il bottone passo, ogni singola applicazione della regola diventa visibile.",
+  hintLabel: "suggerimento",
+  liveSuffix: "dal vivo",
+  runItYourself: "provala tu",
+  legend: {
+    black: { key: "celle viola", desc: "caselle nere" },
+    ant: { key: "pixel ambra", desc: "la formica" },
+    empty: { key: "vuoto", desc: "caselle bianche" },
+  },
+  runnerUi: {
+    play: "Play",
+    pause: "Pausa",
+    step: "passo",
+    reset: "reset",
+    speed: "velocità",
+    stepReadout: "passo",
+    dirReadout: "dir",
+    canvasLabel: "simulazione della formica di Langton, regola RL classica",
+  },
   closingTitle: "Fai correre la formica.",
   closingBody:
     "L'Esploratore ti permette di cambiare stringhe di regole, regolare la dimensione delle celle, correre milioni di passi al secondo e vedere l'autostrada emergere in diretta.",
@@ -544,7 +642,7 @@ const pt: RichStory = {
       {
         label: "03",
         title: "Porque importa",
-        body: "Duas linhas de código num guardanapo escondem computação universal — Gajardo, Moreira e Goles provaram que as formigas generalizadas simulam qualquer máquina de Turing. Emergência em estado puro, sem parâmetros.",
+        body: "Duas linhas de código num guardanapo escondem computação universal. Gajardo, Moreira e Goles provaram que a própria formiga clássica de duas regras calcula qualquer circuito booleano codificado na sua grelha inicial, portanto a simples formiga RL já é computacionalmente universal. Emergência em estado puro, sem parâmetros.",
       },
     ],
     tryIt: "Abaixo: vê a regra correr, dá-lhe tu um passo, depois salta para o Explorador.",
@@ -578,7 +676,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 06 · Generalizações",
       title: "n cores, n rotações, qualquer computador imaginável",
-      body: "Substitui «duas cores» por «n cores» e dá a cada uma a sua regra R/L. A maior parte destas formigas generalizadas continua a produzir autoestradas, espirais, regiões preenchidas. Um subconjunto, identificado por Gajardo, Moreira e Goles em 2002, é Turing-completo: qualquer programa codifica-se na grelha inicial e a trajectória da formiga é a sua execução.",
+      body: "Substitui «duas cores» por «n cores» e dá a cada uma a sua regra R/L. A maior parte destas formigas generalizadas continua a produzir autoestradas, triângulos, regiões preenchidas. A universalidade nem precisa das cores extra: Gajardo, Moreira e Goles mostraram em 2002 que já a formiga original de duas regras executa qualquer circuito booleano codificado na sua grelha inicial, portanto a sua trajectória é um cálculo. A família de n cores alarga o zoo de formas, não o poder de cálculo.",
     },
   ],
   rulesGrid: {
@@ -597,10 +695,28 @@ const pt: RichStory = {
     },
   ],
   highwayCaption: "Esquema · a autoestrada deriva em diagonal",
-  highwayDetail: "104 passos por ciclo · 2 casas de translação · período indefinido.",
+  highwayDetail: "104 passos por ciclo · 2 casas de translação · repete-se para sempre.",
   runnerLabel: "Mini execução · formiga RL clássica",
   runnerCaption: "Carrega em play. Vê o caos chegar muito antes da autoestrada.",
-  runnerHint: "Baixa o cursor para 1 e usa o botão passo — cada aplicação da regra fica visível.",
+  runnerHint: "Baixa o cursor para 1 e usa o botão passo, cada aplicação da regra fica visível.",
+  hintLabel: "dica",
+  liveSuffix: "ao vivo",
+  runItYourself: "experimenta tu",
+  legend: {
+    black: { key: "células violeta", desc: "casas pretas" },
+    ant: { key: "píxel âmbar", desc: "a formiga" },
+    empty: { key: "vazio", desc: "casas brancas" },
+  },
+  runnerUi: {
+    play: "Play",
+    pause: "Pausa",
+    step: "passo",
+    reset: "repor",
+    speed: "velocidade",
+    stepReadout: "passo",
+    dirReadout: "dir",
+    canvasLabel: "simulação da formiga de Langton, regra RL clássica",
+  },
   closingTitle: "Põe a formiga a correr.",
   closingBody:
     "O Explorador deixa-te trocar cadeias de regras, ajustar o tamanho da célula, correr milhões de passos por segundo e ver a autoestrada surgir em direto.",
@@ -633,7 +749,7 @@ const sv: RichStory = {
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "Två rader kod på en servett innehåller i hemlighet universell beräkning — Gajardo, Moreira och Goles bevisade att generaliserade myror kan simulera vilken Turingmaskin som helst. Emergens i renaste form, utan parametrar.",
+        body: "Två rader kod på en servett innehåller i hemlighet universell beräkning. Gajardo, Moreira och Goles bevisade att själva den klassiska myran med två regler beräknar vilken boolesk krets som helst som kodas i dess startrutnät, så den enkla RL-myran är redan beräkningsuniversell. Emergens i renaste form, utan parametrar.",
       },
     ],
     tryIt: "Nedan: se regeln rulla, ta ett steg själv, hoppa sedan till Utforskaren.",
@@ -667,7 +783,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 06 · Generaliseringar",
       title: "n färger, n vändningar, varje tänkbar dator",
-      body: "Byt «två färger» mot «n färger» och ge var och en sin egen R/L-regel. De flesta av dessa generaliserade myror producerar fortfarande motorvägar, spiraler, ifyllda områden. En delmängd, identifierad av Gajardo, Moreira och Goles 2002, är Turingfullständig: vilket program som helst kodas i startrutnätet, myrans bana är dess körning.",
+      body: "Byt «två färger» mot «n färger» och ge var och en sin egen R/L-regel. De flesta av dessa generaliserade myror producerar fortfarande motorvägar, trianglar, ifyllda områden. Universaliteten behöver inte ens de extra färgerna: Gajardo, Moreira och Goles visade 2002 att redan den ursprungliga myran med två regler kör vilken boolesk krets som helst som kodas i dess startrutnät, så dess bana är en beräkning. n-färgsfamiljen vidgar formernas zoo, inte beräkningskraften.",
     },
   ],
   rulesGrid: {
@@ -682,11 +798,29 @@ const sv: RichStory = {
     { range: "≥ 10 000", phase: "Motorväg", note: "104-stegs drift, för alltid" },
   ],
   highwayCaption: "Schema · motorvägen driver diagonalt",
-  highwayDetail: "104 steg per slinga · 2 rutor förskjutning · obegränsad period.",
+  highwayDetail: "104 steg per slinga · 2 rutor förskjutning · upprepas i evighet.",
   runnerLabel: "Minikörning · klassisk RL-myra",
   runnerCaption: "Tryck play. Se kaoset komma långt innan motorvägen.",
   runnerHint:
-    "Dra reglaget till 1 och använd stegknappen — varje enskild regeltillämpning blir synlig.",
+    "Dra reglaget till 1 och använd stegknappen, varje enskild regeltillämpning blir synlig.",
+  hintLabel: "tips",
+  liveSuffix: "live",
+  runItYourself: "prova själv",
+  legend: {
+    black: { key: "violetta celler", desc: "svarta rutor" },
+    ant: { key: "bärnstensfärgad pixel", desc: "myran" },
+    empty: { key: "tom", desc: "vita rutor" },
+  },
+  runnerUi: {
+    play: "Spela",
+    pause: "Paus",
+    step: "steg",
+    reset: "återställ",
+    speed: "hastighet",
+    stepReadout: "steg",
+    dirReadout: "riktn",
+    canvasLabel: "simulering av Langtons myra, klassisk RL-regel",
+  },
   closingTitle: "Låt myran springa.",
   closingBody:
     "Utforskaren låter dig växla regelsträngar, ändra cellstorlek, köra miljoner steg per sekund och se motorvägen växa fram live.",
@@ -719,7 +853,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "To linjer kode på en serviett rommer i hemmelighet universell beregning — Gajardo, Moreira og Goles beviste at generaliserte maur kan simulere enhver Turingmaskin. Emergens i sin reneste form, uten parametre.",
+        body: "To linjer kode på en serviett rommer i hemmelighet universell beregning. Gajardo, Moreira og Goles beviste at selve den klassiske mauren med to regler beregner enhver boolsk krets som kodes inn i startrutenettet, så den enkle RL-mauren er allerede beregningsuniversell. Emergens i sin reneste form, uten parametre.",
       },
     ],
     tryIt: "Under: se regelen kjøre, ta et steg selv, hopp så til Utforskeren.",
@@ -753,7 +887,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Generaliseringer",
       title: "n farger, n svinger, enhver tenkelig datamaskin",
-      body: "Bytt «to farger» med «n farger» og gi hver sin egen R/L-regel. De fleste av disse generaliserte maurene produserer fortsatt motorveier, spiraler, fylte områder. En delmengde, identifisert av Gajardo, Moreira og Goles i 2002, er Turing-komplett: ethvert program kodes inn i startrutenettet, og maurens bane er dets utførelse.",
+      body: "Bytt «to farger» med «n farger» og gi hver sin egen R/L-regel. De fleste av disse generaliserte maurene produserer fortsatt motorveier, trekanter, fylte områder. Universaliteten trenger ikke engang de ekstra fargene: Gajardo, Moreira og Goles viste i 2002 at allerede den opprinnelige mauren med to regler kjører enhver boolsk krets som kodes inn i startrutenettet, så banen dens er en beregning. n-farge-familien utvider formsamlingen, ikke regnekraften.",
     },
   ],
   rulesGrid: {
@@ -768,11 +902,29 @@ const no: RichStory = {
     { range: "≥ 10 000", phase: "Motorvei", note: "104-stegs drift, for alltid" },
   ],
   highwayCaption: "Skjema · motorveien driver diagonalt",
-  highwayDetail: "104 steg per løkke · 2 ruters forskyvning · ubestemt periode.",
+  highwayDetail: "104 steg per løkke · 2 ruters forskyvning · gjentas i det uendelige.",
   runnerLabel: "Minikjøring · klassisk RL-maur",
   runnerCaption: "Trykk play. Se kaoset komme lenge før motorveien.",
   runnerHint:
-    "Dra glidebryteren til 1 og bruk steg-knappen — hver enkelt regelanvendelse blir synlig.",
+    "Dra glidebryteren til 1 og bruk steg-knappen, hver enkelt regelanvendelse blir synlig.",
+  hintLabel: "tips",
+  liveSuffix: "live",
+  runItYourself: "prøv selv",
+  legend: {
+    black: { key: "fiolette celler", desc: "svarte ruter" },
+    ant: { key: "ravfarget piksel", desc: "mauren" },
+    empty: { key: "tom", desc: "hvite ruter" },
+  },
+  runnerUi: {
+    play: "Spill",
+    pause: "Pause",
+    step: "steg",
+    reset: "nullstill",
+    speed: "fart",
+    stepReadout: "steg",
+    dirReadout: "retn",
+    canvasLabel: "simulering av Langtons maur, klassisk RL-regel",
+  },
   closingTitle: "La mauren løpe.",
   closingBody:
     "Utforskeren lar deg bytte regelstrenger, justere cellestørrelse, kjøre millioner av steg per sekund og se motorveien vokse fram live.",
@@ -851,7 +1003,7 @@ export default function LangtonStory() {
               </div>
             </div>
             <div className="hairline flex items-center gap-4 rounded-xl border bg-ink-950/60 p-5">
-              <div className="hairline h-12 w-12 flex-shrink-0 rounded-md border bg-[#b388ff]" />
+              <div className="hairline h-12 w-12 flex-shrink-0 rounded-md border bg-signal-violet" />
               <div className="space-y-1">
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
                   {story.rulesGrid.black}
@@ -868,7 +1020,7 @@ export default function LangtonStory() {
         <Reveal>
           <div className="space-y-2 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              {story.encounter.pretitle} · live
+              {story.encounter.pretitle} · {story.liveSuffix}
             </div>
             <h2 className="math-italic text-3xl leading-tight md:text-4xl">
               {story.runnerCaption}
@@ -881,23 +1033,27 @@ export default function LangtonStory() {
               label={story.runnerLabel}
               caption={story.highwayDetail}
               initialStepsPerFrame={8}
+              labels={story.runnerUi}
             />
           </Reveal>
           <Reveal delay={220}>
             <div className="hairline h-full space-y-3 rounded-2xl border bg-ink-950/40 p-6">
               <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                hint
+                {story.hintLabel}
               </div>
               <p className="text-sm leading-relaxed text-ink-200">{story.runnerHint}</p>
               <div className="hairline space-y-1 border-t pt-3 font-mono text-[11px] text-ink-300">
                 <div>
-                  <span className="text-signal-cyan">violet cells</span> · black squares
+                  <span className="text-signal-violet">{story.legend.black.key}</span> ·{" "}
+                  {story.legend.black.desc}
                 </div>
                 <div>
-                  <span className="text-signal-amber">amber pixel</span> · the ant
+                  <span className="text-signal-amber">{story.legend.ant.key}</span> ·{" "}
+                  {story.legend.ant.desc}
                 </div>
                 <div>
-                  <span className="text-ink-100">empty</span> · white squares
+                  <span className="text-ink-100">{story.legend.empty.key}</span> ·{" "}
+                  {story.legend.empty.desc}
                 </div>
               </div>
             </div>
@@ -958,7 +1114,7 @@ export default function LangtonStory() {
       <Reveal>
         <section className="glass hairline mx-auto max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-            run it yourself
+            {story.runItYourself}
           </div>
           <div className="math-italic shimmer-text text-3xl leading-tight md:text-5xl">
             {story.closingTitle}

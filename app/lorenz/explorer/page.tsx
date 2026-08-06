@@ -4,12 +4,126 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
+import { palette } from "@/lib/visual/palette";
+import type { Locale } from "@/lib/i18n/types";
 
 type Projection = "xz" | "xy" | "yz";
 
+// Localized control-panel strings. The rest of the page (topic.title/tagline/
+// body, u.back) is already localized; these labels used to be English literals
+// shown to every locale.
+type ExplorerStrings = {
+  sigmaLabel: string;
+  rhoLabel: string;
+  betaLabel: string;
+  dtLabel: string;
+  projectionLabel: string;
+  classicPreset: string;
+  pauseLabel: string;
+  playLabel: string;
+  canvasLabel: string;
+};
+
+const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
+  en: {
+    sigmaLabel: "σ · Prandtl",
+    rhoLabel: "ρ · Rayleigh",
+    betaLabel: "β · geometry",
+    dtLabel: "Time step dt",
+    projectionLabel: "Projection",
+    classicPreset: "⟳ Classic chaos · 10 / 28 / 8⁄3",
+    pauseLabel: "❚❚ Pause",
+    playLabel: "▶ Play",
+    canvasLabel: "Live Lorenz attractor, integrated in real time",
+  },
+  de: {
+    sigmaLabel: "σ · Prandtl",
+    rhoLabel: "ρ · Rayleigh",
+    betaLabel: "β · Geometrie",
+    dtLabel: "Zeitschritt dt",
+    projectionLabel: "Projektion",
+    classicPreset: "⟳ Klassisches Chaos · 10 / 28 / 8⁄3",
+    pauseLabel: "❚❚ Pause",
+    playLabel: "▶ Start",
+    canvasLabel: "Live-Lorenz-Attraktor, in Echtzeit integriert",
+  },
+  es: {
+    sigmaLabel: "σ · Prandtl",
+    rhoLabel: "ρ · Rayleigh",
+    betaLabel: "β · geometría",
+    dtLabel: "Paso temporal dt",
+    projectionLabel: "Proyección",
+    classicPreset: "⟳ Caos clásico · 10 / 28 / 8⁄3",
+    pauseLabel: "❚❚ Pausa",
+    playLabel: "▶ Reproducir",
+    canvasLabel: "Atractor de Lorenz en vivo, integrado en tiempo real",
+  },
+  fr: {
+    sigmaLabel: "σ · Prandtl",
+    rhoLabel: "ρ · Rayleigh",
+    betaLabel: "β · géométrie",
+    dtLabel: "Pas de temps dt",
+    projectionLabel: "Projection",
+    classicPreset: "⟳ Chaos classique · 10 / 28 / 8⁄3",
+    pauseLabel: "❚❚ Pause",
+    playLabel: "▶ Lecture",
+    canvasLabel: "Attracteur de Lorenz en direct, intégré en temps réel",
+  },
+  it: {
+    sigmaLabel: "σ · Prandtl",
+    rhoLabel: "ρ · Rayleigh",
+    betaLabel: "β · geometria",
+    dtLabel: "Passo temporale dt",
+    projectionLabel: "Proiezione",
+    classicPreset: "⟳ Caos classico · 10 / 28 / 8⁄3",
+    pauseLabel: "❚❚ Pausa",
+    playLabel: "▶ Play",
+    canvasLabel: "Attrattore di Lorenz dal vivo, integrato in tempo reale",
+  },
+  pt: {
+    sigmaLabel: "σ · Prandtl",
+    rhoLabel: "ρ · Rayleigh",
+    betaLabel: "β · geometria",
+    dtLabel: "Passo temporal dt",
+    projectionLabel: "Projeção",
+    classicPreset: "⟳ Caos clássico · 10 / 28 / 8⁄3",
+    pauseLabel: "❚❚ Pausa",
+    playLabel: "▶ Tocar",
+    canvasLabel: "Atrator de Lorenz ao vivo, integrado em tempo real",
+  },
+  sv: {
+    sigmaLabel: "σ · Prandtl",
+    rhoLabel: "ρ · Rayleigh",
+    betaLabel: "β · geometri",
+    dtLabel: "Tidssteg dt",
+    projectionLabel: "Projektion",
+    classicPreset: "⟳ Klassiskt kaos · 10 / 28 / 8⁄3",
+    pauseLabel: "❚❚ Paus",
+    playLabel: "▶ Spela",
+    canvasLabel: "Live Lorenz-attraktor, integrerad i realtid",
+  },
+  no: {
+    sigmaLabel: "σ · Prandtl",
+    rhoLabel: "ρ · Rayleigh",
+    betaLabel: "β · geometri",
+    dtLabel: "Tidssteg dt",
+    projectionLabel: "Projeksjon",
+    classicPreset: "⟳ Klassisk kaos · 10 / 28 / 8⁄3",
+    pauseLabel: "❚❚ Pause",
+    playLabel: "▶ Spill",
+    canvasLabel: "Live Lorenz-attraktor, integrert i sanntid",
+  },
+};
+
+const BG_FADE = (() => {
+  const n = parseInt(palette.canvas.bg.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, 0.18)`;
+})();
+
 export default function LorenzExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.lorenz;
+  const tx = RICH_EXPLORER[locale];
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [sigma, setSigma] = useState(10);
@@ -17,6 +131,7 @@ export default function LorenzExplorer() {
   const [beta, setBeta] = useState(8 / 3);
   const [dt, setDt] = useState(0.005);
   const [running, setRunning] = useState(true);
+  const [reduced, setReduced] = useState(false);
   const [projection, setProjection] = useState<Projection>("xz");
   const dpr = useDpr();
 
@@ -31,6 +146,17 @@ export default function LorenzExplorer() {
     headRef.current = 0;
   }, []);
 
+  // Track prefers-reduced-motion and re-subscribe so a system-setting change
+  // swaps between the animated loop and a single static frame.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduced(m.matches);
+    on();
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
+
   // Reset trajectory when params change
   useEffect(() => {
     stateRef.current = { x: 0.1, y: 0, z: 0 };
@@ -41,7 +167,8 @@ export default function LorenzExplorer() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
     let raf = 0;
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);
@@ -71,22 +198,18 @@ export default function LorenzExplorer() {
       };
     };
 
-    const draw = () => {
+    const integrateStore = () => {
+      stepRK4();
+      const idx = headRef.current * 3;
+      pointsRef.current[idx] = stateRef.current.x;
+      pointsRef.current[idx + 1] = stateRef.current.y;
+      pointsRef.current[idx + 2] = stateRef.current.z;
+      headRef.current = (headRef.current + 1) % TRAIL;
+    };
+
+    const renderScene = () => {
       const W = canvas.width;
       const H = canvas.height;
-      ctx.fillStyle = "rgba(5, 6, 10, 0.18)"; // motion trail
-      ctx.fillRect(0, 0, W, H);
-
-      if (running) {
-        for (let i = 0; i < 12; i++) {
-          stepRK4();
-          const idx = headRef.current * 3;
-          pointsRef.current[idx] = stateRef.current.x;
-          pointsRef.current[idx + 1] = stateRef.current.y;
-          pointsRef.current[idx + 2] = stateRef.current.z;
-          headRef.current = (headRef.current + 1) % TRAIL;
-        }
-      }
 
       // Project + draw
       const pickXY = (i: number) => {
@@ -102,10 +225,11 @@ export default function LorenzExplorer() {
       const scale = Math.min(W, H) / 70;
       const cx = W / 2;
       const cy = projection === "xy" ? H / 2 : H * 0.7;
+      const dot = 1.6 * dpr; // DPR-scaled so the trail keeps its weight on retina
 
       for (let i = 0; i < TRAIL; i++) {
-        const a = pointsRef.current[i * 3 + 1];
-        if (a === 0 && pointsRef.current[i * 3] === 0 && pointsRef.current[i * 3 + 2] === 0)
+        const a2 = pointsRef.current[i * 3 + 1];
+        if (a2 === 0 && pointsRef.current[i * 3] === 0 && pointsRef.current[i * 3 + 2] === 0)
           continue;
         const [u2, v] = pickXY(i);
         const age = (TRAIL + i - headRef.current) % TRAIL;
@@ -115,9 +239,37 @@ export default function LorenzExplorer() {
         const g = Math.round(209 * (1 - t) + 200 * t);
         const b = Math.round(102 * (1 - t) + 255 * t);
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${0.25 + 0.7 * (1 - t)})`;
-        ctx.fillRect(cx + u2 * scale, cy - v * scale, 1.6, 1.6);
+        ctx.fillRect(cx + u2 * scale, cy - v * scale, dot, dot);
+      }
+    };
+
+    // Reduced motion: pre-integrate a full trajectory and render one static
+    // frame, skipping the rAF loop. Slider changes rebuild this effect.
+    if (reduced) {
+      ctx.fillStyle = palette.canvas.bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      stateRef.current = { x: 0.1, y: 0, z: 0 };
+      pointsRef.current = new Float32Array(TRAIL * 3);
+      headRef.current = 0;
+      for (let i = 0; i < 800; i++) stepRK4(); // warm up onto the attractor
+      for (let i = 0; i < TRAIL; i++) integrateStore();
+      renderScene();
+      return () => {
+        ro.disconnect();
+      };
+    }
+
+    const draw = () => {
+      const W = canvas.width;
+      const H = canvas.height;
+      ctx.fillStyle = BG_FADE; // motion trail
+      ctx.fillRect(0, 0, W, H);
+
+      if (running) {
+        for (let i = 0; i < 12; i++) integrateStore();
       }
 
+      renderScene();
       raf = requestAnimationFrame(draw);
     };
 
@@ -126,19 +278,24 @@ export default function LorenzExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [sigma, rho, beta, dt, running, projection, dpr]);
+  }, [sigma, rho, beta, dt, running, projection, dpr, reduced]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
       <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         <div className="relative min-h-[60vh] bg-ink-950 lg:min-h-[calc(100vh-3.5rem)]">
-          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            role="img"
+            aria-label={tx.canvasLabel}
+            className="absolute inset-0 block h-full w-full"
+          />
           <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               σ = {sigma.toFixed(1)} · ρ = {rho.toFixed(1)} · β = {beta.toFixed(3)}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              projection · {projection.toUpperCase()}
+              {tx.projectionLabel} · {projection.toUpperCase()}
             </div>
           </div>
         </div>
@@ -153,10 +310,14 @@ export default function LorenzExplorer() {
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              σ — Prandtl
-            </div>
+            <label
+              htmlFor="lorenz-sigma"
+              className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+            >
+              {tx.sigmaLabel}
+            </label>
             <input
+              id="lorenz-sigma"
               type="range"
               value={sigma}
               min={1}
@@ -165,10 +326,14 @@ export default function LorenzExplorer() {
               onChange={(e) => setSigma(parseFloat(e.target.value))}
               className="w-full accent-signal-amber"
             />
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              ρ — Rayleigh
-            </div>
+            <label
+              htmlFor="lorenz-rho"
+              className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+            >
+              {tx.rhoLabel}
+            </label>
             <input
+              id="lorenz-rho"
               type="range"
               value={rho}
               min={0}
@@ -177,10 +342,14 @@ export default function LorenzExplorer() {
               onChange={(e) => setRho(parseFloat(e.target.value))}
               className="w-full accent-signal-amber"
             />
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              β — geometry
-            </div>
+            <label
+              htmlFor="lorenz-beta"
+              className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+            >
+              {tx.betaLabel}
+            </label>
             <input
+              id="lorenz-beta"
               type="range"
               value={beta}
               min={0.5}
@@ -197,15 +366,19 @@ export default function LorenzExplorer() {
               }}
               className="hairline mt-2 w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
             >
-              ⟳ Classic chaos · 10 / 28 / 8⁄3
+              {tx.classicPreset}
             </button>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
-            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Time step dt
-            </div>
+            <label
+              htmlFor="lorenz-dt"
+              className="block font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+            >
+              {tx.dtLabel}
+            </label>
             <input
+              id="lorenz-dt"
               type="range"
               value={dt}
               min={0.001}
@@ -219,7 +392,7 @@ export default function LorenzExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Projection
+              {tx.projectionLabel}
             </div>
             <div className="grid grid-cols-3 gap-2">
               {(["xz", "xy", "yz"] as Projection[]).map((p) => (
@@ -241,13 +414,14 @@ export default function LorenzExplorer() {
           <div className="hairline border-b p-5">
             <button
               onClick={() => setRunning((v) => !v)}
-              className={`w-full rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors ${
+              disabled={reduced}
+              className={`w-full rounded-md border py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
                 running
                   ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral"
                   : "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
               }`}
             >
-              {running ? "❚❚ Pause" : "▶ Play"}
+              {running ? tx.pauseLabel : tx.playLabel}
             </button>
           </div>
 

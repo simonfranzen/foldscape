@@ -23,6 +23,13 @@ const DIRS: ReadonlyArray<{ dx: number; dy: number }> = [
   { dx: 0, dy: 1 }, // b⁻¹ → down
 ];
 
+// Root edge length and per-depth shrink. Shared by the walker (step) and the
+// background skeleton so the bright walker node lands exactly on the dim
+// skeleton vertex it represents. A previous 0.55 walker shrink drifted the
+// path off the drawn tree from depth 2 onward.
+const ROOT_LEN = 80;
+const SHRINK = 0.5;
+
 type Vertex = {
   x: number;
   y: number;
@@ -35,16 +42,17 @@ interface Props {
   resetLabel: string;
   hintLabel: string;
   wordLabel: string;
+  lengthLabel: string;
 }
 
-export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel }: Props) {
+export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel, lengthLabel }: Props) {
   // Path of vertices, starting at the root (empty word).
   const [path, setPath] = useState<Vertex[]>([{ x: 0, y: 0, word: "ε", parent: -1 }]);
 
   // Pre-compute the visible tree skeleton up to a fixed depth. The skeleton
   // is decorative — only the walker path is interactive — but it shows the
   // self-similar 4-regular structure.
-  const skeleton = useMemo(() => buildSkeleton(4, 80), []);
+  const skeleton = useMemo(() => buildSkeleton(4, ROOT_LEN), []);
 
   const head = path[path.length - 1];
 
@@ -57,7 +65,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel }: P
       return;
     }
     const depth = path.length; // number of steps taken so far
-    const len = 80 * Math.pow(0.55, depth - 1); // edge length shrinks with depth
+    const len = ROOT_LEN * Math.pow(SHRINK, depth - 1); // edge length shrinks with depth
     const dir = DIRS[gen];
     // Rotate child branches a little so siblings don't overlap. Use the
     // parent's incoming direction as the seed.
@@ -98,7 +106,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel }: P
             viewBox={`-${half} -${half} ${viewSize} ${viewSize}`}
             className="block h-full w-full"
             role="img"
-            aria-label="Cayley graph of F₂"
+            aria-label={caption}
           >
             {/* Dim background skeleton */}
             {skeleton.segments.map((s, i) => (
@@ -161,7 +169,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel }: P
               {head.word}
             </div>
             <div className="font-mono text-[10px] text-ink-400">
-              length · <span className="text-signal-amber">{path.length - 1}</span>
+              {lengthLabel} · <span className="text-signal-amber">{path.length - 1}</span>
             </div>
           </div>
 
@@ -245,7 +253,6 @@ const snap = (n: number) => Math.round(n * 1000) / 1000;
 function buildSkeleton(maxDepth: number, rootLen: number) {
   const segments: SkelSeg[] = [];
   const nodes: SkelNode[] = [{ x: 0, y: 0, depth: 0 }];
-  const SHRINK = 0.5;
 
   function recurse(x: number, y: number, depth: number, parentGen: number, len: number) {
     if (depth >= maxDepth) return;

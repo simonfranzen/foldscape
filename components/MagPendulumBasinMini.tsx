@@ -193,7 +193,12 @@ export function MagPendulumBasinMini({
 
       <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-[1fr_220px]">
         <div className="hairline relative mx-auto aspect-square w-full max-w-[320px] overflow-hidden rounded-xl border bg-ink-950">
-          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            className="absolute inset-0 block h-full w-full"
+            role="img"
+            aria-label={caption}
+          />
         </div>
 
         <div className="space-y-4">
@@ -261,6 +266,7 @@ function SliderRow({
       </div>
       <input
         type="range"
+        aria-label={label}
         value={value}
         min={min}
         max={max}

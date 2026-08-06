@@ -91,7 +91,17 @@ export function NandTruthTable({ caption, labels }: Props) {
                 <tr
                   key={idx}
                   onClick={() => setActive(idx)}
-                  className={`cursor-pointer border-b border-ink-700/30 transition-colors last:border-0 ${
+                  tabIndex={0}
+                  aria-selected={isActive}
+                  onKeyDown={(e) => {
+                    // Rows are the interactive control here, so make Enter/Space
+                    // activate them like a button for keyboard users.
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActive(idx);
+                    }
+                  }}
+                  className={`cursor-pointer border-b border-ink-700/30 transition-colors last:border-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-signal-violet ${
                     isActive
                       ? "bg-signal-violet/10 ring-1 ring-signal-violet/40"
                       : "hover:bg-ink-900/40"

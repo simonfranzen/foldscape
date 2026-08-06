@@ -29,6 +29,7 @@ type RichDiagram = {
   branchFalseContradiction: string;
   conclusionLabel: string;
   conclusionBody: string;
+  finalLabel: string;
 };
 
 const DIAGRAM: Record<Locale, RichDiagram> = {
@@ -44,6 +45,7 @@ const DIAGRAM: Record<Locale, RichDiagram> = {
     conclusionLabel: "Conclusion",
     conclusionBody:
       "Both branches of the assumed halts oracle H break the definition of D. No total computable H can exist. The halting problem is undecidable.",
+    finalLabel: "Try it.",
   },
   de: {
     pretitle: "Diagramm · das Diagonal-Programm D",
@@ -57,19 +59,21 @@ const DIAGRAM: Record<Locale, RichDiagram> = {
     conclusionLabel: "Schlussfolgerung",
     conclusionBody:
       "Beide Zweige des angenommenen Halte-Orakels H sprengen die Definition von D. Kein totales berechenbares H kann existieren. Das Halteproblem ist unentscheidbar.",
+    finalLabel: "Probier es aus.",
   },
   es: {
     pretitle: "Diagrama · el programa diagonal D",
     heading: "Diga lo que diga H sobre D aplicado a D, D hace lo contrario.",
     branchTrueLabel: "Rama ⊤",
-    branchTrueArrow: "D bucla para siempre con D",
+    branchTrueArrow: "D entra en un bucle infinito con D",
     branchTrueContradiction: "Pero H dijo que D se detiene. Contradicción.",
     branchFalseLabel: "Rama ⊥",
     branchFalseArrow: "D se detiene inmediatamente con D",
-    branchFalseContradiction: "Pero H dijo que D bucla. Contradicción.",
+    branchFalseContradiction: "Pero H dijo que D entra en bucle. Contradicción.",
     conclusionLabel: "Conclusión",
     conclusionBody:
       "Ambas ramas del supuesto oráculo de parada H rompen la definición de D. No puede existir ningún H total computable. El problema de la parada es indecidible.",
+    finalLabel: "Pruébalo.",
   },
   fr: {
     pretitle: "Diagramme · le programme diagonal D",
@@ -83,6 +87,7 @@ const DIAGRAM: Record<Locale, RichDiagram> = {
     conclusionLabel: "Conclusion",
     conclusionBody:
       "Les deux branches de l'oracle d'arrêt supposé H brisent la définition de D. Aucun H total calculable ne peut exister. Le problème de l'arrêt est indécidable.",
+    finalLabel: "Essayez-le.",
   },
   it: {
     pretitle: "Diagramma · il programma diagonale D",
@@ -96,6 +101,7 @@ const DIAGRAM: Record<Locale, RichDiagram> = {
     conclusionLabel: "Conclusione",
     conclusionBody:
       "Entrambi i rami del presunto oracolo di arresto H rompono la definizione di D. Nessun H totale calcolabile può esistere. Il problema della terminazione è indecidibile.",
+    finalLabel: "Provalo.",
   },
   pt: {
     pretitle: "Diagrama · o programa diagonal D",
@@ -109,6 +115,7 @@ const DIAGRAM: Record<Locale, RichDiagram> = {
     conclusionLabel: "Conclusão",
     conclusionBody:
       "Ambos os ramos do suposto oráculo de paragem H quebram a definição de D. Não pode existir nenhum H total computável. O problema da paragem é indecidível.",
+    finalLabel: "Experimenta.",
   },
   sv: {
     pretitle: "Diagram · det diagonala programmet D",
@@ -121,7 +128,8 @@ const DIAGRAM: Record<Locale, RichDiagram> = {
     branchFalseContradiction: "Men H sa att D loopar. Motsägelse.",
     conclusionLabel: "Slutsats",
     conclusionBody:
-      "Båda grenarna av det antagna stopporaklet H bryter mot definitionen av D. Inget totalt beräkningsbart H kan existera. Stoppproblemet är oavgörbart.",
+      "Båda grenarna av det antagna stopporaklet H bryter mot definitionen av D. Inget totalt beräkningsbart H kan existera. Stopproblemet är oavgörbart.",
+    finalLabel: "Testa det.",
   },
   no: {
     pretitle: "Diagram · det diagonale programmet D",
@@ -134,7 +142,8 @@ const DIAGRAM: Record<Locale, RichDiagram> = {
     branchFalseContradiction: "Men H sa at D går i løkke. Motsigelse.",
     conclusionLabel: "Konklusjon",
     conclusionBody:
-      "Begge grenene av det antatte stopporakelet H bryter definisjonen av D. Ingen total beregnbar H kan eksistere. Stoppproblemet er uavgjørbart.",
+      "Begge grenene av det antatte stopporakelet H bryter definisjonen av D. Ingen total beregnbar H kan eksistere. Stopproblemet er uavgjørbart.",
+    finalLabel: "Prøv det.",
   },
 };
 
@@ -155,7 +164,7 @@ export default function HaltingStoryPage() {
       gradient="from-signal-cyan/10"
       formulaBadge="halts(P, x) ∈ {⊤, ⊥}"
       formulaLatex={"\\mathrm{halts}(P, x) \\in \\{\\top, \\bot\\}"}
-      finalLabel="Try it."
+      finalLabel={d.finalLabel}
       signature={<HaltingTapeHero />}
     >
       <section className="mx-auto mb-16 max-w-4xl space-y-8">

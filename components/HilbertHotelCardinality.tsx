@@ -65,7 +65,10 @@ export function HilbertHotelCardinality({
         // deterministic pseudo-decimal for display: 0.d1d2d3...
         const seed = (n + 1) * 0.123456789;
         const frac = (Math.sin(seed) * 10000 + 1) % 1;
-        const s = frac.toFixed(8).slice(2, 2 + Math.max(count, 8));
+        // toFixed(12) > the reals-mode slider max (10) so every row always has
+        // a real digit at its own diagonal position; toFixed(8) truncated rows
+        // 9+ and the diagonal fell back to a phantom "0".
+        const s = frac.toFixed(12).slice(2, 2 + Math.max(count, 8));
         digits.push(s);
         out.push({
           left: String(n + 1),
@@ -86,10 +89,10 @@ export function HilbertHotelCardinality({
     for (let n = 0; n < count; n++) {
       const seed = (n + 1) * 0.123456789;
       const frac = (Math.sin(seed) * 10000 + 1) % 1;
-      const s = frac.toFixed(8).slice(2, 2 + len);
+      const s = frac.toFixed(12).slice(2, 2 + len);
       const d = s[n] ?? "0";
       // flip digit: anything ≠ d, and stay in {1..8} to avoid 0/9 edge cases
-      const next = String(((parseInt(d, 10) + 5) % 9) + 1);
+      const next = String(((parseInt(d, 10) + 5) % 8) + 1);
       digits.push(next);
     }
     return digits.join("");
@@ -138,7 +141,12 @@ export function HilbertHotelCardinality({
         </button>
         <button
           type="button"
-          onClick={() => setMode("reals")}
+          onClick={() => {
+            setMode("reals");
+            // Reals mode caps the slider at 10; carry an over-large count down so
+            // the readout, thumb and rendered rows stay in sync.
+            setCount((c) => Math.min(c, 10));
+          }}
           className={`rounded-md border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
             mode === "reals"
               ? "border-signal-amber/70 bg-signal-amber/15 text-signal-amber"
@@ -157,6 +165,7 @@ export function HilbertHotelCardinality({
         </div>
         <input
           type="range"
+          aria-label={sliderLabel}
           value={count}
           min={3}
           max={mode === "reals" ? 10 : 16}

@@ -19,11 +19,23 @@ interface Props {
     countOne: string;
     countN: (n: number) => string;
     description: Record<Target, string>;
+    // Accessible name for the whole circuit SVG (localized per gate + count).
+    circuit: (target: string, n: number) => string;
   };
 }
 
 const W = 360;
 const H = 240;
+
+// Palette tokens are hex; derive rgba fills locally so tints stay on the
+// ink/signal scale instead of drifting to hand-picked literals.
+function withAlpha(hex: string, alpha: number): string {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
 
 // Each layout is just a list of NAND gate positions + a list of wires.
 type Gate = { id: string; x: number; y: number };
@@ -54,7 +66,7 @@ function NandSymbol({ x, y, accent }: { x: number; y: number; accent: string }) 
     `Z`;
   return (
     <g style={{ transition: "transform 480ms ease" }} transform={`translate(0,0)`}>
-      <path d={d} fill="rgba(179, 136, 255, 0.10)" stroke={accent} strokeWidth={1.4} />
+      <path d={d} fill={withAlpha(palette.signal.violet, 0.1)} stroke={accent} strokeWidth={1.4} />
       {/* bubble */}
       <circle cx={right - 4} cy={y} r={3} fill="none" stroke={accent} strokeWidth={1.4} />
     </g>
@@ -203,12 +215,12 @@ export function NandGateBuilder({ caption, labels }: Props) {
           viewBox={`0 0 ${W} ${H}`}
           className="block h-auto w-full"
           role="img"
-          aria-label={`Circuit: ${target} built from ${layout.count} NAND gate${layout.count > 1 ? "s" : ""}`}
+          aria-label={labels.circuit(target, layout.count)}
         >
           <rect width={W} height={H} fill={palette.canvas.bg} />
 
           {/* faint grid */}
-          <g stroke="rgba(232,234,242,0.04)" strokeWidth={0.5}>
+          <g stroke={withAlpha(palette.ink[100], 0.04)} strokeWidth={0.5}>
             {Array.from({ length: 18 }).map((_, i) => (
               <line key={`v${i}`} x1={i * 20} y1={0} x2={i * 20} y2={H} />
             ))}
@@ -226,7 +238,7 @@ export function NandGateBuilder({ caption, labels }: Props) {
                 y={p.y + 4}
                 fontFamily="ui-monospace, monospace"
                 fontSize={12}
-                fill="#e8eaf2"
+                fill={palette.ink[100]}
                 textAnchor="end"
               >
                 {p.id}
@@ -279,7 +291,7 @@ export function NandGateBuilder({ caption, labels }: Props) {
               y={layout.output.y + 4}
               fontFamily="ui-monospace, monospace"
               fontSize={12}
-              fill="#e8eaf2"
+              fill={palette.ink[100]}
             >
               out
             </text>

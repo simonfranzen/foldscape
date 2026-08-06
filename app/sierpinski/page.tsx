@@ -48,6 +48,27 @@ type RichStory = {
     legendChaos: string;
     footnote: string;
   };
+  panels: {
+    dimensionLabel: string;
+    dimensionCaption: string;
+    contractionsLabel: string;
+    f1Desc: string;
+    f2Desc: string;
+    f3Desc: string;
+    fixedSet: string;
+    routePascalLabel: string;
+    routePascalDesc: string;
+    routeChaosLabel: string;
+    routeChaosDesc: string;
+    routeSubdivisionLabel: string;
+    routeSubdivisionDesc: string;
+    familyLabel: string;
+    colName: string;
+    colAmbient: string;
+    colCopies: string;
+    colDimension: string;
+    familyRows: Array<{ name: string; ambient: string; copies: string; dim: string }>;
+  };
   closingPretitle: string;
   closingTitle: string;
   closingBody: string;
@@ -91,7 +112,7 @@ const enStory: RichStory = {
     {
       pretitle: "Section 01 · The classical construction",
       title: "Remove the centre, then recurse",
-      body: "Take an equilateral triangle. Connect the midpoints of its three sides — this slices it into four congruent smaller triangles, three pointing up and one pointing down. Erase the down-pointing one. Now you have three little triangles in the corners. Apply the same rule to each of them: connect midpoints, erase the central inverted triangle, keep the corners. Repeat. Each iteration multiplies the number of pieces by three and shrinks each piece to half its previous edge length. In the limit the leftover set has Lebesgue area zero — and yet it is everywhere dense inside the original triangle. That limit set is the Sierpiński triangle.",
+      body: "Take an equilateral triangle. Connect the midpoints of its three sides — this slices it into four congruent smaller triangles, three pointing up and one pointing down. Erase the down-pointing one. Now you have three little triangles in the corners. Apply the same rule to each of them: connect midpoints, erase the central inverted triangle, keep the corners. Repeat. Each iteration multiplies the number of pieces by three and shrinks each piece to half its previous edge length. In the limit the leftover set has Lebesgue area zero, and yet it stays connected, self-similar at every scale, an uncountable perfect set with no isolated points. That limit set is the Sierpiński triangle.",
     },
     {
       pretitle: "Section 02 · The fractal dimension",
@@ -111,7 +132,7 @@ const enStory: RichStory = {
     {
       pretitle: "Section 05 · Connections",
       title: "Carpet · sponge · dust",
-      body: "Run the same recipe with a square divided into nine, keeping eight and erasing the centre: you get the Sierpiński carpet, dimension log 8 / log 3 ≈ 1.893. Run it again in three dimensions with a cube split into twenty-seven, keeping twenty and erasing the centre face and the centre of each face: Menger's sponge, dimension log 20 / log 3 ≈ 2.727. Run it in one dimension with a line split into three, keeping the outer two and erasing the middle third: Cantor dust. The whole family — dust, gasket, carpet, sponge — sits inside the same construction, just at different ambient dimensions.",
+      body: "Run the same recipe with a square divided into nine, keeping eight and erasing the centre: you get the Sierpiński carpet, dimension log 8 / log 3 ≈ 1.893. Run it again in three dimensions with a cube split into twenty-seven, keeping twenty and erasing the centre of each face plus the cube's central cell: Menger's sponge, dimension log 20 / log 3 ≈ 2.727. Run it in one dimension with a line split into three, keeping the outer two and erasing the middle third: Cantor dust. The whole family — dust, gasket, carpet, sponge — sits inside the same construction, just at different ambient dimensions.",
     },
     {
       pretitle: "Section 06 · Mathematical history",
@@ -126,7 +147,7 @@ const enStory: RichStory = {
     caption: "Interactive · subdivision visualiser",
     depthLabel: "Depth",
     triangleLabel: "Triangles",
-    hint: "At depth n there are 3ⁿ filled triangles. The total area is (3/4)ⁿ of the original, tending to zero — but the limit set, the gasket, is dense everywhere it touches.",
+    hint: "At depth n there are 3ⁿ filled triangles. The total area is (3/4)ⁿ of the original, tending to zero, yet the limit set, the gasket, keeps empty interior and stays self-similar at every scale.",
   },
   threeRoutes: {
     pretitle: "Interactive · three routes, one shape",
@@ -145,10 +166,52 @@ const enStory: RichStory = {
     footnote:
       "Three unrelated recipes — geometric, combinatorial, stochastic — settle on the same compact set. That set is the unique fixed point of the three-map IFS.",
   },
+  panels: {
+    dimensionLabel: "Hausdorff dimension",
+    dimensionCaption:
+      "Strictly between a curve (dim 1) and a region (dim 2). The same value is the box-counting dimension, so the gasket is dimensionally well-behaved.",
+    contractionsLabel: "The three contractions",
+    f1Desc: "towards the bottom-left vertex",
+    f2Desc: "towards the bottom-right vertex",
+    f3Desc: "towards the top vertex",
+    fixedSet: "S = f₁(S) ∪ f₂(S) ∪ f₃(S), the unique non-empty compact fixed set.",
+    routePascalLabel: "Pascal mod 2",
+    routePascalDesc: "→ See the arithmetic route in full",
+    routeChaosLabel: "Chaos Game",
+    routeChaosDesc: "→ Play the random walk yourself",
+    routeSubdivisionLabel: "Subdivision",
+    routeSubdivisionDesc: "→ Recursive construction, deep",
+    familyLabel: "The family",
+    colName: "name",
+    colAmbient: "ambient",
+    colCopies: "copies / scale",
+    colDimension: "dimension",
+    familyRows: [
+      { name: "Cantor dust", ambient: "1D", copies: "2 copies at 1/3", dim: "log 2 / log 3 ≈ 0.631" },
+      {
+        name: "Sierpiński triangle",
+        ambient: "2D",
+        copies: "3 copies at 1/2",
+        dim: "log 3 / log 2 ≈ 1.585",
+      },
+      {
+        name: "Sierpiński carpet",
+        ambient: "2D",
+        copies: "8 copies at 1/3",
+        dim: "log 8 / log 3 ≈ 1.893",
+      },
+      {
+        name: "Menger sponge",
+        ambient: "3D",
+        copies: "20 copies at 1/3",
+        dim: "log 20 / log 3 ≈ 2.727",
+      },
+    ],
+  },
   closingPretitle: "Take it further",
   closingTitle: "Open the Explorer.",
   closingBody:
-    "The Explorer lets you push subdivision deeper, run the Chaos Game on arbitrary polygons, switch the colour palette and toggle between the three constructions side by side. Everything you just read is one click away.",
+    "The Explorer lets you push subdivision deeper, run the Chaos Game on the triangle, switch the colour and step through all four constructions, subdivision, chaos game, Pascal mod 2 and Rule 90, one at a time. Everything you just read is one click away.",
   ctaLabel: "→ Open the Explorer",
 };
 
@@ -189,7 +252,7 @@ const deStory: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die klassische Konstruktion",
       title: "Mitte raus, dann rekursiv weiter",
-      body: "Nimm ein gleichseitiges Dreieck. Verbinde die Mittelpunkte seiner drei Seiten — das zerschneidet es in vier deckungsgleiche kleinere Dreiecke, drei zeigen nach oben, eines nach unten. Lösch das nach unten gerichtete. Übrig bleiben drei kleine Dreiecke in den Ecken. Wende auf jedes dieselbe Regel an: Mittelpunkte verbinden, das zentrale umgekehrte Dreieck löschen, die Ecken behalten. Wiederhole. Jede Iteration verdreifacht die Anzahl der Teile und halbiert die Kantenlänge. Im Grenzwert hat die übrig gebliebene Menge Lebesgue-Maß null — und ist trotzdem überall im ursprünglichen Dreieck dicht. Dieser Grenzwert ist das Sierpiński-Dreieck.",
+      body: "Nimm ein gleichseitiges Dreieck. Verbinde die Mittelpunkte seiner drei Seiten — das zerschneidet es in vier deckungsgleiche kleinere Dreiecke, drei zeigen nach oben, eines nach unten. Lösch das nach unten gerichtete. Übrig bleiben drei kleine Dreiecke in den Ecken. Wende auf jedes dieselbe Regel an: Mittelpunkte verbinden, das zentrale umgekehrte Dreieck löschen, die Ecken behalten. Wiederhole. Jede Iteration verdreifacht die Anzahl der Teile und halbiert die Kantenlänge. Im Grenzwert hat die übrig gebliebene Menge Lebesgue-Maß null, ist aber trotzdem zusammenhängend, auf jeder Skala selbstähnlich, eine überabzählbare perfekte Menge ohne isolierte Punkte. Dieser Grenzwert ist das Sierpiński-Dreieck.",
     },
     {
       pretitle: "Abschnitt 02 · Die fraktale Dimension",
@@ -224,7 +287,7 @@ const deStory: RichStory = {
     caption: "Interaktiv · Unterteilungs-Visualisierer",
     depthLabel: "Tiefe",
     triangleLabel: "Dreiecke",
-    hint: "Bei Tiefe n gibt es 3ⁿ ausgefüllte Dreiecke. Die Gesamtfläche ist (3/4)ⁿ der ursprünglichen, geht gegen null — die Grenzmenge ist trotzdem dicht.",
+    hint: "Bei Tiefe n gibt es 3ⁿ ausgefüllte Dreiecke. Die Gesamtfläche ist (3/4)ⁿ der ursprünglichen, geht gegen null, die Grenzmenge hat trotzdem leeres Inneres und bleibt auf jeder Skala selbstähnlich.",
   },
   threeRoutes: {
     pretitle: "Interaktiv · drei Wege, eine Form",
@@ -239,14 +302,56 @@ const deStory: RichStory = {
     legendPascal:
       "Satz von Lucas in Farbe: C(n, k) ist ungerade gdw. die Bits von k in den Bits von n stecken. Das Muster der Ungeraden ist die Packung.",
     legendChaos:
-      "Zufällig eine Ecke wählen, halb hinjumpen, markieren. Ein paar hundert Punkte reichen für die Silhouette.",
+      "Zufällig eine Ecke wählen, halb hinspringen, markieren. Ein paar hundert Punkte reichen für die Silhouette.",
     footnote:
       "Drei zusammenhanglose Rezepte — geometrisch, kombinatorisch, stochastisch — landen auf derselben kompakten Menge. Sie ist der eindeutige Fixpunkt des Dreier-IFS.",
+  },
+  panels: {
+    dimensionLabel: "Hausdorff-Dimension",
+    dimensionCaption:
+      "Echt zwischen einer Kurve (Dim 1) und einer Fläche (Dim 2). Derselbe Wert ist die Boxdimension, die Packung ist also dimensionsmäßig gutartig.",
+    contractionsLabel: "Die drei Kontraktionen",
+    f1Desc: "zur Ecke unten links",
+    f2Desc: "zur Ecke unten rechts",
+    f3Desc: "zur oberen Ecke",
+    fixedSet: "S = f₁(S) ∪ f₂(S) ∪ f₃(S), die eindeutige nichtleere kompakte Fixmenge.",
+    routePascalLabel: "Pascal mod 2",
+    routePascalDesc: "→ Den arithmetischen Weg ganz sehen",
+    routeChaosLabel: "Chaosspiel",
+    routeChaosDesc: "→ Die Zufallswanderung selbst spielen",
+    routeSubdivisionLabel: "Unterteilung",
+    routeSubdivisionDesc: "→ Rekursive Konstruktion, tief",
+    familyLabel: "Die Familie",
+    colName: "Name",
+    colAmbient: "Umgebung",
+    colCopies: "Kopien / Skala",
+    colDimension: "Dimension",
+    familyRows: [
+      { name: "Cantor-Staub", ambient: "1D", copies: "2 Kopien bei 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "Sierpiński-Dreieck",
+        ambient: "2D",
+        copies: "3 Kopien bei 1/2",
+        dim: "log 3 / log 2 ≈ 1,585",
+      },
+      {
+        name: "Sierpiński-Teppich",
+        ambient: "2D",
+        copies: "8 Kopien bei 1/3",
+        dim: "log 8 / log 3 ≈ 1,893",
+      },
+      {
+        name: "Menger-Schwamm",
+        ambient: "3D",
+        copies: "20 Kopien bei 1/3",
+        dim: "log 20 / log 3 ≈ 2,727",
+      },
+    ],
   },
   closingPretitle: "Geh weiter",
   closingTitle: "Öffne den Explorer.",
   closingBody:
-    "Der Explorer lässt dich die Unterteilung tiefer treiben, das Chaosspiel auf beliebige Polygone lossen, die Palette wechseln und alle drei Konstruktionen nebeneinander durchspielen. Alles, was du gerade gelesen hast, ist einen Klick entfernt.",
+    "Der Explorer lässt dich die Unterteilung tiefer treiben, das Chaosspiel auf dem Dreieck laufen lassen, die Farbe wechseln und alle vier Konstruktionen, Unterteilung, Chaosspiel, Pascal mod 2 und Regel 90, nacheinander durchspielen. Alles, was du gerade gelesen hast, ist einen Klick entfernt.",
   ctaLabel: "→ Explorer öffnen",
 };
 
@@ -288,7 +393,7 @@ const esStory: RichStory = {
     {
       pretitle: "Sección 01 · La construcción clásica",
       title: "Quita el centro, luego recursión",
-      body: "Toma un triángulo equilátero. Une los puntos medios de sus tres lados — eso lo parte en cuatro triángulos pequeños congruentes, tres apuntando arriba y uno hacia abajo. Borra el de abajo. Te quedan tres triangulitos en las esquinas. Aplica la misma regla a cada uno: une puntos medios, borra el central invertido, conserva las esquinas. Repite. Cada iteración triplica el número de piezas y reduce el lado a la mitad. En el límite el conjunto restante tiene medida de Lebesgue cero — y aun así es denso por todas partes dentro del triángulo original. Ese límite es el triángulo de Sierpiński.",
+      body: "Toma un triángulo equilátero. Une los puntos medios de sus tres lados — eso lo parte en cuatro triángulos pequeños congruentes, tres apuntando arriba y uno hacia abajo. Borra el de abajo. Te quedan tres triangulitos en las esquinas. Aplica la misma regla a cada uno: une puntos medios, borra el central invertido, conserva las esquinas. Repite. Cada iteración triplica el número de piezas y reduce el lado a la mitad. En el límite el conjunto restante tiene medida de Lebesgue cero, y aun así es conexo, autosemejante en toda escala, un conjunto perfecto no numerable sin puntos aislados. Ese límite es el triángulo de Sierpiński.",
     },
     {
       pretitle: "Sección 02 · La dimensión fractal",
@@ -323,7 +428,7 @@ const esStory: RichStory = {
     caption: "Interactivo · visualizador de subdivisión",
     depthLabel: "Profundidad",
     triangleLabel: "Triángulos",
-    hint: "A profundidad n hay 3ⁿ triángulos llenos. El área total es (3/4)ⁿ de la original, tiende a cero — pero el conjunto límite, la trama, es denso por todas partes.",
+    hint: "A profundidad n hay 3ⁿ triángulos llenos. El área total es (3/4)ⁿ de la original, tiende a cero, pero el conjunto límite, la trama, tiene interior vacío y sigue siendo autosemejante en toda escala.",
   },
   threeRoutes: {
     pretitle: "Interactivo · tres caminos, una forma",
@@ -342,10 +447,52 @@ const esStory: RichStory = {
     footnote:
       "Tres recetas sin relación — geométrica, combinatoria, estocástica — aterrizan en el mismo conjunto compacto. Ese conjunto es el único punto fijo del IFS de tres mapas.",
   },
+  panels: {
+    dimensionLabel: "Dimensión de Hausdorff",
+    dimensionCaption:
+      "Estrictamente entre una curva (dim 1) y una región (dim 2). El mismo valor es la dimensión de conteo por cajas, así que la trama se comporta bien dimensionalmente.",
+    contractionsLabel: "Las tres contracciones",
+    f1Desc: "hacia el vértice inferior izquierdo",
+    f2Desc: "hacia el vértice inferior derecho",
+    f3Desc: "hacia el vértice superior",
+    fixedSet: "S = f₁(S) ∪ f₂(S) ∪ f₃(S), el único conjunto fijo compacto no vacío.",
+    routePascalLabel: "Pascal mod 2",
+    routePascalDesc: "→ Ver la ruta aritmética completa",
+    routeChaosLabel: "Juego del Caos",
+    routeChaosDesc: "→ Juega tú mismo el paseo aleatorio",
+    routeSubdivisionLabel: "Subdivisión",
+    routeSubdivisionDesc: "→ Construcción recursiva, profunda",
+    familyLabel: "La familia",
+    colName: "nombre",
+    colAmbient: "ambiente",
+    colCopies: "copias / escala",
+    colDimension: "dimensión",
+    familyRows: [
+      { name: "polvo de Cantor", ambient: "1D", copies: "2 copias a 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "triángulo de Sierpiński",
+        ambient: "2D",
+        copies: "3 copias a 1/2",
+        dim: "log 3 / log 2 ≈ 1,585",
+      },
+      {
+        name: "alfombra de Sierpiński",
+        ambient: "2D",
+        copies: "8 copias a 1/3",
+        dim: "log 8 / log 3 ≈ 1,893",
+      },
+      {
+        name: "esponja de Menger",
+        ambient: "3D",
+        copies: "20 copias a 1/3",
+        dim: "log 20 / log 3 ≈ 2,727",
+      },
+    ],
+  },
   closingPretitle: "Ve más lejos",
   closingTitle: "Abre el Explorador.",
   closingBody:
-    "El Explorador te deja empujar la subdivisión más hondo, correr el Juego del Caos sobre polígonos arbitrarios, cambiar la paleta y alternar las tres construcciones lado a lado. Todo lo que acabas de leer está a un clic.",
+    "El Explorador te deja empujar la subdivisión más hondo, correr el Juego del Caos sobre el triángulo, cambiar el color y recorrer las cuatro construcciones, subdivisión, Juego del Caos, Pascal mod 2 y Regla 90, una a una. Todo lo que acabas de leer está a un clic.",
   ctaLabel: "→ Abrir el Explorador",
 };
 
@@ -387,7 +534,7 @@ const frStory: RichStory = {
     {
       pretitle: "Section 01 · La construction classique",
       title: "Enlève le centre, puis récursion",
-      body: "Prends un triangle équilatéral. Relie les milieux de ses trois côtés — cela le découpe en quatre petits triangles congrus, trois pointant vers le haut et un vers le bas. Efface celui qui pointe vers le bas. Il reste trois petits triangles dans les coins. Applique la même règle à chacun : relier les milieux, effacer le triangle central inversé, garder les coins. Recommence. Chaque itération triple le nombre de morceaux et divise leur côté par deux. À la limite l'ensemble restant a mesure de Lebesgue nulle — et reste partout dense dans le triangle original. Cette limite, c'est le triangle de Sierpiński.",
+      body: "Prends un triangle équilatéral. Relie les milieux de ses trois côtés — cela le découpe en quatre petits triangles congrus, trois pointant vers le haut et un vers le bas. Efface celui qui pointe vers le bas. Il reste trois petits triangles dans les coins. Applique la même règle à chacun : relier les milieux, effacer le triangle central inversé, garder les coins. Recommence. Chaque itération triple le nombre de morceaux et divise leur côté par deux. À la limite l'ensemble restant a mesure de Lebesgue nulle, et reste pourtant connexe, autosimilaire à toute échelle, un ensemble parfait non dénombrable sans points isolés. Cette limite, c'est le triangle de Sierpiński.",
     },
     {
       pretitle: "Section 02 · La dimension fractale",
@@ -422,7 +569,7 @@ const frStory: RichStory = {
     caption: "Interactif · visualiseur de subdivision",
     depthLabel: "Profondeur",
     triangleLabel: "Triangles",
-    hint: "À la profondeur n il y a 3ⁿ triangles pleins. L'aire totale est (3/4)ⁿ de l'originale, tend vers zéro — et pourtant l'ensemble limite, le tamis, est partout dense.",
+    hint: "À la profondeur n il y a 3ⁿ triangles pleins. L'aire totale est (3/4)ⁿ de l'originale, tend vers zéro, et pourtant l'ensemble limite, le tamis, a un intérieur vide et reste autosimilaire à toute échelle.",
   },
   threeRoutes: {
     pretitle: "Interactif · trois chemins, une forme",
@@ -441,10 +588,52 @@ const frStory: RichStory = {
     footnote:
       "Trois recettes sans rapport — géométrique, combinatoire, stochastique — se posent sur le même ensemble compact. C'est l'unique point fixe de l'IFS à trois cartes.",
   },
+  panels: {
+    dimensionLabel: "Dimension de Hausdorff",
+    dimensionCaption:
+      "Strictement entre une courbe (dim 1) et une région (dim 2). La même valeur est la dimension de boîte, le tamis est donc bien réglé dimensionnellement.",
+    contractionsLabel: "Les trois contractions",
+    f1Desc: "vers le sommet en bas à gauche",
+    f2Desc: "vers le sommet en bas à droite",
+    f3Desc: "vers le sommet du haut",
+    fixedSet: "S = f₁(S) ∪ f₂(S) ∪ f₃(S), l'unique ensemble compact non vide fixé.",
+    routePascalLabel: "Pascal mod 2",
+    routePascalDesc: "→ Voir la route arithmétique en entier",
+    routeChaosLabel: "Jeu du Chaos",
+    routeChaosDesc: "→ Joue toi-même la marche aléatoire",
+    routeSubdivisionLabel: "Subdivision",
+    routeSubdivisionDesc: "→ Construction récursive, profonde",
+    familyLabel: "La famille",
+    colName: "nom",
+    colAmbient: "ambiant",
+    colCopies: "copies / échelle",
+    colDimension: "dimension",
+    familyRows: [
+      { name: "poussière de Cantor", ambient: "1D", copies: "2 copies à 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "triangle de Sierpiński",
+        ambient: "2D",
+        copies: "3 copies à 1/2",
+        dim: "log 3 / log 2 ≈ 1,585",
+      },
+      {
+        name: "tapis de Sierpiński",
+        ambient: "2D",
+        copies: "8 copies à 1/3",
+        dim: "log 8 / log 3 ≈ 1,893",
+      },
+      {
+        name: "éponge de Menger",
+        ambient: "3D",
+        copies: "20 copies à 1/3",
+        dim: "log 20 / log 3 ≈ 2,727",
+      },
+    ],
+  },
   closingPretitle: "Aller plus loin",
   closingTitle: "Ouvre l'Explorateur.",
   closingBody:
-    "L'Explorateur te laisse pousser la subdivision plus loin, lancer le Jeu du Chaos sur des polygones quelconques, changer la palette et alterner les trois constructions côte à côte. Tout ce que tu viens de lire est à un clic.",
+    "L'Explorateur te laisse pousser la subdivision plus loin, lancer le Jeu du Chaos sur le triangle, changer la couleur et parcourir les quatre constructions, subdivision, Jeu du Chaos, Pascal mod 2 et Règle 90, une à la fois. Tout ce que tu viens de lire est à un clic.",
   ctaLabel: "→ Ouvrir l'Explorateur",
 };
 
@@ -486,7 +675,7 @@ const itStory: RichStory = {
     {
       pretitle: "Sezione 01 · La costruzione classica",
       title: "Togli il centro, poi ricorri",
-      body: "Prendi un triangolo equilatero. Unisci i punti medi dei tre lati — lo tagli in quattro triangoli congruenti più piccoli, tre con la punta in alto e uno in basso. Cancella quello in basso. Restano tre triangoli piccoli negli angoli. Applica a ciascuno la stessa regola: unisci i punti medi, cancella il triangolo centrale rovesciato, tieni gli angoli. Ripeti. Ogni iterazione triplica il numero di pezzi e dimezza la lunghezza dei lati. Nel limite l'insieme residuo ha misura di Lebesgue zero — eppure è ovunque denso nel triangolo originario. Quel limite è il triangolo di Sierpiński.",
+      body: "Prendi un triangolo equilatero. Unisci i punti medi dei tre lati — lo tagli in quattro triangoli congruenti più piccoli, tre con la punta in alto e uno in basso. Cancella quello in basso. Restano tre triangoli piccoli negli angoli. Applica a ciascuno la stessa regola: unisci i punti medi, cancella il triangolo centrale rovesciato, tieni gli angoli. Ripeti. Ogni iterazione triplica il numero di pezzi e dimezza la lunghezza dei lati. Nel limite l'insieme residuo ha misura di Lebesgue zero, eppure è connesso, autosimile a ogni scala, un insieme perfetto più che numerabile senza punti isolati. Quel limite è il triangolo di Sierpiński.",
     },
     {
       pretitle: "Sezione 02 · La dimensione frattale",
@@ -521,7 +710,7 @@ const itStory: RichStory = {
     caption: "Interattivo · visualizzatore di suddivisione",
     depthLabel: "Profondità",
     triangleLabel: "Triangoli",
-    hint: "A profondità n ci sono 3ⁿ triangoli pieni. L'area totale è (3/4)ⁿ dell'originale, tende a zero — ma l'insieme limite, il setaccio, è denso ovunque.",
+    hint: "A profondità n ci sono 3ⁿ triangoli pieni. L'area totale è (3/4)ⁿ dell'originale, tende a zero, ma l'insieme limite, il setaccio, ha interno vuoto e resta autosimile a ogni scala.",
   },
   threeRoutes: {
     pretitle: "Interattivo · tre strade, una forma",
@@ -540,10 +729,52 @@ const itStory: RichStory = {
     footnote:
       "Tre ricette senza legame — geometrica, combinatoria, stocastica — si posano sullo stesso insieme compatto. È l'unico punto fisso dell'IFS a tre mappe.",
   },
+  panels: {
+    dimensionLabel: "Dimensione di Hausdorff",
+    dimensionCaption:
+      "Strettamente tra una curva (dim 1) e una regione (dim 2). Lo stesso valore è la dimensione di box-counting, quindi il setaccio è ben regolato dal punto di vista dimensionale.",
+    contractionsLabel: "Le tre contrazioni",
+    f1Desc: "verso il vertice in basso a sinistra",
+    f2Desc: "verso il vertice in basso a destra",
+    f3Desc: "verso il vertice in alto",
+    fixedSet: "S = f₁(S) ∪ f₂(S) ∪ f₃(S), l'unico insieme compatto non vuoto fisso.",
+    routePascalLabel: "Pascal mod 2",
+    routePascalDesc: "→ Vedi per intero la strada aritmetica",
+    routeChaosLabel: "Gioco del Caos",
+    routeChaosDesc: "→ Gioca tu stesso la passeggiata casuale",
+    routeSubdivisionLabel: "Suddivisione",
+    routeSubdivisionDesc: "→ Costruzione ricorsiva, profonda",
+    familyLabel: "La famiglia",
+    colName: "nome",
+    colAmbient: "ambiente",
+    colCopies: "copie / scala",
+    colDimension: "dimensione",
+    familyRows: [
+      { name: "polvere di Cantor", ambient: "1D", copies: "2 copie a 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "triangolo di Sierpiński",
+        ambient: "2D",
+        copies: "3 copie a 1/2",
+        dim: "log 3 / log 2 ≈ 1,585",
+      },
+      {
+        name: "tappeto di Sierpiński",
+        ambient: "2D",
+        copies: "8 copie a 1/3",
+        dim: "log 8 / log 3 ≈ 1,893",
+      },
+      {
+        name: "spugna di Menger",
+        ambient: "3D",
+        copies: "20 copie a 1/3",
+        dim: "log 20 / log 3 ≈ 2,727",
+      },
+    ],
+  },
   closingPretitle: "Vai oltre",
   closingTitle: "Apri l'Esploratore.",
   closingBody:
-    "L'Esploratore ti lascia spingere la suddivisione più in profondità, far girare il Gioco del Caos su poligoni arbitrari, cambiare tavolozza e alternare le tre costruzioni fianco a fianco. Tutto quello che hai appena letto è a un clic.",
+    "L'Esploratore ti lascia spingere la suddivisione più in profondità, far girare il Gioco del Caos sul triangolo, cambiare colore e scorrere le quattro costruzioni, suddivisione, Gioco del Caos, Pascal mod 2 e Regola 90, una alla volta. Tutto quello che hai appena letto è a un clic.",
   ctaLabel: "→ Apri l'Esploratore",
 };
 
@@ -585,7 +816,7 @@ const ptStory: RichStory = {
     {
       pretitle: "Secção 01 · A construção clássica",
       title: "Tira o centro, depois recorre",
-      body: "Toma um triângulo equilátero. Liga os pontos médios dos seus três lados — isso corta-o em quatro triângulos pequenos congruentes, três com a ponta para cima e um para baixo. Apaga o de baixo. Ficam três triangulozinhos nos cantos. Aplica a cada um a mesma regra: ligar os pontos médios, apagar o triângulo central invertido, guardar os cantos. Repete. Cada iteração triplica o número de peças e reduz o lado a metade. No limite o conjunto restante tem medida de Lebesgue zero — mesmo assim é denso por toda a parte dentro do triângulo original. Esse limite é o triângulo de Sierpiński.",
+      body: "Toma um triângulo equilátero. Liga os pontos médios dos seus três lados — isso corta-o em quatro triângulos pequenos congruentes, três com a ponta para cima e um para baixo. Apaga o de baixo. Ficam três triangulozinhos nos cantos. Aplica a cada um a mesma regra: ligar os pontos médios, apagar o triângulo central invertido, guardar os cantos. Repete. Cada iteração triplica o número de peças e reduz o lado a metade. No limite o conjunto restante tem medida de Lebesgue zero, mesmo assim é conexo, autossemelhante em qualquer escala, um conjunto perfeito não numerável sem pontos isolados. Esse limite é o triângulo de Sierpiński.",
     },
     {
       pretitle: "Secção 02 · A dimensão fractal",
@@ -620,7 +851,7 @@ const ptStory: RichStory = {
     caption: "Interativo · visualizador de subdivisão",
     depthLabel: "Profundidade",
     triangleLabel: "Triângulos",
-    hint: "À profundidade n há 3ⁿ triângulos cheios. A área total é (3/4)ⁿ da original, tende a zero — mas o conjunto limite, o crivo, é denso em toda parte.",
+    hint: "À profundidade n há 3ⁿ triângulos cheios. A área total é (3/4)ⁿ da original, tende a zero, mas o conjunto limite, o crivo, tem interior vazio e continua autossemelhante em qualquer escala.",
   },
   threeRoutes: {
     pretitle: "Interativo · três caminhos, uma forma",
@@ -639,10 +870,52 @@ const ptStory: RichStory = {
     footnote:
       "Três receitas sem relação — geométrica, combinatória, estocástica — pousam no mesmo conjunto compacto. Esse conjunto é o único ponto fixo do IFS de três mapas.",
   },
+  panels: {
+    dimensionLabel: "Dimensão de Hausdorff",
+    dimensionCaption:
+      "Estritamente entre uma curva (dim 1) e uma região (dim 2). O mesmo valor é a dimensão de contagem de caixas, por isso o crivo comporta-se bem dimensionalmente.",
+    contractionsLabel: "As três contrações",
+    f1Desc: "para o vértice inferior esquerdo",
+    f2Desc: "para o vértice inferior direito",
+    f3Desc: "para o vértice superior",
+    fixedSet: "S = f₁(S) ∪ f₂(S) ∪ f₃(S), o único conjunto fixo compacto não vazio.",
+    routePascalLabel: "Pascal mod 2",
+    routePascalDesc: "→ Ver a rota aritmética por inteiro",
+    routeChaosLabel: "Jogo do Caos",
+    routeChaosDesc: "→ Joga tu mesmo o passeio aleatório",
+    routeSubdivisionLabel: "Subdivisão",
+    routeSubdivisionDesc: "→ Construção recursiva, profunda",
+    familyLabel: "A família",
+    colName: "nome",
+    colAmbient: "ambiente",
+    colCopies: "cópias / escala",
+    colDimension: "dimensão",
+    familyRows: [
+      { name: "pó de Cantor", ambient: "1D", copies: "2 cópias a 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "triângulo de Sierpiński",
+        ambient: "2D",
+        copies: "3 cópias a 1/2",
+        dim: "log 3 / log 2 ≈ 1,585",
+      },
+      {
+        name: "tapete de Sierpiński",
+        ambient: "2D",
+        copies: "8 cópias a 1/3",
+        dim: "log 8 / log 3 ≈ 1,893",
+      },
+      {
+        name: "esponja de Menger",
+        ambient: "3D",
+        copies: "20 cópias a 1/3",
+        dim: "log 20 / log 3 ≈ 2,727",
+      },
+    ],
+  },
   closingPretitle: "Vai mais longe",
   closingTitle: "Abre o Explorador.",
   closingBody:
-    "O Explorador deixa-te empurrar a subdivisão mais fundo, correr o Jogo do Caos em polígonos arbitrários, mudar a paleta e alternar as três construções lado a lado. Tudo o que acabaste de ler está a um clique.",
+    "O Explorador deixa-te empurrar a subdivisão mais fundo, correr o Jogo do Caos no triângulo, mudar a cor e percorrer as quatro construções, subdivisão, Jogo do Caos, Pascal mod 2 e Regra 90, uma de cada vez. Tudo o que acabaste de ler está a um clique.",
   ctaLabel: "→ Abrir o Explorador",
 };
 
@@ -674,7 +947,7 @@ const svStory: RichStory = {
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "Samma figur uppstår ur (1) rekursiv uppdelning, (2) Pascals triangel där de jämna cellerna sudd as bort, och (3) det slumpartade Kaosspelet där man hoppar halvvägs mot ett av tre hörn. Tre orelaterade processer, ett oundvikligt svar: strukturen sitter inbyggd i själva geometrin.",
+        body: "Samma figur uppstår ur (1) rekursiv uppdelning, (2) Pascals triangel där de jämna cellerna suddas bort, och (3) det slumpartade Kaosspelet där man hoppar halvvägs mot ett av tre hörn. Tre orelaterade processer, ett oundvikligt svar: strukturen sitter inbyggd i själva geometrin.",
       },
     ],
     tryIt: "Dra i djupreglaget nedan och se hur de tre vägarna möts i sållet.",
@@ -683,7 +956,7 @@ const svStory: RichStory = {
     {
       pretitle: "Avsnitt 01 · Den klassiska konstruktionen",
       title: "Ta bort mitten, fortsätt rekursivt",
-      body: "Ta en liksidig triangel. Förbind mittpunkterna på de tre sidorna — det delar upp den i fyra kongruenta mindre trianglar, tre pekande uppåt och en nedåt. Sudda den nedåtpekande. Tre små trianglar i hörnen återstår. Tillämpa samma regel på var och en: förbind mittpunkter, sudda den centrala omvända, behåll hörnen. Upprepa. Varje iteration tredubblar antalet bitar och halverar sidlängden. I gränsen har den kvarvarande mängden Lebesguemått noll — och är ändå överallt tät i den ursprungliga triangeln. Den gränsen är Sierpiński-triangeln.",
+      body: "Ta en liksidig triangel. Förbind mittpunkterna på de tre sidorna — det delar upp den i fyra kongruenta mindre trianglar, tre pekande uppåt och en nedåt. Sudda den nedåtpekande. Tre små trianglar i hörnen återstår. Tillämpa samma regel på var och en: förbind mittpunkter, sudda den centrala omvända, behåll hörnen. Upprepa. Varje iteration tredubblar antalet bitar och halverar sidlängden. I gränsen har den kvarvarande mängden Lebesguemått noll, men är ändå sammanhängande, självlik i varje skala, en överuppräknelig perfekt mängd utan isolerade punkter. Den gränsen är Sierpiński-triangeln.",
     },
     {
       pretitle: "Avsnitt 02 · Den fraktala dimensionen",
@@ -718,7 +991,7 @@ const svStory: RichStory = {
     caption: "Interaktivt · uppdelningsvisualiserare",
     depthLabel: "Djup",
     triangleLabel: "Trianglar",
-    hint: "Vid djup n finns 3ⁿ fyllda trianglar. Totalarean är (3/4)ⁿ av den ursprungliga, går mot noll — men gränsmängden, sållet, är ändå överallt tät.",
+    hint: "Vid djup n finns 3ⁿ fyllda trianglar. Totalarean är (3/4)ⁿ av den ursprungliga, går mot noll, men gränsmängden, sållet, har ändå tomt inre och förblir självlik i varje skala.",
   },
   threeRoutes: {
     pretitle: "Interaktivt · tre vägar, en form",
@@ -737,10 +1010,52 @@ const svStory: RichStory = {
     footnote:
       "Tre orelaterade recept — geometriskt, kombinatoriskt, stokastiskt — landar på samma kompakta mängd. Den är den unika fixpunkten för IFS med tre kartor.",
   },
+  panels: {
+    dimensionLabel: "Hausdorffdimension",
+    dimensionCaption:
+      "Strikt mellan en kurva (dim 1) och en region (dim 2). Samma värde är boxdimensionen, så sållet är dimensionellt välartat.",
+    contractionsLabel: "De tre kontraktionerna",
+    f1Desc: "mot hörnet nere till vänster",
+    f2Desc: "mot hörnet nere till höger",
+    f3Desc: "mot det övre hörnet",
+    fixedSet: "S = f₁(S) ∪ f₂(S) ∪ f₃(S), den unika icke-tomma kompakta fixmängden.",
+    routePascalLabel: "Pascal mod 2",
+    routePascalDesc: "→ Se hela den aritmetiska vägen",
+    routeChaosLabel: "Kaosspelet",
+    routeChaosDesc: "→ Spela slumpvandringen själv",
+    routeSubdivisionLabel: "Uppdelning",
+    routeSubdivisionDesc: "→ Rekursiv konstruktion, djup",
+    familyLabel: "Familjen",
+    colName: "namn",
+    colAmbient: "rymd",
+    colCopies: "kopior / skala",
+    colDimension: "dimension",
+    familyRows: [
+      { name: "Cantor-damm", ambient: "1D", copies: "2 kopior på 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "Sierpiński-triangel",
+        ambient: "2D",
+        copies: "3 kopior på 1/2",
+        dim: "log 3 / log 2 ≈ 1,585",
+      },
+      {
+        name: "Sierpiński-matta",
+        ambient: "2D",
+        copies: "8 kopior på 1/3",
+        dim: "log 8 / log 3 ≈ 1,893",
+      },
+      {
+        name: "Mengers svamp",
+        ambient: "3D",
+        copies: "20 kopior på 1/3",
+        dim: "log 20 / log 3 ≈ 2,727",
+      },
+    ],
+  },
   closingPretitle: "Gå vidare",
   closingTitle: "Öppna utforskaren.",
   closingBody:
-    "Utforskaren låter dig pressa uppdelningen djupare, köra Kaosspelet på godtyckliga polygoner, byta palett och växla mellan de tre konstruktionerna sida vid sida. Allt du just läst är ett klick bort.",
+    "Utforskaren låter dig pressa uppdelningen djupare, köra Kaosspelet på triangeln, byta färg och stega genom alla fyra konstruktionerna, uppdelning, Kaosspelet, Pascal mod 2 och Regel 90, en i taget. Allt du just läst är ett klick bort.",
   ctaLabel: "→ Öppna utforskaren",
 };
 
@@ -781,7 +1096,7 @@ const noStory: RichStory = {
     {
       pretitle: "Avsnitt 01 · Den klassiske konstruksjonen",
       title: "Fjern midten, fortsett rekursivt",
-      body: "Ta en likesidet trekant. Forbind midtpunktene på de tre sidene — det deler den i fire kongruente mindre trekanter, tre med spissen opp og en med spissen ned. Visk ut den nedoverpekende. Da står du igjen med tre små trekanter i hjørnene. Anvend samme regel på hver: forbind midtpunkter, visk ut den sentrale omvendte, behold hjørnene. Gjenta. Hver iterasjon tredobler antallet biter og halverer sidelengden. I grensen har den gjenværende mengden Lebesguemål null — og er likevel overalt tett i den opprinnelige trekanten. Den grensen er Sierpiński-trekanten.",
+      body: "Ta en likesidet trekant. Forbind midtpunktene på de tre sidene — det deler den i fire kongruente mindre trekanter, tre med spissen opp og en med spissen ned. Visk ut den nedoverpekende. Da står du igjen med tre små trekanter i hjørnene. Anvend samme regel på hver: forbind midtpunkter, visk ut den sentrale omvendte, behold hjørnene. Gjenta. Hver iterasjon tredobler antallet biter og halverer sidelengden. I grensen har den gjenværende mengden Lebesguemål null, men er likevel sammenhengende, selvlik i alle skalaer, en overtellbar perfekt mengde uten isolerte punkter. Den grensen er Sierpiński-trekanten.",
     },
     {
       pretitle: "Avsnitt 02 · Den fraktale dimensjonen",
@@ -816,7 +1131,7 @@ const noStory: RichStory = {
     caption: "Interaktivt · oppdelings-visualisering",
     depthLabel: "Dybde",
     triangleLabel: "Trekanter",
-    hint: "Ved dybde n finnes 3ⁿ fylte trekanter. Totalarealet er (3/4)ⁿ av det opprinnelige, går mot null — men grensemengden, sikten, er likevel overalt tett.",
+    hint: "Ved dybde n finnes 3ⁿ fylte trekanter. Totalarealet er (3/4)ⁿ av det opprinnelige, går mot null, men grensemengden, sikten, har likevel tomt indre og forblir selvlik i alle skalaer.",
   },
   threeRoutes: {
     pretitle: "Interaktivt · tre veier, én form",
@@ -835,10 +1150,52 @@ const noStory: RichStory = {
     footnote:
       "Tre urelaterte oppskrifter — geometrisk, kombinatorisk, stokastisk — lander på samme kompakte mengde. Den er det entydige fastpunktet for IFS-et med tre kart.",
   },
+  panels: {
+    dimensionLabel: "Hausdorff-dimensjon",
+    dimensionCaption:
+      "Strengt mellom en kurve (dim 1) og en flate (dim 2). Samme verdi er boksdimensjonen, så sikten er dimensjonelt velartet.",
+    contractionsLabel: "De tre kontraksjonene",
+    f1Desc: "mot hjørnet nede til venstre",
+    f2Desc: "mot hjørnet nede til høyre",
+    f3Desc: "mot det øvre hjørnet",
+    fixedSet: "S = f₁(S) ∪ f₂(S) ∪ f₃(S), den entydige ikke-tomme kompakte fastmengden.",
+    routePascalLabel: "Pascal mod 2",
+    routePascalDesc: "→ Se hele den aritmetiske veien",
+    routeChaosLabel: "Kaosspillet",
+    routeChaosDesc: "→ Spill den tilfeldige vandringen selv",
+    routeSubdivisionLabel: "Oppdeling",
+    routeSubdivisionDesc: "→ Rekursiv konstruksjon, dyp",
+    familyLabel: "Familien",
+    colName: "navn",
+    colAmbient: "rom",
+    colCopies: "kopier / skala",
+    colDimension: "dimensjon",
+    familyRows: [
+      { name: "Cantor-støv", ambient: "1D", copies: "2 kopier på 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "Sierpiński-trekant",
+        ambient: "2D",
+        copies: "3 kopier på 1/2",
+        dim: "log 3 / log 2 ≈ 1,585",
+      },
+      {
+        name: "Sierpiński-teppe",
+        ambient: "2D",
+        copies: "8 kopier på 1/3",
+        dim: "log 8 / log 3 ≈ 1,893",
+      },
+      {
+        name: "Mengers svamp",
+        ambient: "3D",
+        copies: "20 kopier på 1/3",
+        dim: "log 20 / log 3 ≈ 2,727",
+      },
+    ],
+  },
   closingPretitle: "Gå videre",
   closingTitle: "Åpne utforskeren.",
   closingBody:
-    "Utforskeren lar deg presse oppdelingen dypere, kjøre Kaosspillet på vilkårlige polygoner, bytte palett og veksle mellom de tre konstruksjonene side om side. Alt du nettopp leste er ett klikk unna.",
+    "Utforskeren lar deg presse oppdelingen dypere, kjøre Kaosspillet på trekanten, bytte farge og gå gjennom alle fire konstruksjonene, oppdeling, Kaosspillet, Pascal mod 2 og Regel 90, én om gangen. Alt du nettopp leste er ett klikk unna.",
   ctaLabel: "→ Åpne utforskeren",
 };
 
@@ -1016,14 +1373,13 @@ export default function SierpinskiStory() {
           <Reveal delay={120}>
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
               <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                Hausdorff dimension
+                {story.panels.dimensionLabel}
               </div>
               <div className="math-italic text-5xl leading-tight text-ink-100 md:text-7xl">
                 log 3 / log 2 ≈ 1.585
               </div>
               <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-                Strictly between a curve (dim 1) and a region (dim 2). The same value is the
-                box-counting dimension — the gasket is dimensionally well-behaved.
+                {story.panels.dimensionCaption}
               </p>
             </div>
           </Reveal>
@@ -1037,24 +1393,24 @@ export default function SierpinskiStory() {
           <Reveal delay={120}>
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8">
               <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                The three contractions
+                {story.panels.contractionsLabel}
               </div>
               <div className="space-y-1 font-mono text-xs leading-relaxed text-ink-100 md:text-sm">
                 <div>
-                  <span className="text-signal-amber">f₁(x, y)</span> = (x/2, y/2) — towards the
-                  bottom-left vertex
+                  <span className="text-signal-amber">f₁(x, y)</span> = (x/2, y/2){" "}
+                  <span className="text-ink-400">{story.panels.f1Desc}</span>
                 </div>
                 <div>
-                  <span className="text-signal-amber">f₂(x, y)</span> = ((x+1)/2, y/2) — towards the
-                  bottom-right vertex
+                  <span className="text-signal-amber">f₂(x, y)</span> = ((x+1)/2, y/2){" "}
+                  <span className="text-ink-400">{story.panels.f2Desc}</span>
                 </div>
                 <div>
-                  <span className="text-signal-amber">f₃(x, y)</span> = ((x+1/2)/2, (y+√3/2)/2) —
-                  towards the top vertex
+                  <span className="text-signal-amber">f₃(x, y)</span> = ((x+1/2)/2, (y+√3/2)/2){" "}
+                  <span className="text-ink-400">{story.panels.f3Desc}</span>
                 </div>
               </div>
               <p className="hairline border-t pt-2 text-xs leading-relaxed text-ink-400">
-                S = f₁(S) ∪ f₂(S) ∪ f₃(S) — the unique non-empty compact fixed set.
+                {story.panels.fixedSet}
               </p>
             </div>
           </Reveal>
@@ -1072,27 +1428,27 @@ export default function SierpinskiStory() {
                 className="hairline block space-y-1 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-signal-amber/50"
               >
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                  Pascal mod 2
+                  {story.panels.routePascalLabel}
                 </div>
-                <div className="text-sm text-ink-200">→ See the arithmetic route in full</div>
+                <div className="text-sm text-ink-200">{story.panels.routePascalDesc}</div>
               </Link>
               <Link
                 href="/chaosgame"
                 className="hairline block space-y-1 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-signal-amber/50"
               >
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                  Chaos Game
+                  {story.panels.routeChaosLabel}
                 </div>
-                <div className="text-sm text-ink-200">→ Play the random walk yourself</div>
+                <div className="text-sm text-ink-200">{story.panels.routeChaosDesc}</div>
               </Link>
               <Link
                 href="/sierpinski/explorer"
                 className="hairline block space-y-1 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-signal-amber/50"
               >
                 <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                  Subdivision
+                  {story.panels.routeSubdivisionLabel}
                 </div>
-                <div className="text-sm text-ink-200">→ Recursive construction, deep</div>
+                <div className="text-sm text-ink-200">{story.panels.routeSubdivisionDesc}</div>
               </Link>
             </div>
           </Reveal>
@@ -1135,37 +1491,32 @@ export default function SierpinskiStory() {
           <Reveal delay={120}>
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-6">
               <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                The family
+                {story.panels.familyLabel}
               </div>
               <table className="w-full font-mono text-sm">
                 <thead className="hairline border-b text-ink-300">
                   <tr>
                     <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                      name
+                      {story.panels.colName}
                     </th>
                     <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                      ambient
+                      {story.panels.colAmbient}
                     </th>
                     <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                      copies / scale
+                      {story.panels.colCopies}
                     </th>
                     <th className="px-2 py-2 text-right text-[10px] uppercase tracking-widest">
-                      dimension
+                      {story.panels.colDimension}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {[
-                    ["Cantor dust", "1D", "2 copies at 1/3", "log 2 / log 3 ≈ 0.631"],
-                    ["Sierpiński triangle", "2D", "3 copies at 1/2", "log 3 / log 2 ≈ 1.585"],
-                    ["Sierpiński carpet", "2D", "8 copies at 1/3", "log 8 / log 3 ≈ 1.893"],
-                    ["Menger sponge", "3D", "20 copies at 1/3", "log 20 / log 3 ≈ 2.727"],
-                  ].map(([name, dim, copies, val]) => (
-                    <tr key={name} className="border-b border-ink-700/30 last:border-0">
-                      <td className="px-2 py-2 text-signal-amber">{name}</td>
-                      <td className="px-2 py-2 text-xs text-ink-200">{dim}</td>
-                      <td className="px-2 py-2 text-xs text-ink-200">{copies}</td>
-                      <td className="px-2 py-2 text-right text-xs text-ink-100">{val}</td>
+                  {story.panels.familyRows.map((r) => (
+                    <tr key={r.name} className="border-b border-ink-700/30 last:border-0">
+                      <td className="px-2 py-2 text-signal-amber">{r.name}</td>
+                      <td className="px-2 py-2 text-xs text-ink-200">{r.ambient}</td>
+                      <td className="px-2 py-2 text-xs text-ink-200">{r.copies}</td>
+                      <td className="px-2 py-2 text-right text-xs text-ink-100">{r.dim}</td>
                     </tr>
                   ))}
                 </tbody>

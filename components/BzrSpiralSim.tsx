@@ -110,6 +110,20 @@ export function BzrSpiralSim({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [paused, setPaused] = useState(false);
   const [resetTick, setResetTick] = useState(0);
+  // Honour prefers-reduced-motion: settle a representative spiral once and skip
+  // the RAF loop so the rotating fronts do not animate for motion-sensitive
+  // users (the strobing fronts are the flagged epilepsy risk).
+  const [reduced, setReduced] = useState(false);
+  // Bumped by Plant defect so the static (reduced-motion) render repaints.
+  const [plantTick, setPlantTick] = useState(0);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const uRef = useRef<Float32Array>(new Float32Array(SIZE));
   const vRef = useRef<Float32Array>(new Float32Array(SIZE));
@@ -145,49 +159,43 @@ export function BzrSpiralSim({
     const Du = 1.0;
     const dt = 0.18;
 
-    let raf = 0;
-    const step = (): void => {
-      if (!pausedRef.current) {
-        const uCur = uRef.current;
-        const vCur = vRef.current;
-        let uNext = uNextRef.current;
-        let vNext = vNextRef.current;
-        for (let s = 0; s < STEPS_PER_FRAME; s++) {
-          for (let y = 0; y < H; y++) {
-            const yUp = y === 0 ? H - 1 : y - 1;
-            const yDn = y === H - 1 ? 0 : y + 1;
-            const row = y * W;
-            const rowU = yUp * W;
-            const rowD = yDn * W;
-            for (let x = 0; x < W; x++) {
-              const xL = x === 0 ? W - 1 : x - 1;
-              const xR = x === W - 1 ? 0 : x + 1;
-              const i = row + x;
-              const uC = uCur[i];
-              const vC = vCur[i];
-              const lapU =
-                uCur[row + xL] + uCur[row + xR] + uCur[rowU + x] + uCur[rowD + x] - 4 * uC;
-              const fU = (uC * (1 - uC) * (uC - (vC + b) / a)) / eps;
-              let uN = uC + dt * (fU + Du * lapU);
-              let vN = vC + dt * (uC - vC);
-              if (uN < 0) uN = 0;
-              else if (uN > 1) uN = 1;
-              if (vN < 0) vN = 0;
-              else if (vN > 1) vN = 1;
-              uNext[i] = uN;
-              vNext[i] = vN;
-            }
-          }
-          const tmpU = uRef.current;
-          const tmpV = vRef.current;
-          uRef.current = uNext;
-          vRef.current = vNext;
-          uNextRef.current = tmpU;
-          vNextRef.current = tmpV;
-          uNext = uNextRef.current;
-          vNext = vNextRef.current;
+    // One Barkley grid update, swapping the double buffers.
+    const simulate = (): void => {
+      const uCur = uRef.current;
+      const vCur = vRef.current;
+      const uNext = uNextRef.current;
+      const vNext = vNextRef.current;
+      for (let y = 0; y < H; y++) {
+        const yUp = y === 0 ? H - 1 : y - 1;
+        const yDn = y === H - 1 ? 0 : y + 1;
+        const row = y * W;
+        const rowU = yUp * W;
+        const rowD = yDn * W;
+        for (let x = 0; x < W; x++) {
+          const xL = x === 0 ? W - 1 : x - 1;
+          const xR = x === W - 1 ? 0 : x + 1;
+          const i = row + x;
+          const uC = uCur[i];
+          const vC = vCur[i];
+          const lapU = uCur[row + xL] + uCur[row + xR] + uCur[rowU + x] + uCur[rowD + x] - 4 * uC;
+          const fU = (uC * (1 - uC) * (uC - (vC + b) / a)) / eps;
+          let uN = uC + dt * (fU + Du * lapU);
+          let vN = vC + dt * (uC - vC);
+          if (uN < 0) uN = 0;
+          else if (uN > 1) uN = 1;
+          if (vN < 0) vN = 0;
+          else if (vN > 1) vN = 1;
+          uNext[i] = uN;
+          vNext[i] = vN;
         }
       }
+      uRef.current = uNext;
+      vRef.current = vNext;
+      uNextRef.current = uCur;
+      vNextRef.current = vCur;
+    };
+
+    const render = (): void => {
       const u = uRef.current;
       for (let i = 0; i < SIZE; i++) {
         let val = u[i];
@@ -202,17 +210,35 @@ export function BzrSpiralSim({
         data[o + 3] = 255;
       }
       ctx.putImageData(image, 0, 0);
+    };
+
+    // Reduced motion: settle a representative spiral synchronously, paint it
+    // once, and never start the RAF loop.
+    if (reduced) {
+      for (let s = 0; s < 700; s++) simulate();
+      render();
+      return;
+    }
+
+    let raf = 0;
+    const step = (): void => {
+      if (!pausedRef.current) {
+        for (let s = 0; s < STEPS_PER_FRAME; s++) simulate();
+      }
+      render();
       raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [lut]);
+  }, [lut, reduced, resetTick, plantTick]);
 
   const handlePlant = () => {
     // Random defect somewhere in the central two-thirds of the field.
     const cx = Math.floor(W * (0.2 + Math.random() * 0.6));
     const cy = Math.floor(H * (0.2 + Math.random() * 0.6));
     plantDefect(uRef.current, vRef.current, cx, cy);
+    // Repaint even under reduced motion, where no RAF loop is running.
+    setPlantTick((t) => t + 1);
   };
 
   return (
@@ -224,6 +250,8 @@ export function BzrSpiralSim({
         <div className="hairline overflow-hidden rounded-xl border bg-ink-950">
           <canvas
             ref={canvasRef}
+            role="img"
+            aria-label={caption}
             className="block w-full"
             style={{
               imageRendering: "pixelated",

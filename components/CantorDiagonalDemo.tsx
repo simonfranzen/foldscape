@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 // Inline Cantor-diagonal demo. Shows N fake reals in [0,1] as decimal
 // expansions, highlights the diagonal digit on each row, and assembles a
 // "constructed real" beneath where every digit differs from the diagonal
-// (here: diagonal digit + 1 mod 10). The list can be randomised; the
+// (via safeFlip, which also avoids 0 and 9). The list can be randomised; the
 // slider chooses how many rows to display.
 
 interface Props {
@@ -22,6 +22,19 @@ interface Props {
 const MAX_ROWS = 10;
 const MIN_ROWS = 4;
 const DIGITS_BUFFER = 12; // generate plenty so widths align
+
+// Swap a diagonal digit for a different one that is never 0 or 9. Section 03
+// of the story warns that landing on 0 or 9 reopens the 0.999… = 1.000…
+// aliasing, so the demo must honour that rule too (a plain (d+1) mod 10 would
+// map 8→9 and 9→0). Mirrors the explorer's plusOne strategy.
+function safeFlip(d: number): number {
+  let next = (d + 1) % 10;
+  for (let i = 0; i < 10; i++) {
+    if (next !== d && next !== 0 && next !== 9) return next;
+    next = (next + 1) % 10;
+  }
+  return 1;
+}
 
 function makeDigits(seed: number): number[][] {
   // Deterministic pseudo-random — a tiny LCG so the layout stays stable
@@ -44,7 +57,7 @@ export function CantorDiagonalDemo({
   caption,
   rowsLabel,
   randomiseLabel,
-  constructedLabel: _constructedLabel,
+  constructedLabel,
   hint,
   ruleLabel,
   rowLabel,
@@ -57,7 +70,7 @@ export function CantorDiagonalDemo({
 
   const visibleRows = grid.slice(0, rows);
   const diagonalDigits = visibleRows.map((row, i) => row[i]!);
-  const constructed = diagonalDigits.map((d) => (d + 1) % 10);
+  const constructed = diagonalDigits.map(safeFlip);
   // Number of digit columns to render: enough to hold the diagonal and a
   // couple after it, but keep things compact.
   const cols = Math.min(rows + 2, DIGITS_BUFFER);
@@ -108,7 +121,12 @@ export function CantorDiagonalDemo({
 
             {/* Constructed real — built from the diagonal */}
             <tr>
-              <td colSpan={cols + 3} className="pt-3" />
+              <td
+                colSpan={cols + 3}
+                className="pb-1 pt-4 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose"
+              >
+                {constructedLabel}
+              </td>
             </tr>
             <tr>
               <td className="w-14 whitespace-nowrap py-2 pr-3 text-right font-semibold text-signal-rose">
@@ -138,21 +156,28 @@ export function CantorDiagonalDemo({
       </div>
 
       <div className="hairline rounded-md border bg-ink-950/60 p-3 font-mono text-[11px] text-ink-200">
-        <span className="text-signal-rose">{ruleLabel}</span> s<sub>n</sub> = (d<sub>n,n</sub> + 1)
-        mod 10
+        {/* Invariant guaranteed by safeFlip: sₙ differs from the diagonal digit
+            and never lands on 0 or 9, so no 0.999… = 1.000… aliasing. */}
+        <span className="text-signal-rose">{ruleLabel}</span> s<sub>n</sub> ≠ d<sub>n,n</sub>, s
+        <sub>n</sub> ∉ {"{0, 9}"}
       </div>
 
       <div className="flex items-center gap-4">
-        <label className="whitespace-nowrap font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+        <label
+          htmlFor="cantor-demo-rows"
+          className="whitespace-nowrap font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+        >
           {rowsLabel}
         </label>
         <input
+          id="cantor-demo-rows"
           type="range"
           min={MIN_ROWS}
           max={MAX_ROWS}
           value={rows}
           onChange={(e) => setRows(parseInt(e.target.value, 10))}
           className="flex-1 accent-signal-rose"
+          aria-label={rowsLabel}
         />
         <span className="w-8 text-right font-mono text-sm text-signal-rose">{rows}</span>
       </div>

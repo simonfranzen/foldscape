@@ -5,11 +5,17 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import type { Locale } from "@/lib/i18n/types";
+
+const withAlpha = (hex: string, a: number) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+};
 
 // ---------- Geometry types ----------
 
 interface Circle {
-  x: number; // centre x in unit coordinates (outer disc has radius 1, centred at 0,0)
+  x: number; // centre x; outer disc centred at (0,0), radius r = 1/|k_outer|
   y: number;
   r: number; // geometric radius, always positive
   k: number; // signed curvature: +1/r for ordinary circles, −1/r for the enclosing one
@@ -68,6 +74,13 @@ const cSqrt = (a: CNum): CNum => {
 };
 
 // Solve for the two candidate fourth circles given three known ones.
+//
+// In the complex Descartes theorem the sign of the centre equation
+// (linear ± 2√disc) is INDEPENDENT of the sign of the curvature equation
+// (sumK ± 2√inner). So we return both curvature roots plus the raw `linear`
+// and `sq = 2√disc` terms; the caller matches the target curvature and then
+// picks the centre sign by an explicit tangency test (see placeSeed). Coupling
+// zPlus↔kPlus / zMinus↔kMinus here would be wrong for most seeds.
 function descartesFourthZ(
   k1: number,
   k2: number,
@@ -75,7 +88,7 @@ function descartesFourthZ(
   z1: CNum,
   z2: CNum,
   z3: CNum,
-): { kPlus: number; kMinus: number; zPlus: CNum; zMinus: CNum } {
+): { kPlus: number; kMinus: number; linear: CNum; sq: CNum } {
   const sumK = k1 + k2 + k3;
   const inner = k1 * k2 + k2 * k3 + k3 * k1;
   const root = 2 * Math.sqrt(Math.max(0, inner));
@@ -90,14 +103,7 @@ function descartesFourthZ(
     cScale(cMul(z3, z1), k3 * k1),
   );
   const sq = cScale(cSqrt(disc), 2);
-  const zNumPlus = cAdd(linear, sq);
-  const zNumMinus = cSub(linear, sq);
-  return {
-    kPlus,
-    kMinus,
-    zPlus: cScale(zNumPlus, 1 / kPlus),
-    zMinus: cScale(zNumMinus, 1 / kMinus),
-  };
+  return { kPlus, kMinus, linear, sq };
 }
 
 // Place a seed quadruple in normalised (unit-disc) coordinates.
@@ -141,19 +147,29 @@ function placeSeed(seeds: [number, number, number, number]): Circle[] {
   const z1: CNum = { re: c1.x, im: c1.y };
   const z2: CNum = { re: c2.x, im: c2.y };
   const cand = descartesFourthZ(c0.k, c1.k, c2.k, z0, z1, z2);
-  // pick the candidate whose curvature matches k3 within numerical tolerance
-  let z3pick: CNum;
-  if (Math.abs(cand.kPlus - k3) <= Math.abs(cand.kMinus - k3)) {
-    z3pick = cand.zPlus;
-  } else {
-    z3pick = cand.zMinus;
-  }
-  // If c2 was placed with +y, place c3 on the −y side so we see both. We flip
-  // its imaginary part to keep the seed visually balanced when the chosen
-  // root coincides with the +y side.
-  if (Math.sign(z3pick.im || 1) === Math.sign(z2.im || 1) && Math.abs(z3pick.im) > 1e-9) {
-    z3pick = { re: z3pick.re, im: -z3pick.im };
-  }
+  // Match the target curvature k3 to one of the two Descartes roots.
+  const kMatched =
+    Math.abs(cand.kPlus - k3) <= Math.abs(cand.kMinus - k3) ? cand.kPlus : cand.kMinus;
+  // The centre-equation sign is independent of the curvature root, so both
+  // (linear ± 2√disc)/kMatched are algebraically valid centres. Only one is
+  // actually tangent to all three parents; we keep the minimum-residual one.
+  const candidates: CNum[] = [
+    cScale(cAdd(cand.linear, cand.sq), 1 / kMatched),
+    cScale(cSub(cand.linear, cand.sq), 1 / kMatched),
+  ];
+  const parents = [c0, c1, c2];
+  const tangencyResidual = (z: CNum): number =>
+    parents.reduce((sum, p) => {
+      const d = Math.hypot(z.re - p.x, z.im - p.y);
+      // Enclosing parent (k < 0): internal tangency, d = r_parent − r_child.
+      // Interior parent (k > 0): external tangency, d = r_parent + r_child.
+      const expected = p.k < 0 ? p.r - r3 : p.r + r3;
+      return sum + Math.abs(d - expected);
+    }, 0);
+  const z3pick =
+    tangencyResidual(candidates[0]!) <= tangencyResidual(candidates[1]!)
+      ? candidates[0]!
+      : candidates[1]!;
   const c3: Circle = { x: z3pick.re, y: z3pick.im, r: r3, k: k3 };
 
   return [c0, c1, c2, c3];
@@ -226,10 +242,165 @@ function growGasket(seed: Circle[], maxDepth: number): Circle[] {
   return out;
 }
 
+// ---------- Explorer UI strings (per locale) ----------
+//
+// The sidebar and canvas HUD carry a lot of copy that is specific to this
+// explorer, so we keep it in a local per-locale record (the RICH_EXPLORER
+// pattern) rather than fattening the shared UI bundle.
+
+type ExplorerStrings = {
+  presetPacking: string;
+  seedNote: string;
+  recursionDepth: string;
+  depthHint: string;
+  view: string;
+  showLabels: string;
+  showGaps: string;
+  colourByCurvature: string;
+  fillFrame: string;
+  seedCircles: string;
+  resetView: string;
+  circles: (n: number) => string;
+  hudDepth: string;
+  canvasLabel: (preset: string, n: number) => string;
+};
+
+const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
+  en: {
+    presetPacking: "Preset packing",
+    seedNote: "integer Apollonian seed",
+    recursionDepth: "Recursion depth",
+    depthHint: "Each step fills every curved-triangle gap with its inscribed circle.",
+    view: "View",
+    showLabels: "Show curvature labels",
+    showGaps: "Highlight triangle gaps",
+    colourByCurvature: "Colour by curvature",
+    fillFrame: "Fill frame",
+    seedCircles: "Seed circles",
+    resetView: "Reset view",
+    circles: (n) => `${n} circles`,
+    hudDepth: "depth ≤",
+    canvasLabel: (p, n) => `Apollonian gasket for packing ${p}, ${n} circles`,
+  },
+  de: {
+    presetPacking: "Vordefinierte Packung",
+    seedNote: "ganzzahliger Apollonischer Keim",
+    recursionDepth: "Rekursionstiefe",
+    depthHint: "Jeder Schritt füllt jede krummlinige Dreieckslücke mit ihrem einbeschriebenen Kreis.",
+    view: "Ansicht",
+    showLabels: "Krümmungswerte anzeigen",
+    showGaps: "Dreieckslücken hervorheben",
+    colourByCurvature: "Nach Krümmung färben",
+    fillFrame: "Bild füllen",
+    seedCircles: "Keimkreise",
+    resetView: "Ansicht zurücksetzen",
+    circles: (n) => `${n} Kreise`,
+    hudDepth: "Tiefe ≤",
+    canvasLabel: (p, n) => `Apollonische Dichtung für Packung ${p}, ${n} Kreise`,
+  },
+  es: {
+    presetPacking: "Empaquetado predefinido",
+    seedNote: "semilla apolínea entera",
+    recursionDepth: "Profundidad de recursión",
+    depthHint: "Cada paso rellena cada hueco triangular curvo con su círculo inscrito.",
+    view: "Vista",
+    showLabels: "Mostrar valores de curvatura",
+    showGaps: "Resaltar huecos triangulares",
+    colourByCurvature: "Colorear por curvatura",
+    fillFrame: "Llenar el marco",
+    seedCircles: "Círculos semilla",
+    resetView: "Restablecer vista",
+    circles: (n) => `${n} círculos`,
+    hudDepth: "profundidad ≤",
+    canvasLabel: (p, n) => `Junta apolínea para el empaquetado ${p}, ${n} círculos`,
+  },
+  fr: {
+    presetPacking: "Empilement prédéfini",
+    seedNote: "germe apollonien entier",
+    recursionDepth: "Profondeur de récursion",
+    depthHint: "Chaque étape remplit chaque interstice triangulaire courbe par son cercle inscrit.",
+    view: "Affichage",
+    showLabels: "Afficher les courbures",
+    showGaps: "Mettre en évidence les interstices",
+    colourByCurvature: "Colorer selon la courbure",
+    fillFrame: "Remplir le cadre",
+    seedCircles: "Cercles germes",
+    resetView: "Réinitialiser la vue",
+    circles: (n) => `${n} cercles`,
+    hudDepth: "profondeur ≤",
+    canvasLabel: (p, n) => `Joint d'Apollonius pour l'empilement ${p}, ${n} cercles`,
+  },
+  it: {
+    presetPacking: "Impacchettamento predefinito",
+    seedNote: "seme apollineo intero",
+    recursionDepth: "Profondità di ricorsione",
+    depthHint: "Ogni passo riempie ogni lacuna triangolare curva con il suo cerchio inscritto.",
+    view: "Vista",
+    showLabels: "Mostra le curvature",
+    showGaps: "Evidenzia le lacune triangolari",
+    colourByCurvature: "Colora per curvatura",
+    fillFrame: "Riempi il riquadro",
+    seedCircles: "Cerchi seme",
+    resetView: "Reimposta la vista",
+    circles: (n) => `${n} cerchi`,
+    hudDepth: "profondità ≤",
+    canvasLabel: (p, n) => `Guarnizione di Apollonio per l'impacchettamento ${p}, ${n} cerchi`,
+  },
+  pt: {
+    presetPacking: "Empacotamento predefinido",
+    seedNote: "semente apoloniana inteira",
+    recursionDepth: "Profundidade de recursão",
+    depthHint: "Cada passo preenche cada lacuna triangular curva com o seu círculo inscrito.",
+    view: "Visualização",
+    showLabels: "Mostrar as curvaturas",
+    showGaps: "Realçar as lacunas triangulares",
+    colourByCurvature: "Colorir por curvatura",
+    fillFrame: "Preencher o quadro",
+    seedCircles: "Círculos semente",
+    resetView: "Repor a visualização",
+    circles: (n) => `${n} círculos`,
+    hudDepth: "profundidade ≤",
+    canvasLabel: (p, n) => `Junta apoloniana para o empacotamento ${p}, ${n} círculos`,
+  },
+  sv: {
+    presetPacking: "Fördefinierad packning",
+    seedNote: "heltalsapollonskt frö",
+    recursionDepth: "Rekursionsdjup",
+    depthHint: "Varje steg fyller varje krökt triangelglapp med sin inskrivna cirkel.",
+    view: "Vy",
+    showLabels: "Visa krökningsvärden",
+    showGaps: "Framhäv triangelglapp",
+    colourByCurvature: "Färga efter krökning",
+    fillFrame: "Fyll rutan",
+    seedCircles: "Fröcirklar",
+    resetView: "Återställ vyn",
+    circles: (n) => `${n} cirklar`,
+    hudDepth: "djup ≤",
+    canvasLabel: (p, n) => `Apollonisk packning ${p}, ${n} cirklar`,
+  },
+  no: {
+    presetPacking: "Forhåndsvalgt pakning",
+    seedNote: "heltallsapollonisk frø",
+    recursionDepth: "Rekursjonsdybde",
+    depthHint: "Hvert steg fyller hvert krumt trekantglipp med sin innskrevne sirkel.",
+    view: "Visning",
+    showLabels: "Vis krumningsverdier",
+    showGaps: "Uthev trekantglipp",
+    colourByCurvature: "Farg etter krumning",
+    fillFrame: "Fyll rammen",
+    seedCircles: "Frøsirkler",
+    resetView: "Tilbakestill visning",
+    circles: (n) => `${n} sirkler`,
+    hudDepth: "dybde ≤",
+    canvasLabel: (p, n) => `Apollonisk pakning ${p}, ${n} sirkler`,
+  },
+};
+
 // ---------- Component ----------
 
 export default function ApollonianExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
+  const RE = RICH_EXPLORER[locale];
   const topic = a.topics.apollonian;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
@@ -239,7 +410,9 @@ export default function ApollonianExplorer() {
   const [showLabels, setShowLabels] = useState(false);
   const [showGaps, setShowGaps] = useState(false);
   const [colourByCurvature, setColourByCurvature] = useState(true);
-  const [centerOnPacking, setCenterOnPacking] = useState(true);
+  // When on, the packing is scaled up to fill the frame; when off, a wider
+  // margin zooms it out. (It does not re-centre: the seed is already centred.)
+  const [fillFrame, setFillFrame] = useState(true);
 
   const seed = useMemo(() => placeSeed(PRESETS[presetIdx]!.seeds), [presetIdx]);
   const circles = useMemo(() => growGasket(seed, depth), [seed, depth]);
@@ -260,13 +433,14 @@ export default function ApollonianExplorer() {
       ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
-      // Determine viewport — we always centre on the outer disc (the seed
-      // is normalised so that the outer disc has |k| = 1/|k_outer|, centred
-      // at (0, 0)). When "centre on packing" is off we still keep it centred
-      // because the seed is normalised; the toggle exposes the difference
-      // visually by adding a wider margin when on.
-      const margin = centerOnPacking ? 0.92 : 0.6;
-      const scale = (Math.min(W, H) / 2) * margin;
+      // Determine viewport — we always centre on the outer disc at (0, 0).
+      // The outer disc has radius 1/|k_outer| in unit coordinates, so we divide
+      // the pixel scale by that radius to make the enclosing circle fill the
+      // frame for every preset (otherwise the −6 packing would render at a
+      // sixth of the canvas). The margin toggle just adds breathing room.
+      const margin = fillFrame ? 0.92 : 0.6;
+      const outerR = circles[0]?.r ?? 1;
+      const scale = ((Math.min(W, H) / 2) * margin) / outerR;
       const cx = W / 2;
       const cy = H / 2;
       const toPx = (x: number, y: number): [number, number] => [cx + x * scale, cy - y * scale];
@@ -280,7 +454,7 @@ export default function ApollonianExplorer() {
         const outer = circles[0];
         if (outer) {
           const [ox, oy] = toPx(outer.x, outer.y);
-          ctx.fillStyle = "rgba(255, 122, 182, 0.10)";
+          ctx.fillStyle = withAlpha(palette.signal.rose, 0.1);
           ctx.beginPath();
           ctx.arc(ox, oy, outer.r * scale, 0, Math.PI * 2);
           ctx.fill();
@@ -311,10 +485,10 @@ export default function ApollonianExplorer() {
         const radiusPx = c.r * scale;
         if (radiusPx < 0.4) continue;
 
-        let stroke = "rgba(232, 234, 242, 0.85)";
+        let stroke = withAlpha(palette.ink[100], 0.85);
         if (c.k < 0) {
           // Outer enclosing circle — distinctive rose.
-          stroke = "rgba(255, 122, 182, 0.95)";
+          stroke = withAlpha(palette.signal.rose, 0.95);
         } else if (colourByCurvature) {
           const t = Math.min(1, Math.log10(Math.max(1, c.k)) / maxLog);
           // hue sweeps from rose (350) through amber (40) through cyan (185)
@@ -329,7 +503,7 @@ export default function ApollonianExplorer() {
         ctx.stroke();
 
         if (showLabels && radiusPx > 14) {
-          ctx.fillStyle = "rgba(232, 234, 242, 0.9)";
+          ctx.fillStyle = withAlpha(palette.ink[100], 0.9);
           ctx.font = `${Math.min(13, Math.max(9, radiusPx * 0.35))}px ui-monospace, monospace`;
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
@@ -339,19 +513,19 @@ export default function ApollonianExplorer() {
       }
 
       // HUD
-      ctx.fillStyle = "rgba(232, 234, 242, 0.65)";
+      ctx.fillStyle = withAlpha(palette.ink[100], 0.65);
       ctx.font = "11px ui-monospace, monospace";
       ctx.textAlign = "left";
       ctx.textBaseline = "top";
-      ctx.fillText(`${circles.length} circles`, 12, 10);
-      ctx.fillText(`depth ≤ ${depth}`, 12, 26);
+      ctx.fillText(RE.circles(circles.length), 12, 10);
+      ctx.fillText(`${RE.hudDepth} ${depth}`, 12, 26);
     };
 
     render();
     const ro = new ResizeObserver(render);
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [circles, depth, showLabels, showGaps, colourByCurvature, centerOnPacking, dpr]);
+  }, [circles, depth, showLabels, showGaps, colourByCurvature, fillFrame, dpr, RE]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
@@ -366,7 +540,12 @@ export default function ApollonianExplorer() {
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={canvasRef} className="block h-full w-full" />
+            <canvas
+              ref={canvasRef}
+              className="block h-full w-full"
+              role="img"
+              aria-label={RE.canvasLabel(PRESETS[presetIdx]!.label, circles.length)}
+            />
           </div>
         </div>
 
@@ -381,7 +560,7 @@ export default function ApollonianExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Preset packing
+              {RE.presetPacking}
             </div>
             <div className="grid grid-cols-1 gap-2">
               {PRESETS.map((p, i) => (
@@ -396,7 +575,7 @@ export default function ApollonianExplorer() {
                 >
                   <div className="font-mono text-xs">{p.label}</div>
                   <div className="mt-0.5 font-mono text-[10px] text-ink-400">
-                    integer Apollonian seed
+                    {RE.seedNote}
                   </div>
                 </button>
               ))}
@@ -405,11 +584,11 @@ export default function ApollonianExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Recursion depth
+              {RE.recursionDepth}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-amber">{depth}</span>
-              <span className="text-[10px] text-ink-400">{circles.length} circles</span>
+              <span className="text-[10px] text-ink-400">{RE.circles(circles.length)}</span>
             </div>
             <input
               type="range"
@@ -418,16 +597,17 @@ export default function ApollonianExplorer() {
               max={8}
               step={1}
               onChange={(e) => setDepth(parseInt(e.target.value))}
+              aria-label={RE.recursionDepth}
               className="w-full accent-signal-amber"
             />
             <p className="font-mono text-[10px] leading-relaxed text-ink-400">
-              Each step fills every curved-triangle gap with its inscribed circle.
+              {RE.depthHint}
             </p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              View
+              {RE.view}
             </div>
 
             <label className="flex cursor-pointer items-center gap-3 text-sm text-ink-200">
@@ -437,7 +617,7 @@ export default function ApollonianExplorer() {
                 onChange={(e) => setShowLabels(e.target.checked)}
                 className="accent-signal-amber"
               />
-              <span>Show curvature labels</span>
+              <span>{RE.showLabels}</span>
             </label>
 
             <label className="flex cursor-pointer items-center gap-3 text-sm text-ink-200">
@@ -447,7 +627,7 @@ export default function ApollonianExplorer() {
                 onChange={(e) => setShowGaps(e.target.checked)}
                 className="accent-signal-amber"
               />
-              <span>Highlight triangle gaps</span>
+              <span>{RE.showGaps}</span>
             </label>
 
             <label className="flex cursor-pointer items-center gap-3 text-sm text-ink-200">
@@ -457,23 +637,23 @@ export default function ApollonianExplorer() {
                 onChange={(e) => setColourByCurvature(e.target.checked)}
                 className="accent-signal-amber"
               />
-              <span>Colour by curvature</span>
+              <span>{RE.colourByCurvature}</span>
             </label>
 
             <label className="flex cursor-pointer items-center gap-3 text-sm text-ink-200">
               <input
                 type="checkbox"
-                checked={centerOnPacking}
-                onChange={(e) => setCenterOnPacking(e.target.checked)}
+                checked={fillFrame}
+                onChange={(e) => setFillFrame(e.target.checked)}
                 className="accent-signal-amber"
               />
-              <span>Centre on packing</span>
+              <span>{RE.fillFrame}</span>
             </label>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Seed circles
+              {RE.seedCircles}
             </div>
             <table className="w-full font-mono text-xs">
               <thead className="hairline border-b text-ink-300">
@@ -505,11 +685,11 @@ export default function ApollonianExplorer() {
                 setShowLabels(false);
                 setShowGaps(false);
                 setColourByCurvature(true);
-                setCenterOnPacking(true);
+                setFillFrame(true);
               }}
               className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-amber/40 hover:text-signal-amber"
             >
-              Reset view
+              {RE.resetView}
             </button>
           </div>
 

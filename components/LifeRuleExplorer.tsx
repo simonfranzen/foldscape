@@ -108,7 +108,21 @@ export function LifeRuleExplorer({ labels }: Props) {
   const [seedVal, setSeedVal] = useState(42);
   const [generation, setGeneration] = useState(0);
   const [running, setRunning] = useState(true);
+  const [reduced, setReduced] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  // JS canvases must honour prefers-reduced-motion themselves (CSS can't stop a
+  // rAF loop). Don't autoplay under reduce; re-subscribe so a live toggle sticks.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      setReduced(mq.matches);
+      if (mq.matches) setRunning(false);
+    };
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
   const aRef = useRef<Uint8Array>(new Uint8Array(COLS * ROWS));
   const bRef = useRef<Uint8Array>(new Uint8Array(COLS * ROWS));
 
@@ -166,6 +180,11 @@ export function LifeRuleExplorer({ labels }: Props) {
 
   // Animation
   useEffect(() => {
+    // Reduced-motion and paused: render a single static frame, start no loop.
+    if (reduced && !running) {
+      draw();
+      return;
+    }
     let raf = 0;
     let last = performance.now();
     const tickMs = 1000 / 10;
@@ -190,7 +209,7 @@ export function LifeRuleExplorer({ labels }: Props) {
     };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [running, rule, draw]);
+  }, [running, rule, draw, reduced]);
 
   const stepOnce = () => {
     stepGrid(aRef.current, bRef.current, rule);
@@ -243,7 +262,7 @@ export function LifeRuleExplorer({ labels }: Props) {
         </div>
       </div>
       <div className="hairline aspect-[36/28] w-full overflow-hidden rounded-md border bg-ink-950">
-        <canvas ref={canvasRef} className="block h-full w-full" />
+        <canvas ref={canvasRef} className="block h-full w-full" role="img" aria-label={L.caption} />
       </div>
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
