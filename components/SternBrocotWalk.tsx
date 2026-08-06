@@ -70,22 +70,28 @@ export function SternBrocotWalk({
     [target],
   );
 
-  // The "convergents" — fractions where the path direction changes (best
-  // rational approximations). The very first 1/1 also counts.
+  // The convergents are the LAST node of each L/R run, the node reached just
+  // before the direction flips. Each node's `side` is the move taken from it,
+  // so a run ends at node i whenever side[i] differs from side[i+1]. The first
+  // 1/1 only qualifies when the very first run has length 1 (then side[0] !==
+  // side[1]); for a longer opening run it is a semiconvergent and is skipped.
   const convergents = useMemo(() => {
     const out: Array<{ num: number; den: number; step: number }> = [];
     if (path.length === 0) return out;
-    out.push({ num: path[0]!.num, den: path[0]!.den, step: 0 });
-    for (let i = 1; i < path.length; i++) {
-      const prev = path[i - 1]!.side;
+    for (let i = 0; i < path.length - 1; i++) {
       const here = path[i]!.side;
-      if (prev !== null && here !== null && prev !== here) {
+      const next = path[i + 1]!.side;
+      if (here !== null && next !== null && here !== next) {
         out.push({ num: path[i]!.num, den: path[i]!.den, step: i });
       }
     }
-    // Last visited mediant is always interesting too.
+    // The last visited node is the current best approximation reached.
     const last = path[path.length - 1]!;
-    if (out[out.length - 1]?.num !== last.num || out[out.length - 1]?.den !== last.den) {
+    if (
+      out.length === 0 ||
+      out[out.length - 1]!.num !== last.num ||
+      out[out.length - 1]!.den !== last.den
+    ) {
       out.push({ num: last.num, den: last.den, step: path.length - 1 });
     }
     return out;
@@ -106,6 +112,7 @@ export function SternBrocotWalk({
             type="number"
             value={input}
             step="0.00000001"
+            aria-label={inputLabel}
             onChange={(e) => setInput(e.target.value)}
             className="hairline w-full rounded-md border bg-ink-950 px-3 py-2 font-mono text-sm text-signal-cyan"
           />

@@ -150,7 +150,7 @@ export function SternBrocotTree({ caption, depthLabel, targetLabel, pathLabel, p
           viewBox={`0 0 ${W} ${H}`}
           className="h-auto w-full"
           role="img"
-          aria-label="Stern-Brocot tree"
+          aria-label={caption}
         >
           <rect width={W} height={H} fill={palette.canvas.bg} rx={10} />
           {edges.map(([a, b], i) => {
@@ -214,6 +214,7 @@ export function SternBrocotTree({ caption, depthLabel, targetLabel, pathLabel, p
               max={6}
               step={1}
               value={depth}
+              aria-label={depthLabel}
               onChange={(e) => setDepth(parseInt(e.target.value))}
               className="w-full accent-signal-cyan"
             />

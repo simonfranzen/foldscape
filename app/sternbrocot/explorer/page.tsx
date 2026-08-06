@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 
 interface PathStep {
   num: number;
@@ -40,30 +41,51 @@ function walk(target: number, maxDepth = 64): PathStep[] {
   return out;
 }
 
-// Convert path to continued fraction expansion via run-length encoding.
-function pathToCF(path: PathStep[]): number[] {
-  const out: number[] = [];
+// Convert the L/R path to the continued-fraction terms [a0, a1, a2, …].
+function pathToCF(path: PathStep[], target: number): number[] {
+  // Run-length encode the moves. Each node's `side` is the move taken from it;
+  // the terminal node carries side null and contributes no move.
+  const runs: number[] = [];
   let run = 0;
   let prev: "L" | "R" | null = null;
   for (const p of path) {
+    if (p.side === null) break;
     if (p.side === prev) {
       run++;
     } else {
-      if (prev !== null) out.push(run);
+      if (prev !== null) runs.push(run);
       prev = p.side;
       run = 1;
     }
-    if (p.side === null) break;
   }
-  if (prev !== null && run > 0) out.push(run);
-  // CF convention: [a0; a1, a2, ...] — first term is the integer part.
-  // Walking from 1/1, the initial run of R is (a0 - 1) since the path starts at 1/1.
-  // But for clarity we'll just present the raw run-lengths.
-  return out;
+  if (prev !== null) runs.push(run);
+  if (runs.length === 0) return path.length > 0 ? [path[0].num] : [];
+
+  // A walk that opens with L means the target is below 1, so a0 = 0 and the run
+  // lengths encode a1, a2, … (the CF of 1/target, mirrored). Opening with R
+  // gives a0 = runs[0] directly, matching the CF of a number ≥ 1.
+  const opensLeft = path[0]?.side === "L";
+  const terms = opensLeft ? [0, ...runs] : [...runs];
+
+  // Landing exactly on a rational leaves the final run one short of its CF term
+  // (p/q run-length is a_k − 1). Bump it so the printed expression equals the
+  // target rather than falling one convergent short.
+  const last = path[path.length - 1];
+  const reachedExactly = Math.abs(last.num / last.den - target) < 1e-12;
+  if (reachedExactly) terms[terms.length - 1] += 1;
+
+  return terms;
+}
+
+// Render CF terms in the canonical "a0; a1, a2, …" bracket form.
+function formatCF(cf: number[]): string {
+  if (cf.length === 0) return "…";
+  if (cf.length === 1) return `${cf[0]}`;
+  return `${cf[0]}; ${cf.slice(1).join(", ")}`;
 }
 
 const PRESETS: Array<{ id: string; label: string; value: number }> = [
-  { id: "golden", label: "φ — golden ratio", value: (1 + Math.sqrt(5)) / 2 },
+  { id: "golden", label: "φ (golden ratio)", value: (1 + Math.sqrt(5)) / 2 },
   { id: "pi", label: "π", value: Math.PI },
   { id: "e", label: "e", value: Math.E },
   { id: "sqrt2", label: "√2", value: Math.SQRT2 },
@@ -72,9 +94,154 @@ const PRESETS: Array<{ id: string; label: string; value: number }> = [
   { id: "frac227", label: "22/7", value: 22 / 7 },
 ];
 
+// --------------------------------------------------------------------------
+// Localised explorer UI. Kept local to the explorer (the repo's RICH_* pattern)
+// so the shared i18n bundles stay lean.
+// --------------------------------------------------------------------------
+
+type RichExplorer = {
+  targetStatus: string;
+  depthStatus: string;
+  pathLabel: string;
+  cfLabel: string;
+  convergentsLabel: string;
+  stepHead: string;
+  fractionHead: string;
+  decimalHead: string;
+  errorHead: string;
+  sideHead: string;
+  targetLabel: string;
+  famousLabel: string;
+  depthLabel: string;
+};
+
+const RICH_EXPLORER: Record<Locale, RichExplorer> = {
+  en: {
+    targetStatus: "Target",
+    depthStatus: "Depth",
+    pathLabel: "Path · L = smaller · R = larger",
+    cfLabel: "Continued fraction · run-length encoding of the path",
+    convergentsLabel: "Best rational approximations · the convergents along the walk",
+    stepHead: "step",
+    fractionHead: "fraction",
+    decimalHead: "decimal",
+    errorHead: "error",
+    sideHead: "side",
+    targetLabel: "Target",
+    famousLabel: "Famous numbers",
+    depthLabel: "Depth",
+  },
+  de: {
+    targetStatus: "Ziel",
+    depthStatus: "Tiefe",
+    pathLabel: "Pfad · L = kleiner · R = größer",
+    cfLabel: "Kettenbruch · Lauflängenkodierung des Pfads",
+    convergentsLabel: "Beste rationale Näherungen · die Konvergenten entlang des Gangs",
+    stepHead: "Schritt",
+    fractionHead: "Bruch",
+    decimalHead: "Dezimal",
+    errorHead: "Fehler",
+    sideHead: "Seite",
+    targetLabel: "Zielwert",
+    famousLabel: "Berühmte Zahlen",
+    depthLabel: "Tiefe",
+  },
+  es: {
+    targetStatus: "Objetivo",
+    depthStatus: "Profundidad",
+    pathLabel: "Camino · L = menor · R = mayor",
+    cfLabel: "Fracción continua · codificación por longitud de tiradas del camino",
+    convergentsLabel: "Mejores aproximaciones racionales · los convergentes del paseo",
+    stepHead: "paso",
+    fractionHead: "fracción",
+    decimalHead: "decimal",
+    errorHead: "error",
+    sideHead: "lado",
+    targetLabel: "Valor objetivo",
+    famousLabel: "Números famosos",
+    depthLabel: "Profundidad",
+  },
+  fr: {
+    targetStatus: "Cible",
+    depthStatus: "Profondeur",
+    pathLabel: "Chemin · L = plus petit · R = plus grand",
+    cfLabel: "Fraction continue · codage par plages du chemin",
+    convergentsLabel: "Meilleures approximations rationnelles · les convergents le long de la marche",
+    stepHead: "pas",
+    fractionHead: "fraction",
+    decimalHead: "décimal",
+    errorHead: "erreur",
+    sideHead: "côté",
+    targetLabel: "Valeur cible",
+    famousLabel: "Nombres célèbres",
+    depthLabel: "Profondeur",
+  },
+  it: {
+    targetStatus: "Bersaglio",
+    depthStatus: "Profondità",
+    pathLabel: "Cammino · L = minore · R = maggiore",
+    cfLabel: "Frazione continua · codifica a lunghezza di serie del cammino",
+    convergentsLabel: "Migliori approssimazioni razionali · i convergenti lungo il cammino",
+    stepHead: "passo",
+    fractionHead: "frazione",
+    decimalHead: "decimale",
+    errorHead: "errore",
+    sideHead: "lato",
+    targetLabel: "Valore bersaglio",
+    famousLabel: "Numeri famosi",
+    depthLabel: "Profondità",
+  },
+  pt: {
+    targetStatus: "Alvo",
+    depthStatus: "Profundidade",
+    pathLabel: "Caminho · L = menor · R = maior",
+    cfLabel: "Fração contínua · codificação por comprimento de corridas do caminho",
+    convergentsLabel: "Melhores aproximações racionais · os convergentes ao longo do passeio",
+    stepHead: "passo",
+    fractionHead: "fração",
+    decimalHead: "decimal",
+    errorHead: "erro",
+    sideHead: "lado",
+    targetLabel: "Valor alvo",
+    famousLabel: "Números famosos",
+    depthLabel: "Profundidade",
+  },
+  sv: {
+    targetStatus: "Mål",
+    depthStatus: "Djup",
+    pathLabel: "Stig · L = mindre · R = större",
+    cfLabel: "Kedjebråk · körningslängdskodning av stigen",
+    convergentsLabel: "Bästa rationella approximationer · konvergenterna längs vandringen",
+    stepHead: "steg",
+    fractionHead: "bråk",
+    decimalHead: "decimal",
+    errorHead: "fel",
+    sideHead: "sida",
+    targetLabel: "Målvärde",
+    famousLabel: "Berömda tal",
+    depthLabel: "Djup",
+  },
+  no: {
+    targetStatus: "Mål",
+    depthStatus: "Dybde",
+    pathLabel: "Sti · L = mindre · R = større",
+    cfLabel: "Kjedebrøk · kjørelengdekoding av stien",
+    convergentsLabel: "Beste rasjonale tilnærminger · konvergentene langs vandringen",
+    stepHead: "trinn",
+    fractionHead: "brøk",
+    decimalHead: "desimal",
+    errorHead: "feil",
+    sideHead: "side",
+    targetLabel: "Målverdi",
+    famousLabel: "Berømte tall",
+    depthLabel: "Dybde",
+  },
+};
+
 export default function SternbrocotExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.sternbrocot;
+  const rx = RICH_EXPLORER[locale];
 
   const [input, setInput] = useState<string>(((1 + Math.sqrt(5)) / 2).toFixed(8));
   const [depth, setDepth] = useState(20);
@@ -84,7 +251,7 @@ export default function SternbrocotExplorer() {
     () => (Number.isFinite(target) && target > 0 ? walk(target, depth) : []),
     [target, depth],
   );
-  const cf = useMemo(() => pathToCF(path), [path]);
+  const cf = useMemo(() => pathToCF(path, target), [path, target]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
@@ -92,14 +259,14 @@ export default function SternbrocotExplorer() {
         <div className="scrollbar-thin relative min-h-[60vh] overflow-y-auto bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="mx-auto max-w-3xl space-y-6">
             <div className="glass hairline rounded-md border px-4 py-3 font-mono text-xs text-ink-200">
-              Target: <span className="text-signal-teal">{target.toFixed(12)}</span>
+              {rx.targetStatus}: <span className="text-signal-teal">{target.toFixed(12)}</span>
               <span className="mx-3 text-ink-500">·</span>
-              Depth: <span className="text-signal-teal">{path.length}</span>
+              {rx.depthStatus}: <span className="text-signal-teal">{path.length}</span>
             </div>
 
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
-                Path · L = smaller · R = larger
+                {rx.pathLabel}
               </div>
               <div className="break-all font-mono text-sm leading-relaxed text-ink-100">
                 {path.map((p) => p.side ?? "·").join("")}
@@ -108,11 +275,9 @@ export default function SternbrocotExplorer() {
 
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
-                Continued fraction · run-length encoding of the path
+                {rx.cfLabel}
               </div>
-              <div className="font-mono text-lg text-signal-amber">
-                [{cf.length > 0 ? cf.join("; ").replace(";", ";") : "…"}]
-              </div>
+              <div className="font-mono text-lg text-signal-amber">[{formatCF(cf)}]</div>
               <div className="font-mono text-[11px] leading-relaxed text-ink-400">
                 = {cf.length > 0 ? cfExpr(cf) : "…"}
               </div>
@@ -120,26 +285,26 @@ export default function SternbrocotExplorer() {
 
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
-                Best rational approximations · the convergents along the walk
+                {rx.convergentsLabel}
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full font-mono text-xs">
                   <thead className="hairline border-b text-ink-300">
                     <tr>
                       <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                        step
+                        {rx.stepHead}
                       </th>
                       <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                        fraction
+                        {rx.fractionHead}
                       </th>
                       <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                        decimal
+                        {rx.decimalHead}
                       </th>
                       <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                        error
+                        {rx.errorHead}
                       </th>
                       <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                        side
+                        {rx.sideHead}
                       </th>
                     </tr>
                   </thead>
@@ -147,17 +312,17 @@ export default function SternbrocotExplorer() {
                     {path.slice(-32).map((p, i) => {
                       const value = p.num / p.den;
                       const err = Math.abs(value - target);
+                      // slice(-32) may not truncate; only offset when it did.
+                      const step = Math.max(0, path.length - 32) + i + 1;
                       return (
                         <tr key={i} className="border-b border-ink-700/30 last:border-0">
-                          <td className="px-2 py-1.5 text-ink-400">
-                            {path.length - 32 + i + 1 > 0 ? path.length - 32 + i + 1 : i + 1}
-                          </td>
+                          <td className="px-2 py-1.5 text-ink-400">{step}</td>
                           <td className="px-2 py-1.5 text-signal-teal">
                             {p.num}/{p.den}
                           </td>
                           <td className="px-2 py-1.5 text-ink-200">{value.toFixed(10)}</td>
                           <td className="px-2 py-1.5 text-ink-300">{err.toExponential(2)}</td>
-                          <td className="px-2 py-1.5 text-signal-amber">{p.side ?? "—"}</td>
+                          <td className="px-2 py-1.5 text-signal-amber">{p.side ?? "·"}</td>
                         </tr>
                       );
                     })}
@@ -179,12 +344,13 @@ export default function SternbrocotExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Target
+              {rx.targetLabel}
             </div>
             <input
               type="number"
               value={input}
               step="0.00000001"
+              aria-label={rx.targetLabel}
               onChange={(e) => setInput(e.target.value)}
               className="hairline w-full rounded-md border bg-ink-950 px-3 py-2 font-mono text-sm text-signal-teal"
             />
@@ -192,7 +358,7 @@ export default function SternbrocotExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Famous numbers
+              {rx.famousLabel}
             </div>
             <div className="grid grid-cols-1 gap-2">
               {PRESETS.map((p) => (
@@ -213,7 +379,7 @@ export default function SternbrocotExplorer() {
           <div className="hairline space-y-3 border-b p-5">
             <div className="flex items-baseline justify-between">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Depth
+                {rx.depthLabel}
               </div>
               <div className="font-mono text-[10px] text-ink-400">{depth}</div>
             </div>
@@ -223,6 +389,7 @@ export default function SternbrocotExplorer() {
               min={4}
               max={60}
               step={1}
+              aria-label={rx.depthLabel}
               onChange={(e) => setDepth(parseInt(e.target.value))}
               className="w-full accent-signal-teal"
             />

@@ -35,10 +35,19 @@ type RichStory = {
   lookupTitle: string;
   lookupBody: string;
   lookupCaption: string;
+  // Per-tile screen-reader label; "{p}" is replaced with the 3-bit pattern.
+  toggleAria: string;
   simulatorPretitle: string;
   simulatorTitle: string;
   simulatorBody: string;
   simulatorCaption: string;
+  // Small mono UI labels around the inline mini-simulator + live info card.
+  liveRuleLabel: string;
+  flipHint: string;
+  miniSteps: string;
+  miniSingle: string;
+  miniRandom: string;
+  miniRuleLabel: string;
   closingTitle: string;
   closingBody: string;
   ctaLabel: string;
@@ -102,7 +111,7 @@ const en: RichStory = {
   classesCaption: "The four Wolfram classes · single-cell seed",
   classesLabels: {
     c1: "Class 1 · Rule 0 — dies",
-    c2: "Class 2 · Rule 90 — Sierpiński",
+    c2: "Class 2 · Rule 250 · filled",
     c3: "Class 3 · Rule 30 — chaos",
     c4: "Class 4 · Rule 110 — gliders",
   },
@@ -117,11 +126,18 @@ const en: RichStory = {
   lookupBody:
     "Each tile shows one of the eight neighbourhood patterns and the output bit it produces. Click any output to flip it. The binary string at the bottom updates live; its decimal value is the rule number. The presets jump you straight to four famous rules.",
   lookupCaption: "Lookup table · click any output bit",
+  toggleAria: "Toggle output for {p}",
   simulatorPretitle: "Interactive · the simulator",
   simulatorTitle: "Watch the rule you just built",
   simulatorBody:
     "The canvas runs the current rule for as many steps as the slider asks for, starting from a single centre cell or a random row. Edit the lookup table above and the picture redraws instantly — feel for yourself how dramatically one flipped bit can change everything.",
   simulatorCaption: "Live evolution · current rule",
+  liveRuleLabel: "live · rule",
+  flipHint: "Flip a bit in the table above and the canvas redraws instantly.",
+  miniSteps: "steps",
+  miniSingle: "single",
+  miniRandom: "random",
+  miniRuleLabel: "rule",
   closingTitle: "Open the Simulator.",
   closingBody:
     "The full Simulator lets you switch palette, slow the time-step down to a crawl, jump to the eight most-studied rules, and seed the grid from the edge for asymmetric experiments. Everything you just played with, with more room to breathe.",
@@ -165,7 +181,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Regel 30 gegen Regel 110",
       title: "Chaos und Struktur, nebeneinander",
-      body: "Wähle Regel 30 und die Mittelzelle einer regelmäßigen Reihe driftet in scheinbare Zufälligkeit so überzeugend, dass Mathematica Regel 30 noch heute als Pseudozufallszahlengenerator nutzt. Wähle Regel 90 und derselbe Saat malt ein perfektes Sierpiński-Dreieck — reine rekursive Ordnung. Regel 110 sitzt dazwischen: ein gestreifter Hintergrund, durchwoben von Dutzenden dreieckiger Gleiter, die treiben, kollidieren und sich neu verbinden. Sie ist weder Chaos (wie 30) noch Kristall (wie 90). Sie ist, genau, Berechnung.",
+      body: "Wähle Regel 30 und die Mittelzelle einer regelmäßigen Reihe driftet in scheinbare Zufälligkeit so überzeugend, dass Mathematica Regel 30 noch heute als Pseudozufallszahlengenerator nutzt. Wähle Regel 90 und dieselbe Saat malt ein perfektes Sierpiński-Dreieck — reine rekursive Ordnung. Regel 110 sitzt dazwischen: ein gestreifter Hintergrund, durchwoben von Dutzenden dreieckiger Gleiter, die treiben, kollidieren und sich neu verbinden. Sie ist weder Chaos (wie 30) noch Kristall (wie 90). Sie ist, genau, Berechnung.",
     },
     {
       pretitle: "Abschnitt 04 · Gleiter in Regel 110",
@@ -186,11 +202,11 @@ const de: RichStory = {
   classesCaption: "Die vier Wolfram-Klassen · Einzelzellen-Saat",
   classesLabels: {
     c1: "Klasse 1 · Regel 0 — stirbt",
-    c2: "Klasse 2 · Regel 90 — Sierpiński",
+    c2: "Klasse 2 · Regel 250 · gefüllt",
     c3: "Klasse 3 · Regel 30 — Chaos",
     c4: "Klasse 4 · Regel 110 — Gleiter",
   },
-  rivalsCaption: "Derselbe Saat, drei Regeln",
+  rivalsCaption: "Dieselbe Saat, drei Regeln",
   rivalsLabels: {
     r30: "Regel 30 — chaotisch",
     r90: "Regel 90 — fraktal",
@@ -201,11 +217,18 @@ const de: RichStory = {
   lookupBody:
     "Jede Kachel zeigt eines der acht Nachbarschaftsmuster und das Ausgabebit, das es erzeugt. Klick auf eine Ausgabe, um sie zu kippen. Die Binärzeichenfolge unten aktualisiert sich live; ihr Dezimalwert ist die Regelnummer. Die Voreinstellungen springen direkt zu vier berühmten Regeln.",
   lookupCaption: "Lookup-Tabelle · klick auf ein Ausgabebit",
+  toggleAria: "Ausgabe für {p} umschalten",
   simulatorPretitle: "Interaktiv · der Simulator",
   simulatorTitle: "Sieh der Regel zu, die du gerade gebaut hast",
   simulatorBody:
     "Die Leinwand lässt die aktuelle Regel so viele Schritte laufen, wie der Schieber verlangt, beginnend mit einer einzelnen Mittelzelle oder einer zufälligen Reihe. Ändere die Lookup-Tabelle oben und das Bild zeichnet sich sofort neu — spür selbst, wie dramatisch ein einziges gekipptes Bit alles verändern kann.",
   simulatorCaption: "Live-Evolution · aktuelle Regel",
+  liveRuleLabel: "live · Regel",
+  flipHint: "Kipp ein Bit in der Tabelle oben, und die Leinwand zeichnet sich sofort neu.",
+  miniSteps: "Schritte",
+  miniSingle: "einzeln",
+  miniRandom: "zufällig",
+  miniRuleLabel: "Regel",
   closingTitle: "Öffne den Simulator.",
   closingBody:
     "Der volle Simulator lässt dich die Palette wechseln, den Zeitschritt bis zum Kriechen verlangsamen, zu den acht meistuntersuchten Regeln springen und das Gitter vom Rand aus säen, für asymmetrische Experimente. Alles, womit du gerade gespielt hast, mit mehr Raum zum Atmen.",
@@ -270,7 +293,7 @@ const es: RichStory = {
   classesCaption: "Las cuatro clases de Wolfram · semilla de una sola celda",
   classesLabels: {
     c1: "Clase 1 · Regla 0 — muere",
-    c2: "Clase 2 · Regla 90 — Sierpiński",
+    c2: "Clase 2 · Regla 250 · relleno",
     c3: "Clase 3 · Regla 30 — caos",
     c4: "Clase 4 · Regla 110 — planeadores",
   },
@@ -285,11 +308,18 @@ const es: RichStory = {
   lookupBody:
     "Cada azulejo muestra uno de los ocho patrones de vecindario y el bit de salida que produce. Pulsa una salida para cambiarla. La cadena binaria de abajo se actualiza en vivo; su valor decimal es el número de la regla. Los presets te llevan directo a cuatro reglas célebres.",
   lookupCaption: "Tabla de búsqueda · pulsa un bit de salida",
+  toggleAria: "Alternar la salida de {p}",
   simulatorPretitle: "Interactivo · el simulador",
   simulatorTitle: "Mira la regla que acabas de construir",
   simulatorBody:
     "El lienzo ejecuta la regla actual durante tantos pasos como pida el control deslizante, empezando por una única celda central o una fila aleatoria. Edita la tabla de arriba y la imagen se redibuja al instante — siente tú mismo cuán drásticamente puede cambiarlo todo un solo bit invertido.",
   simulatorCaption: "Evolución en vivo · regla actual",
+  liveRuleLabel: "en vivo · regla",
+  flipHint: "Cambia un bit en la tabla de arriba y el lienzo se redibuja al instante.",
+  miniSteps: "pasos",
+  miniSingle: "única",
+  miniRandom: "aleatoria",
+  miniRuleLabel: "regla",
   closingTitle: "Abre el Simulador.",
   closingBody:
     "El Simulador completo te permite cambiar la paleta, ralentizar el paso de tiempo hasta el arrastre, saltar a las ocho reglas más estudiadas y sembrar la rejilla desde el borde para experimentos asimétricos. Todo con lo que jugaste, con más espacio para respirar.",
@@ -355,7 +385,7 @@ const fr: RichStory = {
   classesCaption: "Les quatre classes de Wolfram · graine d'une seule cellule",
   classesLabels: {
     c1: "Classe 1 · Règle 0 — meurt",
-    c2: "Classe 2 · Règle 90 — Sierpiński",
+    c2: "Classe 2 · Règle 250 · plein",
     c3: "Classe 3 · Règle 30 — chaos",
     c4: "Classe 4 · Règle 110 — planeurs",
   },
@@ -370,11 +400,18 @@ const fr: RichStory = {
   lookupBody:
     "Chaque tuile montre l'un des huit motifs de voisinage et le bit de sortie qu'il produit. Clique une sortie pour la basculer. La chaîne binaire en bas se met à jour en direct ; sa valeur décimale est le numéro de la règle. Les préréglages t'envoient droit à quatre règles célèbres.",
   lookupCaption: "Table de correspondance · clique un bit de sortie",
+  toggleAria: "Basculer la sortie pour {p}",
   simulatorPretitle: "Interactif · le simulateur",
   simulatorTitle: "Regarde la règle que tu viens de construire",
   simulatorBody:
     "Le canevas exécute la règle courante pour autant de pas que le curseur le demande, en partant d'une seule cellule centrale ou d'une rangée aléatoire. Modifie la table ci-dessus et l'image se redessine instantanément — sens par toi-même à quel point un seul bit basculé peut tout changer.",
   simulatorCaption: "Évolution en direct · règle courante",
+  liveRuleLabel: "en direct · règle",
+  flipHint: "Bascule un bit dans la table ci-dessus et le canevas se redessine à l'instant.",
+  miniSteps: "pas",
+  miniSingle: "unique",
+  miniRandom: "aléatoire",
+  miniRuleLabel: "règle",
   closingTitle: "Ouvre le Simulateur.",
   closingBody:
     "Le Simulateur complet te permet de changer de palette, ralentir le pas de temps au minimum, sauter aux huit règles les plus étudiées et amorcer la grille depuis le bord pour des expériences asymétriques. Tout ce avec quoi tu viens de jouer, avec plus d'espace pour respirer.",
@@ -439,7 +476,7 @@ const it: RichStory = {
   classesCaption: "Le quattro classi di Wolfram · seme a singola cella",
   classesLabels: {
     c1: "Classe 1 · Regola 0 — muore",
-    c2: "Classe 2 · Regola 90 — Sierpiński",
+    c2: "Classe 2 · Regola 250 · pieno",
     c3: "Classe 3 · Regola 30 — caos",
     c4: "Classe 4 · Regola 110 — alianti",
   },
@@ -454,11 +491,18 @@ const it: RichStory = {
   lookupBody:
     "Ogni tassello mostra uno degli otto motivi di vicinato e il bit di uscita che produce. Clicca un'uscita per ribaltarla. La stringa binaria in basso si aggiorna in tempo reale; il suo valore decimale è il numero della regola. I preset ti portano dritto a quattro regole celebri.",
   lookupCaption: "Tabella di lookup · clicca un bit di uscita",
+  toggleAria: "Attiva o disattiva l'uscita per {p}",
   simulatorPretitle: "Interattivo · il simulatore",
   simulatorTitle: "Guarda la regola che hai appena costruito",
   simulatorBody:
     "Il canvas esegue la regola corrente per quanti passi chiede il cursore, partendo da una singola cella centrale o da una riga casuale. Modifica la tabella sopra e l'immagine si ridisegna all'istante — senti tu stesso quanto drasticamente un solo bit ribaltato possa cambiare tutto.",
   simulatorCaption: "Evoluzione dal vivo · regola corrente",
+  liveRuleLabel: "dal vivo · regola",
+  flipHint: "Ribalta un bit nella tabella qui sopra e il canvas si ridisegna all'istante.",
+  miniSteps: "passi",
+  miniSingle: "singola",
+  miniRandom: "casuale",
+  miniRuleLabel: "regola",
   closingTitle: "Apri il Simulatore.",
   closingBody:
     "Il Simulatore completo ti lascia cambiare palette, rallentare il passo temporale fino a strisciare, saltare alle otto regole più studiate e seminare la griglia dal bordo per esperimenti asimmetrici. Tutto ciò con cui hai appena giocato, con più spazio per respirare.",
@@ -523,7 +567,7 @@ const pt: RichStory = {
   classesCaption: "As quatro classes de Wolfram · semente de uma única célula",
   classesLabels: {
     c1: "Classe 1 · Regra 0 — morre",
-    c2: "Classe 2 · Regra 90 — Sierpiński",
+    c2: "Classe 2 · Regra 250 · cheio",
     c3: "Classe 3 · Regra 30 — caos",
     c4: "Classe 4 · Regra 110 — planadores",
   },
@@ -538,11 +582,18 @@ const pt: RichStory = {
   lookupBody:
     "Cada peça mostra um dos oito padrões de vizinhança e o bit de saída que produz. Clica numa saída para a inverter. A cadeia binária em baixo atualiza-se ao vivo; o seu valor decimal é o número da regra. As predefinições levam-te direto a quatro regras célebres.",
   lookupCaption: "Tabela de procura · clica num bit de saída",
+  toggleAria: "Alternar a saída de {p}",
   simulatorPretitle: "Interativo · o simulador",
   simulatorTitle: "Vê a regra que acabaste de construir",
   simulatorBody:
     "A tela executa a regra atual pelo número de passos que o cursor pedir, começando por uma única célula central ou uma fila aleatória. Edita a tabela acima e a imagem redesenha-se ao instante — sente por ti próprio quão drasticamente um único bit invertido pode mudar tudo.",
   simulatorCaption: "Evolução ao vivo · regra atual",
+  liveRuleLabel: "ao vivo · regra",
+  flipHint: "Inverte um bit na tabela acima e a tela redesenha-se ao instante.",
+  miniSteps: "passos",
+  miniSingle: "única",
+  miniRandom: "aleatória",
+  miniRuleLabel: "regra",
   closingTitle: "Abre o Simulador.",
   closingBody:
     "O Simulador completo permite-te trocar de paleta, abrandar o passo temporal até quase parar, saltar para as oito regras mais estudadas e semear a grelha a partir da borda para experiências assimétricas. Tudo com que acabaste de brincar, com mais espaço para respirar.",
@@ -607,7 +658,7 @@ const sv: RichStory = {
   classesCaption: "De fyra Wolfram-klasserna · encells-frö",
   classesLabels: {
     c1: "Klass 1 · Regel 0 — dör",
-    c2: "Klass 2 · Regel 90 — Sierpiński",
+    c2: "Klass 2 · Regel 250 · fylld",
     c3: "Klass 3 · Regel 30 — kaos",
     c4: "Klass 4 · Regel 110 — glidare",
   },
@@ -622,11 +673,18 @@ const sv: RichStory = {
   lookupBody:
     "Varje ruta visar ett av de åtta grannskapsmönstren och utgångsbiten den ger. Klicka på en utgång för att vända den. Den binära strängen längst ned uppdateras live; dess decimalvärde är regelns nummer. Förinställningarna tar dig direkt till fyra berömda regler.",
   lookupCaption: "Uppslagstabell · klicka på en utgångsbit",
+  toggleAria: "Växla utdata för {p}",
   simulatorPretitle: "Interaktivt · simulatorn",
   simulatorTitle: "Se regeln du just byggde",
   simulatorBody:
     "Duken kör den aktuella regeln så många steg reglaget begär, med start från en enda mittcell eller en slumpmässig rad. Redigera tabellen ovan och bilden ritas om omedelbart — känn själv hur dramatiskt en enda omvänd bit kan ändra allt.",
   simulatorCaption: "Liveutveckling · aktuell regel",
+  liveRuleLabel: "live · regel",
+  flipHint: "Vänd en bit i tabellen ovan så ritas duken om direkt.",
+  miniSteps: "steg",
+  miniSingle: "enkel",
+  miniRandom: "slumpmässig",
+  miniRuleLabel: "regel",
   closingTitle: "Öppna simulatorn.",
   closingBody:
     "Den fullständiga simulatorn låter dig byta palett, sakta ner tidssteget till krypfart, hoppa till de åtta mest studerade reglerna och så rutnätet från kanten för asymmetriska experiment. Allt du just lekt med, med mer plats att andas.",
@@ -691,7 +749,7 @@ const no: RichStory = {
   classesCaption: "De fire Wolfram-klassene · encellet frø",
   classesLabels: {
     c1: "Klasse 1 · Regel 0 — dør",
-    c2: "Klasse 2 · Regel 90 — Sierpiński",
+    c2: "Klasse 2 · Regel 250 · fylt",
     c3: "Klasse 3 · Regel 30 — kaos",
     c4: "Klasse 4 · Regel 110 — glidere",
   },
@@ -706,11 +764,18 @@ const no: RichStory = {
   lookupBody:
     "Hver flis viser ett av de åtte nabolagsmønstrene og utgangsbiten den gir. Klikk på en utgang for å vri den. Den binære strengen nederst oppdateres live; desimalverdien er regelens nummer. Forhåndsinnstillingene tar deg rett til fire kjente regler.",
   lookupCaption: "Oppslagstabell · klikk på en utgangsbit",
+  toggleAria: "Veksle utdata for {p}",
   simulatorPretitle: "Interaktivt · simulatoren",
   simulatorTitle: "Se regelen du nettopp bygde",
   simulatorBody:
     "Lerretet kjører den aktuelle regelen så mange steg glidebryteren ber om, med start fra én enkelt midtcelle eller en tilfeldig rad. Rediger tabellen over og bildet tegnes på nytt umiddelbart — kjenn selv hvor dramatisk en eneste vendt bit kan endre alt.",
   simulatorCaption: "Liveutvikling · aktuell regel",
+  liveRuleLabel: "live · regel",
+  flipHint: "Vend en bit i tabellen over, så tegnes lerretet om umiddelbart.",
+  miniSteps: "steg",
+  miniSingle: "enkel",
+  miniRandom: "tilfeldig",
+  miniRuleLabel: "regel",
   closingTitle: "Åpne simulatoren.",
   closingBody:
     "Den fulle simulatoren lar deg bytte palett, bremse tidssteget til snegletempo, hoppe til de åtte mest studerte reglene og så rutenettet fra kanten for asymmetriske eksperimenter. Alt du nettopp lekte med, med mer plass å puste på.",
@@ -835,7 +900,7 @@ export default function Rule110Story() {
             </div>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
               <ClassPanel rule={0} label={story.classesLabels.c1} accent="text-ink-300" />
-              <ClassPanel rule={90} label={story.classesLabels.c2} accent="text-signal-violet" />
+              <ClassPanel rule={250} label={story.classesLabels.c2} accent="text-signal-violet" />
               <ClassPanel rule={30} label={story.classesLabels.c3} accent="text-signal-amber" />
               <ClassPanel rule={110} label={story.classesLabels.c4} accent="text-signal-cyan" />
             </div>
@@ -905,7 +970,13 @@ export default function Rule110Story() {
                 <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
                   {story.rivalsLabels.r30}
                 </div>
-                <Rule110Demo rule={30} initial="single" accent="text-signal-amber" cycleMs={9000} />
+                <Rule110Demo
+                  rule={30}
+                  initial="single"
+                  accent="text-signal-amber"
+                  cycleMs={9000}
+                  ariaLabel={story.rivalsLabels.r30}
+                />
               </div>
               <div className="hairline space-y-2 rounded-md border bg-ink-950/60 p-3">
                 <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
@@ -916,13 +987,20 @@ export default function Rule110Story() {
                   initial="single"
                   accent="text-signal-violet"
                   cycleMs={9000}
+                  ariaLabel={story.rivalsLabels.r90}
                 />
               </div>
               <div className="hairline space-y-2 rounded-md border bg-ink-950/60 p-3">
                 <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
                   {story.rivalsLabels.r110}
                 </div>
-                <Rule110Demo rule={110} initial="random" accent="text-signal-cyan" cycleMs={9000} />
+                <Rule110Demo
+                  rule={110}
+                  initial="random"
+                  accent="text-signal-cyan"
+                  cycleMs={9000}
+                  ariaLabel={story.rivalsLabels.r110}
+                />
               </div>
             </div>
           </div>
@@ -943,7 +1021,12 @@ export default function Rule110Story() {
           </div>
         </Reveal>
         <Reveal delay={120}>
-          <Rule110LookupTable rule={rule} onRuleChange={setRule} caption={story.lookupCaption} />
+          <Rule110LookupTable
+            rule={rule}
+            onRuleChange={setRule}
+            caption={story.lookupCaption}
+            ariaToggle={(p) => story.toggleAria.replace("{p}", p)}
+          />
         </Reveal>
       </section>
 
@@ -964,10 +1047,17 @@ export default function Rule110Story() {
         </Reveal>
         <Reveal delay={120}>
           <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-[minmax(0,1fr)_auto]">
-            <Rule110MiniSimulator rule={rule} caption={story.simulatorCaption} />
+            <Rule110MiniSimulator
+              rule={rule}
+              caption={story.simulatorCaption}
+              stepsLabel={story.miniSteps}
+              singleLabel={story.miniSingle}
+              randomLabel={story.miniRandom}
+              ruleLabel={story.miniRuleLabel}
+            />
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5 md:max-w-[260px]">
               <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-                live · rule {rule}
+                {story.liveRuleLabel} {rule}
               </div>
               <div className="space-y-2 font-mono text-[11px] leading-relaxed text-ink-300">
                 <div>
@@ -983,7 +1073,7 @@ export default function Rule110Story() {
                 </div>
               </div>
               <p className="hairline border-t pt-2 text-[11px] leading-relaxed text-ink-300">
-                Flip a bit in the table above and the canvas redraws instantly.
+                {story.flipHint}
               </p>
             </div>
           </div>
@@ -1048,7 +1138,13 @@ function ClassPanel({ rule, label, accent }: { rule: number; label: string; acce
   return (
     <div className="space-y-2">
       <div className="hairline rounded-md border bg-ink-950/60 p-2">
-        <Rule110Demo rule={rule} initial="single" accent={accent} cycleMs={12000} />
+        <Rule110Demo
+          rule={rule}
+          initial="single"
+          accent={accent}
+          cycleMs={12000}
+          ariaLabel={label}
+        />
       </div>
       <div className={`font-mono text-[10px] uppercase tracking-widest ${accent}`}>{label}</div>
     </div>

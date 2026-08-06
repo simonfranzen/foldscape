@@ -44,6 +44,15 @@ type RichStory = {
   walkFractionHead: string;
   walkDecimalHead: string;
   walkErrorHead: string;
+  // Interstitial callouts between the story sections.
+  mediantBoxCaption: string;
+  mediantBoxNote: string;
+  treeInterCaption: string;
+  treeInterTitle: string;
+  piPathCaption: string;
+  walkInterCaption: string;
+  walkInterTitle: string;
+  hurwitzNote: string;
 };
 
 const PHI = (1 + Math.sqrt(5)) / 2;
@@ -97,13 +106,13 @@ const en: RichStory = {
     },
     {
       pretitle: "Section 04 · Best rational approximations",
-      title: "Stop early — you've found the convergents",
-      body: "Halt the walk after any finite number of steps and the fraction you stand on is a best rational approximation of the target: no fraction with a smaller denominator gets closer. Hurwitz' theorem (1891) says every irrational has infinitely many such approximations p/q with |x − p/q| < 1/(√5 q²) — and the constant √5 is sharp, attained by φ.",
+      title: "Stop at a run's end: you're on a convergent",
+      body: "Stop at the end of an L/R run, just before the direction flips, and the fraction you stand on is a convergent: a best rational approximation of the target, with no smaller denominator getting closer. Stop in the middle of a run and you land on a semiconvergent instead, close but not guaranteed to beat every smaller denominator. Hurwitz' theorem (1891) says every irrational has infinitely many convergents p/q with |x − p/q| < 1/(√5 q²), and the constant √5 is sharp, attained by φ.",
     },
     {
       pretitle: "Section 05 · The Farey cousin",
-      title: "Sort the tree at level n — you get the Farey sequence",
-      body: "Read the fractions at depth n of the Stern–Brocot tree in left-to-right order, keeping only those with denominator ≤ n. That is the Farey sequence Fₙ — the sorted list of reduced fractions in [0, 1] with bounded denominator. The two structures are different views of the same arithmetic skeleton.",
+      title: "Filter the tree by denominator: you get the Farey sequence",
+      body: "Gather every fraction anywhere in the tree with denominator at most n that lies in [0, 1], then add the endpoint 0/1. Read left to right, that list is the Farey sequence Fₙ, the sorted reduced fractions in [0, 1] with bounded denominator. A single level never suffices, since a fraction with denominator q already appears by depth q: 1/2 sits at depth 1, so you must sweep the whole subtree down to depth n. The two structures are different views of the same arithmetic skeleton.",
     },
     {
       pretitle: "Section 06 · Modern uses",
@@ -129,6 +138,15 @@ const en: RichStory = {
   walkFractionHead: "fraction",
   walkDecimalHead: "decimal",
   walkErrorHead: "error",
+  mediantBoxCaption: "The mediant in one line",
+  mediantBoxNote: "Three mediants in, and the seeds of every rational are already on the page.",
+  treeInterCaption: "Interactive · the tree",
+  treeInterTitle: "First levels, every fraction exactly once",
+  piPathCaption: "π's path",
+  walkInterCaption: "Interactive · walk a real number",
+  walkInterTitle: "Type a number, watch the convergents appear",
+  hurwitzNote:
+    "For every irrational x, infinitely many fractions p/q satisfy this, and √5 is best possible, attained by the golden ratio.",
 };
 
 const de: RichStory = {
@@ -180,13 +198,13 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 04 · Beste rationale Näherungen",
-      title: "Frühzeitig anhalten — du hast die Konvergenten",
-      body: "Halt nach beliebig vielen Schritten an, und der Bruch unter dir ist eine beste rationale Näherung des Ziels: kein Bruch mit kleinerem Nenner kommt näher. Hurwitz' Satz (1891) besagt: jede irrationale Zahl hat unendlich viele solche Näherungen p/q mit |x − p/q| < 1/(√5 q²) — und die Konstante √5 ist scharf, erreicht von φ.",
+      title: "Am Ende eines Laufs anhalten: du stehst auf einer Konvergente",
+      body: "Halte am Ende eines L/R-Laufs an, kurz bevor die Richtung kippt, und der Bruch unter dir ist eine Konvergente: eine beste rationale Näherung des Ziels, kein Bruch mit kleinerem Nenner kommt näher. Hältst du mitten in einem Lauf an, landest du stattdessen auf einer Semikonvergente, nah dran, aber nicht garantiert besser als jeder kleinere Nenner. Hurwitz' Satz (1891) besagt: jede irrationale Zahl hat unendlich viele Konvergenten p/q mit |x − p/q| < 1/(√5 q²), und die Konstante √5 ist scharf, erreicht von φ.",
     },
     {
       pretitle: "Abschnitt 05 · Der Farey-Cousin",
-      title: "Sortiere den Baum auf Ebene n — du bekommst die Farey-Folge",
-      body: "Lies die Brüche auf Tiefe n des Stern-Brocot-Baums von links nach rechts, behalte nur die mit Nenner ≤ n. Das ist die Farey-Folge Fₙ — die sortierte Liste gekürzter Brüche in [0, 1] mit beschränktem Nenner. Beide Strukturen sind verschiedene Sichten auf dasselbe arithmetische Skelett.",
+      title: "Filtere den Baum nach Nenner: du bekommst die Farey-Folge",
+      body: "Sammle jeden Bruch im ganzen Baum mit Nenner höchstens n, der in [0, 1] liegt, und nimm den Randpunkt 0/1 dazu. Von links nach rechts gelesen ist diese Liste die Farey-Folge Fₙ, die sortierten gekürzten Brüche in [0, 1] mit beschränktem Nenner. Eine einzelne Ebene reicht nie, denn ein Bruch mit Nenner q taucht schon bis Tiefe q auf: 1/2 sitzt auf Tiefe 1, also musst du den ganzen Teilbaum bis Tiefe n durchgehen. Beide Strukturen sind verschiedene Sichten auf dasselbe arithmetische Skelett.",
     },
     {
       pretitle: "Abschnitt 06 · Heutige Anwendungen",
@@ -212,6 +230,16 @@ const de: RichStory = {
   walkFractionHead: "Bruch",
   walkDecimalHead: "Dezimal",
   walkErrorHead: "Fehler",
+  mediantBoxCaption: "Der Mediant in einer Zeile",
+  mediantBoxNote:
+    "Drei Medianten weit, und die Keime jeder rationalen Zahl stehen schon auf dem Papier.",
+  treeInterCaption: "Interaktiv · der Baum",
+  treeInterTitle: "Erste Ebenen, jeder Bruch genau einmal",
+  piPathCaption: "πs Pfad",
+  walkInterCaption: "Interaktiv · eine reelle Zahl entlanglaufen",
+  walkInterTitle: "Tippe eine Zahl, sieh die Konvergenten erscheinen",
+  hurwitzNote:
+    "Für jede irrationale Zahl x erfüllen unendlich viele Brüche p/q diese Schranke, und √5 ist bestmöglich, erreicht vom goldenen Schnitt.",
 };
 
 const es: RichStory = {
@@ -263,13 +291,13 @@ const es: RichStory = {
     },
     {
       pretitle: "Sección 04 · Mejores aproximaciones racionales",
-      title: "Parar pronto — tienes los convergentes",
-      body: "Detén el paseo tras cualquier número finito de pasos y la fracción donde estás es una mejor aproximación racional del objetivo: ninguna con denominador menor acerca más. El teorema de Hurwitz (1891) dice que todo irracional tiene infinitas aproximaciones p/q con |x − p/q| < 1/(√5 q²) — y la constante √5 es óptima, alcanzada por φ.",
+      title: "Para al final de una tirada: estás en un convergente",
+      body: "Detente al final de una tirada L/R, justo antes de que la dirección cambie, y la fracción donde estás es un convergente: una mejor aproximación racional del objetivo, ninguna con denominador menor se acerca más. Si paras en mitad de una tirada, caes en cambio sobre un semiconvergente, cercano pero sin garantía de superar a todo denominador menor. El teorema de Hurwitz (1891) dice que todo irracional tiene infinitos convergentes p/q con |x − p/q| < 1/(√5 q²), y la constante √5 es óptima, alcanzada por φ.",
     },
     {
       pretitle: "Sección 05 · La prima Farey",
-      title: "Ordena el árbol en el nivel n — sale la sucesión de Farey",
-      body: "Lee las fracciones a profundidad n del árbol de Stern–Brocot de izquierda a derecha, quedándote solo con las de denominador ≤ n. Esa es la sucesión de Farey Fₙ — la lista ordenada de fracciones reducidas en [0, 1] con denominador acotado. Dos vistas del mismo esqueleto aritmético.",
+      title: "Filtra el árbol por denominador: sale la sucesión de Farey",
+      body: "Reúne toda fracción en cualquier parte del árbol con denominador a lo sumo n que caiga en [0, 1], y añade el extremo 0/1. Leída de izquierda a derecha, esa lista es la sucesión de Farey Fₙ, las fracciones reducidas de [0, 1] con denominador acotado, ya ordenadas. Un solo nivel nunca basta, pues una fracción con denominador q ya aparece hacia la profundidad q: 1/2 vive en la profundidad 1, así que debes recorrer todo el subárbol hasta la profundidad n. Dos vistas del mismo esqueleto aritmético.",
     },
     {
       pretitle: "Sección 06 · Usos modernos",
@@ -295,6 +323,15 @@ const es: RichStory = {
   walkFractionHead: "fracción",
   walkDecimalHead: "decimal",
   walkErrorHead: "error",
+  mediantBoxCaption: "La mediana en una línea",
+  mediantBoxNote: "Tres medianas y las semillas de todo racional ya están en la página.",
+  treeInterCaption: "Interactivo · el árbol",
+  treeInterTitle: "Primeros niveles, cada fracción exactamente una vez",
+  piPathCaption: "El camino de π",
+  walkInterCaption: "Interactivo · caminar hacia un real",
+  walkInterTitle: "Teclea un número y mira aparecer los convergentes",
+  hurwitzNote:
+    "Para todo irracional x, infinitas fracciones p/q cumplen esto, y √5 es lo mejor posible, alcanzado por la razón áurea.",
 };
 
 const fr: RichStory = {
@@ -346,13 +383,13 @@ const fr: RichStory = {
     },
     {
       pretitle: "Section 04 · Meilleures approximations rationnelles",
-      title: "Arrête tôt — voilà les convergents",
-      body: "Stoppe la marche après n'importe quel nombre fini de pas et la fraction sous tes pieds est une meilleure approximation rationnelle de la cible : aucune fraction à plus petit dénominateur ne s'en approche davantage. Le théorème de Hurwitz (1891) garantit pour tout irrationnel une infinité de p/q avec |x − p/q| < 1/(√5 q²) — la constante √5 est optimale, atteinte par φ.",
+      title: "Arrête-toi en fin de plage : tu es sur un convergent",
+      body: "Arrête-toi à la fin d'une plage L/R, juste avant que la direction ne bascule, et la fraction sous tes pieds est un convergent : une meilleure approximation rationnelle de la cible, aucune fraction à plus petit dénominateur ne s'en approche davantage. Arrête-toi au milieu d'une plage et tu obtiens plutôt un semiconvergent, proche mais sans garantie de battre tout dénominateur plus petit. Le théorème de Hurwitz (1891) affirme que tout irrationnel a une infinité de convergents p/q avec |x − p/q| < 1/(√5 q²), et la constante √5 est optimale, atteinte par φ.",
     },
     {
       pretitle: "Section 05 · La cousine de Farey",
-      title: "Trie l'arbre au niveau n — voici la suite de Farey",
-      body: "Lis les fractions à la profondeur n de l'arbre de Stern–Brocot de gauche à droite, en ne gardant que celles de dénominateur ≤ n. C'est la suite de Farey Fₙ — liste ordonnée des fractions irréductibles de [0, 1] à dénominateur borné. Deux vues du même squelette arithmétique.",
+      title: "Filtre l'arbre par dénominateur : voici la suite de Farey",
+      body: "Rassemble toute fraction, où qu'elle soit dans l'arbre, de dénominateur au plus n et située dans [0, 1], puis ajoute l'extrémité 0/1. Lue de gauche à droite, cette liste est la suite de Farey Fₙ, les fractions irréductibles de [0, 1] à dénominateur borné, déjà triées. Un seul niveau ne suffit jamais, car une fraction de dénominateur q apparaît déjà avant la profondeur q : 1/2 est à la profondeur 1, donc il faut parcourir tout le sous-arbre jusqu'à la profondeur n. Deux vues du même squelette arithmétique.",
     },
     {
       pretitle: "Section 06 · Usages modernes",
@@ -378,6 +415,15 @@ const fr: RichStory = {
   walkFractionHead: "fraction",
   walkDecimalHead: "décimal",
   walkErrorHead: "erreur",
+  mediantBoxCaption: "La médiante en une ligne",
+  mediantBoxNote: "Trois médiantes et les germes de tout rationnel sont déjà sur la page.",
+  treeInterCaption: "Interactif · l'arbre",
+  treeInterTitle: "Premiers niveaux, chaque fraction exactement une fois",
+  piPathCaption: "Le chemin de π",
+  walkInterCaption: "Interactif · marcher vers un réel",
+  walkInterTitle: "Tape un nombre, regarde les convergents apparaître",
+  hurwitzNote:
+    "Pour tout irrationnel x, une infinité de fractions p/q vérifient cela, et √5 est optimal, atteint par le nombre d'or.",
 };
 
 const it: RichStory = {
@@ -429,13 +475,13 @@ const it: RichStory = {
     },
     {
       pretitle: "Sezione 04 · Migliori approssimazioni razionali",
-      title: "Fermati presto — hai i convergenti",
-      body: "Ferma il cammino dopo un numero qualsiasi di passi e la frazione su cui stai è una migliore approssimazione razionale del bersaglio: nessuna con denominatore minore si avvicina di più. Il teorema di Hurwitz (1891) dice che ogni irrazionale ha infinite tali p/q con |x − p/q| < 1/(√5 q²) — la costante √5 è ottimale, raggiunta da φ.",
+      title: "Fermati a fine serie: sei su un convergente",
+      body: "Fermati alla fine di una serie L/R, appena prima che la direzione cambi, e la frazione su cui stai è un convergente: una migliore approssimazione razionale del bersaglio, nessuna con denominatore minore si avvicina di più. Se ti fermi a metà di una serie, cadi invece su un semiconvergente, vicino ma non garantito migliore di ogni denominatore minore. Il teorema di Hurwitz (1891) dice che ogni irrazionale ha infiniti convergenti p/q con |x − p/q| < 1/(√5 q²), e la costante √5 è ottimale, raggiunta da φ.",
     },
     {
       pretitle: "Sezione 05 · La cugina di Farey",
-      title: "Ordina l'albero al livello n — esce la successione di Farey",
-      body: "Leggi le frazioni a profondità n dell'albero di Stern–Brocot da sinistra a destra, tenendo solo quelle con denominatore ≤ n. È la successione di Farey Fₙ — l'elenco ordinato delle frazioni ridotte in [0, 1] con denominatore limitato. Due viste dello stesso scheletro aritmetico.",
+      title: "Filtra l'albero per denominatore: esce la successione di Farey",
+      body: "Raccogli ogni frazione, ovunque nell'albero, con denominatore al più n e situata in [0, 1], poi aggiungi l'estremo 0/1. Letta da sinistra a destra, quella lista è la successione di Farey Fₙ, le frazioni ridotte di [0, 1] con denominatore limitato, già ordinate. Un solo livello non basta mai, perché una frazione con denominatore q compare già entro la profondità q: 1/2 sta alla profondità 1, quindi devi percorrere tutto il sottoalbero fino alla profondità n. Due viste dello stesso scheletro aritmetico.",
     },
     {
       pretitle: "Sezione 06 · Usi moderni",
@@ -461,6 +507,15 @@ const it: RichStory = {
   walkFractionHead: "frazione",
   walkDecimalHead: "decimale",
   walkErrorHead: "errore",
+  mediantBoxCaption: "La mediante in una riga",
+  mediantBoxNote: "Tre medianti e i semi di ogni razionale sono già sulla pagina.",
+  treeInterCaption: "Interattivo · l'albero",
+  treeInterTitle: "Primi livelli, ogni frazione esattamente una volta",
+  piPathCaption: "Il cammino di π",
+  walkInterCaption: "Interattivo · cammina verso un reale",
+  walkInterTitle: "Digita un numero e guarda comparire i convergenti",
+  hurwitzNote:
+    "Per ogni irrazionale x, infinite frazioni p/q soddisfano questo, e √5 è il migliore possibile, raggiunto dalla sezione aurea.",
 };
 
 const pt: RichStory = {
@@ -512,13 +567,13 @@ const pt: RichStory = {
     },
     {
       pretitle: "Secção 04 · Melhores aproximações racionais",
-      title: "Para cedo — tens os convergentes",
-      body: "Para o passeio após qualquer número finito de passos e a fração onde estás é uma melhor aproximação racional do alvo: nenhuma com denominador menor chega mais perto. O teorema de Hurwitz (1891) garante para todo irracional infinitos p/q com |x − p/q| < 1/(√5 q²) — e a constante √5 é ótima, atingida por φ.",
+      title: "Para no fim de uma corrida: estás num convergente",
+      body: "Para no fim de uma corrida L/R, mesmo antes de a direção virar, e a fração onde estás é um convergente: uma melhor aproximação racional do alvo, nenhuma com denominador menor chega mais perto. Se paras a meio de uma corrida, cais antes sobre um semiconvergente, próximo mas sem garantia de superar todo o denominador menor. O teorema de Hurwitz (1891) diz que todo o irracional tem infinitos convergentes p/q com |x − p/q| < 1/(√5 q²), e a constante √5 é ótima, atingida por φ.",
     },
     {
       pretitle: "Secção 05 · A prima Farey",
-      title: "Ordena a árvore no nível n — sai a sequência de Farey",
-      body: "Lê as frações na profundidade n da árvore de Stern–Brocot da esquerda para a direita, ficando só com as de denominador ≤ n. É a sequência de Farey Fₙ — a lista ordenada das frações reduzidas em [0, 1] com denominador limitado. Duas vistas do mesmo esqueleto aritmético.",
+      title: "Filtra a árvore por denominador: sai a sequência de Farey",
+      body: "Reúne toda a fração, em qualquer ponto da árvore, com denominador no máximo n e situada em [0, 1], e junta o extremo 0/1. Lida da esquerda para a direita, essa lista é a sequência de Farey Fₙ, as frações reduzidas em [0, 1] com denominador limitado, já ordenadas. Um só nível nunca chega, pois uma fração com denominador q já aparece até à profundidade q: 1/2 fica na profundidade 1, por isso tens de percorrer toda a subárvore até à profundidade n. Duas vistas do mesmo esqueleto aritmético.",
     },
     {
       pretitle: "Secção 06 · Usos modernos",
@@ -544,6 +599,15 @@ const pt: RichStory = {
   walkFractionHead: "fração",
   walkDecimalHead: "decimal",
   walkErrorHead: "erro",
+  mediantBoxCaption: "A mediante numa linha",
+  mediantBoxNote: "Três mediantes e as sementes de todo o racional já estão na página.",
+  treeInterCaption: "Interativo · a árvore",
+  treeInterTitle: "Primeiros níveis, cada fração exatamente uma vez",
+  piPathCaption: "O caminho de π",
+  walkInterCaption: "Interativo · caminhar até um real",
+  walkInterTitle: "Escreve um número e vê surgir os convergentes",
+  hurwitzNote:
+    "Para todo o irracional x, infinitas frações p/q cumprem isto, e √5 é o melhor possível, atingido pela razão de ouro.",
 };
 
 const sv: RichStory = {
@@ -595,13 +659,13 @@ const sv: RichStory = {
     },
     {
       pretitle: "Avsnitt 04 · Bästa rationella approximationer",
-      title: "Stanna tidigt — du har konvergenterna",
-      body: "Avbryt vandringen efter valfritt ändligt antal steg och bråket du står på är en bästa rationell approximation till målet: inget bråk med mindre nämnare kommer närmare. Hurwitz sats (1891) säger att varje irrationellt tal har oändligt många sådana p/q med |x − p/q| < 1/(√5 q²) — och konstanten √5 är skarp, uppnådd av φ.",
+      title: "Stanna vid en körnings slut: du står på en konvergent",
+      body: "Stanna vid slutet av en L/R-körning, just innan riktningen vänder, och bråket du står på är en konvergent: en bästa rationell approximation till målet, inget bråk med mindre nämnare kommer närmare. Stannar du mitt i en körning hamnar du i stället på en semikonvergent, nära men utan garanti att slå varje mindre nämnare. Hurwitz sats (1891) säger att varje irrationellt tal har oändligt många konvergenter p/q med |x − p/q| < 1/(√5 q²), och konstanten √5 är skarp, uppnådd av φ.",
     },
     {
       pretitle: "Avsnitt 05 · Farey-kusinen",
-      title: "Sortera trädet på nivå n — du får Fareyföljden",
-      body: "Läs bråken på djup n i Stern–Brocot-trädet från vänster till höger, behåll bara dem med nämnare ≤ n. Det är Fareyföljden Fₙ — den sorterade listan över reducerade bråk i [0, 1] med begränsad nämnare. Två vyer på samma aritmetiska skelett.",
+      title: "Filtrera trädet efter nämnare: du får Fareyföljden",
+      body: "Samla varje bråk var som helst i trädet med nämnare högst n som ligger i [0, 1], och lägg till ändpunkten 0/1. Läst från vänster till höger är listan Fareyföljden Fₙ, de sorterade förkortade bråken i [0, 1] med begränsad nämnare. En enda nivå räcker aldrig, eftersom ett bråk med nämnare q redan dyker upp senast vid djup q: 1/2 sitter på djup 1, så du måste gå igenom hela delträdet ned till djup n. Två vyer på samma aritmetiska skelett.",
     },
     {
       pretitle: "Avsnitt 06 · Moderna användningar",
@@ -627,6 +691,15 @@ const sv: RichStory = {
   walkFractionHead: "bråk",
   walkDecimalHead: "decimal",
   walkErrorHead: "fel",
+  mediantBoxCaption: "Medianten på en rad",
+  mediantBoxNote: "Tre medianter in och fröna till varje rationellt tal står redan på sidan.",
+  treeInterCaption: "Interaktivt · trädet",
+  treeInterTitle: "Första nivåerna, varje bråk exakt en gång",
+  piPathCaption: "π:s stig",
+  walkInterCaption: "Interaktivt · vandra mot ett reellt tal",
+  walkInterTitle: "Skriv ett tal och se konvergenterna dyka upp",
+  hurwitzNote:
+    "För varje irrationellt x uppfyller oändligt många bråk p/q detta, och √5 är bästa möjliga, uppnått av gyllene snittet.",
 };
 
 const no: RichStory = {
@@ -678,13 +751,13 @@ const no: RichStory = {
     },
     {
       pretitle: "Avsnitt 04 · Beste rasjonale tilnærminger",
-      title: "Stopp tidlig — du har konvergentene",
-      body: "Stopp vandringen etter et hvilket som helst endelig antall trinn, og brøken du står på er en beste rasjonal tilnærming til målet: ingen brøk med mindre nevner kommer nærmere. Hurwitz' teorem (1891) sier at hvert irrasjonalt tall har uendelig mange slike p/q med |x − p/q| < 1/(√5 q²) — og konstanten √5 er skarp, oppnådd av φ.",
+      title: "Stopp ved en kjørings slutt: du står på en konvergent",
+      body: "Stopp ved slutten av en L/R-kjøring, like før retningen snur, og brøken du står på er en konvergent: en beste rasjonal tilnærming til målet, ingen brøk med mindre nevner kommer nærmere. Stopper du midt i en kjøring, havner du i stedet på en semikonvergent, nær men uten garanti for å slå enhver mindre nevner. Hurwitz' teorem (1891) sier at hvert irrasjonalt tall har uendelig mange konvergenter p/q med |x − p/q| < 1/(√5 q²), og konstanten √5 er skarp, oppnådd av φ.",
     },
     {
       pretitle: "Avsnitt 05 · Farey-fetteren",
-      title: "Sorter treet på nivå n — du får Farey-følgen",
-      body: "Les brøkene på dybde n i Stern–Brocot-treet fra venstre til høyre, behold bare dem med nevner ≤ n. Det er Farey-følgen Fₙ — den sorterte listen over reduserte brøker i [0, 1] med begrenset nevner. To utsikter til samme aritmetiske skjelett.",
+      title: "Filtrer treet etter nevner: du får Farey-følgen",
+      body: "Samle hver brøk hvor som helst i treet med nevner høyst n som ligger i [0, 1], og legg til endepunktet 0/1. Lest fra venstre til høyre er listen Farey-følgen Fₙ, de sorterte forkortede brøkene i [0, 1] med begrenset nevner. Ett enkelt nivå holder aldri, for en brøk med nevner q dukker allerede opp innen dybde q: 1/2 sitter på dybde 1, så du må gå gjennom hele deltreet ned til dybde n. To utsikter til samme aritmetiske skjelett.",
     },
     {
       pretitle: "Avsnitt 06 · Moderne bruk",
@@ -710,6 +783,15 @@ const no: RichStory = {
   walkFractionHead: "brøk",
   walkDecimalHead: "desimal",
   walkErrorHead: "feil",
+  mediantBoxCaption: "Medianten på én linje",
+  mediantBoxNote: "Tre medianter inn og frøene til hvert rasjonalt tall står allerede på siden.",
+  treeInterCaption: "Interaktivt · treet",
+  treeInterTitle: "Første nivåer, hver brøk nøyaktig én gang",
+  piPathCaption: "πs sti",
+  walkInterCaption: "Interaktivt · vandre mot et reelt tall",
+  walkInterTitle: "Skriv et tall og se konvergentene dukke opp",
+  hurwitzNote:
+    "For hvert irrasjonalt x oppfyller uendelig mange brøker p/q dette, og √5 er best mulig, oppnådd av det gylne snitt.",
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
@@ -798,13 +880,13 @@ export default function SternbrocotStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              The mediant in one line
+              {story.mediantBoxCaption}
             </div>
             <div className="math-italic text-2xl text-ink-100 md:text-3xl">
               0/1 ⊕ 1/0 = 1/1 · 0/1 ⊕ 1/1 = 1/2 · 1/1 ⊕ 1/0 = 2/1
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Three mediants in, and the seeds of every rational are already on the page.
+              {story.mediantBoxNote}
             </p>
           </div>
         </Reveal>
@@ -825,10 +907,10 @@ export default function SternbrocotStory() {
         <Reveal>
           <div className="space-y-2 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Interactive · the tree
+              {story.treeInterCaption}
             </div>
             <h2 className="math-italic text-3xl leading-tight md:text-4xl">
-              First levels — every fraction, exactly once
+              {story.treeInterTitle}
             </h2>
           </div>
         </Reveal>
@@ -854,9 +936,9 @@ export default function SternbrocotStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              π's path
+              {story.piPathCaption}
             </div>
-            <div className="math-italic text-2xl text-ink-100">R³ L⁷ R¹⁵ L¹ R²⁹² R¹ …</div>
+            <div className="math-italic text-2xl text-ink-100">R³ L⁷ R¹⁵ L¹ R²⁹² L¹ …</div>
             <p className="mx-auto max-w-xl font-mono text-sm leading-relaxed text-ink-300">
               3, 22/7, 333/106, 355/113, 103993/33102, …
             </p>
@@ -869,10 +951,10 @@ export default function SternbrocotStory() {
         <Reveal>
           <div className="space-y-2 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Interactive · walk a real number
+              {story.walkInterCaption}
             </div>
             <h2 className="math-italic text-3xl leading-tight md:text-4xl">
-              Type a number — watch the convergents appear
+              {story.walkInterTitle}
             </h2>
           </div>
         </Reveal>
@@ -909,8 +991,7 @@ export default function SternbrocotStory() {
               |x − p/q| &lt; 1 / (√5 · q²)
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              For every irrational x, infinitely many fractions p/q satisfy this — and √5 is best
-              possible, attained by the golden ratio.
+              {story.hurwitzNote}
             </p>
           </div>
         </Reveal>

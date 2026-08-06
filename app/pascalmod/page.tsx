@@ -33,6 +33,8 @@ type RichStory = {
     rowsLabel: string;
     primesOnlyLabel: string;
     includeCompositesLabel: string;
+    residuesLabel: string;
+    canvasLabel: string;
     pretitle: string;
     title: string;
     body: string;
@@ -109,7 +111,7 @@ const en: RichStory = {
     {
       pretitle: "Section 04 · Other primes, other gaskets",
       title: "Mod 3, mod 5, mod 7 — each its own self-similar sieve",
-      body: "Switch p to 3 and the same rule produces a triangle of three-by-three copies; p = 5 gives a fifteen-piece micro-tile; p = 7 a twenty-eight-piece one. Lucas' theorem (1878) makes it explicit: C(n, k) mod p factors into the product of C(nᵢ, kᵢ) mod p over base-p digits. Different prime, different fractal — same machinery.",
+      body: "Switch p to 3 and the same rule produces a triangle of six copies; p = 5 gives a fifteen-piece micro-tile; p = 7 a twenty-eight-piece one. Lucas' theorem (1878) makes it explicit: C(n, k) mod p factors into the product of C(nᵢ, kᵢ) mod p over base-p digits. Different prime, different fractal — same machinery.",
     },
     {
       pretitle: "Section 05 · Hausdorff dimensions",
@@ -119,7 +121,7 @@ const en: RichStory = {
     {
       pretitle: "Section 06 · Non-prime moduli",
       title: "Composite n: the fractal still exists, but blurred",
-      body: "Reduce mod 6 and Kummer's clean carry count breaks: the prime-power structure tangles. The picture still self-similar overall — Chinese Remainder Theorem stacks the mod-2 and mod-3 patterns — but local symmetry frays. Stephen Wolfram catalogued these in NKS as nearest cellular-automaton kin to Pascal mod p.",
+      body: "Reduce mod 6 and Kummer's clean carry count breaks: the prime-power structure tangles. The picture is still self-similar overall — Chinese Remainder Theorem stacks the mod-2 and mod-3 patterns — but local symmetry frays. Stephen Wolfram catalogued these in NKS as nearest cellular-automaton kin to Pascal mod p.",
     },
   ],
   viewer: {
@@ -128,6 +130,8 @@ const en: RichStory = {
     rowsLabel: "Rows N",
     primesOnlyLabel: "Primes only",
     includeCompositesLabel: "Include composites",
+    residuesLabel: "Residues",
+    canvasLabel: "Pascal's triangle coloured modulo",
     pretitle: "Interactive · the picture",
     title: "Slide the modulus, count the gasket",
     body: "Pick a prime and the rendering snaps to a clean fractal sieve; toggle in composites and the symmetry softens. Crank N up to 256 rows to see deeper self-similarity.",
@@ -151,7 +155,7 @@ const en: RichStory = {
   closingPretitle: "Take it further",
   closingTitle: "Open the Explorer.",
   closingBody:
-    "The Explorer lets you push the row count to half a thousand, switch palettes per residue, and step through every prime modulus from 2 to 23.",
+    "The Explorer lets you push the row count to half a thousand and step through every prime modulus from 2 to 23.",
   ctaLabel: "→ Open the Explorer",
 };
 
@@ -206,7 +210,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Andere Primzahlen, andere Sieben",
       title: "Mod 3, mod 5, mod 7 — je ein eigenes selbstähnliches Sieb",
-      body: "Schalt p auf 3 und dieselbe Regel liefert ein Dreieck aus drei-mal-drei-Kopien; p = 5 ergibt eine fünfzehnteilige Mikrokachel; p = 7 eine mit achtundzwanzig Teilen. Der Satz von Lucas (1878) macht es explizit: C(n, k) mod p zerfällt in das Produkt der C(nᵢ, kᵢ) mod p über die p-adischen Ziffern. Andere Primzahl, anderes Fraktal — gleiches Räderwerk.",
+      body: "Schalt p auf 3 und dieselbe Regel liefert ein Dreieck aus sechs Kopien; p = 5 ergibt eine fünfzehnteilige Mikrokachel; p = 7 eine mit achtundzwanzig Teilen. Der Satz von Lucas (1878) macht es explizit: C(n, k) mod p zerfällt in das Produkt der C(nᵢ, kᵢ) mod p über die p-adischen Ziffern. Andere Primzahl, anderes Fraktal — gleiches Räderwerk.",
     },
     {
       pretitle: "Abschnitt 05 · Hausdorff-Dimensionen",
@@ -214,8 +218,8 @@ const de: RichStory = {
       body: "Das mod-p-Sieb hat Hausdorff-Dimension log((p+1)p/2) / log p. Für p = 2 ergibt das log 3 / log 2 ≈ 1,585; für p = 3 etwa 1,631; für p = 7 schon 1,712. Mit wachsendem p kriecht die Dimension gegen 2 — das Dreieck füllt mehr und mehr der Ebene, aber nie ganz.",
     },
     {
-      pretitle: "Abschnitt 06 · Zusammengesetzte Modulen",
-      title: "Nicht-Primes n: das Fraktal bleibt, verwischt",
+      pretitle: "Abschnitt 06 · Zusammengesetzte Moduln",
+      title: "Zusammengesetztes n: das Fraktal bleibt, verwischt",
       body: "Reduziere mod 6 und Kummers saubere Übertragszahl bricht: die Primzahlpotenz-Struktur verheddert sich. Das Bild bleibt insgesamt selbstähnlich — der Chinesische Restsatz stapelt mod 2 und mod 3 übereinander — aber lokale Symmetrie franst aus. Stephen Wolfram katalogisierte solche Bilder in NKS als nächste Zellulär-Automaten-Verwandte von Pascal mod p.",
     },
   ],
@@ -225,6 +229,8 @@ const de: RichStory = {
     rowsLabel: "Zeilen N",
     primesOnlyLabel: "Nur Primzahlen",
     includeCompositesLabel: "Zusammengesetzte einschließen",
+    residuesLabel: "Reste",
+    canvasLabel: "Pascalsches Dreieck gefärbt modulo",
     pretitle: "Interaktiv · das Bild",
     title: "Schieb den Modulus, zähl das Sieb",
     body: "Wähl eine Primzahl und das Bild rastet als sauberes fraktales Sieb ein; schalt zusammengesetzte hinzu und die Symmetrie weicht auf. Dreh N auf 256, um tiefere Selbstähnlichkeit zu sehen.",
@@ -248,7 +254,7 @@ const de: RichStory = {
   closingPretitle: "Geh weiter",
   closingTitle: "Öffne den Explorer.",
   closingBody:
-    "Der Explorer lässt dich die Zeilenzahl bis fünfhundert treiben, die Palette pro Rest umschalten und jede Primzahl von 2 bis 23 durchspielen.",
+    "Der Explorer lässt dich die Zeilenzahl bis fünfhundert treiben und jede Primzahl von 2 bis 23 durchspielen.",
   ctaLabel: "→ Explorer öffnen",
 };
 
@@ -303,7 +309,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 04 · Otros primos, otros tamices",
       title: "Mod 3, mod 5, mod 7 — cada uno su propio tamiz autosemejante",
-      body: "Cambia p a 3 y la misma regla da un triángulo de copias tres-por-tres; p = 5 da una microbaldosa de quince piezas; p = 7 una de veintiocho. El teorema de Lucas (1878) lo hace explícito: C(n, k) mod p se factoriza como producto de C(nᵢ, kᵢ) mod p sobre los dígitos en base p. Otro primo, otro fractal — mismo engranaje.",
+      body: "Cambia p a 3 y la misma regla da un triángulo de seis copias; p = 5 da una microbaldosa de quince piezas; p = 7 una de veintiocho. El teorema de Lucas (1878) lo hace explícito: C(n, k) mod p se factoriza como producto de C(nᵢ, kᵢ) mod p sobre los dígitos en base p. Otro primo, otro fractal — mismo engranaje.",
     },
     {
       pretitle: "Sección 05 · Dimensiones de Hausdorff",
@@ -322,6 +328,8 @@ const es: RichStory = {
     rowsLabel: "Filas N",
     primesOnlyLabel: "Solo primos",
     includeCompositesLabel: "Incluir compuestos",
+    residuesLabel: "Residuos",
+    canvasLabel: "Triángulo de Pascal coloreado módulo",
     pretitle: "Interactivo · la imagen",
     title: "Mueve el módulo, cuenta el tamiz",
     body: "Elige un primo y el render encaja en un tamiz fractal limpio; activa compuestos y la simetría se reblandece. Sube N a 256 filas para ver autosemejanza más profunda.",
@@ -345,7 +353,7 @@ const es: RichStory = {
   closingPretitle: "Ve más lejos",
   closingTitle: "Abre el Explorador.",
   closingBody:
-    "El Explorador te deja empujar las filas hasta medio millar, alternar paletas por residuo, y recorrer cada primo de 2 a 23.",
+    "El Explorador te deja empujar las filas hasta medio millar y recorrer cada primo de 2 a 23.",
   ctaLabel: "→ Abrir el Explorador",
 };
 
@@ -400,7 +408,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 04 · Autres premiers, autres tamis",
       title: "Mod 3, mod 5, mod 7 — chacun son tamis autosemblable",
-      body: "Change p en 3 et la même règle donne un triangle de copies trois-par-trois ; p = 5 donne une micro-tuile en quinze morceaux ; p = 7 une en vingt-huit. Le théorème de Lucas (1878) le rend explicite : C(n, k) mod p se factorise en produit des C(nᵢ, kᵢ) mod p sur les chiffres en base p. Autre premier, autre fractale — même mécanique.",
+      body: "Change p en 3 et la même règle donne un triangle de six copies ; p = 5 donne une micro-tuile en quinze morceaux ; p = 7 une en vingt-huit. Le théorème de Lucas (1878) le rend explicite : C(n, k) mod p se factorise en produit des C(nᵢ, kᵢ) mod p sur les chiffres en base p. Autre premier, autre fractale — même mécanique.",
     },
     {
       pretitle: "Section 05 · Dimensions de Hausdorff",
@@ -419,6 +427,8 @@ const fr: RichStory = {
     rowsLabel: "Lignes N",
     primesOnlyLabel: "Premiers seuls",
     includeCompositesLabel: "Inclure les composés",
+    residuesLabel: "Résidus",
+    canvasLabel: "Triangle de Pascal coloré modulo",
     pretitle: "Interactif · l'image",
     title: "Fais glisser le module, compte le tamis",
     body: "Choisis un premier et le rendu se cale sur un tamis fractal net ; active les composés et la symétrie s'amollit. Pousse N à 256 lignes pour voir une autosimilarité plus profonde.",
@@ -442,7 +452,7 @@ const fr: RichStory = {
   closingPretitle: "Aller plus loin",
   closingTitle: "Ouvre l'Explorateur.",
   closingBody:
-    "L'Explorateur te laisse pousser le nombre de lignes jusqu'à cinq cents, changer les palettes par résidu et parcourir chaque premier de 2 à 23.",
+    "L'Explorateur te laisse pousser le nombre de lignes jusqu'à cinq cents et parcourir chaque premier de 2 à 23.",
   ctaLabel: "→ Ouvrir l'Explorateur",
 };
 
@@ -497,7 +507,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 04 · Altri primi, altri setacci",
       title: "Mod 3, mod 5, mod 7 — ciascuno il suo setaccio autosimile",
-      body: "Cambia p in 3 e la stessa regola produce un triangolo di copie tre-per-tre; p = 5 dà una micro-mattonella da quindici pezzi; p = 7 una da ventotto. Il teorema di Lucas (1878) lo rende esplicito: C(n, k) mod p si fattorizza come prodotto di C(nᵢ, kᵢ) mod p sulle cifre in base p. Altro primo, altro frattale — stesso meccanismo.",
+      body: "Cambia p in 3 e la stessa regola produce un triangolo di sei copie; p = 5 dà una micro-mattonella da quindici pezzi; p = 7 una da ventotto. Il teorema di Lucas (1878) lo rende esplicito: C(n, k) mod p si fattorizza come prodotto di C(nᵢ, kᵢ) mod p sulle cifre in base p. Altro primo, altro frattale — stesso meccanismo.",
     },
     {
       pretitle: "Sezione 05 · Dimensioni di Hausdorff",
@@ -516,6 +526,8 @@ const it: RichStory = {
     rowsLabel: "Righe N",
     primesOnlyLabel: "Solo primi",
     includeCompositesLabel: "Includi compositi",
+    residuesLabel: "Resti",
+    canvasLabel: "Triangolo di Pascal colorato modulo",
     pretitle: "Interattivo · l'immagine",
     title: "Muovi il modulo, conta il setaccio",
     body: "Scegli un primo e il rendering scatta su un setaccio frattale netto; attiva i compositi e la simmetria si ammorbidisce. Porta N a 256 righe per vedere autosimilarità più profonda.",
@@ -539,7 +551,7 @@ const it: RichStory = {
   closingPretitle: "Vai oltre",
   closingTitle: "Apri l'Esploratore.",
   closingBody:
-    "L'Esploratore ti lascia spingere il numero di righe fino a cinquecento, cambiare palette per residuo e attraversare ogni primo da 2 a 23.",
+    "L'Esploratore ti lascia spingere il numero di righe fino a cinquecento e attraversare ogni primo da 2 a 23.",
   ctaLabel: "→ Apri l'Esploratore",
 };
 
@@ -594,7 +606,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 04 · Outros primos, outros peneiros",
       title: "Mod 3, mod 5, mod 7 — cada um o seu peneiro autossemelhante",
-      body: "Muda p para 3 e a mesma regra dá um triângulo de cópias três-por-três; p = 5 dá um micro-azulejo de quinze peças; p = 7 um de vinte e oito. O teorema de Lucas (1878) torna-o explícito: C(n, k) mod p fatoriza-se em produto de C(nᵢ, kᵢ) mod p sobre os dígitos em base p. Outro primo, outro fractal — mesma engrenagem.",
+      body: "Muda p para 3 e a mesma regra dá um triângulo de seis cópias; p = 5 dá um micro-azulejo de quinze peças; p = 7 um de vinte e oito. O teorema de Lucas (1878) torna-o explícito: C(n, k) mod p fatoriza-se em produto de C(nᵢ, kᵢ) mod p sobre os dígitos em base p. Outro primo, outro fractal — mesma engrenagem.",
     },
     {
       pretitle: "Secção 05 · Dimensões de Hausdorff",
@@ -613,6 +625,8 @@ const pt: RichStory = {
     rowsLabel: "Linhas N",
     primesOnlyLabel: "Só primos",
     includeCompositesLabel: "Incluir compostos",
+    residuesLabel: "Resíduos",
+    canvasLabel: "Triângulo de Pascal colorido módulo",
     pretitle: "Interativo · a imagem",
     title: "Desliza o módulo, conta o peneiro",
     body: "Escolhe um primo e o render encaixa num peneiro fractal limpo; liga compostos e a simetria amolece. Sobe N até 256 linhas para ver autossimilaridade mais funda.",
@@ -636,7 +650,7 @@ const pt: RichStory = {
   closingPretitle: "Vai mais longe",
   closingTitle: "Abre o Explorador.",
   closingBody:
-    "O Explorador deixa-te empurrar o número de linhas até quinhentas, alternar paletas por resíduo e percorrer cada primo de 2 a 23.",
+    "O Explorador deixa-te empurrar o número de linhas até quinhentas e percorrer cada primo de 2 a 23.",
   ctaLabel: "→ Abrir o Explorador",
 };
 
@@ -691,7 +705,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 04 · Andra primtal, andra silar",
       title: "Mod 3, mod 5, mod 7 — var och en sin självlika sil",
-      body: "Byt p till 3 och samma regel ger en triangel av tre-gånger-tre-kopior; p = 5 ger en mikroplatta med femton bitar; p = 7 en med tjugoåtta. Lucas sats (1878) gör det explicit: C(n, k) mod p faktoriseras till produkten av C(nᵢ, kᵢ) mod p över bas-p-siffrorna. Annat primtal, annan fraktal — samma maskineri.",
+      body: "Byt p till 3 och samma regel ger en triangel av sex kopior; p = 5 ger en mikroplatta med femton bitar; p = 7 en med tjugoåtta. Lucas sats (1878) gör det explicit: C(n, k) mod p faktoriseras till produkten av C(nᵢ, kᵢ) mod p över bas-p-siffrorna. Annat primtal, annan fraktal — samma maskineri.",
     },
     {
       pretitle: "Avsnitt 05 · Hausdorffdimensioner",
@@ -710,6 +724,8 @@ const sv: RichStory = {
     rowsLabel: "Rader N",
     primesOnlyLabel: "Endast primtal",
     includeCompositesLabel: "Inkludera sammansatta",
+    residuesLabel: "Rester",
+    canvasLabel: "Pascals triangel färgad modulo",
     pretitle: "Interaktivt · bilden",
     title: "Dra modulen, räkna silen",
     body: "Välj ett primtal och renderingen snäpper till en ren fraktalsil; slå på sammansatta och symmetrin mjuknar. Skruva upp N till 256 rader för djupare självlikhet.",
@@ -733,7 +749,7 @@ const sv: RichStory = {
   closingPretitle: "Gå vidare",
   closingTitle: "Öppna Utforskaren.",
   closingBody:
-    "Utforskaren låter dig pressa antalet rader till ett halvt tusen, byta palett per rest och stega genom varje primtal från 2 till 23.",
+    "Utforskaren låter dig pressa antalet rader till ett halvt tusen och stega genom varje primtal från 2 till 23.",
   ctaLabel: "→ Öppna Utforskaren",
 };
 
@@ -788,7 +804,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Andre primtall, andre siler",
       title: "Mod 3, mod 5, mod 7 — hver sin selvlike sil",
-      body: "Bytt p til 3 og samme regel gir en trekant av tre-ganger-tre-kopier; p = 5 gir en mikrofliser med femten biter; p = 7 en med tjueåtte. Lucas' teorem (1878) gjør det eksplisitt: C(n, k) mod p faktoriserer som produktet av C(nᵢ, kᵢ) mod p over base-p-sifrene. Annet primtall, annen fraktal — samme maskineri.",
+      body: "Bytt p til 3 og samme regel gir en trekant av seks kopier; p = 5 gir en mikrofliser med femten biter; p = 7 en med tjueåtte. Lucas' teorem (1878) gjør det eksplisitt: C(n, k) mod p faktoriserer som produktet av C(nᵢ, kᵢ) mod p over base-p-sifrene. Annet primtall, annen fraktal — samme maskineri.",
     },
     {
       pretitle: "Avsnitt 05 · Hausdorff-dimensjoner",
@@ -807,6 +823,8 @@ const no: RichStory = {
     rowsLabel: "Rader N",
     primesOnlyLabel: "Kun primtall",
     includeCompositesLabel: "Inkluder sammensatte",
+    residuesLabel: "Rester",
+    canvasLabel: "Pascals trekant farget modulo",
     pretitle: "Interaktivt · bildet",
     title: "Dra modulen, tell silen",
     body: "Velg et primtall og rendringen klikker inn til en ren fraktalsil; slå på sammensatte og symmetrien mykner. Skru N opp til 256 rader for å se dypere selvlikhet.",
@@ -830,7 +848,7 @@ const no: RichStory = {
   closingPretitle: "Gå videre",
   closingTitle: "Åpne Utforskeren.",
   closingBody:
-    "Utforskeren lar deg presse radantallet til et halvt tusen, bytte palett per rest og stege gjennom hvert primtall fra 2 til 23.",
+    "Utforskeren lar deg presse radantallet til et halvt tusen og stege gjennom hvert primtall fra 2 til 23.",
   ctaLabel: "→ Åpne Utforskeren",
 };
 
@@ -922,6 +940,8 @@ export default function PascalmodStory() {
             rowsLabel={story.viewer.rowsLabel}
             primesOnlyLabel={story.viewer.primesOnlyLabel}
             includeCompositesLabel={story.viewer.includeCompositesLabel}
+            residuesLabel={story.viewer.residuesLabel}
+            canvasLabel={story.viewer.canvasLabel}
           />
         </Reveal>
       </section>

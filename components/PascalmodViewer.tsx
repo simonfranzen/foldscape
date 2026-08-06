@@ -17,6 +17,8 @@ interface Props {
   rowsLabel: string;
   primesOnlyLabel: string;
   includeCompositesLabel: string;
+  residuesLabel: string;
+  canvasLabel: string;
   initialP?: number;
   initialN?: number;
 }
@@ -43,12 +45,23 @@ const PALETTE = [
 const PRIMES = [2, 3, 5, 7, 11, 13, 17, 19, 23];
 const COMPOSITES = [4, 6, 8, 9, 10, 12, 15];
 
+// Map a residue to a swatch colour. Index 0 (background) is reserved for the
+// "divisible by p" blank, so a NONZERO residue must never wrap onto it: for
+// moduli where a nonzero residue equals PALETTE.length (e.g. residue 16 with a
+// 16-entry palette for p = 17), a plain `r % PALETTE.length` would land on 0
+// and draw a non-divisible cell as background. Cycle nonzero residues through
+// indices 1..len-1 instead.
+const colourFor = (r: number) =>
+  r === 0 ? PALETTE[0] : PALETTE[1 + ((r - 1) % (PALETTE.length - 1))];
+
 export function PascalmodViewer({
   caption,
   modulusLabel,
   rowsLabel,
   primesOnlyLabel,
   includeCompositesLabel,
+  residuesLabel,
+  canvasLabel,
   initialP = 2,
   initialN = 128,
 }: Props) {
@@ -90,7 +103,7 @@ export function PascalmodViewer({
           if (r !== 0) {
             const x = offsetX + (n - row) * (cellSize / 2) + k * cellSize;
             const y = offsetY + row * cellSize * 0.92;
-            ctx.fillStyle = PALETTE[r % PALETTE.length] ?? "#ffd166";
+            ctx.fillStyle = colourFor(r);
             ctx.fillRect(x, y, cellSize, cellSize);
           }
         }
@@ -119,7 +132,12 @@ export function PascalmodViewer({
       )}
       <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-[1fr_220px]">
         <div className="hairline relative mx-auto aspect-square w-full max-w-[420px] overflow-hidden rounded-xl border bg-ink-950">
-          <canvas ref={canvasRef} className="absolute inset-0 block h-full w-full" />
+          <canvas
+            ref={canvasRef}
+            role="img"
+            aria-label={`${canvasLabel} ${p}`}
+            className="absolute inset-0 block h-full w-full"
+          />
           <div className="pointer-events-none absolute left-2 right-2 top-2 flex items-start justify-between gap-2">
             <div className="glass hairline rounded border px-2 py-1 font-mono text-[9px] uppercase tracking-widest2 text-ink-200">
               C(n,k) mod {p}
@@ -182,12 +200,13 @@ export function PascalmodViewer({
               max={256}
               step={4}
               onChange={(e) => setN(parseInt(e.target.value))}
+              aria-label={rowsLabel}
               className="w-full accent-signal-amber"
             />
           </div>
           <div className="space-y-2">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              residues
+              {residuesLabel}
             </div>
             <div className="flex flex-wrap gap-1.5">
               {Array.from({ length: Math.min(p, 12) }, (_, i) => i).map((i) => (
@@ -195,10 +214,7 @@ export function PascalmodViewer({
                   key={i}
                   className="hairline flex items-center gap-1 rounded border px-1.5 py-0.5"
                 >
-                  <span
-                    className="h-2.5 w-2.5 rounded-sm"
-                    style={{ background: PALETTE[i % PALETTE.length] }}
-                  />
+                  <span className="h-2.5 w-2.5 rounded-sm" style={{ background: colourFor(i) }} />
                   <span className="font-mono text-[9px] text-ink-300">{i}</span>
                 </div>
               ))}

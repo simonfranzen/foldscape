@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
@@ -17,6 +17,7 @@ interface Props {
   cycleMs?: number;
   accent?: string;
   className?: string;
+  ariaLabel?: string;
 }
 
 const colourMap: Record<string, string> = {
@@ -35,9 +36,21 @@ export function Rule110Demo({
   cycleMs = 8000,
   accent = "text-signal-cyan",
   className = "",
+  ariaLabel,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
+  const [reduced, setReduced] = useState(false);
+
+  // JS-driven canvases must honour prefers-reduced-motion themselves; the
+  // global CSS rule only tames declarative animations, not this rAF loop.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -89,6 +102,11 @@ export function Rule110Demo({
     const ro = new ResizeObserver(() => render());
     ro.observe(canvas);
 
+    // Reduced motion: draw a single static frame and never cycle.
+    if (reduced) {
+      return () => ro.disconnect();
+    }
+
     const loop = (now: number) => {
       if (now - last >= cycleMs) {
         last = now;
@@ -101,11 +119,13 @@ export function Rule110Demo({
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [rule, initial, width, height, cellSize, cycleMs, accent, dpr]);
+  }, [rule, initial, width, height, cellSize, cycleMs, accent, dpr, reduced]);
 
   return (
     <canvas
       ref={canvasRef}
+      role="img"
+      aria-label={ariaLabel ?? `Rule ${rule} cellular automaton`}
       className={`block h-auto w-full ${className}`}
       style={{ aspectRatio: `${width * cellSize} / ${height * cellSize}` }}
     />

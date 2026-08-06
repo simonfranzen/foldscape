@@ -18,9 +18,16 @@ interface Props {
   rule: number;
   onRuleChange: (next: number) => void;
   caption?: string;
+  // Builds the per-tile screen-reader label; parents on i18n pages localize it.
+  ariaToggle?: (pattern: string) => string;
 }
 
-export function Rule110LookupTable({ rule, onRuleChange, caption }: Props) {
+export function Rule110LookupTable({
+  rule,
+  onRuleChange,
+  caption,
+  ariaToggle = (pattern) => `Toggle output for ${pattern}`,
+}: Props) {
   // Decode the rule byte into the eight output bits. Bit at position k (where
   // k is the integer value of the neighbourhood pattern) gives that pattern's
   // output. PATTERNS is ordered 111 → 000, i.e. k = 7 → 0.
@@ -56,7 +63,7 @@ export function Rule110LookupTable({ rule, onRuleChange, caption }: Props) {
               type="button"
               onClick={() => toggle(i)}
               className="hairline group space-y-2 rounded-md border bg-ink-950/30 p-2 text-center transition-colors hover:border-signal-cyan/60 hover:bg-signal-cyan/5"
-              aria-label={`Toggle output for ${pattern}`}
+              aria-label={ariaToggle(pattern)}
             >
               <div className="flex justify-center gap-0.5">
                 {pattern.split("").map((b, bi) => (

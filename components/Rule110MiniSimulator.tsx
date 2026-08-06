@@ -12,6 +12,11 @@ import { palette } from "@/lib/visual/palette";
 interface Props {
   rule: number;
   caption?: string;
+  // Localized micro-labels; parents on i18n pages pass translated strings.
+  stepsLabel?: string;
+  singleLabel?: string;
+  randomLabel?: string;
+  ruleLabel?: string;
 }
 
 type SeedKind = "single" | "random";
@@ -19,7 +24,7 @@ type SeedKind = "single" | "random";
 const COLOURS = {
   cell: palette.signal.cyan,
   bg: palette.canvas.bg,
-  edge: "#11131c",
+  edge: palette.ink[800],
 };
 
 // Canvas grid: WIDTH cells across, drawn one row per generation.
@@ -57,7 +62,14 @@ function step(row: Uint8Array, rule: number): Uint8Array {
   return next;
 }
 
-export function Rule110MiniSimulator({ rule, caption }: Props) {
+export function Rule110MiniSimulator({
+  rule,
+  caption,
+  stepsLabel = "steps",
+  singleLabel = "single",
+  randomLabel = "random",
+  ruleLabel = "rule",
+}: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
   const [steps, setSteps] = useState(180);
@@ -116,18 +128,20 @@ export function Rule110MiniSimulator({ rule, caption }: Props) {
       <div className="hairline relative w-full overflow-hidden rounded-md border bg-ink-950">
         <canvas
           ref={canvasRef}
+          role="img"
+          aria-label={`${ruleLabel} ${rule}`}
           className="block w-full"
           style={{ aspectRatio: "360 / 320", background: COLOURS.edge }}
         />
         <div className="pointer-events-none absolute right-2 top-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan/70">
-          rule {rule}
+          {ruleLabel} {rule}
         </div>
       </div>
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-[1fr_auto] md:items-center">
         <div className="space-y-1">
           <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-            <span>steps</span>
+            <span>{stepsLabel}</span>
             <span className="text-signal-cyan">{steps}</span>
           </div>
           <input
@@ -137,6 +151,7 @@ export function Rule110MiniSimulator({ rule, caption }: Props) {
             step={5}
             value={steps}
             onChange={(e) => setSteps(parseInt(e.target.value, 10))}
+            aria-label={stepsLabel}
             className="w-full accent-signal-cyan"
           />
         </div>
@@ -150,7 +165,7 @@ export function Rule110MiniSimulator({ rule, caption }: Props) {
                 : "hairline text-ink-300 hover:border-signal-cyan/60 hover:text-signal-cyan"
             }`}
           >
-            single
+            {singleLabel}
           </button>
           <button
             type="button"
@@ -164,7 +179,7 @@ export function Rule110MiniSimulator({ rule, caption }: Props) {
                 : "hairline text-ink-300 hover:border-signal-cyan/60 hover:text-signal-cyan"
             }`}
           >
-            random
+            {randomLabel}
           </button>
         </div>
       </div>
