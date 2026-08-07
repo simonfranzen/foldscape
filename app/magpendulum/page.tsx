@@ -50,16 +50,20 @@ function BasinSketchSVG() {
   const cx = W / 2;
   const cy = H / 2;
   const R = 60;
+  // Round trig-derived coordinates: Math.cos/Math.sin can differ in their last
+  // float digits between the server's and the browser's V8, which otherwise
+  // trips a React hydration mismatch on the SVG coordinates.
+  const r3 = (n: number) => Math.round(n * 1000) / 1000;
   const magnets = [
     { x: cx, y: cy - R, color: palette.signal.cyan }, // cyan
     {
-      x: cx + R * Math.cos((Math.PI * 7) / 6),
-      y: cy - R * Math.sin((Math.PI * 7) / 6),
+      x: r3(cx + R * Math.cos((Math.PI * 7) / 6)),
+      y: r3(cy - R * Math.sin((Math.PI * 7) / 6)),
       color: palette.signal.violet,
     }, // violet
     {
-      x: cx + R * Math.cos((Math.PI * 11) / 6),
-      y: cy - R * Math.sin((Math.PI * 11) / 6),
+      x: r3(cx + R * Math.cos((Math.PI * 11) / 6)),
+      y: r3(cy - R * Math.sin((Math.PI * 11) / 6)),
       color: palette.signal.amber,
     }, // amber
   ];
@@ -81,8 +85,8 @@ function BasinSketchSVG() {
       {Array.from({ length: 36 }).map((_, i) => {
         const a = (i / 36) * Math.PI * 2;
         const r1 = 70 + Math.sin(i * 1.3) * 14;
-        const x2 = cx + Math.cos(a) * r1;
-        const y2 = cy + Math.sin(a) * r1;
+        const x2 = r3(cx + Math.cos(a) * r1);
+        const y2 = r3(cy + Math.sin(a) * r1);
         const color = [palette.signal.cyan, palette.signal.violet, palette.signal.amber][i % 3];
         return (
           <line

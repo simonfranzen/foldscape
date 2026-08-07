@@ -314,10 +314,13 @@ function SmallNetworkSVG({ p, seed }: { p: number; seed: number }) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 
-  // Position on the ring.
+  // Position on the ring. Round to 3 decimals: Math.cos/Math.sin can differ in
+  // their last float digits between the server's and the browser's V8 build,
+  // which otherwise trips a React hydration mismatch on the SVG coordinates.
+  const r3 = (n: number) => Math.round(n * 1000) / 1000;
   const pos = (i: number): { x: number; y: number } => {
     const a = (i / N) * 2 * Math.PI - Math.PI / 2;
-    return { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) };
+    return { x: r3(cx + R * Math.cos(a)), y: r3(cy + R * Math.sin(a)) };
   };
 
   // Build edges: for each node, k forward neighbours. Rewire with probability p.
