@@ -46,7 +46,7 @@ export const it: StoriesDict = {
       title: "Il Gioco della Vita di Conway",
       tagline: "Quattro regole. Ne seguono universi.",
       intro:
-        "Conway pubblicò le regole nel 1970 in una rubrica di Scientific American. Due pagine di rivista, quattro righe di regole, e una comunità di matematici ha passato cinquant'anni a scoprire ciò che già vi era contenuto. La Sandbox ti consente di disegnare ed eseguire qualsiasi schema — ma prima, le quattro regole in azione.",
+        "Martin Gardner presentò le regole di Conway nella sua rubrica di Scientific American dell'ottobre 1970. Due pagine di rivista, quattro righe di regole, e una comunità di matematici ha passato cinquant'anni a scoprire ciò che già vi era contenuto. La Sandbox ti consente di disegnare ed eseguire qualsiasi schema — ma prima, le quattro regole in azione.",
       ctaInteractive: "→ Apri la Sandbox",
       sections: [
         {
@@ -202,7 +202,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo uno · Un'atmosfera giocattolo",
           title: "Lorenz, 1963",
-          body: "Edward Lorenz, meteorologo del MIT, stava cercando di simulare la convezione — aria scaldata dal basso, raffreddata dall'alto. Con Ellen Fetter che effettuava le simulazioni numeriche e Margaret Hamilton che gestiva i calcoli, ridusse il problema a tre variabili e tre equazioni. L'articolo del 1963, «Deterministic Nonperiodic Flow», sosteneva che anche questa drastica semplificazione potesse comportarsi in modo imprevedibile. L'articolo restò in larga parte non letto per un decennio.",
+          body: "Edward Lorenz, meteorologo del MIT, stava cercando di simulare la convezione — aria scaldata dal basso, raffreddata dall'alto. Margaret Hamilton aveva programmato le precedenti simulazioni meteorologiche; Ellen Fetter eseguì i calcoli dietro il modello a tre equazioni. Ridusse il problema a tre variabili e tre equazioni. L'articolo del 1963, «Deterministic Nonperiodic Flow», sosteneva che anche questa drastica semplificazione potesse comportarsi in modo imprevedibile. L'articolo restò in larga parte non letto per un decennio.",
         },
         {
           pretitle: "Passo due · Le tre equazioni",
@@ -962,7 +962,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo tre · Perché le diagonali",
           title: "Ogni diagonale è un polinomio 4n² + bn + c",
-          body: "I numeri lungo qualunque diagonale della spirale di Ulam soddisfano una formula quadratica della forma 4n² + bn + c. Una diagonale piena di primi significa quindi che il polinomio è insolitamente ricco di primi. Alcuni sono spettacolari. Il polinomio di Eulero n² − n + 41 — scoperto nel 1772 — produce primi per ogni n da 0 a 39, e corrisponde a una striscia diagonale visibile. Se ci siano infiniti primi su tale diagonale è, per qualunque specifica diagonale, non dimostrato. La congettura di Bunyakovsky dice di sì; nessuno l'ha mostrato.",
+          body: "I numeri lungo qualunque diagonale della spirale di Ulam soddisfano una formula quadratica della forma 4n² + bn + c. Una diagonale piena di primi significa quindi che il polinomio è insolitamente ricco di primi. Alcuni sono spettacolari. Il polinomio di Eulero n² − n + 41 — scoperto nel 1772 — produce primi per ogni n da 0 a 40, e corrisponde a una striscia diagonale visibile. Se ci siano infiniti primi su tale diagonale è, per qualunque specifica diagonale, non dimostrato. La congettura di Bunyakovsky dice di sì; nessuno l'ha mostrato.",
         },
         {
           pretitle: "Passo quattro · Il problema più profondo",

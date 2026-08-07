@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
@@ -10,17 +11,30 @@ type Restriction = "none" | "norepeat" | "noneighbour" | "noopposite";
 
 interface DotColor {
   id: string;
-  label: string;
   css: string; // for swatch
   draw: string; // canvas fillStyle (slightly translucent)
 }
 
+// Derive the canvas draw colours from the shared palette so the swatch and the
+// dots it paints stay the same violet/cyan/amber/rose (no drifting rgba
+// literals that silently disagree with the signal-* tokens).
+function hexToRgba(hex: string, alpha: number): string {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 const COLORS: DotColor[] = [
-  { id: "cyan", label: "cyan", css: "bg-signal-cyan", draw: "rgba(125, 243, 255, 0.55)" },
-  { id: "violet", label: "violet", css: "bg-signal-violet", draw: "rgba(168, 132, 255, 0.55)" },
-  { id: "amber", label: "amber", css: "bg-signal-amber", draw: "rgba(255, 209, 102, 0.55)" },
-  { id: "rose", label: "rose", css: "bg-signal-rose", draw: "rgba(255, 122, 182, 0.55)" },
+  { id: "cyan", css: "bg-signal-cyan", draw: hexToRgba(palette.signal.cyan, 0.55) },
+  { id: "violet", css: "bg-signal-violet", draw: hexToRgba(palette.signal.violet, 0.55) },
+  { id: "amber", css: "bg-signal-amber", draw: hexToRgba(palette.signal.amber, 0.55) },
+  { id: "rose", css: "bg-signal-rose", draw: hexToRgba(palette.signal.rose, 0.55) },
 ];
+
+const OUTLINE = hexToRgba(palette.signal.cyan, 0.18);
+const VERTEX = hexToRgba(palette.signal.cyan, 0.6);
 
 // Magic jump ratio for a regular n-gon. The update is p' = p + r·(v − p), so
 // each map's sub-copy shrinks by sₙ = 1/(2·(1 + Σ_{k=1..⌊n/4⌋} cos(2πk/n))),
@@ -37,27 +51,279 @@ function magicRatio(n: number): number {
 }
 
 interface Preset {
-  id: string;
-  label: string;
+  id: "triangle" | "square" | "pentagon" | "fern";
   n: number; // 0 == fern
   restriction: Restriction;
   ratio: number | null; // null = use magic
-  note?: string;
 }
 
 const PRESETS: Preset[] = [
-  { id: "triangle", label: "Triangle", n: 3, restriction: "none", ratio: 0.5 },
-  { id: "square", label: "Square (no-repeat)", n: 4, restriction: "norepeat", ratio: 0.5 },
-  { id: "pentagon", label: "Pentagon", n: 5, restriction: "none", ratio: null },
-  {
-    id: "fern",
-    label: "Barnsley fern",
-    n: 0,
-    restriction: "none",
-    ratio: null,
-    note: "IFS · 4 affine maps",
-  },
+  { id: "triangle", n: 3, restriction: "none", ratio: 0.5 },
+  { id: "square", n: 4, restriction: "norepeat", ratio: 0.5 },
+  { id: "pentagon", n: 5, restriction: "none", ratio: null },
+  { id: "fern", n: 0, restriction: "none", ratio: null },
 ];
+
+// --------------------------------------------------------------------------
+// Per-locale UI strings for the chaos-game explorer. Kept inline so the
+// translations sit next to the controls they label instead of fattening the
+// shared i18n bundles (the repo's RICH_EXPLORER convention).
+// --------------------------------------------------------------------------
+
+type RichExplorer = {
+  chaosGame: string;
+  barnsleyFern: string;
+  presetLabels: Record<Preset["id"], string>;
+  fernNote: string;
+  presets: string;
+  verticesN: string;
+  fern: string;
+  jumpRatio: string;
+  autoMagic: string;
+  restriction: string;
+  restrictions: Record<Restriction, string>;
+  speed: string;
+  dotColour: string;
+  colours: Record<string, string>;
+  clear: string;
+  points: string;
+  canvasLabel: string;
+};
+
+const RICH_EXPLORER: Record<Locale, RichExplorer> = {
+  en: {
+    chaosGame: "Chaos game",
+    barnsleyFern: "Barnsley fern · 4-map IFS",
+    presetLabels: {
+      triangle: "Triangle",
+      square: "Square (no-repeat)",
+      pentagon: "Pentagon",
+      fern: "Barnsley fern",
+    },
+    fernNote: "IFS · 4 affine maps",
+    presets: "Presets",
+    verticesN: "Vertices n",
+    fern: "fern",
+    jumpRatio: "Jump ratio r",
+    autoMagic: "Auto magic ratio",
+    restriction: "Restriction",
+    restrictions: {
+      none: "None",
+      norepeat: "No repeat",
+      noneighbour: "No neighbour",
+      noopposite: "No opposite",
+    },
+    speed: "Speed · points/frame",
+    dotColour: "Dot colour",
+    colours: { cyan: "cyan", violet: "violet", amber: "amber", rose: "rose" },
+    clear: "Clear",
+    points: "points",
+    canvasLabel: "Chaos game canvas rendering the fractal attractor",
+  },
+  de: {
+    chaosGame: "Chaosspiel",
+    barnsleyFern: "Barnsley-Farn · IFS mit 4 Abbildungen",
+    presetLabels: {
+      triangle: "Dreieck",
+      square: "Quadrat (ohne Wiederholung)",
+      pentagon: "Fünfeck",
+      fern: "Barnsley-Farn",
+    },
+    fernNote: "IFS · 4 affine Abbildungen",
+    presets: "Voreinstellungen",
+    verticesN: "Ecken n",
+    fern: "Farn",
+    jumpRatio: "Sprungverhältnis r",
+    autoMagic: "Magisches Verhältnis automatisch",
+    restriction: "Einschränkung",
+    restrictions: {
+      none: "Keine",
+      norepeat: "Keine Wiederholung",
+      noneighbour: "Kein Nachbar",
+      noopposite: "Kein Gegenüber",
+    },
+    speed: "Geschwindigkeit · Punkte/Bild",
+    dotColour: "Punktfarbe",
+    colours: { cyan: "Cyan", violet: "Violett", amber: "Bernstein", rose: "Rosé" },
+    clear: "Leeren",
+    points: "Punkte",
+    canvasLabel: "Chaosspiel-Zeichenfläche mit dem fraktalen Attraktor",
+  },
+  es: {
+    chaosGame: "Juego del caos",
+    barnsleyFern: "Helecho de Barnsley · IFS de 4 mapas",
+    presetLabels: {
+      triangle: "Triángulo",
+      square: "Cuadrado (sin repetir)",
+      pentagon: "Pentágono",
+      fern: "Helecho de Barnsley",
+    },
+    fernNote: "IFS · 4 mapas afines",
+    presets: "Preajustes",
+    verticesN: "Vértices n",
+    fern: "helecho",
+    jumpRatio: "Razón de salto r",
+    autoMagic: "Razón mágica automática",
+    restriction: "Restricción",
+    restrictions: {
+      none: "Ninguna",
+      norepeat: "Sin repetir",
+      noneighbour: "Sin vecino",
+      noopposite: "Sin opuesto",
+    },
+    speed: "Velocidad · puntos/fotograma",
+    dotColour: "Color de punto",
+    colours: { cyan: "cian", violet: "violeta", amber: "ámbar", rose: "rosa" },
+    clear: "Borrar",
+    points: "puntos",
+    canvasLabel: "Lienzo del juego del caos que dibuja el atractor fractal",
+  },
+  fr: {
+    chaosGame: "Jeu du chaos",
+    barnsleyFern: "Fougère de Barnsley · IFS à 4 applications",
+    presetLabels: {
+      triangle: "Triangle",
+      square: "Carré (sans répétition)",
+      pentagon: "Pentagone",
+      fern: "Fougère de Barnsley",
+    },
+    fernNote: "IFS · 4 applications affines",
+    presets: "Préréglages",
+    verticesN: "Sommets n",
+    fern: "fougère",
+    jumpRatio: "Ratio de saut r",
+    autoMagic: "Ratio magique auto",
+    restriction: "Restriction",
+    restrictions: {
+      none: "Aucune",
+      norepeat: "Sans répétition",
+      noneighbour: "Sans voisin",
+      noopposite: "Sans opposé",
+    },
+    speed: "Vitesse · points/image",
+    dotColour: "Couleur des points",
+    colours: { cyan: "cyan", violet: "violet", amber: "ambre", rose: "rose" },
+    clear: "Effacer",
+    points: "points",
+    canvasLabel: "Zone de dessin du jeu du chaos affichant l'attracteur fractal",
+  },
+  it: {
+    chaosGame: "Gioco del caos",
+    barnsleyFern: "Felce di Barnsley · IFS a 4 mappe",
+    presetLabels: {
+      triangle: "Triangolo",
+      square: "Quadrato (senza ripetizione)",
+      pentagon: "Pentagono",
+      fern: "Felce di Barnsley",
+    },
+    fernNote: "IFS · 4 mappe affini",
+    presets: "Preimpostazioni",
+    verticesN: "Vertici n",
+    fern: "felce",
+    jumpRatio: "Rapporto di salto r",
+    autoMagic: "Rapporto magico automatico",
+    restriction: "Restrizione",
+    restrictions: {
+      none: "Nessuna",
+      norepeat: "Senza ripetizione",
+      noneighbour: "Nessun vicino",
+      noopposite: "Nessun opposto",
+    },
+    speed: "Velocità · punti/fotogramma",
+    dotColour: "Colore dei punti",
+    colours: { cyan: "ciano", violet: "viola", amber: "ambra", rose: "rosa" },
+    clear: "Pulisci",
+    points: "punti",
+    canvasLabel: "Tela del gioco del caos che disegna l'attrattore frattale",
+  },
+  pt: {
+    chaosGame: "Jogo do caos",
+    barnsleyFern: "Samambaia de Barnsley · IFS de 4 mapas",
+    presetLabels: {
+      triangle: "Triângulo",
+      square: "Quadrado (sem repetir)",
+      pentagon: "Pentágono",
+      fern: "Samambaia de Barnsley",
+    },
+    fernNote: "IFS · 4 mapas afins",
+    presets: "Predefinições",
+    verticesN: "Vértices n",
+    fern: "samambaia",
+    jumpRatio: "Razão de salto r",
+    autoMagic: "Razão mágica automática",
+    restriction: "Restrição",
+    restrictions: {
+      none: "Nenhuma",
+      norepeat: "Sem repetir",
+      noneighbour: "Sem vizinho",
+      noopposite: "Sem oposto",
+    },
+    speed: "Velocidade · pontos/quadro",
+    dotColour: "Cor do ponto",
+    colours: { cyan: "ciano", violet: "violeta", amber: "âmbar", rose: "rosa" },
+    clear: "Limpar",
+    points: "pontos",
+    canvasLabel: "Tela do jogo do caos que desenha o atrator fractal",
+  },
+  sv: {
+    chaosGame: "Kaosspelet",
+    barnsleyFern: "Barnsleys ormbunke · IFS med 4 avbildningar",
+    presetLabels: {
+      triangle: "Triangel",
+      square: "Kvadrat (utan upprepning)",
+      pentagon: "Femhörning",
+      fern: "Barnsleys ormbunke",
+    },
+    fernNote: "IFS · 4 affina avbildningar",
+    presets: "Förval",
+    verticesN: "Hörn n",
+    fern: "ormbunke",
+    jumpRatio: "Hoppkvot r",
+    autoMagic: "Magisk kvot automatiskt",
+    restriction: "Begränsning",
+    restrictions: {
+      none: "Ingen",
+      norepeat: "Ingen upprepning",
+      noneighbour: "Ingen granne",
+      noopposite: "Ingen motsatt",
+    },
+    speed: "Hastighet · punkter/bildruta",
+    dotColour: "Punktfärg",
+    colours: { cyan: "cyan", violet: "violett", amber: "bärnsten", rose: "rosa" },
+    clear: "Rensa",
+    points: "punkter",
+    canvasLabel: "Rityta för kaosspelet som visar den fraktala attraktorn",
+  },
+  no: {
+    chaosGame: "Kaosspillet",
+    barnsleyFern: "Barnsleys bregne · IFS med 4 avbildninger",
+    presetLabels: {
+      triangle: "Trekant",
+      square: "Kvadrat (uten gjentakelse)",
+      pentagon: "Femkant",
+      fern: "Barnsleys bregne",
+    },
+    fernNote: "IFS · 4 affine avbildninger",
+    presets: "Forhåndsvalg",
+    verticesN: "Hjørner n",
+    fern: "bregne",
+    jumpRatio: "Hoppforhold r",
+    autoMagic: "Magisk kvot automatisk",
+    restriction: "Begrensning",
+    restrictions: {
+      none: "Ingen",
+      norepeat: "Ingen gjentakelse",
+      noneighbour: "Ingen nabo",
+      noopposite: "Ingen motsatt",
+    },
+    speed: "Hastighet · punkter/bilde",
+    dotColour: "Punktfarge",
+    colours: { cyan: "cyan", violet: "fiolett", amber: "ravgul", rose: "rosa" },
+    clear: "Tøm",
+    points: "punkter",
+    canvasLabel: "Tegneflate for kaosspillet som viser den fraktale attraktoren",
+  },
+};
 
 // Barnsley fern affine maps, applied to (x, y).
 // Each entry: [a, b, c, d, e, f] meaning x' = a*x + b*y + e, y' = c*x + d*y + f.
@@ -79,9 +345,11 @@ function pickFernMap(): number {
 }
 
 export default function ChaosGameExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.chaosgame;
+  const tx = RICH_EXPLORER[locale];
   const dpr = useDpr();
+  const uid = useId();
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -98,12 +366,23 @@ export default function ChaosGameExplorer() {
   const [mode, setMode] = useState<"polygon" | "fern">("polygon");
   const [totalPoints, setTotalPoints] = useState(0);
   const [clearTick, setClearTick] = useState(0); // bump to clear canvas
+  const [reduceMotion, setReduceMotion] = useState(false);
 
   // refs for animation loop (avoid re-renders per frame)
   const posRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const historyRef = useRef<number[]>([]);
   const countRef = useRef(0);
   const lastReportRef = useRef(0);
+
+  // Track prefers-reduced-motion live (re-subscribe so an OS toggle takes
+  // effect without a reload), matching the rest of the repo's canvases.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   // sync magic ratio when n changes and autoMagic is on
   useEffect(() => {
@@ -127,7 +406,10 @@ export default function ChaosGameExplorer() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
     }
-  }, [n, ratio, restriction, mode, clearTick]);
+    // speed/colorId are included so changing them resets the counter too: the
+    // main effect re-runs (and wipes the canvas via sizeCanvas) on those deps,
+    // and without this the label would keep a stale total over a blank picture.
+  }, [n, ratio, restriction, mode, clearTick, speed, colorId]);
 
   // main animation loop
   useEffect(() => {
@@ -147,7 +429,7 @@ export default function ChaosGameExplorer() {
       // Sketch the polygon outline for context
       if (mode === "polygon") {
         const { vx, vy } = polygonLayout(n, W, H);
-        ctx.strokeStyle = "rgba(125,243,255,0.18)";
+        ctx.strokeStyle = OUTLINE;
         ctx.lineWidth = 1;
         ctx.beginPath();
         for (let i = 0; i < n; i++) {
@@ -158,7 +440,7 @@ export default function ChaosGameExplorer() {
         }
         ctx.closePath();
         ctx.stroke();
-        ctx.fillStyle = "rgba(125,243,255,0.6)";
+        ctx.fillStyle = VERTEX;
         for (let i = 0; i < n; i++) {
           ctx.beginPath();
           ctx.arc(vx[i], vy[i], 2.5, 0, Math.PI * 2);
@@ -173,15 +455,13 @@ export default function ChaosGameExplorer() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return () => ro.disconnect();
 
-    let raf = 0;
     const fillStyle = COLORS.find((c) => c.id === colorId)?.draw ?? COLORS[0].draw;
 
-    const W = () => canvas.clientWidth;
-    const H = () => canvas.clientHeight;
-
-    const tick = () => {
-      const w = W();
-      const h = H();
+    // Draw `batch` points, advancing the shared position/history refs. Reused by
+    // the live loop and the reduced-motion static frame so both agree.
+    const drawBatch = (batch: number) => {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
       ctx.fillStyle = fillStyle;
 
       if (mode === "fern") {
@@ -194,7 +474,7 @@ export default function ChaosGameExplorer() {
         const oy = h - margin;
 
         let { x, y } = posRef.current;
-        for (let i = 0; i < speed; i++) {
+        for (let i = 0; i < batch; i++) {
           const m = pickFernMap();
           const map = FERN_MAPS[m];
           const nx = map[0] * x + map[1] * y + map[4];
@@ -214,7 +494,7 @@ export default function ChaosGameExplorer() {
           y = h / 2;
         }
         const hist = historyRef.current;
-        for (let i = 0; i < speed; i++) {
+        for (let i = 0; i < batch; i++) {
           let pick: number;
           let attempts = 0;
           do {
@@ -233,15 +513,33 @@ export default function ChaosGameExplorer() {
         }
         posRef.current = { x, y };
       }
+      countRef.current += batch;
+    };
 
-      countRef.current += speed;
+    // Reduced motion: render one complete settled frame, never animate.
+    if (reduceMotion) {
+      drawBatch(200_000);
+      setTotalPoints(countRef.current);
+      return () => ro.disconnect();
+    }
+
+    // Point budget: stop once the attractor is fully dense so we don't
+    // re-render React state 60×/s forever.
+    const BUDGET = 2_000_000;
+
+    let raf = 0;
+    const tick = () => {
+      drawBatch(speed);
       // throttle the React state update to ~10/s
       const now = performance.now();
       if (now - lastReportRef.current > 100) {
         lastReportRef.current = now;
         setTotalPoints(countRef.current);
       }
-
+      if (countRef.current >= BUDGET) {
+        setTotalPoints(countRef.current); // settled — flush the final count
+        return;
+      }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -250,7 +548,7 @@ export default function ChaosGameExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [n, ratio, restriction, mode, speed, colorId, clearTick, dpr]);
+  }, [n, ratio, restriction, mode, speed, colorId, clearTick, dpr, reduceMotion]);
 
   const handlePreset = (p: Preset) => {
     if (p.id === "fern") {
@@ -282,25 +580,30 @@ export default function ChaosGameExplorer() {
           <div className="flex items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {mode === "fern"
-                ? "Barnsley fern · 4-map IFS"
-                : `Chaos game · n = ${n} · r = ${ratio.toFixed(4)} · ${restrictionLabel(restriction)}`}
+                ? tx.barnsleyFern
+                : `${tx.chaosGame} · n = ${n} · r = ${ratio.toFixed(4)} · ${tx.restrictions[restriction]}`}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
               p ← p + r · (vᵢ − p)
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={canvasRef} className="block h-full w-full" />
+            <canvas
+              ref={canvasRef}
+              role="img"
+              aria-label={tx.canvasLabel}
+              className="block h-full w-full"
+            />
           </div>
           <div className="flex items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {totalPoints.toLocaleString()} points
+              {totalPoints.toLocaleString()} {tx.points}
             </div>
             <button
               onClick={() => setClearTick((t) => t + 1)}
               className="hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
             >
-              Clear
+              {tx.clear}
             </button>
           </div>
         </div>
@@ -316,7 +619,7 @@ export default function ChaosGameExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Presets
+              {tx.presets}
             </div>
             <div className="grid grid-cols-2 gap-2">
               {PRESETS.map((p) => (
@@ -325,9 +628,9 @@ export default function ChaosGameExplorer() {
                   onClick={() => handlePreset(p)}
                   className="hairline rounded-md border px-3 py-2 text-left text-ink-200 transition-colors hover:border-signal-cyan/40 hover:text-signal-cyan"
                 >
-                  <div className="font-mono text-xs">{p.label}</div>
-                  {p.note ? (
-                    <div className="mt-0.5 font-mono text-[10px] text-ink-400">{p.note}</div>
+                  <div className="font-mono text-xs">{tx.presetLabels[p.id]}</div>
+                  {p.id === "fern" ? (
+                    <div className="mt-0.5 font-mono text-[10px] text-ink-400">{tx.fernNote}</div>
                   ) : null}
                 </button>
               ))}
@@ -336,15 +639,20 @@ export default function ChaosGameExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="flex items-center justify-between">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Vertices n
-              </div>
+              <label
+                htmlFor={`${uid}-vertices`}
+                className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+              >
+                {tx.verticesN}
+              </label>
               <div className="font-mono text-sm text-signal-cyan">
-                {mode === "fern" ? "fern" : n}
+                {mode === "fern" ? tx.fern : n}
               </div>
             </div>
             <input
+              id={`${uid}-vertices`}
               type="range"
+              aria-label={tx.verticesN}
               value={mode === "fern" ? 3 : n}
               min={3}
               max={8}
@@ -357,13 +665,18 @@ export default function ChaosGameExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="flex items-center justify-between">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Jump ratio r
-              </div>
+              <label
+                htmlFor={`${uid}-ratio`}
+                className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+              >
+                {tx.jumpRatio}
+              </label>
               <div className="font-mono text-sm text-signal-amber">{ratio.toFixed(4)}</div>
             </div>
             <input
+              id={`${uid}-ratio`}
               type="range"
+              aria-label={tx.jumpRatio}
               value={ratio}
               min={0.1}
               max={0.9}
@@ -383,49 +696,53 @@ export default function ChaosGameExplorer() {
                 onChange={(e) => setAutoMagic(e.target.checked)}
                 className="accent-signal-cyan"
               />
-              <span>Auto magic ratio · rₙ = 1 − sₙ</span>
+              <span>{tx.autoMagic} · rₙ = 1 − sₙ</span>
             </label>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Restriction
+              {tx.restriction}
             </div>
             <div className="grid grid-cols-2 gap-2">
-              {[
-                { id: "none" as const, label: "None" },
-                { id: "norepeat" as const, label: "No repeat" },
-                { id: "noneighbour" as const, label: "No neighbour" },
-                { id: "noopposite" as const, label: "No opposite" },
-              ].map((r) => (
-                <button
-                  key={r.id}
-                  onClick={() => {
-                    setMode("polygon");
-                    setRestriction(r.id);
-                  }}
-                  disabled={mode === "fern"}
-                  className={`rounded-md border px-3 py-2 text-left transition-colors disabled:opacity-40 ${
-                    restriction === r.id && mode !== "fern"
-                      ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
-                      : "hairline text-ink-200 hover:border-signal-cyan/40 hover:text-signal-cyan"
-                  }`}
-                >
-                  <div className="font-mono text-xs">{r.label}</div>
-                </button>
-              ))}
+              {(["none", "norepeat", "noneighbour", "noopposite"] as const).map((rid) => {
+                const active = restriction === rid && mode !== "fern";
+                return (
+                  <button
+                    key={rid}
+                    onClick={() => {
+                      setMode("polygon");
+                      setRestriction(rid);
+                    }}
+                    disabled={mode === "fern"}
+                    aria-pressed={active}
+                    className={`rounded-md border px-3 py-2 text-left transition-colors disabled:opacity-40 ${
+                      active
+                        ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
+                        : "hairline text-ink-200 hover:border-signal-cyan/40 hover:text-signal-cyan"
+                    }`}
+                  >
+                    <div className="font-mono text-xs">{tx.restrictions[rid]}</div>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="flex items-center justify-between">
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Speed · points/frame
-              </div>
+              <label
+                htmlFor={`${uid}-speed`}
+                className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300"
+              >
+                {tx.speed}
+              </label>
               <div className="font-mono text-sm text-signal-amber">{speed.toLocaleString()}</div>
             </div>
             <input
+              id={`${uid}-speed`}
               type="range"
+              aria-label={tx.speed}
               value={speed}
               min={100}
               max={50000}
@@ -437,14 +754,15 @@ export default function ChaosGameExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Dot colour
+              {tx.dotColour}
             </div>
             <div className="flex items-center gap-2">
               {COLORS.map((c) => (
                 <button
                   key={c.id}
                   onClick={() => setColorId(c.id)}
-                  aria-label={c.label}
+                  aria-label={tx.colours[c.id]}
+                  aria-pressed={colorId === c.id}
                   className={`h-8 w-8 rounded-md border transition-transform ${c.css} ${
                     colorId === c.id ? "scale-110 border-ink-100" : "border-ink-700 hover:scale-105"
                   }`}
@@ -508,17 +826,4 @@ function isForbidden(
     return pick === (last + half) % n || pick === (last + half + 1) % n;
   }
   return false;
-}
-
-function restrictionLabel(r: Restriction): string {
-  switch (r) {
-    case "none":
-      return "no restriction";
-    case "norepeat":
-      return "no repeat";
-    case "noneighbour":
-      return "no neighbour";
-    case "noopposite":
-      return "no opposite";
-  }
 }

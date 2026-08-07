@@ -46,7 +46,7 @@ export const es: StoriesDict = {
       title: "El Juego de la Vida de Conway",
       tagline: "Cuatro reglas. Y siguen universos.",
       intro:
-        "Conway publicó las reglas en 1970 en una columna de Scientific American. Dos páginas de revista, cuatro líneas de regla, y una comunidad de matemáticos ha pasado cincuenta años descubriendo lo que ya estaba dentro. El Espacio de pruebas te deja dibujar y ejecutar cualquier patrón, pero primero: las cuatro reglas en acción.",
+        "Martin Gardner presentó las reglas de Conway en su columna de Scientific American de octubre de 1970. Dos páginas de revista, cuatro líneas de regla, y una comunidad de matemáticos ha pasado cincuenta años descubriendo lo que ya estaba dentro. El Espacio de pruebas te deja dibujar y ejecutar cualquier patrón, pero primero: las cuatro reglas en acción.",
       ctaInteractive: "→ Abrir el Espacio de pruebas",
       sections: [
         {
@@ -202,7 +202,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso uno · Una atmósfera de juguete",
           title: "Lorenz, 1963",
-          body: "Edward Lorenz, meteorólogo del MIT, intentaba simular la convección — aire calentado por abajo y enfriado por arriba. Con Ellen Fetter ocupándose de las corridas numéricas y Margaret Hamilton de los cálculos, redujo el problema a tres variables y tres ecuaciones. El artículo de 1963, 'Deterministic Nonperiodic Flow', argumentaba que incluso esta simplificación drástica podía comportarse de forma imprevisible. El artículo quedó prácticamente sin leer durante una década.",
+          body: "Edward Lorenz, meteorólogo del MIT, intentaba simular la convección — aire calentado por abajo y enfriado por arriba. Margaret Hamilton había programado las corridas meteorológicas anteriores; Ellen Fetter realizó los cálculos tras el modelo de tres ecuaciones. Redujo el problema a tres variables y tres ecuaciones. El artículo de 1963, 'Deterministic Nonperiodic Flow', argumentaba que incluso esta simplificación drástica podía comportarse de forma imprevisible. El artículo quedó prácticamente sin leer durante una década.",
         },
         {
           pretitle: "Paso dos · Las tres ecuaciones",
@@ -962,7 +962,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso tres · Por qué diagonales",
           title: "Cada diagonal es un polinomio 4n² + bn + c",
-          body: "Los números a lo largo de cualquier diagonal de la espiral de Ulam satisfacen una fórmula cuadrática de la forma 4n² + bn + c. Una diagonal llena de primos significa, por tanto, que el polinomio es inusualmente rico en primos. Algunas son espectaculares. El polinomio de Euler n² − n + 41 — descubierto en 1772 — produce primos para todo n de 0 a 39, y corresponde a una racha diagonal visible. Si en una diagonal específica hay infinitos primos sigue sin demostrarse. La conjetura de Bunyakovsky dice que sí; nadie lo ha probado.",
+          body: "Los números a lo largo de cualquier diagonal de la espiral de Ulam satisfacen una fórmula cuadrática de la forma 4n² + bn + c. Una diagonal llena de primos significa, por tanto, que el polinomio es inusualmente rico en primos. Algunas son espectaculares. El polinomio de Euler n² − n + 41 — descubierto en 1772 — produce primos para todo n de 0 a 40, y corresponde a una racha diagonal visible. Si en una diagonal específica hay infinitos primos sigue sin demostrarse. La conjetura de Bunyakovsky dice que sí; nadie lo ha probado.",
         },
         {
           pretitle: "Paso cuatro · El problema más profundo",
@@ -976,13 +976,13 @@ export const es: StoriesDict = {
       title: "La cardioide de la taza de café",
       tagline: "La curva de luz de tu taza es el corazón de Mandelbrot.",
       intro:
-        "Ilumina con luz solar paralela una taza de café cilíndrica. Los reflejos de la pared interior no enfocan en un punto — envuelven una curva en forma de corazón que flota sobre la superficie del café. Esa curva es la cardioide r = 2a(1 − cos θ). La misma ecuación describe el bulbo principal del conjunto de Mandelbrot. Cada mañana se dibuja con luz la forma más famosa de la dinámica.",
+        "Coloca una pequeña fuente de luz puntual (un LED) en el borde de una taza de café cilíndrica. Los reflejos de la pared interior no vuelven a enfocar en un punto, envuelven una curva en forma de corazón que flota sobre la superficie del café. Esa curva es la cardioide r = 2a(1 − cos θ). La misma ecuación describe el bulbo principal del conjunto de Mandelbrot. Cada mañana se dibuja con luz la forma más famosa de la dinámica.",
       ctaInteractive: "→ Abrir el Explorador",
       sections: [
         {
           pretitle: "Paso uno · La óptica",
           title: "Por qué la luz se apelmaza en una taza",
-          body: "Un círculo refleja un rayo horizontal con el doble del ángulo que la superficie forma con ese rayo — la ley de la reflexión. Así que un haz de rayos horizontales que choca con el interior de una taza cilíndrica se abre hacia fuera con el doble del ángulo local. No convergen en un único punto focal porque la curvatura varía; en cambio, la familia de rayos reflejados envuelve una curva suave. La palabra de los matemáticos para esa envolvente es cataáustica. La cataáustica de un círculo, iluminada por rayos paralelos, es exactamente una cardioide.",
+          body: "Un círculo refleja cada rayo con el doble del ángulo que la superficie forma con él, la ley de la reflexión. Coloca una pequeña fuente puntual justo en el borde de una taza cilíndrica: los rayos que lanza a través del interior chocan con la pared opuesta y se abren hacia fuera con el doble del ángulo local. No vuelven a converger en un único punto focal porque la curvatura varía; en cambio, la familia de rayos reflejados envuelve una curva suave. La palabra de los matemáticos para esa envolvente es catacáustica. La catacáustica de un círculo iluminada por una fuente puntual en su borde es exactamente una cardioide. Los rayos paralelos, el caso de la luz solar, dan en cambio el nefroide de dos cúspides.",
         },
         {
           pretitle: "Paso dos · La ecuación",

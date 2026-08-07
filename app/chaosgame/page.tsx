@@ -112,6 +112,13 @@ type RichStory = {
   fernPointsLabel: (n: number) => string;
   dotsSmallLabel: string;
   dotsLargeLabel: string;
+  mapsCardTitle: string;
+  mapsCardBody: string;
+  tableShapeHeader: string;
+  // Notes for the magic-ratio table rows in order n = 3..8.
+  tableNotes: string[];
+  dimensionCardTitle: string;
+  dimensionCardBody: string;
   closingPretitle: string;
   closingTitle: string;
   closingBody: string;
@@ -166,7 +173,7 @@ const en: RichStory = {
     {
       pretitle: "Section 03 · Barnsley's collage theorem",
       title: "Any compact set has an IFS that converges to it",
-      body: 'Michael Barnsley generalised the chaos game in 1988 with the collage theorem: every compact subset of the plane can be approximated arbitrarily well by the attractor of some finite iterated function system. Reverse the question — pick a target shape, then find a few affine maps whose images glue together (a "collage") to cover it. The attractor of that IFS is the shape. The chaos game then samples it with a single random orbit. Coastlines, ferns, mountains, clouds: every fractal in nature is, in principle, a few contractions in disguise.',
+      body: 'Michael Barnsley\'s 1988 book Fractals Everywhere brought the collage theorem to a wide audience: every compact subset of the plane can be approximated arbitrarily well by the attractor of some finite iterated function system. Reverse the question — pick a target shape, then find a few affine maps whose images glue together (a "collage") to cover it. The attractor of that IFS is the shape. The chaos game then samples it with a single random orbit. Coastlines, ferns, mountains, clouds: every fractal in nature is, in principle, a few contractions in disguise.',
     },
     {
       pretitle: "Section 04 · Beyond triangles",
@@ -199,6 +206,21 @@ const en: RichStory = {
   fernPointsLabel: (n) => `${fmt(n)} points`,
   dotsSmallLabel: "200 dots",
   dotsLargeLabel: "5000 dots",
+  mapsCardTitle: "Three contracting maps",
+  mapsCardBody:
+    "Each map contracts the plane by factor 1/2 toward its fixed point vᵢ. The attractor of the IFS {f₁, f₂, f₃} is the Sierpiński triangle.",
+  tableShapeHeader: "shape",
+  tableNotes: [
+    "Sierpiński triangle",
+    "1/2 (fills the square)",
+    "1/φ (pentaflake)",
+    "2/3 (hexaflake)",
+    "heptagon",
+    "1/√2 (octagon)",
+  ],
+  dimensionCardTitle: "Hausdorff dimension",
+  dimensionCardBody:
+    "The Sierpiński triangle has fractal dimension between a curve (1) and a region (2). Three copies, each scaled by 1/2, so the dimension d satisfies 3·(1/2)ᵈ = 1.",
   closingPretitle: "Take it further",
   closingTitle: "Roll the dice.",
   closingBody:
@@ -228,12 +250,12 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: 'Starte irgendwo in einem gleichseitigen Dreieck. Jeder Schritt: wähl eine der drei Ecken gleichverteilt zufällig, geh halb in ihre Richtung, setz einen Punkt. Nach 200 Punkten siehst du eine Streuwolke. Nach 5000 das Sieb – jede "verbotene" Region (das mittlere Loch, dann die drei Sub-Löcher, dann neun Sub-Sub-Löcher) ist beweisbar leer.',
+        body: 'Starte irgendwo in einem gleichseitigen Dreieck. Jeder Schritt: wähl eine der drei Ecken gleichverteilt zufällig, geh halb in ihre Richtung, setz einen Punkt. Nach 200 Punkten siehst du eine Streuwolke. Nach 5000 das Sieb – jede «verbotene» Region (das mittlere Loch, dann die drei Sub-Löcher, dann neun Sub-Sub-Löcher) ist beweisbar leer.',
       },
       {
         label: "03",
         title: "Warum es zählt",
-        body: 'Das ist ein verkapptes iteriertes Funktionensystem. Jeder "geh halb zu Ecke i" ist eine kontrahierende Abbildung in der Ebene; die Punktmenge konvergiert auf den einzigen Attraktor dieser drei Abbildungen. Tausch die Abbildungen aus und du bekommst andere Fraktale – Barnsleys Farn wächst aus genau demselben Rezept, nur vier affine Abbildungen statt drei Halbierungen.',
+        body: 'Das ist ein verkapptes iteriertes Funktionensystem. Jeder «geh halb zu Ecke i» ist eine kontrahierende Abbildung in der Ebene; die Punktmenge konvergiert auf den einzigen Attraktor dieser drei Abbildungen. Tausch die Abbildungen aus und du bekommst andere Fraktale – Barnsleys Farn wächst aus genau demselben Rezept, nur vier affine Abbildungen statt drei Halbierungen.',
       },
     ],
     tryIt: "Unten: lass die Regel live laufen, dann sieh dem Farn beim Wachsen zu.",
@@ -252,12 +274,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Barnsleys Collage-Theorem",
       title: "Jede kompakte Menge hat ein IFS, das gegen sie konvergiert",
-      body: 'Michael Barnsley verallgemeinerte das Chaos-Spiel 1988 mit dem Collage-Theorem: jede kompakte Teilmenge der Ebene lässt sich beliebig gut durch den Attraktor eines endlichen iterierten Funktionensystems annähern. Dreh die Frage um – such dir eine Zielform, dann finde wenige affine Abbildungen, deren Bilder zusammen (eine "Collage") die Form überdecken. Der Attraktor dieses IFS ist die Form. Das Chaos-Spiel tastet sie mit einer einzigen Zufallsbahn ab. Küstenlinien, Farne, Berge, Wolken: jedes Fraktal in der Natur ist im Prinzip ein paar getarnte Kontraktionen.',
+      body: 'Michael Barnsleys Buch «Fractals Everywhere» von 1988 machte das Collage-Theorem breit bekannt: jede kompakte Teilmenge der Ebene lässt sich beliebig gut durch den Attraktor eines endlichen iterierten Funktionensystems annähern. Dreh die Frage um – such dir eine Zielform, dann finde wenige affine Abbildungen, deren Bilder zusammen (eine «Collage») die Form überdecken. Der Attraktor dieses IFS ist die Form. Das Chaos-Spiel tastet sie mit einer einzigen Zufallsbahn ab. Küstenlinien, Farne, Berge, Wolken: jedes Fraktal in der Natur ist im Prinzip ein paar getarnte Kontraktionen.',
     },
     {
       pretitle: "Abschnitt 04 · Jenseits des Dreiecks",
       title: "Wenn Halbieren scheitert – und die Regel, die es rettet",
-      body: 'Versuch vier Ecken am Quadrat mit demselben Schritt r = 1/2. Das Ergebnis ist kein Fraktal: die Punkte füllen das Innere gleichmäßig. Der Grund: die vier Halbierungsabbildungen auf dem Quadrat überdecken das ganze Quadrat – ihr Attraktor ist das gefüllte Quadrat. Die Lösung ist eine Beschränkungsregel. Verbiete, dass die nächste Ecke gleich der vorigen ist ("no repeat"), und ein zartes Sierpiński-Teppich-Verwandtes erscheint. Jedes n-Eck hat seinen eigenen magischen Sprungfaktor rₙ = 1 − sₙ, der ohne Beschränkungen einen sauberen selbstähnlichen Attraktor liefert. Für n = 3 ist das 1/2; für n = 5 ist es 1/φ ≈ 0,618; für n = 6, 2/3; und so weiter.',
+      body: 'Versuch vier Ecken am Quadrat mit demselben Schritt r = 1/2. Das Ergebnis ist kein Fraktal: die Punkte füllen das Innere gleichmäßig. Der Grund: die vier Halbierungsabbildungen auf dem Quadrat überdecken das ganze Quadrat – ihr Attraktor ist das gefüllte Quadrat. Die Lösung ist eine Beschränkungsregel. Verbiete, dass die nächste Ecke gleich der vorigen ist («no repeat»), und ein zartes Sierpiński-Teppich-Verwandtes erscheint. Jedes n-Eck hat seinen eigenen magischen Sprungfaktor rₙ = 1 − sₙ, der ohne Beschränkungen einen sauberen selbstähnlichen Attraktor liefert. Für n = 3 ist das 1/2; für n = 5 ist es 1/φ ≈ 0,618; für n = 6, 2/3; und so weiter.',
     },
     {
       pretitle: "Abschnitt 05 · Barnsleys Farn",
@@ -285,6 +307,21 @@ const de: RichStory = {
   fernPointsLabel: (n) => `${fmt(n)} Punkte`,
   dotsSmallLabel: "200 Punkte",
   dotsLargeLabel: "5000 Punkte",
+  mapsCardTitle: "Drei kontrahierende Abbildungen",
+  mapsCardBody:
+    "Jede Abbildung kontrahiert die Ebene um den Faktor 1/2 zu ihrem Fixpunkt vᵢ. Der Attraktor des IFS {f₁, f₂, f₃} ist das Sierpiński-Dreieck.",
+  tableShapeHeader: "Form",
+  tableNotes: [
+    "Sierpiński-Dreieck",
+    "1/2 (füllt das Quadrat)",
+    "1/φ (Pentaflake)",
+    "2/3 (Hexaflake)",
+    "Siebeneck",
+    "1/√2 (Achteck)",
+  ],
+  dimensionCardTitle: "Hausdorff-Dimension",
+  dimensionCardBody:
+    "Das Sierpiński-Dreieck hat eine fraktale Dimension zwischen einer Kurve (1) und einer Fläche (2). Drei Kopien, jede um 1/2 skaliert, also erfüllt die Dimension d die Gleichung 3·(1/2)ᵈ = 1.",
   closingPretitle: "Geh weiter",
   closingTitle: "Würfle.",
   closingBody:
@@ -314,7 +351,7 @@ const es: RichStory = {
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: 'Empieza en cualquier sitio dentro de un triángulo equilátero. Cada paso: elige uniformemente una de las tres esquinas, muévete hasta la mitad, deja un punto. A los 200 puntos ves una nube dispersa. A los 5000 ves la junta — toda región "prohibida" (el agujero central, luego los tres subagujeros, luego nueve sub-subagujeros) está vacía demostrablemente.',
+        body: 'Empieza en cualquier sitio dentro de un triángulo equilátero. Cada paso: elige uniformemente una de las tres esquinas, muévete hasta la mitad, deja un punto. A los 200 puntos ves una nube dispersa. A los 5000 ves el triángulo de Sierpiński: toda región «prohibida» (el agujero central, luego los tres subagujeros, luego nueve sub-subagujeros) está vacía demostrablemente.',
       },
       {
         label: "03",
@@ -338,11 +375,11 @@ const es: RichStory = {
     {
       pretitle: "Sección 03 · El teorema del collage de Barnsley",
       title: "Todo compacto admite un IFS que converge a él",
-      body: 'Michael Barnsley generalizó el juego del caos en 1988 con el teorema del collage: todo subconjunto compacto del plano puede aproximarse arbitrariamente bien por el atractor de algún sistema finito de funciones iteradas. Invierte la pregunta — escoge una forma objetivo, después halla unas pocas aplicaciones afines cuyas imágenes peguen juntas (un "collage") para cubrirla. El atractor de ese IFS es la forma. El juego del caos la muestrea con una sola órbita aleatoria. Costas, helechos, montañas, nubes: todo fractal de la naturaleza es, en principio, unas pocas contracciones disfrazadas.',
+      body: 'El libro Fractals Everywhere de Michael Barnsley, de 1988, dio a conocer ampliamente el teorema del collage: todo subconjunto compacto del plano puede aproximarse arbitrariamente bien por el atractor de algún sistema finito de funciones iteradas. Invierte la pregunta — escoge una forma objetivo, después halla unas pocas aplicaciones afines cuyas imágenes peguen juntas (un "collage") para cubrirla. El atractor de ese IFS es la forma. El juego del caos la muestrea con una sola órbita aleatoria. Costas, helechos, montañas, nubes: todo fractal de la naturaleza es, en principio, unas pocas contracciones disfrazadas.',
     },
     {
       pretitle: "Sección 04 · Más allá del triángulo",
-      title: "Cuando halviar falla — y la regla que lo arregla",
+      title: "Cuando ir a la mitad falla, y la regla que lo arregla",
       body: 'Prueba cuatro esquinas en un cuadrado con el mismo paso r = 1/2. El resultado no es ningún fractal: los puntos llenan el interior de manera uniforme. La razón es que las cuatro contracciones por la mitad sobre el cuadrado cubren todo el cuadrado — su atractor es el cuadrado lleno. La solución es una regla de restricción. Prohíbe que el siguiente vértice sea igual al anterior ("no repetir") y aparece una delicada prima de la alfombra de Sierpiński. Cada n-gono tiene su factor de salto mágico rₙ = 1 − sₙ que da un atractor autosemejante limpio sin restricciones. Para n = 3 es 1/2; para n = 5 es 1/φ ≈ 0,618; para n = 6, 2/3; y así.',
     },
     {
@@ -371,6 +408,21 @@ const es: RichStory = {
   fernPointsLabel: (n) => `${fmt(n)} puntos`,
   dotsSmallLabel: "200 puntos",
   dotsLargeLabel: "5000 puntos",
+  mapsCardTitle: "Tres aplicaciones contractivas",
+  mapsCardBody:
+    "Cada aplicación contrae el plano por el factor 1/2 hacia su punto fijo vᵢ. El atractor del IFS {f₁, f₂, f₃} es el triángulo de Sierpiński.",
+  tableShapeHeader: "forma",
+  tableNotes: [
+    "triángulo de Sierpiński",
+    "1/2 (llena el cuadrado)",
+    "1/φ (pentaflake)",
+    "2/3 (hexaflake)",
+    "heptágono",
+    "1/√2 (octágono)",
+  ],
+  dimensionCardTitle: "Dimensión de Hausdorff",
+  dimensionCardBody:
+    "El triángulo de Sierpiński tiene una dimensión fractal entre una curva (1) y una región (2). Tres copias, cada una escalada por 1/2, así que la dimensión d cumple 3·(1/2)ᵈ = 1.",
   closingPretitle: "Ve más lejos",
   closingTitle: "Tira los dados.",
   closingBody:
@@ -424,7 +476,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · Le théorème du collage de Barnsley",
       title: "Tout compact admet un IFS qui converge vers lui",
-      body: "Michael Barnsley a généralisé le jeu du chaos en 1988 avec le théorème du collage : tout sous-ensemble compact du plan peut être approché arbitrairement bien par l'attracteur d'un système fini d'applications itérées. Renverse la question — choisis une forme cible, puis trouve quelques applications affines dont les images se collent (un \"collage\") pour la couvrir. L'attracteur de cet IFS, c'est la forme. Le jeu du chaos l'échantillonne avec une seule orbite aléatoire. Côtes, fougères, montagnes, nuages : tout fractal de la nature est, en principe, quelques contractions déguisées.",
+      body: "Le livre Fractals Everywhere de Michael Barnsley, paru en 1988, a fait largement connaître le théorème du collage : tout sous-ensemble compact du plan peut être approché arbitrairement bien par l'attracteur d'un système fini d'applications itérées. Renverse la question — choisis une forme cible, puis trouve quelques applications affines dont les images se collent (un \"collage\") pour la couvrir. L'attracteur de cet IFS, c'est la forme. Le jeu du chaos l'échantillonne avec une seule orbite aléatoire. Côtes, fougères, montagnes, nuages : tout fractal de la nature est, en principe, quelques contractions déguisées.",
     },
     {
       pretitle: "Section 04 · Au-delà du triangle",
@@ -457,6 +509,21 @@ const fr: RichStory = {
   fernPointsLabel: (n) => `${fmt(n)} points`,
   dotsSmallLabel: "200 points",
   dotsLargeLabel: "5000 points",
+  mapsCardTitle: "Trois applications contractantes",
+  mapsCardBody:
+    "Chaque application contracte le plan d'un facteur 1/2 vers son point fixe vᵢ. L'attracteur de l'IFS {f₁, f₂, f₃} est le triangle de Sierpiński.",
+  tableShapeHeader: "forme",
+  tableNotes: [
+    "triangle de Sierpiński",
+    "1/2 (remplit le carré)",
+    "1/φ (pentaflake)",
+    "2/3 (hexaflake)",
+    "heptagone",
+    "1/√2 (octogone)",
+  ],
+  dimensionCardTitle: "Dimension de Hausdorff",
+  dimensionCardBody:
+    "Le triangle de Sierpiński a une dimension fractale entre une courbe (1) et une région (2). Trois copies, chacune réduite d'un facteur 1/2, donc la dimension d vérifie 3·(1/2)ᵈ = 1.",
   closingPretitle: "Aller plus loin",
   closingTitle: "Lance les dés.",
   closingBody:
@@ -510,7 +577,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 03 · Il teorema del collage di Barnsley",
       title: "Ogni compatto ammette un IFS che converge a esso",
-      body: "Michael Barnsley generalizzò il gioco del caos nel 1988 con il teorema del collage: ogni sottoinsieme compatto del piano può essere approssimato arbitrariamente bene dall'attrattore di un qualche sistema finito di funzioni iterate. Capovolgi la domanda — scegli una forma bersaglio, poi trova poche mappe affini le cui immagini si incollino insieme (un \"collage\") a coprirla. L'attrattore di quell'IFS è la forma. Il gioco del caos lo campiona con una singola orbita casuale. Coste, felci, montagne, nuvole: ogni frattale in natura è, in linea di principio, poche contrazioni travestite.",
+      body: "Il libro Fractals Everywhere di Michael Barnsley, del 1988, fece conoscere ampiamente il teorema del collage: ogni sottoinsieme compatto del piano può essere approssimato arbitrariamente bene dall'attrattore di un qualche sistema finito di funzioni iterate. Capovolgi la domanda — scegli una forma bersaglio, poi trova poche mappe affini le cui immagini si incollino insieme (un \"collage\") a coprirla. L'attrattore di quell'IFS è la forma. Il gioco del caos lo campiona con una singola orbita casuale. Coste, felci, montagne, nuvole: ogni frattale in natura è, in linea di principio, poche contrazioni travestite.",
     },
     {
       pretitle: "Sezione 04 · Oltre il triangolo",
@@ -543,6 +610,21 @@ const it: RichStory = {
   fernPointsLabel: (n) => `${fmt(n)} punti`,
   dotsSmallLabel: "200 punti",
   dotsLargeLabel: "5000 punti",
+  mapsCardTitle: "Tre mappe contrattive",
+  mapsCardBody:
+    "Ogni mappa contrae il piano di un fattore 1/2 verso il suo punto fisso vᵢ. L'attrattore dell'IFS {f₁, f₂, f₃} è il triangolo di Sierpiński.",
+  tableShapeHeader: "forma",
+  tableNotes: [
+    "triangolo di Sierpiński",
+    "1/2 (riempie il quadrato)",
+    "1/φ (pentaflake)",
+    "2/3 (hexaflake)",
+    "ettagono",
+    "1/√2 (ottagono)",
+  ],
+  dimensionCardTitle: "Dimensione di Hausdorff",
+  dimensionCardBody:
+    "Il triangolo di Sierpiński ha una dimensione frattale tra una curva (1) e una regione (2). Tre copie, ciascuna scalata di 1/2, quindi la dimensione d soddisfa 3·(1/2)ᵈ = 1.",
   closingPretitle: "Vai oltre",
   closingTitle: "Tira i dadi.",
   closingBody:
@@ -572,7 +654,7 @@ const pt: RichStory = {
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: 'Começa em qualquer ponto dentro de um triângulo equilátero. A cada passo: escolhe uniformemente um dos três cantos, move-te até meio, deixa um ponto. Aos 200 pontos vês uma nuvem dispersa. Aos 5000 vês a junta — toda região "proibida" (o buraco central, depois os três sub-buracos, depois nove sub-sub-buracos) está demonstravelmente vazia.',
+        body: 'Começa em qualquer ponto dentro de um triângulo equilátero. A cada passo: escolhe uniformemente um dos três cantos, move-te até meio, deixa um ponto. Aos 200 pontos vês uma nuvem dispersa. Aos 5000 vês o triângulo de Sierpiński: toda região «proibida» (o buraco central, depois os três sub-buracos, depois nove sub-sub-buracos) está demonstravelmente vazia.',
       },
       {
         label: "03",
@@ -596,7 +678,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 03 · O teorema da colagem de Barnsley",
       title: "Todo compacto admite um IFS que converge para ele",
-      body: 'Michael Barnsley generalizou o jogo do caos em 1988 com o teorema da colagem: todo subconjunto compacto do plano pode ser aproximado arbitrariamente bem pelo atrator de algum sistema finito de funções iteradas. Inverte a pergunta — escolhe uma forma alvo, depois acha umas poucas aplicações afins cujas imagens se colem juntas (uma "colagem") a cobri-la. O atrator desse IFS é a forma. O jogo do caos amostra-a com uma única órbita aleatória. Costas, fetos, montanhas, nuvens: todo fractal na natureza é, em princípio, umas poucas contrações disfarçadas.',
+      body: 'O livro Fractals Everywhere de Michael Barnsley, de 1988, tornou o teorema da colagem amplamente conhecido: todo subconjunto compacto do plano pode ser aproximado arbitrariamente bem pelo atrator de algum sistema finito de funções iteradas. Inverte a pergunta — escolhe uma forma alvo, depois acha umas poucas aplicações afins cujas imagens se colem juntas (uma "colagem") a cobri-la. O atrator desse IFS é a forma. O jogo do caos amostra-a com uma única órbita aleatória. Costas, fetos, montanhas, nuvens: todo fractal na natureza é, em princípio, umas poucas contrações disfarçadas.',
     },
     {
       pretitle: "Secção 04 · Para além do triângulo",
@@ -629,6 +711,21 @@ const pt: RichStory = {
   fernPointsLabel: (n) => `${fmt(n)} pontos`,
   dotsSmallLabel: "200 pontos",
   dotsLargeLabel: "5000 pontos",
+  mapsCardTitle: "Três aplicações contrativas",
+  mapsCardBody:
+    "Cada aplicação contrai o plano por um fator de 1/2 em direção ao seu ponto fixo vᵢ. O atrator do IFS {f₁, f₂, f₃} é o triângulo de Sierpiński.",
+  tableShapeHeader: "forma",
+  tableNotes: [
+    "triângulo de Sierpiński",
+    "1/2 (preenche o quadrado)",
+    "1/φ (pentaflake)",
+    "2/3 (hexaflake)",
+    "heptágono",
+    "1/√2 (octógono)",
+  ],
+  dimensionCardTitle: "Dimensão de Hausdorff",
+  dimensionCardBody:
+    "O triângulo de Sierpiński tem dimensão fractal entre uma curva (1) e uma região (2). Três cópias, cada uma escalada por 1/2, então a dimensão d satisfaz 3·(1/2)ᵈ = 1.",
   closingPretitle: "Vai mais longe",
   closingTitle: "Lança os dados.",
   closingBody:
@@ -682,7 +779,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 03 · Barnsleys collage-sats",
       title: "Varje kompakt mängd har ett IFS som konvergerar mot den",
-      body: 'Michael Barnsley generaliserade kaosspelet 1988 med collage-satsen: varje kompakt delmängd av planet kan approximeras godtyckligt väl av attraktorn för något ändligt iterativt funktionssystem. Vänd på frågan — välj en målform, hitta sedan några affina avbildningar vars bilder klistras ihop (ett "collage") för att täcka den. Attraktorn för det IFS:et är formen. Kaosspelet samplar den med en enda slumpbana. Kuster, ormbunkar, berg, moln: varje fraktal i naturen är i princip ett par förklädda kontraktioner.',
+      body: 'Michael Barnsleys bok Fractals Everywhere från 1988 gjorde collage-satsen allmänt känd: varje kompakt delmängd av planet kan approximeras godtyckligt väl av attraktorn för något ändligt iterativt funktionssystem. Vänd på frågan — välj en målform, hitta sedan några affina avbildningar vars bilder klistras ihop (ett "collage") för att täcka den. Attraktorn för det IFS:et är formen. Kaosspelet samplar den med en enda slumpbana. Kuster, ormbunkar, berg, moln: varje fraktal i naturen är i princip ett par förklädda kontraktioner.',
     },
     {
       pretitle: "Avsnitt 04 · Bortom triangeln",
@@ -715,6 +812,21 @@ const sv: RichStory = {
   fernPointsLabel: (n) => `${fmt(n)} punkter`,
   dotsSmallLabel: "200 punkter",
   dotsLargeLabel: "5000 punkter",
+  mapsCardTitle: "Tre kontraherande avbildningar",
+  mapsCardBody:
+    "Varje avbildning kontraherar planet med faktorn 1/2 mot sin fixpunkt vᵢ. Attraktorn för IFS:et {f₁, f₂, f₃} är Sierpiński-triangeln.",
+  tableShapeHeader: "form",
+  tableNotes: [
+    "Sierpiński-triangel",
+    "1/2 (fyller kvadraten)",
+    "1/φ (pentaflake)",
+    "2/3 (hexaflake)",
+    "sjuhörning",
+    "1/√2 (åttahörning)",
+  ],
+  dimensionCardTitle: "Hausdorff-dimension",
+  dimensionCardBody:
+    "Sierpiński-triangeln har en fraktal dimension mellan en kurva (1) och en yta (2). Tre kopior, var och en skalad med 1/2, så dimensionen d uppfyller 3·(1/2)ᵈ = 1.",
   closingPretitle: "Gå vidare",
   closingTitle: "Slå tärningarna.",
   closingBody:
@@ -768,7 +880,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Barnsleys collage-teorem",
       title: "Enhver kompakt mengde har et IFS som konvergerer mot den",
-      body: 'Michael Barnsley generaliserte kaosspillet i 1988 med collage-teoremet: enhver kompakt delmengde av planet kan tilnærmes vilkårlig godt av attraktoren til et endelig iterert funksjonssystem. Snu spørsmålet — velg en målform, finn så noen få affine avbildninger hvis bilder limes sammen (en "collage") til å dekke den. Attraktoren til det IFS-et er formen. Kaosspillet samples den med én tilfeldig bane. Kystlinjer, bregner, fjell, skyer: enhver fraktal i naturen er i prinsippet noen få forkledde kontraksjoner.',
+      body: 'Michael Barnsleys bok Fractals Everywhere fra 1988 gjorde collage-teoremet bredt kjent: enhver kompakt delmengde av planet kan tilnærmes vilkårlig godt av attraktoren til et endelig iterert funksjonssystem. Snu spørsmålet — velg en målform, finn så noen få affine avbildninger hvis bilder limes sammen (en "collage") til å dekke den. Attraktoren til det IFS-et er formen. Kaosspillet samples den med én tilfeldig bane. Kystlinjer, bregner, fjell, skyer: enhver fraktal i naturen er i prinsippet noen få forkledde kontraksjoner.',
     },
     {
       pretitle: "Avsnitt 04 · Forbi triangelen",
@@ -801,6 +913,21 @@ const no: RichStory = {
   fernPointsLabel: (n) => `${fmt(n)} punkter`,
   dotsSmallLabel: "200 punkter",
   dotsLargeLabel: "5000 punkter",
+  mapsCardTitle: "Tre kontraherende avbildninger",
+  mapsCardBody:
+    "Hver avbildning kontraherer planet med faktoren 1/2 mot sitt fikspunkt vᵢ. Attraktoren til IFS-et {f₁, f₂, f₃} er Sierpiński-trekanten.",
+  tableShapeHeader: "form",
+  tableNotes: [
+    "Sierpiński-trekant",
+    "1/2 (fyller kvadratet)",
+    "1/φ (pentaflake)",
+    "2/3 (hexaflake)",
+    "sjukant",
+    "1/√2 (åttekant)",
+  ],
+  dimensionCardTitle: "Hausdorff-dimensjon",
+  dimensionCardBody:
+    "Sierpiński-trekanten har en fraktal dimensjon mellom en kurve (1) og et område (2). Tre kopier, hver skalert med 1/2, så dimensjonen d oppfyller 3·(1/2)ᵈ = 1.",
   closingPretitle: "Gå videre",
   closingTitle: "Kast terningene.",
   closingBody:
@@ -900,14 +1027,13 @@ export default function ChaosGameStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Three contracting maps
+              {story.mapsCardTitle}
             </div>
             <div className="math-italic text-2xl leading-tight text-ink-100 md:text-3xl">
               f₁(x) = (x + v₁)/2 &nbsp;·&nbsp; f₂(x) = (x + v₂)/2 &nbsp;·&nbsp; f₃(x) = (x + v₃)/2
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              Each map contracts the plane by factor 1/2 toward its fixed point vᵢ. The attractor of
-              the IFS {`{f₁, f₂, f₃}`} is the Sierpiński triangle.
+              {story.mapsCardBody}
             </p>
           </div>
         </Reveal>
@@ -957,19 +1083,12 @@ export default function ChaosGameStory() {
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">n</th>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">rₙ</th>
                   <th className="px-2 py-2 text-left text-[10px] uppercase tracking-widest">
-                    shape
+                    {story.tableShapeHeader}
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {[
-                  { n: 3, note: "Sierpiński triangle" },
-                  { n: 4, note: "1/2 (fills the square)" },
-                  { n: 5, note: "1/φ (pentaflake)" },
-                  { n: 6, note: "2/3 (hexaflake)" },
-                  { n: 7, note: "heptagon" },
-                  { n: 8, note: "1/√2 (octagon)" },
-                ].map(({ n, note }) => {
+                {[3, 4, 5, 6, 7, 8].map((n, i) => {
                   let sum = 0;
                   for (let k = 1; k <= Math.floor(n / 4); k++) {
                     sum += Math.cos((2 * Math.PI * k) / n);
@@ -979,7 +1098,7 @@ export default function ChaosGameStory() {
                     <tr key={n} className="border-b border-ink-700/30 last:border-0">
                       <td className="px-2 py-2 text-signal-cyan">{n}</td>
                       <td className="px-2 py-2 text-signal-amber">{r.toFixed(4)}</td>
-                      <td className="px-2 py-2 text-ink-200">{note}</td>
+                      <td className="px-2 py-2 text-ink-200">{story.tableNotes[i]}</td>
                     </tr>
                   );
                 })}
@@ -1024,14 +1143,13 @@ export default function ChaosGameStory() {
         <Reveal delay={120}>
           <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-8 text-center">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
-              Hausdorff dimension
+              {story.dimensionCardTitle}
             </div>
             <div className="math-italic text-6xl text-ink-100 md:text-7xl">
               log 3 / log 2 ≈ 1.585
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              The Sierpiński triangle has fractal dimension between a curve (1) and a region (2).
-              Three copies, each scaled by 1/2 — the dimension d satisfies 3·(1/2)ᵈ = 1.
+              {story.dimensionCardBody}
             </p>
           </div>
         </Reveal>

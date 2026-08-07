@@ -142,7 +142,7 @@ const en: AtlasDict = {
     rule110: {
       title: "Rule 110",
       tagline: "An eight-bit rule, provably universal",
-      body: "Each cell looks at itself and its two neighbours and updates by the rule numbered 110 in binary (01101110). The pattern that grows from a single dot encodes computations — Cook and Wolfram proved this single rule is Turing-complete. The simplest known universal machine you can describe in a tweet.",
+      body: "Each cell looks at itself and its two neighbours and updates by the rule numbered 110 in binary (01101110). The pattern that grows from a single dot encodes computations — Matthew Cook proved (conjectured by Wolfram) that this single rule is Turing-complete. The simplest known universal machine you can describe in a tweet.",
     },
     logistic: {
       title: "The Logistic Map",
@@ -262,7 +262,7 @@ const de: AtlasDict = {
     rule110: {
       title: "Regel 110",
       tagline: "Eine Achtbit-Regel, beweisbar universell",
-      body: "Jede Zelle sieht sich selbst und ihre zwei Nachbarn an und aktualisiert nach der Regel mit Binärnummer 110 (01101110). Das Muster, das aus einem einzigen Punkt wächst, kodiert Berechnungen — Cook und Wolfram bewiesen, dass diese eine Regel Turing-vollständig ist. Die einfachste bekannte universelle Maschine, die in einen Tweet passt.",
+      body: "Jede Zelle sieht sich selbst und ihre zwei Nachbarn an und aktualisiert nach der Regel mit Binärnummer 110 (01101110). Das Muster, das aus einem einzigen Punkt wächst, kodiert Berechnungen — Matthew Cook bewies (von Wolfram vermutet), dass diese eine Regel Turing-vollständig ist. Die einfachste bekannte universelle Maschine, die in einen Tweet passt.",
     },
     logistic: {
       title: "Die logistische Abbildung",
@@ -302,7 +302,7 @@ const de: AtlasDict = {
     dla: {
       title: "Diffusionsbegrenzte Aggregation",
       tagline: "Zufällige Wanderer bleiben kleben — und es wachsen Korallen",
-      body: "Setze ein einzelnes Saatpixel. Lass Teilchen einzeln los, jedes auf einer Zufallsbewegung; in dem Moment, in dem ein wanderndes Teilchen den Cluster berührt, friert es dort fest. Wiederhole das zehntausendmal und es wächst eine verästelte, dendritische Struktur aus dem Saatpixel — die gleiche Fraktalform, die Kupfer beim Galvanisieren annimmt, die Flechten an einer Mauer bilden, die ein Blitz auf nackter Haut zurücklässt. Witten und Sander bewiesen 1981, dass das Ergebnis im Zweidimensionalen eine fraktale Dimension von ≈ 1,71 hat — egal womit du anfängst.",
+      body: "Setze ein einzelnes Saatpixel. Lass Teilchen einzeln los, jedes auf einer Zufallsbewegung; in dem Moment, in dem ein wanderndes Teilchen den Cluster berührt, friert es dort fest. Wiederhole das zehntausendmal und es wächst eine verästelte, dendritische Struktur aus dem Saatpixel — die gleiche Fraktalform, die Kupfer beim Galvanisieren annimmt, die Flechten an einer Mauer bilden, die ein Blitz auf nackter Haut zurücklässt. Witten und Sander zeigten 1981, dass das Ergebnis im Zweidimensionalen eine fraktale Dimension von ≈ 1,71 hat — egal womit du anfängst.",
     },
     langton: {
       title: "Langtons Ameise",
@@ -322,7 +322,7 @@ const de: AtlasDict = {
     ulam: {
       title: "Die Ulam-Spirale",
       tagline: "Primzahlen reihen sich auf rätselhaften Diagonalen auf",
-      body: "Stanisław Ulam kritzelte 1963 aus Langeweile bei einem Vortrag die ganzen Zahlen in eine quadratische Spirale und kreiste die Primzahlen ein. Die Primzahlen verteilten sich nicht — sie drängten sich entlang sichtbarer Diagonalen. Viele dieser Diagonalen entsprechen primzahlreichen quadratischen Polynomen wie Eulers n² − n + 41, das für jedes n von 0 bis 39 prim ist. Warum Primzahlen bestimmte quadratische Formen anderen vorziehen, gehört zum tiefsten ungelösten Bereich der Zahlentheorie — Ulam sah es auf einer Serviette.",
+      body: "Stanisław Ulam kritzelte 1963 aus Langeweile bei einem Vortrag die ganzen Zahlen in eine quadratische Spirale und kreiste die Primzahlen ein. Die Primzahlen verteilten sich nicht — sie drängten sich entlang sichtbarer Diagonalen. Viele dieser Diagonalen entsprechen primzahlreichen quadratischen Polynomen wie Eulers n² − n + 41, das für jedes n von 0 bis 40 prim ist. Warum Primzahlen bestimmte quadratische Formen anderen vorziehen, gehört zum tiefsten ungelösten Bereich der Zahlentheorie — Ulam sah es auf einer Serviette.",
     },
     aizawa: {
       title: "Der Aizawa-Attraktor",
@@ -332,7 +332,7 @@ const de: AtlasDict = {
     cardioid: {
       title: "Die Kaffeetassen-Kardioide",
       tagline: "Die Lichtkurve in deiner Tasse ist Mandelbrots Herz",
-      body: "Lass paralleles Sonnenlicht in eine zylindrische Kaffeetasse fallen. Die Reflexionen an der Innenwand bündeln sich nicht in einem Punkt — sie umhüllen eine leuchtende, herzförmige Kurve auf der Oberfläche des Kaffees. Diese Kurve ist eine Kardioide: r = 2a(1 − cos θ) in Polarkoordinaten. Dieselbe Gleichung beschreibt die Hauptknospe der Mandelbrot-Menge. Jeden Morgen, in jedem Café, wird die berühmteste Form der Dynamik in Licht gezeichnet.",
+      body: "Setze eine kleine punktförmige Lichtquelle (eine LED) an den Rand einer zylindrischen Kaffeetasse. Die Reflexionen an der Innenwand bündeln sich nicht wieder in einem Punkt, sie umhüllen eine leuchtende, herzförmige Kurve auf der Oberfläche des Kaffees. Diese Kurve ist eine Kardioide: r = 2a(1 − cos θ) in Polarkoordinaten. Dieselbe Gleichung beschreibt die Hauptknospe der Mandelbrot-Menge. Jeden Morgen, in jedem Café, wird die berühmteste Form der Dynamik in Licht gezeichnet.",
     },
     galton: {
       title: "Das Galton-Brett",
@@ -547,7 +547,7 @@ const es: AtlasDict = {
     rule110: {
       title: "Regla 110",
       tagline: "Una regla de ocho bits, demostradamente universal",
-      body: "Cada célula mira a sí misma y a sus dos vecinas y se actualiza según la regla número 110 en binario (01101110). El patrón que crece a partir de un solo punto codifica computaciones — Cook y Wolfram demostraron que esta sola regla es Turing-completa. La máquina universal más simple conocida, que cabe en un tuit.",
+      body: "Cada célula mira a sí misma y a sus dos vecinas y se actualiza según la regla número 110 en binario (01101110). El patrón que crece a partir de un solo punto codifica computaciones — Matthew Cook demostró (conjeturado por Wolfram) que esta sola regla es Turing-completa. La máquina universal más simple conocida, que cabe en un tuit.",
     },
     logistic: {
       title: "El mapa logístico",
@@ -782,7 +782,7 @@ const fr: AtlasDict = {
     rule110: {
       title: "Règle 110",
       tagline: "Une règle huit bits, démontrablement universelle",
-      body: "Chaque cellule se regarde et regarde ses deux voisines, puis se met à jour selon la règle numérotée 110 en binaire (01101110). Le motif issu d'un seul point encode des calculs — Cook et Wolfram ont prouvé que cette règle unique est Turing-complète. La machine universelle la plus simple connue tient dans un tweet.",
+      body: "Chaque cellule se regarde et regarde ses deux voisines, puis se met à jour selon la règle numérotée 110 en binaire (01101110). Le motif issu d'un seul point encode des calculs — Matthew Cook a prouvé (conjecturé par Wolfram) que cette règle unique est Turing-complète. La machine universelle la plus simple connue tient dans un tweet.",
     },
     logistic: {
       title: "La carte logistique",
@@ -1017,7 +1017,7 @@ const it: AtlasDict = {
     rule110: {
       title: "Regola 110",
       tagline: "Una regola a otto bit, dimostrata universale",
-      body: "Ogni cellula guarda sé stessa e le due vicine e si aggiorna secondo la regola numerata 110 in binario (01101110). Il motivo che cresce da un singolo punto codifica calcoli — Cook e Wolfram hanno dimostrato che questa sola regola è Turing-completa. La più semplice macchina universale nota, che entra in un tweet.",
+      body: "Ogni cellula guarda sé stessa e le due vicine e si aggiorna secondo la regola numerata 110 in binario (01101110). Il motivo che cresce da un singolo punto codifica calcoli — Matthew Cook ha dimostrato (congetturato da Wolfram) che questa sola regola è Turing-completa. La più semplice macchina universale nota, che entra in un tweet.",
     },
     logistic: {
       title: "La mappa logistica",
@@ -1252,7 +1252,7 @@ const pt: AtlasDict = {
     rule110: {
       title: "Regra 110",
       tagline: "Uma regra de oito bits, comprovadamente universal",
-      body: "Cada célula olha para si e para as duas vizinhas e atualiza-se pela regra numerada 110 em binário (01101110). O padrão que cresce a partir de um único ponto codifica computações — Cook e Wolfram provaram que esta regra única é Turing-completa. A máquina universal mais simples conhecida, cabe num tweet.",
+      body: "Cada célula olha para si e para as duas vizinhas e atualiza-se pela regra numerada 110 em binário (01101110). O padrão que cresce a partir de um único ponto codifica computações — Matthew Cook provou (conjeturado por Wolfram) que esta regra única é Turing-completa. A máquina universal mais simples conhecida, cabe num tweet.",
     },
     logistic: {
       title: "O mapa logístico",
@@ -1487,7 +1487,7 @@ const sv: AtlasDict = {
     rule110: {
       title: "Regel 110",
       tagline: "En åttabitsregel, bevisat universell",
-      body: "Varje cell tittar på sig själv och sina två grannar och uppdateras enligt regeln med binärnumret 110 (01101110). Mönstret som växer ur en enda punkt kodar beräkningar — Cook och Wolfram bevisade att denna enda regel är Turing-fullständig. Den enklaste kända universella maskinen, som ryms i en tweet.",
+      body: "Varje cell tittar på sig själv och sina två grannar och uppdateras enligt regeln med binärnumret 110 (01101110). Mönstret som växer ur en enda punkt kodar beräkningar — Matthew Cook bevisade (förmodat av Wolfram) att denna enda regel är Turing-fullständig. Den enklaste kända universella maskinen, som ryms i en tweet.",
     },
     logistic: {
       title: "Den logistiska avbildningen",
@@ -1722,7 +1722,7 @@ const no: AtlasDict = {
     rule110: {
       title: "Regel 110",
       tagline: "En åttebitsregel, bevist universell",
-      body: "Hver celle ser på seg selv og sine to naboer og oppdateres etter regelen med binærnummeret 110 (01101110). Mønsteret som vokser fra ett enkelt punkt koder beregninger — Cook og Wolfram beviste at denne ene regelen er Turing-fullstendig. Den enkleste kjente universelle maskinen, som får plass i en tweet.",
+      body: "Hver celle ser på seg selv og sine to naboer og oppdateres etter regelen med binærnummeret 110 (01101110). Mønsteret som vokser fra ett enkelt punkt koder beregninger — Matthew Cook beviste (antatt av Wolfram) at denne ene regelen er Turing-fullstendig. Den enkleste kjente universelle maskinen, som får plass i en tweet.",
     },
     logistic: {
       title: "Den logistiske avbildningen",

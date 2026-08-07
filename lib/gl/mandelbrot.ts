@@ -166,6 +166,9 @@ export class MandelRenderer {
 
   resize() {
     const c = this.canvas;
+    // Read DPR fresh each resize so a monitor move or browser zoom updates the
+    // backing store; a value snapshotted in the constructor would go stale.
+    this.dpr = getDpr();
     const w = Math.max(2, Math.floor(c.clientWidth * this.dpr));
     const h = Math.max(2, Math.floor(c.clientHeight * this.dpr));
     if (c.width !== w || c.height !== h) {

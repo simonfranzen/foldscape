@@ -46,7 +46,7 @@ export const sv: StoriesDict = {
       title: "Conways Game of Life",
       tagline: "Fyra regler. Universum följer.",
       intro:
-        "Conway publicerade reglerna 1970 i en spalt i Scientific American. Två tidskriftssidor, fyra regelrader, och en gemenskap av matematiker har tillbringat femtio år med att upptäcka vad som redan låg i dem. Sandlådan låter dig rita och köra vilket mönster som helst — men först, de fyra reglerna i aktion.",
+        "Martin Gardner presenterade Conways regler i sin spalt i Scientific American i oktober 1970. Två tidskriftssidor, fyra regelrader, och en gemenskap av matematiker har tillbringat femtio år med att upptäcka vad som redan låg i dem. Sandlådan låter dig rita och köra vilket mönster som helst — men först, de fyra reglerna i aktion.",
       ctaInteractive: "→ Öppna Sandlådan",
       sections: [
         {
@@ -202,7 +202,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg ett · En leksaksatmosfär",
           title: "Lorenz, 1963",
-          body: "Edward Lorenz, meteorolog vid MIT, försökte simulera konvektion — luft som värms underifrån och kyls ovanifrån. Med Ellen Fetter som körde de numeriska beräkningarna och Margaret Hamilton som skötte uträkningarna skar han ner problemet till tre variabler och tre ekvationer. Artikeln från 1963, 'Deterministic Nonperiodic Flow', hävdade att även denna drastiska förenkling kunde bete sig oförutsägbart. Artikeln förblev till stor del oläst i ett decennium.",
+          body: "Edward Lorenz, meteorolog vid MIT, försökte simulera konvektion — luft som värms underifrån och kyls ovanifrån. Margaret Hamilton hade programmerat de tidigare väderkörningarna; Ellen Fetter körde beräkningarna bakom trekvationsmodellen. Han skar ner problemet till tre variabler och tre ekvationer. Artikeln från 1963, 'Deterministic Nonperiodic Flow', hävdade att även denna drastiska förenkling kunde bete sig oförutsägbart. Artikeln förblev till stor del oläst i ett decennium.",
         },
         {
           pretitle: "Steg två · De tre ekvationerna",
@@ -962,7 +962,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg tre · Varför diagonaler",
           title: "Varje diagonal är ett polynom 4n² + bn + c",
-          body: "Talen längs vilken diagonal som helst av Ulam-spiralen uppfyller en kvadratisk formel på formen 4n² + bn + c. En diagonal full av primtal betyder därför att polynomet är ovanligt primtalsrikt. Vissa är spektakulära. Eulers polynom n² − n + 41 — upptäckt 1772 — producerar primtal för varje n från 0 till 39, och motsvarar en synlig diagonalstrimma. Huruvida oändligt många primtal ligger på en sådan diagonal är, för någon specifik diagonal, obevisat. Bunyakovskys förmodan säger ja; ingen har visat det.",
+          body: "Talen längs vilken diagonal som helst av Ulam-spiralen uppfyller en kvadratisk formel på formen 4n² + bn + c. En diagonal full av primtal betyder därför att polynomet är ovanligt primtalsrikt. Vissa är spektakulära. Eulers polynom n² − n + 41 — upptäckt 1772 — producerar primtal för varje n från 0 till 40, och motsvarar en synlig diagonalstrimma. Huruvida oändligt många primtal ligger på en sådan diagonal är, för någon specifik diagonal, obevisat. Bunyakovskys förmodan säger ja; ingen har visat det.",
         },
         {
           pretitle: "Steg fyra · Det djupare problemet",

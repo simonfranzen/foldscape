@@ -128,7 +128,7 @@ export const EN_PLACEHOLDERS: Record<PlaceholderId, TopicMeta> = {
   ulam: {
     title: "The Ulam Spiral",
     tagline: "Primes lining up on mysterious diagonals",
-    body: "Stanisław Ulam, bored at a 1963 lecture, doodled the integers in a square spiral and circled the primes. The primes did not scatter; they crowded along visible diagonals. Many of those diagonals correspond to prime-rich quadratics like Euler's n² − n + 41, which is prime for every n from 0 to 39. Why primes prefer certain quadratic forms over others is part of the deepest unsolved area of number theory — Ulam saw it on a napkin.",
+    body: "Stanisław Ulam, bored at a 1963 lecture, doodled the integers in a square spiral and circled the primes. The primes did not scatter; they crowded along visible diagonals. Many of those diagonals correspond to prime-rich quadratics like Euler's n² − n + 41, which is prime for every n from 0 to 40. Why primes prefer certain quadratic forms over others is part of the deepest unsolved area of number theory — Ulam saw it on a napkin.",
   },
   aizawa: {
     title: "The Aizawa Attractor",
@@ -138,7 +138,7 @@ export const EN_PLACEHOLDERS: Record<PlaceholderId, TopicMeta> = {
   cardioid: {
     title: "The Coffee-Cup Cardioid",
     tagline: "The light curve in your cup is Mandelbrot's heart",
-    body: "Shine a parallel beam of sunlight on a cylindrical coffee cup. The reflections off the inside wall do not focus to a point — they envelope a glowing heart-shaped curve on the surface of the coffee. That curve is a cardioid: r = 2a(1 − cos θ) in polar coordinates. The very same equation describes the main bulb of the Mandelbrot set. Every morning, in every café, the most famous shape in dynamics is being drawn in light.",
+    body: "Put a small point source of light (an LED) on the rim of a cylindrical coffee cup. The reflections off the inside wall do not focus back to a point, they envelope a glowing heart-shaped curve on the surface of the coffee. That curve is a cardioid: r = 2a(1 − cos θ) in polar coordinates. The very same equation describes the main bulb of the Mandelbrot set. Every morning, in every café, the most famous shape in dynamics is being drawn in light.",
   },
   galton: {
     title: "The Galton Board",

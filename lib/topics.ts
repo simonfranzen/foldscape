@@ -217,7 +217,7 @@ export const TOPICS: Topic[] = [
     status: "interactive",
     category: "geometry",
     glyph: "L",
-    formula: "A → ABA · B → BBB",
+    formula: "A → AB · B → A",
     sections: [
       { key: "story", href: "/lsystem" },
       { key: "explorer", href: "/lsystem/explorer" },
@@ -506,7 +506,7 @@ export const TOPICS: Topic[] = [
     status: "interactive",
     category: "chaos",
     glyph: "⟁",
-    formula: "θ̈ = −Σᵢ kᵢ (p − mᵢ) / r³",
+    formula: "p̈ = −Σᵢ kᵢ (p − mᵢ) / r³",
     sections: [
       { key: "story", href: "/magpendulum" },
       { key: "explorer", href: "/magpendulum/explorer" },

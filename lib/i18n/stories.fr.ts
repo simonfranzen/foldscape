@@ -46,7 +46,7 @@ export const fr: StoriesDict = {
       title: "Le Jeu de la vie de Conway",
       tagline: "Quatre règles. Des univers en découlent.",
       intro:
-        "Conway a publié les règles en 1970 dans une chronique de Scientific American. Deux pages de magazine, quatre lignes de règles — et une communauté de mathématiciens passe depuis cinquante ans à découvrir ce qu'elles contenaient déjà. Le Bac à sable te permet de dessiner et de lancer n'importe quel motif — mais d'abord, les quatre règles en action.",
+        "Martin Gardner a présenté les règles de Conway dans sa chronique de Scientific American d'octobre 1970. Deux pages de magazine, quatre lignes de règles — et une communauté de mathématiciens passe depuis cinquante ans à découvrir ce qu'elles contenaient déjà. Le Bac à sable te permet de dessiner et de lancer n'importe quel motif — mais d'abord, les quatre règles en action.",
       ctaInteractive: "→ Ouvrir le Bac à sable",
       sections: [
         {
@@ -202,7 +202,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape un · Une atmosphère jouet",
           title: "Lorenz, 1963",
-          body: "Edward Lorenz, météorologue au MIT, cherchait à simuler la convection — de l'air chauffé par le bas, refroidi par le haut. Avec Ellen Fetter aux calculs numériques et Margaret Hamilton aux calculs préparatoires, il a ramené le problème à trois variables et trois équations. L'article de 1963, « Deterministic Nonperiodic Flow », soutenait que même cette simplification drastique pouvait se comporter de manière imprévisible. L'article est resté largement ignoré pendant une décennie.",
+          body: "Edward Lorenz, météorologue au MIT, cherchait à simuler la convection — de l'air chauffé par le bas, refroidi par le haut. Margaret Hamilton avait programmé les simulations météorologiques antérieures; Ellen Fetter a mené les calculs derrière le modèle à trois équations. Il a ramené le problème à trois variables et trois équations. L'article de 1963, « Deterministic Nonperiodic Flow », soutenait que même cette simplification drastique pouvait se comporter de manière imprévisible. L'article est resté largement ignoré pendant une décennie.",
         },
         {
           pretitle: "Étape deux · Les trois équations",
@@ -963,7 +963,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape trois · Pourquoi des diagonales",
           title: "Chaque diagonale est un polynôme 4n² + bn + c",
-          body: "Les nombres le long de toute diagonale de la spirale d'Ulam satisfont une formule quadratique de la forme 4n² + bn + c. Une diagonale pleine de premiers signifie donc que le polynôme est exceptionnellement riche en premiers. Certaines sont spectaculaires. Le polynôme d'Euler n² − n + 41 — découvert en 1772 — produit des premiers pour tout n de 0 à 39, et correspond à une bande diagonale visible. Qu'une infinité de premiers se trouvent sur une telle diagonale est, pour toute diagonale particulière, non prouvé. La conjecture de Bouniakovski dit oui ; personne ne l'a montré.",
+          body: "Les nombres le long de toute diagonale de la spirale d'Ulam satisfont une formule quadratique de la forme 4n² + bn + c. Une diagonale pleine de premiers signifie donc que le polynôme est exceptionnellement riche en premiers. Certaines sont spectaculaires. Le polynôme d'Euler n² − n + 41 — découvert en 1772 — produit des premiers pour tout n de 0 à 40, et correspond à une bande diagonale visible. Qu'une infinité de premiers se trouvent sur une telle diagonale est, pour toute diagonale particulière, non prouvé. La conjecture de Bouniakovski dit oui ; personne ne l'a montré.",
         },
         {
           pretitle: "Étape quatre · Le problème plus profond",

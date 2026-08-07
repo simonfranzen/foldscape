@@ -128,7 +128,7 @@ const en: StoriesDict = {
       title: "Conway's Game of Life",
       tagline: "Four rules. Universes follow.",
       intro:
-        "Conway published the rules in 1970 in a Scientific American column. Two pages of magazine, four lines of rule, and a community of mathematicians has spent fifty years discovering what was already inside them. The Sandbox lets you draw and run any pattern — but first, the four rules in action.",
+        "Martin Gardner introduced Conway's rules in his October 1970 Scientific American column. Two pages of magazine, four lines of rule, and a community of mathematicians has spent fifty years discovering what was already inside them. The Sandbox lets you draw and run any pattern — but first, the four rules in action.",
       ctaInteractive: "→ Open the Sandbox",
       sections: [
         {
@@ -284,7 +284,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step one · A toy atmosphere",
           title: "Lorenz, 1963",
-          body: "Edward Lorenz, MIT meteorologist, was trying to simulate convection — air heated from below, cooled from above. With Ellen Fetter doing the numerical runs and Margaret Hamilton handling the calculations, he cut the problem down to three variables and three equations. The 1963 paper, 'Deterministic Nonperiodic Flow', argued that even this drastic simplification could behave unpredictably. The paper went largely unread for a decade.",
+          body: "Edward Lorenz, MIT meteorologist, was trying to simulate convection — air heated from below, cooled from above. Margaret Hamilton had programmed the earlier weather runs; Ellen Fetter ran the computations behind the three-equation model. He cut the problem down to three variables and three equations. The 1963 paper, 'Deterministic Nonperiodic Flow', argued that even this drastic simplification could behave unpredictably. The paper went largely unread for a decade.",
         },
         {
           pretitle: "Step two · The three equations",
@@ -1044,7 +1044,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step three · Why diagonals",
           title: "Each diagonal is a polynomial 4n² + bn + c",
-          body: "Numbers along any diagonal of the Ulam spiral satisfy a quadratic formula of the form 4n² + bn + c. A diagonal full of primes therefore means the polynomial is unusually prime-rich. Some are spectacular. Euler's polynomial n² − n + 41 — discovered in 1772 — produces primes for every n from 0 to 39, and corresponds to a visible diagonal streak. Whether infinitely many primes lie on such a diagonal is, for any specific diagonal, unproven. The Bunyakovsky conjecture says yes; nobody has shown it.",
+          body: "Numbers along any diagonal of the Ulam spiral satisfy a quadratic formula of the form 4n² + bn + c. A diagonal full of primes therefore means the polynomial is unusually prime-rich. Some are spectacular. Euler's polynomial n² − n + 41 — discovered in 1772 — produces primes for every n from 0 to 40, and corresponds to a visible diagonal streak. Whether infinitely many primes lie on such a diagonal is, for any specific diagonal, unproven. The Bunyakovsky conjecture says yes; nobody has shown it.",
         },
         {
           pretitle: "Step four · The deeper problem",
@@ -1058,13 +1058,13 @@ const en: StoriesDict = {
       title: "The Coffee-Cup Cardioid",
       tagline: "The light curve in your cup is Mandelbrot's heart.",
       intro:
-        "Shine parallel sunlight onto a cylindrical coffee cup. The reflections from the inside wall do not focus at a point — they envelope a heart-shaped curve drifting on the surface of the coffee. That curve is the cardioid r = 2a(1 − cos θ). The very same equation describes the main bulb of the Mandelbrot set. Every morning, the most famous shape in dynamics is being drawn in light.",
+        "Put a small point source of light (an LED) on the rim of a cylindrical coffee cup. The reflections from the inside wall do not focus back at a point, they envelope a heart-shaped curve drifting on the surface of the coffee. That curve is the cardioid r = 2a(1 − cos θ). The very same equation describes the main bulb of the Mandelbrot set. Every morning, the most famous shape in dynamics is being drawn in light.",
       ctaInteractive: "→ Open the Explorer",
       sections: [
         {
           pretitle: "Step one · The optics",
           title: "Why light bunches up in a cup",
-          body: "A circle reflects a horizontal ray at twice the angle the surface makes with that ray — the law of reflection. So a bundle of horizontal rays striking the inside of a cylindrical cup gets fanned outward by twice the local angle. They do not converge to a single focal point, because the curvature varies; instead, the family of reflected rays envelopes a smooth curve. The mathematicians' word for this envelope is a catacaustic. The catacaustic of a circle, lit by parallel rays, is exactly a cardioid.",
+          body: "A circle reflects each incoming ray at twice the angle the surface makes with it, the law of reflection. Put a small point source right on the rim of a cylindrical cup: the rays it throws across the interior strike the far wall and fan outward by twice the local angle. They do not reconverge to a single focal point, because the curvature varies; instead, the family of reflected rays envelopes a smooth curve. The mathematicians' word for this envelope is a catacaustic. The catacaustic of a circle lit by a point source on its rim is exactly a cardioid. Parallel rays, the sunlight case, give the two-cusped nephroid instead.",
         },
         {
           pretitle: "Step two · The equation",
@@ -1469,7 +1469,7 @@ const de: StoriesDict = {
       title: "Conways Game of Life",
       tagline: "Vier Regeln. Universen folgen.",
       intro:
-        "Conway veröffentlichte die Regeln 1970 in einer Kolumne von Scientific American. Zwei Magazinseiten, vier Regelzeilen — und eine Gemeinschaft von Mathematiker:innen hat seither fünfzig Jahre damit verbracht zu entdecken, was schon darin steckte. Die Sandbox erlaubt dir, jedes Muster zu zeichnen und laufen zu lassen — vorher: die vier Regeln in Aktion.",
+        "Martin Gardner stellte Conways Regeln im Oktober 1970 in seiner Kolumne im Scientific American vor. Zwei Magazinseiten, vier Regelzeilen — und eine Gemeinschaft von Mathematiker:innen hat seither fünfzig Jahre damit verbracht zu entdecken, was schon darin steckte. Die Sandbox erlaubt dir, jedes Muster zu zeichnen und laufen zu lassen — vorher: die vier Regeln in Aktion.",
       ctaInteractive: "→ Sandbox öffnen",
       sections: [
         {
@@ -1625,7 +1625,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Eine Spielzeug-Atmosphäre",
           title: "Lorenz, 1963",
-          body: "Edward Lorenz, Meteorologe am MIT, wollte Konvektion simulieren — Luft, die unten erwärmt und oben gekühlt wird. Mit Ellen Fetter an den numerischen Rechnungen und Margaret Hamilton bei den Vorab-Berechnungen reduzierte er das Problem auf drei Variablen und drei Gleichungen. Sein Paper von 1963, 'Deterministic Nonperiodic Flow', argumentierte, dass selbst diese radikale Vereinfachung sich unvorhersehbar verhalten kann. Es blieb über ein Jahrzehnt weitgehend ungelesen.",
+          body: "Edward Lorenz, Meteorologe am MIT, wollte Konvektion simulieren — Luft, die unten erwärmt und oben gekühlt wird. Margaret Hamilton hatte die früheren Wetterläufe programmiert; Ellen Fetter führte die Berechnungen hinter dem Drei-Gleichungen-Modell aus. Er reduzierte das Problem auf drei Variablen und drei Gleichungen. Sein Paper von 1963, 'Deterministic Nonperiodic Flow', argumentierte, dass selbst diese radikale Vereinfachung sich unvorhersehbar verhalten kann. Es blieb über ein Jahrzehnt weitgehend ungelesen.",
         },
         {
           pretitle: "Schritt zwei · Die drei Gleichungen",
@@ -1712,7 +1712,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Hilberts Traum",
           title: "Die ganze Mathematik mechanisieren",
-          body: "Frühes zwanzigstes Jahrhundert. Whitehead und Russells Principia Mathematica (1910–1913) versuchten, jeden Satz der Arithmetik aus einem einzigen Turm logischer Axiome herzuleiten. David Hilbert verlangte in seinem Pariser Programm von 1900 und dann in seinem formalistischen Vorstoß der 1920er Jahre ein endliches, mechanisches System, aus dem sich jede wahre Aussage beweisen lässt und dessen Widerspruchsfreiheit von innen nachweisbar ist. Eine vollständige, widerspruchsfreie, entscheidbare formale Mathematik. Jeder mit Papier und Geduld könnte im Prinzip jede mathematische Frage klären. Das war der Traum.",
+          body: "Frühes zwanzigstes Jahrhundert. Whitehead und Russells Principia Mathematica (1910–1913) versuchten, jeden Satz der Arithmetik aus einem einzigen Turm logischer Axiome herzuleiten. David Hilbert verlangte in seinem Pariser Programm von 1900 und dann in seinem formalistischen Vorstoß der 1920er Jahre ein endliches, mechanisches System, aus dem sich jede wahre Aussage beweisen lässt und dessen Widerspruchsfreiheit von innen nachweisbar ist. Eine vollständige, widerspruchsfreie, entscheidbare formale Mathematik. Alle mit Papier und Geduld könnten im Prinzip jede mathematische Frage klären. Das war der Traum.",
         },
         {
           pretitle: "Schritt zwei · Die Gödel-Nummerierung",

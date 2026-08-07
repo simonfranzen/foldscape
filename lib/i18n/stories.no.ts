@@ -46,7 +46,7 @@ export const no: StoriesDict = {
       title: "Conways Game of Life",
       tagline: "Fire regler. Universer følger.",
       intro:
-        "Conway publiserte reglene i 1970 i en spalte i Scientific American. To magasinsider, fire linjer med regler, og et fellesskap av matematikere har brukt femti år på å oppdage det som allerede lå i dem. Sandkassen lar deg tegne og kjøre hvilket som helst mønster — men først, de fire reglene i aksjon.",
+        "Martin Gardner presenterte Conways regler i sin spalte i Scientific American i oktober 1970. To magasinsider, fire linjer med regler, og et fellesskap av matematikere har brukt femti år på å oppdage det som allerede lå i dem. Sandkassen lar deg tegne og kjøre hvilket som helst mønster — men først, de fire reglene i aksjon.",
       ctaInteractive: "→ Åpne Sandkassen",
       sections: [
         {
@@ -202,7 +202,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · En leketøysatmosfære",
           title: "Lorenz, 1963",
-          body: "Edward Lorenz, MIT-meteorolog, prøvde å simulere konveksjon — luft varmet opp nedenfra, avkjølt ovenfra. Med Ellen Fetter som utførte de numeriske kjøringene og Margaret Hamilton som håndterte beregningene, skar han problemet ned til tre variabler og tre ligninger. Artikkelen fra 1963, 'Deterministic Nonperiodic Flow', hevdet at selv denne drastiske forenklingen kunne oppføre seg uforutsigbart. Artikkelen ble stort sett ulest i et tiår.",
+          body: "Edward Lorenz, MIT-meteorolog, prøvde å simulere konveksjon — luft varmet opp nedenfra, avkjølt ovenfra. Margaret Hamilton hadde programmert de tidligere værkjøringene; Ellen Fetter utførte beregningene bak trelignings-modellen. Han skar problemet ned til tre variabler og tre ligninger. Artikkelen fra 1963, 'Deterministic Nonperiodic Flow', hevdet at selv denne drastiske forenklingen kunne oppføre seg uforutsigbart. Artikkelen ble stort sett ulest i et tiår.",
         },
         {
           pretitle: "Trinn to · De tre ligningene",
@@ -962,7 +962,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Hvorfor diagonaler",
           title: "Hver diagonal er et polynom 4n² + bn + c",
-          body: "Tall langs enhver diagonal av Ulam-spiralen tilfredsstiller en kvadratisk formel av formen 4n² + bn + c. En diagonal full av primtall betyr derfor at polynomet er uvanlig primtallsrikt. Noen er spektakulære. Eulers polynom n² − n + 41 — oppdaget i 1772 — produserer primtall for hver n fra 0 til 39, og tilsvarer en synlig diagonalstripe. Om uendelig mange primtall ligger på en slik diagonal er, for enhver spesifikk diagonal, ubevist. Bunyakovsky-formodningen sier ja; ingen har vist det.",
+          body: "Tall langs enhver diagonal av Ulam-spiralen tilfredsstiller en kvadratisk formel av formen 4n² + bn + c. En diagonal full av primtall betyr derfor at polynomet er uvanlig primtallsrikt. Noen er spektakulære. Eulers polynom n² − n + 41 — oppdaget i 1772 — produserer primtall for hver n fra 0 til 40, og tilsvarer en synlig diagonalstripe. Om uendelig mange primtall ligger på en slik diagonal er, for enhver spesifikk diagonal, ubevist. Bunyakovsky-formodningen sier ja; ingen har vist det.",
         },
         {
           pretitle: "Trinn fire · Det dypere problemet",
