@@ -44,6 +44,11 @@ test-results/
 
 # working screenshots dropped at the repo root (not site assets — those live in public/)
 /*.png
+/*.jpg
+/*.jpeg
+
+# Claude Code local state (worktrees, workflows, per-machine permissions)
+.claude/
 
 # video generator — internal, not part of the open-source release
 /video/
