@@ -82,6 +82,12 @@ export function Footer() {
           >
             {t.footer.imprint}
           </Link>
+          <Link
+            href="/datenschutz"
+            className="hairline rounded-full border px-3 py-2 text-ink-200 transition-colors hover:border-signal-violet/50 hover:text-signal-violet"
+          >
+            {t.footer.privacy}
+          </Link>
         </div>
       </div>
     </footer>

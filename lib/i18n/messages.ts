@@ -6,7 +6,7 @@ import type { Locale } from "./types";
 
 export type Dict = {
   nav: { imprint: string; language: string };
-  footer: { imprint: string; license: string; copyright: string };
+  footer: { imprint: string; privacy: string; license: string; copyright: string };
   imprint: {
     title: string;
     intro: string;
@@ -31,12 +31,13 @@ const en: Dict = {
   },
   footer: {
     imprint: "Imprint",
+    privacy: "Privacy",
     license: "Open source under CC BY 4.0",
     copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   imprint: {
     title: "Imprint",
-    intro: "Information in accordance with § 5 TMG.",
+    intro: "Information in accordance with § 5 DDG.",
     company: "Company",
     address: "Address",
     register: "Commercial Register",
@@ -59,12 +60,13 @@ const de: Dict = {
   },
   footer: {
     imprint: "Impressum",
+    privacy: "Datenschutz",
     license: "Open Source unter CC BY 4.0",
     copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   imprint: {
     title: "Impressum",
-    intro: "Angaben gemäß § 5 TMG.",
+    intro: "Angaben gemäß § 5 DDG.",
     company: "Unternehmen",
     address: "Anschrift",
     register: "Handelsregister",
@@ -87,12 +89,13 @@ const es: Dict = {
   },
   footer: {
     imprint: "Aviso legal",
+    privacy: "Privacidad",
     license: "Código abierto bajo CC BY 4.0",
     copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   imprint: {
     title: "Aviso legal",
-    intro: "Información conforme al § 5 de la Ley alemana de Telemedios (TMG).",
+    intro: "Información conforme al § 5 de la Ley alemana de Servicios Digitales (DDG).",
     company: "Empresa",
     address: "Dirección",
     register: "Registro mercantil",
@@ -115,12 +118,13 @@ const fr: Dict = {
   },
   footer: {
     imprint: "Mentions légales",
+    privacy: "Confidentialité",
     license: "Open source sous CC BY 4.0",
     copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   imprint: {
     title: "Mentions légales",
-    intro: "Informations selon § 5 TMG (Allemagne).",
+    intro: "Informations selon § 5 DDG (Allemagne).",
     company: "Société",
     address: "Adresse",
     register: "Registre du commerce",
@@ -143,12 +147,13 @@ const it: Dict = {
   },
   footer: {
     imprint: "Note legali",
+    privacy: "Privacy",
     license: "Open source sotto CC BY 4.0",
     copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   imprint: {
     title: "Note legali",
-    intro: "Informazioni ai sensi del § 5 TMG (Germania).",
+    intro: "Informazioni ai sensi del § 5 DDG (Germania).",
     company: "Azienda",
     address: "Indirizzo",
     register: "Registro delle imprese",
@@ -171,12 +176,13 @@ const pt: Dict = {
   },
   footer: {
     imprint: "Aviso legal",
+    privacy: "Privacidade",
     license: "Código aberto sob CC BY 4.0",
     copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   imprint: {
     title: "Aviso legal",
-    intro: "Informações conforme § 5 TMG (Alemanha).",
+    intro: "Informações conforme § 5 DDG (Alemanha).",
     company: "Empresa",
     address: "Endereço",
     register: "Registro comercial",
@@ -199,12 +205,13 @@ const sv: Dict = {
   },
   footer: {
     imprint: "Juridisk info",
+    privacy: "Integritet",
     license: "Öppen källkod under CC BY 4.0",
     copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   imprint: {
     title: "Juridisk information",
-    intro: "Uppgifter enligt § 5 TMG (Tyskland).",
+    intro: "Uppgifter enligt § 5 DDG (Tyskland).",
     company: "Företag",
     address: "Adress",
     register: "Handelsregister",
@@ -227,12 +234,13 @@ const no: Dict = {
   },
   footer: {
     imprint: "Juridisk info",
+    privacy: "Personvern",
     license: "Åpen kildekode under CC BY 4.0",
     copyright: "© 2026 zauberware technologies GmbH & Co. KG",
   },
   imprint: {
     title: "Juridisk informasjon",
-    intro: "Opplysninger i henhold til § 5 TMG (Tyskland).",
+    intro: "Opplysninger i henhold til § 5 DDG (Tyskland).",
     company: "Selskap",
     address: "Adresse",
     register: "Handelsregister",
