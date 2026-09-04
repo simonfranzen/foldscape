@@ -127,14 +127,7 @@ export function DiffusionSignatureHero() {
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" aria-hidden="true">
         {/* Soft horizontal guide for each track */}
-        <line
-          x1={20}
-          y1={87}
-          x2={W - 20}
-          y2={87}
-          stroke="rgba(234,236,243,0.05)"
-          strokeWidth="1"
-        />
+        <line x1={20} y1={87} x2={W - 20} y2={87} stroke="rgba(234,236,243,0.05)" strokeWidth="1" />
         <line
           x1={20}
           y1={233}

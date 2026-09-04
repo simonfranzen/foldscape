@@ -18,8 +18,7 @@ interface Props {
 
 export function TopicApplications({ topicId, accent }: Props) {
   const { u, locale } = useI18n();
-  const applications =
-    TOPIC_APPLICATIONS[locale]?.[topicId] ?? TOPIC_APPLICATIONS.en[topicId];
+  const applications = TOPIC_APPLICATIONS[locale]?.[topicId] ?? TOPIC_APPLICATIONS.en[topicId];
   if (!applications || applications.length === 0) return null;
   return (
     <Reveal>

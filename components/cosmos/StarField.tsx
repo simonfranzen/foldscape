@@ -114,11 +114,7 @@ function spawnForm(width: number, height: number, seed: number): FadingForm {
   };
 }
 
-function drawForm(
-  ctx: CanvasRenderingContext2D,
-  f: FadingForm,
-  rotation: number,
-): void {
+function drawForm(ctx: CanvasRenderingContext2D, f: FadingForm, rotation: number): void {
   // Triangular envelope: 0..0.36 fade in, 0.36..0.64 dwell, 0.64..1 fade out.
   const u = f.life / f.maxLife;
   let envelope: number;

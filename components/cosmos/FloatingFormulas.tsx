@@ -56,10 +56,7 @@ function pretty(s: string): string {
 
 export function FloatingFormulas() {
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-20 overflow-hidden"
-    >
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-20 overflow-hidden">
       {PIECES.map((p, i) => (
         <span
           key={i}

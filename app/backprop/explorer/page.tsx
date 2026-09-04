@@ -433,9 +433,7 @@ function forward(net: Net, x: number[]): number {
 function trainBatch(net: Net, batch: Array<{ x: number[]; y: number }>, lr: number): number {
   // Accumulate gradients across the batch.
   const L = net.layers.length;
-  const gW: number[][][] = net.layers.map((ly) =>
-    ly.W.map((row) => row.map(() => 0)),
-  );
+  const gW: number[][][] = net.layers.map((ly) => ly.W.map((row) => row.map(() => 0)));
   const gb: number[][] = net.layers.map((ly) => ly.b.map(() => 0));
 
   let lossSum = 0;
@@ -595,7 +593,7 @@ export default function BackpropExplorer() {
   // Rebuild network whenever topology or seed changes; rebuild dataset
   // whenever task or topology (because feature length depends on topology).
   const reset = useCallback(() => {
-    seedRef.current = ((seedRef.current * 7 + 31) >>> 0) || 1;
+    seedRef.current = (seedRef.current * 7 + 31) >>> 0 || 1;
     netRef.current = makeNet(topology, seedRef.current);
     datasetRef.current = makeDataset(task, topology, 160, 7);
     setLosses([]);
@@ -791,7 +789,8 @@ export default function BackpropExplorer() {
             <div
               className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${statusColor}`}
             >
-              {statusBadge} · {x.epochLabel} {epoch} · {x.accuracyLabel} {(accuracy * 100).toFixed(0)}%
+              {statusBadge} · {x.epochLabel} {epoch} · {x.accuracyLabel}{" "}
+              {(accuracy * 100).toFixed(0)}%
             </div>
           </div>
           <div className="hairline relative flex-1 overflow-hidden rounded-2xl border bg-ink-950">
@@ -832,9 +831,7 @@ export default function BackpropExplorer() {
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
-            {topic.body && (
-              <p className="text-sm leading-relaxed text-ink-200">{topic.body}</p>
-            )}
+            {topic.body && <p className="text-sm leading-relaxed text-ink-200">{topic.body}</p>}
           </div>
 
           {/* Topology */}

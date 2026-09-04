@@ -45,9 +45,7 @@ export default function CardioidExplorer() {
     let mandelKey = "";
 
     const reduceMotion =
-      typeof window !== "undefined"
-        ? window.matchMedia("(prefers-reduced-motion: reduce)")
-        : null;
+      typeof window !== "undefined" ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
 
     const resize = () => {
       canvas.width = Math.floor(canvas.clientWidth * dpr);

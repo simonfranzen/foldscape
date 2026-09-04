@@ -98,7 +98,8 @@ const FIGURES: Record<Locale, RichFigures> = {
     problems: {
       sat: "Boolesche Erfüllbarkeit — das ursprüngliche Cook-Levin-Problem.",
       threesat: "SAT mit Klauseln der Länge 3. Der kanonische NP-vollständige Fall.",
-      hamiltonian: "Zeichne einen Pfad durch den Graphen, der jeden Knoten ein einziges Mal berührt.",
+      hamiltonian:
+        "Zeichne einen Pfad durch den Graphen, der jeden Knoten ein einziges Mal berührt.",
       subsetsum: "Wähle eine Teilmenge, deren Summe eine Zielzahl trifft.",
       colouring: "Färbe die Knoten mit k Farben, keine Kante einfarbig.",
       clique: "Finde einen vollständigen Teilgraphen der Größe k.",
@@ -111,7 +112,8 @@ const FIGURES: Record<Locale, RichFigures> = {
   es: {
     finalLabel: "Mira la búsqueda.",
     vennBadge: "Diagrama · el zoológico de la complejidad, vista restringida",
-    vennTitle: "P está dentro de NP, que está dentro de EXP. NP-completo es el borde más duro de NP.",
+    vennTitle:
+      "P está dentro de NP, que está dentro de EXP. NP-completo es el borde más duro de NP.",
     vennAriaLabel: "Diagrama de Venn de P, NP, NP-completo, PSPACE y EXP",
     vennCaption: "P ⊆ NP ⊆ PSPACE ⊆ EXP · P ⊊ EXP (teorema de la jerarquía temporal)",
     vennBody:
@@ -186,7 +188,8 @@ const FIGURES: Record<Locale, RichFigures> = {
   pt: {
     finalLabel: "Observe a busca.",
     vennBadge: "Diagrama · o zoológico da complexidade, vista restrita",
-    vennTitle: "P está dentro de NP, que está dentro de EXP. NP-completo é a borda mais dura de NP.",
+    vennTitle:
+      "P está dentro de NP, que está dentro de EXP. NP-completo é a borda mais dura de NP.",
     vennAriaLabel: "Diagrama de Venn de P, NP, NP-completo, PSPACE e EXP",
     vennCaption: "P ⊆ NP ⊆ PSPACE ⊆ EXP · P ⊊ EXP (teorema da hierarquia temporal)",
     vennBody:
@@ -314,7 +317,13 @@ export default function PvsNPStoryPage() {
                 stroke="rgba(125,243,255,0.55)"
                 strokeWidth="1.5"
               />
-              <text x="40" y="40" fill={palette.signal.cyan} fontFamily="ui-monospace, monospace" fontSize="14">
+              <text
+                x="40"
+                y="40"
+                fill={palette.signal.cyan}
+                fontFamily="ui-monospace, monospace"
+                fontSize="14"
+              >
                 EXP
               </text>
 

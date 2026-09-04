@@ -5,7 +5,12 @@ import { palette } from "@/lib/visual/palette";
 
 // ─── Palette ─────────────────────────────────────────────────────────────────
 // Cyan, violet, amber, rose — matches the Explorer.
-const COLOURS = [palette.signal.cyan, palette.signal.violet, palette.signal.amber, palette.signal.rose] as const;
+const COLOURS = [
+  palette.signal.cyan,
+  palette.signal.violet,
+  palette.signal.amber,
+  palette.signal.rose,
+] as const;
 
 // ─── Tiles ───────────────────────────────────────────────────────────────────
 // A hand-picked palette of 8 tiles drawn from the 4-colour space. Enough

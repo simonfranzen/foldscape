@@ -138,7 +138,10 @@ function step(p: Preset, s: State): State {
   const conflictIdx = p.clauses.findIndex((c) => clauseStatus(c, a).kind === "conflict");
   if (conflictIdx >= 0) {
     // Undo propagations and already-flipped decisions back to the last open decision.
-    while (trail.length && (trail[trail.length - 1].reason === "unit" || trail[trail.length - 1].flipped)) {
+    while (
+      trail.length &&
+      (trail[trail.length - 1].reason === "unit" || trail[trail.length - 1].flipped)
+    ) {
       a[trail[trail.length - 1].v] = null;
       trail = trail.slice(0, -1);
     }
@@ -149,7 +152,10 @@ function step(p: Preset, s: State): State {
     trail = trail.slice(0, -1);
     const flippedVal = !d.value;
     a[d.v] = flippedVal;
-    trail = [...trail, { v: d.v, value: flippedVal, reason: "decide", flipped: true, level: d.level }];
+    trail = [
+      ...trail,
+      { v: d.v, value: flippedVal, reason: "decide", flipped: true, level: d.level },
+    ];
     return {
       assignment: a,
       trail,
@@ -186,7 +192,13 @@ function step(p: Preset, s: State): State {
   const level = s.level + 1;
   a[v] = true;
   trail = [...trail, { v, value: true, reason: "decide", flipped: false, level }];
-  return { assignment: a, trail, level, status: "running", action: { type: "decide", v, value: true, level } };
+  return {
+    assignment: a,
+    trail,
+    level,
+    status: "running",
+    action: { type: "decide", v, value: true, level },
+  };
 }
 
 const litText = (l: Lit, p: Preset) => (l.neg ? "¬" : "") + p.vars[l.v];
@@ -968,7 +980,10 @@ export default function SatExplorer() {
             <Legend swatch="bg-signal-rose/20 border-signal-rose/70" label={tr.legendConflict} />
             <Legend swatch="bg-ink-900 border-ink-500/40" label={tr.legendOpen} />
             <div className="pt-2 uppercase tracking-widest2 text-ink-300">{tr.searchPath}</div>
-            <Legend swatch="bg-signal-violet/20 border-signal-violet/60" label={tr.legendDecision} />
+            <Legend
+              swatch="bg-signal-violet/20 border-signal-violet/60"
+              label={tr.legendDecision}
+            />
             <Legend swatch="bg-signal-cyan/20 border-signal-cyan/50" label={tr.legendPropagation} />
           </div>
 

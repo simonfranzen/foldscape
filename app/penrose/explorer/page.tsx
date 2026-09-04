@@ -232,7 +232,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     depth: "Deflationstiefe",
     rhombiWord: "Rhomben",
     halvesWord: "Halbkacheln",
-    depthNote: "Tiefe 6 sind schon etwa 1.200 Rhomben; die Anzahl wächst pro Schritt um φ² ≈ 2,618.",
+    depthNote:
+      "Tiefe 6 sind schon etwa 1.200 Rhomben; die Anzahl wächst pro Schritt um φ² ≈ 2,618.",
     rotation: "Keim-Drehung",
     display: "Anzeige",
     outlines: "Umrisse zeigen",
@@ -259,7 +260,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     depth: "Profundidad de deflación",
     rhombiWord: "rombos",
     halvesWord: "medias-piezas",
-    depthNote: "La profundidad 6 ya son unos 1200 rombos; el número crece por φ² ≈ 2,618 en cada paso.",
+    depthNote:
+      "La profundidad 6 ya son unos 1200 rombos; el número crece por φ² ≈ 2,618 en cada paso.",
     rotation: "Rotación de la semilla",
     display: "Visualización",
     outlines: "Mostrar contornos",
@@ -286,7 +288,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     depth: "Profondeur de déflation",
     rhombiWord: "losanges",
     halvesWord: "demi-tuiles",
-    depthNote: "La profondeur 6 fait déjà environ 1 200 losanges ; le nombre croît de φ² ≈ 2,618 à chaque étape.",
+    depthNote:
+      "La profondeur 6 fait déjà environ 1 200 losanges ; le nombre croît de φ² ≈ 2,618 à chaque étape.",
     rotation: "Rotation de la graine",
     display: "Affichage",
     outlines: "Afficher les contours",
@@ -313,7 +316,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     depth: "Profondità di deflazione",
     rhombiWord: "rombi",
     halvesWord: "mezze-piastrelle",
-    depthNote: "La profondità 6 sono già circa 1200 rombi; il numero cresce di φ² ≈ 2,618 a ogni passo.",
+    depthNote:
+      "La profondità 6 sono già circa 1200 rombi; il numero cresce di φ² ≈ 2,618 a ogni passo.",
     rotation: "Rotazione del seme",
     display: "Visualizzazione",
     outlines: "Mostra contorni",
@@ -340,7 +344,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     depth: "Profundidade de deflação",
     rhombiWord: "losangos",
     halvesWord: "meias-peças",
-    depthNote: "A profundidade 6 já são cerca de 1200 losangos; o número cresce por φ² ≈ 2,618 a cada passo.",
+    depthNote:
+      "A profundidade 6 já são cerca de 1200 losangos; o número cresce por φ² ≈ 2,618 a cada passo.",
     rotation: "Rotação da semente",
     display: "Visualização",
     outlines: "Mostrar contornos",
@@ -666,11 +671,15 @@ export default function PenroseExplorer() {
             <div className="grid grid-cols-3 gap-3">
               <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase text-ink-300">
                 <div className="text-signal-violet">{copy.thickHalves}</div>
-                <div className="mt-1 font-mono text-sm normal-case text-ink-100">{thickHalfCount}</div>
+                <div className="mt-1 font-mono text-sm normal-case text-ink-100">
+                  {thickHalfCount}
+                </div>
               </div>
               <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase text-ink-300">
                 <div className="text-signal-amber">{copy.thinHalves}</div>
-                <div className="mt-1 font-mono text-sm normal-case text-ink-100">{thinHalfCount}</div>
+                <div className="mt-1 font-mono text-sm normal-case text-ink-100">
+                  {thinHalfCount}
+                </div>
               </div>
               <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase text-ink-300">
                 <div>{copy.ratioNote}</div>
@@ -766,10 +775,30 @@ export default function PenroseExplorer() {
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {copy.display}
             </div>
-            <Toggle label={copy.outlines} value={showOutlines} onChange={setShowOutlines} on={copy.on} off={copy.off} />
-            <Toggle label={copy.colors} value={showColors} onChange={setShowColors} on={copy.on} off={copy.off} />
-            <Toggle label={copy.arrows} value={showArrows} onChange={setShowArrows} on={copy.on} off={copy.off} />
-            <p className="pt-1 font-mono text-[10px] leading-relaxed text-ink-400">{copy.arrowsNote}</p>
+            <Toggle
+              label={copy.outlines}
+              value={showOutlines}
+              onChange={setShowOutlines}
+              on={copy.on}
+              off={copy.off}
+            />
+            <Toggle
+              label={copy.colors}
+              value={showColors}
+              onChange={setShowColors}
+              on={copy.on}
+              off={copy.off}
+            />
+            <Toggle
+              label={copy.arrows}
+              value={showArrows}
+              onChange={setShowArrows}
+              on={copy.on}
+              off={copy.off}
+            />
+            <p className="pt-1 font-mono text-[10px] leading-relaxed text-ink-400">
+              {copy.arrowsNote}
+            </p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">

@@ -78,9 +78,23 @@ function ParadoxSpecimen({ progress }: { progress: number }) {
     <g>
       <g stroke={palette.signal.rose} fill="none">
         <circle cx={500} cy={300} r={260} strokeWidth={0.8} strokeOpacity={0.18 * ring1} />
-        <circle cx={500} cy={300} r={210} strokeWidth={0.7} strokeOpacity={0.18 * ring2} strokeDasharray="2 5" />
+        <circle
+          cx={500}
+          cy={300}
+          r={210}
+          strokeWidth={0.7}
+          strokeOpacity={0.18 * ring2}
+          strokeDasharray="2 5"
+        />
         <circle cx={500} cy={300} r={160} strokeWidth={0.6} strokeOpacity={0.18 * ring3} />
-        <circle cx={500} cy={300} r={110} strokeWidth={0.5} strokeOpacity={0.18 * ring4} strokeDasharray="2 5" />
+        <circle
+          cx={500}
+          cy={300}
+          r={110}
+          strokeWidth={0.5}
+          strokeOpacity={0.18 * ring4}
+          strokeDasharray="2 5"
+        />
       </g>
       <text
         x={500}
@@ -116,13 +130,7 @@ function LogicSpecimen({ progress }: { progress: number }) {
         strokeDasharray="400"
         strokeDashoffset={dashoffset(body, 400)}
       />
-      <circle
-        cx={520}
-        cy={300}
-        r={10}
-        strokeWidth={1.6}
-        strokeOpacity={0.32 * outDot}
-      />
+      <circle cx={520} cy={300} r={10} strokeWidth={1.6} strokeOpacity={0.32 * outDot} />
       <line x1={530} y1={300} x2={680} y2={300} strokeWidth={1.2} strokeOpacity={0.32 * outWire} />
     </g>
   );
@@ -224,8 +232,22 @@ function ChaosSpecimen({ progress }: { progress: number }) {
         strokeDasharray={lenB}
         strokeDashoffset={dashoffset(lobeB, lenB)}
       />
-      <circle cx={330} cy={280} r={6} fill={palette.signal.coral} opacity={0.5 * eyes} stroke="none" />
-      <circle cx={670} cy={280} r={6} fill={palette.signal.coral} opacity={0.5 * eyes} stroke="none" />
+      <circle
+        cx={330}
+        cy={280}
+        r={6}
+        fill={palette.signal.coral}
+        opacity={0.5 * eyes}
+        stroke="none"
+      />
+      <circle
+        cx={670}
+        cy={280}
+        r={6}
+        fill={palette.signal.coral}
+        opacity={0.5 * eyes}
+        stroke="none"
+      />
     </g>
   );
 }

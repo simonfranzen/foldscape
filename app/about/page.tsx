@@ -49,16 +49,61 @@ function EmailReveal({ showLabel }: { showLabel: string }) {
 
 // Per-locale UI strings that don't live in the shared bundles because they
 // only exist on this page.
-type AboutUiStrings = { showEmail: string; githubLabel: string; linkedinLabel: string; photoAlt: string };
+type AboutUiStrings = {
+  showEmail: string;
+  githubLabel: string;
+  linkedinLabel: string;
+  photoAlt: string;
+};
 const ABOUT_UI: Record<Locale, AboutUiStrings> = {
-  de: { showEmail: "E-Mail anzeigen", githubLabel: "GitHub", linkedinLabel: "LinkedIn", photoAlt: "Simon Franzen, Foldscape" },
-  en: { showEmail: "Show email", githubLabel: "GitHub", linkedinLabel: "LinkedIn", photoAlt: "Simon Franzen, Foldscape" },
-  es: { showEmail: "Mostrar correo", githubLabel: "GitHub", linkedinLabel: "LinkedIn", photoAlt: "Simon Franzen, Foldscape" },
-  fr: { showEmail: "Afficher l'e-mail", githubLabel: "GitHub", linkedinLabel: "LinkedIn", photoAlt: "Simon Franzen, Foldscape" },
-  it: { showEmail: "Mostra e-mail", githubLabel: "GitHub", linkedinLabel: "LinkedIn", photoAlt: "Simon Franzen, Foldscape" },
-  pt: { showEmail: "Mostrar e-mail", githubLabel: "GitHub", linkedinLabel: "LinkedIn", photoAlt: "Simon Franzen, Foldscape" },
-  sv: { showEmail: "Visa e-post", githubLabel: "GitHub", linkedinLabel: "LinkedIn", photoAlt: "Simon Franzen, Foldscape" },
-  no: { showEmail: "Vis e-post", githubLabel: "GitHub", linkedinLabel: "LinkedIn", photoAlt: "Simon Franzen, Foldscape" },
+  de: {
+    showEmail: "E-Mail anzeigen",
+    githubLabel: "GitHub",
+    linkedinLabel: "LinkedIn",
+    photoAlt: "Simon Franzen, Foldscape",
+  },
+  en: {
+    showEmail: "Show email",
+    githubLabel: "GitHub",
+    linkedinLabel: "LinkedIn",
+    photoAlt: "Simon Franzen, Foldscape",
+  },
+  es: {
+    showEmail: "Mostrar correo",
+    githubLabel: "GitHub",
+    linkedinLabel: "LinkedIn",
+    photoAlt: "Simon Franzen, Foldscape",
+  },
+  fr: {
+    showEmail: "Afficher l'e-mail",
+    githubLabel: "GitHub",
+    linkedinLabel: "LinkedIn",
+    photoAlt: "Simon Franzen, Foldscape",
+  },
+  it: {
+    showEmail: "Mostra e-mail",
+    githubLabel: "GitHub",
+    linkedinLabel: "LinkedIn",
+    photoAlt: "Simon Franzen, Foldscape",
+  },
+  pt: {
+    showEmail: "Mostrar e-mail",
+    githubLabel: "GitHub",
+    linkedinLabel: "LinkedIn",
+    photoAlt: "Simon Franzen, Foldscape",
+  },
+  sv: {
+    showEmail: "Visa e-post",
+    githubLabel: "GitHub",
+    linkedinLabel: "LinkedIn",
+    photoAlt: "Simon Franzen, Foldscape",
+  },
+  no: {
+    showEmail: "Vis e-post",
+    githubLabel: "GitHub",
+    linkedinLabel: "LinkedIn",
+    photoAlt: "Simon Franzen, Foldscape",
+  },
 };
 
 // --------------------------------------------------------------------------
@@ -126,8 +171,7 @@ const de: RichAbout = {
   studio: {
     pretitle: "Studio",
     title: "Kuratiert unter zauberware",
-    body:
-      "Foldscape entsteht im Umfeld von zauberware — einem AI Software Studio aus Prien am Chiemsee, das seit 2012 maßgeschneiderte Digitalisierungs- und KI-Plattformen für den DACH-Raum baut. Remote-first, kein Offshore, mit einem Faible für gründliche Engineering-Arbeit statt schneller Demos. Foldscape ist das offene, nicht-kommerzielle Geschwister: weniger Plattform, mehr Atelier.",
+    body: "Foldscape entsteht im Umfeld von zauberware — einem AI Software Studio aus Prien am Chiemsee, das seit 2012 maßgeschneiderte Digitalisierungs- und KI-Plattformen für den DACH-Raum baut. Remote-first, kein Offshore, mit einem Faible für gründliche Engineering-Arbeit statt schneller Demos. Foldscape ist das offene, nicht-kommerzielle Geschwister: weniger Plattform, mehr Atelier.",
     linkLabel: "zauberware.com",
   },
   author: {
@@ -146,7 +190,7 @@ const de: RichAbout = {
     ],
     recognitionLabel: "Anerkennung",
     recognition: [
-      "Civic Innovation Award 2021 des Bundesministeriums für Arbeit und Soziales — „Gemeinsam wird es KI\" (reflecta.network).",
+      'Civic Innovation Award 2021 des Bundesministeriums für Arbeit und Soziales — „Gemeinsam wird es KI" (reflecta.network).',
       "Future City Incubator Stipendium 2021 — gemeinwohlorientierte KI-Anwendungen.",
       "Anthropia gGmbH Stipendium 2020 — Förderung sozialer Initiativen.",
     ],
@@ -178,8 +222,7 @@ const en: RichAbout = {
   studio: {
     pretitle: "Studio",
     title: "Curated under zauberware",
-    body:
-      "Foldscape grows out of zauberware — an AI software studio from Prien am Chiemsee, Bavaria, building bespoke digitalisation and AI platforms for the DACH region since 2012. Remote-first, no offshore, with a taste for thorough engineering over fast demos. Foldscape is the open, non-commercial sibling: less platform, more atelier.",
+    body: "Foldscape grows out of zauberware — an AI software studio from Prien am Chiemsee, Bavaria, building bespoke digitalisation and AI platforms for the DACH region since 2012. Remote-first, no offshore, with a taste for thorough engineering over fast demos. Foldscape is the open, non-commercial sibling: less platform, more atelier.",
     linkLabel: "zauberware.com",
   },
   author: {
@@ -198,7 +241,7 @@ const en: RichAbout = {
     ],
     recognitionLabel: "Recognition",
     recognition: [
-      "Civic Innovation Award 2021 from the German Federal Ministry of Labour and Social Affairs — \"Gemeinsam wird es KI\" (reflecta.network).",
+      'Civic Innovation Award 2021 from the German Federal Ministry of Labour and Social Affairs — "Gemeinsam wird es KI" (reflecta.network).',
       "Future City Incubator Fellowship 2021 — public-interest AI applications.",
       "Anthropia gGmbH fellowship 2020 — support for social initiatives.",
     ],
@@ -230,8 +273,7 @@ const es: RichAbout = {
   studio: {
     pretitle: "Estudio",
     title: "Curado bajo zauberware",
-    body:
-      "Foldscape nace en el entorno de zauberware — un AI software studio de Prien am Chiemsee (Baviera) que desde 2012 construye plataformas de digitalización y de IA a medida para la región DACH. Remote-first, sin offshore, con preferencia por el trabajo de ingeniería minucioso antes que las demos rápidas. Foldscape es su pariente abierto y no comercial: menos plataforma, más atelier.",
+    body: "Foldscape nace en el entorno de zauberware — un AI software studio de Prien am Chiemsee (Baviera) que desde 2012 construye plataformas de digitalización y de IA a medida para la región DACH. Remote-first, sin offshore, con preferencia por el trabajo de ingeniería minucioso antes que las demos rápidas. Foldscape es su pariente abierto y no comercial: menos plataforma, más atelier.",
     linkLabel: "zauberware.com",
   },
   author: {
@@ -282,8 +324,7 @@ const fr: RichAbout = {
   studio: {
     pretitle: "Studio",
     title: "Sous l'égide de zauberware",
-    body:
-      "Foldscape naît dans le sillage de zauberware — un AI software studio basé à Prien am Chiemsee, en Bavière, qui construit depuis 2012 des plateformes de digitalisation et d'IA sur mesure pour la région DACH. Remote-first, sans offshore, avec un goût pour le travail d'ingénierie soigné plutôt que pour les démos rapides. Foldscape en est le pendant ouvert et non commercial : moins de plateforme, plus d'atelier.",
+    body: "Foldscape naît dans le sillage de zauberware — un AI software studio basé à Prien am Chiemsee, en Bavière, qui construit depuis 2012 des plateformes de digitalisation et d'IA sur mesure pour la région DACH. Remote-first, sans offshore, avec un goût pour le travail d'ingénierie soigné plutôt que pour les démos rapides. Foldscape en est le pendant ouvert et non commercial : moins de plateforme, plus d'atelier.",
     linkLabel: "zauberware.com",
   },
   author: {
@@ -334,8 +375,7 @@ const it: RichAbout = {
   studio: {
     pretitle: "Studio",
     title: "Curato sotto zauberware",
-    body:
-      "Foldscape nasce nell'ambito di zauberware — un AI software studio di Prien am Chiemsee, in Baviera, che dal 2012 costruisce piattaforme di digitalizzazione e IA su misura per l'area DACH. Remote-first, senza offshore, con la preferenza per il lavoro di ingegneria accurato rispetto alle demo veloci. Foldscape ne è la controparte aperta e non commerciale: meno piattaforma, più atelier.",
+    body: "Foldscape nasce nell'ambito di zauberware — un AI software studio di Prien am Chiemsee, in Baviera, che dal 2012 costruisce piattaforme di digitalizzazione e IA su misura per l'area DACH. Remote-first, senza offshore, con la preferenza per il lavoro di ingegneria accurato rispetto alle demo veloci. Foldscape ne è la controparte aperta e non commerciale: meno piattaforma, più atelier.",
     linkLabel: "zauberware.com",
   },
   author: {
@@ -386,8 +426,7 @@ const pt: RichAbout = {
   studio: {
     pretitle: "Estúdio",
     title: "Curado sob zauberware",
-    body:
-      "O Foldscape nasce no seio de zauberware — um AI software studio de Prien am Chiemsee, na Baviera, que desde 2012 constrói plataformas de digitalização e de IA à medida para a região DACH. Remote-first, sem offshore, com gosto pelo trabalho de engenharia minucioso em vez de demos rápidas. O Foldscape é o seu parente aberto e não comercial: menos plataforma, mais atelier.",
+    body: "O Foldscape nasce no seio de zauberware — um AI software studio de Prien am Chiemsee, na Baviera, que desde 2012 constrói plataformas de digitalização e de IA à medida para a região DACH. Remote-first, sem offshore, com gosto pelo trabalho de engenharia minucioso em vez de demos rápidas. O Foldscape é o seu parente aberto e não comercial: menos plataforma, mais atelier.",
     linkLabel: "zauberware.com",
   },
   author: {
@@ -438,8 +477,7 @@ const sv: RichAbout = {
   studio: {
     pretitle: "Studio",
     title: "Kurerad under zauberware",
-    body:
-      "Foldscape växer ur zauberware — en AI software studio från Prien am Chiemsee i Bayern, som sedan 2012 bygger skräddarsydda digitaliserings- och AI-plattformar för DACH-regionen. Remote-first, ingen offshore, med smak för grundligt ingenjörsarbete framför snabba demos. Foldscape är dess öppna, icke-kommersiella syskon: mindre plattform, mer ateljé.",
+    body: "Foldscape växer ur zauberware — en AI software studio från Prien am Chiemsee i Bayern, som sedan 2012 bygger skräddarsydda digitaliserings- och AI-plattformar för DACH-regionen. Remote-first, ingen offshore, med smak för grundligt ingenjörsarbete framför snabba demos. Foldscape är dess öppna, icke-kommersiella syskon: mindre plattform, mer ateljé.",
     linkLabel: "zauberware.com",
   },
   author: {
@@ -490,8 +528,7 @@ const no: RichAbout = {
   studio: {
     pretitle: "Studio",
     title: "Kuratert under zauberware",
-    body:
-      "Foldscape vokser ut av zauberware — et AI software studio fra Prien am Chiemsee i Bayern, som siden 2012 har bygget skreddersydde digitaliserings- og AI-plattformer for DACH-regionen. Remote-first, ingen offshore, med en forkjærlighet for grundig ingeniørarbeid framfor raske demoer. Foldscape er det åpne, ikke-kommersielle søskenet: mindre plattform, mer atelier.",
+    body: "Foldscape vokser ut av zauberware — et AI software studio fra Prien am Chiemsee i Bayern, som siden 2012 har bygget skreddersydde digitaliserings- og AI-plattformer for DACH-regionen. Remote-first, ingen offshore, med en forkjærlighet for grundig ingeniørarbeid framfor raske demoer. Foldscape er det åpne, ikke-kommersielle søskenet: mindre plattform, mer atelier.",
     linkLabel: "zauberware.com",
   },
   author: {

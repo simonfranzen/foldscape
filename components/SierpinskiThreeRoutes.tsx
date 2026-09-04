@@ -36,8 +36,7 @@ function hexToRgba(hex: string, alpha: number): string {
 
 function prefersReducedMotion(): boolean {
   return (
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
 }
 
@@ -130,7 +129,12 @@ function PascalPane() {
         const rowOffsetX = ox + ((rows - r - 1) * cell) / 2;
         for (let k = 0; k <= r; k++) {
           if (row[k] === 1) {
-            ctx.fillRect(rowOffsetX + k * cell, oy + r * cell, Math.max(1, cell), Math.max(1, cell));
+            ctx.fillRect(
+              rowOffsetX + k * cell,
+              oy + r * cell,
+              Math.max(1, cell),
+              Math.max(1, cell),
+            );
           }
         }
         const next: number[] = new Array(r + 2).fill(0);

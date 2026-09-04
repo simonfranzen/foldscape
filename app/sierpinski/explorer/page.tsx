@@ -667,8 +667,7 @@ export default function SierpinskiExplorer() {
 
           <div className="flex items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {mode === "subdivision" &&
-                `${ex.depth} ${depth} · ${3 ** depth} ${ex.trianglesUnit}`}
+              {mode === "subdivision" && `${ex.depth} ${depth} · ${3 ** depth} ${ex.trianglesUnit}`}
               {mode === "chaos" && `${totalPoints.toLocaleString()} ${ex.pointsUnit}`}
               {mode === "pascal" && `${rows} ${ex.rowsUnit} · C(n,k) mod 2`}
               {mode === "rule90" && `${gens} ${ex.generationsUnit}`}
@@ -707,7 +706,9 @@ export default function SierpinskiExplorer() {
                   }`}
                 >
                   <div className="font-mono text-xs">{ex.modes[id].label}</div>
-                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">{ex.modes[id].short}</div>
+                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">
+                    {ex.modes[id].short}
+                  </div>
                 </button>
               ))}
             </div>

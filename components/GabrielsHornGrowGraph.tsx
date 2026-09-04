@@ -168,7 +168,9 @@ export function GabrielsHornGrowGraph({
       <canvas
         ref={canvasRef}
         role="img"
-        aria-label={canvasLabel ?? caption ?? "Plot of V(X) converging to π while A(X) grows without bound"}
+        aria-label={
+          canvasLabel ?? caption ?? "Plot of V(X) converging to π while A(X) grows without bound"
+        }
         className="hairline h-[140px] w-full rounded-md border bg-ink-950/80"
       />
       <div className="flex flex-wrap items-center gap-x-5 gap-y-1 font-mono text-[10px] uppercase tracking-widest2">

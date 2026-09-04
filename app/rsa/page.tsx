@@ -330,8 +330,8 @@ export default function RsaStoryPage() {
             <p className="text-sm leading-relaxed text-ink-100">
               {w.roundTripEncrypt} &nbsp;c = 88<sup>7</sup> mod 187 ={" "}
               <span className="font-mono text-signal-cyan">11</span>. &nbsp;{w.roundTripDecrypt}{" "}
-              &nbsp;11<sup>23</sup> mod 187 ={" "}
-              <span className="font-mono text-signal-cyan">88</span>. {w.roundTripExplain}
+              &nbsp;11<sup>23</sup> mod 187 = <span className="font-mono text-signal-cyan">88</span>
+              . {w.roundTripExplain}
             </p>
           </div>
         </section>

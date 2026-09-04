@@ -112,8 +112,14 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     resealing: "Wird verschlossen…",
     story: "← Geschichte",
     cutPresets: [
-      { label: "Mitte  ·  1/2", result: "ein längerer, zweiseitiger Streifen mit zwei vollen Drehungen" },
-      { label: "Drittel  ·  1/3", result: "ein Möbius + ein längeres verschlungenes Möbius, ineinandergehakt" },
+      {
+        label: "Mitte  ·  1/2",
+        result: "ein längerer, zweiseitiger Streifen mit zwei vollen Drehungen",
+      },
+      {
+        label: "Drittel  ·  1/3",
+        result: "ein Möbius + ein längeres verschlungenes Möbius, ineinandergehakt",
+      },
       { label: "Viertel  ·  1/4", result: "gleiche Familie — schmaleres verschlungenes Paar" },
       { label: "kein Schnitt", result: "das unversehrte Möbius-Band" },
     ],
@@ -149,7 +155,10 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     resealing: "Volviendo a sellar…",
     story: "← Historia",
     cutPresets: [
-      { label: "centro  ·  1/2", result: "una banda más larga de dos caras con dos vueltas completas" },
+      {
+        label: "centro  ·  1/2",
+        result: "una banda más larga de dos caras con dos vueltas completas",
+      },
       { label: "tercio  ·  1/3", result: "una Möbius + una Möbius más larga enlazadas" },
       { label: "cuarto  ·  1/4", result: "misma familia — par enlazado más estrecho" },
       { label: "sin corte", result: "la banda de Möbius intacta" },
@@ -186,7 +195,10 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     resealing: "Refermeture…",
     story: "← Histoire",
     cutPresets: [
-      { label: "milieu  ·  1/2", result: "une bande plus longue à deux faces avec deux tours complets" },
+      {
+        label: "milieu  ·  1/2",
+        result: "une bande plus longue à deux faces avec deux tours complets",
+      },
       { label: "tiers  ·  1/3", result: "un Möbius + un Möbius plus long, entrelacés" },
       { label: "quart  ·  1/4", result: "même famille — paire entrelacée plus étroite" },
       { label: "pas de coupe", result: "le ruban de Möbius intact" },
@@ -260,7 +272,10 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     resealing: "A re-selar…",
     story: "← História",
     cutPresets: [
-      { label: "meio  ·  1/2", result: "uma faixa mais longa de dois lados com duas voltas completas" },
+      {
+        label: "meio  ·  1/2",
+        result: "uma faixa mais longa de dois lados com duas voltas completas",
+      },
       { label: "terço  ·  1/3", result: "uma Möbius + uma Möbius mais longa, entrelaçadas" },
       { label: "quarto  ·  1/4", result: "mesma família — par entrelaçado mais estreito" },
       { label: "sem corte", result: "a faixa de Möbius intacta" },
@@ -310,7 +325,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     badgeKlein: "Kleinflaske · 3D-immersjon",
     hudMobius: (n) => `Möbius-bånd · ${n} halvomdreining${n === 1 ? "" : "er"}`,
     hudKlein: "Kleinflaske · 3D-immersjon (selvskjærende)",
-    hudCut: (val, revealed) => `Kutt ved v = ±${val}${revealed ? "  ·  trukket fra hverandre" : ""}`,
+    hudCut: (val, revealed) =>
+      `Kutt ved v = ±${val}${revealed ? "  ·  trukket fra hverandre" : ""}`,
     hudCutRevealedSuffix: "trukket fra hverandre",
     dragHint: (autoSpin, mode) =>
       `dra for å rotere · auto-rotasjon ${autoSpin ? "på" : "av"} · ${mode}`,

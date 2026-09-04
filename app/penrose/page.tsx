@@ -181,7 +181,10 @@ const en: RichStory = {
       { year: "1984", text: "Shechtman et al. publish; the term quasicrystal is coined." },
       { year: "2009", text: "Natural quasicrystal found in a Russian meteorite (icosahedrite)." },
       { year: "2011", text: "Shechtman receives the Nobel Prize in Chemistry." },
-      { year: "2023", text: "Smith, Goodman-Strauss et al. announce the einstein and the spectre." },
+      {
+        year: "2023",
+        text: "Smith, Goodman-Strauss et al. announce the einstein and the spectre.",
+      },
     ],
   },
   closingPretitle: "Take it further",
@@ -305,10 +308,16 @@ const de: RichStory = {
   timeline: {
     title: "Zeitleiste · Papier → Materie → Nobel",
     entries: [
-      { year: "1974", text: "Penrose veröffentlicht die aperiodische Drache-und-Pfeil-Parkettierung." },
+      {
+        year: "1974",
+        text: "Penrose veröffentlicht die aperiodische Drache-und-Pfeil-Parkettierung.",
+      },
       { year: "1982", text: "Shechtman misst fünfzählige Elektronenbeugung in Al-Mn." },
       { year: "1984", text: "Shechtman u.a. publizieren; der Begriff Quasikristall entsteht." },
-      { year: "2009", text: "Natürlicher Quasikristall in einem russischen Meteoriten gefunden (Ikosaedrit)." },
+      {
+        year: "2009",
+        text: "Natürlicher Quasikristall in einem russischen Meteoriten gefunden (Ikosaedrit).",
+      },
       { year: "2011", text: "Shechtman erhält den Nobelpreis für Chemie." },
       { year: "2023", text: "Smith, Goodman-Strauss u.a. verkünden den einstein und den spectre." },
     ],
@@ -435,7 +444,10 @@ const es: RichStory = {
     title: "Cronología · papel → materia → Nobel",
     entries: [
       { year: "1974", text: "Penrose publica el teselado aperiódico de cometa y dardo." },
-      { year: "1982", text: "Shechtman registra difracción electrónica de cinco pliegues en Al-Mn." },
+      {
+        year: "1982",
+        text: "Shechtman registra difracción electrónica de cinco pliegues en Al-Mn.",
+      },
       { year: "1984", text: "Shechtman et al. publican; se acuña el término cuasicristal." },
       { year: "2009", text: "Cuasicristal natural hallado en un meteorito ruso (icosaedrita)." },
       { year: "2011", text: "Shechtman recibe el Nobel de Química." },
@@ -564,9 +576,15 @@ const fr: RichStory = {
     title: "Chronologie · papier → matière → Nobel",
     entries: [
       { year: "1974", text: "Penrose publie le pavage apériodique cerf-volant et flèche." },
-      { year: "1982", text: "Shechtman enregistre une diffraction électronique d'ordre cinq dans Al-Mn." },
+      {
+        year: "1982",
+        text: "Shechtman enregistre une diffraction électronique d'ordre cinq dans Al-Mn.",
+      },
       { year: "1984", text: "Shechtman et al. publient ; le terme quasi-cristal est forgé." },
-      { year: "2009", text: "Quasi-cristal naturel trouvé dans une météorite russe (icosaédrite)." },
+      {
+        year: "2009",
+        text: "Quasi-cristal naturel trouvé dans une météorite russe (icosaédrite).",
+      },
       { year: "2011", text: "Shechtman reçoit le prix Nobel de chimie." },
       { year: "2023", text: "Smith, Goodman-Strauss et al. annoncent l'einstein et le spectre." },
     ],
@@ -693,9 +711,15 @@ const it: RichStory = {
     title: "Cronologia · carta → materia → Nobel",
     entries: [
       { year: "1974", text: "Penrose pubblica la tassellatura aperiodica ad aquilone e dardo." },
-      { year: "1982", text: "Shechtman registra una diffrazione elettronica a cinque pieghe in Al-Mn." },
+      {
+        year: "1982",
+        text: "Shechtman registra una diffrazione elettronica a cinque pieghe in Al-Mn.",
+      },
       { year: "1984", text: "Shechtman et al. pubblicano; si conia il termine quasicristallo." },
-      { year: "2009", text: "Quasicristallo naturale trovato in un meteorite russo (icosaedrite)." },
+      {
+        year: "2009",
+        text: "Quasicristallo naturale trovato in un meteorite russo (icosaedrite).",
+      },
       { year: "2011", text: "Shechtman riceve il Nobel per la Chimica." },
       { year: "2023", text: "Smith, Goodman-Strauss et al. annunciano l'einstein e lo spectre." },
     ],

@@ -142,8 +142,7 @@ const en: RichStory = {
     draggerTitle: "Find the edge with your finger",
     draggerBody:
       "The dim shape behind the canvas hints at the set. Drag the bright yellow dot anywhere — inside the cardioid, into a bulb, off in the void — and watch the orbit decide. Bounded orbits trace a violet web; escaping orbits flash rose, then reset so you can try again.",
-    draggerHint:
-      "Try just left of the cardioid, near c = −0.75, where the period-2 bulb attaches.",
+    draggerHint: "Try just left of the cardioid, near c = −0.75, where the period-2 bulb attaches.",
     iterLabel: "Turn the iteration knob",
     iterPretitle: "Interactive · slider",
     iterTitle: "How many steps before we call it bounded?",
@@ -160,7 +159,11 @@ const en: RichStory = {
     c2: "c = −0.123 + 0.745i · the rabbit",
     c3: "c = 0.3 + 0.6i · disconnected",
   },
-  orbitLabels: { inside: "inside the set", boundary: "on the boundary", outside: "outside the set" },
+  orbitLabels: {
+    inside: "inside the set",
+    boundary: "on the boundary",
+    outside: "outside the set",
+  },
   legend: {
     web: "violet web",
     webNote: "orbit bounded",
@@ -199,10 +202,11 @@ const en: RichStory = {
   seahorseLabel: "seahorse valley",
   seahorseCaption: "Zoom 10² into the upper notch — and another universe.",
   iterSliderNote:
-    "At low iterations, large stretches near the boundary are mis-classified as \"inside\" the set. Push the slider right and the filaments thin out, revealing what was always there.",
+    'At low iterations, large stretches near the boundary are mis-classified as "inside" the set. Push the slider right and the filaments thin out, revealing what was always there.',
   cascadePrefix: "The same period-doubling cascade you see in the ",
   cascadeLogisticLink: "logistic map",
-  cascadeMiddle: " is encoded here as a geometric tree of bulbs. The cardioid itself is the shape covered in detail at ",
+  cascadeMiddle:
+    " is encoded here as a geometric tree of bulbs. The cardioid itself is the shape covered in detail at ",
   cascadeCardioidLink: "/cardioid",
   cascadeSuffix: ".",
 };
@@ -325,7 +329,7 @@ const de: RichStory = {
   seahorseLabel: "Seepferdchen-Tal",
   seahorseCaption: "Zoome um Faktor 10² in die obere Kerbe — und ein weiteres Universum.",
   iterSliderNote:
-    "Bei wenigen Iterationen werden große Bereiche am Rand fälschlich als „drin\" eingestuft. Schiebe den Regler nach rechts, und die Fäden werden dünner — das, was immer schon da war, tritt hervor.",
+    'Bei wenigen Iterationen werden große Bereiche am Rand fälschlich als „drin" eingestuft. Schiebe den Regler nach rechts, und die Fäden werden dünner — das, was immer schon da war, tritt hervor.',
   cascadePrefix: "Dieselbe Periodenverdopplungs-Kaskade, die du auch in der ",
   cascadeLogisticLink: "logistischen Abbildung",
   cascadeMiddle:
@@ -1762,7 +1766,5 @@ function JuliaCanvas({
     };
   }, [cx, cy]);
 
-  return (
-    <canvas ref={canvasRef} className={`block ${className}`} role="img" aria-label={label} />
-  );
+  return <canvas ref={canvasRef} className={`block ${className}`} role="img" aria-label={label} />;
 }

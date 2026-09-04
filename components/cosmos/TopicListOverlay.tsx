@@ -102,9 +102,7 @@ export function TopicListOverlay({ open, onClose }: Props) {
     >
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="mb-8 flex items-start justify-between gap-4">
-          <h2 className="math-italic text-3xl text-ink-100 md:text-4xl">
-            {a.landing.browseLabel}
-          </h2>
+          <h2 className="math-italic text-3xl text-ink-100 md:text-4xl">{a.landing.browseLabel}</h2>
           <button
             type="button"
             onClick={onClose}
@@ -121,7 +119,9 @@ export function TopicListOverlay({ open, onClose }: Props) {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder={a.landing.constellationSearchPlaceholder ?? "Search topics, formulas, ideas…"}
+            placeholder={
+              a.landing.constellationSearchPlaceholder ?? "Search topics, formulas, ideas…"
+            }
             aria-label={a.landing.constellationSearchLabel ?? "Search topics"}
             className="hairline w-full rounded-full border bg-ink-950/60 px-4 py-2 font-mono text-[11px] uppercase tracking-widest2 text-ink-100 placeholder:text-ink-400 focus:border-signal-violet/60 focus:outline-none"
             autoComplete="off"

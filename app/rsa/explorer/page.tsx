@@ -325,12 +325,8 @@ export default function RsaExplorer() {
                             <td className="p-1.5 text-right">{st.b.toString()}</td>
                             <td className="p-1.5 text-right">{st.q.toString()}</td>
                             <td className="p-1.5 text-right">{st.r.toString()}</td>
-                            <td className="p-1.5 text-right text-signal-cyan">
-                              {st.s.toString()}
-                            </td>
-                            <td className="p-1.5 text-right text-signal-cyan">
-                              {st.t.toString()}
-                            </td>
+                            <td className="p-1.5 text-right text-signal-cyan">{st.s.toString()}</td>
+                            <td className="p-1.5 text-right text-signal-cyan">{st.t.toString()}</td>
                           </tr>
                         ))}
                       </tbody>

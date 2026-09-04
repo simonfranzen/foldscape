@@ -19,9 +19,9 @@ const HISTORY = W; // one sample per displayed column
 
 // Colours for the three traces.
 const TRACE_COLORS = {
-  x: palette.signal.cyan,   // HBrO2
+  x: palette.signal.cyan, // HBrO2
   y: palette.signal.violet, // Br-
-  z: palette.signal.amber,  // Ce(IV)
+  z: palette.signal.amber, // Ce(IV)
 } as const;
 
 // Logarithmic-like compression so we can see all three traces on one

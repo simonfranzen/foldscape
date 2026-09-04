@@ -386,7 +386,6 @@ export default function BuffonExplorer() {
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
     // The loop reads autoRef/rateRef, so it only needs to mount once.
-     
   }, []);
 
   // Render the needle-drop canvas: parallel lines + the most recent needles.

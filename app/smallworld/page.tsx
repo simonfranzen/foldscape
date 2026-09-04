@@ -265,10 +265,7 @@ export default function SmallWorldStoryPage() {
               {panelOrder.map((key) => {
                 const card = f.panels[key];
                 return (
-                  <div
-                    key={key}
-                    className="hairline space-y-3 rounded-xl border bg-ink-950/60 p-4"
-                  >
+                  <div key={key} className="hairline space-y-3 rounded-xl border bg-ink-950/60 p-4">
                     <div className="overflow-hidden rounded-md bg-ink-950">
                       {/* Seed is stable per panel slot so the three pictures stay
                           identical across locales (label length used to vary the

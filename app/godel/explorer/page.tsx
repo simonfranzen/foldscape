@@ -346,8 +346,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2TitleSuffix: " wird zu einer einzigen Zahl.",
     step2Body1:
       "Nimm die Symbol-Codes c₁, c₂, …, cₖ und potenziere die aufeinanderfolgenden Primzahlen damit: ",
-    step2Body2:
-      " Die Primfaktorzerlegung ist eindeutig — die Kodierung ist also umkehrbar.",
+    step2Body2: " Die Primfaktorzerlegung ist eindeutig — die Kodierung ist also umkehrbar.",
     step2Code: "Code",
     step2Prime: "Primzahl",
     step2ProductLabel: "Produkt von Primzahlpotenzen",
@@ -369,8 +368,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3BodyEnd: ".",
     step3SentenceLabel: "Der Satz",
     step3InPlain: "Im Klartext: ",
-    step3PlainQuote:
-      "«keine natürliche Zahl y ist ein Beweis der Formel mit Gödel-Zahl ⌜G⌝»",
+    step3PlainQuote: "«keine natürliche Zahl y ist ein Beweis der Formel mit Gödel-Zahl ⌜G⌝»",
     step3PlainTail: " — und die Formel mit Gödel-Zahl ⌜G⌝ ist G selbst.",
     step3LoopSentence: "Satz",
     step3LoopSentenceCaption: "«Ich bin nicht beweisbar»",
@@ -393,8 +391,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step4BranchBHead: "Wenn G nicht beweisbar ist…",
     step4BranchBBodyPre: "Dann ist genau das, was G behauptet, wahr. G ist eine ",
     step4BranchBHighlight: "wahre arithmetische Aussage",
-    step4BranchBBodyPost:
-      ", die S nicht beweisen kann — der Erste Unvollständigkeitssatz.",
+    step4BranchBBodyPost: ", die S nicht beweisen kann — der Erste Unvollständigkeitssatz.",
     step4BranchBArrow: "⇒ S ist unvollständig.",
     step4SecondLabel: "Zweiter Unvollständigkeitssatz",
     step4SecondBody:
@@ -446,14 +443,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Code: "código",
     step1Footer1: "A continuación: elige una pequeña fórmula como ",
     step1Footer2: " o ",
-    step1Footer3:
-      " en la barra lateral y observa cómo se construye su número de Gödel.",
+    step1Footer3: " en la barra lateral y observa cómo se construye su número de Gödel.",
     step2Pretitle: "Codificar la fórmula",
     step2TitleSuffix: " se convierte en un único número.",
     step2Body1:
       "Toma los códigos de los símbolos c₁, c₂, …, cₖ y eleva primos consecutivos a ellos: ",
-    step2Body2:
-      " La factorización en primos es única — así que la codificación es reversible.",
+    step2Body2: " La factorización en primos es única — así que la codificación es reversible.",
     step2Code: "código",
     step2Prime: "primo",
     step2ProductLabel: "Producto de potencias de primos",
@@ -470,16 +465,14 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3BodyP: "P(x)",
     step3BodyMid: ", una sentencia ",
     step3BodyG: "G",
-    step3BodyTail:
-      " tal que G es equivalente a P(⌜G⌝). Aplícalo con ",
+    step3BodyTail: " tal que G es equivalente a P(⌜G⌝). Aplícalo con ",
     step3PCode: "P(x) := ¬∃y Prov(y, x)",
     step3BodyEnd: ".",
     step3SentenceLabel: "La sentencia",
     step3InPlain: "En lenguaje llano: ",
     step3PlainQuote:
       "«ningún número natural y es una demostración de la fórmula con número de Gödel ⌜G⌝»",
-    step3PlainTail:
-      " — y la fórmula con número de Gödel ⌜G⌝ es G misma.",
+    step3PlainTail: " — y la fórmula con número de Gödel ⌜G⌝ es G misma.",
     step3LoopSentence: "sentencia",
     step3LoopSentenceCaption: "«No soy demostrable»",
     step3DiagLemma: "lema diagonal",
@@ -499,11 +492,9 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step4BranchAArrow: "⇒ contradicción.",
     step4BranchB: "Rama B · S ⊬ G",
     step4BranchBHead: "Si G no es demostrable…",
-    step4BranchBBodyPre:
-      "Entonces lo que G afirma es exactamente verdadero. G es una ",
+    step4BranchBBodyPre: "Entonces lo que G afirma es exactamente verdadero. G es una ",
     step4BranchBHighlight: "afirmación aritmética verdadera",
-    step4BranchBBodyPost:
-      " que S no puede demostrar — el Primer Teorema de Incompletud.",
+    step4BranchBBodyPost: " que S no puede demostrar — el Primer Teorema de Incompletud.",
     step4BranchBArrow: "⇒ S es incompleto.",
     step4SecondLabel: "Segundo Teorema de Incompletud",
     step4SecondBody:
@@ -555,14 +546,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Code: "code",
     step1Footer1: "Ensuite : choisis une petite formule comme ",
     step1Footer2: " ou ",
-    step1Footer3:
-      " dans la barre latérale et regarde son nombre de Gödel se construire.",
+    step1Footer3: " dans la barre latérale et regarde son nombre de Gödel se construire.",
     step2Pretitle: "Coder la formule",
     step2TitleSuffix: " devient un seul nombre.",
     step2Body1:
       "Prends les codes des symboles c₁, c₂, …, cₖ et élève les nombres premiers consécutifs à ces puissances : ",
-    step2Body2:
-      " La factorisation en nombres premiers est unique — le codage est donc réversible.",
+    step2Body2: " La factorisation en nombres premiers est unique — le codage est donc réversible.",
     step2Code: "code",
     step2Prime: "premier",
     step2ProductLabel: "Produit de puissances de premiers",
@@ -579,16 +568,14 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3BodyP: "P(x)",
     step3BodyMid: ", un énoncé ",
     step3BodyG: "G",
-    step3BodyTail:
-      " tel que G est équivalent à P(⌜G⌝). Applique-le avec ",
+    step3BodyTail: " tel que G est équivalent à P(⌜G⌝). Applique-le avec ",
     step3PCode: "P(x) := ¬∃y Prov(y, x)",
     step3BodyEnd: ".",
     step3SentenceLabel: "L'énoncé",
     step3InPlain: "En langage clair : ",
     step3PlainQuote:
       "«aucun nombre entier y n'est une preuve de la formule de nombre de Gödel ⌜G⌝»",
-    step3PlainTail:
-      " — et la formule de nombre de Gödel ⌜G⌝ est G elle-même.",
+    step3PlainTail: " — et la formule de nombre de Gödel ⌜G⌝ est G elle-même.",
     step3LoopSentence: "énoncé",
     step3LoopSentenceCaption: "«Je ne suis pas prouvable»",
     step3DiagLemma: "lemme diagonal",
@@ -608,11 +595,9 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step4BranchAArrow: "⇒ contradiction.",
     step4BranchB: "Branche B · S ⊬ G",
     step4BranchBHead: "Si G n'est pas prouvable…",
-    step4BranchBBodyPre:
-      "Alors ce que G affirme est exactement vrai. G est un ",
+    step4BranchBBodyPre: "Alors ce que G affirme est exactement vrai. G est un ",
     step4BranchBHighlight: "énoncé arithmétique vrai",
-    step4BranchBBodyPost:
-      " que S ne peut pas prouver — le Premier Théorème d'incomplétude.",
+    step4BranchBBodyPost: " que S ne peut pas prouver — le Premier Théorème d'incomplétude.",
     step4BranchBArrow: "⇒ S est incomplet.",
     step4SecondLabel: "Second Théorème d'incomplétude",
     step4SecondBody:
@@ -664,14 +649,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Code: "codice",
     step1Footer1: "Prossimo passo: scegli una piccola formula come ",
     step1Footer2: " o ",
-    step1Footer3:
-      " dalla barra laterale e guarda costruirsi il suo numero di Gödel.",
+    step1Footer3: " dalla barra laterale e guarda costruirsi il suo numero di Gödel.",
     step2Pretitle: "Codifica la formula",
     step2TitleSuffix: " diventa un singolo numero.",
     step2Body1:
       "Prendi i codici dei simboli c₁, c₂, …, cₖ ed eleva i primi consecutivi a quelle potenze: ",
-    step2Body2:
-      " La fattorizzazione in primi è unica — la codifica è quindi reversibile.",
+    step2Body2: " La fattorizzazione in primi è unica — la codifica è quindi reversibile.",
     step2Code: "codice",
     step2Prime: "primo",
     step2ProductLabel: "Prodotto di potenze di primi",
@@ -688,16 +671,14 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3BodyP: "P(x)",
     step3BodyMid: ", un enunciato ",
     step3BodyG: "G",
-    step3BodyTail:
-      " tale che G è equivalente a P(⌜G⌝). Applicalo con ",
+    step3BodyTail: " tale che G è equivalente a P(⌜G⌝). Applicalo con ",
     step3PCode: "P(x) := ¬∃y Prov(y, x)",
     step3BodyEnd: ".",
     step3SentenceLabel: "L'enunciato",
     step3InPlain: "In parole semplici: ",
     step3PlainQuote:
       "«nessun numero naturale y è una dimostrazione della formula con numero di Gödel ⌜G⌝»",
-    step3PlainTail:
-      " — e la formula con numero di Gödel ⌜G⌝ è G stessa.",
+    step3PlainTail: " — e la formula con numero di Gödel ⌜G⌝ è G stessa.",
     step3LoopSentence: "enunciato",
     step3LoopSentenceCaption: "«Non sono dimostrabile»",
     step3DiagLemma: "lemma diagonale",
@@ -717,11 +698,9 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step4BranchAArrow: "⇒ contraddizione.",
     step4BranchB: "Ramo B · S ⊬ G",
     step4BranchBHead: "Se G non è dimostrabile…",
-    step4BranchBBodyPre:
-      "Allora ciò che G afferma è esattamente vero. G è un ",
+    step4BranchBBodyPre: "Allora ciò che G afferma è esattamente vero. G è un ",
     step4BranchBHighlight: "enunciato aritmetico vero",
-    step4BranchBBodyPost:
-      " che S non può dimostrare — il Primo Teorema di Incompletezza.",
+    step4BranchBBodyPost: " che S non può dimostrare — il Primo Teorema di Incompletezza.",
     step4BranchBArrow: "⇒ S è incompleto.",
     step4SecondLabel: "Secondo Teorema di Incompletezza",
     step4SecondBody:
@@ -773,14 +752,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Code: "código",
     step1Footer1: "A seguir: escolhe uma pequena fórmula como ",
     step1Footer2: " ou ",
-    step1Footer3:
-      " da barra lateral e observa o seu número de Gödel ser construído.",
+    step1Footer3: " da barra lateral e observa o seu número de Gödel ser construído.",
     step2Pretitle: "Codificar a fórmula",
     step2TitleSuffix: " torna-se um único número.",
     step2Body1:
       "Toma os códigos dos símbolos c₁, c₂, …, cₖ e eleva primos consecutivos a essas potências: ",
-    step2Body2:
-      " A fatoração em primos é única — a codificação é, portanto, reversível.",
+    step2Body2: " A fatoração em primos é única — a codificação é, portanto, reversível.",
     step2Code: "código",
     step2Prime: "primo",
     step2ProductLabel: "Produto de potências de primos",
@@ -797,16 +774,13 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3BodyP: "P(x)",
     step3BodyMid: ", uma frase ",
     step3BodyG: "G",
-    step3BodyTail:
-      " tal que G é equivalente a P(⌜G⌝). Aplica-o com ",
+    step3BodyTail: " tal que G é equivalente a P(⌜G⌝). Aplica-o com ",
     step3PCode: "P(x) := ¬∃y Prov(y, x)",
     step3BodyEnd: ".",
     step3SentenceLabel: "A frase",
     step3InPlain: "Em linguagem simples: ",
-    step3PlainQuote:
-      "«nenhum número natural y é uma prova da fórmula com número de Gödel ⌜G⌝»",
-    step3PlainTail:
-      " — e a fórmula com número de Gödel ⌜G⌝ é a própria G.",
+    step3PlainQuote: "«nenhum número natural y é uma prova da fórmula com número de Gödel ⌜G⌝»",
+    step3PlainTail: " — e a fórmula com número de Gödel ⌜G⌝ é a própria G.",
     step3LoopSentence: "frase",
     step3LoopSentenceCaption: "«Não sou demonstrável»",
     step3DiagLemma: "lema diagonal",
@@ -826,11 +800,9 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step4BranchAArrow: "⇒ contradição.",
     step4BranchB: "Ramo B · S ⊬ G",
     step4BranchBHead: "Se G não for demonstrável…",
-    step4BranchBBodyPre:
-      "Então o que G afirma é exatamente verdadeiro. G é uma ",
+    step4BranchBBodyPre: "Então o que G afirma é exatamente verdadeiro. G é uma ",
     step4BranchBHighlight: "afirmação aritmética verdadeira",
-    step4BranchBBodyPost:
-      " que S não consegue demonstrar — o Primeiro Teorema da Incompletude.",
+    step4BranchBBodyPost: " que S não consegue demonstrar — o Primeiro Teorema da Incompletude.",
     step4BranchBArrow: "⇒ S é incompleto.",
     step4SecondLabel: "Segundo Teorema da Incompletude",
     step4SecondBody:
@@ -882,14 +854,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Code: "kod",
     step1Footer1: "Härnäst: välj en liten formel som ",
     step1Footer2: " eller ",
-    step1Footer3:
-      " från sidopanelen och se dess Gödel-tal byggas upp.",
+    step1Footer3: " från sidopanelen och se dess Gödel-tal byggas upp.",
     step2Pretitle: "Koda formeln",
     step2TitleSuffix: " blir ett enda tal.",
-    step2Body1:
-      "Ta symbolkoderna c₁, c₂, …, cₖ och upphöj efterföljande primtal till dem: ",
-    step2Body2:
-      " Primfaktoriseringen är unik — så kodningen är reversibel.",
+    step2Body1: "Ta symbolkoderna c₁, c₂, …, cₖ och upphöj efterföljande primtal till dem: ",
+    step2Body2: " Primfaktoriseringen är unik — så kodningen är reversibel.",
     step2Code: "kod",
     step2Prime: "primtal",
     step2ProductLabel: "Produkt av primpotenser",
@@ -906,16 +875,13 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3BodyP: "P(x)",
     step3BodyMid: ", en sats ",
     step3BodyG: "G",
-    step3BodyTail:
-      " sådan att G är ekvivalent med P(⌜G⌝). Tillämpa det med ",
+    step3BodyTail: " sådan att G är ekvivalent med P(⌜G⌝). Tillämpa det med ",
     step3PCode: "P(x) := ¬∃y Prov(y, x)",
     step3BodyEnd: ".",
     step3SentenceLabel: "Satsen",
     step3InPlain: "På vanligt språk: ",
-    step3PlainQuote:
-      "«inget naturligt tal y är ett bevis av formeln med Gödel-tal ⌜G⌝»",
-    step3PlainTail:
-      " — och formeln med Gödel-tal ⌜G⌝ är G självt.",
+    step3PlainQuote: "«inget naturligt tal y är ett bevis av formeln med Gödel-tal ⌜G⌝»",
+    step3PlainTail: " — och formeln med Gödel-tal ⌜G⌝ är G självt.",
     step3LoopSentence: "sats",
     step3LoopSentenceCaption: "«Jag är inte bevisbar»",
     step3DiagLemma: "diagonallemma",
@@ -937,8 +903,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step4BranchBHead: "Om G inte är bevisbar…",
     step4BranchBBodyPre: "Då är det G påstår precis sant. G är en ",
     step4BranchBHighlight: "sann aritmetisk sats",
-    step4BranchBBodyPost:
-      " som S inte kan bevisa — det Första ofullständighetsteoremet.",
+    step4BranchBBodyPost: " som S inte kan bevisa — det Första ofullständighetsteoremet.",
     step4BranchBArrow: "⇒ S är ofullständigt.",
     step4SecondLabel: "Andra ofullständighetsteoremet",
     step4SecondBody:
@@ -990,14 +955,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Code: "kode",
     step1Footer1: "Neste: velg en liten formel som ",
     step1Footer2: " eller ",
-    step1Footer3:
-      " fra sidepanelet og se Gödel-tallet bli bygd opp.",
+    step1Footer3: " fra sidepanelet og se Gödel-tallet bli bygd opp.",
     step2Pretitle: "Kod formelen",
     step2TitleSuffix: " blir et enkelt tall.",
-    step2Body1:
-      "Ta symbolkodene c₁, c₂, …, cₖ og opphøy etterfølgende primtall til disse: ",
-    step2Body2:
-      " Primtallsfaktoriseringen er unik — så kodingen er reversibel.",
+    step2Body1: "Ta symbolkodene c₁, c₂, …, cₖ og opphøy etterfølgende primtall til disse: ",
+    step2Body2: " Primtallsfaktoriseringen er unik — så kodingen er reversibel.",
     step2Code: "kode",
     step2Prime: "primtall",
     step2ProductLabel: "Produkt av primtallpotenser",
@@ -1014,16 +976,13 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3BodyP: "P(x)",
     step3BodyMid: ", en setning ",
     step3BodyG: "G",
-    step3BodyTail:
-      " slik at G er ekvivalent med P(⌜G⌝). Bruk det med ",
+    step3BodyTail: " slik at G er ekvivalent med P(⌜G⌝). Bruk det med ",
     step3PCode: "P(x) := ¬∃y Prov(y, x)",
     step3BodyEnd: ".",
     step3SentenceLabel: "Setningen",
     step3InPlain: "På klart språk: ",
-    step3PlainQuote:
-      "«ingen naturlige tall y er et bevis av formelen med Gödel-tall ⌜G⌝»",
-    step3PlainTail:
-      " — og formelen med Gödel-tall ⌜G⌝ er G selv.",
+    step3PlainQuote: "«ingen naturlige tall y er et bevis av formelen med Gödel-tall ⌜G⌝»",
+    step3PlainTail: " — og formelen med Gödel-tall ⌜G⌝ er G selv.",
     step3LoopSentence: "setning",
     step3LoopSentenceCaption: "«Jeg er ikke bevisbar»",
     step3DiagLemma: "diagonallemma",
@@ -1045,8 +1004,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step4BranchBHead: "Hvis G ikke er bevisbar…",
     step4BranchBBodyPre: "Da er det G hevder akkurat sant. G er en ",
     step4BranchBHighlight: "sann aritmetisk påstand",
-    step4BranchBBodyPost:
-      " som S ikke kan bevise — det Første ufullstendighetsteoremet.",
+    step4BranchBBodyPost: " som S ikke kan bevise — det Første ufullstendighetsteoremet.",
     step4BranchBArrow: "⇒ S er ufullstendig.",
     step4SecondLabel: "Andre ufullstendighetsteorem",
     step4SecondBody:

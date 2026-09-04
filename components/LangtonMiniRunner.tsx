@@ -245,7 +245,8 @@ export function LangtonMiniRunner({
           {label}
         </div>
         <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-          {labels.stepReadout} <span className="text-signal-violet">{stepCount.toLocaleString()}</span>
+          {labels.stepReadout}{" "}
+          <span className="text-signal-violet">{stepCount.toLocaleString()}</span>
           {"  ·  "}
           {labels.dirReadout} <span className="text-signal-violet">{DIR_GLYPH[dir]}</span>
         </div>

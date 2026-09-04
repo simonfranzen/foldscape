@@ -195,12 +195,7 @@ export function PenroseGoldenRatio({ caption, levelsLabel, ratioLabel, hint }: P
 
       <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-[1fr_220px]">
         <div className="hairline mx-auto aspect-[4/3] w-full max-w-[420px] overflow-hidden rounded-xl border bg-ink-950">
-          <canvas
-            ref={canvasRef}
-            className="block h-full w-full"
-            role="img"
-            aria-label={caption}
-          />
+          <canvas ref={canvasRef} className="block h-full w-full" role="img" aria-label={caption} />
         </div>
 
         <div className="space-y-4">

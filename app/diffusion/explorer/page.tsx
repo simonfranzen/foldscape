@@ -92,8 +92,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     legendSamples: "generated samples",
     legendTrails: "reverse-process trail",
     legendField: "learned score field",
-    statusFmt: (e, l, s, S) =>
-      `epoch ${e} · loss ${l.toFixed(3)} · sampling step ${s}/${S}`,
+    statusFmt: (e, l, s, S) => `epoch ${e} · loss ${l.toFixed(3)} · sampling step ${s}/${S}`,
     whatNowLabel: "What you should see right now",
     whatNowTrainingEarly:
       "the denoiser is still learning the field — walkers wander before snapping",
@@ -131,8 +130,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     legendSamples: "erzeugte Proben",
     legendTrails: "Rückwärts-Pfade",
     legendField: "gelerntes Score-Feld",
-    statusFmt: (e, l, s, S) =>
-      `Epoche ${e} · Verlust ${l.toFixed(3)} · Sampling-Schritt ${s}/${S}`,
+    statusFmt: (e, l, s, S) => `Epoche ${e} · Verlust ${l.toFixed(3)} · Sampling-Schritt ${s}/${S}`,
     whatNowLabel: "Was du gerade sehen solltest",
     whatNowTrainingEarly:
       "der Entrauscher lernt das Feld noch — die Wanderer irren, bevor sie einrasten",
@@ -141,7 +139,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatNowConverged: "die Wanderer sind auf der Datenmannigfaltigkeit gelandet",
     whatYouSeeLabel: "Die Leinwand lesen",
     whatYouSeeP1:
-      "Cyan-Punkte: die Spielzeug-Datenverteilung. Der Entrauscher sieht nur verrauschte Kopien davon im Training — er merkt sich keine Positionen, sondern lernt das lokale „wo ist innen?\"-Feld.",
+      'Cyan-Punkte: die Spielzeug-Datenverteilung. Der Entrauscher sieht nur verrauschte Kopien davon im Training — er merkt sich keine Positionen, sondern lernt das lokale „wo ist innen?"-Feld.',
     whatYouSeeP2:
       "Rosa-Punkte: Wanderer aus reinem 2D-Gauß-Rauschen, T Schritte rückwärts durch die gelernte Kette geschoben, mit verblassenden Pfaden. Schwacher blauer Schein: die Stärke von −ε_θ bei mittlerem Rauschen — das Score-Feld, an dem die Wanderer hinabrutschen.",
   },
@@ -170,8 +168,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     legendSamples: "muestras generadas",
     legendTrails: "rastro del proceso inverso",
     legendField: "campo de score aprendido",
-    statusFmt: (e, l, s, S) =>
-      `época ${e} · pérdida ${l.toFixed(3)} · paso de muestreo ${s}/${S}`,
+    statusFmt: (e, l, s, S) => `época ${e} · pérdida ${l.toFixed(3)} · paso de muestreo ${s}/${S}`,
     whatNowLabel: "Lo que deberías ver ahora mismo",
     whatNowTrainingEarly:
       "el denoiser aún está aprendiendo el campo — los caminantes vagan antes de fijarse",
@@ -248,8 +245,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     legendSamples: "campioni generati",
     legendTrails: "scia del processo inverso",
     legendField: "campo di score appreso",
-    statusFmt: (e, l, s, S) =>
-      `epoca ${e} · perdita ${l.toFixed(3)} · passo di sampling ${s}/${S}`,
+    statusFmt: (e, l, s, S) => `epoca ${e} · perdita ${l.toFixed(3)} · passo di sampling ${s}/${S}`,
     whatNowLabel: "Cosa dovresti vedere ora",
     whatNowTrainingEarly:
       "il denoiser sta ancora imparando il campo — i camminatori vagano prima di agganciarsi",
@@ -287,8 +283,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     legendSamples: "amostras geradas",
     legendTrails: "rasto do processo inverso",
     legendField: "campo de score aprendido",
-    statusFmt: (e, l, s, S) =>
-      `época ${e} · perda ${l.toFixed(3)} · passo de amostragem ${s}/${S}`,
+    statusFmt: (e, l, s, S) => `época ${e} · perda ${l.toFixed(3)} · passo de amostragem ${s}/${S}`,
     whatNowLabel: "O que deves estar a ver agora",
     whatNowTrainingEarly:
       "o denoiser ainda está a aprender o campo — os caminhantes vagueiam antes de prender",
@@ -326,8 +321,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     legendSamples: "genererade sampel",
     legendTrails: "spår från bakåtprocessen",
     legendField: "lärt score-fält",
-    statusFmt: (e, l, s, S) =>
-      `epok ${e} · förlust ${l.toFixed(3)} · samplingssteg ${s}/${S}`,
+    statusFmt: (e, l, s, S) => `epok ${e} · förlust ${l.toFixed(3)} · samplingssteg ${s}/${S}`,
     whatNowLabel: "Det du borde se just nu",
     whatNowTrainingEarly:
       "brusborttagaren lär sig fortfarande fältet — vandrarna ströar innan de fastnar",
@@ -365,8 +359,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     legendSamples: "genererte prøver",
     legendTrails: "spor fra bakoverprosessen",
     legendField: "lært score-felt",
-    statusFmt: (e, l, s, S) =>
-      `epoke ${e} · tap ${l.toFixed(3)} · samplingssteg ${s}/${S}`,
+    statusFmt: (e, l, s, S) => `epoke ${e} · tap ${l.toFixed(3)} · samplingssteg ${s}/${S}`,
     whatNowLabel: "Det du burde se nå",
     whatNowTrainingEarly:
       "støyfjerneren lærer fortsatt feltet — vandrerne driver før de fester seg",
@@ -473,11 +466,7 @@ function makeAdam(net: MLP): AdamState {
 
 // GELU approximation (tanh-form) and its derivative.
 function gelu(z: number): number {
-  return (
-    0.5 *
-    z *
-    (1 + Math.tanh(Math.sqrt(2 / Math.PI) * (z + 0.044715 * z * z * z)))
-  );
+  return 0.5 * z * (1 + Math.tanh(Math.sqrt(2 / Math.PI) * (z + 0.044715 * z * z * z)));
 }
 function geluPrime(z: number): number {
   const c = Math.sqrt(2 / Math.PI);
@@ -591,7 +580,10 @@ function adamStep(
 // Noise schedules — return arrays of α_t and ᾱ_t for t = 1..T (index 0 = t=1).
 // --------------------------------------------------------------------------
 
-function buildSchedule(T: number, kind: Schedule): {
+function buildSchedule(
+  T: number,
+  kind: Schedule,
+): {
   alpha: Float32Array;
   alphaBar: Float32Array;
   beta: Float32Array;
@@ -1083,7 +1075,6 @@ export default function DiffusionExplorer() {
     const ro = new ResizeObserver(() => drawAll());
     if (canvasRef.current) ro.observe(canvasRef.current);
     return () => ro.disconnect();
-     
   }, []);
 
   // -------- phase caption ("what you should see right now") --------
@@ -1119,9 +1110,7 @@ export default function DiffusionExplorer() {
 
           {/* Live status — the strip that visibly ticks. */}
           <div className="hairline flex flex-wrap items-center justify-between gap-3 rounded-md border bg-ink-950/60 px-4 py-2 font-mono text-[11px] text-ink-200">
-            <span className="text-signal-coral">
-              {x.statusFmt(epoch, loss, sampStep, steps)}
-            </span>
+            <span className="text-signal-coral">{x.statusFmt(epoch, loss, sampStep, steps)}</span>
             <span className="text-[10px] uppercase tracking-widest2 text-ink-400">
               {x.whatNowLabel}: <span className="text-ink-100">{phaseCaption}</span>
             </span>

@@ -149,7 +149,11 @@ export function HaltingTapeHero() {
 
         {/* Read/write head */}
         <g transform={`translate(${headIdx * cellW + cellW / 2} ${tapeY - 10})`}>
-          <polygon points="-9,-14 9,-14 0,0" fill={halted ? palette.signal.rose : palette.signal.cyan} opacity="0.9" />
+          <polygon
+            points="-9,-14 9,-14 0,0"
+            fill={halted ? palette.signal.rose : palette.signal.cyan}
+            opacity="0.9"
+          />
           <text
             y={-22}
             textAnchor="middle"

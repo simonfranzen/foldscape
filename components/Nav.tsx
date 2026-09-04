@@ -60,9 +60,7 @@ export function Nav() {
                   key={sec.href}
                   href={sec.href}
                   className={`relative rounded-md px-3 py-1.5 font-mono text-sm uppercase tracking-widest transition-colors ${
-                    active
-                      ? "font-medium text-signal-violet"
-                      : "text-ink-300 hover:text-ink-100"
+                    active ? "font-medium text-signal-violet" : "text-ink-300 hover:text-ink-100"
                   }`}
                   aria-current={active ? "page" : undefined}
                 >

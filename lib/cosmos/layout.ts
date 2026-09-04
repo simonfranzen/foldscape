@@ -192,18 +192,14 @@ const CURATED: Record<TopicCategory, Record<string, CuratedEntry>> = {
   for (const t of TOPICS) {
     const entry = CURATED[t.category][t.id];
     if (!entry) {
-      throw new Error(
-        `lib/cosmos/layout: no curated position for topic ${t.id} (${t.category})`,
-      );
+      throw new Error(`lib/cosmos/layout: no curated position for topic ${t.id} (${t.category})`);
     }
     seenIds.add(t.id);
   }
   for (const cat of SCENE_ORDER) {
     for (const id of Object.keys(CURATED[cat])) {
       if (!seenIds.has(id)) {
-        throw new Error(
-          `lib/cosmos/layout: curated entry ${id} in ${cat} is not a real topic`,
-        );
+        throw new Error(`lib/cosmos/layout: curated entry ${id} in ${cat} is not a real topic`);
       }
     }
   }

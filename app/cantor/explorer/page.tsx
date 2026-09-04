@@ -218,7 +218,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     swap56Hint: "sicuro; mai 0 né 9",
     plusOneLabel: "+1 mod 10",
     plusOneHint: "salta 0, 9 per evitare l'ambiguità 0,999…",
-    binaryNote: "La modalità binaria ignora la regola sopra, le cifre passano 0 ↔ 1 automaticamente.",
+    binaryNote:
+      "La modalità binaria ignora la regola sopra, le cifre passano 0 ↔ 1 automaticamente.",
     legendLabel: "Legenda",
     legend1: "cella diagonale · usata in questo passo",
     legend2: "cella diagonale · già usata",

@@ -469,7 +469,9 @@ export default function Rule110Simulator() {
                   }`}
                 >
                   <div className="text-sm">{r.label}</div>
-                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">{ex.notes[r.rule]}</div>
+                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">
+                    {ex.notes[r.rule]}
+                  </div>
                 </button>
               ))}
             </div>

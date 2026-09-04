@@ -6,7 +6,12 @@ import { useDpr } from "@/lib/hooks/useDpr";
 
 // ─── Palette ─────────────────────────────────────────────────────────────────
 // Four edge colours: both demo tile sets only reference indices 0 to 3.
-const COLOURS = [palette.signal.cyan, palette.signal.violet, palette.signal.amber, palette.signal.rose] as const;
+const COLOURS = [
+  palette.signal.cyan,
+  palette.signal.violet,
+  palette.signal.amber,
+  palette.signal.rose,
+] as const;
 
 // ─── Tile sets ───────────────────────────────────────────────────────────────
 // Two demo sets loosely inspired by the modern aperiodic Wang records:
@@ -57,7 +62,12 @@ interface SetDef {
 }
 
 const SETS: SetDef[] = [
-  { key: "culik", label: "13 tiles · Culik-style", tiles: CULIK13, attrib: "in the spirit of Culik 1996" },
+  {
+    key: "culik",
+    label: "13 tiles · Culik-style",
+    tiles: CULIK13,
+    attrib: "in the spirit of Culik 1996",
+  },
   {
     key: "jeandel",
     label: "11 tiles · Jeandel-Rao-style",

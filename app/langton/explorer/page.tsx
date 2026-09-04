@@ -189,7 +189,7 @@ const EXPLORER_UI: Record<Locale, ExplorerUi> = {
 };
 
 const COLOR_PALETTE = [
-  palette.canvas.bg,    // 0 = empty (background)
+  palette.canvas.bg, // 0 = empty (background)
   palette.signal.violet,
   palette.signal.cyan,
   palette.signal.amber,

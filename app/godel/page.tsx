@@ -80,7 +80,8 @@ type RichFigures = {
 const FIGURES: Record<Locale, RichFigures> = {
   en: {
     numberingBadge: "Gödel numbering · a sample of symbol codes",
-    numberingIntro: "Each symbol of the formal language gets its own natural number. A full formula s₁s₂s₃… is then encoded as the single integer ",
+    numberingIntro:
+      "Each symbol of the formal language gets its own natural number. A full formula s₁s₂s₃… is then encoded as the single integer ",
     numberingOutro: " — unique because every integer has a unique prime factorisation.",
     thSymbol: "symbol",
     thMeaning: "meaning",
@@ -110,8 +111,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     branchProvableBody:
       "S proves a sentence that says «I have no proof» — the system is inconsistent.",
     branchUnprovableHead: "if G is not provable",
-    branchUnprovableBody:
-      "Then what G claims is exactly true — true, yet unprovable in S.",
+    branchUnprovableBody: "Then what G claims is exactly true — true, yet unprovable in S.",
   },
   de: {
     numberingBadge: "Gödel-Nummerierung · eine Auswahl von Symbol-Codes",
@@ -154,8 +154,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     numberingBadge: "Numeración de Gödel · una muestra de códigos de símbolos",
     numberingIntro:
       "Cada símbolo del lenguaje formal recibe su propio número natural. Una fórmula completa s₁s₂s₃… se codifica entonces como el único entero ",
-    numberingOutro:
-      " — único porque todo entero tiene una factorización en primos única.",
+    numberingOutro: " — único porque todo entero tiene una factorización en primos única.",
     thSymbol: "símbolo",
     thMeaning: "significado",
     thGodel: "Nº Gödel",
@@ -228,8 +227,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     numberingBadge: "Numerazione di Gödel · un campione di codici di simboli",
     numberingIntro:
       "Ogni simbolo del linguaggio formale riceve il proprio numero naturale. Una formula completa s₁s₂s₃… viene poi codificata come l'unico intero ",
-    numberingOutro:
-      " — unico perché ogni intero ha una fattorizzazione in primi unica.",
+    numberingOutro: " — unico perché ogni intero ha una fattorizzazione in primi unica.",
     thSymbol: "simbolo",
     thMeaning: "significato",
     thGodel: "n. Gödel",
@@ -265,8 +263,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     numberingBadge: "Numeração de Gödel · uma amostra de códigos de símbolos",
     numberingIntro:
       "Cada símbolo da linguagem formal recebe o seu próprio número natural. Uma fórmula completa s₁s₂s₃… é então codificada como o único inteiro ",
-    numberingOutro:
-      " — único porque todo inteiro tem uma fatoração em primos única.",
+    numberingOutro: " — único porque todo inteiro tem uma fatoração em primos única.",
     thSymbol: "símbolo",
     thMeaning: "significado",
     thGodel: "nº Gödel",
@@ -302,8 +299,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     numberingBadge: "Gödelnumrering · ett urval av symbolkoder",
     numberingIntro:
       "Varje symbol i det formella språket får sitt eget naturliga tal. En fullständig formel s₁s₂s₃… kodas sedan som det enda heltalet ",
-    numberingOutro:
-      " — unikt eftersom varje heltal har en unik primtalsfaktorisering.",
+    numberingOutro: " — unikt eftersom varje heltal har en unik primtalsfaktorisering.",
     thSymbol: "symbol",
     thMeaning: "betydelse",
     thGodel: "Gödel-nr",
@@ -332,15 +328,13 @@ const FIGURES: Record<Locale, RichFigures> = {
     branchProvableBody:
       "S bevisar en sats som säger «jag har inget bevis» — systemet är inkonsistent.",
     branchUnprovableHead: "om G inte är bevisbar",
-    branchUnprovableBody:
-      "Då är det som G påstår precis sant — sant, men obevisbart i S.",
+    branchUnprovableBody: "Då är det som G påstår precis sant — sant, men obevisbart i S.",
   },
   no: {
     numberingBadge: "Gödelnummerering · et utvalg av symbolkoder",
     numberingIntro:
       "Hvert symbol i det formelle språket får sitt eget naturlige tall. En fullstendig formel s₁s₂s₃… kodes så som det ene heltallet ",
-    numberingOutro:
-      " — unikt fordi hvert heltall har en unik primtallsfaktorisering.",
+    numberingOutro: " — unikt fordi hvert heltall har en unik primtallsfaktorisering.",
     thSymbol: "symbol",
     thMeaning: "betydning",
     thGodel: "Gödel-nr",
@@ -369,8 +363,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     branchProvableBody:
       "S beviser en setning som sier «jeg har ikke noe bevis» — systemet er inkonsistent.",
     branchUnprovableHead: "hvis G ikke er bevisbar",
-    branchUnprovableBody:
-      "Da er det G hevder akkurat sant — sant, men ubevisbart i S.",
+    branchUnprovableBody: "Da er det G hevder akkurat sant — sant, men ubevisbart i S.",
   },
 };
 
@@ -434,8 +427,7 @@ export default function GodelStoryPage() {
             </div>
             <div className="hairline border-t pt-2">
               <p className="text-xs leading-relaxed text-ink-300">
-                {f.exampleHead} <span className="font-mono text-ink-100">0 = 0</span>{" "}
-                {f.exampleMid}
+                {f.exampleHead} <span className="font-mono text-ink-100">0 = 0</span> {f.exampleMid}
                 <span className={`font-mono ${ACCENT} ml-2`}>
                   2<sup>6</sup>·3<sup>5</sup>·5<sup>6</sup> = 64 · 243 · 15625 = 243 000 000.
                 </span>

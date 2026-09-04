@@ -166,7 +166,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     depthStatus: "Profondeur",
     pathLabel: "Chemin · L = plus petit · R = plus grand",
     cfLabel: "Fraction continue · codage par plages du chemin",
-    convergentsLabel: "Meilleures approximations rationnelles · les convergents le long de la marche",
+    convergentsLabel:
+      "Meilleures approximations rationnelles · les convergents le long de la marche",
     stepHead: "pas",
     fractionHead: "fraction",
     decimalHead: "décimal",

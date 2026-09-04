@@ -43,9 +43,7 @@ function buildBaseImage(): Float32Array {
   const bg = [0.04, 0.05, 0.12]; // deep navy
   const ink = [1.0, 0.38, 0.62]; // signal-rose
   const accent = [0.49, 0.95, 1.0]; // signal-cyan
-  const ink2d: number[][] = Array.from({ length: SIDE }, () =>
-    new Array<number>(SIDE).fill(0),
-  );
+  const ink2d: number[][] = Array.from({ length: SIDE }, () => new Array<number>(SIDE).fill(0));
   // Cardioid r = a·(1 − cos θ) drawn as a filled silhouette, centred and
   // scaled to fill the tile. Mark interior with 1, outline with 2.
   const cx = SIDE / 2;
@@ -267,9 +265,7 @@ export function NoiseLadder({
           <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">
             {caption}
           </div>
-          <div className="text-[11px] text-ink-400">
-            q(x_t | x_0) = N(√ᾱ_t · x_0, (1−ᾱ_t) I)
-          </div>
+          <div className="text-[11px] text-ink-400">q(x_t | x_0) = N(√ᾱ_t · x_0, (1−ᾱ_t) I)</div>
         </div>
         <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
           signal {signalPct}% · noise {noisePct}%
@@ -283,7 +279,7 @@ export function NoiseLadder({
           ref={heroRef}
           width={HERO}
           height={HERO}
-          className="block rounded-xl ring-2 ring-signal-rose/60 shadow-[0_0_60px_rgba(255,97,151,0.25)]"
+          className="block rounded-xl shadow-[0_0_60px_rgba(255,97,151,0.25)] ring-2 ring-signal-rose/60"
           aria-label={`x_${t}`}
         />
         <div className="flex items-baseline gap-3">
@@ -320,8 +316,8 @@ export function NoiseLadder({
                   height={TILE}
                   className={`block rounded-md transition-all ${
                     active
-                      ? "ring-2 ring-signal-rose/80 scale-110"
-                      : "ring-1 ring-ink-700/40 opacity-70 hover:opacity-100 hover:ring-signal-rose/40"
+                      ? "scale-110 ring-2 ring-signal-rose/80"
+                      : "opacity-70 ring-1 ring-ink-700/40 hover:opacity-100 hover:ring-signal-rose/40"
                   }`}
                 />
                 <span

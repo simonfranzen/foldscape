@@ -286,7 +286,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     presetPacking: "Vordefinierte Packung",
     seedNote: "ganzzahliger Apollonischer Keim",
     recursionDepth: "Rekursionstiefe",
-    depthHint: "Jeder Schritt füllt jede krummlinige Dreieckslücke mit ihrem einbeschriebenen Kreis.",
+    depthHint:
+      "Jeder Schritt füllt jede krummlinige Dreieckslücke mit ihrem einbeschriebenen Kreis.",
     view: "Ansicht",
     showLabels: "Krümmungswerte anzeigen",
     showGaps: "Dreieckslücken hervorheben",
@@ -574,9 +575,7 @@ export default function ApollonianExplorer() {
                   }`}
                 >
                   <div className="font-mono text-xs">{p.label}</div>
-                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">
-                    {RE.seedNote}
-                  </div>
+                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">{RE.seedNote}</div>
                 </button>
               ))}
             </div>
@@ -600,9 +599,7 @@ export default function ApollonianExplorer() {
               aria-label={RE.recursionDepth}
               className="w-full accent-signal-amber"
             />
-            <p className="font-mono text-[10px] leading-relaxed text-ink-400">
-              {RE.depthHint}
-            </p>
+            <p className="font-mono text-[10px] leading-relaxed text-ink-400">{RE.depthHint}</p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">

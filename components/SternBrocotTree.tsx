@@ -146,12 +146,7 @@ export function SternBrocotTree({ caption, depthLabel, targetLabel, pathLabel, p
         {caption}
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_180px]">
-        <svg
-          viewBox={`0 0 ${W} ${H}`}
-          className="h-auto w-full"
-          role="img"
-          aria-label={caption}
-        >
+        <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={caption}>
           <rect width={W} height={H} fill={palette.canvas.bg} rx={10} />
           {edges.map(([a, b], i) => {
             const A = pos(nodes[a]!);

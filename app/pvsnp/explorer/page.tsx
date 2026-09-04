@@ -713,13 +713,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       },
       "unsat-all": {
         label: "All 8 clauses on 3 vars — UNSAT",
-        description:
-          "Every clause of length 3 on {x1,x2,x3}. No assignment can satisfy them all.",
+        description: "Every clause of length 3 on {x1,x2,x3}. No assignment can satisfy them all.",
       },
       phase: {
         label: "Phase-transition · m/n ≈ 4.26",
-        description:
-          "Random 3-SAT at the critical clause/variable density. Hardest known regime.",
+        description: "Random 3-SAT at the critical clause/variable density. Hardest known regime.",
       },
       pigeon: {
         label: "Pigeonhole · 4 pigeons → 3 holes",
@@ -1811,20 +1809,18 @@ export default function PvsNPExplorer() {
                       : "text-ink-200"
                 }
               />
-              {state.finalAssign && (() => {
-                const fa = state.finalAssign;
-                return (
-                  <div className="mt-2 text-[10px] leading-relaxed text-ink-300">
-                    {dict.foundPrefix}{" "}
-                    {Array.from({ length: activeVars }, (_, i) => i + 1)
-                      .map(
-                        (v) =>
-                          `x${v}=${fa.get(v) ? "T" : fa.get(v) === false ? "F" : "?"}`,
-                      )
-                      .join(", ")}
-                  </div>
-                );
-              })()}
+              {state.finalAssign &&
+                (() => {
+                  const fa = state.finalAssign;
+                  return (
+                    <div className="mt-2 text-[10px] leading-relaxed text-ink-300">
+                      {dict.foundPrefix}{" "}
+                      {Array.from({ length: activeVars }, (_, i) => i + 1)
+                        .map((v) => `x${v}=${fa.get(v) ? "T" : fa.get(v) === false ? "F" : "?"}`)
+                        .join(", ")}
+                    </div>
+                  );
+                })()}
             </div>
           )}
 

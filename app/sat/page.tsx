@@ -69,7 +69,8 @@ const en: RichStory = {
         body: "In 1971 Stephen Cook proved SAT is NP-complete: every problem whose solutions are quick to check can be rewritten as a SAT instance in polynomial time. Map your scheduling problem, your puzzle, your cryptographic key onto a formula, and a SAT solver either cracks it or proves no solution exists. One fast SAT algorithm would collapse a thousand hard problems at once — which is exactly why almost nobody believes one exists.",
       },
     ],
-    tryIt: "Below: a formula you can satisfy by hand. Flip the variables until every clause turns green.",
+    tryIt:
+      "Below: a formula you can satisfy by hand. Flip the variables until every clause turns green.",
   },
   sections: [
     {
@@ -143,7 +144,8 @@ const de: RichStory = {
         body: "1971 bewies Stephen Cook, dass SAT NP-vollständig ist: Jedes Problem, dessen Lösungen sich schnell prüfen lassen, kann in Polynomialzeit als SAT-Instanz umgeschrieben werden. Bilde dein Stundenplan-Problem, dein Rätsel, deinen kryptografischen Schlüssel auf eine Formel ab, und ein SAT-Solver knackt sie oder beweist, dass es keine Lösung gibt. Ein schneller SAT-Algorithmus würde tausend schwere Probleme auf einen Schlag einstürzen lassen — genau deshalb glaubt fast niemand, dass es ihn gibt.",
       },
     ],
-    tryIt: "Unten: eine Formel, die du von Hand erfüllen kannst. Kipp die Variablen, bis jede Klausel grün wird.",
+    tryIt:
+      "Unten: eine Formel, die du von Hand erfüllen kannst. Kipp die Variablen, bis jede Klausel grün wird.",
   },
   sections: [
     {
@@ -217,7 +219,8 @@ const es: RichStory = {
         body: "En 1971 Stephen Cook demostró que SAT es NP-completo: todo problema cuyas soluciones se comprueban rápido puede reescribirse como una instancia de SAT en tiempo polinómico. Traduce tu problema de horarios, tu rompecabezas, tu clave criptográfica a una fórmula, y un solver de SAT la resuelve o demuestra que no hay solución. Un algoritmo de SAT rápido derrumbaría mil problemas difíciles de golpe — por eso casi nadie cree que exista.",
       },
     ],
-    tryIt: "Abajo: una fórmula que puedes satisfacer a mano. Cambia las variables hasta que cada cláusula se ponga verde.",
+    tryIt:
+      "Abajo: una fórmula que puedes satisfacer a mano. Cambia las variables hasta que cada cláusula se ponga verde.",
   },
   sections: [
     {
@@ -291,7 +294,8 @@ const fr: RichStory = {
         body: "En 1971, Stephen Cook a prouvé que SAT est NP-complet : tout problème dont les solutions se vérifient vite peut se réécrire en une instance de SAT en temps polynomial. Traduis ton problème d'emploi du temps, ton casse-tête, ta clé cryptographique en une formule, et un solveur SAT la résout ou prouve qu'il n'y a pas de solution. Un algorithme SAT rapide ferait s'effondrer mille problèmes difficiles d'un coup — c'est précisément pourquoi presque personne ne croit qu'il existe.",
       },
     ],
-    tryIt: "Ci-dessous : une formule que tu peux satisfaire à la main. Bascule les variables jusqu'à ce que chaque clause passe au vert.",
+    tryIt:
+      "Ci-dessous : une formule que tu peux satisfaire à la main. Bascule les variables jusqu'à ce que chaque clause passe au vert.",
   },
   sections: [
     {
@@ -365,7 +369,8 @@ const it: RichStory = {
         body: "Nel 1971 Stephen Cook dimostrò che SAT è NP-completo: ogni problema le cui soluzioni si verificano in fretta può essere riscritto come istanza di SAT in tempo polinomiale. Mappa il tuo problema di orari, il tuo rompicapo, la tua chiave crittografica su una formula, e un solver SAT la risolve o dimostra che non c'è soluzione. Un algoritmo SAT veloce farebbe crollare mille problemi difficili in un colpo — proprio per questo quasi nessuno crede che esista.",
       },
     ],
-    tryIt: "Sotto: una formula che puoi soddisfare a mano. Ribalta le variabili finché ogni clausola diventa verde.",
+    tryIt:
+      "Sotto: una formula che puoi soddisfare a mano. Ribalta le variabili finché ogni clausola diventa verde.",
   },
   sections: [
     {
@@ -439,7 +444,8 @@ const pt: RichStory = {
         body: "Em 1971 Stephen Cook provou que SAT é NP-completo: todo problema cujas soluções se verificam depressa pode ser reescrito como uma instância de SAT em tempo polinomial. Mapeia o teu problema de horários, o teu quebra-cabeças, a tua chave criptográfica numa fórmula, e um solver de SAT resolve-a ou prova que não há solução. Um algoritmo de SAT rápido faria ruir mil problemas difíceis de uma vez — é precisamente por isso que quase ninguém acredita que exista.",
       },
     ],
-    tryIt: "Abaixo: uma fórmula que podes satisfazer à mão. Alterna as variáveis até cada cláusula ficar verde.",
+    tryIt:
+      "Abaixo: uma fórmula que podes satisfazer à mão. Alterna as variáveis até cada cláusula ficar verde.",
   },
   sections: [
     {
@@ -513,7 +519,8 @@ const sv: RichStory = {
         body: "År 1971 bevisade Stephen Cook att SAT är NP-fullständigt: varje problem vars lösningar snabbt kan kontrolleras kan skrivas om till en SAT-instans i polynomtid. Avbilda ditt schemaläggningsproblem, ditt pussel, din kryptonyckel på en formel, så löser en SAT-lösare den eller bevisar att ingen lösning finns. En snabb SAT-algoritm skulle få tusen svåra problem att rasa på en gång — just därför tror nästan ingen att den finns.",
       },
     ],
-    tryIt: "Nedan: en formel du kan satisfiera för hand. Växla variablerna tills varje klausul blir grön.",
+    tryIt:
+      "Nedan: en formel du kan satisfiera för hand. Växla variablerna tills varje klausul blir grön.",
   },
   sections: [
     {
@@ -587,7 +594,8 @@ const no: RichStory = {
         body: "I 1971 beviste Stephen Cook at SAT er NP-fullstendig: ethvert problem hvis løsninger er raske å sjekke, kan skrives om til en SAT-instans i polynomtid. Avbild planleggingsproblemet ditt, gåten din, kryptonøkkelen din på en formel, så løser en SAT-løser den eller beviser at ingen løsning finnes. En rask SAT-algoritme ville fått tusen vanskelige problemer til å rase sammen på én gang — nettopp derfor tror nesten ingen at den finnes.",
       },
     ],
-    tryIt: "Nedenfor: en formel du kan oppfylle for hånd. Vipp variablene til hver klausul blir grønn.",
+    tryIt:
+      "Nedenfor: en formel du kan oppfylle for hånd. Vipp variablene til hver klausul blir grønn.",
   },
   sections: [
     {

@@ -146,7 +146,9 @@ export function SatClauseHero() {
                 width={chipW}
                 height={34}
                 rx="8"
-                fill={val ? withAlpha(palette.signal.cyan, 0.14) : withAlpha(palette.ink[950], 0.85)}
+                fill={
+                  val ? withAlpha(palette.signal.cyan, 0.14) : withAlpha(palette.ink[950], 0.85)
+                }
                 stroke={
                   val ? withAlpha(palette.signal.cyan, 0.55) : withAlpha(palette.canvas.muted, 0.28)
                 }

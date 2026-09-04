@@ -250,12 +250,12 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: 'Starte irgendwo in einem gleichseitigen Dreieck. Jeder Schritt: wähl eine der drei Ecken gleichverteilt zufällig, geh halb in ihre Richtung, setz einen Punkt. Nach 200 Punkten siehst du eine Streuwolke. Nach 5000 das Sieb – jede «verbotene» Region (das mittlere Loch, dann die drei Sub-Löcher, dann neun Sub-Sub-Löcher) ist beweisbar leer.',
+        body: "Starte irgendwo in einem gleichseitigen Dreieck. Jeder Schritt: wähl eine der drei Ecken gleichverteilt zufällig, geh halb in ihre Richtung, setz einen Punkt. Nach 200 Punkten siehst du eine Streuwolke. Nach 5000 das Sieb – jede «verbotene» Region (das mittlere Loch, dann die drei Sub-Löcher, dann neun Sub-Sub-Löcher) ist beweisbar leer.",
       },
       {
         label: "03",
         title: "Warum es zählt",
-        body: 'Das ist ein verkapptes iteriertes Funktionensystem. Jeder «geh halb zu Ecke i» ist eine kontrahierende Abbildung in der Ebene; die Punktmenge konvergiert auf den einzigen Attraktor dieser drei Abbildungen. Tausch die Abbildungen aus und du bekommst andere Fraktale – Barnsleys Farn wächst aus genau demselben Rezept, nur vier affine Abbildungen statt drei Halbierungen.',
+        body: "Das ist ein verkapptes iteriertes Funktionensystem. Jeder «geh halb zu Ecke i» ist eine kontrahierende Abbildung in der Ebene; die Punktmenge konvergiert auf den einzigen Attraktor dieser drei Abbildungen. Tausch die Abbildungen aus und du bekommst andere Fraktale – Barnsleys Farn wächst aus genau demselben Rezept, nur vier affine Abbildungen statt drei Halbierungen.",
       },
     ],
     tryIt: "Unten: lass die Regel live laufen, dann sieh dem Farn beim Wachsen zu.",
@@ -274,12 +274,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Barnsleys Collage-Theorem",
       title: "Jede kompakte Menge hat ein IFS, das gegen sie konvergiert",
-      body: 'Michael Barnsleys Buch «Fractals Everywhere» von 1988 machte das Collage-Theorem breit bekannt: jede kompakte Teilmenge der Ebene lässt sich beliebig gut durch den Attraktor eines endlichen iterierten Funktionensystems annähern. Dreh die Frage um – such dir eine Zielform, dann finde wenige affine Abbildungen, deren Bilder zusammen (eine «Collage») die Form überdecken. Der Attraktor dieses IFS ist die Form. Das Chaos-Spiel tastet sie mit einer einzigen Zufallsbahn ab. Küstenlinien, Farne, Berge, Wolken: jedes Fraktal in der Natur ist im Prinzip ein paar getarnte Kontraktionen.',
+      body: "Michael Barnsleys Buch «Fractals Everywhere» von 1988 machte das Collage-Theorem breit bekannt: jede kompakte Teilmenge der Ebene lässt sich beliebig gut durch den Attraktor eines endlichen iterierten Funktionensystems annähern. Dreh die Frage um – such dir eine Zielform, dann finde wenige affine Abbildungen, deren Bilder zusammen (eine «Collage») die Form überdecken. Der Attraktor dieses IFS ist die Form. Das Chaos-Spiel tastet sie mit einer einzigen Zufallsbahn ab. Küstenlinien, Farne, Berge, Wolken: jedes Fraktal in der Natur ist im Prinzip ein paar getarnte Kontraktionen.",
     },
     {
       pretitle: "Abschnitt 04 · Jenseits des Dreiecks",
       title: "Wenn Halbieren scheitert – und die Regel, die es rettet",
-      body: 'Versuch vier Ecken am Quadrat mit demselben Schritt r = 1/2. Das Ergebnis ist kein Fraktal: die Punkte füllen das Innere gleichmäßig. Der Grund: die vier Halbierungsabbildungen auf dem Quadrat überdecken das ganze Quadrat – ihr Attraktor ist das gefüllte Quadrat. Die Lösung ist eine Beschränkungsregel. Verbiete, dass die nächste Ecke gleich der vorigen ist («no repeat»), und ein zartes Sierpiński-Teppich-Verwandtes erscheint. Jedes n-Eck hat seinen eigenen magischen Sprungfaktor rₙ = 1 − sₙ, der ohne Beschränkungen einen sauberen selbstähnlichen Attraktor liefert. Für n = 3 ist das 1/2; für n = 5 ist es 1/φ ≈ 0,618; für n = 6, 2/3; und so weiter.',
+      body: "Versuch vier Ecken am Quadrat mit demselben Schritt r = 1/2. Das Ergebnis ist kein Fraktal: die Punkte füllen das Innere gleichmäßig. Der Grund: die vier Halbierungsabbildungen auf dem Quadrat überdecken das ganze Quadrat – ihr Attraktor ist das gefüllte Quadrat. Die Lösung ist eine Beschränkungsregel. Verbiete, dass die nächste Ecke gleich der vorigen ist («no repeat»), und ein zartes Sierpiński-Teppich-Verwandtes erscheint. Jedes n-Eck hat seinen eigenen magischen Sprungfaktor rₙ = 1 − sₙ, der ohne Beschränkungen einen sauberen selbstähnlichen Attraktor liefert. Für n = 3 ist das 1/2; für n = 5 ist es 1/φ ≈ 0,618; für n = 6, 2/3; und so weiter.",
     },
     {
       pretitle: "Abschnitt 05 · Barnsleys Farn",
@@ -351,7 +351,7 @@ const es: RichStory = {
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: 'Empieza en cualquier sitio dentro de un triángulo equilátero. Cada paso: elige uniformemente una de las tres esquinas, muévete hasta la mitad, deja un punto. A los 200 puntos ves una nube dispersa. A los 5000 ves el triángulo de Sierpiński: toda región «prohibida» (el agujero central, luego los tres subagujeros, luego nueve sub-subagujeros) está vacía demostrablemente.',
+        body: "Empieza en cualquier sitio dentro de un triángulo equilátero. Cada paso: elige uniformemente una de las tres esquinas, muévete hasta la mitad, deja un punto. A los 200 puntos ves una nube dispersa. A los 5000 ves el triángulo de Sierpiński: toda región «prohibida» (el agujero central, luego los tres subagujeros, luego nueve sub-subagujeros) está vacía demostrablemente.",
       },
       {
         label: "03",
@@ -654,7 +654,7 @@ const pt: RichStory = {
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: 'Começa em qualquer ponto dentro de um triângulo equilátero. A cada passo: escolhe uniformemente um dos três cantos, move-te até meio, deixa um ponto. Aos 200 pontos vês uma nuvem dispersa. Aos 5000 vês o triângulo de Sierpiński: toda região «proibida» (o buraco central, depois os três sub-buracos, depois nove sub-sub-buracos) está demonstravelmente vazia.',
+        body: "Começa em qualquer ponto dentro de um triângulo equilátero. A cada passo: escolhe uniformemente um dos três cantos, move-te até meio, deixa um ponto. Aos 200 pontos vês uma nuvem dispersa. Aos 5000 vês o triângulo de Sierpiński: toda região «proibida» (o buraco central, depois os três sub-buracos, depois nove sub-sub-buracos) está demonstravelmente vazia.",
       },
       {
         label: "03",

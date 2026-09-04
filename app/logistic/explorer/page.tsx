@@ -192,8 +192,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       "Fullt kaos",
     ],
     bifurcationDiagram: "Bifurkasjonsdiagram",
-    timeSeries: (show, burn) =>
-      `Tidsserie · siste ${show} iterasjoner (etter ${burn} innkjøring)`,
+    timeSeries: (show, burn) => `Tidsserie · siste ${show} iterasjoner (etter ${burn} innkjøring)`,
     growthRate: "Vekstrate r",
     startingPoint: "x₀ · startpunkt",
     burnIn: "Innkjøring",

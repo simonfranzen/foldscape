@@ -113,7 +113,14 @@ function RuleSVG({
         <path key={i} d={boidPath(n.x, n.y, n.vx, n.vy)} fill={rgba(palette.ink[100], 0.55)} />
       ))}
       <path d={boidPath(focus.x, focus.y, focus.vx, focus.vy, 6)} fill={palette.signal.cyan} />
-      <line x1={focus.x} y1={focus.y} x2={ax} y2={ay} stroke={palette.signal.cyan} strokeWidth={1.6} />
+      <line
+        x1={focus.x}
+        y1={focus.y}
+        x2={ax}
+        y2={ay}
+        stroke={palette.signal.cyan}
+        strokeWidth={1.6}
+      />
       <polygon
         points={(() => {
           const a = Math.atan2(arrow.dy, arrow.dx);

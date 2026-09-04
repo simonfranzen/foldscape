@@ -123,19 +123,20 @@ export function BackpropSignatureHero() {
         >
           weight space
         </text>
-        <text
-          x={48}
-          y={28}
-          fontFamily="var(--font-mono)"
-          fontSize="10"
-          fill={palette.canvas.muted}
-        >
+        <text x={48} y={28} fontFamily="var(--font-mono)" fontSize="10" fill={palette.canvas.muted}>
           loss L(w)
         </text>
 
         {/* Trail of past steps */}
         {trail.map((p, i) => (
-          <circle key={i} cx={p.x} cy={p.y} r={2.2 - i * 0.05} fill={palette.signal.amber} opacity={p.a * 0.55} />
+          <circle
+            key={i}
+            cx={p.x}
+            cy={p.y}
+            r={2.2 - i * 0.05}
+            fill={palette.signal.amber}
+            opacity={p.a * 0.55}
+          />
         ))}
 
         {/* The gradient arrow at the walker — points toward the next step */}
@@ -159,15 +160,43 @@ export function BackpropSignatureHero() {
           const h2y = ay - Math.sin(angle + 0.5) * headL;
           return (
             <g>
-              <line x1={wx} y1={wy} x2={ax} y2={ay} stroke={palette.signal.amber} strokeWidth="1.4" />
-              <line x1={ax} y1={ay} x2={h1x} y2={h1y} stroke={palette.signal.amber} strokeWidth="1.4" />
-              <line x1={ax} y1={ay} x2={h2x} y2={h2y} stroke={palette.signal.amber} strokeWidth="1.4" />
+              <line
+                x1={wx}
+                y1={wy}
+                x2={ax}
+                y2={ay}
+                stroke={palette.signal.amber}
+                strokeWidth="1.4"
+              />
+              <line
+                x1={ax}
+                y1={ay}
+                x2={h1x}
+                y2={h1y}
+                stroke={palette.signal.amber}
+                strokeWidth="1.4"
+              />
+              <line
+                x1={ax}
+                y1={ay}
+                x2={h2x}
+                y2={h2y}
+                stroke={palette.signal.amber}
+                strokeWidth="1.4"
+              />
             </g>
           );
         })()}
 
         {/* The walker itself */}
-        <circle cx={wx} cy={wy} r="6" fill="rgba(5,6,10,0.95)" stroke={palette.signal.amber} strokeWidth="1.6" />
+        <circle
+          cx={wx}
+          cy={wy}
+          r="6"
+          fill="rgba(5,6,10,0.95)"
+          stroke={palette.signal.amber}
+          strokeWidth="1.6"
+        />
         <circle cx={wx} cy={wy} r="2" fill={palette.signal.amber} />
 
         {/* Minimum marker at the centre */}

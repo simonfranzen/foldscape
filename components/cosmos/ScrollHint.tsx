@@ -30,13 +30,7 @@ export function ScrollHint({ targetId, label }: Props) {
         aria-label={label ?? "Scroll to next section"}
         className="cosmos-scroll-hint pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-ink-700/40 bg-ink-950/40 text-ink-300 transition-colors hover:border-signal-violet/60 hover:text-signal-violet focus-visible:border-signal-violet focus-visible:text-signal-violet"
       >
-        <svg
-          width="14"
-          height="20"
-          viewBox="0 0 14 20"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg width="14" height="20" viewBox="0 0 14 20" fill="none" aria-hidden="true">
           <path
             d="M1 6l6 7 6-7"
             stroke="currentColor"

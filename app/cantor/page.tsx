@@ -177,7 +177,11 @@ const en: RichStory = {
   chWho: "Who",
   chResult: "Result",
   chRows: [
-    { year: "1878", who: "Cantor", result: "Asks whether any size lives strictly between ℵ₀ and c." },
+    {
+      year: "1878",
+      who: "Cantor",
+      result: "Asks whether any size lives strictly between ℵ₀ and c.",
+    },
     { year: "1891", who: "Cantor", result: "Diagonal argument: |ℝ| > |ℕ|." },
     {
       year: "1940",

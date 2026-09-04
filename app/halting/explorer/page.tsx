@@ -371,7 +371,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     capExplainer:
       "Todo analizador debe rendirse tarde o temprano. El límite es tu analizador: cuando salta, no puedes saber si el programa acabaría deteniéndose.",
     statusHalted: (s) => `detenido en el paso ${s}`,
-    statusCap: (s) => `sigue ejecutándose tras ${s} pasos, no podemos saber si alguna vez se detiene`,
+    statusCap: (s) =>
+      `sigue ejecutándose tras ${s} pasos, no podemos saber si alguna vez se detiene`,
     statusRunning: (s, cap) => `en ejecución · paso ${s} / límite ${cap}`,
     programs: [
       {
@@ -393,8 +394,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       },
       {
         label: "Collatz de 27",
-        description:
-          "Itera n ↦ n/2 (par) o 3n+1 (impar), empezando en 27. Realmente vuelve a 1.",
+        description: "Itera n ↦ n/2 (par) o 3n+1 (impar), empezando en 27. Realmente vuelve a 1.",
         truth: "Se detiene tras 111 pasos reales de Collatz.",
       },
       {
@@ -499,7 +499,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       },
       {
         label: "Conta fino a 100",
-        description: "Imposta la cella 0 a 100, poi [-] la decrementa fino a zero ed esce dal ciclo.",
+        description:
+          "Imposta la cella 0 a 100, poi [-] la decrementa fino a zero ed esce dal ciclo.",
         truth: "Si ferma dopo esattamente 301 passi di istruzione.",
       },
       {
@@ -510,8 +511,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       },
       {
         label: "Collatz su 27",
-        description:
-          "Itera n ↦ n/2 (pari) o 3n+1 (dispari), partendo da 27. Torna davvero a 1.",
+        description: "Itera n ↦ n/2 (pari) o 3n+1 (dispari), partendo da 27. Torna davvero a 1.",
         truth: "Si ferma dopo 111 veri passi di Collatz.",
       },
       {
@@ -568,8 +568,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       },
       {
         label: "Collatz de 27",
-        description:
-          "Itere n ↦ n/2 (par) ou 3n+1 (ímpar), começando em 27. Volta mesmo a 1.",
+        description: "Itere n ↦ n/2 (par) ou 3n+1 (ímpar), começando em 27. Volta mesmo a 1.",
         truth: "Para após 111 passos reais de Collatz.",
       },
       {
@@ -673,7 +672,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       },
       {
         label: "Tell til 100",
-        description: "Sett celle 0 til 100, deretter reduserer [-] den til null og forlater løkken.",
+        description:
+          "Sett celle 0 til 100, deretter reduserer [-] den til null og forlater løkken.",
         truth: "Stopper etter nøyaktig 301 instruksjonssteg.",
       },
       {

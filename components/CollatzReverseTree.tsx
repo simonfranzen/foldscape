@@ -104,7 +104,12 @@ function buildTree(maxDepth: number): { nodes: TreeNode[]; edges: Array<[TreeNod
   return { nodes, edges };
 }
 
-const PALETTE = [palette.signal.rose, palette.signal.amber, palette.signal.cyan, palette.signal.violet];
+const PALETTE = [
+  palette.signal.rose,
+  palette.signal.amber,
+  palette.signal.cyan,
+  palette.signal.violet,
+];
 
 export function CollatzReverseTree({ caption, depthLabel, nodeLabel, hint, maxDepth = 14 }: Props) {
   const [depth, setDepth] = useState(8);

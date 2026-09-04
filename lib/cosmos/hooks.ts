@@ -93,7 +93,7 @@ export function useDocumentScrollProgress(): number {
     const tick = () => {
       rafRef.current = null;
       const doc = document.documentElement;
-      const max = (doc.scrollHeight - window.innerHeight) || 1;
+      const max = doc.scrollHeight - window.innerHeight || 1;
       const p = Math.max(0, Math.min(1, window.scrollY / max));
       setProgress(p);
     };

@@ -30,14 +30,14 @@ const BUS_PRIMES = [3, 5, 7, 11, 13, 17, 19, 23];
 // the story-page widget (HilbertHotelInline). The first four show in the
 // legend; the rest only ever appear as the higher buses' dots.
 const BUS_COLORS = [
-  palette.signal.rose,   // rose       — bus 1
-  "#b794f4",             // violet     — bus 2
-  "#86efac",             // green      — bus 3
-  palette.signal.amber,  // amber      — bus 4
-  "#fca5a5",             // light rose — bus 5
-  "#fcd34d",             // yellow     — bus 6
-  "#a5b4fc",             // indigo     — bus 7
-  "#fb923c",             // orange     — bus 8
+  palette.signal.rose, // rose       — bus 1
+  "#b794f4", // violet     — bus 2
+  "#86efac", // green      — bus 3
+  palette.signal.amber, // amber      — bus 4
+  "#fca5a5", // light rose — bus 5
+  "#fcd34d", // yellow     — bus 6
+  "#a5b4fc", // indigo     — bus 7
+  "#fb923c", // orange     — bus 8
 ];
 
 const EXISTING_COLOR = "#cdd6f4"; // soft white for original guests
@@ -805,8 +805,7 @@ export default function HilbertHotelExplorer() {
             </div>
             {offScreenGuests > 0 && (
               <div className="font-mono text-[10px] text-ink-400">
-                {offScreenGuests} {offScreenGuests === 1 ? x.guestOne : x.guestMany}{" "}
-                {x.roomsBeyond}
+                {offScreenGuests} {offScreenGuests === 1 ? x.guestOne : x.guestMany} {x.roomsBeyond}
                 {VISIBLE_ROOMS}
               </div>
             )}
@@ -972,8 +971,8 @@ export default function HilbertHotelExplorer() {
                       className="inline-block rounded-full"
                       style={{ background: BUS_COLORS[i], width: 10, height: 10 }}
                     />
-                    {x.busWord} {i + 1} · {x.primeWord} {p} ({x.roomsWord} {p}, {p * p}, {p * p * p},
-                    …)
+                    {x.busWord} {i + 1} · {x.primeWord} {p} ({x.roomsWord} {p}, {p * p}, {p * p * p}
+                    , …)
                   </div>
                 ))}
             </div>

@@ -238,10 +238,7 @@ function easeOutCubic(t: number): number {
 // Compute the bbox of an opened cluster's laid-out stars, expanded by
 // CAMERA_PADDING on all sides. Returns the HOME viewBox when the category
 // has no positioned topics (defensive — every category has hubs).
-function bboxForCategory(
-  cat: TopicCategory,
-  laidOut: LaidOutTopic[],
-): ViewBox {
+function bboxForCategory(cat: TopicCategory, laidOut: LaidOutTopic[]): ViewBox {
   const inCat = laidOut.filter((l) => l.topic.category === cat);
   if (inCat.length === 0) return HOME_VB;
   let minX = Infinity;
@@ -411,8 +408,7 @@ export function TopicConstellation({ filter, setFilter }: Props) {
     return () => window.removeEventListener("keydown", onKey);
   }, [openCategory, setFilter]);
 
-  const trans = (props: string) =>
-    reduceMotion || isPanning ? undefined : `${props} 280ms ease`;
+  const trans = (props: string) => (reduceMotion || isPanning ? undefined : `${props} 280ms ease`);
 
   const posById = useMemo(() => {
     const m = new Map<TopicId, LaidOutTopic>();
@@ -525,12 +521,7 @@ export function TopicConstellation({ filter, setFilter }: Props) {
     // letterboxed horizontally; with our canvas the aspect ratio is fixed so
     // this is exact.
     const scale = ps.vb[2] / rect.width;
-    setViewBox([
-      ps.vb[0] - dx * scale,
-      ps.vb[1] - dy * scale,
-      ps.vb[2],
-      ps.vb[3],
-    ]);
+    setViewBox([ps.vb[0] - dx * scale, ps.vb[1] - dy * scale, ps.vb[2], ps.vb[3]]);
   };
 
   const onSvgPointerUp = (e: React.PointerEvent<SVGSVGElement>) => {
@@ -556,12 +547,7 @@ export function TopicConstellation({ filter, setFilter }: Props) {
     if (Math.abs(targetW - w) < 0.5) return;
     const realFactor = targetW / w;
     const targetH = h * realFactor;
-    const target: ViewBox = [
-      x + (w - targetW) / 2,
-      y + (h - targetH) / 2,
-      targetW,
-      targetH,
-    ];
+    const target: ViewBox = [x + (w - targetW) / 2, y + (h - targetH) / 2, targetW, targetH];
     tweenViewBoxTo(target);
   };
 

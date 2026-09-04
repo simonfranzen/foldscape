@@ -83,7 +83,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     ballsUnit: "bolas",
     binsWord: "casillas",
     landedWord: "caídas",
-    canvasLabel: "Simulación del tablero de Galton: las bolas caen entre clavos y llenan un histograma.",
+    canvasLabel:
+      "Simulación del tablero de Galton: las bolas caen entre clavos y llenan un histograma.",
   },
   fr: {
     rowsLabel: "Rangées N",
@@ -97,7 +98,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     ballsUnit: "billes",
     binsWord: "casiers",
     landedWord: "tombées",
-    canvasLabel: "Simulation de la planche de Galton : les billes tombent entre les clous et remplissent un histogramme.",
+    canvasLabel:
+      "Simulation de la planche de Galton : les billes tombent entre les clous et remplissent un histogramme.",
   },
   it: {
     rowsLabel: "File N",
@@ -111,7 +113,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     ballsUnit: "palline",
     binsWord: "vaschette",
     landedWord: "cadute",
-    canvasLabel: "Simulazione della macchina di Galton: le palline cadono tra i chiodi e riempiono un istogramma.",
+    canvasLabel:
+      "Simulazione della macchina di Galton: le palline cadono tra i chiodi e riempiono un istogramma.",
   },
   pt: {
     rowsLabel: "Filas N",
@@ -125,7 +128,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     ballsUnit: "bolas",
     binsWord: "casas",
     landedWord: "caídas",
-    canvasLabel: "Simulação da placa de Galton: as bolas caem entre os pinos e enchem um histograma.",
+    canvasLabel:
+      "Simulação da placa de Galton: as bolas caem entre os pinos e enchem um histograma.",
   },
   sv: {
     rowsLabel: "Rader N",

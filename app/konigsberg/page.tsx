@@ -479,11 +479,7 @@ function CityMap({
   const islandFontSize = compact ? 0 : 12;
 
   return (
-    <svg
-      viewBox="0 0 800 440"
-      className="block h-auto w-full"
-      preserveAspectRatio="xMidYMid meet"
-    >
+    <svg viewBox="0 0 800 440" className="block h-auto w-full" preserveAspectRatio="xMidYMid meet">
       {/* Banks */}
       <rect x="0" y="0" width="800" height="110" fill="rgba(255,209,102,0.08)" />
       <rect x="0" y="330" width="800" height="110" fill="rgba(255,209,102,0.08)" />
@@ -690,11 +686,7 @@ function AbstractGraph({
   };
 
   return (
-    <svg
-      viewBox="0 0 800 480"
-      className="block h-auto w-full"
-      preserveAspectRatio="xMidYMid meet"
-    >
+    <svg viewBox="0 0 800 480" className="block h-auto w-full" preserveAspectRatio="xMidYMid meet">
       <defs>
         <radialGradient id="kb-vert-shared" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor={AMBER} stopOpacity="0.9" />
@@ -910,7 +902,14 @@ function ParityPanel({ kind, title, note }: { kind: "even" | "odd"; title: strin
       {/* Odd "stuck" badge near the leftover edge endpoint */}
       {kind === "odd" && (
         <g>
-          <circle cx="150" cy="265" r="12" fill={palette.canvas.bgAlt} stroke={MUTED} strokeWidth="1" />
+          <circle
+            cx="150"
+            cy="265"
+            r="12"
+            fill={palette.canvas.bgAlt}
+            stroke={MUTED}
+            strokeWidth="1"
+          />
           <text
             x="150"
             y="270"
@@ -1032,11 +1031,7 @@ export default function KonigsbergStoryPage() {
               >
                 {fig.fig2.cityLabel}
               </div>
-              <CityMap
-                northLabel={fig.fig1.northBank}
-                southLabel={fig.fig1.southBank}
-                compact
-              />
+              <CityMap northLabel={fig.fig1.northBank} southLabel={fig.fig1.southBank} compact />
             </div>
             <div className="flex flex-col items-center justify-center gap-1 px-2 md:px-4">
               <div className="text-2xl text-ink-200 md:text-3xl">→</div>
@@ -1080,10 +1075,7 @@ export default function KonigsbergStoryPage() {
         >
           <AbstractGraph degLabel={fig.shared.deg} degrees={originalDegrees} />
           <div className="px-4 pb-3 text-center">
-            <span
-              className="font-mono text-[11px] text-ink-400"
-              aria-hidden="true"
-            >
+            <span className="font-mono text-[11px] text-ink-400" aria-hidden="true">
               A-B: 2 · A-C: 2 · A-D: 1 · B-D: 1 · C-D: 1 — {fig.shared.legendNote}
             </span>
           </div>

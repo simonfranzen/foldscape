@@ -27,7 +27,8 @@ const PALETTE = [
 // nonzero residue equals PALETTE.length (e.g. residue 12 with a 12-entry
 // palette for p = 13), a plain `r % PALETTE.length` would wrap to 0 and draw
 // the cell as background. Cycle nonzero residues through indices 1..len-1.
-const colourFor = (r: number) => (r === 0 ? PALETTE[0] : PALETTE[1 + ((r - 1) % (PALETTE.length - 1))]);
+const colourFor = (r: number) =>
+  r === 0 ? PALETTE[0] : PALETTE[1 + ((r - 1) % (PALETTE.length - 1))];
 
 // Localized sidebar/overlay copy — the atlas bundle already localizes
 // title/tagline/body, so these six strings need their own per-locale map.
@@ -171,7 +172,6 @@ export default function PascalmodExplorer() {
         }
         prev = next;
       }
-
     };
 
     draw();

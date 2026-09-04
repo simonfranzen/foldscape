@@ -444,7 +444,8 @@ const es: RichStory = {
       xor: "XOR",
       countOne: "1 puerta NAND.",
       countN: (n: number) => `${n} puertas NAND.`,
-      circuit: (target, n) => `Circuito: ${target} construido con ${n} puerta${n > 1 ? "s" : ""} NAND`,
+      circuit: (target, n) =>
+        `Circuito: ${target} construido con ${n} puerta${n > 1 ? "s" : ""} NAND`,
       description: {
         NOT: "Une las dos entradas de una sola NAND a la señal a.",
         AND: "NAND, después NAND con entradas unidas (= NOT). Dos puertas.",
@@ -586,7 +587,8 @@ const fr: RichStory = {
       xor: "XOR",
       countOne: "1 porte NAND.",
       countN: (n: number) => `${n} portes NAND.`,
-      circuit: (target, n) => `Circuit : ${target} construit avec ${n} porte${n > 1 ? "s" : ""} NAND`,
+      circuit: (target, n) =>
+        `Circuit : ${target} construit avec ${n} porte${n > 1 ? "s" : ""} NAND`,
       description: {
         NOT: "Relie les deux entrées d'une seule NAND au signal a.",
         AND: "NAND, puis NAND à entrées reliées (= NOT). Deux portes.",
@@ -727,7 +729,8 @@ const it: RichStory = {
       xor: "XOR",
       countOne: "1 porta NAND.",
       countN: (n: number) => `${n} porte NAND.`,
-      circuit: (target, n) => `Circuito: ${target} costruito con ${n} ${n > 1 ? "porte" : "porta"} NAND`,
+      circuit: (target, n) =>
+        `Circuito: ${target} costruito con ${n} ${n > 1 ? "porte" : "porta"} NAND`,
       description: {
         NOT: "Unisci i due ingressi di una sola NAND al segnale a.",
         AND: "NAND, poi NAND con ingressi uniti (= NOT). Due porte.",
@@ -868,7 +871,8 @@ const pt: RichStory = {
       xor: "XOR",
       countOne: "1 porta NAND.",
       countN: (n: number) => `${n} portas NAND.`,
-      circuit: (target, n) => `Circuito: ${target} construído com ${n} porta${n > 1 ? "s" : ""} NAND`,
+      circuit: (target, n) =>
+        `Circuito: ${target} construído com ${n} porta${n > 1 ? "s" : ""} NAND`,
       description: {
         NOT: "Liga as duas entradas de uma única NAND ao sinal a.",
         AND: "NAND, depois NAND com entradas unidas (= NOT). Duas portas.",

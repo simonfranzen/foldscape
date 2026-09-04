@@ -101,13 +101,7 @@ export function TopicStar({ topic, x, y, isHub, title, tagline, category }: Prop
         </g>
         {/* Bright bloom ring for hubs */}
         {isHub && (
-          <circle
-            r={r * 1.5}
-            fill="none"
-            stroke="#fff"
-            strokeOpacity={0.45}
-            strokeWidth={0.6}
-          />
+          <circle r={r * 1.5} fill="none" stroke="#fff" strokeOpacity={0.45} strokeWidth={0.6} />
         )}
         {/* The star itself */}
         <circle r={r} fill="#fff" />

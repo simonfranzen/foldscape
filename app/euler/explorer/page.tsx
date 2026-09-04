@@ -335,7 +335,11 @@ export default function EulerExplorer() {
       ctx.font = "12px ui-monospace, monospace";
       for (let i = 0; i < lines.length; i++) {
         ctx.fillStyle =
-          i === 0 ? (atPi ? palette.signal.rose : palette.signal.amber) : "rgba(225, 228, 240, 0.9)";
+          i === 0
+            ? atPi
+              ? palette.signal.rose
+              : palette.signal.amber
+            : "rgba(225, 228, 240, 0.9)";
         ctx.fillText(lines[i], 20, H - 70 + i * 16);
       }
 

@@ -70,7 +70,12 @@ export function GodelLoopHero() {
       className="hairline glass relative overflow-hidden rounded-2xl border"
       aria-label="The Gödel sentence on a figure-of-eight curve, biting its own tail."
     >
-      <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} className="block h-auto w-full" role="img" aria-hidden="true">
+      <svg
+        viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+        className="block h-auto w-full"
+        role="img"
+        aria-hidden="true"
+      >
         <defs>
           <path id="godel-loop" d={points.join(" ")} fill="none" />
           <linearGradient id="godel-stroke" x1="0" y1="0" x2="1" y2="0">
@@ -81,17 +86,33 @@ export function GodelLoopHero() {
         </defs>
         {/* Ghost stroke of the curve. Colour derives from the palette token so a
             palette change keeps this in sync; opacity via strokeOpacity. */}
-        <use href="#godel-loop" stroke={palette.signal.violet} strokeOpacity="0.18" strokeWidth="1.6" />
+        <use
+          href="#godel-loop"
+          stroke={palette.signal.violet}
+          strokeOpacity="0.18"
+          strokeWidth="1.6"
+        />
         <use href="#godel-loop" stroke="url(#godel-stroke)" strokeWidth="0.6" opacity="0.5" />
         {/* The sentence laid along the curve, drifting */}
-        <text fontFamily="var(--font-serif)" fontStyle="italic" fontSize="17" fill={palette.ink[100]}>
+        <text
+          fontFamily="var(--font-serif)"
+          fontStyle="italic"
+          fontSize="17"
+          fill={palette.ink[100]}
+        >
           <textPath href="#godel-loop" startOffset={`${offsetPct}%`} method="align" spacing="auto">
             {SENTENCE.repeat(3)}
           </textPath>
         </text>
         {/* G and ⌜G⌝ as twin markers at the figure-8 crossing */}
         <g transform={`translate(${cx} ${cy})`}>
-          <circle r="18" fill={palette.ink[950]} fillOpacity="0.85" stroke={palette.signal.violet} strokeOpacity="0.75" />
+          <circle
+            r="18"
+            fill={palette.ink[950]}
+            fillOpacity="0.85"
+            stroke={palette.signal.violet}
+            strokeOpacity="0.75"
+          />
           <text
             textAnchor="middle"
             dy="6"

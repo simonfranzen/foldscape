@@ -188,7 +188,8 @@ const en: RichStory = {
     "Euler's formula shows growth in the imaginary direction = rotation in the plane.",
     "Set θ = π. All five constants meet.",
   ],
-  quarterTurnNote: "Four quarter-turns close the loop. Each ×i is a 90° rotation; i² = −1 is two of them.",
+  quarterTurnNote:
+    "Four quarter-turns close the loop. Each ×i is a 90° rotation; i² = −1 is two of them.",
   walkStart: "start",
   walkHalfTurn: "half-turn",
   walkLand: "land",
@@ -220,7 +221,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: 'Feynman nannte die Formel e^(iθ) = cos θ + i sin θ, von der diese Identität der Fall θ = π ist, „die bemerkenswerteste Formel der Mathematik“, „unser Juwel.“ Eine Umfrage im Mathematical Intelligencer von 1990 unter arbeitenden Mathematiker:innen wählte diese Identität zum schönsten je bewiesenen Satz. Sie ist eine Brücke: Algebra schreibt die Symbole, Geometrie läuft den Kreis, Analysis liefert die unendliche Reihe, die alles einrasten lässt.',
+        body: "Feynman nannte die Formel e^(iθ) = cos θ + i sin θ, von der diese Identität der Fall θ = π ist, „die bemerkenswerteste Formel der Mathematik“, „unser Juwel.“ Eine Umfrage im Mathematical Intelligencer von 1990 unter arbeitenden Mathematiker:innen wählte diese Identität zum schönsten je bewiesenen Satz. Sie ist eine Brücke: Algebra schreibt die Symbole, Geometrie läuft den Kreis, Analysis liefert die unendliche Reihe, die alles einrasten lässt.",
       },
     ],
     tryIt:
@@ -235,7 +236,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Komplexe Multiplikation",
       title: "Warum i eine Vierteldrehung ist",
-      body: 'Vergiss kurz, dass i „imaginär“ sein soll, und sieh, was Multiplikation mit i wirklich tut. Starte bei 1 auf der reellen Achse. Multipliziere mit i und du landest bei i — eine Vierteldrehung nach oben. Noch einmal mit i, und du landest bei i² = −1 — eine weitere Vierteldrehung, genau gegenüber vom Start. Zwei Vierteldrehungen ergeben eine Halbdrehung, und genau das ist die geometrische Bedeutung von i² = −1. Komplexe Multiplikation ist Drehung (um das Argument) mal Streckung (um den Betrag). Die Zahlen auf dem Einheitskreis, wo der Betrag 1 ist, sind reine Drehung. Sie sind der Motor der Identität.',
+      body: "Vergiss kurz, dass i „imaginär“ sein soll, und sieh, was Multiplikation mit i wirklich tut. Starte bei 1 auf der reellen Achse. Multipliziere mit i und du landest bei i — eine Vierteldrehung nach oben. Noch einmal mit i, und du landest bei i² = −1 — eine weitere Vierteldrehung, genau gegenüber vom Start. Zwei Vierteldrehungen ergeben eine Halbdrehung, und genau das ist die geometrische Bedeutung von i² = −1. Komplexe Multiplikation ist Drehung (um das Argument) mal Streckung (um den Betrag). Die Zahlen auf dem Einheitskreis, wo der Betrag 1 ist, sind reine Drehung. Sie sind der Motor der Identität.",
     },
     {
       pretitle: "Abschnitt 03 · Eulers Formel",
@@ -318,7 +319,8 @@ const de: RichStory = {
     "Eulers Formel zeigt: Wachstum in imaginärer Richtung = Drehung in der Ebene.",
     "Setze θ = π. Alle fünf Konstanten treffen sich.",
   ],
-  quarterTurnNote: "Vier Vierteldrehungen schließen den Kreis. Jedes ×i ist eine 90°-Drehung; i² = −1 sind zwei davon.",
+  quarterTurnNote:
+    "Vier Vierteldrehungen schließen den Kreis. Jedes ×i ist eine 90°-Drehung; i² = −1 sind zwei davon.",
   walkStart: "Start",
   walkHalfTurn: "Halbdrehung",
   walkLand: "Ziel",
@@ -448,7 +450,8 @@ const es: RichStory = {
     "La fórmula de Euler muestra que crecer en imaginario = rotar en el plano.",
     "Pon θ = π. Las cinco constantes se encuentran.",
   ],
-  quarterTurnNote: "Cuatro cuartos de vuelta cierran el ciclo. Cada ×i es una rotación de 90°; i² = −1 son dos de ellas.",
+  quarterTurnNote:
+    "Cuatro cuartos de vuelta cierran el ciclo. Cada ×i es una rotación de 90°; i² = −1 son dos de ellas.",
   walkStart: "inicio",
   walkHalfTurn: "media vuelta",
   walkLand: "llegada",
@@ -578,7 +581,8 @@ const fr: RichStory = {
     "La formule d'Euler montre que croître en imaginaire = tourner dans le plan.",
     "Pose θ = π. Les cinq constantes se rencontrent.",
   ],
-  quarterTurnNote: "Quatre quarts de tour bouclent la boucle. Chaque ×i est une rotation de 90° ; i² = −1 en fait deux.",
+  quarterTurnNote:
+    "Quatre quarts de tour bouclent la boucle. Chaque ×i est une rotation de 90° ; i² = −1 en fait deux.",
   walkStart: "départ",
   walkHalfTurn: "demi-tour",
   walkLand: "arrivée",
@@ -708,7 +712,8 @@ const it: RichStory = {
     "La formula di Eulero mostra che crescere in immaginario = ruotare nel piano.",
     "Poni θ = π. Le cinque costanti si incontrano.",
   ],
-  quarterTurnNote: "Quattro quarti di giro chiudono il cerchio. Ogni ×i è una rotazione di 90°; i² = −1 ne sono due.",
+  quarterTurnNote:
+    "Quattro quarti di giro chiudono il cerchio. Ogni ×i è una rotazione di 90°; i² = −1 ne sono due.",
   walkStart: "inizio",
   walkHalfTurn: "mezzo giro",
   walkLand: "arrivo",
@@ -838,7 +843,8 @@ const pt: RichStory = {
     "A fórmula de Euler mostra que crescer em imaginário = rodar no plano.",
     "Põe θ = π. As cinco constantes encontram-se.",
   ],
-  quarterTurnNote: "Quatro quartos de volta fecham o ciclo. Cada ×i é uma rotação de 90°; i² = −1 são dois deles.",
+  quarterTurnNote:
+    "Quatro quartos de volta fecham o ciclo. Cada ×i é uma rotação de 90°; i² = −1 são dois deles.",
   walkStart: "início",
   walkHalfTurn: "meia-volta",
   walkLand: "chegada",
@@ -967,7 +973,8 @@ const sv: RichStory = {
     "Eulers formel visar att växa i imaginär riktning = rotera i planet.",
     "Sätt θ = π. De fem konstanterna möts.",
   ],
-  quarterTurnNote: "Fyra kvartsvarv sluter cirkeln. Varje ×i är en 90°-rotation; i² = −1 är två av dem.",
+  quarterTurnNote:
+    "Fyra kvartsvarv sluter cirkeln. Varje ×i är en 90°-rotation; i² = −1 är två av dem.",
   walkStart: "start",
   walkHalfTurn: "halvvarv",
   walkLand: "mål",
@@ -1095,7 +1102,8 @@ const no: RichStory = {
     "Eulers formel viser at å vokse i imaginær retning = å rotere i planet.",
     "Sett θ = π. De fem konstantene møtes.",
   ],
-  quarterTurnNote: "Fire kvartsomdreininger lukker sirkelen. Hver ×i er en 90°-rotasjon; i² = −1 er to av dem.",
+  quarterTurnNote:
+    "Fire kvartsomdreininger lukker sirkelen. Hver ×i er en 90°-rotasjon; i² = −1 er to av dem.",
   walkStart: "start",
   walkHalfTurn: "halvomdreining",
   walkLand: "mål",
@@ -1224,9 +1232,7 @@ export default function EulerStory() {
               <tbody>
                 {story.charactersRows.map((r) => (
                   <tr key={r.sym} className="border-b border-ink-700/30 last:border-0">
-                    <td className="math-italic w-12 px-2 py-2 text-lg text-signal-teal">
-                      {r.sym}
-                    </td>
+                    <td className="math-italic w-12 px-2 py-2 text-lg text-signal-teal">{r.sym}</td>
                     <td className="px-2 py-2 text-ink-100">{r.role}</td>
                     <td className="px-2 py-2 text-xs uppercase tracking-widest text-ink-300">
                       {r.home}

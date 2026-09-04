@@ -81,7 +81,8 @@ export function IotaReducerMini({ caption, labels = DEFAULT_LABELS }: Props) {
   const [custom, setCustom] = useState<string>("");
   const [step, setStep] = useState(0);
 
-  const src = custom.trim().length > 0 ? custom : (PRESETS.find((p) => p.id === presetId) ?? PRESETS[0]).src;
+  const src =
+    custom.trim().length > 0 ? custom : (PRESETS.find((p) => p.id === presetId) ?? PRESETS[0]).src;
 
   const result = useMemo(() => {
     try {
@@ -169,8 +170,8 @@ export function IotaReducerMini({ caption, labels = DEFAULT_LABELS }: Props) {
             <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest2">
               <span className="text-ink-400">
                 {labels.stepStatus}{" "}
-                <span className="text-signal-cyan">{clamped.toString().padStart(2, "0")}</span>{" "}
-                / {(result.steps.length - 1).toString().padStart(2, "0")}
+                <span className="text-signal-cyan">{clamped.toString().padStart(2, "0")}</span> /{" "}
+                {(result.steps.length - 1).toString().padStart(2, "0")}
               </span>
               <span className={result.normal ? "text-signal-cyan" : "text-signal-amber"}>
                 {atEnd

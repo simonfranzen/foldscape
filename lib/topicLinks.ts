@@ -555,7 +555,8 @@ export const TOPIC_LINKS: Record<TopicId, TopicLink[]> = {
   backprop: [
     { label: "Wikipedia — Backpropagation", href: "https://en.wikipedia.org/wiki/Backpropagation" },
     {
-      label: "Rumelhart, Hinton, Williams (1986) — Learning representations by back-propagating errors",
+      label:
+        "Rumelhart, Hinton, Williams (1986) — Learning representations by back-propagating errors",
       href: "https://www.nature.com/articles/323533a0",
     },
     {
@@ -574,16 +575,21 @@ export const TOPIC_LINKS: Record<TopicId, TopicLink[]> = {
       href: "https://arxiv.org/abs/2006.11239",
     },
     {
-      label: "Sohl-Dickstein et al. (2015) — Deep Unsupervised Learning using Nonequilibrium Thermodynamics",
+      label:
+        "Sohl-Dickstein et al. (2015) — Deep Unsupervised Learning using Nonequilibrium Thermodynamics",
       href: "https://arxiv.org/abs/1503.03585",
     },
     {
-      label: "Song & Ermon (2019) — Generative Modeling by Estimating Gradients of the Data Distribution",
+      label:
+        "Song & Ermon (2019) — Generative Modeling by Estimating Gradients of the Data Distribution",
       href: "https://arxiv.org/abs/1907.05600",
     },
   ],
   riemann: [
-    { label: "Wikipedia — Riemann hypothesis", href: "https://en.wikipedia.org/wiki/Riemann_hypothesis" },
+    {
+      label: "Wikipedia — Riemann hypothesis",
+      href: "https://en.wikipedia.org/wiki/Riemann_hypothesis",
+    },
     {
       label: "Riemann, B. (1859) — Über die Anzahl der Primzahlen unter einer gegebenen Größe",
       href: "https://www.claymath.org/library/historical/riemann/Wirkungen.pdf",

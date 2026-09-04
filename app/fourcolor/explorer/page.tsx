@@ -36,7 +36,12 @@ const PRESETS: Preset[] = [
   { id: "stress", label: "Stress test (mutually-adjacent regions)", n: 12, relax: 0 },
 ];
 
-const DEFAULT_PALETTE = [colorPalette.signal.cyan, colorPalette.signal.amber, "#b18cff", colorPalette.signal.rose] as const;
+const DEFAULT_PALETTE = [
+  colorPalette.signal.cyan,
+  colorPalette.signal.amber,
+  "#b18cff",
+  colorPalette.signal.rose,
+] as const;
 const COLOUR_NAMES = ["cyan", "amber", "violet", "rose"] as const;
 
 interface MapData {

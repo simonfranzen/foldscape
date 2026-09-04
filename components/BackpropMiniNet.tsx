@@ -381,7 +381,13 @@ export function BackpropMiniNet({
           {stepCounterLabel}: {steps}
         </text>
         {losses.length > 1 && (
-          <path d={path} fill="none" stroke={palette.signal.amber} strokeWidth="1.6" strokeLinejoin="round" />
+          <path
+            d={path}
+            fill="none"
+            stroke={palette.signal.amber}
+            strokeWidth="1.6"
+            strokeLinejoin="round"
+          />
         )}
       </svg>
 

@@ -219,5 +219,4 @@ function drawPlot(
   ctx.fillText("3.14", PAD_L - 4, yOf(Math.PI) + 3);
   ctx.fillText("3.5", PAD_L - 4, yOf(3.5) + 3);
   ctx.fillText("2.8", PAD_L - 4, yOf(2.8) + 3);
-
 }

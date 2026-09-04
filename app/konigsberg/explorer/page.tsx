@@ -287,8 +287,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     resetWalk: "Reiniciar recorrido",
     autoEulerian: "Auto-recorrido (Hierholzer)",
     autoNotEulerian: "Intentar el recorrido — muéstrame dónde falla",
-    autoHintEulerian:
-      "Anima el algoritmo de Hierholzer cruzando cada puente exactamente una vez.",
+    autoHintEulerian: "Anima el algoritmo de Hierholzer cruzando cada puente exactamente una vez.",
     autoHintNotEulerian:
       "Los siete puentes de Königsberg no tienen camino euleriano. Haz clic para ver un recorrido voraz desde el inicio que se queda atascado — esa es la esencia del argumento de Euler.",
     storyBack: "← Historia",
@@ -434,8 +433,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     resetWalk: "Reiniciar percurso",
     autoEulerian: "Auto-percurso (Hierholzer)",
     autoNotEulerian: "Tentar um percurso — mostra-me onde falha",
-    autoHintEulerian:
-      "Anima o algoritmo de Hierholzer a atravessar cada ponte exatamente uma vez.",
+    autoHintEulerian: "Anima o algoritmo de Hierholzer a atravessar cada ponte exatamente uma vez.",
     autoHintNotEulerian:
       "As sete pontes de Königsberg não têm caminho euleriano. Clica para ver um percurso ganancioso desde o início que fica encalhado — é o cerne do argumento de Euler.",
     storyBack: "← História",
@@ -471,8 +469,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     vertexDegrees: "Hörnens grader",
     odd: "udda",
     even: "jämn",
-    degreeFootnote:
-      "Eulerväg ⇔ högst två hörn har udda grad (och grafen är sammanhängande).",
+    degreeFootnote: "Eulerväg ⇔ högst två hörn har udda grad (och grafen är sammanhängande).",
     bridges: "Broar",
     originalOn: "original ✓",
     originalOff: "original ✗",
@@ -507,8 +504,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     paritySubZero: "0 odde hjørner — lukket vandring mulig",
     paritySubEnds: (a, b) => `start ved ${a}, slutt ved ${b}`,
     legendLabel: "Tegnforklaring",
-    legendHint:
-      "Klikk en ravfarget bro fra hjørnet du står ved. Grå stiplede broer er inaktive.",
+    legendHint: "Klikk en ravfarget bro fra hjørnet du står ved. Grå stiplede broer er inaktive.",
     stuckLabel: "Fastlåst!",
     stuckHead: (v) => `Ingen ubrukt bro går ut fra ${v}. Vandringen kan ikke fortsette.`,
     stuckReasonNone: (n) =>
@@ -519,8 +515,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     vertexDegrees: "Hjørnegrader",
     odd: "odde",
     even: "jevn",
-    degreeFootnote:
-      "Eulervei ⇔ høyst to hjørner har odde grad (og grafen er sammenhengende).",
+    degreeFootnote: "Eulervei ⇔ høyst to hjørner har odde grad (og grafen er sammenhengende).",
     bridges: "Broer",
     originalOn: "original ✓",
     originalOff: "original ✗",
@@ -771,7 +766,10 @@ export default function KonigsbergExplorer() {
   const greedyWalk = useCallback(
     (start: VertexId): string[] => {
       const adj: Record<VertexId, Array<{ to: VertexId; id: string }>> = {
-        A: [], B: [], C: [], D: [],
+        A: [],
+        B: [],
+        C: [],
+        D: [],
       };
       for (const br of BRIDGES) {
         if (!activeIds.has(br.id)) continue;
@@ -1059,8 +1057,7 @@ export default function KonigsbergExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {dict.bridgeWalkPrefix}{" "}
-              <span className="text-signal-teal">{currentVertex}</span>
+              {dict.bridgeWalkPrefix} <span className="text-signal-teal">{currentVertex}</span>
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {statusLabel}
@@ -1142,8 +1139,7 @@ export default function KonigsbergExplorer() {
               ))}
             </div>
             <div className="font-mono text-[10px] text-ink-400">
-              {dict.currentlyAtPrefix}{" "}
-              <span className="text-signal-teal">{currentVertex}</span>
+              {dict.currentlyAtPrefix} <span className="text-signal-teal">{currentVertex}</span>
             </div>
           </div>
 

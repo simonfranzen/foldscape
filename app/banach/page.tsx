@@ -109,7 +109,8 @@ const en: RichStory = {
   freeGroupWordLabel: "current word",
   freeGroupLengthLabel: "length",
 
-  robinsonNote: "Minimum number of pieces. Four are dense non-measurable point-clouds carved by the F₂ action; the fifth is a single point at the centre, an artefact of rotations fixing the origin.",
+  robinsonNote:
+    "Minimum number of pieces. Four are dense non-measurable point-clouds carved by the F₂ action; the fifth is a single point at the centre, an artefact of rotations fixing the origin.",
   closingPretitle: "See the engine",
   closingTitle: "Open the Explorer.",
   closingBody:
@@ -147,8 +148,7 @@ const de: RichStory = {
         body: "Das Paradox ist das sauberste Signal dafür, dass mathematische und physikalische Wirklichkeit nicht dasselbe sind. Es hängt vom Auswahlaxiom ab — einer leisen Annahme, die die meisten Mathematiker:innen gedankenlos benutzen — und es entfachte ein Jahrhundert Streit darüber, welches Fundament der Mengenlehre überhaupt tragfähig ist. Die Teile sind keine Gebiete, die man anfassen könnte; sie sind unendliche Punktwolken ohne definiertes Volumen.",
       },
     ],
-    tryIt:
-      "Lauf durch einen Baum freier Gruppen. Sieh den Verdopplungstrick unten in Aktion.",
+    tryIt: "Lauf durch einen Baum freier Gruppen. Sieh den Verdopplungstrick unten in Aktion.",
   },
   sections: [
     {
@@ -189,7 +189,8 @@ const de: RichStory = {
   freeGroupWordLabel: "aktuelles Wort",
   freeGroupLengthLabel: "Länge",
 
-  robinsonNote: "Minimale Stückzahl. Vier sind dichte, nichtmessbare Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet; das fünfte ist ein einzelner Punkt im Zentrum — ein Artefakt der Drehungen, die den Ursprung fixieren.",
+  robinsonNote:
+    "Minimale Stückzahl. Vier sind dichte, nichtmessbare Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet; das fünfte ist ein einzelner Punkt im Zentrum — ein Artefakt der Drehungen, die den Ursprung fixieren.",
   closingPretitle: "Sieh die Maschine",
   closingTitle: "Öffne den Explorer.",
   closingBody:
@@ -227,8 +228,7 @@ const es: RichStory = {
         body: "La paradoja es la señal más limpia de que la realidad matemática y la realidad física no son lo mismo. Depende del axioma de elección — una suposición silenciosa que la mayoría de matemáticos usan sin pensarlo — y desató un siglo de debate sobre qué cimientos de la teoría de conjuntos merecen conservarse. Las piezas no son regiones que pudieras tocar; son nubes infinitas de puntos sin volumen definido.",
       },
     ],
-    tryIt:
-      "Recorre un árbol de grupo libre. Mira el truco de duplicación en acción abajo.",
+    tryIt: "Recorre un árbol de grupo libre. Mira el truco de duplicación en acción abajo.",
   },
   sections: [
     {
@@ -269,7 +269,8 @@ const es: RichStory = {
   freeGroupWordLabel: "palabra actual",
   freeGroupLengthLabel: "longitud",
 
-  robinsonNote: "Número mínimo de piezas. Cuatro son nubes densas no medibles talladas por la acción de F₂; la quinta es un único punto en el centro, un artefacto de las rotaciones que fijan el origen.",
+  robinsonNote:
+    "Número mínimo de piezas. Cuatro son nubes densas no medibles talladas por la acción de F₂; la quinta es un único punto en el centro, un artefacto de las rotaciones que fijan el origen.",
   closingPretitle: "Mira el motor",
   closingTitle: "Abre el Explorador.",
   closingBody:
@@ -307,8 +308,7 @@ const fr: RichStory = {
         body: "Le paradoxe est le signal le plus net que la réalité mathématique et la réalité physique ne sont pas la même chose. Il dépend de l'axiome du choix — une hypothèse discrète que la plupart des mathématiciens utilisent sans y penser — et il a déclenché un siècle de débat sur les fondements de la théorie des ensembles. Les morceaux ne sont pas des régions que l'on pourrait toucher ; ce sont des nuages infinis de points sans volume défini.",
       },
     ],
-    tryIt:
-      "Parcours un arbre de groupe libre. Regarde le tour du dédoublement se jouer en bas.",
+    tryIt: "Parcours un arbre de groupe libre. Regarde le tour du dédoublement se jouer en bas.",
   },
   sections: [
     {
@@ -349,7 +349,8 @@ const fr: RichStory = {
   freeGroupWordLabel: "mot courant",
   freeGroupLengthLabel: "longueur",
 
-  robinsonNote: "Nombre minimum de morceaux. Quatre sont des nuages denses non mesurables découpés par l’action de F₂ ; le cinquième est un unique point au centre, artefact des rotations qui fixent l’origine.",
+  robinsonNote:
+    "Nombre minimum de morceaux. Quatre sont des nuages denses non mesurables découpés par l’action de F₂ ; le cinquième est un unique point au centre, artefact des rotations qui fixent l’origine.",
   closingPretitle: "Vois le moteur",
   closingTitle: "Ouvre l'Explorateur.",
   closingBody:
@@ -429,7 +430,8 @@ const it: RichStory = {
   freeGroupWordLabel: "parola corrente",
   freeGroupLengthLabel: "lunghezza",
 
-  robinsonNote: "Numero minimo di pezzi. Quattro sono nuvole dense e non misurabili scolpite dall’azione di F₂; il quinto è un singolo punto al centro, un artefatto delle rotazioni che fissano l’origine.",
+  robinsonNote:
+    "Numero minimo di pezzi. Quattro sono nuvole dense e non misurabili scolpite dall’azione di F₂; il quinto è un singolo punto al centro, un artefatto delle rotazioni che fissano l’origine.",
   closingPretitle: "Vedi il motore",
   closingTitle: "Apri l'Esploratore.",
   closingBody:
@@ -509,7 +511,8 @@ const pt: RichStory = {
   freeGroupWordLabel: "palavra atual",
   freeGroupLengthLabel: "comprimento",
 
-  robinsonNote: "Número mínimo de peças. Quatro são nuvens densas não mensuráveis recortadas pela acção de F₂; a quinta é um único ponto no centro, um artefacto das rotações que fixam a origem.",
+  robinsonNote:
+    "Número mínimo de peças. Quatro são nuvens densas não mensuráveis recortadas pela acção de F₂; a quinta é um único ponto no centro, um artefacto das rotações que fixam a origem.",
   closingPretitle: "Vê o motor",
   closingTitle: "Abre o Explorador.",
   closingBody:
@@ -547,8 +550,7 @@ const sv: RichStory = {
         body: "Paradoxen är den klaraste signalen om att matematisk verklighet och fysisk verklighet inte är samma sak. Den hänger på urvalsaxiomet — ett tyst antagande som de flesta matematiker använder utan att tänka på det — och den utlöste ett århundrade av debatt om vilka grunder för mängdteorin som är värda att behålla. Bitarna är inga områden du skulle kunna ta på; de är oändliga punktmoln utan definierad volym.",
       },
     ],
-    tryIt:
-      "Vandra i ett fri-grupp-träd. Se dubbleringstricket spela ut sig nedan.",
+    tryIt: "Vandra i ett fri-grupp-träd. Se dubbleringstricket spela ut sig nedan.",
   },
   sections: [
     {
@@ -589,7 +591,8 @@ const sv: RichStory = {
   freeGroupWordLabel: "aktuellt ord",
   freeGroupLengthLabel: "längd",
 
-  robinsonNote: "Minimalt antal bitar. Fyra är täta, icke-mätbara punktmoln som F₂-verkan skär ut; den femte är en enda punkt i centrum, en artefakt av rotationerna som fixerar origo.",
+  robinsonNote:
+    "Minimalt antal bitar. Fyra är täta, icke-mätbara punktmoln som F₂-verkan skär ut; den femte är en enda punkt i centrum, en artefakt av rotationerna som fixerar origo.",
   closingPretitle: "Se motorn",
   closingTitle: "Öppna Utforskaren.",
   closingBody:
@@ -627,8 +630,7 @@ const no: RichStory = {
         body: "Paradokset er det reneste signalet om at matematisk virkelighet og fysisk virkelighet ikke er det samme. Det hviler på utvalgsaksiomet — en stille antakelse de fleste matematikere bruker uten å tenke over det — og det utløste et århundre med debatt om hvilke fundamenter for mengdelæren som er verdt å beholde. Bitene er ikke områder du kunne tatt på; de er uendelige punktskyer uten definert volum.",
       },
     ],
-    tryIt:
-      "Vandre i et frigruppe-tre. Se duplikasjonstrikset utspille seg under.",
+    tryIt: "Vandre i et frigruppe-tre. Se duplikasjonstrikset utspille seg under.",
   },
   sections: [
     {
@@ -669,7 +671,8 @@ const no: RichStory = {
   freeGroupWordLabel: "gjeldende ord",
   freeGroupLengthLabel: "lengde",
 
-  robinsonNote: "Minimum antall biter. Fire er tette, ikke-målbare punktskyer som F₂-virkningen skjærer ut; den femte er et enkelt punkt i sentrum, en artefakt av rotasjonene som fester origo.",
+  robinsonNote:
+    "Minimum antall biter. Fire er tette, ikke-målbare punktskyer som F₂-virkningen skjærer ut; den femte er et enkelt punkt i sentrum, en artefakt av rotasjonene som fester origo.",
   closingPretitle: "Se motoren",
   closingTitle: "Åpne Utforskeren.",
   closingBody:

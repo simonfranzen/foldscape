@@ -133,7 +133,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     panels: { spiral: "Espiral", ratios: "Razones", sunflower: "Girasol" },
     panelHeading: "Panel",
     status: {
-      spiral: (d, r) => `Cuadrados de Fibonacci · profundidad ${d} · razón del rectángulo áureo ${r}`,
+      spiral: (d, r) =>
+        `Cuadrados de Fibonacci · profundidad ${d} · razón del rectángulo áureo ${r}`,
       ratios: (n) => `Razones Fₙ₊₁/Fₙ para n = 1 … ${n} · objetivo φ ≈ ${PHI_STR}`,
       sunflower: (a, s) => `Filotaxis de Vogel · α = ${a}° · ${s} semillas`,
     },
@@ -199,7 +200,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     panels: { spiral: "Spirale", ratios: "Rapporti", sunflower: "Girasole" },
     panelHeading: "Pannello",
     status: {
-      spiral: (d, r) => `Quadrati di Fibonacci · profondità ${d} · rapporto del rettangolo aureo ${r}`,
+      spiral: (d, r) =>
+        `Quadrati di Fibonacci · profondità ${d} · rapporto del rettangolo aureo ${r}`,
       ratios: (n) => `Rapporti Fₙ₊₁/Fₙ per n = 1 … ${n} · obiettivo φ ≈ ${PHI_STR}`,
       sunflower: (a, s) => `Fillotassi di Vogel · α = ${a}° · ${s} semi`,
     },
@@ -232,7 +234,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     panels: { spiral: "Espiral", ratios: "Razões", sunflower: "Girassol" },
     panelHeading: "Painel",
     status: {
-      spiral: (d, r) => `Quadrados de Fibonacci · profundidade ${d} · razão do retângulo áureo ${r}`,
+      spiral: (d, r) =>
+        `Quadrados de Fibonacci · profundidade ${d} · razão do retângulo áureo ${r}`,
       ratios: (n) => `Razões Fₙ₊₁/Fₙ para n = 1 … ${n} · alvo φ ≈ ${PHI_STR}`,
       sunflower: (a, s) => `Filotaxia de Vogel · α = ${a}° · ${s} sementes`,
     },
@@ -604,14 +607,40 @@ function adjCorners(sq: Sq, c: [number, number]): [[number, number], [number, nu
   const x1 = sq.x + sq.s;
   const y1 = sq.y + sq.s;
   const [cx, cy] = c;
-  if (cx === x0 && cy === y0) return [[x1, y0], [x0, y1]];
-  if (cx === x1 && cy === y0) return [[x0, y0], [x1, y1]];
-  if (cx === x1 && cy === y1) return [[x1, y0], [x0, y1]];
-  if (cx === x0 && cy === y1) return [[x0, y0], [x1, y1]];
-  return [[x0, y0], [x1, y1]];
+  if (cx === x0 && cy === y0)
+    return [
+      [x1, y0],
+      [x0, y1],
+    ];
+  if (cx === x1 && cy === y0)
+    return [
+      [x0, y0],
+      [x1, y1],
+    ];
+  if (cx === x1 && cy === y1)
+    return [
+      [x1, y0],
+      [x0, y1],
+    ];
+  if (cx === x0 && cy === y1)
+    return [
+      [x0, y0],
+      [x1, y1],
+    ];
+  return [
+    [x0, y0],
+    [x1, y1],
+  ];
 }
 
-function buildFibSpiral(n: number): { squares: Sq[]; arcs: Arc[]; bx: number; by: number; bw: number; bh: number } {
+function buildFibSpiral(n: number): {
+  squares: Sq[];
+  arcs: Arc[];
+  bx: number;
+  by: number;
+  bw: number;
+  bh: number;
+} {
   const sizes: number[] = [];
   for (let i = 1; i <= n; i++) sizes.push(FIB[i]);
 
@@ -676,10 +705,8 @@ function buildFibSpiral(n: number): { squares: Sq[]; arcs: Arc[]; bx: number; by
     const adj1 = adjCorners(sq1, centres[1]);
     const connecting = isCornerOfSq0(adj1[0]) ? adj1[0] : adj1[1];
     const shared = corners0.filter(isCornerOfSq1);
-    centres[0] =
-      shared.find((p) => p[0] !== connecting[0] || p[1] !== connecting[1]) ??
-      shared[0] ??
-      [sq0.x, sq0.y];
+    centres[0] = shared.find((p) => p[0] !== connecting[0] || p[1] !== connecting[1]) ??
+      shared[0] ?? [sq0.x, sq0.y];
   } else {
     centres[0] = [sq0.x, sq0.y];
   }
@@ -693,8 +720,7 @@ function buildFibSpiral(n: number): { squares: Sq[]; arcs: Arc[]; bx: number; by
     const cur = arcs[i];
     const nxt = arcs[i + 1];
     const eq = (ax: number, ay: number, bx2: number, by2: number) => ax === bx2 && ay === by2;
-    const sharedIsCurEnd =
-      eq(cur.ex, cur.ey, nxt.sx, nxt.sy) || eq(cur.ex, cur.ey, nxt.ex, nxt.ey);
+    const sharedIsCurEnd = eq(cur.ex, cur.ey, nxt.sx, nxt.sy) || eq(cur.ex, cur.ey, nxt.ex, nxt.ey);
     if (!sharedIsCurEnd) {
       const tx = cur.sx;
       const ty = cur.sy;
@@ -793,7 +819,9 @@ function SpiralPanel({ depth, ariaLabel }: { depth: number; ariaLabel: string })
     return () => ro.disconnect();
   }, [depth, dpr]);
 
-  return <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className="block h-full w-full" />;
+  return (
+    <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className="block h-full w-full" />
+  );
 }
 
 // ----------------------------------------------------------------------------
@@ -918,7 +946,9 @@ function RatiosPanel({ n, ariaLabel }: { n: number; ariaLabel: string }) {
     return () => ro.disconnect();
   }, [ratios, dpr]);
 
-  return <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className="block h-full w-full" />;
+  return (
+    <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className="block h-full w-full" />
+  );
 }
 
 // ----------------------------------------------------------------------------
@@ -996,10 +1026,7 @@ function SunflowerPanel({
       ctx.fillText(
         isGolden
           ? annotationGolden
-          : annotationOff(
-              angleDeg.toFixed(4),
-              (angleDeg - GOLDEN_ANGLE_DEG).toFixed(4),
-            ),
+          : annotationOff(angleDeg.toFixed(4), (angleDeg - GOLDEN_ANGLE_DEG).toFixed(4)),
         14,
         20,
       );
@@ -1015,5 +1042,7 @@ function SunflowerPanel({
     return () => ro.disconnect();
   }, [angleDeg, count, dpr, annotationGolden, annotationOff, goldenAngleRad]);
 
-  return <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className="block h-full w-full" />;
+  return (
+    <canvas ref={canvasRef} role="img" aria-label={ariaLabel} className="block h-full w-full" />
+  );
 }

@@ -1,21 +1,8 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import {
-  DEFAULT_LOCALE,
-  LOCALES,
-  type Locale,
-  detectLocale,
-  parseLangParam,
-} from "./types";
+import { DEFAULT_LOCALE, LOCALES, type Locale, detectLocale, parseLangParam } from "./types";
 import { MESSAGES, type Dict } from "./messages";
 import { ATLAS, type AtlasDict } from "./atlas";
 import { STORIES, type StoriesDict } from "./stories";

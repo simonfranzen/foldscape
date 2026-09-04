@@ -206,7 +206,8 @@ const es: RichStory = {
   page: {
     pretitle: "Tema · Análisis",
     title: "Retropropagación",
-    tagline: "Un algoritmo — cálculo recorrido al revés — y todas las redes neuronales que existen.",
+    tagline:
+      "Un algoritmo — cálculo recorrido al revés — y todas las redes neuronales que existen.",
     intro:
       "Muéstrale una imagen a una red; adivina. Mide cuán equivocada estuvo; ese número es la pérdida. Backprop recorre la regla de la cadena hacia atrás por cada capa y le pregunta a cada uno de los millones de pesos lo mismo: si te hubiera empujado un poquito hacia arriba, ¿la pérdida habría subido o bajado? Luego mueve cada peso en la dirección que la baja. Repite mil millones de veces. Ese único truco es GPT, AlphaFold, los generadores de imágenes, el reconocimiento de voz — todo el boom moderno de la IA sobre una idea matemática.",
     ctaInteractive: "→ Abrir el Explorador",

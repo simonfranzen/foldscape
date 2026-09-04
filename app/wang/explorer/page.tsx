@@ -36,7 +36,12 @@ interface Choice {
 
 // ─── Palette ─────────────────────────────────────────────────────────────────
 
-const COLOURS = [palette.signal.cyan, palette.signal.violet, palette.signal.amber, palette.signal.rose] as const;
+const COLOURS = [
+  palette.signal.cyan,
+  palette.signal.violet,
+  palette.signal.amber,
+  palette.signal.rose,
+] as const;
 const COLOUR_NAMES = ["cyan", "violet", "amber", "rose"] as const;
 
 // ─── Tile sets ───────────────────────────────────────────────────────────────
@@ -128,7 +133,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
       },
       C: {
         name: "Set C · all 2-colour tiles, 16",
-        description: "Every combination of two colours on each edge. It always tiles, periodically.",
+        description:
+          "Every combination of two colours on each edge. It always tiles, periodically.",
       },
     },
     searchLabel: "Tiling search",
@@ -227,7 +233,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     sets: {
       A: {
         name: "Jeu A · périodique, 5 tuiles",
-        description: "Deux couleurs, cinq tuiles. Chaque placement est facile et le pavage est périodique.",
+        description:
+          "Deux couleurs, cinq tuiles. Chaque placement est facile et le pavage est périodique.",
       },
       B: {
         name: "Jeu B · style apériodique, 13 tuiles",
@@ -263,7 +270,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     sets: {
       A: {
         name: "Insieme A · periodico, 5 tasselli",
-        description: "Due colori, cinque tasselli. Ogni posa è facile e il rivestimento è periodico.",
+        description:
+          "Due colori, cinque tasselli. Ogni posa è facile e il rivestimento è periodico.",
       },
       B: {
         name: "Insieme B · stile aperiodico, 13 tasselli",
@@ -272,7 +280,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
       },
       C: {
         name: "Insieme C · tutti i tasselli a 2 colori, 16",
-        description: "Ogni combinazione di due colori per bordo. Riveste sempre, in modo periodico.",
+        description:
+          "Ogni combinazione di due colori per bordo. Riveste sempre, in modo periodico.",
       },
     },
     searchLabel: "Ricerca del rivestimento",
@@ -298,7 +307,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     sets: {
       A: {
         name: "Conjunto A · periódico, 5 tijolos",
-        description: "Duas cores, cinco tijolos. Cada colocação é fácil e o ladrilhamento é periódico.",
+        description:
+          "Duas cores, cinco tijolos. Cada colocação é fácil e o ladrilhamento é periódico.",
       },
       B: {
         name: "Conjunto B · estilo aperiódico, 13 tijolos",
@@ -307,7 +317,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
       },
       C: {
         name: "Conjunto C · todos os tijolos de 2 cores, 16",
-        description: "Cada combinação de duas cores por borda. Ladrilha sempre, de forma periódica.",
+        description:
+          "Cada combinação de duas cores por borda. Ladrilha sempre, de forma periódica.",
       },
     },
     searchLabel: "Procura de ladrilhamento",
@@ -333,7 +344,8 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     sets: {
       A: {
         name: "Uppsättning A · periodisk, 5 plattor",
-        description: "Två färger, fem plattor. Varje placering är enkel och täckningen är periodisk.",
+        description:
+          "Två färger, fem plattor. Varje placering är enkel och täckningen är periodisk.",
       },
       B: {
         name: "Uppsättning B · aperiodiskt anlagd, 13 plattor",

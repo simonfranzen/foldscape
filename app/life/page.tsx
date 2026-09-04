@@ -1577,7 +1577,9 @@ export default function LifeStory() {
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
                 {story.gunStats.gliderEveryLabel}
               </div>
-              <div className="math-italic text-3xl text-ink-100">{story.gunStats.gliderEveryValue}</div>
+              <div className="math-italic text-3xl text-ink-100">
+                {story.gunStats.gliderEveryValue}
+              </div>
             </div>
           </div>
         </Reveal>

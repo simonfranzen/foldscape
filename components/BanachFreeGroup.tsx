@@ -154,7 +154,13 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel, len
                 cx={v.x}
                 cy={v.y}
                 r={i === path.length - 1 ? 5 : 3}
-                fill={i === 0 ? palette.signal.amber : i === path.length - 1 ? palette.signal.rose : palette.signal.cyan}
+                fill={
+                  i === 0
+                    ? palette.signal.amber
+                    : i === path.length - 1
+                      ? palette.signal.rose
+                      : palette.signal.cyan
+                }
               />
             ))}
           </svg>

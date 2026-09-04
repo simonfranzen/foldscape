@@ -187,7 +187,12 @@ const enStory: RichStory = {
     colCopies: "copies / scale",
     colDimension: "dimension",
     familyRows: [
-      { name: "Cantor dust", ambient: "1D", copies: "2 copies at 1/3", dim: "log 2 / log 3 ≈ 0.631" },
+      {
+        name: "Cantor dust",
+        ambient: "1D",
+        copies: "2 copies at 1/3",
+        dim: "log 2 / log 3 ≈ 0.631",
+      },
       {
         name: "Sierpiński triangle",
         ambient: "2D",
@@ -327,7 +332,12 @@ const deStory: RichStory = {
     colCopies: "Kopien / Skala",
     colDimension: "Dimension",
     familyRows: [
-      { name: "Cantor-Staub", ambient: "1D", copies: "2 Kopien bei 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "Cantor-Staub",
+        ambient: "1D",
+        copies: "2 Kopien bei 1/3",
+        dim: "log 2 / log 3 ≈ 0,631",
+      },
       {
         name: "Sierpiński-Dreieck",
         ambient: "2D",
@@ -468,7 +478,12 @@ const esStory: RichStory = {
     colCopies: "copias / escala",
     colDimension: "dimensión",
     familyRows: [
-      { name: "polvo de Cantor", ambient: "1D", copies: "2 copias a 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "polvo de Cantor",
+        ambient: "1D",
+        copies: "2 copias a 1/3",
+        dim: "log 2 / log 3 ≈ 0,631",
+      },
       {
         name: "triángulo de Sierpiński",
         ambient: "2D",
@@ -609,7 +624,12 @@ const frStory: RichStory = {
     colCopies: "copies / échelle",
     colDimension: "dimension",
     familyRows: [
-      { name: "poussière de Cantor", ambient: "1D", copies: "2 copies à 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "poussière de Cantor",
+        ambient: "1D",
+        copies: "2 copies à 1/3",
+        dim: "log 2 / log 3 ≈ 0,631",
+      },
       {
         name: "triangle de Sierpiński",
         ambient: "2D",
@@ -750,7 +770,12 @@ const itStory: RichStory = {
     colCopies: "copie / scala",
     colDimension: "dimensione",
     familyRows: [
-      { name: "polvere di Cantor", ambient: "1D", copies: "2 copie a 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "polvere di Cantor",
+        ambient: "1D",
+        copies: "2 copie a 1/3",
+        dim: "log 2 / log 3 ≈ 0,631",
+      },
       {
         name: "triangolo di Sierpiński",
         ambient: "2D",
@@ -891,7 +916,12 @@ const ptStory: RichStory = {
     colCopies: "cópias / escala",
     colDimension: "dimensão",
     familyRows: [
-      { name: "pó de Cantor", ambient: "1D", copies: "2 cópias a 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "pó de Cantor",
+        ambient: "1D",
+        copies: "2 cópias a 1/3",
+        dim: "log 2 / log 3 ≈ 0,631",
+      },
       {
         name: "triângulo de Sierpiński",
         ambient: "2D",
@@ -1031,7 +1061,12 @@ const svStory: RichStory = {
     colCopies: "kopior / skala",
     colDimension: "dimension",
     familyRows: [
-      { name: "Cantor-damm", ambient: "1D", copies: "2 kopior på 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "Cantor-damm",
+        ambient: "1D",
+        copies: "2 kopior på 1/3",
+        dim: "log 2 / log 3 ≈ 0,631",
+      },
       {
         name: "Sierpiński-triangel",
         ambient: "2D",
@@ -1171,7 +1206,12 @@ const noStory: RichStory = {
     colCopies: "kopier / skala",
     colDimension: "dimensjon",
     familyRows: [
-      { name: "Cantor-støv", ambient: "1D", copies: "2 kopier på 1/3", dim: "log 2 / log 3 ≈ 0,631" },
+      {
+        name: "Cantor-støv",
+        ambient: "1D",
+        copies: "2 kopier på 1/3",
+        dim: "log 2 / log 3 ≈ 0,631",
+      },
       {
         name: "Sierpiński-trekant",
         ambient: "2D",

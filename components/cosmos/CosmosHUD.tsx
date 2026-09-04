@@ -111,146 +111,150 @@ export function CosmosHUD({ activeCategory }: Props) {
           rendered out when an overlay is open so it never bleeds through. */}
       {!overlayOpen && (
         <>
-      <nav
-        aria-label={cosmos.jumpLabel}
-        className="hud-fixed pointer-events-auto fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-end gap-4 md:flex"
-      >
-        <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-400">
-          {cosmos.jumpLabel}
-        </div>
-        {SCENE_ORDER.map((cat, i) => {
-          const isActive = activeCategory === cat;
-          const categoryKey = `category${cat[0].toUpperCase()}${cat.slice(1)}` as
-            | "categoryLogic"
-            | "categoryComputation"
-            | "categoryChaos"
-            | "categoryGeometry"
-            | "categoryAnalysis"
-            | "categoryParadox";
-          const name = (a.landing as unknown as Record<string, string>)[categoryKey] ?? cat;
-          // The active category's name is ALWAYS visible (user feedback:
-          // "die aktive sektion sollte mit namen dann immer sichtbar sein").
-          // Inactive labels still reveal on hover/focus so the menu doesn't
-          // sprawl into a column of words.
-          return (
-            <button
-              key={cat}
-              onClick={() => smoothScrollToId(`scene-${cat}`)}
-              aria-label={`${i + 1}. ${name}`}
-              aria-current={isActive ? "true" : undefined}
-              className="group flex flex-row-reverse items-center gap-3 text-right"
-            >
-              <span
-                className="inline-block h-3 w-3 flex-shrink-0 rounded-full transition-all"
-                style={{
-                  background: isActive ? CATEGORY_COLOR[cat] : "rgba(234,236,243,0.32)",
-                  boxShadow: isActive ? `0 0 14px ${CATEGORY_COLOR[cat]}` : undefined,
-                  transform: isActive ? "scale(1.5)" : undefined,
-                }}
-              />
-              <span
-                className={`whitespace-nowrap font-mono text-[11px] uppercase tracking-widest2 transition-opacity ${
-                  isActive
-                    ? "opacity-100"
-                    : "opacity-0 group-hover:opacity-100 group-focus:opacity-100"
-                }`}
-                style={{ color: isActive ? CATEGORY_COLOR[cat] : palette.ink[100] }}
-              >
-                {name}
-              </span>
-            </button>
-          );
-        })}
-      </nav>
+          <nav
+            aria-label={cosmos.jumpLabel}
+            className="hud-fixed pointer-events-auto fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-end gap-4 md:flex"
+          >
+            <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-400">
+              {cosmos.jumpLabel}
+            </div>
+            {SCENE_ORDER.map((cat, i) => {
+              const isActive = activeCategory === cat;
+              const categoryKey = `category${cat[0].toUpperCase()}${cat.slice(1)}` as
+                | "categoryLogic"
+                | "categoryComputation"
+                | "categoryChaos"
+                | "categoryGeometry"
+                | "categoryAnalysis"
+                | "categoryParadox";
+              const name = (a.landing as unknown as Record<string, string>)[categoryKey] ?? cat;
+              // The active category's name is ALWAYS visible (user feedback:
+              // "die aktive sektion sollte mit namen dann immer sichtbar sein").
+              // Inactive labels still reveal on hover/focus so the menu doesn't
+              // sprawl into a column of words.
+              return (
+                <button
+                  key={cat}
+                  onClick={() => smoothScrollToId(`scene-${cat}`)}
+                  aria-label={`${i + 1}. ${name}`}
+                  aria-current={isActive ? "true" : undefined}
+                  className="group flex flex-row-reverse items-center gap-3 text-right"
+                >
+                  <span
+                    className="inline-block h-3 w-3 flex-shrink-0 rounded-full transition-all"
+                    style={{
+                      background: isActive ? CATEGORY_COLOR[cat] : "rgba(234,236,243,0.32)",
+                      boxShadow: isActive ? `0 0 14px ${CATEGORY_COLOR[cat]}` : undefined,
+                      transform: isActive ? "scale(1.5)" : undefined,
+                    }}
+                  />
+                  <span
+                    className={`whitespace-nowrap font-mono text-[11px] uppercase tracking-widest2 transition-opacity ${
+                      isActive
+                        ? "opacity-100"
+                        : "opacity-0 group-hover:opacity-100 group-focus:opacity-100"
+                    }`}
+                    style={{ color: isActive ? CATEGORY_COLOR[cat] : palette.ink[100] }}
+                  >
+                    {name}
+                  </span>
+                </button>
+              );
+            })}
+          </nav>
 
-      {/* Top-centre search + list-view triggers. The global Nav header
+          {/* Top-centre search + list-view triggers. The global Nav header
           (layout.tsx) sits at z-50 with height 56 px — so HUD top-4 was
           hidden behind it (user feedback: "wo ist eigentlich der Link zur
           Listenansicht hin?"). top-[72px] tucks the cluster just *below*
           the header where it reads as part of the chrome but stays
           obviously a control, and z-[55] sits cleanly above the nav's
           glass background. */}
-      <div className="hud-fixed fixed left-1/2 top-[72px] z-[55] flex -translate-x-1/2 items-center gap-2">
-        <button
-          onClick={() => setPaletteOpen(true)}
-          className="glass inline-flex items-center gap-3 rounded-full border border-signal-violet/40 bg-signal-violet/10 px-4 py-2 text-sm text-ink-100 shadow-lg shadow-signal-violet/10 transition-colors hover:border-signal-violet hover:bg-signal-violet/20 focus-visible:border-signal-violet focus-visible:bg-signal-violet/20"
-          aria-label={cosmos.searchAria}
-        >
-          <span aria-hidden="true" className="text-base leading-none">⌕</span>
-          <span className="font-mono text-[10px] uppercase tracking-widest2">
-            {cosmos.searchAria}
-          </span>
-          <span
-            aria-hidden="true"
-            className="hidden rounded border border-signal-violet/40 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-widest2 text-signal-violet md:inline-block"
-          >
-            /
-          </span>
-        </button>
-        <button
-          onClick={() => setListOpen(true)}
-          className="glass inline-flex items-center gap-2 rounded-full border border-signal-cyan/40 bg-signal-cyan/10 px-4 py-2 text-sm text-ink-100 shadow-lg shadow-signal-cyan/10 transition-colors hover:border-signal-cyan hover:bg-signal-cyan/20 focus-visible:border-signal-cyan focus-visible:bg-signal-cyan/20"
-          aria-label={a.landing.viewList ?? "List view"}
-        >
-          <span aria-hidden="true" className="text-base leading-none">☰</span>
-          <span className="font-mono text-[10px] uppercase tracking-widest2">
-            {a.landing.viewList ?? "List"}
-          </span>
-        </button>
-      </div>
+          <div className="hud-fixed fixed left-1/2 top-[72px] z-[55] flex -translate-x-1/2 items-center gap-2">
+            <button
+              onClick={() => setPaletteOpen(true)}
+              className="glass inline-flex items-center gap-3 rounded-full border border-signal-violet/40 bg-signal-violet/10 px-4 py-2 text-sm text-ink-100 shadow-lg shadow-signal-violet/10 transition-colors hover:border-signal-violet hover:bg-signal-violet/20 focus-visible:border-signal-violet focus-visible:bg-signal-violet/20"
+              aria-label={cosmos.searchAria}
+            >
+              <span aria-hidden="true" className="text-base leading-none">
+                ⌕
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-widest2">
+                {cosmos.searchAria}
+              </span>
+              <span
+                aria-hidden="true"
+                className="hidden rounded border border-signal-violet/40 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-widest2 text-signal-violet md:inline-block"
+              >
+                /
+              </span>
+            </button>
+            <button
+              onClick={() => setListOpen(true)}
+              className="glass inline-flex items-center gap-2 rounded-full border border-signal-cyan/40 bg-signal-cyan/10 px-4 py-2 text-sm text-ink-100 shadow-lg shadow-signal-cyan/10 transition-colors hover:border-signal-cyan hover:bg-signal-cyan/20 focus-visible:border-signal-cyan focus-visible:bg-signal-cyan/20"
+              aria-label={a.landing.viewList ?? "List view"}
+            >
+              <span aria-hidden="true" className="text-base leading-none">
+                ☰
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-widest2">
+                {a.landing.viewList ?? "List"}
+              </span>
+            </button>
+          </div>
 
-      {/* MOBILE — horizontal bottom strip. Replaces the desktop right-edge
+          {/* MOBILE — horizontal bottom strip. Replaces the desktop right-edge
           compass on small screens (touch targets up, eyes-on-thumb position).
           Each chip is a category jump; the active one highlights. The bar
           floats with a glass background so the constellation stays visible
           behind it. */}
-      <nav
-        aria-label={cosmos.jumpLabel}
-        className="hud-fixed pointer-events-auto fixed bottom-3 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full px-2 py-2 md:hidden glass hairline border"
-      >
-        {SCENE_ORDER.map((cat, i) => {
-          const isActive = activeCategory === cat;
-          const categoryKey = `category${cat[0].toUpperCase()}${cat.slice(1)}` as
-            | "categoryLogic"
-            | "categoryComputation"
-            | "categoryChaos"
-            | "categoryGeometry"
-            | "categoryAnalysis"
-            | "categoryParadox";
-          const name = (a.landing as unknown as Record<string, string>)[categoryKey] ?? cat;
-          return (
-            <button
-              key={cat}
-              onClick={() => smoothScrollToId(`scene-${cat}`)}
-              aria-label={`${i + 1}. ${name}`}
-              aria-current={isActive ? "true" : undefined}
-              className="flex h-10 min-w-[40px] items-center justify-center rounded-full px-3 transition-colors"
-              style={{
-                background: isActive ? `${CATEGORY_COLOR[cat]}20` : "transparent",
-                boxShadow: isActive ? `inset 0 0 0 1px ${CATEGORY_COLOR[cat]}` : undefined,
-              }}
-            >
-              <span
-                className="font-mono text-[10px] uppercase tracking-widest2"
-                style={{ color: isActive ? CATEGORY_COLOR[cat] : "#cdd2e0" }}
-              >
-                {name.slice(0, 4)}
-              </span>
-            </button>
-          );
-        })}
-      </nav>
+          <nav
+            aria-label={cosmos.jumpLabel}
+            className="hud-fixed glass hairline pointer-events-auto fixed bottom-3 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border px-2 py-2 md:hidden"
+          >
+            {SCENE_ORDER.map((cat, i) => {
+              const isActive = activeCategory === cat;
+              const categoryKey = `category${cat[0].toUpperCase()}${cat.slice(1)}` as
+                | "categoryLogic"
+                | "categoryComputation"
+                | "categoryChaos"
+                | "categoryGeometry"
+                | "categoryAnalysis"
+                | "categoryParadox";
+              const name = (a.landing as unknown as Record<string, string>)[categoryKey] ?? cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => smoothScrollToId(`scene-${cat}`)}
+                  aria-label={`${i + 1}. ${name}`}
+                  aria-current={isActive ? "true" : undefined}
+                  className="flex h-10 min-w-[40px] items-center justify-center rounded-full px-3 transition-colors"
+                  style={{
+                    background: isActive ? `${CATEGORY_COLOR[cat]}20` : "transparent",
+                    boxShadow: isActive ? `inset 0 0 0 1px ${CATEGORY_COLOR[cat]}` : undefined,
+                  }}
+                >
+                  <span
+                    className="font-mono text-[10px] uppercase tracking-widest2"
+                    style={{ color: isActive ? CATEGORY_COLOR[cat] : "#cdd2e0" }}
+                  >
+                    {name.slice(0, 4)}
+                  </span>
+                </button>
+              );
+            })}
+          </nav>
 
-      {/* Right-edge progress bar */}
-      <div
-        className="hud-fixed pointer-events-none fixed bottom-0 right-0 top-0 z-30 hidden w-px md:block"
-        aria-hidden="true"
-      >
-        <div
-          className="absolute right-0 top-0 w-px bg-signal-violet/60"
-          style={{ height: `${progress * 100}%` }}
-        />
-      </div>
+          {/* Right-edge progress bar */}
+          <div
+            className="hud-fixed pointer-events-none fixed bottom-0 right-0 top-0 z-30 hidden w-px md:block"
+            aria-hidden="true"
+          >
+            <div
+              className="absolute right-0 top-0 w-px bg-signal-violet/60"
+              style={{ height: `${progress * 100}%` }}
+            />
+          </div>
         </>
       )}
 
@@ -288,9 +292,7 @@ export function CosmosHUD({ activeCategory }: Props) {
             </div>
             <ul className="scrollbar-thin max-h-96 overflow-y-auto">
               {results.length === 0 && (
-                <li className="px-4 py-6 text-center text-sm text-ink-400">
-                  {cosmos.searchEmpty}
-                </li>
+                <li className="px-4 py-6 text-center text-sm text-ink-400">{cosmos.searchEmpty}</li>
               )}
               {results.map((t) => {
                 const meta = a.topics[t.id];

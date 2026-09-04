@@ -472,7 +472,12 @@ export default function CollatzExplorer() {
                   </text>
                 </g>
               ))}
-              <path d={trajPath} fill="none" stroke={withAlpha(palette.signal.amber, 0.85)} strokeWidth={1.4} />
+              <path
+                d={trajPath}
+                fill="none"
+                stroke={withAlpha(palette.signal.amber, 0.85)}
+                strokeWidth={1.4}
+              />
               {traj.values.map((v, i) => (
                 <circle key={i} cx={xPx(i)} cy={yPx(v)} r={1.6} fill={palette.signal.amber} />
               ))}
@@ -648,7 +653,9 @@ export default function CollatzExplorer() {
                   }`}
                 >
                   <div className="font-mono text-xs">n = {n}</div>
-                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">{t.famousSeeds[i]}</div>
+                  <div className="mt-0.5 font-mono text-[10px] text-ink-400">
+                    {t.famousSeeds[i]}
+                  </div>
                 </button>
               ))}
             </div>

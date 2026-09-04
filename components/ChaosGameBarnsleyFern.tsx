@@ -182,7 +182,13 @@ export function ChaosGameBarnsleyFern({
     const SPEED = 1500;
 
     const tick = () => {
-      posRef.current = drawFern(ctx, canvas.clientWidth, canvas.clientHeight, posRef.current, SPEED);
+      posRef.current = drawFern(
+        ctx,
+        canvas.clientWidth,
+        canvas.clientHeight,
+        posRef.current,
+        SPEED,
+      );
       countRef.current += SPEED;
       setPoints(countRef.current);
       raf = requestAnimationFrame(tick);

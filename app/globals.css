@@ -402,32 +402,84 @@ a.cosmos-star-label {
    catches the motion now. Opacity still fades in/out so at any instant
    only ~half the pieces are visible. */
 @keyframes cosmosDrift1 {
-  0% { transform: translate(0, 0) rotate(-3deg); opacity: 0; }
-  20% { opacity: 0.38; }
-  50% { transform: translate(110px, -90px) rotate(2deg); opacity: 0.5; }
-  80% { opacity: 0.38; }
-  100% { transform: translate(0, 0) rotate(-3deg); opacity: 0; }
+  0% {
+    transform: translate(0, 0) rotate(-3deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.38;
+  }
+  50% {
+    transform: translate(110px, -90px) rotate(2deg);
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.38;
+  }
+  100% {
+    transform: translate(0, 0) rotate(-3deg);
+    opacity: 0;
+  }
 }
 @keyframes cosmosDrift2 {
-  0% { transform: translate(0, 0) rotate(2deg); opacity: 0; }
-  20% { opacity: 0.38; }
-  50% { transform: translate(-130px, -60px) rotate(-4deg); opacity: 0.5; }
-  80% { opacity: 0.38; }
-  100% { transform: translate(0, 0) rotate(2deg); opacity: 0; }
+  0% {
+    transform: translate(0, 0) rotate(2deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.38;
+  }
+  50% {
+    transform: translate(-130px, -60px) rotate(-4deg);
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.38;
+  }
+  100% {
+    transform: translate(0, 0) rotate(2deg);
+    opacity: 0;
+  }
 }
 @keyframes cosmosDrift3 {
-  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
-  20% { opacity: 0.38; }
-  50% { transform: translate(80px, 120px) rotate(5deg); opacity: 0.5; }
-  80% { opacity: 0.38; }
-  100% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.38;
+  }
+  50% {
+    transform: translate(80px, 120px) rotate(5deg);
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.38;
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
 }
 @keyframes cosmosDrift4 {
-  0% { transform: translate(0, 0) rotate(-2deg); opacity: 0; }
-  20% { opacity: 0.38; }
-  50% { transform: translate(-90px, 100px) rotate(3deg); opacity: 0.5; }
-  80% { opacity: 0.38; }
-  100% { transform: translate(0, 0) rotate(-2deg); opacity: 0; }
+  0% {
+    transform: translate(0, 0) rotate(-2deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.38;
+  }
+  50% {
+    transform: translate(-90px, 100px) rotate(3deg);
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.38;
+  }
+  100% {
+    transform: translate(0, 0) rotate(-2deg);
+    opacity: 0;
+  }
 }
 .cosmos-drift {
   animation-iteration-count: infinite;
@@ -435,10 +487,18 @@ a.cosmos-star-label {
   animation-fill-mode: both;
   will-change: transform, opacity;
 }
-.cosmos-drift-1 { animation-name: cosmosDrift1; }
-.cosmos-drift-2 { animation-name: cosmosDrift2; }
-.cosmos-drift-3 { animation-name: cosmosDrift3; }
-.cosmos-drift-4 { animation-name: cosmosDrift4; }
+.cosmos-drift-1 {
+  animation-name: cosmosDrift1;
+}
+.cosmos-drift-2 {
+  animation-name: cosmosDrift2;
+}
+.cosmos-drift-3 {
+  animation-name: cosmosDrift3;
+}
+.cosmos-drift-4 {
+  animation-name: cosmosDrift4;
+}
 
 /* Per-scene specimens — slow ambient motion for the small SVG behind each
    constellation. None of these should ever upstage the stars; they exist

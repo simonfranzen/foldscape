@@ -242,8 +242,7 @@ const en: RichStory = {
       "several S and K reductions later …",
       "bare combinator S falls out",
     ],
-    sNotePre:
-      "Five iotas, no other primitives, and S appears. Plug the same expression into the ",
+    sNotePre: "Five iotas, no other primitives, and S appears. Plug the same expression into the ",
     sNoteLink: "Reducer",
     sNotePost: " and walk every step.",
     chainCaption: "the chain · written out",
@@ -715,8 +714,7 @@ const fr: RichStory = {
       "plusieurs réductions S et K plus tard …",
       "le combinateur nu S apparaît",
     ],
-    sNotePre:
-      "Cinq iotas, aucune autre primitive, et S apparaît. Mets la même expression dans le ",
+    sNotePre: "Cinq iotas, aucune autre primitive, et S apparaît. Mets la même expression dans le ",
     sNoteLink: "Réducteur",
     sNotePost: " et parcours chaque étape.",
     chainCaption: "la chaîne · écrite",
@@ -1029,8 +1027,7 @@ const pt: RichStory = {
       "várias reduções S e K depois …",
       "o combinador nu S surge",
     ],
-    sNotePre:
-      "Cinco iotas, nenhuma outra primitiva, e S aparece. Coloca a mesma expressão no ",
+    sNotePre: "Cinco iotas, nenhuma outra primitiva, e S aparece. Coloca a mesma expressão no ",
     sNoteLink: "Redutor",
     sNotePost: " e percorre cada passo.",
     chainCaption: "a cadeia · escrita",
@@ -1447,8 +1444,7 @@ export default function IotaStory() {
                         ι (ι (ι (ι ι))) · → <span className="text-signal-cyan">S</span>
                       </div>
                       <div>
-                        S + K · →{" "}
-                        <span className="text-signal-amber">{e.everyComputable}</span>
+                        S + K · → <span className="text-signal-amber">{e.everyComputable}</span>
                       </div>
                     </div>
                   </>
@@ -1550,8 +1546,8 @@ export default function IotaStory() {
               ℩ ≡ λx. x S K
             </div>
             <p className="mx-auto max-w-xl text-sm leading-relaxed text-ink-300">
-              {e.barkerLine1}{" "}
-              <span className="font-mono text-signal-cyan">ι x → x S K</span>. {e.barkerLine2}
+              {e.barkerLine1} <span className="font-mono text-signal-cyan">ι x → x S K</span>.{" "}
+              {e.barkerLine2}
             </p>
           </div>
         </Reveal>

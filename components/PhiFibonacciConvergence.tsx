@@ -129,13 +129,10 @@ function buildFibonacciSpiral(n: number) {
     // Connecting endpoint is the one that is also a corner of sq0.
     const isCornerOfSq0 = (p: [number, number]) =>
       (p[0] === sq0.x || p[0] === sq0.x + sq0.s) && (p[1] === sq0.y || p[1] === sq0.y + sq0.s);
-    const connecting =
-      isCornerOfSq0(adjOfCentre1[0]) ? adjOfCentre1[0] : adjOfCentre1[1];
+    const connecting = isCornerOfSq0(adjOfCentre1[0]) ? adjOfCentre1[0] : adjOfCentre1[1];
     const sharedSq0Corners = corners0.filter(isCornerOfSq1);
-    centres[0] =
-      sharedSq0Corners.find((p) => p[0] !== connecting[0] || p[1] !== connecting[1]) ??
-      sharedSq0Corners[0] ??
-      [sq0.x, sq0.y];
+    centres[0] = sharedSq0Corners.find((p) => p[0] !== connecting[0] || p[1] !== connecting[1]) ??
+      sharedSq0Corners[0] ?? [sq0.x, sq0.y];
   } else {
     centres[0] = [sq0.x, sq0.y];
   }
@@ -151,8 +148,7 @@ function buildFibonacciSpiral(n: number) {
     const cur = arcs[i]!;
     const nxt = arcs[i + 1]!;
     const eq = (ax: number, ay: number, bx2: number, by2: number) => ax === bx2 && ay === by2;
-    const sharedIsCurEnd =
-      eq(cur.ex, cur.ey, nxt.sx, nxt.sy) || eq(cur.ex, cur.ey, nxt.ex, nxt.ey);
+    const sharedIsCurEnd = eq(cur.ex, cur.ey, nxt.sx, nxt.sy) || eq(cur.ex, cur.ey, nxt.ex, nxt.ey);
     if (!sharedIsCurEnd) {
       const ts = cur.sx;
       const tt = cur.sy;
@@ -197,11 +193,30 @@ function adjCorners(
   const x1 = sq.x + sq.s;
   const y1 = sq.y + sq.s;
   const [cx, cy] = c;
-  if (cx === x0 && cy === y0) return [[x1, y0], [x0, y1]];
-  if (cx === x1 && cy === y0) return [[x0, y0], [x1, y1]];
-  if (cx === x1 && cy === y1) return [[x1, y0], [x0, y1]];
-  if (cx === x0 && cy === y1) return [[x0, y0], [x1, y1]];
-  return [[x0, y0], [x1, y1]];
+  if (cx === x0 && cy === y0)
+    return [
+      [x1, y0],
+      [x0, y1],
+    ];
+  if (cx === x1 && cy === y0)
+    return [
+      [x0, y0],
+      [x1, y1],
+    ];
+  if (cx === x1 && cy === y1)
+    return [
+      [x1, y0],
+      [x0, y1],
+    ];
+  if (cx === x0 && cy === y1)
+    return [
+      [x0, y0],
+      [x1, y1],
+    ];
+  return [
+    [x0, y0],
+    [x1, y1],
+  ];
 }
 
 export function PhiFibonacciConvergence({

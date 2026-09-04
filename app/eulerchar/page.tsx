@@ -352,7 +352,12 @@ const GENUS_ICONS: ReadonlyArray<GenusIcon> = [
           stroke={palette.signal.cyan}
           strokeWidth="1.6"
         />
-        <path d="M 50 60 Q 80 80 110 60" fill="none" stroke={palette.signal.cyan} strokeWidth="1.4" />
+        <path
+          d="M 50 60 Q 80 80 110 60"
+          fill="none"
+          stroke={palette.signal.cyan}
+          strokeWidth="1.4"
+        />
         <path
           d="M 56 56 Q 80 44 104 56"
           fill="none"
@@ -386,8 +391,18 @@ const GENUS_ICONS: ReadonlyArray<GenusIcon> = [
           stroke={palette.signal.cyan}
           strokeWidth="1.6"
         />
-        <path d="M 38 60 Q 55 73 72 60" fill="none" stroke={palette.signal.cyan} strokeWidth="1.3" />
-        <path d="M 88 60 Q 105 73 122 60" fill="none" stroke={palette.signal.cyan} strokeWidth="1.3" />
+        <path
+          d="M 38 60 Q 55 73 72 60"
+          fill="none"
+          stroke={palette.signal.cyan}
+          strokeWidth="1.3"
+        />
+        <path
+          d="M 88 60 Q 105 73 122 60"
+          fill="none"
+          stroke={palette.signal.cyan}
+          strokeWidth="1.3"
+        />
         <path
           d="M 42 57 Q 55 49 68 57"
           fill="none"
