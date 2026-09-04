@@ -101,10 +101,7 @@ interface State {
 const litVal = (l: Lit, a: Val[]): Val => (a[l.v] === null ? null : l.neg ? !a[l.v] : a[l.v]);
 
 type ClauseStatus =
-  | { kind: "sat" }
-  | { kind: "conflict" }
-  | { kind: "unit"; lit: Lit }
-  | { kind: "open" };
+  { kind: "sat" } | { kind: "conflict" } | { kind: "unit"; lit: Lit } | { kind: "open" };
 
 function clauseStatus(c: Clause, a: Val[]): ClauseStatus {
   const unassigned: Lit[] = [];

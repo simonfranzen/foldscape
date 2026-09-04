@@ -21,15 +21,7 @@ const ACCENT = "text-signal-rose";
 // and successive numbers for the equality/arithmetic constants.
 // `meaningKey` is used to look up the per-locale translation in RichFigures.
 type MeaningKey =
-  | "not"
-  | "or"
-  | "forall"
-  | "exists"
-  | "equals"
-  | "zero"
-  | "successor"
-  | "plus"
-  | "open";
+  "not" | "or" | "forall" | "exists" | "equals" | "zero" | "successor" | "plus" | "open";
 
 const GODEL_SYMBOL_TABLE: Array<{ symbol: string; meaningKey: MeaningKey; code: number }> = [
   { symbol: "¬", meaningKey: "not", code: 1 },
