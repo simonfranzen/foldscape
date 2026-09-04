@@ -6,7 +6,7 @@ visual, and honest. PRs that move it in that direction are very welcome.
 
 ## Quick links
 
-- [Open an issue](https://github.com/zauberware/foldscape/issues/new/choose)
+- [Open an issue](https://github.com/simonfranzen/foldscape/issues/new/choose)
 - [Project structure](README.md#project-structure)
 - [Adding a topic](README.md#adding-a-topic)
 - [License — CC BY 4.0](LICENSE)
@@ -67,7 +67,7 @@ inside a JS string literal terminates the string and breaks the build.
 ## Getting set up
 
 ```bash
-git clone https://github.com/zauberware/foldscape
+git clone https://github.com/simonfranzen/foldscape
 cd foldscape
 npm install
 npm run dev

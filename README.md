@@ -52,7 +52,7 @@ Italian, Portuguese, Swedish, Norwegian.
 ## Quick start
 
 ```bash
-git clone https://github.com/zauberware/foldscape
+git clone https://github.com/simonfranzen/foldscape
 cd foldscape
 npm install
 npm run dev

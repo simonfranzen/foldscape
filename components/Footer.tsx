@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/context";
 
-export const GITHUB_URL = "https://github.com/zauberware/foldscape";
+export const GITHUB_URL = "https://github.com/simonfranzen/foldscape";
 export const ZAUBERWARE_URL = "https://www.zauberware.com";
 export const AUTHOR_URL = "https://www.zauberware.com";
 export const SIMON_GITHUB_URL = "https://github.com/simonfranzen";

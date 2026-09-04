@@ -221,7 +221,7 @@ export function renderRootOG(): ImageResponse {
           textTransform: "uppercase",
         }}
       >
-        github.com/zauberware/foldscape · CC BY 4.0
+        github.com/simonfranzen/foldscape · CC BY 4.0
       </div>
     </div>,
     { ...OG_SIZE },

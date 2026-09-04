@@ -34,6 +34,8 @@ export const metadata: Metadata = {
   creator: "Simon Franzen",
   publisher: "zauberware",
   alternates: { canonical: "/" },
+  // Renders <meta name="google-site-verification"> for Search Console ownership.
+  verification: { google: "THoemAetESahjTsaEFj9W4_CKl8D3wBPM-FBLGssUgA" },
   openGraph: {
     type: "website",
     url: SITE_URL,
