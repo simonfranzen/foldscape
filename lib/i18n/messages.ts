@@ -49,7 +49,7 @@ const en: Dict = {
     responsibilityBody: "Simon Franzen, address as above.",
     disclaimer: "Disclaimer",
     disclaimerBody:
-      "All texts and pictures on this site are presented as a non-commercial visual essay. The paper cited remains the work of its author; the source code is published under an open licence (see the repository link). External links open in a new window — we assume no responsibility for the content of third-party sites.",
+      "Foldscape is a non-commercial visual essay. Texts, visuals and source code are published under CC BY 4.0 (see the LICENSE file in the repository). External links open in a new window; we assume no responsibility for the content of third-party sites.",
   },
 };
 
@@ -78,7 +78,7 @@ const de: Dict = {
     responsibilityBody: "Simon Franzen, Anschrift wie oben.",
     disclaimer: "Haftungshinweis",
     disclaimerBody:
-      "Sämtliche Texte und Bilder auf dieser Seite sind als nicht-kommerzieller visueller Essay zu verstehen. Das zitierte Paper bleibt Werk seines Autors; der Quellcode steht unter einer offenen Lizenz (siehe Repository-Link). Externe Links öffnen in einem neuen Fenster — für die Inhalte fremder Seiten übernehmen wir keine Verantwortung.",
+      "Foldscape ist ein nicht-kommerzieller visueller Essay. Texte, Bilder und Quellcode stehen unter CC BY 4.0 (siehe LICENSE-Datei im Repository). Externe Links öffnen in einem neuen Fenster; für die Inhalte fremder Seiten übernehmen wir keine Verantwortung.",
   },
 };
 
@@ -107,7 +107,7 @@ const es: Dict = {
     responsibilityBody: "Simon Franzen, dirección como arriba.",
     disclaimer: "Aviso de responsabilidad",
     disclaimerBody:
-      "Todos los textos e imágenes de este sitio se presentan como ensayo visual no comercial. El artículo citado es obra de su autor; el código fuente se publica bajo licencia abierta (véase el enlace del repositorio). Los enlaces externos se abren en una nueva ventana; no asumimos responsabilidad por el contenido de sitios de terceros.",
+      "Foldscape es un ensayo visual no comercial. Textos, imágenes y código fuente se publican bajo CC BY 4.0 (véase el archivo LICENSE en el repositorio). Los enlaces externos se abren en una nueva ventana; no asumimos responsabilidad por el contenido de sitios de terceros.",
   },
 };
 
@@ -136,7 +136,7 @@ const fr: Dict = {
     responsibilityBody: "Simon Franzen, adresse ci-dessus.",
     disclaimer: "Avertissement",
     disclaimerBody:
-      "Tous les textes et images de ce site sont présentés comme un essai visuel non commercial. L'article cité demeure l'œuvre de son auteur ; le code source est publié sous licence libre (voir lien du dépôt). Les liens externes s'ouvrent dans une nouvelle fenêtre — nous déclinons toute responsabilité quant au contenu de sites tiers.",
+      "Foldscape est un essai visuel non commercial. Textes, images et code source sont publiés sous licence CC BY 4.0 (voir le fichier LICENSE du dépôt). Les liens externes s'ouvrent dans une nouvelle fenêtre ; nous déclinons toute responsabilité quant au contenu de sites tiers.",
   },
 };
 
@@ -165,7 +165,7 @@ const it: Dict = {
     responsibilityBody: "Simon Franzen, indirizzo come sopra.",
     disclaimer: "Avviso di responsabilità",
     disclaimerBody:
-      "Tutti i testi e le immagini di questo sito sono presentati come un saggio visivo non commerciale. L'articolo citato resta opera del suo autore; il codice sorgente è pubblicato con licenza aperta (vedi link al repository). I collegamenti esterni si aprono in una nuova finestra — non ci assumiamo responsabilità per il contenuto di siti di terzi.",
+      "Foldscape è un saggio visivo non commerciale. Testi, immagini e codice sorgente sono pubblicati con licenza CC BY 4.0 (vedi il file LICENSE nel repository). I collegamenti esterni si aprono in una nuova finestra; non ci assumiamo responsabilità per il contenuto di siti di terzi.",
   },
 };
 
@@ -194,7 +194,7 @@ const pt: Dict = {
     responsibilityBody: "Simon Franzen, endereço acima.",
     disclaimer: "Aviso de responsabilidade",
     disclaimerBody:
-      "Todos os textos e imagens deste site são apresentados como ensaio visual não comercial. O artigo citado permanece obra de seu autor; o código fonte é publicado sob licença aberta (ver link do repositório). Links externos abrem em nova janela — não assumimos responsabilidade pelo conteúdo de sites de terceiros.",
+      "O Foldscape é um ensaio visual não comercial. Textos, imagens e código-fonte são publicados sob CC BY 4.0 (ver o ficheiro LICENSE no repositório). As ligações externas abrem numa nova janela; não assumimos responsabilidade pelo conteúdo de sites de terceiros.",
   },
 };
 
@@ -223,7 +223,7 @@ const sv: Dict = {
     responsibilityBody: "Simon Franzen, adress enligt ovan.",
     disclaimer: "Ansvarsfriskrivning",
     disclaimerBody:
-      "Alla texter och bilder på denna sajt presenteras som en icke-kommersiell visuell essä. Den citerade artikeln förblir sin författares verk; källkoden publiceras under en öppen licens (se repository-länken). Externa länkar öppnas i nytt fönster — vi tar inget ansvar för innehållet på tredjepartssajter.",
+      "Foldscape är en icke-kommersiell visuell essä. Texter, bilder och källkod publiceras under CC BY 4.0 (se filen LICENSE i repositoriet). Externa länkar öppnas i nytt fönster; vi tar inget ansvar för innehållet på tredjepartssajter.",
   },
 };
 
@@ -252,7 +252,7 @@ const no: Dict = {
     responsibilityBody: "Simon Franzen, adresse som over.",
     disclaimer: "Ansvarsfraskrivelse",
     disclaimerBody:
-      "Alle tekster og bilder på dette nettstedet presenteres som et ikke-kommersielt visuelt essay. Den siterte artikkelen forblir sin forfatters verk; kildekoden er publisert under en åpen lisens (se repository-lenken). Eksterne lenker åpnes i nytt vindu — vi tar ikke ansvar for innholdet på tredjeparts nettsteder.",
+      "Foldscape er et ikke-kommersielt visuelt essay. Tekster, bilder og kildekode publiseres under CC BY 4.0 (se filen LICENSE i repositoriet). Eksterne lenker åpnes i nytt vindu; vi tar ikke ansvar for innholdet på tredjeparts nettsteder.",
   },
 };
 
