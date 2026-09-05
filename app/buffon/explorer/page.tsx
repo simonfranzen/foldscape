@@ -371,7 +371,6 @@ export default function BuffonExplorer() {
   useEffect(() => {
     clear();
     // clear is stable for our purposes; only re-run on a parameter change.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spacing, needleLen]);
 
   // Auto-drop loop via requestAnimationFrame.

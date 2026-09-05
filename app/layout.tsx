@@ -6,6 +6,7 @@ import { Nav } from "@/components/Nav";
 import { I18nProvider } from "@/lib/i18n/context";
 import { Footer } from "@/components/Footer";
 import { palette } from "@/lib/visual/palette";
+import { languageAlternates } from "@/lib/og/metadata";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Simon Franzen", url: "https://www.zauberware.com" }],
   creator: "Simon Franzen",
   publisher: "zauberware",
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/", languages: languageAlternates("/") },
   // Renders <meta name="google-site-verification"> for Search Console ownership.
   verification: { google: "THoemAetESahjTsaEFj9W4_CKl8D3wBPM-FBLGssUgA" },
   openGraph: {
@@ -85,9 +86,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to main content
         </a>
-        {/* I18nProvider uses useSearchParams() to honour ?lang=<locale>; Next
-            requires that to live under a Suspense boundary so the static
-            shell can render while the client picks up the query string. */}
+        {/* I18nProvider reads ?lang=<locale> from window.location after
+            hydration (not via useSearchParams, which would turn every page
+            into a client-only render with empty prerendered HTML). The
+            Suspense boundary is kept so any future async client hook below
+            the provider cannot take the whole shell down. */}
         <Suspense fallback={null}>
           <I18nProvider>
             <Nav />

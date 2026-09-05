@@ -1,6 +1,7 @@
-// Tests for the URL-driven ?lang=<locale> mechanism. We mock next/navigation
-// per-test so we can swap the searchParams that the provider observes, and
-// we read the active locale out of the provider via a small probe child.
+// Tests for the URL-driven ?lang=<locale> mechanism. The provider reads the
+// query string from window.location (not useSearchParams, which would force
+// client-only rendering), so each test sets the jsdom URL before rendering
+// and reads the active locale out of the provider via a small probe child.
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, cleanup, act } from "@testing-library/react";
@@ -35,6 +36,7 @@ beforeEach(() => {
   replaceMock.mockReset();
   currentSearch = new URLSearchParams();
   currentPath = "/";
+  window.history.replaceState({}, "", "/");
   try {
     window.localStorage?.removeItem("foldscape.locale");
   } catch {
@@ -66,7 +68,7 @@ describe("parseLangParam", () => {
 
 describe("I18nProvider ?lang= handling", () => {
   it("initialises to ?lang=de when the URL provides it", async () => {
-    currentSearch = new URLSearchParams("lang=de");
+    window.history.replaceState({}, "", "/?lang=de");
     const seen: string[] = [];
     await act(async () => {
       render(
@@ -79,7 +81,7 @@ describe("I18nProvider ?lang= handling", () => {
   });
 
   it("resolves ?lang=de-DE down to the short de locale", async () => {
-    currentSearch = new URLSearchParams("lang=de-DE");
+    window.history.replaceState({}, "", "/?lang=de-DE");
     const seen: string[] = [];
     await act(async () => {
       render(
@@ -92,7 +94,7 @@ describe("I18nProvider ?lang= handling", () => {
   });
 
   it("falls back to the default when ?lang=xx is invalid", async () => {
-    currentSearch = new URLSearchParams("lang=xx");
+    window.history.replaceState({}, "", "/?lang=xx");
     const seen: string[] = [];
     await act(async () => {
       render(

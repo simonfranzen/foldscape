@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { DEFAULT_LOCALE, LOCALES, type Locale, detectLocale, parseLangParam } from "./types";
 import { MESSAGES, type Dict } from "./messages";
 import { ATLAS, type AtlasDict } from "./atlas";
@@ -26,11 +26,36 @@ const Ctx = createContext<I18nCtx>({
   u: UI[DEFAULT_LOCALE],
 });
 
+// Read ?lang= from window.location instead of useSearchParams(). The hook
+// forces Next to bail out of static prerendering for the whole subtree, and
+// because the provider wraps every page that left the prerendered HTML empty
+// (no story text for crawlers). Reading the URL in an effect keeps the
+// English default fully server-rendered; the client switches after hydration.
+function readLangParam(): string | null {
+  if (typeof window === "undefined") return null;
+  try {
+    return new URLSearchParams(window.location.search).get("lang");
+  } catch {
+    return null;
+  }
+}
+
+function useLangParam(pathname: string | null): string | null {
+  const [raw, setRaw] = useState<string | null>(null);
+  useEffect(() => {
+    const read = () => setRaw(readLangParam());
+    read();
+    window.addEventListener("popstate", read);
+    return () => window.removeEventListener("popstate", read);
+  }, [pathname]);
+  return raw;
+}
+
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const langParam = useLangParam(pathname);
 
   // The `?lang=` query parameter — when present and valid — overrides both
   // localStorage and browser-language detection. We track the last value we
@@ -46,20 +71,20 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (initialised.current) return;
     initialised.current = true;
-    const fromUrl = parseLangParam(searchParams?.get("lang"));
+    const fromUrl = parseLangParam(readLangParam());
     if (fromUrl) {
       // The URL effect below will pick this up; nothing to do here.
       return;
     }
+    // Intentionally runs on first mount only; the URL effect below owns
+    // every later change.
     setLocaleState(detectLocale());
-    // We intentionally only want this on first mount.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // 2. React to ?lang= changes (initial load with the param, or any future
   //    in-place navigation that swaps it). Idempotent via lastSeenLangParam.
   useEffect(() => {
-    const raw = searchParams?.get("lang") ?? null;
+    const raw = langParam;
     if (raw === lastSeenLangParam.current) return;
     lastSeenLangParam.current = raw;
     const parsed = parseLangParam(raw);
@@ -74,7 +99,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
         document.documentElement.lang = parsed;
       }
     }
-  }, [searchParams, locale]);
+  }, [langParam, locale]);
 
   const setLocale = useCallback(
     (l: Locale) => {
@@ -92,7 +117,9 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       // "already seen" so the URL effect above doesn't re-fire.
       lastSeenLangParam.current = l;
       try {
-        const next = new URLSearchParams(searchParams?.toString() ?? "");
+        const next = new URLSearchParams(
+          typeof window !== "undefined" ? window.location.search : "",
+        );
         next.set("lang", l);
         const qs = next.toString();
         const url = `${pathname || "/"}${qs ? `?${qs}` : ""}`;
@@ -101,7 +128,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
         // router may not be available in some test environments; ignore
       }
     },
-    [pathname, router, searchParams],
+    [pathname, router],
   );
 
   useEffect(() => {

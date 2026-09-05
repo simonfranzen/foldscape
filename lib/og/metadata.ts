@@ -1,10 +1,13 @@
-// Per-topic OpenGraph / Twitter metadata helper. Topic page.tsx files are
-// client components and cannot export generateMetadata, so each topic gets a
-// tiny layout.tsx that delegates here.
+// Per-route metadata helpers. Topic page.tsx files are client components and
+// cannot export generateMetadata, so each route gets a tiny layout.tsx that
+// delegates here.
 
 import type { Metadata } from "next";
 import { getTopic, type TopicId } from "@/lib/topics";
 import { EN_PLACEHOLDERS } from "@/lib/i18n/placeholders";
+import { DEFAULT_LOCALE, LOCALES } from "@/lib/i18n/types";
+
+export const SITE_URL = "https://foldscape.zauberware.com";
 
 const EN_OVERRIDES: Partial<Record<TopicId, { title: string; tagline: string }>> = {
   nand: { title: "The Sheffer Stroke", tagline: "One gate is enough for all of digital logic" },
@@ -36,28 +39,62 @@ export function getTopicCopy(id: TopicId): { title: string; tagline: string } {
   return { title: id, tagline: "" };
 }
 
-export function topicMetadata(id: TopicId): Metadata {
-  const topic = getTopic(id);
-  const { title, tagline } = getTopicCopy(id);
-  const fullTitle = `${title} — Foldscape`;
-  const description =
-    tagline || `${title}, an idea in the Foldscape atlas of mathematical curiosities.`;
-  const url = topic.href;
+// The locale lives in the ?lang= query parameter, so every translated
+// variant of a path is the same path plus that parameter. The default locale
+// is the bare path and doubles as x-default. Google accepts query-parameter
+// hreflang as long as each URL serves that language, which the client-side
+// locale switch guarantees after hydration.
+export function languageAlternates(path: string): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const l of LOCALES) {
+    out[l] = l === DEFAULT_LOCALE ? path : `${path}?lang=${l}`;
+  }
+  out["x-default"] = path;
+  return out;
+}
+
+// Titles carry the site suffix explicitly via `absolute`: the root title
+// template only reaches direct children, so nested sub-rooms (explorer,
+// sandbox) would otherwise lose the suffix while story pages keep it.
+export function pageMetadata(
+  path: string,
+  title: string,
+  description: string,
+  type: "website" | "article" = "website",
+): Metadata {
   return {
-    title: fullTitle,
+    title: { absolute: `${title} — Foldscape` },
     description,
     openGraph: {
-      title: fullTitle,
+      title: `${title} — Foldscape`,
       description,
-      url,
+      url: path,
       siteName: "Foldscape",
-      type: "article",
+      type,
     },
     twitter: {
       card: "summary_large_image",
-      title: fullTitle,
+      title: `${title} — Foldscape`,
       description,
     },
-    alternates: { canonical: url },
+    alternates: { canonical: path, languages: languageAlternates(path) },
   };
+}
+
+export function topicMetadata(id: TopicId): Metadata {
+  const topic = getTopic(id);
+  const { title, tagline } = getTopicCopy(id);
+  const description =
+    tagline || `${title}, an idea in the Foldscape atlas of mathematical curiosities.`;
+  return pageMetadata(topic.href, title, description, "article");
+}
+
+// Interactive sub-rooms (explorer, sandbox, simulator, builder, reducer,
+// sound) share the topic's copy but need their own canonical, otherwise they
+// would inherit the story page's canonical from the topic layout.
+export function topicSubpageMetadata(id: TopicId, sub: string, label: string): Metadata {
+  const topic = getTopic(id);
+  const { title } = getTopicCopy(id);
+  const description = `${label} for ${title}: play with the parameters yourself, in the browser, no sign-up.`;
+  return pageMetadata(`${topic.href}/${sub}`, `${title}: ${label}`, description);
 }
