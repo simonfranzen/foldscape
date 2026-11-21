@@ -55,7 +55,7 @@ For topic-specific prose, the **inline `RICH_STORY: Record<Locale, RichStory>` p
 - Route `layout.tsx` files export `generateMetadata` and pass the resolved locale to `topicMetadata` / `topicSubpageMetadata` / `pageMetadata` (`lib/og/metadata.ts`).
 - Old `?lang=de` links redirect permanently to `/de/...`.
 
-**Explorer guides** (`lib/explorer-guides/<topic>.ts`, rendered by `components/ExplorerGuide.tsx`) are the long server-rendered text of each sub-room and exist in EN and DE. A sub-room is indexable exactly in the locales its guide covers; the others render with a translated UI but carry `noindex` and stay out of the sitemap (`GUIDE_LOCALES` in `app/sitemap.ts`). A guide describes the real implementation, so update it when you change an explorer's behaviour, controls or presets.
+**Explorer guides** (`lib/explorer-guides/<topic>.ts`, rendered by `components/ExplorerGuide.tsx`) are the long server-rendered text of each sub-room and are registered in `lib/explorer-guides/index.ts`. A sub-room is indexable exactly in the locales its guide covers; the others render with a translated UI but carry `noindex` and stay out of the sitemap. A guide describes the real implementation, so update it when you change an explorer's behaviour, controls or presets.
 
 ### Visual identity layers
 
