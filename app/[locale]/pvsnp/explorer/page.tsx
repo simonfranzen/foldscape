@@ -9,7 +9,7 @@ import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerG
 import { PVSNP_GUIDE } from "@/lib/explorer-guides/pvsnp";
 
 // ---------------------------------------------------------------------------
-// P vs NP Explorer — a small DPLL-style 3-SAT solver, animated.
+// P vs NP Explorer: a small DPLL-style 3-SAT solver, animated.
 //
 // We represent a CNF formula as Clause[] where Clause is an array of signed
 // integers: +k means literal x_k, -k means ¬x_k. Variables are 1-indexed so
@@ -79,7 +79,7 @@ type ActionDescriptor =
   | { kind: "unsat" };
 
 // ---------------------------------------------------------------------------
-// Pure helpers — CNF evaluation, unit propagation, pure-literal elim
+// Pure helpers: CNF evaluation, unit propagation, pure-literal elim
 // ---------------------------------------------------------------------------
 
 function evalClauseUnderAssign(clause: Clause, a: Assignment): "sat" | "unsat" | "open" {
@@ -157,7 +157,7 @@ function findPure(formula: Formula, a: Assignment): number | null {
   return null;
 }
 
-// Choose next branching variable — lowest-indexed unassigned variable.
+// Choose next branching variable: lowest-indexed unassigned variable.
 function chooseBranchVar(numVars: number, a: Assignment): number | null {
   for (let v = 1; v <= numVars; v++) {
     if (!a.has(v)) return v;
@@ -175,7 +175,7 @@ function restoreAssign(a: Assignment, snap: Array<[number, boolean]>): void {
 }
 
 // ---------------------------------------------------------------------------
-// Preset instances — `id` is the stable lookup key into RichExplorer.presets.
+// Preset instances: `id` is the stable lookup key into RichExplorer.presets.
 // `numVars` and `formula` are locale-agnostic; only the label/description
 // strings get translated downstream.
 // ---------------------------------------------------------------------------
@@ -582,13 +582,13 @@ function backtrack(
         elapsedMs: performance.now() - startedAt,
       };
     }
-    // Both polarities tried — pop and keep going.
+    // Both polarities tried: pop and keep going.
     stack.pop();
     const parentNode = tree[currentNodeId].parent;
     if (parentNode !== null) currentNodeId = parentNode;
   }
   // Stack exhausted → UNSAT.
-  void lastAction; // intentionally dropped — the final UNSAT action overrides.
+  void lastAction; // intentionally dropped: the final UNSAT action overrides.
   return {
     ...prev,
     assign,
@@ -633,7 +633,7 @@ type RichExplorer = {
   verdictLabel: string;
   // search tree
   searchTreeTitle: (depth: number) => string;
-  // sidebar — presets
+  // sidebar: presets
   presetsTitle: string;
   presets: Record<
     PresetId,
@@ -642,20 +642,20 @@ type RichExplorer = {
       description: string;
     }
   >;
-  // sidebar — random generator
+  // sidebar: random generator
   randomTitle: string;
   varsLabel: (n: number) => string;
   clausesLabel: (m: number) => string;
   seedLabel: (s: number) => string;
   ratioLabel: (mn: string) => string;
   generateRandom: string;
-  // sidebar — speed + controls
+  // sidebar: speed + controls
   speedLabel: (s: number) => string;
   btnStep: string;
   btnRun: string;
   btnPause: string;
   btnReset: string;
-  // sidebar — stats
+  // sidebar: stats
   solverStats: string;
   statElapsed: string;
   statBranches: string;
@@ -687,24 +687,24 @@ type RichExplorer = {
   legendSat: string;
 };
 
-// Tiny helper — "T"/"F" universal across locales.
+// Tiny helper: "T"/"F" universal across locales.
 const tf = (v: boolean) => (v ? "T" : "F");
 
 const EXPLORER: Record<Locale, RichExplorer> = {
   en: {
     headerModeVerify: "Verify mode · O(m) check",
     headerModeSolve: "DPLL search · 3-SAT",
-    formulaTitle: "Formula φ — conjunction of clauses",
+    formulaTitle: "Formula φ: conjunction of clauses",
     candidateAssignment: "Candidate assignment",
     partialAssignment: "Partial assignment",
     toggleHint: "Click variables to toggle T → F → unset.",
     verifierOutput: "Verifier output",
     currentNode: "Current node",
-    verifierSatisfied: "✓ SATISFIED — every clause evaluates to true.",
-    verifierFalsified: "✗ FALSIFIED — at least one clause is broken.",
-    verifierIncomplete: "… incomplete — some variables unassigned.",
+    verifierSatisfied: "✓ SATISFIED: every clause evaluates to true.",
+    verifierFalsified: "✗ FALSIFIED: at least one clause is broken.",
+    verifierIncomplete: "… incomplete: some variables unassigned.",
     verifierFootnote:
-      "Verification scans the m clauses once and checks each in O(1). Total work: O(m) — independent of the search space. This is what puts the problem in NP.",
+      "Verification scans the m clauses once and checks each in O(1). Total work: O(m), independent of the search space. This is what puts the problem in NP.",
     verdictLabel: "verdict",
     searchTreeTitle: (depth) => `DPLL search tree · depth = ${depth}`,
     presetsTitle: "Preset 3-SAT instance",
@@ -714,7 +714,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
         description: "3 vars, 2 clauses. The solver finds it on the first descent.",
       },
       "unsat-all": {
-        label: "All 8 clauses on 3 vars — UNSAT",
+        label: "All 8 clauses on 3 vars: UNSAT",
         description: "Every clause of length 3 on {x1,x2,x3}. No assignment can satisfy them all.",
       },
       phase: {
@@ -724,12 +724,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       pigeon: {
         label: "Pigeonhole · 4 pigeons → 3 holes",
         description:
-          "Encodes the pigeonhole principle. Famously requires exponential resolution proofs — DPLL will sweat.",
+          "Encodes the pigeonhole principle. Famously requires exponential resolution proofs. DPLL will sweat.",
       },
       verify: {
         label: "Verify-only · a 4-var SAT instance with a candidate",
         description:
-          "Don't search. Plug the candidate assignment in and read off — this is the O(m) verifier that makes the problem NP.",
+          "Don't search. Plug the candidate assignment in and read off. This is the O(m) verifier that makes the problem NP.",
       },
     },
     randomTitle: "Random 3-SAT",
@@ -756,16 +756,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     modeSolve: "Solve",
     modeVerify: "Verify",
     modeFootnote:
-      "Solve runs DPLL (potentially exponential). Verify just plugs an assignment into m clauses — that's the O(m) certificate that makes 3-SAT lie in NP.",
+      "Solve runs DPLL (potentially exponential). Verify just plugs an assignment into m clauses: that's the O(m) certificate that makes 3-SAT lie in NP.",
     actionReady: "Ready.",
-    actionSat: (depth) => `SAT — assignment found at depth ${depth}.`,
-    actionConflict: "Conflict — backtracking.",
+    actionSat: (depth) => `SAT: assignment found at depth ${depth}.`,
+    actionConflict: "Conflict: backtracking.",
     actionUnit: (v, val) => `Unit propagate · x${v} := ${tf(val)}`,
     actionPure: (v, val) => `Pure literal · x${v} := ${tf(val)}`,
     actionNoVars: "No vars left, still unsatisfied → backtrack.",
     actionBranch: (v, val, d) => `Branch · x${v} := ${tf(val)}  (depth ${d})`,
     actionBacktrack: (v, val, d) => `Backtrack · x${v} := ${tf(val)}  (depth ${d})`,
-    actionUnsat: "UNSAT — search tree exhausted.",
+    actionUnsat: "UNSAT: search tree exhausted.",
     legendOpen: "open / unexplored",
     legendExplored: "explored",
     legendConflict: "conflict",
@@ -774,17 +774,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
   de: {
     headerModeVerify: "Verifizier-Modus · O(m)-Prüfung",
     headerModeSolve: "DPLL-Suche · 3-SAT",
-    formulaTitle: "Formel φ — Konjunktion von Klauseln",
+    formulaTitle: "Formel φ: Konjunktion von Klauseln",
     candidateAssignment: "Kandidaten-Belegung",
     partialAssignment: "Partielle Belegung",
     toggleHint: "Klicke Variablen, um T → F → unbelegt zu schalten.",
     verifierOutput: "Verifizier-Ausgabe",
     currentNode: "Aktueller Knoten",
-    verifierSatisfied: "✓ ERFÜLLT — jede Klausel ist wahr.",
-    verifierFalsified: "✗ FALSIFIZIERT — mindestens eine Klausel ist verletzt.",
-    verifierIncomplete: "… unvollständig — einige Variablen sind unbelegt.",
+    verifierSatisfied: "✓ ERFÜLLT: Jede Klausel ist wahr.",
+    verifierFalsified: "✗ FALSIFIZIERT: Mindestens eine Klausel ist verletzt.",
+    verifierIncomplete: "… unvollständig: Einige Variablen sind unbelegt.",
     verifierFootnote:
-      "Die Verifikation läuft einmal über die m Klauseln und prüft jede in O(1). Gesamtaufwand: O(m) — unabhängig vom Suchraum. Genau das setzt das Problem in NP.",
+      "Die Verifikation läuft einmal über die m Klauseln und prüft jede in O(1). Gesamtaufwand: O(m), unabhängig vom Suchraum. Genau das setzt das Problem in NP.",
     verdictLabel: "Urteil",
     searchTreeTitle: (depth) => `DPLL-Suchbaum · Tiefe = ${depth}`,
     presetsTitle: "Voreingestellte 3-SAT-Instanz",
@@ -794,7 +794,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
         description: "3 Variablen, 2 Klauseln. Der Solver findet sie beim ersten Abstieg.",
       },
       "unsat-all": {
-        label: "Alle 8 Klauseln auf 3 Variablen — UNSAT",
+        label: "Alle 8 Klauseln auf 3 Variablen: UNSAT",
         description:
           "Jede Klausel der Länge 3 auf {x1,x2,x3}. Keine Belegung kann sie alle erfüllen.",
       },
@@ -806,12 +806,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       pigeon: {
         label: "Schubfach · 4 Tauben → 3 Löcher",
         description:
-          "Kodiert das Schubfachprinzip. Berühmt für exponentielle Resolutionsbeweise — DPLL wird schwitzen.",
+          "Kodiert das Schubfachprinzip. Berühmt für exponentielle Resolutionsbeweise. DPLL wird schwitzen.",
       },
       verify: {
         label: "Nur verifizieren · 4-Variablen-SAT-Instanz mit Kandidat",
         description:
-          "Nicht suchen. Setze die Kandidaten-Belegung ein und lies ab — das ist der O(m)-Verifizierer, der das Problem in NP packt.",
+          "Nicht suchen. Setze die Kandidaten-Belegung ein und lies ab. Das ist der O(m)-Verifizierer, der das Problem in NP packt.",
       },
     },
     randomTitle: "Zufälliges 3-SAT",
@@ -838,16 +838,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     modeSolve: "Lösen",
     modeVerify: "Verifizieren",
     modeFootnote:
-      "«Lösen» fährt DPLL (potenziell exponentiell). «Verifizieren» steckt nur eine Belegung in m Klauseln — das ist das O(m)-Zertifikat, das 3-SAT in NP legt.",
+      "«Lösen» fährt DPLL (potenziell exponentiell). «Verifizieren» steckt nur eine Belegung in m Klauseln: Das ist das O(m)-Zertifikat, das 3-SAT in NP legt.",
     actionReady: "Bereit.",
-    actionSat: (depth) => `SAT — Belegung gefunden bei Tiefe ${depth}.`,
-    actionConflict: "Konflikt — Backtracking.",
+    actionSat: (depth) => `SAT: Belegung gefunden bei Tiefe ${depth}.`,
+    actionConflict: "Konflikt: Backtracking.",
     actionUnit: (v, val) => `Unit-Propagation · x${v} := ${tf(val)}`,
     actionPure: (v, val) => `Reines Literal · x${v} := ${tf(val)}`,
     actionNoVars: "Keine Variablen mehr, noch unerfüllt → Backtrack.",
     actionBranch: (v, val, d) => `Verzweigung · x${v} := ${tf(val)}  (Tiefe ${d})`,
     actionBacktrack: (v, val, d) => `Backtrack · x${v} := ${tf(val)}  (Tiefe ${d})`,
-    actionUnsat: "UNSAT — Suchbaum erschöpft.",
+    actionUnsat: "UNSAT: Suchbaum erschöpft.",
     legendOpen: "offen / unerforscht",
     legendExplored: "erforscht",
     legendConflict: "Konflikt",
@@ -856,17 +856,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
   es: {
     headerModeVerify: "Modo verificación · comprobación O(m)",
     headerModeSolve: "Búsqueda DPLL · 3-SAT",
-    formulaTitle: "Fórmula φ — conjunción de cláusulas",
+    formulaTitle: "Fórmula φ: conjunción de cláusulas",
     candidateAssignment: "Asignación candidata",
     partialAssignment: "Asignación parcial",
     toggleHint: "Pulsa las variables para alternar T → F → sin asignar.",
     verifierOutput: "Salida del verificador",
     currentNode: "Nodo actual",
-    verifierSatisfied: "✓ SATISFECHA — toda cláusula es verdadera.",
-    verifierFalsified: "✗ FALSIFICADA — al menos una cláusula falla.",
-    verifierIncomplete: "… incompleta — algunas variables sin asignar.",
+    verifierSatisfied: "✓ SATISFECHA: toda cláusula es verdadera.",
+    verifierFalsified: "✗ FALSIFICADA: al menos una cláusula falla.",
+    verifierIncomplete: "… incompleta: algunas variables sin asignar.",
     verifierFootnote:
-      "La verificación recorre las m cláusulas una vez y comprueba cada una en O(1). Trabajo total: O(m) — independiente del espacio de búsqueda. Esto es lo que pone el problema en NP.",
+      "La verificación recorre las m cláusulas una vez y comprueba cada una en O(1). Trabajo total: O(m), independiente del espacio de búsqueda. Esto es lo que pone el problema en NP.",
     verdictLabel: "veredicto",
     searchTreeTitle: (depth) => `Árbol de búsqueda DPLL · profundidad = ${depth}`,
     presetsTitle: "Instancia 3-SAT prefijada",
@@ -876,7 +876,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
         description: "3 variables, 2 cláusulas. El solver la encuentra en el primer descenso.",
       },
       "unsat-all": {
-        label: "Las 8 cláusulas sobre 3 variables — UNSAT",
+        label: "Las 8 cláusulas sobre 3 variables: UNSAT",
         description:
           "Toda cláusula de longitud 3 sobre {x1,x2,x3}. Ninguna asignación las satisface a todas.",
       },
@@ -888,12 +888,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       pigeon: {
         label: "Palomar · 4 palomas → 3 huecos",
         description:
-          "Codifica el principio del palomar. Famoso por requerir pruebas de resolución exponenciales — DPLL sudará.",
+          "Codifica el principio del palomar. Famoso por requerir pruebas de resolución exponenciales. DPLL sudará.",
       },
       verify: {
         label: "Sólo verificar · instancia SAT de 4 variables con candidato",
         description:
-          "Sin buscar. Mete la asignación candidata y lee — éste es el verificador O(m) que mete el problema en NP.",
+          "Sin buscar. Mete la asignación candidata y lee. Éste es el verificador O(m) que mete el problema en NP.",
       },
     },
     randomTitle: "3-SAT aleatorio",
@@ -920,16 +920,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     modeSolve: "Resolver",
     modeVerify: "Verificar",
     modeFootnote:
-      "«Resolver» lanza DPLL (potencialmente exponencial). «Verificar» sólo mete una asignación en m cláusulas — ése es el certificado O(m) que mete a 3-SAT en NP.",
+      "«Resolver» lanza DPLL (potencialmente exponencial). «Verificar» sólo mete una asignación en m cláusulas: ése es el certificado O(m) que mete a 3-SAT en NP.",
     actionReady: "Listo.",
-    actionSat: (depth) => `SAT — asignación hallada a profundidad ${depth}.`,
-    actionConflict: "Conflicto — retrocediendo.",
+    actionSat: (depth) => `SAT: asignación hallada a profundidad ${depth}.`,
+    actionConflict: "Conflicto: retrocediendo.",
     actionUnit: (v, val) => `Propagación unitaria · x${v} := ${tf(val)}`,
     actionPure: (v, val) => `Literal puro · x${v} := ${tf(val)}`,
     actionNoVars: "No quedan variables y sigue insatisfecha → retroceder.",
     actionBranch: (v, val, d) => `Rama · x${v} := ${tf(val)}  (profundidad ${d})`,
     actionBacktrack: (v, val, d) => `Retroceso · x${v} := ${tf(val)}  (profundidad ${d})`,
-    actionUnsat: "UNSAT — árbol de búsqueda agotado.",
+    actionUnsat: "UNSAT: árbol de búsqueda agotado.",
     legendOpen: "abierto / sin explorar",
     legendExplored: "explorado",
     legendConflict: "conflicto",
@@ -938,17 +938,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
   fr: {
     headerModeVerify: "Mode vérification · contrôle O(m)",
     headerModeSolve: "Recherche DPLL · 3-SAT",
-    formulaTitle: "Formule φ — conjonction de clauses",
+    formulaTitle: "Formule φ : conjonction de clauses",
     candidateAssignment: "Affectation candidate",
     partialAssignment: "Affectation partielle",
     toggleHint: "Cliquez les variables pour basculer T → F → non assigné.",
     verifierOutput: "Sortie du vérificateur",
     currentNode: "Nœud actuel",
-    verifierSatisfied: "✓ SATISFAITE — chaque clause est vraie.",
-    verifierFalsified: "✗ FALSIFIÉE — au moins une clause est cassée.",
-    verifierIncomplete: "… incomplète — certaines variables non assignées.",
+    verifierSatisfied: "✓ SATISFAITE : chaque clause est vraie.",
+    verifierFalsified: "✗ FALSIFIÉE : au moins une clause est cassée.",
+    verifierIncomplete: "… incomplète : certaines variables non assignées.",
     verifierFootnote:
-      "La vérification parcourt les m clauses une fois et contrôle chacune en O(1). Travail total : O(m) — indépendant de l'espace de recherche. C'est ce qui place le problème dans NP.",
+      "La vérification parcourt les m clauses une fois et contrôle chacune en O(1). Travail total : O(m), indépendant de l'espace de recherche. C'est ce qui place le problème dans NP.",
     verdictLabel: "verdict",
     searchTreeTitle: (depth) => `Arbre de recherche DPLL · profondeur = ${depth}`,
     presetsTitle: "Instance 3-SAT prédéfinie",
@@ -958,7 +958,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
         description: "3 variables, 2 clauses. Le solveur la trouve dès la première descente.",
       },
       "unsat-all": {
-        label: "Les 8 clauses sur 3 variables — UNSAT",
+        label: "Les 8 clauses sur 3 variables : UNSAT",
         description:
           "Toute clause de longueur 3 sur {x1,x2,x3}. Aucune affectation ne peut toutes les satisfaire.",
       },
@@ -970,12 +970,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       pigeon: {
         label: "Tiroirs · 4 pigeons → 3 trous",
         description:
-          "Code le principe des tiroirs. Connu pour exiger des preuves de résolution exponentielles — DPLL va transpirer.",
+          "Code le principe des tiroirs. Connu pour exiger des preuves de résolution exponentielles. DPLL va transpirer.",
       },
       verify: {
         label: "Vérification seule · instance SAT à 4 variables avec candidat",
         description:
-          "Pas de recherche. Branchez l'affectation candidate et lisez — c'est le vérificateur O(m) qui place le problème dans NP.",
+          "Pas de recherche. Branchez l'affectation candidate et lisez. C'est le vérificateur O(m) qui place le problème dans NP.",
       },
     },
     randomTitle: "3-SAT aléatoire",
@@ -1002,16 +1002,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     modeSolve: "Résoudre",
     modeVerify: "Vérifier",
     modeFootnote:
-      "« Résoudre » lance DPLL (potentiellement exponentiel). « Vérifier » branche juste une affectation dans m clauses — c'est le certificat O(m) qui place 3-SAT dans NP.",
+      "« Résoudre » lance DPLL (potentiellement exponentiel). « Vérifier » branche juste une affectation dans m clauses : c'est le certificat O(m) qui place 3-SAT dans NP.",
     actionReady: "Prêt.",
-    actionSat: (depth) => `SAT — affectation trouvée à la profondeur ${depth}.`,
-    actionConflict: "Conflit — retour arrière.",
+    actionSat: (depth) => `SAT : affectation trouvée à la profondeur ${depth}.`,
+    actionConflict: "Conflit : retour arrière.",
     actionUnit: (v, val) => `Propagation unitaire · x${v} := ${tf(val)}`,
     actionPure: (v, val) => `Littéral pur · x${v} := ${tf(val)}`,
     actionNoVars: "Plus de variables, toujours non satisfaite → retour arrière.",
     actionBranch: (v, val, d) => `Branche · x${v} := ${tf(val)}  (profondeur ${d})`,
     actionBacktrack: (v, val, d) => `Retour · x${v} := ${tf(val)}  (profondeur ${d})`,
-    actionUnsat: "UNSAT — arbre de recherche épuisé.",
+    actionUnsat: "UNSAT : arbre de recherche épuisé.",
     legendOpen: "ouvert / inexploré",
     legendExplored: "exploré",
     legendConflict: "conflit",
@@ -1020,17 +1020,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
   it: {
     headerModeVerify: "Modalità verifica · controllo O(m)",
     headerModeSolve: "Ricerca DPLL · 3-SAT",
-    formulaTitle: "Formula φ — congiunzione di clausole",
+    formulaTitle: "Formula φ: congiunzione di clausole",
     candidateAssignment: "Assegnazione candidata",
     partialAssignment: "Assegnazione parziale",
     toggleHint: "Clicca le variabili per alternare T → F → non assegnata.",
     verifierOutput: "Output del verificatore",
     currentNode: "Nodo corrente",
-    verifierSatisfied: "✓ SODDISFATTA — ogni clausola è vera.",
-    verifierFalsified: "✗ FALSIFICATA — almeno una clausola è infranta.",
-    verifierIncomplete: "… incompleta — alcune variabili non assegnate.",
+    verifierSatisfied: "✓ SODDISFATTA: ogni clausola è vera.",
+    verifierFalsified: "✗ FALSIFICATA: almeno una clausola è infranta.",
+    verifierIncomplete: "… incompleta: alcune variabili non assegnate.",
     verifierFootnote:
-      "La verifica scorre le m clausole una volta e controlla ciascuna in O(1). Lavoro totale: O(m) — indipendente dallo spazio di ricerca. È ciò che pone il problema in NP.",
+      "La verifica scorre le m clausole una volta e controlla ciascuna in O(1). Lavoro totale: O(m), indipendente dallo spazio di ricerca. È ciò che pone il problema in NP.",
     verdictLabel: "verdetto",
     searchTreeTitle: (depth) => `Albero di ricerca DPLL · profondità = ${depth}`,
     presetsTitle: "Istanza 3-SAT preimpostata",
@@ -1040,7 +1040,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
         description: "3 variabili, 2 clausole. Il solver la trova alla prima discesa.",
       },
       "unsat-all": {
-        label: "Tutte le 8 clausole su 3 variabili — UNSAT",
+        label: "Tutte le 8 clausole su 3 variabili: UNSAT",
         description:
           "Ogni clausola di lunghezza 3 su {x1,x2,x3}. Nessuna assegnazione le soddisfa tutte.",
       },
@@ -1052,12 +1052,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       pigeon: {
         label: "Cassetti · 4 piccioni → 3 buchi",
         description:
-          "Codifica il principio dei cassetti. Notoriamente richiede dimostrazioni di risoluzione esponenziali — DPLL suderà.",
+          "Codifica il principio dei cassetti. Notoriamente richiede dimostrazioni di risoluzione esponenziali. DPLL suderà.",
       },
       verify: {
         label: "Solo verifica · istanza SAT a 4 variabili con candidato",
         description:
-          "Niente ricerca. Inserisci l'assegnazione candidata e leggi — è il verificatore O(m) che mette il problema in NP.",
+          "Niente ricerca. Inserisci l'assegnazione candidata e leggi. È il verificatore O(m) che mette il problema in NP.",
       },
     },
     randomTitle: "3-SAT casuale",
@@ -1084,16 +1084,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     modeSolve: "Risolvi",
     modeVerify: "Verifica",
     modeFootnote:
-      "«Risolvi» avvia DPLL (potenzialmente esponenziale). «Verifica» inserisce solo un'assegnazione in m clausole — è il certificato O(m) che pone 3-SAT in NP.",
+      "«Risolvi» avvia DPLL (potenzialmente esponenziale). «Verifica» inserisce solo un'assegnazione in m clausole: è il certificato O(m) che pone 3-SAT in NP.",
     actionReady: "Pronto.",
-    actionSat: (depth) => `SAT — assegnazione trovata a profondità ${depth}.`,
-    actionConflict: "Conflitto — backtracking.",
+    actionSat: (depth) => `SAT: assegnazione trovata a profondità ${depth}.`,
+    actionConflict: "Conflitto: backtracking.",
     actionUnit: (v, val) => `Propagazione unitaria · x${v} := ${tf(val)}`,
     actionPure: (v, val) => `Letterale puro · x${v} := ${tf(val)}`,
     actionNoVars: "Niente più variabili, ancora insoddisfatta → backtrack.",
     actionBranch: (v, val, d) => `Ramo · x${v} := ${tf(val)}  (profondità ${d})`,
     actionBacktrack: (v, val, d) => `Backtrack · x${v} := ${tf(val)}  (profondità ${d})`,
-    actionUnsat: "UNSAT — albero di ricerca esaurito.",
+    actionUnsat: "UNSAT: albero di ricerca esaurito.",
     legendOpen: "aperto / inesplorato",
     legendExplored: "esplorato",
     legendConflict: "conflitto",
@@ -1102,17 +1102,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
   pt: {
     headerModeVerify: "Modo verificação · verificação O(m)",
     headerModeSolve: "Busca DPLL · 3-SAT",
-    formulaTitle: "Fórmula φ — conjunção de cláusulas",
+    formulaTitle: "Fórmula φ: conjunção de cláusulas",
     candidateAssignment: "Atribuição candidata",
     partialAssignment: "Atribuição parcial",
     toggleHint: "Clique nas variáveis para alternar T → F → não atribuída.",
     verifierOutput: "Saída do verificador",
     currentNode: "Nó actual",
-    verifierSatisfied: "✓ SATISFEITA — toda cláusula é verdadeira.",
-    verifierFalsified: "✗ FALSIFICADA — pelo menos uma cláusula falha.",
-    verifierIncomplete: "… incompleta — algumas variáveis sem atribuição.",
+    verifierSatisfied: "✓ SATISFEITA: toda cláusula é verdadeira.",
+    verifierFalsified: "✗ FALSIFICADA: pelo menos uma cláusula falha.",
+    verifierIncomplete: "… incompleta: algumas variáveis sem atribuição.",
     verifierFootnote:
-      "A verificação percorre as m cláusulas uma vez e verifica cada uma em O(1). Trabalho total: O(m) — independente do espaço de busca. É isso que põe o problema em NP.",
+      "A verificação percorre as m cláusulas uma vez e verifica cada uma em O(1). Trabalho total: O(m), independente do espaço de busca. É isso que põe o problema em NP.",
     verdictLabel: "veredicto",
     searchTreeTitle: (depth) => `Árvore de busca DPLL · profundidade = ${depth}`,
     presetsTitle: "Instância 3-SAT predefinida",
@@ -1122,7 +1122,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
         description: "3 variáveis, 2 cláusulas. O solver encontra-a na primeira descida.",
       },
       "unsat-all": {
-        label: "Todas as 8 cláusulas sobre 3 variáveis — UNSAT",
+        label: "Todas as 8 cláusulas sobre 3 variáveis: UNSAT",
         description:
           "Toda cláusula de comprimento 3 sobre {x1,x2,x3}. Nenhuma atribuição as satisfaz todas.",
       },
@@ -1134,12 +1134,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       pigeon: {
         label: "Casas dos pombos · 4 pombos → 3 casas",
         description:
-          "Codifica o princípio das casas dos pombos. Famoso por exigir provas de resolução exponenciais — DPLL vai suar.",
+          "Codifica o princípio das casas dos pombos. Famoso por exigir provas de resolução exponenciais. DPLL vai suar.",
       },
       verify: {
         label: "Só verificar · instância SAT de 4 variáveis com candidato",
         description:
-          "Sem buscar. Mete a atribuição candidata e lê — é o verificador O(m) que põe o problema em NP.",
+          "Sem buscar. Mete a atribuição candidata e lê. É o verificador O(m) que põe o problema em NP.",
       },
     },
     randomTitle: "3-SAT aleatório",
@@ -1166,16 +1166,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     modeSolve: "Resolver",
     modeVerify: "Verificar",
     modeFootnote:
-      "«Resolver» lança DPLL (potencialmente exponencial). «Verificar» mete apenas uma atribuição em m cláusulas — é o certificado O(m) que põe 3-SAT em NP.",
+      "«Resolver» lança DPLL (potencialmente exponencial). «Verificar» mete apenas uma atribuição em m cláusulas: é o certificado O(m) que põe 3-SAT em NP.",
     actionReady: "Pronto.",
-    actionSat: (depth) => `SAT — atribuição encontrada à profundidade ${depth}.`,
-    actionConflict: "Conflito — retrocedendo.",
+    actionSat: (depth) => `SAT: atribuição encontrada à profundidade ${depth}.`,
+    actionConflict: "Conflito: retrocedendo.",
     actionUnit: (v, val) => `Propagação unitária · x${v} := ${tf(val)}`,
     actionPure: (v, val) => `Literal puro · x${v} := ${tf(val)}`,
     actionNoVars: "Sem variáveis, ainda insatisfeita → retroceder.",
     actionBranch: (v, val, d) => `Ramo · x${v} := ${tf(val)}  (profundidade ${d})`,
     actionBacktrack: (v, val, d) => `Retrocesso · x${v} := ${tf(val)}  (profundidade ${d})`,
-    actionUnsat: "UNSAT — árvore de busca esgotada.",
+    actionUnsat: "UNSAT: árvore de busca esgotada.",
     legendOpen: "aberto / inexplorado",
     legendExplored: "explorado",
     legendConflict: "conflito",
@@ -1184,17 +1184,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
   sv: {
     headerModeVerify: "Verifieringsläge · O(m)-kontroll",
     headerModeSolve: "DPLL-sökning · 3-SAT",
-    formulaTitle: "Formel φ — konjunktion av klausuler",
+    formulaTitle: "Formel φ: konjunktion av klausuler",
     candidateAssignment: "Kandidattilldelning",
     partialAssignment: "Partiell tilldelning",
     toggleHint: "Klicka på variabler för att växla T → F → otilldelad.",
     verifierOutput: "Verifierarens utdata",
     currentNode: "Aktuell nod",
-    verifierSatisfied: "✓ UPPFYLLD — varje klausul är sann.",
-    verifierFalsified: "✗ FALSIFIERAD — minst en klausul är trasig.",
-    verifierIncomplete: "… ofullständig — vissa variabler är otilldelade.",
+    verifierSatisfied: "✓ UPPFYLLD: varje klausul är sann.",
+    verifierFalsified: "✗ FALSIFIERAD: minst en klausul är trasig.",
+    verifierIncomplete: "… ofullständig: vissa variabler är otilldelade.",
     verifierFootnote:
-      "Verifieringen sveper de m klausulerna en gång och kollar var och en i O(1). Totalt arbete: O(m) — oberoende av sökrymden. Det är detta som placerar problemet i NP.",
+      "Verifieringen sveper de m klausulerna en gång och kollar var och en i O(1). Totalt arbete: O(m), oberoende av sökrymden. Det är detta som placerar problemet i NP.",
     verdictLabel: "utslag",
     searchTreeTitle: (depth) => `DPLL-sökträd · djup = ${depth}`,
     presetsTitle: "Förvald 3-SAT-instans",
@@ -1204,7 +1204,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
         description: "3 variabler, 2 klausuler. Lösaren hittar den vid första nedstigning.",
       },
       "unsat-all": {
-        label: "Alla 8 klausuler på 3 variabler — UNSAT",
+        label: "Alla 8 klausuler på 3 variabler: UNSAT",
         description:
           "Varje klausul av längd 3 på {x1,x2,x3}. Ingen tilldelning kan uppfylla dem alla.",
       },
@@ -1216,12 +1216,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       pigeon: {
         label: "Lådprincip · 4 duvor → 3 hål",
         description:
-          "Kodar lådprincipen. Berömt för att kräva exponentiella resolutionsbevis — DPLL får svettas.",
+          "Kodar lådprincipen. Berömt för att kräva exponentiella resolutionsbevis. DPLL får svettas.",
       },
       verify: {
         label: "Endast verifiera · 4-variabel-SAT-instans med kandidat",
         description:
-          "Ingen sökning. Stoppa in kandidattilldelningen och läs av — detta är O(m)-verifieraren som placerar problemet i NP.",
+          "Ingen sökning. Stoppa in kandidattilldelningen och läs av. Detta är O(m)-verifieraren som placerar problemet i NP.",
       },
     },
     randomTitle: "Slumpmässig 3-SAT",
@@ -1248,16 +1248,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     modeSolve: "Lös",
     modeVerify: "Verifiera",
     modeFootnote:
-      "«Lös» kör DPLL (potentiellt exponentiell). «Verifiera» stoppar bara in en tilldelning i m klausuler — det är O(m)-certifikatet som placerar 3-SAT i NP.",
+      "«Lös» kör DPLL (potentiellt exponentiell). «Verifiera» stoppar bara in en tilldelning i m klausuler: det är O(m)-certifikatet som placerar 3-SAT i NP.",
     actionReady: "Klar.",
-    actionSat: (depth) => `SAT — tilldelning funnen på djup ${depth}.`,
-    actionConflict: "Konflikt — backtrackar.",
+    actionSat: (depth) => `SAT: tilldelning funnen på djup ${depth}.`,
+    actionConflict: "Konflikt: backtrackar.",
     actionUnit: (v, val) => `Unit-propagering · x${v} := ${tf(val)}`,
     actionPure: (v, val) => `Rent literal · x${v} := ${tf(val)}`,
     actionNoVars: "Inga variabler kvar, fortfarande ouppfylld → backtrack.",
     actionBranch: (v, val, d) => `Gren · x${v} := ${tf(val)}  (djup ${d})`,
     actionBacktrack: (v, val, d) => `Backtrack · x${v} := ${tf(val)}  (djup ${d})`,
-    actionUnsat: "UNSAT — sökträdet uttömt.",
+    actionUnsat: "UNSAT: sökträdet uttömt.",
     legendOpen: "öppen / outforskad",
     legendExplored: "utforskad",
     legendConflict: "konflikt",
@@ -1266,17 +1266,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
   no: {
     headerModeVerify: "Verifiseringsmodus · O(m)-sjekk",
     headerModeSolve: "DPLL-søk · 3-SAT",
-    formulaTitle: "Formel φ — konjunksjon av klausuler",
+    formulaTitle: "Formel φ: konjunksjon av klausuler",
     candidateAssignment: "Kandidat-tilordning",
     partialAssignment: "Delvis tilordning",
     toggleHint: "Klikk på variabler for å veksle T → F → uten verdi.",
     verifierOutput: "Verifiserer-utdata",
     currentNode: "Gjeldende node",
-    verifierSatisfied: "✓ OPPFYLT — hver klausul er sann.",
-    verifierFalsified: "✗ FALSIFISERT — minst én klausul er brutt.",
-    verifierIncomplete: "… ufullstendig — noen variabler er uten verdi.",
+    verifierSatisfied: "✓ OPPFYLT: hver klausul er sann.",
+    verifierFalsified: "✗ FALSIFISERT: minst én klausul er brutt.",
+    verifierIncomplete: "… ufullstendig: noen variabler er uten verdi.",
     verifierFootnote:
-      "Verifiseringen går gjennom de m klausulene én gang og sjekker hver i O(1). Totalarbeid: O(m) — uavhengig av søkerommet. Det er det som plasserer problemet i NP.",
+      "Verifiseringen går gjennom de m klausulene én gang og sjekker hver i O(1). Totalarbeid: O(m), uavhengig av søkerommet. Det er det som plasserer problemet i NP.",
     verdictLabel: "dom",
     searchTreeTitle: (depth) => `DPLL-søketre · dybde = ${depth}`,
     presetsTitle: "Forhåndsdefinert 3-SAT-instans",
@@ -1286,7 +1286,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
         description: "3 variabler, 2 klausuler. Løseren finner den ved første nedstigning.",
       },
       "unsat-all": {
-        label: "Alle 8 klausuler på 3 variabler — UNSAT",
+        label: "Alle 8 klausuler på 3 variabler: UNSAT",
         description:
           "Hver klausul av lengde 3 på {x1,x2,x3}. Ingen tilordning kan oppfylle dem alle.",
       },
@@ -1298,12 +1298,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       pigeon: {
         label: "Skuffeprinsipp · 4 duer → 3 hull",
         description:
-          "Koder skuffeprinsippet. Berømt for å kreve eksponentielle resolusjonsbevis — DPLL vil svette.",
+          "Koder skuffeprinsippet. Berømt for å kreve eksponentielle resolusjonsbevis. DPLL vil svette.",
       },
       verify: {
         label: "Kun verifiser · 4-variabel-SAT-instans med kandidat",
         description:
-          "Ingen søking. Putt inn kandidat-tilordningen og les av — dette er O(m)-verifisereren som plasserer problemet i NP.",
+          "Ingen søking. Putt inn kandidat-tilordningen og les av. Dette er O(m)-verifisereren som plasserer problemet i NP.",
       },
     },
     randomTitle: "Tilfeldig 3-SAT",
@@ -1330,16 +1330,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     modeSolve: "Løs",
     modeVerify: "Verifiser",
     modeFootnote:
-      "«Løs» kjører DPLL (potensielt eksponentielt). «Verifiser» setter bare inn en tilordning i m klausuler — det er O(m)-sertifikatet som plasserer 3-SAT i NP.",
+      "«Løs» kjører DPLL (potensielt eksponentielt). «Verifiser» setter bare inn en tilordning i m klausuler: det er O(m)-sertifikatet som plasserer 3-SAT i NP.",
     actionReady: "Klar.",
-    actionSat: (depth) => `SAT — tilordning funnet på dybde ${depth}.`,
-    actionConflict: "Konflikt — backtracker.",
+    actionSat: (depth) => `SAT: tilordning funnet på dybde ${depth}.`,
+    actionConflict: "Konflikt: backtracker.",
     actionUnit: (v, val) => `Unit-propagering · x${v} := ${tf(val)}`,
     actionPure: (v, val) => `Rent literal · x${v} := ${tf(val)}`,
     actionNoVars: "Ingen variabler igjen, fortsatt uoppfylt → backtrack.",
     actionBranch: (v, val, d) => `Gren · x${v} := ${tf(val)}  (dybde ${d})`,
     actionBacktrack: (v, val, d) => `Backtrack · x${v} := ${tf(val)}  (dybde ${d})`,
-    actionUnsat: "UNSAT — søketreet uttømt.",
+    actionUnsat: "UNSAT: søketreet uttømt.",
     legendOpen: "åpen / uutforsket",
     legendExplored: "utforsket",
     legendConflict: "konflikt",
@@ -1375,7 +1375,7 @@ function renderAction(dict: RichExplorer, a: ActionDescriptor): string {
 // Component
 // ---------------------------------------------------------------------------
 
-// UI defaults / limits — surfaced as consts so they're easy to tune.
+// UI defaults / limits, surfaced as consts so they're easy to tune.
 const DEFAULT_SPEED = 8; // steps per second
 const MIN_INTERVAL_MS = 15; // floor on the setInterval period
 const DEFAULT_N = 5; // random-generator variable count default

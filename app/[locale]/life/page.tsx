@@ -112,12 +112,12 @@ const en: RichStory = {
       {
         label: "01",
         title: "The big idea",
-        body: "Take a grid. Each square is alive or dead. Apply four small rules to every square at once, then again, and again. Out of those four lines emerge spaceships that travel, factories that fire, oscillators that breathe, and — given enough room — calculators that add. Nobody puts the spaceships there. They just appear.",
+        body: "Take a grid. Each square is alive or dead. Apply four small rules to every square at once, then again, and again. Out of those four lines emerge spaceships that travel, factories that fire, oscillators that breathe, and, given enough room, calculators that add. Nobody puts the spaceships there. They just appear.",
       },
       {
         label: "02",
         title: "A concrete example",
-        body: "Born if exactly three live neighbours, survives with two or three, else die. That's the whole rule, written B3/S23. Drop a 2×2 Block and it never changes. Drop a straight line of three cells, a Blinker, and it flips between horizontal and vertical forever — one rule pulse per heartbeat.",
+        body: "Born if exactly three live neighbours, survives with two or three, else die. That's the whole rule, written B3/S23. Drop a 2×2 Block and it never changes. Drop a straight line of three cells, a Blinker, and it flips between horizontal and vertical forever, one rule pulse per heartbeat.",
       },
       {
         label: "03",
@@ -130,33 +130,33 @@ const en: RichStory = {
   sections: [
     {
       pretitle: "Section 01 · The rules",
-      title: "B3/S23 — born three, survive two or three",
-      body: "Every cell counts its eight neighbours. A dead cell with exactly three live neighbours wakes up — birth. A live cell with two or three neighbours stays alive — survival. Anything else dies, from loneliness with fewer than two or from suffocation with more than three. That's it. The whole physics of this world fits in fourteen words. Everything else — the spaceships, the guns, the computers — is just consequence.",
+      title: "B3/S23: born three, survive two or three",
+      body: "Every cell counts its eight neighbours. A dead cell with exactly three live neighbours wakes up: birth. A live cell with two or three neighbours stays alive: survival. Anything else dies, from loneliness with fewer than two or from suffocation with more than three. That's it. The whole physics of this world fits in fourteen words. Everything else (the spaceships, the guns, the computers) is just consequence.",
     },
     {
       pretitle: "Section 02 · The zoo",
       title: "Still lifes, oscillators, spaceships",
-      body: "Some shapes never move: the 2×2 Block, the Beehive, the Loaf — still lifes. Others pulse: the Blinker flips period 2, the Toad period 2, the Beacon period 2, the Pulsar period 3. And some shapes move across the grid by repeating themselves shifted: spaceships. The Glider, five cells, slides one square diagonally every four generations. The Lightweight Spaceship cruises straight. Catalogues now list tens of thousands of named patterns.",
+      body: "Some shapes never move: the 2×2 Block, the Beehive, the Loaf (still lifes). Others pulse: the Blinker flips period 2, the Toad period 2, the Beacon period 2, the Pulsar period 3. And some shapes move across the grid by repeating themselves shifted: spaceships. The Glider, five cells, slides one square diagonally every four generations. The Lightweight Spaceship cruises straight. Catalogues now list tens of thousands of named patterns.",
     },
     {
       pretitle: "Section 03 · The glider gun",
-      title: "Bill Gosper, 1970 — and Conway's fifty dollars",
-      body: "Conway had conjectured that no Life pattern could grow forever. A bounded universe seemed reasonable. He offered fifty dollars to anyone who broke the conjecture. In November 1970, Bill Gosper's group at MIT found a pattern of 36 cells that fires a glider every 30 generations, forever — the first glider gun. The population grows without bound. Conway paid up. Suddenly Life was unbounded, and the door to building things inside it was wide open.",
+      title: "Bill Gosper, 1970, and Conway's fifty dollars",
+      body: "Conway had conjectured that no Life pattern could grow forever. A bounded universe seemed reasonable. He offered fifty dollars to anyone who broke the conjecture. In November 1970, Bill Gosper's group at MIT found a pattern of 36 cells that fires a glider every 30 generations, forever: the first glider gun. The population grows without bound. Conway paid up. Suddenly Life was unbounded, and the door to building things inside it was wide open.",
     },
     {
       pretitle: "Section 04 · Universal computation",
       title: "Wires, gates, memory, clocks",
-      body: "Treat a stream of gliders as a wire carrying bits — glider present is 1, absent is 0. Collisions between glider streams implement AND, OR, NOT. Loops of glider streams store bits — memory. Glider guns provide the clock. With those primitives you can build any Boolean circuit, and from any Boolean circuit, any computation. Paul Rendell built a working Turing machine entirely from Life patterns in 2000; Adam Goucher's metafier turned full CPUs into Life mosaics. Conway's four-line rule is Turing-complete.",
+      body: "Treat a stream of gliders as a wire carrying bits: glider present is 1, absent is 0. Collisions between glider streams implement AND, OR, NOT. Loops of glider streams store bits: memory. Glider guns provide the clock. With those primitives you can build any Boolean circuit, and from any Boolean circuit, any computation. Paul Rendell built a working Turing machine entirely from Life patterns in 2000; Adam Goucher's metafier turned full CPUs into Life mosaics. Conway's four-line rule is Turing-complete.",
     },
     {
       pretitle: "Section 05 · Self-replication and meta-Life",
       title: "OTCA metapixels and Game of Life in Game of Life",
-      body: "In 2006 Brice Due designed the OTCA metapixel — a 2048×2048 Life pattern whose collective behaviour, viewed from far enough away, is itself a single Life cell. Tile a whole grid with OTCA metapixels and you get Game of Life running inside Game of Life, indistinguishable in the limit from the original. Self-replicating patterns followed: in 2010 Andrew Wade built Gemini, a pattern of 846,278 live cells spanning a roughly 4.2-million-cell-wide bounding box, copying itself every 33.7 million generations. The toy contains itself.",
+      body: "In 2006 Brice Due designed the OTCA metapixel, a 2048×2048 Life pattern whose collective behaviour, viewed from far enough away, is itself a single Life cell. Tile a whole grid with OTCA metapixels and you get Game of Life running inside Game of Life, indistinguishable in the limit from the original. Self-replicating patterns followed: in 2010 Andrew Wade built Gemini, a pattern of 846,278 live cells spanning a roughly 4.2-million-cell-wide bounding box, copying itself every 33.7 million generations. The toy contains itself.",
     },
     {
       pretitle: "Section 06 · Open frontiers",
       title: "Exotic rules, Margolus blocks, Hashlife",
-      body: "Conway's B3/S23 is one point in a vast space. HighLife (B36/S23) adds period-12 replicators. Day & Night is symmetric under colour inversion. Seeds (B2/S) is purely generative — nothing ever survives. Margolus neighbourhoods partition the grid into 2×2 blocks and update them as units, giving reversible automata. Bill Gosper's Hashlife algorithm memoises space-time regions to simulate 10^20 generations in seconds. There is a whole biology to discover, one rule string at a time.",
+      body: "Conway's B3/S23 is one point in a vast space. HighLife (B36/S23) adds period-12 replicators. Day & Night is symmetric under colour inversion. Seeds (B2/S) is purely generative: nothing ever survives. Margolus neighbourhoods partition the grid into 2×2 blocks and update them as units, giving reversible automata. Bill Gosper's Hashlife algorithm memoises space-time regions to simulate 10^20 generations in seconds. There is a whole biology to discover, one rule string at a time.",
     },
   ],
   closingTitle: "Your turn.",
@@ -203,7 +203,7 @@ const en: RichStory = {
   zooBlock: {
     gliderLabel: "The Glider · period 4",
     gliderCaption:
-      "Five cells, period four, glides one diagonal per cycle. The first known spaceship — Conway's group named it in 1970.",
+      "Five cells, period four, glides one diagonal per cycle. The first known spaceship. Conway's group named it in 1970.",
     lwssLabel: "Lightweight Spaceship · period 4",
     lwssCaption:
       "Nine cells, cruises orthogonally at c/2. Discovered by Conway in 1970; the smallest non-glider spaceship.",
@@ -249,12 +249,12 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Nimm ein Gitter. Jede Zelle ist lebendig oder tot. Wende auf alle Zellen gleichzeitig vier kleine Regeln an, dann noch einmal, und noch einmal. Aus diesen vier Zeilen wachsen Raumschiffe, die wandern, Fabriken, die feuern, Oszillatoren, die atmen — und mit genug Platz Rechenmaschinen, die addieren. Niemand baut die Raumschiffe hinein. Sie erscheinen einfach.",
+        body: "Nimm ein Gitter. Jede Zelle ist lebendig oder tot. Wende auf alle Zellen gleichzeitig vier kleine Regeln an, dann noch einmal, und noch einmal. Aus diesen vier Zeilen wachsen Raumschiffe, die wandern, Fabriken, die feuern, Oszillatoren, die atmen, und mit genug Platz Rechenmaschinen, die addieren. Niemand baut die Raumschiffe hinein. Sie erscheinen einfach.",
       },
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Geboren bei genau drei lebenden Nachbarn, überlebt bei zwei oder drei, sonst stirbt. Das ist die ganze Regel, geschrieben B3/S23. Setz einen 2×2-Block hin — er bleibt für immer. Setz drei Zellen in eine Reihe, einen Blinker, und er kippt für immer zwischen waagerecht und senkrecht hin und her — ein Regelpuls pro Herzschlag.",
+        body: "Geboren bei genau drei lebenden Nachbarn, überlebt bei zwei oder drei, sonst stirbt. Das ist die ganze Regel, geschrieben B3/S23. Setz einen 2×2-Block hin: er bleibt für immer. Setz drei Zellen in eine Reihe, einen Blinker, und er kippt für immer zwischen waagerecht und senkrecht hin und her, ein Regelpuls pro Herzschlag.",
       },
       {
         label: "03",
@@ -267,33 +267,33 @@ const de: RichStory = {
   sections: [
     {
       pretitle: "Abschnitt 01 · Die Regeln",
-      title: "B3/S23 — geboren bei drei, überlebt bei zwei oder drei",
-      body: "Jede Zelle zählt ihre acht Nachbarn. Eine tote Zelle mit genau drei lebenden Nachbarn wacht auf — Geburt. Eine lebende Zelle mit zwei oder drei Nachbarn bleibt am Leben — Überleben. Alles andere stirbt: an Einsamkeit mit weniger als zwei, an Überfüllung mit mehr als drei. Das war's. Die ganze Physik dieser Welt passt in vierzehn Wörter. Alles andere — die Raumschiffe, die Kanonen, die Computer — ist nur Konsequenz.",
+      title: "B3/S23: geboren bei drei, überlebt bei zwei oder drei",
+      body: "Jede Zelle zählt ihre acht Nachbarn. Eine tote Zelle mit genau drei lebenden Nachbarn wacht auf: Geburt. Eine lebende Zelle mit zwei oder drei Nachbarn bleibt am Leben: Überleben. Alles andere stirbt: an Einsamkeit mit weniger als zwei, an Überfüllung mit mehr als drei. Das war's. Die ganze Physik dieser Welt passt in vierzehn Wörter. Alles andere (die Raumschiffe, die Kanonen, die Computer) ist nur Konsequenz.",
     },
     {
       pretitle: "Abschnitt 02 · Der Zoo",
       title: "Stillleben, Oszillatoren, Raumschiffe",
-      body: "Manche Formen bewegen sich nie: der 2×2-Block, der Bienenstock, der Laib — Stillleben. Andere pulsieren: der Blinker mit Periode 2, die Kröte mit Periode 2, das Leuchtfeuer mit Periode 2, der Pulsar mit Periode 3. Und manche Formen bewegen sich, indem sie sich verschoben wiederholen: Raumschiffe. Der Gleiter, fünf Zellen, rutscht alle vier Generationen ein Feld diagonal. Das leichte Raumschiff fliegt geradeaus. Kataloge listen mittlerweile Zehntausende benannte Muster.",
+      body: "Manche Formen bewegen sich nie: der 2×2-Block, der Bienenstock, der Laib (Stillleben). Andere pulsieren: der Blinker mit Periode 2, die Kröte mit Periode 2, das Leuchtfeuer mit Periode 2, der Pulsar mit Periode 3. Und manche Formen bewegen sich, indem sie sich verschoben wiederholen: Raumschiffe. Der Gleiter, fünf Zellen, rutscht alle vier Generationen ein Feld diagonal. Das leichte Raumschiff fliegt geradeaus. Kataloge listen mittlerweile Zehntausende benannte Muster.",
     },
     {
       pretitle: "Abschnitt 03 · Die Gleiterkanone",
-      title: "Bill Gosper, 1970 — und Conways fünfzig Dollar",
-      body: "Conway hatte vermutet, dass kein Life-Muster unendlich wachsen kann. Eine begrenzte Welt schien plausibel. Er bot fünfzig Dollar, wer die Vermutung widerlegt. Im November 1970 fand Bill Gospers Gruppe am MIT ein 36-Zellen-Muster, das alle 30 Generationen einen Gleiter abfeuert, für immer — die erste Gleiterkanone. Die Population wächst unbeschränkt. Conway zahlte. Plötzlich war Life unbeschränkt, und die Tür, Dinge darin zu bauen, stand sperrangelweit offen.",
+      title: "Bill Gosper, 1970, und Conways fünfzig Dollar",
+      body: "Conway hatte vermutet, dass kein Life-Muster unendlich wachsen kann. Eine begrenzte Welt schien plausibel. Er bot fünfzig Dollar, wer die Vermutung widerlegt. Im November 1970 fand Bill Gospers Gruppe am MIT ein 36-Zellen-Muster, das alle 30 Generationen einen Gleiter abfeuert, für immer: die erste Gleiterkanone. Die Population wächst unbeschränkt. Conway zahlte. Plötzlich war Life unbeschränkt, und die Tür, Dinge darin zu bauen, stand sperrangelweit offen.",
     },
     {
       pretitle: "Abschnitt 04 · Universelle Berechnung",
       title: "Drähte, Gatter, Speicher, Takt",
-      body: "Behandle einen Gleiterstrom als Draht, der Bits trägt — Gleiter da ist 1, kein Gleiter ist 0. Kollisionen zwischen Strömen ergeben UND, ODER, NICHT. Schleifen aus Gleiterströmen speichern Bits — Arbeitsspeicher. Gleiterkanonen liefern den Takt. Mit diesen Grundbausteinen baust du jeden booleschen Schaltkreis, und aus jedem booleschen Schaltkreis jede Berechnung. Paul Rendell baute 2000 eine voll funktionsfähige Turing-Maschine ausschließlich aus Life-Mustern; Adam Gouchers Metafier verwandelt ganze CPUs in Life-Mosaike. Conways Vier-Zeilen-Regel ist Turing-vollständig.",
+      body: "Behandle einen Gleiterstrom als Draht, der Bits trägt: Gleiter da ist 1, kein Gleiter ist 0. Kollisionen zwischen Strömen ergeben UND, ODER, NICHT. Schleifen aus Gleiterströmen speichern Bits: Arbeitsspeicher. Gleiterkanonen liefern den Takt. Mit diesen Grundbausteinen baust du jeden booleschen Schaltkreis, und aus jedem booleschen Schaltkreis jede Berechnung. Paul Rendell baute 2000 eine voll funktionsfähige Turing-Maschine ausschließlich aus Life-Mustern; Adam Gouchers Metafier verwandelt ganze CPUs in Life-Mosaike. Conways Vier-Zeilen-Regel ist Turing-vollständig.",
     },
     {
       pretitle: "Abschnitt 05 · Selbstreplikation und Meta-Life",
       title: "OTCA-Metapixel und Game of Life in Game of Life",
-      body: "2006 entwarf Brice Due das OTCA-Metapixel — ein 2048×2048-Life-Muster, dessen Gesamtverhalten von weit genug weg betrachtet selbst wieder eine einzige Life-Zelle ist. Kachle ein ganzes Gitter mit OTCA-Metapixeln, und du erhältst Game of Life laufend in Game of Life, im Grenzwert ununterscheidbar vom Original. Selbstreplizierende Muster folgten: 2010 baute Andrew Wade Gemini, ein Muster aus 846.278 lebenden Zellen in einem rund 4,2 Millionen Zellen breiten Begrenzungsrahmen, das sich alle 33,7 Millionen Generationen selbst kopiert. Das Spielzeug enthält sich selbst.",
+      body: "2006 entwarf Brice Due das OTCA-Metapixel, ein 2048×2048-Life-Muster, dessen Gesamtverhalten von weit genug weg betrachtet selbst wieder eine einzige Life-Zelle ist. Kachle ein ganzes Gitter mit OTCA-Metapixeln, und du erhältst Game of Life laufend in Game of Life, im Grenzwert ununterscheidbar vom Original. Selbstreplizierende Muster folgten: 2010 baute Andrew Wade Gemini, ein Muster aus 846.278 lebenden Zellen in einem rund 4,2 Millionen Zellen breiten Begrenzungsrahmen, das sich alle 33,7 Millionen Generationen selbst kopiert. Das Spielzeug enthält sich selbst.",
     },
     {
       pretitle: "Abschnitt 06 · Offene Grenzen",
       title: "Exotische Regeln, Margolus-Blöcke, Hashlife",
-      body: "Conways B3/S23 ist ein Punkt in einem riesigen Raum. HighLife (B36/S23) bringt Periode-12-Replikatoren mit. Day & Night ist symmetrisch unter Farbumkehr. Seeds (B2/S) ist rein generativ — nichts überlebt je. Margolus-Nachbarschaften teilen das Gitter in 2×2-Blöcke und aktualisieren sie als Einheit, was reversible Automaten ergibt. Bill Gospers Hashlife-Algorithmus merkt sich Raum-Zeit-Regionen und simuliert 10^20 Generationen in Sekunden. Es gibt eine ganze Biologie zu entdecken, eine Regelzeichenkette nach der anderen.",
+      body: "Conways B3/S23 ist ein Punkt in einem riesigen Raum. HighLife (B36/S23) bringt Periode-12-Replikatoren mit. Day & Night ist symmetrisch unter Farbumkehr. Seeds (B2/S) ist rein generativ: nichts überlebt je. Margolus-Nachbarschaften teilen das Gitter in 2×2-Blöcke und aktualisieren sie als Einheit, was reversible Automaten ergibt. Bill Gospers Hashlife-Algorithmus merkt sich Raum-Zeit-Regionen und simuliert 10^20 Generationen in Sekunden. Es gibt eine ganze Biologie zu entdecken, eine Regelzeichenkette nach der anderen.",
     },
   ],
   closingTitle: "Du bist dran.",
@@ -340,7 +340,7 @@ const de: RichStory = {
   zooBlock: {
     gliderLabel: "Der Gleiter · Periode 4",
     gliderCaption:
-      "Fünf Zellen, Periode vier, gleitet pro Zyklus eine Diagonale weit. Das erste bekannte Raumschiff — Conways Gruppe taufte es 1970.",
+      "Fünf Zellen, Periode vier, gleitet pro Zyklus eine Diagonale weit. Das erste bekannte Raumschiff. Conways Gruppe taufte es 1970.",
     lwssLabel: "Leichtes Raumschiff · Periode 4",
     lwssCaption:
       "Neun Zellen, fährt orthogonal mit c/2. Von Conway 1970 entdeckt; das kleinste Raumschiff jenseits des Gleiters.",
@@ -386,12 +386,12 @@ const es: RichStory = {
       {
         label: "01",
         title: "La gran idea",
-        body: "Toma una cuadrícula. Cada casilla está viva o muerta. Aplica cuatro pequeñas reglas a todas las casillas a la vez, otra vez, y otra. De esas cuatro líneas emergen naves que viajan, fábricas que disparan, osciladores que respiran — y, con espacio suficiente, calculadoras que suman. Nadie pone las naves ahí. Sencillamente aparecen.",
+        body: "Toma una cuadrícula. Cada casilla está viva o muerta. Aplica cuatro pequeñas reglas a todas las casillas a la vez, otra vez, y otra. De esas cuatro líneas emergen naves que viajan, fábricas que disparan, osciladores que respiran, y, con espacio suficiente, calculadoras que suman. Nadie pone las naves ahí. Sencillamente aparecen.",
       },
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: "Nace si tiene exactamente tres vecinos vivos, sobrevive con dos o tres, en otro caso muere. Esa es toda la regla, escrita B3/S23. Deja un Bloque 2×2 y nunca cambia. Deja una línea recta de tres celdas, un Parpadeador, y oscila entre horizontal y vertical para siempre — un pulso de regla por latido.",
+        body: "Nace si tiene exactamente tres vecinos vivos, sobrevive con dos o tres, en otro caso muere. Esa es toda la regla, escrita B3/S23. Deja un Bloque 2×2 y nunca cambia. Deja una línea recta de tres celdas, un Parpadeador, y oscila entre horizontal y vertical para siempre, un pulso de regla por latido.",
       },
       {
         label: "03",
@@ -404,33 +404,33 @@ const es: RichStory = {
   sections: [
     {
       pretitle: "Sección 01 · Las reglas",
-      title: "B3/S23 — nace con tres, sobrevive con dos o tres",
-      body: "Cada célula cuenta sus ocho vecinas. Una célula muerta con exactamente tres vecinas vivas despierta — nacimiento. Una célula viva con dos o tres vecinas sigue viva — supervivencia. Lo demás muere, por soledad con menos de dos o por asfixia con más de tres. Eso es todo. Toda la física de este mundo cabe en catorce palabras. Lo demás — las naves, los cañones, los ordenadores — es solo consecuencia.",
+      title: "B3/S23: nace con tres, sobrevive con dos o tres",
+      body: "Cada célula cuenta sus ocho vecinas. Una célula muerta con exactamente tres vecinas vivas despierta: nacimiento. Una célula viva con dos o tres vecinas sigue viva: supervivencia. Lo demás muere, por soledad con menos de dos o por asfixia con más de tres. Eso es todo. Toda la física de este mundo cabe en catorce palabras. Lo demás (las naves, los cañones, los ordenadores) es solo consecuencia.",
     },
     {
       pretitle: "Sección 02 · El zoo",
       title: "Naturalezas muertas, osciladores, naves",
-      body: "Algunas formas no se mueven nunca: el Bloque 2×2, la Colmena, la Hogaza — naturalezas muertas. Otras pulsan: el Parpadeador con período 2, el Sapo con período 2, el Faro con período 2, el Púlsar con período 3. Y otras se desplazan repitiéndose desplazadas: naves. El Planeador, cinco celdas, resbala una casilla en diagonal cada cuatro generaciones. La nave ligera vuela recto. Los catálogos listan ya decenas de miles de patrones con nombre propio.",
+      body: "Algunas formas no se mueven nunca: el Bloque 2×2, la Colmena, la Hogaza (naturalezas muertas). Otras pulsan: el Parpadeador con período 2, el Sapo con período 2, el Faro con período 2, el Púlsar con período 3. Y otras se desplazan repitiéndose desplazadas: naves. El Planeador, cinco celdas, resbala una casilla en diagonal cada cuatro generaciones. La nave ligera vuela recto. Los catálogos listan ya decenas de miles de patrones con nombre propio.",
     },
     {
       pretitle: "Sección 03 · El cañón de planeadores",
-      title: "Bill Gosper, 1970 — y los cincuenta dólares de Conway",
-      body: "Conway había conjeturado que ningún patrón de Life podía crecer indefinidamente. Un universo acotado parecía razonable. Ofreció cincuenta dólares a quien rompiera la conjetura. En noviembre de 1970 el grupo de Bill Gosper en el MIT halló un patrón de 36 celdas que dispara un planeador cada 30 generaciones, para siempre — el primer cañón de planeadores. La población crece sin cota. Conway pagó. De pronto Life era ilimitado y la puerta para construir cosas dentro estaba abierta de par en par.",
+      title: "Bill Gosper, 1970, y los cincuenta dólares de Conway",
+      body: "Conway había conjeturado que ningún patrón de Life podía crecer indefinidamente. Un universo acotado parecía razonable. Ofreció cincuenta dólares a quien rompiera la conjetura. En noviembre de 1970 el grupo de Bill Gosper en el MIT halló un patrón de 36 celdas que dispara un planeador cada 30 generaciones, para siempre: el primer cañón de planeadores. La población crece sin cota. Conway pagó. De pronto Life era ilimitado y la puerta para construir cosas dentro estaba abierta de par en par.",
     },
     {
       pretitle: "Sección 04 · Cómputo universal",
       title: "Cables, puertas, memoria, relojes",
-      body: "Trata un chorro de planeadores como un cable que lleva bits — planeador presente es 1, ausente es 0. Las colisiones entre chorros implementan Y, O, NO. Los bucles de chorros almacenan bits — memoria. Los cañones aportan el reloj. Con esas primitivas se construye cualquier circuito booleano, y de cualquier circuito booleano, cualquier cómputo. Paul Rendell construyó en 2000 una máquina de Turing completamente con patrones de Life; el metafier de Adam Goucher convierte CPUs enteras en mosaicos de Life. La regla de cuatro líneas de Conway es Turing-completa.",
+      body: "Trata un chorro de planeadores como un cable que lleva bits: planeador presente es 1, ausente es 0. Las colisiones entre chorros implementan Y, O, NO. Los bucles de chorros almacenan bits: memoria. Los cañones aportan el reloj. Con esas primitivas se construye cualquier circuito booleano, y de cualquier circuito booleano, cualquier cómputo. Paul Rendell construyó en 2000 una máquina de Turing completamente con patrones de Life; el metafier de Adam Goucher convierte CPUs enteras en mosaicos de Life. La regla de cuatro líneas de Conway es Turing-completa.",
     },
     {
       pretitle: "Sección 05 · Autorreplicación y meta-Life",
       title: "Metapíxeles OTCA y Game of Life dentro de Game of Life",
-      body: "En 2006 Brice Due diseñó el metapíxel OTCA — un patrón de Life de 2048×2048 cuyo comportamiento colectivo, visto desde lejos, es a su vez una única celda de Life. Embaldosa una cuadrícula entera con metapíxeles OTCA y obtienes Game of Life corriendo dentro de Game of Life, indistinguible en el límite del original. Llegaron luego patrones autorreplicantes: en 2010 Andrew Wade construyó Gemini, un patrón de 846.278 celdas vivas que abarca un cuadro delimitador de unos 4,2 millones de celdas de ancho y se copia cada 33,7 millones de generaciones. El juguete se contiene a sí mismo.",
+      body: "En 2006 Brice Due diseñó el metapíxel OTCA, un patrón de Life de 2048×2048 cuyo comportamiento colectivo, visto desde lejos, es a su vez una única celda de Life. Embaldosa una cuadrícula entera con metapíxeles OTCA y obtienes Game of Life corriendo dentro de Game of Life, indistinguible en el límite del original. Llegaron luego patrones autorreplicantes: en 2010 Andrew Wade construyó Gemini, un patrón de 846.278 celdas vivas que abarca un cuadro delimitador de unos 4,2 millones de celdas de ancho y se copia cada 33,7 millones de generaciones. El juguete se contiene a sí mismo.",
     },
     {
       pretitle: "Sección 06 · Fronteras abiertas",
       title: "Reglas exóticas, bloques de Margolus, Hashlife",
-      body: "El B3/S23 de Conway es un punto en un espacio enorme. HighLife (B36/S23) añade replicadores de período 12. Day & Night es simétrico bajo inversión de color. Seeds (B2/S) es puramente generativo — nada sobrevive jamás. Los vecindarios de Margolus parten la cuadrícula en bloques 2×2 y los actualizan como unidad, dando autómatas reversibles. El algoritmo Hashlife de Bill Gosper memoiza regiones espacio-temporales para simular 10^20 generaciones en segundos. Hay toda una biología por descubrir, una cadena de reglas a la vez.",
+      body: "El B3/S23 de Conway es un punto en un espacio enorme. HighLife (B36/S23) añade replicadores de período 12. Day & Night es simétrico bajo inversión de color. Seeds (B2/S) es puramente generativo: nada sobrevive jamás. Los vecindarios de Margolus parten la cuadrícula en bloques 2×2 y los actualizan como unidad, dando autómatas reversibles. El algoritmo Hashlife de Bill Gosper memoiza regiones espacio-temporales para simular 10^20 generaciones en segundos. Hay toda una biología por descubrir, una cadena de reglas a la vez.",
     },
   ],
   closingTitle: "Tu turno.",
@@ -477,7 +477,7 @@ const es: RichStory = {
   zooBlock: {
     gliderLabel: "El Planeador · período 4",
     gliderCaption:
-      "Cinco celdas, período cuatro, se desliza una diagonal por ciclo. La primera nave conocida — el grupo de Conway la bautizó en 1970.",
+      "Cinco celdas, período cuatro, se desliza una diagonal por ciclo. La primera nave conocida. El grupo de Conway la bautizó en 1970.",
     lwssLabel: "Nave ligera · período 4",
     lwssCaption:
       "Nueve celdas, navega ortogonalmente a c/2. Descubierta por Conway en 1970; la nave más pequeña distinta del planeador.",
@@ -523,12 +523,12 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Prends une grille. Chaque case est vivante ou morte. Applique quatre petites règles à toutes les cases en même temps, puis encore, et encore. De ces quatre lignes émergent des vaisseaux qui voyagent, des usines qui tirent, des oscillateurs qui respirent — et avec assez de place, des calculatrices qui additionnent. Personne ne place les vaisseaux. Ils apparaissent, c'est tout.",
+        body: "Prends une grille. Chaque case est vivante ou morte. Applique quatre petites règles à toutes les cases en même temps, puis encore, et encore. De ces quatre lignes émergent des vaisseaux qui voyagent, des usines qui tirent, des oscillateurs qui respirent, et avec assez de place, des calculatrices qui additionnent. Personne ne place les vaisseaux. Ils apparaissent, c'est tout.",
       },
       {
         label: "02",
         title: "Un exemple concret",
-        body: "Naît si exactement trois voisines vivantes, survit avec deux ou trois, sinon meurt. C'est toute la règle, écrite B3/S23. Pose un Bloc 2×2, il ne change jamais. Pose une ligne droite de trois cellules, un Clignotant, et il bascule entre horizontal et vertical à jamais — un battement de règle par cœur.",
+        body: "Naît si exactement trois voisines vivantes, survit avec deux ou trois, sinon meurt. C'est toute la règle, écrite B3/S23. Pose un Bloc 2×2, il ne change jamais. Pose une ligne droite de trois cellules, un Clignotant, et il bascule entre horizontal et vertical à jamais, un battement de règle par cœur.",
       },
       {
         label: "03",
@@ -541,33 +541,33 @@ const fr: RichStory = {
   sections: [
     {
       pretitle: "Section 01 · Les règles",
-      title: "B3/S23 — née à trois, survit à deux ou trois",
-      body: "Chaque cellule compte ses huit voisines. Une cellule morte avec exactement trois voisines vivantes s'éveille — naissance. Une cellule vivante avec deux ou trois voisines reste vivante — survie. Tout le reste meurt : par solitude avec moins de deux, par suffocation avec plus de trois. C'est tout. Toute la physique de ce monde tient en quatorze mots. Le reste — les vaisseaux, les canons, les ordinateurs — n'est qu'une conséquence.",
+      title: "B3/S23 : née à trois, survit à deux ou trois",
+      body: "Chaque cellule compte ses huit voisines. Une cellule morte avec exactement trois voisines vivantes s'éveille : naissance. Une cellule vivante avec deux ou trois voisines reste vivante : survie. Tout le reste meurt : par solitude avec moins de deux, par suffocation avec plus de trois. C'est tout. Toute la physique de ce monde tient en quatorze mots. Le reste (les vaisseaux, les canons, les ordinateurs) n'est qu'une conséquence.",
     },
     {
       pretitle: "Section 02 · Le zoo",
       title: "Natures mortes, oscillateurs, vaisseaux",
-      body: "Certaines formes ne bougent jamais : le Bloc 2×2, la Ruche, le Pain — natures mortes. D'autres pulsent : le Clignotant de période 2, le Crapaud de période 2, le Phare de période 2, le Pulsar de période 3. D'autres se déplacent en se reproduisant décalées : les vaisseaux. Le Planeur, cinq cellules, glisse d'une case en diagonale toutes les quatre générations. Le vaisseau léger file droit. Les catalogues listent désormais des dizaines de milliers de motifs nommés.",
+      body: "Certaines formes ne bougent jamais : le Bloc 2×2, la Ruche, le Pain (natures mortes). D'autres pulsent : le Clignotant de période 2, le Crapaud de période 2, le Phare de période 2, le Pulsar de période 3. D'autres se déplacent en se reproduisant décalées : les vaisseaux. Le Planeur, cinq cellules, glisse d'une case en diagonale toutes les quatre générations. Le vaisseau léger file droit. Les catalogues listent désormais des dizaines de milliers de motifs nommés.",
     },
     {
       pretitle: "Section 03 · Le canon à planeurs",
-      title: "Bill Gosper, 1970 — et les cinquante dollars de Conway",
-      body: "Conway avait conjecturé qu'aucun motif de Life ne pouvait croître indéfiniment. Un univers borné semblait raisonnable. Il offrit cinquante dollars à qui réfuterait la conjecture. En novembre 1970, l'équipe de Bill Gosper au MIT trouva un motif de 36 cellules qui tire un planeur toutes les 30 générations, pour toujours — le premier canon à planeurs. La population croît sans borne. Conway paya. Soudain Life était non borné et la porte pour bâtir des choses à l'intérieur était grande ouverte.",
+      title: "Bill Gosper, 1970, et les cinquante dollars de Conway",
+      body: "Conway avait conjecturé qu'aucun motif de Life ne pouvait croître indéfiniment. Un univers borné semblait raisonnable. Il offrit cinquante dollars à qui réfuterait la conjecture. En novembre 1970, l'équipe de Bill Gosper au MIT trouva un motif de 36 cellules qui tire un planeur toutes les 30 générations, pour toujours : le premier canon à planeurs. La population croît sans borne. Conway paya. Soudain Life était non borné et la porte pour bâtir des choses à l'intérieur était grande ouverte.",
     },
     {
       pretitle: "Section 04 · Calcul universel",
       title: "Fils, portes, mémoire, horloges",
-      body: "Traite un flux de planeurs comme un fil portant des bits — planeur présent = 1, absent = 0. Les collisions entre flux implémentent ET, OU, NON. Les boucles de flux stockent des bits — la mémoire. Les canons fournissent l'horloge. Avec ces primitives on bâtit n'importe quel circuit booléen, et donc n'importe quel calcul. Paul Rendell a construit en 2000 une machine de Turing entièrement faite de motifs de Life ; le metafier d'Adam Goucher transforme des CPU entiers en mosaïques de Life. La règle à quatre lignes de Conway est Turing-complète.",
+      body: "Traite un flux de planeurs comme un fil portant des bits : planeur présent = 1, absent = 0. Les collisions entre flux implémentent ET, OU, NON. Les boucles de flux stockent des bits : la mémoire. Les canons fournissent l'horloge. Avec ces primitives on bâtit n'importe quel circuit booléen, et donc n'importe quel calcul. Paul Rendell a construit en 2000 une machine de Turing entièrement faite de motifs de Life ; le metafier d'Adam Goucher transforme des CPU entiers en mosaïques de Life. La règle à quatre lignes de Conway est Turing-complète.",
     },
     {
       pretitle: "Section 05 · Auto-réplication et méta-Life",
       title: "Métapixels OTCA et Game of Life dans Game of Life",
-      body: "En 2006, Brice Due a conçu le métapixel OTCA — un motif de Life de 2048×2048 dont le comportement collectif, vu d'assez loin, est à son tour une cellule de Life unique. Pavé une grille entière avec des métapixels OTCA et tu obtiens du Game of Life tournant dans du Game of Life, indiscernable à la limite de l'original. Des motifs auto-répliquants ont suivi : en 2010 Andrew Wade a bâti Gemini, un motif de 846 278 cellules vivantes couvrant une boîte englobante d'environ 4,2 millions de cellules de large, qui se recopie toutes les 33,7 millions de générations. Le jouet se contient lui-même.",
+      body: "En 2006, Brice Due a conçu le métapixel OTCA, un motif de Life de 2048×2048 dont le comportement collectif, vu d'assez loin, est à son tour une cellule de Life unique. Pavé une grille entière avec des métapixels OTCA et tu obtiens du Game of Life tournant dans du Game of Life, indiscernable à la limite de l'original. Des motifs auto-répliquants ont suivi : en 2010 Andrew Wade a bâti Gemini, un motif de 846 278 cellules vivantes couvrant une boîte englobante d'environ 4,2 millions de cellules de large, qui se recopie toutes les 33,7 millions de générations. Le jouet se contient lui-même.",
     },
     {
       pretitle: "Section 06 · Frontières ouvertes",
       title: "Règles exotiques, blocs de Margolus, Hashlife",
-      body: "Le B3/S23 de Conway est un point dans un espace immense. HighLife (B36/S23) ajoute des réplicateurs de période 12. Day & Night est symétrique sous inversion de couleur. Seeds (B2/S) est purement générateur — rien ne survit jamais. Les voisinages de Margolus partagent la grille en blocs 2×2 mis à jour comme des unités, donnant des automates réversibles. L'algorithme Hashlife de Bill Gosper mémoïse des régions espace-temps pour simuler 10^20 générations en quelques secondes. Toute une biologie à découvrir, une chaîne de règles à la fois.",
+      body: "Le B3/S23 de Conway est un point dans un espace immense. HighLife (B36/S23) ajoute des réplicateurs de période 12. Day & Night est symétrique sous inversion de couleur. Seeds (B2/S) est purement générateur : rien ne survit jamais. Les voisinages de Margolus partagent la grille en blocs 2×2 mis à jour comme des unités, donnant des automates réversibles. L'algorithme Hashlife de Bill Gosper mémoïse des régions espace-temps pour simuler 10^20 générations en quelques secondes. Toute une biologie à découvrir, une chaîne de règles à la fois.",
     },
   ],
   closingTitle: "À toi.",
@@ -614,7 +614,7 @@ const fr: RichStory = {
   zooBlock: {
     gliderLabel: "Le Planeur · période 4",
     gliderCaption:
-      "Cinq cellules, période quatre, glisse d'une diagonale par cycle. Le premier vaisseau connu — l'équipe de Conway l'a baptisé en 1970.",
+      "Cinq cellules, période quatre, glisse d'une diagonale par cycle. Le premier vaisseau connu. L'équipe de Conway l'a baptisé en 1970.",
     lwssLabel: "Vaisseau léger · période 4",
     lwssCaption:
       "Neuf cellules, file orthogonalement à c/2. Découvert par Conway en 1970 ; le plus petit vaisseau autre que le planeur.",
@@ -660,12 +660,12 @@ const it: RichStory = {
       {
         label: "01",
         title: "L'idea centrale",
-        body: "Prendi una griglia. Ogni casella è viva o morta. Applica quattro piccole regole a tutte le caselle insieme, poi ancora, e ancora. Da quelle quattro righe sbocciano astronavi che viaggiano, fabbriche che sparano, oscillatori che respirano — e con spazio sufficiente, calcolatrici che sommano. Nessuno mette le astronavi lì. Compaiono e basta.",
+        body: "Prendi una griglia. Ogni casella è viva o morta. Applica quattro piccole regole a tutte le caselle insieme, poi ancora, e ancora. Da quelle quattro righe sbocciano astronavi che viaggiano, fabbriche che sparano, oscillatori che respirano, e con spazio sufficiente, calcolatrici che sommano. Nessuno mette le astronavi lì. Compaiono e basta.",
       },
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "Nasce con esattamente tre vicine vive, sopravvive con due o tre, altrimenti muore. Questa è tutta la regola, scritta B3/S23. Posa un Blocco 2×2 e non cambia mai. Posa una linea retta di tre celle, un Lampeggiatore, e oscilla tra orizzontale e verticale per sempre — un impulso di regola per battito.",
+        body: "Nasce con esattamente tre vicine vive, sopravvive con due o tre, altrimenti muore. Questa è tutta la regola, scritta B3/S23. Posa un Blocco 2×2 e non cambia mai. Posa una linea retta di tre celle, un Lampeggiatore, e oscilla tra orizzontale e verticale per sempre, un impulso di regola per battito.",
       },
       {
         label: "03",
@@ -678,33 +678,33 @@ const it: RichStory = {
   sections: [
     {
       pretitle: "Sezione 01 · Le regole",
-      title: "B3/S23 — nasce a tre, sopravvive a due o tre",
-      body: "Ogni cella conta le sue otto vicine. Una cella morta con esattamente tre vicine vive si sveglia — nascita. Una cella viva con due o tre vicine resta viva — sopravvivenza. Tutto il resto muore, per solitudine sotto due o per soffocamento sopra tre. Tutto qui. L'intera fisica di questo mondo sta in quattordici parole. Il resto — le astronavi, i cannoni, i computer — è solo conseguenza.",
+      title: "B3/S23: nasce a tre, sopravvive a due o tre",
+      body: "Ogni cella conta le sue otto vicine. Una cella morta con esattamente tre vicine vive si sveglia: nascita. Una cella viva con due o tre vicine resta viva: sopravvivenza. Tutto il resto muore, per solitudine sotto due o per soffocamento sopra tre. Tutto qui. L'intera fisica di questo mondo sta in quattordici parole. Il resto (le astronavi, i cannoni, i computer) è solo conseguenza.",
     },
     {
       pretitle: "Sezione 02 · Lo zoo",
       title: "Nature morte, oscillatori, astronavi",
-      body: "Alcune forme non si muovono mai: il Blocco 2×2, l'Alveare, la Pagnotta — nature morte. Altre pulsano: il Lampeggiatore di periodo 2, il Rospo di periodo 2, il Faro di periodo 2, il Pulsar di periodo 3. Altre ancora si spostano replicandosi traslate: le astronavi. L'Aliante, cinque celle, scivola di una casella in diagonale ogni quattro generazioni. L'astronave leggera vola dritta. I cataloghi elencano ormai decine di migliaia di pattern con nome proprio.",
+      body: "Alcune forme non si muovono mai: il Blocco 2×2, l'Alveare, la Pagnotta (nature morte). Altre pulsano: il Lampeggiatore di periodo 2, il Rospo di periodo 2, il Faro di periodo 2, il Pulsar di periodo 3. Altre ancora si spostano replicandosi traslate: le astronavi. L'Aliante, cinque celle, scivola di una casella in diagonale ogni quattro generazioni. L'astronave leggera vola dritta. I cataloghi elencano ormai decine di migliaia di pattern con nome proprio.",
     },
     {
       pretitle: "Sezione 03 · Il cannone di alianti",
-      title: "Bill Gosper, 1970 — e i cinquanta dollari di Conway",
-      body: "Conway aveva congetturato che nessun pattern di Life potesse crescere all'infinito. Un universo limitato sembrava ragionevole. Offrì cinquanta dollari a chi smentisse la congettura. Nel novembre 1970 il gruppo di Bill Gosper al MIT trovò un pattern di 36 celle che spara un aliante ogni 30 generazioni, per sempre — il primo cannone di alianti. La popolazione cresce senza limiti. Conway pagò. All'improvviso Life era illimitato, e la porta per costruirci dentro era spalancata.",
+      title: "Bill Gosper, 1970, e i cinquanta dollari di Conway",
+      body: "Conway aveva congetturato che nessun pattern di Life potesse crescere all'infinito. Un universo limitato sembrava ragionevole. Offrì cinquanta dollari a chi smentisse la congettura. Nel novembre 1970 il gruppo di Bill Gosper al MIT trovò un pattern di 36 celle che spara un aliante ogni 30 generazioni, per sempre: il primo cannone di alianti. La popolazione cresce senza limiti. Conway pagò. All'improvviso Life era illimitato, e la porta per costruirci dentro era spalancata.",
     },
     {
       pretitle: "Sezione 04 · Computazione universale",
       title: "Fili, porte, memoria, clock",
-      body: "Tratta un flusso di alianti come un filo che porta bit — aliante presente è 1, assente è 0. Le collisioni tra flussi realizzano AND, OR, NOT. Gli anelli di flussi memorizzano bit — memoria. I cannoni forniscono il clock. Con queste primitive si costruisce qualsiasi circuito booleano, e da qualsiasi circuito booleano qualsiasi computazione. Paul Rendell nel 2000 costruì una macchina di Turing fatta interamente di pattern di Life; il metafier di Adam Goucher trasforma intere CPU in mosaici di Life. La regola di quattro righe di Conway è Turing-completa.",
+      body: "Tratta un flusso di alianti come un filo che porta bit: aliante presente è 1, assente è 0. Le collisioni tra flussi realizzano AND, OR, NOT. Gli anelli di flussi memorizzano bit: memoria. I cannoni forniscono il clock. Con queste primitive si costruisce qualsiasi circuito booleano, e da qualsiasi circuito booleano qualsiasi computazione. Paul Rendell nel 2000 costruì una macchina di Turing fatta interamente di pattern di Life; il metafier di Adam Goucher trasforma intere CPU in mosaici di Life. La regola di quattro righe di Conway è Turing-completa.",
     },
     {
       pretitle: "Sezione 05 · Autoreplicazione e meta-Life",
       title: "Metapixel OTCA e Game of Life dentro Game of Life",
-      body: "Nel 2006 Brice Due progettò il metapixel OTCA — un pattern di Life di 2048×2048 il cui comportamento collettivo, visto da abbastanza lontano, è a sua volta una singola cella di Life. Piastrella un'intera griglia con metapixel OTCA e ottieni Game of Life che gira dentro Game of Life, indistinguibile al limite dall'originale. Seguirono pattern autoreplicanti: nel 2010 Andrew Wade costruì Gemini, un pattern di 846.278 celle vive che occupa un riquadro di delimitazione largo circa 4,2 milioni di celle e si copia ogni 33,7 milioni di generazioni. Il giocattolo contiene se stesso.",
+      body: "Nel 2006 Brice Due progettò il metapixel OTCA, un pattern di Life di 2048×2048 il cui comportamento collettivo, visto da abbastanza lontano, è a sua volta una singola cella di Life. Piastrella un'intera griglia con metapixel OTCA e ottieni Game of Life che gira dentro Game of Life, indistinguibile al limite dall'originale. Seguirono pattern autoreplicanti: nel 2010 Andrew Wade costruì Gemini, un pattern di 846.278 celle vive che occupa un riquadro di delimitazione largo circa 4,2 milioni di celle e si copia ogni 33,7 milioni di generazioni. Il giocattolo contiene se stesso.",
     },
     {
       pretitle: "Sezione 06 · Frontiere aperte",
       title: "Regole esotiche, blocchi di Margolus, Hashlife",
-      body: "Il B3/S23 di Conway è un punto in uno spazio enorme. HighLife (B36/S23) aggiunge replicatori di periodo 12. Day & Night è simmetrico sotto inversione di colore. Seeds (B2/S) è puramente generativo — nulla sopravvive mai. I vicinati di Margolus partizionano la griglia in blocchi 2×2 aggiornati come unità, dando automi reversibili. L'algoritmo Hashlife di Bill Gosper memoizza regioni spazio-tempo per simulare 10^20 generazioni in secondi. C'è un'intera biologia da scoprire, una stringa di regole alla volta.",
+      body: "Il B3/S23 di Conway è un punto in uno spazio enorme. HighLife (B36/S23) aggiunge replicatori di periodo 12. Day & Night è simmetrico sotto inversione di colore. Seeds (B2/S) è puramente generativo: nulla sopravvive mai. I vicinati di Margolus partizionano la griglia in blocchi 2×2 aggiornati come unità, dando automi reversibili. L'algoritmo Hashlife di Bill Gosper memoizza regioni spazio-tempo per simulare 10^20 generazioni in secondi. C'è un'intera biologia da scoprire, una stringa di regole alla volta.",
     },
   ],
   closingTitle: "Tocca a te.",
@@ -751,7 +751,7 @@ const it: RichStory = {
   zooBlock: {
     gliderLabel: "L'Aliante · periodo 4",
     gliderCaption:
-      "Cinque celle, periodo quattro, scivola di una diagonale per ciclo. La prima astronave conosciuta — il gruppo di Conway la battezzò nel 1970.",
+      "Cinque celle, periodo quattro, scivola di una diagonale per ciclo. La prima astronave conosciuta. Il gruppo di Conway la battezzò nel 1970.",
     lwssLabel: "Astronave leggera · periodo 4",
     lwssCaption:
       "Nove celle, viaggia ortogonalmente a c/2. Scoperta da Conway nel 1970; la più piccola astronave diversa dall'aliante.",
@@ -797,12 +797,12 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A ideia central",
-        body: "Pega numa grelha. Cada casa está viva ou morta. Aplica quatro pequenas regras a todas as casas ao mesmo tempo, depois outra vez, e outra. Dessas quatro linhas emergem naves que viajam, fábricas que disparam, osciladores que respiram — e, com espaço suficiente, calculadoras que somam. Ninguém põe lá as naves. Elas simplesmente aparecem.",
+        body: "Pega numa grelha. Cada casa está viva ou morta. Aplica quatro pequenas regras a todas as casas ao mesmo tempo, depois outra vez, e outra. Dessas quatro linhas emergem naves que viajam, fábricas que disparam, osciladores que respiram, e, com espaço suficiente, calculadoras que somam. Ninguém põe lá as naves. Elas simplesmente aparecem.",
       },
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: "Nasce com exatamente três vizinhas vivas, sobrevive com duas ou três, caso contrário morre. Esta é toda a regra, escrita B3/S23. Coloca um Bloco 2×2, nunca muda. Coloca uma linha reta de três células, um Pisca-pisca, e ele alterna entre horizontal e vertical para sempre — um pulso de regra por batimento.",
+        body: "Nasce com exatamente três vizinhas vivas, sobrevive com duas ou três, caso contrário morre. Esta é toda a regra, escrita B3/S23. Coloca um Bloco 2×2, nunca muda. Coloca uma linha reta de três células, um Pisca-pisca, e ele alterna entre horizontal e vertical para sempre, um pulso de regra por batimento.",
       },
       {
         label: "03",
@@ -815,33 +815,33 @@ const pt: RichStory = {
   sections: [
     {
       pretitle: "Secção 01 · As regras",
-      title: "B3/S23 — nasce com três, sobrevive com duas ou três",
-      body: "Cada célula conta as suas oito vizinhas. Uma célula morta com exatamente três vizinhas vivas acorda — nascimento. Uma célula viva com duas ou três vizinhas mantém-se viva — sobrevivência. Tudo o resto morre: por solidão com menos de duas, por sufocamento com mais de três. É tudo. Toda a física deste mundo cabe em catorze palavras. Tudo o resto — as naves, os canhões, os computadores — é apenas consequência.",
+      title: "B3/S23: nasce com três, sobrevive com duas ou três",
+      body: "Cada célula conta as suas oito vizinhas. Uma célula morta com exatamente três vizinhas vivas acorda: nascimento. Uma célula viva com duas ou três vizinhas mantém-se viva: sobrevivência. Tudo o resto morre: por solidão com menos de duas, por sufocamento com mais de três. É tudo. Toda a física deste mundo cabe em catorze palavras. Tudo o resto (as naves, os canhões, os computadores) é apenas consequência.",
     },
     {
       pretitle: "Secção 02 · O zoo",
       title: "Naturezas mortas, osciladores, naves",
-      body: "Algumas formas nunca se mexem: o Bloco 2×2, a Colmeia, o Pão — naturezas mortas. Outras pulsam: o Pisca-pisca de período 2, o Sapo de período 2, o Farol de período 2, o Pulsar de período 3. E outras movem-se repetindo-se deslocadas: as naves. O Planador, cinco células, desliza uma casa na diagonal a cada quatro gerações. A nave ligeira segue a direito. Os catálogos listam hoje dezenas de milhares de padrões com nome.",
+      body: "Algumas formas nunca se mexem: o Bloco 2×2, a Colmeia, o Pão (naturezas mortas). Outras pulsam: o Pisca-pisca de período 2, o Sapo de período 2, o Farol de período 2, o Pulsar de período 3. E outras movem-se repetindo-se deslocadas: as naves. O Planador, cinco células, desliza uma casa na diagonal a cada quatro gerações. A nave ligeira segue a direito. Os catálogos listam hoje dezenas de milhares de padrões com nome.",
     },
     {
       pretitle: "Secção 03 · O canhão de planadores",
-      title: "Bill Gosper, 1970 — e os cinquenta dólares de Conway",
-      body: "Conway tinha conjecturado que nenhum padrão de Life podia crescer indefinidamente. Um universo limitado parecia razoável. Ofereceu cinquenta dólares a quem refutasse a conjectura. Em novembro de 1970, o grupo de Bill Gosper no MIT encontrou um padrão de 36 células que dispara um planador a cada 30 gerações, para sempre — o primeiro canhão de planadores. A população cresce sem limite. Conway pagou. De repente Life era ilimitado e a porta para construir coisas lá dentro estava escancarada.",
+      title: "Bill Gosper, 1970, e os cinquenta dólares de Conway",
+      body: "Conway tinha conjecturado que nenhum padrão de Life podia crescer indefinidamente. Um universo limitado parecia razoável. Ofereceu cinquenta dólares a quem refutasse a conjectura. Em novembro de 1970, o grupo de Bill Gosper no MIT encontrou um padrão de 36 células que dispara um planador a cada 30 gerações, para sempre: o primeiro canhão de planadores. A população cresce sem limite. Conway pagou. De repente Life era ilimitado e a porta para construir coisas lá dentro estava escancarada.",
     },
     {
       pretitle: "Secção 04 · Computação universal",
       title: "Fios, portas, memória, relógios",
-      body: "Trata um fluxo de planadores como um fio que leva bits — planador presente é 1, ausente é 0. Colisões entre fluxos implementam E, OU, NÃO. Ciclos de fluxos guardam bits — memória. Os canhões fornecem o relógio. Com estas primitivas constrói-se qualquer circuito booleano, e de qualquer circuito booleano, qualquer computação. Paul Rendell construiu em 2000 uma máquina de Turing inteiramente feita de padrões de Life; o metafier de Adam Goucher transforma CPUs inteiros em mosaicos de Life. A regra de quatro linhas de Conway é Turing-completa.",
+      body: "Trata um fluxo de planadores como um fio que leva bits: planador presente é 1, ausente é 0. Colisões entre fluxos implementam E, OU, NÃO. Ciclos de fluxos guardam bits: memória. Os canhões fornecem o relógio. Com estas primitivas constrói-se qualquer circuito booleano, e de qualquer circuito booleano, qualquer computação. Paul Rendell construiu em 2000 uma máquina de Turing inteiramente feita de padrões de Life; o metafier de Adam Goucher transforma CPUs inteiros em mosaicos de Life. A regra de quatro linhas de Conway é Turing-completa.",
     },
     {
       pretitle: "Secção 05 · Auto-replicação e meta-Life",
       title: "Metapíxeis OTCA e Game of Life dentro de Game of Life",
-      body: "Em 2006 Brice Due projetou o metapíxel OTCA — um padrão de Life de 2048×2048 cujo comportamento coletivo, visto de longe o suficiente, é por sua vez uma única célula de Life. Ladrilha uma grelha inteira com metapíxeis OTCA e obténs Game of Life a correr dentro de Game of Life, no limite indistinguível do original. Seguiram-se padrões auto-replicantes: em 2010 Andrew Wade construiu Gemini, um padrão de 846.278 células vivas que ocupa uma caixa delimitadora com cerca de 4,2 milhões de células de largura e se copia a cada 33,7 milhões de gerações. O brinquedo contém-se a si próprio.",
+      body: "Em 2006 Brice Due projetou o metapíxel OTCA, um padrão de Life de 2048×2048 cujo comportamento coletivo, visto de longe o suficiente, é por sua vez uma única célula de Life. Ladrilha uma grelha inteira com metapíxeis OTCA e obténs Game of Life a correr dentro de Game of Life, no limite indistinguível do original. Seguiram-se padrões auto-replicantes: em 2010 Andrew Wade construiu Gemini, um padrão de 846.278 células vivas que ocupa uma caixa delimitadora com cerca de 4,2 milhões de células de largura e se copia a cada 33,7 milhões de gerações. O brinquedo contém-se a si próprio.",
     },
     {
       pretitle: "Secção 06 · Fronteiras abertas",
       title: "Regras exóticas, blocos de Margolus, Hashlife",
-      body: "O B3/S23 de Conway é um ponto num espaço imenso. HighLife (B36/S23) acrescenta replicadores de período 12. Day & Night é simétrico sob inversão de cor. Seeds (B2/S) é puramente gerativo — nada sobrevive jamais. As vizinhanças de Margolus dividem a grelha em blocos 2×2 e atualizam-nos como unidade, dando autómatos reversíveis. O algoritmo Hashlife de Bill Gosper memoíza regiões espaço-tempo para simular 10^20 gerações em segundos. Há toda uma biologia por descobrir, uma cadeia de regras de cada vez.",
+      body: "O B3/S23 de Conway é um ponto num espaço imenso. HighLife (B36/S23) acrescenta replicadores de período 12. Day & Night é simétrico sob inversão de cor. Seeds (B2/S) é puramente gerativo: nada sobrevive jamais. As vizinhanças de Margolus dividem a grelha em blocos 2×2 e atualizam-nos como unidade, dando autómatos reversíveis. O algoritmo Hashlife de Bill Gosper memoíza regiões espaço-tempo para simular 10^20 gerações em segundos. Há toda uma biologia por descobrir, uma cadeia de regras de cada vez.",
     },
   ],
   closingTitle: "É a tua vez.",
@@ -888,7 +888,7 @@ const pt: RichStory = {
   zooBlock: {
     gliderLabel: "O Planador · período 4",
     gliderCaption:
-      "Cinco células, período quatro, desliza uma diagonal por ciclo. A primeira nave conhecida — o grupo de Conway batizou-a em 1970.",
+      "Cinco células, período quatro, desliza uma diagonal por ciclo. A primeira nave conhecida. O grupo de Conway batizou-a em 1970.",
     lwssLabel: "Nave ligeira · período 4",
     lwssCaption:
       "Nove células, navega ortogonalmente a c/2. Descoberta por Conway em 1970; a menor nave que não é o planador.",
@@ -934,12 +934,12 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "Ta ett rutnät. Varje ruta är levande eller död. Tillämpa fyra små regler på alla rutor samtidigt, sedan igen, och igen. Ur de fyra raderna växer rymdskepp som färdas, fabriker som skjuter, oscillatorer som andas — och med tillräckligt utrymme räknemaskiner som adderar. Ingen lägger dit rymdskeppen. De dyker bara upp.",
+        body: "Ta ett rutnät. Varje ruta är levande eller död. Tillämpa fyra små regler på alla rutor samtidigt, sedan igen, och igen. Ur de fyra raderna växer rymdskepp som färdas, fabriker som skjuter, oscillatorer som andas, och med tillräckligt utrymme räknemaskiner som adderar. Ingen lägger dit rymdskeppen. De dyker bara upp.",
       },
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "Föds vid exakt tre levande grannar, överlever med två eller tre, annars dör. Det är hela regeln, skriven B3/S23. Lägg ner ett 2×2-Block och det ändras aldrig. Lägg ner en rak rad av tre celler, en Blinkare, och den vippar mellan vågrätt och lodrätt för evigt — en regelpuls per hjärtslag.",
+        body: "Föds vid exakt tre levande grannar, överlever med två eller tre, annars dör. Det är hela regeln, skriven B3/S23. Lägg ner ett 2×2-Block och det ändras aldrig. Lägg ner en rak rad av tre celler, en Blinkare, och den vippar mellan vågrätt och lodrätt för evigt, en regelpuls per hjärtslag.",
       },
       {
         label: "03",
@@ -952,33 +952,33 @@ const sv: RichStory = {
   sections: [
     {
       pretitle: "Avsnitt 01 · Reglerna",
-      title: "B3/S23 — föds vid tre, överlever vid två eller tre",
-      body: "Varje cell räknar sina åtta grannar. En död cell med precis tre levande grannar vaknar — födelse. En levande cell med två eller tre grannar förblir levande — överlevnad. Allt annat dör: av ensamhet under två, av kvävning över tre. Det är allt. Hela världens fysik ryms i fjorton ord. Allt annat — rymdskeppen, kanonerna, datorerna — är bara följd.",
+      title: "B3/S23: föds vid tre, överlever vid två eller tre",
+      body: "Varje cell räknar sina åtta grannar. En död cell med precis tre levande grannar vaknar: födelse. En levande cell med två eller tre grannar förblir levande: överlevnad. Allt annat dör: av ensamhet under två, av kvävning över tre. Det är allt. Hela världens fysik ryms i fjorton ord. Allt annat (rymdskeppen, kanonerna, datorerna) är bara följd.",
     },
     {
       pretitle: "Avsnitt 02 · Djurparken",
       title: "Stilleben, oscillatorer, rymdskepp",
-      body: "Vissa former rör sig aldrig: 2×2-Blocket, Bikupan, Limpan — stilleben. Andra pulserar: Blinkaren med period 2, Paddan med period 2, Fyrtornet med period 2, Pulsaren med period 3. Och andra rör sig genom att upprepa sig förflyttade: rymdskepp. Glidaren, fem celler, glider en ruta diagonalt var fjärde generation. Det lätta rymdskeppet kryssar rakt. Kataloger listar nu tiotusentals namngivna mönster.",
+      body: "Vissa former rör sig aldrig: 2×2-Blocket, Bikupan, Limpan (stilleben). Andra pulserar: Blinkaren med period 2, Paddan med period 2, Fyrtornet med period 2, Pulsaren med period 3. Och andra rör sig genom att upprepa sig förflyttade: rymdskepp. Glidaren, fem celler, glider en ruta diagonalt var fjärde generation. Det lätta rymdskeppet kryssar rakt. Kataloger listar nu tiotusentals namngivna mönster.",
     },
     {
       pretitle: "Avsnitt 03 · Glidarkanonen",
-      title: "Bill Gosper, 1970 — och Conways femtio dollar",
-      body: "Conway hade förmodat att inget Life-mönster kunde växa i evighet. Ett begränsat universum verkade rimligt. Han bjöd femtio dollar till den som motbevisade förmodandet. I november 1970 hittade Bill Gospers grupp på MIT ett mönster av 36 celler som avfyrar en glidare var 30:e generation, för alltid — den första glidarkanonen. Populationen växer obegränsat. Conway betalade. Plötsligt var Life obegränsat och dörren till att bygga saker inuti stod vidöppen.",
+      title: "Bill Gosper, 1970, och Conways femtio dollar",
+      body: "Conway hade förmodat att inget Life-mönster kunde växa i evighet. Ett begränsat universum verkade rimligt. Han bjöd femtio dollar till den som motbevisade förmodandet. I november 1970 hittade Bill Gospers grupp på MIT ett mönster av 36 celler som avfyrar en glidare var 30:e generation, för alltid: den första glidarkanonen. Populationen växer obegränsat. Conway betalade. Plötsligt var Life obegränsat och dörren till att bygga saker inuti stod vidöppen.",
     },
     {
       pretitle: "Avsnitt 04 · Universell beräkning",
       title: "Trådar, grindar, minne, klockor",
-      body: "Betrakta ett glidarflöde som en tråd som bär bitar — glidare närvarande är 1, frånvarande är 0. Kollisioner mellan flöden ger OCH, ELLER, ICKE. Slingor av flöden lagrar bitar — minne. Kanoner ger klockan. Med dessa primitiver kan vilken boolesk krets som helst byggas, och därmed vilken beräkning som helst. Paul Rendell byggde år 2000 en fungerande Turingmaskin enbart av Life-mönster; Adam Gouchers metafier gör hela CPU:er till Life-mosaiker. Conways fyraraders regel är Turing-fullständig.",
+      body: "Betrakta ett glidarflöde som en tråd som bär bitar: glidare närvarande är 1, frånvarande är 0. Kollisioner mellan flöden ger OCH, ELLER, ICKE. Slingor av flöden lagrar bitar: minne. Kanoner ger klockan. Med dessa primitiver kan vilken boolesk krets som helst byggas, och därmed vilken beräkning som helst. Paul Rendell byggde år 2000 en fungerande Turingmaskin enbart av Life-mönster; Adam Gouchers metafier gör hela CPU:er till Life-mosaiker. Conways fyraraders regel är Turing-fullständig.",
     },
     {
       pretitle: "Avsnitt 05 · Självreplikation och meta-Life",
       title: "OTCA-metapixlar och Game of Life i Game of Life",
-      body: "År 2006 utformade Brice Due OTCA-metapixeln — ett Life-mönster på 2048×2048 vars samlade beteende, betraktat från tillräckligt långt håll, i sin tur är en enda Life-cell. Klä ett helt rutnät med OTCA-metapixlar och du får Game of Life som körs inuti Game of Life, i gränsen oskiljbart från originalet. Självreplikerande mönster följde: 2010 byggde Andrew Wade Gemini, ett mönster på 846 278 levande celler i en ungefär 4,2 miljoner celler bred begränsningsruta, som kopierar sig själv var 33,7 miljonte generation. Leksaken innehåller sig själv.",
+      body: "År 2006 utformade Brice Due OTCA-metapixeln, ett Life-mönster på 2048×2048 vars samlade beteende, betraktat från tillräckligt långt håll, i sin tur är en enda Life-cell. Klä ett helt rutnät med OTCA-metapixlar och du får Game of Life som körs inuti Game of Life, i gränsen oskiljbart från originalet. Självreplikerande mönster följde: 2010 byggde Andrew Wade Gemini, ett mönster på 846 278 levande celler i en ungefär 4,2 miljoner celler bred begränsningsruta, som kopierar sig själv var 33,7 miljonte generation. Leksaken innehåller sig själv.",
     },
     {
       pretitle: "Avsnitt 06 · Öppna gränser",
       title: "Exotiska regler, Margolus-block, Hashlife",
-      body: "Conways B3/S23 är en punkt i ett enormt rum. HighLife (B36/S23) lägger till period-12-replikatorer. Day & Night är symmetrisk under färginversion. Seeds (B2/S) är rent genererande — inget överlever någonsin. Margolus-grannskap delar rutnätet i 2×2-block som uppdateras som enheter och ger reversibla automater. Bill Gospers Hashlife-algoritm memoiserar tidrumsregioner och simulerar 10^20 generationer på sekunder. Det finns en hel biologi att upptäcka, en regelsträng i taget.",
+      body: "Conways B3/S23 är en punkt i ett enormt rum. HighLife (B36/S23) lägger till period-12-replikatorer. Day & Night är symmetrisk under färginversion. Seeds (B2/S) är rent genererande: inget överlever någonsin. Margolus-grannskap delar rutnätet i 2×2-block som uppdateras som enheter och ger reversibla automater. Bill Gospers Hashlife-algoritm memoiserar tidrumsregioner och simulerar 10^20 generationer på sekunder. Det finns en hel biologi att upptäcka, en regelsträng i taget.",
     },
   ],
   closingTitle: "Din tur.",
@@ -1025,7 +1025,7 @@ const sv: RichStory = {
   zooBlock: {
     gliderLabel: "Glidaren · period 4",
     gliderCaption:
-      "Fem celler, period fyra, glider en diagonal per cykel. Det första kända rymdskeppet — Conways grupp döpte det 1970.",
+      "Fem celler, period fyra, glider en diagonal per cykel. Det första kända rymdskeppet. Conways grupp döpte det 1970.",
     lwssLabel: "Lätt rymdskepp · period 4",
     lwssCaption:
       "Nio celler, kryssar ortogonalt i c/2. Upptäckt av Conway 1970; det minsta rymdskeppet som inte är en glidare.",
@@ -1071,12 +1071,12 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Ta et rutenett. Hver rute er levende eller død. Bruk fire små regler på alle rutene samtidig, så igjen, og igjen. Ut av de fire linjene vokser romskip som reiser, fabrikker som skyter, oscillatorer som puster — og med nok plass kalkulatorer som adderer. Ingen plasserer romskipene. De bare dukker opp.",
+        body: "Ta et rutenett. Hver rute er levende eller død. Bruk fire små regler på alle rutene samtidig, så igjen, og igjen. Ut av de fire linjene vokser romskip som reiser, fabrikker som skyter, oscillatorer som puster, og med nok plass kalkulatorer som adderer. Ingen plasserer romskipene. De bare dukker opp.",
       },
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Født ved nøyaktig tre levende naboer, overlever med to eller tre, ellers dør. Det er hele regelen, skrevet B3/S23. Legg ned en 2×2-Blokk og den endrer seg aldri. Legg ned en rett linje av tre celler, en Blinker, og den veksler mellom vannrett og loddrett for alltid — én regelpuls per hjerteslag.",
+        body: "Født ved nøyaktig tre levende naboer, overlever med to eller tre, ellers dør. Det er hele regelen, skrevet B3/S23. Legg ned en 2×2-Blokk og den endrer seg aldri. Legg ned en rett linje av tre celler, en Blinker, og den veksler mellom vannrett og loddrett for alltid, én regelpuls per hjerteslag.",
       },
       {
         label: "03",
@@ -1089,33 +1089,33 @@ const no: RichStory = {
   sections: [
     {
       pretitle: "Avsnitt 01 · Reglene",
-      title: "B3/S23 — født ved tre, overlever ved to eller tre",
-      body: "Hver celle teller sine åtte naboer. En død celle med nøyaktig tre levende naboer våkner — fødsel. En levende celle med to eller tre naboer forblir levende — overlevelse. Alt annet dør: av ensomhet under to, av kvelning over tre. Det er alt. Hele verdens fysikk får plass i fjorten ord. Alt annet — romskipene, kanonene, datamaskinene — er bare følge.",
+      title: "B3/S23: født ved tre, overlever ved to eller tre",
+      body: "Hver celle teller sine åtte naboer. En død celle med nøyaktig tre levende naboer våkner: fødsel. En levende celle med to eller tre naboer forblir levende: overlevelse. Alt annet dør: av ensomhet under to, av kvelning over tre. Det er alt. Hele verdens fysikk får plass i fjorten ord. Alt annet (romskipene, kanonene, datamaskinene) er bare følge.",
     },
     {
       pretitle: "Avsnitt 02 · Dyrehagen",
       title: "Stilleben, oscillatorer, romskip",
-      body: "Noen former beveger seg aldri: 2×2-Blokken, Bikuben, Loftet — stilleben. Andre pulserer: Blinkeren med periode 2, Padden med periode 2, Fyrtårnet med periode 2, Pulsaren med periode 3. Andre igjen flytter seg ved å gjenta seg forskjøvet: romskip. Glideren, fem celler, sklir én rute diagonalt hver fjerde generasjon. Det lette romskipet kryser rett fram. Kataloger lister nå titusenvis av navngitte mønstre.",
+      body: "Noen former beveger seg aldri: 2×2-Blokken, Bikuben, Loftet (stilleben). Andre pulserer: Blinkeren med periode 2, Padden med periode 2, Fyrtårnet med periode 2, Pulsaren med periode 3. Andre igjen flytter seg ved å gjenta seg forskjøvet: romskip. Glideren, fem celler, sklir én rute diagonalt hver fjerde generasjon. Det lette romskipet kryser rett fram. Kataloger lister nå titusenvis av navngitte mønstre.",
     },
     {
       pretitle: "Avsnitt 03 · Gliderkanonen",
-      title: "Bill Gosper, 1970 — og Conways femti dollar",
-      body: "Conway hadde antatt at intet Life-mønster kunne vokse i det uendelige. Et begrenset univers virket rimelig. Han bød femti dollar til den som motbeviste antagelsen. I november 1970 fant Bill Gospers gruppe ved MIT et mønster på 36 celler som fyrer av en glider hver 30. generasjon, for alltid — den første gliderkanonen. Populasjonen vokser uten grense. Conway betalte. Plutselig var Life ubegrenset, og døren til å bygge ting inni stod på vidt gap.",
+      title: "Bill Gosper, 1970, og Conways femti dollar",
+      body: "Conway hadde antatt at intet Life-mønster kunne vokse i det uendelige. Et begrenset univers virket rimelig. Han bød femti dollar til den som motbeviste antagelsen. I november 1970 fant Bill Gospers gruppe ved MIT et mønster på 36 celler som fyrer av en glider hver 30. generasjon, for alltid: den første gliderkanonen. Populasjonen vokser uten grense. Conway betalte. Plutselig var Life ubegrenset, og døren til å bygge ting inni stod på vidt gap.",
     },
     {
       pretitle: "Avsnitt 04 · Universell beregning",
       title: "Tråder, porter, minne, klokker",
-      body: "Behandle en gliderstrøm som en tråd som bærer bits — glider til stede er 1, fraværende er 0. Kollisjoner mellom strømmer realiserer OG, ELLER, IKKE. Løkker av strømmer lagrer bits — minne. Kanoner gir klokken. Med disse primitivene kan en hvilken som helst boolsk krets bygges, og dermed en hvilken som helst beregning. Paul Rendell bygde i 2000 en fungerende Turing-maskin laget kun av Life-mønstre; Adam Gouchers metafier gjør hele CPU-er om til Life-mosaikker. Conways fire-linjers regel er Turing-komplett.",
+      body: "Behandle en gliderstrøm som en tråd som bærer bits: glider til stede er 1, fraværende er 0. Kollisjoner mellom strømmer realiserer OG, ELLER, IKKE. Løkker av strømmer lagrer bits: minne. Kanoner gir klokken. Med disse primitivene kan en hvilken som helst boolsk krets bygges, og dermed en hvilken som helst beregning. Paul Rendell bygde i 2000 en fungerende Turing-maskin laget kun av Life-mønstre; Adam Gouchers metafier gjør hele CPU-er om til Life-mosaikker. Conways fire-linjers regel er Turing-komplett.",
     },
     {
       pretitle: "Avsnitt 05 · Selvreplikasjon og meta-Life",
       title: "OTCA-metapiksler og Game of Life i Game of Life",
-      body: "I 2006 designet Brice Due OTCA-metapikselet — et Life-mønster på 2048×2048 hvis kollektive atferd, sett fra langt nok unna, i sin tur er en enkelt Life-celle. Flislegg et helt rutenett med OTCA-metapiksler og du får Game of Life som kjører inni Game of Life, i grensen umulig å skille fra originalen. Selvreplikerende mønstre fulgte: i 2010 bygde Andrew Wade Gemini, et mønster på 846 278 levende celler i en om lag 4,2 millioner celler bred avgrensningsboks, som kopierer seg selv hver 33,7. million generasjon. Leken inneholder seg selv.",
+      body: "I 2006 designet Brice Due OTCA-metapikselet, et Life-mønster på 2048×2048 hvis kollektive atferd, sett fra langt nok unna, i sin tur er en enkelt Life-celle. Flislegg et helt rutenett med OTCA-metapiksler og du får Game of Life som kjører inni Game of Life, i grensen umulig å skille fra originalen. Selvreplikerende mønstre fulgte: i 2010 bygde Andrew Wade Gemini, et mønster på 846 278 levende celler i en om lag 4,2 millioner celler bred avgrensningsboks, som kopierer seg selv hver 33,7. million generasjon. Leken inneholder seg selv.",
     },
     {
       pretitle: "Avsnitt 06 · Åpne grenser",
       title: "Eksotiske regler, Margolus-blokker, Hashlife",
-      body: "Conways B3/S23 er ett punkt i et enormt rom. HighLife (B36/S23) tilfører periode-12-replikatorer. Day & Night er symmetrisk under fargeinversjon. Seeds (B2/S) er rent genererende — ingenting overlever noensinne. Margolus-naboskap deler rutenettet i 2×2-blokker som oppdateres som enheter, og gir reversible automater. Bill Gospers Hashlife-algoritme memoiserer tidrom-regioner og simulerer 10^20 generasjoner på sekunder. Det finnes en hel biologi å oppdage, én regelstreng om gangen.",
+      body: "Conways B3/S23 er ett punkt i et enormt rom. HighLife (B36/S23) tilfører periode-12-replikatorer. Day & Night er symmetrisk under fargeinversjon. Seeds (B2/S) er rent genererende: ingenting overlever noensinne. Margolus-naboskap deler rutenettet i 2×2-blokker som oppdateres som enheter, og gir reversible automater. Bill Gospers Hashlife-algoritme memoiserer tidrom-regioner og simulerer 10^20 generasjoner på sekunder. Det finnes en hel biologi å oppdage, én regelstreng om gangen.",
     },
   ],
   closingTitle: "Din tur.",
@@ -1162,7 +1162,7 @@ const no: RichStory = {
   zooBlock: {
     gliderLabel: "Glideren · periode 4",
     gliderCaption:
-      "Fem celler, periode fire, sklir en diagonal per syklus. Det første kjente romskipet — Conways gruppe døpte det i 1970.",
+      "Fem celler, periode fire, sklir en diagonal per syklus. Det første kjente romskipet. Conways gruppe døpte det i 1970.",
     lwssLabel: "Lett romskip · periode 4",
     lwssCaption:
       "Ni celler, krysser ortogonalt i c/2. Oppdaget av Conway i 1970; det minste romskipet som ikke er en glider.",
@@ -1203,7 +1203,7 @@ const no: RichStory = {
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
 
 // --------------------------------------------------------------------------
-// Inline visuals — small ASCII / SVG helpers used by the encounter section.
+// Inline visuals: small ASCII / SVG helpers used by the encounter section.
 // --------------------------------------------------------------------------
 
 const BLOCK_CELLS: ReadonlyArray<readonly [number, number]> = [
@@ -1312,7 +1312,7 @@ export default function LifeStory() {
       <div className="grid-bg pointer-events-none fixed inset-0 -z-10 opacity-30" />
       <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-signal-cyan/10 via-transparent to-ink-950" />
 
-      {/* Hero — kept verbatim from the original page so the shared stories
+      {/* Hero: kept verbatim from the original page so the shared stories
           prose still drives the top of the page. */}
       <section className="mx-auto mb-32 max-w-5xl space-y-7 text-center">
         <Reveal>
@@ -1356,7 +1356,7 @@ export default function LifeStory() {
         </Reveal>
       </section>
 
-      {/* Encounter — three layperson-tone cards */}
+      {/* Encounter: three layperson-tone cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -1439,7 +1439,7 @@ export default function LifeStory() {
         </Reveal>
       </section>
 
-      {/* Section 01 — the rules */}
+      {/* Section 01: the rules */}
       <section className="mx-auto mb-32 max-w-5xl space-y-8">
         <Reveal>
           <Card
@@ -1493,7 +1493,7 @@ export default function LifeStory() {
         </Reveal>
       </section>
 
-      {/* Section 02 — the zoo */}
+      {/* Section 02: the zoo */}
       <section className="mx-auto mb-32 max-w-5xl space-y-8">
         <Reveal>
           <Card
@@ -1529,7 +1529,7 @@ export default function LifeStory() {
         </div>
       </section>
 
-      {/* Inline interactive — sandbox */}
+      {/* Inline interactive: sandbox */}
       <section className="mx-auto mb-32 max-w-5xl space-y-5">
         <Reveal>
           <div className="space-y-2 text-center">
@@ -1549,7 +1549,7 @@ export default function LifeStory() {
         </Reveal>
       </section>
 
-      {/* Section 03 — the gun */}
+      {/* Section 03: the gun */}
       <section className="mx-auto mb-32 max-w-4xl">
         <Reveal>
           <Card
@@ -1585,7 +1585,7 @@ export default function LifeStory() {
         </Reveal>
       </section>
 
-      {/* Section 04 — universal computation */}
+      {/* Section 04: universal computation */}
       <section className="mx-auto mb-32 max-w-4xl">
         <Reveal>
           <Card
@@ -1614,7 +1614,7 @@ export default function LifeStory() {
         </Reveal>
       </section>
 
-      {/* Inline interactive — rule explorer */}
+      {/* Inline interactive: rule explorer */}
       <section className="mx-auto mb-32 max-w-5xl space-y-5">
         <Reveal>
           <div className="space-y-2 text-center">
@@ -1634,7 +1634,7 @@ export default function LifeStory() {
         </Reveal>
       </section>
 
-      {/* Section 05 — meta-Life */}
+      {/* Section 05: meta-Life */}
       <section className="mx-auto mb-32 max-w-4xl">
         <Reveal>
           <Card
@@ -1646,7 +1646,7 @@ export default function LifeStory() {
         </Reveal>
       </section>
 
-      {/* Section 06 — open frontiers */}
+      {/* Section 06: open frontiers */}
       <section className="mx-auto mb-32 max-w-4xl">
         <Reveal>
           <Card
@@ -1661,7 +1661,7 @@ export default function LifeStory() {
       <TopicApplications topicId="life" accent="text-signal-cyan" />
       <RelatedTopics topicId="life" accent="text-signal-cyan" />
 
-      {/* Final CTA — apollonian-style closing */}
+      {/* Final CTA: apollonian-style closing */}
       <Reveal>
         <section className="glass hairline mx-auto max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
           <div className="math-italic shimmer-text text-3xl leading-tight md:text-5xl">

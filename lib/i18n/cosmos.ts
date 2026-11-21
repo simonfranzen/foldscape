@@ -1,6 +1,6 @@
 // Cosmos-only i18n bundle. Kept separate from atlas.ts so the scroll-driven
 // landing can carry its own poetic copy without bloating the topic-card
-// dictionary. All eight locales are fully filled — every string here is
+// dictionary. All eight locales are fully filled: every string here is
 // short enough that translation cost is negligible.
 
 import type { TopicCategory } from "@/lib/topics";
@@ -19,12 +19,12 @@ export interface CosmosDict {
   beginAgain: string;
   paletteShortcut: string;
   progressAria: string;
-  // Hero CTA — primary "begin here" button. Without it visitors landed on
+  // Hero CTA: primary "begin here" button. Without it visitors landed on
   // the hero, read the prose, and didn't know what to do next.
   exploreAtlas: string;
   // One poetic 1-liner per category, displayed beside the constellation.
   taglines: Record<TopicCategory, string>;
-  // Narrative arc — six acts in three pairs:
+  // Narrative arc: six acts in three pairs:
   //   I  · paradox     → crisis
   //   II · logic       → stability (the crisis answered)
   //   III · computation → construction
@@ -43,7 +43,7 @@ export const COSMOS: Record<Locale, CosmosDict> = {
     approach: "Six clusters. Fifty ideas. One rule each.",
     overviewTitle: "The whole sky",
     overviewSub: "Pick a star. Or search the cosmos.",
-    searchHint: "Topics, formulas, ideas — try “chaos” or “ζ”",
+    searchHint: "Topics, formulas, ideas: try “chaos” or “ζ”",
     searchPlaceholder: "Search the cosmos…",
     searchEmpty: "No stars match that name.",
     searchAria: "Search the cosmos",
@@ -74,7 +74,7 @@ export const COSMOS: Record<Locale, CosmosDict> = {
     approach: "Sechs Cluster. Fünfzig Ideen. Jeweils eine Regel.",
     overviewTitle: "Der ganze Himmel",
     overviewSub: "Wähl einen Stern. Oder durchsuche den Kosmos.",
-    searchHint: "Themen, Formeln, Ideen — versuch «Chaos» oder «ζ»",
+    searchHint: "Themen, Formeln, Ideen: Versuch «Chaos» oder «ζ»",
     searchPlaceholder: "Den Kosmos durchsuchen…",
     searchEmpty: "Kein Stern passt zu diesem Namen.",
     searchAria: "Den Kosmos durchsuchen",
@@ -105,7 +105,7 @@ export const COSMOS: Record<Locale, CosmosDict> = {
     approach: "Seis cúmulos. Cincuenta ideas. Una regla cada uno.",
     overviewTitle: "El cielo entero",
     overviewSub: "Elige una estrella. O busca en el cosmos.",
-    searchHint: "Temas, fórmulas, ideas — prueba «caos» o «ζ»",
+    searchHint: "Temas, fórmulas, ideas: prueba «caos» o «ζ»",
     searchPlaceholder: "Buscar en el cosmos…",
     searchEmpty: "Ninguna estrella coincide.",
     searchAria: "Buscar en el cosmos",
@@ -136,7 +136,7 @@ export const COSMOS: Record<Locale, CosmosDict> = {
     approach: "Six amas. Cinquante idées. Une règle chacune.",
     overviewTitle: "Le ciel entier",
     overviewSub: "Choisissez une étoile. Ou cherchez dans le cosmos.",
-    searchHint: "Sujets, formules, idées — essayez « chaos » ou « ζ »",
+    searchHint: "Sujets, formules, idées : essayez « chaos » ou « ζ »",
     searchPlaceholder: "Chercher dans le cosmos…",
     searchEmpty: "Aucune étoile ne correspond.",
     searchAria: "Chercher dans le cosmos",
@@ -167,7 +167,7 @@ export const COSMOS: Record<Locale, CosmosDict> = {
     approach: "Sei ammassi. Cinquanta idee. Una regola ciascuno.",
     overviewTitle: "L'intero cielo",
     overviewSub: "Scegli una stella. O cerca nel cosmo.",
-    searchHint: "Argomenti, formule, idee — prova «caos» o «ζ»",
+    searchHint: "Argomenti, formule, idee: prova «caos» o «ζ»",
     searchPlaceholder: "Cerca nel cosmo…",
     searchEmpty: "Nessuna stella corrisponde.",
     searchAria: "Cerca nel cosmo",
@@ -198,7 +198,7 @@ export const COSMOS: Record<Locale, CosmosDict> = {
     approach: "Seis aglomerados. Cinquenta ideias. Uma regra cada um.",
     overviewTitle: "O céu inteiro",
     overviewSub: "Escolha uma estrela. Ou pesquise o cosmos.",
-    searchHint: "Tópicos, fórmulas, ideias — tente «caos» ou «ζ»",
+    searchHint: "Tópicos, fórmulas, ideias: tente «caos» ou «ζ»",
     searchPlaceholder: "Pesquisar no cosmos…",
     searchEmpty: "Nenhuma estrela corresponde.",
     searchAria: "Pesquisar no cosmos",
@@ -229,7 +229,7 @@ export const COSMOS: Record<Locale, CosmosDict> = {
     approach: "Sex hopar. Femtio idéer. En regel var.",
     overviewTitle: "Hela himlen",
     overviewSub: "Välj en stjärna. Eller sök i kosmos.",
-    searchHint: "Ämnen, formler, idéer — testa ”kaos” eller ”ζ”",
+    searchHint: "Ämnen, formler, idéer: testa ”kaos” eller ”ζ”",
     searchPlaceholder: "Sök i kosmos…",
     searchEmpty: "Ingen stjärna matchar.",
     searchAria: "Sök i kosmos",
@@ -260,7 +260,7 @@ export const COSMOS: Record<Locale, CosmosDict> = {
     approach: "Seks hoper. Femti idéer. Én regel hver.",
     overviewTitle: "Hele himmelen",
     overviewSub: "Velg en stjerne. Eller søk i kosmos.",
-    searchHint: "Temaer, formler, idéer — prøv «kaos» eller «ζ»",
+    searchHint: "Temaer, formler, idéer: prøv «kaos» eller «ζ»",
     searchPlaceholder: "Søk i kosmos…",
     searchEmpty: "Ingen stjerne passer.",
     searchAria: "Søk i kosmos",

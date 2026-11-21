@@ -377,7 +377,7 @@ export default function LsystemExplorer() {
           </div>
           {truncated && (
             <div className="glass rounded-md border border-signal-amber/40 px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              String capped at {MAX_STRING.toLocaleString()} symbols — reduce iterations to see the
+              String capped at {MAX_STRING.toLocaleString()} symbols; reduce iterations to see the
               full fractal
             </div>
           )}

@@ -84,7 +84,7 @@ export default function LifePage() {
     requestDraw();
   }, []);
 
-  // Drawing loop — independent of simulation tick so the canvas is responsive
+  // Drawing loop: independent of simulation tick so the canvas is responsive
   const drawRef = useRef(() => {});
   const requestDraw = () => requestAnimationFrame(() => drawRef.current());
   useEffect(() => {

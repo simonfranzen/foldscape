@@ -437,7 +437,7 @@ interface ProjectedTri {
   // nothing about one-sidedness.
   hue: number; // 0 = red end, 1 = blue end
   // Whether the camera looks at the "front" of the surface normal or the
-  // back. We keep both — that's the whole point of a one-sided surface.
+  // back. We keep both: that's the whole point of a one-sided surface.
   facingFront: boolean;
   // Cut group: 0 = uncut (or the single piece left by the centre-line cut),
   // 1 = inner band, 2 = outer band. Only used for colouring.
@@ -527,7 +527,7 @@ function mobiusPoint(u: number, v: number, k: number, R: number): Vec3 {
   return [x, y, z];
 }
 
-// Klein bottle — Lawson / "figure-8" style 3-D immersion. Uses the standard
+// Klein bottle: Lawson / "figure-8" style 3-D immersion. Uses the standard
 // parametrisation that Wikipedia lists as the "3-D pinched torus" form:
 //   x = (a + cos(u/2) sin v − sin(u/2) sin 2v) cos u
 //   y = (a + cos(u/2) sin v − sin(u/2) sin 2v) sin u
@@ -730,7 +730,7 @@ export default function MobiusExplorer() {
         }
       }
 
-      // Painter's algorithm — far first.
+      // Painter's algorithm: far first.
       tris.sort((p, q) => q.z - p.z);
 
       // Set canvas-space transform once.
@@ -763,7 +763,7 @@ export default function MobiusExplorer() {
         ctx.stroke();
       }
 
-      // HUD overlay — title-like badge so the visitor knows what they look
+      // HUD overlay: title-like badge so the visitor knows what they look
       // at (Möbius vs Klein).
       ctx.fillStyle = "rgba(167,139,250,0.85)";
       ctx.font = `${12}px ui-monospace, monospace`;

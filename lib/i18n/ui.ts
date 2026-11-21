@@ -70,7 +70,7 @@ const en: UiDict = {
   mandel: {
     bookmarks: "Bookmarks",
     bookmarksInfo:
-      "Famous spots in the Mandelbrot landscape. Each one needs a deeper iteration count — the closer to the boundary, the longer the orbit takes to escape.",
+      "Famous spots in the Mandelbrot landscape. Each one needs a deeper iteration count: the closer to the boundary, the longer the orbit takes to escape.",
     iterations: "Iterations",
     iterationsInfo:
       "Maximum number of times we apply zₙ → zₙ² + c before declaring a point inside the set. Higher numbers reveal finer detail at the cost of GPU work.",
@@ -130,10 +130,10 @@ const de: UiDict = {
   mandel: {
     bookmarks: "Lesezeichen",
     bookmarksInfo:
-      "Berühmte Stellen in der Mandelbrot-Landschaft. Jede braucht eine tiefere Iterationszahl — je näher am Rand, desto länger braucht die Bahn, um zu entkommen.",
+      "Berühmte Stellen in der Mandelbrot-Landschaft. Jede braucht eine tiefere Iterationszahl: Je näher am Rand, desto länger braucht die Bahn, um zu entkommen.",
     iterations: "Iterationen",
     iterationsInfo:
-      "Wie oft wir zₙ → zₙ² + c anwenden, bevor ein Punkt als Teil der Menge gilt. Höhere Werte zeigen feinere Details — auf Kosten von GPU-Arbeit.",
+      "Wie oft wir zₙ → zₙ² + c anwenden, bevor ein Punkt als Teil der Menge gilt. Höhere Werte zeigen feinere Details, auf Kosten von GPU-Arbeit.",
     hueShift: "Farbton-Drehung",
     exposure: "Belichtung",
     palette: "Palette",
@@ -190,7 +190,7 @@ const es: UiDict = {
   mandel: {
     bookmarks: "Marcadores",
     bookmarksInfo:
-      "Lugares famosos en el paisaje de Mandelbrot. Cada uno necesita más iteraciones — cuanto más cerca del borde, más tarda la órbita en escapar.",
+      "Lugares famosos en el paisaje de Mandelbrot. Cada uno necesita más iteraciones: cuanto más cerca del borde, más tarda la órbita en escapar.",
     iterations: "Iteraciones",
     iterationsInfo:
       "Cuántas veces aplicamos zₙ → zₙ² + c antes de declarar un punto dentro del conjunto. Más iteraciones revelan más detalle.",
@@ -246,7 +246,7 @@ const fr: UiDict = {
   mandel: {
     bookmarks: "Signets",
     bookmarksInfo:
-      "Endroits célèbres dans le paysage de Mandelbrot. Chacun demande plus d'itérations — plus on s'approche du bord, plus l'orbite met de temps à s'échapper.",
+      "Endroits célèbres dans le paysage de Mandelbrot. Chacun demande plus d'itérations : plus on s'approche du bord, plus l'orbite met de temps à s'échapper.",
     iterations: "Itérations",
     iterationsInfo:
       "Nombre de fois où on applique zₙ → zₙ² + c avant de déclarer un point dans l'ensemble. Plus d'itérations révèlent plus de détails.",
@@ -302,7 +302,7 @@ const it: UiDict = {
   mandel: {
     bookmarks: "Segnalibri",
     bookmarksInfo:
-      "Luoghi famosi nel paesaggio di Mandelbrot. Ciascuno richiede più iterazioni — più ci si avvicina al bordo, più l'orbita impiega a fuggire.",
+      "Luoghi famosi nel paesaggio di Mandelbrot. Ciascuno richiede più iterazioni: più ci si avvicina al bordo, più l'orbita impiega a fuggire.",
     iterations: "Iterazioni",
     iterationsInfo:
       "Quante volte applichiamo zₙ → zₙ² + c prima di dichiarare un punto interno all'insieme. Più iterazioni rivelano più dettagli.",
@@ -358,7 +358,7 @@ const pt: UiDict = {
   mandel: {
     bookmarks: "Marcadores",
     bookmarksInfo:
-      "Lugares famosos na paisagem de Mandelbrot. Cada um exige mais iterações — quanto mais perto da borda, mais demora a órbita a escapar.",
+      "Lugares famosos na paisagem de Mandelbrot. Cada um exige mais iterações: quanto mais perto da borda, mais demora a órbita a escapar.",
     iterations: "Iterações",
     iterationsInfo:
       "Quantas vezes aplicamos zₙ → zₙ² + c antes de declarar um ponto dentro do conjunto. Mais iterações revelam mais detalhe.",
@@ -414,7 +414,7 @@ const sv: UiDict = {
   mandel: {
     bookmarks: "Bokmärken",
     bookmarksInfo:
-      "Berömda platser i Mandelbrotlandskapet. Var och en kräver fler iterationer — ju närmare randen, desto längre tid tar banan att fly.",
+      "Berömda platser i Mandelbrotlandskapet. Var och en kräver fler iterationer: ju närmare randen, desto längre tid tar banan att fly.",
     iterations: "Iterationer",
     iterationsInfo:
       "Hur många gånger vi applicerar zₙ → zₙ² + c innan en punkt räknas till mängden. Fler iterationer ger finare detaljer.",
@@ -470,7 +470,7 @@ const no: UiDict = {
   mandel: {
     bookmarks: "Bokmerker",
     bookmarksInfo:
-      "Berømte steder i Mandelbrot-landskapet. Hvert sted krever flere iterasjoner — jo nærmere kanten, desto lengre tid bruker banen på å rømme.",
+      "Berømte steder i Mandelbrot-landskapet. Hvert sted krever flere iterasjoner: jo nærmere kanten, desto lengre tid bruker banen på å rømme.",
     iterations: "Iterasjoner",
     iterationsInfo:
       "Hvor mange ganger vi anvender zₙ → zₙ² + c før et punkt regnes med i mengden. Flere iterasjoner gir finere detaljer.",

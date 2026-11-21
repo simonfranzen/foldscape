@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
-// Static demonstration of the De Moivre–Laplace convergence: binomial PMF
+// Static demonstration of the De Moivre-Laplace convergence: binomial PMF
 // (cyan bars) with the matching Gaussian density (violet curve) for any N
-// from 4 to 40. Slide N up — the bars stop being a staircase and start
+// from 4 to 40. Slide N up: the bars stop being a staircase and start
 // being a bell.
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
   sliderLabel?: string;
 }
 
-// log of binomial coefficient via log-gamma — avoids overflow for N up to 40.
+// log of binomial coefficient via log-gamma, avoids overflow for N up to 40.
 const LOG_FACT: number[] = [];
 function logFact(n: number): number {
   if (LOG_FACT[n] !== undefined) return LOG_FACT[n];
@@ -99,7 +99,7 @@ export function GaltonNormalOverlay({
       const normalPeak = normalAt(mu);
       const scaleMax = Math.max(maxP, normalPeak) * 1.08;
 
-      // binomial bars — cyan
+      // binomial bars: cyan
       const binW = plotW / (N + 1);
       for (let k = 0; k <= N; k++) {
         const x = margin + k * binW;
@@ -108,7 +108,7 @@ export function GaltonNormalOverlay({
         ctx!.fillRect(x + binW * 0.12, H - margin - h, binW * 0.76, h);
       }
 
-      // normal curve — violet
+      // normal curve: violet
       ctx!.strokeStyle = palette.signal.violet;
       ctx!.lineWidth = 1.8 * dpr;
       ctx!.beginPath();
@@ -124,7 +124,7 @@ export function GaltonNormalOverlay({
       }
       ctx!.stroke();
 
-      // mu marker — amber
+      // mu marker: amber
       const muPx = margin + (mu + 0.5) * binW;
       ctx!.strokeStyle = "rgba(255, 209, 102, 0.5)";
       ctx!.setLineDash([3 * dpr, 4 * dpr]);

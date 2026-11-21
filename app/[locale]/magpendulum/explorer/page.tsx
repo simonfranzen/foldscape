@@ -9,7 +9,7 @@ import type { Locale } from "@/lib/i18n/types";
 import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
 import { MAGPENDULUM_GUIDE } from "@/lib/explorer-guides/magpendulum";
 
-// Magnet colours — three distinct hues.
+// Magnet colours: three distinct hues.
 const MAGNET_COLORS = [
   { rgb: [255, 122, 182], name: "rose" },
   { rgb: [125, 243, 255], name: "cyan" },

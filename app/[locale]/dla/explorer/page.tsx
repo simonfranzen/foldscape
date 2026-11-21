@@ -470,7 +470,7 @@ export default function DlaExplorer() {
           }
         }
       }
-      // walkers — faint
+      // walkers, faint
       ctx.fillStyle = `rgba(${rgb}, 0.18)`;
       for (const w of live) {
         ctx.fillRect(w.x * cellPx, w.y * cellPx, cellPx, cellPx);

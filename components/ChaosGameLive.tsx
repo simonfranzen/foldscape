@@ -5,7 +5,7 @@ import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
 // Inline, compact live chaos-game animator for the story page.
-// Smaller than the Explorer, intentionally — just enough to feel the rule.
+// Smaller than the Explorer, intentionally: just enough to feel the rule.
 // Sliders: number of vertices (3..7), jump ratio (0.30..0.72), no-repeat toggle.
 
 // Draw colours derived from the shared palette so the trace matches the
@@ -220,7 +220,7 @@ export function ChaosGameLive({
     const tick = () => {
       drawBatch(SPEED);
       setPoints(countRef.current);
-      if (countRef.current >= BUDGET) return; // settled — stop the loop
+      if (countRef.current >= BUDGET) return; // settled: stop the loop
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);

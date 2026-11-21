@@ -82,17 +82,17 @@ const en: RichStory = {
       {
         label: "01",
         title: "The big idea",
-        body: "Take two simple shapes — a kite and a dart, cut from a single rhombus. Lay them down side by side, respecting a few simple matching rules on the edges. They cover the whole infinite plane perfectly, like normal tiles. But here is the twist: no finite chunk of the pattern ever appears twice in the same orientation. Anywhere. Ever. Roger Penrose found this in 1974, and it broke a decades-old question.",
+        body: "Take two simple shapes: a kite and a dart, cut from a single rhombus. Lay them down side by side, respecting a few simple matching rules on the edges. They cover the whole infinite plane perfectly, like normal tiles. But here is the twist: no finite chunk of the pattern ever appears twice in the same orientation. Anywhere. Ever. Roger Penrose found this in 1974, and it broke a decades-old question.",
       },
       {
         label: "02",
         title: "A concrete example",
-        body: "Count the tiles in any large patch and you find the same number waiting: kites over darts always converges to φ = (1+√5)/2 ≈ 1.618. There is also a rule called inflation: every tiling has a unique parent tiling at the larger scale and a unique child tiling at the smaller — and each step scales lengths by φ exactly. The golden ratio is not decoration; it is the structure.",
+        body: "Count the tiles in any large patch and you find the same number waiting: kites over darts always converges to φ = (1+√5)/2 ≈ 1.618. There is also a rule called inflation: every tiling has a unique parent tiling at the larger scale and a unique child tiling at the smaller, and each step scales lengths by φ exactly. The golden ratio is not decoration; it is the structure.",
       },
       {
         label: "03",
         title: "Why it matters",
-        body: "For 20 years mathematicians wondered: could a finite tile set force only aperiodic tilings? Berger answered yes with 20,426 tiles in 1966; Penrose dropped it to two in 1974. Then in 1982 Dan Shechtman fired electrons at an aluminium-manganese alloy and saw five-fold diffraction patterns — impossible under classical crystallography. Penrose tilings were the existing piece of paper-mathematics that proved nature was allowed to do this. Shechtman got the Nobel in 2011.",
+        body: "For 20 years mathematicians wondered: could a finite tile set force only aperiodic tilings? Berger answered yes with 20,426 tiles in 1966; Penrose dropped it to two in 1974. Then in 1982 Dan Shechtman fired electrons at an aluminium-manganese alloy and saw five-fold diffraction patterns, impossible under classical crystallography. Penrose tilings were the existing piece of paper-mathematics that proved nature was allowed to do this. Shechtman got the Nobel in 2011.",
       },
     ],
     tryIt: "Below: grow a tiling by inflation, then watch φ emerge from the Fibonacci spiral.",
@@ -101,17 +101,17 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · The crystallographic restriction",
       title: "Five-fold symmetry is forbidden in classical crystals",
-      body: "A classical crystal is a periodic tiling — a wallpaper pattern. A theorem from the 19th century says that any wallpaper repeating in two independent directions can only have 2-, 3-, 4-, or 6-fold rotational symmetry. Five-fold is impossible: pentagons cannot tile the plane without gaps. So if you ever saw a material with sharp diffraction spots arranged with 5-fold symmetry, the rulebook said you were hallucinating. The Penrose tiling sidesteps the theorem by refusing to be periodic in the first place — it can have local five-fold order at every scale precisely because it never closes into a repeating cell.",
+      body: "A classical crystal is a periodic tiling, a wallpaper pattern. A theorem from the 19th century says that any wallpaper repeating in two independent directions can only have 2-, 3-, 4-, or 6-fold rotational symmetry. Five-fold is impossible: pentagons cannot tile the plane without gaps. So if you ever saw a material with sharp diffraction spots arranged with 5-fold symmetry, the rulebook said you were hallucinating. The Penrose tiling sidesteps the theorem by refusing to be periodic in the first place: it can have local five-fold order at every scale precisely because it never closes into a repeating cell.",
     },
     {
       pretitle: "Section 02 · From 20,426 tiles to one",
       title: "Wang → Berger → Penrose → einstein",
-      body: "In 1961 Hao Wang asked: is there an algorithm that decides whether a given set of tiles can tile the plane? He noticed his question reduces to whether any aperiodic tile set exists. His student Robert Berger answered in 1966: yes, and he gave one — a Frankenstein set of 20,426 Wang tiles. Other mathematicians whittled the count down through the late 1960s. Then in 1974 Penrose found just two tiles. For 49 years that was the record. In 2023 David Smith, Joseph Myers, Craig Kaplan and Chaim Goodman-Strauss announced the einstein — a single tile (one polygon, no matching rules!) that tiles the plane only aperiodically. They followed it months later with the spectre, which doesn't even need reflections. The 60-year hunt ended with one shape.",
+      body: "In 1961 Hao Wang asked: is there an algorithm that decides whether a given set of tiles can tile the plane? He noticed his question reduces to whether any aperiodic tile set exists. His student Robert Berger answered in 1966: yes, and he gave one, a Frankenstein set of 20,426 Wang tiles. Other mathematicians whittled the count down through the late 1960s. Then in 1974 Penrose found just two tiles. For 49 years that was the record. In 2023 David Smith, Joseph Myers, Craig Kaplan and Chaim Goodman-Strauss announced the einstein: a single tile (one polygon, no matching rules!) that tiles the plane only aperiodically. They followed it months later with the spectre, which doesn't even need reflections. The 60-year hunt ended with one shape.",
     },
     {
       pretitle: "Section 03 · Kite and dart with matching rules",
       title: "The matching rules force aperiodicity",
-      body: "From two golden triangles — a 72-72-36 acute triangle and a 108-36-36 obtuse triangle — Penrose assembles the kite and the dart. (The P3 set of thin and thick rhombs is a separate, dual family — not produced by halving the same rhombus.) With no further restrictions you could tile the plane periodically using just kites and darts. The trick is the colored arcs Conway drew on each tile's edges: one red, one green, both crossing the kite and dart in specific places. The rule is then simply: where two tiles meet, their arcs must continue. With this single constraint every legal tiling becomes aperiodic. The arcs grow into never-closing curves that wander the whole plane.",
+      body: "From two golden triangles (a 72-72-36 acute triangle and a 108-36-36 obtuse triangle) Penrose assembles the kite and the dart. (The P3 set of thin and thick rhombs is a separate, dual family, not produced by halving the same rhombus.) With no further restrictions you could tile the plane periodically using just kites and darts. The trick is the colored arcs Conway drew on each tile's edges: one red, one green, both crossing the kite and dart in specific places. The rule is then simply: where two tiles meet, their arcs must continue. With this single constraint every legal tiling becomes aperiodic. The arcs grow into never-closing curves that wander the whole plane.",
     },
     {
       pretitle: "Section 04 · Inflation and deflation",
@@ -121,12 +121,12 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · The golden ratio everywhere",
       title: "Every measurement ratio contains φ",
-      body: "Once you start looking, φ = (1+√5)/2 is everywhere in the tiling. The number of kites divided by the number of darts in any large patch converges to φ. The side-length ratios inside the underlying Robinson triangles are 1 : φ. The inflation rule scales every length by exactly φ. The kite covers exactly φ times the area of the dart, and every tile is built from just two edge lengths whose ratio is φ. φ-scaling is also why you can prove the tiling is aperiodic without any geometry at all: a periodic tiling would force kites/darts to be a rational number, and φ is the most irrational number there is — its continued-fraction expansion is [1; 1, 1, 1, …], the slowest convergent in all of mathematics.",
+      body: "Once you start looking, φ = (1+√5)/2 is everywhere in the tiling. The number of kites divided by the number of darts in any large patch converges to φ. The side-length ratios inside the underlying Robinson triangles are 1 : φ. The inflation rule scales every length by exactly φ. The kite covers exactly φ times the area of the dart, and every tile is built from just two edge lengths whose ratio is φ. φ-scaling is also why you can prove the tiling is aperiodic without any geometry at all: a periodic tiling would force kites/darts to be a rational number, and φ is the most irrational number there is; its continued-fraction expansion is [1; 1, 1, 1, …], the slowest convergent in all of mathematics.",
     },
     {
-      pretitle: "Section 06 · Quasicrystals — the picture became matter",
+      pretitle: "Section 06 · Quasicrystals: the picture became matter",
       title: "Shechtman, 1982 · Nobel, 2011",
-      body: "On April 8, 1982, Dan Shechtman at NIST shot electrons through a rapidly quenched aluminium-manganese alloy and recorded a diffraction pattern with sharp 10-fold (and therefore 5-fold) symmetry. By every textbook rule it should not have existed. He spent two years convincing colleagues he had not made a mistake; Linus Pauling spent the next decade insisting publicly that 'there is no such thing as quasicrystals, only quasi-scientists.' Shechtman published in 1984. The Penrose tiling was the existing piece of mathematics that proved the diffraction pattern was consistent — long-range order without periodicity, five-fold symmetry allowed by aperiodicity. Today quasicrystals are an entire branch of materials science, used in non-stick coatings and even found in a meteorite from Russia. Shechtman received the 2011 Nobel Prize in Chemistry. A drawing on paper preceded a piece of matter by eight years.",
+      body: "On April 8, 1982, Dan Shechtman at NIST shot electrons through a rapidly quenched aluminium-manganese alloy and recorded a diffraction pattern with sharp 10-fold (and therefore 5-fold) symmetry. By every textbook rule it should not have existed. He spent two years convincing colleagues he had not made a mistake; Linus Pauling spent the next decade insisting publicly that 'there is no such thing as quasicrystals, only quasi-scientists.' Shechtman published in 1984. The Penrose tiling was the existing piece of mathematics that proved the diffraction pattern was consistent: long-range order without periodicity, five-fold symmetry allowed by aperiodicity. Today quasicrystals are an entire branch of materials science, used in non-stick coatings and even found in a meteorite from Russia. Shechtman received the 2011 Nobel Prize in Chemistry. A drawing on paper preceded a piece of matter by eight years.",
     },
   ],
   tiling: {
@@ -144,10 +144,10 @@ const en: RichStory = {
     caption: "Interactive · the golden ratio",
     levelsLabel: "Fibonacci levels",
     ratioLabel: "Consecutive Fibonacci ratio",
-    hint: "Each new square has the side length of the next Fibonacci number, and rotates around the previous one in 90° steps. The quarter-circle arcs join into the golden spiral — the same curve hidden inside every Penrose patch.",
+    hint: "Each new square has the side length of the next Fibonacci number, and rotates around the previous one in 90° steps. The quarter-circle arcs join into the golden spiral, the same curve hidden inside every Penrose patch.",
     pretitle: "Interactive · why φ shows up everywhere",
     title: "1, 1, 2, 3, 5, 8, 13 … and the spiral that converges to φ",
-    body: "Place a 1×1 square. Next to it, another 1×1. Then a 2×2 along their joined edge. Then a 3×3, then 5×5, then 8×8 — each new square's side length is the sum of the previous two. Inside each square draw a quarter-circle. The arcs join into a logarithmic spiral whose growth factor is φ. Slide the level up to watch the ratio of consecutive Fibonacci numbers crash into φ exponentially fast.",
+    body: "Place a 1×1 square. Next to it, another 1×1. Then a 2×2 along their joined edge. Then a 3×3, then 5×5, then 8×8: each new square's side length is the sum of the previous two. Inside each square draw a quarter-circle. The arcs join into a logarithmic spiral whose growth factor is φ. Slide the level up to watch the ratio of consecutive Fibonacci numbers crash into φ exponentially fast.",
   },
   crystal: {
     title: "Crystallographic restriction",
@@ -213,17 +213,17 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Nimm zwei einfache Formen — einen Drachen und einen Pfeil, beide aus demselben Rhombus geschnitten. Leg sie nebeneinander und halte dich an ein paar einfache Anlegeregeln an den Kanten. Sie bedecken die ganze unendliche Ebene lückenlos, wie normale Kacheln. Aber: kein endlicher Ausschnitt taucht jemals zweimal in derselben Lage auf. Nirgends. Niemals. Roger Penrose fand das 1974, und es brach eine jahrzehntealte Frage.",
+        body: "Nimm zwei einfache Formen: einen Drachen und einen Pfeil, beide aus demselben Rhombus geschnitten. Leg sie nebeneinander und halte dich an ein paar einfache Anlegeregeln an den Kanten. Sie bedecken die ganze unendliche Ebene lückenlos, wie normale Kacheln. Aber: kein endlicher Ausschnitt taucht jemals zweimal in derselben Lage auf. Nirgends. Niemals. Roger Penrose fand das 1974, und es brach eine jahrzehntealte Frage.",
       },
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Zähl die Kacheln in irgendeinem großen Ausschnitt, und du findest dieselbe Zahl wartend: Drachen geteilt durch Pfeile konvergiert immer gegen φ = (1+√5)/2 ≈ 1,618. Es gibt auch eine Regel namens Inflation: jede Parkettierung hat eine eindeutige Eltern-Parkettierung auf größerer Skala und eindeutige Kinder auf kleinerer — und jeder Schritt skaliert Längen exakt um φ. Der goldene Schnitt ist nicht Dekoration; er ist die Struktur.",
+        body: "Zähl die Kacheln in irgendeinem großen Ausschnitt, und du findest dieselbe Zahl wartend: Drachen geteilt durch Pfeile konvergiert immer gegen φ = (1+√5)/2 ≈ 1,618. Es gibt auch eine Regel namens Inflation: jede Parkettierung hat eine eindeutige Eltern-Parkettierung auf größerer Skala und eindeutige Kinder auf kleinerer, und jeder Schritt skaliert Längen exakt um φ. Der goldene Schnitt ist nicht Dekoration; er ist die Struktur.",
       },
       {
         label: "03",
         title: "Warum es zählt",
-        body: "20 Jahre lang fragten sich Mathematiker:innen: kann eine endliche Kachelmenge nur aperiodische Parkettierungen erzwingen? Berger antwortete 1966 mit 20.426 Kacheln, Penrose drückte es 1974 auf zwei. Dann schoss Dan Shechtman 1982 Elektronen auf eine Aluminium-Mangan-Legierung und sah fünfzählige Beugungsmuster — nach klassischer Kristallografie unmöglich. Penrose-Parkettierungen waren die fertige Papier-Mathematik, die zeigte: die Natur darf das. Shechtman bekam 2011 den Nobelpreis.",
+        body: "20 Jahre lang fragten sich Mathematiker:innen: kann eine endliche Kachelmenge nur aperiodische Parkettierungen erzwingen? Berger antwortete 1966 mit 20.426 Kacheln, Penrose drückte es 1974 auf zwei. Dann schoss Dan Shechtman 1982 Elektronen auf eine Aluminium-Mangan-Legierung und sah fünfzählige Beugungsmuster, nach klassischer Kristallografie unmöglich. Penrose-Parkettierungen waren die fertige Papier-Mathematik, die zeigte: die Natur darf das. Shechtman bekam 2011 den Nobelpreis.",
       },
     ],
     tryIt:
@@ -233,17 +233,17 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die kristallographische Einschränkung",
       title: "Fünfzählige Symmetrie ist in klassischen Kristallen verboten",
-      body: "Ein klassischer Kristall ist eine periodische Parkettierung — ein Tapetenmuster. Ein Satz aus dem 19. Jahrhundert besagt, dass eine Tapete, die sich in zwei unabhängigen Richtungen wiederholt, nur 2-, 3-, 4- oder 6-zählige Rotationssymmetrie haben kann. Fünfzählig ist unmöglich: Pentagons können die Ebene nicht lückenlos parkettieren. Wenn man also je ein Material mit scharfen Beugungspeaks in fünfzähliger Anordnung gesehen hätte, hätte das Regelbuch gesagt: du halluzinierst. Die Penrose-Parkettierung umgeht den Satz, indem sie sich gar nicht erst periodisch verhält — sie kann lokale Fünfzähligkeit auf jeder Skala haben, gerade weil sie nie in eine sich wiederholende Zelle schließt.",
+      body: "Ein klassischer Kristall ist eine periodische Parkettierung, ein Tapetenmuster. Ein Satz aus dem 19. Jahrhundert besagt, dass eine Tapete, die sich in zwei unabhängigen Richtungen wiederholt, nur 2-, 3-, 4- oder 6-zählige Rotationssymmetrie haben kann. Fünfzählig ist unmöglich: Pentagons können die Ebene nicht lückenlos parkettieren. Wenn man also je ein Material mit scharfen Beugungspeaks in fünfzähliger Anordnung gesehen hätte, hätte das Regelbuch gesagt: du halluzinierst. Die Penrose-Parkettierung umgeht den Satz, indem sie sich gar nicht erst periodisch verhält: sie kann lokale Fünfzähligkeit auf jeder Skala haben, gerade weil sie nie in eine sich wiederholende Zelle schließt.",
     },
     {
       pretitle: "Abschnitt 02 · Von 20.426 Kacheln zu einer",
       title: "Wang → Berger → Penrose → einstein",
-      body: "1961 fragte Hao Wang: gibt es einen Algorithmus, der entscheidet, ob eine gegebene Kachelmenge die Ebene parkettieren kann? Er bemerkte, dass seine Frage darauf hinausläuft, ob überhaupt irgendeine aperiodische Kachelmenge existiert. Sein Student Robert Berger antwortete 1966: ja, und er lieferte eine — eine Frankenstein-Menge aus 20.426 Wang-Kacheln. Andere Mathematiker:innen drückten die Zahl bis Ende der 1960er weiter herunter. Dann fand Penrose 1974 nur zwei. 49 Jahre lang war das der Rekord. 2023 verkündeten David Smith, Joseph Myers, Craig Kaplan und Chaim Goodman-Strauss den «einstein» — eine einzige Kachel (ein Polygon, keine Anlegeregeln!), die die Ebene nur aperiodisch parkettiert. Monate später folgte der «spectre», der nicht einmal Spiegelungen braucht. Die 60-jährige Jagd endete mit einer Form.",
+      body: "1961 fragte Hao Wang: gibt es einen Algorithmus, der entscheidet, ob eine gegebene Kachelmenge die Ebene parkettieren kann? Er bemerkte, dass seine Frage darauf hinausläuft, ob überhaupt irgendeine aperiodische Kachelmenge existiert. Sein Student Robert Berger antwortete 1966: ja, und er lieferte eine, eine Frankenstein-Menge aus 20.426 Wang-Kacheln. Andere Mathematiker:innen drückten die Zahl bis Ende der 1960er weiter herunter. Dann fand Penrose 1974 nur zwei. 49 Jahre lang war das der Rekord. 2023 verkündeten David Smith, Joseph Myers, Craig Kaplan und Chaim Goodman-Strauss den «einstein»: eine einzige Kachel (ein Polygon, keine Anlegeregeln!), die die Ebene nur aperiodisch parkettiert. Monate später folgte der «spectre», der nicht einmal Spiegelungen braucht. Die 60-jährige Jagd endete mit einer Form.",
     },
     {
       pretitle: "Abschnitt 03 · Drache und Pfeil mit Anlegeregeln",
       title: "Die Anlegeregeln erzwingen die Aperiodizität",
-      body: "Aus zwei goldenen Dreiecken — einem 72-72-36-Akut-Dreieck und einem 108-36-36-Obtus-Dreieck — setzt Penrose den Drachen (Kite) und den Pfeil (Dart) zusammen. (Das P3-Set aus dünnen und dicken Rhomben ist eine eigenständige, duale Familie — nicht durch Halbieren desselben Rhombus erzeugt.) Ohne weitere Einschränkungen könntest du die Ebene mit ihnen ganz normal periodisch parkettieren. Der Trick sind die farbigen Bögen, die Conway auf jede Kante zeichnete: einer rot, einer grün, jeder kreuzt Drachen und Pfeil an bestimmten Stellen. Die Regel ist dann schlicht: wo zwei Kacheln aneinander stoßen, müssen die Bögen weiterlaufen. Mit dieser einen Bedingung wird jede legale Parkettierung aperiodisch. Die Bögen wachsen zu nie-schließenden Kurven, die die ganze Ebene durchwandern.",
+      body: "Aus zwei goldenen Dreiecken (einem 72-72-36-Akut-Dreieck und einem 108-36-36-Obtus-Dreieck) setzt Penrose den Drachen (Kite) und den Pfeil (Dart) zusammen. (Das P3-Set aus dünnen und dicken Rhomben ist eine eigenständige, duale Familie, nicht durch Halbieren desselben Rhombus erzeugt.) Ohne weitere Einschränkungen könntest du die Ebene mit ihnen ganz normal periodisch parkettieren. Der Trick sind die farbigen Bögen, die Conway auf jede Kante zeichnete: einer rot, einer grün, jeder kreuzt Drachen und Pfeil an bestimmten Stellen. Die Regel ist dann schlicht: wo zwei Kacheln aneinander stoßen, müssen die Bögen weiterlaufen. Mit dieser einen Bedingung wird jede legale Parkettierung aperiodisch. Die Bögen wachsen zu nie-schließenden Kurven, die die ganze Ebene durchwandern.",
     },
     {
       pretitle: "Abschnitt 04 · Inflation und Deflation",
@@ -253,12 +253,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Der goldene Schnitt überall",
       title: "Jedes Längenverhältnis enthält φ",
-      body: "Sobald du anfängst zu schauen, ist φ = (1+√5)/2 überall in der Parkettierung. Die Anzahl Drachen geteilt durch die Anzahl Pfeile in jedem großen Ausschnitt konvergiert gegen φ. Die Seitenverhältnisse in den darunterliegenden Robinson-Dreiecken sind 1 : φ. Die Inflationsregel skaliert jede Länge exakt um φ. Der Drache bedeckt genau φ-mal die Fläche des Pfeils, und jede Kachel besteht aus nur zwei Kantenlängen, deren Verhältnis φ ist. Die φ-Skalierung ist auch der Grund, warum man die Aperiodizität ohne jede Geometrie beweisen kann: eine periodische Parkettierung würde Drachen/Pfeile rational machen, und φ ist die irrationalste Zahl, die es gibt — ihre Kettenbruchentwicklung ist [1; 1, 1, 1, …], die langsamste Konvergenz in der ganzen Mathematik.",
+      body: "Sobald du anfängst zu schauen, ist φ = (1+√5)/2 überall in der Parkettierung. Die Anzahl Drachen geteilt durch die Anzahl Pfeile in jedem großen Ausschnitt konvergiert gegen φ. Die Seitenverhältnisse in den darunterliegenden Robinson-Dreiecken sind 1 : φ. Die Inflationsregel skaliert jede Länge exakt um φ. Der Drache bedeckt genau φ-mal die Fläche des Pfeils, und jede Kachel besteht aus nur zwei Kantenlängen, deren Verhältnis φ ist. Die φ-Skalierung ist auch der Grund, warum man die Aperiodizität ohne jede Geometrie beweisen kann: eine periodische Parkettierung würde Drachen/Pfeile rational machen, und φ ist die irrationalste Zahl, die es gibt; ihre Kettenbruchentwicklung ist [1; 1, 1, 1, …], die langsamste Konvergenz in der ganzen Mathematik.",
     },
     {
-      pretitle: "Abschnitt 06 · Quasikristalle — das Bild wurde Materie",
+      pretitle: "Abschnitt 06 · Quasikristalle: das Bild wurde Materie",
       title: "Shechtman, 1982 · Nobelpreis, 2011",
-      body: "Am 8. April 1982 schoss Dan Shechtman am NIST Elektronen durch eine rasch abgeschreckte Aluminium-Mangan-Legierung und nahm ein Beugungsmuster mit scharfer 10- (und damit 5-) zähliger Symmetrie auf. Nach jedem Lehrbuch hätte es das nicht geben dürfen. Er brauchte zwei Jahre, um Kolleg:innen zu überzeugen, dass er keinen Fehler gemacht hatte; Linus Pauling beharrte das nächste Jahrzehnt öffentlich darauf, dass es «keine Quasikristalle gibt, nur Quasi-Wissenschaftler». Shechtman publizierte 1984. Die Penrose-Parkettierung war die existierende Mathematik, die zeigte, dass das Beugungsmuster konsistent war — Fernordnung ohne Periodizität, Fünfzähligkeit erlaubt durch Aperiodizität. Heute sind Quasikristalle ein ganzer Zweig der Materialwissenschaft, sie stecken in Antihaftbeschichtungen und wurden sogar in einem russischen Meteoriten gefunden. Shechtman erhielt 2011 den Nobelpreis für Chemie. Eine Zeichnung auf Papier ging einem Stück Materie um acht Jahre voraus.",
+      body: "Am 8. April 1982 schoss Dan Shechtman am NIST Elektronen durch eine rasch abgeschreckte Aluminium-Mangan-Legierung und nahm ein Beugungsmuster mit scharfer 10- (und damit 5-) zähliger Symmetrie auf. Nach jedem Lehrbuch hätte es das nicht geben dürfen. Er brauchte zwei Jahre, um Kolleg:innen zu überzeugen, dass er keinen Fehler gemacht hatte; Linus Pauling beharrte das nächste Jahrzehnt öffentlich darauf, dass es «keine Quasikristalle gibt, nur Quasi-Wissenschaftler». Shechtman publizierte 1984. Die Penrose-Parkettierung war die existierende Mathematik, die zeigte, dass das Beugungsmuster konsistent war: Fernordnung ohne Periodizität, Fünfzähligkeit erlaubt durch Aperiodizität. Heute sind Quasikristalle ein ganzer Zweig der Materialwissenschaft, sie stecken in Antihaftbeschichtungen und wurden sogar in einem russischen Meteoriten gefunden. Shechtman erhielt 2011 den Nobelpreis für Chemie. Eine Zeichnung auf Papier ging einem Stück Materie um acht Jahre voraus.",
     },
   ],
   tiling: {
@@ -276,10 +276,10 @@ const de: RichStory = {
     caption: "Interaktiv · der goldene Schnitt",
     levelsLabel: "Fibonacci-Stufen",
     ratioLabel: "Aufeinanderfolgendes Fibonacci-Verhältnis",
-    hint: "Jedes neue Quadrat hat die Seitenlänge der nächsten Fibonacci-Zahl und legt sich im 90°-Schritt um das vorige. Die Viertelkreis-Bögen schließen sich zur goldenen Spirale — derselben Kurve, die in jedem Penrose-Ausschnitt steckt.",
+    hint: "Jedes neue Quadrat hat die Seitenlänge der nächsten Fibonacci-Zahl und legt sich im 90°-Schritt um das vorige. Die Viertelkreis-Bögen schließen sich zur goldenen Spirale, derselben Kurve, die in jedem Penrose-Ausschnitt steckt.",
     pretitle: "Interaktiv · warum φ überall auftaucht",
     title: "1, 1, 2, 3, 5, 8, 13 … und die Spirale, die gegen φ konvergiert",
-    body: "Leg ein 1×1-Quadrat. Daneben ein zweites 1×1. Dann ein 2×2 entlang ihrer gemeinsamen Kante. Dann 3×3, dann 5×5, dann 8×8 — jede neue Seitenlänge ist die Summe der zwei vorigen. In jedes Quadrat zeichnest du einen Viertelkreis. Die Bögen verbinden sich zu einer logarithmischen Spirale mit Wachstumsfaktor φ. Zieh die Stufe hoch und sieh, wie das Verhältnis aufeinanderfolgender Fibonacci-Zahlen exponentiell schnell in φ einrastet.",
+    body: "Leg ein 1×1-Quadrat. Daneben ein zweites 1×1. Dann ein 2×2 entlang ihrer gemeinsamen Kante. Dann 3×3, dann 5×5, dann 8×8: jede neue Seitenlänge ist die Summe der zwei vorigen. In jedes Quadrat zeichnest du einen Viertelkreis. Die Bögen verbinden sich zu einer logarithmischen Spirale mit Wachstumsfaktor φ. Zieh die Stufe hoch und sieh, wie das Verhältnis aufeinanderfolgender Fibonacci-Zahlen exponentiell schnell in φ einrastet.",
   },
   crystal: {
     title: "Kristallographische Einschränkung",
@@ -348,17 +348,17 @@ const es: RichStory = {
       {
         label: "01",
         title: "La gran idea",
-        body: "Toma dos formas simples — una cometa y un dardo, recortadas del mismo rombo. Ponlas una al lado de la otra respetando unas reglas de encaje en los bordes. Cubren todo el plano infinito sin huecos, como baldosas normales. Pero el giro: ningún trozo finito del patrón vuelve a aparecer dos veces en la misma orientación. En ningún sitio. Nunca. Roger Penrose lo encontró en 1974, y rompió una pregunta de décadas.",
+        body: "Toma dos formas simples: una cometa y un dardo, recortadas del mismo rombo. Ponlas una al lado de la otra respetando unas reglas de encaje en los bordes. Cubren todo el plano infinito sin huecos, como baldosas normales. Pero el giro: ningún trozo finito del patrón vuelve a aparecer dos veces en la misma orientación. En ningún sitio. Nunca. Roger Penrose lo encontró en 1974, y rompió una pregunta de décadas.",
       },
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: "Cuenta las baldosas en cualquier región grande y aparece el mismo número esperando: cometas dividido por dardos converge siempre a φ = (1+√5)/2 ≈ 1,618. Existe también la regla de inflación: cada teselado tiene un único teselado padre a mayor escala y un único hijo a menor — cada paso escala las longitudes exactamente por φ. La proporción áurea no es adorno; es la estructura.",
+        body: "Cuenta las baldosas en cualquier región grande y aparece el mismo número esperando: cometas dividido por dardos converge siempre a φ = (1+√5)/2 ≈ 1,618. Existe también la regla de inflación: cada teselado tiene un único teselado padre a mayor escala y un único hijo a menor; cada paso escala las longitudes exactamente por φ. La proporción áurea no es adorno; es la estructura.",
       },
       {
         label: "03",
         title: "Por qué importa",
-        body: "Durante 20 años los matemáticos preguntaron: ¿puede un conjunto finito de baldosas forzar solo teselados aperiódicos? Berger respondió que sí con 20 426 baldosas en 1966; Penrose lo bajó a dos en 1974. Luego en 1982 Dan Shechtman disparó electrones contra una aleación aluminio-manganeso y vio patrones de difracción de cinco pliegues — imposibles según la cristalografía clásica. Los teselados de Penrose eran la matemática de papel que demostraba que la naturaleza podía hacerlo. Shechtman recibió el Nobel en 2011.",
+        body: "Durante 20 años los matemáticos preguntaron: ¿puede un conjunto finito de baldosas forzar solo teselados aperiódicos? Berger respondió que sí con 20 426 baldosas en 1966; Penrose lo bajó a dos en 1974. Luego en 1982 Dan Shechtman disparó electrones contra una aleación aluminio-manganeso y vio patrones de difracción de cinco pliegues, imposibles según la cristalografía clásica. Los teselados de Penrose eran la matemática de papel que demostraba que la naturaleza podía hacerlo. Shechtman recibió el Nobel en 2011.",
       },
     ],
     tryIt:
@@ -368,17 +368,17 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · La restricción cristalográfica",
       title: "La simetría de orden cinco está prohibida en cristales clásicos",
-      body: "Un cristal clásico es un teselado periódico — un patrón de papel pintado. Un teorema del siglo XIX dice que cualquier papel pintado que se repita en dos direcciones independientes solo puede tener simetría rotacional de orden 2, 3, 4 o 6. La de orden cinco es imposible: los pentágonos no pueden teselar el plano sin huecos. Así que si vieras alguna vez un material con picos de difracción nítidos dispuestos con simetría de orden cinco, el reglamento diría que estás alucinando. El teselado de Penrose esquiva el teorema negándose a ser periódico — puede tener orden cinco local a toda escala precisamente porque nunca se cierra en una celda repetida.",
+      body: "Un cristal clásico es un teselado periódico, un patrón de papel pintado. Un teorema del siglo XIX dice que cualquier papel pintado que se repita en dos direcciones independientes solo puede tener simetría rotacional de orden 2, 3, 4 o 6. La de orden cinco es imposible: los pentágonos no pueden teselar el plano sin huecos. Así que si vieras alguna vez un material con picos de difracción nítidos dispuestos con simetría de orden cinco, el reglamento diría que estás alucinando. El teselado de Penrose esquiva el teorema negándose a ser periódico: puede tener orden cinco local a toda escala precisamente porque nunca se cierra en una celda repetida.",
     },
     {
       pretitle: "Sección 02 · De 20 426 baldosas a una",
       title: "Wang → Berger → Penrose → einstein",
-      body: "En 1961 Hao Wang preguntó: ¿hay un algoritmo que decida si un conjunto dado de baldosas tesela el plano? Notó que su pregunta se reduce a si existe algún conjunto aperiódico. Su estudiante Robert Berger respondió en 1966: sí, y dio uno — un conjunto Frankenstein de 20 426 baldosas de Wang. Otros matemáticos redujeron el número a finales de los 60. En 1974 Penrose encontró solo dos. Durante 49 años ese fue el récord. En 2023 David Smith, Joseph Myers, Craig Kaplan y Chaim Goodman-Strauss anunciaron el einstein — una sola baldosa (un polígono, ¡sin reglas de encaje!) que tesela el plano solo de forma aperiódica. Meses después llegó el spectre, que ni siquiera necesita reflexiones. La caza de 60 años terminó con una forma.",
+      body: "En 1961 Hao Wang preguntó: ¿hay un algoritmo que decida si un conjunto dado de baldosas tesela el plano? Notó que su pregunta se reduce a si existe algún conjunto aperiódico. Su estudiante Robert Berger respondió en 1966: sí, y dio uno, un conjunto Frankenstein de 20 426 baldosas de Wang. Otros matemáticos redujeron el número a finales de los 60. En 1974 Penrose encontró solo dos. Durante 49 años ese fue el récord. En 2023 David Smith, Joseph Myers, Craig Kaplan y Chaim Goodman-Strauss anunciaron el einstein: una sola baldosa (un polígono, ¡sin reglas de encaje!) que tesela el plano solo de forma aperiódica. Meses después llegó el spectre, que ni siquiera necesita reflexiones. La caza de 60 años terminó con una forma.",
     },
     {
       pretitle: "Sección 03 · Cometa y dardo con reglas de encaje",
       title: "Las reglas de encaje fuerzan la aperiodicidad",
-      body: "A partir de dos triángulos áureos — uno agudo de 72-72-36 y uno obtuso de 108-36-36 — Penrose monta la cometa y el dardo. (El conjunto P3 de rombos finos y gruesos es una familia independiente y dual — no se obtiene partiendo el mismo rombo.) Sin más restricciones podrías teselar el plano periódicamente solo con cometas y dardos. El truco son los arcos de colores que Conway dibujó en cada arista: uno rojo, otro verde, ambos cruzando la cometa y el dardo en lugares concretos. La regla es entonces simple: donde dos baldosas se encuentran, sus arcos tienen que continuar. Con esta única restricción todo teselado legal se vuelve aperiódico. Los arcos crecen en curvas que nunca cierran y recorren todo el plano.",
+      body: "A partir de dos triángulos áureos (uno agudo de 72-72-36 y uno obtuso de 108-36-36) Penrose monta la cometa y el dardo. (El conjunto P3 de rombos finos y gruesos es una familia independiente y dual, no se obtiene partiendo el mismo rombo.) Sin más restricciones podrías teselar el plano periódicamente solo con cometas y dardos. El truco son los arcos de colores que Conway dibujó en cada arista: uno rojo, otro verde, ambos cruzando la cometa y el dardo en lugares concretos. La regla es entonces simple: donde dos baldosas se encuentran, sus arcos tienen que continuar. Con esta única restricción todo teselado legal se vuelve aperiódico. Los arcos crecen en curvas que nunca cierran y recorren todo el plano.",
     },
     {
       pretitle: "Sección 04 · Inflación y deflación",
@@ -388,12 +388,12 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · La proporción áurea por todas partes",
       title: "Cada razón de medidas contiene φ",
-      body: "En cuanto empiezas a mirar, φ = (1+√5)/2 está por todas partes en el teselado. El número de cometas dividido por el de dardos en cualquier región grande converge a φ. Las razones de lados en los triángulos de Robinson subyacentes son 1 : φ. La regla de inflación escala cada longitud exactamente por φ. La cometa cubre exactamente φ veces el área del dardo, y cada baldosa se construye con solo dos longitudes de arista cuya razón es φ. La escala por φ es también el motivo por el que se puede probar la aperiodicidad sin geometría: un teselado periódico forzaría cometas/dardos a ser racional, y φ es el número más irracional que existe — su desarrollo en fracción continua es [1; 1, 1, 1, …], la convergencia más lenta de toda la matemática.",
+      body: "En cuanto empiezas a mirar, φ = (1+√5)/2 está por todas partes en el teselado. El número de cometas dividido por el de dardos en cualquier región grande converge a φ. Las razones de lados en los triángulos de Robinson subyacentes son 1 : φ. La regla de inflación escala cada longitud exactamente por φ. La cometa cubre exactamente φ veces el área del dardo, y cada baldosa se construye con solo dos longitudes de arista cuya razón es φ. La escala por φ es también el motivo por el que se puede probar la aperiodicidad sin geometría: un teselado periódico forzaría cometas/dardos a ser racional, y φ es el número más irracional que existe; su desarrollo en fracción continua es [1; 1, 1, 1, …], la convergencia más lenta de toda la matemática.",
     },
     {
-      pretitle: "Sección 06 · Cuasicristales — la imagen se hizo materia",
+      pretitle: "Sección 06 · Cuasicristales: la imagen se hizo materia",
       title: "Shechtman, 1982 · Nobel, 2011",
-      body: "El 8 de abril de 1982, Dan Shechtman en el NIST disparó electrones a través de una aleación aluminio-manganeso enfriada rápidamente y registró un patrón de difracción con simetría nítida de 10 (y por tanto 5) pliegues. Según todo libro de texto no debería existir. Pasó dos años convenciendo a colegas de que no se había equivocado; Linus Pauling pasó la siguiente década insistiendo en público que «no existen los cuasicristales, solo los cuasi-científicos». Shechtman publicó en 1984. El teselado de Penrose era la matemática ya escrita que demostraba que el patrón de difracción era consistente — orden de largo alcance sin periodicidad, simetría de cinco pliegues permitida por la aperiodicidad. Hoy los cuasicristales son una rama entera de la ciencia de materiales, presentes en revestimientos antiadherentes e incluso encontrados en un meteorito ruso. Shechtman recibió el Nobel de Química en 2011. Un dibujo en papel precedió a un trozo de materia por ocho años.",
+      body: "El 8 de abril de 1982, Dan Shechtman en el NIST disparó electrones a través de una aleación aluminio-manganeso enfriada rápidamente y registró un patrón de difracción con simetría nítida de 10 (y por tanto 5) pliegues. Según todo libro de texto no debería existir. Pasó dos años convenciendo a colegas de que no se había equivocado; Linus Pauling pasó la siguiente década insistiendo en público que «no existen los cuasicristales, solo los cuasi-científicos». Shechtman publicó en 1984. El teselado de Penrose era la matemática ya escrita que demostraba que el patrón de difracción era consistente: orden de largo alcance sin periodicidad, simetría de cinco pliegues permitida por la aperiodicidad. Hoy los cuasicristales son una rama entera de la ciencia de materiales, presentes en revestimientos antiadherentes e incluso encontrados en un meteorito ruso. Shechtman recibió el Nobel de Química en 2011. Un dibujo en papel precedió a un trozo de materia por ocho años.",
     },
   ],
   tiling: {
@@ -411,10 +411,10 @@ const es: RichStory = {
     caption: "Interactivo · la proporción áurea",
     levelsLabel: "Niveles de Fibonacci",
     ratioLabel: "Razón Fibonacci consecutiva",
-    hint: "Cada nuevo cuadrado tiene el lado del siguiente número de Fibonacci y rota alrededor del anterior en pasos de 90°. Los cuartos de círculo se enlazan en la espiral áurea — la misma curva escondida en cada fragmento de Penrose.",
+    hint: "Cada nuevo cuadrado tiene el lado del siguiente número de Fibonacci y rota alrededor del anterior en pasos de 90°. Los cuartos de círculo se enlazan en la espiral áurea, la misma curva escondida en cada fragmento de Penrose.",
     pretitle: "Interactivo · por qué φ aparece por todas partes",
     title: "1, 1, 2, 3, 5, 8, 13 … y la espiral que converge a φ",
-    body: "Coloca un cuadrado 1×1. Al lado, otro 1×1. Luego un 2×2 a lo largo de su lado compartido. Después 3×3, 5×5, 8×8 — cada nuevo lado es la suma de los dos anteriores. Dentro de cada cuadrado dibuja un cuarto de círculo. Los arcos se unen en una espiral logarítmica con factor de crecimiento φ. Sube el nivel y mira cómo la razón de Fibonacci consecutiva se clava en φ exponencialmente rápido.",
+    body: "Coloca un cuadrado 1×1. Al lado, otro 1×1. Luego un 2×2 a lo largo de su lado compartido. Después 3×3, 5×5, 8×8: cada nuevo lado es la suma de los dos anteriores. Dentro de cada cuadrado dibuja un cuarto de círculo. Los arcos se unen en una espiral logarítmica con factor de crecimiento φ. Sube el nivel y mira cómo la razón de Fibonacci consecutiva se clava en φ exponencialmente rápido.",
   },
   crystal: {
     title: "Restricción cristalográfica",
@@ -480,17 +480,17 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Prends deux formes simples — un cerf-volant et une flèche, taillés dans un seul losange. Pose-les côte à côte en respectant quelques règles d'accord sur les bords. Elles couvrent tout le plan infini sans trou, comme des tuiles normales. Mais voici le tour : aucun morceau fini du motif ne réapparaît jamais deux fois dans la même orientation. Nulle part. Jamais. Roger Penrose l'a trouvé en 1974, et cela a brisé une question vieille de plusieurs décennies.",
+        body: "Prends deux formes simples : un cerf-volant et une flèche, taillés dans un seul losange. Pose-les côte à côte en respectant quelques règles d'accord sur les bords. Elles couvrent tout le plan infini sans trou, comme des tuiles normales. Mais voici le tour : aucun morceau fini du motif ne réapparaît jamais deux fois dans la même orientation. Nulle part. Jamais. Roger Penrose l'a trouvé en 1974, et cela a brisé une question vieille de plusieurs décennies.",
       },
       {
         label: "02",
         title: "Un exemple concret",
-        body: "Compte les tuiles dans n'importe quel grand morceau et tu trouves le même nombre qui t'attend : cerfs-volants sur flèches converge toujours vers φ = (1+√5)/2 ≈ 1,618. Il existe aussi une règle d'inflation : tout pavage a un unique pavage parent à plus grande échelle et un unique pavage enfant à plus petite — chaque étape multiplie les longueurs exactement par φ. Le nombre d'or n'est pas une décoration ; c'est la structure.",
+        body: "Compte les tuiles dans n'importe quel grand morceau et tu trouves le même nombre qui t'attend : cerfs-volants sur flèches converge toujours vers φ = (1+√5)/2 ≈ 1,618. Il existe aussi une règle d'inflation : tout pavage a un unique pavage parent à plus grande échelle et un unique pavage enfant à plus petite ; chaque étape multiplie les longueurs exactement par φ. Le nombre d'or n'est pas une décoration ; c'est la structure.",
       },
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "Pendant 20 ans les mathématiciens se sont demandé : un ensemble fini de tuiles peut-il forcer uniquement des pavages apériodiques ? Berger a répondu oui avec 20 426 tuiles en 1966 ; Penrose est descendu à deux en 1974. Puis en 1982 Dan Shechtman a tiré des électrons sur un alliage aluminium-manganèse et a vu des figures de diffraction d'ordre cinq — impossibles selon la cristallographie classique. Les pavages de Penrose étaient la mathématique de papier qui prouvait que la nature avait le droit. Shechtman a eu le Nobel en 2011.",
+        body: "Pendant 20 ans les mathématiciens se sont demandé : un ensemble fini de tuiles peut-il forcer uniquement des pavages apériodiques ? Berger a répondu oui avec 20 426 tuiles en 1966 ; Penrose est descendu à deux en 1974. Puis en 1982 Dan Shechtman a tiré des électrons sur un alliage aluminium-manganèse et a vu des figures de diffraction d'ordre cinq, impossibles selon la cristallographie classique. Les pavages de Penrose étaient la mathématique de papier qui prouvait que la nature avait le droit. Shechtman a eu le Nobel en 2011.",
       },
     ],
     tryIt:
@@ -500,17 +500,17 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · La restriction cristallographique",
       title: "La symétrie d'ordre cinq est interdite dans les cristaux classiques",
-      body: "Un cristal classique est un pavage périodique — un motif de papier peint. Un théorème du XIXᵉ siècle dit que tout papier peint qui se répète dans deux directions indépendantes ne peut avoir que des symétries de rotation d'ordre 2, 3, 4 ou 6. L'ordre cinq est impossible : les pentagones ne peuvent pas paver le plan sans trous. Donc si l'on voyait un matériau avec des pics de diffraction nets en symétrie d'ordre cinq, le règlement disait que l'on hallucinait. Le pavage de Penrose contourne le théorème en refusant d'être périodique d'emblée — il peut avoir un ordre cinq local à toute échelle précisément parce qu'il ne se referme jamais en une cellule répétée.",
+      body: "Un cristal classique est un pavage périodique, un motif de papier peint. Un théorème du XIXᵉ siècle dit que tout papier peint qui se répète dans deux directions indépendantes ne peut avoir que des symétries de rotation d'ordre 2, 3, 4 ou 6. L'ordre cinq est impossible : les pentagones ne peuvent pas paver le plan sans trous. Donc si l'on voyait un matériau avec des pics de diffraction nets en symétrie d'ordre cinq, le règlement disait que l'on hallucinait. Le pavage de Penrose contourne le théorème en refusant d'être périodique d'emblée : il peut avoir un ordre cinq local à toute échelle précisément parce qu'il ne se referme jamais en une cellule répétée.",
     },
     {
       pretitle: "Section 02 · De 20 426 tuiles à une",
       title: "Wang → Berger → Penrose → einstein",
-      body: "En 1961, Hao Wang a posé la question : existe-t-il un algorithme qui décide si un ensemble de tuiles donné pave le plan ? Il a remarqué que sa question revient à savoir s'il existe un ensemble apériodique. Son étudiant Robert Berger a répondu en 1966 : oui, et il en a donné un — un Frankenstein de 20 426 tuiles de Wang. D'autres ont fait descendre le compte à la fin des années 60. Puis Penrose en a trouvé deux en 1974. Pendant 49 ans, ce fut le record. En 2023, David Smith, Joseph Myers, Craig Kaplan et Chaim Goodman-Strauss ont annoncé l'einstein — une seule tuile (un polygone, sans règles d'accord !) qui ne pave le plan que de façon apériodique. Quelques mois plus tard est arrivé le spectre, qui n'a même pas besoin de réflexions. La chasse de 60 ans s'est terminée avec une forme.",
+      body: "En 1961, Hao Wang a posé la question : existe-t-il un algorithme qui décide si un ensemble de tuiles donné pave le plan ? Il a remarqué que sa question revient à savoir s'il existe un ensemble apériodique. Son étudiant Robert Berger a répondu en 1966 : oui, et il en a donné un, un Frankenstein de 20 426 tuiles de Wang. D'autres ont fait descendre le compte à la fin des années 60. Puis Penrose en a trouvé deux en 1974. Pendant 49 ans, ce fut le record. En 2023, David Smith, Joseph Myers, Craig Kaplan et Chaim Goodman-Strauss ont annoncé l'einstein : une seule tuile (un polygone, sans règles d'accord !) qui ne pave le plan que de façon apériodique. Quelques mois plus tard est arrivé le spectre, qui n'a même pas besoin de réflexions. La chasse de 60 ans s'est terminée avec une forme.",
     },
     {
       pretitle: "Section 03 · Cerf-volant et flèche avec règles d'accord",
       title: "Les règles d'accord forcent l'apériodicité",
-      body: "À partir de deux triangles d'or — un aigu 72-72-36 et un obtus 108-36-36 — Penrose assemble le cerf-volant et la flèche. (Le jeu P3 fait de losanges fins et épais est une famille distincte, duale — elle ne s'obtient pas en coupant en deux le même losange.) Sans restriction supplémentaire, tu pourrais paver le plan périodiquement avec eux. L'astuce : les arcs colorés que Conway a dessinés sur chaque bord — un rouge, un vert, traversant cerf-volant et flèche à des endroits précis. La règle est alors simple : là où deux tuiles se rencontrent, leurs arcs doivent se prolonger. Avec cette seule contrainte, tout pavage légal devient apériodique. Les arcs grandissent en courbes qui ne se referment jamais et parcourent tout le plan.",
+      body: "À partir de deux triangles d'or (un aigu 72-72-36 et un obtus 108-36-36) Penrose assemble le cerf-volant et la flèche. (Le jeu P3 fait de losanges fins et épais est une famille distincte, duale ; elle ne s'obtient pas en coupant en deux le même losange.) Sans restriction supplémentaire, tu pourrais paver le plan périodiquement avec eux. L'astuce : les arcs colorés que Conway a dessinés sur chaque bord, un rouge, un vert, traversant cerf-volant et flèche à des endroits précis. La règle est alors simple : là où deux tuiles se rencontrent, leurs arcs doivent se prolonger. Avec cette seule contrainte, tout pavage légal devient apériodique. Les arcs grandissent en courbes qui ne se referment jamais et parcourent tout le plan.",
     },
     {
       pretitle: "Section 04 · Inflation et déflation",
@@ -520,12 +520,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Le nombre d'or partout",
       title: "Chaque rapport de mesures contient φ",
-      body: "Dès que tu commences à regarder, φ = (1+√5)/2 est partout dans le pavage. Le nombre de cerfs-volants divisé par celui des flèches dans tout grand morceau converge vers φ. Les rapports de côtés dans les triangles de Robinson sous-jacents valent 1 : φ. La règle d'inflation multiplie chaque longueur exactement par φ. Le cerf-volant couvre exactement φ fois l'aire de la flèche, et chaque tuile est bâtie sur seulement deux longueurs d'arête dont le rapport vaut φ. La mise à l'échelle par φ explique aussi qu'on puisse prouver l'apériodicité sans la moindre géométrie : un pavage périodique forcerait cerfs-volants/flèches à être rationnel, et φ est le nombre le plus irrationnel qui existe — son développement en fraction continue est [1; 1, 1, 1, …], la convergence la plus lente de toute la mathématique.",
+      body: "Dès que tu commences à regarder, φ = (1+√5)/2 est partout dans le pavage. Le nombre de cerfs-volants divisé par celui des flèches dans tout grand morceau converge vers φ. Les rapports de côtés dans les triangles de Robinson sous-jacents valent 1 : φ. La règle d'inflation multiplie chaque longueur exactement par φ. Le cerf-volant couvre exactement φ fois l'aire de la flèche, et chaque tuile est bâtie sur seulement deux longueurs d'arête dont le rapport vaut φ. La mise à l'échelle par φ explique aussi qu'on puisse prouver l'apériodicité sans la moindre géométrie : un pavage périodique forcerait cerfs-volants/flèches à être rationnel, et φ est le nombre le plus irrationnel qui existe ; son développement en fraction continue est [1; 1, 1, 1, …], la convergence la plus lente de toute la mathématique.",
     },
     {
-      pretitle: "Section 06 · Quasi-cristaux — l'image est devenue matière",
+      pretitle: "Section 06 · Quasi-cristaux : l'image est devenue matière",
       title: "Shechtman, 1982 · Nobel, 2011",
-      body: "Le 8 avril 1982, Dan Shechtman au NIST a tiré des électrons à travers un alliage aluminium-manganèse refroidi brutalement et a enregistré une figure de diffraction avec symétrie nette d'ordre 10 (donc d'ordre 5). D'après tout manuel, elle n'aurait pas dû exister. Il a passé deux ans à convaincre ses collègues qu'il ne s'était pas trompé ; Linus Pauling a passé la décennie suivante à répéter publiquement qu'« il n'y a pas de quasi-cristaux, seulement des quasi-scientifiques ». Shechtman a publié en 1984. Le pavage de Penrose était la mathématique déjà écrite qui prouvait que la figure de diffraction était cohérente — ordre à grande distance sans périodicité, symétrie d'ordre cinq autorisée par l'apériodicité. Aujourd'hui les quasi-cristaux sont une branche entière de la science des matériaux, présents dans des revêtements anti-adhésifs et même trouvés dans une météorite russe. Shechtman a reçu le Nobel de Chimie en 2011. Un dessin sur papier a précédé un morceau de matière de huit ans.",
+      body: "Le 8 avril 1982, Dan Shechtman au NIST a tiré des électrons à travers un alliage aluminium-manganèse refroidi brutalement et a enregistré une figure de diffraction avec symétrie nette d'ordre 10 (donc d'ordre 5). D'après tout manuel, elle n'aurait pas dû exister. Il a passé deux ans à convaincre ses collègues qu'il ne s'était pas trompé ; Linus Pauling a passé la décennie suivante à répéter publiquement qu'« il n'y a pas de quasi-cristaux, seulement des quasi-scientifiques ». Shechtman a publié en 1984. Le pavage de Penrose était la mathématique déjà écrite qui prouvait que la figure de diffraction était cohérente : ordre à grande distance sans périodicité, symétrie d'ordre cinq autorisée par l'apériodicité. Aujourd'hui les quasi-cristaux sont une branche entière de la science des matériaux, présents dans des revêtements anti-adhésifs et même trouvés dans une météorite russe. Shechtman a reçu le Nobel de Chimie en 2011. Un dessin sur papier a précédé un morceau de matière de huit ans.",
     },
   ],
   tiling: {
@@ -543,10 +543,10 @@ const fr: RichStory = {
     caption: "Interactif · le nombre d'or",
     levelsLabel: "Niveaux de Fibonacci",
     ratioLabel: "Rapport Fibonacci consécutif",
-    hint: "Chaque nouveau carré a pour côté le Fibonacci suivant et tourne autour du précédent par pas de 90°. Les quarts de cercle se relient en spirale d'or — la même courbe cachée dans chaque morceau de Penrose.",
+    hint: "Chaque nouveau carré a pour côté le Fibonacci suivant et tourne autour du précédent par pas de 90°. Les quarts de cercle se relient en spirale d'or, la même courbe cachée dans chaque morceau de Penrose.",
     pretitle: "Interactif · pourquoi φ apparaît partout",
     title: "1, 1, 2, 3, 5, 8, 13 … et la spirale qui converge vers φ",
-    body: "Pose un carré 1×1. À côté, un autre 1×1. Puis un 2×2 le long de leur arête commune. Puis 3×3, 5×5, 8×8 — chaque nouveau côté est la somme des deux précédents. Dans chaque carré, trace un quart de cercle. Les arcs se rejoignent en une spirale logarithmique de facteur de croissance φ. Pousse le niveau et regarde le rapport de Fibonacci consécutif claquer dans φ à vitesse exponentielle.",
+    body: "Pose un carré 1×1. À côté, un autre 1×1. Puis un 2×2 le long de leur arête commune. Puis 3×3, 5×5, 8×8 : chaque nouveau côté est la somme des deux précédents. Dans chaque carré, trace un quart de cercle. Les arcs se rejoignent en une spirale logarithmique de facteur de croissance φ. Pousse le niveau et regarde le rapport de Fibonacci consécutif claquer dans φ à vitesse exponentielle.",
   },
   crystal: {
     title: "Restriction cristallographique",
@@ -615,17 +615,17 @@ const it: RichStory = {
       {
         label: "01",
         title: "L'idea centrale",
-        body: "Prendi due forme semplici — un aquilone e un dardo, tagliati dallo stesso rombo. Posale fianco a fianco rispettando alcune regole di incastro sui bordi. Coprono tutto il piano infinito senza buchi, come piastrelle normali. Ma il colpo di scena: nessuna porzione finita del motivo compare mai due volte nella stessa orientazione. Da nessuna parte. Mai. Roger Penrose lo trovò nel 1974, e ha rotto una domanda vecchia di decenni.",
+        body: "Prendi due forme semplici: un aquilone e un dardo, tagliati dallo stesso rombo. Posale fianco a fianco rispettando alcune regole di incastro sui bordi. Coprono tutto il piano infinito senza buchi, come piastrelle normali. Ma il colpo di scena: nessuna porzione finita del motivo compare mai due volte nella stessa orientazione. Da nessuna parte. Mai. Roger Penrose lo trovò nel 1974, e ha rotto una domanda vecchia di decenni.",
       },
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "Conta le piastrelle in una regione qualsiasi grande e trovi lo stesso numero ad aspettarti: aquiloni diviso dardi converge sempre a φ = (1+√5)/2 ≈ 1,618. Esiste anche una regola detta inflazione: ogni tassellatura ha un'unica tassellatura genitrice a scala maggiore e un'unica figlia a scala minore — ogni passo scala le lunghezze esattamente di φ. La sezione aurea non è decorazione; è la struttura.",
+        body: "Conta le piastrelle in una regione qualsiasi grande e trovi lo stesso numero ad aspettarti: aquiloni diviso dardi converge sempre a φ = (1+√5)/2 ≈ 1,618. Esiste anche una regola detta inflazione: ogni tassellatura ha un'unica tassellatura genitrice a scala maggiore e un'unica figlia a scala minore; ogni passo scala le lunghezze esattamente di φ. La sezione aurea non è decorazione; è la struttura.",
       },
       {
         label: "03",
         title: "Perché conta",
-        body: "Per 20 anni i matematici si chiesero: un insieme finito di piastrelle può forzare solo tassellature aperiodiche? Berger rispose di sì con 20 426 piastrelle nel 1966; Penrose scese a due nel 1974. Poi nel 1982 Dan Shechtman sparò elettroni su una lega alluminio-manganese e vide diffrazioni a cinque pieghe — impossibili secondo la cristallografia classica. Le tassellature di Penrose erano la matematica di carta che dimostrava che la natura aveva il permesso. Shechtman prese il Nobel nel 2011.",
+        body: "Per 20 anni i matematici si chiesero: un insieme finito di piastrelle può forzare solo tassellature aperiodiche? Berger rispose di sì con 20 426 piastrelle nel 1966; Penrose scese a due nel 1974. Poi nel 1982 Dan Shechtman sparò elettroni su una lega alluminio-manganese e vide diffrazioni a cinque pieghe, impossibili secondo la cristallografia classica. Le tassellature di Penrose erano la matematica di carta che dimostrava che la natura aveva il permesso. Shechtman prese il Nobel nel 2011.",
       },
     ],
     tryIt:
@@ -635,17 +635,17 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · La restrizione cristallografica",
       title: "La simmetria a cinque pieghe è vietata nei cristalli classici",
-      body: "Un cristallo classico è una tassellatura periodica — un motivo di carta da parati. Un teorema dell'Ottocento dice che ogni carta da parati che si ripete in due direzioni indipendenti può avere solo simmetria di rotazione di ordine 2, 3, 4 o 6. L'ordine cinque è impossibile: i pentagoni non possono tassellare il piano senza buchi. Quindi se mai si fosse visto un materiale con picchi di diffrazione netti in simmetria a cinque pieghe, il regolamento avrebbe detto che si stava allucinando. La tassellatura di Penrose aggira il teorema rifiutandosi di essere periodica fin dall'inizio — può avere ordine cinque locale a ogni scala proprio perché non si chiude mai in una cella ripetuta.",
+      body: "Un cristallo classico è una tassellatura periodica, un motivo di carta da parati. Un teorema dell'Ottocento dice che ogni carta da parati che si ripete in due direzioni indipendenti può avere solo simmetria di rotazione di ordine 2, 3, 4 o 6. L'ordine cinque è impossibile: i pentagoni non possono tassellare il piano senza buchi. Quindi se mai si fosse visto un materiale con picchi di diffrazione netti in simmetria a cinque pieghe, il regolamento avrebbe detto che si stava allucinando. La tassellatura di Penrose aggira il teorema rifiutandosi di essere periodica fin dall'inizio: può avere ordine cinque locale a ogni scala proprio perché non si chiude mai in una cella ripetuta.",
     },
     {
       pretitle: "Sezione 02 · Da 20 426 piastrelle a una",
       title: "Wang → Berger → Penrose → einstein",
-      body: "Nel 1961 Hao Wang chiese: esiste un algoritmo che decida se un dato insieme di piastrelle tassella il piano? Notò che la sua domanda si riduce all'esistenza di un insieme aperiodico. Il suo studente Robert Berger rispose nel 1966: sì, e ne diede uno — un Frankenstein di 20 426 piastrelle di Wang. Altri matematici ridussero il numero a fine anni '60. Nel 1974 Penrose ne trovò solo due. Per 49 anni quello fu il record. Nel 2023 David Smith, Joseph Myers, Craig Kaplan e Chaim Goodman-Strauss annunciarono l'einstein — una sola piastrella (un poligono, niente regole di incastro!) che tassella il piano solo in modo aperiodico. Pochi mesi dopo arrivò lo spectre, che non ha bisogno nemmeno di riflessioni. La caccia durata 60 anni è finita con una sola forma.",
+      body: "Nel 1961 Hao Wang chiese: esiste un algoritmo che decida se un dato insieme di piastrelle tassella il piano? Notò che la sua domanda si riduce all'esistenza di un insieme aperiodico. Il suo studente Robert Berger rispose nel 1966: sì, e ne diede uno, un Frankenstein di 20 426 piastrelle di Wang. Altri matematici ridussero il numero a fine anni '60. Nel 1974 Penrose ne trovò solo due. Per 49 anni quello fu il record. Nel 2023 David Smith, Joseph Myers, Craig Kaplan e Chaim Goodman-Strauss annunciarono l'einstein: una sola piastrella (un poligono, niente regole di incastro!) che tassella il piano solo in modo aperiodico. Pochi mesi dopo arrivò lo spectre, che non ha bisogno nemmeno di riflessioni. La caccia durata 60 anni è finita con una sola forma.",
     },
     {
       pretitle: "Sezione 03 · Aquilone e dardo con regole di incastro",
       title: "Le regole di incastro forzano l'aperiodicità",
-      body: "A partire da due triangoli aurei — uno acuto 72-72-36 e uno ottuso 108-36-36 — Penrose costruisce l'aquilone e il dardo. (Il set P3 di rombi sottili e spessi è una famiglia separata e duale — non ottenuta tagliando lo stesso rombo a metà.) Senza ulteriori vincoli potresti tassellare il piano periodicamente. Il trucco sono gli archi colorati che Conway disegnò su ogni bordo: uno rosso, uno verde, ciascuno che attraversa aquilone e dardo in posizioni precise. La regola è poi semplice: dove due piastrelle si incontrano, i loro archi devono proseguire. Con questo unico vincolo ogni tassellatura legale diventa aperiodica. Gli archi crescono in curve mai chiuse che attraversano tutto il piano.",
+      body: "A partire da due triangoli aurei (uno acuto 72-72-36 e uno ottuso 108-36-36) Penrose costruisce l'aquilone e il dardo. (Il set P3 di rombi sottili e spessi è una famiglia separata e duale, non ottenuta tagliando lo stesso rombo a metà.) Senza ulteriori vincoli potresti tassellare il piano periodicamente. Il trucco sono gli archi colorati che Conway disegnò su ogni bordo: uno rosso, uno verde, ciascuno che attraversa aquilone e dardo in posizioni precise. La regola è poi semplice: dove due piastrelle si incontrano, i loro archi devono proseguire. Con questo unico vincolo ogni tassellatura legale diventa aperiodica. Gli archi crescono in curve mai chiuse che attraversano tutto il piano.",
     },
     {
       pretitle: "Sezione 04 · Inflazione e deflazione",
@@ -655,12 +655,12 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · La sezione aurea ovunque",
       title: "Ogni rapporto di misura contiene φ",
-      body: "Appena inizi a guardare, φ = (1+√5)/2 è ovunque nella tassellatura. Il numero di aquiloni diviso quello dei dardi in qualunque grande regione converge a φ. I rapporti tra i lati nei triangoli di Robinson sottostanti sono 1 : φ. La regola di inflazione scala ogni lunghezza esattamente di φ. L'aquilone copre esattamente φ volte l'area del dardo, e ogni piastrella è costruita con solo due lunghezze di lato il cui rapporto è φ. La scala per φ è anche il motivo per cui si può dimostrare l'aperiodicità senza alcuna geometria: una tassellatura periodica costringerebbe aquiloni/dardi a essere razionale, e φ è il numero più irrazionale che esista — il suo sviluppo in frazione continua è [1; 1, 1, 1, …], la convergenza più lenta di tutta la matematica.",
+      body: "Appena inizi a guardare, φ = (1+√5)/2 è ovunque nella tassellatura. Il numero di aquiloni diviso quello dei dardi in qualunque grande regione converge a φ. I rapporti tra i lati nei triangoli di Robinson sottostanti sono 1 : φ. La regola di inflazione scala ogni lunghezza esattamente di φ. L'aquilone copre esattamente φ volte l'area del dardo, e ogni piastrella è costruita con solo due lunghezze di lato il cui rapporto è φ. La scala per φ è anche il motivo per cui si può dimostrare l'aperiodicità senza alcuna geometria: una tassellatura periodica costringerebbe aquiloni/dardi a essere razionale, e φ è il numero più irrazionale che esista; il suo sviluppo in frazione continua è [1; 1, 1, 1, …], la convergenza più lenta di tutta la matematica.",
     },
     {
-      pretitle: "Sezione 06 · Quasicristalli — l'immagine è diventata materia",
+      pretitle: "Sezione 06 · Quasicristalli: l'immagine è diventata materia",
       title: "Shechtman, 1982 · Nobel, 2011",
-      body: "L'8 aprile 1982 Dan Shechtman al NIST sparò elettroni attraverso una lega alluminio-manganese raffreddata in fretta e registrò una diffrazione con netta simmetria a 10 (quindi 5) pieghe. Per ogni libro di testo non sarebbe dovuta esistere. Spese due anni a convincere i colleghi di non aver sbagliato; Linus Pauling spese il decennio successivo a ripetere pubblicamente che «non esistono i quasicristalli, solo i quasi-scienziati». Shechtman pubblicò nel 1984. La tassellatura di Penrose era la matematica già scritta che dimostrava che la diffrazione era coerente — ordine a lunga distanza senza periodicità, simmetria a cinque pieghe permessa dall'aperiodicità. Oggi i quasicristalli sono un intero ramo della scienza dei materiali, presenti in rivestimenti antiaderenti e perfino trovati in un meteorite russo. Shechtman ricevette il Nobel per la Chimica nel 2011. Un disegno su carta precedette un pezzo di materia di otto anni.",
+      body: "L'8 aprile 1982 Dan Shechtman al NIST sparò elettroni attraverso una lega alluminio-manganese raffreddata in fretta e registrò una diffrazione con netta simmetria a 10 (quindi 5) pieghe. Per ogni libro di testo non sarebbe dovuta esistere. Spese due anni a convincere i colleghi di non aver sbagliato; Linus Pauling spese il decennio successivo a ripetere pubblicamente che «non esistono i quasicristalli, solo i quasi-scienziati». Shechtman pubblicò nel 1984. La tassellatura di Penrose era la matematica già scritta che dimostrava che la diffrazione era coerente: ordine a lunga distanza senza periodicità, simmetria a cinque pieghe permessa dall'aperiodicità. Oggi i quasicristalli sono un intero ramo della scienza dei materiali, presenti in rivestimenti antiaderenti e perfino trovati in un meteorite russo. Shechtman ricevette il Nobel per la Chimica nel 2011. Un disegno su carta precedette un pezzo di materia di otto anni.",
     },
   ],
   tiling: {
@@ -678,10 +678,10 @@ const it: RichStory = {
     caption: "Interattivo · la sezione aurea",
     levelsLabel: "Livelli di Fibonacci",
     ratioLabel: "Rapporto Fibonacci consecutivo",
-    hint: "Ogni nuovo quadrato ha il lato del Fibonacci successivo e ruota attorno al precedente di 90°. I quarti di cerchio si collegano nella spirale aurea — la stessa curva nascosta in ogni frammento di Penrose.",
+    hint: "Ogni nuovo quadrato ha il lato del Fibonacci successivo e ruota attorno al precedente di 90°. I quarti di cerchio si collegano nella spirale aurea, la stessa curva nascosta in ogni frammento di Penrose.",
     pretitle: "Interattivo · perché φ spunta ovunque",
     title: "1, 1, 2, 3, 5, 8, 13 … e la spirale che converge a φ",
-    body: "Metti un quadrato 1×1. Accanto, un altro 1×1. Poi un 2×2 lungo il loro lato comune. Poi 3×3, 5×5, 8×8 — ogni nuovo lato è la somma dei due precedenti. In ogni quadrato traccia un quarto di cerchio. Gli archi si collegano in una spirale logaritmica con fattore di crescita φ. Sali con il livello e guarda il rapporto Fibonacci consecutivo schiantarsi in φ esponenzialmente.",
+    body: "Metti un quadrato 1×1. Accanto, un altro 1×1. Poi un 2×2 lungo il loro lato comune. Poi 3×3, 5×5, 8×8: ogni nuovo lato è la somma dei due precedenti. In ogni quadrato traccia un quarto di cerchio. Gli archi si collegano in una spirale logaritmica con fattore di crescita φ. Sali con il livello e guarda il rapporto Fibonacci consecutivo schiantarsi in φ esponenzialmente.",
   },
   crystal: {
     title: "Restrizione cristallografica",
@@ -750,17 +750,17 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A ideia central",
-        body: "Pega em duas formas simples — um papagaio e um dardo, cortados do mesmo losango. Põe-nos lado a lado respeitando algumas regras de encaixe nas arestas. Cobrem todo o plano infinito sem buracos, como peças normais. Mas a viragem: nenhum pedaço finito do padrão volta a aparecer duas vezes na mesma orientação. Em parte alguma. Nunca. Roger Penrose encontrou-o em 1974, e quebrou uma pergunta de décadas.",
+        body: "Pega em duas formas simples: um papagaio e um dardo, cortados do mesmo losango. Põe-nos lado a lado respeitando algumas regras de encaixe nas arestas. Cobrem todo o plano infinito sem buracos, como peças normais. Mas a viragem: nenhum pedaço finito do padrão volta a aparecer duas vezes na mesma orientação. Em parte alguma. Nunca. Roger Penrose encontrou-o em 1974, e quebrou uma pergunta de décadas.",
       },
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: "Conta as peças em qualquer região grande e encontras o mesmo número à espera: papagaios sobre dardos converge sempre para φ = (1+√5)/2 ≈ 1,618. Existe também uma regra chamada inflação: cada tiling tem um único tiling pai a maior escala e um único filho a menor — cada passo escala os comprimentos exatamente por φ. A razão de ouro não é decoração; é a estrutura.",
+        body: "Conta as peças em qualquer região grande e encontras o mesmo número à espera: papagaios sobre dardos converge sempre para φ = (1+√5)/2 ≈ 1,618. Existe também uma regra chamada inflação: cada tiling tem um único tiling pai a maior escala e um único filho a menor; cada passo escala os comprimentos exatamente por φ. A razão de ouro não é decoração; é a estrutura.",
       },
       {
         label: "03",
         title: "Porque importa",
-        body: "Durante 20 anos os matemáticos perguntaram: pode um conjunto finito de peças forçar apenas tilings aperiódicos? Berger respondeu que sim com 20 426 peças em 1966; Penrose desceu para duas em 1974. Em 1982 Dan Shechtman disparou eletrões contra uma liga alumínio-manganês e viu padrões de difração de cinco dobras — impossíveis segundo a cristalografia clássica. Os tilings de Penrose eram a matemática de papel que mostrava que a natureza podia. Shechtman recebeu o Nobel em 2011.",
+        body: "Durante 20 anos os matemáticos perguntaram: pode um conjunto finito de peças forçar apenas tilings aperiódicos? Berger respondeu que sim com 20 426 peças em 1966; Penrose desceu para duas em 1974. Em 1982 Dan Shechtman disparou eletrões contra uma liga alumínio-manganês e viu padrões de difração de cinco dobras, impossíveis segundo a cristalografia clássica. Os tilings de Penrose eram a matemática de papel que mostrava que a natureza podia. Shechtman recebeu o Nobel em 2011.",
       },
     ],
     tryIt:
@@ -770,17 +770,17 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · A restrição cristalográfica",
       title: "A simetria de ordem cinco é proibida em cristais clássicos",
-      body: "Um cristal clássico é um tiling periódico — um motivo de papel de parede. Um teorema do século XIX diz que qualquer papel de parede que se repita em duas direções independentes só pode ter simetria de rotação de ordem 2, 3, 4 ou 6. A de ordem cinco é impossível: os pentágonos não pavimentam o plano sem buracos. Logo se algum dia se visse um material com picos de difração nítidos em ordem cinco, o regulamento diria que se estava a alucinar. O tiling de Penrose contorna o teorema recusando-se a ser periódico — pode ter ordem cinco local a toda escala precisamente porque nunca se fecha numa célula repetida.",
+      body: "Um cristal clássico é um tiling periódico, um motivo de papel de parede. Um teorema do século XIX diz que qualquer papel de parede que se repita em duas direções independentes só pode ter simetria de rotação de ordem 2, 3, 4 ou 6. A de ordem cinco é impossível: os pentágonos não pavimentam o plano sem buracos. Logo se algum dia se visse um material com picos de difração nítidos em ordem cinco, o regulamento diria que se estava a alucinar. O tiling de Penrose contorna o teorema recusando-se a ser periódico: pode ter ordem cinco local a toda escala precisamente porque nunca se fecha numa célula repetida.",
     },
     {
       pretitle: "Secção 02 · De 20 426 peças a uma",
       title: "Wang → Berger → Penrose → einstein",
-      body: "Em 1961 Hao Wang perguntou: existe um algoritmo que decida se um dado conjunto de peças pavimenta o plano? Reparou que a pergunta se reduz à existência de algum conjunto aperiódico. O seu aluno Robert Berger respondeu em 1966: sim, e deu um — um Frankenstein de 20 426 peças de Wang. Outros foram baixando o número até fim dos anos 60. Em 1974 Penrose encontrou apenas duas. Durante 49 anos esse foi o recorde. Em 2023 David Smith, Joseph Myers, Craig Kaplan e Chaim Goodman-Strauss anunciaram o einstein — uma única peça (um polígono, sem regras de encaixe!) que pavimenta o plano só de forma aperiódica. Meses depois veio o spectre, que nem precisa de reflexões. A caça de 60 anos terminou com uma forma.",
+      body: "Em 1961 Hao Wang perguntou: existe um algoritmo que decida se um dado conjunto de peças pavimenta o plano? Reparou que a pergunta se reduz à existência de algum conjunto aperiódico. O seu aluno Robert Berger respondeu em 1966: sim, e deu um, um Frankenstein de 20 426 peças de Wang. Outros foram baixando o número até fim dos anos 60. Em 1974 Penrose encontrou apenas duas. Durante 49 anos esse foi o recorde. Em 2023 David Smith, Joseph Myers, Craig Kaplan e Chaim Goodman-Strauss anunciaram o einstein: uma única peça (um polígono, sem regras de encaixe!) que pavimenta o plano só de forma aperiódica. Meses depois veio o spectre, que nem precisa de reflexões. A caça de 60 anos terminou com uma forma.",
     },
     {
       pretitle: "Secção 03 · Papagaio e dardo com regras de encaixe",
       title: "As regras de encaixe forçam a aperiodicidade",
-      body: "A partir de dois triângulos áureos — um agudo de 72-72-36 e um obtuso de 108-36-36 — Penrose monta o papagaio e o dardo. (O conjunto P3 de losangos finos e espessos é uma família distinta, dual — não se obtém partindo o mesmo losango.) Sem mais restrições poderias pavimentar o plano periodicamente. O truque são os arcos coloridos que Conway desenhou em cada aresta: um vermelho, outro verde, atravessando papagaio e dardo em pontos certos. A regra é então simples: onde duas peças se encontram, os seus arcos têm de continuar. Com este único constrangimento todo tiling legal se torna aperiódico. Os arcos crescem em curvas que nunca fecham e percorrem todo o plano.",
+      body: "A partir de dois triângulos áureos (um agudo de 72-72-36 e um obtuso de 108-36-36) Penrose monta o papagaio e o dardo. (O conjunto P3 de losangos finos e espessos é uma família distinta, dual, não se obtém partindo o mesmo losango.) Sem mais restrições poderias pavimentar o plano periodicamente. O truque são os arcos coloridos que Conway desenhou em cada aresta: um vermelho, outro verde, atravessando papagaio e dardo em pontos certos. A regra é então simples: onde duas peças se encontram, os seus arcos têm de continuar. Com este único constrangimento todo tiling legal se torna aperiódico. Os arcos crescem em curvas que nunca fecham e percorrem todo o plano.",
     },
     {
       pretitle: "Secção 04 · Inflação e deflação",
@@ -790,12 +790,12 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · A razão de ouro em todo o lado",
       title: "Cada razão de medidas contém φ",
-      body: "Assim que começas a olhar, φ = (1+√5)/2 está em todo o lado no tiling. O número de papagaios dividido pelo de dardos em qualquer região grande converge para φ. As razões de lados nos triângulos de Robinson subjacentes são 1 : φ. A regra de inflação escala cada comprimento exatamente por φ. O papagaio cobre exatamente φ vezes a área do dardo, e cada peça é construída com apenas dois comprimentos de aresta cuja razão é φ. A escala por φ é também o motivo de se poder provar a aperiodicidade sem geometria nenhuma: um tiling periódico forçaria papagaios/dardos a serem racional, e φ é o número mais irracional que existe — o seu desenvolvimento em fração contínua é [1; 1, 1, 1, …], a convergência mais lenta de toda a matemática.",
+      body: "Assim que começas a olhar, φ = (1+√5)/2 está em todo o lado no tiling. O número de papagaios dividido pelo de dardos em qualquer região grande converge para φ. As razões de lados nos triângulos de Robinson subjacentes são 1 : φ. A regra de inflação escala cada comprimento exatamente por φ. O papagaio cobre exatamente φ vezes a área do dardo, e cada peça é construída com apenas dois comprimentos de aresta cuja razão é φ. A escala por φ é também o motivo de se poder provar a aperiodicidade sem geometria nenhuma: um tiling periódico forçaria papagaios/dardos a serem racional, e φ é o número mais irracional que existe; o seu desenvolvimento em fração contínua é [1; 1, 1, 1, …], a convergência mais lenta de toda a matemática.",
     },
     {
-      pretitle: "Secção 06 · Quasicristais — a imagem virou matéria",
+      pretitle: "Secção 06 · Quasicristais: a imagem virou matéria",
       title: "Shechtman, 1982 · Nobel, 2011",
-      body: "A 8 de abril de 1982 Dan Shechtman no NIST disparou eletrões através de uma liga alumínio-manganês arrefecida bruscamente e registou uma difração com simetria nítida de 10 (logo 5) dobras. Segundo todo manual não deveria existir. Passou dois anos a convencer colegas de que não se enganara; Linus Pauling passou a década seguinte a repetir publicamente que «não há quasicristais, apenas quasi-cientistas». Shechtman publicou em 1984. O tiling de Penrose era a matemática já escrita que mostrava que a difração era consistente — ordem a longa distância sem periodicidade, simetria de cinco dobras permitida pela aperiodicidade. Hoje os quasicristais são um ramo inteiro da ciência dos materiais, presentes em revestimentos antiaderentes e até encontrados num meteorito russo. Shechtman recebeu o Nobel da Química em 2011. Um desenho em papel antecedeu um pedaço de matéria em oito anos.",
+      body: "A 8 de abril de 1982 Dan Shechtman no NIST disparou eletrões através de uma liga alumínio-manganês arrefecida bruscamente e registou uma difração com simetria nítida de 10 (logo 5) dobras. Segundo todo manual não deveria existir. Passou dois anos a convencer colegas de que não se enganara; Linus Pauling passou a década seguinte a repetir publicamente que «não há quasicristais, apenas quasi-cientistas». Shechtman publicou em 1984. O tiling de Penrose era a matemática já escrita que mostrava que a difração era consistente: ordem a longa distância sem periodicidade, simetria de cinco dobras permitida pela aperiodicidade. Hoje os quasicristais são um ramo inteiro da ciência dos materiais, presentes em revestimentos antiaderentes e até encontrados num meteorito russo. Shechtman recebeu o Nobel da Química em 2011. Um desenho em papel antecedeu um pedaço de matéria em oito anos.",
     },
   ],
   tiling: {
@@ -813,10 +813,10 @@ const pt: RichStory = {
     caption: "Interativo · a razão de ouro",
     levelsLabel: "Níveis de Fibonacci",
     ratioLabel: "Razão Fibonacci consecutiva",
-    hint: "Cada novo quadrado tem o lado do Fibonacci seguinte e roda em torno do anterior em passos de 90°. Os quartos de círculo ligam-se na espiral de ouro — a mesma curva escondida em cada fragmento de Penrose.",
+    hint: "Cada novo quadrado tem o lado do Fibonacci seguinte e roda em torno do anterior em passos de 90°. Os quartos de círculo ligam-se na espiral de ouro, a mesma curva escondida em cada fragmento de Penrose.",
     pretitle: "Interativo · porque é que φ aparece em todo o lado",
     title: "1, 1, 2, 3, 5, 8, 13 … e a espiral que converge para φ",
-    body: "Coloca um quadrado 1×1. Ao lado, outro 1×1. Depois um 2×2 ao longo do lado comum. Depois 3×3, 5×5, 8×8 — cada novo lado é a soma dos dois anteriores. Em cada quadrado desenha um quarto de círculo. Os arcos ligam-se numa espiral logarítmica com fator de crescimento φ. Sobe o nível e vê a razão Fibonacci consecutiva colar-se a φ exponencialmente rápido.",
+    body: "Coloca um quadrado 1×1. Ao lado, outro 1×1. Depois um 2×2 ao longo do lado comum. Depois 3×3, 5×5, 8×8: cada novo lado é a soma dos dois anteriores. Em cada quadrado desenha um quarto de círculo. Os arcos ligam-se numa espiral logarítmica com fator de crescimento φ. Sobe o nível e vê a razão Fibonacci consecutiva colar-se a φ exponencialmente rápido.",
   },
   crystal: {
     title: "Restrição cristalográfica",
@@ -879,17 +879,17 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "Ta två enkla former — en drake och en pil, klippta ur samma romb. Lägg dem sida vid sida med några matchningsregler längs kanterna. De täcker hela det oändliga planet utan luckor, som vanliga plattor. Men knorren: ingen ändlig del av mönstret återkommer någonsin två gånger i samma orientering. Ingenstans. Aldrig. Roger Penrose hittade detta 1974 och knäckte en decennier gammal fråga.",
+        body: "Ta två enkla former: en drake och en pil, klippta ur samma romb. Lägg dem sida vid sida med några matchningsregler längs kanterna. De täcker hela det oändliga planet utan luckor, som vanliga plattor. Men knorren: ingen ändlig del av mönstret återkommer någonsin två gånger i samma orientering. Ingenstans. Aldrig. Roger Penrose hittade detta 1974 och knäckte en decennier gammal fråga.",
       },
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "Räkna plattorna i vilken stor lapp som helst och du hittar samma tal som väntar: drakar genom pilar konvergerar alltid mot φ = (1+√5)/2 ≈ 1,618. Det finns också en regel som heter inflation: varje parkettering har en unik förälder-parkettering i större skala och ett unikt barn i mindre — varje steg skalar längder exakt med φ. Gyllene snittet är inte dekoration; det är strukturen.",
+        body: "Räkna plattorna i vilken stor lapp som helst och du hittar samma tal som väntar: drakar genom pilar konvergerar alltid mot φ = (1+√5)/2 ≈ 1,618. Det finns också en regel som heter inflation: varje parkettering har en unik förälder-parkettering i större skala och ett unikt barn i mindre; varje steg skalar längder exakt med φ. Gyllene snittet är inte dekoration; det är strukturen.",
       },
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "I 20 år undrade matematiker: kan en ändlig plattuppsättning tvinga endast aperiodiska parketteringar? Berger svarade ja med 20 426 plattor 1966; Penrose drog ner det till två 1974. Sedan sköt Dan Shechtman 1982 elektroner mot en aluminium-mangan-legering och såg femtaliga diffraktionsmönster — omöjliga enligt klassisk kristallografi. Penroses parketteringar var den färdiga pappersmatematiken som visade att naturen fick göra detta. Shechtman fick Nobelpriset 2011.",
+        body: "I 20 år undrade matematiker: kan en ändlig plattuppsättning tvinga endast aperiodiska parketteringar? Berger svarade ja med 20 426 plattor 1966; Penrose drog ner det till två 1974. Sedan sköt Dan Shechtman 1982 elektroner mot en aluminium-mangan-legering och såg femtaliga diffraktionsmönster, omöjliga enligt klassisk kristallografi. Penroses parketteringar var den färdiga pappersmatematiken som visade att naturen fick göra detta. Shechtman fick Nobelpriset 2011.",
       },
     ],
     tryIt:
@@ -899,17 +899,17 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Den kristallografiska restriktionen",
       title: "Femtalig symmetri är förbjuden i klassiska kristaller",
-      body: "En klassisk kristall är en periodisk parkettering — ett tapetmönster. En 1800-talssats säger att vilken tapet som upprepas i två oberoende riktningar bara kan ha rotationssymmetri av ordning 2, 3, 4 eller 6. Femtalig är omöjlig: femhörningar kan inte tessellera planet utan luckor. Så om man någonsin sett ett material med skarpa diffraktionstoppar i femtalig symmetri skulle regelboken sagt att man hallucinerade. Penrose-parketteringen kringgår satsen genom att vägra vara periodisk från början — den kan ha lokal femtalig ordning i varje skala just för att den aldrig sluts till en upprepad cell.",
+      body: "En klassisk kristall är en periodisk parkettering, ett tapetmönster. En 1800-talssats säger att vilken tapet som upprepas i två oberoende riktningar bara kan ha rotationssymmetri av ordning 2, 3, 4 eller 6. Femtalig är omöjlig: femhörningar kan inte tessellera planet utan luckor. Så om man någonsin sett ett material med skarpa diffraktionstoppar i femtalig symmetri skulle regelboken sagt att man hallucinerade. Penrose-parketteringen kringgår satsen genom att vägra vara periodisk från början: den kan ha lokal femtalig ordning i varje skala just för att den aldrig sluts till en upprepad cell.",
     },
     {
       pretitle: "Avsnitt 02 · Från 20 426 plattor till en",
       title: "Wang → Berger → Penrose → einstein",
-      body: "År 1961 frågade Hao Wang: finns det en algoritm som avgör om en given plattuppsättning tessellerar planet? Han märkte att frågan reduceras till om någon aperiodisk uppsättning finns. Hans student Robert Berger svarade 1966: ja, och gav en — en Frankenstein-uppsättning av 20 426 Wang-plattor. Andra matematiker drog ner antalet under sena 60-talet. 1974 hittade Penrose bara två. I 49 år var det rekordet. 2023 tillkännagav David Smith, Joseph Myers, Craig Kaplan och Chaim Goodman-Strauss einsteinet — en enda platta (en polygon, inga matchningsregler!) som tessellerar planet endast aperiodiskt. Månader senare följde spectre, som inte ens behöver reflektioner. 60-årsjakten slutade med en form.",
+      body: "År 1961 frågade Hao Wang: finns det en algoritm som avgör om en given plattuppsättning tessellerar planet? Han märkte att frågan reduceras till om någon aperiodisk uppsättning finns. Hans student Robert Berger svarade 1966: ja, och gav en, en Frankenstein-uppsättning av 20 426 Wang-plattor. Andra matematiker drog ner antalet under sena 60-talet. 1974 hittade Penrose bara två. I 49 år var det rekordet. 2023 tillkännagav David Smith, Joseph Myers, Craig Kaplan och Chaim Goodman-Strauss einsteinet: en enda platta (en polygon, inga matchningsregler!) som tessellerar planet endast aperiodiskt. Månader senare följde spectre, som inte ens behöver reflektioner. 60-årsjakten slutade med en form.",
     },
     {
       pretitle: "Avsnitt 03 · Drake och pil med matchningsregler",
       title: "Matchningsreglerna tvingar fram aperiodicitet",
-      body: "Av två gyllene trianglar — en spetsig 72-72-36 och en trubbig 108-36-36 — sätter Penrose ihop draken och pilen. (P3-mängden av tunna och tjocka romber är en separat, dual familj — inte framställd genom att halvera samma romb.) Utan ytterligare restriktioner skulle du kunna tessellera planet periodiskt. Tricket är de färgade bågarna som Conway ritade på varje kant: en röd, en grön, båda korsande drake och pil på bestämda ställen. Regeln är då enkel: där två plattor möts måste deras bågar fortsätta. Med detta enda villkor blir varje laglig parkettering aperiodisk. Bågarna växer ut i aldrig-slutande kurvor som vandrar genom hela planet.",
+      body: "Av två gyllene trianglar (en spetsig 72-72-36 och en trubbig 108-36-36) sätter Penrose ihop draken och pilen. (P3-mängden av tunna och tjocka romber är en separat, dual familj, inte framställd genom att halvera samma romb.) Utan ytterligare restriktioner skulle du kunna tessellera planet periodiskt. Tricket är de färgade bågarna som Conway ritade på varje kant: en röd, en grön, båda korsande drake och pil på bestämda ställen. Regeln är då enkel: där två plattor möts måste deras bågar fortsätta. Med detta enda villkor blir varje laglig parkettering aperiodisk. Bågarna växer ut i aldrig-slutande kurvor som vandrar genom hela planet.",
     },
     {
       pretitle: "Avsnitt 04 · Inflation och deflation",
@@ -919,12 +919,12 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Gyllene snittet överallt",
       title: "Varje mätningsförhållande innehåller φ",
-      body: "Så snart du börjar titta är φ = (1+√5)/2 överallt i parketteringen. Antalet drakar dividerat med antalet pilar i vilken stor lapp som helst konvergerar mot φ. Sidolängdsförhållandena i de underliggande Robinson-trianglarna är 1 : φ. Inflationsregeln skalar varje längd exakt med φ. Draken täcker exakt φ gånger pilens area, och varje platta byggs av bara två kantlängder vars förhållande är φ. φ-skalningen är också skälet till att man kan bevisa aperiodicitet utan någon geometri alls: en periodisk parkettering skulle tvinga drakar/pilar att vara rationellt, och φ är det mest irrationella tal som finns — dess kedjebråksutveckling är [1; 1, 1, 1, …], den långsammaste konvergensen i hela matematiken.",
+      body: "Så snart du börjar titta är φ = (1+√5)/2 överallt i parketteringen. Antalet drakar dividerat med antalet pilar i vilken stor lapp som helst konvergerar mot φ. Sidolängdsförhållandena i de underliggande Robinson-trianglarna är 1 : φ. Inflationsregeln skalar varje längd exakt med φ. Draken täcker exakt φ gånger pilens area, och varje platta byggs av bara två kantlängder vars förhållande är φ. φ-skalningen är också skälet till att man kan bevisa aperiodicitet utan någon geometri alls: en periodisk parkettering skulle tvinga drakar/pilar att vara rationellt, och φ är det mest irrationella tal som finns; dess kedjebråksutveckling är [1; 1, 1, 1, …], den långsammaste konvergensen i hela matematiken.",
     },
     {
-      pretitle: "Avsnitt 06 · Kvasikristaller — bilden blev materia",
+      pretitle: "Avsnitt 06 · Kvasikristaller: bilden blev materia",
       title: "Shechtman, 1982 · Nobel, 2011",
-      body: "Den 8 april 1982 sköt Dan Shechtman vid NIST elektroner genom en snabbkyld aluminium-mangan-legering och spelade in ett diffraktionsmönster med skarp 10-talig (alltså 5-talig) symmetri. Enligt varje lärobok borde det inte ha funnits. Han ägnade två år åt att övertyga kollegor om att han inte gjort fel; Linus Pauling ägnade nästa decennium åt att offentligt upprepa att «det finns inga kvasikristaller, bara kvasi-vetenskapsmän». Shechtman publicerade 1984. Penrose-parketteringen var den redan färdiga matematiken som visade att diffraktionsmönstret var konsistent — långdistansordning utan periodicitet, femtalig symmetri tillåten av aperiodicitet. Idag är kvasikristaller en hel gren av materialvetenskapen, finns i non-stick-beläggningar och har till och med hittats i en rysk meteorit. Shechtman fick Nobelpriset i kemi 2011. En teckning på papper föregick ett stycke materia med åtta år.",
+      body: "Den 8 april 1982 sköt Dan Shechtman vid NIST elektroner genom en snabbkyld aluminium-mangan-legering och spelade in ett diffraktionsmönster med skarp 10-talig (alltså 5-talig) symmetri. Enligt varje lärobok borde det inte ha funnits. Han ägnade två år åt att övertyga kollegor om att han inte gjort fel; Linus Pauling ägnade nästa decennium åt att offentligt upprepa att «det finns inga kvasikristaller, bara kvasi-vetenskapsmän». Shechtman publicerade 1984. Penrose-parketteringen var den redan färdiga matematiken som visade att diffraktionsmönstret var konsistent: långdistansordning utan periodicitet, femtalig symmetri tillåten av aperiodicitet. Idag är kvasikristaller en hel gren av materialvetenskapen, finns i non-stick-beläggningar och har till och med hittats i en rysk meteorit. Shechtman fick Nobelpriset i kemi 2011. En teckning på papper föregick ett stycke materia med åtta år.",
     },
   ],
   tiling: {
@@ -942,10 +942,10 @@ const sv: RichStory = {
     caption: "Interaktivt · gyllene snittet",
     levelsLabel: "Fibonacci-nivåer",
     ratioLabel: "Förhållande mellan på varandra följande Fibonacci-tal",
-    hint: "Varje ny kvadrat har sidan av nästa Fibonacci-tal och roterar runt den förra i 90°-steg. Kvartscirkelbågarna binds samman i den gyllene spiralen — samma kurva som ligger gömd i varje Penrose-lapp.",
+    hint: "Varje ny kvadrat har sidan av nästa Fibonacci-tal och roterar runt den förra i 90°-steg. Kvartscirkelbågarna binds samman i den gyllene spiralen, samma kurva som ligger gömd i varje Penrose-lapp.",
     pretitle: "Interaktivt · varför φ dyker upp överallt",
     title: "1, 1, 2, 3, 5, 8, 13 … och spiralen som konvergerar mot φ",
-    body: "Placera en kvadrat 1×1. Bredvid, en till 1×1. Sedan en 2×2 längs deras gemensamma kant. Sedan 3×3, 5×5, 8×8 — varje ny sida är summan av de två föregående. I varje kvadrat ritas en kvartscirkel. Bågarna binds samman i en logaritmisk spiral med tillväxtfaktor φ. Skjut upp nivån och se förhållandet mellan Fibonacci-tal slå an i φ exponentiellt snabbt.",
+    body: "Placera en kvadrat 1×1. Bredvid, en till 1×1. Sedan en 2×2 längs deras gemensamma kant. Sedan 3×3, 5×5, 8×8: varje ny sida är summan av de två föregående. I varje kvadrat ritas en kvartscirkel. Bågarna binds samman i en logaritmisk spiral med tillväxtfaktor φ. Skjut upp nivån och se förhållandet mellan Fibonacci-tal slå an i φ exponentiellt snabbt.",
   },
   crystal: {
     title: "Den kristallografiska restriktionen",
@@ -1008,17 +1008,17 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Ta to enkle former — en drage og en pil, klippet ut av samme rombe. Legg dem ved siden av hverandre med noen matchregler langs kantene. De dekker hele det uendelige planet uten hull, som vanlige fliser. Men vrien: ingen endelig bit av mønsteret dukker noen gang opp to ganger i samme orientering. Ingen steder. Aldri. Roger Penrose fant dette i 1974, og det knuste et flere tiår gammelt spørsmål.",
+        body: "Ta to enkle former: en drage og en pil, klippet ut av samme rombe. Legg dem ved siden av hverandre med noen matchregler langs kantene. De dekker hele det uendelige planet uten hull, som vanlige fliser. Men vrien: ingen endelig bit av mønsteret dukker noen gang opp to ganger i samme orientering. Ingen steder. Aldri. Roger Penrose fant dette i 1974, og det knuste et flere tiår gammelt spørsmål.",
       },
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Tell flisene i hvilken som helst stor flekk og du finner samme tall som venter: drager delt på piler konvergerer alltid mot φ = (1+√5)/2 ≈ 1,618. Det finnes også en regel som heter inflasjon: hver flislegging har en unik forelder-flislegging på større skala og en unik barn-flislegging på mindre — hvert trinn skalerer lengder med nøyaktig φ. Det gylne snittet er ikke pynt; det er strukturen.",
+        body: "Tell flisene i hvilken som helst stor flekk og du finner samme tall som venter: drager delt på piler konvergerer alltid mot φ = (1+√5)/2 ≈ 1,618. Det finnes også en regel som heter inflasjon: hver flislegging har en unik forelder-flislegging på større skala og en unik barn-flislegging på mindre; hvert trinn skalerer lengder med nøyaktig φ. Det gylne snittet er ikke pynt; det er strukturen.",
       },
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "I 20 år lurte matematikere på: kan en endelig flismengde tvinge bare aperiodiske flislegginger? Berger svarte ja med 20 426 fliser i 1966; Penrose dro det ned til to i 1974. Så i 1982 skjøt Dan Shechtman elektroner mot en aluminium-mangan-legering og så femfoldig diffraksjon — umulig i klassisk krystallografi. Penroses flislegginger var den ferdige papirmatematikken som viste at naturen hadde lov. Shechtman fikk Nobelprisen i 2011.",
+        body: "I 20 år lurte matematikere på: kan en endelig flismengde tvinge bare aperiodiske flislegginger? Berger svarte ja med 20 426 fliser i 1966; Penrose dro det ned til to i 1974. Så i 1982 skjøt Dan Shechtman elektroner mot en aluminium-mangan-legering og så femfoldig diffraksjon, umulig i klassisk krystallografi. Penroses flislegginger var den ferdige papirmatematikken som viste at naturen hadde lov. Shechtman fikk Nobelprisen i 2011.",
       },
     ],
     tryIt: "Under: la en flislegging vokse ved inflasjon, se så φ tre frem fra Fibonacci-spiralen.",
@@ -1027,17 +1027,17 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Den krystallografiske begrensningen",
       title: "Femfoldig symmetri er forbudt i klassiske krystaller",
-      body: "En klassisk krystall er en periodisk flislegging — et tapetmønster. Et teorem fra 1800-tallet sier at en tapet som gjentar seg i to uavhengige retninger kun kan ha rotasjonssymmetri av orden 2, 3, 4 eller 6. Femfoldig er umulig: femkanter kan ikke flise planet uten hull. Så hvis man noen gang så et materiale med skarpe diffraksjonstopper i femfoldig symmetri, ville regelboken si at man hallusinerte. Penrose-flisleggingen omgår teoremet ved å nekte å være periodisk fra begynnelsen — den kan ha lokal femfoldig orden i hver skala nettopp fordi den aldri lukker seg i en gjentatt celle.",
+      body: "En klassisk krystall er en periodisk flislegging, et tapetmønster. Et teorem fra 1800-tallet sier at en tapet som gjentar seg i to uavhengige retninger kun kan ha rotasjonssymmetri av orden 2, 3, 4 eller 6. Femfoldig er umulig: femkanter kan ikke flise planet uten hull. Så hvis man noen gang så et materiale med skarpe diffraksjonstopper i femfoldig symmetri, ville regelboken si at man hallusinerte. Penrose-flisleggingen omgår teoremet ved å nekte å være periodisk fra begynnelsen: den kan ha lokal femfoldig orden i hver skala nettopp fordi den aldri lukker seg i en gjentatt celle.",
     },
     {
       pretitle: "Avsnitt 02 · Fra 20 426 fliser til én",
       title: "Wang → Berger → Penrose → einstein",
-      body: "I 1961 spurte Hao Wang: finnes det en algoritme som avgjør om en gitt flismengde fliser planet? Han la merke til at spørsmålet reduseres til om noen aperiodisk mengde finnes. Studenten hans Robert Berger svarte i 1966: ja, og han ga en — en Frankenstein-mengde på 20 426 Wang-fliser. Andre matematikere fikk antallet ned mot slutten av 60-tallet. I 1974 fant Penrose bare to. I 49 år var det rekorden. I 2023 kunngjorde David Smith, Joseph Myers, Craig Kaplan og Chaim Goodman-Strauss einsteinet — én eneste flis (et polygon, ingen matchregler!) som fliser planet kun aperiodisk. Måneder senere fulgte spectre, som ikke en gang trenger refleksjoner. 60-årsjakten endte med én form.",
+      body: "I 1961 spurte Hao Wang: finnes det en algoritme som avgjør om en gitt flismengde fliser planet? Han la merke til at spørsmålet reduseres til om noen aperiodisk mengde finnes. Studenten hans Robert Berger svarte i 1966: ja, og han ga en, en Frankenstein-mengde på 20 426 Wang-fliser. Andre matematikere fikk antallet ned mot slutten av 60-tallet. I 1974 fant Penrose bare to. I 49 år var det rekorden. I 2023 kunngjorde David Smith, Joseph Myers, Craig Kaplan og Chaim Goodman-Strauss einsteinet: én eneste flis (et polygon, ingen matchregler!) som fliser planet kun aperiodisk. Måneder senere fulgte spectre, som ikke en gang trenger refleksjoner. 60-årsjakten endte med én form.",
     },
     {
       pretitle: "Avsnitt 03 · Drage og pil med matchregler",
       title: "Matchreglene tvinger frem aperiodisitet",
-      body: "Av to gylne trekanter — en spiss 72-72-36 og en stump 108-36-36 — setter Penrose sammen dragen og pilen. (P3-settet med tynne og tjukke romber er en egen, dual familie — ikke laget ved å halvere den samme romben.) Uten flere restriksjoner kunne du flise planet periodisk. Trikset er de fargede buene som Conway tegnet på hver kant: én rød, én grønn, hver av dem krysser drage og pil på spesifikke steder. Regelen er da enkel: der to fliser møtes, må buene fortsette. Med dette ene vilkåret blir hver lovlige flislegging aperiodisk. Buene vokser ut til aldri-lukkende kurver som vandrer over hele planet.",
+      body: "Av to gylne trekanter (en spiss 72-72-36 og en stump 108-36-36) setter Penrose sammen dragen og pilen. (P3-settet med tynne og tjukke romber er en egen, dual familie, ikke laget ved å halvere den samme romben.) Uten flere restriksjoner kunne du flise planet periodisk. Trikset er de fargede buene som Conway tegnet på hver kant: én rød, én grønn, hver av dem krysser drage og pil på spesifikke steder. Regelen er da enkel: der to fliser møtes, må buene fortsette. Med dette ene vilkåret blir hver lovlige flislegging aperiodisk. Buene vokser ut til aldri-lukkende kurver som vandrer over hele planet.",
     },
     {
       pretitle: "Avsnitt 04 · Inflasjon og deflasjon",
@@ -1047,12 +1047,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Det gylne snittet overalt",
       title: "Hvert måleforhold inneholder φ",
-      body: "Så snart du begynner å se, er φ = (1+√5)/2 overalt i flisleggingen. Antall drager delt på antall piler i hvilken som helst stor flekk konvergerer mot φ. Sidelengdeforholdene i de underliggende Robinson-trekantene er 1 : φ. Inflasjonsregelen skalerer hver lengde nøyaktig med φ. Dragen dekker nøyaktig φ ganger arealet til pilen, og hver flis er bygd av bare to kantlengder med forhold φ. φ-skaleringen er også grunnen til at man kan bevise aperiodisitet uten noen geometri i det hele tatt: en periodisk flislegging ville tvinge drager/piler til å være rasjonelt, og φ er det mest irrasjonelle tallet som finnes — dens kjedebrøkutvikling er [1; 1, 1, 1, …], den tregeste konvergensen i hele matematikken.",
+      body: "Så snart du begynner å se, er φ = (1+√5)/2 overalt i flisleggingen. Antall drager delt på antall piler i hvilken som helst stor flekk konvergerer mot φ. Sidelengdeforholdene i de underliggende Robinson-trekantene er 1 : φ. Inflasjonsregelen skalerer hver lengde nøyaktig med φ. Dragen dekker nøyaktig φ ganger arealet til pilen, og hver flis er bygd av bare to kantlengder med forhold φ. φ-skaleringen er også grunnen til at man kan bevise aperiodisitet uten noen geometri i det hele tatt: en periodisk flislegging ville tvinge drager/piler til å være rasjonelt, og φ er det mest irrasjonelle tallet som finnes; dens kjedebrøkutvikling er [1; 1, 1, 1, …], den tregeste konvergensen i hele matematikken.",
     },
     {
-      pretitle: "Avsnitt 06 · Kvasikrystaller — bildet ble materie",
+      pretitle: "Avsnitt 06 · Kvasikrystaller: bildet ble materie",
       title: "Shechtman, 1982 · Nobel, 2011",
-      body: "Den 8. april 1982 skjøt Dan Shechtman ved NIST elektroner gjennom en hurtigavkjølt aluminium-mangan-legering og registrerte et diffraksjonsmønster med skarp 10-foldig (altså 5-foldig) symmetri. Etter hver lærebok skulle det ikke ha eksistert. Han brukte to år på å overbevise kolleger om at han ikke hadde gjort en feil; Linus Pauling brukte det neste tiåret på offentlig å gjenta at «det finnes ingen kvasikrystaller, bare kvasi-vitenskapsmenn». Shechtman publiserte i 1984. Penrose-flisleggingen var den ferdige matematikken som viste at diffraksjonsmønsteret var konsistent — langdistanseorden uten periodisitet, femfoldig symmetri tillatt av aperiodisitet. I dag er kvasikrystaller en hel gren av materialvitenskapen, brukt i non-stick-belegg og funnet i en russisk meteoritt. Shechtman mottok Nobelprisen i kjemi i 2011. En tegning på papir gikk forut for et stykke materie med åtte år.",
+      body: "Den 8. april 1982 skjøt Dan Shechtman ved NIST elektroner gjennom en hurtigavkjølt aluminium-mangan-legering og registrerte et diffraksjonsmønster med skarp 10-foldig (altså 5-foldig) symmetri. Etter hver lærebok skulle det ikke ha eksistert. Han brukte to år på å overbevise kolleger om at han ikke hadde gjort en feil; Linus Pauling brukte det neste tiåret på offentlig å gjenta at «det finnes ingen kvasikrystaller, bare kvasi-vitenskapsmenn». Shechtman publiserte i 1984. Penrose-flisleggingen var den ferdige matematikken som viste at diffraksjonsmønsteret var konsistent: langdistanseorden uten periodisitet, femfoldig symmetri tillatt av aperiodisitet. I dag er kvasikrystaller en hel gren av materialvitenskapen, brukt i non-stick-belegg og funnet i en russisk meteoritt. Shechtman mottok Nobelprisen i kjemi i 2011. En tegning på papir gikk forut for et stykke materie med åtte år.",
     },
   ],
   tiling: {
@@ -1070,10 +1070,10 @@ const no: RichStory = {
     caption: "Interaktivt · det gylne snitt",
     levelsLabel: "Fibonacci-nivåer",
     ratioLabel: "Forhold mellom påfølgende Fibonacci-tall",
-    hint: "Hvert nytt kvadrat har siden til neste Fibonacci-tall og roterer rundt det forrige i 90°-trinn. Kvartsirkelbuene knyttes sammen i den gylne spiralen — den samme kurven som ligger skjult i hver Penrose-flekk.",
+    hint: "Hvert nytt kvadrat har siden til neste Fibonacci-tall og roterer rundt det forrige i 90°-trinn. Kvartsirkelbuene knyttes sammen i den gylne spiralen, den samme kurven som ligger skjult i hver Penrose-flekk.",
     pretitle: "Interaktivt · hvorfor φ dukker opp overalt",
     title: "1, 1, 2, 3, 5, 8, 13 … og spiralen som konvergerer mot φ",
-    body: "Plasser et kvadrat 1×1. Ved siden av, et til 1×1. Så et 2×2 langs deres felles kant. Så 3×3, 5×5, 8×8 — hver ny side er summen av de to forrige. I hvert kvadrat tegner du en kvartsirkel. Buene bindes sammen i en logaritmisk spiral med vekstfaktor φ. Skyv nivået opp og se forholdet mellom påfølgende Fibonacci-tall slå inn i φ eksponentielt raskt.",
+    body: "Plasser et kvadrat 1×1. Ved siden av, et til 1×1. Så et 2×2 langs deres felles kant. Så 3×3, 5×5, 8×8: hver ny side er summen av de to forrige. I hvert kvadrat tegner du en kvartsirkel. Buene bindes sammen i en logaritmisk spiral med vekstfaktor φ. Skyv nivået opp og se forholdet mellom påfølgende Fibonacci-tall slå inn i φ eksponentielt raskt.",
   },
   crystal: {
     title: "Den krystallografiske begrensningen",
@@ -1231,7 +1231,7 @@ export default function PenroseStory() {
       formulaLatex={"\\varphi = \\frac{1 + \\sqrt{5}}{2}"}
       finalLabel={story.finalLabel}
     >
-      {/* Encounter — three approachable cards */}
+      {/* Encounter: three approachable cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -1272,7 +1272,7 @@ export default function PenroseStory() {
         </Reveal>
       </section>
 
-      {/* Section 01 — crystallographic restriction */}
+      {/* Section 01: crystallographic restriction */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec0!.pretitle}
@@ -1303,7 +1303,7 @@ export default function PenroseStory() {
         </Reveal>
       </section>
 
-      {/* Section 02 — the historical chain */}
+      {/* Section 02: the historical chain */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec1!.pretitle}
@@ -1344,7 +1344,7 @@ export default function PenroseStory() {
         </Reveal>
       </section>
 
-      {/* Section 03 — kite + dart with matching rules */}
+      {/* Section 03: kite + dart with matching rules */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec2!.pretitle}
@@ -1379,7 +1379,7 @@ export default function PenroseStory() {
         </Reveal>
       </section>
 
-      {/* Section 04 — inflation/deflation */}
+      {/* Section 04: inflation/deflation */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec3!.pretitle}
@@ -1402,7 +1402,7 @@ export default function PenroseStory() {
         </Reveal>
       </section>
 
-      {/* Section 05 — the golden ratio everywhere */}
+      {/* Section 05: the golden ratio everywhere */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec4!.pretitle}
@@ -1435,7 +1435,7 @@ export default function PenroseStory() {
         </Reveal>
       </section>
 
-      {/* Section 06 — quasicrystals */}
+      {/* Section 06: quasicrystals */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec5!.pretitle}

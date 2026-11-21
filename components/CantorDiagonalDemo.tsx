@@ -37,7 +37,7 @@ function safeFlip(d: number): number {
 }
 
 function makeDigits(seed: number): number[][] {
-  // Deterministic pseudo-random — a tiny LCG so the layout stays stable
+  // Deterministic pseudo-random: a tiny LCG so the layout stays stable
   // between rerenders but a "randomise" button can advance it.
   let s = seed | 0;
   const next = () => {
@@ -119,7 +119,7 @@ export function CantorDiagonalDemo({
               </tr>
             ))}
 
-            {/* Constructed real — built from the diagonal */}
+            {/* Constructed real, built from the diagonal */}
             <tr>
               <td
                 colSpan={cols + 3}

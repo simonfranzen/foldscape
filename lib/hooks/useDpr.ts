@@ -16,7 +16,7 @@ export function useDpr(cap: number = DEFAULT_CAP): number {
     let mq: MediaQueryList | null = null;
     const handler = () => {
       setDpr(readDpr(cap));
-      // Re-subscribe with the new DPR — otherwise a 1→2→3 chain stays silent
+      // Re-subscribe with the new DPR, otherwise a 1→2→3 chain stays silent
       // after the first change because the original MQ matches neither 2 nor 3.
       mq?.removeEventListener?.("change", handler);
       mq = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);

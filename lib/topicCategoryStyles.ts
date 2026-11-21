@@ -1,6 +1,6 @@
 // Tailwind class fragments per topic category. Extracted from app/page.tsx so
 // the related-topics preview cards on story pages can share the same accent
-// vocabulary as the landing-list view — every category keeps one consistent
+// vocabulary as the landing-list view: every category keeps one consistent
 // visual identity across the site.
 
 import type { TopicCategory } from "./topics";
@@ -15,7 +15,7 @@ export const CATEGORY_ACCENT: Record<TopicCategory, string> = {
   paradox: "text-signal-rose border-signal-rose/40",
 };
 
-// Subtle background gradient — same palette as the landing list-card.
+// Subtle background gradient, same palette as the landing list-card.
 export const CATEGORY_BG: Record<TopicCategory, string> = {
   logic: "from-signal-violet/15 via-transparent to-transparent",
   computation: "from-signal-cyan/15 via-transparent to-transparent",

@@ -9,8 +9,8 @@ import { SAT_GUIDE } from "@/lib/explorer-guides/sat";
 
 // ── DPLL solver, stepped and visualised ────────────────────────────────────
 // A literal is a variable index plus a sign. A clause is a disjunction of
-// literals. Each call to step() performs exactly one DPLL action — unit
-// propagation, a conflict-driven backtrack, a decision, or termination — so
+// literals. Each call to step() performs exactly one DPLL action (unit
+// propagation, a conflict-driven backtrack, a decision, or termination) so
 // the reader watches the search tree grow and collapse one move at a time.
 // Backtracking is chronological (plain DPLL), which is what makes the
 // exponential worst case legible without conflict-driven clause learning.
@@ -36,7 +36,7 @@ const PRESETS: Preset[] = [
     vars: ["a", "b", "c", "d"],
     clauses: [
       [N(0), P(1)], // ¬a ∨ b
-      [N(0), N(1)], // ¬a ∨ ¬b   (a ⇒ b and a ⇒ ¬b — so a must be false)
+      [N(0), N(1)], // ¬a ∨ ¬b   (a ⇒ b and a ⇒ ¬b, so a must be false)
       [P(0), P(2)], // a ∨ c
       [N(2), P(3)], // ¬c ∨ d
       [P(2), N(3)], // c ∨ ¬d
@@ -700,7 +700,7 @@ export default function SatExplorer() {
     setPlaying(false);
   }
 
-  // Play loop — recreated each step so the closure sees fresh state.
+  // Play loop: recreated each step so the closure sees fresh state.
   useEffect(() => {
     if (!playing) return;
     if (state.status !== "running") {

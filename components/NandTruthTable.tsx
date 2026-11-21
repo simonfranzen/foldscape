@@ -5,7 +5,7 @@ import { useState } from "react";
 // Interactive 4-row truth table.
 // The user can flip a/b bits on any row to make it the "active" row, and the
 // derived columns (NAND, NOT a, AND, OR, XOR) update immediately. The whole
-// table stays visible — the active row is highlighted so the eye can follow
+// table stays visible; the active row is highlighted so the eye can follow
 // what changed.
 
 interface Props {

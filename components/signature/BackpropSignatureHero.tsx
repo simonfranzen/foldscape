@@ -5,7 +5,7 @@ import { palette } from "@/lib/visual/palette";
 
 // Signature artefact for the Backprop page. A loss landscape rendered as
 // nested contour rings, with a tiny walker descending the gradient toward
-// the basin's minimum. The walker leaves a faint trail behind it — each
+// the basin's minimum. The walker leaves a faint trail behind it: each
 // step is one application of `w ← w − η∇w L`. Honours
 // `prefers-reduced-motion`: when set, the walker renders frozen near the
 // edge with no trail animation.
@@ -29,7 +29,7 @@ export function BackpropSignatureHero() {
     const tick = (now: number) => {
       const dt = (now - last) / 1000;
       last = now;
-      // One full descent every ~9s — slow enough to feel deliberate.
+      // One full descent every ~9s, slow enough to feel deliberate.
       setT((s) => (s + dt * 0.11) % 1);
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -43,7 +43,7 @@ export function BackpropSignatureHero() {
   const cy = H / 2 + 14;
 
   // A tilted elliptical bowl. The descent path is a logarithmic spiral
-  // into the centre — visually exactly what gradient descent with momentum
+  // into the centre: visually exactly what gradient descent with momentum
   // looks like on an anisotropic quadratic loss.
   const RINGS = 7;
   const RX = 280;
@@ -93,7 +93,7 @@ export function BackpropSignatureHero() {
         {/* Soft basin glow */}
         <ellipse cx={cx} cy={cy} rx={RX + 30} ry={RY + 30} fill="url(#bp-basin)" />
 
-        {/* Concentric contour rings — equal increments of loss */}
+        {/* Concentric contour rings: equal increments of loss */}
         {Array.from({ length: RINGS }).map((_, i) => {
           const k = (i + 1) / RINGS;
           return (
@@ -139,7 +139,7 @@ export function BackpropSignatureHero() {
           />
         ))}
 
-        {/* The gradient arrow at the walker — points toward the next step */}
+        {/* The gradient arrow at the walker: points toward the next step */}
         {(() => {
           const next = Math.min(1, phase + 0.012);
           const rN = 1 - Math.pow(next, 1.4);

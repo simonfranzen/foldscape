@@ -21,7 +21,7 @@ const withAlpha = (hex: string, a: number) => {
 // -----------------------------------------------------------------------------
 // Rich, locale-aware story content extending the four-section base in
 // stories.ts. We keep the canonical hero (s.pages.lorenz) untouched and
-// layer encounter + six deeper sections + closing prose on top — fully
+// layer encounter + six deeper sections + closing prose on top, fully
 // translated into all eight supported locales.
 // -----------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Why it matters",
           title: "The butterfly effect, made of mathematics",
-          body: "This is the origin of the 'butterfly effect' and the reason your weather app stops being trustworthy after about two weeks. Lorenz didn't invent chaos — he revealed that it was hiding inside the cleanest equations we knew, and he gave us a vocabulary for living with it.",
+          body: "This is the origin of the 'butterfly effect' and the reason your weather app stops being trustworthy after about two weeks. Lorenz didn't invent chaos; he revealed that it was hiding inside the cleanest equations we knew, and he gave us a vocabulary for living with it.",
         },
       ],
       tryIt:
@@ -93,32 +93,32 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section one · The equations",
         title: "Three coupled rates of change",
-        body: "Each equation describes how fast one quantity changes. x is the speed of the convection roll — warm air rising, cool air sinking. y is the horizontal temperature difference across the roll. z is the vertical departure from a linear temperature profile. The three pieces talk to each other: x pulls y, y pulls z, and z feeds back into y. The non-linear terms (xz and xy) are where chaos lives — without them the system would just be a damped oscillator.",
+        body: "Each equation describes how fast one quantity changes. x is the speed of the convection roll: warm air rising, cool air sinking. y is the horizontal temperature difference across the roll. z is the vertical departure from a linear temperature profile. The three pieces talk to each other: x pulls y, y pulls z, and z feeds back into y. The non-linear terms (xz and xy) are where chaos lives; without them the system would just be a damped oscillator.",
       },
       {
         pretitle: "Section two · Two regimes",
         title: "ρ < 1 is boring, ρ ≈ 28 is the butterfly",
-        body: "ρ (the Rayleigh number) measures how hard you are heating the fluid from below. Below ρ = 1 nothing interesting happens: any starting condition decays to zero — no convection, just heat conduction. Between 1 and about 24.74 you get steady convection, with the trajectory spiralling into one of two fixed points. Cross ρ ≈ 24.74 and the fixed points lose stability; at the canonical value ρ = 28 the trajectory can no longer settle anywhere — it is condemned to roam the butterfly forever.",
+        body: "ρ (the Rayleigh number) measures how hard you are heating the fluid from below. Below ρ = 1 nothing interesting happens: any starting condition decays to zero, no convection, just heat conduction. Between 1 and about 24.74 you get steady convection, with the trajectory spiralling into one of two fixed points. Cross ρ ≈ 24.74 and the fixed points lose stability; at the canonical value ρ = 28 the trajectory can no longer settle anywhere: it is condemned to roam the butterfly forever.",
       },
       {
         pretitle: "Section three · The wings",
         title: "Two ghosts at the centre of the butterfly",
-        body: "Each wing is built around an unstable equilibrium — a point where the equations balance, but only fragilely. The trajectory spirals outward around one wing, gathering energy, until it suddenly slingshots across to the other wing and starts spiralling again. The number of loops on each wing before the jump is unpredictable. Sometimes 3, sometimes 17, never the same sequence twice — and that sequence is, in a precise sense, as random as a coin flip.",
+        body: "Each wing is built around an unstable equilibrium: a point where the equations balance, but only fragilely. The trajectory spirals outward around one wing, gathering energy, until it suddenly slingshots across to the other wing and starts spiralling again. The number of loops on each wing before the jump is unpredictable. Sometimes 3, sometimes 17, never the same sequence twice, and that sequence is, in a precise sense, as random as a coin flip.",
       },
       {
         pretitle: "Section four · Sensitive dependence",
         title: "Why a bacterium-sized error becomes catastrophic",
-        body: "Two trajectories separated by ε grow apart roughly like ε·eλt, where λ ≈ 0.906 is the leading Lyapunov exponent. That sounds tame until you do the arithmetic: in about 16 simulated seconds the gap multiplies by a million. Any uncertainty in the initial state — measurement noise, rounding in a computer, a butterfly flapping in Brazil — is amplified at this rate. Weather forecasts decay because the real atmosphere has its own positive Lyapunov exponent, and no amount of better sensors can outrun an exponential.",
+        body: "Two trajectories separated by ε grow apart roughly like ε·eλt, where λ ≈ 0.906 is the leading Lyapunov exponent. That sounds tame until you do the arithmetic: in about 16 simulated seconds the gap multiplies by a million. Any uncertainty in the initial state (measurement noise, rounding in a computer, a butterfly flapping in Brazil) is amplified at this rate. Weather forecasts decay because the real atmosphere has its own positive Lyapunov exponent, and no amount of better sensors can outrun an exponential.",
       },
       {
         pretitle: "Section five · A strange attractor",
-        title: "Dimension 2.06 — between a sheet and a solid",
+        title: "Dimension 2.06: between a sheet and a solid",
         body: "Every trajectory, no matter where it starts, is sucked onto the same butterfly-shaped object. That object is the attractor. It is not a closed curve (which would have dimension 1) and not a smooth surface (dimension 2) and not a solid blob (dimension 3). Its Hausdorff dimension is approximately 2.06: a surface with a fractal frill, infinitely thin in one direction but never quite flat. Zoom in on any patch and you find the same wafer-thin layered structure. This is what 'strange' means in 'strange attractor'.",
       },
       {
         pretitle: "Section six · The cultural shockwave",
         title: "From a quiet 1963 paper to a household phrase",
-        body: "Lorenz's paper went almost unnoticed for a decade. Then James Gleick's 1987 book 'Chaos' put the butterfly on every coffee table, and the phrase 'butterfly effect' entered the language. The deeper lesson is harder than the slogan: deterministic equations can be utterly unpredictable, the world is full of systems like this (climate, ecosystems, economies, hearts), and prediction is not a question of computing harder — it has a fundamental horizon. Modern weather services run dozens of slightly perturbed forecasts at once for exactly this reason.",
+        body: "Lorenz's paper went almost unnoticed for a decade. Then James Gleick's 1987 book 'Chaos' put the butterfly on every coffee table, and the phrase 'butterfly effect' entered the language. The deeper lesson is harder than the slogan: deterministic equations can be utterly unpredictable, the world is full of systems like this (climate, ecosystems, economies, hearts), and prediction is not a question of computing harder; it has a fundamental horizon. Modern weather services run dozens of slightly perturbed forecasts at once for exactly this reason.",
       },
     ],
     inlineRho: {
@@ -175,7 +175,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Warum es zählt",
           title: "Der Schmetterlingseffekt, aus Mathematik gebaut",
-          body: "Das ist der Ursprung des „Schmetterlingseffekts“ und der Grund, warum deine Wetter-App nach etwa zwei Wochen unzuverlässig wird. Lorenz hat das Chaos nicht erfunden — er hat gezeigt, dass es in den saubersten Gleichungen versteckt war, und uns ein Vokabular gegeben, damit zu leben.",
+          body: "Das ist der Ursprung des „Schmetterlingseffekts“ und der Grund, warum deine Wetter-App nach etwa zwei Wochen unzuverlässig wird. Lorenz hat das Chaos nicht erfunden; er hat gezeigt, dass es in den saubersten Gleichungen versteckt war, und uns ein Vokabular gegeben, damit zu leben.",
         },
       ],
       tryIt:
@@ -185,32 +185,32 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt eins · Die Gleichungen",
         title: "Drei gekoppelte Änderungsraten",
-        body: "Jede Gleichung beschreibt, wie schnell sich eine Größe ändert. x ist die Geschwindigkeit der Konvektionsrolle — warme Luft steigt, kalte sinkt. y ist die horizontale Temperaturdifferenz quer zur Rolle. z ist die vertikale Abweichung vom linearen Temperaturprofil. Die drei Stücke reden miteinander: x zieht y, y zieht z, und z wirkt auf y zurück. Die nichtlinearen Terme (xz und xy) sind, wo das Chaos wohnt — ohne sie wäre das System nur ein gedämpfter Oszillator.",
+        body: "Jede Gleichung beschreibt, wie schnell sich eine Größe ändert. x ist die Geschwindigkeit der Konvektionsrolle: Warme Luft steigt, kalte sinkt. y ist die horizontale Temperaturdifferenz quer zur Rolle. z ist die vertikale Abweichung vom linearen Temperaturprofil. Die drei Stücke reden miteinander: x zieht y, y zieht z, und z wirkt auf y zurück. Die nichtlinearen Terme (xz und xy) sind, wo das Chaos wohnt; ohne sie wäre das System nur ein gedämpfter Oszillator.",
       },
       {
         pretitle: "Abschnitt zwei · Zwei Regime",
         title: "ρ < 1 ist langweilig, ρ ≈ 28 ist der Schmetterling",
-        body: "ρ (die Rayleigh-Zahl) misst, wie stark du die Flüssigkeit von unten heizt. Unter ρ = 1 passiert nichts Interessantes: jeder Anfangszustand zerfällt zur Null — keine Konvektion, nur Wärmeleitung. Zwischen 1 und etwa 24,74 bekommst du stetige Konvektion, die Bahn spiralt in einen von zwei Fixpunkten. Überschreite ρ ≈ 24,74 und die Fixpunkte verlieren ihre Stabilität; beim kanonischen Wert ρ = 28 kann die Bahn nirgends mehr zur Ruhe kommen — sie ist verdammt, ewig den Schmetterling abzulaufen.",
+        body: "ρ (die Rayleigh-Zahl) misst, wie stark du die Flüssigkeit von unten heizt. Unter ρ = 1 passiert nichts Interessantes: jeder Anfangszustand zerfällt zur Null, keine Konvektion, nur Wärmeleitung. Zwischen 1 und etwa 24,74 bekommst du stetige Konvektion, die Bahn spiralt in einen von zwei Fixpunkten. Überschreite ρ ≈ 24,74 und die Fixpunkte verlieren ihre Stabilität; beim kanonischen Wert ρ = 28 kann die Bahn nirgends mehr zur Ruhe kommen: Sie ist verdammt, ewig den Schmetterling abzulaufen.",
       },
       {
         pretitle: "Abschnitt drei · Die Flügel",
         title: "Zwei Geister im Zentrum des Schmetterlings",
-        body: "Jeder Flügel ist um ein instabiles Gleichgewicht herum gebaut — einen Punkt, an dem die Gleichungen sich ausgleichen, aber nur zerbrechlich. Die Bahn spiralt um einen Flügel nach außen, sammelt Energie, und schleudert sich plötzlich auf den anderen Flügel, wo sie wieder zu spiralen beginnt. Die Anzahl der Schleifen vor dem Sprung ist unvorhersehbar. Mal 3, mal 17, nie dieselbe Folge zweimal — und diese Folge ist, in präzisem Sinne, so zufällig wie ein Münzwurf.",
+        body: "Jeder Flügel ist um ein instabiles Gleichgewicht herum gebaut: einen Punkt, an dem die Gleichungen sich ausgleichen, aber nur zerbrechlich. Die Bahn spiralt um einen Flügel nach außen, sammelt Energie, und schleudert sich plötzlich auf den anderen Flügel, wo sie wieder zu spiralen beginnt. Die Anzahl der Schleifen vor dem Sprung ist unvorhersehbar. Mal 3, mal 17, nie dieselbe Folge zweimal, und diese Folge ist, in präzisem Sinne, so zufällig wie ein Münzwurf.",
       },
       {
         pretitle: "Abschnitt vier · Sensitive Abhängigkeit",
         title: "Warum ein bakteriengroßer Fehler katastrophal wird",
-        body: "Zwei Bahnen, durch ε getrennt, wachsen ungefähr wie ε·eλt auseinander, wobei λ ≈ 0,906 der größte Lyapunov-Exponent ist. Das klingt zahm, bis du rechnest: in etwa 16 simulierten Sekunden multipliziert sich der Abstand um eine Million. Jede Unsicherheit im Anfangszustand — Messrauschen, Rundung im Computer, ein Schmetterlingsflügel in Brasilien — wird mit dieser Rate verstärkt. Wettervorhersagen zerfallen, weil die reale Atmosphäre ihren eigenen positiven Lyapunov-Exponenten hat, und keine besseren Sensoren können einer Exponentialfunktion davonlaufen.",
+        body: "Zwei Bahnen, durch ε getrennt, wachsen ungefähr wie ε·eλt auseinander, wobei λ ≈ 0,906 der größte Lyapunov-Exponent ist. Das klingt zahm, bis du rechnest: in etwa 16 simulierten Sekunden multipliziert sich der Abstand um eine Million. Jede Unsicherheit im Anfangszustand (Messrauschen, Rundung im Computer, ein Schmetterlingsflügel in Brasilien) wird mit dieser Rate verstärkt. Wettervorhersagen zerfallen, weil die reale Atmosphäre ihren eigenen positiven Lyapunov-Exponenten hat, und keine besseren Sensoren können einer Exponentialfunktion davonlaufen.",
       },
       {
         pretitle: "Abschnitt fünf · Ein seltsamer Attraktor",
-        title: "Dimension 2,06 — zwischen Fläche und Volumen",
+        title: "Dimension 2,06: zwischen Fläche und Volumen",
         body: "Jede Bahn, egal wo sie startet, wird auf dasselbe schmetterlingsförmige Objekt gesogen. Dieses Objekt ist der Attraktor. Es ist keine geschlossene Kurve (Dimension 1) und keine glatte Fläche (Dimension 2) und kein massiver Klumpen (Dimension 3). Seine Hausdorff-Dimension liegt bei etwa 2,06: eine Fläche mit fraktaler Krause, in einer Richtung unendlich dünn, aber nie ganz flach. Zoom in irgendeinen Fleck und du findest dieselbe wafer-dünne Schichtstruktur. Das meint „seltsam“ in „seltsamer Attraktor“.",
       },
       {
         pretitle: "Abschnitt sechs · Die kulturelle Schockwelle",
         title: "Von einem stillen 1963er-Paper zur Alltagsmetapher",
-        body: "Lorenz' Paper blieb ein Jahrzehnt fast unbeachtet. Dann legte James Gleicks Buch „Chaos“ (1987) den Schmetterling auf jeden Couchtisch, und „Schmetterlingseffekt“ wanderte in die Alltagssprache. Die tiefere Lehre ist härter als der Slogan: deterministische Gleichungen können vollkommen unvorhersehbar sein, die Welt steckt voller solcher Systeme (Klima, Ökosysteme, Volkswirtschaften, Herzen), und Vorhersage ist keine Frage von mehr Rechnen — sie hat einen fundamentalen Horizont. Moderne Wetterdienste lassen aus genau diesem Grund Dutzende leicht gestörter Vorhersagen gleichzeitig laufen.",
+        body: "Lorenz' Paper blieb ein Jahrzehnt fast unbeachtet. Dann legte James Gleicks Buch „Chaos“ (1987) den Schmetterling auf jeden Couchtisch, und „Schmetterlingseffekt“ wanderte in die Alltagssprache. Die tiefere Lehre ist härter als der Slogan: deterministische Gleichungen können vollkommen unvorhersehbar sein, die Welt steckt voller solcher Systeme (Klima, Ökosysteme, Volkswirtschaften, Herzen), und Vorhersage ist keine Frage von mehr Rechnen; sie hat einen fundamentalen Horizont. Moderne Wetterdienste lassen aus genau diesem Grund Dutzende leicht gestörter Vorhersagen gleichzeitig laufen.",
       },
     ],
     inlineRho: {
@@ -267,7 +267,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Por qué importa",
           title: "El efecto mariposa, hecho de matemáticas",
-          body: "Este es el origen del «efecto mariposa» y la razón por la que tu app del tiempo deja de ser fiable después de unas dos semanas. Lorenz no inventó el caos — reveló que se escondía dentro de las ecuaciones más limpias que teníamos y nos dio un vocabulario para convivir con él.",
+          body: "Este es el origen del «efecto mariposa» y la razón por la que tu app del tiempo deja de ser fiable después de unas dos semanas. Lorenz no inventó el caos; reveló que se escondía dentro de las ecuaciones más limpias que teníamos y nos dio un vocabulario para convivir con él.",
         },
       ],
       tryIt:
@@ -277,32 +277,32 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sección uno · Las ecuaciones",
         title: "Tres tasas de cambio acopladas",
-        body: "Cada ecuación describe a qué velocidad cambia una magnitud. x es la velocidad del rollo de convección — aire caliente que sube, aire frío que baja. y es la diferencia horizontal de temperatura. z es la desviación vertical respecto a un perfil lineal de temperatura. Las tres se hablan entre sí: x tira de y, y tira de z, y z retroalimenta a y. Los términos no lineales (xz y xy) son donde vive el caos — sin ellos sería un oscilador amortiguado.",
+        body: "Cada ecuación describe a qué velocidad cambia una magnitud. x es la velocidad del rollo de convección: aire caliente que sube, aire frío que baja. y es la diferencia horizontal de temperatura. z es la desviación vertical respecto a un perfil lineal de temperatura. Las tres se hablan entre sí: x tira de y, y tira de z, y z retroalimenta a y. Los términos no lineales (xz y xy) son donde vive el caos; sin ellos sería un oscilador amortiguado.",
       },
       {
         pretitle: "Sección dos · Dos regímenes",
         title: "ρ < 1 es aburrido, ρ ≈ 28 es la mariposa",
-        body: "ρ (el número de Rayleigh) mide cuánto calientas el fluido desde abajo. Por debajo de ρ = 1 no pasa nada: cualquier condición inicial decae a cero — sin convección, solo conducción. Entre 1 y unos 24,74 hay convección estable, con la trayectoria espiralando hacia uno de dos puntos fijos. Cruza ρ ≈ 24,74 y los puntos fijos pierden estabilidad; en el valor canónico ρ = 28 la trayectoria ya no puede asentarse en ningún sitio — está condenada a recorrer la mariposa para siempre.",
+        body: "ρ (el número de Rayleigh) mide cuánto calientas el fluido desde abajo. Por debajo de ρ = 1 no pasa nada: cualquier condición inicial decae a cero, sin convección, solo conducción. Entre 1 y unos 24,74 hay convección estable, con la trayectoria espiralando hacia uno de dos puntos fijos. Cruza ρ ≈ 24,74 y los puntos fijos pierden estabilidad; en el valor canónico ρ = 28 la trayectoria ya no puede asentarse en ningún sitio: está condenada a recorrer la mariposa para siempre.",
       },
       {
         pretitle: "Sección tres · Las alas",
         title: "Dos fantasmas en el centro de la mariposa",
-        body: "Cada ala está construida alrededor de un equilibrio inestable — un punto donde las ecuaciones se equilibran, pero solo frágilmente. La trayectoria espirala hacia afuera alrededor de un ala, acumulando energía, hasta que de pronto salta al ala opuesta y empieza a espiralar de nuevo. El número de vueltas antes del salto es impredecible. A veces 3, a veces 17, nunca la misma secuencia dos veces — y esa secuencia es, en sentido preciso, tan aleatoria como lanzar una moneda.",
+        body: "Cada ala está construida alrededor de un equilibrio inestable: un punto donde las ecuaciones se equilibran, pero solo frágilmente. La trayectoria espirala hacia afuera alrededor de un ala, acumulando energía, hasta que de pronto salta al ala opuesta y empieza a espiralar de nuevo. El número de vueltas antes del salto es impredecible. A veces 3, a veces 17, nunca la misma secuencia dos veces, y esa secuencia es, en sentido preciso, tan aleatoria como lanzar una moneda.",
       },
       {
         pretitle: "Sección cuatro · Dependencia sensible",
         title: "Por qué un error del tamaño de una bacteria se vuelve catastrófico",
-        body: "Dos trayectorias separadas por ε se alejan aproximadamente como ε·eλt, donde λ ≈ 0,906 es el exponente de Lyapunov dominante. Suena manso hasta que haces la cuenta: en unos 16 segundos simulados la separación se multiplica por un millón. Cualquier incertidumbre en el estado inicial — ruido de medición, redondeo en el ordenador, una mariposa aleteando en Brasil — se amplifica a este ritmo. Los pronósticos meteorológicos se degradan porque la atmósfera real tiene su propio exponente de Lyapunov positivo, y ningún sensor mejor le gana a una exponencial.",
+        body: "Dos trayectorias separadas por ε se alejan aproximadamente como ε·eλt, donde λ ≈ 0,906 es el exponente de Lyapunov dominante. Suena manso hasta que haces la cuenta: en unos 16 segundos simulados la separación se multiplica por un millón. Cualquier incertidumbre en el estado inicial (ruido de medición, redondeo en el ordenador, una mariposa aleteando en Brasil) se amplifica a este ritmo. Los pronósticos meteorológicos se degradan porque la atmósfera real tiene su propio exponente de Lyapunov positivo, y ningún sensor mejor le gana a una exponencial.",
       },
       {
         pretitle: "Sección cinco · Un atractor extraño",
-        title: "Dimensión 2,06 — entre superficie y volumen",
+        title: "Dimensión 2,06: entre superficie y volumen",
         body: "Cualquier trayectoria, donde sea que empiece, es absorbida hacia el mismo objeto en forma de mariposa. Ese objeto es el atractor. No es una curva cerrada (dimensión 1), ni una superficie lisa (dimensión 2), ni un sólido (dimensión 3). Su dimensión de Hausdorff es aproximadamente 2,06: una superficie con un fleco fractal, infinitamente delgada en una dirección pero nunca completamente plana. Acércate a cualquier zona y encontrarás la misma estructura laminar finísima. Eso significa «extraño» en «atractor extraño».",
       },
       {
         pretitle: "Sección seis · La onda cultural",
         title: "De un artículo silencioso a una frase cotidiana",
-        body: "El artículo de Lorenz pasó casi inadvertido durante una década. Luego el libro «Caos» (1987) de James Gleick puso la mariposa en cada salón, y la frase «efecto mariposa» entró en el idioma. La lección profunda es más dura que el eslogan: ecuaciones deterministas pueden ser completamente impredecibles, el mundo está lleno de sistemas así (clima, ecosistemas, economías, corazones), y la predicción no es cuestión de calcular más fuerte — tiene un horizonte fundamental. Los servicios meteorológicos modernos ejecutan docenas de pronósticos ligeramente perturbados en paralelo precisamente por eso.",
+        body: "El artículo de Lorenz pasó casi inadvertido durante una década. Luego el libro «Caos» (1987) de James Gleick puso la mariposa en cada salón, y la frase «efecto mariposa» entró en el idioma. La lección profunda es más dura que el eslogan: ecuaciones deterministas pueden ser completamente impredecibles, el mundo está lleno de sistemas así (clima, ecosistemas, economías, corazones), y la predicción no es cuestión de calcular más fuerte; tiene un horizonte fundamental. Los servicios meteorológicos modernos ejecutan docenas de pronósticos ligeramente perturbados en paralelo precisamente por eso.",
       },
     ],
     inlineRho: {
@@ -359,7 +359,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Pourquoi c'est important",
           title: "L'effet papillon, en mathématiques",
-          body: "C'est l'origine de « l'effet papillon » et la raison pour laquelle votre appli météo cesse d'être fiable après environ deux semaines. Lorenz n'a pas inventé le chaos — il a révélé qu'il se cachait dans les équations les plus propres et nous a donné un vocabulaire pour vivre avec.",
+          body: "C'est l'origine de « l'effet papillon » et la raison pour laquelle votre appli météo cesse d'être fiable après environ deux semaines. Lorenz n'a pas inventé le chaos ; il a révélé qu'il se cachait dans les équations les plus propres et nous a donné un vocabulaire pour vivre avec.",
         },
       ],
       tryIt:
@@ -369,32 +369,32 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section un · Les équations",
         title: "Trois taux de variation couplés",
-        body: "Chaque équation décrit à quelle vitesse une grandeur change. x est la vitesse du rouleau de convection — air chaud qui monte, air froid qui descend. y est la différence horizontale de température. z est l'écart vertical par rapport au profil linéaire. Les trois pièces se parlent : x tire y, y tire z, z rétroagit sur y. Les termes non linéaires (xz et xy) sont là où vit le chaos — sans eux, le système ne serait qu'un oscillateur amorti.",
+        body: "Chaque équation décrit à quelle vitesse une grandeur change. x est la vitesse du rouleau de convection : air chaud qui monte, air froid qui descend. y est la différence horizontale de température. z est l'écart vertical par rapport au profil linéaire. Les trois pièces se parlent : x tire y, y tire z, z rétroagit sur y. Les termes non linéaires (xz et xy) sont là où vit le chaos ; sans eux, le système ne serait qu'un oscillateur amorti.",
       },
       {
         pretitle: "Section deux · Deux régimes",
         title: "ρ < 1 est ennuyeux, ρ ≈ 28 est le papillon",
-        body: "ρ (le nombre de Rayleigh) mesure l'intensité du chauffage par le bas. Sous ρ = 1, rien : toute condition initiale décroît vers zéro — pas de convection, juste de la conduction. Entre 1 et environ 24,74, convection stable : la trajectoire spirale vers l'un de deux points fixes. Passe ρ ≈ 24,74 et les points fixes deviennent instables ; à la valeur canonique ρ = 28, la trajectoire ne peut plus se poser nulle part — condamnée à parcourir le papillon pour toujours.",
+        body: "ρ (le nombre de Rayleigh) mesure l'intensité du chauffage par le bas. Sous ρ = 1, rien : toute condition initiale décroît vers zéro, pas de convection, juste de la conduction. Entre 1 et environ 24,74, convection stable : la trajectoire spirale vers l'un de deux points fixes. Passe ρ ≈ 24,74 et les points fixes deviennent instables ; à la valeur canonique ρ = 28, la trajectoire ne peut plus se poser nulle part, condamnée à parcourir le papillon pour toujours.",
       },
       {
         pretitle: "Section trois · Les ailes",
         title: "Deux fantômes au centre du papillon",
-        body: "Chaque aile est construite autour d'un équilibre instable — un point où les équations s'équilibrent, mais fragilement. La trajectoire spirale vers l'extérieur autour d'une aile, accumule de l'énergie, puis catapulte vers l'autre aile et y reprend sa spirale. Le nombre de boucles avant le saut est imprévisible. Parfois 3, parfois 17, jamais la même séquence — et cette séquence est, en un sens précis, aussi aléatoire qu'un lancer de pièce.",
+        body: "Chaque aile est construite autour d'un équilibre instable : un point où les équations s'équilibrent, mais fragilement. La trajectoire spirale vers l'extérieur autour d'une aile, accumule de l'énergie, puis catapulte vers l'autre aile et y reprend sa spirale. Le nombre de boucles avant le saut est imprévisible. Parfois 3, parfois 17, jamais la même séquence, et cette séquence est, en un sens précis, aussi aléatoire qu'un lancer de pièce.",
       },
       {
         pretitle: "Section quatre · Dépendance sensible",
         title: "Pourquoi une erreur de la taille d'une bactérie devient catastrophique",
-        body: "Deux trajectoires séparées par ε s'écartent approximativement comme ε·eλt, où λ ≈ 0,906 est l'exposant de Lyapunov dominant. Cela paraît docile jusqu'au calcul : en environ 16 secondes simulées, l'écart est multiplié par un million. Toute incertitude initiale — bruit de mesure, arrondi machine, un papillon battant des ailes au Brésil — est amplifiée à ce rythme. Les prévisions météo se dégradent parce que l'atmosphère réelle a son propre exposant de Lyapunov positif, et aucun meilleur capteur ne distance une exponentielle.",
+        body: "Deux trajectoires séparées par ε s'écartent approximativement comme ε·eλt, où λ ≈ 0,906 est l'exposant de Lyapunov dominant. Cela paraît docile jusqu'au calcul : en environ 16 secondes simulées, l'écart est multiplié par un million. Toute incertitude initiale (bruit de mesure, arrondi machine, un papillon battant des ailes au Brésil) est amplifiée à ce rythme. Les prévisions météo se dégradent parce que l'atmosphère réelle a son propre exposant de Lyapunov positif, et aucun meilleur capteur ne distance une exponentielle.",
       },
       {
         pretitle: "Section cinq · Un attracteur étrange",
-        title: "Dimension 2,06 — entre surface et solide",
+        title: "Dimension 2,06 : entre surface et solide",
         body: "Toute trajectoire, où qu'elle commence, est aspirée vers le même objet en forme de papillon. Cet objet est l'attracteur. Ce n'est pas une courbe fermée (dimension 1), ni une surface lisse (dimension 2), ni un solide (dimension 3). Sa dimension de Hausdorff vaut environ 2,06 : une surface à franges fractales, infiniment mince dans une direction sans jamais être plate. Zoome sur n'importe quel coin et tu retrouves la même structure feuilletée. Voilà ce que « étrange » veut dire dans « attracteur étrange ».",
       },
       {
         pretitle: "Section six · L'onde culturelle",
         title: "D'un article confidentiel à une phrase quotidienne",
-        body: "L'article de Lorenz est passé presque inaperçu pendant une décennie. Puis le livre « Chaos » de James Gleick (1987) a posé le papillon sur toutes les tables basses, et « effet papillon » est entré dans la langue. La leçon profonde est plus dure que le slogan : des équations déterministes peuvent être totalement imprévisibles, le monde regorge de tels systèmes (climat, écosystèmes, économies, cœurs), et la prévision n'est pas une question de calculer plus fort — elle a un horizon fondamental. C'est exactement pour cela que les services météo modernes lancent des dizaines de prévisions légèrement perturbées en parallèle.",
+        body: "L'article de Lorenz est passé presque inaperçu pendant une décennie. Puis le livre « Chaos » de James Gleick (1987) a posé le papillon sur toutes les tables basses, et « effet papillon » est entré dans la langue. La leçon profonde est plus dure que le slogan : des équations déterministes peuvent être totalement imprévisibles, le monde regorge de tels systèmes (climat, écosystèmes, économies, cœurs), et la prévision n'est pas une question de calculer plus fort ; elle a un horizon fondamental. C'est exactement pour cela que les services météo modernes lancent des dizaines de prévisions légèrement perturbées en parallèle.",
       },
     ],
     inlineRho: {
@@ -451,7 +451,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Perché conta",
           title: "L'effetto farfalla, fatto di matematica",
-          body: "È l'origine dell'«effetto farfalla» e la ragione per cui la tua app meteo smette di essere affidabile dopo circa due settimane. Lorenz non ha inventato il caos — ha rivelato che si nascondeva nelle equazioni più pulite e ci ha dato un vocabolario per conviverci.",
+          body: "È l'origine dell'«effetto farfalla» e la ragione per cui la tua app meteo smette di essere affidabile dopo circa due settimane. Lorenz non ha inventato il caos; ha rivelato che si nascondeva nelle equazioni più pulite e ci ha dato un vocabolario per conviverci.",
         },
       ],
       tryIt:
@@ -461,32 +461,32 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sezione uno · Le equazioni",
         title: "Tre tassi di variazione accoppiati",
-        body: "Ogni equazione descrive quanto velocemente cambia una grandezza. x è la velocità del rotolo di convezione — aria calda che sale, aria fredda che scende. y è la differenza orizzontale di temperatura. z è la deviazione verticale dal profilo lineare. I tre pezzi si parlano: x tira y, y tira z, z retroagisce su y. I termini non lineari (xz e xy) sono dove vive il caos — senza di loro sarebbe un oscillatore smorzato.",
+        body: "Ogni equazione descrive quanto velocemente cambia una grandezza. x è la velocità del rotolo di convezione: aria calda che sale, aria fredda che scende. y è la differenza orizzontale di temperatura. z è la deviazione verticale dal profilo lineare. I tre pezzi si parlano: x tira y, y tira z, z retroagisce su y. I termini non lineari (xz e xy) sono dove vive il caos; senza di loro sarebbe un oscillatore smorzato.",
       },
       {
         pretitle: "Sezione due · Due regimi",
         title: "ρ < 1 è noioso, ρ ≈ 28 è la farfalla",
-        body: "ρ (il numero di Rayleigh) misura quanto scaldi il fluido dal basso. Sotto ρ = 1 non accade nulla: ogni condizione iniziale decade a zero — niente convezione, solo conduzione. Tra 1 e circa 24,74 hai convezione stabile, con la traiettoria che spirala verso uno di due punti fissi. Supera ρ ≈ 24,74 e i punti fissi perdono stabilità; al valore canonico ρ = 28 la traiettoria non può più stabilirsi da nessuna parte — è condannata a percorrere la farfalla per sempre.",
+        body: "ρ (il numero di Rayleigh) misura quanto scaldi il fluido dal basso. Sotto ρ = 1 non accade nulla: ogni condizione iniziale decade a zero, niente convezione, solo conduzione. Tra 1 e circa 24,74 hai convezione stabile, con la traiettoria che spirala verso uno di due punti fissi. Supera ρ ≈ 24,74 e i punti fissi perdono stabilità; al valore canonico ρ = 28 la traiettoria non può più stabilirsi da nessuna parte: è condannata a percorrere la farfalla per sempre.",
       },
       {
         pretitle: "Sezione tre · Le ali",
         title: "Due fantasmi al centro della farfalla",
-        body: "Ogni ala è costruita attorno a un equilibrio instabile — un punto in cui le equazioni si bilanciano, ma fragilmente. La traiettoria spirala verso l'esterno attorno a un'ala, accumulando energia, finché di colpo si lancia sull'altra ala e ricomincia a spiralare. Il numero di giri prima del salto è imprevedibile. A volte 3, a volte 17, mai la stessa sequenza due volte — e quella sequenza è, in senso preciso, casuale come il lancio di una moneta.",
+        body: "Ogni ala è costruita attorno a un equilibrio instabile: un punto in cui le equazioni si bilanciano, ma fragilmente. La traiettoria spirala verso l'esterno attorno a un'ala, accumulando energia, finché di colpo si lancia sull'altra ala e ricomincia a spiralare. Il numero di giri prima del salto è imprevedibile. A volte 3, a volte 17, mai la stessa sequenza due volte, e quella sequenza è, in senso preciso, casuale come il lancio di una moneta.",
       },
       {
         pretitle: "Sezione quattro · Dipendenza sensibile",
         title: "Perché un errore grande come un batterio diventa catastrofico",
-        body: "Due traiettorie separate da ε si allontanano grossomodo come ε·eλt, dove λ ≈ 0,906 è l'esponente di Lyapunov dominante. Sembra mansueto finché non fai il conto: in circa 16 secondi simulati la separazione si moltiplica per un milione. Ogni incertezza iniziale — rumore di misura, arrotondamento di macchina, una farfalla che batte le ali in Brasile — è amplificata a questo ritmo. Le previsioni meteo decadono perché l'atmosfera reale ha il proprio esponente di Lyapunov positivo, e nessun sensore migliore batte un esponenziale.",
+        body: "Due traiettorie separate da ε si allontanano grossomodo come ε·eλt, dove λ ≈ 0,906 è l'esponente di Lyapunov dominante. Sembra mansueto finché non fai il conto: in circa 16 secondi simulati la separazione si moltiplica per un milione. Ogni incertezza iniziale (rumore di misura, arrotondamento di macchina, una farfalla che batte le ali in Brasile) è amplificata a questo ritmo. Le previsioni meteo decadono perché l'atmosfera reale ha il proprio esponente di Lyapunov positivo, e nessun sensore migliore batte un esponenziale.",
       },
       {
         pretitle: "Sezione cinque · Un attrattore strano",
-        title: "Dimensione 2,06 — tra superficie e solido",
+        title: "Dimensione 2,06: tra superficie e solido",
         body: "Ogni traiettoria, ovunque inizi, è risucchiata sullo stesso oggetto a forma di farfalla. Quell'oggetto è l'attrattore. Non è una curva chiusa (dimensione 1), né una superficie liscia (dimensione 2), né un solido (dimensione 3). La sua dimensione di Hausdorff è circa 2,06: una superficie con frange frattali, infinitamente sottile in una direzione ma mai del tutto piatta. Ingrandisci un punto qualsiasi e ritrovi la stessa struttura a fogli. Ecco cosa significa «strano» in «attrattore strano».",
       },
       {
         pretitle: "Sezione sei · L'onda culturale",
         title: "Da un articolo silenzioso a una frase di tutti i giorni",
-        body: "L'articolo di Lorenz passò quasi inosservato per un decennio. Poi il libro «Chaos» di James Gleick (1987) mise la farfalla su ogni tavolino e «effetto farfalla» entrò nella lingua. La lezione profonda è più dura dello slogan: equazioni deterministiche possono essere del tutto imprevedibili, il mondo è pieno di tali sistemi (clima, ecosistemi, economie, cuori) e la previsione non è questione di calcolare di più — ha un orizzonte fondamentale. I servizi meteo moderni lanciano decine di previsioni leggermente perturbate in parallelo proprio per questo.",
+        body: "L'articolo di Lorenz passò quasi inosservato per un decennio. Poi il libro «Chaos» di James Gleick (1987) mise la farfalla su ogni tavolino e «effetto farfalla» entrò nella lingua. La lezione profonda è più dura dello slogan: equazioni deterministiche possono essere del tutto imprevedibili, il mondo è pieno di tali sistemi (clima, ecosistemi, economie, cuori) e la previsione non è questione di calcolare di più; ha un orizzonte fondamentale. I servizi meteo moderni lanciano decine di previsioni leggermente perturbate in parallelo proprio per questo.",
       },
     ],
     inlineRho: {
@@ -543,7 +543,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Por que importa",
           title: "O efeito borboleta, feito de matemática",
-          body: "É a origem do «efeito borboleta» e a razão pela qual o seu app de clima deixa de ser confiável depois de cerca de duas semanas. Lorenz não inventou o caos — revelou que ele se escondia dentro das equações mais limpas e nos deu um vocabulário para conviver com ele.",
+          body: "É a origem do «efeito borboleta» e a razão pela qual o seu app de clima deixa de ser confiável depois de cerca de duas semanas. Lorenz não inventou o caos; revelou que ele se escondia dentro das equações mais limpas e nos deu um vocabulário para conviver com ele.",
         },
       ],
       tryIt:
@@ -553,32 +553,32 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Seção um · As equações",
         title: "Três taxas de variação acopladas",
-        body: "Cada equação descreve a velocidade com que uma grandeza muda. x é a velocidade do rolo de convecção — ar quente que sobe, ar frio que desce. y é a diferença horizontal de temperatura. z é o desvio vertical do perfil linear. As três peças conversam: x puxa y, y puxa z, z retroage sobre y. Os termos não lineares (xz e xy) são onde mora o caos — sem eles, seria apenas um oscilador amortecido.",
+        body: "Cada equação descreve a velocidade com que uma grandeza muda. x é a velocidade do rolo de convecção: ar quente que sobe, ar frio que desce. y é a diferença horizontal de temperatura. z é o desvio vertical do perfil linear. As três peças conversam: x puxa y, y puxa z, z retroage sobre y. Os termos não lineares (xz e xy) são onde mora o caos; sem eles, seria apenas um oscilador amortecido.",
       },
       {
         pretitle: "Seção dois · Dois regimes",
         title: "ρ < 1 é tedioso, ρ ≈ 28 é a borboleta",
-        body: "ρ (o número de Rayleigh) mede o quanto você aquece o fluido por baixo. Abaixo de ρ = 1 nada acontece: qualquer condição inicial decai a zero — sem convecção, só condução. Entre 1 e cerca de 24,74 há convecção estável, com a trajetória espiralando em direção a um de dois pontos fixos. Cruze ρ ≈ 24,74 e os pontos fixos perdem estabilidade; no valor canônico ρ = 28 a trajetória já não pode se acomodar — está condenada a percorrer a borboleta para sempre.",
+        body: "ρ (o número de Rayleigh) mede o quanto você aquece o fluido por baixo. Abaixo de ρ = 1 nada acontece: qualquer condição inicial decai a zero, sem convecção, só condução. Entre 1 e cerca de 24,74 há convecção estável, com a trajetória espiralando em direção a um de dois pontos fixos. Cruze ρ ≈ 24,74 e os pontos fixos perdem estabilidade; no valor canônico ρ = 28 a trajetória já não pode se acomodar: está condenada a percorrer a borboleta para sempre.",
       },
       {
         pretitle: "Seção três · As asas",
         title: "Dois fantasmas no centro da borboleta",
-        body: "Cada asa é construída em torno de um equilíbrio instável — um ponto em que as equações se equilibram, mas só frágilmente. A trajetória espirala para fora ao redor de uma asa, acumulando energia, até que de repente é arremessada para a outra asa e recomeça a espiralar. O número de voltas antes do salto é imprevisível. Às vezes 3, às vezes 17, nunca a mesma sequência duas vezes — e essa sequência é, em sentido preciso, tão aleatória quanto um lançamento de moeda.",
+        body: "Cada asa é construída em torno de um equilíbrio instável: um ponto em que as equações se equilibram, mas só frágilmente. A trajetória espirala para fora ao redor de uma asa, acumulando energia, até que de repente é arremessada para a outra asa e recomeça a espiralar. O número de voltas antes do salto é imprevisível. Às vezes 3, às vezes 17, nunca a mesma sequência duas vezes, e essa sequência é, em sentido preciso, tão aleatória quanto um lançamento de moeda.",
       },
       {
         pretitle: "Seção quatro · Dependência sensível",
         title: "Por que um erro do tamanho de uma bactéria se torna catastrófico",
-        body: "Duas trajetórias separadas por ε se afastam aproximadamente como ε·eλt, onde λ ≈ 0,906 é o expoente de Lyapunov dominante. Parece manso até você fazer a conta: em cerca de 16 segundos simulados o intervalo se multiplica por um milhão. Qualquer incerteza inicial — ruído de medição, arredondamento do computador, uma borboleta batendo as asas no Brasil — é amplificada a esse ritmo. Previsões meteorológicas decaem porque a atmosfera real tem seu próprio expoente de Lyapunov positivo, e nenhum sensor melhor vence uma exponencial.",
+        body: "Duas trajetórias separadas por ε se afastam aproximadamente como ε·eλt, onde λ ≈ 0,906 é o expoente de Lyapunov dominante. Parece manso até você fazer a conta: em cerca de 16 segundos simulados o intervalo se multiplica por um milhão. Qualquer incerteza inicial (ruído de medição, arredondamento do computador, uma borboleta batendo as asas no Brasil) é amplificada a esse ritmo. Previsões meteorológicas decaem porque a atmosfera real tem seu próprio expoente de Lyapunov positivo, e nenhum sensor melhor vence uma exponencial.",
       },
       {
         pretitle: "Seção cinco · Um atrator estranho",
-        title: "Dimensão 2,06 — entre superfície e sólido",
+        title: "Dimensão 2,06: entre superfície e sólido",
         body: "Qualquer trajetória, onde quer que comece, é sugada para o mesmo objeto em forma de borboleta. Esse objeto é o atrator. Não é uma curva fechada (dimensão 1), nem uma superfície lisa (dimensão 2), nem um sólido (dimensão 3). Sua dimensão de Hausdorff é cerca de 2,06: uma superfície com franja fractal, infinitamente fina em uma direção mas nunca de fato plana. Aproxime-se de qualquer ponto e encontre a mesma estrutura em folhas finíssimas. Isso é o que «estranho» significa em «atrator estranho».",
       },
       {
         pretitle: "Seção seis · A onda cultural",
         title: "De um artigo silencioso a uma frase do cotidiano",
-        body: "O artigo de Lorenz passou quase despercebido por uma década. Depois o livro «Chaos» de James Gleick (1987) pôs a borboleta em cada mesa de centro, e «efeito borboleta» entrou na língua. A lição profunda é mais dura que o slogan: equações deterministas podem ser completamente imprevisíveis, o mundo está cheio desses sistemas (clima, ecossistemas, economias, corações), e previsão não é uma questão de calcular mais — tem um horizonte fundamental. Os serviços meteorológicos modernos rodam dezenas de previsões ligeiramente perturbadas em paralelo exatamente por isso.",
+        body: "O artigo de Lorenz passou quase despercebido por uma década. Depois o livro «Chaos» de James Gleick (1987) pôs a borboleta em cada mesa de centro, e «efeito borboleta» entrou na língua. A lição profunda é mais dura que o slogan: equações deterministas podem ser completamente imprevisíveis, o mundo está cheio desses sistemas (clima, ecossistemas, economias, corações), e previsão não é uma questão de calcular mais; tem um horizonte fundamental. Os serviços meteorológicos modernos rodam dezenas de previsões ligeiramente perturbadas em paralelo exatamente por isso.",
       },
     ],
     inlineRho: {
@@ -635,7 +635,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Varför det spelar roll",
           title: "Fjärilseffekten, byggd av matematik",
-          body: "Det här är ursprunget till «fjärilseffekten» och anledningen till att din väderapp blir opålitlig efter cirka två veckor. Lorenz uppfann inte kaoset — han avslöjade att det gömde sig i de renaste ekvationerna vi kände till och gav oss ett ordförråd för att leva med det.",
+          body: "Det här är ursprunget till «fjärilseffekten» och anledningen till att din väderapp blir opålitlig efter cirka två veckor. Lorenz uppfann inte kaoset; han avslöjade att det gömde sig i de renaste ekvationerna vi kände till och gav oss ett ordförråd för att leva med det.",
         },
       ],
       tryIt:
@@ -645,32 +645,32 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Avsnitt ett · Ekvationerna",
         title: "Tre kopplade förändringshastigheter",
-        body: "Varje ekvation beskriver hur snabbt en storhet ändras. x är hastigheten i konvektionsrullen — varm luft stiger, kall luft sjunker. y är den horisontella temperaturskillnaden. z är den vertikala avvikelsen från en linjär temperaturprofil. De tre delarna pratar med varandra: x drar y, y drar z, z återkopplar till y. De icke-linjära termerna (xz och xy) är där kaoset bor — utan dem vore systemet en dämpad oscillator.",
+        body: "Varje ekvation beskriver hur snabbt en storhet ändras. x är hastigheten i konvektionsrullen: varm luft stiger, kall luft sjunker. y är den horisontella temperaturskillnaden. z är den vertikala avvikelsen från en linjär temperaturprofil. De tre delarna pratar med varandra: x drar y, y drar z, z återkopplar till y. De icke-linjära termerna (xz och xy) är där kaoset bor; utan dem vore systemet en dämpad oscillator.",
       },
       {
         pretitle: "Avsnitt två · Två regimer",
         title: "ρ < 1 är trist, ρ ≈ 28 är fjärilen",
-        body: "ρ (Rayleigh-talet) mäter hur hårt du värmer vätskan underifrån. Under ρ = 1 händer inget intressant: varje begynnelsetillstånd avtar mot noll — ingen konvektion, bara ledning. Mellan 1 och cirka 24,74 får du stadig konvektion, banan spiralerar in mot en av två fixpunkter. Korsa ρ ≈ 24,74 och fixpunkterna förlorar stabilitet; vid det kanoniska värdet ρ = 28 kan banan inte längre lägga sig till ro någonstans — den är dömd att vandra fjärilen för evigt.",
+        body: "ρ (Rayleigh-talet) mäter hur hårt du värmer vätskan underifrån. Under ρ = 1 händer inget intressant: varje begynnelsetillstånd avtar mot noll, ingen konvektion, bara ledning. Mellan 1 och cirka 24,74 får du stadig konvektion, banan spiralerar in mot en av två fixpunkter. Korsa ρ ≈ 24,74 och fixpunkterna förlorar stabilitet; vid det kanoniska värdet ρ = 28 kan banan inte längre lägga sig till ro någonstans: den är dömd att vandra fjärilen för evigt.",
       },
       {
         pretitle: "Avsnitt tre · Vingarna",
         title: "Två spöken i fjärilens centrum",
-        body: "Varje vinge är byggd kring en instabil jämvikt — en punkt där ekvationerna balanserar, men bräckligt. Banan spiralerar utåt runt en vinge, samlar energi, tills den plötsligt slungas över till den andra vingen och börjar spirala igen. Antalet varv före hoppet är oförutsägbart. Ibland 3, ibland 17, aldrig samma sekvens två gånger — och denna sekvens är, i precis mening, lika slumpmässig som en slantsingling.",
+        body: "Varje vinge är byggd kring en instabil jämvikt: en punkt där ekvationerna balanserar, men bräckligt. Banan spiralerar utåt runt en vinge, samlar energi, tills den plötsligt slungas över till den andra vingen och börjar spirala igen. Antalet varv före hoppet är oförutsägbart. Ibland 3, ibland 17, aldrig samma sekvens två gånger, och denna sekvens är, i precis mening, lika slumpmässig som en slantsingling.",
       },
       {
         pretitle: "Avsnitt fyra · Känslig beroende",
         title: "Varför ett bakteriestort fel blir katastrofalt",
-        body: "Två banor separerade med ε växer isär ungefär som ε·eλt, där λ ≈ 0,906 är den ledande Lyapunov-exponenten. Det låter tamt tills du räknar: på cirka 16 simulerade sekunder multipliceras gapet med en miljon. Varje osäkerhet i utgångsläget — mätbrus, datorns avrundning, en fjäril som slår med vingarna i Brasilien — förstärks i denna takt. Väderprognoser sönderfaller eftersom den verkliga atmosfären har sin egen positiva Lyapunov-exponent, och inga bättre sensorer kan springa ifrån en exponential.",
+        body: "Två banor separerade med ε växer isär ungefär som ε·eλt, där λ ≈ 0,906 är den ledande Lyapunov-exponenten. Det låter tamt tills du räknar: på cirka 16 simulerade sekunder multipliceras gapet med en miljon. Varje osäkerhet i utgångsläget (mätbrus, datorns avrundning, en fjäril som slår med vingarna i Brasilien) förstärks i denna takt. Väderprognoser sönderfaller eftersom den verkliga atmosfären har sin egen positiva Lyapunov-exponent, och inga bättre sensorer kan springa ifrån en exponential.",
       },
       {
         pretitle: "Avsnitt fem · En sällsam attraktor",
-        title: "Dimension 2,06 — mellan yta och solid",
+        title: "Dimension 2,06: mellan yta och solid",
         body: "Varje bana, oavsett startpunkt, sugs upp på samma fjärilsformade objekt. Det objektet är attraktorn. Det är inte en sluten kurva (dimension 1), inte en slät yta (dimension 2), inte en solid klump (dimension 3). Dess Hausdorff-dimension är ungefär 2,06: en yta med fraktal frans, oändligt tunn i en riktning men aldrig riktigt platt. Zooma in på ett område och du finner samma skiktade struktur. Det är vad «sällsam» betyder i «sällsam attraktor».",
       },
       {
         pretitle: "Avsnitt sex · Den kulturella stötvågen",
         title: "Från en tyst artikel 1963 till en vardagsfras",
-        body: "Lorenz artikel passerade nästan obemärkt i ett decennium. Sedan satte James Gleicks bok «Chaos» (1987) fjärilen på varje soffbord, och «fjärilseffekt» gick in i språket. Den djupare läxan är hårdare än slagordet: deterministiska ekvationer kan vara helt oförutsägbara, världen är full av sådana system (klimat, ekosystem, ekonomier, hjärtan), och prognos är inte en fråga om att räkna hårdare — den har en grundläggande horisont. Moderna vädertjänster kör dussintals lätt störda prognoser parallellt just därför.",
+        body: "Lorenz artikel passerade nästan obemärkt i ett decennium. Sedan satte James Gleicks bok «Chaos» (1987) fjärilen på varje soffbord, och «fjärilseffekt» gick in i språket. Den djupare läxan är hårdare än slagordet: deterministiska ekvationer kan vara helt oförutsägbara, världen är full av sådana system (klimat, ekosystem, ekonomier, hjärtan), och prognos är inte en fråga om att räkna hårdare; den har en grundläggande horisont. Moderna vädertjänster kör dussintals lätt störda prognoser parallellt just därför.",
       },
     ],
     inlineRho: {
@@ -727,7 +727,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Hvorfor det betyr noe",
           title: "Sommerfugleffekten, laget av matematikk",
-          body: "Dette er opphavet til «sommerfugleffekten» og grunnen til at vær-appen din slutter å være pålitelig etter omtrent to uker. Lorenz oppfant ikke kaoset — han avslørte at det gjemte seg i de reneste ligningene vi kjente, og ga oss et språk for å leve med det.",
+          body: "Dette er opphavet til «sommerfugleffekten» og grunnen til at vær-appen din slutter å være pålitelig etter omtrent to uker. Lorenz oppfant ikke kaoset; han avslørte at det gjemte seg i de reneste ligningene vi kjente, og ga oss et språk for å leve med det.",
         },
       ],
       tryIt:
@@ -737,32 +737,32 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del én · Ligningene",
         title: "Tre koblede endringsrater",
-        body: "Hver ligning beskriver hvor raskt en størrelse endrer seg. x er hastigheten på konveksjonsrullen — varm luft stiger, kald luft synker. y er den horisontale temperaturforskjellen. z er det vertikale avviket fra en lineær temperaturprofil. De tre delene snakker sammen: x trekker y, y trekker z, z reagerer på y. De ikke-lineære leddene (xz og xy) er der kaoset bor — uten dem ville systemet bare være en dempet oscillator.",
+        body: "Hver ligning beskriver hvor raskt en størrelse endrer seg. x er hastigheten på konveksjonsrullen: Varm luft stiger, kald luft synker. y er den horisontale temperaturforskjellen. z er det vertikale avviket fra en lineær temperaturprofil. De tre delene snakker sammen: x trekker y, y trekker z, z reagerer på y. De ikke-lineære leddene (xz og xy) er der kaoset bor; uten dem ville systemet bare være en dempet oscillator.",
       },
       {
         pretitle: "Del to · To regimer",
         title: "ρ < 1 er kjedelig, ρ ≈ 28 er sommerfuglen",
-        body: "ρ (Rayleigh-tallet) måler hvor hardt du varmer væsken nedenfra. Under ρ = 1 skjer ingenting interessant: enhver starttilstand dør ut mot null — ingen konveksjon, bare ledning. Mellom 1 og rundt 24,74 får du jevn konveksjon, banen spiralerer inn mot ett av to faste punkter. Krysser du ρ ≈ 24,74 mister de faste punktene stabilitet; ved kanonisk verdi ρ = 28 kan banen ikke lenger slå seg til ro noe sted — den er dømt til å vandre sommerfuglen for alltid.",
+        body: "ρ (Rayleigh-tallet) måler hvor hardt du varmer væsken nedenfra. Under ρ = 1 skjer ingenting interessant: enhver starttilstand dør ut mot null, ingen konveksjon, bare ledning. Mellom 1 og rundt 24,74 får du jevn konveksjon, banen spiralerer inn mot ett av to faste punkter. Krysser du ρ ≈ 24,74 mister de faste punktene stabilitet; ved kanonisk verdi ρ = 28 kan banen ikke lenger slå seg til ro noe sted: Den er dømt til å vandre sommerfuglen for alltid.",
       },
       {
         pretitle: "Del tre · Vingene",
         title: "To gjenferd i sommerfuglens senter",
-        body: "Hver vinge er bygd rundt en ustabil likevekt — et punkt der ligningene balanserer, men bare skjørt. Banen spiralerer utover rundt én vinge, samler energi, helt til den plutselig slynges over til den andre vingen og begynner å spiralere igjen. Antall sløyfer før hoppet er uforutsigbart. Noen ganger 3, noen ganger 17, aldri samme sekvens to ganger — og den sekvensen er, i presis forstand, like tilfeldig som myntkast.",
+        body: "Hver vinge er bygd rundt en ustabil likevekt: et punkt der ligningene balanserer, men bare skjørt. Banen spiralerer utover rundt én vinge, samler energi, helt til den plutselig slynges over til den andre vingen og begynner å spiralere igjen. Antall sløyfer før hoppet er uforutsigbart. Noen ganger 3, noen ganger 17, aldri samme sekvens to ganger, og den sekvensen er, i presis forstand, like tilfeldig som myntkast.",
       },
       {
         pretitle: "Del fire · Sensitiv avhengighet",
         title: "Hvorfor en bakteriestor feil blir katastrofal",
-        body: "To baner adskilt av ε vokser fra hverandre omtrent som ε·eλt, der λ ≈ 0,906 er den ledende Lyapunov-eksponenten. Det høres tamt ut til du gjør regnestykket: på rundt 16 simulerte sekunder ganges avstanden med en million. Enhver usikkerhet i utgangstilstanden — målestøy, avrunding i datamaskinen, en sommerfugl som slår med vingene i Brasil — forsterkes i dette tempoet. Værvarsler forfaller fordi den virkelige atmosfæren har sin egen positive Lyapunov-eksponent, og ingen bedre sensorer kan løpe fra en eksponentialfunksjon.",
+        body: "To baner adskilt av ε vokser fra hverandre omtrent som ε·eλt, der λ ≈ 0,906 er den ledende Lyapunov-eksponenten. Det høres tamt ut til du gjør regnestykket: på rundt 16 simulerte sekunder ganges avstanden med en million. Enhver usikkerhet i utgangstilstanden (målestøy, avrunding i datamaskinen, en sommerfugl som slår med vingene i Brasil) forsterkes i dette tempoet. Værvarsler forfaller fordi den virkelige atmosfæren har sin egen positive Lyapunov-eksponent, og ingen bedre sensorer kan løpe fra en eksponentialfunksjon.",
       },
       {
         pretitle: "Del fem · En selsom attraktor",
-        title: "Dimensjon 2,06 — mellom flate og solid",
+        title: "Dimensjon 2,06: mellom flate og solid",
         body: "Enhver bane, uansett hvor den starter, suges inn på det samme sommerfuglformede objektet. Det objektet er attraktoren. Det er ikke en lukket kurve (dimensjon 1), ikke en glatt flate (dimensjon 2), ikke en solid klump (dimensjon 3). Hausdorff-dimensjonen er omtrent 2,06: en flate med fraktal frynse, uendelig tynn i én retning, men aldri helt flat. Zoom inn på et område og du finner den samme tynne, lagdelte strukturen. Det er hva «selsom» betyr i «selsom attraktor».",
       },
       {
         pretitle: "Del seks · Den kulturelle sjokkbølgen",
         title: "Fra en stille artikkel i 1963 til en hverdagsfrase",
-        body: "Lorenz' artikkel gikk nesten ubemerket i et tiår. Så satte James Gleicks bok «Chaos» (1987) sommerfuglen på hvert sofabord, og «sommerfugleffekten» kom inn i språket. Den dypere lærdommen er hardere enn slagordet: deterministiske ligninger kan være fullstendig uforutsigbare, verden er full av slike systemer (klima, økosystemer, økonomier, hjerter), og prognose er ikke et spørsmål om å regne hardere — det har en grunnleggende horisont. Moderne værtjenester kjører dusinvis av lett forstyrrede varsler parallelt nettopp av denne grunnen.",
+        body: "Lorenz' artikkel gikk nesten ubemerket i et tiår. Så satte James Gleicks bok «Chaos» (1987) sommerfuglen på hvert sofabord, og «sommerfugleffekten» kom inn i språket. Den dypere lærdommen er hardere enn slagordet: deterministiske ligninger kan være fullstendig uforutsigbare, verden er full av slike systemer (klima, økosystemer, økonomier, hjerter), og prognose er ikke et spørsmål om å regne hardere; det har en grunnleggende horisont. Moderne værtjenester kjører dusinvis av lett forstyrrede varsler parallelt nettopp av denne grunnen.",
       },
     ],
     inlineRho: {
@@ -823,7 +823,7 @@ export default function LorenzStory() {
       }
       finalLabel={s.storyLabels.readyToFly}
     >
-      {/* Encounter — three layperson cards */}
+      {/* Encounter: three layperson cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -864,7 +864,7 @@ export default function LorenzStory() {
         </Reveal>
       </section>
 
-      {/* Section 1 — The equations */}
+      {/* Section 1: The equations */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[0]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -886,7 +886,7 @@ export default function LorenzStory() {
         </Reveal>
       </section>
 
-      {/* Section 2 — Two regimes */}
+      {/* Section 2: Two regimes */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[1]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -909,7 +909,7 @@ export default function LorenzStory() {
         </Reveal>
       </section>
 
-      {/* Section 3 — Wings */}
+      {/* Section 3: Wings */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[2]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -925,7 +925,7 @@ export default function LorenzStory() {
         </Reveal>
       </section>
 
-      {/* Section 4 — Sensitive dependence + interactive two orbits */}
+      {/* Section 4: Sensitive dependence + interactive two orbits */}
       <section className="mx-auto mb-32 max-w-5xl space-y-8">
         <StoryCard {...story.sections[3]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -946,7 +946,7 @@ export default function LorenzStory() {
         </Reveal>
       </section>
 
-      {/* Section 5 — Strange attractor + dimension */}
+      {/* Section 5: Strange attractor + dimension */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[4]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -967,12 +967,12 @@ export default function LorenzStory() {
         </Reveal>
       </section>
 
-      {/* Section 6 — Cultural impact */}
+      {/* Section 6: Cultural impact */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard {...story.sections[5]} accent={ACCENT} />
       </section>
 
-      {/* Closing CTA — matches apollonian/page.tsx pattern */}
+      {/* Closing CTA, matches apollonian/page.tsx pattern */}
       <Reveal>
         <section className="glass hairline mx-auto mb-16 max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
@@ -1030,7 +1030,7 @@ function DimDot({
   );
 }
 
-// Tiny static SVG showing the two regimes — a decaying spiral (stable) and a
+// Tiny static SVG showing the two regimes: a decaying spiral (stable) and a
 // schematic butterfly (chaos). Pure decoration; the live demo is above.
 function RegimeMini({ variant }: { variant: "stable" | "chaos" }) {
   if (variant === "stable") {
@@ -1094,7 +1094,7 @@ function WingsSVG({ jumpLabel }: { jumpLabel: string }) {
       aria-label="Two wings around two fixed points"
     >
       <rect width="320" height="180" fill={palette.canvas.bg} rx="8" />
-      {/* Left wing — a loose ellipse */}
+      {/* Left wing: a loose ellipse */}
       <ellipse
         cx="110"
         cy="90"

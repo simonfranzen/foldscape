@@ -1,6 +1,6 @@
 "use client";
 
-// Scroll-progress + parallax hooks. Pure rAF + IntersectionObserver — no
+// Scroll-progress + parallax hooks. Pure rAF + IntersectionObserver, no
 // dependencies. Both honour `prefers-reduced-motion: reduce` (returning a
 // frozen progress of 0 and a zero translate) so callers don't have to
 // branch themselves.
@@ -13,12 +13,12 @@ function prefersReducedMotion(): boolean {
 }
 
 // Returns the scroll progress (0..1) of a target element through the viewport:
-//   0 — the element's top edge is at the viewport bottom (just entering)
-//   1 — the element's bottom edge is at the viewport top (just leaving)
+//   0: the element's top edge is at the viewport bottom (just entering)
+//   1: the element's bottom edge is at the viewport top (just leaving)
 // Clamped, so callers can drive parallax without bounds-checking.
 //
 // v2: always computes on every tick. v1 gated tick on `visibleRef.current`
-// (set by an IntersectionObserver) for perf — but that broke
+// (set by an IntersectionObserver) for perf, but that broke
 // back-navigation: when the user restored scroll deep into the cosmos,
 // the IO callback hadn't fired yet, visibleRef stayed false, tick
 // returned early, and the topic stars never appeared (user feedback:
@@ -61,7 +61,7 @@ export function useScrollProgress(targetRef: React.RefObject<HTMLElement | null>
 
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
-    // Re-sync on bfcache restore — pageshow with persisted=true fires
+    // Re-sync on bfcache restore: pageshow with persisted=true fires
     // without a fresh React mount.
     const onPageShow = (e: PageTransitionEvent) => {
       if (e.persisted) schedule();
@@ -79,7 +79,7 @@ export function useScrollProgress(targetRef: React.RefObject<HTMLElement | null>
   return progress;
 }
 
-// Global scroll progress against the document — useful for the persistent
+// Global scroll progress against the document, useful for the persistent
 // HUD progress bar and any cross-scene effects.
 export function useDocumentScrollProgress(): number {
   const [progress, setProgress] = useState(0);
@@ -120,7 +120,7 @@ export function useMouseParallax(): { mx: number; my: number } {
   const [pos, setPos] = useState({ mx: 0, my: 0 });
   useEffect(() => {
     if (prefersReducedMotion()) return;
-    // Coarse pointer (touch) — skip; the effect adds nothing on phones.
+    // Coarse pointer (touch): skip; the effect adds nothing on phones.
     if (window.matchMedia?.("(pointer: coarse)").matches) return;
     const onMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth) * 2 - 1;

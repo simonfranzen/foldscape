@@ -8,7 +8,7 @@ interface Props {
   block?: boolean;
   className?: string;
   size?: "sm" | "md" | "lg" | "xl" | "hero";
-  // Spoken form used as the accessible label — overrides the screen-reader
+  // Spoken form used as the accessible label. Overrides the screen-reader
   // text. When omitted, falls back to a best-effort speakable transform of
   // the LaTeX source. KaTeX's own MathML output still ships alongside so
   // assistive tech that speaks MathML gets the structured form too.

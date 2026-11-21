@@ -72,13 +72,13 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "The Double Pendulum",
       tagline: "Two angles, one mess, infinite futures.",
       intro:
-        "Hang one pendulum from another and write down Lagrange's equations. The recipe is high-school physics. The motion is the textbook face of deterministic chaos — beautiful, bounded, and utterly unpredictable past a few seconds.",
+        "Hang one pendulum from another and write down Lagrange's equations. The recipe is high-school physics. The motion is the textbook face of deterministic chaos: beautiful, bounded, and utterly unpredictable past a few seconds.",
       ctaInteractive: "→ Open the Explorer",
       sections: [
         {
           pretitle: "Step one · The setup",
           title: "Two pendulums, one bob hanging from another",
-          body: "A rigid rod of length L₁ with a bob of mass m₁, pivoting under gravity. From that first bob, a second rod of length L₂ with a second bob m₂. Two angles, θ₁ and θ₂, measured from the vertical, plus their velocities — and that is the entire state.",
+          body: "A rigid rod of length L₁ with a bob of mass m₁, pivoting under gravity. From that first bob, a second rod of length L₂ with a second bob m₂. Two angles, θ₁ and θ₂, measured from the vertical, plus their velocities, and that is the entire state.",
         },
         {
           pretitle: "Step two · The Lagrangian",
@@ -104,17 +104,17 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · The big idea",
           title: "Hang a pendulum from a pendulum",
-          body: "A swing has two angles, two velocities — four numbers. That is the entire state of the toy. And yet two starts that look identical to the eye will, within a handful of seconds, dance two completely different dances. The same equations, different futures. Determinism without predictability.",
+          body: "A swing has two angles, two velocities: four numbers. That is the entire state of the toy. And yet two starts that look identical to the eye will, within a handful of seconds, dance two completely different dances. The same equations, different futures. Determinism without predictability.",
         },
         {
           label: "02 · A concrete example",
           title: "90°, 90° vs. 90°, 90.00001°",
-          body: "Start one pendulum at θ₁ = 90°, θ₂ = 90°. The tip traces a beautiful, intricate curve. Restart with θ₂ = 90.00001° — a hundred-thousandth of a degree of difference. The two curves coincide for a few seconds, then peel apart, and by ten seconds in they have nothing whatsoever to say to each other.",
+          body: "Start one pendulum at θ₁ = 90°, θ₂ = 90°. The tip traces a beautiful, intricate curve. Restart with θ₂ = 90.00001°, a hundred-thousandth of a degree of difference. The two curves coincide for a few seconds, then peel apart, and by ten seconds in they have nothing whatsoever to say to each other.",
         },
         {
           label: "03 · Why it matters",
           title: "Classical chaos, distilled into four numbers",
-          body: "This is the purest example of chaos in a low-dimensional classical system. Just Newton's laws, just Lagrange's equations — no randomness anywhere. Yet sensitive dependence on initial conditions is on full display, in motion you can see, in a system you can build with two paperclips.",
+          body: "This is the purest example of chaos in a low-dimensional classical system. Just Newton's laws, just Lagrange's equations, no randomness anywhere. Yet sensitive dependence on initial conditions is on full display, in motion you can see, in a system you can build with two paperclips.",
         },
       ],
       tryIt:
@@ -124,27 +124,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section one · The Lagrangian",
         title: "Energy in, energy out, equations of motion",
-        body: "Write the position of each bob: (x₁, y₁) for the first and (x₂, y₂) for the second, both as functions of θ₁ and θ₂. Differentiate to get velocities. The kinetic energy T is ½ m₁ v₁² + ½ m₂ v₂². The potential energy V is m₁ g y₁ + m₂ g y₂. Form the Lagrangian L = T − V — a single scalar function on the four-dimensional state space — and the entire dynamics is buried in it. Lagrange's deep insight, from 1788, is that you never need to draw a single free-body diagram: nature minimises an action, and the equations follow.",
+        body: "Write the position of each bob: (x₁, y₁) for the first and (x₂, y₂) for the second, both as functions of θ₁ and θ₂. Differentiate to get velocities. The kinetic energy T is ½ m₁ v₁² + ½ m₂ v₂². The potential energy V is m₁ g y₁ + m₂ g y₂. Form the Lagrangian L = T − V, a single scalar function on the four-dimensional state space, and the entire dynamics is buried in it. Lagrange's deep insight, from 1788, is that you never need to draw a single free-body diagram: nature minimises an action, and the equations follow.",
       },
       {
         pretitle: "Section two · The coupled ODEs",
         title: "Euler-Lagrange grinds out two nonlinear equations",
-        body: "Applying ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 for i = 1, 2 yields two second-order ODEs. After solving for the angular accelerations θ̈₁ and θ̈₂, you get expressions full of sines, cosines, products of velocities, and a denominator that involves 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). The equations are exact, deterministic, and completely free of friction or noise. They also admit no elementary closed-form solution. To watch the system, you integrate — RK4 is plenty.",
+        body: "Applying ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 for i = 1, 2 yields two second-order ODEs. After solving for the angular accelerations θ̈₁ and θ̈₂, you get expressions full of sines, cosines, products of velocities, and a denominator that involves 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). The equations are exact, deterministic, and completely free of friction or noise. They also admit no elementary closed-form solution. To watch the system, you integrate: RK4 is plenty.",
       },
       {
         pretitle: "Section three · Three regimes",
         title: "Quiet, wild, and the KAM tear between them",
-        body: "At low total energy the motion lives on a smooth invariant torus in the 4D phase space — quasi-periodic, bounded, almost boring. Crank the energy up and the torus shreds: by the KAM theorem of Kolmogorov, Arnold and Moser, most invariant tori survive small perturbations, but as energy grows they break one by one until what is left is a chaotic sea. In the middle, a critical transition where islands of order coexist with stochastic layers. The double pendulum is a tabletop demonstration of the whole KAM story.",
+        body: "At low total energy the motion lives on a smooth invariant torus in the 4D phase space: quasi-periodic, bounded, almost boring. Crank the energy up and the torus shreds: by the KAM theorem of Kolmogorov, Arnold and Moser, most invariant tori survive small perturbations, but as energy grows they break one by one until what is left is a chaotic sea. In the middle, a critical transition where islands of order coexist with stochastic layers. The double pendulum is a tabletop demonstration of the whole KAM story.",
       },
       {
         pretitle: "Section four · Lyapunov and the horizon",
         title: "A predictability ceiling, measured in seconds",
-        body: "In the chaotic regime, two nearby trajectories drift apart roughly like ε · e^(λt), where λ is the largest Lyapunov exponent — positive, finite, and a property of the system, not the observer. Equivalently, the predictability horizon scales as t* ≈ (1/λ) · log(L/ε): every extra factor of ten in initial precision buys you only a constant number of seconds of foresight. No better stopwatch, no faster computer, no cleverer integrator can outrun the exponent.",
+        body: "In the chaotic regime, two nearby trajectories drift apart roughly like ε · e^(λt), where λ is the largest Lyapunov exponent, positive, finite, and a property of the system, not the observer. Equivalently, the predictability horizon scales as t* ≈ (1/λ) · log(L/ε): every extra factor of ten in initial precision buys you only a constant number of seconds of foresight. No better stopwatch, no faster computer, no cleverer integrator can outrun the exponent.",
       },
       {
         pretitle: "Section five · Phase space and Poincaré",
         title: "Slicing the dance to see its shape",
-        body: "The state lives in a 4D space (θ₁, θ₂, ω₁, ω₂). Pick a hyperplane — say, the moments when θ₁ = 0 with ω₁ > 0 — and record where the trajectory crosses it. The collection of crossings is a Poincaré section: at low energy a clean closed curve (the torus sliced once), at high energy a fuzzy two-dimensional cloud (the chaotic sea), and at the critical energy a beautiful mix of curves and clouds — the geometric signature of the KAM transition.",
+        body: "The state lives in a 4D space (θ₁, θ₂, ω₁, ω₂). Pick a hyperplane (say, the moments when θ₁ = 0 with ω₁ > 0) and record where the trajectory crosses it. The collection of crossings is a Poincaré section: at low energy a clean closed curve (the torus sliced once), at high energy a fuzzy two-dimensional cloud (the chaotic sea), and at the critical energy a beautiful mix of curves and clouds, the geometric signature of the KAM transition.",
       },
       {
         pretitle: "Section six · Connections",
@@ -172,7 +172,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     lyapunovLabel: "Largest Lyapunov exponent",
     lyapunovValue: "λ > 0",
     lyapunovNote:
-      "In the chaotic regime, gaps grow like e^(λt) — and the predictability horizon scales only as log(1/ε).",
+      "In the chaotic regime, gaps grow like e^(λt), and the predictability horizon scales only as log(1/ε).",
     regimeQuasiLabel: "Low energy",
     regimeQuasiBody:
       "Smooth quasi-periodic swing. The trajectory winds an invariant torus and never settles, never escapes.",
@@ -201,13 +201,13 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "Das Doppelpendel",
       tagline: "Zwei Winkel, ein Chaos, unendliche Zukünfte.",
       intro:
-        "Häng ein Pendel an ein Pendel und schreib Lagranges Gleichungen hin. Das Rezept ist Schulphysik. Die Bewegung ist das Schulbeispiel deterministischen Chaos — schön, beschränkt und nach wenigen Sekunden vollkommen unvorhersehbar.",
+        "Häng ein Pendel an ein Pendel und schreib Lagranges Gleichungen hin. Das Rezept ist Schulphysik. Die Bewegung ist das Schulbeispiel deterministischen Chaos: schön, beschränkt und nach wenigen Sekunden vollkommen unvorhersehbar.",
       ctaInteractive: "→ Explorer öffnen",
       sections: [
         {
           pretitle: "Schritt eins · Der Aufbau",
           title: "Zwei Pendel, ein Bob hängt am anderen",
-          body: "Ein starrer Stab der Länge L₁ mit einer Masse m₁ am Ende, der unter der Schwerkraft schwingt. An diesem ersten Bob hängt ein zweiter Stab der Länge L₂ mit Masse m₂. Zwei Winkel θ₁ und θ₂ gegen die Vertikale, dazu ihre Winkelgeschwindigkeiten — das ist der gesamte Zustand.",
+          body: "Ein starrer Stab der Länge L₁ mit einer Masse m₁ am Ende, der unter der Schwerkraft schwingt. An diesem ersten Bob hängt ein zweiter Stab der Länge L₂ mit Masse m₂. Zwei Winkel θ₁ und θ₂ gegen die Vertikale, dazu ihre Winkelgeschwindigkeiten: das ist der gesamte Zustand.",
         },
         {
           pretitle: "Schritt zwei · Die Lagrange-Funktion",
@@ -222,28 +222,28 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           pretitle: "Schritt vier · Wo es auftaucht",
           title: "Roboter, Gehen, Regelungstheorie, Museen",
-          body: "Dieselben Gleichungen beschreiben zweigliedrige Roboterarme, das schwingende Bein beim Gehen, zusammengesetzte Oszillatoren in der Maschinenwelt — und das klassische Problem, ein Pendel aufrecht zu stabilisieren. Jedes Wissenschaftsmuseum hat eins im Glaskasten, das Bahnen zieht, die niemand vorhersagen kann.",
+          body: "Dieselben Gleichungen beschreiben zweigliedrige Roboterarme, das schwingende Bein beim Gehen, zusammengesetzte Oszillatoren in der Maschinenwelt, und das klassische Problem, ein Pendel aufrecht zu stabilisieren. Jedes Wissenschaftsmuseum hat eins im Glaskasten, das Bahnen zieht, die niemand vorhersagen kann.",
         },
       ],
     },
     encounter: {
       pretitle: "Erste Begegnung",
-      title: "Zwei Stäbe, ein Drehpunkt — eine ganze Chaosphysik",
+      title: "Zwei Stäbe, ein Drehpunkt: eine ganze Chaosphysik",
       cards: [
         {
           label: "01 · Die große Idee",
           title: "Häng ein Pendel an ein Pendel",
-          body: "Eine Doppelschwingung hat zwei Winkel und zwei Geschwindigkeiten — vier Zahlen. Das ist der ganze Zustand. Und trotzdem tanzen zwei Starts, die für das Auge identisch aussehen, nach wenigen Sekunden völlig verschiedene Tänze. Dieselben Gleichungen, andere Zukünfte. Determinismus ohne Vorhersagbarkeit.",
+          body: "Eine Doppelschwingung hat zwei Winkel und zwei Geschwindigkeiten: vier Zahlen. Das ist der ganze Zustand. Und trotzdem tanzen zwei Starts, die für das Auge identisch aussehen, nach wenigen Sekunden völlig verschiedene Tänze. Dieselben Gleichungen, andere Zukünfte. Determinismus ohne Vorhersagbarkeit.",
         },
         {
           label: "02 · Ein konkretes Beispiel",
           title: "90°, 90° gegen 90°, 90,00001°",
-          body: "Starte ein Pendel bei θ₁ = 90°, θ₂ = 90°. Die Spitze zeichnet eine schöne, verschlungene Kurve. Neustart mit θ₂ = 90,00001° — ein Hunderttausendstel Grad Unterschied. Die beiden Kurven decken sich ein paar Sekunden, lösen sich dann ab, und nach zehn Sekunden haben sie einander nichts mehr zu sagen.",
+          body: "Starte ein Pendel bei θ₁ = 90°, θ₂ = 90°. Die Spitze zeichnet eine schöne, verschlungene Kurve. Neustart mit θ₂ = 90,00001°, ein Hunderttausendstel Grad Unterschied. Die beiden Kurven decken sich ein paar Sekunden, lösen sich dann ab, und nach zehn Sekunden haben sie einander nichts mehr zu sagen.",
         },
         {
           label: "03 · Warum es zählt",
           title: "Klassisches Chaos, eingedampft auf vier Zahlen",
-          body: "Das ist das reinste Beispiel von Chaos in einem niedrigdimensionalen klassischen System. Nur Newtons Gesetze, nur Lagranges Gleichungen — keine Zufälligkeit. Trotzdem ist die sensitive Abhängigkeit von Anfangsbedingungen voll sichtbar, in einer Bewegung, die man sieht, an einem System, das aus zwei Büroklammern entsteht.",
+          body: "Das ist das reinste Beispiel von Chaos in einem niedrigdimensionalen klassischen System. Nur Newtons Gesetze, nur Lagranges Gleichungen, keine Zufälligkeit. Trotzdem ist die sensitive Abhängigkeit von Anfangsbedingungen voll sichtbar, in einer Bewegung, die man sieht, an einem System, das aus zwei Büroklammern entsteht.",
         },
       ],
       tryIt:
@@ -253,27 +253,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt eins · Die Lagrange-Funktion",
         title: "Energie rein, Energie raus, Bewegungsgleichungen",
-        body: "Schreib die Position jedes Bobs: (x₁, y₁) für den ersten und (x₂, y₂) für den zweiten, beide als Funktion von θ₁ und θ₂. Ableiten gibt Geschwindigkeiten. Die kinetische Energie T ist ½ m₁ v₁² + ½ m₂ v₂². Die potentielle Energie V ist m₁ g y₁ + m₂ g y₂. Bilde L = T − V — eine einzige skalare Funktion auf dem vierdimensionalen Zustandsraum — und die ganze Dynamik steckt darin. Lagranges tiefe Einsicht von 1788: man braucht keine Freikörperbilder, die Natur minimiert eine Wirkung und die Gleichungen folgen.",
+        body: "Schreib die Position jedes Bobs: (x₁, y₁) für den ersten und (x₂, y₂) für den zweiten, beide als Funktion von θ₁ und θ₂. Ableiten gibt Geschwindigkeiten. Die kinetische Energie T ist ½ m₁ v₁² + ½ m₂ v₂². Die potentielle Energie V ist m₁ g y₁ + m₂ g y₂. Bilde L = T − V, eine einzige skalare Funktion auf dem vierdimensionalen Zustandsraum, und die ganze Dynamik steckt darin. Lagranges tiefe Einsicht von 1788: man braucht keine Freikörperbilder, die Natur minimiert eine Wirkung und die Gleichungen folgen.",
       },
       {
         pretitle: "Abschnitt zwei · Die gekoppelten ODEs",
         title: "Euler-Lagrange spuckt zwei nichtlineare Gleichungen aus",
-        body: "Mit ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 für i = 1, 2 entstehen zwei ODEs zweiter Ordnung. Auflösen nach den Winkelbeschleunigungen θ̈₁ und θ̈₂ liefert Ausdrücke voller Sinus, Kosinus, Produkte von Geschwindigkeiten und einem Nenner mit 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Die Gleichungen sind exakt, deterministisch, ohne Reibung und ohne Rauschen — und ohne elementare geschlossene Lösung. Wer zusehen will, integriert. RK4 reicht.",
+        body: "Mit ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 für i = 1, 2 entstehen zwei ODEs zweiter Ordnung. Auflösen nach den Winkelbeschleunigungen θ̈₁ und θ̈₂ liefert Ausdrücke voller Sinus, Kosinus, Produkte von Geschwindigkeiten und einem Nenner mit 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Die Gleichungen sind exakt, deterministisch, ohne Reibung und ohne Rauschen, und ohne elementare geschlossene Lösung. Wer zusehen will, integriert. RK4 reicht.",
       },
       {
         pretitle: "Abschnitt drei · Drei Regime",
         title: "Ruhig, wild und der KAM-Riss dazwischen",
-        body: "Bei niedriger Gesamtenergie liegt die Bewegung auf einem glatten invarianten Torus im 4D-Phasenraum — quasiperiodisch, beschränkt, fast langweilig. Drehst du die Energie hoch, zerreißt der Torus: nach dem KAM-Satz von Kolmogorow, Arnold und Moser überleben die meisten invarianten Tori kleine Störungen, mit wachsender Energie brechen sie aber Stück für Stück, bis ein chaotisches Meer übrigbleibt. Dazwischen ein kritischer Übergang, in dem Inseln der Ordnung neben stochastischen Schichten existieren. Das Doppelpendel ist die Tischvorführung der gesamten KAM-Geschichte.",
+        body: "Bei niedriger Gesamtenergie liegt die Bewegung auf einem glatten invarianten Torus im 4D-Phasenraum: quasiperiodisch, beschränkt, fast langweilig. Drehst du die Energie hoch, zerreißt der Torus: nach dem KAM-Satz von Kolmogorow, Arnold und Moser überleben die meisten invarianten Tori kleine Störungen, mit wachsender Energie brechen sie aber Stück für Stück, bis ein chaotisches Meer übrigbleibt. Dazwischen ein kritischer Übergang, in dem Inseln der Ordnung neben stochastischen Schichten existieren. Das Doppelpendel ist die Tischvorführung der gesamten KAM-Geschichte.",
       },
       {
         pretitle: "Abschnitt vier · Lyapunov und der Horizont",
         title: "Eine Vorhersagedecke, gemessen in Sekunden",
-        body: "Im chaotischen Regime driften zwei nahe Bahnen ungefähr wie ε · e^(λt) auseinander, wobei λ der größte Lyapunov-Exponent ist — positiv, endlich, eine Eigenschaft des Systems, nicht des Beobachters. Der Vorhersagehorizont skaliert dann wie t* ≈ (1/λ) · log(L/ε): jeder weitere Faktor zehn an Anfangsgenauigkeit kauft dir nur konstant viele Sekunden Vorausschau. Keine bessere Uhr, kein schnellerer Rechner, kein klügerer Integrator schlägt den Exponenten.",
+        body: "Im chaotischen Regime driften zwei nahe Bahnen ungefähr wie ε · e^(λt) auseinander, wobei λ der größte Lyapunov-Exponent ist, positiv, endlich, eine Eigenschaft des Systems, nicht des Beobachters. Der Vorhersagehorizont skaliert dann wie t* ≈ (1/λ) · log(L/ε): jeder weitere Faktor zehn an Anfangsgenauigkeit kauft dir nur konstant viele Sekunden Vorausschau. Keine bessere Uhr, kein schnellerer Rechner, kein klügerer Integrator schlägt den Exponenten.",
       },
       {
         pretitle: "Abschnitt fünf · Phasenraum und Poincaré",
         title: "Den Tanz aufschneiden, um seine Form zu sehen",
-        body: "Der Zustand lebt in einem 4D-Raum (θ₁, θ₂, ω₁, ω₂). Wähl eine Hyperebene — etwa die Momente, in denen θ₁ = 0 mit ω₁ > 0 — und vermerke, wo die Bahn sie kreuzt. Die Sammlung der Schnittpunkte ist ein Poincaré-Schnitt: bei niedriger Energie eine saubere geschlossene Kurve (der Torus einmal angeschnitten), bei hoher Energie eine flauschige zweidimensionale Wolke (das chaotische Meer), bei kritischer Energie eine schöne Mischung aus Kurven und Wolken — das geometrische Signal des KAM-Übergangs.",
+        body: "Der Zustand lebt in einem 4D-Raum (θ₁, θ₂, ω₁, ω₂). Wähl eine Hyperebene (etwa die Momente, in denen θ₁ = 0 mit ω₁ > 0) und vermerke, wo die Bahn sie kreuzt. Die Sammlung der Schnittpunkte ist ein Poincaré-Schnitt: bei niedriger Energie eine saubere geschlossene Kurve (der Torus einmal angeschnitten), bei hoher Energie eine flauschige zweidimensionale Wolke (das chaotische Meer), bei kritischer Energie eine schöne Mischung aus Kurven und Wolken, das geometrische Signal des KAM-Übergangs.",
       },
       {
         pretitle: "Abschnitt sechs · Verbindungen",
@@ -301,7 +301,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     lyapunovLabel: "Größter Lyapunov-Exponent",
     lyapunovValue: "λ > 0",
     lyapunovNote:
-      "Im chaotischen Regime wachsen Abstände wie e^(λt) — und der Vorhersagehorizont skaliert nur wie log(1/ε).",
+      "Im chaotischen Regime wachsen Abstände wie e^(λt), und der Vorhersagehorizont skaliert nur wie log(1/ε).",
     regimeQuasiLabel: "Niedrige Energie",
     regimeQuasiBody:
       "Glattes quasiperiodisches Schwingen. Die Bahn wickelt einen invarianten Torus, kommt nie zur Ruhe, entwischt nie.",
@@ -330,13 +330,13 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "El Péndulo Doble",
       tagline: "Dos ángulos, un lío, infinitos futuros.",
       intro:
-        "Cuelga un péndulo de otro y escribe las ecuaciones de Lagrange. La receta es física de instituto. El movimiento es la cara de manual del caos determinista — bello, acotado y totalmente impredecible pasados unos segundos.",
+        "Cuelga un péndulo de otro y escribe las ecuaciones de Lagrange. La receta es física de instituto. El movimiento es la cara de manual del caos determinista: bello, acotado y totalmente impredecible pasados unos segundos.",
       ctaInteractive: "→ Abrir el Explorer",
       sections: [
         {
           pretitle: "Paso uno · El montaje",
           title: "Dos péndulos, una masa colgando de otra",
-          body: "Una varilla rígida de longitud L₁ con una masa m₁ en el extremo, pivotando bajo la gravedad. De esa primera masa cuelga una segunda varilla L₂ con masa m₂. Dos ángulos θ₁ y θ₂ medidos desde la vertical, junto a sus velocidades — ese es todo el estado.",
+          body: "Una varilla rígida de longitud L₁ con una masa m₁ en el extremo, pivotando bajo la gravedad. De esa primera masa cuelga una segunda varilla L₂ con masa m₂. Dos ángulos θ₁ y θ₂ medidos desde la vertical, junto a sus velocidades: ese es todo el estado.",
         },
         {
           pretitle: "Paso dos · El lagrangiano",
@@ -357,22 +357,22 @@ const RICH_STORY: Record<Locale, RichStory> = {
     },
     encounter: {
       pretitle: "Primer encuentro",
-      title: "Dos varillas, un pivote — toda una física del caos",
+      title: "Dos varillas, un pivote: toda una física del caos",
       cards: [
         {
           label: "01 · La gran idea",
           title: "Cuelga un péndulo de un péndulo",
-          body: "Un balanceo tiene dos ángulos y dos velocidades — cuatro números. Ese es el estado entero. Y sin embargo dos arranques que al ojo son idénticos, en unos segundos bailan dos danzas completamente distintas. Las mismas ecuaciones, otros futuros. Determinismo sin predictibilidad.",
+          body: "Un balanceo tiene dos ángulos y dos velocidades: cuatro números. Ese es el estado entero. Y sin embargo dos arranques que al ojo son idénticos, en unos segundos bailan dos danzas completamente distintas. Las mismas ecuaciones, otros futuros. Determinismo sin predictibilidad.",
         },
         {
           label: "02 · Un ejemplo concreto",
           title: "90°, 90° frente a 90°, 90,00001°",
-          body: "Arranca un péndulo en θ₁ = 90°, θ₂ = 90°. La punta dibuja una curva bonita y enredada. Reinicia con θ₂ = 90,00001° — una cienmilésima de grado de diferencia. Las dos curvas coinciden unos segundos, luego se separan, y a los diez segundos ya no tienen nada en común.",
+          body: "Arranca un péndulo en θ₁ = 90°, θ₂ = 90°. La punta dibuja una curva bonita y enredada. Reinicia con θ₂ = 90,00001°, una cienmilésima de grado de diferencia. Las dos curvas coinciden unos segundos, luego se separan, y a los diez segundos ya no tienen nada en común.",
         },
         {
           label: "03 · Por qué importa",
           title: "Caos clásico, condensado en cuatro números",
-          body: "Es el ejemplo más puro de caos en un sistema clásico de baja dimensión. Solo Newton, solo Lagrange — sin aleatoriedad. Y aun así la dependencia sensible a las condiciones iniciales se ve plenamente, en un movimiento visible, en un sistema que armas con dos clips.",
+          body: "Es el ejemplo más puro de caos en un sistema clásico de baja dimensión. Solo Newton, solo Lagrange, sin aleatoriedad. Y aun así la dependencia sensible a las condiciones iniciales se ve plenamente, en un movimiento visible, en un sistema que armas con dos clips.",
         },
       ],
       tryIt:
@@ -382,27 +382,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sección uno · El lagrangiano",
         title: "Energía dentro, energía fuera, ecuaciones de movimiento",
-        body: "Escribe la posición de cada masa: (x₁, y₁) para la primera y (x₂, y₂) para la segunda, ambas como funciones de θ₁ y θ₂. Deriva para obtener velocidades. La energía cinética T es ½ m₁ v₁² + ½ m₂ v₂². La potencial V es m₁ g y₁ + m₂ g y₂. Forma L = T − V — una sola función escalar en el espacio de estados 4D — y toda la dinámica está dentro. La intuición profunda de Lagrange, de 1788: no hacen falta diagramas de cuerpo libre, la naturaleza minimiza una acción y las ecuaciones salen solas.",
+        body: "Escribe la posición de cada masa: (x₁, y₁) para la primera y (x₂, y₂) para la segunda, ambas como funciones de θ₁ y θ₂. Deriva para obtener velocidades. La energía cinética T es ½ m₁ v₁² + ½ m₂ v₂². La potencial V es m₁ g y₁ + m₂ g y₂. Forma L = T − V, una sola función escalar en el espacio de estados 4D, y toda la dinámica está dentro. La intuición profunda de Lagrange, de 1788: no hacen falta diagramas de cuerpo libre, la naturaleza minimiza una acción y las ecuaciones salen solas.",
       },
       {
         pretitle: "Sección dos · Las EDO acopladas",
         title: "Euler-Lagrange produce dos ecuaciones no lineales",
-        body: "Aplicando ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 para i = 1, 2 salen dos EDO de segundo orden. Despejando θ̈₁ y θ̈₂ aparecen expresiones llenas de senos, cosenos, productos de velocidades y un denominador con 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Las ecuaciones son exactas, deterministas, sin fricción ni ruido — y sin solución cerrada elemental. Para verlas moverse, integras. RK4 basta.",
+        body: "Aplicando ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 para i = 1, 2 salen dos EDO de segundo orden. Despejando θ̈₁ y θ̈₂ aparecen expresiones llenas de senos, cosenos, productos de velocidades y un denominador con 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Las ecuaciones son exactas, deterministas, sin fricción ni ruido, y sin solución cerrada elemental. Para verlas moverse, integras. RK4 basta.",
       },
       {
         pretitle: "Sección tres · Tres regímenes",
         title: "Tranquilo, salvaje y la rasgadura KAM entre ambos",
-        body: "A baja energía total el movimiento vive en un toro invariante suave del espacio de fases 4D — cuasiperiódico, acotado, casi aburrido. Sube la energía y el toro se rompe: el teorema KAM de Kolmogórov, Arnold y Moser dice que la mayoría de los toros invariantes sobrevive a pequeñas perturbaciones, pero al crecer la energía se rompen uno a uno hasta quedar un mar caótico. Entre medias, una transición crítica donde islas de orden conviven con capas estocásticas. El péndulo doble demuestra toda la historia KAM sobre la mesa.",
+        body: "A baja energía total el movimiento vive en un toro invariante suave del espacio de fases 4D: cuasiperiódico, acotado, casi aburrido. Sube la energía y el toro se rompe: el teorema KAM de Kolmogórov, Arnold y Moser dice que la mayoría de los toros invariantes sobrevive a pequeñas perturbaciones, pero al crecer la energía se rompen uno a uno hasta quedar un mar caótico. Entre medias, una transición crítica donde islas de orden conviven con capas estocásticas. El péndulo doble demuestra toda la historia KAM sobre la mesa.",
       },
       {
         pretitle: "Sección cuatro · Lyapunov y el horizonte",
         title: "Un techo de previsibilidad medido en segundos",
-        body: "En el régimen caótico, dos trayectorias cercanas se alejan aproximadamente como ε · e^(λt), donde λ es el mayor exponente de Lyapunov — positivo, finito, propiedad del sistema, no del observador. El horizonte de previsibilidad escala entonces como t* ≈ (1/λ) · log(L/ε): cada factor diez más de precisión inicial te compra solo una cantidad constante de segundos. Ningún cronómetro mejor, ningún ordenador más rápido, ningún integrador más listo gana al exponente.",
+        body: "En el régimen caótico, dos trayectorias cercanas se alejan aproximadamente como ε · e^(λt), donde λ es el mayor exponente de Lyapunov, positivo, finito, propiedad del sistema, no del observador. El horizonte de previsibilidad escala entonces como t* ≈ (1/λ) · log(L/ε): cada factor diez más de precisión inicial te compra solo una cantidad constante de segundos. Ningún cronómetro mejor, ningún ordenador más rápido, ningún integrador más listo gana al exponente.",
       },
       {
         pretitle: "Sección cinco · Espacio de fases y Poincaré",
         title: "Cortar la danza para ver su forma",
-        body: "El estado vive en un espacio 4D (θ₁, θ₂, ω₁, ω₂). Elige un hiperplano — por ejemplo los instantes en que θ₁ = 0 con ω₁ > 0 — y anota dónde lo cruza la trayectoria. El conjunto de cruces es una sección de Poincaré: a baja energía una curva cerrada limpia (el toro cortado una vez), a alta energía una nube borrosa 2D (el mar caótico), y a energía crítica una mezcla preciosa de curvas y nubes — la firma geométrica de la transición KAM.",
+        body: "El estado vive en un espacio 4D (θ₁, θ₂, ω₁, ω₂). Elige un hiperplano (por ejemplo los instantes en que θ₁ = 0 con ω₁ > 0) y anota dónde lo cruza la trayectoria. El conjunto de cruces es una sección de Poincaré: a baja energía una curva cerrada limpia (el toro cortado una vez), a alta energía una nube borrosa 2D (el mar caótico), y a energía crítica una mezcla preciosa de curvas y nubes, la firma geométrica de la transición KAM.",
       },
       {
         pretitle: "Sección seis · Conexiones",
@@ -430,7 +430,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     lyapunovLabel: "Mayor exponente de Lyapunov",
     lyapunovValue: "λ > 0",
     lyapunovNote:
-      "En el régimen caótico, las separaciones crecen como e^(λt) — y el horizonte de previsibilidad escala solo como log(1/ε).",
+      "En el régimen caótico, las separaciones crecen como e^(λt), y el horizonte de previsibilidad escala solo como log(1/ε).",
     regimeQuasiLabel: "Energía baja",
     regimeQuasiBody:
       "Oscilación cuasiperiódica suave. La trayectoria envuelve un toro invariante, no se asienta, no escapa.",
@@ -459,13 +459,13 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "Le Pendule Double",
       tagline: "Deux angles, un chaos, des futurs infinis.",
       intro:
-        "Suspends un pendule à un autre et écris les équations de Lagrange. La recette est de la physique de lycée. Le mouvement est le visage de manuel du chaos déterministe — beau, borné, et tout à fait imprévisible passé quelques secondes.",
+        "Suspends un pendule à un autre et écris les équations de Lagrange. La recette est de la physique de lycée. Le mouvement est le visage de manuel du chaos déterministe : beau, borné, et tout à fait imprévisible passé quelques secondes.",
       ctaInteractive: "→ Ouvrir l'Explorer",
       sections: [
         {
           pretitle: "Étape un · Le montage",
           title: "Deux pendules, une masse suspendue à une autre",
-          body: "Une tige rigide de longueur L₁ avec une masse m₁ au bout, pivotant sous la gravité. À cette première masse on accroche une seconde tige L₂ avec une masse m₂. Deux angles θ₁ et θ₂ mesurés depuis la verticale, plus leurs vitesses — voilà tout l'état.",
+          body: "Une tige rigide de longueur L₁ avec une masse m₁ au bout, pivotant sous la gravité. À cette première masse on accroche une seconde tige L₂ avec une masse m₂. Deux angles θ₁ et θ₂ mesurés depuis la verticale, plus leurs vitesses : voilà tout l'état.",
         },
         {
           pretitle: "Étape deux · Le lagrangien",
@@ -486,22 +486,22 @@ const RICH_STORY: Record<Locale, RichStory> = {
     },
     encounter: {
       pretitle: "Première rencontre",
-      title: "Deux tiges, un pivot — toute une physique du chaos",
+      title: "Deux tiges, un pivot : toute une physique du chaos",
       cards: [
         {
           label: "01 · La grande idée",
           title: "Suspends un pendule à un pendule",
-          body: "Un balancier a deux angles et deux vitesses — quatre nombres. C'est tout l'état du jouet. Et pourtant deux départs qui semblent identiques à l'œil dansent, en quelques secondes, deux danses totalement différentes. Mêmes équations, futurs différents. Déterminisme sans prévisibilité.",
+          body: "Un balancier a deux angles et deux vitesses : quatre nombres. C'est tout l'état du jouet. Et pourtant deux départs qui semblent identiques à l'œil dansent, en quelques secondes, deux danses totalement différentes. Mêmes équations, futurs différents. Déterminisme sans prévisibilité.",
         },
         {
           label: "02 · Un exemple concret",
           title: "90°, 90° contre 90°, 90,00001°",
-          body: "Lance un pendule à θ₁ = 90°, θ₂ = 90°. La pointe trace une belle courbe entremêlée. Recommence avec θ₂ = 90,00001° — un cent-millième de degré d'écart. Les deux courbes coïncident quelques secondes, se détachent, et à dix secondes elles n'ont plus rien à se dire.",
+          body: "Lance un pendule à θ₁ = 90°, θ₂ = 90°. La pointe trace une belle courbe entremêlée. Recommence avec θ₂ = 90,00001°, un cent-millième de degré d'écart. Les deux courbes coïncident quelques secondes, se détachent, et à dix secondes elles n'ont plus rien à se dire.",
         },
         {
           label: "03 · Pourquoi ça compte",
           title: "Le chaos classique, distillé en quatre nombres",
-          body: "C'est l'exemple le plus pur de chaos dans un système classique de basse dimension. Juste Newton, juste Lagrange — aucune aléatoire. Et pourtant la dépendance sensible aux conditions initiales s'affiche pleinement, dans un mouvement visible, dans un système que tu peux bricoler avec deux trombones.",
+          body: "C'est l'exemple le plus pur de chaos dans un système classique de basse dimension. Juste Newton, juste Lagrange, aucune aléatoire. Et pourtant la dépendance sensible aux conditions initiales s'affiche pleinement, dans un mouvement visible, dans un système que tu peux bricoler avec deux trombones.",
         },
       ],
       tryIt:
@@ -511,27 +511,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section un · Le lagrangien",
         title: "Énergie entrée, énergie sortie, équations du mouvement",
-        body: "Écris la position de chaque masse : (x₁, y₁) pour la première et (x₂, y₂) pour la seconde, toutes deux en fonction de θ₁ et θ₂. Dérive pour obtenir les vitesses. L'énergie cinétique T vaut ½ m₁ v₁² + ½ m₂ v₂². L'énergie potentielle V vaut m₁ g y₁ + m₂ g y₂. Forme L = T − V — une seule fonction scalaire sur l'espace d'état 4D — et toute la dynamique y est enfouie. Intuition profonde de Lagrange, 1788 : pas besoin de diagrammes du corps libre, la nature minimise une action et les équations suivent.",
+        body: "Écris la position de chaque masse : (x₁, y₁) pour la première et (x₂, y₂) pour la seconde, toutes deux en fonction de θ₁ et θ₂. Dérive pour obtenir les vitesses. L'énergie cinétique T vaut ½ m₁ v₁² + ½ m₂ v₂². L'énergie potentielle V vaut m₁ g y₁ + m₂ g y₂. Forme L = T − V, une seule fonction scalaire sur l'espace d'état 4D, et toute la dynamique y est enfouie. Intuition profonde de Lagrange, 1788 : pas besoin de diagrammes du corps libre, la nature minimise une action et les équations suivent.",
       },
       {
         pretitle: "Section deux · Les EDO couplées",
         title: "Euler-Lagrange recrache deux équations non linéaires",
-        body: "En appliquant ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 pour i = 1, 2 on obtient deux EDO d'ordre deux. Après résolution en θ̈₁ et θ̈₂, on tombe sur des expressions pleines de sinus, cosinus, produits de vitesses, et un dénominateur en 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Les équations sont exactes, déterministes, sans frottement ni bruit — et sans solution close élémentaire. Pour voir, on intègre. RK4 suffit largement.",
+        body: "En appliquant ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 pour i = 1, 2 on obtient deux EDO d'ordre deux. Après résolution en θ̈₁ et θ̈₂, on tombe sur des expressions pleines de sinus, cosinus, produits de vitesses, et un dénominateur en 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Les équations sont exactes, déterministes, sans frottement ni bruit, et sans solution close élémentaire. Pour voir, on intègre. RK4 suffit largement.",
       },
       {
         pretitle: "Section trois · Trois régimes",
         title: "Calme, sauvage, et la déchirure KAM entre les deux",
-        body: "À basse énergie totale, le mouvement vit sur un tore invariant lisse dans l'espace de phase 4D — quasi-périodique, borné, presque ennuyeux. Monte l'énergie et le tore se déchire : le théorème KAM de Kolmogorov, Arnold et Moser dit que la plupart des tores invariants survivent à de petites perturbations, mais que la croissance de l'énergie les casse un par un jusqu'à laisser une mer chaotique. Au milieu, une transition critique où des îles d'ordre cohabitent avec des couches stochastiques. Le pendule double est la démonstration de salon de toute l'histoire KAM.",
+        body: "À basse énergie totale, le mouvement vit sur un tore invariant lisse dans l'espace de phase 4D : quasi-périodique, borné, presque ennuyeux. Monte l'énergie et le tore se déchire : le théorème KAM de Kolmogorov, Arnold et Moser dit que la plupart des tores invariants survivent à de petites perturbations, mais que la croissance de l'énergie les casse un par un jusqu'à laisser une mer chaotique. Au milieu, une transition critique où des îles d'ordre cohabitent avec des couches stochastiques. Le pendule double est la démonstration de salon de toute l'histoire KAM.",
       },
       {
         pretitle: "Section quatre · Lyapunov et l'horizon",
         title: "Un plafond de prévisibilité, en secondes",
-        body: "Dans le régime chaotique, deux trajectoires voisines s'écartent à peu près comme ε · e^(λt), où λ est le plus grand exposant de Lyapunov — positif, fini, propriété du système et non de l'observateur. L'horizon de prévisibilité s'écrit alors t* ≈ (1/λ) · log(L/ε) : chaque facteur dix gagné sur la précision initiale ne rachète qu'un nombre constant de secondes. Aucun chronomètre, aucun ordinateur, aucun intégrateur ne distance l'exposant.",
+        body: "Dans le régime chaotique, deux trajectoires voisines s'écartent à peu près comme ε · e^(λt), où λ est le plus grand exposant de Lyapunov, positif, fini, propriété du système et non de l'observateur. L'horizon de prévisibilité s'écrit alors t* ≈ (1/λ) · log(L/ε) : chaque facteur dix gagné sur la précision initiale ne rachète qu'un nombre constant de secondes. Aucun chronomètre, aucun ordinateur, aucun intégrateur ne distance l'exposant.",
       },
       {
         pretitle: "Section cinq · Espace de phase et Poincaré",
         title: "Trancher la danse pour en voir la forme",
-        body: "L'état vit dans un espace 4D (θ₁, θ₂, ω₁, ω₂). Choisis un hyperplan — disons les instants où θ₁ = 0 avec ω₁ > 0 — et note où la trajectoire le coupe. La collection des intersections est une section de Poincaré : à basse énergie une courbe fermée nette (le tore tranché une fois), à haute énergie un nuage flou 2D (la mer chaotique), à énergie critique un mélange superbe de courbes et de nuages — la signature géométrique de la transition KAM.",
+        body: "L'état vit dans un espace 4D (θ₁, θ₂, ω₁, ω₂). Choisis un hyperplan (disons les instants où θ₁ = 0 avec ω₁ > 0) et note où la trajectoire le coupe. La collection des intersections est une section de Poincaré : à basse énergie une courbe fermée nette (le tore tranché une fois), à haute énergie un nuage flou 2D (la mer chaotique), à énergie critique un mélange superbe de courbes et de nuages, la signature géométrique de la transition KAM.",
       },
       {
         pretitle: "Section six · Connexions",
@@ -559,7 +559,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     lyapunovLabel: "Plus grand exposant de Lyapunov",
     lyapunovValue: "λ > 0",
     lyapunovNote:
-      "Dans le régime chaotique, les écarts croissent en e^(λt) — et l'horizon de prévisibilité ne grandit qu'en log(1/ε).",
+      "Dans le régime chaotique, les écarts croissent en e^(λt), et l'horizon de prévisibilité ne grandit qu'en log(1/ε).",
     regimeQuasiLabel: "Basse énergie",
     regimeQuasiBody:
       "Oscillation quasi-périodique douce. La trajectoire enroule un tore invariant, ne se pose jamais, ne s'échappe jamais.",
@@ -588,13 +588,13 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "Il Pendolo Doppio",
       tagline: "Due angoli, un casino, futuri infiniti.",
       intro:
-        "Appendi un pendolo a un altro e scrivi le equazioni di Lagrange. La ricetta è fisica del liceo. Il moto è la faccia da manuale del caos deterministico — bello, limitato e del tutto imprevedibile dopo pochi secondi.",
+        "Appendi un pendolo a un altro e scrivi le equazioni di Lagrange. La ricetta è fisica del liceo. Il moto è la faccia da manuale del caos deterministico: bello, limitato e del tutto imprevedibile dopo pochi secondi.",
       ctaInteractive: "→ Apri l'Explorer",
       sections: [
         {
           pretitle: "Passo uno · Il setup",
           title: "Due pendoli, una massa appesa a un'altra",
-          body: "Un'asta rigida di lunghezza L₁ con una massa m₁ in fondo, che ruota sotto gravità. A quella prima massa è appesa una seconda asta L₂ con massa m₂. Due angoli θ₁ e θ₂ misurati dalla verticale, più le loro velocità — questo è tutto lo stato.",
+          body: "Un'asta rigida di lunghezza L₁ con una massa m₁ in fondo, che ruota sotto gravità. A quella prima massa è appesa una seconda asta L₂ con massa m₂. Due angoli θ₁ e θ₂ misurati dalla verticale, più le loro velocità: questo è tutto lo stato.",
         },
         {
           pretitle: "Passo due · La lagrangiana",
@@ -615,22 +615,22 @@ const RICH_STORY: Record<Locale, RichStory> = {
     },
     encounter: {
       pretitle: "Primo incontro",
-      title: "Due aste, un perno — un'intera fisica del caos",
+      title: "Due aste, un perno: un'intera fisica del caos",
       cards: [
         {
           label: "01 · La grande idea",
           title: "Appendi un pendolo a un pendolo",
-          body: "Un'oscillazione ha due angoli e due velocità — quattro numeri. È tutto lo stato del giocattolo. Eppure due partenze che all'occhio sembrano identiche, in pochi secondi danzano due danze del tutto diverse. Stesse equazioni, futuri diversi. Determinismo senza prevedibilità.",
+          body: "Un'oscillazione ha due angoli e due velocità: quattro numeri. È tutto lo stato del giocattolo. Eppure due partenze che all'occhio sembrano identiche, in pochi secondi danzano due danze del tutto diverse. Stesse equazioni, futuri diversi. Determinismo senza prevedibilità.",
         },
         {
           label: "02 · Un esempio concreto",
           title: "90°, 90° contro 90°, 90,00001°",
-          body: "Avvia un pendolo a θ₁ = 90°, θ₂ = 90°. La punta traccia una curva intricata e bellissima. Riparti con θ₂ = 90,00001° — un centomillesimo di grado di differenza. Le due curve coincidono per qualche secondo, poi si staccano, e dopo dieci secondi non hanno più nulla da dirsi.",
+          body: "Avvia un pendolo a θ₁ = 90°, θ₂ = 90°. La punta traccia una curva intricata e bellissima. Riparti con θ₂ = 90,00001°, un centomillesimo di grado di differenza. Le due curve coincidono per qualche secondo, poi si staccano, e dopo dieci secondi non hanno più nulla da dirsi.",
         },
         {
           label: "03 · Perché conta",
           title: "Caos classico, distillato in quattro numeri",
-          body: "È l'esempio più puro di caos in un sistema classico di bassa dimensione. Solo Newton, solo Lagrange — niente casualità. Eppure la dipendenza sensibile dalle condizioni iniziali è in piena vista, in un moto che si vede, in un sistema che si costruisce con due graffette.",
+          body: "È l'esempio più puro di caos in un sistema classico di bassa dimensione. Solo Newton, solo Lagrange, niente casualità. Eppure la dipendenza sensibile dalle condizioni iniziali è in piena vista, in un moto che si vede, in un sistema che si costruisce con due graffette.",
         },
       ],
       tryIt:
@@ -640,27 +640,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sezione uno · La lagrangiana",
         title: "Energia dentro, energia fuori, equazioni del moto",
-        body: "Scrivi la posizione di ogni massa: (x₁, y₁) per la prima e (x₂, y₂) per la seconda, entrambe come funzioni di θ₁ e θ₂. Deriva per ottenere le velocità. L'energia cinetica T è ½ m₁ v₁² + ½ m₂ v₂². L'energia potenziale V è m₁ g y₁ + m₂ g y₂. Forma L = T − V — una sola funzione scalare sullo spazio degli stati 4D — e tutta la dinamica è lì dentro. Intuizione profonda di Lagrange, 1788: niente diagrammi del corpo libero, la natura minimizza un'azione e le equazioni seguono.",
+        body: "Scrivi la posizione di ogni massa: (x₁, y₁) per la prima e (x₂, y₂) per la seconda, entrambe come funzioni di θ₁ e θ₂. Deriva per ottenere le velocità. L'energia cinetica T è ½ m₁ v₁² + ½ m₂ v₂². L'energia potenziale V è m₁ g y₁ + m₂ g y₂. Forma L = T − V, una sola funzione scalare sullo spazio degli stati 4D, e tutta la dinamica è lì dentro. Intuizione profonda di Lagrange, 1788: niente diagrammi del corpo libero, la natura minimizza un'azione e le equazioni seguono.",
       },
       {
         pretitle: "Sezione due · Le EDO accoppiate",
         title: "Euler-Lagrange tira fuori due equazioni non lineari",
-        body: "Applicando ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 per i = 1, 2 si ottengono due EDO del secondo ordine. Risolvendo per le accelerazioni angolari θ̈₁ e θ̈₂ saltano fuori espressioni piene di seni, coseni, prodotti di velocità e un denominatore con 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Le equazioni sono esatte, deterministiche, senza attrito né rumore — e senza soluzione chiusa elementare. Per vederle muovere, integri. RK4 basta.",
+        body: "Applicando ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 per i = 1, 2 si ottengono due EDO del secondo ordine. Risolvendo per le accelerazioni angolari θ̈₁ e θ̈₂ saltano fuori espressioni piene di seni, coseni, prodotti di velocità e un denominatore con 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Le equazioni sono esatte, deterministiche, senza attrito né rumore, e senza soluzione chiusa elementare. Per vederle muovere, integri. RK4 basta.",
       },
       {
         pretitle: "Sezione tre · Tre regimi",
         title: "Calmo, selvaggio e la lacerazione KAM in mezzo",
-        body: "A bassa energia totale il moto vive su un toro invariante liscio nello spazio delle fasi 4D — quasiperiodico, limitato, quasi noioso. Alza l'energia e il toro si strappa: il teorema KAM di Kolmogorov, Arnold e Moser dice che la maggior parte dei tori invarianti sopravvive a piccole perturbazioni, ma con l'energia crescente si rompono uno a uno finché resta un mare caotico. In mezzo, una transizione critica dove isole d'ordine convivono con strati stocastici. Il pendolo doppio è la dimostrazione da tavolo dell'intera storia KAM.",
+        body: "A bassa energia totale il moto vive su un toro invariante liscio nello spazio delle fasi 4D: quasiperiodico, limitato, quasi noioso. Alza l'energia e il toro si strappa: il teorema KAM di Kolmogorov, Arnold e Moser dice che la maggior parte dei tori invarianti sopravvive a piccole perturbazioni, ma con l'energia crescente si rompono uno a uno finché resta un mare caotico. In mezzo, una transizione critica dove isole d'ordine convivono con strati stocastici. Il pendolo doppio è la dimostrazione da tavolo dell'intera storia KAM.",
       },
       {
         pretitle: "Sezione quattro · Lyapunov e l'orizzonte",
         title: "Un soffitto di prevedibilità misurato in secondi",
-        body: "Nel regime caotico, due traiettorie vicine si allontanano grossomodo come ε · e^(λt), con λ il maggiore esponente di Lyapunov — positivo, finito, proprietà del sistema e non dell'osservatore. L'orizzonte di prevedibilità scala come t* ≈ (1/λ) · log(L/ε): ogni fattore dieci in più di precisione iniziale ti compra solo una quantità costante di secondi. Nessun cronometro migliore, nessun computer più veloce, nessun integratore più furbo batte l'esponente.",
+        body: "Nel regime caotico, due traiettorie vicine si allontanano grossomodo come ε · e^(λt), con λ il maggiore esponente di Lyapunov, positivo, finito, proprietà del sistema e non dell'osservatore. L'orizzonte di prevedibilità scala come t* ≈ (1/λ) · log(L/ε): ogni fattore dieci in più di precisione iniziale ti compra solo una quantità costante di secondi. Nessun cronometro migliore, nessun computer più veloce, nessun integratore più furbo batte l'esponente.",
       },
       {
         pretitle: "Sezione cinque · Spazio delle fasi e Poincaré",
         title: "Fettare la danza per vederne la forma",
-        body: "Lo stato vive in uno spazio 4D (θ₁, θ₂, ω₁, ω₂). Scegli un iperpiano — diciamo gli istanti in cui θ₁ = 0 con ω₁ > 0 — e segna dove la traiettoria lo attraversa. L'insieme degli attraversamenti è una sezione di Poincaré: a bassa energia una curva chiusa pulita (il toro tagliato una volta), ad alta energia una nuvola sfocata 2D (il mare caotico), e all'energia critica una bella mescolanza di curve e nuvole — la firma geometrica della transizione KAM.",
+        body: "Lo stato vive in uno spazio 4D (θ₁, θ₂, ω₁, ω₂). Scegli un iperpiano (diciamo gli istanti in cui θ₁ = 0 con ω₁ > 0) e segna dove la traiettoria lo attraversa. L'insieme degli attraversamenti è una sezione di Poincaré: a bassa energia una curva chiusa pulita (il toro tagliato una volta), ad alta energia una nuvola sfocata 2D (il mare caotico), e all'energia critica una bella mescolanza di curve e nuvole, la firma geometrica della transizione KAM.",
       },
       {
         pretitle: "Sezione sei · Connessioni",
@@ -688,7 +688,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     lyapunovLabel: "Maggiore esponente di Lyapunov",
     lyapunovValue: "λ > 0",
     lyapunovNote:
-      "Nel regime caotico le separazioni crescono come e^(λt) — e l'orizzonte di prevedibilità cresce solo come log(1/ε).",
+      "Nel regime caotico le separazioni crescono come e^(λt), e l'orizzonte di prevedibilità cresce solo come log(1/ε).",
     regimeQuasiLabel: "Bassa energia",
     regimeQuasiBody:
       "Oscillazione quasiperiodica dolce. La traiettoria avvolge un toro invariante, non si stabilizza mai, non sfugge mai.",
@@ -717,13 +717,13 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "O Pêndulo Duplo",
       tagline: "Dois ângulos, uma bagunça, futuros infinitos.",
       intro:
-        "Pendure um pêndulo em outro e escreva as equações de Lagrange. A receita é física do ensino médio. O movimento é a cara de manual do caos determinista — belo, limitado e completamente imprevisível depois de alguns segundos.",
+        "Pendure um pêndulo em outro e escreva as equações de Lagrange. A receita é física do ensino médio. O movimento é a cara de manual do caos determinista: belo, limitado e completamente imprevisível depois de alguns segundos.",
       ctaInteractive: "→ Abrir o Explorer",
       sections: [
         {
           pretitle: "Passo um · A montagem",
           title: "Dois pêndulos, uma massa pendurada noutra",
-          body: "Uma haste rígida de comprimento L₁ com massa m₁ na ponta, pivotando sob a gravidade. Dessa primeira massa pendura-se uma segunda haste L₂ com massa m₂. Dois ângulos θ₁ e θ₂ medidos a partir da vertical, mais suas velocidades — esse é o estado inteiro.",
+          body: "Uma haste rígida de comprimento L₁ com massa m₁ na ponta, pivotando sob a gravidade. Dessa primeira massa pendura-se uma segunda haste L₂ com massa m₂. Dois ângulos θ₁ e θ₂ medidos a partir da vertical, mais suas velocidades: esse é o estado inteiro.",
         },
         {
           pretitle: "Passo dois · A lagrangiana",
@@ -744,22 +744,22 @@ const RICH_STORY: Record<Locale, RichStory> = {
     },
     encounter: {
       pretitle: "Primeiro encontro",
-      title: "Duas hastes, um pivô — toda uma física do caos",
+      title: "Duas hastes, um pivô: toda uma física do caos",
       cards: [
         {
           label: "01 · A grande ideia",
           title: "Pendure um pêndulo num pêndulo",
-          body: "Um balanço tem dois ângulos e duas velocidades — quatro números. É o estado todo do brinquedo. E ainda assim duas partidas que parecem idênticas ao olho, em poucos segundos dançam duas danças totalmente diferentes. As mesmas equações, futuros diferentes. Determinismo sem previsibilidade.",
+          body: "Um balanço tem dois ângulos e duas velocidades: quatro números. É o estado todo do brinquedo. E ainda assim duas partidas que parecem idênticas ao olho, em poucos segundos dançam duas danças totalmente diferentes. As mesmas equações, futuros diferentes. Determinismo sem previsibilidade.",
         },
         {
           label: "02 · Um exemplo concreto",
           title: "90°, 90° contra 90°, 90,00001°",
-          body: "Inicie um pêndulo em θ₁ = 90°, θ₂ = 90°. A ponta desenha uma curva linda e entrelaçada. Reinicie com θ₂ = 90,00001° — um centomilésimo de grau de diferença. As duas curvas coincidem por alguns segundos, depois se separam, e em dez segundos não têm mais nada a dizer uma à outra.",
+          body: "Inicie um pêndulo em θ₁ = 90°, θ₂ = 90°. A ponta desenha uma curva linda e entrelaçada. Reinicie com θ₂ = 90,00001°, um centomilésimo de grau de diferença. As duas curvas coincidem por alguns segundos, depois se separam, e em dez segundos não têm mais nada a dizer uma à outra.",
         },
         {
           label: "03 · Por que importa",
           title: "Caos clássico, destilado em quatro números",
-          body: "É o exemplo mais puro de caos num sistema clássico de baixa dimensão. Só Newton, só Lagrange — sem aleatoriedade. E ainda assim a dependência sensível das condições iniciais aparece de cheio, num movimento visível, num sistema que se monta com dois clipes.",
+          body: "É o exemplo mais puro de caos num sistema clássico de baixa dimensão. Só Newton, só Lagrange, sem aleatoriedade. E ainda assim a dependência sensível das condições iniciais aparece de cheio, num movimento visível, num sistema que se monta com dois clipes.",
         },
       ],
       tryIt:
@@ -769,27 +769,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Seção um · A lagrangiana",
         title: "Energia entra, energia sai, equações do movimento",
-        body: "Escreva a posição de cada massa: (x₁, y₁) para a primeira e (x₂, y₂) para a segunda, ambas como funções de θ₁ e θ₂. Derive para obter velocidades. A energia cinética T é ½ m₁ v₁² + ½ m₂ v₂². A potencial V é m₁ g y₁ + m₂ g y₂. Forme L = T − V — uma única função escalar sobre o espaço de estados 4D — e toda a dinâmica está nela. Intuição profunda de Lagrange, 1788: não precisa de diagramas de corpo livre, a natureza minimiza uma ação e as equações vêm.",
+        body: "Escreva a posição de cada massa: (x₁, y₁) para a primeira e (x₂, y₂) para a segunda, ambas como funções de θ₁ e θ₂. Derive para obter velocidades. A energia cinética T é ½ m₁ v₁² + ½ m₂ v₂². A potencial V é m₁ g y₁ + m₂ g y₂. Forme L = T − V, uma única função escalar sobre o espaço de estados 4D, e toda a dinâmica está nela. Intuição profunda de Lagrange, 1788: não precisa de diagramas de corpo livre, a natureza minimiza uma ação e as equações vêm.",
       },
       {
         pretitle: "Seção dois · As EDOs acopladas",
         title: "Euler-Lagrange produz duas equações não lineares",
-        body: "Aplicando ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 para i = 1, 2 saem duas EDOs de segunda ordem. Resolvendo para θ̈₁ e θ̈₂ aparecem expressões cheias de senos, cossenos, produtos de velocidades e um denominador com 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). As equações são exatas, deterministas, sem atrito nem ruído — e sem solução fechada elementar. Para ver, integra-se. RK4 chega.",
+        body: "Aplicando ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 para i = 1, 2 saem duas EDOs de segunda ordem. Resolvendo para θ̈₁ e θ̈₂ aparecem expressões cheias de senos, cossenos, produtos de velocidades e um denominador com 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). As equações são exatas, deterministas, sem atrito nem ruído, e sem solução fechada elementar. Para ver, integra-se. RK4 chega.",
       },
       {
         pretitle: "Seção três · Três regimes",
         title: "Calmo, selvagem e o rasgo KAM entre eles",
-        body: "A baixa energia total o movimento vive num toro invariante suave do espaço de fases 4D — quasiperiódico, limitado, quase tedioso. Suba a energia e o toro rasga: o teorema KAM de Kolmogórov, Arnold e Moser diz que a maioria dos toros invariantes sobrevive a pequenas perturbações, mas com a energia crescente quebram um a um até sobrar um mar caótico. No meio, uma transição crítica onde ilhas de ordem convivem com camadas estocásticas. O pêndulo duplo é a demonstração de mesa de toda a história KAM.",
+        body: "A baixa energia total o movimento vive num toro invariante suave do espaço de fases 4D: quasiperiódico, limitado, quase tedioso. Suba a energia e o toro rasga: o teorema KAM de Kolmogórov, Arnold e Moser diz que a maioria dos toros invariantes sobrevive a pequenas perturbações, mas com a energia crescente quebram um a um até sobrar um mar caótico. No meio, uma transição crítica onde ilhas de ordem convivem com camadas estocásticas. O pêndulo duplo é a demonstração de mesa de toda a história KAM.",
       },
       {
         pretitle: "Seção quatro · Lyapunov e o horizonte",
         title: "Um teto de previsibilidade, em segundos",
-        body: "No regime caótico, duas trajetórias próximas se afastam aproximadamente como ε · e^(λt), com λ o maior expoente de Lyapunov — positivo, finito, propriedade do sistema, não do observador. O horizonte de previsibilidade escala como t* ≈ (1/λ) · log(L/ε): cada fator dez a mais de precisão inicial te compra apenas uma quantidade constante de segundos. Nenhum cronômetro, nenhum computador, nenhum integrador derrota o expoente.",
+        body: "No regime caótico, duas trajetórias próximas se afastam aproximadamente como ε · e^(λt), com λ o maior expoente de Lyapunov, positivo, finito, propriedade do sistema, não do observador. O horizonte de previsibilidade escala como t* ≈ (1/λ) · log(L/ε): cada fator dez a mais de precisão inicial te compra apenas uma quantidade constante de segundos. Nenhum cronômetro, nenhum computador, nenhum integrador derrota o expoente.",
       },
       {
         pretitle: "Seção cinco · Espaço de fases e Poincaré",
         title: "Fatiar a dança para ver sua forma",
-        body: "O estado vive num espaço 4D (θ₁, θ₂, ω₁, ω₂). Escolha um hiperplano — digamos os instantes em que θ₁ = 0 com ω₁ > 0 — e marque onde a trajetória o cruza. A coleção dos cruzamentos é uma seção de Poincaré: em baixa energia uma curva fechada limpa (o toro fatiado uma vez), em alta energia uma nuvem desfocada 2D (o mar caótico), em energia crítica uma mistura bonita de curvas e nuvens — a assinatura geométrica da transição KAM.",
+        body: "O estado vive num espaço 4D (θ₁, θ₂, ω₁, ω₂). Escolha um hiperplano (digamos os instantes em que θ₁ = 0 com ω₁ > 0) e marque onde a trajetória o cruza. A coleção dos cruzamentos é uma seção de Poincaré: em baixa energia uma curva fechada limpa (o toro fatiado uma vez), em alta energia uma nuvem desfocada 2D (o mar caótico), em energia crítica uma mistura bonita de curvas e nuvens, a assinatura geométrica da transição KAM.",
       },
       {
         pretitle: "Seção seis · Conexões",
@@ -817,7 +817,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     lyapunovLabel: "Maior expoente de Lyapunov",
     lyapunovValue: "λ > 0",
     lyapunovNote:
-      "No regime caótico, as separações crescem como e^(λt) — e o horizonte de previsibilidade cresce só como log(1/ε).",
+      "No regime caótico, as separações crescem como e^(λt), e o horizonte de previsibilidade cresce só como log(1/ε).",
     regimeQuasiLabel: "Energia baixa",
     regimeQuasiBody:
       "Oscilação quasiperiódica suave. A trajetória enrola um toro invariante, nunca se acomoda, nunca escapa.",
@@ -846,13 +846,13 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "Dubbelpendeln",
       tagline: "Två vinklar, ett kaos, oändliga framtider.",
       intro:
-        "Häng en pendel under en annan och skriv ner Lagranges ekvationer. Receptet är gymnasiefysik. Rörelsen är läroboksansiktet för deterministiskt kaos — vackert, begränsat och fullständigt oförutsägbart efter några sekunder.",
+        "Häng en pendel under en annan och skriv ner Lagranges ekvationer. Receptet är gymnasiefysik. Rörelsen är läroboksansiktet för deterministiskt kaos: vackert, begränsat och fullständigt oförutsägbart efter några sekunder.",
       ctaInteractive: "→ Öppna Explorer",
       sections: [
         {
           pretitle: "Steg ett · Uppställningen",
           title: "Två pendlar, en lod hänger i en annan",
-          body: "En styv stång med längd L₁ och en lod m₁ i änden, som svänger under gravitation. Från första loden hänger en andra stång L₂ med lod m₂. Två vinklar θ₁ och θ₂ mätta från lodlinjen, plus deras vinkelhastigheter — det är hela tillståndet.",
+          body: "En styv stång med längd L₁ och en lod m₁ i änden, som svänger under gravitation. Från första loden hänger en andra stång L₂ med lod m₂. Två vinklar θ₁ och θ₂ mätta från lodlinjen, plus deras vinkelhastigheter: det är hela tillståndet.",
         },
         {
           pretitle: "Steg två · Lagrangianen",
@@ -873,22 +873,22 @@ const RICH_STORY: Record<Locale, RichStory> = {
     },
     encounter: {
       pretitle: "Första mötet",
-      title: "Två stänger, en pivot — en hel kaosens fysik",
+      title: "Två stänger, en pivot: en hel kaosens fysik",
       cards: [
         {
           label: "01 · Den stora idén",
           title: "Häng en pendel i en pendel",
-          body: "En gungning har två vinklar och två hastigheter — fyra tal. Det är hela tillståndet hos leksaken. Och ändå dansar två starter som för ögat ser identiska ut, inom några sekunder två helt olika danser. Samma ekvationer, andra framtider. Determinism utan förutsägbarhet.",
+          body: "En gungning har två vinklar och två hastigheter: fyra tal. Det är hela tillståndet hos leksaken. Och ändå dansar två starter som för ögat ser identiska ut, inom några sekunder två helt olika danser. Samma ekvationer, andra framtider. Determinism utan förutsägbarhet.",
         },
         {
           label: "02 · Ett konkret exempel",
           title: "90°, 90° mot 90°, 90,00001°",
-          body: "Starta en pendel vid θ₁ = 90°, θ₂ = 90°. Spetsen ritar en vacker, sammanflätad kurva. Starta om med θ₂ = 90,00001° — en hundratusendels grad i skillnad. De två kurvorna sammanfaller några sekunder, släpper sedan från varandra och vid tio sekunder har de ingenting kvar att säga varandra.",
+          body: "Starta en pendel vid θ₁ = 90°, θ₂ = 90°. Spetsen ritar en vacker, sammanflätad kurva. Starta om med θ₂ = 90,00001°, en hundratusendels grad i skillnad. De två kurvorna sammanfaller några sekunder, släpper sedan från varandra och vid tio sekunder har de ingenting kvar att säga varandra.",
         },
         {
           label: "03 · Varför det betyder något",
           title: "Klassiskt kaos, kokt ner till fyra tal",
-          body: "Det här är det renaste exemplet på kaos i ett lågdimensionellt klassiskt system. Bara Newton, bara Lagrange — ingen slumpmässighet. Ändå syns känslig beroende av begynnelsevillkor fullt ut, i en synlig rörelse, i ett system du kan bygga med två gem.",
+          body: "Det här är det renaste exemplet på kaos i ett lågdimensionellt klassiskt system. Bara Newton, bara Lagrange, ingen slumpmässighet. Ändå syns känslig beroende av begynnelsevillkor fullt ut, i en synlig rörelse, i ett system du kan bygga med två gem.",
         },
       ],
       tryIt:
@@ -898,27 +898,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Avsnitt ett · Lagrangianen",
         title: "Energi in, energi ut, rörelseekvationer",
-        body: "Skriv positionen för varje lod: (x₁, y₁) för den första och (x₂, y₂) för den andra, båda som funktioner av θ₁ och θ₂. Derivera för att få hastigheter. Den kinetiska energin T är ½ m₁ v₁² + ½ m₂ v₂². Potentiella V är m₁ g y₁ + m₂ g y₂. Bilda L = T − V — en enda skalär funktion över det 4-dimensionella tillståndsrummet — och hela dynamiken ligger där. Lagranges djupa insikt från 1788: inga frikroppsdiagram behövs, naturen minimerar en verkan och ekvationerna följer.",
+        body: "Skriv positionen för varje lod: (x₁, y₁) för den första och (x₂, y₂) för den andra, båda som funktioner av θ₁ och θ₂. Derivera för att få hastigheter. Den kinetiska energin T är ½ m₁ v₁² + ½ m₂ v₂². Potentiella V är m₁ g y₁ + m₂ g y₂. Bilda L = T − V, en enda skalär funktion över det 4-dimensionella tillståndsrummet, och hela dynamiken ligger där. Lagranges djupa insikt från 1788: inga frikroppsdiagram behövs, naturen minimerar en verkan och ekvationerna följer.",
       },
       {
         pretitle: "Avsnitt två · De kopplade ODE:erna",
         title: "Euler-Lagrange ger två icke-linjära ekvationer",
-        body: "Applicera ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 för i = 1, 2 så får du två ODE:er av andra ordningen. Lös ut vinkelaccelerationerna θ̈₁ och θ̈₂ och uttrycken fylls av sinus, cosinus, hastighetsprodukter och en nämnare med 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Ekvationerna är exakta, deterministiska, utan friktion eller brus — och utan elementär sluten lösning. För att se rörelsen integrerar du. RK4 räcker.",
+        body: "Applicera ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 för i = 1, 2 så får du två ODE:er av andra ordningen. Lös ut vinkelaccelerationerna θ̈₁ och θ̈₂ och uttrycken fylls av sinus, cosinus, hastighetsprodukter och en nämnare med 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Ekvationerna är exakta, deterministiska, utan friktion eller brus, och utan elementär sluten lösning. För att se rörelsen integrerar du. RK4 räcker.",
       },
       {
         pretitle: "Avsnitt tre · Tre regimer",
         title: "Stilla, vild, och KAM-revan däremellan",
-        body: "Vid låg total energi bor rörelsen på en slät invariant torus i 4D-fasrummet — kvasiperiodisk, begränsad, nästan trist. Skruva upp energin och torusen slits sönder: enligt KAM-satsen av Kolmogorov, Arnold och Moser överlever de flesta invarianta tori små störningar, men när energin växer går de sönder en efter en tills bara ett kaotiskt hav återstår. Däremellan en kritisk övergång där ordningsöar samexisterar med stokastiska skikt. Dubbelpendeln är bordsdemonstrationen av hela KAM-berättelsen.",
+        body: "Vid låg total energi bor rörelsen på en slät invariant torus i 4D-fasrummet: kvasiperiodisk, begränsad, nästan trist. Skruva upp energin och torusen slits sönder: enligt KAM-satsen av Kolmogorov, Arnold och Moser överlever de flesta invarianta tori små störningar, men när energin växer går de sönder en efter en tills bara ett kaotiskt hav återstår. Däremellan en kritisk övergång där ordningsöar samexisterar med stokastiska skikt. Dubbelpendeln är bordsdemonstrationen av hela KAM-berättelsen.",
       },
       {
         pretitle: "Avsnitt fyra · Lyapunov och horisonten",
         title: "Ett förutsägelsetak, mätt i sekunder",
-        body: "I den kaotiska regimen växer två närliggande banor från varandra ungefär som ε · e^(λt), där λ är den största Lyapunov-exponenten — positiv, ändlig, en egenskap hos systemet, inte hos observatören. Förutsägelsehorisonten skalar då som t* ≈ (1/λ) · log(L/ε): varje extra faktor tio i utgångsprecision köper bara ett konstant antal sekunder framförhållning. Inget bättre stoppur, ingen snabbare dator, ingen klokare integrator slår exponenten.",
+        body: "I den kaotiska regimen växer två närliggande banor från varandra ungefär som ε · e^(λt), där λ är den största Lyapunov-exponenten, positiv, ändlig, en egenskap hos systemet, inte hos observatören. Förutsägelsehorisonten skalar då som t* ≈ (1/λ) · log(L/ε): varje extra faktor tio i utgångsprecision köper bara ett konstant antal sekunder framförhållning. Inget bättre stoppur, ingen snabbare dator, ingen klokare integrator slår exponenten.",
       },
       {
         pretitle: "Avsnitt fem · Fasrum och Poincaré",
         title: "Skär dansen för att se dess form",
-        body: "Tillståndet bor i ett 4D-rum (θ₁, θ₂, ω₁, ω₂). Välj ett hyperplan — säg ögonblicken då θ₁ = 0 med ω₁ > 0 — och anteckna var banan korsar det. Mängden av korsningar är en Poincaré-sektion: vid låg energi en ren sluten kurva (torus skuren en gång), vid hög energi ett luddigt 2D-moln (det kaotiska havet), och vid kritisk energi en vacker blandning av kurvor och moln — den geometriska signaturen av KAM-övergången.",
+        body: "Tillståndet bor i ett 4D-rum (θ₁, θ₂, ω₁, ω₂). Välj ett hyperplan (säg ögonblicken då θ₁ = 0 med ω₁ > 0) och anteckna var banan korsar det. Mängden av korsningar är en Poincaré-sektion: vid låg energi en ren sluten kurva (torus skuren en gång), vid hög energi ett luddigt 2D-moln (det kaotiska havet), och vid kritisk energi en vacker blandning av kurvor och moln, den geometriska signaturen av KAM-övergången.",
       },
       {
         pretitle: "Avsnitt sex · Kopplingar",
@@ -946,7 +946,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     lyapunovLabel: "Största Lyapunov-exponent",
     lyapunovValue: "λ > 0",
     lyapunovNote:
-      "I den kaotiska regimen växer gapen som e^(λt) — och förutsägelsehorisonten växer bara som log(1/ε).",
+      "I den kaotiska regimen växer gapen som e^(λt), och förutsägelsehorisonten växer bara som log(1/ε).",
     regimeQuasiLabel: "Låg energi",
     regimeQuasiBody:
       "Mjuk kvasiperiodisk svängning. Banan virar en invariant torus, slår sig aldrig till ro, rymmer aldrig.",
@@ -975,13 +975,13 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "Dobbeltpendelen",
       tagline: "To vinkler, ett rot, uendelige framtider.",
       intro:
-        "Heng én pendel under en annen og skriv ned Lagranges ligninger. Oppskriften er videregående fysikk. Bevegelsen er læreboksansiktet til deterministisk kaos — vakker, begrenset og fullstendig uforutsigbar etter noen sekunder.",
+        "Heng én pendel under en annen og skriv ned Lagranges ligninger. Oppskriften er videregående fysikk. Bevegelsen er læreboksansiktet til deterministisk kaos: vakker, begrenset og fullstendig uforutsigbar etter noen sekunder.",
       ctaInteractive: "→ Åpne Explorer",
       sections: [
         {
           pretitle: "Steg én · Oppsettet",
           title: "To pendler, ett lodd henger i et annet",
-          body: "En stiv stang med lengde L₁ og et lodd m₁ i enden, som svinger under tyngdekraften. Fra det første loddet henger en andre stang L₂ med lodd m₂. To vinkler θ₁ og θ₂ målt fra loddrett, pluss vinkelhastighetene deres — det er hele tilstanden.",
+          body: "En stiv stang med lengde L₁ og et lodd m₁ i enden, som svinger under tyngdekraften. Fra det første loddet henger en andre stang L₂ med lodd m₂. To vinkler θ₁ og θ₂ målt fra loddrett, pluss vinkelhastighetene deres: det er hele tilstanden.",
         },
         {
           pretitle: "Steg to · Lagrangianen",
@@ -1002,22 +1002,22 @@ const RICH_STORY: Record<Locale, RichStory> = {
     },
     encounter: {
       pretitle: "Første møte",
-      title: "To stenger, ett pivot — en hel kaoset fysikk",
+      title: "To stenger, ett pivot: en hel kaoset fysikk",
       cards: [
         {
           label: "01 · Den store idéen",
           title: "Heng en pendel i en pendel",
-          body: "En dingling har to vinkler og to hastigheter — fire tall. Det er hele tilstanden til leketøyet. Likevel danser to starter som ser identiske ut for øyet, i løpet av få sekunder, to helt forskjellige danser. Samme ligninger, andre framtider. Determinisme uten forutsigbarhet.",
+          body: "En dingling har to vinkler og to hastigheter: fire tall. Det er hele tilstanden til leketøyet. Likevel danser to starter som ser identiske ut for øyet, i løpet av få sekunder, to helt forskjellige danser. Samme ligninger, andre framtider. Determinisme uten forutsigbarhet.",
         },
         {
           label: "02 · Et konkret eksempel",
           title: "90°, 90° mot 90°, 90,00001°",
-          body: "Start en pendel ved θ₁ = 90°, θ₂ = 90°. Spissen tegner en vakker, flettet kurve. Start på nytt med θ₂ = 90,00001° — en hundretusendels grad forskjell. De to kurvene faller sammen et par sekunder, slipper så hverandre, og etter ti sekunder har de ingenting igjen å si til hverandre.",
+          body: "Start en pendel ved θ₁ = 90°, θ₂ = 90°. Spissen tegner en vakker, flettet kurve. Start på nytt med θ₂ = 90,00001°, en hundretusendels grad forskjell. De to kurvene faller sammen et par sekunder, slipper så hverandre, og etter ti sekunder har de ingenting igjen å si til hverandre.",
         },
         {
           label: "03 · Hvorfor det betyr noe",
           title: "Klassisk kaos, kokt ned til fire tall",
-          body: "Dette er det reneste eksempelet på kaos i et lavdimensjonalt klassisk system. Bare Newton, bare Lagrange — ingen tilfeldighet. Likevel vises sensitiv avhengighet av startbetingelsene fullt ut, i en synlig bevegelse, i et system du kan bygge av to binders.",
+          body: "Dette er det reneste eksempelet på kaos i et lavdimensjonalt klassisk system. Bare Newton, bare Lagrange, ingen tilfeldighet. Likevel vises sensitiv avhengighet av startbetingelsene fullt ut, i en synlig bevegelse, i et system du kan bygge av to binders.",
         },
       ],
       tryIt:
@@ -1027,27 +1027,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del én · Lagrangianen",
         title: "Energi inn, energi ut, bevegelseslikninger",
-        body: "Skriv posisjonen til hvert lodd: (x₁, y₁) for det første og (x₂, y₂) for det andre, begge som funksjoner av θ₁ og θ₂. Deriver for å få hastigheter. Den kinetiske energien T er ½ m₁ v₁² + ½ m₂ v₂². Den potensielle V er m₁ g y₁ + m₂ g y₂. Dann L = T − V — en enkelt skalar funksjon over 4D-tilstandsrommet — og hele dynamikken ligger der. Lagranges dype innsikt fra 1788: ingen frikroppsdiagrammer trengs, naturen minimerer en virkning og ligningene følger.",
+        body: "Skriv posisjonen til hvert lodd: (x₁, y₁) for det første og (x₂, y₂) for det andre, begge som funksjoner av θ₁ og θ₂. Deriver for å få hastigheter. Den kinetiske energien T er ½ m₁ v₁² + ½ m₂ v₂². Den potensielle V er m₁ g y₁ + m₂ g y₂. Dann L = T − V, en enkelt skalar funksjon over 4D-tilstandsrommet, og hele dynamikken ligger der. Lagranges dype innsikt fra 1788: ingen frikroppsdiagrammer trengs, naturen minimerer en virkning og ligningene følger.",
       },
       {
         pretitle: "Del to · De koblede ODEene",
         title: "Euler-Lagrange gir to ikke-lineære likninger",
-        body: "Anvend ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 for i = 1, 2 og du får to ODEer av andre orden. Løs for vinkelakselerasjonene θ̈₁ og θ̈₂ og uttrykkene fylles med sinus, cosinus, hastighetsprodukter og en nevner med 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Ligningene er eksakte, deterministiske, uten friksjon eller støy — og uten elementær lukket løsning. For å se bevegelsen integrerer du. RK4 holder.",
+        body: "Anvend ∂L/∂θᵢ − d/dt(∂L/∂θ̇ᵢ) = 0 for i = 1, 2 og du får to ODEer av andre orden. Løs for vinkelakselerasjonene θ̈₁ og θ̈₂ og uttrykkene fylles med sinus, cosinus, hastighetsprodukter og en nevner med 2 m₁ + m₂ − m₂ cos(2θ₁ − 2θ₂). Ligningene er eksakte, deterministiske, uten friksjon eller støy, og uten elementær lukket løsning. For å se bevegelsen integrerer du. RK4 holder.",
       },
       {
         pretitle: "Del tre · Tre regimer",
         title: "Rolig, vill, og KAM-riften imellom",
-        body: "Ved lav total energi lever bevegelsen på en glatt invariant torus i 4D-faserommet — kvasiperiodisk, begrenset, nesten kjedelig. Skru opp energien og torusen revner: KAM-satsen til Kolmogorov, Arnold og Moser sier at de fleste invariante tori overlever små forstyrrelser, men når energien vokser brytes de én etter én til bare et kaotisk hav er igjen. Imellom en kritisk overgang der ordensøyer sameksisterer med stokastiske lag. Dobbeltpendelen er bordemonstrasjonen av hele KAM-historien.",
+        body: "Ved lav total energi lever bevegelsen på en glatt invariant torus i 4D-faserommet: kvasiperiodisk, begrenset, nesten kjedelig. Skru opp energien og torusen revner: KAM-satsen til Kolmogorov, Arnold og Moser sier at de fleste invariante tori overlever små forstyrrelser, men når energien vokser brytes de én etter én til bare et kaotisk hav er igjen. Imellom en kritisk overgang der ordensøyer sameksisterer med stokastiske lag. Dobbeltpendelen er bordemonstrasjonen av hele KAM-historien.",
       },
       {
         pretitle: "Del fire · Lyapunov og horisonten",
         title: "Et forutsigbarhetstak, målt i sekunder",
-        body: "I det kaotiske regimet vokser to nære baner fra hverandre omtrent som ε · e^(λt), der λ er den største Lyapunov-eksponenten — positiv, endelig, en egenskap ved systemet, ikke ved observatøren. Forutsigbarhetshorisonten skalerer som t* ≈ (1/λ) · log(L/ε): hver ekstra faktor ti i startpresisjon kjøper bare et konstant antall sekunder framsyn. Ingen bedre stoppeklokke, ingen raskere datamaskin, ingen smartere integrator slår eksponenten.",
+        body: "I det kaotiske regimet vokser to nære baner fra hverandre omtrent som ε · e^(λt), der λ er den største Lyapunov-eksponenten, positiv, endelig, en egenskap ved systemet, ikke ved observatøren. Forutsigbarhetshorisonten skalerer som t* ≈ (1/λ) · log(L/ε): hver ekstra faktor ti i startpresisjon kjøper bare et konstant antall sekunder framsyn. Ingen bedre stoppeklokke, ingen raskere datamaskin, ingen smartere integrator slår eksponenten.",
       },
       {
         pretitle: "Del fem · Faserom og Poincaré",
         title: "Skjær dansen for å se formen",
-        body: "Tilstanden bor i et 4D-rom (θ₁, θ₂, ω₁, ω₂). Velg et hyperplan — for eksempel øyeblikkene der θ₁ = 0 med ω₁ > 0 — og noter hvor banen krysser det. Samlingen av kryssinger er et Poincaré-snitt: ved lav energi en ren lukket kurve (torusen skåret én gang), ved høy energi en lodden 2D-sky (det kaotiske havet), og ved kritisk energi en vakker blanding av kurver og skyer — den geometriske signaturen til KAM-overgangen.",
+        body: "Tilstanden bor i et 4D-rom (θ₁, θ₂, ω₁, ω₂). Velg et hyperplan (for eksempel øyeblikkene der θ₁ = 0 med ω₁ > 0) og noter hvor banen krysser det. Samlingen av kryssinger er et Poincaré-snitt: ved lav energi en ren lukket kurve (torusen skåret én gang), ved høy energi en lodden 2D-sky (det kaotiske havet), og ved kritisk energi en vakker blanding av kurver og skyer, den geometriske signaturen til KAM-overgangen.",
       },
       {
         pretitle: "Del seks · Forbindelser",
@@ -1075,7 +1075,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     lyapunovLabel: "Største Lyapunov-eksponent",
     lyapunovValue: "λ > 0",
     lyapunovNote:
-      "I det kaotiske regimet vokser avstandene som e^(λt) — og forutsigbarhetshorisonten vokser bare som log(1/ε).",
+      "I det kaotiske regimet vokser avstandene som e^(λt), og forutsigbarhetshorisonten vokser bare som log(1/ε).",
     regimeQuasiLabel: "Lav energi",
     regimeQuasiBody:
       "Myk kvasiperiodisk svinging. Banen virrer rundt en invariant torus, slår seg aldri til ro, rømmer aldri.",
@@ -1114,13 +1114,13 @@ export default function DoublePendulumStory() {
       bgAccent="bg-signal-coral/10"
       hoverAccent="hover:bg-signal-coral/20"
       gradient="from-signal-coral/10"
-      formulaBadge="θ̈₁ , θ̈₂ — coupled"
+      formulaBadge="θ̈₁ , θ̈₂ · coupled"
       formulaLatex={
         "\\ddot{\\theta}_1, \\ddot{\\theta}_2 \\;\\text{ from }\\; \\mathcal{L}(\\theta_1,\\theta_2,\\dot{\\theta}_1,\\dot{\\theta}_2) = T - V"
       }
       finalLabel={story.finalLabel}
     >
-      {/* Encounter — three layperson cards + inline live sim */}
+      {/* Encounter: three layperson cards + inline live sim */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -1165,7 +1165,7 @@ export default function DoublePendulumStory() {
         </Reveal>
       </section>
 
-      {/* Section 1 — The Lagrangian */}
+      {/* Section 1: The Lagrangian */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[0]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -1187,7 +1187,7 @@ L = T − V`}
         </Reveal>
       </section>
 
-      {/* Section 2 — The coupled ODEs */}
+      {/* Section 2: The coupled ODEs */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[1]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -1216,7 +1216,7 @@ L = T − V`}
         </Reveal>
       </section>
 
-      {/* Section 3 — Three regimes / KAM */}
+      {/* Section 3: Three regimes / KAM */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[2]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -1239,7 +1239,7 @@ L = T − V`}
         </Reveal>
       </section>
 
-      {/* Section 4 — Lyapunov + twin divergence demo */}
+      {/* Section 4: Lyapunov + twin divergence demo */}
       <section className="mx-auto mb-32 max-w-5xl space-y-8">
         <StoryCard {...story.sections[3]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -1278,7 +1278,7 @@ L = T − V`}
         </Reveal>
       </section>
 
-      {/* Section 5 — Phase space + Poincaré */}
+      {/* Section 5: Phase space + Poincaré */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[4]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -1294,7 +1294,7 @@ L = T − V`}
         </Reveal>
       </section>
 
-      {/* Section 6 — Connections */}
+      {/* Section 6: Connections */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard {...story.sections[5]} accent={ACCENT} />
       </section>
@@ -1321,7 +1321,7 @@ L = T − V`}
   );
 }
 
-// Tiny static SVG showing the two phase-space regimes — a smooth torus
+// Tiny static SVG showing the two phase-space regimes: a smooth torus
 // (quasi-periodic) and a fuzzy chaotic sea. Pure decoration; the live demo
 // is the twin pendulum above.
 function RegimeMini({ variant }: { variant: "torus" | "chaos" }) {
@@ -1369,7 +1369,7 @@ function RegimeMini({ variant }: { variant: "torus" | "chaos" }) {
   );
 }
 
-// Sketch of a Poincaré section — a few invariant curves (intact tori) sit
+// Sketch of a Poincaré section: a few invariant curves (intact tori) sit
 // inside a fuzzy band of scattered crossings (chaotic sea). Pure decoration.
 function PoincareSVG({ label }: { label: string }) {
   const islands: string[] = [];

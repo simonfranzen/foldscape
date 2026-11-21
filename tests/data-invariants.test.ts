@@ -1,4 +1,4 @@
-// Data invariants for the atlas. These are pure data assertions — no DOM,
+// Data invariants for the atlas. These are pure data assertions: no DOM,
 // no React. They are the cheapest tests in this suite and the most likely
 // to catch real regressions (a missing locale string, a topic with no page,
 // an edge that points at a deleted topic, etc.).
@@ -28,7 +28,7 @@ const CATEGORIES = ["logic", "computation", "chaos", "geometry", "analysis", "pa
 // Walk every key path in `template` and collect missing paths in `candidate`.
 // A key is considered required iff its value in the EN template is not
 // undefined; optional fields are simply absent in the template and don't
-// generate a check. Arrays are treated as leaves — we don't recurse into them.
+// generate a check. Arrays are treated as leaves; we don't recurse into them.
 function missingKeyPaths(template: unknown, candidate: unknown, prefix = ""): string[] {
   if (template === null || typeof template !== "object" || Array.isArray(template)) return [];
   if (candidate === null || typeof candidate !== "object" || Array.isArray(candidate)) {
@@ -146,7 +146,7 @@ describe("i18n: ATLAS topics coverage", () => {
 describe("i18n: EN ↔ DE key parity", () => {
   // EN and DE are the two locales the project guarantees are fully filled in
   // for every key (per CLAUDE.md). The other six locales may legitimately
-  // omit fields that the interface declares optional — the call sites
+  // omit fields that the interface declares optional: the call sites
   // fall back to the EN literal via `??`. So we only enforce parity between
   // EN and DE here; the other locales are covered by the targeted
   // "topics map is non-empty" check above, which is the high-value invariant.
@@ -193,5 +193,31 @@ describe("search metadata", () => {
     expect(article["@type"]).toContain("Article");
     expect(article.url).toBe("https://foldscape.zauberware.com/lorenz");
     expect((crumbs.itemListElement as unknown[]).length).toBe(2);
+  });
+});
+
+// The site uses no em or en dashes anywhere, in copy or in comments. A new
+// one would slip in unnoticed in eight languages, so the tree is scanned.
+describe("no dashes as punctuation", () => {
+  it("finds no em or en dash under app/, components/, lib/ and tests/", async () => {
+    const { readdirSync, readFileSync } = await import("node:fs");
+    // Built from code points so this file does not contain the characters.
+    const DASH = new RegExp(`[${String.fromCharCode(0x2013, 0x2014)}]`);
+    const hits: string[] = [];
+    const walk = (dir: string) => {
+      for (const e of readdirSync(dir, { withFileTypes: true })) {
+        const p = join(dir, e.name);
+        if (e.isDirectory()) walk(p);
+        else if (/\.(tsx?|css|svg|mjs)$/.test(e.name)) {
+          readFileSync(p, "utf8")
+            .split("\n")
+            .forEach((line, i) => {
+              if (DASH.test(line)) hits.push(`${p.replace(REPO_ROOT, "")}:${i + 1}`);
+            });
+        }
+      }
+    };
+    for (const d of ["app", "components", "lib", "tests"]) walk(join(REPO_ROOT, d));
+    expect(hits.slice(0, 20)).toEqual([]);
   });
 });

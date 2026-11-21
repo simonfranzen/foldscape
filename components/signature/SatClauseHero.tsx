@@ -6,7 +6,7 @@ import { palette } from "@/lib/visual/palette";
 // Signature artefact for the SAT page. A small 3-SAT formula whose variable
 // assignment cycles like a brute-force search; each clause lights green the
 // moment the current assignment satisfies it. When every clause is green the
-// formula flashes SAT — a satisfying assignment found. Reduced motion: a
+// formula flashes SAT: a satisfying assignment found. Reduced motion: a
 // static satisfying snapshot, no animation.
 
 type Lit = { v: number; neg: boolean };
@@ -14,7 +14,7 @@ type Lit = { v: number; neg: boolean };
 const VARS = ["x", "y", "z", "w"];
 
 // A deliberately small, satisfiable 3-SAT instance. Satisfaction is evaluated
-// live against the cycling assignment — nothing is precomputed, so the colours
+// live against the cycling assignment: nothing is precomputed, so the colours
 // are always honest.
 const CLAUSES: Lit[][] = [
   [
@@ -225,7 +225,7 @@ export function SatClauseHero() {
           letterSpacing="3.4"
           fill={solved ? VIOLET : withAlpha(palette.ink[100], 0.45)}
         >
-          {solved ? "⊨  SATISFIABLE — assignment found" : "searching assignments…  2⁴ = 16 to try"}
+          {solved ? "⊨  SATISFIABLE · assignment found" : "searching assignments…  2⁴ = 16 to try"}
         </text>
         {solved && (
           // Reduced motion gets a static full-opacity dot: SMIL <animate> is not

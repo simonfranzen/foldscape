@@ -32,7 +32,7 @@ const PALETTE = [
 const colourFor = (r: number) =>
   r === 0 ? PALETTE[0] : PALETTE[1 + ((r - 1) % (PALETTE.length - 1))];
 
-// Localized sidebar/overlay copy — the atlas bundle already localizes
+// Localized sidebar/overlay copy: the atlas bundle already localizes
 // title/tagline/body, so these six strings need their own per-locale map.
 type ExplorerCopy = {
   modulusLabel: string;

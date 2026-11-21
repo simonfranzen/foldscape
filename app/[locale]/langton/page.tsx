@@ -12,7 +12,7 @@ import type { StoryPage } from "@/lib/i18n/stories";
 const ACCENT = "text-signal-cyan";
 
 // --------------------------------------------------------------------------
-// A tiny schematic of the highway, drawn in violet — kept inline because no
+// A tiny schematic of the highway, drawn in violet, kept inline because no
 // other page renders it. The 104-step loop drifts diagonally; this is just
 // the visual shorthand.
 // --------------------------------------------------------------------------
@@ -99,7 +99,7 @@ const en: RichStory = {
     title: "Langton's Ant",
     tagline: "Two rules. Ten thousand steps. A highway.",
     intro:
-      "An ant on an infinite grid follows two rules: flip the cell, turn one way on white, the other on black. For about ten thousand steps the trail looks like pure chaos. Then — without warning — she starts laying down a perfectly periodic 104-step pattern that drifts off to infinity. Two rules, an unsolved emergent miracle.",
+      "An ant on an infinite grid follows two rules: flip the cell, turn one way on white, the other on black. For about ten thousand steps the trail looks like pure chaos. Then, without warning, she starts laying down a perfectly periodic 104-step pattern that drifts off to infinity. Two rules, an unsolved emergent miracle.",
     ctaInteractive: "→ Open the Explorer",
   },
   encounter: {
@@ -133,7 +133,7 @@ const en: RichStory = {
     {
       pretitle: "Section 02 · Three regimes",
       title: "Symmetry, then chaos, then order again",
-      body: "From a blank grid the trail is bilaterally symmetric for about 500 steps — determinism plus an empty start has no choice. Then symmetry shatters and the trail looks essentially random for roughly ten thousand more. Without warning, a third phase clicks on and stays on forever.",
+      body: "From a blank grid the trail is bilaterally symmetric for about 500 steps: determinism plus an empty start has no choice. Then symmetry shatters and the trail looks essentially random for roughly ten thousand more. Without warning, a third phase clicks on and stays on forever.",
     },
     {
       pretitle: "Section 03 · The highway",
@@ -146,9 +146,9 @@ const en: RichStory = {
       body: "Run the ant from any finite arrangement of black cells anyone has tried and she still finds the highway. No one has ever found a starting configuration that doesn't end in one. No one has ever proved that none exists. That is the open question, untouched for four decades.",
     },
     {
-      pretitle: "Section 05 · Bunimovich–Troubetzkoy 1992",
+      pretitle: "Section 05 · Bunimovich-Troubetzkoy 1992",
       title: "Unbounded trajectory, proven",
-      body: "What is proved is weaker but elegant: Bunimovich and Troubetzkoy showed that from any finite initial pattern the ant's path is unbounded — she cannot be trapped inside any finite region forever. The highway lives strictly inside that unboundedness theorem, but the theorem itself does not see it.",
+      body: "What is proved is weaker but elegant: Bunimovich and Troubetzkoy showed that from any finite initial pattern the ant's path is unbounded; she cannot be trapped inside any finite region forever. The highway lives strictly inside that unboundedness theorem, but the theorem itself does not see it.",
     },
     {
       pretitle: "Section 06 · Generalisations",
@@ -163,8 +163,8 @@ const en: RichStory = {
     blackOp: "→ L · flip · step",
   },
   regimes: [
-    { range: "0 – 500", phase: "Symmetric", note: "small bilaterally-symmetric figure" },
-    { range: "500 – 10 000", phase: "Chaos", note: "trail looks completely random" },
+    { range: "0-500", phase: "Symmetric", note: "small bilaterally-symmetric figure" },
+    { range: "500-10 000", phase: "Chaos", note: "trail looks completely random" },
     { range: "≥ 10 000", phase: "Highway", note: "104-step periodic drift, forever" },
   ],
   highwayCaption: "Schematic · the highway drifts diagonally",
@@ -203,7 +203,7 @@ const de: RichStory = {
     title: "Langtons Ameise",
     tagline: "Zwei Regeln. Zehntausend Schritte. Eine Autobahn.",
     intro:
-      "Eine Ameise auf einem unendlichen Gitter folgt zwei Regeln: färbe das Feld um, drehe auf Weiß in die eine Richtung, auf Schwarz in die andere. Etwa zehntausend Schritte lang sieht die Spur wie pures Chaos aus. Dann — ohne Vorwarnung — beginnt sie, ein perfekt periodisches Muster aus 104 Schritten zu zeichnen, das nach unendlich davondriftet. Zwei Regeln, ein ungelöstes Wunder der Emergenz.",
+      "Eine Ameise auf einem unendlichen Gitter folgt zwei Regeln: färbe das Feld um, drehe auf Weiß in die eine Richtung, auf Schwarz in die andere. Etwa zehntausend Schritte lang sieht die Spur wie pures Chaos aus. Dann, ohne Vorwarnung, beginnt sie, ein perfekt periodisches Muster aus 104 Schritten zu zeichnen, das nach unendlich davondriftet. Zwei Regeln, ein ungelöstes Wunder der Emergenz.",
     ctaInteractive: "→ Explorer öffnen",
   },
   encounter: {
@@ -238,7 +238,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Drei Regime",
       title: "Symmetrie, dann Chaos, dann wieder Ordnung",
-      body: "Aus leerem Gitter ist die Spur für rund 500 Schritte bilateral symmetrisch — Determinismus plus leerer Start lässt nichts anderes zu. Dann zerbricht die Symmetrie und die Spur wirkt rund zehntausend Schritte lang vollkommen zufällig. Ohne Vorwarnung schaltet die dritte Phase an und bleibt für immer an.",
+      body: "Aus leerem Gitter ist die Spur für rund 500 Schritte bilateral symmetrisch: Determinismus plus leerer Start lässt nichts anderes zu. Dann zerbricht die Symmetrie und die Spur wirkt rund zehntausend Schritte lang vollkommen zufällig. Ohne Vorwarnung schaltet die dritte Phase an und bleibt für immer an.",
     },
     {
       pretitle: "Abschnitt 03 · Die Autobahn",
@@ -248,12 +248,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Die ungelöste Vermutung",
       title: "Entsteht die Autobahn immer?",
-      body: "Egal welche endliche Anfangsanordnung schwarzer Felder bisher jemand ausprobiert hat — die Ameise findet die Autobahn. Niemand hat je eine Startkonfiguration gefunden, in der sie nicht entsteht. Niemand hat je bewiesen, dass keine existiert. Das ist die offene Frage, seit vier Jahrzehnten unangetastet.",
+      body: "Egal welche endliche Anfangsanordnung schwarzer Felder bisher jemand ausprobiert hat: Die Ameise findet die Autobahn. Niemand hat je eine Startkonfiguration gefunden, in der sie nicht entsteht. Niemand hat je bewiesen, dass keine existiert. Das ist die offene Frage, seit vier Jahrzehnten unangetastet.",
     },
     {
-      pretitle: "Abschnitt 05 · Bunimovich–Troubetzkoy 1992",
+      pretitle: "Abschnitt 05 · Bunimovich-Troubetzkoy 1992",
       title: "Unbeschränkte Bahn, bewiesen",
-      body: "Bewiesen ist Schwächeres, aber Schönes: Bunimovich und Troubetzkoy zeigten, dass die Bahn der Ameise aus jeder endlichen Anfangsanordnung unbeschränkt ist — sie kann in keiner endlichen Region für immer gefangen sein. Die Autobahn lebt streng innerhalb dieses Satzes, aber der Satz selbst sieht sie nicht.",
+      body: "Bewiesen ist Schwächeres, aber Schönes: Bunimovich und Troubetzkoy zeigten, dass die Bahn der Ameise aus jeder endlichen Anfangsanordnung unbeschränkt ist; sie kann in keiner endlichen Region für immer gefangen sein. Die Autobahn lebt streng innerhalb dieses Satzes, aber der Satz selbst sieht sie nicht.",
     },
     {
       pretitle: "Abschnitt 06 · Verallgemeinerungen",
@@ -268,8 +268,8 @@ const de: RichStory = {
     blackOp: "→ L · färben · Schritt",
   },
   regimes: [
-    { range: "0 – 500", phase: "Symmetrisch", note: "kleine bilateral symmetrische Figur" },
-    { range: "500 – 10 000", phase: "Chaos", note: "Spur wirkt vollkommen zufällig" },
+    { range: "0-500", phase: "Symmetrisch", note: "kleine bilateral symmetrische Figur" },
+    { range: "500-10 000", phase: "Chaos", note: "Spur wirkt vollkommen zufällig" },
     { range: "≥ 10 000", phase: "Autobahn", note: "104-Schritt-Drift, für immer" },
   ],
   highwayCaption: "Schema · die Autobahn driftet diagonal",
@@ -308,7 +308,7 @@ const es: RichStory = {
     title: "La hormiga de Langton",
     tagline: "Dos reglas. Diez mil pasos. Una autopista.",
     intro:
-      "Una hormiga en una cuadrícula infinita sigue dos reglas: invierte la celda, gira en un sentido en blanco y en el otro en negro. Durante unos diez mil pasos el rastro parece puro caos. Y entonces — sin previo aviso — empieza a trazar un patrón perfectamente periódico de 104 pasos que se aleja hacia el infinito. Dos reglas, un milagro emergente sin resolver.",
+      "Una hormiga en una cuadrícula infinita sigue dos reglas: invierte la celda, gira en un sentido en blanco y en el otro en negro. Durante unos diez mil pasos el rastro parece puro caos. Y entonces, sin previo aviso, empieza a trazar un patrón perfectamente periódico de 104 pasos que se aleja hacia el infinito. Dos reglas, un milagro emergente sin resolver.",
     ctaInteractive: "→ Abrir el Explorador",
   },
   encounter: {
@@ -342,7 +342,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 02 · Tres regímenes",
       title: "Simetría, después caos, después orden de nuevo",
-      body: "Desde rejilla en blanco la traza es bilateralmente simétrica unos 500 pasos — determinismo más inicio vacío no permite otra cosa. Luego la simetría se quiebra y la traza parece totalmente aleatoria durante unos diez mil pasos. Sin previo aviso, una tercera fase se enciende y se queda encendida para siempre.",
+      body: "Desde rejilla en blanco la traza es bilateralmente simétrica unos 500 pasos: determinismo más inicio vacío no permite otra cosa. Luego la simetría se quiebra y la traza parece totalmente aleatoria durante unos diez mil pasos. Sin previo aviso, una tercera fase se enciende y se queda encendida para siempre.",
     },
     {
       pretitle: "Sección 03 · La autopista",
@@ -352,12 +352,12 @@ const es: RichStory = {
     {
       pretitle: "Sección 04 · La conjetura abierta",
       title: "¿Siempre aparece la autopista?",
-      body: "Cualquier disposición finita de casillas negras que se haya probado — la hormiga acaba encontrando la autopista. Nadie ha encontrado una configuración inicial que no termine ahí. Nadie ha demostrado que no exista. Esa es la pregunta abierta, intocada desde hace cuatro décadas.",
+      body: "Cualquier disposición finita de casillas negras que se haya probado: la hormiga acaba encontrando la autopista. Nadie ha encontrado una configuración inicial que no termine ahí. Nadie ha demostrado que no exista. Esa es la pregunta abierta, intocada desde hace cuatro décadas.",
     },
     {
-      pretitle: "Sección 05 · Bunimovich–Troubetzkoy 1992",
+      pretitle: "Sección 05 · Bunimovich-Troubetzkoy 1992",
       title: "Trayectoria no acotada, demostrada",
-      body: "Lo demostrado es más débil pero elegante: Bunimovich y Troubetzkoy mostraron que desde cualquier patrón inicial finito la trayectoria es no acotada — no puede quedar atrapada para siempre en ninguna región finita. La autopista vive estrictamente dentro de ese teorema, pero el teorema mismo no la ve.",
+      body: "Lo demostrado es más débil pero elegante: Bunimovich y Troubetzkoy mostraron que desde cualquier patrón inicial finito la trayectoria es no acotada; no puede quedar atrapada para siempre en ninguna región finita. La autopista vive estrictamente dentro de ese teorema, pero el teorema mismo no la ve.",
     },
     {
       pretitle: "Sección 06 · Generalizaciones",
@@ -372,8 +372,8 @@ const es: RichStory = {
     blackOp: "→ L · pinta · paso",
   },
   regimes: [
-    { range: "0 – 500", phase: "Simétrico", note: "pequeña figura bilateralmente simétrica" },
-    { range: "500 – 10 000", phase: "Caos", note: "la traza parece completamente aleatoria" },
+    { range: "0-500", phase: "Simétrico", note: "pequeña figura bilateralmente simétrica" },
+    { range: "500-10 000", phase: "Caos", note: "la traza parece completamente aleatoria" },
     { range: "≥ 10 000", phase: "Autopista", note: "deriva periódica de 104 pasos, para siempre" },
   ],
   highwayCaption: "Esquema · la autopista deriva en diagonal",
@@ -412,7 +412,7 @@ const fr: RichStory = {
     title: "La fourmi de Langton",
     tagline: "Deux règles. Dix mille pas. Une autoroute.",
     intro:
-      "Une fourmi sur une grille infinie suit deux règles : retourne la case, tourne dans un sens sur blanc, dans l'autre sur noir. Pendant environ dix mille pas la trace ressemble à du pur chaos. Puis — sans prévenir — elle se met à tracer un motif parfaitement périodique de 104 pas qui s'éloigne vers l'infini. Deux règles, un miracle émergent encore irrésolu.",
+      "Une fourmi sur une grille infinie suit deux règles : retourne la case, tourne dans un sens sur blanc, dans l'autre sur noir. Pendant environ dix mille pas la trace ressemble à du pur chaos. Puis, sans prévenir, elle se met à tracer un motif parfaitement périodique de 104 pas qui s'éloigne vers l'infini. Deux règles, un miracle émergent encore irrésolu.",
     ctaInteractive: "→ Ouvrir l'Explorateur",
   },
   encounter: {
@@ -447,7 +447,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 02 · Trois régimes",
       title: "Symétrie, puis chaos, puis ordre à nouveau",
-      body: "Depuis une grille vide, la trace est bilatéralement symétrique pendant environ 500 pas — déterminisme plus départ vide n'a pas le choix. Puis la symétrie se brise et la trace paraît totalement aléatoire pendant à peu près dix mille pas de plus. Sans prévenir, une troisième phase s'enclenche et reste enclenchée pour toujours.",
+      body: "Depuis une grille vide, la trace est bilatéralement symétrique pendant environ 500 pas : déterminisme plus départ vide n'a pas le choix. Puis la symétrie se brise et la trace paraît totalement aléatoire pendant à peu près dix mille pas de plus. Sans prévenir, une troisième phase s'enclenche et reste enclenchée pour toujours.",
     },
     {
       pretitle: "Section 03 · L'autoroute",
@@ -457,12 +457,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 04 · La conjecture ouverte",
       title: "L'autoroute apparaît-elle toujours ?",
-      body: "Toute disposition finie de cases noires jamais essayée — la fourmi finit par trouver l'autoroute. Personne n'a découvert de configuration initiale qui n'y mène pas. Personne n'a prouvé qu'aucune n'existe. C'est la question ouverte, intouchée depuis quarante ans.",
+      body: "Toute disposition finie de cases noires jamais essayée : la fourmi finit par trouver l'autoroute. Personne n'a découvert de configuration initiale qui n'y mène pas. Personne n'a prouvé qu'aucune n'existe. C'est la question ouverte, intouchée depuis quarante ans.",
     },
     {
-      pretitle: "Section 05 · Bunimovich–Troubetzkoy 1992",
+      pretitle: "Section 05 · Bunimovich-Troubetzkoy 1992",
       title: "Trajectoire non bornée, prouvée",
-      body: "Ce qui est prouvé est plus faible mais élégant : Bunimovich et Troubetzkoy ont montré que depuis tout motif initial fini la trajectoire est non bornée — elle ne peut être piégée pour toujours dans aucune région finie. L'autoroute vit strictement à l'intérieur de ce théorème, mais le théorème lui-même ne la voit pas.",
+      body: "Ce qui est prouvé est plus faible mais élégant : Bunimovich et Troubetzkoy ont montré que depuis tout motif initial fini la trajectoire est non bornée ; elle ne peut être piégée pour toujours dans aucune région finie. L'autoroute vit strictement à l'intérieur de ce théorème, mais le théorème lui-même ne la voit pas.",
     },
     {
       pretitle: "Section 06 · Généralisations",
@@ -477,8 +477,8 @@ const fr: RichStory = {
     blackOp: "→ L · peins · pas",
   },
   regimes: [
-    { range: "0 – 500", phase: "Symétrique", note: "petite figure bilatéralement symétrique" },
-    { range: "500 – 10 000", phase: "Chaos", note: "la trace paraît totalement aléatoire" },
+    { range: "0-500", phase: "Symétrique", note: "petite figure bilatéralement symétrique" },
+    { range: "500-10 000", phase: "Chaos", note: "la trace paraît totalement aléatoire" },
     { range: "≥ 10 000", phase: "Autoroute", note: "dérive périodique de 104 pas, pour toujours" },
   ],
   highwayCaption: "Schéma · l'autoroute dérive en diagonale",
@@ -517,7 +517,7 @@ const it: RichStory = {
     title: "La formica di Langton",
     tagline: "Due regole. Diecimila passi. Un'autostrada.",
     intro:
-      "Una formica su una griglia infinita segue due regole: inverti la cella, gira in un senso sul bianco e nell'altro sul nero. Per circa diecimila passi la traccia sembra puro caos. Poi — senza preavviso — comincia a tracciare un motivo perfettamente periodico di 104 passi che si allontana verso l'infinito. Due regole, un miracolo emergente ancora irrisolto.",
+      "Una formica su una griglia infinita segue due regole: inverti la cella, gira in un senso sul bianco e nell'altro sul nero. Per circa diecimila passi la traccia sembra puro caos. Poi, senza preavviso, comincia a tracciare un motivo perfettamente periodico di 104 passi che si allontana verso l'infinito. Due regole, un miracolo emergente ancora irrisolto.",
     ctaInteractive: "→ Apri l'Esploratore",
   },
   encounter: {
@@ -552,7 +552,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 02 · Tre regimi",
       title: "Simmetria, poi caos, poi di nuovo ordine",
-      body: "Da griglia vuota la traccia è bilateralmente simmetrica per circa 500 passi — determinismo più partenza vuota non lascia altra scelta. Poi la simmetria si frantuma e la traccia sembra del tutto casuale per altri diecimila passi circa. Senza preavviso una terza fase scatta e resta accesa per sempre.",
+      body: "Da griglia vuota la traccia è bilateralmente simmetrica per circa 500 passi: determinismo più partenza vuota non lascia altra scelta. Poi la simmetria si frantuma e la traccia sembra del tutto casuale per altri diecimila passi circa. Senza preavviso una terza fase scatta e resta accesa per sempre.",
     },
     {
       pretitle: "Sezione 03 · L'autostrada",
@@ -562,12 +562,12 @@ const it: RichStory = {
     {
       pretitle: "Sezione 04 · La congettura aperta",
       title: "L'autostrada emerge sempre?",
-      body: "Qualunque disposizione finita di celle nere chiunque abbia mai provato — la formica trova l'autostrada. Nessuno ha trovato una configurazione iniziale che non vi conduca. Nessuno ha dimostrato che non esista. È la domanda aperta, intoccata da quarant'anni.",
+      body: "Qualunque disposizione finita di celle nere chiunque abbia mai provato: la formica trova l'autostrada. Nessuno ha trovato una configurazione iniziale che non vi conduca. Nessuno ha dimostrato che non esista. È la domanda aperta, intoccata da quarant'anni.",
     },
     {
-      pretitle: "Sezione 05 · Bunimovich–Troubetzkoy 1992",
+      pretitle: "Sezione 05 · Bunimovich-Troubetzkoy 1992",
       title: "Traiettoria illimitata, dimostrata",
-      body: "Ciò che è dimostrato è più debole ma elegante: Bunimovich e Troubetzkoy hanno mostrato che da ogni configurazione iniziale finita la traiettoria è illimitata — non può restare intrappolata per sempre in alcuna regione finita. L'autostrada vive strettamente dentro questo teorema, ma il teorema stesso non la vede.",
+      body: "Ciò che è dimostrato è più debole ma elegante: Bunimovich e Troubetzkoy hanno mostrato che da ogni configurazione iniziale finita la traiettoria è illimitata; non può restare intrappolata per sempre in alcuna regione finita. L'autostrada vive strettamente dentro questo teorema, ma il teorema stesso non la vede.",
     },
     {
       pretitle: "Sezione 06 · Generalizzazioni",
@@ -582,8 +582,8 @@ const it: RichStory = {
     blackOp: "→ L · dipingi · passo",
   },
   regimes: [
-    { range: "0 – 500", phase: "Simmetrico", note: "piccola figura bilateralmente simmetrica" },
-    { range: "500 – 10 000", phase: "Caos", note: "la traccia appare del tutto casuale" },
+    { range: "0-500", phase: "Simmetrico", note: "piccola figura bilateralmente simmetrica" },
+    { range: "500-10 000", phase: "Caos", note: "la traccia appare del tutto casuale" },
     { range: "≥ 10 000", phase: "Autostrada", note: "deriva periodica di 104 passi, per sempre" },
   ],
   highwayCaption: "Schema · l'autostrada deriva in diagonale",
@@ -622,7 +622,7 @@ const pt: RichStory = {
     title: "A formiga de Langton",
     tagline: "Duas regras. Dez mil passos. Uma autoestrada.",
     intro:
-      "Uma formiga numa grelha infinita segue duas regras: inverte a célula, vira num sentido no branco e no outro no preto. Durante cerca de dez mil passos o rasto parece puro caos. Depois — sem aviso — começa a desenhar um padrão perfeitamente periódico de 104 passos que se afasta para o infinito. Duas regras, um milagre emergente por resolver.",
+      "Uma formiga numa grelha infinita segue duas regras: inverte a célula, vira num sentido no branco e no outro no preto. Durante cerca de dez mil passos o rasto parece puro caos. Depois, sem aviso, começa a desenhar um padrão perfeitamente periódico de 104 passos que se afasta para o infinito. Duas regras, um milagre emergente por resolver.",
     ctaInteractive: "→ Abrir o Explorador",
   },
   encounter: {
@@ -656,7 +656,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 02 · Três regimes",
       title: "Simetria, depois caos, depois ordem outra vez",
-      body: "A partir de grelha vazia o rasto é bilateralmente simétrico durante uns 500 passos — determinismo mais início vazio não permite outra coisa. Depois a simetria parte-se e o rasto parece totalmente aleatório durante mais cerca de dez mil passos. Sem aviso uma terceira fase liga-se e fica ligada para sempre.",
+      body: "A partir de grelha vazia o rasto é bilateralmente simétrico durante uns 500 passos: determinismo mais início vazio não permite outra coisa. Depois a simetria parte-se e o rasto parece totalmente aleatório durante mais cerca de dez mil passos. Sem aviso uma terceira fase liga-se e fica ligada para sempre.",
     },
     {
       pretitle: "Secção 03 · A autoestrada",
@@ -666,12 +666,12 @@ const pt: RichStory = {
     {
       pretitle: "Secção 04 · A conjectura em aberto",
       title: "A autoestrada emerge sempre?",
-      body: "Qualquer disposição finita de casas pretas que alguém alguma vez tentou — a formiga acaba por encontrar a autoestrada. Ninguém encontrou uma configuração inicial que não acabe nela. Ninguém provou que não exista. É a pergunta aberta, intocada há quatro décadas.",
+      body: "Qualquer disposição finita de casas pretas que alguém alguma vez tentou: a formiga acaba por encontrar a autoestrada. Ninguém encontrou uma configuração inicial que não acabe nela. Ninguém provou que não exista. É a pergunta aberta, intocada há quatro décadas.",
     },
     {
-      pretitle: "Secção 05 · Bunimovich–Troubetzkoy 1992",
+      pretitle: "Secção 05 · Bunimovich-Troubetzkoy 1992",
       title: "Trajectória ilimitada, demonstrada",
-      body: "O que está demonstrado é mais fraco mas elegante: Bunimovich e Troubetzkoy mostraram que a partir de qualquer padrão inicial finito a trajectória é ilimitada — não pode ficar presa para sempre em nenhuma região finita. A autoestrada vive estritamente dentro desse teorema, mas o teorema em si não a vê.",
+      body: "O que está demonstrado é mais fraco mas elegante: Bunimovich e Troubetzkoy mostraram que a partir de qualquer padrão inicial finito a trajectória é ilimitada; não pode ficar presa para sempre em nenhuma região finita. A autoestrada vive estritamente dentro desse teorema, mas o teorema em si não a vê.",
     },
     {
       pretitle: "Secção 06 · Generalizações",
@@ -686,8 +686,8 @@ const pt: RichStory = {
     blackOp: "→ L · pinta · passo",
   },
   regimes: [
-    { range: "0 – 500", phase: "Simétrico", note: "pequena figura bilateralmente simétrica" },
-    { range: "500 – 10 000", phase: "Caos", note: "o rasto parece totalmente aleatório" },
+    { range: "0-500", phase: "Simétrico", note: "pequena figura bilateralmente simétrica" },
+    { range: "500-10 000", phase: "Caos", note: "o rasto parece totalmente aleatório" },
     {
       range: "≥ 10 000",
       phase: "Autoestrada",
@@ -729,7 +729,7 @@ const sv: RichStory = {
     title: "Langtons myra",
     tagline: "Två regler. Tio tusen steg. En motorväg.",
     intro:
-      "En myra på ett oändligt rutnät följer två regler: vänd cellen, sväng åt ena hållet på vit och åt andra på svart. I cirka tio tusen steg ser spåret ut som rent kaos. Sedan — utan förvarning — börjar hon lägga ut ett perfekt periodiskt mönster på 104 steg som driver iväg mot oändligheten. Två regler, ett olöst emergent mirakel.",
+      "En myra på ett oändligt rutnät följer två regler: vänd cellen, sväng åt ena hållet på vit och åt andra på svart. I cirka tio tusen steg ser spåret ut som rent kaos. Sedan, utan förvarning, börjar hon lägga ut ett perfekt periodiskt mönster på 104 steg som driver iväg mot oändligheten. Två regler, ett olöst emergent mirakel.",
     ctaInteractive: "→ Öppna Utforskaren",
   },
   encounter: {
@@ -763,7 +763,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 02 · Tre regimer",
       title: "Symmetri, sedan kaos, sedan ordning igen",
-      body: "Från tomt rutnät är spåret bilateralt symmetriskt i cirka 500 steg — determinism plus tom start har inget val. Sedan splittras symmetrin och spåret ser helt slumpartat ut i ungefär tio tusen steg till. Utan förvarning klickar en tredje fas i och stannar i för alltid.",
+      body: "Från tomt rutnät är spåret bilateralt symmetriskt i cirka 500 steg: determinism plus tom start har inget val. Sedan splittras symmetrin och spåret ser helt slumpartat ut i ungefär tio tusen steg till. Utan förvarning klickar en tredje fas i och stannar i för alltid.",
     },
     {
       pretitle: "Avsnitt 03 · Motorvägen",
@@ -773,12 +773,12 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 04 · Den olösta förmodan",
       title: "Dyker motorvägen alltid upp?",
-      body: "Vilken ändlig uppställning av svarta rutor någon någonsin har provat — myran hittar motorvägen. Ingen har hittat en startkonfiguration som inte slutar där. Ingen har bevisat att ingen finns. Det är den öppna frågan, orörd sedan fyra decennier.",
+      body: "Vilken ändlig uppställning av svarta rutor någon någonsin har provat: myran hittar motorvägen. Ingen har hittat en startkonfiguration som inte slutar där. Ingen har bevisat att ingen finns. Det är den öppna frågan, orörd sedan fyra decennier.",
     },
     {
-      pretitle: "Avsnitt 05 · Bunimovich–Troubetzkoy 1992",
+      pretitle: "Avsnitt 05 · Bunimovich-Troubetzkoy 1992",
       title: "Obegränsad bana, bevisad",
-      body: "Det som är bevisat är svagare men elegant: Bunimovich och Troubetzkoy visade att från varje ändligt startmönster är banan obegränsad — hon kan inte sitta fast i någon ändlig region för alltid. Motorvägen lever strikt inom den satsen, men satsen själv ser den inte.",
+      body: "Det som är bevisat är svagare men elegant: Bunimovich och Troubetzkoy visade att från varje ändligt startmönster är banan obegränsad; hon kan inte sitta fast i någon ändlig region för alltid. Motorvägen lever strikt inom den satsen, men satsen själv ser den inte.",
     },
     {
       pretitle: "Avsnitt 06 · Generaliseringar",
@@ -793,8 +793,8 @@ const sv: RichStory = {
     blackOp: "→ L · måla · steg",
   },
   regimes: [
-    { range: "0 – 500", phase: "Symmetrisk", note: "liten bilateralt symmetrisk figur" },
-    { range: "500 – 10 000", phase: "Kaos", note: "spåret ser helt slumpartat ut" },
+    { range: "0-500", phase: "Symmetrisk", note: "liten bilateralt symmetrisk figur" },
+    { range: "500-10 000", phase: "Kaos", note: "spåret ser helt slumpartat ut" },
     { range: "≥ 10 000", phase: "Motorväg", note: "104-stegs drift, för alltid" },
   ],
   highwayCaption: "Schema · motorvägen driver diagonalt",
@@ -833,7 +833,7 @@ const no: RichStory = {
     title: "Langtons maur",
     tagline: "To regler. Ti tusen skritt. En motorvei.",
     intro:
-      "En maur på et uendelig rutenett følger to regler: snu cellen, vri den ene veien på hvitt og den andre på svart. I omtrent ti tusen skritt ser sporet ut som rent kaos. Så — uten varsel — begynner hun å legge ut et perfekt periodisk mønster på 104 skritt som driver av mot uendeligheten. To regler, et uløst emergent mirakel.",
+      "En maur på et uendelig rutenett følger to regler: snu cellen, vri den ene veien på hvitt og den andre på svart. I omtrent ti tusen skritt ser sporet ut som rent kaos. Så, uten varsel, begynner hun å legge ut et perfekt periodisk mønster på 104 skritt som driver av mot uendeligheten. To regler, et uløst emergent mirakel.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -867,7 +867,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Tre regimer",
       title: "Symmetri, så kaos, så orden igjen",
-      body: "Fra tomt rutenett er sporet bilateralt symmetrisk i omtrent 500 steg — determinisme pluss tom start har ikke noe valg. Så sprekker symmetrien og sporet ser helt tilfeldig ut i rundt ti tusen steg til. Uten varsel klikker en tredje fase på og blir stående på for alltid.",
+      body: "Fra tomt rutenett er sporet bilateralt symmetrisk i omtrent 500 steg: Determinisme pluss tom start har ikke noe valg. Så sprekker symmetrien og sporet ser helt tilfeldig ut i rundt ti tusen steg til. Uten varsel klikker en tredje fase på og blir stående på for alltid.",
     },
     {
       pretitle: "Avsnitt 03 · Motorveien",
@@ -877,12 +877,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Den uløste formodningen",
       title: "Dukker motorveien alltid opp?",
-      body: "Enhver endelig oppstilling av svarte ruter noen har prøvd — mauren finner motorveien. Ingen har funnet en startkonfigurasjon som ikke ender der. Ingen har bevist at ingen finnes. Det er det åpne spørsmålet, urørt i fire tiår.",
+      body: "Enhver endelig oppstilling av svarte ruter noen har prøvd: Mauren finner motorveien. Ingen har funnet en startkonfigurasjon som ikke ender der. Ingen har bevist at ingen finnes. Det er det åpne spørsmålet, urørt i fire tiår.",
     },
     {
-      pretitle: "Avsnitt 05 · Bunimovich–Troubetzkoy 1992",
+      pretitle: "Avsnitt 05 · Bunimovich-Troubetzkoy 1992",
       title: "Ubegrenset bane, bevist",
-      body: "Det som er bevist er svakere, men elegant: Bunimovich og Troubetzkoy viste at fra ethvert endelig startmønster er banen ubegrenset — hun kan ikke sitte fast i noen endelig region for alltid. Motorveien lever strengt inne i denne setningen, men setningen selv ser den ikke.",
+      body: "Det som er bevist er svakere, men elegant: Bunimovich og Troubetzkoy viste at fra ethvert endelig startmønster er banen ubegrenset; hun kan ikke sitte fast i noen endelig region for alltid. Motorveien lever strengt inne i denne setningen, men setningen selv ser den ikke.",
     },
     {
       pretitle: "Avsnitt 06 · Generaliseringer",
@@ -897,8 +897,8 @@ const no: RichStory = {
     blackOp: "→ L · mal · steg",
   },
   regimes: [
-    { range: "0 – 500", phase: "Symmetrisk", note: "liten bilateralt symmetrisk figur" },
-    { range: "500 – 10 000", phase: "Kaos", note: "sporet ser helt tilfeldig ut" },
+    { range: "0-500", phase: "Symmetrisk", note: "liten bilateralt symmetrisk figur" },
+    { range: "500-10 000", phase: "Kaos", note: "sporet ser helt tilfeldig ut" },
     { range: "≥ 10 000", phase: "Motorvei", note: "104-stegs drift, for alltid" },
   ],
   highwayCaption: "Skjema · motorveien driver diagonalt",
@@ -956,7 +956,7 @@ export default function LangtonStory() {
       }
       finalLabel={story.closingTitle}
     >
-      {/* Encounter — three approachable cards */}
+      {/* Encounter: three approachable cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -988,7 +988,7 @@ export default function LangtonStory() {
         </Reveal>
       </section>
 
-      {/* Section 01 — the rules + a tiny rule-grid visual */}
+      {/* Section 01: the rules + a tiny rule-grid visual */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...sec0} accent={ACCENT} />
         <Reveal delay={120}>
@@ -1015,7 +1015,7 @@ export default function LangtonStory() {
         </Reveal>
       </section>
 
-      {/* INLINE INTERACTIVE — mini runner */}
+      {/* INLINE INTERACTIVE: mini runner */}
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <Reveal>
           <div className="space-y-2 text-center">
@@ -1061,7 +1061,7 @@ export default function LangtonStory() {
         </div>
       </section>
 
-      {/* Section 02 — three regimes */}
+      {/* Section 02: three regimes */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...sec1} accent={ACCENT} />
         <Reveal delay={120}>
@@ -1079,7 +1079,7 @@ export default function LangtonStory() {
         </Reveal>
       </section>
 
-      {/* Section 03 — the highway + schematic */}
+      {/* Section 03: the highway + schematic */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...sec2} accent={ACCENT} />
         <Reveal delay={120}>
@@ -1095,17 +1095,17 @@ export default function LangtonStory() {
         </Reveal>
       </section>
 
-      {/* Section 04 — the unsolved conjecture */}
+      {/* Section 04: the unsolved conjecture */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...sec3} accent={ACCENT} />
       </section>
 
-      {/* Section 05 — Bunimovich-Troubetzkoy */}
+      {/* Section 05: Bunimovich-Troubetzkoy */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...sec4} accent={ACCENT} />
       </section>
 
-      {/* Section 06 — Turing-complete generalisations */}
+      {/* Section 06: Turing-complete generalisations */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...sec5} accent={ACCENT} />
       </section>

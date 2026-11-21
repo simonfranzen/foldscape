@@ -10,13 +10,13 @@ import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerG
 import { BACKPROP_GUIDE } from "@/lib/explorer-guides/backprop";
 
 // --------------------------------------------------------------------------
-// Backprop Explorer — hand-rolled multilayer perceptron trainer in the
+// Backprop Explorer: hand-rolled multilayer perceptron trainer in the
 // browser. Tanh-hidden, sigmoid output, MSE loss. No tensorflow.js. Three
 // toy tasks (XOR, two moons, circle vs square), three topologies
-// (2-3-1, 2-4-4-1, 3-8-8-1 — though we always use 2D inputs; the 3-8-8-1
+// (2-3-1, 2-4-4-1, 3-8-8-1, though we always use 2D inputs; the 3-8-8-1
 // option just gives you a bigger first layer with three-feature inputs:
 // x, y, x*y). Live decision-boundary heatmap + loss curve, hyperparameter
-// sliders. The whole training loop is ~80 lines of plain JS — exactly what
+// sliders. The whole training loop is ~80 lines of plain JS, exactly what
 // the story page promises.
 // --------------------------------------------------------------------------
 
@@ -659,7 +659,7 @@ export default function BackpropExplorer() {
     setUpdates((n) => n + 1);
     if (end === ds.length) setEpoch((e) => e + 1);
 
-    // Accuracy across the whole dataset (cheap — ≤ 160 forward passes).
+    // Accuracy across the whole dataset (cheap: ≤ 160 forward passes).
     let correct = 0;
     for (const { x: xi, y: yi } of ds) {
       const yh = forward(net, xi);
@@ -735,7 +735,7 @@ export default function BackpropExplorer() {
     }
 
     // Decision boundary line at ŷ = 0.5: re-sample at fine grid, draw
-    // contour by squared marker. Cheap version — colour cells where the
+    // contour by squared marker. Cheap version: colour cells where the
     // boundary crosses by checking sign changes vs neighbours.
     ctx.strokeStyle = "rgba(20, 23, 36, 0.55)";
     ctx.lineWidth = 1.2;

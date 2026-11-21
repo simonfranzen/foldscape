@@ -9,7 +9,7 @@ import type { Locale } from "@/lib/i18n/types";
 import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
 import { ULAM_GUIDE } from "@/lib/explorer-guides/ulam";
 
-// Highlightable quadratics — diagonals on the spiral. The "Off" label is
+// Highlightable quadratics: diagonals on the spiral. The "Off" label is
 // localized at render time via RICH_EXPLORER; the polynomial labels are
 // language-neutral math and stay as-is.
 const QUADRATICS = [
@@ -190,7 +190,7 @@ export default function UlamExplorer() {
       const v = quad.a * n * n + quad.b * n + quad.c;
       if (v < 1 || v > max) continue;
       const [x, y] = spiralCoord(v);
-      // pack x, y as single int — x in [-side/2..side/2]
+      // pack x, y as single int; x in [-side/2..side/2]
       set.add(((x + 1000) << 16) | (y + 1000));
     }
     return set;
@@ -221,7 +221,7 @@ export default function UlamExplorer() {
         const [x, y] = spiralCoord(n);
         if (Math.abs(x) > half || Math.abs(y) > half) continue;
         const px = offsetX + (x + half) * cell;
-        // y axis flipped — positive y points up in our coords but down on screen
+        // y axis flipped: positive y points up in our coords but down on screen
         const py = offsetY + (half - y) * cell;
         const highlit = highlightSet?.has(((x + 1000) << 16) | (y + 1000));
         ctx.fillStyle = highlit ? palette.signal.rose : "rgba(255, 209, 102, 0.85)";

@@ -64,7 +64,7 @@ const en: RichStory = {
   page: {
     pretitle: "Topic · Chaos",
     title: "The Collatz Conjecture",
-    tagline: "Halve if even. Triple-plus-one if odd. End at 1 — probably.",
+    tagline: "Halve if even. Triple-plus-one if odd. End at 1. Probably.",
     intro:
       "A four-word rule, eighty-eight years of silence. Pick any positive integer, halve it when it is even and otherwise replace it with 3n + 1, and the sequence eventually falls into the cycle 4 → 2 → 1. Computers have checked every integer up to roughly 2⁶⁸. Nobody has proved it must always happen.",
     ctaInteractive: "→ Open the Explorer",
@@ -82,16 +82,16 @@ const en: RichStory = {
       {
         label: "02",
         title: "A concrete example",
-        body: "Start at 27 — a tiny seed. The orbit climbs and crashes and climbs again, peaking at 9 232 (about 340× its starting value) before finally falling back down to 1 in exactly 111 steps. Read the trajectory aloud and it sounds random; plotted on a log scale, it looks like hail in a thundercloud.",
+        body: "Start at 27, a tiny seed. The orbit climbs and crashes and climbs again, peaking at 9 232 (about 340× its starting value) before finally falling back down to 1 in exactly 111 steps. Read the trajectory aloud and it sounds random; plotted on a log scale, it looks like hail in a thundercloud.",
       },
       {
         label: "03",
         title: "Why it matters",
-        body: "Verified by computer for every integer up to 2⁶⁸ — that is about 3 × 10²⁰ checks, no exceptions. Yet a proof is still missing. Collatz has become the shorthand for ‘easy to state, impossible to prove’. Paul Erdős shrugged and said: ‘Mathematics is not yet ripe for such problems.’ He offered $500. The prize is still unclaimed.",
+        body: "Verified by computer for every integer up to 2⁶⁸, that is about 3 × 10²⁰ checks, no exceptions. Yet a proof is still missing. Collatz has become the shorthand for ‘easy to state, impossible to prove’. Paul Erdős shrugged and said: ‘Mathematics is not yet ripe for such problems.’ He offered $500. The prize is still unclaimed.",
       },
     ],
     tryIt:
-      "Below: drop any seed into the hailstorm and watch it fall — then grow the reverse coral that holds every integer at once.",
+      "Below: drop any seed into the hailstorm and watch it fall, then grow the reverse coral that holds every integer at once.",
   },
   sections: [
     {
@@ -102,7 +102,7 @@ const en: RichStory = {
     {
       pretitle: "Section 02 · The 27 trajectory",
       title: "Hailstones over Syracuse",
-      body: "The orbits earned the nickname hailstone sequences because they rise and fall erratically before finally hitting the ground — like hail tossed inside a thundercloud. The most famous small case is n = 27. It looks too small to be interesting and yet it takes 111 steps to terminate, climbing as high as 9 232 along the way — over 340 times its starting value. Other small seeds with disproportionate orbits: 97 takes 118 steps, 871 takes 178, 6 171 takes 261, 77 031 takes 350. Tiny inputs, wildly oversized journeys. The trajectory plotter below lets you drop any of them — or any seed you like — into the hailstorm.",
+      body: "The orbits earned the nickname hailstone sequences because they rise and fall erratically before finally hitting the ground, like hail tossed inside a thundercloud. The most famous small case is n = 27. It looks too small to be interesting and yet it takes 111 steps to terminate, climbing as high as 9 232 along the way, over 340 times its starting value. Other small seeds with disproportionate orbits: 97 takes 118 steps, 871 takes 178, 6 171 takes 261, 77 031 takes 350. Tiny inputs, wildly oversized journeys. The trajectory plotter below lets you drop any of them, or any seed you like, into the hailstorm.",
     },
     {
       pretitle: "Section 03 · The conjecture",
@@ -112,17 +112,17 @@ const en: RichStory = {
     {
       pretitle: "Section 04 · Tao's 2019 result",
       title: "Almost all orbits, almost all the way home",
-      body: "The deepest progress came in 2019 from Terence Tao. His paper ‘Almost all orbits of the Collatz map attain almost bounded values’ shows that for any function f(n) tending to infinity, the set of starting integers whose Collatz orbit eventually drops below f(n) has logarithmic density 1. In plain language: pick a random starting integer; almost certainly its orbit eventually shrinks below any target you set in advance. This is a probabilistic near-miss, not a proof. The remaining counterexamples — if they exist — would form a measure-zero exceptional set, but measure zero is not empty, and Tao's argument explicitly cannot rule them out.",
+      body: "The deepest progress came in 2019 from Terence Tao. His paper ‘Almost all orbits of the Collatz map attain almost bounded values’ shows that for any function f(n) tending to infinity, the set of starting integers whose Collatz orbit eventually drops below f(n) has logarithmic density 1. In plain language: pick a random starting integer; almost certainly its orbit eventually shrinks below any target you set in advance. This is a probabilistic near-miss, not a proof. The remaining counterexamples, if they exist, would form a measure-zero exceptional set, but measure zero is not empty, and Tao's argument explicitly cannot rule them out.",
     },
     {
       pretitle: "Section 05 · The reverse coral",
       title: "Run the rule backwards and the integers self-assemble",
-      body: "Forward Collatz is one number at a time. Reverse Collatz is the whole tree. Start at 1 and run the rule backwards: every node n has parent 2n (always — halving was its forward step), and additionally a parent (n − 1) / 3 whenever that number is a positive odd integer greater than 1. Sprout the tree breadth-first and the integers self-assemble into an infinite branching coral, rooted at 1, fanning outward. The Collatz conjecture is precisely the statement that every positive integer appears somewhere in this single tree — that the coral, eventually, contains them all.",
+      body: "Forward Collatz is one number at a time. Reverse Collatz is the whole tree. Start at 1 and run the rule backwards: every node n has parent 2n (always; halving was its forward step), and additionally a parent (n − 1) / 3 whenever that number is a positive odd integer greater than 1. Sprout the tree breadth-first and the integers self-assemble into an infinite branching coral, rooted at 1, fanning outward. The Collatz conjecture is precisely the statement that every positive integer appears somewhere in this single tree, that the coral, eventually, contains them all.",
     },
     {
       pretitle: "Section 06 · What stops a proof",
       title: "An invariant nobody has found",
-      body: "Why is this so hard? The deep reason is that no one has found a sufficient invariant. To prove every orbit terminates you need a quantity that strictly decreases along the iteration, or a Lyapunov function, or a clever potential — and nothing of the kind has surfaced in eighty-eight years of trying. John Conway proved in 1972 that a slightly generalised Collatz-like map is already undecidable; his later FRACTRAN system (1987) then realised full Turing-completeness in exactly this style of branching arithmetic. That suggests Collatz itself may live close to the boundary of undecidability: a problem that is not just hard but possibly outside the reach of any finite proof system. Erdős may have been right that mathematics is not yet ripe.",
+      body: "Why is this so hard? The deep reason is that no one has found a sufficient invariant. To prove every orbit terminates you need a quantity that strictly decreases along the iteration, or a Lyapunov function, or a clever potential, and nothing of the kind has surfaced in eighty-eight years of trying. John Conway proved in 1972 that a slightly generalised Collatz-like map is already undecidable; his later FRACTRAN system (1987) then realised full Turing-completeness in exactly this style of branching arithmetic. That suggests Collatz itself may live close to the boundary of undecidability: a problem that is not just hard but possibly outside the reach of any finite proof system. Erdős may have been right that mathematics is not yet ripe.",
     },
   ],
   closingTitle: "Watch it fall.",
@@ -134,7 +134,7 @@ const en: RichStory = {
   trajectoryCaption: "Interactive · trajectory plotter",
   trajectoryTitle: "Drop a seed, watch the hailstorm",
   trajectoryBody:
-    "Type any positive integer. The canvas draws the orbit on a log scale until it reaches 1 — marking the peak (cyan) and the landing point (amber). The famous seeds 27, 871, 6 171 and 77 031 are pre-set.",
+    "Type any positive integer. The canvas draws the orbit on a log scale until it reaches 1, marking the peak (cyan) and the landing point (amber). The famous seeds 27, 871, 6 171 and 77 031 are pre-set.",
   trajectoryInputLabel: "Starting integer n",
   trajectoryPresetLabel: "Famous seeds",
   trajectoryStepsLabel: "Stopping time",
@@ -144,11 +144,11 @@ const en: RichStory = {
   treeCaption: "Interactive · reverse coral tree",
   treeTitle: "Run the rule backwards from 1",
   treeBody:
-    "Every integer in the Collatz universe is somewhere in this tree — assuming the conjecture is true. Slide the depth knob and watch the coral fan outward from 1 at the centre. At depth 14 the tree already holds 79 integers.",
+    "Every integer in the Collatz universe is somewhere in this tree, assuming the conjecture is true. Slide the depth knob and watch the coral fan outward from 1 at the centre. At depth 14 the tree already holds 79 integers.",
   treeDepthLabel: "Reverse depth",
   treeNodeLabel: "Integers reached",
   treeHint:
-    "Each node n branches to 2n always, and to (n − 1) / 3 when that yields an odd integer greater than 1. The colour cycles by depth — rose at the root, then amber, cyan, violet for finer detail.",
+    "Each node n branches to 2n always, and to (n − 1) / 3 when that yields an odd integer greater than 1. The colour cycles by depth: rose at the root, then amber, cyan, violet for finer detail.",
   erdosQuote: "“Mathematics is not yet ripe for such problems.”",
   erdosNote:
     "Paul Erdős, offering $500 for a solution. Eighty-eight years after Collatz wrote down the rule, the prize is still unclaimed.",
@@ -161,7 +161,7 @@ const de: RichStory = {
   page: {
     pretitle: "Thema · Chaos",
     title: "Die Collatz-Vermutung",
-    tagline: "Gerade halbieren. Ungerade verdreifachen-plus-eins. Endet bei 1 — wahrscheinlich.",
+    tagline: "Gerade halbieren. Ungerade verdreifachen-plus-eins. Endet bei 1. Wahrscheinlich.",
     intro:
       "Eine Regel in vier Wörtern, achtundachtzig Jahre Schweigen. Wähl eine positive ganze Zahl: ist sie gerade, halbiere, sonst ersetze sie durch 3n + 1, und die Folge fällt am Ende in den Zyklus 4 → 2 → 1. Computer haben jede ganze Zahl bis etwa 2⁶⁸ geprüft. Niemand hat bewiesen, dass es immer so kommen muss.",
     ctaInteractive: "→ Explorer öffnen",
@@ -179,16 +179,16 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Beginn bei 27 — winziger Keim. Die Bahn steigt und stürzt und steigt wieder, erreicht die Höhe 9 232 (etwa 340× ihren Startwert), bevor sie nach genau 111 Schritten bei 1 ankommt. Vorgelesen klingt die Trajektorie zufällig; auf logarithmischer Skala sieht sie aus wie Hagel in einer Gewitterwolke.",
+        body: "Beginn bei 27, winziger Keim. Die Bahn steigt und stürzt und steigt wieder, erreicht die Höhe 9 232 (etwa 340× ihren Startwert), bevor sie nach genau 111 Schritten bei 1 ankommt. Vorgelesen klingt die Trajektorie zufällig; auf logarithmischer Skala sieht sie aus wie Hagel in einer Gewitterwolke.",
       },
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Per Computer überprüft für jede ganze Zahl bis 2⁶⁸ — also etwa 3 × 10²⁰ Tests, keine Ausnahme. Trotzdem fehlt der Beweis. Collatz steht heute als Chiffre für ‚leicht zu formulieren, unmöglich zu beweisen‘. Paul Erdős zuckte die Schultern: ‚Die Mathematik ist für solche Probleme noch nicht reif.‘ Er bot 500 Dollar. Der Preis ist nicht abgeholt.",
+        body: "Per Computer überprüft für jede ganze Zahl bis 2⁶⁸, also etwa 3 × 10²⁰ Tests, keine Ausnahme. Trotzdem fehlt der Beweis. Collatz steht heute als Chiffre für ‚leicht zu formulieren, unmöglich zu beweisen‘. Paul Erdős zuckte die Schultern: ‚Die Mathematik ist für solche Probleme noch nicht reif.‘ Er bot 500 Dollar. Der Preis ist nicht abgeholt.",
       },
     ],
     tryIt:
-      "Unten: wirf irgendeinen Keim in den Hagel und sieh ihn fallen — dann lass die Rückwärts-Koralle wachsen, die alle ganzen Zahlen auf einmal hält.",
+      "Unten: wirf irgendeinen Keim in den Hagel und sieh ihn fallen, dann lass die Rückwärts-Koralle wachsen, die alle ganzen Zahlen auf einmal hält.",
   },
   sections: [
     {
@@ -199,27 +199,27 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Die Bahn von 27",
       title: "Hagel über Syrakus",
-      body: "Die Bahnen heißen Hagelfolgen, weil sie wild auf und ab schaukeln, bevor sie endlich am Boden ankommen — wie Hagel in einer Gewitterzelle. Der berühmteste kleine Fall ist n = 27. Sieht zu winzig aus, um interessant zu sein, und braucht trotzdem 111 Schritte zum Ende, mit einem Gipfel bei 9 232 — über 340-mal so hoch wie der Start. Weitere kleine Keime mit unverhältnismäßigen Bahnen: 97 braucht 118 Schritte, 871 schafft 178, 6 171 läuft 261, 77 031 läuft 350. Winzige Eingaben, riesige Reisen. Der Trajektorien-Plotter unten lässt dich jeden davon — oder einen eigenen Keim — in den Hagel werfen.",
+      body: "Die Bahnen heißen Hagelfolgen, weil sie wild auf und ab schaukeln, bevor sie endlich am Boden ankommen, wie Hagel in einer Gewitterzelle. Der berühmteste kleine Fall ist n = 27. Sieht zu winzig aus, um interessant zu sein, und braucht trotzdem 111 Schritte zum Ende, mit einem Gipfel bei 9 232, über 340-mal so hoch wie der Start. Weitere kleine Keime mit unverhältnismäßigen Bahnen: 97 braucht 118 Schritte, 871 schafft 178, 6 171 läuft 261, 77 031 läuft 350. Winzige Eingaben, riesige Reisen. Der Trajektorien-Plotter unten lässt dich jeden davon, oder einen eigenen Keim, in den Hagel werfen.",
     },
     {
       pretitle: "Abschnitt 03 · Die Vermutung",
       title: "Jeder Weg führt zu 4 → 2 → 1",
-      body: "Lothar Collatz notierte die Regel 1937 in Berlin, zwei Jahre nach seiner Promotion. Dasselbe Biest wurde unabhängig von Kakutani, Ulam und den Zahlentheoretiker:innen in Syracuse wiederentdeckt — deshalb heißt es in der Literatur auch Syracuse-Problem, Kakutani-Problem und Ulam-Vermutung. Die Behauptung ist überall dieselbe: für jede positive ganze Zahl n erreicht die Iteration T(n) am Ende 1 und kreist dann für immer im Zyklus 4 → 2 → 1. Stand 2025 ist sie für jede ganze Zahl bis 2⁶⁸ direkt durchgerechnet. Kein Gegenbeispiel. Auch kein Beweis.",
+      body: "Lothar Collatz notierte die Regel 1937 in Berlin, zwei Jahre nach seiner Promotion. Dasselbe Biest wurde unabhängig von Kakutani, Ulam und den Zahlentheoretiker:innen in Syracuse wiederentdeckt, deshalb heißt es in der Literatur auch Syracuse-Problem, Kakutani-Problem und Ulam-Vermutung. Die Behauptung ist überall dieselbe: für jede positive ganze Zahl n erreicht die Iteration T(n) am Ende 1 und kreist dann für immer im Zyklus 4 → 2 → 1. Stand 2025 ist sie für jede ganze Zahl bis 2⁶⁸ direkt durchgerechnet. Kein Gegenbeispiel. Auch kein Beweis.",
     },
     {
       pretitle: "Abschnitt 04 · Taos Ergebnis von 2019",
       title: "Fast alle Bahnen, fast bis nach Hause",
-      body: "Den tiefsten Fortschritt brachte 2019 Terence Tao. Seine Arbeit ‚Almost all orbits of the Collatz map attain almost bounded values‘ zeigt: für jede Funktion f(n), die gegen unendlich strebt, hat die Menge der Startzahlen, deren Collatz-Bahn schließlich unter f(n) fällt, logarithmische Dichte 1. Im Klartext: wähl eine Startzahl zufällig — fast sicher schrumpft ihre Bahn irgendwann unter jede vorher gesetzte Schranke. Das ist eine probabilistische Knapp-vorbei-Aussage, kein Beweis. Etwaige Gegenbeispiele würden eine Maß-null-Ausnahmemenge bilden, aber Maß null heißt nicht leer, und Taos Argument schließt sie ausdrücklich nicht aus.",
+      body: "Den tiefsten Fortschritt brachte 2019 Terence Tao. Seine Arbeit ‚Almost all orbits of the Collatz map attain almost bounded values‘ zeigt: für jede Funktion f(n), die gegen unendlich strebt, hat die Menge der Startzahlen, deren Collatz-Bahn schließlich unter f(n) fällt, logarithmische Dichte 1. Im Klartext: wähl eine Startzahl zufällig, fast sicher schrumpft ihre Bahn irgendwann unter jede vorher gesetzte Schranke. Das ist eine probabilistische Knapp-vorbei-Aussage, kein Beweis. Etwaige Gegenbeispiele würden eine Maß-null-Ausnahmemenge bilden, aber Maß null heißt nicht leer, und Taos Argument schließt sie ausdrücklich nicht aus.",
     },
     {
       pretitle: "Abschnitt 05 · Die Rückwärts-Koralle",
-      title: "Lass die Regel rückwärts laufen — die Zahlen ordnen sich selbst",
-      body: "Vorwärts ist Collatz eine Zahl nach der anderen. Rückwärts ist Collatz der ganze Baum. Beginn bei 1 und kehr die Regel um: jeder Knoten n hat Elter 2n (immer — das war der Halbierungsschritt), und zusätzlich einen Elter (n − 1) / 3, sobald diese Zahl eine positive, ungerade ganze Zahl größer als 1 ist. Lass den Baum in die Breite sprießen, und die ganzen Zahlen ordnen sich zu einer unendlichen, verzweigten Koralle, verwurzelt bei 1, nach außen fächernd. Die Collatz-Vermutung ist genau die Aussage, dass jede positive ganze Zahl irgendwo in diesem einen Baum auftaucht — dass die Koralle am Ende alle enthält.",
+      title: "Lass die Regel rückwärts laufen: die Zahlen ordnen sich selbst",
+      body: "Vorwärts ist Collatz eine Zahl nach der anderen. Rückwärts ist Collatz der ganze Baum. Beginn bei 1 und kehr die Regel um: jeder Knoten n hat Elter 2n (immer; das war der Halbierungsschritt), und zusätzlich einen Elter (n − 1) / 3, sobald diese Zahl eine positive, ungerade ganze Zahl größer als 1 ist. Lass den Baum in die Breite sprießen, und die ganzen Zahlen ordnen sich zu einer unendlichen, verzweigten Koralle, verwurzelt bei 1, nach außen fächernd. Die Collatz-Vermutung ist genau die Aussage, dass jede positive ganze Zahl irgendwo in diesem einen Baum auftaucht, dass die Koralle am Ende alle enthält.",
     },
     {
       pretitle: "Abschnitt 06 · Was den Beweis aufhält",
       title: "Eine Invariante, die niemand findet",
-      body: "Warum ist das so schwer? Der tiefe Grund: niemand hat eine ausreichende Invariante gefunden. Um zu zeigen, dass jede Bahn endet, brauchst du eine Größe, die entlang der Iteration strikt fällt, oder eine Lyapunov-Funktion, oder ein kluges Potential — und nichts davon ist in achtundachtzig Jahren aufgetaucht. John Conway zeigte 1972, dass schon eine leicht verallgemeinerte Collatz-artige Abbildung unentscheidbar ist; sein späteres FRACTRAN-System (1987) realisierte dann volle Turing-Vollständigkeit in genau diesem Stil verzweigter Arithmetik. Das deutet darauf hin, dass Collatz selbst nahe an der Grenze der Unentscheidbarkeit liegen könnte: nicht nur schwer, sondern womöglich außerhalb der Reichweite jedes endlichen Beweissystems. Erdős könnte recht gehabt haben.",
+      body: "Warum ist das so schwer? Der tiefe Grund: niemand hat eine ausreichende Invariante gefunden. Um zu zeigen, dass jede Bahn endet, brauchst du eine Größe, die entlang der Iteration strikt fällt, oder eine Lyapunov-Funktion, oder ein kluges Potential, und nichts davon ist in achtundachtzig Jahren aufgetaucht. John Conway zeigte 1972, dass schon eine leicht verallgemeinerte Collatz-artige Abbildung unentscheidbar ist; sein späteres FRACTRAN-System (1987) realisierte dann volle Turing-Vollständigkeit in genau diesem Stil verzweigter Arithmetik. Das deutet darauf hin, dass Collatz selbst nahe an der Grenze der Unentscheidbarkeit liegen könnte: nicht nur schwer, sondern womöglich außerhalb der Reichweite jedes endlichen Beweissystems. Erdős könnte recht gehabt haben.",
     },
   ],
   closingTitle: "Sieh es fallen.",
@@ -231,7 +231,7 @@ const de: RichStory = {
   trajectoryCaption: "Interaktiv · Bahn-Plotter",
   trajectoryTitle: "Wirf einen Keim in den Hagel",
   trajectoryBody:
-    "Tipp eine positive ganze Zahl ein. Das Canvas zeichnet die Bahn auf logarithmischer Skala bis zur 1 — Gipfel (cyan) und Landepunkt (amber) markiert. Die berühmten Keime 27, 871, 6 171 und 77 031 sind voreingestellt.",
+    "Tipp eine positive ganze Zahl ein. Das Canvas zeichnet die Bahn auf logarithmischer Skala bis zur 1, Gipfel (cyan) und Landepunkt (amber) markiert. Die berühmten Keime 27, 871, 6 171 und 77 031 sind voreingestellt.",
   trajectoryInputLabel: "Startzahl n",
   trajectoryPresetLabel: "Berühmte Keime",
   trajectoryStepsLabel: "Stoppzeit",
@@ -241,11 +241,11 @@ const de: RichStory = {
   treeCaption: "Interaktiv · Rückwärts-Koralle",
   treeTitle: "Lass die Regel von 1 aus rückwärts laufen",
   treeBody:
-    "Jede ganze Zahl im Collatz-Universum liegt irgendwo in diesem Baum — wenn die Vermutung stimmt. Schieb am Tiefenregler und sieh die Koralle von der zentralen 1 nach außen fächern. Bei Tiefe 14 hält der Baum schon 79 ganze Zahlen.",
+    "Jede ganze Zahl im Collatz-Universum liegt irgendwo in diesem Baum, wenn die Vermutung stimmt. Schieb am Tiefenregler und sieh die Koralle von der zentralen 1 nach außen fächern. Bei Tiefe 14 hält der Baum schon 79 ganze Zahlen.",
   treeDepthLabel: "Rückwärtstiefe",
   treeNodeLabel: "Erreichte Zahlen",
   treeHint:
-    "Jeder Knoten n verzweigt immer zu 2n und zusätzlich zu (n − 1) / 3, falls das eine ungerade Zahl größer als 1 ergibt. Die Farbe zykliert mit der Tiefe — Rose an der Wurzel, dann Amber, Cyan, Violett für feinere Verzweigungen.",
+    "Jeder Knoten n verzweigt immer zu 2n und zusätzlich zu (n − 1) / 3, falls das eine ungerade Zahl größer als 1 ergibt. Die Farbe zykliert mit der Tiefe: Rose an der Wurzel, dann Amber, Cyan, Violett für feinere Verzweigungen.",
   erdosQuote: "„Die Mathematik ist für solche Probleme noch nicht reif.“",
   erdosNote:
     "Paul Erdős, der 500 Dollar für eine Lösung auslobte. Achtundachtzig Jahre nachdem Collatz die Regel notierte, ist der Preis nicht abgeholt.",
@@ -258,7 +258,7 @@ const es: RichStory = {
   page: {
     pretitle: "Tema · Caos",
     title: "La Conjetura de Collatz",
-    tagline: "Par a la mitad. Impar por tres más uno. Acaba en 1 — probablemente.",
+    tagline: "Par a la mitad. Impar por tres más uno. Acaba en 1. Probablemente.",
     intro:
       "Una regla en cuatro palabras, ochenta y ocho años de silencio. Toma cualquier entero positivo: si es par divídelo entre dos, si es impar reemplázalo por 3n + 1, y la sucesión termina cayendo en el ciclo 4 → 2 → 1. Las computadoras lo han comprobado para cada entero hasta cerca de 2⁶⁸. Nadie ha demostrado que tenga que ocurrir siempre.",
     ctaInteractive: "→ Abrir el Explorador",
@@ -276,16 +276,16 @@ const es: RichStory = {
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: "Empieza en 27 — semilla minúscula. La órbita sube y se desploma y vuelve a subir, llegando a 9 232 (unas 340 veces su valor inicial) antes de caer a 1 en exactamente 111 pasos. Leída en voz alta suena aleatoria; en escala logarítmica parece granizo dentro de un nubarrón.",
+        body: "Empieza en 27, semilla minúscula. La órbita sube y se desploma y vuelve a subir, llegando a 9 232 (unas 340 veces su valor inicial) antes de caer a 1 en exactamente 111 pasos. Leída en voz alta suena aleatoria; en escala logarítmica parece granizo dentro de un nubarrón.",
       },
       {
         label: "03",
         title: "Por qué importa",
-        body: "Verificada por computadora para cada entero hasta 2⁶⁸ — unos 3 × 10²⁰ controles sin excepción. Y aun así falta la demostración. Collatz se ha vuelto el cifrado de ‘fácil de enunciar, imposible de demostrar’. Paul Erdős se encogió de hombros: ‘Las matemáticas aún no están maduras para tales problemas.’ Ofreció 500 dólares. El premio sigue sin reclamar.",
+        body: "Verificada por computadora para cada entero hasta 2⁶⁸, unos 3 × 10²⁰ controles sin excepción. Y aun así falta la demostración. Collatz se ha vuelto el cifrado de ‘fácil de enunciar, imposible de demostrar’. Paul Erdős se encogió de hombros: ‘Las matemáticas aún no están maduras para tales problemas.’ Ofreció 500 dólares. El premio sigue sin reclamar.",
       },
     ],
     tryIt:
-      "Abajo: lanza cualquier semilla al granizo y mírala caer — luego haz crecer el coral inverso que sostiene todos los enteros a la vez.",
+      "Abajo: lanza cualquier semilla al granizo y mírala caer, luego haz crecer el coral inverso que sostiene todos los enteros a la vez.",
   },
   sections: [
     {
@@ -296,7 +296,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 02 · La órbita de 27",
       title: "Granizo sobre Siracusa",
-      body: "Las órbitas reciben el nombre de sucesiones de granizo porque suben y bajan caóticamente antes de tocar tierra — como el granizo dentro de una tormenta. El caso pequeño más famoso es n = 27. Parece demasiado chico para ser interesante y aun así necesita 111 pasos, con un pico en 9 232 — más de 340 veces el inicio. Otras semillas pequeñas con órbitas desproporcionadas: 97 toma 118 pasos, 871 toma 178, 6 171 toma 261, 77 031 toma 350. Entradas diminutas, viajes enormes. El graficador de abajo te deja lanzar cualquiera — o tu propia semilla — al granizo.",
+      body: "Las órbitas reciben el nombre de sucesiones de granizo porque suben y bajan caóticamente antes de tocar tierra, como el granizo dentro de una tormenta. El caso pequeño más famoso es n = 27. Parece demasiado chico para ser interesante y aun así necesita 111 pasos, con un pico en 9 232, más de 340 veces el inicio. Otras semillas pequeñas con órbitas desproporcionadas: 97 toma 118 pasos, 871 toma 178, 6 171 toma 261, 77 031 toma 350. Entradas diminutas, viajes enormes. El graficador de abajo te deja lanzar cualquiera, o tu propia semilla, al granizo.",
     },
     {
       pretitle: "Sección 03 · La conjetura",
@@ -311,12 +311,12 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · El coral inverso",
       title: "Corre la regla al revés y los enteros se auto-ensamblan",
-      body: "Hacia adelante, Collatz es un número cada vez. Hacia atrás, Collatz es el árbol completo. Arranca en 1 e invierte la regla: cada nodo n tiene padre 2n (siempre — fue su paso de halving) y, además, padre (n − 1) / 3 cuando ese número es un entero impar mayor que 1. Crece el árbol en anchura y los enteros se ensamblan en un coral ramificado infinito, con raíz en 1 y abriéndose hacia fuera. La conjetura de Collatz es exactamente la afirmación de que todo entero positivo aparece en algún punto de este único árbol — que el coral, a la larga, los contiene a todos.",
+      body: "Hacia adelante, Collatz es un número cada vez. Hacia atrás, Collatz es el árbol completo. Arranca en 1 e invierte la regla: cada nodo n tiene padre 2n (siempre; fue su paso de halving) y, además, padre (n − 1) / 3 cuando ese número es un entero impar mayor que 1. Crece el árbol en anchura y los enteros se ensamblan en un coral ramificado infinito, con raíz en 1 y abriéndose hacia fuera. La conjetura de Collatz es exactamente la afirmación de que todo entero positivo aparece en algún punto de este único árbol, que el coral, a la larga, los contiene a todos.",
     },
     {
       pretitle: "Sección 06 · Qué impide demostrarlo",
       title: "Una invariante que nadie encuentra",
-      body: "¿Por qué es tan duro? La razón profunda: nadie ha encontrado una invariante suficiente. Para probar que toda órbita termina necesitas una magnitud que disminuya estrictamente con la iteración, o una función de Lyapunov, o un potencial ingenioso — y nada así ha aparecido en ochenta y ocho años. John Conway demostró en 1972 que una aplicación tipo Collatz ligeramente generalizada ya es indecidible; su posterior sistema FRACTRAN (1987) realizó la Turing-completitud plena en exactamente este estilo de aritmética ramificada. Eso sugiere que el propio Collatz puede vivir cerca de la frontera de la indecidibilidad: un problema no solo duro sino quizá fuera del alcance de cualquier sistema de demostración finito. Quizá Erdős tenía razón al decir que las matemáticas aún no están maduras.",
+      body: "¿Por qué es tan duro? La razón profunda: nadie ha encontrado una invariante suficiente. Para probar que toda órbita termina necesitas una magnitud que disminuya estrictamente con la iteración, o una función de Lyapunov, o un potencial ingenioso, y nada así ha aparecido en ochenta y ocho años. John Conway demostró en 1972 que una aplicación tipo Collatz ligeramente generalizada ya es indecidible; su posterior sistema FRACTRAN (1987) realizó la Turing-completitud plena en exactamente este estilo de aritmética ramificada. Eso sugiere que el propio Collatz puede vivir cerca de la frontera de la indecidibilidad: un problema no solo duro sino quizá fuera del alcance de cualquier sistema de demostración finito. Quizá Erdős tenía razón al decir que las matemáticas aún no están maduras.",
     },
   ],
   closingTitle: "Mírala caer.",
@@ -328,7 +328,7 @@ const es: RichStory = {
   trajectoryCaption: "Interactivo · graficador de órbita",
   trajectoryTitle: "Lanza una semilla al granizo",
   trajectoryBody:
-    "Teclea cualquier entero positivo. El lienzo dibuja la órbita en escala logarítmica hasta 1 — marca el pico (cian) y el punto de aterrizaje (ámbar). Las semillas famosas 27, 871, 6 171 y 77 031 vienen preconfiguradas.",
+    "Teclea cualquier entero positivo. El lienzo dibuja la órbita en escala logarítmica hasta 1 y marca el pico (cian) y el punto de aterrizaje (ámbar). Las semillas famosas 27, 871, 6 171 y 77 031 vienen preconfiguradas.",
   trajectoryInputLabel: "Entero inicial n",
   trajectoryPresetLabel: "Semillas famosas",
   trajectoryStepsLabel: "Tiempo de parada",
@@ -338,11 +338,11 @@ const es: RichStory = {
   treeCaption: "Interactivo · coral inverso",
   treeTitle: "Corre la regla al revés desde 1",
   treeBody:
-    "Todo entero del universo Collatz está en algún lugar de este árbol — si la conjetura es cierta. Mueve el control de profundidad y mira el coral abrirse desde el 1 central. A profundidad 14 el árbol ya alberga 79 enteros.",
+    "Todo entero del universo Collatz está en algún lugar de este árbol, si la conjetura es cierta. Mueve el control de profundidad y mira el coral abrirse desde el 1 central. A profundidad 14 el árbol ya alberga 79 enteros.",
   treeDepthLabel: "Profundidad inversa",
   treeNodeLabel: "Enteros alcanzados",
   treeHint:
-    "Cada nodo n se ramifica siempre a 2n y, además, a (n − 1) / 3 cuando da un entero impar mayor que 1. El color cicla con la profundidad — rosa en la raíz, después ámbar, cian, violeta en lo más fino.",
+    "Cada nodo n se ramifica siempre a 2n y, además, a (n − 1) / 3 cuando da un entero impar mayor que 1. El color cicla con la profundidad: rosa en la raíz, después ámbar, cian, violeta en lo más fino.",
   erdosQuote: "«Las matemáticas aún no están maduras para tales problemas.»",
   erdosNote:
     "Paul Erdős, ofreciendo 500 dólares por una solución. Ochenta y ocho años después de que Collatz escribiera la regla, el premio sigue sin reclamar.",
@@ -355,7 +355,7 @@ const fr: RichStory = {
   page: {
     pretitle: "Sujet · Chaos",
     title: "La Conjecture de Collatz",
-    tagline: "Pair, on divise. Impair, on triple plus un. Finit à 1 — probablement.",
+    tagline: "Pair, on divise. Impair, on triple plus un. Finit à 1. Probablement.",
     intro:
       "Une règle en quatre mots, quatre-vingt-huit ans de silence. Choisis un entier positif : s'il est pair, on le divise par deux ; sinon, on le remplace par 3n + 1, et la suite finit toujours par tomber dans le cycle 4 → 2 → 1. Les ordinateurs l'ont vérifié pour chaque entier jusqu'à environ 2⁶⁸. Personne n'a prouvé que cela doit toujours arriver.",
     ctaInteractive: "→ Ouvrir l'Explorateur",
@@ -373,16 +373,16 @@ const fr: RichStory = {
       {
         label: "02",
         title: "Un exemple concret",
-        body: "Pars de 27 — graine minuscule. L'orbite monte, s'effondre, remonte, atteint 9 232 (environ 340 fois son point de départ) avant de retomber sur 1 en exactement 111 étapes. Lue à voix haute, la trajectoire paraît aléatoire ; en échelle logarithmique, elle ressemble à de la grêle dans un orage.",
+        body: "Pars de 27, graine minuscule. L'orbite monte, s'effondre, remonte, atteint 9 232 (environ 340 fois son point de départ) avant de retomber sur 1 en exactement 111 étapes. Lue à voix haute, la trajectoire paraît aléatoire ; en échelle logarithmique, elle ressemble à de la grêle dans un orage.",
       },
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "Vérifié par ordinateur pour chaque entier jusqu'à 2⁶⁸ — environ 3 × 10²⁰ contrôles, sans exception. Et pourtant, pas de preuve. Collatz est devenu le code de ‘facile à énoncer, impossible à prouver’. Paul Erdős haussa les épaules : ‘Les mathématiques ne sont pas encore mûres pour de tels problèmes.’ Il offrit 500 dollars. Le prix n'a jamais été réclamé.",
+        body: "Vérifié par ordinateur pour chaque entier jusqu'à 2⁶⁸, environ 3 × 10²⁰ contrôles, sans exception. Et pourtant, pas de preuve. Collatz est devenu le code de ‘facile à énoncer, impossible à prouver’. Paul Erdős haussa les épaules : ‘Les mathématiques ne sont pas encore mûres pour de tels problèmes.’ Il offrit 500 dollars. Le prix n'a jamais été réclamé.",
       },
     ],
     tryIt:
-      "En bas : jette n'importe quelle graine dans la grêle et regarde-la tomber — puis fais pousser le corail inverse qui tient tous les entiers d'un coup.",
+      "En bas : jette n'importe quelle graine dans la grêle et regarde-la tomber, puis fais pousser le corail inverse qui tient tous les entiers d'un coup.",
   },
   sections: [
     {
@@ -393,7 +393,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 02 · L'orbite de 27",
       title: "Grêle sur Syracuse",
-      body: "Les orbites sont surnommées suites de grêle parce qu'elles montent et descendent en désordre avant de toucher le sol — comme la grêle ballottée dans un nuage d'orage. Le petit cas le plus célèbre est n = 27. Trop petit, semble-t-il, pour être intéressant — et pourtant il faut 111 étapes pour s'éteindre, avec un sommet à 9 232 — plus de 340 fois le départ. Autres petites graines aux orbites disproportionnées : 97 prend 118 étapes, 871 en prend 178, 6 171 en prend 261, 77 031 en prend 350. Entrées minuscules, voyages immenses. Le traceur ci-dessous te laisse jeter n'importe laquelle d'entre elles — ou ta propre graine — dans la grêle.",
+      body: "Les orbites sont surnommées suites de grêle parce qu'elles montent et descendent en désordre avant de toucher le sol, comme la grêle ballottée dans un nuage d'orage. Le petit cas le plus célèbre est n = 27. Trop petit, semble-t-il, pour être intéressant, et pourtant il faut 111 étapes pour s'éteindre, avec un sommet à 9 232, plus de 340 fois le départ. Autres petites graines aux orbites disproportionnées : 97 prend 118 étapes, 871 en prend 178, 6 171 en prend 261, 77 031 en prend 350. Entrées minuscules, voyages immenses. Le traceur ci-dessous te laisse jeter n'importe laquelle d'entre elles, ou ta propre graine, dans la grêle.",
     },
     {
       pretitle: "Section 03 · La conjecture",
@@ -408,12 +408,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Le corail inverse",
       title: "Inverse la règle et les entiers s'auto-assemblent",
-      body: "En avant, Collatz, c'est un nombre à la fois. À l'envers, Collatz, c'est tout l'arbre. Pars de 1 et inverse la règle : chaque nœud n a pour parent 2n (toujours — c'était son pas de division) et, en plus, un parent (n − 1) / 3 dès que ce nombre est un entier impair strictement supérieur à 1. Fais pousser l'arbre en largeur et les entiers s'assemblent en un corail ramifié infini, enraciné en 1, s'ouvrant vers l'extérieur. La conjecture de Collatz est exactement l'énoncé que tout entier positif apparaît quelque part dans cet unique arbre — que le corail, à la fin, les contient tous.",
+      body: "En avant, Collatz, c'est un nombre à la fois. À l'envers, Collatz, c'est tout l'arbre. Pars de 1 et inverse la règle : chaque nœud n a pour parent 2n (toujours ; c'était son pas de division) et, en plus, un parent (n − 1) / 3 dès que ce nombre est un entier impair strictement supérieur à 1. Fais pousser l'arbre en largeur et les entiers s'assemblent en un corail ramifié infini, enraciné en 1, s'ouvrant vers l'extérieur. La conjecture de Collatz est exactement l'énoncé que tout entier positif apparaît quelque part dans cet unique arbre, que le corail, à la fin, les contient tous.",
     },
     {
       pretitle: "Section 06 · Ce qui bloque la preuve",
       title: "Un invariant que personne n'a trouvé",
-      body: "Pourquoi est-ce si difficile ? La raison profonde : personne n'a trouvé d'invariant suffisant. Pour prouver que toute orbite s'arrête, il te faut une quantité qui décroît strictement le long de l'itération, ou une fonction de Lyapunov, ou un potentiel astucieux — et rien de tel n'a émergé en quatre-vingt-huit ans. John Conway a montré en 1972 qu'une application de type Collatz légèrement généralisée est déjà indécidable ; son système FRACTRAN ultérieur (1987) a ensuite réalisé la Turing-complétude entière dans exactement ce style d'arithmétique ramifiée. Cela suggère que Collatz lui-même vit peut-être près de la frontière de l'indécidabilité : un problème non seulement difficile, mais peut-être hors d'atteinte de tout système de preuve fini. Erdős avait peut-être raison.",
+      body: "Pourquoi est-ce si difficile ? La raison profonde : personne n'a trouvé d'invariant suffisant. Pour prouver que toute orbite s'arrête, il te faut une quantité qui décroît strictement le long de l'itération, ou une fonction de Lyapunov, ou un potentiel astucieux, et rien de tel n'a émergé en quatre-vingt-huit ans. John Conway a montré en 1972 qu'une application de type Collatz légèrement généralisée est déjà indécidable ; son système FRACTRAN ultérieur (1987) a ensuite réalisé la Turing-complétude entière dans exactement ce style d'arithmétique ramifiée. Cela suggère que Collatz lui-même vit peut-être près de la frontière de l'indécidabilité : un problème non seulement difficile, mais peut-être hors d'atteinte de tout système de preuve fini. Erdős avait peut-être raison.",
     },
   ],
   closingTitle: "Regarde-la tomber.",
@@ -425,7 +425,7 @@ const fr: RichStory = {
   trajectoryCaption: "Interactif · traceur d'orbite",
   trajectoryTitle: "Lance une graine dans la grêle",
   trajectoryBody:
-    "Tape un entier positif. La toile dessine l'orbite en échelle logarithmique jusqu'à 1 — sommet (cyan) et point d'atterrissage (ambre) marqués. Les graines fameuses 27, 871, 6 171 et 77 031 sont préréglées.",
+    "Tape un entier positif. La toile dessine l'orbite en échelle logarithmique jusqu'à 1, sommet (cyan) et point d'atterrissage (ambre) marqués. Les graines fameuses 27, 871, 6 171 et 77 031 sont préréglées.",
   trajectoryInputLabel: "Entier de départ n",
   trajectoryPresetLabel: "Graines fameuses",
   trajectoryStepsLabel: "Temps d'arrêt",
@@ -435,11 +435,11 @@ const fr: RichStory = {
   treeCaption: "Interactif · corail inverse",
   treeTitle: "Inverse la règle depuis 1",
   treeBody:
-    "Tout entier de l'univers Collatz est quelque part dans cet arbre — si la conjecture est vraie. Glisse la profondeur et regarde le corail s'ouvrir depuis le 1 central. À profondeur 14, l'arbre contient déjà 79 entiers.",
+    "Tout entier de l'univers Collatz est quelque part dans cet arbre, si la conjecture est vraie. Glisse la profondeur et regarde le corail s'ouvrir depuis le 1 central. À profondeur 14, l'arbre contient déjà 79 entiers.",
   treeDepthLabel: "Profondeur inverse",
   treeNodeLabel: "Entiers atteints",
   treeHint:
-    "Chaque nœud n se ramifie toujours vers 2n et, en plus, vers (n − 1) / 3 lorsque cela donne un entier impair plus grand que 1. La couleur tourne avec la profondeur — rose à la racine, puis ambre, cyan, violet pour les détails.",
+    "Chaque nœud n se ramifie toujours vers 2n et, en plus, vers (n − 1) / 3 lorsque cela donne un entier impair plus grand que 1. La couleur tourne avec la profondeur : rose à la racine, puis ambre, cyan, violet pour les détails.",
   erdosQuote: "« Les mathématiques ne sont pas encore mûres pour de tels problèmes. »",
   erdosNote:
     "Paul Erdős, qui offrait 500 dollars pour une solution. Quatre-vingt-huit ans après que Collatz a écrit la règle, le prix n'a jamais été réclamé.",
@@ -452,7 +452,7 @@ const it: RichStory = {
   page: {
     pretitle: "Argomento · Caos",
     title: "La Congettura di Collatz",
-    tagline: "Pari, dimezza. Dispari, triplica più uno. Finisce a 1 — probabilmente.",
+    tagline: "Pari, dimezza. Dispari, triplica più uno. Finisce a 1. Probabilmente.",
     intro:
       "Una regola in quattro parole, ottantotto anni di silenzio. Prendi un intero positivo: se è pari dividilo per due, se è dispari sostituiscilo con 3n + 1, e la successione finisce nel ciclo 4 → 2 → 1. I computer l'hanno verificata per ogni intero fino a circa 2⁶⁸. Nessuno ha dimostrato che debba sempre succedere.",
     ctaInteractive: "→ Apri l'Esploratore",
@@ -470,16 +470,16 @@ const it: RichStory = {
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "Parti da 27 — seme minuscolo. L'orbita sale e crolla e risale, raggiunge 9 232 (circa 340 volte il valore iniziale) prima di ricadere a 1 in esattamente 111 passi. Letta a voce alta sembra casuale; su scala logaritmica somiglia a grandine dentro un nubifragio.",
+        body: "Parti da 27, seme minuscolo. L'orbita sale e crolla e risale, raggiunge 9 232 (circa 340 volte il valore iniziale) prima di ricadere a 1 in esattamente 111 passi. Letta a voce alta sembra casuale; su scala logaritmica somiglia a grandine dentro un nubifragio.",
       },
       {
         label: "03",
         title: "Perché conta",
-        body: "Verificata al computer per ogni intero fino a 2⁶⁸ — circa 3 × 10²⁰ controlli senza eccezioni. Eppure manca la dimostrazione. Collatz è diventato il sinonimo di ‘facile da enunciare, impossibile da provare’. Paul Erdős scrollò le spalle: ‘La matematica non è ancora matura per tali problemi.’ Offrì 500 dollari. Il premio non è mai stato ritirato.",
+        body: "Verificata al computer per ogni intero fino a 2⁶⁸, circa 3 × 10²⁰ controlli senza eccezioni. Eppure manca la dimostrazione. Collatz è diventato il sinonimo di ‘facile da enunciare, impossibile da provare’. Paul Erdős scrollò le spalle: ‘La matematica non è ancora matura per tali problemi.’ Offrì 500 dollari. Il premio non è mai stato ritirato.",
       },
     ],
     tryIt:
-      "Sotto: butta un qualunque seme nella grandine e guardalo cadere — poi fai crescere il corallo inverso che tiene tutti gli interi insieme.",
+      "Sotto: butta un qualunque seme nella grandine e guardalo cadere, poi fai crescere il corallo inverso che tiene tutti gli interi insieme.",
   },
   sections: [
     {
@@ -490,7 +490,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 02 · L'orbita di 27",
       title: "Grandine su Siracusa",
-      body: "Le orbite si chiamano successioni di grandine perché salgono e cadono in modo erratico prima di toccare terra — come grandine sbattuta dentro un temporale. Il piccolo caso più famoso è n = 27. Sembra troppo piccolo per essere interessante e invece servono 111 passi per terminare, con un picco a 9 232 — oltre 340 volte il punto di partenza. Altri semi piccoli con orbite sproporzionate: 97 fa 118 passi, 871 ne fa 178, 6 171 ne fa 261, 77 031 ne fa 350. Input minimi, viaggi enormi. Il tracciatore qui sotto ti lascia gettare uno qualunque — o un tuo seme — nella grandine.",
+      body: "Le orbite si chiamano successioni di grandine perché salgono e cadono in modo erratico prima di toccare terra, come grandine sbattuta dentro un temporale. Il piccolo caso più famoso è n = 27. Sembra troppo piccolo per essere interessante e invece servono 111 passi per terminare, con un picco a 9 232, oltre 340 volte il punto di partenza. Altri semi piccoli con orbite sproporzionate: 97 fa 118 passi, 871 ne fa 178, 6 171 ne fa 261, 77 031 ne fa 350. Input minimi, viaggi enormi. Il tracciatore qui sotto ti lascia gettare uno qualunque, o un tuo seme, nella grandine.",
     },
     {
       pretitle: "Sezione 03 · La congettura",
@@ -505,12 +505,12 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · Il corallo inverso",
       title: "Inverti la regola e gli interi si auto-assemblano",
-      body: "In avanti, Collatz è un numero alla volta. All'indietro, Collatz è l'intero albero. Parti da 1 e inverti la regola: ogni nodo n ha genitore 2n (sempre — era il suo passo di dimezzamento) e, in più, genitore (n − 1) / 3 quando quel numero è un intero dispari strettamente maggiore di 1. Fai crescere l'albero in ampiezza e gli interi si assemblano in un corallo ramificato infinito, radicato in 1 e aperto verso l'esterno. La congettura di Collatz è esattamente l'affermazione che ogni intero positivo compare da qualche parte in questo unico albero — che il corallo, alla fine, li contiene tutti.",
+      body: "In avanti, Collatz è un numero alla volta. All'indietro, Collatz è l'intero albero. Parti da 1 e inverti la regola: ogni nodo n ha genitore 2n (sempre; era il suo passo di dimezzamento) e, in più, genitore (n − 1) / 3 quando quel numero è un intero dispari strettamente maggiore di 1. Fai crescere l'albero in ampiezza e gli interi si assemblano in un corallo ramificato infinito, radicato in 1 e aperto verso l'esterno. La congettura di Collatz è esattamente l'affermazione che ogni intero positivo compare da qualche parte in questo unico albero, che il corallo, alla fine, li contiene tutti.",
     },
     {
       pretitle: "Sezione 06 · Cosa blocca la dimostrazione",
       title: "Un invariante che nessuno trova",
-      body: "Perché è così difficile? La ragione profonda: nessuno ha trovato un invariante sufficiente. Per dimostrare che ogni orbita termina ti serve una grandezza che cali strettamente lungo l'iterazione, o una funzione di Lyapunov, o un potenziale ingegnoso — e nulla del genere è emerso in ottantotto anni. John Conway dimostrò nel 1972 che una mappa alla Collatz leggermente generalizzata è già indecidibile; il suo successivo sistema FRACTRAN (1987) ha poi realizzato la piena Turing-completezza proprio in questo stile di aritmetica ramificata. Suggerisce che Collatz stesso possa vivere vicino al confine dell'indecidibilità: un problema non solo difficile ma forse fuori dalla portata di qualsiasi sistema di prova finito. Erdős poteva avere ragione.",
+      body: "Perché è così difficile? La ragione profonda: nessuno ha trovato un invariante sufficiente. Per dimostrare che ogni orbita termina ti serve una grandezza che cali strettamente lungo l'iterazione, o una funzione di Lyapunov, o un potenziale ingegnoso, e nulla del genere è emerso in ottantotto anni. John Conway dimostrò nel 1972 che una mappa alla Collatz leggermente generalizzata è già indecidibile; il suo successivo sistema FRACTRAN (1987) ha poi realizzato la piena Turing-completezza proprio in questo stile di aritmetica ramificata. Suggerisce che Collatz stesso possa vivere vicino al confine dell'indecidibilità: un problema non solo difficile ma forse fuori dalla portata di qualsiasi sistema di prova finito. Erdős poteva avere ragione.",
     },
   ],
   closingTitle: "Guardala cadere.",
@@ -522,7 +522,7 @@ const it: RichStory = {
   trajectoryCaption: "Interattivo · tracciatore di orbita",
   trajectoryTitle: "Butta un seme nella grandine",
   trajectoryBody:
-    "Digita un intero positivo. La tela disegna l'orbita in scala logaritmica fino a 1 — picco (ciano) e atterraggio (ambra) segnati. I semi famosi 27, 871, 6 171 e 77 031 sono pre-impostati.",
+    "Digita un intero positivo. La tela disegna l'orbita in scala logaritmica fino a 1, picco (ciano) e atterraggio (ambra) segnati. I semi famosi 27, 871, 6 171 e 77 031 sono pre-impostati.",
   trajectoryInputLabel: "Intero di partenza n",
   trajectoryPresetLabel: "Semi famosi",
   trajectoryStepsLabel: "Tempo di arresto",
@@ -532,11 +532,11 @@ const it: RichStory = {
   treeCaption: "Interattivo · corallo inverso",
   treeTitle: "Inverti la regola partendo da 1",
   treeBody:
-    "Ogni intero dell'universo Collatz sta da qualche parte in questo albero — se la congettura è vera. Sposta la profondità e guarda il corallo aprirsi dal centrale 1. A profondità 14 l'albero raccoglie già 79 interi.",
+    "Ogni intero dell'universo Collatz sta da qualche parte in questo albero, se la congettura è vera. Sposta la profondità e guarda il corallo aprirsi dal centrale 1. A profondità 14 l'albero raccoglie già 79 interi.",
   treeDepthLabel: "Profondità inversa",
   treeNodeLabel: "Interi raggiunti",
   treeHint:
-    "Ogni nodo n si ramifica sempre verso 2n e in più verso (n − 1) / 3 quando dà un intero dispari maggiore di 1. Il colore ruota con la profondità — rosa alla radice, poi ambra, ciano, viola per il dettaglio.",
+    "Ogni nodo n si ramifica sempre verso 2n e in più verso (n − 1) / 3 quando dà un intero dispari maggiore di 1. Il colore ruota con la profondità: rosa alla radice, poi ambra, ciano, viola per il dettaglio.",
   erdosQuote: "«La matematica non è ancora matura per tali problemi.»",
   erdosNote:
     "Paul Erdős, che offrì 500 dollari per una soluzione. Ottantotto anni dopo che Collatz scrisse la regola, il premio non è mai stato ritirato.",
@@ -549,7 +549,7 @@ const pt: RichStory = {
   page: {
     pretitle: "Tópico · Caos",
     title: "A Conjetura de Collatz",
-    tagline: "Par, divide. Ímpar, triplica mais um. Termina em 1 — provavelmente.",
+    tagline: "Par, divide. Ímpar, triplica mais um. Termina em 1. Provavelmente.",
     intro:
       "Uma regra em quatro palavras, oitenta e oito anos de silêncio. Toma qualquer inteiro positivo: se for par divide por dois, se for ímpar substitui por 3n + 1, e a sequência acaba por cair no ciclo 4 → 2 → 1. Os computadores já verificaram para cada inteiro até cerca de 2⁶⁸. Ninguém provou que tem de ser sempre assim.",
     ctaInteractive: "→ Abrir o Explorador",
@@ -567,16 +567,16 @@ const pt: RichStory = {
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: "Começa em 27 — semente minúscula. A órbita sobe, despenca, volta a subir, atinge 9 232 (cerca de 340 vezes o valor inicial) antes de cair a 1 em exatamente 111 passos. Lida em voz alta soa aleatória; em escala logarítmica parece granizo dentro de uma tempestade.",
+        body: "Começa em 27, semente minúscula. A órbita sobe, despenca, volta a subir, atinge 9 232 (cerca de 340 vezes o valor inicial) antes de cair a 1 em exatamente 111 passos. Lida em voz alta soa aleatória; em escala logarítmica parece granizo dentro de uma tempestade.",
       },
       {
         label: "03",
         title: "Porque importa",
-        body: "Verificada por computador para cada inteiro até 2⁶⁸ — uns 3 × 10²⁰ testes sem exceção. E mesmo assim falta a demonstração. Collatz tornou-se a cifra de ‘fácil de enunciar, impossível de demonstrar’. Paul Erdős encolheu os ombros: ‘A matemática ainda não está madura para tais problemas.’ Ofereceu 500 dólares. O prémio continua por reclamar.",
+        body: "Verificada por computador para cada inteiro até 2⁶⁸, uns 3 × 10²⁰ testes sem exceção. E mesmo assim falta a demonstração. Collatz tornou-se a cifra de ‘fácil de enunciar, impossível de demonstrar’. Paul Erdős encolheu os ombros: ‘A matemática ainda não está madura para tais problemas.’ Ofereceu 500 dólares. O prémio continua por reclamar.",
       },
     ],
     tryIt:
-      "Em baixo: lança qualquer semente para o granizo e vê-a cair — depois faz crescer o coral inverso que segura todos os inteiros ao mesmo tempo.",
+      "Em baixo: lança qualquer semente para o granizo e vê-a cair, depois faz crescer o coral inverso que segura todos os inteiros ao mesmo tempo.",
   },
   sections: [
     {
@@ -587,12 +587,12 @@ const pt: RichStory = {
     {
       pretitle: "Secção 02 · A órbita de 27",
       title: "Granizo sobre Siracusa",
-      body: "As órbitas são apelidadas de sequências de granizo porque sobem e descem de forma errática antes de aterrar — como granizo agitado dentro de uma trovoada. O caso pequeno mais famoso é n = 27. Parece pequeno demais para ser interessante e ainda assim precisa de 111 passos, com pico em 9 232 — mais de 340 vezes o início. Outras sementes pequenas com órbitas desproporcionadas: 97 faz 118 passos, 871 faz 178, 6 171 faz 261, 77 031 faz 350. Entradas minúsculas, viagens enormes. O traçador abaixo deixa-te lançar qualquer uma — ou a tua própria semente — para o granizo.",
+      body: "As órbitas são apelidadas de sequências de granizo porque sobem e descem de forma errática antes de aterrar, como granizo agitado dentro de uma trovoada. O caso pequeno mais famoso é n = 27. Parece pequeno demais para ser interessante e ainda assim precisa de 111 passos, com pico em 9 232, mais de 340 vezes o início. Outras sementes pequenas com órbitas desproporcionadas: 97 faz 118 passos, 871 faz 178, 6 171 faz 261, 77 031 faz 350. Entradas minúsculas, viagens enormes. O traçador abaixo deixa-te lançar qualquer uma, ou a tua própria semente, para o granizo.",
     },
     {
       pretitle: "Secção 03 · A conjetura",
       title: "Todos os caminhos levam a 4 → 2 → 1",
-      body: "Lothar Collatz anotou a regra em 1937, em Berlim, dois anos depois do doutoramento. A mesma besta foi redescoberta independentemente por Kakutani, Ulam e pelos teóricos dos números de Syracuse — daí na literatura aparecer também como problema de Syracuse, problema de Kakutani e conjetura de Ulam. A afirmação é sempre a mesma: para todo inteiro positivo n, a iteração T(n) acaba por chegar a 1 e gira para sempre no ciclo 4 → 2 → 1. Em 2025 está verificada por cálculo direto para cada inteiro até 2⁶⁸. Sem contraexemplo. Sem demonstração também.",
+      body: "Lothar Collatz anotou a regra em 1937, em Berlim, dois anos depois do doutoramento. A mesma besta foi redescoberta independentemente por Kakutani, Ulam e pelos teóricos dos números de Syracuse, daí na literatura aparecer também como problema de Syracuse, problema de Kakutani e conjetura de Ulam. A afirmação é sempre a mesma: para todo inteiro positivo n, a iteração T(n) acaba por chegar a 1 e gira para sempre no ciclo 4 → 2 → 1. Em 2025 está verificada por cálculo direto para cada inteiro até 2⁶⁸. Sem contraexemplo. Sem demonstração também.",
     },
     {
       pretitle: "Secção 04 · O resultado de Tao de 2019",
@@ -602,12 +602,12 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · O coral inverso",
       title: "Inverte a regra e os inteiros auto-organizam-se",
-      body: "Para a frente, Collatz é um número de cada vez. Para trás, Collatz é a árvore inteira. Começa em 1 e inverte a regra: cada nó n tem pai 2n (sempre — foi o seu passo de divisão) e, além disso, pai (n − 1) / 3 quando esse número for um inteiro ímpar estritamente maior que 1. Faz crescer a árvore em largura e os inteiros organizam-se num coral ramificado infinito, com raiz em 1 e abrindo-se para fora. A conjetura de Collatz é exatamente a afirmação de que todo inteiro positivo aparece nalgum sítio desta única árvore — que o coral, no fim, contém todos.",
+      body: "Para a frente, Collatz é um número de cada vez. Para trás, Collatz é a árvore inteira. Começa em 1 e inverte a regra: cada nó n tem pai 2n (sempre; foi o seu passo de divisão) e, além disso, pai (n − 1) / 3 quando esse número for um inteiro ímpar estritamente maior que 1. Faz crescer a árvore em largura e os inteiros organizam-se num coral ramificado infinito, com raiz em 1 e abrindo-se para fora. A conjetura de Collatz é exatamente a afirmação de que todo inteiro positivo aparece nalgum sítio desta única árvore, que o coral, no fim, contém todos.",
     },
     {
       pretitle: "Secção 06 · O que trava a demonstração",
       title: "Um invariante que ninguém encontra",
-      body: "Porque é tão difícil? A razão profunda: ninguém encontrou um invariante suficiente. Para provar que toda órbita termina precisas de uma grandeza que decresça estritamente ao longo da iteração, ou uma função de Lyapunov, ou um potencial engenhoso — e nada disso surgiu em oitenta e oito anos. John Conway demonstrou em 1972 que um mapa à Collatz ligeiramente generalizado já é indecidível; o seu posterior sistema FRACTRAN (1987) realizou então a Turing-completude plena neste mesmo estilo de aritmética ramificada. Sugere que Collatz vive perto da fronteira da indecidibilidade: um problema não apenas difícil, mas talvez fora do alcance de qualquer sistema de prova finito. Erdős podia ter razão.",
+      body: "Porque é tão difícil? A razão profunda: ninguém encontrou um invariante suficiente. Para provar que toda órbita termina precisas de uma grandeza que decresça estritamente ao longo da iteração, ou uma função de Lyapunov, ou um potencial engenhoso, e nada disso surgiu em oitenta e oito anos. John Conway demonstrou em 1972 que um mapa à Collatz ligeiramente generalizado já é indecidível; o seu posterior sistema FRACTRAN (1987) realizou então a Turing-completude plena neste mesmo estilo de aritmética ramificada. Sugere que Collatz vive perto da fronteira da indecidibilidade: um problema não apenas difícil, mas talvez fora do alcance de qualquer sistema de prova finito. Erdős podia ter razão.",
     },
   ],
   closingTitle: "Vê-a cair.",
@@ -619,7 +619,7 @@ const pt: RichStory = {
   trajectoryCaption: "Interativo · traçador de órbita",
   trajectoryTitle: "Lança uma semente para o granizo",
   trajectoryBody:
-    "Escreve um inteiro positivo. A tela desenha a órbita em escala logarítmica até 1 — pico (ciano) e aterragem (âmbar) marcados. As sementes famosas 27, 871, 6 171 e 77 031 já vêm preconfiguradas.",
+    "Escreve um inteiro positivo. A tela desenha a órbita em escala logarítmica até 1, pico (ciano) e aterragem (âmbar) marcados. As sementes famosas 27, 871, 6 171 e 77 031 já vêm preconfiguradas.",
   trajectoryInputLabel: "Inteiro inicial n",
   trajectoryPresetLabel: "Sementes famosas",
   trajectoryStepsLabel: "Tempo de paragem",
@@ -629,11 +629,11 @@ const pt: RichStory = {
   treeCaption: "Interativo · coral inverso",
   treeTitle: "Inverte a regra a partir de 1",
   treeBody:
-    "Todo inteiro do universo Collatz está nalgum lugar desta árvore — se a conjetura for verdadeira. Desliza a profundidade e vê o coral abrir-se do 1 central. À profundidade 14 a árvore já guarda 79 inteiros.",
+    "Todo inteiro do universo Collatz está nalgum lugar desta árvore, se a conjetura for verdadeira. Desliza a profundidade e vê o coral abrir-se do 1 central. À profundidade 14 a árvore já guarda 79 inteiros.",
   treeDepthLabel: "Profundidade inversa",
   treeNodeLabel: "Inteiros alcançados",
   treeHint:
-    "Cada nó n ramifica sempre para 2n e ainda para (n − 1) / 3 quando isso dá um inteiro ímpar maior que 1. A cor roda com a profundidade — rosa na raiz, depois âmbar, ciano, violeta para o detalhe.",
+    "Cada nó n ramifica sempre para 2n e ainda para (n − 1) / 3 quando isso dá um inteiro ímpar maior que 1. A cor roda com a profundidade: rosa na raiz, depois âmbar, ciano, violeta para o detalhe.",
   erdosQuote: "«A matemática ainda não está madura para tais problemas.»",
   erdosNote:
     "Paul Erdős, oferecendo 500 dólares pela solução. Oitenta e oito anos depois de Collatz ter escrito a regra, o prémio continua por reclamar.",
@@ -646,7 +646,7 @@ const sv: RichStory = {
   page: {
     pretitle: "Ämne · Kaos",
     title: "Collatz-förmodan",
-    tagline: "Jämnt, halvera. Udda, tre-plus-ett. Slutar på 1 — troligen.",
+    tagline: "Jämnt, halvera. Udda, tre-plus-ett. Slutar på 1. Troligen.",
     intro:
       "En regel i fyra ord, åttioåtta år av tystnad. Välj vilket positivt heltal som helst: är det jämnt, halvera det; är det udda, ersätt det med 3n + 1, och följden faller till sist in i cykeln 4 → 2 → 1. Datorerna har kollat varje heltal upp till ungefär 2⁶⁸. Ingen har bevisat att det måste hända.",
     ctaInteractive: "→ Öppna utforskaren",
@@ -659,21 +659,21 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "Välj vilket positivt heltal som helst. Är det jämnt — halvera. Är det udda — multiplicera med tre och lägg på ett. Upprepa. Varje startvärde som någonsin testats hamnar till slut på 1. Troligen. Ingen har bevisat att det måste. Hela regeln ryms i ett andetag och har trots det stått emot allt i nästan ett sekel.",
+        body: "Välj vilket positivt heltal som helst. Är det jämnt, halvera. Är det udda, multiplicera med tre och lägg på ett. Upprepa. Varje startvärde som någonsin testats hamnar till slut på 1. Troligen. Ingen har bevisat att det måste. Hela regeln ryms i ett andetag och har trots det stått emot allt i nästan ett sekel.",
       },
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "Börja på 27 — pyttelitet frö. Banan stiger, kraschar, stiger igen, når 9 232 (omkring 340× sitt utgångsvärde) innan den faller ner till 1 på exakt 111 steg. Läs banan högt och den låter slumpmässig; rita den på logaritmisk skala och den ser ut som hagel i en åskmolnsbukett.",
+        body: "Börja på 27, pyttelitet frö. Banan stiger, kraschar, stiger igen, når 9 232 (omkring 340× sitt utgångsvärde) innan den faller ner till 1 på exakt 111 steg. Läs banan högt och den låter slumpmässig; rita den på logaritmisk skala och den ser ut som hagel i en åskmolnsbukett.",
       },
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "Datorverifierad för varje heltal upp till 2⁶⁸ — ungefär 3 × 10²⁰ tester, inget undantag. Ändå saknas beviset. Collatz har blivit förkortningen för ‘lätt att formulera, omöjlig att bevisa’. Paul Erdős ryckte på axlarna: ‘Matematiken är ännu inte mogen för sådana problem.’ Han bjöd 500 dollar. Priset är fortfarande inte uthämtat.",
+        body: "Datorverifierad för varje heltal upp till 2⁶⁸, ungefär 3 × 10²⁰ tester, inget undantag. Ändå saknas beviset. Collatz har blivit förkortningen för ‘lätt att formulera, omöjlig att bevisa’. Paul Erdős ryckte på axlarna: ‘Matematiken är ännu inte mogen för sådana problem.’ Han bjöd 500 dollar. Priset är fortfarande inte uthämtat.",
       },
     ],
     tryIt:
-      "Nedan: släpp vilket frö som helst i hagelstormen och se det falla — väx sedan den omvända korallen som rymmer alla heltal samtidigt.",
+      "Nedan: släpp vilket frö som helst i hagelstormen och se det falla, väx sedan den omvända korallen som rymmer alla heltal samtidigt.",
   },
   sections: [
     {
@@ -684,7 +684,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 02 · Banan för 27",
       title: "Hagel över Syrakusa",
-      body: "Banorna kallas hagelsekvenser eftersom de stiger och faller oregelbundet innan de slår i marken — som hagel i en åskcell. Det berömdaste lilla fallet är n = 27. Ser ut för litet för att vara intressant och ändå krävs 111 steg, med topp på 9 232 — över 340 gånger startvärdet. Andra små frön med oproportionerliga banor: 97 tar 118 steg, 871 tar 178, 6 171 tar 261, 77 031 tar 350. Pyttesmå indata, enorma resor. Plottaren nedan låter dig kasta vilken som helst — eller ditt eget frö — i hagelstormen.",
+      body: "Banorna kallas hagelsekvenser eftersom de stiger och faller oregelbundet innan de slår i marken, som hagel i en åskcell. Det berömdaste lilla fallet är n = 27. Ser ut för litet för att vara intressant och ändå krävs 111 steg, med topp på 9 232, över 340 gånger startvärdet. Andra små frön med oproportionerliga banor: 97 tar 118 steg, 871 tar 178, 6 171 tar 261, 77 031 tar 350. Pyttesmå indata, enorma resor. Plottaren nedan låter dig kasta vilken som helst, eller ditt eget frö, i hagelstormen.",
     },
     {
       pretitle: "Avsnitt 03 · Förmodan",
@@ -699,12 +699,12 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Den omvända korallen",
       title: "Kör regeln baklänges och heltalen samlar sig själva",
-      body: "Framåt är Collatz ett tal i taget. Bakåt är Collatz hela trädet. Börja vid 1 och vänd regeln: varje nod n har förälder 2n (alltid — det var dess halveringssteg) och dessutom föräldern (n − 1) / 3 så snart det talet är ett positivt udda heltal strikt större än 1. Låt trädet växa i bredd och heltalen samlar sig till en oändligt grenig korall, rotad vid 1 och utbredd utåt. Collatz-förmodan är precis påståendet att varje positivt heltal dyker upp någonstans i detta enda träd — att korallen i slutändan rymmer dem alla.",
+      body: "Framåt är Collatz ett tal i taget. Bakåt är Collatz hela trädet. Börja vid 1 och vänd regeln: varje nod n har förälder 2n (alltid; det var dess halveringssteg) och dessutom föräldern (n − 1) / 3 så snart det talet är ett positivt udda heltal strikt större än 1. Låt trädet växa i bredd och heltalen samlar sig till en oändligt grenig korall, rotad vid 1 och utbredd utåt. Collatz-förmodan är precis påståendet att varje positivt heltal dyker upp någonstans i detta enda träd, att korallen i slutändan rymmer dem alla.",
     },
     {
       pretitle: "Avsnitt 06 · Det som stoppar beviset",
       title: "En invariant ingen har hittat",
-      body: "Varför är det så svårt? Det djupa skälet: ingen har hittat en tillräcklig invariant. För att bevisa att varje bana avslutas behöver du en storhet som strikt minskar längs iterationen, eller en Lyapunov-funktion, eller en smart potential — och inget sådant har dykt upp på åttioåtta år. John Conway visade 1972 att redan en lätt generaliserad Collatz-liknande avbildning är oavgörbar; hans senare FRACTRAN-system (1987) realiserade sedan full Turing-komplettering i precis den här stilen av grenad aritmetik. Det antyder att Collatz själv kan ligga nära oavgörbarhetens gräns: ett problem inte bara svårt utan kanske bortom räckhåll för varje ändligt bevissystem. Erdős kan ha haft rätt.",
+      body: "Varför är det så svårt? Det djupa skälet: ingen har hittat en tillräcklig invariant. För att bevisa att varje bana avslutas behöver du en storhet som strikt minskar längs iterationen, eller en Lyapunov-funktion, eller en smart potential, och inget sådant har dykt upp på åttioåtta år. John Conway visade 1972 att redan en lätt generaliserad Collatz-liknande avbildning är oavgörbar; hans senare FRACTRAN-system (1987) realiserade sedan full Turing-komplettering i precis den här stilen av grenad aritmetik. Det antyder att Collatz själv kan ligga nära oavgörbarhetens gräns: ett problem inte bara svårt utan kanske bortom räckhåll för varje ändligt bevissystem. Erdős kan ha haft rätt.",
     },
   ],
   closingTitle: "Se den falla.",
@@ -716,7 +716,7 @@ const sv: RichStory = {
   trajectoryCaption: "Interaktivt · banplottare",
   trajectoryTitle: "Släpp ett frö i hagelstormen",
   trajectoryBody:
-    "Skriv ett positivt heltal. Duken ritar banan på logaritmisk skala fram till 1 — topp (cyan) och landningspunkt (bärnsten) markerade. Berömda frön 27, 871, 6 171 och 77 031 är förinställda.",
+    "Skriv ett positivt heltal. Duken ritar banan på logaritmisk skala fram till 1, topp (cyan) och landningspunkt (bärnsten) markerade. Berömda frön 27, 871, 6 171 och 77 031 är förinställda.",
   trajectoryInputLabel: "Starttal n",
   trajectoryPresetLabel: "Berömda frön",
   trajectoryStepsLabel: "Stopp-tid",
@@ -726,11 +726,11 @@ const sv: RichStory = {
   treeCaption: "Interaktivt · omvänd korall",
   treeTitle: "Kör regeln baklänges från 1",
   treeBody:
-    "Varje heltal i Collatz-universum ligger någonstans i detta träd — om förmodan stämmer. Dra i djupreglaget och se korallen vecka ut sig från 1:an i mitten. Vid djup 14 håller trädet redan 79 heltal.",
+    "Varje heltal i Collatz-universum ligger någonstans i detta träd, om förmodan stämmer. Dra i djupreglaget och se korallen vecka ut sig från 1:an i mitten. Vid djup 14 håller trädet redan 79 heltal.",
   treeDepthLabel: "Omvänt djup",
   treeNodeLabel: "Nådda heltal",
   treeHint:
-    "Varje nod n grenar alltid till 2n och dessutom till (n − 1) / 3 när det ger ett udda heltal större än 1. Färgen roterar med djupet — rosa vid roten, sedan bärnsten, cyan, violett för finare grenar.",
+    "Varje nod n grenar alltid till 2n och dessutom till (n − 1) / 3 när det ger ett udda heltal större än 1. Färgen roterar med djupet: rosa vid roten, sedan bärnsten, cyan, violett för finare grenar.",
   erdosQuote: "”Matematiken är ännu inte mogen för sådana problem.”",
   erdosNote:
     "Paul Erdős, som bjöd 500 dollar för en lösning. Åttioåtta år efter att Collatz nedtecknade regeln är priset fortfarande inte uthämtat.",
@@ -743,7 +743,7 @@ const no: RichStory = {
   page: {
     pretitle: "Tema · Kaos",
     title: "Collatz-formodningen",
-    tagline: "Partall, halver. Oddetall, tre-pluss-én. Ender på 1 — sannsynligvis.",
+    tagline: "Partall, halver. Oddetall, tre-pluss-én. Ender på 1. Sannsynligvis.",
     intro:
       "En regel på fire ord, åttiåtte års stillhet. Velg et positivt heltall: er det et partall, halver det; er det et oddetall, erstatt med 3n + 1, og følgen havner til slutt i sløyfen 4 → 2 → 1. Datamaskinene har sjekket hvert heltall opp til omtrent 2⁶⁸. Ingen har bevist at det må skje.",
     ctaInteractive: "→ Åpne utforskeren",
@@ -756,21 +756,21 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store idéen",
-        body: "Velg hvilket som helst positivt heltall. Er det et partall — halver. Er det et oddetall — gang med tre og legg til én. Gjenta. Hvert startpunkt som noen gang er testet ender på 1. Sannsynligvis. Ingen har bevist at det må. Hele regelen får plass i ett åndedrag og motstår likevel alle angrep i snart et århundre.",
+        body: "Velg hvilket som helst positivt heltall. Er det et partall, halver. Er det et oddetall, gang med tre og legg til én. Gjenta. Hvert startpunkt som noen gang er testet ender på 1. Sannsynligvis. Ingen har bevist at det må. Hele regelen får plass i ett åndedrag og motstår likevel alle angrep i snart et århundre.",
       },
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Start på 27 — bittelite frø. Banen stiger, raser, stiger igjen, når 9 232 (omtrent 340× startverdien) før den faller ned til 1 på nøyaktig 111 trinn. Les banen høyt og den høres tilfeldig ut; tegn den på logaritmisk skala og den ligner hagl i en tordensky.",
+        body: "Start på 27, bittelite frø. Banen stiger, raser, stiger igjen, når 9 232 (omtrent 340× startverdien) før den faller ned til 1 på nøyaktig 111 trinn. Les banen høyt og den høres tilfeldig ut; tegn den på logaritmisk skala og den ligner hagl i en tordensky.",
       },
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Verifisert av datamaskin for hvert heltall opp til 2⁶⁸ — rundt 3 × 10²⁰ tester, ingen unntak. Likevel mangler beviset. Collatz har blitt kortformen for ‘lett å formulere, umulig å bevise’. Paul Erdős trakk på skuldrene: ‘Matematikken er ennå ikke moden for slike problemer.’ Han lovte 500 dollar. Premien er fortsatt ikke hentet.",
+        body: "Verifisert av datamaskin for hvert heltall opp til 2⁶⁸, rundt 3 × 10²⁰ tester, ingen unntak. Likevel mangler beviset. Collatz har blitt kortformen for ‘lett å formulere, umulig å bevise’. Paul Erdős trakk på skuldrene: ‘Matematikken er ennå ikke moden for slike problemer.’ Han lovte 500 dollar. Premien er fortsatt ikke hentet.",
       },
     ],
     tryIt:
-      "Under: kast hvilket som helst frø inn i hagelstormen og se det falle — la så den omvendte korallen vokse, den som rommer alle heltallene på én gang.",
+      "Under: kast hvilket som helst frø inn i hagelstormen og se det falle, la så den omvendte korallen vokse, den som rommer alle heltallene på én gang.",
   },
   sections: [
     {
@@ -781,7 +781,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Banen for 27",
       title: "Hagl over Syrakus",
-      body: "Banene kalles haglsekvenser fordi de stiger og faller uregelmessig før de treffer bakken — som hagl ristet i en tordencelle. Det mest kjente lille tilfellet er n = 27. Ser for lite ut til å være interessant, og likevel kreves 111 trinn, med topp på 9 232 — over 340 ganger startverdien. Andre små frø med uforholdsmessige baner: 97 tar 118 trinn, 871 tar 178, 6 171 tar 261, 77 031 tar 350. Bittesmå inndata, enorme reiser. Plottet under lar deg kaste hvilket som helst — eller ditt eget frø — inn i hagelet.",
+      body: "Banene kalles haglsekvenser fordi de stiger og faller uregelmessig før de treffer bakken, som hagl ristet i en tordencelle. Det mest kjente lille tilfellet er n = 27. Ser for lite ut til å være interessant, og likevel kreves 111 trinn, med topp på 9 232, over 340 ganger startverdien. Andre små frø med uforholdsmessige baner: 97 tar 118 trinn, 871 tar 178, 6 171 tar 261, 77 031 tar 350. Bittesmå inndata, enorme reiser. Plottet under lar deg kaste hvilket som helst, eller ditt eget frø, inn i hagelet.",
     },
     {
       pretitle: "Avsnitt 03 · Formodningen",
@@ -796,12 +796,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Den omvendte korallen",
       title: "Kjør regelen baklengs, så ordner heltallene seg selv",
-      body: "Forover er Collatz ett tall om gangen. Baklengs er Collatz hele treet. Start ved 1 og snu regelen: hver node n har forelder 2n (alltid — det var halveringsskrittet), og i tillegg en forelder (n − 1) / 3 så snart det tallet er et positivt oddetall strengt større enn 1. La treet vokse i bredden, og heltallene samler seg til en uendelig forgrenet korall, rotfestet i 1 og spredd utover. Collatz-formodningen er nettopp påstanden om at hvert positivt heltall dukker opp et sted i dette ene treet — at korallen til slutt rommer dem alle.",
+      body: "Forover er Collatz ett tall om gangen. Baklengs er Collatz hele treet. Start ved 1 og snu regelen: hver node n har forelder 2n (alltid; det var halveringsskrittet), og i tillegg en forelder (n − 1) / 3 så snart det tallet er et positivt oddetall strengt større enn 1. La treet vokse i bredden, og heltallene samler seg til en uendelig forgrenet korall, rotfestet i 1 og spredd utover. Collatz-formodningen er nettopp påstanden om at hvert positivt heltall dukker opp et sted i dette ene treet, at korallen til slutt rommer dem alle.",
     },
     {
       pretitle: "Avsnitt 06 · Det som hindrer beviset",
       title: "En invariant ingen har funnet",
-      body: "Hvorfor er det så vanskelig? Den dypeste grunnen: ingen har funnet en tilstrekkelig invariant. For å bevise at hver bane stopper, trengs en størrelse som strengt avtar langs iterasjonen, eller en Lyapunov-funksjon, eller et slu potensial — og intet slikt har dukket opp på åttiåtte år. John Conway viste i 1972 at allerede en lett generalisert Collatz-lignende avbildning er uavgjørbar; hans senere FRACTRAN-system (1987) realiserte deretter full Turing-komplettering i nettopp denne stilen av forgrenet aritmetikk. Det antyder at Collatz selv kan ligge nær uavgjørbarhetens grense: et problem ikke bare vanskelig, men kanskje utenfor rekkevidde for ethvert endelig bevisystem. Erdős kan ha hatt rett.",
+      body: "Hvorfor er det så vanskelig? Den dypeste grunnen: ingen har funnet en tilstrekkelig invariant. For å bevise at hver bane stopper, trengs en størrelse som strengt avtar langs iterasjonen, eller en Lyapunov-funksjon, eller et slu potensial, og intet slikt har dukket opp på åttiåtte år. John Conway viste i 1972 at allerede en lett generalisert Collatz-lignende avbildning er uavgjørbar; hans senere FRACTRAN-system (1987) realiserte deretter full Turing-komplettering i nettopp denne stilen av forgrenet aritmetikk. Det antyder at Collatz selv kan ligge nær uavgjørbarhetens grense: et problem ikke bare vanskelig, men kanskje utenfor rekkevidde for ethvert endelig bevisystem. Erdős kan ha hatt rett.",
     },
   ],
   closingTitle: "Se den falle.",
@@ -813,7 +813,7 @@ const no: RichStory = {
   trajectoryCaption: "Interaktivt · baneplotter",
   trajectoryTitle: "Kast et frø i hagelet",
   trajectoryBody:
-    "Skriv et positivt heltall. Lerretet tegner banen på logaritmisk skala helt til 1 — topp (cyan) og landingspunkt (rav) merket. De berømte frøene 27, 871, 6 171 og 77 031 er forhåndsinnstilt.",
+    "Skriv et positivt heltall. Lerretet tegner banen på logaritmisk skala helt til 1, topp (cyan) og landingspunkt (rav) merket. De berømte frøene 27, 871, 6 171 og 77 031 er forhåndsinnstilt.",
   trajectoryInputLabel: "Starttall n",
   trajectoryPresetLabel: "Berømte frø",
   trajectoryStepsLabel: "Stopptid",
@@ -823,11 +823,11 @@ const no: RichStory = {
   treeCaption: "Interaktivt · omvendt korall",
   treeTitle: "Kjør regelen baklengs fra 1",
   treeBody:
-    "Hvert heltall i Collatz-universet ligger et sted i dette treet — hvis formodningen er sann. Dra i dybdereguleringen og se korallen folde seg ut fra 1-eren i midten. Ved dybde 14 holder treet allerede 79 heltall.",
+    "Hvert heltall i Collatz-universet ligger et sted i dette treet, hvis formodningen er sann. Dra i dybdereguleringen og se korallen folde seg ut fra 1-eren i midten. Ved dybde 14 holder treet allerede 79 heltall.",
   treeDepthLabel: "Omvendt dybde",
   treeNodeLabel: "Nådde heltall",
   treeHint:
-    "Hver node n forgrener alltid til 2n og i tillegg til (n − 1) / 3 når det gir et oddetall større enn 1. Fargen roterer med dybden — rosa ved roten, så rav, cyan, fiolett for finere grener.",
+    "Hver node n forgrener alltid til 2n og i tillegg til (n − 1) / 3 når det gir et oddetall større enn 1. Fargen roterer med dybden: rosa ved roten, så rav, cyan, fiolett for finere grener.",
   erdosQuote: "«Matematikken er ennå ikke moden for slike problemer.»",
   erdosNote:
     "Paul Erdős, som lovte 500 dollar for en løsning. Åttiåtte år etter at Collatz skrev ned regelen er premien fortsatt ikke hentet.",
@@ -925,7 +925,7 @@ export default function CollatzStory() {
       }
       finalLabel={story.closingTitle}
     >
-      {/* Encounter — three approachable cards */}
+      {/* Encounter: three approachable cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -966,7 +966,7 @@ export default function CollatzStory() {
         </Reveal>
       </section>
 
-      {/* Section 01 — the recipe */}
+      {/* Section 01: the recipe */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec0!.pretitle}
@@ -976,7 +976,7 @@ export default function CollatzStory() {
         />
       </section>
 
-      {/* Section 02 — 27 trajectory */}
+      {/* Section 02: 27 trajectory */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec1!.pretitle}
@@ -1013,7 +1013,7 @@ export default function CollatzStory() {
         </Reveal>
       </section>
 
-      {/* Section 03 — the conjecture */}
+      {/* Section 03: the conjecture */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec2!.pretitle}
@@ -1036,7 +1036,7 @@ export default function CollatzStory() {
         </Reveal>
       </section>
 
-      {/* Section 04 — Tao 2019 */}
+      {/* Section 04: Tao 2019 */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec3!.pretitle}
@@ -1046,7 +1046,7 @@ export default function CollatzStory() {
         />
       </section>
 
-      {/* Section 05 — Reverse coral */}
+      {/* Section 05: Reverse coral */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec4!.pretitle}
@@ -1079,7 +1079,7 @@ export default function CollatzStory() {
         </Reveal>
       </section>
 
-      {/* Section 06 — What stops a proof */}
+      {/* Section 06: What stops a proof */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec5!.pretitle}

@@ -10,7 +10,7 @@ import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerG
 import { BANACH_GUIDE } from "@/lib/explorer-guides/banach";
 
 // Generator indices: 0 = a, 1 = a⁻¹, 2 = b, 3 = b⁻¹.
-// Inverse pairing — index i and INV[i] cancel one another, so a node never
+// Inverse pairing: index i and INV[i] cancel one another, so a node never
 // branches back along the direction it just came from (otherwise we'd have a
 // non-reduced word).
 const INV = [1, 0, 3, 2] as const;
@@ -252,7 +252,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
 
 export default function BanachExplorer() {
   const { a, u, locale } = useI18n();
-  // banach is registered in atlas — pull the localised topic copy.
+  // banach is registered in atlas: pull the localised topic copy.
   const topic = a.topics.banach;
   const x = EXPLORER[locale];
 

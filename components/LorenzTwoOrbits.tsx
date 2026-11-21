@@ -6,7 +6,7 @@ import { palette } from "@/lib/visual/palette";
 
 // Two trajectories starting ε = 1e-5 apart. We integrate both in lockstep
 // and draw them on two small canvases. After a few seconds of simulated
-// time they're on opposite wings of the butterfly — the visceral form of
+// time they're on opposite wings of the butterfly: the visceral form of
 // the butterfly effect.
 
 type Vec3 = [number, number, number];

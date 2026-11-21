@@ -42,10 +42,10 @@ type RichStory = {
 const en: RichStory = {
   page: {
     pretitle: "Topic · Paradox",
-    title: "The Banach–Tarski Paradox",
+    title: "The Banach-Tarski Paradox",
     tagline: "Cut a ball, end up with two.",
     intro:
-      "A solid ball, split into a handful of pieces, can be reassembled into two solid balls each identical to the original — no stretching, no extra matter. The Explorer draws the engine behind the trick: the free group F₂ of two rotations, whose self-similar Cayley tree contains four shifted copies of itself. That branching structure is, almost literally, where the second ball comes from.",
+      "A solid ball, split into a handful of pieces, can be reassembled into two solid balls each identical to the original: no stretching, no extra matter. The Explorer draws the engine behind the trick: the free group F₂ of two rotations, whose self-similar Cayley tree contains four shifted copies of itself. That branching structure is, almost literally, where the second ball comes from.",
     ctaInteractive: "→ Open the Explorer",
   },
   encounter: {
@@ -55,17 +55,17 @@ const en: RichStory = {
       {
         label: "01",
         title: "The big idea",
-        body: "Take a solid ball. Cut it into a handful of pieces. Move the pieces around — only rotations and translations, no stretching, no distorting. Reassemble them. You now have two solid balls, each the same size as the original. This is a theorem, not a trick. It is also, obviously, physically impossible.",
+        body: "Take a solid ball. Cut it into a handful of pieces. Move the pieces around: only rotations and translations, no stretching, no distorting. Reassemble them. You now have two solid balls, each the same size as the original. This is a theorem, not a trick. It is also, obviously, physically impossible.",
       },
       {
         label: "02",
         title: "A concrete example",
-        body: "Take a solid orange. Cut it — mathematically — into just five pieces. Not orange-slices: each piece is a dense, intertwined cloud of points threaded through the fruit. Now rotate each cloud rigidly in place, no stretching, no extra matter. The five pieces reassemble into two solid oranges, each the same size as the original and indistinguishable from it. The cut is exactly defined but physically unbuildable — no scalpel can trace it, because it lives only in the continuum.",
+        body: "Take a solid orange. Cut it, mathematically, into just five pieces. Not orange-slices: each piece is a dense, intertwined cloud of points threaded through the fruit. Now rotate each cloud rigidly in place, no stretching, no extra matter. The five pieces reassemble into two solid oranges, each the same size as the original and indistinguishable from it. The cut is exactly defined but physically unbuildable: no scalpel can trace it, because it lives only in the continuum.",
       },
       {
         label: "03",
         title: "Why it matters",
-        body: "The paradox is the cleanest signal that mathematical reality and physical reality are not the same thing. It depends on the Axiom of Choice — a quiet assumption most mathematicians use without thinking — and it forced a century of debate about which set-theory foundations are worth keeping. The pieces are not regions you could touch; they are infinite point-clouds with no defined volume.",
+        body: "The paradox is the cleanest signal that mathematical reality and physical reality are not the same thing. It depends on the Axiom of Choice, a quiet assumption most mathematicians use without thinking, and it forced a century of debate about which set-theory foundations are worth keeping. The pieces are not regions you could touch; they are infinite point-clouds with no defined volume.",
       },
     ],
     tryIt: "Walk a free-group tree. Watch the duplication trick play out below.",
@@ -79,33 +79,33 @@ const en: RichStory = {
     {
       pretitle: "Section 02 · The Axiom of Choice",
       title: "Picking one of each, uncountably many times",
-      body: "The Axiom of Choice says: given any collection of non-empty sets, you can simultaneously pick one element from each — even if there are uncountably many sets and you have no rule for choosing. For finite or countable collections it is obvious. For uncountable collections it is an act of pure declaration: a chooser exists, full stop. Banach and Tarski use it to select one representative from each of uncountably many orbits of a rotation group acting on the sphere. From that single selection, the duplication follows.",
+      body: "The Axiom of Choice says: given any collection of non-empty sets, you can simultaneously pick one element from each, even if there are uncountably many sets and you have no rule for choosing. For finite or countable collections it is obvious. For uncountable collections it is an act of pure declaration: a chooser exists, full stop. Banach and Tarski use it to select one representative from each of uncountably many orbits of a rotation group acting on the sphere. From that single selection, the duplication follows.",
     },
     {
       pretitle: "Section 03 · Non-measurable sets",
       title: "Pieces that have no volume",
-      body: "Lebesgue measure assigns a volume to every set you could reasonably draw. But Vitali showed in 1905 that, using the Axiom of Choice, you can construct a subset of the unit interval that admits no consistent length at all — assigning it any value, even zero, contradicts the rules of measure. The Banach–Tarski pieces are three-dimensional cousins of Vitali's set: dense point-clouds whose volume is genuinely undefined. That is why the rearrangement does not violate volume conservation — the input pieces never had a volume to conserve.",
+      body: "Lebesgue measure assigns a volume to every set you could reasonably draw. But Vitali showed in 1905 that, using the Axiom of Choice, you can construct a subset of the unit interval that admits no consistent length at all: assigning it any value, even zero, contradicts the rules of measure. The Banach-Tarski pieces are three-dimensional cousins of Vitali's set: dense point-clouds whose volume is genuinely undefined. That is why the rearrangement does not violate volume conservation: the input pieces never had a volume to conserve.",
     },
     {
       pretitle: "Section 04 · The free group F₂",
       title: "Two rotations, no relations",
-      body: "Pick two rotations a and b of the unit sphere — for instance both through the angle θ = arccos(1/3), about two perpendicular axes. No matter how you compose them — aba⁻¹b, b²a⁻³, anything — you never get back to the identity except by trivially cancelling inverses. The group they generate is the free group F₂ on two letters: every reduced word in a, a⁻¹, b, b⁻¹ is a distinct rotation. F₂ has a paradoxical decomposition: split it into the four pieces of words starting with each generator. Shift the a⁻¹-piece by a and it turns into every word that does not start with a, that is the other three pieces plus the identity, so W(a) together with that shifted piece already fills all of F₂. Do the same with b and you fill F₂ a second time, so two of the four pieces rebuild the whole group and the other two rebuild it again. The sphere inherits the same property, and then the ball.",
+      body: "Pick two rotations a and b of the unit sphere, for instance both through the angle θ = arccos(1/3), about two perpendicular axes. No matter how you compose them (aba⁻¹b, b²a⁻³, anything), you never get back to the identity except by trivially cancelling inverses. The group they generate is the free group F₂ on two letters: every reduced word in a, a⁻¹, b, b⁻¹ is a distinct rotation. F₂ has a paradoxical decomposition: split it into the four pieces of words starting with each generator. Shift the a⁻¹-piece by a and it turns into every word that does not start with a, that is the other three pieces plus the identity, so W(a) together with that shifted piece already fills all of F₂. Do the same with b and you fill F₂ a second time, so two of the four pieces rebuild the whole group and the other two rebuild it again. The sphere inherits the same property, and then the ball.",
     },
     {
       pretitle: "Section 05 · The actual decomposition",
-      title: "Five pieces — and Robinson proved that is the minimum",
-      body: "Banach and Tarski's 1924 paper gives a construction with a finite number of pieces; later refinements brought it down to five. Raphael M. Robinson proved in 1947 that five is sharp — four pieces are not enough. One of the five is a single point at the centre, an artifact of how the rotations behave at the origin; the other four are the dense, non-measurable point-clouds carved out of the sphere by the F₂ action and pushed back into the ball. Each piece is rotated as a rigid body, with no stretching, and the result is two solid balls indistinguishable from the original.",
+      title: "Five pieces, and Robinson proved that is the minimum",
+      body: "Banach and Tarski's 1924 paper gives a construction with a finite number of pieces; later refinements brought it down to five. Raphael M. Robinson proved in 1947 that five is sharp: four pieces are not enough. One of the five is a single point at the centre, an artifact of how the rotations behave at the origin; the other four are the dense, non-measurable point-clouds carved out of the sphere by the F₂ action and pushed back into the ball. Each piece is rotated as a rigid body, with no stretching, and the result is two solid balls indistinguishable from the original.",
     },
     {
       pretitle: "Section 06 · Why it isn't a contradiction",
       title: "Different worlds, different rules",
-      body: "Physical pieces have measure: you can weigh them, measure their volume, count their atoms. Banach–Tarski pieces have no measure — they are uncountable, dense, unphysical sets. Volume conservation is a statement about measurable things, and the theorem never says the pieces are measurable; it says the opposite. Matter has atoms, set theory does not. The paradox is an exact, formal warning that the continuum has structure we cannot touch, and that the comforting equation 'volume in = volume out' is a property of nice sets, not all sets. That is the whole lesson.",
+      body: "Physical pieces have measure: you can weigh them, measure their volume, count their atoms. Banach-Tarski pieces have no measure: they are uncountable, dense, unphysical sets. Volume conservation is a statement about measurable things, and the theorem never says the pieces are measurable; it says the opposite. Matter has atoms, set theory does not. The paradox is an exact, formal warning that the continuum has structure we cannot touch, and that the comforting equation 'volume in = volume out' is a property of nice sets, not all sets. That is the whole lesson.",
     },
   ],
   freeGroupCaption: "Cayley graph of F₂",
   freeGroupReset: "↺ reset to ε",
   freeGroupHint:
-    "Every reduced word in a, a⁻¹, b, b⁻¹ is a unique vertex, and every vertex has the same four neighbours — one per generator. Drawn with the identity at the root, the picture fans into four directions; at every further node three new branches open (the fourth would just retrace your last step). The whole infinite tree contains four shrunken copies of itself, and that self-similarity is the paradox.",
+    "Every reduced word in a, a⁻¹, b, b⁻¹ is a unique vertex, and every vertex has the same four neighbours, one per generator. Drawn with the identity at the root, the picture fans into four directions; at every further node three new branches open (the fourth would just retrace your last step). The whole infinite tree contains four shrunken copies of itself, and that self-similarity is the paradox.",
   freeGroupWordLabel: "current word",
   freeGroupLengthLabel: "length",
 
@@ -122,10 +122,10 @@ const en: RichStory = {
 const de: RichStory = {
   page: {
     pretitle: "Thema · Paradoxon",
-    title: "Das Banach–Tarski-Paradoxon",
+    title: "Das Banach-Tarski-Paradoxon",
     tagline: "Eine Kugel zerschneiden, zwei zurückbekommen.",
     intro:
-      "Eine massive Kugel, in eine Handvoll Stücke zerlegt, lässt sich zu zwei massiven Kugeln zusammensetzen, jede identisch mit der ursprünglichen — kein Strecken, keine zusätzliche Materie. Der Explorer zeichnet den Motor hinter dem Trick: die freie Gruppe F₂ aus zwei Drehungen, deren selbstähnlicher Cayley-Baum vier verschobene Kopien seiner selbst enthält. Genau diese Verzweigungsstruktur ist, fast wörtlich, der Ort, an dem die zweite Kugel herkommt.",
+      "Eine massive Kugel, in eine Handvoll Stücke zerlegt, lässt sich zu zwei massiven Kugeln zusammensetzen, jede identisch mit der ursprünglichen: kein Strecken, keine zusätzliche Materie. Der Explorer zeichnet den Motor hinter dem Trick: die freie Gruppe F₂ aus zwei Drehungen, deren selbstähnlicher Cayley-Baum vier verschobene Kopien seiner selbst enthält. Genau diese Verzweigungsstruktur ist, fast wörtlich, der Ort, an dem die zweite Kugel herkommt.",
     ctaInteractive: "→ Zum Explorer",
   },
   encounter: {
@@ -135,17 +135,17 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Nimm eine massive Kugel. Zerlege sie in eine Handvoll Teile. Bewege die Teile — nur Drehungen und Verschiebungen, kein Strecken, kein Verformen. Setze sie wieder zusammen. Du hältst jetzt zwei massive Kugeln, jede so groß wie die ursprüngliche. Das ist ein Satz, kein Trick. Und es ist offensichtlich physikalisch unmöglich.",
+        body: "Nimm eine massive Kugel. Zerlege sie in eine Handvoll Teile. Bewege die Teile: nur Drehungen und Verschiebungen, kein Strecken, kein Verformen. Setze sie wieder zusammen. Du hältst jetzt zwei massive Kugeln, jede so groß wie die ursprüngliche. Das ist ein Satz, kein Trick. Und es ist offensichtlich physikalisch unmöglich.",
       },
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Nimm eine massive Orange. Zerlege sie — rein mathematisch — in genau fünf Teile. Keine Orangenspalten: jedes Teil ist eine dichte, ineinander verwobene Punktwolke, die durch die ganze Frucht zieht. Drehe jede Wolke starr an Ort und Stelle, kein Strecken, keine zusätzliche Materie. Die fünf Teile fügen sich zu zwei massiven Orangen zusammen, jede so groß wie die ursprüngliche und nicht von ihr zu unterscheiden. Der Schnitt ist exakt definiert, aber physikalisch nicht ausführbar — kein Skalpell kann ihm folgen, denn er existiert nur im Kontinuum.",
+        body: "Nimm eine massive Orange. Zerlege sie, rein mathematisch, in genau fünf Teile. Keine Orangenspalten: jedes Teil ist eine dichte, ineinander verwobene Punktwolke, die durch die ganze Frucht zieht. Drehe jede Wolke starr an Ort und Stelle, kein Strecken, keine zusätzliche Materie. Die fünf Teile fügen sich zu zwei massiven Orangen zusammen, jede so groß wie die ursprüngliche und nicht von ihr zu unterscheiden. Der Schnitt ist exakt definiert, aber physikalisch nicht ausführbar: kein Skalpell kann ihm folgen, denn er existiert nur im Kontinuum.",
       },
       {
         label: "03",
         title: "Warum es wichtig ist",
-        body: "Das Paradox ist das sauberste Signal dafür, dass mathematische und physikalische Wirklichkeit nicht dasselbe sind. Es hängt vom Auswahlaxiom ab — einer leisen Annahme, die die meisten Mathematiker:innen gedankenlos benutzen — und es entfachte ein Jahrhundert Streit darüber, welches Fundament der Mengenlehre überhaupt tragfähig ist. Die Teile sind keine Gebiete, die man anfassen könnte; sie sind unendliche Punktwolken ohne definiertes Volumen.",
+        body: "Das Paradox ist das sauberste Signal dafür, dass mathematische und physikalische Wirklichkeit nicht dasselbe sind. Es hängt vom Auswahlaxiom ab, einer leisen Annahme, die die meisten Mathematiker:innen gedankenlos benutzen, und es entfachte ein Jahrhundert Streit darüber, welches Fundament der Mengenlehre überhaupt tragfähig ist. Die Teile sind keine Gebiete, die man anfassen könnte; sie sind unendliche Punktwolken ohne definiertes Volumen.",
       },
     ],
     tryIt: "Lauf durch einen Baum freier Gruppen. Sieh den Verdopplungstrick unten in Aktion.",
@@ -158,39 +158,39 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 02 · Das Auswahlaxiom",
-      title: "Aus jeder Menge eines wählen — überabzählbar oft",
-      body: "Das Auswahlaxiom besagt: aus jeder Sammlung nichtleerer Mengen kannst du gleichzeitig je ein Element auswählen — selbst wenn die Sammlung überabzählbar ist und du keine Regel hast, wie zu wählen sei. Für endliche oder abzählbare Sammlungen ist das offensichtlich. Für überabzählbare ist es eine reine Deklaration: ein Wähler existiert, Punkt. Banach und Tarski nutzen es, um aus überabzählbar vielen Bahnen einer Drehgruppe auf der Sphäre je einen Vertreter zu picken. Aus diesem einen Akt der Auswahl folgt die Verdopplung.",
+      title: "Aus jeder Menge eines wählen, überabzählbar oft",
+      body: "Das Auswahlaxiom besagt: aus jeder Sammlung nichtleerer Mengen kannst du gleichzeitig je ein Element auswählen, selbst wenn die Sammlung überabzählbar ist und du keine Regel hast, wie zu wählen sei. Für endliche oder abzählbare Sammlungen ist das offensichtlich. Für überabzählbare ist es eine reine Deklaration: ein Wähler existiert, Punkt. Banach und Tarski nutzen es, um aus überabzählbar vielen Bahnen einer Drehgruppe auf der Sphäre je einen Vertreter zu picken. Aus diesem einen Akt der Auswahl folgt die Verdopplung.",
     },
     {
       pretitle: "Abschnitt 03 · Nichtmessbare Mengen",
       title: "Stücke ohne Volumen",
-      body: "Das Lebesgue-Maß ordnet jeder vernünftig zeichenbaren Menge ein Volumen zu. Doch Vitali zeigte 1905, dass man — mit dem Auswahlaxiom — eine Teilmenge des Einheitsintervalls konstruieren kann, der überhaupt keine konsistente Länge zukommt: jeder Wert, auch null, führt zum Widerspruch mit den Maßregeln. Die Banach–Tarski-Stücke sind dreidimensionale Verwandte von Vitalis Menge: dichte Punktwolken, deren Volumen wirklich undefiniert ist. Deshalb verletzt die Umlagerung die Volumenerhaltung nicht — die Eingangsstücke hatten nie ein Volumen, das man hätte erhalten können.",
+      body: "Das Lebesgue-Maß ordnet jeder vernünftig zeichenbaren Menge ein Volumen zu. Doch Vitali zeigte 1905, dass man (mit dem Auswahlaxiom) eine Teilmenge des Einheitsintervalls konstruieren kann, der überhaupt keine konsistente Länge zukommt: jeder Wert, auch null, führt zum Widerspruch mit den Maßregeln. Die Banach-Tarski-Stücke sind dreidimensionale Verwandte von Vitalis Menge: dichte Punktwolken, deren Volumen wirklich undefiniert ist. Deshalb verletzt die Umlagerung die Volumenerhaltung nicht: die Eingangsstücke hatten nie ein Volumen, das man hätte erhalten können.",
     },
     {
       pretitle: "Abschnitt 04 · Die freie Gruppe F₂",
       title: "Zwei Drehungen, keine Beziehungen",
-      body: "Wähle zwei Drehungen a und b der Einheitssphäre — zum Beispiel beide um den Winkel θ = arccos(1/3), um zwei zueinander senkrechte Achsen. Egal wie du sie verkettest — aba⁻¹b, b²a⁻³, was auch immer — du kommst nie zur Identität zurück, außer indem du Inverse trivial kürzt. Die Gruppe, die sie erzeugen, ist die freie Gruppe F₂ über zwei Buchstaben: jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine andere Drehung. F₂ hat eine paradoxe Zerlegung: zerteile sie in die vier Stücke der Wörter, die mit je einem Erzeuger beginnen. Verschiebe das a⁻¹-Stück um a, und es wird zu jedem Wort, das nicht mit a beginnt, also den drei anderen Stücken plus der Identität, sodass W(a) zusammen mit diesem verschobenen Stück bereits ganz F₂ ausfüllt. Mach dasselbe mit b, und du füllst F₂ ein zweites Mal, sodass zwei der vier Stücke die ganze Gruppe wieder aufbauen und die anderen zwei sie erneut. Die Sphäre erbt dieselbe Eigenschaft, und danach die Kugel.",
+      body: "Wähle zwei Drehungen a und b der Einheitssphäre, zum Beispiel beide um den Winkel θ = arccos(1/3), um zwei zueinander senkrechte Achsen. Egal wie du sie verkettest (aba⁻¹b, b²a⁻³, was auch immer), du kommst nie zur Identität zurück, außer indem du Inverse trivial kürzt. Die Gruppe, die sie erzeugen, ist die freie Gruppe F₂ über zwei Buchstaben: jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine andere Drehung. F₂ hat eine paradoxe Zerlegung: zerteile sie in die vier Stücke der Wörter, die mit je einem Erzeuger beginnen. Verschiebe das a⁻¹-Stück um a, und es wird zu jedem Wort, das nicht mit a beginnt, also den drei anderen Stücken plus der Identität, sodass W(a) zusammen mit diesem verschobenen Stück bereits ganz F₂ ausfüllt. Mach dasselbe mit b, und du füllst F₂ ein zweites Mal, sodass zwei der vier Stücke die ganze Gruppe wieder aufbauen und die anderen zwei sie erneut. Die Sphäre erbt dieselbe Eigenschaft, und danach die Kugel.",
     },
     {
       pretitle: "Abschnitt 05 · Die tatsächliche Zerlegung",
-      title: "Fünf Stücke — und Robinson bewies, dass weniger nicht geht",
-      body: "Die Originalarbeit von Banach und Tarski (1924) gibt eine Konstruktion mit endlich vielen Stücken; spätere Verfeinerungen drückten die Zahl auf fünf. Raphael M. Robinson bewies 1947, dass fünf scharf ist — vier reichen nicht. Eines der fünf Stücke ist ein einzelner Punkt im Zentrum, ein Artefakt des Verhaltens der Drehungen am Ursprung; die anderen vier sind die dichten, nichtmessbaren Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet und in die Kugel zurückträgt. Jedes Stück wird als starrer Körper gedreht, ohne Strecken, und am Ende stehen zwei massive Kugeln da, ununterscheidbar vom Original.",
+      title: "Fünf Stücke, und Robinson bewies, dass weniger nicht geht",
+      body: "Die Originalarbeit von Banach und Tarski (1924) gibt eine Konstruktion mit endlich vielen Stücken; spätere Verfeinerungen drückten die Zahl auf fünf. Raphael M. Robinson bewies 1947, dass fünf scharf ist: vier reichen nicht. Eines der fünf Stücke ist ein einzelner Punkt im Zentrum, ein Artefakt des Verhaltens der Drehungen am Ursprung; die anderen vier sind die dichten, nichtmessbaren Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet und in die Kugel zurückträgt. Jedes Stück wird als starrer Körper gedreht, ohne Strecken, und am Ende stehen zwei massive Kugeln da, ununterscheidbar vom Original.",
     },
     {
       pretitle: "Abschnitt 06 · Warum es kein Widerspruch ist",
       title: "Verschiedene Welten, verschiedene Regeln",
-      body: "Physikalische Stücke haben ein Maß: man kann sie wiegen, ihr Volumen messen, ihre Atome zählen. Banach–Tarski-Stücke haben kein Maß — sie sind überabzählbare, dichte, unphysikalische Mengen. Volumenerhaltung ist eine Aussage über messbare Dinge, und der Satz behauptet nie, dass die Stücke messbar seien; er behauptet das Gegenteil. Materie hat Atome, die Mengenlehre nicht. Das Paradox ist eine exakte, formale Warnung: das Kontinuum hat Strukturen, die wir nicht anfassen können, und die beruhigende Gleichung «Volumen rein = Volumen raus» ist eine Eigenschaft braver Mengen, nicht aller Mengen. Das ist die ganze Lektion.",
+      body: "Physikalische Stücke haben ein Maß: man kann sie wiegen, ihr Volumen messen, ihre Atome zählen. Banach-Tarski-Stücke haben kein Maß: sie sind überabzählbare, dichte, unphysikalische Mengen. Volumenerhaltung ist eine Aussage über messbare Dinge, und der Satz behauptet nie, dass die Stücke messbar seien; er behauptet das Gegenteil. Materie hat Atome, die Mengenlehre nicht. Das Paradox ist eine exakte, formale Warnung: das Kontinuum hat Strukturen, die wir nicht anfassen können, und die beruhigende Gleichung «Volumen rein = Volumen raus» ist eine Eigenschaft braver Mengen, nicht aller Mengen. Das ist die ganze Lektion.",
     },
   ],
   freeGroupCaption: "Cayley-Graph von F₂",
   freeGroupReset: "↺ zurück auf ε",
   freeGroupHint:
-    "Jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine eigene Ecke, und jede Ecke hat dieselben vier Nachbarn — einen pro Erzeuger. Zeichnet man das Bild mit der Identität als Wurzel, fächert es in vier Richtungen auf; an jedem weiteren Knoten öffnen sich drei neue Äste (der vierte würde nur den letzten Schritt zurücknehmen). Der ganze unendliche Baum enthält vier verkleinerte Kopien seiner selbst, und genau diese Selbstähnlichkeit ist das Paradox.",
+    "Jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine eigene Ecke, und jede Ecke hat dieselben vier Nachbarn, einen pro Erzeuger. Zeichnet man das Bild mit der Identität als Wurzel, fächert es in vier Richtungen auf; an jedem weiteren Knoten öffnen sich drei neue Äste (der vierte würde nur den letzten Schritt zurücknehmen). Der ganze unendliche Baum enthält vier verkleinerte Kopien seiner selbst, und genau diese Selbstähnlichkeit ist das Paradox.",
   freeGroupWordLabel: "aktuelles Wort",
   freeGroupLengthLabel: "Länge",
 
   robinsonNote:
-    "Minimale Stückzahl. Vier sind dichte, nichtmessbare Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet; das fünfte ist ein einzelner Punkt im Zentrum — ein Artefakt der Drehungen, die den Ursprung fixieren.",
+    "Minimale Stückzahl. Vier sind dichte, nichtmessbare Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet; das fünfte ist ein einzelner Punkt im Zentrum, ein Artefakt der Drehungen, die den Ursprung fixieren.",
   closingPretitle: "Sieh die Maschine",
   closingTitle: "Öffne den Explorer.",
   closingBody:
@@ -202,10 +202,10 @@ const de: RichStory = {
 const es: RichStory = {
   page: {
     pretitle: "Tema · Paradoja",
-    title: "La paradoja de Banach–Tarski",
+    title: "La paradoja de Banach-Tarski",
     tagline: "Corta una bola, quédate con dos.",
     intro:
-      "Una bola sólida, partida en un puñado de trozos, puede reensamblarse en dos bolas sólidas, cada una idéntica a la original — sin estirar, sin materia extra. El Explorer dibuja el motor que hay tras el truco: el grupo libre F₂ de dos rotaciones, cuyo árbol de Cayley autosemejante contiene cuatro copias desplazadas de sí mismo. Esa estructura ramificada es, casi literalmente, de donde sale la segunda bola.",
+      "Una bola sólida, partida en un puñado de trozos, puede reensamblarse en dos bolas sólidas, cada una idéntica a la original: sin estirar, sin materia extra. El Explorer dibuja el motor que hay tras el truco: el grupo libre F₂ de dos rotaciones, cuyo árbol de Cayley autosemejante contiene cuatro copias desplazadas de sí mismo. Esa estructura ramificada es, casi literalmente, de donde sale la segunda bola.",
     ctaInteractive: "→ Abrir el Explorer",
   },
   encounter: {
@@ -215,17 +215,17 @@ const es: RichStory = {
       {
         label: "01",
         title: "La idea grande",
-        body: "Toma una bola sólida. Córtala en un puñado de piezas. Mueve las piezas — solo rotaciones y traslaciones, sin estirar, sin deformar. Vuelve a montarlas. Ahora tienes dos bolas sólidas, cada una del tamaño de la original. Es un teorema, no un truco. Y, evidentemente, es físicamente imposible.",
+        body: "Toma una bola sólida. Córtala en un puñado de piezas. Mueve las piezas: solo rotaciones y traslaciones, sin estirar, sin deformar. Vuelve a montarlas. Ahora tienes dos bolas sólidas, cada una del tamaño de la original. Es un teorema, no un truco. Y, evidentemente, es físicamente imposible.",
       },
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: "Toma una naranja sólida. Córtala — matemáticamente — en exactamente cinco piezas. Nada de gajos: cada pieza es una nube densa de puntos entrelazada por toda la fruta. Gira cada nube como un cuerpo rígido en su sitio, sin estirar, sin materia extra. Las cinco piezas se reensamblan en dos naranjas sólidas, cada una del mismo tamaño que la original e indistinguible de ella. El corte está definido con precisión, pero es físicamente irrealizable — ningún escalpelo puede seguirlo, porque solo existe en el continuo.",
+        body: "Toma una naranja sólida. Córtala, matemáticamente, en exactamente cinco piezas. Nada de gajos: cada pieza es una nube densa de puntos entrelazada por toda la fruta. Gira cada nube como un cuerpo rígido en su sitio, sin estirar, sin materia extra. Las cinco piezas se reensamblan en dos naranjas sólidas, cada una del mismo tamaño que la original e indistinguible de ella. El corte está definido con precisión, pero es físicamente irrealizable: ningún escalpelo puede seguirlo, porque solo existe en el continuo.",
       },
       {
         label: "03",
         title: "Por qué importa",
-        body: "La paradoja es la señal más limpia de que la realidad matemática y la realidad física no son lo mismo. Depende del axioma de elección — una suposición silenciosa que la mayoría de matemáticos usan sin pensarlo — y desató un siglo de debate sobre qué cimientos de la teoría de conjuntos merecen conservarse. Las piezas no son regiones que pudieras tocar; son nubes infinitas de puntos sin volumen definido.",
+        body: "La paradoja es la señal más limpia de que la realidad matemática y la realidad física no son lo mismo. Depende del axioma de elección, una suposición silenciosa que la mayoría de matemáticos usan sin pensarlo, y desató un siglo de debate sobre qué cimientos de la teoría de conjuntos merecen conservarse. Las piezas no son regiones que pudieras tocar; son nubes infinitas de puntos sin volumen definido.",
       },
     ],
     tryIt: "Recorre un árbol de grupo libre. Mira el truco de duplicación en acción abajo.",
@@ -239,33 +239,33 @@ const es: RichStory = {
     {
       pretitle: "Sección 02 · El axioma de elección",
       title: "Elegir uno de cada, una cantidad incontable de veces",
-      body: "El axioma de elección dice: dada cualquier colección de conjuntos no vacíos, puedes elegir simultáneamente un elemento de cada uno — incluso si la colección es no numerable y no tienes regla alguna para escoger. Para colecciones finitas o numerables es obvio. Para colecciones no numerables es un acto de pura declaración: existe un elector, fin de la historia. Banach y Tarski lo usan para elegir un representante en cada una de las no numerables órbitas de un grupo de rotaciones que actúa sobre la esfera. De esa única elección se sigue la duplicación.",
+      body: "El axioma de elección dice: dada cualquier colección de conjuntos no vacíos, puedes elegir simultáneamente un elemento de cada uno, incluso si la colección es no numerable y no tienes regla alguna para escoger. Para colecciones finitas o numerables es obvio. Para colecciones no numerables es un acto de pura declaración: existe un elector, fin de la historia. Banach y Tarski lo usan para elegir un representante en cada una de las no numerables órbitas de un grupo de rotaciones que actúa sobre la esfera. De esa única elección se sigue la duplicación.",
     },
     {
       pretitle: "Sección 03 · Conjuntos no medibles",
       title: "Piezas sin volumen",
-      body: "La medida de Lebesgue asigna un volumen a todo conjunto razonablemente dibujable. Pero Vitali demostró en 1905 que, usando el axioma de elección, se puede construir un subconjunto del intervalo unidad que no admite ninguna longitud consistente — asignarle cualquier valor, incluso cero, contradice las reglas de la medida. Las piezas de Banach–Tarski son primas tridimensionales del conjunto de Vitali: nubes densas de puntos cuyo volumen es genuinamente indefinido. Por eso la reorganización no viola la conservación del volumen — las piezas de entrada nunca tuvieron volumen que conservar.",
+      body: "La medida de Lebesgue asigna un volumen a todo conjunto razonablemente dibujable. Pero Vitali demostró en 1905 que, usando el axioma de elección, se puede construir un subconjunto del intervalo unidad que no admite ninguna longitud consistente: asignarle cualquier valor, incluso cero, contradice las reglas de la medida. Las piezas de Banach-Tarski son primas tridimensionales del conjunto de Vitali: nubes densas de puntos cuyo volumen es genuinamente indefinido. Por eso la reorganización no viola la conservación del volumen: las piezas de entrada nunca tuvieron volumen que conservar.",
     },
     {
       pretitle: "Sección 04 · El grupo libre F₂",
       title: "Dos rotaciones, sin relaciones",
-      body: "Elige dos rotaciones a y b de la esfera unidad — por ejemplo ambas por el ángulo θ = arccos(1/3), en torno a dos ejes perpendiculares. Sin importar cómo las compongas — aba⁻¹b, b²a⁻³, lo que sea — nunca regresas a la identidad salvo cancelando inversos trivialmente. El grupo que generan es el grupo libre F₂ sobre dos letras: cada palabra reducida en a, a⁻¹, b, b⁻¹ es una rotación distinta. F₂ admite una descomposición paradójica: divídelo en las cuatro piezas de palabras que empiezan por cada generador. Desplaza la pieza de a⁻¹ por a y se convierte en toda palabra que no empieza por a, es decir, las otras tres piezas más la identidad, de modo que W(a) junto con esa pieza desplazada ya llena todo F₂. Haz lo mismo con b y llenas F₂ una segunda vez, así que dos de las cuatro piezas reconstruyen todo el grupo y las otras dos lo reconstruyen de nuevo. La esfera hereda la misma propiedad, y luego la bola.",
+      body: "Elige dos rotaciones a y b de la esfera unidad, por ejemplo ambas por el ángulo θ = arccos(1/3), en torno a dos ejes perpendiculares. Sin importar cómo las compongas (aba⁻¹b, b²a⁻³, lo que sea), nunca regresas a la identidad salvo cancelando inversos trivialmente. El grupo que generan es el grupo libre F₂ sobre dos letras: cada palabra reducida en a, a⁻¹, b, b⁻¹ es una rotación distinta. F₂ admite una descomposición paradójica: divídelo en las cuatro piezas de palabras que empiezan por cada generador. Desplaza la pieza de a⁻¹ por a y se convierte en toda palabra que no empieza por a, es decir, las otras tres piezas más la identidad, de modo que W(a) junto con esa pieza desplazada ya llena todo F₂. Haz lo mismo con b y llenas F₂ una segunda vez, así que dos de las cuatro piezas reconstruyen todo el grupo y las otras dos lo reconstruyen de nuevo. La esfera hereda la misma propiedad, y luego la bola.",
     },
     {
       pretitle: "Sección 05 · La descomposición real",
-      title: "Cinco piezas — y Robinson probó que es el mínimo",
-      body: "El artículo original de Banach y Tarski (1924) da una construcción con un número finito de piezas; refinamientos posteriores la redujeron a cinco. Raphael M. Robinson probó en 1947 que cinco es óptimo — cuatro no bastan. Una de las cinco es un único punto en el centro, un artefacto del comportamiento de las rotaciones en el origen; las otras cuatro son las nubes densas y no medibles que la acción de F₂ talla en la esfera y se reincorporan a la bola. Cada pieza se gira como un cuerpo rígido, sin estirar, y el resultado son dos bolas sólidas indistinguibles del original.",
+      title: "Cinco piezas, y Robinson probó que es el mínimo",
+      body: "El artículo original de Banach y Tarski (1924) da una construcción con un número finito de piezas; refinamientos posteriores la redujeron a cinco. Raphael M. Robinson probó en 1947 que cinco es óptimo: cuatro no bastan. Una de las cinco es un único punto en el centro, un artefacto del comportamiento de las rotaciones en el origen; las otras cuatro son las nubes densas y no medibles que la acción de F₂ talla en la esfera y se reincorporan a la bola. Cada pieza se gira como un cuerpo rígido, sin estirar, y el resultado son dos bolas sólidas indistinguibles del original.",
     },
     {
       pretitle: "Sección 06 · Por qué no es una contradicción",
       title: "Mundos distintos, reglas distintas",
-      body: "Las piezas físicas tienen medida: puedes pesarlas, medir su volumen, contar sus átomos. Las piezas de Banach–Tarski no tienen medida — son conjuntos no numerables, densos, no físicos. La conservación del volumen es un enunciado sobre cosas medibles, y el teorema nunca dice que las piezas sean medibles; dice lo contrario. La materia tiene átomos; la teoría de conjuntos no. La paradoja es una advertencia formal y exacta: el continuo tiene una estructura que no podemos tocar, y la cómoda ecuación «volumen entra = volumen sale» es propiedad de los conjuntos amables, no de todos. Esa es toda la lección.",
+      body: "Las piezas físicas tienen medida: puedes pesarlas, medir su volumen, contar sus átomos. Las piezas de Banach-Tarski no tienen medida: son conjuntos no numerables, densos, no físicos. La conservación del volumen es un enunciado sobre cosas medibles, y el teorema nunca dice que las piezas sean medibles; dice lo contrario. La materia tiene átomos; la teoría de conjuntos no. La paradoja es una advertencia formal y exacta: el continuo tiene una estructura que no podemos tocar, y la cómoda ecuación «volumen entra = volumen sale» es propiedad de los conjuntos amables, no de todos. Esa es toda la lección.",
     },
   ],
   freeGroupCaption: "Grafo de Cayley de F₂",
   freeGroupReset: "↺ volver a ε",
   freeGroupHint:
-    "Cada palabra reducida en a, a⁻¹, b, b⁻¹ es un vértice único, y cada vértice tiene los mismos cuatro vecinos — uno por generador. Dibujado con la identidad en la raíz, el cuadro se abre en cuatro direcciones; en cada nodo posterior se abren tres nuevas ramas (la cuarta solo desharía el último paso). El árbol infinito completo contiene cuatro copias reducidas de sí mismo, y esa autosimilaridad es la paradoja.",
+    "Cada palabra reducida en a, a⁻¹, b, b⁻¹ es un vértice único, y cada vértice tiene los mismos cuatro vecinos, uno por generador. Dibujado con la identidad en la raíz, el cuadro se abre en cuatro direcciones; en cada nodo posterior se abren tres nuevas ramas (la cuarta solo desharía el último paso). El árbol infinito completo contiene cuatro copias reducidas de sí mismo, y esa autosimilaridad es la paradoja.",
   freeGroupWordLabel: "palabra actual",
   freeGroupLengthLabel: "longitud",
 
@@ -282,10 +282,10 @@ const es: RichStory = {
 const fr: RichStory = {
   page: {
     pretitle: "Sujet · Paradoxe",
-    title: "Le paradoxe de Banach–Tarski",
+    title: "Le paradoxe de Banach-Tarski",
     tagline: "Coupe une boule, repars avec deux.",
     intro:
-      "Une boule pleine, découpée en une poignée de morceaux, peut être réassemblée en deux boules pleines, chacune identique à l'originale — sans étirer, sans matière supplémentaire. L'Explorer dessine le moteur derrière le tour : le groupe libre F₂ de deux rotations, dont l'arbre de Cayley auto-similaire contient quatre copies décalées de lui-même. Cette structure ramifiée est, presque littéralement, d'où sort la seconde boule.",
+      "Une boule pleine, découpée en une poignée de morceaux, peut être réassemblée en deux boules pleines, chacune identique à l'originale : sans étirer, sans matière supplémentaire. L'Explorer dessine le moteur derrière le tour : le groupe libre F₂ de deux rotations, dont l'arbre de Cayley auto-similaire contient quatre copies décalées de lui-même. Cette structure ramifiée est, presque littéralement, d'où sort la seconde boule.",
     ctaInteractive: "→ Ouvrir l'Explorer",
   },
   encounter: {
@@ -295,17 +295,17 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Prends une boule pleine. Découpe-la en quelques morceaux. Déplace les morceaux — uniquement rotations et translations, aucun étirement, aucune déformation. Réassemble-les. Tu tiens à présent deux boules pleines, chacune de la même taille que l'originale. C'est un théorème, pas un tour de passe-passe. Et c'est, évidemment, physiquement impossible.",
+        body: "Prends une boule pleine. Découpe-la en quelques morceaux. Déplace les morceaux : uniquement rotations et translations, aucun étirement, aucune déformation. Réassemble-les. Tu tiens à présent deux boules pleines, chacune de la même taille que l'originale. C'est un théorème, pas un tour de passe-passe. Et c'est, évidemment, physiquement impossible.",
       },
       {
         label: "02",
         title: "Un exemple concret",
-        body: "Prends une orange pleine. Découpe-la — mathématiquement — en exactement cinq morceaux. Pas des quartiers : chaque morceau est un nuage dense de points, entrelacé à travers tout le fruit. Fais tourner chaque nuage comme un solide rigide sur place, sans étirement, sans matière supplémentaire. Les cinq morceaux se réassemblent en deux oranges pleines, chacune de la même taille que l'originale et impossible à en distinguer. La coupe est définie avec précision mais physiquement irréalisable — aucun scalpel ne peut la suivre, car elle n'existe que dans le continu.",
+        body: "Prends une orange pleine. Découpe-la, mathématiquement, en exactement cinq morceaux. Pas des quartiers : chaque morceau est un nuage dense de points, entrelacé à travers tout le fruit. Fais tourner chaque nuage comme un solide rigide sur place, sans étirement, sans matière supplémentaire. Les cinq morceaux se réassemblent en deux oranges pleines, chacune de la même taille que l'originale et impossible à en distinguer. La coupe est définie avec précision mais physiquement irréalisable : aucun scalpel ne peut la suivre, car elle n'existe que dans le continu.",
       },
       {
         label: "03",
         title: "Pourquoi cela compte",
-        body: "Le paradoxe est le signal le plus net que la réalité mathématique et la réalité physique ne sont pas la même chose. Il dépend de l'axiome du choix — une hypothèse discrète que la plupart des mathématiciens utilisent sans y penser — et il a déclenché un siècle de débat sur les fondements de la théorie des ensembles. Les morceaux ne sont pas des régions que l'on pourrait toucher ; ce sont des nuages infinis de points sans volume défini.",
+        body: "Le paradoxe est le signal le plus net que la réalité mathématique et la réalité physique ne sont pas la même chose. Il dépend de l'axiome du choix, une hypothèse discrète que la plupart des mathématiciens utilisent sans y penser, et il a déclenché un siècle de débat sur les fondements de la théorie des ensembles. Les morceaux ne sont pas des régions que l'on pourrait toucher ; ce sont des nuages infinis de points sans volume défini.",
       },
     ],
     tryIt: "Parcours un arbre de groupe libre. Regarde le tour du dédoublement se jouer en bas.",
@@ -319,33 +319,33 @@ const fr: RichStory = {
     {
       pretitle: "Section 02 · L'axiome du choix",
       title: "Choisir un élément par ensemble, une infinité non dénombrable de fois",
-      body: "L'axiome du choix dit : pour toute collection d'ensembles non vides, tu peux choisir simultanément un élément dans chacun — même si la collection est non dénombrable et même si tu n'as aucune règle de choix. Pour les collections finies ou dénombrables, c'est évident. Pour les collections non dénombrables, c'est un acte de pure déclaration : un sélecteur existe, point. Banach et Tarski s'en servent pour choisir un représentant dans chacune des orbites non dénombrables d'un groupe de rotations agissant sur la sphère. De ce seul choix découle la duplication.",
+      body: "L'axiome du choix dit : pour toute collection d'ensembles non vides, tu peux choisir simultanément un élément dans chacun, même si la collection est non dénombrable et même si tu n'as aucune règle de choix. Pour les collections finies ou dénombrables, c'est évident. Pour les collections non dénombrables, c'est un acte de pure déclaration : un sélecteur existe, point. Banach et Tarski s'en servent pour choisir un représentant dans chacune des orbites non dénombrables d'un groupe de rotations agissant sur la sphère. De ce seul choix découle la duplication.",
     },
     {
       pretitle: "Section 03 · Ensembles non mesurables",
       title: "Des morceaux sans volume",
-      body: "La mesure de Lebesgue attribue un volume à tout ensemble que l'on peut raisonnablement dessiner. Mais Vitali a montré en 1905 qu'avec l'axiome du choix, on peut construire un sous-ensemble de l'intervalle unité auquel aucune longueur cohérente ne peut être attribuée — toute valeur, même zéro, contredit les règles de la mesure. Les morceaux de Banach–Tarski sont les cousins tridimensionnels de l'ensemble de Vitali : nuages denses de points dont le volume est véritablement indéfini. Voilà pourquoi le réarrangement ne viole pas la conservation du volume — les morceaux d'entrée n'ont jamais eu de volume à conserver.",
+      body: "La mesure de Lebesgue attribue un volume à tout ensemble que l'on peut raisonnablement dessiner. Mais Vitali a montré en 1905 qu'avec l'axiome du choix, on peut construire un sous-ensemble de l'intervalle unité auquel aucune longueur cohérente ne peut être attribuée : toute valeur, même zéro, contredit les règles de la mesure. Les morceaux de Banach-Tarski sont les cousins tridimensionnels de l'ensemble de Vitali : nuages denses de points dont le volume est véritablement indéfini. Voilà pourquoi le réarrangement ne viole pas la conservation du volume : les morceaux d'entrée n'ont jamais eu de volume à conserver.",
     },
     {
       pretitle: "Section 04 · Le groupe libre F₂",
       title: "Deux rotations, aucune relation",
-      body: "Choisis deux rotations a et b de la sphère unité — par exemple toutes deux par l'angle θ = arccos(1/3), autour de deux axes perpendiculaires. Quelle que soit la façon dont tu les composes — aba⁻¹b, b²a⁻³, n'importe quoi — tu ne reviens jamais à l'identité sauf par annulation triviale des inverses. Le groupe qu'elles engendrent est le groupe libre F₂ sur deux lettres : chaque mot réduit en a, a⁻¹, b, b⁻¹ est une rotation distincte. F₂ admet une décomposition paradoxale : sépare-le en quatre pièces selon le générateur initial de chaque mot. Décale la pièce de a⁻¹ par a et elle devient tout mot qui ne commence pas par a, c'est-à-dire les trois autres pièces plus l'identité, de sorte que W(a) avec cette pièce décalée remplit déjà tout F₂. Fais de même avec b et tu remplis F₂ une deuxième fois, donc deux des quatre pièces reconstruisent le groupe entier et les deux autres le reconstruisent encore. La sphère hérite de la même propriété, puis la boule.",
+      body: "Choisis deux rotations a et b de la sphère unité, par exemple toutes deux par l'angle θ = arccos(1/3), autour de deux axes perpendiculaires. Quelle que soit la façon dont tu les composes (aba⁻¹b, b²a⁻³, n'importe quoi), tu ne reviens jamais à l'identité sauf par annulation triviale des inverses. Le groupe qu'elles engendrent est le groupe libre F₂ sur deux lettres : chaque mot réduit en a, a⁻¹, b, b⁻¹ est une rotation distincte. F₂ admet une décomposition paradoxale : sépare-le en quatre pièces selon le générateur initial de chaque mot. Décale la pièce de a⁻¹ par a et elle devient tout mot qui ne commence pas par a, c'est-à-dire les trois autres pièces plus l'identité, de sorte que W(a) avec cette pièce décalée remplit déjà tout F₂. Fais de même avec b et tu remplis F₂ une deuxième fois, donc deux des quatre pièces reconstruisent le groupe entier et les deux autres le reconstruisent encore. La sphère hérite de la même propriété, puis la boule.",
     },
     {
       pretitle: "Section 05 · La décomposition réelle",
-      title: "Cinq morceaux — et Robinson a prouvé que c'est le minimum",
-      body: "L'article original de Banach et Tarski (1924) donne une construction avec un nombre fini de morceaux ; des raffinements ultérieurs l'ont ramenée à cinq. Raphael M. Robinson a prouvé en 1947 que cinq est optimal — quatre ne suffisent pas. L'un des cinq est un unique point au centre, artefact du comportement des rotations à l'origine ; les quatre autres sont les nuages denses et non mesurables que l'action de F₂ découpe dans la sphère puis ramène dans la boule. Chaque morceau est tourné comme un solide rigide, sans étirement, et le résultat est deux boules pleines indiscernables de l'originale.",
+      title: "Cinq morceaux, et Robinson a prouvé que c'est le minimum",
+      body: "L'article original de Banach et Tarski (1924) donne une construction avec un nombre fini de morceaux ; des raffinements ultérieurs l'ont ramenée à cinq. Raphael M. Robinson a prouvé en 1947 que cinq est optimal : quatre ne suffisent pas. L'un des cinq est un unique point au centre, artefact du comportement des rotations à l'origine ; les quatre autres sont les nuages denses et non mesurables que l'action de F₂ découpe dans la sphère puis ramène dans la boule. Chaque morceau est tourné comme un solide rigide, sans étirement, et le résultat est deux boules pleines indiscernables de l'originale.",
     },
     {
       pretitle: "Section 06 · Pourquoi ce n'est pas une contradiction",
       title: "Mondes distincts, règles distinctes",
-      body: "Les morceaux physiques ont une mesure : on peut les peser, mesurer leur volume, compter leurs atomes. Les morceaux de Banach–Tarski n'ont pas de mesure — ce sont des ensembles non dénombrables, denses, non physiques. La conservation du volume est un énoncé sur des choses mesurables, et le théorème ne dit jamais que les morceaux le sont ; il dit le contraire. La matière a des atomes ; la théorie des ensembles n'en a pas. Le paradoxe est un avertissement formel et précis : le continu a une structure qu'on ne peut pas toucher, et la rassurante équation « volume entrant = volume sortant » est une propriété des ensembles sages, pas de tous. Voilà toute la leçon.",
+      body: "Les morceaux physiques ont une mesure : on peut les peser, mesurer leur volume, compter leurs atomes. Les morceaux de Banach-Tarski n'ont pas de mesure : ce sont des ensembles non dénombrables, denses, non physiques. La conservation du volume est un énoncé sur des choses mesurables, et le théorème ne dit jamais que les morceaux le sont ; il dit le contraire. La matière a des atomes ; la théorie des ensembles n'en a pas. Le paradoxe est un avertissement formel et précis : le continu a une structure qu'on ne peut pas toucher, et la rassurante équation « volume entrant = volume sortant » est une propriété des ensembles sages, pas de tous. Voilà toute la leçon.",
     },
   ],
   freeGroupCaption: "Graphe de Cayley de F₂",
   freeGroupReset: "↺ retour à ε",
   freeGroupHint:
-    "Chaque mot réduit en a, a⁻¹, b, b⁻¹ est un sommet unique, et chaque sommet a les mêmes quatre voisins — un par générateur. Dessiné avec l'identité à la racine, l'image s'ouvre en quatre directions ; à chaque nœud suivant trois nouvelles branches s'ouvrent (la quatrième ne ferait que reprendre ton dernier pas). L'arbre infini entier contient quatre copies réduites de lui-même, et cette auto-similarité est le paradoxe.",
+    "Chaque mot réduit en a, a⁻¹, b, b⁻¹ est un sommet unique, et chaque sommet a les mêmes quatre voisins, un par générateur. Dessiné avec l'identité à la racine, l'image s'ouvre en quatre directions ; à chaque nœud suivant trois nouvelles branches s'ouvrent (la quatrième ne ferait que reprendre ton dernier pas). L'arbre infini entier contient quatre copies réduites de lui-même, et cette auto-similarité est le paradoxe.",
   freeGroupWordLabel: "mot courant",
   freeGroupLengthLabel: "longueur",
 
@@ -362,10 +362,10 @@ const fr: RichStory = {
 const it: RichStory = {
   page: {
     pretitle: "Tema · Paradosso",
-    title: "Il paradosso di Banach–Tarski",
+    title: "Il paradosso di Banach-Tarski",
     tagline: "Taglia una palla, ritrovatene due.",
     intro:
-      "Una palla piena, divisa in una manciata di pezzi, può essere ricomposta in due palle piene, ciascuna identica all'originale — niente stiramenti, niente materia in più. L'Explorer disegna il motore dietro il trucco: il gruppo libero F₂ di due rotazioni, il cui albero di Cayley autosimile contiene quattro copie traslate di sé stesso. Quella struttura ramificata è, quasi letteralmente, il punto da cui esce la seconda palla.",
+      "Una palla piena, divisa in una manciata di pezzi, può essere ricomposta in due palle piene, ciascuna identica all'originale: niente stiramenti, niente materia in più. L'Explorer disegna il motore dietro il trucco: il gruppo libero F₂ di due rotazioni, il cui albero di Cayley autosimile contiene quattro copie traslate di sé stesso. Quella struttura ramificata è, quasi letteralmente, il punto da cui esce la seconda palla.",
     ctaInteractive: "→ Apri l'Explorer",
   },
   encounter: {
@@ -375,17 +375,17 @@ const it: RichStory = {
       {
         label: "01",
         title: "L'idea grande",
-        body: "Prendi una palla piena. Tagliala in una manciata di pezzi. Sposta i pezzi — solo rotazioni e traslazioni, niente stiramenti, niente deformazioni. Rimontali. Hai adesso due palle piene, ciascuna delle dimensioni dell'originale. È un teorema, non un trucco. Ed è, evidentemente, fisicamente impossibile.",
+        body: "Prendi una palla piena. Tagliala in una manciata di pezzi. Sposta i pezzi: solo rotazioni e traslazioni, niente stiramenti, niente deformazioni. Rimontali. Hai adesso due palle piene, ciascuna delle dimensioni dell'originale. È un teorema, non un trucco. Ed è, evidentemente, fisicamente impossibile.",
       },
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "Prendi un'arancia piena. Tagliala — matematicamente — in esattamente cinque pezzi. Non spicchi: ogni pezzo è una nuvola densa di punti, intrecciata attraverso tutto il frutto. Ruota ciascuna nuvola come corpo rigido sul posto, senza stirare, senza materia in più. I cinque pezzi si ricompongono in due arance piene, ciascuna delle dimensioni dell'originale e indistinguibile da essa. Il taglio è definito con precisione ma fisicamente irrealizzabile — nessun bisturi può seguirlo, perché esiste solo nel continuo.",
+        body: "Prendi un'arancia piena. Tagliala, matematicamente, in esattamente cinque pezzi. Non spicchi: ogni pezzo è una nuvola densa di punti, intrecciata attraverso tutto il frutto. Ruota ciascuna nuvola come corpo rigido sul posto, senza stirare, senza materia in più. I cinque pezzi si ricompongono in due arance piene, ciascuna delle dimensioni dell'originale e indistinguibile da essa. Il taglio è definito con precisione ma fisicamente irrealizzabile: nessun bisturi può seguirlo, perché esiste solo nel continuo.",
       },
       {
         label: "03",
         title: "Perché conta",
-        body: "Il paradosso è il segnale più pulito che la realtà matematica e la realtà fisica non sono la stessa cosa. Dipende dall'assioma della scelta — un'assunzione silenziosa che la maggior parte dei matematici usa senza pensarci — e ha innescato un secolo di dibattito su quali fondamenti della teoria degli insiemi tenere. I pezzi non sono regioni che potresti toccare; sono nuvole infinite di punti senza volume definito.",
+        body: "Il paradosso è il segnale più pulito che la realtà matematica e la realtà fisica non sono la stessa cosa. Dipende dall'assioma della scelta, un'assunzione silenziosa che la maggior parte dei matematici usa senza pensarci, e ha innescato un secolo di dibattito su quali fondamenti della teoria degli insiemi tenere. I pezzi non sono regioni che potresti toccare; sono nuvole infinite di punti senza volume definito.",
       },
     ],
     tryIt:
@@ -400,33 +400,33 @@ const it: RichStory = {
     {
       pretitle: "Sezione 02 · L'assioma della scelta",
       title: "Scegliere uno per ciascuno, non numerabilmente molte volte",
-      body: "L'assioma della scelta dice: data una qualsiasi collezione di insiemi non vuoti, puoi selezionare contemporaneamente un elemento da ciascuno — anche se la collezione è non numerabile e non hai nessuna regola di scelta. Per collezioni finite o numerabili è ovvio. Per collezioni non numerabili è un atto di pura dichiarazione: un selettore esiste, punto. Banach e Tarski lo usano per scegliere un rappresentante in ciascuna delle non numerabili orbite di un gruppo di rotazioni che agisce sulla sfera. Da quella singola scelta segue la duplicazione.",
+      body: "L'assioma della scelta dice: data una qualsiasi collezione di insiemi non vuoti, puoi selezionare contemporaneamente un elemento da ciascuno, anche se la collezione è non numerabile e non hai nessuna regola di scelta. Per collezioni finite o numerabili è ovvio. Per collezioni non numerabili è un atto di pura dichiarazione: un selettore esiste, punto. Banach e Tarski lo usano per scegliere un rappresentante in ciascuna delle non numerabili orbite di un gruppo di rotazioni che agisce sulla sfera. Da quella singola scelta segue la duplicazione.",
     },
     {
       pretitle: "Sezione 03 · Insiemi non misurabili",
       title: "Pezzi senza volume",
-      body: "La misura di Lebesgue assegna un volume a ogni insieme ragionevolmente disegnabile. Ma Vitali mostrò nel 1905 che, usando l'assioma della scelta, si può costruire un sottoinsieme dell'intervallo unitario che non ammette alcuna lunghezza coerente — assegnargli qualunque valore, anche zero, contraddice le regole della misura. I pezzi di Banach–Tarski sono i cugini tridimensionali dell'insieme di Vitali: nuvole dense di punti il cui volume è genuinamente indefinito. Ecco perché il riassemblaggio non viola la conservazione del volume — i pezzi in ingresso non hanno mai avuto un volume da conservare.",
+      body: "La misura di Lebesgue assegna un volume a ogni insieme ragionevolmente disegnabile. Ma Vitali mostrò nel 1905 che, usando l'assioma della scelta, si può costruire un sottoinsieme dell'intervallo unitario che non ammette alcuna lunghezza coerente: assegnargli qualunque valore, anche zero, contraddice le regole della misura. I pezzi di Banach-Tarski sono i cugini tridimensionali dell'insieme di Vitali: nuvole dense di punti il cui volume è genuinamente indefinito. Ecco perché il riassemblaggio non viola la conservazione del volume: i pezzi in ingresso non hanno mai avuto un volume da conservare.",
     },
     {
       pretitle: "Sezione 04 · Il gruppo libero F₂",
       title: "Due rotazioni, nessuna relazione",
-      body: "Scegli due rotazioni a e b della sfera unitaria — ad esempio entrambe dell'angolo θ = arccos(1/3), attorno a due assi perpendicolari. Comunque le componi — aba⁻¹b, b²a⁻³, qualsiasi cosa — non torni mai all'identità se non cancellando inversi in modo banale. Il gruppo che generano è il gruppo libero F₂ su due lettere: ogni parola ridotta in a, a⁻¹, b, b⁻¹ è una rotazione diversa. F₂ ammette una decomposizione paradossale: dividilo nei quattro pezzi delle parole che iniziano con ciascun generatore. Trasla il pezzo di a⁻¹ di a e diventa ogni parola che non inizia con a, cioè gli altri tre pezzi più l'identità, così che W(a) insieme a quel pezzo traslato riempie già tutto F₂. Fai lo stesso con b e riempi F₂ una seconda volta, quindi due dei quattro pezzi ricostruiscono l'intero gruppo e gli altri due lo ricostruiscono di nuovo. La sfera eredita la stessa proprietà, e poi la palla.",
+      body: "Scegli due rotazioni a e b della sfera unitaria, ad esempio entrambe dell'angolo θ = arccos(1/3), attorno a due assi perpendicolari. Comunque le componi (aba⁻¹b, b²a⁻³, qualsiasi cosa), non torni mai all'identità se non cancellando inversi in modo banale. Il gruppo che generano è il gruppo libero F₂ su due lettere: ogni parola ridotta in a, a⁻¹, b, b⁻¹ è una rotazione diversa. F₂ ammette una decomposizione paradossale: dividilo nei quattro pezzi delle parole che iniziano con ciascun generatore. Trasla il pezzo di a⁻¹ di a e diventa ogni parola che non inizia con a, cioè gli altri tre pezzi più l'identità, così che W(a) insieme a quel pezzo traslato riempie già tutto F₂. Fai lo stesso con b e riempi F₂ una seconda volta, quindi due dei quattro pezzi ricostruiscono l'intero gruppo e gli altri due lo ricostruiscono di nuovo. La sfera eredita la stessa proprietà, e poi la palla.",
     },
     {
       pretitle: "Sezione 05 · La decomposizione vera",
-      title: "Cinque pezzi — e Robinson dimostrò che è il minimo",
-      body: "L'articolo originale di Banach e Tarski (1924) fornisce una costruzione con un numero finito di pezzi; raffinamenti successivi l'hanno portata a cinque. Raphael M. Robinson dimostrò nel 1947 che cinque è ottimo — quattro non bastano. Uno dei cinque è un singolo punto al centro, un artefatto del comportamento delle rotazioni nell'origine; gli altri quattro sono le nuvole dense e non misurabili che l'azione di F₂ ritaglia nella sfera e riporta nella palla. Ogni pezzo è ruotato come corpo rigido, senza stiramenti, e il risultato sono due palle piene indistinguibili dall'originale.",
+      title: "Cinque pezzi, e Robinson dimostrò che è il minimo",
+      body: "L'articolo originale di Banach e Tarski (1924) fornisce una costruzione con un numero finito di pezzi; raffinamenti successivi l'hanno portata a cinque. Raphael M. Robinson dimostrò nel 1947 che cinque è ottimo: quattro non bastano. Uno dei cinque è un singolo punto al centro, un artefatto del comportamento delle rotazioni nell'origine; gli altri quattro sono le nuvole dense e non misurabili che l'azione di F₂ ritaglia nella sfera e riporta nella palla. Ogni pezzo è ruotato come corpo rigido, senza stiramenti, e il risultato sono due palle piene indistinguibili dall'originale.",
     },
     {
       pretitle: "Sezione 06 · Perché non è una contraddizione",
       title: "Mondi diversi, regole diverse",
-      body: "I pezzi fisici hanno misura: puoi pesarli, misurarne il volume, contarne gli atomi. I pezzi di Banach–Tarski non hanno misura — sono insiemi non numerabili, densi, non fisici. La conservazione del volume è un enunciato su cose misurabili, e il teorema non dice mai che i pezzi siano misurabili; dice il contrario. La materia ha atomi, la teoria degli insiemi no. Il paradosso è un avvertimento formale ed esatto: il continuo ha una struttura che non possiamo toccare, e la rassicurante equazione «volume in = volume out» è una proprietà degli insiemi a modo, non di tutti. Questa è l'intera lezione.",
+      body: "I pezzi fisici hanno misura: puoi pesarli, misurarne il volume, contarne gli atomi. I pezzi di Banach-Tarski non hanno misura: sono insiemi non numerabili, densi, non fisici. La conservazione del volume è un enunciato su cose misurabili, e il teorema non dice mai che i pezzi siano misurabili; dice il contrario. La materia ha atomi, la teoria degli insiemi no. Il paradosso è un avvertimento formale ed esatto: il continuo ha una struttura che non possiamo toccare, e la rassicurante equazione «volume in = volume out» è una proprietà degli insiemi a modo, non di tutti. Questa è l'intera lezione.",
     },
   ],
   freeGroupCaption: "Grafo di Cayley di F₂",
   freeGroupReset: "↺ torna a ε",
   freeGroupHint:
-    "Ogni parola ridotta in a, a⁻¹, b, b⁻¹ è un vertice unico, e ogni vertice ha gli stessi quattro vicini — uno per generatore. Disegnato con l'identità alla radice, il quadro si apre in quattro direzioni; a ogni nodo successivo si aprono tre nuovi rami (il quarto si limiterebbe a riavvolgere l'ultimo passo). L'intero albero infinito contiene quattro copie rimpicciolite di sé, e questa autosimilarità è il paradosso.",
+    "Ogni parola ridotta in a, a⁻¹, b, b⁻¹ è un vertice unico, e ogni vertice ha gli stessi quattro vicini, uno per generatore. Disegnato con l'identità alla radice, il quadro si apre in quattro direzioni; a ogni nodo successivo si aprono tre nuovi rami (il quarto si limiterebbe a riavvolgere l'ultimo passo). L'intero albero infinito contiene quattro copie rimpicciolite di sé, e questa autosimilarità è il paradosso.",
   freeGroupWordLabel: "parola corrente",
   freeGroupLengthLabel: "lunghezza",
 
@@ -443,10 +443,10 @@ const it: RichStory = {
 const pt: RichStory = {
   page: {
     pretitle: "Tema · Paradoxo",
-    title: "O paradoxo de Banach–Tarski",
+    title: "O paradoxo de Banach-Tarski",
     tagline: "Corta uma bola, acaba com duas.",
     intro:
-      "Uma bola sólida, dividida num punhado de pedaços, pode ser remontada em duas bolas sólidas, cada uma idêntica à original — sem esticar, sem matéria extra. O Explorer desenha o motor por trás do truque: o grupo livre F₂ de duas rotações, cuja árvore de Cayley autossemelhante contém quatro cópias deslocadas de si mesma. Essa estrutura ramificada é, quase literalmente, de onde sai a segunda bola.",
+      "Uma bola sólida, dividida num punhado de pedaços, pode ser remontada em duas bolas sólidas, cada uma idêntica à original: sem esticar, sem matéria extra. O Explorer desenha o motor por trás do truque: o grupo livre F₂ de duas rotações, cuja árvore de Cayley autossemelhante contém quatro cópias deslocadas de si mesma. Essa estrutura ramificada é, quase literalmente, de onde sai a segunda bola.",
     ctaInteractive: "→ Abrir o Explorer",
   },
   encounter: {
@@ -456,17 +456,17 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A ideia central",
-        body: "Pega numa bola sólida. Corta-a em meia dúzia de peças. Move as peças — apenas rotações e translações, sem esticar, sem deformar. Volta a montar. Tens agora duas bolas sólidas, cada uma do tamanho da original. É um teorema, não um truque. E é, evidentemente, fisicamente impossível.",
+        body: "Pega numa bola sólida. Corta-a em meia dúzia de peças. Move as peças: apenas rotações e translações, sem esticar, sem deformar. Volta a montar. Tens agora duas bolas sólidas, cada uma do tamanho da original. É um teorema, não um truque. E é, evidentemente, fisicamente impossível.",
       },
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: "Pega numa laranja sólida. Corta-a — matematicamente — em exactamente cinco peças. Nada de gomos: cada peça é uma nuvem densa de pontos, entrelaçada por toda a fruta. Roda cada nuvem como corpo rígido no mesmo sítio, sem esticar, sem matéria extra. As cinco peças voltam a juntar-se em duas laranjas sólidas, cada uma do tamanho da original e indistinguível dela. O corte está definido com precisão, mas é fisicamente irrealizável — nenhum bisturi o consegue seguir, porque só existe no contínuo.",
+        body: "Pega numa laranja sólida. Corta-a, matematicamente, em exactamente cinco peças. Nada de gomos: cada peça é uma nuvem densa de pontos, entrelaçada por toda a fruta. Roda cada nuvem como corpo rígido no mesmo sítio, sem esticar, sem matéria extra. As cinco peças voltam a juntar-se em duas laranjas sólidas, cada uma do tamanho da original e indistinguível dela. O corte está definido com precisão, mas é fisicamente irrealizável: nenhum bisturi o consegue seguir, porque só existe no contínuo.",
       },
       {
         label: "03",
         title: "Porque importa",
-        body: "O paradoxo é o sinal mais limpo de que a realidade matemática e a realidade física não são a mesma coisa. Depende do axioma da escolha — uma suposição silenciosa que a maioria dos matemáticos usa sem pensar — e desencadeou um século de debate sobre quais fundamentos da teoria de conjuntos valem a pena manter. As peças não são regiões que pudesses tocar; são nuvens infinitas de pontos sem volume definido.",
+        body: "O paradoxo é o sinal mais limpo de que a realidade matemática e a realidade física não são a mesma coisa. Depende do axioma da escolha, uma suposição silenciosa que a maioria dos matemáticos usa sem pensar, e desencadeou um século de debate sobre quais fundamentos da teoria de conjuntos valem a pena manter. As peças não são regiões que pudesses tocar; são nuvens infinitas de pontos sem volume definido.",
       },
     ],
     tryIt:
@@ -481,33 +481,33 @@ const pt: RichStory = {
     {
       pretitle: "Secção 02 · O axioma da escolha",
       title: "Escolher um de cada, uma quantidade não numerável de vezes",
-      body: "O axioma da escolha diz: dada qualquer coleção de conjuntos não vazios, podes seleccionar simultaneamente um elemento de cada — mesmo que a coleção seja não numerável e não tenhas qualquer regra de escolha. Para coleções finitas ou numeráveis é óbvio. Para coleções não numeráveis é um acto de pura declaração: existe um selector, ponto final. Banach e Tarski usam-no para escolher um representante em cada uma das não numeráveis órbitas de um grupo de rotações a agir sobre a esfera. Dessa única escolha segue-se a duplicação.",
+      body: "O axioma da escolha diz: dada qualquer coleção de conjuntos não vazios, podes seleccionar simultaneamente um elemento de cada, mesmo que a coleção seja não numerável e não tenhas qualquer regra de escolha. Para coleções finitas ou numeráveis é óbvio. Para coleções não numeráveis é um acto de pura declaração: existe um selector, ponto final. Banach e Tarski usam-no para escolher um representante em cada uma das não numeráveis órbitas de um grupo de rotações a agir sobre a esfera. Dessa única escolha segue-se a duplicação.",
     },
     {
       pretitle: "Secção 03 · Conjuntos não mensuráveis",
       title: "Peças sem volume",
-      body: "A medida de Lebesgue atribui um volume a todo o conjunto razoavelmente desenhável. Mas Vitali mostrou em 1905 que, usando o axioma da escolha, se pode construir um subconjunto do intervalo unitário que não admite comprimento consistente algum — atribuir-lhe qualquer valor, mesmo zero, contradiz as regras da medida. As peças de Banach–Tarski são primas tridimensionais do conjunto de Vitali: nuvens densas de pontos cujo volume é genuinamente indefinido. É por isso que o rearranjo não viola a conservação do volume — as peças de entrada nunca tiveram volume a conservar.",
+      body: "A medida de Lebesgue atribui um volume a todo o conjunto razoavelmente desenhável. Mas Vitali mostrou em 1905 que, usando o axioma da escolha, se pode construir um subconjunto do intervalo unitário que não admite comprimento consistente algum: atribuir-lhe qualquer valor, mesmo zero, contradiz as regras da medida. As peças de Banach-Tarski são primas tridimensionais do conjunto de Vitali: nuvens densas de pontos cujo volume é genuinamente indefinido. É por isso que o rearranjo não viola a conservação do volume: as peças de entrada nunca tiveram volume a conservar.",
     },
     {
       pretitle: "Secção 04 · O grupo livre F₂",
       title: "Duas rotações, sem relações",
-      body: "Escolhe duas rotações a e b da esfera unitária — por exemplo ambas pelo ângulo θ = arccos(1/3), em torno de dois eixos perpendiculares. Por mais que as componhas — aba⁻¹b, b²a⁻³, o que for — nunca regressas à identidade salvo cancelando inversos de forma trivial. O grupo que geram é o grupo livre F₂ sobre duas letras: cada palavra reduzida em a, a⁻¹, b, b⁻¹ é uma rotação distinta. F₂ admite uma decomposição paradoxal: divide-o nas quatro peças das palavras que começam por cada gerador. Desloca a peça de a⁻¹ por a e ela torna-se toda palavra que não começa por a, isto é, as outras três peças mais a identidade, de modo que W(a) junto com essa peça deslocada já preenche todo o F₂. Faz o mesmo com b e preenches F₂ uma segunda vez, portanto duas das quatro peças reconstroem o grupo inteiro e as outras duas reconstroem-no de novo. A esfera herda a mesma propriedade, e depois a bola.",
+      body: "Escolhe duas rotações a e b da esfera unitária, por exemplo ambas pelo ângulo θ = arccos(1/3), em torno de dois eixos perpendiculares. Por mais que as componhas (aba⁻¹b, b²a⁻³, o que for), nunca regressas à identidade salvo cancelando inversos de forma trivial. O grupo que geram é o grupo livre F₂ sobre duas letras: cada palavra reduzida em a, a⁻¹, b, b⁻¹ é uma rotação distinta. F₂ admite uma decomposição paradoxal: divide-o nas quatro peças das palavras que começam por cada gerador. Desloca a peça de a⁻¹ por a e ela torna-se toda palavra que não começa por a, isto é, as outras três peças mais a identidade, de modo que W(a) junto com essa peça deslocada já preenche todo o F₂. Faz o mesmo com b e preenches F₂ uma segunda vez, portanto duas das quatro peças reconstroem o grupo inteiro e as outras duas reconstroem-no de novo. A esfera herda a mesma propriedade, e depois a bola.",
     },
     {
       pretitle: "Secção 05 · A decomposição real",
-      title: "Cinco peças — e Robinson provou que é o mínimo",
-      body: "O artigo original de Banach e Tarski (1924) dá uma construção com um número finito de peças; refinamentos posteriores reduziram-no a cinco. Raphael M. Robinson provou em 1947 que cinco é óptimo — quatro não chegam. Uma das cinco é um único ponto no centro, um artefacto do comportamento das rotações na origem; as outras quatro são as nuvens densas e não mensuráveis que a acção de F₂ recorta na esfera e devolve à bola. Cada peça é rodada como corpo rígido, sem esticar, e o resultado são duas bolas sólidas indistinguíveis da original.",
+      title: "Cinco peças, e Robinson provou que é o mínimo",
+      body: "O artigo original de Banach e Tarski (1924) dá uma construção com um número finito de peças; refinamentos posteriores reduziram-no a cinco. Raphael M. Robinson provou em 1947 que cinco é óptimo: quatro não chegam. Uma das cinco é um único ponto no centro, um artefacto do comportamento das rotações na origem; as outras quatro são as nuvens densas e não mensuráveis que a acção de F₂ recorta na esfera e devolve à bola. Cada peça é rodada como corpo rígido, sem esticar, e o resultado são duas bolas sólidas indistinguíveis da original.",
     },
     {
       pretitle: "Secção 06 · Por que não é uma contradição",
       title: "Mundos diferentes, regras diferentes",
-      body: "As peças físicas têm medida: podes pesá-las, medir o seu volume, contar os seus átomos. As peças de Banach–Tarski não têm medida — são conjuntos não numeráveis, densos, não físicos. A conservação do volume é uma afirmação sobre coisas mensuráveis, e o teorema nunca diz que as peças o sejam; diz o contrário. A matéria tem átomos; a teoria de conjuntos não. O paradoxo é um aviso formal e exacto: o contínuo tem uma estrutura que não podemos tocar, e a confortável equação «volume entra = volume sai» é propriedade dos conjuntos bem comportados, não de todos. Esta é a lição inteira.",
+      body: "As peças físicas têm medida: podes pesá-las, medir o seu volume, contar os seus átomos. As peças de Banach-Tarski não têm medida: são conjuntos não numeráveis, densos, não físicos. A conservação do volume é uma afirmação sobre coisas mensuráveis, e o teorema nunca diz que as peças o sejam; diz o contrário. A matéria tem átomos; a teoria de conjuntos não. O paradoxo é um aviso formal e exacto: o contínuo tem uma estrutura que não podemos tocar, e a confortável equação «volume entra = volume sai» é propriedade dos conjuntos bem comportados, não de todos. Esta é a lição inteira.",
     },
   ],
   freeGroupCaption: "Grafo de Cayley de F₂",
   freeGroupReset: "↺ voltar a ε",
   freeGroupHint:
-    "Cada palavra reduzida em a, a⁻¹, b, b⁻¹ é um vértice único, e cada vértice tem os mesmos quatro vizinhos — um por gerador. Desenhado com a identidade na raiz, o quadro abre-se em quatro direcções; em cada nó seguinte abrem-se três novos ramos (o quarto apenas desfaria o último passo). Toda a árvore infinita contém quatro cópias reduzidas de si mesma, e essa autossimilaridade é o paradoxo.",
+    "Cada palavra reduzida em a, a⁻¹, b, b⁻¹ é um vértice único, e cada vértice tem os mesmos quatro vizinhos, um por gerador. Desenhado com a identidade na raiz, o quadro abre-se em quatro direcções; em cada nó seguinte abrem-se três novos ramos (o quarto apenas desfaria o último passo). Toda a árvore infinita contém quatro cópias reduzidas de si mesma, e essa autossimilaridade é o paradoxo.",
   freeGroupWordLabel: "palavra atual",
   freeGroupLengthLabel: "comprimento",
 
@@ -524,10 +524,10 @@ const pt: RichStory = {
 const sv: RichStory = {
   page: {
     pretitle: "Ämne · Paradox",
-    title: "Banach–Tarskis paradox",
+    title: "Banach-Tarskis paradox",
     tagline: "Skär ett klot, få två tillbaka.",
     intro:
-      "Ett massivt klot, uppdelat i en handfull bitar, kan sättas ihop till två massiva klot, vart och ett identiskt med originalet — ingen sträckning, ingen extra materia. Explorern ritar upp motorn bakom tricket: den fria gruppen F₂ av två rotationer, vars självlika Cayley-träd innehåller fyra förskjutna kopior av sig självt. Den förgrenade strukturen är, nästan bokstavligt, varifrån det andra klotet kommer.",
+      "Ett massivt klot, uppdelat i en handfull bitar, kan sättas ihop till två massiva klot, vart och ett identiskt med originalet: ingen sträckning, ingen extra materia. Explorern ritar upp motorn bakom tricket: den fria gruppen F₂ av två rotationer, vars självlika Cayley-träd innehåller fyra förskjutna kopior av sig självt. Den förgrenade strukturen är, nästan bokstavligt, varifrån det andra klotet kommer.",
     ctaInteractive: "→ Öppna Explorern",
   },
   encounter: {
@@ -537,17 +537,17 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "Ta ett massivt klot. Skär det i en handfull bitar. Flytta bitarna — bara rotationer och translationer, inget töjande, ingen deformation. Sätt ihop dem igen. Nu har du två massiva klot, vart och ett lika stort som originalet. Det är en sats, inget trick. Och det är förstås fysiskt omöjligt.",
+        body: "Ta ett massivt klot. Skär det i en handfull bitar. Flytta bitarna: bara rotationer och translationer, inget töjande, ingen deformation. Sätt ihop dem igen. Nu har du två massiva klot, vart och ett lika stort som originalet. Det är en sats, inget trick. Och det är förstås fysiskt omöjligt.",
       },
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "Ta en hel apelsin. Skär den — matematiskt — i exakt fem bitar. Inga klyftor: varje bit är ett tätt punktmoln som löper sammanflätat genom hela frukten. Rotera varje moln stelt på plats, ingen sträckning, ingen extra materia. De fem bitarna sätts ihop till två hela apelsiner, var och en lika stor som originalet och omöjlig att skilja från det. Snittet är exakt definierat men fysiskt outförbart — ingen skalpell kan följa det, för det existerar bara i kontinuumet.",
+        body: "Ta en hel apelsin. Skär den, matematiskt, i exakt fem bitar. Inga klyftor: varje bit är ett tätt punktmoln som löper sammanflätat genom hela frukten. Rotera varje moln stelt på plats, ingen sträckning, ingen extra materia. De fem bitarna sätts ihop till två hela apelsiner, var och en lika stor som originalet och omöjlig att skilja från det. Snittet är exakt definierat men fysiskt outförbart: ingen skalpell kan följa det, för det existerar bara i kontinuumet.",
       },
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "Paradoxen är den klaraste signalen om att matematisk verklighet och fysisk verklighet inte är samma sak. Den hänger på urvalsaxiomet — ett tyst antagande som de flesta matematiker använder utan att tänka på det — och den utlöste ett århundrade av debatt om vilka grunder för mängdteorin som är värda att behålla. Bitarna är inga områden du skulle kunna ta på; de är oändliga punktmoln utan definierad volym.",
+        body: "Paradoxen är den klaraste signalen om att matematisk verklighet och fysisk verklighet inte är samma sak. Den hänger på urvalsaxiomet, ett tyst antagande som de flesta matematiker använder utan att tänka på det, och den utlöste ett århundrade av debatt om vilka grunder för mängdteorin som är värda att behålla. Bitarna är inga områden du skulle kunna ta på; de är oändliga punktmoln utan definierad volym.",
       },
     ],
     tryIt: "Vandra i ett fri-grupp-träd. Se dubbleringstricket spela ut sig nedan.",
@@ -561,33 +561,33 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 02 · Urvalsaxiomet",
       title: "Plocka ett ur var och en, oräkneligt många gånger",
-      body: "Urvalsaxiomet säger: givet vilken samling av icke-tomma mängder som helst kan du samtidigt välja ett element ur var och en — även om samlingen är överuppräknelig och du inte har någon regel för hur du ska välja. För ändliga eller uppräkneliga samlingar är det självklart. För överuppräkneliga samlingar är det en ren deklaration: en väljare finns, punkt. Banach och Tarski använder det för att välja en representant ur var och en av de överuppräkneligt många banorna i en rotationsgrupp som verkar på sfären. Från den enda valhandlingen följer dubbleringen.",
+      body: "Urvalsaxiomet säger: givet vilken samling av icke-tomma mängder som helst kan du samtidigt välja ett element ur var och en, även om samlingen är överuppräknelig och du inte har någon regel för hur du ska välja. För ändliga eller uppräkneliga samlingar är det självklart. För överuppräkneliga samlingar är det en ren deklaration: en väljare finns, punkt. Banach och Tarski använder det för att välja en representant ur var och en av de överuppräkneligt många banorna i en rotationsgrupp som verkar på sfären. Från den enda valhandlingen följer dubbleringen.",
     },
     {
       pretitle: "Avsnitt 03 · Icke-mätbara mängder",
       title: "Bitar utan volym",
-      body: "Lebesguemåttet tilldelar en volym till varje mängd du rimligen kan rita. Men Vitali visade 1905 att man, med urvalsaxiomet, kan konstruera en delmängd av enhetsintervallet som inte tillåter någon konsistent längd alls — att ge den vilket värde som helst, även noll, motsäger måttets regler. Banach–Tarski-bitarna är tredimensionella kusiner till Vitalis mängd: täta punktmoln vars volym är genuint odefinierad. Det är därför omgrupperingen inte bryter mot volymbevarandet — ingångsbitarna hade aldrig någon volym att bevara.",
+      body: "Lebesguemåttet tilldelar en volym till varje mängd du rimligen kan rita. Men Vitali visade 1905 att man, med urvalsaxiomet, kan konstruera en delmängd av enhetsintervallet som inte tillåter någon konsistent längd alls: att ge den vilket värde som helst, även noll, motsäger måttets regler. Banach-Tarski-bitarna är tredimensionella kusiner till Vitalis mängd: täta punktmoln vars volym är genuint odefinierad. Det är därför omgrupperingen inte bryter mot volymbevarandet: ingångsbitarna hade aldrig någon volym att bevara.",
     },
     {
       pretitle: "Avsnitt 04 · Den fria gruppen F₂",
       title: "Två rotationer, inga relationer",
-      body: "Välj två rotationer a och b av enhetssfären — till exempel båda med vinkeln θ = arccos(1/3), kring två vinkelräta axlar. Hur du än sammansätter dem — aba⁻¹b, b²a⁻³, vad som helst — kommer du aldrig tillbaka till identiteten utom genom triviala inversförkortningar. Gruppen de genererar är den fria gruppen F₂ över två bokstäver: varje reducerat ord i a, a⁻¹, b, b⁻¹ är en distinkt rotation. F₂ tillåter en paradoxal sönderdelning: dela den i de fyra bitarna av ord som börjar med varje generator. Förskjut a⁻¹-biten med a och den blir varje ord som inte börjar med a, alltså de tre andra bitarna plus identiteten, så att W(a) tillsammans med den förskjutna biten redan fyller hela F₂. Gör samma sak med b och du fyller F₂ en andra gång, så två av de fyra bitarna bygger upp hela gruppen och de andra två bygger upp den igen. Sfären ärver samma egenskap, och sedan klotet.",
+      body: "Välj två rotationer a och b av enhetssfären, till exempel båda med vinkeln θ = arccos(1/3), kring två vinkelräta axlar. Hur du än sammansätter dem (aba⁻¹b, b²a⁻³, vad som helst) kommer du aldrig tillbaka till identiteten utom genom triviala inversförkortningar. Gruppen de genererar är den fria gruppen F₂ över två bokstäver: varje reducerat ord i a, a⁻¹, b, b⁻¹ är en distinkt rotation. F₂ tillåter en paradoxal sönderdelning: dela den i de fyra bitarna av ord som börjar med varje generator. Förskjut a⁻¹-biten med a och den blir varje ord som inte börjar med a, alltså de tre andra bitarna plus identiteten, så att W(a) tillsammans med den förskjutna biten redan fyller hela F₂. Gör samma sak med b och du fyller F₂ en andra gång, så två av de fyra bitarna bygger upp hela gruppen och de andra två bygger upp den igen. Sfären ärver samma egenskap, och sedan klotet.",
     },
     {
       pretitle: "Avsnitt 05 · Den faktiska sönderdelningen",
-      title: "Fem bitar — och Robinson bevisade att det är minimum",
-      body: "Banach och Tarskis originalartikel (1924) ger en konstruktion med ändligt antal bitar; senare förfiningar pressade ned antalet till fem. Raphael M. Robinson bevisade 1947 att fem är skarpt — fyra räcker inte. En av de fem är en enda punkt i centrum, en artefakt av rotationernas beteende vid origo; de övriga fyra är de täta, icke-mätbara punktmolnen som F₂-verkan skär ut ur sfären och bär in i klotet. Varje bit roteras som en stel kropp, utan töjning, och resultatet är två massiva klot som inte går att skilja från originalet.",
+      title: "Fem bitar, och Robinson bevisade att det är minimum",
+      body: "Banach och Tarskis originalartikel (1924) ger en konstruktion med ändligt antal bitar; senare förfiningar pressade ned antalet till fem. Raphael M. Robinson bevisade 1947 att fem är skarpt: fyra räcker inte. En av de fem är en enda punkt i centrum, en artefakt av rotationernas beteende vid origo; de övriga fyra är de täta, icke-mätbara punktmolnen som F₂-verkan skär ut ur sfären och bär in i klotet. Varje bit roteras som en stel kropp, utan töjning, och resultatet är två massiva klot som inte går att skilja från originalet.",
     },
     {
       pretitle: "Avsnitt 06 · Varför det inte är en motsägelse",
       title: "Olika världar, olika regler",
-      body: "Fysiska bitar har mått: man kan väga dem, mäta deras volym, räkna deras atomer. Banach–Tarski-bitar har inget mått — de är överuppräkneliga, täta, ofysiska mängder. Volymbevarande är ett påstående om mätbara saker, och satsen säger aldrig att bitarna är mätbara; den säger tvärtom. Materia har atomer, mängdteori har det inte. Paradoxen är en exakt, formell varning: kontinuumet har struktur vi inte kan röra, och den lugnande ekvationen «volym in = volym ut» är en egenskap hos snälla mängder, inte alla. Det är hela lektionen.",
+      body: "Fysiska bitar har mått: man kan väga dem, mäta deras volym, räkna deras atomer. Banach-Tarski-bitar har inget mått: de är överuppräkneliga, täta, ofysiska mängder. Volymbevarande är ett påstående om mätbara saker, och satsen säger aldrig att bitarna är mätbara; den säger tvärtom. Materia har atomer, mängdteori har det inte. Paradoxen är en exakt, formell varning: kontinuumet har struktur vi inte kan röra, och den lugnande ekvationen «volym in = volym ut» är en egenskap hos snälla mängder, inte alla. Det är hela lektionen.",
     },
   ],
   freeGroupCaption: "Cayleygraf för F₂",
   freeGroupReset: "↺ tillbaka till ε",
   freeGroupHint:
-    "Varje reducerat ord i a, a⁻¹, b, b⁻¹ är en unik nod, och varje nod har samma fyra grannar — en per generator. Ritat med identiteten i roten fläktar bilden ut i fyra riktningar; vid varje vidare nod öppnas tre nya grenar (den fjärde skulle bara vända det senaste steget). Hela det oändliga trädet innehåller fyra förminskade kopior av sig självt, och just den självlikheten är paradoxen.",
+    "Varje reducerat ord i a, a⁻¹, b, b⁻¹ är en unik nod, och varje nod har samma fyra grannar, en per generator. Ritat med identiteten i roten fläktar bilden ut i fyra riktningar; vid varje vidare nod öppnas tre nya grenar (den fjärde skulle bara vända det senaste steget). Hela det oändliga trädet innehåller fyra förminskade kopior av sig självt, och just den självlikheten är paradoxen.",
   freeGroupWordLabel: "aktuellt ord",
   freeGroupLengthLabel: "längd",
 
@@ -604,10 +604,10 @@ const sv: RichStory = {
 const no: RichStory = {
   page: {
     pretitle: "Tema · Paradoks",
-    title: "Banach–Tarskis paradoks",
+    title: "Banach-Tarskis paradoks",
     tagline: "Skjær én kule, stå igjen med to.",
     intro:
-      "En massiv kule, delt opp i en håndfull biter, kan settes sammen igjen til to massive kuler, hver identisk med originalen — ingen strekking, ingen ekstra materie. Utforskeren tegner motoren bak trikset: den frie gruppen F₂ av to rotasjoner, hvis selvliknende Cayley-tre inneholder fire forskjøvne kopier av seg selv. Den forgrenede strukturen er, nesten bokstavelig talt, der den andre kulen kommer fra.",
+      "En massiv kule, delt opp i en håndfull biter, kan settes sammen igjen til to massive kuler, hver identisk med originalen: ingen strekking, ingen ekstra materie. Utforskeren tegner motoren bak trikset: den frie gruppen F₂ av to rotasjoner, hvis selvliknende Cayley-tre inneholder fire forskjøvne kopier av seg selv. Den forgrenede strukturen er, nesten bokstavelig talt, der den andre kulen kommer fra.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -617,17 +617,17 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Ta en massiv kule. Skjær den i en håndfull biter. Flytt bitene — bare rotasjoner og translasjoner, ingen strekking, ingen forvrengning. Sett dem sammen igjen. Du har nå to massive kuler, hver like stor som originalen. Det er et teorem, ikke et triks. Og det er åpenbart fysisk umulig.",
+        body: "Ta en massiv kule. Skjær den i en håndfull biter. Flytt bitene: bare rotasjoner og translasjoner, ingen strekking, ingen forvrengning. Sett dem sammen igjen. Du har nå to massive kuler, hver like stor som originalen. Det er et teorem, ikke et triks. Og det er åpenbart fysisk umulig.",
       },
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Ta en hel appelsin. Skjær den — matematisk — i nøyaktig fem biter. Ingen båter: hver bit er en tett punktsky som er flettet gjennom hele frukten. Roter hver sky stivt på stedet, ingen strekking, ingen ekstra materie. De fem bitene settes sammen til to hele appelsiner, hver like stor som originalen og umulig å skille fra den. Snittet er presist definert, men fysisk uutførbart — ingen skalpell kan følge det, for det finnes bare i kontinuumet.",
+        body: "Ta en hel appelsin. Skjær den, matematisk, i nøyaktig fem biter. Ingen båter: hver bit er en tett punktsky som er flettet gjennom hele frukten. Roter hver sky stivt på stedet, ingen strekking, ingen ekstra materie. De fem bitene settes sammen til to hele appelsiner, hver like stor som originalen og umulig å skille fra den. Snittet er presist definert, men fysisk uutførbart: ingen skalpell kan følge det, for det finnes bare i kontinuumet.",
       },
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Paradokset er det reneste signalet om at matematisk virkelighet og fysisk virkelighet ikke er det samme. Det hviler på utvalgsaksiomet — en stille antakelse de fleste matematikere bruker uten å tenke over det — og det utløste et århundre med debatt om hvilke fundamenter for mengdelæren som er verdt å beholde. Bitene er ikke områder du kunne tatt på; de er uendelige punktskyer uten definert volum.",
+        body: "Paradokset er det reneste signalet om at matematisk virkelighet og fysisk virkelighet ikke er det samme. Det hviler på utvalgsaksiomet, en stille antakelse de fleste matematikere bruker uten å tenke over det, og det utløste et århundre med debatt om hvilke fundamenter for mengdelæren som er verdt å beholde. Bitene er ikke områder du kunne tatt på; de er uendelige punktskyer uten definert volum.",
       },
     ],
     tryIt: "Vandre i et frigruppe-tre. Se duplikasjonstrikset utspille seg under.",
@@ -641,33 +641,33 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Utvalgsaksiomet",
       title: "Velge én fra hver, utellbart mange ganger",
-      body: "Utvalgsaksiomet sier: gitt en hvilken som helst samling av ikke-tomme mengder kan du samtidig velge ett element fra hver — selv om samlingen er overtellbar og du ikke har noen regel for å velge. For endelige eller tellbare samlinger er det opplagt. For overtellbare samlinger er det en ren erklæring: en velger finnes, punktum. Banach og Tarski bruker det til å plukke én representant fra hver av de overtellbart mange banene til en rotasjonsgruppe som virker på sfæren. Fra det ene valget følger dubleringen.",
+      body: "Utvalgsaksiomet sier: gitt en hvilken som helst samling av ikke-tomme mengder kan du samtidig velge ett element fra hver, selv om samlingen er overtellbar og du ikke har noen regel for å velge. For endelige eller tellbare samlinger er det opplagt. For overtellbare samlinger er det en ren erklæring: en velger finnes, punktum. Banach og Tarski bruker det til å plukke én representant fra hver av de overtellbart mange banene til en rotasjonsgruppe som virker på sfæren. Fra det ene valget følger dubleringen.",
     },
     {
       pretitle: "Avsnitt 03 · Ikke-målbare mengder",
       title: "Biter uten volum",
-      body: "Lebesgue-målet gir et volum til hver mengde du med rimelighet kan tegne. Men Vitali viste i 1905 at man, med utvalgsaksiomet, kan konstruere en delmengde av enhetsintervallet som ikke tillater noen konsistent lengde i det hele tatt — å gi den hvilken som helst verdi, selv null, bryter målereglene. Banach–Tarski-bitene er tredimensjonale fettere av Vitalis mengde: tette punktskyer hvis volum genuint er udefinert. Det er derfor omplasseringen ikke bryter volumbevaring — innbitene hadde aldri noe volum å bevare.",
+      body: "Lebesgue-målet gir et volum til hver mengde du med rimelighet kan tegne. Men Vitali viste i 1905 at man, med utvalgsaksiomet, kan konstruere en delmengde av enhetsintervallet som ikke tillater noen konsistent lengde i det hele tatt: å gi den hvilken som helst verdi, selv null, bryter målereglene. Banach-Tarski-bitene er tredimensjonale fettere av Vitalis mengde: tette punktskyer hvis volum genuint er udefinert. Det er derfor omplasseringen ikke bryter volumbevaring: innbitene hadde aldri noe volum å bevare.",
     },
     {
       pretitle: "Avsnitt 04 · Den frie gruppen F₂",
       title: "To rotasjoner, ingen relasjoner",
-      body: "Velg to rotasjoner a og b av enhetssfæren — for eksempel begge med vinkelen θ = arccos(1/3), om to vinkelrette akser. Uansett hvordan du komponerer dem — aba⁻¹b, b²a⁻³, hva det skal være — kommer du aldri tilbake til identiteten utenom triviell inverskansellering. Gruppen de genererer er den frie gruppen F₂ over to bokstaver: hvert redusert ord i a, a⁻¹, b, b⁻¹ er en distinkt rotasjon. F₂ har en paradoksal dekomposisjon: del den i de fire bitene av ord som starter med hver generator. Forskyv a⁻¹-biten med a, og den blir hvert ord som ikke starter med a, altså de tre andre bitene pluss identiteten, slik at W(a) sammen med den forskjøvne biten allerede fyller hele F₂. Gjør det samme med b, og du fyller F₂ en gang til, så to av de fire bitene bygger opp hele gruppen og de andre to bygger den opp igjen. Sfæren arver samme egenskap, og deretter kulen.",
+      body: "Velg to rotasjoner a og b av enhetssfæren, for eksempel begge med vinkelen θ = arccos(1/3), om to vinkelrette akser. Uansett hvordan du komponerer dem (aba⁻¹b, b²a⁻³, hva det skal være) kommer du aldri tilbake til identiteten utenom triviell inverskansellering. Gruppen de genererer er den frie gruppen F₂ over to bokstaver: hvert redusert ord i a, a⁻¹, b, b⁻¹ er en distinkt rotasjon. F₂ har en paradoksal dekomposisjon: del den i de fire bitene av ord som starter med hver generator. Forskyv a⁻¹-biten med a, og den blir hvert ord som ikke starter med a, altså de tre andre bitene pluss identiteten, slik at W(a) sammen med den forskjøvne biten allerede fyller hele F₂. Gjør det samme med b, og du fyller F₂ en gang til, så to av de fire bitene bygger opp hele gruppen og de andre to bygger den opp igjen. Sfæren arver samme egenskap, og deretter kulen.",
     },
     {
       pretitle: "Avsnitt 05 · Den faktiske dekomposisjonen",
-      title: "Fem biter — og Robinson beviste at det er minimum",
-      body: "Banach og Tarskis originalartikkel (1924) gir en konstruksjon med endelig mange biter; senere forfining presset antallet ned til fem. Raphael M. Robinson beviste i 1947 at fem er skarpt — fire er ikke nok. En av de fem er et enkelt punkt i sentrum, en artefakt av hvordan rotasjonene oppfører seg ved origo; de andre fire er de tette, ikke-målbare punktskyene som F₂-virkningen kutter ut av sfæren og bærer inn i kulen. Hver bit roteres som et stivt legeme, uten strekking, og resultatet er to massive kuler som ikke kan skilles fra originalen.",
+      title: "Fem biter, og Robinson beviste at det er minimum",
+      body: "Banach og Tarskis originalartikkel (1924) gir en konstruksjon med endelig mange biter; senere forfining presset antallet ned til fem. Raphael M. Robinson beviste i 1947 at fem er skarpt: fire er ikke nok. En av de fem er et enkelt punkt i sentrum, en artefakt av hvordan rotasjonene oppfører seg ved origo; de andre fire er de tette, ikke-målbare punktskyene som F₂-virkningen kutter ut av sfæren og bærer inn i kulen. Hver bit roteres som et stivt legeme, uten strekking, og resultatet er to massive kuler som ikke kan skilles fra originalen.",
     },
     {
       pretitle: "Avsnitt 06 · Hvorfor det ikke er en motsigelse",
       title: "Forskjellige verdener, forskjellige regler",
-      body: "Fysiske biter har mål: du kan veie dem, måle volumet deres, telle atomene deres. Banach–Tarski-biter har ikke mål — de er overtellbare, tette, ufysiske mengder. Volumbevaring er en påstand om målbare ting, og teoremet sier aldri at bitene er målbare; det sier det motsatte. Materie har atomer, mengdelæren har ikke det. Paradokset er en eksakt, formell advarsel: kontinuumet har struktur vi ikke kan ta på, og den betryggende ligningen «volum inn = volum ut» er en egenskap ved snille mengder, ikke alle. Det er hele leksjonen.",
+      body: "Fysiske biter har mål: du kan veie dem, måle volumet deres, telle atomene deres. Banach-Tarski-biter har ikke mål: de er overtellbare, tette, ufysiske mengder. Volumbevaring er en påstand om målbare ting, og teoremet sier aldri at bitene er målbare; det sier det motsatte. Materie har atomer, mengdelæren har ikke det. Paradokset er en eksakt, formell advarsel: kontinuumet har struktur vi ikke kan ta på, og den betryggende ligningen «volum inn = volum ut» er en egenskap ved snille mengder, ikke alle. Det er hele leksjonen.",
     },
   ],
   freeGroupCaption: "Cayley-graf for F₂",
   freeGroupReset: "↺ tilbake til ε",
   freeGroupHint:
-    "Hvert redusert ord i a, a⁻¹, b, b⁻¹ er en unik node, og hver node har de samme fire naboene — én per generator. Tegnet med identiteten i roten vifter bildet ut i fire retninger; ved hver videre node åpnes tre nye grener (den fjerde ville bare angre det siste steget). Hele det uendelige treet inneholder fire forminskede kopier av seg selv, og nettopp den selvlikheten er paradokset.",
+    "Hvert redusert ord i a, a⁻¹, b, b⁻¹ er en unik node, og hver node har de samme fire naboene, én per generator. Tegnet med identiteten i roten vifter bildet ut i fire retninger; ved hver videre node åpnes tre nye grener (den fjerde ville bare angre det siste steget). Hele det uendelige treet inneholder fire forminskede kopier av seg selv, og nettopp den selvlikheten er paradokset.",
   freeGroupWordLabel: "gjeldende ord",
   freeGroupLengthLabel: "lengde",
 
@@ -702,7 +702,7 @@ export default function BanachStory() {
       formulaLatex={"B^3 = B^3 \\sqcup B^3"}
       finalLabel={story.closingTitle}
     >
-      {/* Encounter — three approachable cards */}
+      {/* Encounter: three approachable cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -730,7 +730,7 @@ export default function BanachStory() {
         </Reveal>
       </section>
 
-      {/* Section 01 — naive impossibility */}
+      {/* Section 01: naive impossibility */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard
           pretitle={story.sections[0].pretitle}
@@ -740,7 +740,7 @@ export default function BanachStory() {
         />
       </section>
 
-      {/* Section 02 — Axiom of Choice */}
+      {/* Section 02: Axiom of Choice */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard
           pretitle={story.sections[1].pretitle}
@@ -750,7 +750,7 @@ export default function BanachStory() {
         />
       </section>
 
-      {/* Section 03 — Non-measurable sets */}
+      {/* Section 03: Non-measurable sets */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard
           pretitle={story.sections[2].pretitle}
@@ -760,7 +760,7 @@ export default function BanachStory() {
         />
       </section>
 
-      {/* Section 04 — Free group F₂ */}
+      {/* Section 04: Free group F₂ */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard
           pretitle={story.sections[3].pretitle}
@@ -769,7 +769,7 @@ export default function BanachStory() {
           accent={ACCENT}
         />
 
-        {/* INTERACTIVE 2 — Free-group walker */}
+        {/* INTERACTIVE 2: Free-group walker */}
         <Reveal delay={120}>
           <BanachFreeGroup
             caption={story.freeGroupCaption}
@@ -781,7 +781,7 @@ export default function BanachStory() {
         </Reveal>
       </section>
 
-      {/* Section 05 — Actual decomposition, Robinson 1947 */}
+      {/* Section 05: Actual decomposition, Robinson 1947 */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard
           pretitle={story.sections[4].pretitle}
@@ -802,7 +802,7 @@ export default function BanachStory() {
         </Reveal>
       </section>
 
-      {/* Section 06 — Why it isn't a contradiction */}
+      {/* Section 06: Why it isn't a contradiction */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard
           pretitle={story.sections[5].pretitle}
@@ -812,7 +812,7 @@ export default function BanachStory() {
         />
       </section>
 
-      {/* Closing CTA — glass card matching apollonian style */}
+      {/* Closing CTA: glass card matching apollonian style */}
       <Reveal>
         <section className="glass hairline mx-auto mt-16 max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>

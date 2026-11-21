@@ -5,7 +5,7 @@ import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
 // Inline mini DLA simulator for the /dla story page. Smaller, simpler, and
-// self-contained version of the full Explorer — single point seed at centre,
+// self-contained version of the full Explorer: single point seed at centre,
 // walkers + stickiness sliders, a reset button. Renders to a square canvas
 // (~280×280 CSS pixels).
 //
@@ -37,7 +37,7 @@ const ROSE_RGB = (() => {
   const n = parseInt(palette.signal.rose.slice(1), 16);
   return `${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}`;
 })();
-const CELL_PX = 3; // CSS px per grid cell — small canvas, chunky cells
+const CELL_PX = 3; // CSS px per grid cell: small canvas, chunky cells
 
 export function DlaMiniSim({ caption, labels, className = "" }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);

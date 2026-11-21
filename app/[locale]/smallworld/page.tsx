@@ -52,11 +52,11 @@ const FIGURES: Record<Locale, RichFigures> = {
       random: {
         label: "Random graph",
         sub: "p = 1 · low C, low L",
-        body: "Edges land anywhere. Path lengths are tiny, but the local triangles are gone — no community structure left.",
+        body: "Edges land anywhere. Path lengths are tiny, but the local triangles are gone: no community structure left.",
       },
     },
     caption:
-      "Same N = 24 nodes, same starting ring lattice with k = 3 neighbours per side. Only the rewiring probability p changes. The middle picture is the small-world regime — shortcuts (drawn as chords across the circle) shrink the average path length dramatically while local triangles, the source of clustering, are mostly preserved.",
+      "Same N = 24 nodes, same starting ring lattice with k = 3 neighbours per side. Only the rewiring probability p changes. The middle picture is the small-world regime: shortcuts (drawn as chords across the circle) shrink the average path length dramatically while local triangles, the source of clustering, are mostly preserved.",
   },
   de: {
     finalLabel: "Schrumpfe die Welt.",
@@ -76,11 +76,11 @@ const FIGURES: Record<Locale, RichFigures> = {
       random: {
         label: "Zufallsgraph",
         sub: "p = 1 · niedriges C, niedriges L",
-        body: "Kanten landen irgendwo. Pfadlängen sind winzig, aber die lokalen Dreiecke sind weg — keine Gemeinschaftsstruktur bleibt übrig.",
+        body: "Kanten landen irgendwo. Pfadlängen sind winzig, aber die lokalen Dreiecke sind weg: Keine Gemeinschaftsstruktur bleibt übrig.",
       },
     },
     caption:
-      "Dieselben N = 24 Knoten, dasselbe Ring-Gitter zu Beginn mit k = 3 Nachbarn pro Seite. Nur die Verdrahtungswahrscheinlichkeit p ändert sich. Das mittlere Bild ist das Small-World-Regime — Abkürzungen (als Sehnen durch den Kreis gezeichnet) verkürzen die mittlere Pfadlänge dramatisch, während die lokalen Dreiecke, die Quelle des Clusterings, weitgehend erhalten bleiben.",
+      "Dieselben N = 24 Knoten, dasselbe Ring-Gitter zu Beginn mit k = 3 Nachbarn pro Seite. Nur die Verdrahtungswahrscheinlichkeit p ändert sich. Das mittlere Bild ist das Small-World-Regime: Abkürzungen (als Sehnen durch den Kreis gezeichnet) verkürzen die mittlere Pfadlänge dramatisch, während die lokalen Dreiecke, die Quelle des Clusterings, weitgehend erhalten bleiben.",
   },
   es: {
     finalLabel: "Encoge el mundo.",
@@ -100,11 +100,11 @@ const FIGURES: Record<Locale, RichFigures> = {
       random: {
         label: "Grafo aleatorio",
         sub: "p = 1 · C bajo, L bajo",
-        body: "Las aristas caen en cualquier sitio. Las longitudes de camino son diminutas, pero los triángulos locales han desaparecido — no queda estructura de comunidad.",
+        body: "Las aristas caen en cualquier sitio. Las longitudes de camino son diminutas, pero los triángulos locales han desaparecido: no queda estructura de comunidad.",
       },
     },
     caption:
-      "Los mismos N = 24 nodos, la misma retícula anular de partida con k = 3 vecinos por lado. Solo cambia la probabilidad de recableado p. La imagen central es el régimen small world — los atajos (dibujados como cuerdas a través del círculo) acortan drásticamente la longitud media de camino mientras los triángulos locales, fuente del clustering, se conservan en su mayoría.",
+      "Los mismos N = 24 nodos, la misma retícula anular de partida con k = 3 vecinos por lado. Solo cambia la probabilidad de recableado p. La imagen central es el régimen small world: los atajos (dibujados como cuerdas a través del círculo) acortan drásticamente la longitud media de camino mientras los triángulos locales, fuente del clustering, se conservan en su mayoría.",
   },
   fr: {
     finalLabel: "Rétrécis le monde.",
@@ -124,11 +124,11 @@ const FIGURES: Record<Locale, RichFigures> = {
       random: {
         label: "Graphe aléatoire",
         sub: "p = 1 · C faible, L faible",
-        body: "Les arêtes atterrissent n'importe où. Les longueurs de chemin sont minuscules, mais les triangles locaux ont disparu — plus de structure de communauté.",
+        body: "Les arêtes atterrissent n'importe où. Les longueurs de chemin sont minuscules, mais les triangles locaux ont disparu : plus de structure de communauté.",
       },
     },
     caption:
-      "Les mêmes N = 24 nœuds, le même réseau annulaire de départ avec k = 3 voisins par côté. Seule la probabilité de recâblage p change. L'image du milieu est le régime small world — les raccourcis (dessinés comme des cordes à travers le cercle) réduisent radicalement la longueur moyenne des chemins tandis que les triangles locaux, source du clustering, sont en grande partie préservés.",
+      "Les mêmes N = 24 nœuds, le même réseau annulaire de départ avec k = 3 voisins par côté. Seule la probabilité de recâblage p change. L'image du milieu est le régime small world : les raccourcis (dessinés comme des cordes à travers le cercle) réduisent radicalement la longueur moyenne des chemins tandis que les triangles locaux, source du clustering, sont en grande partie préservés.",
   },
   it: {
     finalLabel: "Restringi il mondo.",
@@ -148,11 +148,11 @@ const FIGURES: Record<Locale, RichFigures> = {
       random: {
         label: "Grafo casuale",
         sub: "p = 1 · C basso, L basso",
-        body: "Gli archi cadono ovunque. Le lunghezze dei cammini sono minuscole, ma i triangoli locali sono spariti — non resta alcuna struttura di comunità.",
+        body: "Gli archi cadono ovunque. Le lunghezze dei cammini sono minuscole, ma i triangoli locali sono spariti: non resta alcuna struttura di comunità.",
       },
     },
     caption:
-      "Gli stessi N = 24 nodi, lo stesso reticolo ad anello iniziale con k = 3 vicini per lato. Cambia solo la probabilità di ricablaggio p. L'immagine centrale è il regime small world — le scorciatoie (disegnate come corde attraverso il cerchio) riducono drasticamente la lunghezza media dei cammini mentre i triangoli locali, fonte del clustering, sono in gran parte preservati.",
+      "Gli stessi N = 24 nodi, lo stesso reticolo ad anello iniziale con k = 3 vicini per lato. Cambia solo la probabilità di ricablaggio p. L'immagine centrale è il regime small world: le scorciatoie (disegnate come corde attraverso il cerchio) riducono drasticamente la lunghezza media dei cammini mentre i triangoli locali, fonte del clustering, sono in gran parte preservati.",
   },
   pt: {
     finalLabel: "Encolha o mundo.",
@@ -172,11 +172,11 @@ const FIGURES: Record<Locale, RichFigures> = {
       random: {
         label: "Grafo aleatório",
         sub: "p = 1 · C baixo, L baixo",
-        body: "As arestas caem em qualquer lado. Os comprimentos dos caminhos são minúsculos, mas os triângulos locais desapareceram — não resta estrutura de comunidade.",
+        body: "As arestas caem em qualquer lado. Os comprimentos dos caminhos são minúsculos, mas os triângulos locais desapareceram: não resta estrutura de comunidade.",
       },
     },
     caption:
-      "Os mesmos N = 24 nós, o mesmo reticulado em anel inicial com k = 3 vizinhos por lado. Só muda a probabilidade de religação p. A imagem do meio é o regime small world — os atalhos (desenhados como cordas através do círculo) reduzem drasticamente o comprimento médio dos caminhos enquanto os triângulos locais, fonte do clustering, são em grande parte preservados.",
+      "Os mesmos N = 24 nós, o mesmo reticulado em anel inicial com k = 3 vizinhos por lado. Só muda a probabilidade de religação p. A imagem do meio é o regime small world: os atalhos (desenhados como cordas através do círculo) reduzem drasticamente o comprimento médio dos caminhos enquanto os triângulos locais, fonte do clustering, são em grande parte preservados.",
   },
   sv: {
     finalLabel: "Krymp världen.",
@@ -196,11 +196,11 @@ const FIGURES: Record<Locale, RichFigures> = {
       random: {
         label: "Slumpgraf",
         sub: "p = 1 · lågt C, lågt L",
-        body: "Kanterna landar var som helst. Väglängderna är pyttesmå, men de lokala trianglarna är borta — ingen gemenskapsstruktur kvar.",
+        body: "Kanterna landar var som helst. Väglängderna är pyttesmå, men de lokala trianglarna är borta: ingen gemenskapsstruktur kvar.",
       },
     },
     caption:
-      "Samma N = 24 noder, samma startringgitter med k = 3 grannar per sida. Endast omkopplingssannolikheten p ändras. Mittenbilden är small world-regimen — genvägar (ritade som kordor genom cirkeln) krymper den genomsnittliga väglängden dramatiskt medan de lokala trianglarna, källan till clustering, till stor del bevaras.",
+      "Samma N = 24 noder, samma startringgitter med k = 3 grannar per sida. Endast omkopplingssannolikheten p ändras. Mittenbilden är small world-regimen: genvägar (ritade som kordor genom cirkeln) krymper den genomsnittliga väglängden dramatiskt medan de lokala trianglarna, källan till clustering, till stor del bevaras.",
   },
   no: {
     finalLabel: "Krymp verden.",
@@ -220,11 +220,11 @@ const FIGURES: Record<Locale, RichFigures> = {
       random: {
         label: "Tilfeldig graf",
         sub: "p = 1 · lavt C, lavt L",
-        body: "Kantene lander hvor som helst. Sti-lengdene er bittesmå, men de lokale trekantene er borte — ingen fellesskapsstruktur igjen.",
+        body: "Kantene lander hvor som helst. Sti-lengdene er bittesmå, men de lokale trekantene er borte: ingen fellesskapsstruktur igjen.",
       },
     },
     caption:
-      "Samme N = 24 noder, samme start-ringgitter med k = 3 naboer per side. Bare omkoblingssannsynligheten p endres. Midtbildet er small world-regimet — snarveier (tegnet som korder gjennom sirkelen) krymper den gjennomsnittlige sti-lengden dramatisk mens de lokale trekantene, kilden til clustering, i stor grad bevares.",
+      "Samme N = 24 noder, samme start-ringgitter med k = 3 naboer per side. Bare omkoblingssannsynligheten p endres. Midtbildet er small world-regimet: Snarveier (tegnet som korder gjennom sirkelen) krymper den gjennomsnittlige sti-lengden dramatisk mens de lokale trekantene, kilden til clustering, i stor grad bevares.",
   },
 };
 
@@ -269,7 +269,7 @@ export default function SmallWorldStoryPage() {
                     <div className="overflow-hidden rounded-md bg-ink-950">
                       {/* Seed is stable per panel slot so the three pictures stay
                           identical across locales (label length used to vary the
-                          seed before — now we lock it to the panel key index). */}
+                          seed before; now we lock it to the panel key index). */}
                       <SmallNetworkSVG p={panelP[key]} seed={key.length + key.charCodeAt(0)} />
                     </div>
                     <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
@@ -292,7 +292,7 @@ export default function SmallWorldStoryPage() {
 }
 
 // Deterministic Watts-Strogatz mini-graph for the comparison panel. Pure SVG,
-// no client state needed — the seed makes the rewiring reproducible across
+// no client state needed: the seed makes the rewiring reproducible across
 // renders so the three pictures stay stable.
 function SmallNetworkSVG({ p, seed }: { p: number; seed: number }) {
   const N = 24;
@@ -301,7 +301,7 @@ function SmallNetworkSVG({ p, seed }: { p: number; seed: number }) {
   const cx = 90;
   const cy = 90;
 
-  // Tiny seeded RNG (mulberry32) — keeps the pictures stable.
+  // Tiny seeded RNG (mulberry32), keeps the pictures stable.
   let s = (seed * 9301 + 49297) >>> 0;
   const rand = () => {
     s = (s + 0x6d2b79f5) >>> 0;

@@ -1,6 +1,6 @@
 "use client";
 
-// Landing — the scroll-driven cosmos. The whole page is delegated to
+// Landing: the scroll-driven cosmos. The whole page is delegated to
 // CosmosScene, which mounts the parallax starfield + nebula backdrop,
 // the six per-category constellation scenes, the atlas overview at the
 // bottom, and the persistent HUD (compass, search palette, progress).

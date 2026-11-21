@@ -28,10 +28,10 @@ const STILL_SWEEP_INTERVAL_MS = 1000;
 
 type PitchRange = { label: string; min: number; max: number };
 const PITCH_RANGES: PitchRange[] = [
-  { label: "220–440 Hz", min: 220, max: 440 },
-  { label: "220–880 Hz", min: 220, max: 880 },
-  { label: "110–880 Hz", min: 110, max: 880 },
-  { label: "55–1760 Hz", min: 55, max: 1760 },
+  { label: "220-440 Hz", min: 220, max: 440 },
+  { label: "220-880 Hz", min: 220, max: 880 },
+  { label: "110-880 Hz", min: 110, max: 880 },
+  { label: "55-1760 Hz", min: 55, max: 1760 },
 ];
 
 const WAVES: OscillatorType[] = ["sine", "triangle", "sawtooth", "square"];

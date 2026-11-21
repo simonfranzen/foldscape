@@ -42,7 +42,7 @@ type RichStory = {
   sketchHint: string;
 };
 
-// Static SVG: 3 magnets and a few coloured radial spokes — a schematic
+// Static SVG: 3 magnets and a few coloured radial spokes, a schematic
 // preview of the basin structure.
 function BasinSketchSVG() {
   const W = 280;
@@ -112,9 +112,9 @@ const en: RichStory = {
   page: {
     pretitle: "Topic · Chaos",
     title: "The Magnetic Pendulum",
-    tagline: "Colour each start by its winner — and a fractal appears.",
+    tagline: "Colour each start by its winner, and a fractal appears.",
     intro:
-      "Hang an iron pendulum over three magnets in a triangle. Newton's laws, magnetic pull, a touch of friction — deterministic, all of it. And still the question «which magnet does it land over?» has no smooth answer. Colour each starting point by its eventual winner and three interlocked basins appear, woven into one another at every scale.",
+      "Hang an iron pendulum over three magnets in a triangle. Newton's laws, magnetic pull, a touch of friction: deterministic, all of it. And still the question «which magnet does it land over?» has no smooth answer. Colour each starting point by its eventual winner and three interlocked basins appear, woven into one another at every scale.",
     ctaInteractive: "→ Open the Explorer",
   },
   encounter: {
@@ -124,7 +124,7 @@ const en: RichStory = {
       {
         label: "01",
         title: "The big idea",
-        body: "For every point above the plate, ask: which magnet will the pendulum eventually rest over? Paint that point with the winner's colour. The plate becomes a map of futures — and the map is a fractal.",
+        body: "For every point above the plate, ask: which magnet will the pendulum eventually rest over? Paint that point with the winner's colour. The plate becomes a map of futures, and the map is a fractal.",
       },
       {
         label: "02",
@@ -134,7 +134,7 @@ const en: RichStory = {
       {
         label: "03",
         title: "Why it matters",
-        body: "The boundary between colours is a Wada set: at every boundary point, all three colours meet. Determinism survives, predictability does not — the same paradox that haunts weather, the solar system, and any physics with competing attractors.",
+        body: "The boundary between colours is a Wada set: at every boundary point, all three colours meet. Determinism survives, predictability does not: the same paradox that haunts weather, the solar system, and any physics with competing attractors.",
       },
     ],
     tryIt: "Below: sketch the picture, then turn the knobs on a live basin map.",
@@ -147,8 +147,8 @@ const en: RichStory = {
     },
     {
       pretitle: "Section 02 · Deterministic chaos",
-      title: "Same start, same end — different basin everywhere",
-      body: "Release the pendulum twice from exactly the same point and it lands over the same magnet, twice. The physics has no randomness in it. But move the start by a millimetre and the answer can flip — and the flip pattern is dense at every scale.",
+      title: "Same start, same end; different basin everywhere",
+      body: "Release the pendulum twice from exactly the same point and it lands over the same magnet, twice. The physics has no randomness in it. But move the start by a millimetre and the answer can flip, and the flip pattern is dense at every scale.",
     },
     {
       pretitle: "Section 03 · Basins of attraction",
@@ -158,7 +158,7 @@ const en: RichStory = {
     {
       pretitle: "Section 04 · The Wada property",
       title: "Every boundary point borders all three colours",
-      body: "Zoom into the boundary between any two basins and the third colour is already there, threaded through the seam. Zoom again and all three colours are arbitrarily close to every boundary point. The frontier is not a curve — it is a Wada set, where three regions share one common boundary.",
+      body: "Zoom into the boundary between any two basins and the third colour is already there, threaded through the seam. Zoom again and all three colours are arbitrarily close to every boundary point. The frontier is not a curve: it is a Wada set, where three regions share one common boundary.",
     },
     {
       pretitle: "Section 05 · Yoneyama, 1917",
@@ -174,7 +174,7 @@ const en: RichStory = {
   closingPretitle: "The challenge",
   closingTitle: "Find the Wada boundary.",
   closingBody:
-    "The Explorer lets you change the magnet strength, the damping, the height of the pendulum above the plate, and the resolution of the basin grid — and watch the fractal sharpen in real time.",
+    "The Explorer lets you change the magnet strength, the damping, the height of the pendulum above the plate, and the resolution of the basin grid, and watch the fractal sharpen in real time.",
   ctaLabel: "→ Open the Explorer",
   basinCaption: "Live · low-res basin map",
   basinDamping: "Damping γ",
@@ -195,9 +195,9 @@ const de: RichStory = {
   page: {
     pretitle: "Thema · Chaos",
     title: "Das magnetische Pendel",
-    tagline: "Färbe jeden Start nach seinem Sieger — und ein Fraktal erscheint.",
+    tagline: "Färbe jeden Start nach seinem Sieger, und ein Fraktal erscheint.",
     intro:
-      "Häng ein eisernes Pendel über drei in einem Dreieck angeordnete Magnete. Newtons Gesetze, magnetische Anziehung, ein wenig Reibung — alles deterministisch. Und doch hat die Frage «über welchem Magneten landet es?» keine glatte Antwort. Färbe jeden Startpunkt nach seinem späteren Sieger ein, und drei Bassins erscheinen, auf jeder Skala ineinander verwoben.",
+      "Häng ein eisernes Pendel über drei in einem Dreieck angeordnete Magnete. Newtons Gesetze, magnetische Anziehung, ein wenig Reibung: alles deterministisch. Und doch hat die Frage «über welchem Magneten landet es?» keine glatte Antwort. Färbe jeden Startpunkt nach seinem späteren Sieger ein, und drei Bassins erscheinen, auf jeder Skala ineinander verwoben.",
     ctaInteractive: "→ Explorer öffnen",
   },
   encounter: {
@@ -207,7 +207,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Für jeden Punkt über der Platte frage: über welchem Magneten ruht das Pendel am Ende? Färbe diesen Punkt in der Farbe des Siegers. Die Platte wird zur Karte möglicher Zukünfte — und die Karte ist ein Fraktal.",
+        body: "Für jeden Punkt über der Platte frage: über welchem Magneten ruht das Pendel am Ende? Färbe diesen Punkt in der Farbe des Siegers. Die Platte wird zur Karte möglicher Zukünfte, und die Karte ist ein Fraktal.",
       },
       {
         label: "02",
@@ -217,7 +217,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Die Grenze zwischen den Farben ist eine Wada-Menge: an jedem Grenzpunkt treffen sich alle drei Farben. Determinismus überlebt, Vorhersagbarkeit nicht — dasselbe Paradox spukt im Wetter, im Sonnensystem und in jeder Physik mit konkurrierenden Attraktoren.",
+        body: "Die Grenze zwischen den Farben ist eine Wada-Menge: an jedem Grenzpunkt treffen sich alle drei Farben. Determinismus überlebt, Vorhersagbarkeit nicht: Dasselbe Paradox spukt im Wetter, im Sonnensystem und in jeder Physik mit konkurrierenden Attraktoren.",
       },
     ],
     tryIt: "Unten: erst die Skizze, dann dreh selbst an einer lebendigen Bassin-Karte.",
@@ -230,8 +230,8 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 02 · Deterministisches Chaos",
-      title: "Gleicher Start, gleiches Ende — überall andere Bassins",
-      body: "Lass das Pendel zweimal exakt vom selben Punkt los, und es landet zweimal über demselben Magneten. Die Physik enthält keinen Zufall. Aber verschiebe den Start um einen Millimeter, und die Antwort kann kippen — und das Muster dieser Kipper ist auf jeder Skala dicht.",
+      title: "Gleicher Start, gleiches Ende; überall andere Bassins",
+      body: "Lass das Pendel zweimal exakt vom selben Punkt los, und es landet zweimal über demselben Magneten. Die Physik enthält keinen Zufall. Aber verschiebe den Start um einen Millimeter, und die Antwort kann kippen, und das Muster dieser Kipper ist auf jeder Skala dicht.",
     },
     {
       pretitle: "Abschnitt 03 · Bassins der Anziehung",
@@ -241,7 +241,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Die Wada-Eigenschaft",
       title: "Jeder Grenzpunkt grenzt an alle drei Farben",
-      body: "Zoom an die Grenze zwischen zwei Bassins, und die dritte Farbe ist schon da, durch die Naht gefädelt. Zoom weiter, und alle drei Farben kommen jedem Grenzpunkt beliebig nahe. Die Front ist keine Kurve — sie ist eine Wada-Menge, in der drei Bereiche eine gemeinsame Grenze teilen.",
+      body: "Zoom an die Grenze zwischen zwei Bassins, und die dritte Farbe ist schon da, durch die Naht gefädelt. Zoom weiter, und alle drei Farben kommen jedem Grenzpunkt beliebig nahe. Die Front ist keine Kurve: Sie ist eine Wada-Menge, in der drei Bereiche eine gemeinsame Grenze teilen.",
     },
     {
       pretitle: "Abschnitt 05 · Yoneyama, 1917",
@@ -257,7 +257,7 @@ const de: RichStory = {
   closingPretitle: "Die Herausforderung",
   closingTitle: "Finde die Wada-Grenze.",
   closingBody:
-    "Der Explorer lässt dich Magnetstärke, Dämpfung, Pendelhöhe über der Platte und Bassin-Auflösung verändern — und beobachten, wie das Fraktal in Echtzeit schärfer wird.",
+    "Der Explorer lässt dich Magnetstärke, Dämpfung, Pendelhöhe über der Platte und Bassin-Auflösung verändern, und beobachten, wie das Fraktal in Echtzeit schärfer wird.",
   ctaLabel: "→ Explorer öffnen",
   basinCaption: "Live · niedrig aufgelöste Bassin-Karte",
   basinDamping: "Dämpfung γ",
@@ -278,9 +278,9 @@ const es: RichStory = {
   page: {
     pretitle: "Tema · Caos",
     title: "El péndulo magnético",
-    tagline: "Colorea cada arranque por su ganador — y aparece un fractal.",
+    tagline: "Colorea cada arranque por su ganador, y aparece un fractal.",
     intro:
-      "Cuelga un péndulo de hierro sobre tres imanes en triángulo. Las leyes de Newton, atracción magnética, un poco de fricción — todo determinista. Y aun así la pregunta «¿sobre qué imán cae?» no tiene respuesta suave. Colorea cada punto de partida por su ganador eventual y aparecen tres cuencas entrelazadas, urdidas a cada escala.",
+      "Cuelga un péndulo de hierro sobre tres imanes en triángulo. Las leyes de Newton, atracción magnética, un poco de fricción: todo determinista. Y aun así la pregunta «¿sobre qué imán cae?» no tiene respuesta suave. Colorea cada punto de partida por su ganador eventual y aparecen tres cuencas entrelazadas, urdidas a cada escala.",
     ctaInteractive: "→ Abrir el Explorador",
   },
   encounter: {
@@ -290,7 +290,7 @@ const es: RichStory = {
       {
         label: "01",
         title: "La gran idea",
-        body: "Para cada punto sobre la placa pregunta: ¿sobre qué imán descansará el péndulo? Pinta ese punto del color del ganador. La placa se vuelve un mapa de futuros — y el mapa es un fractal.",
+        body: "Para cada punto sobre la placa pregunta: ¿sobre qué imán descansará el péndulo? Pinta ese punto del color del ganador. La placa se vuelve un mapa de futuros, y el mapa es un fractal.",
       },
       {
         label: "02",
@@ -300,7 +300,7 @@ const es: RichStory = {
       {
         label: "03",
         title: "Por qué importa",
-        body: "La frontera entre colores es un conjunto de Wada: en cada punto frontera se encuentran los tres colores. El determinismo sobrevive, la previsibilidad no — la misma paradoja que asedia al tiempo, al sistema solar y a toda física con atractores en competencia.",
+        body: "La frontera entre colores es un conjunto de Wada: en cada punto frontera se encuentran los tres colores. El determinismo sobrevive, la previsibilidad no: la misma paradoja que asedia al tiempo, al sistema solar y a toda física con atractores en competencia.",
       },
     ],
     tryIt: "Abajo: primero el boceto, después gira los mandos en un mapa de cuencas vivo.",
@@ -313,8 +313,8 @@ const es: RichStory = {
     },
     {
       pretitle: "Sección 02 · Caos determinista",
-      title: "Mismo inicio, mismo fin — distinta cuenca por todas partes",
-      body: "Suelta el péndulo dos veces exactamente desde el mismo punto y cae dos veces sobre el mismo imán. No hay azar en la física. Pero corre el inicio un milímetro y la respuesta puede invertirse — y el patrón de inversiones es denso a cada escala.",
+      title: "Mismo inicio, mismo fin; distinta cuenca por todas partes",
+      body: "Suelta el péndulo dos veces exactamente desde el mismo punto y cae dos veces sobre el mismo imán. No hay azar en la física. Pero corre el inicio un milímetro y la respuesta puede invertirse, y el patrón de inversiones es denso a cada escala.",
     },
     {
       pretitle: "Sección 03 · Cuencas de atracción",
@@ -324,7 +324,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 04 · La propiedad de Wada",
       title: "Cada punto frontera linda con los tres colores",
-      body: "Acércate a la frontera entre dos cuencas y el tercer color ya está ahí, hilvanado en la costura. Acércate más y los tres colores están arbitrariamente cerca de cualquier punto frontera. La frontera no es una curva — es un conjunto de Wada, donde tres regiones comparten un mismo borde.",
+      body: "Acércate a la frontera entre dos cuencas y el tercer color ya está ahí, hilvanado en la costura. Acércate más y los tres colores están arbitrariamente cerca de cualquier punto frontera. La frontera no es una curva: es un conjunto de Wada, donde tres regiones comparten un mismo borde.",
     },
     {
       pretitle: "Sección 05 · Yoneyama, 1917",
@@ -340,7 +340,7 @@ const es: RichStory = {
   closingPretitle: "El reto",
   closingTitle: "Encuentra la frontera de Wada.",
   closingBody:
-    "El Explorador te deja cambiar la fuerza de los imanes, la amortiguación, la altura del péndulo sobre la placa y la resolución de la rejilla — y ver cómo el fractal se afila en tiempo real.",
+    "El Explorador te deja cambiar la fuerza de los imanes, la amortiguación, la altura del péndulo sobre la placa y la resolución de la rejilla, y ver cómo el fractal se afila en tiempo real.",
   ctaLabel: "→ Abrir el Explorador",
   basinCaption: "En vivo · mapa de cuencas baja-res",
   basinDamping: "Amortiguación γ",
@@ -361,9 +361,9 @@ const fr: RichStory = {
   page: {
     pretitle: "Sujet · Chaos",
     title: "Le pendule magnétique",
-    tagline: "Colore chaque départ par son vainqueur — un fractal apparaît.",
+    tagline: "Colore chaque départ par son vainqueur : un fractal apparaît.",
     intro:
-      "Suspends un pendule de fer au-dessus de trois aimants en triangle. Les lois de Newton, l'attraction magnétique, un soupçon de frottement — tout est déterministe. Et pourtant la question «au-dessus de quel aimant se posera-t-il ?» n'a pas de réponse lisse. Colore chaque point de départ par son vainqueur final et trois bassins enlacés apparaissent, tissés l'un dans l'autre à chaque échelle.",
+      "Suspends un pendule de fer au-dessus de trois aimants en triangle. Les lois de Newton, l'attraction magnétique, un soupçon de frottement : tout est déterministe. Et pourtant la question «au-dessus de quel aimant se posera-t-il ?» n'a pas de réponse lisse. Colore chaque point de départ par son vainqueur final et trois bassins enlacés apparaissent, tissés l'un dans l'autre à chaque échelle.",
     ctaInteractive: "→ Ouvrir l'Explorateur",
   },
   encounter: {
@@ -373,7 +373,7 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Pour chaque point au-dessus de la plaque, demande : sur quel aimant le pendule va-t-il finir ? Peins ce point de la couleur du vainqueur. La plaque devient une carte des futurs — et la carte est un fractal.",
+        body: "Pour chaque point au-dessus de la plaque, demande : sur quel aimant le pendule va-t-il finir ? Peins ce point de la couleur du vainqueur. La plaque devient une carte des futurs, et la carte est un fractal.",
       },
       {
         label: "02",
@@ -383,7 +383,7 @@ const fr: RichStory = {
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "La frontière entre les couleurs est un ensemble de Wada : en chaque point frontière, les trois couleurs se rejoignent. Le déterminisme survit, la prévisibilité non — le même paradoxe hante la météo, le système solaire et toute physique à attracteurs concurrents.",
+        body: "La frontière entre les couleurs est un ensemble de Wada : en chaque point frontière, les trois couleurs se rejoignent. Le déterminisme survit, la prévisibilité non : le même paradoxe hante la météo, le système solaire et toute physique à attracteurs concurrents.",
       },
     ],
     tryIt:
@@ -397,8 +397,8 @@ const fr: RichStory = {
     },
     {
       pretitle: "Section 02 · Chaos déterministe",
-      title: "Même départ, même fin — bassin différent partout",
-      body: "Lâche le pendule deux fois exactement du même point, il se pose deux fois sur le même aimant. Aucune aléa dans la physique. Mais décale le départ d'un millimètre et la réponse peut basculer — et le motif des bascules est dense à toute échelle.",
+      title: "Même départ, même fin ; bassin différent partout",
+      body: "Lâche le pendule deux fois exactement du même point, il se pose deux fois sur le même aimant. Aucune aléa dans la physique. Mais décale le départ d'un millimètre et la réponse peut basculer, et le motif des bascules est dense à toute échelle.",
     },
     {
       pretitle: "Section 03 · Bassins d'attraction",
@@ -408,7 +408,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 04 · La propriété de Wada",
       title: "Chaque point frontière touche les trois couleurs",
-      body: "Zoome sur la frontière entre deux bassins, la troisième couleur y est déjà, faufilée dans la couture. Zoome encore, et les trois couleurs sont arbitrairement proches de chaque point frontière. La frontière n'est pas une courbe — c'est un ensemble de Wada, où trois régions partagent un même bord.",
+      body: "Zoome sur la frontière entre deux bassins, la troisième couleur y est déjà, faufilée dans la couture. Zoome encore, et les trois couleurs sont arbitrairement proches de chaque point frontière. La frontière n'est pas une courbe : c'est un ensemble de Wada, où trois régions partagent un même bord.",
     },
     {
       pretitle: "Section 05 · Yoneyama, 1917",
@@ -424,7 +424,7 @@ const fr: RichStory = {
   closingPretitle: "Le défi",
   closingTitle: "Trouve la frontière de Wada.",
   closingBody:
-    "L'Explorateur te laisse changer la force des aimants, l'amortissement, la hauteur du pendule au-dessus de la plaque et la résolution de la grille — et regarder le fractal s'aiguiser en temps réel.",
+    "L'Explorateur te laisse changer la force des aimants, l'amortissement, la hauteur du pendule au-dessus de la plaque et la résolution de la grille, et regarder le fractal s'aiguiser en temps réel.",
   ctaLabel: "→ Ouvrir l'Explorateur",
   basinCaption: "En direct · carte de bassins basse résolution",
   basinDamping: "Amortissement γ",
@@ -445,9 +445,9 @@ const it: RichStory = {
   page: {
     pretitle: "Tema · Caos",
     title: "Il pendolo magnetico",
-    tagline: "Colora ogni partenza dal suo vincitore — appare un frattale.",
+    tagline: "Colora ogni partenza dal suo vincitore: appare un frattale.",
     intro:
-      "Appendi un pendolo di ferro sopra tre magneti disposti a triangolo. Le leggi di Newton, l'attrazione magnetica, un pizzico d'attrito — tutto deterministico. Eppure la domanda «su quale magnete si poserà?» non ha risposta liscia. Colora ogni punto di partenza dal suo vincitore finale e appaiono tre bacini intrecciati, intessuti l'uno nell'altro a ogni scala.",
+      "Appendi un pendolo di ferro sopra tre magneti disposti a triangolo. Le leggi di Newton, l'attrazione magnetica, un pizzico d'attrito: tutto deterministico. Eppure la domanda «su quale magnete si poserà?» non ha risposta liscia. Colora ogni punto di partenza dal suo vincitore finale e appaiono tre bacini intrecciati, intessuti l'uno nell'altro a ogni scala.",
     ctaInteractive: "→ Apri l'Esploratore",
   },
   encounter: {
@@ -457,7 +457,7 @@ const it: RichStory = {
       {
         label: "01",
         title: "L'idea centrale",
-        body: "Per ogni punto sopra la piastra chiedi: su quale magnete riposerà il pendolo? Dipingi quel punto del colore del vincitore. La piastra diventa una mappa di futuri — e la mappa è un frattale.",
+        body: "Per ogni punto sopra la piastra chiedi: su quale magnete riposerà il pendolo? Dipingi quel punto del colore del vincitore. La piastra diventa una mappa di futuri, e la mappa è un frattale.",
       },
       {
         label: "02",
@@ -467,7 +467,7 @@ const it: RichStory = {
       {
         label: "03",
         title: "Perché conta",
-        body: "Il confine fra i colori è un insieme di Wada: in ogni punto di confine si incontrano tutti e tre i colori. Il determinismo sopravvive, la prevedibilità no — lo stesso paradosso che infesta il tempo, il sistema solare e ogni fisica con attrattori in competizione.",
+        body: "Il confine fra i colori è un insieme di Wada: in ogni punto di confine si incontrano tutti e tre i colori. Il determinismo sopravvive, la prevedibilità no: lo stesso paradosso che infesta il tempo, il sistema solare e ogni fisica con attrattori in competizione.",
       },
     ],
     tryIt: "Sotto: prima lo schizzo, poi gira tu le manopole su una mappa di bacini viva.",
@@ -480,8 +480,8 @@ const it: RichStory = {
     },
     {
       pretitle: "Sezione 02 · Caos deterministico",
-      title: "Stessa partenza, stessa fine — bacino diverso ovunque",
-      body: "Lascia il pendolo due volte esattamente dallo stesso punto e cade due volte sullo stesso magnete. Nessun caso nella fisica. Ma sposta la partenza di un millimetro e la risposta può ribaltarsi — e il pattern di ribaltamenti è denso a ogni scala.",
+      title: "Stessa partenza, stessa fine; bacino diverso ovunque",
+      body: "Lascia il pendolo due volte esattamente dallo stesso punto e cade due volte sullo stesso magnete. Nessun caso nella fisica. Ma sposta la partenza di un millimetro e la risposta può ribaltarsi, e il pattern di ribaltamenti è denso a ogni scala.",
     },
     {
       pretitle: "Sezione 03 · Bacini di attrazione",
@@ -491,7 +491,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 04 · La proprietà di Wada",
       title: "Ogni punto di confine confina con tutti e tre i colori",
-      body: "Zooma sul confine tra due bacini e il terzo colore è già lì, intrecciato nella cucitura. Zooma ancora e tutti e tre i colori sono arbitrariamente vicini a ogni punto di confine. La frontiera non è una curva — è un insieme di Wada, dove tre regioni condividono un solo bordo.",
+      body: "Zooma sul confine tra due bacini e il terzo colore è già lì, intrecciato nella cucitura. Zooma ancora e tutti e tre i colori sono arbitrariamente vicini a ogni punto di confine. La frontiera non è una curva: è un insieme di Wada, dove tre regioni condividono un solo bordo.",
     },
     {
       pretitle: "Sezione 05 · Yoneyama, 1917",
@@ -507,7 +507,7 @@ const it: RichStory = {
   closingPretitle: "La sfida",
   closingTitle: "Trova il confine di Wada.",
   closingBody:
-    "L'Esploratore ti lascia cambiare forza dei magneti, smorzamento, altezza del pendolo sopra la piastra e risoluzione della griglia — e vedere il frattale affilarsi in tempo reale.",
+    "L'Esploratore ti lascia cambiare forza dei magneti, smorzamento, altezza del pendolo sopra la piastra e risoluzione della griglia, e vedere il frattale affilarsi in tempo reale.",
   ctaLabel: "→ Apri l'Esploratore",
   basinCaption: "Live · mappa di bacini bassa risoluzione",
   basinDamping: "Smorzamento γ",
@@ -528,9 +528,9 @@ const pt: RichStory = {
   page: {
     pretitle: "Tema · Caos",
     title: "O pêndulo magnético",
-    tagline: "Colore cada arranque pelo seu vencedor — e surge um fractal.",
+    tagline: "Colore cada arranque pelo seu vencedor, e surge um fractal.",
     intro:
-      "Pendura um pêndulo de ferro sobre três ímanes em triângulo. As leis de Newton, atracção magnética, um pingo de atrito — tudo determinista. E ainda assim a pergunta «sobre que íman pousa?» não tem resposta lisa. Colore cada ponto de partida pelo seu vencedor final e surgem três bacias entrelaçadas, tecidas uma na outra a cada escala.",
+      "Pendura um pêndulo de ferro sobre três ímanes em triângulo. As leis de Newton, atracção magnética, um pingo de atrito: tudo determinista. E ainda assim a pergunta «sobre que íman pousa?» não tem resposta lisa. Colore cada ponto de partida pelo seu vencedor final e surgem três bacias entrelaçadas, tecidas uma na outra a cada escala.",
     ctaInteractive: "→ Abrir o Explorador",
   },
   encounter: {
@@ -540,7 +540,7 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A ideia central",
-        body: "Para cada ponto sobre a placa pergunta: sobre que íman descansará o pêndulo? Pinta esse ponto da cor do vencedor. A placa torna-se um mapa de futuros — e o mapa é um fractal.",
+        body: "Para cada ponto sobre a placa pergunta: sobre que íman descansará o pêndulo? Pinta esse ponto da cor do vencedor. A placa torna-se um mapa de futuros, e o mapa é um fractal.",
       },
       {
         label: "02",
@@ -550,7 +550,7 @@ const pt: RichStory = {
       {
         label: "03",
         title: "Porque importa",
-        body: "A fronteira entre as cores é um conjunto de Wada: em cada ponto fronteira encontram-se as três cores. O determinismo sobrevive, a previsibilidade não — o mesmo paradoxo que assombra o tempo, o sistema solar e toda a física com atractores em competição.",
+        body: "A fronteira entre as cores é um conjunto de Wada: em cada ponto fronteira encontram-se as três cores. O determinismo sobrevive, a previsibilidade não: o mesmo paradoxo que assombra o tempo, o sistema solar e toda a física com atractores em competição.",
       },
     ],
     tryIt: "Em baixo: primeiro o esboço, depois mexe tu nos botões de um mapa de bacias vivo.",
@@ -563,8 +563,8 @@ const pt: RichStory = {
     },
     {
       pretitle: "Secção 02 · Caos determinista",
-      title: "Mesmo início, mesmo fim — bacia distinta por toda parte",
-      body: "Solta o pêndulo duas vezes exactamente do mesmo ponto e cai duas vezes sobre o mesmo íman. Não há acaso na física. Mas desloca o início um milímetro e a resposta pode virar — e o padrão dessas viragens é denso a toda a escala.",
+      title: "Mesmo início, mesmo fim; bacia distinta por toda parte",
+      body: "Solta o pêndulo duas vezes exactamente do mesmo ponto e cai duas vezes sobre o mesmo íman. Não há acaso na física. Mas desloca o início um milímetro e a resposta pode virar, e o padrão dessas viragens é denso a toda a escala.",
     },
     {
       pretitle: "Secção 03 · Bacias de atracção",
@@ -574,7 +574,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 04 · A propriedade de Wada",
       title: "Cada ponto fronteira confina com as três cores",
-      body: "Aproxima-te da fronteira entre duas bacias e a terceira cor já está ali, alinhavada na costura. Aproxima-te mais e as três cores ficam arbitrariamente perto de cada ponto fronteira. A frente não é uma curva — é um conjunto de Wada, onde três regiões partilham uma só fronteira.",
+      body: "Aproxima-te da fronteira entre duas bacias e a terceira cor já está ali, alinhavada na costura. Aproxima-te mais e as três cores ficam arbitrariamente perto de cada ponto fronteira. A frente não é uma curva: é um conjunto de Wada, onde três regiões partilham uma só fronteira.",
     },
     {
       pretitle: "Secção 05 · Yoneyama, 1917",
@@ -590,7 +590,7 @@ const pt: RichStory = {
   closingPretitle: "O desafio",
   closingTitle: "Encontra a fronteira de Wada.",
   closingBody:
-    "O Explorador deixa-te mudar a força dos ímanes, o amortecimento, a altura do pêndulo sobre a placa e a resolução da grelha — e ver o fractal afinar em tempo real.",
+    "O Explorador deixa-te mudar a força dos ímanes, o amortecimento, a altura do pêndulo sobre a placa e a resolução da grelha, e ver o fractal afinar em tempo real.",
   ctaLabel: "→ Abrir o Explorador",
   basinCaption: "Em directo · mapa de bacias baixa resolução",
   basinDamping: "Amortecimento γ",
@@ -611,9 +611,9 @@ const sv: RichStory = {
   page: {
     pretitle: "Tema · Kaos",
     title: "Den magnetiska pendeln",
-    tagline: "Färga varje start efter sin vinnare — och en fraktal dyker upp.",
+    tagline: "Färga varje start efter sin vinnare, och en fraktal dyker upp.",
     intro:
-      "Häng en järnpendel över tre magneter i triangel. Newtons lagar, magnetisk dragning, en aning friktion — allt deterministiskt. Och ändå har frågan «över vilken magnet landar den?» inget slätt svar. Färga varje startpunkt efter sin slutliga vinnare och tre sammanflätade bäcken dyker upp, vävda i varandra på varje skala.",
+      "Häng en järnpendel över tre magneter i triangel. Newtons lagar, magnetisk dragning, en aning friktion: allt deterministiskt. Och ändå har frågan «över vilken magnet landar den?» inget slätt svar. Färga varje startpunkt efter sin slutliga vinnare och tre sammanflätade bäcken dyker upp, vävda i varandra på varje skala.",
     ctaInteractive: "→ Öppna Utforskaren",
   },
   encounter: {
@@ -623,7 +623,7 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "För varje punkt över plattan fråga: över vilken magnet kommer pendeln att vila? Måla punkten i vinnarens färg. Plattan blir en karta över framtider — och kartan är en fraktal.",
+        body: "För varje punkt över plattan fråga: över vilken magnet kommer pendeln att vila? Måla punkten i vinnarens färg. Plattan blir en karta över framtider, och kartan är en fraktal.",
       },
       {
         label: "02",
@@ -633,7 +633,7 @@ const sv: RichStory = {
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "Gränsen mellan färgerna är en Wada-mängd: i varje gränspunkt möts alla tre färger. Determinismen överlever, förutsägbarheten inte — samma paradox spökar i vädret, solsystemet och all fysik med konkurrerande attraktorer.",
+        body: "Gränsen mellan färgerna är en Wada-mängd: i varje gränspunkt möts alla tre färger. Determinismen överlever, förutsägbarheten inte: samma paradox spökar i vädret, solsystemet och all fysik med konkurrerande attraktorer.",
       },
     ],
     tryIt: "Nedan: först skissen, sedan vrider du själv rattarna på en levande bäckenkarta.",
@@ -646,8 +646,8 @@ const sv: RichStory = {
     },
     {
       pretitle: "Avsnitt 02 · Deterministisk kaos",
-      title: "Samma start, samma slut — olika bäcken överallt",
-      body: "Släpp pendeln två gånger från exakt samma punkt och den landar två gånger över samma magnet. Ingen slump i fysiken. Men flytta starten en millimeter och svaret kan vända — och mönstret av vändningar är tätt på varje skala.",
+      title: "Samma start, samma slut; olika bäcken överallt",
+      body: "Släpp pendeln två gånger från exakt samma punkt och den landar två gånger över samma magnet. Ingen slump i fysiken. Men flytta starten en millimeter och svaret kan vända, och mönstret av vändningar är tätt på varje skala.",
     },
     {
       pretitle: "Avsnitt 03 · Attraktionsbäcken",
@@ -657,7 +657,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 04 · Wada-egenskapen",
       title: "Varje gränspunkt gränsar till alla tre färger",
-      body: "Zooma in på gränsen mellan två bäcken och den tredje färgen finns redan där, trädd genom sömmen. Zooma igen och alla tre färger ligger godtyckligt nära varje gränspunkt. Fronten är ingen kurva — den är en Wada-mängd, där tre regioner delar en gemensam gräns.",
+      body: "Zooma in på gränsen mellan två bäcken och den tredje färgen finns redan där, trädd genom sömmen. Zooma igen och alla tre färger ligger godtyckligt nära varje gränspunkt. Fronten är ingen kurva: den är en Wada-mängd, där tre regioner delar en gemensam gräns.",
     },
     {
       pretitle: "Avsnitt 05 · Yoneyama, 1917",
@@ -673,7 +673,7 @@ const sv: RichStory = {
   closingPretitle: "Utmaningen",
   closingTitle: "Hitta Wada-gränsen.",
   closingBody:
-    "Utforskaren låter dig ändra magnetstyrka, dämpning, pendelhöjd över plattan och rutnätets upplösning — och se fraktalen skärpas i realtid.",
+    "Utforskaren låter dig ändra magnetstyrka, dämpning, pendelhöjd över plattan och rutnätets upplösning, och se fraktalen skärpas i realtid.",
   ctaLabel: "→ Öppna Utforskaren",
   basinCaption: "Live · låguppl. bäckenkarta",
   basinDamping: "Dämpning γ",
@@ -694,9 +694,9 @@ const no: RichStory = {
   page: {
     pretitle: "Tema · Kaos",
     title: "Den magnetiske pendelen",
-    tagline: "Farg hver start etter sin vinner — og en fraktal dukker opp.",
+    tagline: "Farg hver start etter sin vinner, og en fraktal dukker opp.",
     intro:
-      "Heng en jernpendel over tre magneter i en trekant. Newtons lover, magnetisk tiltrekning, et streif av friksjon — alt deterministisk. Likevel har spørsmålet «over hvilken magnet lander den?» ikke noe glatt svar. Farg hvert startpunkt etter sin endelige vinner, og tre sammenflettede bekken dukker opp, vevet inn i hverandre på hver skala.",
+      "Heng en jernpendel over tre magneter i en trekant. Newtons lover, magnetisk tiltrekning, et streif av friksjon: alt deterministisk. Likevel har spørsmålet «over hvilken magnet lander den?» ikke noe glatt svar. Farg hvert startpunkt etter sin endelige vinner, og tre sammenflettede bekken dukker opp, vevet inn i hverandre på hver skala.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -706,7 +706,7 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store idéen",
-        body: "For hvert punkt over platen, spør: over hvilken magnet vil pendelen hvile? Mal punktet i vinnerens farge. Platen blir et kart over framtider — og kartet er en fraktal.",
+        body: "For hvert punkt over platen, spør: over hvilken magnet vil pendelen hvile? Mal punktet i vinnerens farge. Platen blir et kart over framtider, og kartet er en fraktal.",
       },
       {
         label: "02",
@@ -716,7 +716,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Grensen mellom fargene er en Wada-mengde: i hvert grensepunkt møtes alle tre farger. Determinismen overlever, forutsigbarheten ikke — det samme paradokset hjemsøker været, solsystemet og all fysikk med konkurrerende attraktorer.",
+        body: "Grensen mellom fargene er en Wada-mengde: i hvert grensepunkt møtes alle tre farger. Determinismen overlever, forutsigbarheten ikke: Det samme paradokset hjemsøker været, solsystemet og all fysikk med konkurrerende attraktorer.",
       },
     ],
     tryIt: "Under: først skissen, så vrir du selv på rattene på et levende bekkenkart.",
@@ -729,8 +729,8 @@ const no: RichStory = {
     },
     {
       pretitle: "Del 02 · Deterministisk kaos",
-      title: "Samme start, samme slutt — annet bekken overalt",
-      body: "Slipp pendelen to ganger fra nøyaktig samme punkt og den lander to ganger over samme magnet. Ingen tilfeldighet i fysikken. Men flytt starten en millimeter og svaret kan snu — og mønsteret av snuinger er tett på hver skala.",
+      title: "Samme start, samme slutt; annet bekken overalt",
+      body: "Slipp pendelen to ganger fra nøyaktig samme punkt og den lander to ganger over samme magnet. Ingen tilfeldighet i fysikken. Men flytt starten en millimeter og svaret kan snu, og mønsteret av snuinger er tett på hver skala.",
     },
     {
       pretitle: "Del 03 · Tiltrekningsbekken",
@@ -740,7 +740,7 @@ const no: RichStory = {
     {
       pretitle: "Del 04 · Wada-egenskapen",
       title: "Hvert grensepunkt grenser til alle tre farger",
-      body: "Zoom inn på grensen mellom to bekken og den tredje fargen er allerede der, trådd gjennom sømmen. Zoom igjen og alle tre farger ligger vilkårlig nær hvert grensepunkt. Fronten er ingen kurve — den er en Wada-mengde, der tre regioner deler én felles grense.",
+      body: "Zoom inn på grensen mellom to bekken og den tredje fargen er allerede der, trådd gjennom sømmen. Zoom igjen og alle tre farger ligger vilkårlig nær hvert grensepunkt. Fronten er ingen kurve: Den er en Wada-mengde, der tre regioner deler én felles grense.",
     },
     {
       pretitle: "Del 05 · Yoneyama, 1917",
@@ -756,7 +756,7 @@ const no: RichStory = {
   closingPretitle: "Utfordringen",
   closingTitle: "Finn Wada-grensen.",
   closingBody:
-    "Utforskeren lar deg endre magnetstyrke, demping, pendelhøyde over platen og rutenettets oppløsning — og se fraktalen skjerpe seg i sanntid.",
+    "Utforskeren lar deg endre magnetstyrke, demping, pendelhøyde over platen og rutenettets oppløsning, og se fraktalen skjerpe seg i sanntid.",
   ctaLabel: "→ Åpne Utforskeren",
   basinCaption: "Live · lav-oppl. bekkenkart",
   basinDamping: "Demping γ",
@@ -799,7 +799,7 @@ export default function MagpendulumStory() {
       }
       finalLabel={story.closingTitle}
     >
-      {/* Encounter — three layperson cards */}
+      {/* Encounter: three layperson cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -832,7 +832,7 @@ export default function MagpendulumStory() {
           </p>
         </Reveal>
 
-        {/* Schematic preview — static SVG */}
+        {/* Schematic preview: static SVG */}
         <Reveal delay={520}>
           <div className="hairline flex flex-col items-center gap-3 rounded-2xl border bg-ink-950/40 p-6">
             <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
@@ -846,17 +846,17 @@ export default function MagpendulumStory() {
         </Reveal>
       </section>
 
-      {/* Section 01 — The physics */}
+      {/* Section 01: The physics */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard {...sec0!} accent={ACCENT} />
       </section>
 
-      {/* Section 02 — Deterministic chaos */}
+      {/* Section 02: Deterministic chaos */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard {...sec1!} accent={ACCENT} />
       </section>
 
-      {/* Section 03 — Basins of attraction + LIVE INTERACTIVE BASIN MINI */}
+      {/* Section 03: Basins of attraction + LIVE INTERACTIVE BASIN MINI */}
       <section className="mx-auto mb-32 max-w-5xl space-y-8">
         <StoryCard {...sec2!} accent={ACCENT} />
         <Reveal delay={120}>
@@ -871,17 +871,17 @@ export default function MagpendulumStory() {
         </Reveal>
       </section>
 
-      {/* Section 04 — Wada property */}
+      {/* Section 04: Wada property */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard {...sec3!} accent={ACCENT} />
       </section>
 
-      {/* Section 05 — Yoneyama 1917 */}
+      {/* Section 05: Yoneyama 1917 */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard {...sec4!} accent={ACCENT} />
       </section>
 
-      {/* Section 06 — Connections */}
+      {/* Section 06: Connections */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard {...sec5!} accent={ACCENT} />
       </section>

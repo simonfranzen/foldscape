@@ -539,7 +539,7 @@ export default function ChaosGameExplorer() {
         setTotalPoints(countRef.current);
       }
       if (countRef.current >= BUDGET) {
-        setTotalPoints(countRef.current); // settled — flush the final count
+        setTotalPoints(countRef.current); // settled: flush the final count
         return;
       }
       raf = requestAnimationFrame(tick);

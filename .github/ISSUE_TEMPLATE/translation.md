@@ -27,4 +27,4 @@ en / de / es / fr / it / pt / sv / no
 ## Why
 
 Tone, register, gender-neutral language, mathematical accuracy, idiom,
-typo — what's the reason for the change?
+typo: what's the reason for the change?

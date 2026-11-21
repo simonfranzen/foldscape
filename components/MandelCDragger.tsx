@@ -117,7 +117,7 @@ export function MandelCDragger({
         return;
       }
       if (stepIndex >= maxSteps) {
-        // bounded run finished — quick reset for visual rhythm
+        // bounded run finished: quick reset for visual rhythm
         window.setTimeout(restart, 600);
       }
     };

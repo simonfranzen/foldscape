@@ -114,12 +114,12 @@ const en: RichStory = {
       {
         label: "01",
         title: "The big idea",
-        body: "One tiny symbol — ℩ (iota) — is enough to encode any computer program that has ever been written, or ever could be. Like NAND for hardware, but for computation itself: a single primitive from which the rest is just rearrangement.",
+        body: "One tiny symbol, ℩ (iota), is enough to encode any computer program that has ever been written, or ever could be. Like NAND for hardware, but for computation itself: a single primitive from which the rest is just rearrangement.",
       },
       {
         label: "02",
         title: "A concrete example",
-        body: "Iota is defined by one rule: ℩x = xSK, where S and K are the two famous combinators. From a small nest of iotas — ℩(℩(℩℩)) — you can recover K (the constant function). One layer deeper, ℩(℩(℩(℩℩))), you recover S (the substitution function). And once you have S and K, every computable function follows.",
+        body: "Iota is defined by one rule: ℩x = xSK, where S and K are the two famous combinators. From a small nest of iotas, ℩(℩(℩℩)), you can recover K (the constant function). One layer deeper, ℩(℩(℩(℩℩))), you recover S (the substitution function). And once you have S and K, every computable function follows.",
       },
       {
         label: "03",
@@ -133,7 +133,7 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · Background",
       title: "Lambda calculus and closed terms",
-      body: "In the 1930s Alonzo Church invented the λ-calculus to study what “computable” really meant. Functions are written as λx.M and applied by substitution. A combinator is a closed λ-term: it has no free variables — everything it needs comes through its arguments. Combinators are pure plumbing. Church and Curry showed that the λ-calculus is exactly as powerful as a Turing machine; combinators give us that power without variables.",
+      body: "In the 1930s Alonzo Church invented the λ-calculus to study what “computable” really meant. Functions are written as λx.M and applied by substitution. A combinator is a closed λ-term: it has no free variables; everything it needs comes through its arguments. Combinators are pure plumbing. Church and Curry showed that the λ-calculus is exactly as powerful as a Turing machine; combinators give us that power without variables.",
     },
     {
       pretitle: "Section 02 · Schönfinkel, 1924",
@@ -143,37 +143,37 @@ const en: RichStory = {
     {
       pretitle: "Section 03 · Barker, 2001",
       title: "Enter Iota",
-      body: "In 2001 the linguist and logician Chris Barker asked: how far can we push this? Schönfinkel needed two combinators. Can one suffice? He defined ℩ ≡ λx. x S K — “apply your argument to S and to K, in that order.” That's the whole language: one symbol, one rule. Parentheses are typography, not extra primitives. And yet, as we'll now see, this single rule contains S and K as derived terms — and therefore everything.",
+      body: "In 2001 the linguist and logician Chris Barker asked: how far can we push this? Schönfinkel needed two combinators. Can one suffice? He defined ℩ ≡ λx. x S K: “apply your argument to S and to K, in that order.” That's the whole language: one symbol, one rule. Parentheses are typography, not extra primitives. And yet, as we'll now see, this single rule contains S and K as derived terms, and therefore everything.",
     },
     {
       pretitle: "Section 04 · Deriving K",
       title: "A small nest of iotas gives K",
-      body: "Take ℩(℩(℩℩)). Each outer iota fires the rule ℩x = xSK: the outermost peels off as (℩(℩ι)) S K, then again, and again. After a few S- and K-reductions the dust settles on the bare combinator K. The leftmost-outermost trace runs about nine steps from start to finish — a short chain, all bookkeeping. From four strokes of one symbol, the constant function falls out.",
+      body: "Take ℩(℩(℩℩)). Each outer iota fires the rule ℩x = xSK: the outermost peels off as (℩(℩ι)) S K, then again, and again. After a few S- and K-reductions the dust settles on the bare combinator K. The leftmost-outermost trace runs about nine steps from start to finish, a short chain, all bookkeeping. From four strokes of one symbol, the constant function falls out.",
     },
     {
       pretitle: "Section 05 · Deriving S",
       title: "A deeper nest gives S",
-      body: "Now apply iota to a three-deep nest of iotas: ℩(℩(℩(℩℩))). Each outer iota fires the rule ℩x = xSK and pushes another S K onto the spine. After a handful of reduction steps, the leftover terms cancel against one another through S- and K-reductions, and what stays is the bare combinator S. The whole derivation is a few lines of bookkeeping — but the consequence is that S can be expressed in iotas alone.",
+      body: "Now apply iota to a three-deep nest of iotas: ℩(℩(℩(℩℩))). Each outer iota fires the rule ℩x = xSK and pushes another S K onto the spine. After a handful of reduction steps, the leftover terms cancel against one another through S- and K-reductions, and what stays is the bare combinator S. The whole derivation is a few lines of bookkeeping, but the consequence is that S can be expressed in iotas alone.",
     },
     {
       pretitle: "Section 06 · Turing-completeness",
       title: "From one symbol to everything computable",
-      body: "Curry and Feys' Combinatory Logic (1958) is a long book whose central theorem is short: every λ-term can be translated into a term built from S and K alone. Combine that with what we just did — iota produces S and iota produces K — and the chain is complete. Anything a Turing machine, a Python program, or a human mathematician can compute, iota can encode. The price is brutal blow-up in length; the payoff is conceptual. Iota stands behind functional programming, type theory, proof assistants, and every implementation of ML-style languages as the ultimate minimal model.",
+      body: "Curry and Feys' Combinatory Logic (1958) is a long book whose central theorem is short: every λ-term can be translated into a term built from S and K alone. Combine that with what we just did (iota produces S and iota produces K) and the chain is complete. Anything a Turing machine, a Python program, or a human mathematician can compute, iota can encode. The price is brutal blow-up in length; the payoff is conceptual. Iota stands behind functional programming, type theory, proof assistants, and every implementation of ML-style languages as the ultimate minimal model.",
     },
   ],
   reducerCaption: "Interactive · step-by-step reducer",
   reducerPretitle: "Try it · the reducer",
   reducerTitle: "Watch a derivation unfold",
   reducerBody:
-    "Pick a famous derivation (ι (ι (ι ι)) → K, or ι (ι (ι (ι ι))) → S), or type your own expression. Press Step to apply one reduction; the new term replaces the old. The reducer follows leftmost-outermost order — exactly the strategy the textbooks use.",
+    "Pick a famous derivation (ι (ι (ι ι)) → K, or ι (ι (ι (ι ι))) → S), or type your own expression. Press Step to apply one reduction; the new term replaces the old. The reducer follows leftmost-outermost order, exactly the strategy the textbooks use.",
   ksCaption: "Interactive · K and S playground",
   ksPretitle: "Try it · K and S",
   ksTitle: "Feel what K and S actually do",
   ksBody:
     "Before they get tangled up in iotas, K and S are just plain functions. K throws its second argument away. S applies its first two arguments to a shared third. Type any three values; the panel shows you the symbolic result on the right.",
   ksLabels: {
-    kHeading: "K — the constant function",
-    sHeading: "S — the substitution function",
+    kHeading: "K: the constant function",
+    sHeading: "S: the substitution function",
     kBody: "Hand K any two values and it keeps the first while dropping the second on the floor.",
     sBody:
       "S takes three arguments and rewrites them as x z (y z): both x and y are applied to the shared input z.",
@@ -270,12 +270,12 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Ein einziges winziges Zeichen — ℩ (Iota) — reicht, um jedes Computerprogramm zu codieren, das je geschrieben wurde oder werden könnte. Wie NAND für die Hardware, nur für die Berechnung selbst: ein einziges Primitiv, alles andere ist Umsortieren.",
+        body: "Ein einziges winziges Zeichen, ℩ (Iota), reicht, um jedes Computerprogramm zu codieren, das je geschrieben wurde oder werden könnte. Wie NAND für die Hardware, nur für die Berechnung selbst: ein einziges Primitiv, alles andere ist Umsortieren.",
       },
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Iota ist durch eine Regel definiert: ℩x = xSK, wobei S und K die berühmten Kombinatoren sind. Aus einer kleinen Iota-Schachtelung — ℩(℩(℩℩)) — gewinnt man K (die Konstantenfunktion) zurück. Eine Schicht tiefer, ℩(℩(℩(℩℩))), erhält man S (die Substitutionsfunktion). Und mit S und K folgt jede berechenbare Funktion.",
+        body: "Iota ist durch eine Regel definiert: ℩x = xSK, wobei S und K die berühmten Kombinatoren sind. Aus einer kleinen Iota-Schachtelung, ℩(℩(℩℩)), gewinnt man K (die Konstantenfunktion) zurück. Eine Schicht tiefer, ℩(℩(℩(℩℩))), erhält man S (die Substitutionsfunktion). Und mit S und K folgt jede berechenbare Funktion.",
       },
       {
         label: "03",
@@ -290,7 +290,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Hintergrund",
       title: "Lambda-Kalkül und geschlossene Terme",
-      body: "In den 1930ern erfand Alonzo Church den λ-Kalkül, um zu klären, was „berechenbar“ eigentlich heißt. Funktionen schreibt man als λx.M und wendet sie per Substitution an. Ein Kombinator ist ein geschlossener λ-Term: keine freien Variablen — alles, was er braucht, kommt über seine Argumente. Kombinatoren sind reine Verdrahtung. Church und Curry zeigten, dass der λ-Kalkül exakt so mächtig ist wie eine Turing-Maschine; Kombinatoren geben uns diese Mächtigkeit ohne Variablen.",
+      body: "In den 1930ern erfand Alonzo Church den λ-Kalkül, um zu klären, was „berechenbar“ eigentlich heißt. Funktionen schreibt man als λx.M und wendet sie per Substitution an. Ein Kombinator ist ein geschlossener λ-Term: keine freien Variablen; alles, was er braucht, kommt über seine Argumente. Kombinatoren sind reine Verdrahtung. Church und Curry zeigten, dass der λ-Kalkül exakt so mächtig ist wie eine Turing-Maschine; Kombinatoren geben uns diese Mächtigkeit ohne Variablen.",
     },
     {
       pretitle: "Abschnitt 02 · Schönfinkel, 1924",
@@ -300,37 +300,37 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Barker, 2001",
       title: "Auftritt Iota",
-      body: "2001 fragte der Linguist und Logiker Chris Barker: wie weit kann man das treiben? Schönfinkel brauchte zwei Kombinatoren. Reicht einer? Er definierte ℩ ≡ λx. x S K — „wende dein Argument auf S an, dann auf K.“ Das ist die ganze Sprache: ein Symbol, eine Regel. Klammern sind Typografie, kein zusätzliches Primitiv. Und doch enthält diese eine Regel S und K als abgeleitete Terme — und damit alles.",
+      body: "2001 fragte der Linguist und Logiker Chris Barker: wie weit kann man das treiben? Schönfinkel brauchte zwei Kombinatoren. Reicht einer? Er definierte ℩ ≡ λx. x S K: „wende dein Argument auf S an, dann auf K.“ Das ist die ganze Sprache: ein Symbol, eine Regel. Klammern sind Typografie, kein zusätzliches Primitiv. Und doch enthält diese eine Regel S und K als abgeleitete Terme, und damit alles.",
     },
     {
       pretitle: "Abschnitt 04 · K herleiten",
       title: "Eine kleine Iota-Schachtelung ergibt K",
-      body: "Nimm ℩(℩(℩℩)). Jedes äußere Iota feuert die Regel ℩x = xSK: das äußerste schält sich als (℩(℩ι)) S K ab, dann noch einmal, dann noch einmal. Nach ein paar S- und K-Reduktionen bleibt am Ende der nackte Kombinator K übrig. Die Linksaußen-Spur läuft etwa neun Schritte von Anfang bis Ende — eine kurze Kette, alles Buchhaltung. Aus vier Strichen eines einzigen Symbols fällt die Konstantenfunktion heraus.",
+      body: "Nimm ℩(℩(℩℩)). Jedes äußere Iota feuert die Regel ℩x = xSK: das äußerste schält sich als (℩(℩ι)) S K ab, dann noch einmal, dann noch einmal. Nach ein paar S- und K-Reduktionen bleibt am Ende der nackte Kombinator K übrig. Die Linksaußen-Spur läuft etwa neun Schritte von Anfang bis Ende, eine kurze Kette, alles Buchhaltung. Aus vier Strichen eines einzigen Symbols fällt die Konstantenfunktion heraus.",
     },
     {
       pretitle: "Abschnitt 05 · S herleiten",
       title: "Eine tiefere Schachtelung ergibt S",
-      body: "Jetzt wende Iota auf eine dreifach geschachtelte Iota-Folge an: ℩(℩(℩(℩℩))). Jedes äußere Iota feuert die Regel ℩x = xSK und schiebt noch ein S K aufs Rückgrat. Nach ein paar Reduktionsschritten kürzen sich die übrigen Terme durch S- und K-Reduktionen gegenseitig weg, und übrig bleibt der nackte Kombinator S. Die ganze Herleitung füllt ein paar Zeilen — die Konsequenz: S lässt sich ausschließlich in Iotas ausdrücken.",
+      body: "Jetzt wende Iota auf eine dreifach geschachtelte Iota-Folge an: ℩(℩(℩(℩℩))). Jedes äußere Iota feuert die Regel ℩x = xSK und schiebt noch ein S K aufs Rückgrat. Nach ein paar Reduktionsschritten kürzen sich die übrigen Terme durch S- und K-Reduktionen gegenseitig weg, und übrig bleibt der nackte Kombinator S. Die ganze Herleitung füllt ein paar Zeilen. Die Konsequenz: S lässt sich ausschließlich in Iotas ausdrücken.",
     },
     {
       pretitle: "Abschnitt 06 · Turing-Vollständigkeit",
       title: "Von einem Symbol zu allem Berechenbaren",
-      body: "Currys und Feys' Combinatory Logic (1958) ist ein langes Buch mit einem kurzen Hauptsatz: jeder λ-Term lässt sich in einen Term übersetzen, der nur aus S und K besteht. Kombiniert mit dem, was wir gerade gemacht haben — Iota erzeugt S, Iota erzeugt K — ist die Kette geschlossen. Alles, was eine Turing-Maschine, ein Python-Programm oder ein Mensch berechnen kann, lässt sich in Iota codieren. Der Preis ist eine brutale Längenexplosion; der Gewinn ist konzeptionell. Iota steht hinter funktionaler Programmierung, Typtheorie, Beweisassistenten und jeder Implementierung von ML-artigen Sprachen als ultimatives Minimalmodell.",
+      body: "Currys und Feys' Combinatory Logic (1958) ist ein langes Buch mit einem kurzen Hauptsatz: jeder λ-Term lässt sich in einen Term übersetzen, der nur aus S und K besteht. Kombiniert mit dem, was wir gerade gemacht haben (Iota erzeugt S, Iota erzeugt K), ist die Kette geschlossen. Alles, was eine Turing-Maschine, ein Python-Programm oder ein Mensch berechnen kann, lässt sich in Iota codieren. Der Preis ist eine brutale Längenexplosion; der Gewinn ist konzeptionell. Iota steht hinter funktionaler Programmierung, Typtheorie, Beweisassistenten und jeder Implementierung von ML-artigen Sprachen als ultimatives Minimalmodell.",
     },
   ],
   reducerCaption: "Interaktiv · Schritt-für-Schritt-Reduzierer",
   reducerPretitle: "Probier es · der Reduzierer",
   reducerTitle: "Sieh einer Herleitung beim Entfalten zu",
   reducerBody:
-    "Wähl eine berühmte Herleitung (ι (ι (ι ι)) → K oder ι (ι (ι (ι ι))) → S) oder tipp deinen eigenen Ausdruck ein. Schritt drücken wendet eine Reduktion an; der neue Term ersetzt den alten. Der Reduzierer folgt der Linksaußen-Reihenfolge — genau die Strategie der Lehrbücher.",
+    "Wähl eine berühmte Herleitung (ι (ι (ι ι)) → K oder ι (ι (ι (ι ι))) → S) oder tipp deinen eigenen Ausdruck ein. Schritt drücken wendet eine Reduktion an; der neue Term ersetzt den alten. Der Reduzierer folgt der Linksaußen-Reihenfolge, genau die Strategie der Lehrbücher.",
   ksCaption: "Interaktiv · K- und S-Spielwiese",
   ksPretitle: "Probier es · K und S",
   ksTitle: "Spür, was K und S wirklich tun",
   ksBody:
     "Bevor sie sich in Iotas verheddern, sind K und S einfach Funktionen. K wirft sein zweites Argument weg. S wendet die ersten beiden Argumente auf ein geteiltes drittes an. Tipp drei Werte ein; rechts erscheint das symbolische Ergebnis.",
   ksLabels: {
-    kHeading: "K — die Konstantenfunktion",
-    sHeading: "S — die Substitutionsfunktion",
+    kHeading: "K: die Konstantenfunktion",
+    sHeading: "S: die Substitutionsfunktion",
     kBody: "Gibst du K zwei Werte, behält es den ersten und lässt den zweiten einfach fallen.",
     sBody:
       "S nimmt drei Argumente und schreibt sie als x z (y z) um: x und y werden beide auf den geteilten Wert z angewendet.",
@@ -428,12 +428,12 @@ const es: RichStory = {
       {
         label: "01",
         title: "La gran idea",
-        body: "Un único símbolo diminuto — ℩ (iota) — basta para codificar cualquier programa de ordenador que se haya escrito o pueda escribirse. Como NAND para el hardware, pero para la computación misma: una sola primitiva, todo lo demás es reordenamiento.",
+        body: "Un único símbolo diminuto, ℩ (iota), basta para codificar cualquier programa de ordenador que se haya escrito o pueda escribirse. Como NAND para el hardware, pero para la computación misma: una sola primitiva, todo lo demás es reordenamiento.",
       },
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: "Iota se define por una regla: ℩x = xSK, donde S y K son los famosos combinadores. De un pequeño anidamiento de iotas — ℩(℩(℩℩)) — recuperas K (la función constante). Una capa más adentro, ℩(℩(℩(℩℩))), recuperas S (la función de sustitución). Y con S y K se obtiene cualquier función computable.",
+        body: "Iota se define por una regla: ℩x = xSK, donde S y K son los famosos combinadores. De un pequeño anidamiento de iotas, ℩(℩(℩℩)), recuperas K (la función constante). Una capa más adentro, ℩(℩(℩(℩℩))), recuperas S (la función de sustitución). Y con S y K se obtiene cualquier función computable.",
       },
       {
         label: "03",
@@ -447,7 +447,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · Antecedentes",
       title: "Cálculo lambda y términos cerrados",
-      body: "En los años 1930 Alonzo Church inventó el cálculo λ para estudiar qué significa realmente “computable”. Las funciones se escriben λx.M y se aplican por sustitución. Un combinador es un λ-término cerrado: no tiene variables libres — todo lo que necesita le llega por sus argumentos. Los combinadores son fontanería pura. Church y Curry mostraron que el cálculo λ es exactamente tan potente como una máquina de Turing; los combinadores nos dan esa potencia sin variables.",
+      body: "En los años 1930 Alonzo Church inventó el cálculo λ para estudiar qué significa realmente “computable”. Las funciones se escriben λx.M y se aplican por sustitución. Un combinador es un λ-término cerrado: no tiene variables libres; todo lo que necesita le llega por sus argumentos. Los combinadores son fontanería pura. Church y Curry mostraron que el cálculo λ es exactamente tan potente como una máquina de Turing; los combinadores nos dan esa potencia sin variables.",
     },
     {
       pretitle: "Sección 02 · Schönfinkel, 1924",
@@ -457,37 +457,37 @@ const es: RichStory = {
     {
       pretitle: "Sección 03 · Barker, 2001",
       title: "Entra Iota",
-      body: "En 2001 el lingüista y lógico Chris Barker preguntó: ¿hasta dónde se puede llevar esto? Schönfinkel necesitaba dos combinadores. ¿Basta con uno? Definió ℩ ≡ λx. x S K — “aplica tu argumento a S y luego a K”. Ese es todo el lenguaje: un símbolo, una regla. Los paréntesis son tipografía, no una primitiva extra. Y, sin embargo, esta regla contiene a S y a K como términos derivados — y por tanto, todo.",
+      body: "En 2001 el lingüista y lógico Chris Barker preguntó: ¿hasta dónde se puede llevar esto? Schönfinkel necesitaba dos combinadores. ¿Basta con uno? Definió ℩ ≡ λx. x S K: “aplica tu argumento a S y luego a K”. Ese es todo el lenguaje: un símbolo, una regla. Los paréntesis son tipografía, no una primitiva extra. Y, sin embargo, esta regla contiene a S y a K como términos derivados, y por tanto, todo.",
     },
     {
       pretitle: "Sección 04 · Derivar K",
       title: "Un pequeño anidamiento de iotas da K",
-      body: "Toma ℩(℩(℩℩)). Cada iota externo dispara la regla ℩x = xSK: el más externo se desprende como (℩(℩ι)) S K, luego otra vez, y otra. Tras unas pocas reducciones S y K, queda el combinador desnudo K. La traza más-a-la-izquierda recorre unos nueve pasos de principio a fin — una cadena corta, pura contabilidad. De cuatro trazos de un solo símbolo cae la función constante.",
+      body: "Toma ℩(℩(℩℩)). Cada iota externo dispara la regla ℩x = xSK: el más externo se desprende como (℩(℩ι)) S K, luego otra vez, y otra. Tras unas pocas reducciones S y K, queda el combinador desnudo K. La traza más-a-la-izquierda recorre unos nueve pasos de principio a fin, una cadena corta, pura contabilidad. De cuatro trazos de un solo símbolo cae la función constante.",
     },
     {
       pretitle: "Sección 05 · Derivar S",
       title: "Un anidamiento más profundo da S",
-      body: "Aplica iota a un anidamiento triple de iotas: ℩(℩(℩(℩℩))). Cada iota externo dispara la regla ℩x = xSK y empuja otro S K al espinazo. Tras unos pocos pasos de reducción, los términos restantes se cancelan entre sí mediante reducciones S y K, y queda el combinador desnudo S. Toda la derivación cabe en unas pocas líneas de contabilidad — y la consecuencia es que S se puede expresar solo con iotas.",
+      body: "Aplica iota a un anidamiento triple de iotas: ℩(℩(℩(℩℩))). Cada iota externo dispara la regla ℩x = xSK y empuja otro S K al espinazo. Tras unos pocos pasos de reducción, los términos restantes se cancelan entre sí mediante reducciones S y K, y queda el combinador desnudo S. Toda la derivación cabe en unas pocas líneas de contabilidad, y la consecuencia es que S se puede expresar solo con iotas.",
     },
     {
       pretitle: "Sección 06 · Turing-completitud",
       title: "De un símbolo a todo lo computable",
-      body: "Combinatory Logic (1958) de Curry y Feys es un libro largo cuyo teorema central es corto: todo λ-término puede traducirse a un término construido solo con S y K. Combina eso con lo que acabamos de hacer — iota produce S e iota produce K — y la cadena queda completa. Cualquier cosa que una máquina de Turing, un programa de Python o una matemática humana puedan calcular, iota lo puede codificar. El precio es una explosión brutal de longitud; la ganancia es conceptual. Iota está detrás de la programación funcional, la teoría de tipos, los asistentes de prueba y toda implementación de lenguajes tipo ML como el modelo mínimo definitivo.",
+      body: "Combinatory Logic (1958) de Curry y Feys es un libro largo cuyo teorema central es corto: todo λ-término puede traducirse a un término construido solo con S y K. Combina eso con lo que acabamos de hacer (iota produce S e iota produce K) y la cadena queda completa. Cualquier cosa que una máquina de Turing, un programa de Python o una matemática humana puedan calcular, iota lo puede codificar. El precio es una explosión brutal de longitud; la ganancia es conceptual. Iota está detrás de la programación funcional, la teoría de tipos, los asistentes de prueba y toda implementación de lenguajes tipo ML como el modelo mínimo definitivo.",
     },
   ],
   reducerCaption: "Interactivo · reductor paso a paso",
   reducerPretitle: "Pruébalo · el reductor",
   reducerTitle: "Ve una derivación desplegándose",
   reducerBody:
-    "Elige una derivación famosa (ι (ι (ι ι)) → K, o ι (ι (ι (ι ι))) → S), o escribe tu propia expresión. Pulsa Paso para aplicar una reducción; el término nuevo sustituye al anterior. El reductor sigue el orden más-a-la-izquierda — exactamente la estrategia de los libros.",
+    "Elige una derivación famosa (ι (ι (ι ι)) → K, o ι (ι (ι (ι ι))) → S), o escribe tu propia expresión. Pulsa Paso para aplicar una reducción; el término nuevo sustituye al anterior. El reductor sigue el orden más-a-la-izquierda, exactamente la estrategia de los libros.",
   ksCaption: "Interactivo · campo de juego K y S",
   ksPretitle: "Pruébalo · K y S",
   ksTitle: "Siente qué hacen realmente K y S",
   ksBody:
     "Antes de enredarse con iotas, K y S son simplemente funciones. K tira su segundo argumento. S aplica sus dos primeros argumentos a un tercer valor compartido. Escribe tres valores; el panel muestra el resultado simbólico a la derecha.",
   ksLabels: {
-    kHeading: "K — la función constante",
-    sHeading: "S — la función de sustitución",
+    kHeading: "K: la función constante",
+    sHeading: "S: la función de sustitución",
     kBody: "Dale a K dos valores cualesquiera: se queda con el primero y deja caer el segundo.",
     sBody:
       "S toma tres argumentos y los reescribe como x z (y z): x e y se aplican al valor compartido z.",
@@ -585,12 +585,12 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Un seul minuscule symbole — ℩ (iota) — suffit à encoder n'importe quel programme informatique jamais écrit, ou qui pourrait jamais l'être. Comme NAND pour le matériel, mais pour le calcul lui-même : une seule primitive, tout le reste n'est que réarrangement.",
+        body: "Un seul minuscule symbole, ℩ (iota), suffit à encoder n'importe quel programme informatique jamais écrit, ou qui pourrait jamais l'être. Comme NAND pour le matériel, mais pour le calcul lui-même : une seule primitive, tout le reste n'est que réarrangement.",
       },
       {
         label: "02",
         title: "Un exemple concret",
-        body: "Iota est défini par une règle : ℩x = xSK, où S et K sont les fameux combinateurs. À partir d'un petit emboîtement d'iotas — ℩(℩(℩℩)) — on retrouve K (la fonction constante). Une couche plus profond, ℩(℩(℩(℩℩))), on retrouve S (la fonction de substitution). Et avec S et K, toute fonction calculable suit.",
+        body: "Iota est défini par une règle : ℩x = xSK, où S et K sont les fameux combinateurs. À partir d'un petit emboîtement d'iotas, ℩(℩(℩℩)), on retrouve K (la fonction constante). Une couche plus profond, ℩(℩(℩(℩℩))), on retrouve S (la fonction de substitution). Et avec S et K, toute fonction calculable suit.",
       },
       {
         label: "03",
@@ -605,7 +605,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · Contexte",
       title: "Lambda-calcul et termes clos",
-      body: "Dans les années 1930, Alonzo Church inventa le λ-calcul pour étudier ce que « calculable » voulait vraiment dire. Les fonctions s'écrivent λx.M et s'appliquent par substitution. Un combinateur est un λ-terme clos : pas de variables libres — tout ce dont il a besoin arrive par ses arguments. Les combinateurs sont pure tuyauterie. Church et Curry ont montré que le λ-calcul a exactement la puissance d'une machine de Turing ; les combinateurs nous donnent cette puissance sans variables.",
+      body: "Dans les années 1930, Alonzo Church inventa le λ-calcul pour étudier ce que « calculable » voulait vraiment dire. Les fonctions s'écrivent λx.M et s'appliquent par substitution. Un combinateur est un λ-terme clos : pas de variables libres ; tout ce dont il a besoin arrive par ses arguments. Les combinateurs sont pure tuyauterie. Church et Curry ont montré que le λ-calcul a exactement la puissance d'une machine de Turing ; les combinateurs nous donnent cette puissance sans variables.",
     },
     {
       pretitle: "Section 02 · Schönfinkel, 1924",
@@ -615,37 +615,37 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · Barker, 2001",
       title: "Iota entre en scène",
-      body: "En 2001 le linguiste et logicien Chris Barker a demandé : jusqu'où peut-on pousser ? Schönfinkel avait besoin de deux combinateurs. Un seul peut-il suffire ? Il a défini ℩ ≡ λx. x S K — « applique ton argument à S, puis à K ». C'est tout le langage : un symbole, une règle. Les parenthèses ne sont que typographie, pas une primitive de plus. Et pourtant, cette unique règle contient S et K comme termes dérivés — donc tout.",
+      body: "En 2001 le linguiste et logicien Chris Barker a demandé : jusqu'où peut-on pousser ? Schönfinkel avait besoin de deux combinateurs. Un seul peut-il suffire ? Il a défini ℩ ≡ λx. x S K : « applique ton argument à S, puis à K ». C'est tout le langage : un symbole, une règle. Les parenthèses ne sont que typographie, pas une primitive de plus. Et pourtant, cette unique règle contient S et K comme termes dérivés, donc tout.",
     },
     {
       pretitle: "Section 04 · Dériver K",
       title: "Un petit emboîtement d'iotas donne K",
-      body: "Prends ℩(℩(℩℩)). Chaque iota externe déclenche la règle ℩x = xSK : le plus externe s'écaille en (℩(℩ι)) S K, puis encore, et encore. Après quelques réductions S et K, il reste le combinateur nu K. La trace la-plus-à-gauche tient en environ neuf étapes du début à la fin — une chaîne courte, pure comptabilité. De quatre traits d'un seul symbole tombe la fonction constante.",
+      body: "Prends ℩(℩(℩℩)). Chaque iota externe déclenche la règle ℩x = xSK : le plus externe s'écaille en (℩(℩ι)) S K, puis encore, et encore. Après quelques réductions S et K, il reste le combinateur nu K. La trace la-plus-à-gauche tient en environ neuf étapes du début à la fin, une chaîne courte, pure comptabilité. De quatre traits d'un seul symbole tombe la fonction constante.",
     },
     {
       pretitle: "Section 05 · Dériver S",
       title: "Un emboîtement plus profond donne S",
-      body: "Applique maintenant iota à un emboîtement triple d'iotas : ℩(℩(℩(℩℩))). Chaque iota externe déclenche la règle ℩x = xSK et pose un nouveau S K sur l'épine dorsale. Après une poignée d'étapes de réduction, les termes restants s'annulent par réductions S et K, et il reste le combinateur nu S. Toute la dérivation tient en quelques lignes de comptabilité — et la conséquence : S s'exprime uniquement en iotas.",
+      body: "Applique maintenant iota à un emboîtement triple d'iotas : ℩(℩(℩(℩℩))). Chaque iota externe déclenche la règle ℩x = xSK et pose un nouveau S K sur l'épine dorsale. Après une poignée d'étapes de réduction, les termes restants s'annulent par réductions S et K, et il reste le combinateur nu S. Toute la dérivation tient en quelques lignes de comptabilité, et la conséquence : S s'exprime uniquement en iotas.",
     },
     {
       pretitle: "Section 06 · Turing-complétude",
       title: "D'un symbole à tout le calculable",
-      body: "Combinatory Logic (1958) de Curry et Feys est un livre long dont le théorème central est court : tout λ-terme peut être traduit en un terme construit uniquement à partir de S et K. Combine cela avec ce qu'on vient de faire — iota produit S et iota produit K — et la chaîne est complète. Tout ce qu'une machine de Turing, un programme Python ou un humain mathématicien peut calculer, iota peut l'encoder. Le prix est une explosion brutale de longueur ; le gain est conceptuel. Iota se tient derrière la programmation fonctionnelle, la théorie des types, les assistants de preuve et toute implémentation de langage à la ML, comme modèle minimal ultime.",
+      body: "Combinatory Logic (1958) de Curry et Feys est un livre long dont le théorème central est court : tout λ-terme peut être traduit en un terme construit uniquement à partir de S et K. Combine cela avec ce qu'on vient de faire (iota produit S et iota produit K) et la chaîne est complète. Tout ce qu'une machine de Turing, un programme Python ou un humain mathématicien peut calculer, iota peut l'encoder. Le prix est une explosion brutale de longueur ; le gain est conceptuel. Iota se tient derrière la programmation fonctionnelle, la théorie des types, les assistants de preuve et toute implémentation de langage à la ML, comme modèle minimal ultime.",
     },
   ],
   reducerCaption: "Interactif · réducteur pas à pas",
   reducerPretitle: "Essaie · le réducteur",
   reducerTitle: "Regarde une dérivation se dérouler",
   reducerBody:
-    "Choisis une dérivation célèbre (ι (ι (ι ι)) → K, ou ι (ι (ι (ι ι))) → S), ou tape ta propre expression. Appuie sur Étape pour appliquer une réduction ; le nouveau terme remplace l'ancien. Le réducteur suit l'ordre la-plus-à-gauche — exactement la stratégie des manuels.",
+    "Choisis une dérivation célèbre (ι (ι (ι ι)) → K, ou ι (ι (ι (ι ι))) → S), ou tape ta propre expression. Appuie sur Étape pour appliquer une réduction ; le nouveau terme remplace l'ancien. Le réducteur suit l'ordre la-plus-à-gauche, exactement la stratégie des manuels.",
   ksCaption: "Interactif · terrain de jeu K et S",
   ksPretitle: "Essaie · K et S",
   ksTitle: "Ressens ce que font vraiment K et S",
   ksBody:
     "Avant de s'emmêler dans les iotas, K et S sont simplement des fonctions. K jette son second argument. S applique ses deux premiers arguments à une troisième valeur partagée. Tape trois valeurs ; le panneau affiche le résultat symbolique à droite.",
   ksLabels: {
-    kHeading: "K — la fonction constante",
-    sHeading: "S — la fonction de substitution",
+    kHeading: "K : la fonction constante",
+    sHeading: "S : la fonction de substitution",
     kBody: "Donne à K deux valeurs : il garde la première et laisse tomber la seconde.",
     sBody:
       "S prend trois arguments et les réécrit en x z (y z) : x et y sont appliqués à l'entrée partagée z.",
@@ -742,12 +742,12 @@ const it: RichStory = {
       {
         label: "01",
         title: "L'idea centrale",
-        body: "Un solo, minuscolo simbolo — ℩ (iota) — basta a codificare qualunque programma per computer mai scritto, o mai scrivibile. Come NAND per l'hardware, ma per la computazione stessa: una sola primitiva, tutto il resto è solo riarrangiamento.",
+        body: "Un solo, minuscolo simbolo, ℩ (iota), basta a codificare qualunque programma per computer mai scritto, o mai scrivibile. Come NAND per l'hardware, ma per la computazione stessa: una sola primitiva, tutto il resto è solo riarrangiamento.",
       },
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "Iota è definito da una regola: ℩x = xSK, dove S e K sono i famosi combinatori. Da un piccolo annidamento di iote — ℩(℩(℩℩)) — recuperi K (la funzione costante). Uno strato più in profondità, ℩(℩(℩(℩℩))), ottieni S (la funzione di sostituzione). E con S e K segue ogni funzione calcolabile.",
+        body: "Iota è definito da una regola: ℩x = xSK, dove S e K sono i famosi combinatori. Da un piccolo annidamento di iote, ℩(℩(℩℩)), recuperi K (la funzione costante). Uno strato più in profondità, ℩(℩(℩(℩℩))), ottieni S (la funzione di sostituzione). E con S e K segue ogni funzione calcolabile.",
       },
       {
         label: "03",
@@ -761,7 +761,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · Contesto",
       title: "Lambda-calcolo e termini chiusi",
-      body: "Negli anni '30 Alonzo Church inventò il λ-calcolo per studiare cosa significasse davvero “calcolabile”. Le funzioni si scrivono λx.M e si applicano per sostituzione. Un combinatore è un λ-termine chiuso: nessuna variabile libera — tutto ciò che gli serve arriva attraverso gli argomenti. I combinatori sono pura tubatura. Church e Curry mostrarono che il λ-calcolo è esattamente potente quanto una macchina di Turing; i combinatori ci danno questa potenza senza variabili.",
+      body: "Negli anni '30 Alonzo Church inventò il λ-calcolo per studiare cosa significasse davvero “calcolabile”. Le funzioni si scrivono λx.M e si applicano per sostituzione. Un combinatore è un λ-termine chiuso: nessuna variabile libera; tutto ciò che gli serve arriva attraverso gli argomenti. I combinatori sono pura tubatura. Church e Curry mostrarono che il λ-calcolo è esattamente potente quanto una macchina di Turing; i combinatori ci danno questa potenza senza variabili.",
     },
     {
       pretitle: "Sezione 02 · Schönfinkel, 1924",
@@ -771,37 +771,37 @@ const it: RichStory = {
     {
       pretitle: "Sezione 03 · Barker, 2001",
       title: "Entra Iota",
-      body: "Nel 2001 il linguista e logico Chris Barker si chiese: fin dove si può spingere? Schönfinkel aveva bisogno di due combinatori. Ne basta uno? Definì ℩ ≡ λx. x S K — “applica il tuo argomento a S e poi a K”. Ecco l'intero linguaggio: un simbolo, una regola. Le parentesi sono tipografia, non una primitiva in più. Eppure questa unica regola contiene S e K come termini derivati — e quindi tutto.",
+      body: "Nel 2001 il linguista e logico Chris Barker si chiese: fin dove si può spingere? Schönfinkel aveva bisogno di due combinatori. Ne basta uno? Definì ℩ ≡ λx. x S K: “applica il tuo argomento a S e poi a K”. Ecco l'intero linguaggio: un simbolo, una regola. Le parentesi sono tipografia, non una primitiva in più. Eppure questa unica regola contiene S e K come termini derivati, e quindi tutto.",
     },
     {
       pretitle: "Sezione 04 · Derivare K",
       title: "Un piccolo annidamento di iote dà K",
-      body: "Prendi ℩(℩(℩℩)). Ogni iota esterno fa scattare la regola ℩x = xSK: il più esterno si stacca come (℩(℩ι)) S K, poi di nuovo, e di nuovo. Dopo poche riduzioni S e K resta il combinatore nudo K. La traccia più-a-sinistra corre per circa nove passi dall'inizio alla fine — una catena breve, pura contabilità. Da quattro tratti di un solo simbolo cade fuori la funzione costante.",
+      body: "Prendi ℩(℩(℩℩)). Ogni iota esterno fa scattare la regola ℩x = xSK: il più esterno si stacca come (℩(℩ι)) S K, poi di nuovo, e di nuovo. Dopo poche riduzioni S e K resta il combinatore nudo K. La traccia più-a-sinistra corre per circa nove passi dall'inizio alla fine, una catena breve, pura contabilità. Da quattro tratti di un solo simbolo cade fuori la funzione costante.",
     },
     {
       pretitle: "Sezione 05 · Derivare S",
       title: "Un annidamento più profondo dà S",
-      body: "Ora applica iota a un annidamento triplo di iote: ℩(℩(℩(℩℩))). Ogni iota esterno fa scattare la regola ℩x = xSK e spinge un altro S K sulla spina dorsale. Dopo una manciata di passi di riduzione i termini residui si cancellano fra loro tramite riduzioni S e K, e resta il combinatore nudo S. Tutta la derivazione sta in poche righe di contabilità — e la conseguenza è che S si esprime usando solo iote.",
+      body: "Ora applica iota a un annidamento triplo di iote: ℩(℩(℩(℩℩))). Ogni iota esterno fa scattare la regola ℩x = xSK e spinge un altro S K sulla spina dorsale. Dopo una manciata di passi di riduzione i termini residui si cancellano fra loro tramite riduzioni S e K, e resta il combinatore nudo S. Tutta la derivazione sta in poche righe di contabilità, e la conseguenza è che S si esprime usando solo iote.",
     },
     {
       pretitle: "Sezione 06 · Turing-completezza",
       title: "Da un simbolo a tutto il calcolabile",
-      body: "Combinatory Logic (1958) di Curry e Feys è un libro lungo il cui teorema centrale è breve: ogni λ-termine può essere tradotto in un termine costruito solo con S e K. Unito a ciò che abbiamo appena fatto — iota produce S e iota produce K — la catena è completa. Tutto ciò che una macchina di Turing, un programma Python o una matematica umana possono calcolare, iota lo può codificare. Il prezzo è un'esplosione brutale di lunghezza; il guadagno è concettuale. Iota sta dietro alla programmazione funzionale, alla teoria dei tipi, agli assistenti di prova e a ogni implementazione di linguaggi alla ML, come modello minimo definitivo.",
+      body: "Combinatory Logic (1958) di Curry e Feys è un libro lungo il cui teorema centrale è breve: ogni λ-termine può essere tradotto in un termine costruito solo con S e K. Unito a ciò che abbiamo appena fatto (iota produce S e iota produce K), la catena è completa. Tutto ciò che una macchina di Turing, un programma Python o una matematica umana possono calcolare, iota lo può codificare. Il prezzo è un'esplosione brutale di lunghezza; il guadagno è concettuale. Iota sta dietro alla programmazione funzionale, alla teoria dei tipi, agli assistenti di prova e a ogni implementazione di linguaggi alla ML, come modello minimo definitivo.",
     },
   ],
   reducerCaption: "Interattivo · riduttore passo-passo",
   reducerPretitle: "Provalo · il riduttore",
   reducerTitle: "Guarda una derivazione che si svolge",
   reducerBody:
-    "Scegli una derivazione famosa (ι (ι (ι ι)) → K, o ι (ι (ι (ι ι))) → S), o digita la tua espressione. Premi Passo per applicare una riduzione; il nuovo termine sostituisce il precedente. Il riduttore segue l'ordine più-a-sinistra — esattamente la strategia dei manuali.",
+    "Scegli una derivazione famosa (ι (ι (ι ι)) → K, o ι (ι (ι (ι ι))) → S), o digita la tua espressione. Premi Passo per applicare una riduzione; il nuovo termine sostituisce il precedente. Il riduttore segue l'ordine più-a-sinistra, esattamente la strategia dei manuali.",
   ksCaption: "Interattivo · campo giochi K e S",
   ksPretitle: "Provalo · K e S",
   ksTitle: "Senti cosa fanno davvero K e S",
   ksBody:
     "Prima di impigliarsi negli iota, K e S sono semplicemente funzioni. K butta via il secondo argomento. S applica i primi due argomenti a un terzo valore condiviso. Digita tre valori; il pannello mostra il risultato simbolico a destra.",
   ksLabels: {
-    kHeading: "K — la funzione costante",
-    sHeading: "S — la funzione di sostituzione",
+    kHeading: "K: la funzione costante",
+    sHeading: "S: la funzione di sostituzione",
     kBody: "Dai a K due valori qualsiasi: tiene il primo e lascia cadere il secondo.",
     sBody:
       "S prende tre argomenti e li riscrive come x z (y z): x e y si applicano entrambi al valore condiviso z.",
@@ -899,12 +899,12 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A grande ideia",
-        body: "Um único e minúsculo símbolo — ℩ (iota) — basta para codificar qualquer programa de computador que já tenha sido escrito, ou possa vir a ser. Como o NAND para o hardware, mas para a própria computação: uma única primitiva, todo o resto é só reorganização.",
+        body: "Um único e minúsculo símbolo, ℩ (iota), basta para codificar qualquer programa de computador que já tenha sido escrito, ou possa vir a ser. Como o NAND para o hardware, mas para a própria computação: uma única primitiva, todo o resto é só reorganização.",
       },
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: "Iota define-se por uma regra: ℩x = xSK, onde S e K são os famosos combinadores. De um pequeno aninhamento de iotas — ℩(℩(℩℩)) — recuperas K (a função constante). Uma camada mais funda, ℩(℩(℩(℩℩))), obténs S (a função de substituição). E a partir de S e K segue qualquer função computável.",
+        body: "Iota define-se por uma regra: ℩x = xSK, onde S e K são os famosos combinadores. De um pequeno aninhamento de iotas, ℩(℩(℩℩)), recuperas K (a função constante). Uma camada mais funda, ℩(℩(℩(℩℩))), obténs S (a função de substituição). E a partir de S e K segue qualquer função computável.",
       },
       {
         label: "03",
@@ -918,7 +918,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · Contexto",
       title: "Cálculo lambda e termos fechados",
-      body: "Nos anos 1930 Alonzo Church inventou o cálculo λ para estudar o que “computável” realmente significava. As funções escrevem-se λx.M e aplicam-se por substituição. Um combinador é um λ-termo fechado: sem variáveis livres — tudo o que precisa chega pelos argumentos. Combinadores são canalização pura. Church e Curry mostraram que o cálculo λ é exatamente tão potente quanto uma máquina de Turing; os combinadores dão-nos essa potência sem variáveis.",
+      body: "Nos anos 1930 Alonzo Church inventou o cálculo λ para estudar o que “computável” realmente significava. As funções escrevem-se λx.M e aplicam-se por substituição. Um combinador é um λ-termo fechado: sem variáveis livres; tudo o que precisa chega pelos argumentos. Combinadores são canalização pura. Church e Curry mostraram que o cálculo λ é exatamente tão potente quanto uma máquina de Turing; os combinadores dão-nos essa potência sem variáveis.",
     },
     {
       pretitle: "Secção 02 · Schönfinkel, 1924",
@@ -928,37 +928,37 @@ const pt: RichStory = {
     {
       pretitle: "Secção 03 · Barker, 2001",
       title: "Entra o Iota",
-      body: "Em 2001 o linguista e lógico Chris Barker perguntou: até onde se pode levar isto? Schönfinkel precisava de dois combinadores. Bastará um? Definiu ℩ ≡ λx. x S K — “aplica o teu argumento a S e depois a K”. É toda a linguagem: um símbolo, uma regra. Os parênteses são tipografia, não uma primitiva extra. E, no entanto, esta única regra contém S e K como termos derivados — e portanto tudo.",
+      body: "Em 2001 o linguista e lógico Chris Barker perguntou: até onde se pode levar isto? Schönfinkel precisava de dois combinadores. Bastará um? Definiu ℩ ≡ λx. x S K: “aplica o teu argumento a S e depois a K”. É toda a linguagem: um símbolo, uma regra. Os parênteses são tipografia, não uma primitiva extra. E, no entanto, esta única regra contém S e K como termos derivados, e portanto tudo.",
     },
     {
       pretitle: "Secção 04 · Derivar K",
       title: "Um pequeno aninhamento de iotas dá K",
-      body: "Toma ℩(℩(℩℩)). Cada iota externo dispara a regra ℩x = xSK: o mais externo descasca-se como (℩(℩ι)) S K, depois outra vez, e outra. Após algumas reduções S e K, fica o combinador nu K. O traço mais-à-esquerda corre cerca de nove passos do início ao fim — uma cadeia curta, pura contabilidade. De quatro pinceladas de um só símbolo cai a função constante.",
+      body: "Toma ℩(℩(℩℩)). Cada iota externo dispara a regra ℩x = xSK: o mais externo descasca-se como (℩(℩ι)) S K, depois outra vez, e outra. Após algumas reduções S e K, fica o combinador nu K. O traço mais-à-esquerda corre cerca de nove passos do início ao fim, uma cadeia curta, pura contabilidade. De quatro pinceladas de um só símbolo cai a função constante.",
     },
     {
       pretitle: "Secção 05 · Derivar S",
       title: "Um aninhamento mais profundo dá S",
-      body: "Agora aplica iota a um aninhamento triplo de iotas: ℩(℩(℩(℩℩))). Cada iota externo dispara a regra ℩x = xSK e empurra outro S K para a espinha. Após uns passos de redução, os termos restantes cancelam-se através de reduções S e K, e fica o combinador nu S. Toda a derivação cabe em algumas linhas de contabilidade — e a consequência é que S se exprime usando só iotas.",
+      body: "Agora aplica iota a um aninhamento triplo de iotas: ℩(℩(℩(℩℩))). Cada iota externo dispara a regra ℩x = xSK e empurra outro S K para a espinha. Após uns passos de redução, os termos restantes cancelam-se através de reduções S e K, e fica o combinador nu S. Toda a derivação cabe em algumas linhas de contabilidade, e a consequência é que S se exprime usando só iotas.",
     },
     {
       pretitle: "Secção 06 · Turing-completude",
       title: "De um símbolo a tudo o que é computável",
-      body: "Combinatory Logic (1958) de Curry e Feys é um livro longo cujo teorema central é curto: todo λ-termo pode ser traduzido num termo construído apenas com S e K. Junta isto ao que acabámos de fazer — iota produz S e iota produz K — e a cadeia fecha-se. Tudo o que uma máquina de Turing, um programa Python ou uma matemática humana possam calcular, iota pode codificar. O preço é uma explosão brutal de comprimento; o ganho é conceptual. Iota está por trás da programação funcional, da teoria de tipos, dos assistentes de prova e de toda a implementação de linguagens à ML, como o modelo mínimo definitivo.",
+      body: "Combinatory Logic (1958) de Curry e Feys é um livro longo cujo teorema central é curto: todo λ-termo pode ser traduzido num termo construído apenas com S e K. Junta isto ao que acabámos de fazer (iota produz S e iota produz K) e a cadeia fecha-se. Tudo o que uma máquina de Turing, um programa Python ou uma matemática humana possam calcular, iota pode codificar. O preço é uma explosão brutal de comprimento; o ganho é conceptual. Iota está por trás da programação funcional, da teoria de tipos, dos assistentes de prova e de toda a implementação de linguagens à ML, como o modelo mínimo definitivo.",
     },
   ],
   reducerCaption: "Interativo · redutor passo a passo",
   reducerPretitle: "Experimenta · o redutor",
   reducerTitle: "Vê uma derivação a desenrolar-se",
   reducerBody:
-    "Escolhe uma derivação famosa (ι (ι (ι ι)) → K, ou ι (ι (ι (ι ι))) → S), ou escreve a tua expressão. Prime Passo para aplicar uma redução; o novo termo substitui o anterior. O redutor segue a ordem mais-à-esquerda — exatamente a estratégia dos manuais.",
+    "Escolhe uma derivação famosa (ι (ι (ι ι)) → K, ou ι (ι (ι (ι ι))) → S), ou escreve a tua expressão. Prime Passo para aplicar uma redução; o novo termo substitui o anterior. O redutor segue a ordem mais-à-esquerda, exatamente a estratégia dos manuais.",
   ksCaption: "Interativo · campo de jogos K e S",
   ksPretitle: "Experimenta · K e S",
   ksTitle: "Sente o que K e S realmente fazem",
   ksBody:
     "Antes de se enredarem em iotas, K e S são simplesmente funções. K deita fora o segundo argumento. S aplica os dois primeiros argumentos a um terceiro valor partilhado. Escreve três valores; o painel mostra o resultado simbólico à direita.",
   ksLabels: {
-    kHeading: "K — a função constante",
-    sHeading: "S — a função de substituição",
+    kHeading: "K: a função constante",
+    sHeading: "S: a função de substituição",
     kBody: "Dá a K dois valores quaisquer: fica com o primeiro e deixa cair o segundo.",
     sBody:
       "S pega em três argumentos e reescreve-os como x z (y z): x e y são ambos aplicados ao valor partilhado z.",
@@ -1055,12 +1055,12 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "En enda liten symbol — ℩ (iota) — räcker för att koda vilket datorprogram som helst som någonsin skrivits, eller någonsin kan skrivas. Som NAND för hårdvara, fast för själva beräkningen: en enda primitiv, allt annat är bara omflyttning.",
+        body: "En enda liten symbol, ℩ (iota), räcker för att koda vilket datorprogram som helst som någonsin skrivits, eller någonsin kan skrivas. Som NAND för hårdvara, fast för själva beräkningen: en enda primitiv, allt annat är bara omflyttning.",
       },
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "Iota definieras av en regel: ℩x = xSK, där S och K är de berömda kombinatorerna. Från en liten nästning av iota — ℩(℩(℩℩)) — får du tillbaka K (den konstanta funktionen). Ett lager djupare, ℩(℩(℩(℩℩))), får du S (substitutionsfunktionen). Och med S och K följer varje beräkningsbar funktion.",
+        body: "Iota definieras av en regel: ℩x = xSK, där S och K är de berömda kombinatorerna. Från en liten nästning av iota, ℩(℩(℩℩)), får du tillbaka K (den konstanta funktionen). Ett lager djupare, ℩(℩(℩(℩℩))), får du S (substitutionsfunktionen). Och med S och K följer varje beräkningsbar funktion.",
       },
       {
         label: "03",
@@ -1074,7 +1074,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Bakgrund",
       title: "Lambdakalkyl och slutna termer",
-      body: "På 1930-talet uppfann Alonzo Church λ-kalkylen för att studera vad ”beräkningsbart” egentligen betyder. Funktioner skrivs λx.M och tillämpas genom substitution. En kombinator är en sluten λ-term: inga fria variabler — allt den behöver kommer via argumenten. Kombinatorer är ren ledningsdragning. Church och Curry visade att λ-kalkylen är exakt lika mäktig som en Turingmaskin; kombinatorer ger oss den makten utan variabler.",
+      body: "På 1930-talet uppfann Alonzo Church λ-kalkylen för att studera vad ”beräkningsbart” egentligen betyder. Funktioner skrivs λx.M och tillämpas genom substitution. En kombinator är en sluten λ-term: inga fria variabler; allt den behöver kommer via argumenten. Kombinatorer är ren ledningsdragning. Church och Curry visade att λ-kalkylen är exakt lika mäktig som en Turingmaskin; kombinatorer ger oss den makten utan variabler.",
     },
     {
       pretitle: "Avsnitt 02 · Schönfinkel, 1924",
@@ -1084,37 +1084,37 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 03 · Barker, 2001",
       title: "In kommer Iota",
-      body: "2001 frågade lingvisten och logikern Chris Barker: hur långt kan man driva det? Schönfinkel behövde två kombinatorer. Räcker det med en? Han definierade ℩ ≡ λx. x S K — ”tillämpa ditt argument på S och sedan på K”. Det är hela språket: en symbol, en regel. Parenteser är typografi, inte en extra primitiv. Ändå innehåller denna enda regel S och K som härledda termer — och därmed allt.",
+      body: "2001 frågade lingvisten och logikern Chris Barker: hur långt kan man driva det? Schönfinkel behövde två kombinatorer. Räcker det med en? Han definierade ℩ ≡ λx. x S K: ”tillämpa ditt argument på S och sedan på K”. Det är hela språket: en symbol, en regel. Parenteser är typografi, inte en extra primitiv. Ändå innehåller denna enda regel S och K som härledda termer, och därmed allt.",
     },
     {
       pretitle: "Avsnitt 04 · Härleda K",
       title: "En liten nästning av iota ger K",
-      body: "Ta ℩(℩(℩℩)). Varje yttre iota avfyrar regeln ℩x = xSK: det yttersta skalas av som (℩(℩ι)) S K, sedan igen, och igen. Efter några S- och K-reduktioner ligger den nakna kombinatorn K kvar. Det vänstermest-yttersta spåret går runt nio steg från början till slut — en kort kedja, ren bokföring. Ur fyra streck av en enda symbol faller den konstanta funktionen ut.",
+      body: "Ta ℩(℩(℩℩)). Varje yttre iota avfyrar regeln ℩x = xSK: det yttersta skalas av som (℩(℩ι)) S K, sedan igen, och igen. Efter några S- och K-reduktioner ligger den nakna kombinatorn K kvar. Det vänstermest-yttersta spåret går runt nio steg från början till slut, en kort kedja, ren bokföring. Ur fyra streck av en enda symbol faller den konstanta funktionen ut.",
     },
     {
       pretitle: "Avsnitt 05 · Härleda S",
       title: "Ett djupare bo ger S",
-      body: "Tillämpa nu iota på ett tre nivåer djupt bo av iota: ℩(℩(℩(℩℩))). Varje yttre iota avfyrar regeln ℩x = xSK och knuffar ännu ett S K på ryggraden. Efter en handfull reduktionssteg kancellerar de återstående termerna varandra genom S- och K-reduktioner, och kvar blir den nakna kombinatorn S. Hela härledningen ryms på några rader bokföring — och slutsatsen är att S kan uttryckas enbart i iota.",
+      body: "Tillämpa nu iota på ett tre nivåer djupt bo av iota: ℩(℩(℩(℩℩))). Varje yttre iota avfyrar regeln ℩x = xSK och knuffar ännu ett S K på ryggraden. Efter en handfull reduktionssteg kancellerar de återstående termerna varandra genom S- och K-reduktioner, och kvar blir den nakna kombinatorn S. Hela härledningen ryms på några rader bokföring, och slutsatsen är att S kan uttryckas enbart i iota.",
     },
     {
       pretitle: "Avsnitt 06 · Turing-komplethet",
       title: "Från en symbol till allt beräkningsbart",
-      body: "Curry och Feys Combinatory Logic (1958) är en lång bok vars centrala sats är kort: varje λ-term kan översättas till en term byggd enbart av S och K. Lägg samman det med vad vi just gjort — iota producerar S och iota producerar K — och kedjan är sluten. Allt en Turingmaskin, ett Python-program eller en mänsklig matematiker kan beräkna, kan iota koda. Priset är en brutal längdexplosion; vinsten är begreppslig. Iota står bakom funktionell programmering, typteori, bevisassistenter och varje implementation av ML-liknande språk som den ultimata minimala modellen.",
+      body: "Curry och Feys Combinatory Logic (1958) är en lång bok vars centrala sats är kort: varje λ-term kan översättas till en term byggd enbart av S och K. Lägg samman det med vad vi just gjort (iota producerar S och iota producerar K) och kedjan är sluten. Allt en Turingmaskin, ett Python-program eller en mänsklig matematiker kan beräkna, kan iota koda. Priset är en brutal längdexplosion; vinsten är begreppslig. Iota står bakom funktionell programmering, typteori, bevisassistenter och varje implementation av ML-liknande språk som den ultimata minimala modellen.",
     },
   ],
   reducerCaption: "Interaktiv · steg-för-steg-reducerare",
   reducerPretitle: "Prova · reduceraren",
   reducerTitle: "Se en härledning veckla ut sig",
   reducerBody:
-    "Välj en berömd härledning (ι (ι (ι ι)) → K, eller ι (ι (ι (ι ι))) → S), eller skriv ditt eget uttryck. Tryck Steg för att tillämpa en reduktion; den nya termen ersätter den gamla. Reduceraren följer vänstermest-yttersta ordning — exakt strategin från läroböckerna.",
+    "Välj en berömd härledning (ι (ι (ι ι)) → K, eller ι (ι (ι (ι ι))) → S), eller skriv ditt eget uttryck. Tryck Steg för att tillämpa en reduktion; den nya termen ersätter den gamla. Reduceraren följer vänstermest-yttersta ordning, exakt strategin från läroböckerna.",
   ksCaption: "Interaktiv · K- och S-lekplats",
   ksPretitle: "Prova · K och S",
   ksTitle: "Känn vad K och S faktiskt gör",
   ksBody:
     "Innan de trasslar in sig i iota är K och S helt enkelt funktioner. K kastar bort sitt andra argument. S tillämpar sina två första argument på ett delat tredje. Skriv in tre värden; panelen visar det symboliska resultatet till höger.",
   ksLabels: {
-    kHeading: "K — den konstanta funktionen",
-    sHeading: "S — substitutionsfunktionen",
+    kHeading: "K: den konstanta funktionen",
+    sHeading: "S: substitutionsfunktionen",
     kBody: "Ge K två värden: det behåller det första och låter det andra falla bort.",
     sBody:
       "S tar tre argument och skriver om dem som x z (y z): både x och y tillämpas på det delade värdet z.",
@@ -1211,12 +1211,12 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store idéen",
-        body: "Ett eneste lite symbol — ℩ (iota) — er nok til å kode ethvert dataprogram som er skrevet, eller noensinne kan skrives. Som NAND for maskinvare, men for selve beregningen: én primitiv, alt annet er bare omrokering.",
+        body: "Ett eneste lite symbol, ℩ (iota), er nok til å kode ethvert dataprogram som er skrevet, eller noensinne kan skrives. Som NAND for maskinvare, men for selve beregningen: én primitiv, alt annet er bare omrokering.",
       },
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Iota er definert ved én regel: ℩x = xSK, der S og K er de berømte kombinatorene. Fra en liten nøsting av iota — ℩(℩(℩℩)) — får du tilbake K (den konstante funksjonen). Ett lag dypere, ℩(℩(℩(℩℩))), får du S (substitusjonsfunksjonen). Og med S og K følger enhver beregnbar funksjon.",
+        body: "Iota er definert ved én regel: ℩x = xSK, der S og K er de berømte kombinatorene. Fra en liten nøsting av iota, ℩(℩(℩℩)), får du tilbake K (den konstante funksjonen). Ett lag dypere, ℩(℩(℩(℩℩))), får du S (substitusjonsfunksjonen). Og med S og K følger enhver beregnbar funksjon.",
       },
       {
         label: "03",
@@ -1230,7 +1230,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Bakgrunn",
       title: "Lambdakalkyl og lukkede termer",
-      body: "På 1930-tallet fant Alonzo Church opp λ-kalkylen for å studere hva «beregnbart» egentlig betyr. Funksjoner skrives λx.M og anvendes ved substitusjon. En kombinator er en lukket λ-term: ingen frie variabler — alt den trenger kommer via argumentene. Kombinatorer er ren rørlegging. Church og Curry viste at λ-kalkylen er nøyaktig like mektig som en Turingmaskin; kombinatorer gir oss den kraften uten variabler.",
+      body: "På 1930-tallet fant Alonzo Church opp λ-kalkylen for å studere hva «beregnbart» egentlig betyr. Funksjoner skrives λx.M og anvendes ved substitusjon. En kombinator er en lukket λ-term: ingen frie variabler; alt den trenger kommer via argumentene. Kombinatorer er ren rørlegging. Church og Curry viste at λ-kalkylen er nøyaktig like mektig som en Turingmaskin; kombinatorer gir oss den kraften uten variabler.",
     },
     {
       pretitle: "Avsnitt 02 · Schönfinkel, 1924",
@@ -1240,37 +1240,37 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Barker, 2001",
       title: "Inn kommer Iota",
-      body: "I 2001 spurte lingvisten og logikeren Chris Barker: hvor langt kan man drive det? Schönfinkel trengte to kombinatorer. Holder det med én? Han definerte ℩ ≡ λx. x S K — «anvend argumentet ditt på S og deretter på K». Det er hele språket: ett symbol, én regel. Parenteser er typografi, ikke en ekstra primitiv. Likevel inneholder denne ene regelen S og K som avledede termer — og dermed alt.",
+      body: "I 2001 spurte lingvisten og logikeren Chris Barker: hvor langt kan man drive det? Schönfinkel trengte to kombinatorer. Holder det med én? Han definerte ℩ ≡ λx. x S K: «anvend argumentet ditt på S og deretter på K». Det er hele språket: ett symbol, én regel. Parenteser er typografi, ikke en ekstra primitiv. Likevel inneholder denne ene regelen S og K som avledede termer, og dermed alt.",
     },
     {
       pretitle: "Avsnitt 04 · Utlede K",
       title: "En liten nøsting av iota gir K",
-      body: "Ta ℩(℩(℩℩)). Hvert ytre iota fyrer av regelen ℩x = xSK: det ytterste skreller av som (℩(℩ι)) S K, så igjen, og igjen. Etter noen få S- og K-reduksjoner ligger den nakne kombinatoren K igjen. Det venstre-ytterste sporet løper rundt ni steg fra start til slutt — en kort kjede, ren bokføring. Av fire streker av ett symbol faller den konstante funksjonen ut.",
+      body: "Ta ℩(℩(℩℩)). Hvert ytre iota fyrer av regelen ℩x = xSK: det ytterste skreller av som (℩(℩ι)) S K, så igjen, og igjen. Etter noen få S- og K-reduksjoner ligger den nakne kombinatoren K igjen. Det venstre-ytterste sporet løper rundt ni steg fra start til slutt, en kort kjede, ren bokføring. Av fire streker av ett symbol faller den konstante funksjonen ut.",
     },
     {
       pretitle: "Avsnitt 05 · Utlede S",
       title: "En dypere nøsting gir S",
-      body: "Anvend nå iota på et tre nivåer dypt iota-rede: ℩(℩(℩(℩℩))). Hvert ytre iota fyrer av regelen ℩x = xSK og dytter enda et S K på ryggraden. Etter en håndfull reduksjonssteg kanselerer de gjenværende termene hverandre gjennom S- og K-reduksjoner, og igjen står den nakne kombinatoren S. Hele utledningen får plass på noen linjer bokføring — og konsekvensen er at S kan uttrykkes utelukkende med iota.",
+      body: "Anvend nå iota på et tre nivåer dypt iota-rede: ℩(℩(℩(℩℩))). Hvert ytre iota fyrer av regelen ℩x = xSK og dytter enda et S K på ryggraden. Etter en håndfull reduksjonssteg kanselerer de gjenværende termene hverandre gjennom S- og K-reduksjoner, og igjen står den nakne kombinatoren S. Hele utledningen får plass på noen linjer bokføring, og konsekvensen er at S kan uttrykkes utelukkende med iota.",
     },
     {
       pretitle: "Avsnitt 06 · Turing-fullstendighet",
       title: "Fra ett symbol til alt beregnbart",
-      body: "Curry og Feys' Combinatory Logic (1958) er en lang bok hvis sentrale teorem er kort: enhver λ-term kan oversettes til en term bygget bare av S og K. Kombinert med det vi nettopp gjorde — iota produserer S og iota produserer K — er kjeden lukket. Alt en Turingmaskin, et Python-program eller en menneskelig matematiker kan beregne, kan iota kode. Prisen er en brutal lengdeeksplosjon; gevinsten er begrepsmessig. Iota står bak funksjonell programmering, typeteori, bevisassistenter og enhver implementasjon av ML-lignende språk som den ultimate minimale modellen.",
+      body: "Curry og Feys' Combinatory Logic (1958) er en lang bok hvis sentrale teorem er kort: enhver λ-term kan oversettes til en term bygget bare av S og K. Kombinert med det vi nettopp gjorde (iota produserer S og iota produserer K) er kjeden lukket. Alt en Turingmaskin, et Python-program eller en menneskelig matematiker kan beregne, kan iota kode. Prisen er en brutal lengdeeksplosjon; gevinsten er begrepsmessig. Iota står bak funksjonell programmering, typeteori, bevisassistenter og enhver implementasjon av ML-lignende språk som den ultimate minimale modellen.",
     },
   ],
   reducerCaption: "Interaktiv · trinn-for-trinn-reduser",
   reducerPretitle: "Prøv · reduseren",
   reducerTitle: "Se en utledning folde seg ut",
   reducerBody:
-    "Velg en berømt utledning (ι (ι (ι ι)) → K, eller ι (ι (ι (ι ι))) → S), eller skriv ditt eget uttrykk. Trykk Steg for å anvende én reduksjon; den nye termen erstatter den gamle. Reduseren følger venstre-ytterste rekkefølge — nøyaktig strategien fra lærebøkene.",
+    "Velg en berømt utledning (ι (ι (ι ι)) → K, eller ι (ι (ι (ι ι))) → S), eller skriv ditt eget uttrykk. Trykk Steg for å anvende én reduksjon; den nye termen erstatter den gamle. Reduseren følger venstre-ytterste rekkefølge, nøyaktig strategien fra lærebøkene.",
   ksCaption: "Interaktiv · K- og S-lekeplass",
   ksPretitle: "Prøv · K og S",
   ksTitle: "Føl hva K og S faktisk gjør",
   ksBody:
     "Før de floker seg inn i iota er K og S rett og slett funksjoner. K kaster det andre argumentet. S anvender de to første argumentene på en delt tredje. Skriv tre verdier; panelet viser det symbolske resultatet til høyre.",
   ksLabels: {
-    kHeading: "K — den konstante funksjonen",
-    sHeading: "S — substitusjonsfunksjonen",
+    kHeading: "K: den konstante funksjonen",
+    sHeading: "S: substitusjonsfunksjonen",
     kBody: "Gi K to verdier: det beholder det første og lar det andre falle bort.",
     sBody:
       "S tar tre argumenter og skriver dem om som x z (y z): både x og y anvendes på den delte verdien z.",
@@ -1372,7 +1372,7 @@ export default function IotaStory() {
       <div className="grid-bg pointer-events-none fixed inset-0 -z-10 opacity-30" />
       <div className="from-signal-cyan/12 pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b via-transparent to-ink-950" />
 
-      {/* Hero — canonical pretitle/title/tagline/intro/CTA + formula badge */}
+      {/* Hero: canonical pretitle/title/tagline/intro/CTA + formula badge */}
       <section className="mx-auto mb-32 max-w-5xl space-y-7 text-center">
         <Reveal>
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
@@ -1415,7 +1415,7 @@ export default function IotaStory() {
         </Reveal>
       </section>
 
-      {/* Encounter — three approachable cards */}
+      {/* Encounter: three approachable cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -1563,15 +1563,15 @@ export default function IotaStory() {
             </div>
             <pre className="hairline overflow-x-auto rounded-md border bg-ink-950/60 p-4 font-mono text-xs leading-relaxed text-ink-100 md:text-sm">
               {`ι (ι (ι ι))
-  → (ι (ι ι)) S K       — ${e.kAnn[0]}
-  → (ι ι) S K S K       — ${e.kAnn[1]}
-  → ι S K S K S K       — ${e.kAnn[2]}
-  → S S K K S K S K     — ${e.kAnn[3]}
+  → (ι (ι ι)) S K       · ${e.kAnn[0]}
+  → (ι ι) S K S K       · ${e.kAnn[1]}
+  → ι S K S K S K       · ${e.kAnn[2]}
+  → S S K K S K S K     · ${e.kAnn[3]}
   → S K (K K) S K S K
   → K S (K K S) K S K
   → S K S K
   → K K (S K)
-  → K                   — ${e.kAnn[4]}`}
+  → K                   · ${e.kAnn[4]}`}
             </pre>
             <p className="text-xs leading-relaxed text-ink-400">
               {e.kNotePre}
@@ -1597,10 +1597,10 @@ export default function IotaStory() {
             </div>
             <pre className="hairline overflow-x-auto rounded-md border bg-ink-950/60 p-4 font-mono text-xs leading-relaxed text-ink-100 md:text-sm">
               {`ι (ι (ι (ι ι)))
-  → (ι (ι (ι ι))) S K     — ${e.sAnn[0]}
-  → (ι (ι ι)) S K S K     — ${e.sAnn[1]}
+  → (ι (ι (ι ι))) S K     · ${e.sAnn[0]}
+  → (ι (ι ι)) S K S K     · ${e.sAnn[1]}
   → …   ${e.sAnn[2]}
-  → S                     — ${e.sAnn[3]}`}
+  → S                     · ${e.sAnn[3]}`}
             </pre>
             <p className="text-xs leading-relaxed text-ink-400">
               {e.sNotePre}
@@ -1643,11 +1643,11 @@ export default function IotaStory() {
               {e.chainCaption}
             </div>
             <pre className="hairline overflow-x-auto rounded-md border bg-ink-950/60 p-4 font-mono text-xs leading-relaxed text-ink-100 md:text-sm">
-              {`ι             — ${e.chainAnn[0]}
-  ⇒ S, K       — ${e.chainAnn[1]}
-  ⇒ λ-calculus — ${e.chainAnn[2]}
-  ⇒ recursive  — ${e.chainAnn[3]}
-  ⇒ Turing     — ${e.chainAnn[4]}`}
+              {`ι             · ${e.chainAnn[0]}
+  ⇒ S, K       · ${e.chainAnn[1]}
+  ⇒ λ-calculus · ${e.chainAnn[2]}
+  ⇒ recursive  · ${e.chainAnn[3]}
+  ⇒ Turing     · ${e.chainAnn[4]}`}
             </pre>
             <p className="text-xs leading-relaxed text-ink-400">
               {e.chainNotePre}

@@ -26,7 +26,7 @@ interface Props {
   presets: Preset[];
 }
 
-const RANGE = 41; // x = 0..40 inclusive — Euler's streak length.
+const RANGE = 41; // x = 0..40 inclusive, Euler's streak length.
 
 function isPrime(n: number): boolean {
   if (!Number.isInteger(n) || n < 2) return false;

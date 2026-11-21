@@ -40,11 +40,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
     colSolid: "Solid",
     colFaces: "Faces",
     refParagraph:
-      "The five Platonic solids were already known to the ancient Greeks; Archimedes catalogued the thirteen semi-regular polyhedra including the truncated icosahedron — the soccer ball. Whatever the face shapes, V − E + F is always 2. Descartes noticed the pattern in a 1639 manuscript; Euler rediscovered and published it in 1750 / 1758.",
+      "The five Platonic solids were already known to the ancient Greeks; Archimedes catalogued the thirteen semi-regular polyhedra including the truncated icosahedron, the soccer ball. Whatever the face shapes, V − E + F is always 2. Descartes noticed the pattern in a 1639 manuscript; Euler rediscovered and published it in 1750 / 1758.",
     topoPretitle: "Topology · each handle costs you two",
     topoTitle: "χ = 2 − 2g",
     topoParagraph:
-      "The sphere has no handles: g = 0, χ = 2. A torus has one handle: g = 1, χ = 0. A double torus has two: g = 2, χ = −2. Every closed orientable surface in three dimensions lives on this ladder. Gauss-Bonnet says the same number falls out of integrating the curvature — geometry and topology, locked together.",
+      "The sphere has no handles: g = 0, χ = 2. A torus has one handle: g = 1, χ = 0. A double torus has two: g = 2, χ = −2. Every closed orientable surface in three dimensions lives on this ladder. Gauss-Bonnet says the same number falls out of integrating the curvature: geometry and topology, locked together.",
     truncIcoLabel: "Truncated icosahedron",
     truncIcoFaces: "12 pent. + 20 hex.",
     platonicNames: {
@@ -70,11 +70,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
     colSolid: "Körper",
     colFaces: "Flächen",
     refParagraph:
-      "Die fünf platonischen Körper waren schon den Griechen bekannt; Archimedes katalogisierte die dreizehn halbregulären Polyeder einschließlich des abgestumpften Ikosaeders — des Fußballs. Egal welche Flächenformen: V − E + F ist stets 2. Descartes bemerkte das Muster in einem Manuskript von 1639; Euler entdeckte es wieder und veröffentlichte es 1750 / 1758.",
+      "Die fünf platonischen Körper waren schon den Griechen bekannt; Archimedes katalogisierte die dreizehn halbregulären Polyeder einschließlich des abgestumpften Ikosaeders, des Fußballs. Egal welche Flächenformen: V − E + F ist stets 2. Descartes bemerkte das Muster in einem Manuskript von 1639; Euler entdeckte es wieder und veröffentlichte es 1750 / 1758.",
     topoPretitle: "Topologie · jeder Henkel kostet zwei",
     topoTitle: "χ = 2 − 2g",
     topoParagraph:
-      "Die Sphäre hat keinen Henkel: g = 0, χ = 2. Ein Torus hat einen Henkel: g = 1, χ = 0. Ein Doppeltorus hat zwei: g = 2, χ = −2. Jede geschlossene orientierbare Fläche im dreidimensionalen Raum sitzt auf dieser Leiter. Gauss-Bonnet sagt, dass dieselbe Zahl aus der Integration der Krümmung fällt — Geometrie und Topologie sind aneinander gekoppelt.",
+      "Die Sphäre hat keinen Henkel: g = 0, χ = 2. Ein Torus hat einen Henkel: g = 1, χ = 0. Ein Doppeltorus hat zwei: g = 2, χ = −2. Jede geschlossene orientierbare Fläche im dreidimensionalen Raum sitzt auf dieser Leiter. Gauss-Bonnet sagt, dass dieselbe Zahl aus der Integration der Krümmung fällt: Geometrie und Topologie sind aneinander gekoppelt.",
     truncIcoLabel: "Abgestumpftes Ikosaeder",
     truncIcoFaces: "12 Fünf- + 20 Sechsecke",
     platonicNames: {
@@ -100,11 +100,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
     colSolid: "Sólido",
     colFaces: "Caras",
     refParagraph:
-      "Los cinco sólidos platónicos ya eran conocidos por los antiguos griegos; Arquímedes catalogó los trece poliedros semirregulares incluido el icosaedro truncado — el balón de fútbol. Sean cuales sean las formas de las caras, V − E + F es siempre 2. Descartes notó el patrón en un manuscrito de 1639; Euler lo redescubrió y publicó en 1750 / 1758.",
+      "Los cinco sólidos platónicos ya eran conocidos por los antiguos griegos; Arquímedes catalogó los trece poliedros semirregulares incluido el icosaedro truncado, el balón de fútbol. Sean cuales sean las formas de las caras, V − E + F es siempre 2. Descartes notó el patrón en un manuscrito de 1639; Euler lo redescubrió y publicó en 1750 / 1758.",
     topoPretitle: "Topología · cada asa cuesta dos",
     topoTitle: "χ = 2 − 2g",
     topoParagraph:
-      "La esfera no tiene asas: g = 0, χ = 2. Un toro tiene una: g = 1, χ = 0. Un doble toro tiene dos: g = 2, χ = −2. Toda superficie cerrada orientable en tres dimensiones vive en esta escalera. Gauss-Bonnet dice que el mismo número sale de integrar la curvatura — geometría y topología, enlazadas.",
+      "La esfera no tiene asas: g = 0, χ = 2. Un toro tiene una: g = 1, χ = 0. Un doble toro tiene dos: g = 2, χ = −2. Toda superficie cerrada orientable en tres dimensiones vive en esta escalera. Gauss-Bonnet dice que el mismo número sale de integrar la curvatura: geometría y topología, enlazadas.",
     truncIcoLabel: "Icosaedro truncado",
     truncIcoFaces: "12 pent. + 20 hex.",
     platonicNames: {
@@ -130,11 +130,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
     colSolid: "Solide",
     colFaces: "Faces",
     refParagraph:
-      "Les cinq solides de Platon étaient déjà connus des Grecs anciens ; Archimède a catalogué les treize polyèdres semi-réguliers, dont l'icosaèdre tronqué — le ballon de football. Quelles que soient les formes des faces, V − E + F vaut toujours 2. Descartes a remarqué le motif dans un manuscrit de 1639 ; Euler l'a redécouvert et publié en 1750 / 1758.",
+      "Les cinq solides de Platon étaient déjà connus des Grecs anciens ; Archimède a catalogué les treize polyèdres semi-réguliers, dont l'icosaèdre tronqué, le ballon de football. Quelles que soient les formes des faces, V − E + F vaut toujours 2. Descartes a remarqué le motif dans un manuscrit de 1639 ; Euler l'a redécouvert et publié en 1750 / 1758.",
     topoPretitle: "Topologie · chaque anse coûte deux",
     topoTitle: "χ = 2 − 2g",
     topoParagraph:
-      "La sphère n'a pas d'anses : g = 0, χ = 2. Le tore en a une : g = 1, χ = 0. Le double tore en a deux : g = 2, χ = −2. Toute surface fermée orientable de l'espace tridimensionnel vit sur cette échelle. Gauss-Bonnet dit que le même nombre tombe de l'intégration de la courbure — géométrie et topologie, verrouillées ensemble.",
+      "La sphère n'a pas d'anses : g = 0, χ = 2. Le tore en a une : g = 1, χ = 0. Le double tore en a deux : g = 2, χ = −2. Toute surface fermée orientable de l'espace tridimensionnel vit sur cette échelle. Gauss-Bonnet dit que le même nombre tombe de l'intégration de la courbure : géométrie et topologie, verrouillées ensemble.",
     truncIcoLabel: "Icosaèdre tronqué",
     truncIcoFaces: "12 pent. + 20 hex.",
     platonicNames: {
@@ -160,11 +160,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
     colSolid: "Solido",
     colFaces: "Facce",
     refParagraph:
-      "I cinque solidi platonici erano già noti agli antichi Greci; Archimede catalogò i tredici poliedri semiregolari incluso l'icosaedro troncato — il pallone da calcio. Quali che siano le forme delle facce, V − E + F è sempre 2. Descartes notò lo schema in un manoscritto del 1639; Eulero lo riscoprì e pubblicò nel 1750 / 1758.",
+      "I cinque solidi platonici erano già noti agli antichi Greci; Archimede catalogò i tredici poliedri semiregolari incluso l'icosaedro troncato, il pallone da calcio. Quali che siano le forme delle facce, V − E + F è sempre 2. Descartes notò lo schema in un manoscritto del 1639; Eulero lo riscoprì e pubblicò nel 1750 / 1758.",
     topoPretitle: "Topologia · ogni manico costa due",
     topoTitle: "χ = 2 − 2g",
     topoParagraph:
-      "La sfera non ha manici: g = 0, χ = 2. Il toro ne ha uno: g = 1, χ = 0. Il doppio toro ne ha due: g = 2, χ = −2. Ogni superficie chiusa orientabile in tre dimensioni vive su questa scala. Gauss-Bonnet dice che lo stesso numero salta fuori integrando la curvatura — geometria e topologia, agganciate.",
+      "La sfera non ha manici: g = 0, χ = 2. Il toro ne ha uno: g = 1, χ = 0. Il doppio toro ne ha due: g = 2, χ = −2. Ogni superficie chiusa orientabile in tre dimensioni vive su questa scala. Gauss-Bonnet dice che lo stesso numero salta fuori integrando la curvatura: geometria e topologia, agganciate.",
     truncIcoLabel: "Icosaedro troncato",
     truncIcoFaces: "12 pent. + 20 esag.",
     platonicNames: {
@@ -190,11 +190,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
     colSolid: "Sólido",
     colFaces: "Faces",
     refParagraph:
-      "Os cinco sólidos platónicos já eram conhecidos dos antigos gregos; Arquimedes catalogou os treze poliedros semirregulares, incluindo o icosaedro truncado — a bola de futebol. Sejam quais forem as formas das faces, V − E + F é sempre 2. Descartes notou o padrão num manuscrito de 1639; Euler redescobriu-o e publicou-o em 1750 / 1758.",
+      "Os cinco sólidos platónicos já eram conhecidos dos antigos gregos; Arquimedes catalogou os treze poliedros semirregulares, incluindo o icosaedro truncado, a bola de futebol. Sejam quais forem as formas das faces, V − E + F é sempre 2. Descartes notou o padrão num manuscrito de 1639; Euler redescobriu-o e publicou-o em 1750 / 1758.",
     topoPretitle: "Topologia · cada asa custa dois",
     topoTitle: "χ = 2 − 2g",
     topoParagraph:
-      "A esfera não tem asas: g = 0, χ = 2. Um toro tem uma: g = 1, χ = 0. Um toro duplo tem duas: g = 2, χ = −2. Toda superfície fechada orientável em três dimensões vive nesta escada. Gauss-Bonnet diz que o mesmo número cai da integração da curvatura — geometria e topologia, acopladas.",
+      "A esfera não tem asas: g = 0, χ = 2. Um toro tem uma: g = 1, χ = 0. Um toro duplo tem duas: g = 2, χ = −2. Toda superfície fechada orientável em três dimensões vive nesta escada. Gauss-Bonnet diz que o mesmo número cai da integração da curvatura: geometria e topologia, acopladas.",
     truncIcoLabel: "Icosaedro truncado",
     truncIcoFaces: "12 pent. + 20 hex.",
     platonicNames: {
@@ -220,11 +220,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
     colSolid: "Kropp",
     colFaces: "Sidor",
     refParagraph:
-      "De fem platonska kropparna var redan kända för de gamla grekerna; Arkimedes katalogiserade de tretton halvreguljära polyedrarna, inklusive den stympade ikosaedern — fotbollen. Oavsett sidoform är V − E + F alltid 2. Descartes noterade mönstret i ett manuskript från 1639; Euler återupptäckte och publicerade det 1750 / 1758.",
+      "De fem platonska kropparna var redan kända för de gamla grekerna; Arkimedes katalogiserade de tretton halvreguljära polyedrarna, inklusive den stympade ikosaedern, fotbollen. Oavsett sidoform är V − E + F alltid 2. Descartes noterade mönstret i ett manuskript från 1639; Euler återupptäckte och publicerade det 1750 / 1758.",
     topoPretitle: "Topologi · varje handtag kostar två",
     topoTitle: "χ = 2 − 2g",
     topoParagraph:
-      "Sfären har inga handtag: g = 0, χ = 2. En torus har ett: g = 1, χ = 0. En dubbeltorus har två: g = 2, χ = −2. Varje sluten orienterbar yta i tre dimensioner bor på denna stege. Gauss-Bonnet säger att samma tal faller ut av integralen av krökningen — geometri och topologi, sammankopplade.",
+      "Sfären har inga handtag: g = 0, χ = 2. En torus har ett: g = 1, χ = 0. En dubbeltorus har två: g = 2, χ = −2. Varje sluten orienterbar yta i tre dimensioner bor på denna stege. Gauss-Bonnet säger att samma tal faller ut av integralen av krökningen: geometri och topologi, sammankopplade.",
     truncIcoLabel: "Stympad ikosaeder",
     truncIcoFaces: "12 fem. + 20 hex.",
     platonicNames: {
@@ -250,11 +250,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
     colSolid: "Legeme",
     colFaces: "Flater",
     refParagraph:
-      "De fem platonske legemene var allerede kjent for de gamle grekerne; Arkimedes katalogiserte de tretten halvregulære polyedrene, inkludert det avstumpede ikosaederet — fotballen. Uansett flateform er V − E + F alltid 2. Descartes la merke til mønsteret i et manuskript fra 1639; Euler gjenoppdaget og publiserte det i 1750 / 1758.",
+      "De fem platonske legemene var allerede kjent for de gamle grekerne; Arkimedes katalogiserte de tretten halvregulære polyedrene, inkludert det avstumpede ikosaederet, fotballen. Uansett flateform er V − E + F alltid 2. Descartes la merke til mønsteret i et manuskript fra 1639; Euler gjenoppdaget og publiserte det i 1750 / 1758.",
     topoPretitle: "Topologi · hvert håndtak koster to",
     topoTitle: "χ = 2 − 2g",
     topoParagraph:
-      "Kulen har ingen håndtak: g = 0, χ = 2. En torus har ett: g = 1, χ = 0. En dobbeltorus har to: g = 2, χ = −2. Hver lukket orienterbar flate i tre dimensjoner bor på denne stigen. Gauss-Bonnet sier at samme tall faller ut av å integrere krumningen — geometri og topologi, koblet sammen.",
+      "Kulen har ingen håndtak: g = 0, χ = 2. En torus har ett: g = 1, χ = 0. En dobbeltorus har to: g = 2, χ = −2. Hver lukket orienterbar flate i tre dimensjoner bor på denne stigen. Gauss-Bonnet sier at samme tall faller ut av å integrere krumningen: geometri og topologi, koblet sammen.",
     truncIcoLabel: "Avstumpet ikosaeder",
     truncIcoFaces: "12 fem. + 20 hex.",
     platonicNames: {

@@ -110,7 +110,7 @@ export function FourierSpectrumPlay({
       const Y = (v: number) => H / 2 - v * scale * (H / 2 - 6);
       const STEPS = 480;
 
-      // Individual harmonics — dim
+      // Individual harmonics: dim
       for (let i = 0; i < N_BARS; i++) {
         const a = amps[i];
         if (a <= 0.001) continue;
@@ -127,7 +127,7 @@ export function FourierSpectrumPlay({
         ctx.stroke();
       }
 
-      // Sum — amber
+      // Sum: amber
       ctx.strokeStyle = palette.signal.amber;
       ctx.lineWidth = 1.8;
       ctx.beginPath();
@@ -225,7 +225,7 @@ export function FourierSpectrumPlay({
       audioRef.current = { ctx, osc, gain, master };
       setPlaying(true);
     } catch {
-      // Audio unavailable — silently ignore.
+      // Audio unavailable: silently ignore.
     }
   };
 

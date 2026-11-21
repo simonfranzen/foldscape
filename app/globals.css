@@ -4,7 +4,7 @@
 
 @import "katex/dist/katex.min.css";
 
-/* KaTeX ships its @font-face rules with font-display: block — that means up to
+/* KaTeX ships its @font-face rules with font-display: block; that means up to
    3 s of invisible glyphs on first paint while the woff2 fetches. Because we
    render KaTeX in a useEffect after hydration, the browser only discovers it
    needs these fonts late, and the user sees formulas "pop in" or look subtly
@@ -43,7 +43,7 @@
   src: url("/fonts/KaTeX_Size1-Regular.woff2") format("woff2");
 }
 
-/* Override KaTeX colour: by default it's dark — we want light on dark */
+/* Override KaTeX colour: by default it's dark; we want light on dark */
 .katex {
   color: inherit;
 }
@@ -53,8 +53,8 @@
 /* When KaTeX emits MathML in parallel with HTML, the MathML element ends up
    as a sibling of the visible HTML. KaTeX already gives it .katex-mathml +
    aria-hidden="false" / .katex-html + aria-hidden="true". Hiding the MathML
-   visually but keeping it readable is the right call — do nothing here, it
-   already works — but we DO need to make sure the visual layer is shown
+   visually but keeping it readable is the right call (do nothing here, it
+   already works) but we DO need to make sure the visual layer is shown
    to sighted users even though screen readers see the MathML twin. */
 
 /* CLS-guard: the Formula span starts as an empty inline-level node. Before
@@ -253,7 +253,7 @@ html {
   border-radius: 6px;
 }
 /* For the SVG node hit targets in the constellation, browsers don't honour
-   outline-offset around <g> reliably — bump opacity on the inner circle
+   outline-offset around <g> reliably; bump opacity on the inner circle
    ring instead via the component, but make sure default focus is visible. */
 svg g[role="link"]:focus-visible {
   outline: 2px solid #b388ff;
@@ -292,7 +292,7 @@ svg g[role="link"]:focus-visible {
    The new landing is a single sticky-driven cosmos: a fixed StarField +
    NebulaLayer underneath, six per-category ConstellationScenes pinned
    one at a time, and a persistent HUD floating over the top. The CSS
-   here is intentionally narrow — most styling is Tailwind utilities
+   here is intentionally narrow: most styling is Tailwind utilities
    inside the components. We only declare the things utilities can't:
    the scroll-arrow bounce, the per-scene sticky pin (so reduced-motion
    can release it cleanly), and the focus-visible ring on SVG stars. */
@@ -314,7 +314,7 @@ svg g[role="link"]:focus-visible {
   will-change: transform, opacity;
 }
 
-/* Per-section scroll-down button — gentle continuous bob so it reads as
+/* Per-section scroll-down button: gentle continuous bob so it reads as
    "there's more below" without competing with the prose. The button itself
    is round + outlined; the bob is on its inner SVG via the same keyframes
    as the arrow. */
@@ -338,7 +338,7 @@ svg g[role="link"]:focus-visible {
    pin never engages: at exactly 100vh the sticky child has zero travel and
    the constellation just scrolls past with the page (mid-scene the screen
    was mostly empty black). 230vh gives the cluster ~1.3 viewports of
-   pinned dwell — it builds itself while standing still, then releases.
+   pinned dwell: it builds itself while standing still, then releases.
    v2: dropped `content-visibility: auto`. It saved layout work, but on
    back-navigation it kept the scrolled-to scene logically "skipped" past
    the React paint window, so the IntersectionObserver in useScrollProgress
@@ -346,7 +346,7 @@ svg g[role="link"]:focus-visible {
 .cosmos-scene {
   min-height: 230vh;
 }
-/* Phones: thumb-scrolling six 230vh scenes is a workout — shorter dwell. */
+/* Phones: thumb-scrolling six 230vh scenes is a workout; shorter dwell. */
 @media (max-width: 720px) {
   .cosmos-scene {
     min-height: 170vh;
@@ -376,7 +376,7 @@ a.cosmos-star-label {
 }
 
 /* Mobile: the star labels are scaled to the SVG viewBox, which on a phone
-   means the hub names end up at ~10 px high — readable but small. Bump
+   means the hub names end up at ~10 px high, readable but small. Bump
    them via SVG-level scale so the constellation feels touch-sized. */
 @media (max-width: 720px) {
   .cosmos-star-label {
@@ -387,7 +387,7 @@ a.cosmos-star-label {
   .cosmos-root {
     padding-bottom: 64px;
   }
-  /* Trim the foreground formula layer on phones — eight drifters on a
+  /* Trim the foreground formula layer on phones: eight drifters on a
      small screen reads as clutter. */
   .cosmos-drift:nth-child(n + 5) {
     display: none;
@@ -398,7 +398,7 @@ a.cosmos-star-label {
    every formula drifted the same direction → "logo carpet" feel (user
    feedback). v4 spreads four variants with distinct paths so neighbouring
    pieces sail in different directions and the layer feels like real
-   drift. Distances are 90–160 px (v3 was 40 px) — the eye actually
+   drift. Distances are 90-160 px (v3 was 40 px): the eye actually
    catches the motion now. Opacity still fades in/out so at any instant
    only ~half the pieces are visible. */
 @keyframes cosmosDrift1 {
@@ -500,7 +500,7 @@ a.cosmos-star-label {
   animation-name: cosmosDrift4;
 }
 
-/* Per-scene specimens — slow ambient motion for the small SVG behind each
+/* Per-scene specimens: slow ambient motion for the small SVG behind each
    constellation. None of these should ever upstage the stars; they exist
    to confirm "the cosmos is breathing." */
 @keyframes cosmosRotateSlow {
@@ -523,7 +523,7 @@ a.cosmos-star-label {
 .cosmos-pulse-slow {
   animation: cosmosPulseSlow 6s ease-in-out infinite;
 }
-/* Hub-star halos breathe — group opacity 0.7..1 over ~7 s. Applied to a
+/* Hub-star halos breathe: group opacity 0.7..1 over ~7 s. Applied to a
    wrapping <g> so the circles inside keep their own hover transitions
    (group × circle opacity multiply). Each hub carries a negative
    animation-delay derived from its position so the sky never pulses in
@@ -607,7 +607,7 @@ a.cosmos-star-label {
 
 /* Print: keep topic story heroes airy. Without this, Chrome's "Save as PDF"
    often splits the hero such that the formula card sits flush against the
-   page break — exactly the "Formel klebt am unteren Rand" issue. Forcing a
+   page break, exactly the "Formel klebt am unteren Rand" issue. Forcing a
    page break after the hero gives the formula its own padded bottom edge. */
 @media print {
   main > section:first-of-type {

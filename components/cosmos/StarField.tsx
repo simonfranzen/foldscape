@@ -31,7 +31,7 @@ interface LayerDef {
 }
 
 // Same seeded hash as lib/cosmos/layout so star generation is deterministic
-// between SSR mounts of any sibling components — though canvas runs only
+// between SSR mounts of any sibling components, though canvas runs only
 // client-side, the determinism is nice for visual stability across reloads
 // (a stable starfield reads as "real" rather than "every reload, a new sky").
 function hash01(seed: number): number {
@@ -50,7 +50,7 @@ function hash01(seed: number): number {
 // off-screen rather than popping.
 const VIRTUAL_H = 1800;
 
-// Dimmer, sparser layers — a real cosmos is mostly empty. Counts trimmed
+// Dimmer, sparser layers: a real cosmos is mostly empty. Counts trimmed
 // again per user feedback ("noch ein paar weniger"); each layer now sits
 // about ~60% of v2. The eye still reads "starfield", just with more
 // breathing room between points of light.
@@ -69,7 +69,7 @@ function buildStars(layer: LayerDef, layerIdx: number): StarDef[] {
     const yBase = hash01(seed ^ 0xa1a1a1) * VIRTUAL_H;
     const r = layer.rMin + hash01(seed ^ 0xb2b2b2) * (layer.rMax - layer.rMin);
     const phase = hash01(seed ^ 0xc3c3c3) * Math.PI * 2;
-    // Hue stays in a narrow cool band — 215..230 reads as "white with a
+    // Hue stays in a narrow cool band: 215..230 reads as "white with a
     // hint of cold sky" rather than the v1 rainbow that the user called
     // "Christmas". Range is small enough that to the eye every star is
     // essentially white.
@@ -83,10 +83,10 @@ function buildStars(layer: LayerDef, layerIdx: number): StarDef[] {
 const STAR_LAYERS: StarDef[][] = LAYERS.map((l, i) => buildStars(l, i));
 
 // Quiet "fading forms" replace the v3 comet streak (user feedback: comet
-// was too loud). One geometric ghost at a time — a hexagon, ring, square,
-// or triangle — materialises at a stable seed-picked spot, swells over
+// was too loud). One geometric ghost at a time (a hexagon, ring, square,
+// or triangle) materialises at a stable seed-picked spot, swells over
 // ~5 s, dwells for ~4 s, then fades over ~5 s. Between forms there's a
-// 6–14 s breath of pure star. The shape is always low-opacity (peak < 0.15)
+// 6-14 s breath of pure star. The shape is always low-opacity (peak < 0.15)
 // so it never competes with the stars, but the eye catches the bloom.
 interface FadingForm {
   cx: number;
@@ -101,7 +101,7 @@ function spawnForm(width: number, height: number, seed: number): FadingForm {
   const margin = 80;
   const cx = margin + ((seed * 51) % Math.max(1, width - margin * 2));
   const cy = margin + ((seed * 27) % Math.max(1, height - margin * 2));
-  // Radius scales with viewport — bigger on desktop, smaller on phones.
+  // Radius scales with viewport: bigger on desktop, smaller on phones.
   const baseR = Math.min(width, height) * 0.18;
   const jitter = ((seed * 7) % 60) - 30;
   return {
@@ -190,7 +190,7 @@ export function StarField() {
     // When returning from a topic page (back-navigation, bfcache),
     // canvas.clientWidth/Height can briefly read 0 before layout settles.
     // Fall back to window.innerWidth/Height so the draw loop always has
-    // sane dimensions — without this we'd skip every star (off-screen
+    // sane dimensions; without this we'd skip every star (off-screen
     // clip kicks in) and the cosmos looks empty (user feedback:
     // "wenn ich einmal reinklicke und zurückklicke sehe ich keine sterne").
     const resize = () => {
@@ -236,7 +236,7 @@ export function StarField() {
     const t0 = performance.now();
     let lastFrame = t0;
 
-    // "Big-Bang" intro — first time the cosmos mounts in a session, the
+    // "Big-Bang" intro: first time the cosmos mounts in a session, the
     // stars emerge from a single point at the viewport centre over the
     // first 1.5 s. After the intro completes, the flag is stored so the
     // user doesn't replay it every time they back-nav to /. We also skip
@@ -290,17 +290,17 @@ export function StarField() {
           let y = (s.yBase - scrollY * layer.speed) % VIRTUAL_H;
           if (y < 0) y += VIRTUAL_H;
           // Map virtual-sky-Y onto the viewport. We anchor the virtual sky so
-          // the slowest layer has stars filling the viewport at scrollY=0 —
+          // the slowest layer has stars filling the viewport at scrollY=0:
           // a 2-screen safety margin above/below means no edge gaps.
           if (y > height + 200 || y < -200) continue;
-          // Twinkle — real stars don't blink like Christmas lights. The
+          // Twinkle: real stars don't blink like Christmas lights. The
           // amplitude here is 6 % (0.94..1.0), barely perceptible, and the
           // frequency is halved compared to v3. Reads as "the eye thinks
           // it sees motion" rather than fairy lights flashing.
           const tw = reduced ? 1 : 0.94 + 0.06 * Math.sin(t * layer.twinkleHz * Math.PI + s.phase);
           // Intro: stars fade in + lerp from the central origin to their
           // final position. The deeper layers settle later (0..0.9 of
-          // intro) so the foreground stars arrive first — feels like
+          // intro) so the foreground stars arrive first. Feels like
           // depth blooming outward.
           const layerStart = li * 0.08;
           const localIntro = Math.max(0, Math.min(1, (introEase - layerStart) / (1 - layerStart)));
@@ -321,7 +321,7 @@ export function StarField() {
             ctx.arc(px, py, s.r * 3, 0, Math.PI * 2);
             ctx.fill();
           }
-          // Low saturation (8% — the tint is a whisper, not a hue).
+          // Low saturation (8%: the tint is a whisper, not a hue).
           ctx.fillStyle = `hsla(${s.hue}, 8%, 96%, ${a})`;
           ctx.beginPath();
           ctx.arc(px, py, s.r, 0, Math.PI * 2);
@@ -329,7 +329,7 @@ export function StarField() {
         }
       }
 
-      // Intro central bloom — a single bright dot pulses at the origin
+      // Intro central bloom: a single bright dot pulses at the origin
       // during the first ~0.6 s, then fades out as stars arrive. Sells
       // the "everything from one point" moment.
       if (!skipIntro && introT < 0.6) {
@@ -346,7 +346,7 @@ export function StarField() {
         ctx.fill();
       }
 
-      // Fading-form pass — one geometric ghost at a time, emerges and
+      // Fading-form pass: one geometric ghost at a time, emerges and
       // dissolves over its lifetime. Drawn over stars but at low opacity
       // so it reads as a "depth bloom" rather than a flashy event. Held
       // off during the intro so it doesn't compete with the bloom.
@@ -360,7 +360,7 @@ export function StarField() {
           f.life += dt;
           if (f.life >= f.maxLife) {
             formRef.current = null;
-            // Quiet between forms — 6–14 s gap so they feel like rare events.
+            // Quiet between forms: 6-14 s gap so they feel like rare events.
             nextFormAt.current = t + 6 + (formSeed.current % 8000) / 1000;
           } else {
             // Forms drift their rotation slowly over their life so they
@@ -371,7 +371,7 @@ export function StarField() {
         }
       }
 
-      // Keep animating during the intro even under reduced-motion — it's
+      // Keep animating during the intro even under reduced-motion: it's
       // a one-shot event, not a loop. After the intro, reduced motion
       // freezes the loop as usual.
       if (!reduced || introT < 1) {

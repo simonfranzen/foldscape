@@ -23,8 +23,8 @@ interface Props {
 }
 
 const DEFAULTS = {
-  kHeading: "K — the constant function",
-  sHeading: "S — the substitution function",
+  kHeading: "K: the constant function",
+  sHeading: "S: the substitution function",
   kBody: "Hand K any two values and it keeps the first while dropping the second on the floor.",
   sBody:
     "S takes three arguments and rewrites them as x z (y z): both x and y are applied to the shared input z.",
@@ -41,16 +41,16 @@ export function IotaKSPlayground({ caption, labels = DEFAULTS }: Props) {
   const [z, setZ] = useState("3");
 
   // We treat x, y, z as opaque strings. For K we just return x. For S we
-  // build the symbolic expression x z (y z) — the reader sees how the value
+  // build the symbolic expression x z (y z); the reader sees how the value
   // z is "shared" between the two function-position slots.
   const kResult = x;
   const sResultSymbolic = `${x} ${z} (${y} ${z})`;
 
   // Bonus: if x and y are numbers, treat them as constant functions and
   // compute a numeric answer too. K(2,5)=2; S(λa.a+1, λa.a*2, 3) = (3+1)*?
-  // — but we keep it dead simple: if x/y/z are numbers, show numeric S
+  // But we keep it dead simple: if x/y/z are numbers, show numeric S
   // assuming x and y are themselves the *constant functions* returning x, y.
-  // Then x z = x, y z = y, so S = x · y? No — concatenation only makes
+  // Then x z = x, y z = y, so S = x · y? No: concatenation only makes
   // sense symbolically. Keep this pane purely string-substitution.
 
   return (

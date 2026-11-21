@@ -235,7 +235,7 @@ export function PenroseTiling({
             <div className="mt-2 flex items-center justify-between border-t border-ink-700/40 pt-2">
               <span className="text-ink-400">thick / thin</span>
               <span className="text-signal-amber">
-                {counts.thin > 0 ? (counts.thick / counts.thin).toFixed(4) : "—"}
+                {counts.thin > 0 ? (counts.thick / counts.thin).toFixed(4) : "…"}
               </span>
             </div>
             <div className="flex items-center justify-between text-ink-500">

@@ -16,7 +16,7 @@ import { PENROSE_GUIDE } from "@/lib/explorer-guides/penrose";
 // vertices A, B, C and a type:
 //   type 0  →  half of a THIN  rhombus  (golden triangle: 36° at A, 72° at B/C)
 //   type 1  →  half of a THICK rhombus  (golden gnomon:   108° at A, 36° at B/C)
-// Two mirrored type-0 triangles share the edge B–C to form one thin rhombus;
+// Two mirrored type-0 triangles share the edge B-C to form one thin rhombus;
 // likewise for type-1 and the thick rhombus.
 //
 // Inflation rules (Penrose, standard formulation):
@@ -147,7 +147,7 @@ function trianglesToRhombi(tris: Tri[]): Rhomb[] {
       map.set(k, tr);
     }
   }
-  // Leftover half-rhombi at the boundary — render them as triangles via degenerate
+  // Leftover half-rhombi at the boundary: render them as triangles via degenerate
   // quad (A, B, midpoint-shifted, C). We treat them as full rhombi by reflecting
   // anyway so the boundary stays clean.
   for (const tr of map.values()) {
@@ -617,13 +617,13 @@ export default function PenroseExplorer() {
   // type 1 → thick rhombus, type 0 → thin rhombus. Thick outnumber thin by φ.
   const fatCount = rhombi.filter((r) => r.t === 1).length;
   const thinCount = rhombi.filter((r) => r.t === 0).length;
-  const ratio = thinCount > 0 ? (fatCount / thinCount).toFixed(4) : "—";
+  const ratio = thinCount > 0 ? (fatCount / thinCount).toFixed(4) : "…";
 
   // Half-triangle counts: type 1 = thick-rhombus halves, type 0 = thin. The
   // thick/thin count ratio converges to φ ≈ 1.618.
   const thickHalfCount = p2Tris.filter((t) => t.t === 1).length;
   const thinHalfCount = p2Tris.filter((t) => t.t === 0).length;
-  const p2Ratio = thinHalfCount > 0 ? (thickHalfCount / thinHalfCount).toFixed(4) : "—";
+  const p2Ratio = thinHalfCount > 0 ? (thickHalfCount / thinHalfCount).toFixed(4) : "…";
   const halfCount = p2Tris.length;
 
   return (
