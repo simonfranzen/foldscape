@@ -45,7 +45,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         paragraphs: [
           "t_max (5 to 60, default 45) sets how far up the critical line the lower plot goes. The path starts at ζ(½) ≈ −1.46 on the negative real axis and gets brighter as t grows. With t_max = 45 it passes through the origin eight times, once for each zero below 45. The list in the panel shows the heights where the path came close enough to count; push t_max to 60 and it grows to 13 entries, the last near 59.35.",
           "N (20 to 500, default 200) is the number of terms used to evaluate ζ. More terms mean a more accurate path, especially high up the line; fewer terms make the curve slightly wrong and, at large t, visibly shaky.",
-          "N_zeros (0 to 50, default 8) is how many zero pairs feed the warm curve in the upper plot. At 0 you see Riemann's smooth function R(x) on its own, which already runs through the middle of the steps: R(100) ≈ 25.66, and there are 25 primes below 100. Each extra zero adds a wave whose frequency grows with γ, and together these waves make the curve rise faster at the primes and flatten between them. The badge in the corner reports the largest gap between the two curves over the visible range. It falls from about 1.7 with no zeros to about 1.1 with 8 and about 0.9 with all 50.",
+          "N_zeros (0 to 50, default 8) is how many zero pairs feed the warm curve in the upper plot. At 0 you see Riemann's smooth function R(x) on its own, which already runs through the middle of the steps: R(100) ≈ 25.66, and there are 25 primes below 100. Each extra zero adds a wave whose frequency grows with γ, and together these waves make the curve rise faster at the primes and flatten between them. The badge in the corner reports the largest gap between the two curves over the visible range. It falls from about 1.7 with no zeros to about 1.1 with 8 and about 0.9 with all 50. Reset returns all three sliders to their defaults.",
         ],
       },
       {
@@ -145,7 +145,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
   },
   es: {
     metaDescription:
-      "Explora la función zeta de Riemann en la línea crítica: sigue ζ(½ + it), halla ceros en t ≈ 14,13, 21,02 y 25,01 y mira cómo reconstruyen la escalera de primos.",
+      "Explora la función zeta de Riemann en la línea crítica: sigue ζ(½ + it), halla ceros en t ≈ 14,13; 21,02 y 25,01 y mira cómo reconstruyen la escalera de primos.",
     heading: "Cómo funciona este explorador",
     intro:
       "Hay dos gráficos. El de arriba cuenta primos: una escalera gris que sube un peldaño en cada primo hasta 200 y una curva cálida y suave que intenta seguirla. El de abajo recorre la función zeta de Riemann a lo largo de la recta vertical Re(s) = ½ y dibuja dónde caen sus valores en el plano complejo. Cada vez que ese camino pasa por el origen, ζ tiene un cero. Y con esos ceros, precisamente, está construida la curva cálida del gráfico superior.",
@@ -154,7 +154,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         heading: "Ceros y primos",
         paragraphs: [
           "Para Re(s) > 1, la función zeta es la suma de 1/n^s sobre todos los enteros positivos, y Euler demostró que coincide con un producto sobre todos los primos. Por ese producto ζ sabe algo de los primos. Riemann extendió la función a todo el plano complejo (salvo s = 1) y, en su artículo de 1859, escribió una fórmula explícita: la cantidad de primos menores que x es igual a un término principal suave menos una corrección oscilante por cada cero no trivial.",
-          "Los ceros no triviales vienen en parejas simétricas, por encima y por debajo del eje real. Todos los encontrados hasta hoy están sobre la recta Re(s) = ½, así que tienen la forma ½ ± iγ, y la hipótesis de Riemann afirma que eso vale para todos. Las primeras alturas son γ ≈ 14,1347, 21,0220 y 25,0109; el explorador guarda las 50 primeras, hasta γ ≈ 143,11.",
+          "Los ceros no triviales vienen en parejas simétricas, por encima y por debajo del eje real. Todos los encontrados hasta hoy están sobre la recta Re(s) = ½, así que tienen la forma ½ ± iγ, y la hipótesis de Riemann afirma que eso vale para todos. Las primeras alturas son γ ≈ 14,1347; 21,0220 y 25,0109; el explorador guarda las 50 primeras, hasta γ ≈ 143,11.",
         ],
         formula: EXPLICIT_FORMULA,
       },
@@ -163,7 +163,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         paragraphs: [
           "t_max (de 5 a 60, por defecto 45) fija hasta qué altura de la línea crítica llega el gráfico inferior. El camino empieza en ζ(½) ≈ −1,46, sobre el eje real negativo, y se vuelve más brillante a medida que t crece. Con t_max = 45 pasa ocho veces por el origen, una por cada cero por debajo de 45. La lista del panel muestra las alturas en las que el camino se acercó lo bastante como para contar; lleva t_max a 60 y crece hasta 13 entradas, la última cerca de 59,35.",
           "N (de 20 a 500, por defecto 200) es el número de términos con los que se evalúa ζ. Más términos dan un camino más preciso, sobre todo en lo alto de la línea; con menos, la curva sale ligeramente equivocada y, para t grande, visiblemente temblorosa.",
-          "N_zeros (de 0 a 50, por defecto 8) indica cuántas parejas de ceros alimentan la curva cálida del gráfico superior. Con 0 ves la función suave R(x) de Riemann a solas, que ya pasa por el medio de los escalones: R(100) ≈ 25,66, y hay 25 primos por debajo de 100. Cada cero adicional suma una onda cuya frecuencia crece con γ, y entre todas hacen que la curva suba más deprisa en los primos y se aplane entre ellos. La etiqueta de la esquina indica la mayor separación entre las dos curvas en el rango visible. Baja de unos 1,7 sin ceros a unos 1,1 con 8 y a unos 0,9 con los 50.",
+          "N_zeros (de 0 a 50, por defecto 8) indica cuántas parejas de ceros alimentan la curva cálida del gráfico superior. Con 0 ves la función suave R(x) de Riemann a solas, que ya pasa por el medio de los escalones: R(100) ≈ 25,66, y hay 25 primos por debajo de 100. Cada cero adicional suma una onda cuya frecuencia crece con γ, y entre todas hacen que la curva suba más deprisa en los primos y se aplane entre ellos. La etiqueta de la esquina indica la mayor separación entre las dos curvas en el rango visible. Baja de unos 1,7 sin ceros a unos 1,1 con 8 y a unos 0,9 con los 50. «↺ reiniciar» devuelve los tres deslizadores a sus valores por defecto.",
         ],
       },
       {
@@ -204,7 +204,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
   },
   fr: {
     metaDescription:
-      "La fonction zêta de Riemann sur la droite critique : suis ζ(½ + it), trouve les zéros en t ≈ 14,13, 21,02 et 25,01, vois-les rebâtir l'escalier des premiers.",
+      "La fonction zêta de Riemann sur la droite critique : suis ζ(½ + it), trouve les zéros en t ≈ 14,13 ; 21,02 et 25,01, vois-les rebâtir l'escalier des premiers.",
     heading: "Comment fonctionne cet explorateur",
     intro:
       "Il y a deux graphiques. Celui du haut compte les nombres premiers : un escalier gris qui monte d'une marche à chaque premier jusqu'à 200, et une courbe chaude et lisse qui tente de le suivre. Celui du bas suit la fonction zêta de Riemann le long de la droite verticale Re(s) = ½ et dessine où ses valeurs atterrissent dans le plan complexe. Chaque fois que ce chemin passe par l'origine, ζ possède un zéro. Et c'est exactement à partir de ces zéros qu'est construite la courbe chaude du graphique du haut.",
@@ -213,16 +213,16 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         heading: "Zéros et nombres premiers",
         paragraphs: [
           "Pour Re(s) > 1, la fonction zêta est la somme des 1/n^s sur tous les entiers strictement positifs, et Euler a montré qu'elle est égale à un produit sur tous les nombres premiers. C'est ce produit qui explique que ζ sache quoi que ce soit des premiers. Riemann a prolongé la fonction à tout le plan complexe (sauf s = 1) et, dans son article de 1859, a écrit une formule explicite : le nombre de premiers inférieurs à x est égal à un terme principal lisse, moins une correction oscillante pour chaque zéro non trivial.",
-          "Les zéros non triviaux vont par paires symétriques, au-dessus et au-dessous de l'axe réel. Tous ceux trouvés à ce jour se situent sur la droite Re(s) = ½, ils sont donc de la forme ½ ± iγ, et l'hypothèse de Riemann affirme que c'est vrai pour tous. Les premières hauteurs sont γ ≈ 14,1347, 21,0220 et 25,0109 ; l'explorateur garde en mémoire les 50 premières, jusqu'à γ ≈ 143,11.",
+          "Les zéros non triviaux vont par paires symétriques, au-dessus et au-dessous de l'axe réel. Tous ceux trouvés à ce jour se situent sur la droite Re(s) = ½, ils sont donc de la forme ½ ± iγ, et l'hypothèse de Riemann affirme que c'est vrai pour tous. Les premières hauteurs sont γ ≈ 14,1347 ; 21,0220 et 25,0109 ; l'explorateur garde en mémoire les 50 premières, jusqu'à γ ≈ 143,11.",
         ],
         formula: EXPLICIT_FORMULA,
       },
       {
-        heading: "À quoi servent les réglages",
+        heading: "À quoi servent les commandes",
         paragraphs: [
           "t_max (de 5 à 60, 45 par défaut) fixe jusqu'où le graphique du bas remonte la droite critique. Le chemin part de ζ(½) ≈ −1,46, sur l'axe réel négatif, et devient plus lumineux à mesure que t grandit. Avec t_max = 45, il passe huit fois par l'origine, une fois pour chaque zéro en dessous de 45. La liste du panneau indique les hauteurs où le chemin s'est approché assez près pour compter ; pousse t_max à 60 et elle passe à 13 entrées, la dernière vers 59,35.",
           "N (de 20 à 500, 200 par défaut) est le nombre de termes utilisés pour évaluer ζ. Plus de termes donnent un chemin plus précis, surtout en haut de la droite ; avec moins de termes, la courbe devient légèrement fausse et, pour t grand, visiblement tremblante.",
-          "N_zeros (de 0 à 50, 8 par défaut) indique combien de paires de zéros alimentent la courbe chaude du graphique du haut. À 0, tu vois la fonction lisse R(x) de Riemann seule, qui passe déjà au milieu des marches : R(100) ≈ 25,66, et il y a 25 nombres premiers en dessous de 100. Chaque zéro supplémentaire ajoute une onde dont la fréquence croît avec γ, et ensemble ces ondes font monter la courbe plus vite aux nombres premiers et l'aplatissent entre eux. Le badge dans le coin donne le plus grand écart entre les deux courbes sur l'intervalle visible. Il passe d'environ 1,7 sans zéro à environ 1,1 avec 8 et environ 0,9 avec les 50.",
+          "N_zeros (de 0 à 50, 8 par défaut) indique combien de paires de zéros alimentent la courbe chaude du graphique du haut. À 0, tu vois la fonction lisse R(x) de Riemann seule, qui passe déjà au milieu des marches : R(100) ≈ 25,66, et il y a 25 nombres premiers en dessous de 100. Chaque zéro supplémentaire ajoute une onde dont la fréquence croît avec γ, et ensemble ces ondes font monter la courbe plus vite aux nombres premiers et l'aplatissent entre eux. Le badge dans le coin donne le plus grand écart entre les deux courbes sur l'intervalle visible. Il passe d'environ 1,7 sans zéro à environ 1,1 avec 8 et environ 0,9 avec les 50. « réinitialiser » ramène les trois curseurs à leurs valeurs par défaut.",
         ],
       },
       {
@@ -230,7 +230,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         paragraphs: [
           "La série habituelle de ζ ne converge pas sur la droite critique ; le code utilise donc à la place la fonction êta de Dirichlet : la somme alternée 1 − 1/2^s + 1/3^s − … converge pour tout s de partie réelle positive, et en la divisant par 1 − 2^(1−s) on retrouve ζ.",
           "La trace échantillonne t à raison de 80 points par unité (au moins 500 points), évalue ζ en chacun d'eux et est mémoïsée, si bien que déplacer N_zeros ne la recalcule jamais. Les zéros sont repérés en cherchant les minimums locaux de |ζ| qui descendent sous 0,18. Le graphique du haut prend 400 échantillons entre x = 2 et 200, tire π(x) d'une table des 80 premiers nombres premiers et calcule R(x) avec la série de Gram donnée plus haut, qui converge pour tout x.",
-          "Pour chaque zéro, la correction utilise le terme asymptotique dominant x^ρ / (ρ ln x) au lieu du li(x^ρ) complexe complet, et le zéro conjugué est pris en compte en doublant la partie réelle. Les deux graphiques sont des canvas 2D statiques qui ne se redessinent que lorsqu'un curseur bouge ou que le panneau change de taille : il n'y a donc aucune animation à couper pour le mode de mouvement réduit.",
+          "Pour chaque zéro, la correction utilise le terme asymptotique dominant x^ρ / (ρ ln x) au lieu du li(x^ρ) complexe complet, et le zéro conjugué est pris en compte en doublant la partie réelle. Les deux graphiques sont des canevas 2D statiques qui ne se redessinent que lorsqu'un curseur bouge ou que le panneau change de taille : il n'y a donc aucune animation à couper quand la réduction des animations est activée.",
         ],
         code: ZETA_EXCERPT,
       },
@@ -244,7 +244,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
     experimentsHeading: "À essayer",
     experiments: [
       {
-        title: "Trouver le premier zéro",
+        title: "Trouve le premier zéro",
         text: "Règle t_max sur 13 et regarde le graphique du bas : le chemin tournoie mais manque l'origine, et la liste des zéros est vide. Monte à 15. Le chemin coupe maintenant l'origine et la liste affiche γ₁ près de 14,13.",
       },
       {
@@ -252,7 +252,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         text: "Règle N_zeros sur 0 et note la valeur du badge d'erreur (environ 1,7). Passe ensuite par 1, 3, 8, 20 et 50. La courbe lisse se couvre d'ondulations qui grimpent aux nombres premiers et s'aplanissent dans les intervalles, et le badge descend à environ 1,1 pour 8 et environ 0,9 pour 50. Il ne baisse pas à chaque étape : entre 1 et 3, il oscille autour de 1,4.",
       },
       {
-        title: "Affamer la série",
+        title: "Affame la série",
         text: "Mets t_max à 60 et descends N à 20. Compare le chemin avec celui de N = 500. La version grossière boucle encore près de l'origine aux bonnes hauteurs, mais la forme dérive vers l'extrémité haute de la trace. La précision pour t grand demande plus de termes.",
       },
       {
@@ -263,7 +263,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
   },
   it: {
     metaDescription:
-      "Esplora la funzione zeta di Riemann sulla retta critica: segui ζ(½ + it), trova gli zeri a t ≈ 14,13, 21,02 e 25,01 e guarda come ricreano la scala dei primi.",
+      "Esplora la funzione zeta di Riemann sulla retta critica: segui ζ(½ + it), trova gli zeri a t ≈ 14,13; 21,02 e 25,01 e guarda come ricreano la scala dei primi.",
     heading: "Come funziona questo esploratore",
     intro:
       "Ci sono due grafici. Quello in alto conta i numeri primi: una scala grigia che sale di un gradino a ogni primo fino a 200 e una curva calda e liscia che cerca di seguirla. Quello in basso percorre la funzione zeta di Riemann lungo la retta verticale Re(s) = ½ e disegna dove cadono i suoi valori nel piano complesso. Ogni volta che quel percorso passa per l'origine, ζ ha uno zero. Ed è proprio con questi zeri che è costruita la curva calda del grafico in alto.",
@@ -272,12 +272,12 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         heading: "Zeri e numeri primi",
         paragraphs: [
           "Per Re(s) > 1 la funzione zeta è la somma di 1/n^s su tutti gli interi positivi, ed Eulero dimostrò che coincide con un prodotto su tutti i numeri primi. È per via di quel prodotto che ζ sa qualcosa dei primi. Riemann estese la funzione a tutto il piano complesso (tranne s = 1) e, nel suo articolo del 1859, scrisse una formula esplicita: il numero di primi minori di x è uguale a un termine principale liscio meno una correzione oscillante per ogni zero non banale.",
-          "Gli zeri non banali si presentano in coppie speculari, sopra e sotto l'asse reale. Tutti quelli trovati finora stanno sulla retta Re(s) = ½, hanno quindi la forma ½ ± iγ, e l'ipotesi di Riemann afferma che questo vale per tutti. Le prime altezze sono γ ≈ 14,1347, 21,0220 e 25,0109; l'esploratore ne memorizza le prime 50, fino a γ ≈ 143,11.",
+          "Gli zeri non banali si presentano in coppie speculari, sopra e sotto l'asse reale. Tutti quelli trovati finora stanno sulla retta Re(s) = ½, hanno quindi la forma ½ ± iγ, e l'ipotesi di Riemann afferma che questo vale per tutti. Le prime altezze sono γ ≈ 14,1347; 21,0220 e 25,0109; l'esploratore ne memorizza le prime 50, fino a γ ≈ 143,11.",
         ],
         formula: EXPLICIT_FORMULA,
       },
       {
-        heading: "A cosa servono i controlli",
+        heading: "Che cosa fanno i controlli",
         paragraphs: [
           "t_max (da 5 a 60, predefinito 45) stabilisce fin dove il grafico in basso risale la retta critica. Il percorso parte da ζ(½) ≈ −1,46, sull'asse reale negativo, e diventa più luminoso al crescere di t. Con t_max = 45 passa otto volte per l'origine, una per ogni zero sotto 45. L'elenco nel pannello mostra le altezze in cui il percorso si è avvicinato abbastanza da contare; porta t_max a 60 e sale a 13 voci, l'ultima vicino a 59,35.",
           "N (da 20 a 500, predefinito 200) è il numero di termini usati per valutare ζ. Più termini danno un percorso più accurato, soprattutto in alto lungo la retta; con meno termini la curva risulta leggermente sbagliata e, per t grande, visibilmente tremolante.",
@@ -285,7 +285,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         ],
       },
       {
-        heading: "Come è costruito",
+        heading: "Com'è costruito",
         paragraphs: [
           "La serie consueta di ζ non converge sulla retta critica, perciò il codice usa al suo posto la funzione eta di Dirichlet: la somma a segni alterni 1 − 1/2^s + 1/3^s − … converge per ogni s con parte reale positiva, e dividendola per 1 − 2^(1−s) si riottiene ζ.",
           "La traccia campiona t con 80 punti per unità (almeno 500 punti), valuta ζ in ciascuno e viene memoizzata, così spostare N_zeros non la ricalcola mai. Gli zeri si trovano cercando i minimi locali di |ζ| che scendono sotto 0,18. Il grafico in alto prende 400 campioni tra x = 2 e 200, ricava π(x) da una tabella dei primi 80 numeri primi e calcola R(x) con la serie di Gram mostrata sopra, che converge per ogni x.",
@@ -322,7 +322,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
   },
   pt: {
     metaDescription:
-      "Explora a função zeta de Riemann na reta crítica: segue ζ(½ + it), encontra zeros em t ≈ 14,13, 21,02 e 25,01 e vê como reconstroem a escada dos números primos.",
+      "Explora a função zeta de Riemann na reta crítica: segue ζ(½ + it), encontra zeros em t ≈ 14,13; 21,02 e 25,01 e vê como reconstroem a escada dos números primos.",
     heading: "Como funciona este explorador",
     intro:
       "Há dois gráficos. O de cima conta primos: uma escada cinzenta que sobe um degrau em cada primo até 200 e uma curva quente e suave que tenta acompanhá-la. O de baixo percorre a função zeta de Riemann ao longo da reta vertical Re(s) = ½ e desenha onde os seus valores caem no plano complexo. Sempre que esse caminho passa pela origem, ζ tem um zero. E é precisamente com esses zeros que se constrói a curva quente do gráfico de cima.",
@@ -331,7 +331,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         heading: "Zeros e primos",
         paragraphs: [
           "Para Re(s) > 1, a função zeta é a soma de 1/n^s sobre todos os inteiros positivos, e Euler mostrou que é igual a um produto sobre todos os primos. É por causa desse produto que ζ sabe alguma coisa sobre os primos. Riemann estendeu a função a todo o plano complexo (exceto s = 1) e, no seu artigo de 1859, escreveu uma fórmula explícita: a quantidade de primos abaixo de x é igual a um termo principal suave menos uma correção oscilante por cada zero não trivial.",
-          "Os zeros não triviais surgem em pares simétricos, acima e abaixo do eixo real. Todos os que se encontraram até hoje estão sobre a reta Re(s) = ½, pelo que têm a forma ½ ± iγ, e a hipótese de Riemann afirma que isso vale para todos. As primeiras alturas são γ ≈ 14,1347, 21,0220 e 25,0109; o explorador guarda as 50 primeiras, até γ ≈ 143,11.",
+          "Os zeros não triviais surgem em pares simétricos, acima e abaixo do eixo real. Todos os que se encontraram até hoje estão sobre a reta Re(s) = ½, pelo que têm a forma ½ ± iγ, e a hipótese de Riemann afirma que isso vale para todos. As primeiras alturas são γ ≈ 14,1347; 21,0220 e 25,0109; o explorador guarda as 50 primeiras, até γ ≈ 143,11.",
         ],
         formula: EXPLICIT_FORMULA,
       },
@@ -340,15 +340,15 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         paragraphs: [
           "t_max (de 5 a 60, predefinição 45) define até onde o gráfico de baixo sobe pela reta crítica. O caminho começa em ζ(½) ≈ −1,46, no eixo real negativo, e fica mais brilhante à medida que t cresce. Com t_max = 45 passa oito vezes pela origem, uma por cada zero abaixo de 45. A lista no painel mostra as alturas em que o caminho se aproximou o suficiente para contar; leva t_max até 60 e ela cresce para 13 entradas, a última perto de 59,35.",
           "N (de 20 a 500, predefinição 200) é o número de termos usados para avaliar ζ. Mais termos dão um caminho mais exato, sobretudo no alto da reta; com menos termos a curva fica ligeiramente errada e, para t grande, visivelmente trémula.",
-          "N_zeros (de 0 a 50, predefinição 8) indica quantos pares de zeros alimentam a curva quente do gráfico de cima. Em 0 vês a função suave R(x) de Riemann sozinha, que já passa pelo meio dos degraus: R(100) ≈ 25,66, e há 25 primos abaixo de 100. Cada zero adicional acrescenta uma onda cuja frequência cresce com γ, e em conjunto estas ondas fazem a curva subir mais depressa nos primos e achatar entre eles. A etiqueta no canto indica a maior distância entre as duas curvas no intervalo visível. Desce de cerca de 1,7 sem zeros para cerca de 1,1 com 8 e cerca de 0,9 com todos os 50.",
+          "N_zeros (de 0 a 50, predefinição 8) indica quantos pares de zeros alimentam a curva quente do gráfico de cima. Em 0 vês a função suave R(x) de Riemann sozinha, que já passa pelo meio dos degraus: R(100) ≈ 25,66, e há 25 primos abaixo de 100. Cada zero adicional acrescenta uma onda cuja frequência cresce com γ, e em conjunto estas ondas fazem a curva subir mais depressa nos primos e achatar entre eles. A etiqueta no canto indica a maior distância entre as duas curvas no intervalo visível. Desce de cerca de 1,7 sem zeros para cerca de 1,1 com 8 e cerca de 0,9 com todos os 50. «↺ reiniciar» repõe os três cursores nos valores predefinidos.",
         ],
       },
       {
-        heading: "Como é construído",
+        heading: "Como está construído",
         paragraphs: [
           "A série habitual de ζ não converge na reta crítica, por isso o código usa em vez dela a função eta de Dirichlet: a soma alternada 1 − 1/2^s + 1/3^s − … converge para todo o s com parte real positiva, e dividi-la por 1 − 2^(1−s) devolve ζ.",
           "O traço amostra t em 80 pontos por unidade (no mínimo 500 pontos), avalia ζ em cada um e fica memorizado, de modo que mexer em N_zeros nunca o recalcula. Os zeros são detetados procurando mínimos locais de |ζ| que desçam abaixo de 0,18. O gráfico de cima toma 400 amostras entre x = 2 e 200, obtém π(x) de uma tabela dos 80 primeiros primos e calcula R(x) com a série de Gram mostrada acima, que converge para todo o x.",
-          "Para cada zero, a correção usa o termo assintótico dominante x^ρ / (ρ ln x) em vez do li(x^ρ) complexo completo, e o zero conjugado é tratado duplicando a parte real. Ambos os gráficos são canvas 2D estáticos que só são redesenhados quando um controlo deslizante muda ou o painel é redimensionado, pelo que não há nenhuma animação a desligar para o movimento reduzido.",
+          "Para cada zero, a correção usa o termo assintótico dominante x^ρ / (ρ ln x) em vez do li(x^ρ) complexo completo, e o zero conjugado é tratado duplicando a parte real. Ambos os gráficos são canvas 2D estáticos que só são redesenhados quando um cursor muda ou o painel é redimensionado, pelo que não há nenhuma animação a desligar para o movimento reduzido.",
         ],
         code: ZETA_EXCERPT,
       },
@@ -359,7 +359,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Experimenta",
+    experimentsHeading: "Experimenta isto",
     experiments: [
       {
         title: "Encontra o primeiro zero",
@@ -381,7 +381,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
   },
   sv: {
     metaDescription:
-      "Utforska Riemanns zetafunktion på den kritiska linjen: följ ζ(½ + it), hitta nollställen vid t ≈ 14,13, 21,02 och 25,01 och se dem bygga upp primtalstrappan.",
+      "Utforska Riemanns zetafunktion på den kritiska linjen: följ ζ(½ + it), hitta nollställen vid t ≈ 14,13; 21,02 och 25,01 och se dem bygga upp primtalstrappan.",
     heading: "Så fungerar den här utforskaren",
     intro:
       "Det finns två diagram. Det övre räknar primtal: en grå trappa som tar ett steg uppåt vid varje primtal upp till 200, och en varm, slät kurva som försöker följa den. Det nedre följer Riemanns zetafunktion längs den lodräta linjen Re(s) = ½ och ritar var dess värden hamnar i det komplexa talplanet. Varje gång den vägen går genom origo har ζ ett nollställe. Det är precis de nollställena som den varma kurvan i det övre diagrammet är byggd av.",
@@ -390,7 +390,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         heading: "Nollställen och primtal",
         paragraphs: [
           "För Re(s) > 1 är zetafunktionen summan av 1/n^s över alla positiva heltal, och Euler visade att den är lika med en produkt över alla primtal. Den produkten är skälet till att ζ över huvud taget vet något om primtal. Riemann utvidgade funktionen till hela det komplexa talplanet (utom s = 1) och skrev i sin artikel från 1859 ner en explicit formel: antalet primtal under x är lika med en slät huvudterm minus en svängande korrektion för varje icke-trivialt nollställe.",
-          "De icke-triviala nollställena kommer i spegelvända par över och under den reella axeln. Alla som hittills har hittats ligger på linjen Re(s) = ½ och har alltså formen ½ ± iγ, och Riemannhypotesen påstår att det gäller för samtliga. De första höjderna är γ ≈ 14,1347, 21,0220 och 25,0109; utforskaren har de 50 första lagrade, upp till γ ≈ 143,11.",
+          "De icke-triviala nollställena kommer i spegelvända par över och under den reella axeln. Alla som hittills har hittats ligger på linjen Re(s) = ½ och har alltså formen ½ ± iγ, och Riemannhypotesen påstår att det gäller för samtliga. De första höjderna är γ ≈ 14,1347; 21,0220 och 25,0109. Utforskaren har de 50 första lagrade, upp till γ ≈ 143,11.",
         ],
         formula: EXPLICIT_FORMULA,
       },
@@ -399,22 +399,22 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         paragraphs: [
           "t_max (5 till 60, standard 45) bestämmer hur långt upp längs den kritiska linjen det nedre diagrammet går. Vägen börjar i ζ(½) ≈ −1,46 på den negativa reella axeln och blir ljusare när t växer. Med t_max = 45 går den genom origo åtta gånger, en gång för varje nollställe under 45. Listan i panelen visar höjderna där vägen kom tillräckligt nära för att räknas; dra t_max till 60 så växer den till 13 poster, den sista nära 59,35.",
           "N (20 till 500, standard 200) är antalet termer som används för att beräkna ζ. Fler termer ger en noggrannare väg, särskilt högt upp på linjen; med färre termer blir kurvan en aning fel och, för stora t, synbart darrig.",
-          "N_zeros (0 till 50, standard 8) anger hur många nollställespar som matar den varma kurvan i det övre diagrammet. Vid 0 ser du Riemanns släta funktion R(x) ensam, och den går redan mitt genom trappstegen: R(100) ≈ 25,66, och det finns 25 primtal under 100. Varje ytterligare nollställe lägger till en våg vars frekvens växer med γ, och tillsammans får vågorna kurvan att stiga snabbare vid primtalen och plana ut mellan dem. Brickan i hörnet anger det största avståndet mellan de två kurvorna i det synliga området. Det sjunker från ungefär 1,7 utan nollställen till ungefär 1,1 med 8 och ungefär 0,9 med alla 50.",
+          "N_zeros (0 till 50, standard 8) anger hur många nollställespar som matar den varma kurvan i det övre diagrammet. Vid 0 ser du Riemanns släta funktion R(x) ensam, och den går redan mitt genom trappstegen: R(100) ≈ 25,66, och det finns 25 primtal under 100. Varje ytterligare nollställe lägger till en våg vars frekvens växer med γ, och tillsammans får vågorna kurvan att stiga snabbare vid primtalen och plana ut mellan dem. Märket i hörnet anger det största avståndet mellan de två kurvorna i det synliga området. Det sjunker från ungefär 1,7 utan nollställen till ungefär 1,1 med 8 och ungefär 0,9 med alla 50.",
         ],
       },
       {
-        heading: "Så är den byggd",
+        heading: "Hur den är byggd",
         paragraphs: [
           "Den välbekanta serien för ζ konvergerar inte på den kritiska linjen, så koden använder Dirichlets etafunktion i stället: den alternerande summan 1 − 1/2^s + 1/3^s − … konvergerar för varje s med positiv realdel, och delar man den med 1 − 2^(1−s) får man tillbaka ζ.",
           "Spåret samplar t i 80 punkter per enhet (minst 500 punkter), beräknar ζ i var och en och sparas i minnet, så att N_zeros kan flyttas utan att det någonsin räknas om. Nollställen hittas genom att leta efter lokala minima av |ζ| som dyker under 0,18. Det övre diagrammet tar 400 sampel mellan x = 2 och 200, hämtar π(x) ur en tabell över de 80 första primtalen och beräknar R(x) med Gramserien som visas ovan, som konvergerar för varje x.",
-          "För varje nollställe använder korrektionen den ledande asymptotiska termen x^ρ / (ρ ln x) i stället för det fullständiga komplexa li(x^ρ), och det konjugerade nollstället hanteras genom att realdelen fördubblas. Båda diagrammen är statiska 2D-canvasar som bara ritas om när ett reglage ändras eller panelen byter storlek, så det finns ingen animation att stänga av för reducerad rörelse.",
+          "För varje nollställe använder korrektionen den ledande asymptotiska termen x^ρ / (ρ ln x) i stället för det fullständiga komplexa li(x^ρ), och det konjugerade nollstället hanteras genom att realdelen fördubblas. Båda diagrammen är statiska 2D-canvasar som bara ritas om när ett reglage ändras eller panelen byter storlek, så det finns ingen animation att stänga av för minskad rörelse.",
         ],
         code: ZETA_EXCERPT,
       },
       {
         heading: "Varför kurvan aldrig hamnar exakt på trappstegen",
         paragraphs: [
-          "Riemanns släta funktion R(x) = Σ μ(n)/n · li(x^(1/n)) är byggd av den logaritmiska integralen li och tar redan hänsyn till primtalspotenser, och därför ligger den så mycket närmare trappan än li(x) ensam (li(100) ≈ 30,1). Den exakta formeln drar ifrån R(x^ρ) för varje nollställe ρ, plus två små extratermer. Utforskaren behåller R(x) i sin helhet och bara den ledande delen av varje nollställesterm. Mätt i diagrammet ligger den varma kurvan då i genomsnitt bara ungefär 0,05 över π(x), oavsett antalet nollställen. Den kan aldrig stämma exakt: en kontinuerlig kurva måste missa ett hopp av höjd 1 med minst ½, så brickan har ett golv nära 0,5. Varje nollställe bidrar med en våg med amplitud ungefär √x / (γ ln x), vågorna interfererar, och ju fler du lägger till, desto skarpare blir stigningarna vid primtalen.",
+          "Riemanns släta funktion R(x) = Σ μ(n)/n · li(x^(1/n)) är byggd av den logaritmiska integralen li och tar redan hänsyn till primtalspotenser, och därför ligger den så mycket närmare trappan än li(x) ensam (li(100) ≈ 30,1). Den exakta formeln drar ifrån R(x^ρ) för varje nollställe ρ, plus två små extratermer. Utforskaren behåller R(x) i sin helhet och bara den ledande delen av varje nollställesterm. Mätt i diagrammet ligger den varma kurvan då i genomsnitt bara ungefär 0,05 över π(x), oavsett antalet nollställen. Den kan aldrig stämma exakt: en kontinuerlig kurva måste missa ett hopp av höjd 1 med minst ½, så märket har ett golv nära 0,5. Varje nollställe bidrar med en våg med amplitud ungefär √x / (γ ln x), vågorna interfererar, och ju fler du lägger till, desto skarpare blir stigningarna vid primtalen.",
         ],
       },
     ],
@@ -426,7 +426,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
       },
       {
         title: "Från R(x) till trappan",
-        text: "Sätt N_zeros till 0 och lägg märke till felbrickan (ungefär 1,7). Stega sedan genom 1, 3, 8, 20 och 50. Den släta kurvan får krusningar som klättrar vid primtalen och planar ut i luckorna, och brickan sjunker till ungefär 1,1 vid 8 och ungefär 0,9 vid 50. Den sjunker inte i varje enskilt steg: mellan 1 och 3 pendlar den kring 1,4.",
+        text: "Sätt N_zeros till 0 och titta på felmärket (ungefär 1,7). Stega sedan genom 1, 3, 8, 20 och 50. Den släta kurvan får krusningar som klättrar vid primtalen och planar ut i luckorna, och märket sjunker till ungefär 1,1 vid 8 och ungefär 0,9 vid 50. Den sjunker inte i varje enskilt steg: mellan 1 och 3 pendlar den kring 1,4.",
       },
       {
         title: "Svält serien",
@@ -440,7 +440,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Utforsk Riemanns zetafunksjon på den kritiske linjen: følg ζ(½ + it), finn nullpunkter ved t ≈ 14,13, 21,02 og 25,01 og se dem bygge opp primtallstrappen igjen.",
+      "Utforsk Riemanns zetafunksjon på den kritiske linjen: Følg ζ(½ + it), finn nullpunkter ved t ≈ 14,13; 21,02 og 25,01 og se dem bygge opp primtallstrappen igjen.",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "Det er to diagrammer. Det øverste teller primtall: en grå trapp som går ett trinn opp ved hvert primtall opp til 200, og en varm, glatt kurve som prøver å følge den. Det nederste følger Riemanns zetafunksjon langs den loddrette linjen Re(s) = ½ og tegner hvor verdiene havner i det komplekse planet. Hver gang den banen går gjennom origo, har ζ et nullpunkt. Det er nettopp disse nullpunktene den varme kurven i det øverste diagrammet er bygd av.",
@@ -448,8 +448,8 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
       {
         heading: "Nullpunkter og primtall",
         paragraphs: [
-          "For Re(s) > 1 er zetafunksjonen summen av 1/n^s over alle positive heltall, og Euler viste at den er lik et produkt over alle primtall. Det produktet er grunnen til at ζ i det hele tatt vet noe om primtall. Riemann utvidet funksjonen til hele det komplekse planet (unntatt s = 1) og skrev i artikkelen sin fra 1859 ned en eksplisitt formel: antallet primtall under x er lik et glatt hovedledd minus en svingende korreksjon for hvert ikke-trivielle nullpunkt.",
-          "De ikke-trivielle nullpunktene kommer i speilvendte par over og under den reelle aksen. Alle som er funnet til nå, ligger på linjen Re(s) = ½ og har dermed formen ½ ± iγ, og Riemannhypotesen hevder at det gjelder for alle. De første høydene er γ ≈ 14,1347, 21,0220 og 25,0109; utforskeren har lagret de 50 første, opp til γ ≈ 143,11.",
+          "For Re(s) > 1 er zetafunksjonen summen av 1/n^s over alle positive heltall, og Euler viste at den er lik et produkt over alle primtall. Det produktet er grunnen til at ζ i det hele tatt vet noe om primtall. Riemann utvidet funksjonen til hele det komplekse planet (unntatt s = 1) og skrev i artikkelen sin fra 1859 ned en eksplisitt formel: Antallet primtall under x er lik et glatt hovedledd minus en svingende korreksjon for hvert ikke-trivielle nullpunkt.",
+          "De ikke-trivielle nullpunktene kommer i speilvendte par over og under den reelle aksen. Alle som er funnet til nå, ligger på linjen Re(s) = ½ og har dermed formen ½ ± iγ, og Riemannhypotesen hevder at det gjelder for alle. De første høydene er γ ≈ 14,1347; 21,0220 og 25,0109. Utforskeren har lagret de 50 første, opp til γ ≈ 143,11.",
         ],
         formula: EXPLICIT_FORMULA,
       },
@@ -458,14 +458,14 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
         paragraphs: [
           "t_max (5 til 60, standard 45) bestemmer hvor langt opp langs den kritiske linjen det nederste diagrammet går. Banen starter i ζ(½) ≈ −1,46 på den negative reelle aksen og blir lysere etter hvert som t vokser. Med t_max = 45 går den gjennom origo åtte ganger, én gang for hvert nullpunkt under 45. Listen i panelet viser høydene der banen kom nær nok til å telle; skyv t_max til 60, så vokser den til 13 oppføringer, den siste nær 59,35.",
           "N (20 til 500, standard 200) er antallet ledd som brukes til å beregne ζ. Flere ledd gir en mer nøyaktig bane, særlig høyt oppe på linjen; med færre ledd blir kurven litt feil og, for store t, synlig skjelven.",
-          "N_zeros (0 til 50, standard 8) angir hvor mange nullpunktpar som mater den varme kurven i det øverste diagrammet. Ved 0 ser du Riemanns glatte funksjon R(x) alene, og den går allerede midt gjennom trinnene: R(100) ≈ 25,66, og det finnes 25 primtall under 100. Hvert ekstra nullpunkt legger til en bølge med en frekvens som vokser med γ, og sammen får bølgene kurven til å stige raskere ved primtallene og flate ut mellom dem. Merket i hjørnet oppgir den største avstanden mellom de to kurvene i det synlige området. Den faller fra omtrent 1,7 uten nullpunkter til omtrent 1,1 med 8 og omtrent 0,9 med alle 50.",
+          "N_zeros (0 til 50, standard 8) angir hvor mange nullpunktpar som mater den varme kurven i det øverste diagrammet. Ved 0 ser du Riemanns glatte funksjon R(x) alene, og den går allerede midt gjennom trinnene: R(100) ≈ 25,66, og det finnes 25 primtall under 100. Hvert ekstra nullpunkt legger til en bølge med en frekvens som vokser med γ, og sammen får bølgene kurven til å stige raskere ved primtallene og flate ut mellom dem. Merket i hjørnet oppgir den største avstanden mellom de to kurvene i det synlige området. Den faller fra omtrent 1,7 uten nullpunkter til omtrent 1,1 med 8 og omtrent 0,9 med alle 50. «tilbakestill» setter alle de tre glidebryterne tilbake til standardverdiene.",
         ],
       },
       {
-        heading: "Slik er den bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Den velkjente rekken for ζ konvergerer ikke på den kritiske linjen, så koden bruker Dirichlets etafunksjon i stedet: den alternerende summen 1 − 1/2^s + 1/3^s − … konvergerer for enhver s med positiv realdel, og deler du den på 1 − 2^(1−s), får du ζ tilbake.",
-          "Sporet sampler t i 80 punkter per enhet (minst 500 punkter), beregner ζ i hvert av dem og blir mellomlagret, slik at det aldri regnes ut på nytt når du flytter N_zeros. Nullpunkter finnes ved å lete etter lokale minima av |ζ| som dykker under 0,18. Det øverste diagrammet tar 400 sampler mellom x = 2 og 200, henter π(x) fra en tabell over de 80 første primtallene og beregner R(x) med Gram-rekken vist ovenfor, som konvergerer for enhver x.",
+          "Den velkjente rekken for ζ konvergerer ikke på den kritiske linjen, så koden bruker Dirichlets etafunksjon i stedet: Den alternerende summen 1 − 1/2^s + 1/3^s − … konvergerer for enhver s med positiv realdel, og deler du den på 1 − 2^(1−s), får du ζ tilbake.",
+          "Sporet beregnes i 80 t-verdier per enhet (minst 500 punkter), beregner ζ i hvert av dem og blir mellomlagret, slik at det aldri regnes ut på nytt når du flytter N_zeros. Nullpunkter finnes ved å lete etter lokale minima av |ζ| som dykker under 0,18. Det øverste diagrammet bruker 400 punkter mellom x = 2 og 200, henter π(x) fra en tabell over de 80 første primtallene og beregner R(x) med Gram-rekken vist ovenfor, som konvergerer for enhver x.",
           "For hvert nullpunkt bruker korreksjonen det ledende asymptotiske leddet x^ρ / (ρ ln x) i stedet for den fulle komplekse li(x^ρ), og det konjugerte nullpunktet tas med ved å doble realdelen. Begge diagrammene er statiske 2D-lerreter som bare tegnes på nytt når en glidebryter endres eller panelet får ny størrelse, så det finnes ingen animasjon å slå av for redusert bevegelse.",
         ],
         code: ZETA_EXCERPT,
@@ -473,7 +473,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
       {
         heading: "Hvorfor kurven aldri lander nøyaktig på trinnene",
         paragraphs: [
-          "Riemanns glatte funksjon R(x) = Σ μ(n)/n · li(x^(1/n)) er bygd av det logaritmiske integralet li og tar allerede hensyn til primtallspotenser, og derfor ligger den så mye nærmere trappen enn li(x) alene (li(100) ≈ 30,1). Den eksakte formelen trekker fra R(x^ρ) for hvert nullpunkt ρ, pluss to små tilleggsledd. Utforskeren beholder R(x) i sin helhet og bare den ledende delen av hvert nullpunktsledd. Målt i diagrammet ligger den varme kurven da i snitt bare omtrent 0,05 over π(x), uansett antall nullpunkter. Den kan aldri treffe nøyaktig: en kontinuerlig kurve må bomme på et sprang med høyde 1 med minst ½, så merket har et gulv nær 0,5. Hvert nullpunkt bidrar med en bølge med amplitude omtrent √x / (γ ln x), bølgene interfererer, og jo flere du legger til, desto skarpere blir stigningene ved primtallene.",
+          "Riemanns glatte funksjon R(x) = Σ μ(n)/n · li(x^(1/n)) er bygd av det logaritmiske integralet li og tar allerede hensyn til primtallspotenser, og derfor ligger den så mye nærmere trappen enn li(x) alene (li(100) ≈ 30,1). Den eksakte formelen trekker fra R(x^ρ) for hvert nullpunkt ρ, pluss to små tilleggsledd. Utforskeren beholder R(x) i sin helhet og bare den ledende delen av hvert nullpunktsledd. Målt i diagrammet ligger den varme kurven da i snitt bare omtrent 0,05 over π(x), uansett antall nullpunkter. Den kan aldri treffe nøyaktig: En kontinuerlig kurve må bomme på et sprang med høyde 1 med minst ½, så merket har et gulv nær 0,5. Hvert nullpunkt bidrar med en bølge med amplitude omtrent √x / (γ ln x), bølgene interfererer, og jo flere du legger til, desto skarpere blir stigningene ved primtallene.",
         ],
       },
     ],
@@ -481,11 +481,11 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Finn det første nullpunktet",
-        text: "Sett t_max til 13 og se på det nederste diagrammet: banen svinger rundt, men bommer på origo, og listen over nullpunkter er tom. Øk til 15. Nå skjærer banen gjennom origo, og listen viser γ₁ nær 14,13.",
+        text: "Sett t_max til 13 og se på det nederste diagrammet: Banen svinger rundt, men bommer på origo, og listen over nullpunkter er tom. Øk til 15. Nå skjærer banen gjennom origo, og listen viser γ₁ nær 14,13.",
       },
       {
         title: "Fra R(x) til trappen",
-        text: "Sett N_zeros til 0 og legg merke til feilmerket (omtrent 1,7). Gå deretter gjennom 1, 3, 8, 20 og 50. Den glatte kurven får krusninger som klatrer ved primtallene og flater ut i mellomrommene, og merket synker til omtrent 1,1 ved 8 og omtrent 0,9 ved 50. Det faller ikke ved hvert eneste steg: mellom 1 og 3 vingler det rundt 1,4.",
+        text: "Sett N_zeros til 0 og legg merke til feilmerket (omtrent 1,7). Gå deretter gjennom 1, 3, 8, 20 og 50. Den glatte kurven får krusninger som klatrer ved primtallene og flater ut i mellomrommene, og merket synker til omtrent 1,1 ved 8 og omtrent 0,9 ved 50. Det faller ikke ved hvert eneste steg: Mellom 1 og 3 vingler det rundt 1,4.",
       },
       {
         title: "Sult ut rekken",
@@ -493,7 +493,7 @@ export const RIEMANN_GUIDE: ExplorerGuide = {
       },
       {
         title: "To nullpunkter tett sammen",
-        text: "Nullpunkt 4 og 5 ligger ved omtrent 30,42 og 32,94. Sett t_max til 34 og følg den lyseste enden av banen: den trer seg gjennom origo to ganger rett etter hverandre, med bare en liten løkke imellom.",
+        text: "Nullpunkt 4 og 5 ligger ved omtrent 30,42 og 32,94. Sett t_max til 34 og følg den lyseste enden av banen: Den trer seg gjennom origo to ganger rett etter hverandre, med bare en liten løkke imellom.",
       },
     ],
   },

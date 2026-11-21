@@ -249,11 +249,11 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
         text: "Garde le nombre d'or par défaut et lis la colonne des fractions de haut en bas : 1/1, 2/1, 3/2, 5/3, 8/5, 13/8. Chaque numérateur est la somme des deux précédents, et l'erreur diminue d'un facteur d'environ 2,6 à chaque pas.",
       },
       {
-        title: "Trouver 355/113",
+        title: "Trouve 355/113",
         text: "Choisis π et règle la profondeur sur 30, pour que le parcours aille assez loin. 22/7 apparaît au pas 10 avec une erreur d'environ 1,3 · 10⁻³, et 355/113 au pas 26 avec une erreur d'environ 2,7 · 10⁻⁷.",
       },
       {
-        title: "Voir un parcours s'arrêter",
+        title: "Regarde un parcours s'arrêter",
         text: "Saisis 0.75. Le chemin est LRR et s'arrête à 3/4, et la fraction continue est [0; 1, 3]. Essaie ensuite 1.4142 avec la profondeur à 60 : après 41 pas, le parcours tombe exactement sur 7071/5000.",
       },
       {
@@ -278,14 +278,14 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
         formula: "\\frac{a}{b} < \\frac{a+c}{b+d} < \\frac{c}{d}, \\qquad bc - ad = 1",
       },
       {
-        heading: "Cosa fanno i controlli",
+        heading: "Che cosa fanno i controlli",
         paragraphs: [
           "Scrivi un qualsiasi numero positivo nel campo del bersaglio, come decimale o come frazione, per esempio 22/7. La pagina si apre con la sezione aurea φ, arrotondata a 1.61803399. I pulsanti sotto inseriscono φ, π, e e √2 con 12 cifre decimali, e 1/3, 2/3 e 22/7 come frazioni esatte.",
           "Il cursore della profondità, da 4 a 60 (predefinito 20), limita il numero di mosse. La riga di stato mostra il bersaglio e quante frazioni ha visitato il cammino; la riga del cammino mostra le mosse e termina con un punto. La tabella elenca ogni frazione visitata con il suo valore decimale, il suo errore e la mossa fatta a partire da essa, quindi a profondità 60 ha fino a 61 righe.",
         ],
       },
       {
-        heading: "Come è costruito",
+        heading: "Com'è costruito",
         paragraphs: [
           "Il cammino tiene un estremo inferiore e un estremo superiore, che partono da 0/1 e 1/0, e la frazione corrente è sempre la loro mediante. Se il bersaglio è minore, la frazione corrente diventa il nuovo estremo superiore e la mossa è L; altrimenti diventa l'estremo inferiore e la mossa è R. Si ferma quando la frazione è uguale al bersaglio, quando il denominatore supererebbe 10¹⁵ o quando si raggiunge il limite di profondità. Per un bersaglio scritto come frazione p/q il confronto usa solo numeri interi (moltiplica in croce), quindi è esatto; per un decimale, uguale significa a meno di 10⁻¹⁵. I normali numeri di JavaScript rappresentano gli interi in modo esatto fino a circa 9 · 10¹⁵, perciò il limite mantiene esatta ogni frazione mostrata.",
           "La frazione continua si ricava dalle lunghezze delle serie: le mosse arrivano sempre a blocchi come RRR, poi LLLLLLL, e le lunghezze dei blocchi sono i termini. Un cammino che inizia con L appartiene a un numero minore di 1, quindi si aggiunge uno 0 in testa. Quando il cammino arriva esattamente sul bersaglio, all'ultimo blocco manca una mossa rispetto all'ultimo termine, e la pagina la rimette. Tutto viene ricalcolato dall'input durante il rendering; niente è animato.",
@@ -339,8 +339,8 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "Escreve qualquer número positivo no campo do alvo, como decimal ou como fração, por exemplo 22/7. A página abre com o número de ouro φ, arredondado a 1.61803399. Os botões por baixo inserem φ, π, e e √2 com 12 casas decimais, e 1/3, 2/3 e 22/7 como frações exatas.",
-          "O controlo deslizante da profundidade, de 4 a 60 (predefinição 20), limita o número de passos. A linha de estado mostra o alvo e quantas frações o percurso visitou; a linha do caminho mostra os passos e termina com um ponto. A tabela lista cada fração visitada com o seu valor decimal, o seu erro e o passo dado a partir dela, por isso com profundidade 60 tem até 61 linhas.",
+          "Escreve qualquer número positivo no campo do alvo, como decimal ou como fração, por exemplo 22/7. A página abre com a razão áurea φ, arredondada a 1.61803399. Os botões por baixo inserem φ, π, e e √2 com 12 casas decimais, e 1/3, 2/3 e 22/7 como frações exatas.",
+          "O cursor da profundidade, de 4 a 60 (predefinição 20), limita o número de passos. A linha de estado mostra o alvo e quantas frações o percurso visitou; a linha do caminho mostra os passos e termina com um ponto. A tabela lista cada fração visitada com o seu valor decimal, o seu erro e o passo dado a partir dela, por isso com profundidade 60 tem até 61 linhas.",
         ],
       },
       {
@@ -360,11 +360,11 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Experimenta",
+    experimentsHeading: "Experimenta isto",
     experiments: [
       {
         title: "Fibonacci disfarçado",
-        text: "Mantém o número de ouro predefinido e lê a coluna das frações de cima para baixo: 1/1, 2/1, 3/2, 5/3, 8/5, 13/8. Cada numerador é a soma dos dois anteriores, e o erro diminui por um fator de cerca de 2,6 a cada passo.",
+        text: "Mantém a razão áurea predefinida e lê a coluna das frações de cima para baixo: 1/1, 2/1, 3/2, 5/3, 8/5, 13/8. Cada numerador é a soma dos dois anteriores, e o erro diminui por um fator de cerca de 2,6 a cada passo.",
       },
       {
         title: "Encontra 355/113",
@@ -382,7 +382,7 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
   },
   sv: {
     metaDescription:
-      "Vandra genom Stern-Brocot-trädet till vilket tal som helst: se dess L/R-stig, kedjebråket den kodar och de bästa rationella approximationerna, från φ till π.",
+      "Vandra i Stern-Brocot-trädet till valfritt tal: se L/R-stigen, kedjebråket den kodar och de bästa rationella approximationerna, från φ till π och 355/113.",
     heading: "Så fungerar den här utforskaren",
     intro:
       "Varje positivt bråk har exakt en plats i ett enda oändligt binärt träd, Stern-Brocot-trädet. Från 1/1 kan du nå vilket som helst av dem med en följd av steg åt vänster och höger, där varje steg säger om målet är mindre eller större än bråket du står på. Den här sidan gör den vandringen för ett tal du väljer och visar tre saker: strängen av L- och R-steg, kedjebråket som stegen kodar och en tabell över bråken som besöks på vägen, tillsammans med hur långt vart och ett ligger från målet.",
@@ -413,7 +413,7 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
       {
         heading: "Vad sviterna berättar",
         paragraphs: [
-          "φ = [1; 1, 1, 1, …] har stigen RLRLRL…, och bråken den besöker är kvoter av på varandra följande Fibonaccital: 2/1, 3/2, 5/3, 8/5, upp till 17711/10946 vid djup 20. Eftersom varje block har längden ett byter vandringen riktning så ofta som möjligt och närmar sig så långsamt som möjligt. I en precis mening, som Hurwitz sats gör exakt, är inget irrationellt tal svårare att approximera med bråk än φ.",
+          "φ = [1; 1, 1, 1, …] har stigen RLRLRL…, och bråken den besöker är kvoter av på varandra följande Fibonaccital: 2/1, 3/2, 5/3, 8/5, upp till 17\u00a0711/10\u00a0946 vid djup 20. Eftersom varje block har längden ett byter vandringen riktning så ofta som möjligt och närmar sig så långsamt som möjligt. I en precis mening, som Hurwitz sats gör exakt, är inget irrationellt tal svårare att approximera med bråk än φ.",
           "π är motsatsen. Dess stig börjar med RRR, sedan sju L, femton R, ett L och sedan en mycket lång svit av R. Den sista sviten speglar den stora termen 292 i π = [3; 7, 15, 1, 292, …]: nästa bra bråk efter 355/113 ligger långt bort, och det är precis därför 355/113 är en så enastående approximation. Med 12 decimaler och högst 60 steg kan sidan bara visa de första 34 stegen av den sviten.",
           "Bråk avslutar sin vandring. Knappen 1/3 ger stigen LL, stannar vid steg 3 och visar [0; 3], och 22/7 stannar vid steg 10 med [3; 7]. Ett ändligt decimaltal är också ett fullvärdigt rationellt tal, men ett annat: skriv 0.333333333333, som är något mindre än 1/3, så passerar vandringen 1/3 vid steg 3, vänder och fortsätter; vid djup 60 lyder kedjebråket [0; 3, 57].",
         ],
@@ -441,7 +441,7 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Gå gjennom Stern-Brocot-treet til et hvilket som helst tall: se L/R-stien, kjedebrøken den koder og de beste rasjonale tilnærmingene, fra φ til π og 355/113.",
+      "Gå gjennom Stern-Brocot-treet til et hvilket som helst tall: Se L/R-stien, kjedebrøken den koder og de beste rasjonale tilnærmingene, fra φ til π og 355/113.",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "Hver positiv brøk har nøyaktig én plass i ett eneste uendelig binært tre, Stern-Brocot-treet. Fra 1/1 kan du nå hvilken som helst av dem med en rekke steg til venstre og høyre, der hvert steg sier om målet er mindre eller større enn brøken du står på. Denne siden går den veien for et tall du velger, og viser tre ting: strengen av L- og R-steg, kjedebrøken som stegene koder, og en tabell over brøkene som besøkes underveis, sammen med hvor langt hver av dem ligger fra målet.",
@@ -449,7 +449,7 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
       {
         heading: "Medianter",
         paragraphs: [
-          "Treet bygges med én eneste operasjon som ser merkelig ut. Medianten av to brøker a/b og c/d er (a + c)/(b + d): legg sammen tellerne, legg sammen nevnerne. Det er ikke gjennomsnittet, men den ligger alltid strengt mellom de to. Begynn med 0/1 og 1/0, som spiller rollen som uendelig, og sett inn medianten deres, 1/1. Sett deretter inn medianter mellom hvert par av naboer, nivå for nivå.",
+          "Treet bygges med én eneste operasjon som ser merkelig ut. Medianten av to brøker a/b og c/d er (a + c)/(b + d): Legg sammen tellerne, legg sammen nevnerne. Det er ikke gjennomsnittet, men den ligger alltid strengt mellom de to. Begynn med 0/1 og 1/0, som spiller rollen som uendelig, og sett inn medianten deres, 1/1. Sett deretter inn medianter mellom hvert par av naboer, nivå for nivå.",
           "To fakta gjør resultatet bemerkelsesverdig. Nabobrøker a/b < c/d i konstruksjonen oppfyller alltid bc − ad = 1, og derfor er hver mediant automatisk forkortet så langt det går. Og hvert positivt rasjonalt tall forekommer, nøyaktig én gang. Achille Brocot, en fransk urmaker, brukte treet til å finne girforhold som tilnærmer en ønsket verdi med få tenner, og det er nettopp det vandringen på denne siden gjør.",
         ],
         formula: "\\frac{a}{b} < \\frac{a+c}{b+d} < \\frac{c}{d}, \\qquad bc - ad = 1",
@@ -458,14 +458,14 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "Skriv et hvilket som helst positivt tall i målfeltet, som desimaltall eller som en brøk, for eksempel 22/7. Siden åpner med det gylne snitt φ, avrundet til 1.61803399. Knappene under fyller inn φ, π, e og √2 med 12 desimaler, og 1/3, 2/3 og 22/7 som eksakte brøker.",
-          "Dybdeglideren, fra 4 til 60 (standard 20), begrenser antall steg. Statuslinjen viser målet og hvor mange brøker vandringen har besøkt; stilinjen viser stegene og slutter med et punktum. Tabellen lister hver besøkte brøk med desimalverdien, feilen og steget som ble tatt derfra, så ved dybde 60 har den opptil 61 rader.",
+          "Glidebryteren for dybde, fra 4 til 60 (standard 20), begrenser antall steg. Statuslinjen viser målet og hvor mange brøker vandringen har besøkt; stilinjen viser stegene og slutter med et punktum. Tabellen lister hver besøkte brøk med desimalverdien, feilen og steget som ble tatt derfra, så ved dybde 60 har den opptil 61 rader.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
           "Vandringen holder på en nedre og en øvre grense, som starter på 0/1 og 1/0, og den gjeldende brøken er alltid medianten deres. Hvis målet er mindre, blir den gjeldende brøken den nye øvre grensen og steget er L; ellers blir den den nedre grensen og steget er R. Den stopper når brøken er lik målet, når nevneren ville overstige 10¹⁵, eller når dybdegrensen er nådd. For et mål skrevet som en brøk p/q bruker sammenligningen bare heltall (den kryssmultipliserer), så den er eksakt; for et desimaltall betyr lik at forskjellen er mindre enn 10⁻¹⁵. Vanlige JavaScript-tall representerer heltall eksakt opp til omtrent 9 · 10¹⁵, så grensen holder hver brøk som vises, eksakt.",
-          "Kjedebrøken kommer fra løpelengder: stegene kommer alltid i blokker som RRR, deretter LLLLLLL, og blokklengdene er leddene. En vandring som begynner med L, hører til et tall under 1, så en ledende 0 legges til. Når vandringen lander nøyaktig på målet, er den siste blokken ett steg kortere enn det siste leddet, og siden legger det steget til igjen. Alt regnes ut på nytt fra inndataene under rendringen; ingenting er animert.",
+          "Kjedebrøken kommer fra løpelengder: Stegene kommer alltid i blokker som RRR, deretter LLLLLLL, og blokklengdene er leddene. En vandring som begynner med L, hører til et tall under 1, så en ledende 0 legges til. Når vandringen lander nøyaktig på målet, er den siste blokken ett steg kortere enn det siste leddet, og siden legger det steget til igjen. Alt regnes ut på nytt fra inndataene under rendringen; ingenting er animert.",
         ],
         code: WALK_EXCERPT,
       },
@@ -473,8 +473,8 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
         heading: "Hva løpene forteller",
         paragraphs: [
           "φ = [1; 1, 1, 1, …] har stien RLRLRL…, og brøkene den besøker, er forhold mellom påfølgende Fibonacci-tall: 2/1, 3/2, 5/3, 8/5, opp til 17711/10946 ved dybde 20. Fordi hver blokk har lengde én, skifter vandringen retning så ofte som mulig og nærmer seg så langsomt som mulig. I en presis forstand, som Hurwitz' teorem gjør eksakt, er ingen irrasjonale tall vanskeligere å tilnærme med brøker enn φ.",
-          "π er det motsatte. Stien begynner med RRR, deretter sju L, femten R, én L og så et svært langt løp av R. Det siste løpet gjenspeiler det store leddet 292 i π = [3; 7, 15, 1, 292, …]: den neste gode brøken etter 355/113 ligger langt unna, og det er nettopp derfor 355/113 er en så enestående tilnærming. Med 12 desimaler og høyst 60 steg kan siden bare vise de første 34 stegene av det løpet.",
-          "Brøker avslutter vandringen sin. Knappen 1/3 gir stien LL, stopper på steg 3 og viser [0; 3], og 22/7 stopper på steg 10 med [3; 7]. Et endelig desimaltall er også et fullverdig rasjonalt tall, men et annet: skriv 0.333333333333, som er litt mindre enn 1/3, så passerer vandringen 1/3 på steg 3, snur og fortsetter; ved dybde 60 lyder kjedebrøken [0; 3, 57].",
+          "π er det motsatte. Stien begynner med RRR, deretter sju L, femten R, én L og så et svært langt løp av R. Det siste løpet gjenspeiler det store leddet 292 i π = [3; 7, 15, 1, 292, …]: Den neste gode brøken etter 355/113 ligger langt unna, og det er nettopp derfor 355/113 er en så enestående tilnærming. Med 12 desimaler og høyst 60 steg kan siden bare vise de første 34 stegene av det løpet.",
+          "Brøker avslutter vandringen sin. Knappen 1/3 gir stien LL, stopper på steg 3 og viser [0; 3], og 22/7 stopper på steg 10 med [3; 7]. Et endelig desimaltall er også et fullverdig rasjonalt tall, men et annet: Skriv 0,333333333333, som er litt mindre enn 1/3, så passerer vandringen 1/3 på steg 3, snur og fortsetter; ved dybde 60 lyder kjedebrøken [0; 3, 57].",
         ],
       },
     ],
@@ -490,7 +490,7 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
       },
       {
         title: "Se en vandring ta slutt",
-        text: "Skriv 0.75. Stien er LRR og stopper på 3/4, og kjedebrøken er [0; 1, 3]. Prøv deretter 1.4142 med dybden på 60: etter 41 steg lander vandringen nøyaktig på 7071/5000.",
+        text: "Skriv 0,75. Stien er LRR og stopper på 3/4, og kjedebrøken er [0; 1, 3]. Prøv deretter 1,4142 med dybden på 60: Etter 41 steg lander vandringen nøyaktig på 7071/5000.",
       },
       {
         title: "Rytmen til √2",

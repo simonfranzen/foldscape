@@ -166,7 +166,7 @@ export const NAND_BUILDER_GUIDE: ExplorerGuide = {
         heading: "Cómo está construido",
         paragraphs: [
           "Cada puerta es un pequeño registro de datos. Además de la etiqueta y el color, lleva una lista de cables, y cada cable es un NAND cuyas dos entradas remiten por nombre a a, a b o a un cable anterior. La evaluación es una sola pasada en orden: se empieza con los valores de a y b, se calcula cada cable como el NAND de dos valores ya conocidos y se lee la salida en el último cable. Como los cables solo pueden remitir hacia atrás, el circuito nunca puede contener un bucle, y una pasada siempre basta.",
-          "La tabla de verdad se calcula deliberadamente por otra vía. Cada puerta tiene además una fórmula directa, como a !== b para XOR, y la tabla se rellena con esa fórmula, mientras que el círculo de salida y los cables internos salen del cableado NAND. Si el cableado estuviera mal, la fila resaltada de la tabla y el círculo de salida no coincidirían. Aquí no hay animación ni canvas, solo estado de React y marcado sencillo, así que la página funciona igual con movimiento reducido; los fundidos de color son transiciones CSS corrientes que el sitio acorta globalmente cuando tu sistema pide menos movimiento.",
+          "La tabla de verdad se calcula deliberadamente por otra vía. Cada puerta tiene además una fórmula directa, como a !== b para XOR, y la tabla se rellena con esa fórmula, mientras que el círculo de salida y los cables internos salen del cableado NAND. Si el cableado estuviera mal, la fila resaltada de la tabla y el círculo de salida no coincidirían. Aquí no hay animación ni lienzo, solo estado de React y marcado sencillo, así que la página funciona igual con movimiento reducido; los fundidos de color son transiciones CSS corrientes que el sitio acorta globalmente cuando tu sistema pide menos movimiento.",
         ],
         code: NAND_EXCERPT,
       },
@@ -224,7 +224,7 @@ export const NAND_BUILDER_GUIDE: ExplorerGuide = {
         heading: "Comment c'est construit",
         paragraphs: [
           "Chaque porte est un petit enregistrement de données. Outre le libellé et la couleur, il contient une liste de fils, et chaque fil est un NAND dont les deux entrées renvoient par leur nom à a, à b ou à un fil antérieur. L'évaluation se fait en une seule passe, dans l'ordre : on part des valeurs de a et de b, on calcule chaque fil comme le NAND de deux valeurs déjà connues, et on lit la sortie sur le dernier fil. Comme les fils ne peuvent renvoyer que vers l'arrière, le circuit ne peut jamais contenir de boucle, et une passe suffit toujours.",
-          "La table de vérité est volontairement calculée d'une autre manière. Chaque porte possède aussi une formule directe, comme a !== b pour XOR, et la table est remplie à partir de cette formule, tandis que le cercle de sortie et les fils internes proviennent du câblage NAND. Si le câblage était faux, la ligne surlignée de la table et le cercle de sortie se contrediraient. Il n'y a ici ni animation ni canvas, seulement de l'état React et du balisage simple, de sorte que la page fonctionne de la même façon avec les animations réduites ; les fondus de couleur sont des transitions CSS ordinaires que le site raccourcit globalement lorsque ton système demande moins de mouvement.",
+          "La table de vérité est volontairement calculée d'une autre manière. Chaque porte possède aussi une formule directe, comme a !== b pour XOR, et la table est remplie à partir de cette formule, tandis que le cercle de sortie et les fils internes proviennent du câblage NAND. Si le câblage était faux, la ligne surlignée de la table et le cercle de sortie se contrediraient. Il n'y a ici ni animation ni canevas, seulement de l'état React et du balisage simple, de sorte que la page fonctionne de la même façon avec les animations réduites ; les fondus de couleur sont des transitions CSS ordinaires que le site raccourcit globalement lorsque ton système demande moins de mouvement.",
         ],
         code: NAND_EXCERPT,
       },
@@ -272,14 +272,14 @@ export const NAND_BUILDER_GUIDE: ExplorerGuide = {
         formula: NAND_FORMULA,
       },
       {
-        heading: "Che cosa fanno i comandi",
+        heading: "Che cosa fanno i controlli",
         paragraphs: [
           "Il pannello a destra elenca le cinque porte con il rispettivo numero di NAND: il NAND stesso (1), NOT (1), AND (2), OR (3) e XOR (4). Scegline una e l'intestazione ne mostra la formula scritta soltanto con ↑. I due grandi cerchi etichettati a e b sono gli ingressi; fai clic o toccali per passare da 0 a 1 e viceversa. Entrambi partono da 0. Il cerchio di uscita, più in basso, si accende nel colore della porta quando il risultato è 1.",
           "Per ogni porta con più di un NAND, un riquadro intitolato «NAND interni» elenca ciascun filo intermedio, per esempio n0 = a ↑ b, insieme al suo valore attuale. La tabella di verità nella barra laterale mostra tutte e quattro le combinazioni di ingresso per la porta selezionata ed evidenzia la riga che corrisponde ai tuoi ingressi attuali. NOT ignora del tutto l'ingresso b, e la tabella lo rende visibile: le sue due metà sono identiche.",
         ],
       },
       {
-        heading: "Come è costruito",
+        heading: "Com'è costruito",
         paragraphs: [
           "Ogni porta è un piccolo record di dati. Oltre all'etichetta e al colore contiene un elenco di fili, e ogni filo è un NAND i cui due ingressi rimandano per nome ad a, a b o a un filo precedente. La valutazione è un unico passaggio in ordine: si parte dai valori di a e b, si calcola ogni filo come NAND di due valori già noti e si legge l'uscita sull'ultimo filo. Poiché i fili possono rimandare solo all'indietro, il circuito non può mai contenere un ciclo, e un passaggio basta sempre.",
           "La tabella di verità è calcolata di proposito in un altro modo. Ogni porta ha anche una formula diretta, come a !== b per XOR, e la tabella viene riempita a partire da quella formula, mentre il cerchio di uscita e i fili interni derivano dal cablaggio NAND. Se il cablaggio fosse sbagliato, la riga evidenziata della tabella e il cerchio di uscita sarebbero in disaccordo. Qui non ci sono né animazioni né canvas, solo stato React e semplice markup, quindi la pagina funziona allo stesso modo con il movimento ridotto; le dissolvenze di colore sono normali transizioni CSS che il sito accorcia globalmente quando il tuo sistema chiede meno movimento.",
@@ -289,7 +289,7 @@ export const NAND_BUILDER_GUIDE: ExplorerGuide = {
       {
         heading: "Dentro lo XOR",
         paragraphs: [
-          "XOR è il circuito più interessante dell'elenco. Una costruzione ingenua a partire dalla formula (a e non b) o (b e non a) costerebbe ben più di quattro NAND. Il trucco è che il primo NAND, n0 = a ↑ b, è condivisa. n1 = a ↑ n0 vale 0 solo quando a è 1 e b è 0, n2 = b ↑ n0 vale 0 solo quando b è 1 e a è 0, e il NAND finale dei due dà 1 esattamente quando uno di essi vale 0. Quattro porte sono il minimo per uno XOR realizzato con NAND a due ingressi.",
+          "XOR è il circuito più interessante dell'elenco. Una costruzione ingenua a partire dalla formula (a e non b) o (b e non a) costerebbe ben più di quattro NAND. Il trucco è che il primo NAND, n0 = a ↑ b, è condiviso. n1 = a ↑ n0 vale 0 solo quando a è 1 e b è 0, n2 = b ↑ n0 vale 0 solo quando b è 1 e a è 0, e il NAND finale dei due dà 1 esattamente quando uno di essi vale 0. Quattro porte sono il minimo per uno XOR realizzato con NAND a due ingressi.",
           "Quel n0 condiviso conta anche nella pratica. È l'AND invertito dei due ingressi, quindi aggiungendo un altro NAND come invertitore si ottiene a ∧ b. XOR fornisce il bit di somma e AND il bit di riporto di un semisommatore, il circuito che somma due singoli bit, e grazie al filo condiviso l'intero semisommatore richiede soltanto cinque porte NAND.",
         ],
       },
@@ -352,7 +352,7 @@ export const NAND_BUILDER_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Experimenta",
+    experimentsHeading: "Experimenta isto",
     experiments: [
       {
         title: "Vê De Morgan em ação",
@@ -449,14 +449,14 @@ export const NAND_BUILDER_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "Panelet til høyre lister opp de fem portene med antall NAND: NAND selv (1), NOT (1), AND (2), OR (3) og XOR (4). Velg en, og overskriftsfeltet viser formelen dens skrevet utelukkende med ↑. De to store sirklene merket a og b er inngangene; klikk eller trykk på dem for å veksle mellom 0 og 1. Begge starter på 0. Utgangssirkelen nedenfor lyser i portens farge når resultatet er 1.",
-          "For hver port med mer enn én NAND lister en boks med tittelen «Interne NAND» opp hver mellomledning, for eksempel n0 = a ↑ b, sammen med den gjeldende verdien. Sannhetstabellen i sidefeltet viser alle fire inngangskombinasjonene for den valgte porten og fremhever raden som svarer til inngangene dine akkurat nå. NOT overser inngang b fullstendig, og det gjør tabellen synlig: de to halvdelene er identiske.",
+          "For hver port med mer enn én NAND lister en boks med tittelen «Interne NAND» opp hver mellomledning, for eksempel n0 = a ↑ b, sammen med den gjeldende verdien. Sannhetstabellen i sidefeltet viser alle fire inngangskombinasjonene for den valgte porten og fremhever raden som svarer til inngangene dine akkurat nå. NOT overser inngang b fullstendig, og det gjør tabellen synlig: De to halvdelene er identiske.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Hver port er en liten datapost. I tillegg til etikett og farge har den en liste med ledninger, og hver ledning er en NAND der de to inngangene viser med navn til a, b eller en tidligere ledning. Evalueringen er ett enkelt gjennomløp i rekkefølge: start med verdiene til a og b, beregn hver ledning som en NAND av to verdier som allerede er kjent, og les av utgangen på den siste ledningen. Fordi ledninger bare kan vise bakover, kan kretsen aldri inneholde en sløyfe, og ett gjennomløp er alltid nok.",
-          "Sannhetstabellen beregnes med vilje på en annen måte. Hver port har også en direkte formel, for eksempel a !== b for XOR, og tabellen fylles ut fra den formelen, mens utgangssirkelen og de interne ledningene kommer fra NAND-koblingen. Hvis koblingen var feil, ville den fremhevede tabellraden og utgangssirkelen motsi hverandre. Her finnes det ingen animasjon og ikke noe canvas, bare React-state og enkel markup, så siden fungerer likt med redusert bevegelse; fargeovergangene er vanlige CSS-overganger som nettstedet forkorter globalt når systemet ditt ber om mindre bevegelse.",
+          "Hver port er en liten datapost. I tillegg til etikett og farge har den en liste med ledninger, og hver ledning er en NAND der de to inngangene viser med navn til a, b eller en tidligere ledning. Evalueringen er ett enkelt gjennomløp i rekkefølge: Start med verdiene til a og b, beregn hver ledning som en NAND av to verdier som allerede er kjent, og les av utgangen på den siste ledningen. Fordi ledninger bare kan vise bakover, kan kretsen aldri inneholde en sløyfe, og ett gjennomløp er alltid nok.",
+          "Sannhetstabellen beregnes med vilje på en annen måte. Hver port har også en direkte formel, for eksempel a !== b for XOR, og tabellen fylles ut fra den formelen, mens utgangssirkelen og de interne ledningene kommer fra NAND-koblingen. Hvis koblingen var feil, ville den fremhevede tabellraden og utgangssirkelen motsi hverandre. Her finnes det ingen animasjon og ikke noe lerret, bare React-state og enkel markup, så siden fungerer likt med redusert bevegelse; fargeovergangene er vanlige CSS-overganger som nettstedet forkorter globalt når systemet ditt ber om mindre bevegelse.",
         ],
         code: NAND_EXCERPT,
       },
@@ -480,7 +480,7 @@ export const NAND_BUILDER_GUIDE: ExplorerGuide = {
       },
       {
         title: "Oppdag den doble negasjonen",
-        text: "Velg AND og gå gjennom alle fire inngangsradene. n1 er alltid det motsatte av n0: den andre NAND-en er ikke noe annet enn en NOT-port med begge inngangene koblet til n0.",
+        text: "Velg AND og gå gjennom alle fire inngangsradene. n1 er alltid det motsatte av n0: Den andre NAND-en er ikke noe annet enn en NOT-port med begge inngangene koblet til n0.",
       },
       {
         title: "Tell kostnaden",

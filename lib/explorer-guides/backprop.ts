@@ -42,7 +42,7 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
         heading: "What the controls do",
         paragraphs: [
           "Topology chooses the shape: 2 → 3 → 1 has 13 parameters, the default 2 → 4 → 4 → 1 has 37, and 3 → 8 → 8 → 1 has 113 plus a third input, the product x·y. Toy task switches between XOR (four corner blobs, opposite corners share a class), two interlocking moons, and a disc of radius 0.55 inside a square.",
-          "Learning rate η scales every update, from 0.01 to 1 (default 0.3). Batch size, 1 to 64 (default 16), is how many of the 160 points go into one update: the points are shuffled, cut into batches, and the averaged gradient of each batch is applied. Updates per second, 5 to 240 (default 60), is the update rate. Step ×1 applies exactly one update. Reset draws fresh weights from a new seed and keeps the data.",
+          "Learning rate η scales every update, from 0.01 to 1 (default 0.3). Batch size, 1 to 64 (default 16), is how many of the 160 points go into one update: the points are shuffled, cut into batches, and the averaged gradient of each batch is applied. Updates / second, 5 to 240 (default 60), is the update rate. Step ×1 applies exactly one update. Reset draws fresh weights from a new seed and keeps the data.",
           "The badge shows two counters. Update counts the mini-batch steps; epoch counts completed passes over all 160 points, so with batch 16 one epoch is exactly ten updates, and the data is reshuffled for the next pass. Accuracy is measured on all 160 points after every update, with 0.5 as the threshold.",
         ],
       },
@@ -101,7 +101,7 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
         heading: "Was die Regler bewirken",
         paragraphs: [
           "Die Topologie legt die Form fest: 2 → 3 → 1 hat 13 Parameter, die Voreinstellung 2 → 4 → 4 → 1 hat 37, und 3 → 8 → 8 → 1 hat 113 und dazu einen dritten Eingang, das Produkt x·y. Die Spielaufgabe wechselt zwischen XOR (vier Wolken in den Ecken, gegenüberliegende Ecken teilen sich eine Klasse), zwei verschränkten Monden und einer Kreisscheibe mit Radius 0,55 in einem Quadrat.",
-          "Die Lernrate η skaliert jedes Update, von 0,01 bis 1 (Voreinstellung 0,3). Die Batchgröße, 1 bis 64 (Voreinstellung 16), sagt, wie viele der 160 Punkte in ein Update eingehen: Die Punkte werden gemischt, in Batches geschnitten, und der gemittelte Gradient jedes Batches wird angewendet. Updates pro Sekunde, 5 bis 240 (Voreinstellung 60), ist die Update-Rate. Schritt ×1 führt genau ein Update aus. Zurücksetzen würfelt neue Gewichte mit neuem Seed und behält die Daten.",
+          "Die Lernrate η skaliert jedes Update, von 0,01 bis 1 (Voreinstellung 0,3). Die Batchgröße, 1 bis 64 (Voreinstellung 16), sagt, wie viele der 160 Punkte in ein Update eingehen: Die Punkte werden gemischt, in Batches geschnitten, und der gemittelte Gradient jedes Batches wird angewendet. Updates / Sekunde, 5 bis 240 (Voreinstellung 60), ist die Update-Rate. Schritt ×1 führt genau ein Update aus. Zurücksetzen würfelt neue Gewichte mit neuem Seed und behält die Daten.",
           "Die Anzeige führt zwei Zähler. «Update» zählt die Mini-Batch-Schritte, «Epoche» die abgeschlossenen Durchläufe durch alle 160 Punkte. Bei Batchgröße 16 besteht eine Epoche also aus genau zehn Updates, und für den nächsten Durchlauf wird neu gemischt. Die Genauigkeit wird nach jedem Update auf allen 160 Punkten gemessen, mit 0,5 als Schwelle.",
         ],
       },
@@ -167,8 +167,8 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "Aquí no hay ninguna biblioteca de aprendizaje automático. La red es una lista de capas, cada una con una matriz de pesos hecha de arrays anidados más un vector de sesgos. La pasada hacia delante guarda la entrada y la activación de cada capa, justo lo que necesita la pasada hacia atrás. Los pesos iniciales salen de un pequeño generador lineal congruencial, escalados por √(2 / (fan-in + fan-out)) en el espíritu de la inicialización de Xavier, de modo que una semilla da siempre la misma red de partida. Los datos también tienen una semilla fija, y por eso los puntos no se mueven al reiniciar.",
-          "El mapa de calor evalúa la red en una cuadrícula de 48 × 48 cada vez que cambian los pesos y mezcla ámbar y cian según la salida. Allí donde la salida cruza 0,5 entre una celda y su vecina de la derecha o de abajo, se dibuja un pequeño punto de frontera. El entrenamiento corre dentro de requestAnimationFrame con tantas actualizaciones como pidan el tiempo transcurrido y el control de velocidad. Las fracciones pasan al fotograma siguiente, así que 5 actualizaciones por segundo significa de verdad una cada 0,2 segundos. El límite es de doce por fotograma, para que una pestaña en segundo plano no intente recuperar todo de golpe. La gráfica de pérdida conserva las últimas 320 pérdidas de lote.",
+          "Aquí no hay ninguna biblioteca de aprendizaje automático. La red es una lista de capas, cada una con una matriz de pesos hecha de arrays anidados más un vector de sesgos. La pasada hacia delante guarda la entrada y la activación de cada capa, justo lo que necesita la pasada hacia atrás. Los pesos iniciales salen de un pequeño generador congruencial lineal, escalados por √(2 / (fan-in + fan-out)) en el espíritu de la inicialización de Xavier, de modo que una semilla da siempre la misma red de partida. Los datos también tienen una semilla fija, y por eso los puntos no se mueven al reiniciar.",
+          "El mapa de calor evalúa la red en una cuadrícula de 48 × 48 cada vez que cambian los pesos y mezcla ámbar y cian según la salida. Allí donde la salida cruza 0,5 entre una celda y su vecina de la derecha o de abajo, se dibuja un pequeño punto de frontera. El entrenamiento corre dentro de requestAnimationFrame con tantas actualizaciones como pidan el tiempo transcurrido y el deslizador de velocidad. Las fracciones pasan al fotograma siguiente, así que 5 actualizaciones por segundo significa de verdad una cada 0,2 segundos. El límite es de doce por fotograma, para que una pestaña en segundo plano no intente recuperar todo de golpe. La gráfica de pérdida conserva las últimas 320 pérdidas de lote.",
           "Nada se anima por su cuenta: el lienzo solo se redibuja cuando cambian los pesos, y estos solo cambian después de que pulses «ir» o «paso ×1».",
         ],
         code: BACKWARD_EXCERPT,
@@ -195,7 +195,7 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
         text: "En la tarea del círculo con 2 → 3 → 1, reinicia unas cuantas veces y entrena cada intento. Semillas distintas pueden acabar en fronteras visiblemente diferentes. Cada neurona tanh aporta una cresta suave a lo largo de una recta, así que tres bastan justo para encerrar una región, y su disposición depende de dónde empezaron.",
       },
       {
-        title: "Observa una actualización cada vez",
+        title: "Observa las actualizaciones de una en una",
         text: "Con tamaño de lote 64, pulsa «paso ×1» varias veces justo después de reiniciar. Las primeras actualizaciones mueven toda la superficie; las posteriores desplazan sobre todo la frontera cerca de los puntos mal clasificados, donde δ sigue siendo grande.",
       },
     ],
@@ -242,11 +242,11 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
     experimentsHeading: "À essayer",
     experiments: [
       {
-        title: "Dépasser la vallée",
+        title: "Dépasse la vallée",
         text: "Sur les deux lunes avec 2 → 4 → 4 → 1, règle η sur 1,0 et la taille du lot sur 1. La courbe de perte devient hachée, parce que chaque mise à jour suit un seul point. Baisse η à 0,1 et monte le lot à 64 : plus lent, mais lisse.",
       },
       {
-        title: "Souffler la réponse à XOR",
+        title: "Souffle la réponse à XOR",
         text: "Lance XOR sur 2 → 3 → 1 et note combien de mises à jour il lui faut pour atteindre une précision totale. Passe ensuite à 3 → 8 → 8 → 1. Avec x·y en entrée, les coins sont en général séparés bien plus tôt.",
       },
       {
@@ -279,14 +279,14 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
         paragraphs: [
           "«Topologia della rete» sceglie la forma: 2 → 3 → 1 ha 13 parametri, quella predefinita 2 → 4 → 4 → 1 ne ha 37, e 3 → 8 → 8 → 1 ne ha 113 più un terzo ingresso, il prodotto x·y. «Compito giocattolo» passa da XOR (quattro nuvole negli angoli, gli angoli opposti condividono la classe) a due lune intrecciate e a un disco di raggio 0,55 dentro un quadrato.",
           "Il tasso di apprendimento η scala ogni aggiornamento, da 0,01 a 1 (predefinito 0,3). La dimensione del batch, da 1 a 64 (predefinita 16), dice quanti dei 160 punti entrano in un aggiornamento: i punti vengono mescolati, tagliati in batch, e si applica il gradiente medio di ciascun batch. «Aggiornamenti / secondo», da 5 a 240 (predefinito 60), è il ritmo degli aggiornamenti. «passo ×1» applica esattamente un aggiornamento. «azzera» estrae nuovi pesi da un nuovo seme e mantiene i dati.",
-          "Il riquadro mostra due contatori. «aggiornamento» conta i passi di mini-batch; «Epoca» conta le passate complete su tutti i 160 punti, quindi con un batch di 16 un'epoca equivale esattamente a dieci aggiornamenti, e i dati vengono rimescolati per la passata successiva. L'accuratezza è misurata su tutti i 160 punti dopo ogni aggiornamento, con 0,5 come soglia.",
+          "L'etichetta mostra due contatori. «aggiornamento» conta i passi di mini-batch; «Epoca» conta le passate complete su tutti i 160 punti, quindi con un batch di 16 un'epoca equivale esattamente a dieci aggiornamenti, e i dati vengono rimescolati per la passata successiva. L'accuratezza è misurata su tutti i 160 punti dopo ogni aggiornamento, con 0,5 come soglia.",
         ],
       },
       {
         heading: "Com'è costruito",
         paragraphs: [
           "Qui non c'è nessuna libreria di machine learning. La rete è una lista di strati, ciascuno con una matrice dei pesi fatta di array annidati più un vettore dei bias. La passata in avanti tiene da parte l'ingresso e l'attivazione di ogni strato, esattamente ciò che serve alla passata all'indietro. I pesi iniziali vengono da un piccolo generatore lineare congruenziale, scalati di √(2 / (fan-in + fan-out)) nello spirito dell'inizializzazione di Xavier, così un seme dà sempre la stessa rete di partenza. Anche i dati hanno un seme fisso, ed è per questo che i punti restano fermi quando azzeri.",
-          "La mappa di calore valuta la rete su una griglia 48 × 48 ogni volta che i pesi cambiano e mescola ambra e ciano in base all'uscita. Ovunque l'uscita attraversi 0,5 tra una cella e la sua vicina di destra o di sotto, viene disegnato un piccolo punto di frontiera. L'addestramento gira dentro requestAnimationFrame con tanti aggiornamenti quanti ne chiedono il tempo trascorso e il cursore della velocità. Le frazioni vengono riportate al frame successivo, quindi 5 aggiornamenti al secondo significa davvero uno ogni 0,2 secondi. Il limite è di dodici per frame, così una scheda in background non cerca di recuperare tutto in una volta. Il grafico della perdita conserva le ultime 320 perdite di batch.",
+          "La mappa di calore valuta la rete su una griglia 48 × 48 ogni volta che i pesi cambiano e mescola ambra e ciano in base all'uscita. Ovunque l'uscita attraversi 0,5 tra una cella e la sua vicina di destra o di sotto, viene disegnato un piccolo punto di frontiera. L'addestramento gira dentro requestAnimationFrame con tanti aggiornamenti quanti ne chiedono il tempo trascorso e il cursore della velocità. Le frazioni vengono riportate al fotogramma successivo, quindi 5 aggiornamenti al secondo significa davvero uno ogni 0,2 secondi. Il limite è di dodici per fotogramma, così una scheda in background non cerca di recuperare tutto in una volta. Il grafico della perdita conserva le ultime 320 perdite di batch.",
           "Niente si anima da solo: il canvas viene ridisegnato solo quando i pesi cambiano, e cambiano solo dopo che hai premuto «via» o «passo ×1».",
         ],
         code: BACKWARD_EXCERPT,
@@ -301,7 +301,7 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
     experimentsHeading: "Prova così",
     experiments: [
       {
-        title: "Scavalcare la valle",
+        title: "Scavalca la valle",
         text: "Sulle due lune con 2 → 4 → 4 → 1, imposta η a 1,0 e la dimensione del batch a 1. La curva della perdita diventa frastagliata, perché ogni aggiornamento segue un solo punto. Abbassa η a 0,1 e porta il batch a 64: più lento, ma liscio.",
       },
       {
@@ -345,7 +345,7 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
         heading: "Como está construído",
         paragraphs: [
           "Aqui não há nenhuma biblioteca de aprendizagem automática. A rede é uma lista de camadas, cada uma com uma matriz de pesos feita de arrays aninhados mais um vetor de vieses. A passagem para a frente guarda a entrada e a ativação de cada camada, exatamente aquilo de que a passagem para trás precisa. Os pesos iniciais vêm de um pequeno gerador congruencial linear, escalados por √(2 / (fan-in + fan-out)) no espírito da inicialização de Xavier, pelo que uma semente dá sempre a mesma rede de partida. Os dados também têm uma semente fixa, e é por isso que os pontos ficam no sítio quando reinicias.",
-          "O mapa de calor avalia a rede numa grelha de 48 × 48 sempre que os pesos mudam e mistura âmbar e ciano de acordo com a saída. Onde quer que a saída cruze 0,5 entre uma célula e a sua vizinha da direita ou de baixo, é desenhado um pequeno ponto de fronteira. O treino corre dentro de requestAnimationFrame com tantas atualizações quantas o tempo decorrido e o controlo de velocidade pedirem. As frações transitam para o quadro seguinte, pelo que 5 atualizações por segundo significa mesmo uma a cada 0,2 segundos. O limite é de doze por quadro, para que um separador em segundo plano não tente recuperar tudo de uma vez. O gráfico da perda guarda as últimas 320 perdas de lote.",
+          "O mapa de calor avalia a rede numa grelha de 48 × 48 sempre que os pesos mudam e mistura âmbar e ciano de acordo com a saída. Onde quer que a saída cruze 0,5 entre uma célula e a sua vizinha da direita ou de baixo, é desenhado um pequeno ponto de fronteira. O treino corre dentro de requestAnimationFrame com tantas atualizações quantas o tempo decorrido e o cursor de velocidade pedirem. As frações transitam para o fotograma seguinte, pelo que 5 atualizações por segundo significa mesmo uma a cada 0,2 segundos. O limite é de doze por fotograma, para que um separador em segundo plano não tente recuperar tudo de uma vez. O gráfico da perda guarda as últimas 320 perdas de lote.",
           "Nada se anima sozinho: o canvas só é redesenhado quando os pesos mudam, e eles só mudam depois de carregares em «ir» ou em «passo ×1».",
         ],
         code: BACKWARD_EXCERPT,
@@ -360,7 +360,7 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
     experimentsHeading: "Experimenta isto",
     experiments: [
       {
-        title: "Passar para lá do vale",
+        title: "Passa para lá do vale",
         text: "Nas duas luas com 2 → 4 → 4 → 1, põe η em 1,0 e o tamanho do lote em 1. A curva da perda fica serrilhada, porque cada atualização segue um único ponto. Baixa η para 0,1 e sobe o lote para 64: mais lento, mas suave.",
       },
       {
@@ -382,13 +382,13 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
       "Träna ett litet neuralt nätverk med backpropagation i webbläsaren och se beslutsgränsen böja sig kring XOR, två månar och en cirkel medan förlusten sjunker.",
     heading: "Så fungerar den här utforskaren",
     intro:
-      "Den färgade kvadraten är inmatningsplanet för ett litet neuralt nätverk, från −1 till 1 i båda riktningarna. Varje prick är ett träningsexempel: bärnsten för klass 1, cyan för klass 0. Den mjuka bakgrunden visar vad nätverket just nu tror i varje punkt, och svaga vita prickar följer linjen där det är exakt obestämt. Tryck på ”kör” så knuffar backpropagation vikterna lite vid varje uppdatering, tills den uppfattningen stämmer med datan.",
+      "Den färgade kvadraten är inmatningsplanet för ett litet neuralt nätverk, från −1 till 1 i båda riktningarna. Varje prick är ett träningsexempel: bärnsten för klass 1, cyan för klass 0. Den mjuka bakgrunden visar vad nätverket just nu tror i varje punkt, och svaga vita prickar följer linjen där det är exakt obestämt. Tryck på ”kör” så knuffar backpropagation vikterna lite vid varje uppdatering, tills den uppfattningen stämmer med data.",
     sections: [
       {
         heading: "Kedjeregeln, körd baklänges",
         paragraphs: [
           "Ett nätverk är en kedja av enkla funktioner. Varje lager tar en viktad summa av sina indata plus en bias och trycker ihop den: med tanh i de dolda lagren och med den logistiska sigmoidfunktionen vid den enda utgången, så att ŷ hamnar mellan 0 och 1. Förlusten för ett exempel är ½(ŷ − y)².",
-          "För att bli bättre måste varje vikt veta hur förlusten skulle ändras om den flyttade sig en aning. Backpropagation besvarar det för alla vikter i ett enda svep: den beräknar en felsignal δ vid utgången och skickar den bakåt lager för lager. Varje dold neuron summerar δ-värdena från de neuroner den matar, viktade med kopplingarna, och multiplicerar med lutningen hos sin egen aktivering. En vikts gradient är sedan dess δ gånger den indata den såg i framåtpasset. Idén skrevs ned av Seppo Linnainmaa 1970 och blev standardsättet att träna nätverk efter artikeln av Rumelhart, Hinton och Williams från 1986.",
+          "För att bli bättre måste varje vikt veta hur förlusten skulle ändras om den flyttade sig en aning. Backpropagation besvarar det för alla vikter i ett enda svep: den beräknar en felsignal δ vid utgången och skickar den bakåt lager för lager. Varje dold neuron summerar δ-värdena från de neuroner den matar, viktade med kopplingarna, och multiplicerar med lutningen hos sin egen aktivering. En vikts gradient är sedan dess δ gånger det ingångsvärde den såg i framåtpasset. Idén skrevs ned av Seppo Linnainmaa 1970 och blev standardsättet att träna nätverk efter artikeln av Rumelhart, Hinton och Williams från 1986.",
         ],
         formula: DELTA_FORMULA,
       },
@@ -396,15 +396,15 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
         heading: "Vad reglagen gör",
         paragraphs: [
           "”Nätverkstopologi” väljer formen: 2 → 3 → 1 har 13 parametrar, standardvalet 2 → 4 → 4 → 1 har 37, och 3 → 8 → 8 → 1 har 113 plus en tredje ingång, produkten x·y. ”Leksaksuppgift” växlar mellan XOR (fyra moln i hörnen, motsatta hörn delar klass), två månar som griper in i varandra och en skiva med radie 0,55 inuti en kvadrat.",
-          "Inlärningshastigheten η skalar varje uppdatering, från 0,01 till 1 (standard 0,3). Batchstorleken, 1 till 64 (standard 16), anger hur många av de 160 punkterna som går in i en uppdatering: punkterna blandas, delas upp i batchar, och den genomsnittliga gradienten för varje batch tillämpas. ”Uppdateringar / sekund”, 5 till 240 (standard 60), är uppdateringstakten. ”steg ×1” gör exakt en uppdatering. ”återställ” drar nya vikter från ett nytt frö och behåller datan.",
-          "Märket visar två räknare. ”uppdatering” räknar minibatchstegen, ”Epok” räknar avslutade varv genom alla 160 punkter. Med batchstorlek 16 är en epok alltså exakt tio uppdateringar, och datan blandas om inför nästa varv. Träffsäkerheten mäts på alla 160 punkter efter varje uppdatering, med 0,5 som tröskel.",
+          "Inlärningshastigheten η skalar varje uppdatering, från 0,01 till 1 (standard 0,3). Batchstorleken, 1 till 64 (standard 16), anger hur många av de 160 punkterna som går in i en uppdatering: punkterna blandas, delas upp i batcher, och den genomsnittliga gradienten för varje batch tillämpas. ”Uppdateringar / sekund”, 5 till 240 (standard 60), är uppdateringstakten. ”steg ×1” gör exakt en uppdatering. ”återställ” drar nya vikter från ett nytt frö och behåller datamängden.",
+          "Märket visar två räknare. ”uppdatering” räknar minibatchstegen, ”Epok” räknar avslutade varv genom alla 160 punkter. Med batchstorlek 16 är en epok alltså exakt tio uppdateringar, och datamängden blandas om inför nästa varv. Träffsäkerheten mäts på alla 160 punkter efter varje uppdatering, med 0,5 som tröskel.",
         ],
       },
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Här finns inget maskininlärningsbibliotek. Nätverket är en lista av lager, vart och ett en viktmatris av nästlade arrayer plus en biasvektor. Framåtpasset sparar varje lagers indata och aktivering, precis det som bakåtpasset behöver. Startvikterna kommer från en liten linjär kongruensgenerator, skalade med √(2 / (fan-in + fan-out)) i Xavier-initieringens anda, så ett frö ger alltid samma startnätverk. Även datan har ett fast frö, och därför ligger prickarna kvar när du återställer.",
-          "Värmekartan utvärderar nätverket på ett rutnät om 48 × 48 varje gång vikterna ändras och blandar bärnsten och cyan efter utdatan. Överallt där utdatan korsar 0,5 mellan en cell och dess granne till höger eller nedanför ritas en liten gränsprick. Träningen körs i requestAnimationFrame med så många uppdateringar som den förflutna tiden och hastighetsreglaget begär. Bråkdelar förs över till nästa bildruta, så 5 uppdateringar per sekund betyder verkligen en var 0,2 sekund. Gränsen är tolv per bildruta, så att en flik i bakgrunden inte försöker ta igen allt på en gång. Förlustdiagrammet behåller de senaste 320 batchförlusterna.",
+          "Här finns inget maskininlärningsbibliotek. Nätverket är en lista av lager, vart och ett en viktmatris av nästlade arrayer plus en biasvektor. Framåtpasset sparar varje lagers indata och aktivering, precis det som bakåtpasset behöver. Startvikterna kommer från en liten linjär kongruensgenerator, skalade med √(2 / (fan-in + fan-out)) i Xavier-initieringens anda, så ett frö ger alltid samma startnätverk. Även datamängden har ett fast frö, och därför ligger prickarna kvar när du återställer.",
+          "Värmekartan utvärderar nätverket på ett rutnät om 48 × 48 varje gång vikterna ändras och blandar bärnsten och cyan efter utsignalen. Överallt där utsignalen korsar 0,5 mellan en cell och dess granne till höger eller nedanför ritas en liten gränsprick. Träningen körs i requestAnimationFrame med så många uppdateringar som den förflutna tiden och hastighetsreglaget begär. Bråkdelar förs över till nästa bildruta, så 5 uppdateringar per sekund betyder verkligen en var 0,2 sekund. Gränsen är tolv per bildruta, så att en flik i bakgrunden inte försöker ta igen allt på en gång. Förlustdiagrammet behåller de senaste 320 batchförlusterna.",
           "Ingenting rör sig av sig självt: canvasen ritas bara om när vikterna ändras, och de ändras bara efter att du har tryckt på ”kör” eller ”steg ×1”.",
         ],
         code: BACKWARD_EXCERPT,
@@ -447,7 +447,7 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
         heading: "Kjerneregelen, kjørt baklengs",
         paragraphs: [
           "Et nettverk er en kjede av enkle funksjoner. Hvert lag tar en vektet sum av inndataene sine pluss en bias og klemmer den sammen: med tanh i de skjulte lagene og med den logistiske sigmoidfunksjonen i den ene utgangen, slik at ŷ ligger mellom 0 og 1. Tapet for ett eksempel er ½(ŷ − y)².",
-          "For å bli bedre må hver vekt vite hvordan tapet ville endret seg hvis den flyttet seg litt. Backpropagation svarer på det for alle vektene i ett sveip: den beregner et feilsignal δ i utgangen og sender det bakover lag for lag. Hvert skjulte nevron summerer δ-verdiene til nevronene det mater, vektet med forbindelsene, og multipliserer med stigningen til sin egen aktivering. Gradienten til en vekt er da dens δ ganger inndataene den så i foroverpasseringen. Ideen ble skrevet ned av Seppo Linnainmaa i 1970 og ble standardmåten å trene nettverk på etter artikkelen til Rumelhart, Hinton og Williams fra 1986.",
+          "For å bli bedre må hver vekt vite hvordan tapet ville endret seg hvis den flyttet seg litt. Backpropagation svarer på det for alle vektene i ett sveip: Den beregner et feilsignal δ i utgangen og sender det bakover lag for lag. Hvert skjulte nevron summerer δ-verdiene til nevronene det mater, vektet med forbindelsene, og multipliserer med stigningen til sin egen aktivering. Gradienten til en vekt er da dens δ ganger inndataene den så i foroverpasseringen. Ideen ble skrevet ned av Seppo Linnainmaa i 1970 og ble standardmåten å trene nettverk på etter artikkelen til Rumelhart, Hinton og Williams fra 1986.",
         ],
         formula: DELTA_FORMULA,
       },
@@ -455,23 +455,23 @@ export const BACKPROP_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "«Nettverkstopologi» velger formen: 2 → 3 → 1 har 13 parametere, standardvalget 2 → 4 → 4 → 1 har 37, og 3 → 8 → 8 → 1 har 113 pluss en tredje inngang, produktet x·y. «Leketøysoppgave» bytter mellom XOR (fire skyer i hjørnene, motsatte hjørner deler klasse), to måner som griper inn i hverandre, og en skive med radius 0,55 inne i et kvadrat.",
-          "Læringsraten η skalerer hver oppdatering, fra 0,01 til 1 (standard 0,3). Batchstørrelsen, 1 til 64 (standard 16), er hvor mange av de 160 punktene som går inn i én oppdatering: punktene stokkes, deles i batcher, og den gjennomsnittlige gradienten for hver batch brukes. «Oppdateringer / sekund», 5 til 240 (standard 60), er oppdateringstakten. «steg ×1» utfører nøyaktig én oppdatering. «tilbakestill» trekker nye vekter fra et nytt frø og beholder dataene.",
+          "Læringsraten η skalerer hver oppdatering, fra 0,01 til 1 (standard 0,3). Batchstørrelsen, 1 til 64 (standard 16), er hvor mange av de 160 punktene som går inn i én oppdatering: Punktene stokkes, deles i batcher, og den gjennomsnittlige gradienten for hver batch brukes. «Oppdateringer / sekund», 5 til 240 (standard 60), er oppdateringstakten. «steg ×1» utfører nøyaktig én oppdatering. «tilbakestill» trekker nye vekter fra et nytt frø og beholder dataene.",
           "Merket viser to tellere. «oppdatering» teller minibatchstegene, «Epoke» teller fullførte runder gjennom alle de 160 punktene. Med batchstørrelse 16 er én epoke altså nøyaktig ti oppdateringer, og dataene stokkes på nytt før neste runde. Treffsikkerheten måles på alle de 160 punktene etter hver oppdatering, med 0,5 som terskel.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
           "Her finnes det ikke noe maskinlæringsbibliotek. Nettverket er en liste av lag, hvert med en vektmatrise av nestede arrayer pluss en biasvektor. Foroverpasseringen tar vare på inndataene og aktiveringen til hvert lag, akkurat det bakoverpasseringen trenger. Startvektene kommer fra en liten lineær kongruensgenerator, skalert med √(2 / (fan-in + fan-out)) i Xavier-initialiseringens ånd, så ett frø gir alltid det samme startnettverket. Dataene har også et fast frø, og derfor blir prikkene liggende når du tilbakestiller.",
-          "Varmekartet evaluerer nettverket på et rutenett på 48 × 48 hver gang vektene endres, og blander rav og cyan etter utdataene. Overalt der utdataene krysser 0,5 mellom en celle og naboen til høyre eller nedenfor, tegnes en liten grenseprikk. Treningen kjører i requestAnimationFrame med så mange oppdateringer som den medgåtte tiden og hastighetsglideren ber om. Brøkdeler tas med til neste bilde, så 5 oppdateringer per sekund betyr virkelig én hvert 0,2 sekund. Grensen er tolv per bilde, slik at en fane i bakgrunnen ikke prøver å ta igjen alt på én gang. Tapsdiagrammet beholder de siste 320 batchtapene.",
-          "Ingenting beveger seg av seg selv: lerretet tegnes bare på nytt når vektene endres, og de endres bare etter at du har trykket på «start» eller «steg ×1».",
+          "Varmekartet evaluerer nettverket på et rutenett på 48 × 48 hver gang vektene endres, og blander rav og cyan etter utdataene. Overalt der utdataene krysser 0,5 mellom en celle og naboen til høyre eller nedenfor, tegnes en liten grenseprikk. Treningen kjører i requestAnimationFrame med så mange oppdateringer som den medgåtte tiden og hastighetsglidebryteren ber om. Brøkdeler tas med til neste bilde, så 5 oppdateringer per sekund betyr virkelig én hvert 0,2 sekund. Grensen er tolv per bilde, slik at en fane i bakgrunnen ikke prøver å ta igjen alt på én gang. Tapsdiagrammet beholder de siste 320 batchtapene.",
+          "Ingenting beveger seg av seg selv: Lerretet tegnes bare på nytt når vektene endres, og de endres bare etter at du har trykket på «start» eller «steg ×1».",
         ],
         code: BACKWARD_EXCERPT,
       },
       {
         heading: "Hvorfor egenskapen x·y er en snarvei",
         paragraphs: [
-          "XOR er lærebokproblemet som ett enkelt nevron ikke kan løse, fordi ingen rett linje skiller de to diagonalene. Det skjulte laget må finne opp en koordinat der klassene lar seg skille. Topologien 3 → 8 → 8 → 1 gir bort den koordinaten: for XOR avgjør fortegnet til x·y allerede merkelappen. Sammenlign XOR med og uten den egenskapen, så ser du hva skjulte lag er til for: de bygger egenskaper.",
+          "XOR er lærebokproblemet som ett enkelt nevron ikke kan løse, fordi ingen rett linje skiller de to diagonalene. Det skjulte laget må finne opp en koordinat der klassene lar seg skille. Topologien 3 → 8 → 8 → 1 gir bort den koordinaten: For XOR avgjør fortegnet til x·y allerede merkelappen. Sammenlign XOR med og uten den egenskapen, så ser du hva skjulte lag er til for: De bygger egenskaper.",
         ],
       },
     ],

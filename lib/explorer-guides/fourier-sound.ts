@@ -159,7 +159,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
       {
         heading: "La altura viene de la fundamental, el color de los armónicos",
         paragraphs: [
-          "Un tono musical estable se repite muchas veces por segundo. La idea de Fourier dice que cualquier señal repetitiva de ese tipo es una suma de ondas sinusoidales a la frecuencia de repetición f y a sus múltiplos enteros 2f, 3f, 4f y así sucesivamente. La más grave, la fundamental, fija en gran medida la altura que oyes. Las intensidades relativas de las demás, los armónicos o parciales, fijan el color del sonido, y por eso es fácil distinguir una flauta de un violín que tocan la misma nota.",
+          "Un tono musical estable se repite muchas veces por segundo. La idea de Fourier dice que cualquier señal repetitiva de ese tipo es una suma de ondas senoidales a la frecuencia de repetición f y a sus múltiplos enteros 2f, 3f, 4f y así sucesivamente. La más grave, la fundamental, fija en gran medida la altura que oyes. Las intensidades relativas de las demás, los armónicos o parciales, fijan el color del sonido, y por eso es fácil distinguir una flauta de un violín que tocan la misma nota.",
           "Las recetas de aquí son las series de Fourier clásicas. La onda cuadrada usa solo armónicos impares con amplitudes que decaen como 1/k, lo que le da un sonido hueco que a menudo se compara con el de un clarinete. El diente de sierra usa todos los armónicos, que también decaen como 1/k, y suena brillante y zumbón. La triangular usa armónicos impares que decaen como 1/k², así que sus parciales altos se apagan enseguida y suena suave, cercana a un seno puro. El pulso pasa un cuarto de cada periodo en su nivel alto; sus amplitudes siguen sin(πk/4)/k, de modo que falta uno de cada cuatro armónicos.",
         ],
         formula: SERIES_FORMULA,
@@ -196,7 +196,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
       },
       {
         title: "El mismo sonido, otra forma",
-        text: "Elige «Sawtooth» con 8 armónicos y cambia a «custom». Los deslizadores k2, k4, k6 y k8 son negativos: arrástralos a 0,32, 0,16, 0,11 y 0,08, los mismos tamaños con signo más. La rampa del osciloscopio ahora baja en lugar de subir. Escucha si notas alguna diferencia en el sonido.",
+        text: "Elige «Sawtooth» con 8 armónicos y cambia a «custom». Los deslizadores k2, k4, k6 y k8 son negativos: arrástralos a 0,32; 0,16; 0,11 y 0,08, los mismos tamaños con signo más. La rampa del osciloscopio ahora baja en lugar de subir. Escucha si notas alguna diferencia en el sonido.",
       },
       {
         title: "Quita la fundamental",
@@ -219,14 +219,14 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
         heading: "La hauteur vient de la fondamentale, la couleur des harmoniques",
         paragraphs: [
           "Un son musical stable se répète de nombreuses fois par seconde. L'idée de Fourier dit que tout signal répétitif de ce genre est une somme d'ondes sinusoïdales à la fréquence de répétition f et à ses multiples entiers 2f, 3f, 4f et ainsi de suite. La plus grave, la fondamentale, fixe pour l'essentiel la hauteur que tu entends. Les intensités relatives des autres, les harmoniques ou partiels, fixent la couleur du son, et c'est pourquoi une flûte et un violon jouant la même note se distinguent facilement.",
-          "Les recettes proposées ici sont les séries de Fourier classiques. Le signal carré n'utilise que les harmoniques impaires, avec des amplitudes qui décroissent en 1/k, ce qui lui donne un son creux souvent comparé à celui d'une clarinette. La dent de scie utilise toutes les harmoniques, elles aussi en 1/k, et sonne brillante et bourdonnante. Le triangle utilise les harmoniques impaires en 1/k², si bien que ses partiels aigus s'éteignent vite et qu'il sonne doux, proche d'une sinusoïde pure. L'impulsion passe un quart de chaque période à son niveau haut ; ses amplitudes suivent sin(πk/4)/k, donc une harmonique sur quatre manque.",
+          "Les recettes proposées ici sont les séries de Fourier classiques. L'onde carrée n'utilise que les harmoniques impaires, avec des amplitudes qui décroissent en 1/k, ce qui lui donne un son creux souvent comparé à celui d'une clarinette. La dent de scie utilise toutes les harmoniques, elles aussi en 1/k, et sonne brillante et bourdonnante. Le triangle utilise les harmoniques impaires en 1/k², si bien que ses partiels aigus s'éteignent vite et qu'il sonne doux, proche d'une sinusoïde pure. L'impulsion passe un quart de chaque période à son niveau haut ; ses amplitudes suivent sin(πk/4)/k, donc une harmonique sur quatre manque.",
         ],
         formula: SERIES_FORMULA,
       },
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "« start audio » crée le moteur sonore ; les navigateurs n'autorisent une page à émettre du son qu'après un clic, donc rien ne joue avant. « Master gain » (de 0 à 0,4, 0,2 par défaut) règle le volume général. « Base frequency » va de 55 à 880 Hz, 220 Hz par défaut, le la situé sous le do central.",
+          "« start audio » crée le moteur sonore ; les navigateurs n'autorisent une page à émettre du son qu'après un clic, donc rien ne joue avant. « Master gain » (de 0 à 0,4 ; 0,2 par défaut) règle le volume général. « Base frequency » va de 55 à 880 Hz, 220 Hz par défaut, le la situé sous le do central.",
           "« Target wave » choisit la recette : carré (« Square », le choix par défaut), dent de scie (« Sawtooth »), triangle (« Triangle ») ou une impulsion à 25 % (« Pulse 25% »). « Harmonics » fixe le nombre de partiels actifs, de 1 à 32, avec des raccourcis pour 1, 3, 8 et 24 ; à 1, tu entends une sinusoïde pure quelle que soit la cible. « Partial amplitudes » affiche les huit premiers coefficients. En mode « auto », ils suivent la cible ; passe à « custom » et chacun reçoit un curseur de −1,3 à 1,3. En mode « custom », seuls ces huit partiels sonnent : tout ce qui dépasse k = 8 est réduit au silence, même si « Harmonics » est réglé plus haut.",
           "« Sweep frequency » fait glisser la fondamentale entre 110 et 660 Hz selon une sinusoïde lente d'une période de cinq secondes, et tout l'empilement d'harmoniques se déplace avec elle.",
         ],
@@ -236,7 +236,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Appuyer sur le démarrage construit un graphe Web Audio : pour chacune des 32 harmoniques, un OscillatorNode en sinus et un en cosinus, chacun avec son propre GainNode, tous reliés à un gain maître et à un AnalyserNode. Les 64 oscillateurs tournent en permanence ; les inactifs ont simplement un gain de 0. Chaque changement passe par la mise à jour ci-dessous. Les amplitudes sont divisées par la somme de leurs valeurs absolues. Les partiels sont verrouillés en phase et peuvent tous atteindre leur maximum au même instant, et avec cette mise à l'échelle même ce pire cas reste dans l'intervalle de −1 à 1, si bien qu'aucune recette ni aucun réglage de curseur ne peut saturer. Tous les changements utilisent setTargetAtTime avec une constante de temps de 0,04 seconde, ce qui adoucit les marches en courts glissements et évite les clics.",
           "Comme tous les oscillateurs glissent avec la même constante de temps, le partiel k reste exactement à k fois la fondamentale même pendant que la fréquence bouge : l'empilement reste donc harmonique pendant les balayages. L'arrêt fait descendre le gain maître jusqu'au silence et ferme le contexte audio un instant plus tard.",
-          "L'oscilloscope lit 2048 échantillons temporels de l'analyseur à chaque image de l'animation et trace environ deux périodes et demie de la fondamentale. Le diagramme en barres placé dessous est dessiné à partir de la recette de coefficients, et non mesuré sur l'audio : les barres cyan sont des coefficients positifs, les barres roses des coefficients négatifs. Si ton système demande la réduction des animations, la trace en direct est remplacée par une forme d'onde fixe calculée à partir de la recette, redessinée uniquement quand tu changes quelque chose.",
+          "L'oscilloscope lit 2 048 échantillons temporels de l'analyseur à chaque image de l'animation et trace environ deux périodes et demie de la fondamentale. Le diagramme en barres placé dessous est dessiné à partir de la recette de coefficients, et non mesuré sur l'audio : les barres cyan sont des coefficients positifs, les barres roses des coefficients négatifs. Si ton système demande la réduction des animations, la trace en direct est remplacée par une forme d'onde fixe calculée à partir de la recette, redessinée uniquement quand tu changes quelque chose.",
         ],
         code: AUDIO_EXCERPT,
       },
@@ -250,12 +250,12 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
     experimentsHeading: "À essayer",
     experiments: [
       {
-        title: "Construis un signal carré à l'oreille",
+        title: "Construis une onde carrée à l'oreille",
         text: "Choisis « Square », démarre l'audio et appuie sur 1 : une sinusoïde pure, proche d'une flûte. Appuie ensuite sur 3, 8 et 24. La hauteur ne change jamais, mais chaque étape ajoute des harmoniques impaires et le son devient plus creux et plus nasillard, pendant que la trace de l'oscilloscope s'aplatit en créneau.",
       },
       {
         title: "Même son, autre forme",
-        text: "Choisis « Sawtooth » avec 8 harmoniques et passe à « custom ». Les curseurs k2, k4, k6 et k8 sont négatifs : amène-les à 0,32, 0,16, 0,11 et 0,08, les mêmes grandeurs avec un signe plus. La rampe de l'oscilloscope descend maintenant au lieu de monter. Écoute s'il y a une différence dans le son.",
+        text: "Choisis « Sawtooth » avec 8 harmoniques et passe à « custom ». Les curseurs k2, k4, k6 et k8 sont négatifs : amène-les à 0,32 ; 0,16 ; 0,11 et 0,08, les mêmes grandeurs avec un signe plus. La rampe de l'oscilloscope descend maintenant au lieu de monter. Écoute s'il y a une différence dans le son.",
       },
       {
         title: "Retire la fondamentale",
@@ -278,7 +278,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
         heading: "L'altezza dalla fondamentale, il colore dalle armoniche",
         paragraphs: [
           "Un suono musicale stabile si ripete molte volte al secondo. L'intuizione di Fourier dice che ogni segnale ripetitivo di questo tipo è una somma di onde sinusoidali alla frequenza di ripetizione f e ai suoi multipli interi 2f, 3f, 4f e così via. La più bassa, la fondamentale, stabilisce in gran parte l'altezza che senti. Le intensità relative delle altre, le armoniche o parziali, stabiliscono il colore del suono, ed è per questo che un flauto e un violino che suonano la stessa nota si distinguono facilmente.",
-          "Le ricette qui sono le classiche serie di Fourier. L'onda quadra usa solo armoniche dispari con ampiezze che calano come 1/k, il che le dà un suono cavo spesso paragonato a quello di un clarinetto. Il dente di sega usa tutte le armoniche, anch'esse in calo come 1/k, e suona brillante e ronzante. La triangolare usa armoniche dispari che calano come 1/k², quindi le sue parziali alte svaniscono in fretta e suona morbida, vicina a una sinusoide pura. L'impulso passa un quarto di ogni periodo al livello alto; le sue ampiezze seguono sin(πk/4)/k, quindi manca un'armonica ogni quattro.",
+          "Le ricette qui sono le classiche serie di Fourier. L'onda quadra usa solo armoniche dispari con ampiezze che calano come 1/k, il che le dà un suono cavo spesso paragonato a quello di un clarinetto. Il dente di sega usa tutte le armoniche, anch'esse in calo come 1/k, e suona brillante e ronzante. La triangolare usa armoniche dispari che calano come 1/k², quindi i suoi parziali alti svaniscono in fretta e suona morbida, vicina a una sinusoide pura. L'impulso passa un quarto di ogni periodo al livello alto; le sue ampiezze seguono sin(πk/4)/k, quindi manca un'armonica ogni quattro.",
         ],
         formula: SERIES_FORMULA,
       },
@@ -286,15 +286,15 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
           "«start audio» crea il motore sonoro; i browser permettono a una pagina di emettere suoni solo dopo un tuo clic, quindi prima non si sente nulla. «Master gain» (da 0 a 0,4, predefinito 0,2) imposta il volume generale. «Base frequency» va da 55 a 880 Hz, predefinito 220 Hz, il la sotto il do centrale.",
-          "«Target wave» sceglie la ricetta: quadra («Square», la scelta predefinita), dente di sega («Sawtooth»), triangolare («Triangle») o un impulso al 25 % («Pulse 25%»). «Harmonics» stabilisce quante parziali sono attive, da 1 a 32, con scorciatoie per 1, 3, 8 e 24; con 1 senti una sinusoide pura qualunque sia il bersaglio. «Partial amplitudes» mostra i primi otto coefficienti. In modalità «auto» seguono il bersaglio; passa a «custom» e ciascuno riceve un cursore da −1,3 a 1,3. In modalità «custom» suonano solo queste otto parziali: tutto ciò che sta sopra k = 8 viene silenziato, anche se «Harmonics» è impostato più in alto.",
-          "«Sweep frequency» fa scivolare la fondamentale tra 110 e 660 Hz seguendo una sinusoide lenta con un periodo di cinque secondi, e l'intera pila di armoniche si muove con lei.",
+          "«Target wave» sceglie la ricetta: quadra («Square», la scelta predefinita), dente di sega («Sawtooth»), triangolare («Triangle») o un impulso al 25 % («Pulse 25%»). «Harmonics» stabilisce quanti parziali sono attivi, da 1 a 32, con scorciatoie per 1, 3, 8 e 24; con 1 senti una sinusoide pura qualunque sia il bersaglio. «Partial amplitudes» mostra i primi otto coefficienti. In modalità «auto» seguono il bersaglio; passa a «custom» e ciascuno riceve un cursore da −1,3 a 1,3. In modalità «custom» suonano solo questi otto parziali: tutto ciò che sta sopra k = 8 viene silenziato, anche se «Harmonics» è impostato più in alto.",
+          "«Sweep frequency» fa scivolare la fondamentale tra 110 e 660 Hz seguendo una sinusoide lenta con un periodo di cinque secondi, e l'intera pila di armoniche la segue.",
         ],
       },
       {
         heading: "Com'è costruito",
         paragraphs: [
-          "Premendo l'avvio si costruisce un grafo Web Audio: per ciascuna delle 32 armoniche un OscillatorNode seno e uno coseno, ognuno con il proprio GainNode, tutti collegati a un guadagno master e a un AnalyserNode. Tutti i 64 oscillatori girano di continuo; quelli inattivi hanno semplicemente guadagno 0. Ogni modifica passa per l'aggiornamento qui sotto. Le ampiezze vengono divise per la somma dei loro valori assoluti. Le parziali sono agganciate in fase e possono raggiungere tutte il picco nello stesso istante, e con questa scalatura anche quel caso peggiore resta nell'intervallo da −1 a 1, quindi nessuna ricetta e nessuna posizione dei cursori può andare in clipping. Tutte le modifiche usano setTargetAtTime con una costante di tempo di 0,04 secondi, che ammorbidisce i gradini in brevi scivolamenti ed evita i clic.",
-          "Poiché ogni oscillatore scivola con la stessa costante di tempo, la parziale k resta esattamente a k volte la fondamentale anche mentre la frequenza si muove, quindi la pila rimane armonica durante le scansioni. L'arresto porta il master al silenzio in dissolvenza e chiude il contesto audio un attimo dopo.",
+          "Premendo l'avvio si costruisce un grafo Web Audio: per ciascuna delle 32 armoniche un OscillatorNode seno e uno coseno, ognuno con il proprio GainNode, tutti collegati a un guadagno master e a un AnalyserNode. Tutti i 64 oscillatori girano di continuo; quelli inattivi hanno semplicemente guadagno 0. Ogni modifica passa per l'aggiornamento qui sotto. Le ampiezze vengono divise per la somma dei loro valori assoluti. I parziali sono agganciati in fase e possono raggiungere tutti il picco nello stesso istante, e con questa scalatura anche quel caso peggiore resta nell'intervallo da −1 a 1, quindi nessuna ricetta e nessuna posizione dei cursori può andare in clipping. Tutte le modifiche usano setTargetAtTime con una costante di tempo di 0,04 secondi, che ammorbidisce i gradini in brevi scivolamenti ed evita i clic.",
+          "Poiché ogni oscillatore scivola con la stessa costante di tempo, il parziale k resta esattamente a k volte la fondamentale anche mentre la frequenza si muove, quindi la pila rimane armonica durante le scansioni. L'arresto porta il master al silenzio in dissolvenza e chiude il contesto audio un attimo dopo.",
           "L'oscilloscopio legge 2048 campioni nel dominio del tempo dall'analizzatore a ogni fotogramma dell'animazione e disegna circa due periodi e mezzo della fondamentale. Il grafico a barre sottostante è disegnato a partire dalla ricetta dei coefficienti, non misurato sull'audio: le barre ciano sono coefficienti positivi, quelle rosa negativi. Se il tuo sistema chiede il movimento ridotto, la traccia dal vivo è sostituita da una forma d'onda fissa calcolata dalla ricetta, ridisegnata solo quando cambi qualcosa.",
         ],
         code: AUDIO_EXCERPT,
@@ -302,11 +302,11 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
       {
         heading: "Perché la fase si sente così poco",
         paragraphs: [
-          "Quadra, dente di sega e triangolare si possono scrivere con i soli seni. L'impulso no: centrato su t = 0 ha simmetria speculare, e la sua serie è fatta di coseni. Ecco perché ogni armonica ha un gemello coseno, e la ricetta dell'impulso suona su quelli. Metti le stesse ampiezze sui seni e la curva cambia completamente, con punte acuminate e nessun livello piatto. Eppure come suono tenuto risulterebbe quasi identico per la maggior parte delle orecchie, perché il nostro udito presta molta attenzione a quali frequenze sono presenti e a quanto sono intense, e molta meno a come si allineano le loro fasi. Il dente di sega ti permette di verificarlo: inverti i segni delle sue parziali pari e la rampa in salita diventa in discesa, senza che cambi alcuna ampiezza.",
+          "Quadra, dente di sega e triangolare si possono scrivere con i soli seni. L'impulso no: centrato su t = 0 ha simmetria speculare, e la sua serie è fatta di coseni. Ecco perché ogni armonica ha un gemello coseno, e la ricetta dell'impulso suona su quelli. Metti le stesse ampiezze sui seni e la curva cambia completamente, con punte acuminate e nessun livello piatto. Eppure come suono tenuto risulterebbe quasi identico per la maggior parte delle orecchie, perché il nostro udito presta molta attenzione a quali frequenze sono presenti e a quanto sono intense, e molta meno a come si allineano le loro fasi. Il dente di sega ti permette di verificarlo: inverti i segni dei suoi parziali pari e la rampa in salita diventa in discesa, senza che cambi alcuna ampiezza.",
         ],
       },
     ],
-    experimentsHeading: "Da provare",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Costruisci un'onda quadra a orecchio",
@@ -318,11 +318,11 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
       },
       {
         title: "Togli la fondamentale",
-        text: "Scegli «Sawtooth», imposta «Harmonics» a 8, porta «Partial amplitudes» su «custom» e trascina k1 a 0. Il suono si assottiglia, eppure la maggior parte di chi ascolta sente ancora la stessa altezza, perché le parziali rimaste a 2f, 3f e oltre continuano a ripetersi al ritmo di f.",
+        text: "Scegli «Sawtooth», imposta «Harmonics» a 8, porta «Partial amplitudes» su «custom» e trascina k1 a 0. Il suono si assottiglia, eppure la maggior parte di chi ascolta sente ancora la stessa altezza, perché i parziali rimasti a 2f, 3f e oltre continuano a ripetersi al ritmo di f.",
       },
       {
         title: "Scolpisci un suono senza dispari",
-        text: "Scegli «Sawtooth», poi passa alla modalità «custom» con 8 armoniche, imposta k1, k3, k5 e k7 a 0 e tieni le parziali pari. La pila rimasta 2f, 4f, 6f, 8f è a sua volta una serie armonica su 2f, quindi l'altezza sale di un'ottava.",
+        text: "Scegli «Sawtooth», poi passa alla modalità «custom» con 8 armoniche, imposta k1, k3, k5 e k7 a 0 e tieni i parziali pari. La pila rimasta 2f, 4f, 6f, 8f è a sua volta una serie armonica su 2f, quindi l'altezza sale di un'ottava.",
       },
     ],
   },
@@ -331,13 +331,13 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
       "Ouve uma série de Fourier: até 32 harmónicos constroem sons de onda quadrada, dente de serra, triangular e de impulso no navegador, com osciloscópio ao vivo.",
     heading: "Como funciona este laboratório de som",
     intro:
-      "Esta sala transforma a série de Fourier em som. Cada harmónico é um oscilador verdadeiro a correr no teu navegador, afinado para um múltiplo inteiro da frequência base, e o som que ouves é a soma de todos. A tela de cima é um osciloscópio que mostra o sinal de áudio real, a de baixo mostra a receita de amplitudes que está a tocar. Muda a receita e ouves o timbre mudar enquanto a altura fica onde está.",
+      "Esta sala transforma a série de Fourier em som. Cada harmónico é um oscilador verdadeiro a correr no teu navegador, afinado para um múltiplo inteiro da frequência base, e o som que ouves é a soma de todos. O canvas de cima é um osciloscópio que mostra o sinal de áudio real, o de baixo mostra a receita de amplitudes que está a tocar. Muda a receita e ouves o timbre mudar enquanto a altura fica onde está.",
     sections: [
       {
         heading: "A altura vem da fundamental, a cor vem dos harmónicos",
         paragraphs: [
           "Um som musical estável repete-se muitas vezes por segundo. A ideia de Fourier diz que qualquer sinal repetitivo deste género é uma soma de ondas sinusoidais na frequência de repetição f e nos seus múltiplos inteiros 2f, 3f, 4f e assim por diante. A mais grave, a fundamental, define em grande parte a altura que ouves. As intensidades relativas das outras, os harmónicos ou parciais, definem a cor do som, e é por isso que é fácil distinguir uma flauta de um violino a tocar a mesma nota.",
-          "As receitas aqui são as séries de Fourier clássicas. A onda quadrada usa só harmónicos ímpares com amplitudes que decaem como 1/k, o que lhe dá um som oco, muitas vezes comparado ao de um clarinete. O dente de serra usa todos os harmónicos, também a decair como 1/k, e soa brilhante, com um zumbido. A triangular usa harmónicos ímpares que decaem como 1/k², pelo que os parciais mais altos se apagam depressa e soa suave, próxima de um seno puro. O impulso passa um quarto de cada período no nível alto; as suas amplitudes seguem sin(πk/4)/k, por isso falta um harmónico em cada quatro.",
+          "As receitas aqui são as séries de Fourier clássicas. A onda quadrada usa só harmónicos ímpares com amplitudes que decaem como 1/k, o que lhe dá um som oco, muitas vezes comparado ao de um clarinete. O dente de serra usa todos os harmónicos, também a decair como 1/k, e soa brilhante, com um zumbido. A triangular usa harmónicos ímpares que decaem como 1/k², pelo que os parciais mais altos se apagam depressa e soa suave, próxima de um seno puro. O impulso passa um quarto de cada período no nível alto; as suas amplitudes seguem sen(πk/4)/k, por isso falta um harmónico em cada quatro.",
         ],
         formula: SERIES_FORMULA,
       },
@@ -352,7 +352,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
       {
         heading: "Como está construído",
         paragraphs: [
-          "Carregar no início constrói um grafo Web Audio: para cada um dos 32 harmónicos, um OscillatorNode de seno e outro de cosseno, cada um com o seu próprio GainNode, todos ligados a um ganho principal e a um AnalyserNode. Os 64 osciladores correm continuamente; os inativos têm simplesmente ganho 0. Todas as alterações passam pela atualização abaixo. As amplitudes são divididas pela soma dos seus valores absolutos. Os parciais estão sincronizados em fase e podem atingir todos o pico no mesmo instante, e com esta escala até esse pior caso fica dentro do intervalo de −1 a 1, pelo que nenhuma receita e nenhuma posição dos cursores pode saturar. Todas as alterações usam setTargetAtTime com uma constante de tempo de 0,04 segundos, que suaviza os degraus em deslizamentos curtos e evita estalidos.",
+          "Carregar em «start audio» constrói um grafo Web Audio: para cada um dos 32 harmónicos, um OscillatorNode de seno e outro de cosseno, cada um com o seu próprio GainNode, todos ligados a um ganho principal e a um AnalyserNode. Os 64 osciladores correm continuamente; os inativos têm simplesmente ganho 0. Todas as alterações passam pela atualização abaixo. As amplitudes são divididas pela soma dos seus valores absolutos. Os parciais estão sincronizados em fase e podem atingir todos o pico no mesmo instante, e com esta escala até esse pior caso fica dentro do intervalo de −1 a 1, pelo que nenhuma receita e nenhuma posição dos cursores pode saturar. Todas as alterações usam setTargetAtTime com uma constante de tempo de 0,04 segundos, que suaviza os degraus em deslizamentos curtos e evita estalidos.",
           "Como todos os osciladores deslizam com a mesma constante de tempo, o parcial k fica exatamente em k vezes a fundamental mesmo enquanto a frequência se move, por isso a pilha mantém-se harmónica durante os varrimentos. Parar faz o ganho principal desvanecer até ao silêncio e fecha o contexto de áudio um momento depois.",
           "O osciloscópio lê 2048 amostras no domínio do tempo do analisador em cada fotograma da animação e desenha cerca de dois períodos e meio da fundamental. O gráfico de barras por baixo é desenhado a partir da receita de coeficientes, não medido no áudio: as barras ciano são coeficientes positivos, as cor-de-rosa são negativos. Se o teu sistema pedir movimento reduzido, o traço ao vivo é substituído por uma forma de onda fixa calculada a partir da receita, redesenhada só quando mudas alguma coisa.",
         ],
@@ -361,7 +361,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
       {
         heading: "Porque é que a fase quase não se ouve",
         paragraphs: [
-          "A quadrada, o dente de serra e a triangular podem escrever-se só com senos. O impulso não: centrado em t = 0 tem simetria de espelho, e a sua série é feita de cossenos. É por isso que cada harmónico tem um gémeo cosseno, e a receita do impulso toca nesses. Põe as mesmas amplitudes em senos e a curva muda por completo, com picos aguçados e sem patamares. No entanto, como som sustentado soaria quase igual para a maioria dos ouvidos, porque a nossa audição dá muita atenção a quais frequências estão presentes e à sua intensidade, e muito menos à maneira como as fases se alinham. O dente de serra permite-te testar isto: inverte os sinais dos seus parciais pares e a rampa ascendente passa a descendente, sem que nenhuma amplitude mude.",
+          "A quadrada, o dente de serra e a triangular podem escrever-se só com senos. O impulso não: centrado em t = 0 tem simetria de espelho, e a sua série é feita de cossenos. É por isso que cada harmónico tem um gémeo cosseno, e a receita do impulso toca nesses. Põe as mesmas amplitudes em senos e a curva muda por completo, com picos aguçados e sem patamares. No entanto, como som sustentado soaria quase igual para a maioria dos ouvidos, porque a nossa audição dá muita atenção às frequências que estão presentes e à sua intensidade, e muito menos à maneira como as fases se alinham. O dente de serra permite-te testar isto: inverte os sinais dos seus parciais pares e a rampa ascendente passa a descendente, sem que nenhuma amplitude mude.",
         ],
       },
     ],
@@ -413,7 +413,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
         paragraphs: [
           "När du trycker på start byggs en Web Audio-graf: för var och en av de 32 övertonerna en OscillatorNode för sinus och en för cosinus, var och en med sin egen GainNode, som alla matar en huvudförstärkning och en AnalyserNode. Alla 64 oscillatorerna går hela tiden. De inaktiva har helt enkelt förstärkningen 0. Varje ändring går genom uppdateringen nedan. Amplituderna divideras med summan av sina absolutbelopp. Deltonerna är faslåsta och kan alla nå sin topp i samma ögonblick, och med den här skalningen håller sig även det värsta fallet inom intervallet −1 till 1, så inget recept och ingen reglageinställning kan klippa. Alla ändringar använder setTargetAtTime med en tidskonstant på 0,04 sekunder, vilket jämnar ut steg till korta glidningar och undviker klick.",
           "Eftersom varje oscillator glider med samma tidskonstant ligger delton k kvar på exakt k gånger grundtonen även medan frekvensen rör sig, så stapeln förblir harmonisk under svepen. När du stoppar tonas huvudförstärkningen ner till tystnad och ljudkontexten stängs ett ögonblick senare.",
-          "Oscilloskopet läser 2048 sampel i tidsdomänen från analysatorn varje animationsbildruta och ritar ungefär två och en halv perioder av grundtonen. Stapeldiagrammet under ritas utifrån koefficientreceptet, det mäts inte ur ljudet: cyanfärgade staplar är positiva koefficienter, rosa är negativa. Om ditt system begär reducerad rörelse ersätts den levande kurvan av en stillastående vågform som beräknas ur receptet och bara ritas om när du ändrar något.",
+          "Oscilloskopet läser 2048 sampel i tidsdomänen från analysatorn varje animationsbildruta och ritar ungefär två och en halv perioder av grundtonen. Stapeldiagrammet under ritas utifrån koefficientreceptet, det mäts inte ur ljudet: cyanfärgade staplar är positiva koefficienter, rosa är negativa. Om ditt system begär minskad rörelse ersätts den levande kurvan av en stillastående vågform som beräknas ur receptet och bara ritas om när du ändrar något.",
         ],
         code: AUDIO_EXCERPT,
       },
@@ -424,7 +424,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Bygg en fyrkantsvåg på gehör",
@@ -432,7 +432,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
       },
       {
         title: "Samma ljud, annan form",
-        text: "Välj ”Sawtooth” med 8 övertoner och byt till ”custom”. Reglagen k2, k4, k6 och k8 är negativa: dra dem till 0,32, 0,16, 0,11 och 0,08, samma storlekar med plustecken. Rampen på oscilloskopet faller nu i stället för att stiga. Lyssna efter någon skillnad i ljudet.",
+        text: "Välj ”Sawtooth” med 8 övertoner och byt till ”custom”. Reglagen k2, k4, k6 och k8 är negativa: dra dem till 0,32; 0,16; 0,11 och 0,08, samma storlekar med plustecken. Rampen på oscilloskopet faller nu i stället för att stiga. Lyssna efter någon skillnad i ljudet.",
       },
       {
         title: "Ta bort grundtonen",
@@ -446,7 +446,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Hør en Fourier-rekke: opptil 32 overtoner bygger firkant-, sagtann-, trekant- og pulstoner i nettleseren, med oscilloskop i sanntid og egne deltoner.",
+      "Hør en Fourier-rekke: Opptil 32 overtoner bygger firkant-, sagtann-, trekant- og pulstoner i nettleseren, med oscilloskop i sanntid og egne deltoner.",
     heading: "Slik fungerer denne lydlaben",
     intro:
       "Dette rommet gjør Fourier-rekken om til lyd. Hver overtone er en ekte oscillator som kjører i nettleseren din, stemt til et helt multiplum av grunnfrekvensen, og tonen du hører, er summen av dem. Det øverste lerretet er et oscilloskop som viser det faktiske lydsignalet, det nederste viser amplitudeoppskriften som spilles. Endre oppskriften, og du hører klangfargen endre seg mens tonehøyden blir liggende.",
@@ -463,23 +463,23 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "«start audio» oppretter lydmotoren. Nettlesere lar en side lage lyd først etter at du har klikket på noe, så ingenting spilles før det. «Master gain» (0 til 0,4, standard 0,2) setter det samlede volumet. «Base frequency» går fra 55 til 880 Hz, standard 220 Hz, a-en under enstrøken c.",
-          "«Target wave» velger oppskriften: firkant («Square», standard), sagtann («Sawtooth»), trekant («Triangle») eller en puls på 25 % («Pulse 25%»). «Harmonics» bestemmer hvor mange deltoner som er aktive, fra 1 til 32, med snarveier for 1, 3, 8 og 24. Ved 1 hører du en ren sinustone uansett mål. «Partial amplitudes» viser de åtte første koeffisientene. I modusen «auto» følger de målet. Bytt til «custom», og hver av dem får en glidebryter fra −1,3 til 1,3. I modusen «custom» lyder bare disse åtte deltonene: alt over k = 8 dempes helt, selv om «Harmonics» står høyere.",
+          "«Target wave» velger oppskriften: firkant («Square», standard), sagtann («Sawtooth»), trekant («Triangle») eller en puls på 25 % («Pulse 25%»). «Harmonics» bestemmer hvor mange deltoner som er aktive, fra 1 til 32, med snarveier for 1, 3, 8 og 24. Ved 1 hører du en ren sinustone uansett mål. «Partial amplitudes» viser de åtte første koeffisientene. I modusen «auto» følger de målet. Bytt til «custom», og hver av dem får en glidebryter fra −1,3 til 1,3. I modusen «custom» lyder bare disse åtte deltonene: Alt over k = 8 dempes helt, selv om «Harmonics» står høyere.",
           "«Sweep frequency» lar grunntonen gli mellom 110 og 660 Hz i en langsom sinus med en periode på fem sekunder, og hele overtonestabelen følger med.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
           "Når du trykker start, bygges en Web Audio-graf: for hver av de 32 overtonene en OscillatorNode for sinus og en for cosinus, hver med sin egen GainNode, som alle mater en hovedforsterkning og en AnalyserNode. Alle de 64 oscillatorene går kontinuerlig. De inaktive har rett og slett forsterkning 0. Hver endring går gjennom oppdateringen nedenfor. Amplitudene deles på summen av absoluttverdiene sine. Deltonene er faselåst og kan alle nå toppen i samme øyeblikk, og med denne skaleringen holder selv det verste tilfellet seg innenfor intervallet fra −1 til 1, så ingen oppskrift og ingen glidebryterinnstilling kan klippe. Alle endringer bruker setTargetAtTime med en tidskonstant på 0,04 sekunder, noe som jevner ut trinn til korte glidninger og unngår klikk.",
           "Fordi hver oscillator glir med den samme tidskonstanten, blir deltone k liggende på nøyaktig k ganger grunntonen også mens frekvensen beveger seg, så stabelen forblir harmonisk under sveipene. Når du stopper, tones hovedforsterkningen ned til stillhet, og lydkonteksten lukkes et øyeblikk senere.",
-          "Oscilloskopet leser 2048 sampler i tidsdomenet fra analysatoren for hver animasjonsrute og tegner omtrent to og en halv periode av grunntonen. Søylediagrammet under tegnes ut fra koeffisientoppskriften, det måles ikke fra lyden: cyanfargede søyler er positive koeffisienter, rosa er negative. Hvis systemet ditt ber om redusert bevegelse, erstattes den levende kurven av en stillestående bølgeform som regnes ut fra oppskriften og bare tegnes på nytt når du endrer noe.",
+          "Oscilloskopet leser 2048 sampler i tidsdomenet fra analysatoren for hvert animasjonsbilde og tegner omtrent to og en halv periode av grunntonen. Søylediagrammet under tegnes ut fra koeffisientoppskriften, det måles ikke fra lyden: Cyanfargede søyler er positive koeffisienter, rosa er negative. Hvis systemet ditt ber om redusert bevegelse, erstattes den levende kurven av en stillestående bølgeform som regnes ut fra oppskriften og bare tegnes på nytt når du endrer noe.",
         ],
         code: AUDIO_EXCERPT,
       },
       {
         heading: "Hvorfor fasen er vanskelig å høre",
         paragraphs: [
-          "Firkant, sagtann og trekant kan skrives med bare sinusledd. Det kan ikke pulsen: sentrert om t = 0 er den speilsymmetrisk, og rekken består av cosinusledd. Derfor har hver overtone en cosinustvilling, og pulsoppskriften spilles på dem. Legg de samme amplitudene på sinus i stedet, og kurven endrer seg fullstendig, med skarpe pigger og ingen flate nivåer. Likevel ville den som jevn tone låte nesten likt for de fleste ører, fordi hørselen vår følger nøye med på hvilke frekvenser som er til stede og hvor sterke de er, og langt mindre på hvordan fasene ligger i forhold til hverandre. Sagtannen lar deg teste dette: snu fortegnene på de jevne deltonene, og den stigende rampen blir en fallende, uten at noen amplitude endres.",
+          "Firkant, sagtann og trekant kan skrives med bare sinusledd. Det kan ikke pulsen: Sentrert om t = 0 er den speilsymmetrisk, og rekken består av cosinusledd. Derfor har hver overtone en cosinustvilling, og pulsoppskriften spilles på dem. Legg de samme amplitudene på sinus i stedet, og kurven endrer seg fullstendig, med skarpe pigger og ingen flate nivåer. Likevel ville den som jevn tone låte nesten likt for de fleste ører, fordi hørselen vår følger nøye med på hvilke frekvenser som er til stede og hvor sterke de er, og langt mindre på hvordan fasene ligger i forhold til hverandre. Sagtannen lar deg teste dette: Snu fortegnene på de jevne deltonene, og den stigende rampen blir en fallende, uten at noen amplitude endres.",
         ],
       },
     ],
@@ -491,7 +491,7 @@ export const FOURIER_SOUND_GUIDE: ExplorerGuide = {
       },
       {
         title: "Samme lyd, annen form",
-        text: "Velg «Sawtooth» med 8 overtoner og bytt til «custom». Glidebryterne k2, k4, k6 og k8 er negative: dra dem til 0,32, 0,16, 0,11 og 0,08, de samme størrelsene med plusstegn. Rampen på oscilloskopet faller nå i stedet for å stige. Lytt etter om lyden blir annerledes.",
+        text: "Velg «Sawtooth» med 8 overtoner og bytt til «custom». Glidebryterne k2, k4, k6 og k8 er negative: Dra dem til 0,32; 0,16; 0,11 og 0,08, de samme størrelsene med plusstegn. Rampen på oscilloskopet faller nå i stedet for å stige. Lytt etter om lyden blir annerledes.",
       },
       {
         title: "Fjern grunntonen",

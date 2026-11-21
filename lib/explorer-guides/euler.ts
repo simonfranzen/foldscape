@@ -45,7 +45,7 @@ export const EULER_GUIDE: ExplorerGuide = {
       {
         heading: "What the controls do",
         paragraphs: [
-          "The Angle θ slider runs from 0 to 2π in steps of 0.01 radians. The five buttons below jump to the quarter turns 0, π/2, π, 3π/2 and 2π, labelled with where the point lands: 1, i, −1, −i and 1 again. The overlay in the corner of the plane shows θ, cos θ, sin θ and the point written as a + bi.",
+          "The Angle θ slider runs from 0 to 2π in steps of 0.01 radians, and the readout above it shows the value in radians and degrees. The five buttons below jump to the quarter turns 0, π/2, π, 3π/2 and 2π, labelled with where the point lands: 1, i, −1, −i and 1 again. The overlay in the corner of the plane shows θ, cos θ, sin θ and the point written as a + bi.",
           "Play animates θ at a constant angular speed, set by the Speed slider from 0.05 to 3 radians per second (default 0.6, so a full turn takes about 10.5 seconds). When θ passes 2π it wraps back to 0. Reset sets θ to 0 again. Whenever θ is within 0.02 radians of π, the point turns rose, the plane gets a faint rose wash, and the banner e^(iπ) + 1 = 0 appears at the top.",
         ],
       },
@@ -163,7 +163,7 @@ export const EULER_GUIDE: ExplorerGuide = {
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "El deslizador «Ángulo θ» va de 0 a 2π en pasos de 0,01 radianes. Los cinco botones de debajo saltan a los cuartos de vuelta 0, π/2, π, 3π/2 y 2π, y llevan como etiqueta el lugar donde cae el punto: 1, i, −1, −i y otra vez 1. El recuadro de la esquina del plano muestra θ, cos θ, sin θ y el punto escrito como a + bi.",
+          "El deslizador «Ángulo θ» va de 0 a 2π en pasos de 0,01 radianes, y la lectura de encima muestra el valor en radianes y en grados. Los cinco botones de debajo saltan a los cuartos de vuelta 0, π/2, π, 3π/2 y 2π, y llevan como etiqueta el lugar donde cae el punto: 1, i, −1, −i y otra vez 1. El recuadro de la esquina del plano muestra θ, cos θ, sin θ y el punto escrito como a + bi.",
           "«Reproducir» anima θ con velocidad angular constante, fijada por el deslizador «Velocidad» entre 0,05 y 3 radianes por segundo (0,6 por defecto, de modo que una vuelta completa tarda unos 10,5 segundos). Cuando θ pasa de 2π, vuelve a 0. «Reiniciar» pone θ de nuevo en 0. Siempre que θ está a menos de 0,02 radianes de π, el punto se vuelve rosa, el plano recibe un leve velo rosa y arriba aparece el rótulo e^(iπ) + 1 = 0.",
         ],
       },
@@ -222,7 +222,7 @@ export const EULER_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "Le curseur « Angle θ » va de 0 à 2π par pas de 0,01 radian. Les cinq boutons placés dessous sautent aux quarts de tour 0, π/2, π, 3π/2 et 2π, et portent comme étiquette l'endroit où le point arrive : 1, i, −1, −i et de nouveau 1. L'encart dans le coin du plan affiche θ, cos θ, sin θ et le point écrit sous la forme a + bi.",
+          "Le curseur « Angle θ » va de 0 à 2π par pas de 0,01 radian, et l'affichage placé au-dessus donne la valeur en radians et en degrés. Les cinq boutons placés dessous sautent aux quarts de tour 0, π/2, π, 3π/2 et 2π, et portent comme étiquette l'endroit où le point arrive : 1, i, −1, −i et de nouveau 1. L'encart dans le coin du plan affiche θ, cos θ, sin θ et le point écrit sous la forme a + bi.",
           "« Lecture » anime θ à vitesse angulaire constante, réglée par le curseur « Vitesse » entre 0,05 et 3 radians par seconde (0,6 par défaut, soit un tour complet en 10,5 secondes environ). Quand θ dépasse 2π, il repart de 0. « Réinitialiser » remet θ à 0. Dès que θ est à moins de 0,02 radian de π, le point vire au rose, le plan se couvre d'un léger voile rose et la bannière e^(iπ) + 1 = 0 apparaît en haut.",
         ],
       },
@@ -272,7 +272,7 @@ export const EULER_GUIDE: ExplorerGuide = {
       {
         heading: "Una formula, tre letture",
         paragraphs: [
-          "La formula di Eulero dice che elevare e a una potenza immaginaria produce un punto della circonferenza unitaria. La parte reale di e^(iθ) è cos θ e la parte immaginaria è sin θ. Leonhard Euler la pubblicò nella sua Introductio in analysin infinitorum nel 1748, e un modo per capire perché vale è inserire iθ nella serie di potenze della funzione esponenziale. Le potenze di i ruotano ciclicamente tra i, −1, −i, 1, quindi i termini pari si raccolgono nella serie di cos θ e quelli dispari in i per la serie di sin θ.",
+          "La formula di Eulero dice che elevare e a una potenza immaginaria produce un punto della circonferenza unitaria. La parte reale di e^(iθ) è cos θ e la parte immaginaria è sin θ. Eulero la pubblicò nella sua Introductio in analysin infinitorum nel 1748, e un modo per capire perché vale è inserire iθ nella serie di potenze della funzione esponenziale. Le potenze di i ruotano ciclicamente tra i, −1, −i, 1, quindi i termini pari si raccolgono nella serie di cos θ e quelli dispari in i per la serie di sin θ.",
           "La seconda lettura riguarda il movimento. La derivata di e^(iθ) rispetto a θ è i·e^(iθ), e moltiplicare per i ruota un numero complesso di un quarto di giro. Quindi la velocità del punto è sempre perpendicolare alla sua posizione e ha sempre lunghezza 1. Un punto che si muove a velocità unitaria e sempre di lato rispetto al proprio raggio non può che girare in cerchio, e θ è esattamente la distanza percorsa lungo di esso.",
           "La terza lettura è il celebre caso particolare. Per θ = π il punto ha percorso mezza circonferenza e si trova in −1, quindi e^(iπ) + 1 = 0, un'equazione che lega e, i, π, 1 e 0.",
         ],
@@ -301,7 +301,7 @@ export const EULER_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Da provare",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Cogli il momento dell'identità",
@@ -317,7 +317,7 @@ export const EULER_GUIDE: ExplorerGuide = {
       },
       {
         title: "Moltiplica per i con un quarto di giro",
-        text: "Clicca i pulsanti in ordine: 0, π/2, π, 3π/2, 2π. Ogni clic aggiunge π/2 a θ, il che moltiplica il punto per e^(iπ/2) = i. I punti di arrivo 1, i, −1, −i, 1 sono esattamente le potenze di i.",
+        text: "Clicca sui pulsanti in ordine: 0, π/2, π, 3π/2, 2π. Ogni clic aggiunge π/2 a θ, il che moltiplica il punto per e^(iπ/2) = i. I punti di arrivo 1, i, −1, −i, 1 sono esattamente le potenze di i.",
       },
     ],
   },
@@ -326,7 +326,7 @@ export const EULER_GUIDE: ExplorerGuide = {
       "Vê a fórmula de Euler e^(iθ) = cos θ + i sin θ em movimento: arrasta o ângulo pela circunferência unitária, segue as ondas e chega a e^(iπ) + 1 = 0.",
     heading: "Como funciona este explorador",
     intro:
-      "A tela grande é o plano complexo, com os números reais da esquerda para a direita e os imaginários para cima. O ponto brilhante é e^(iθ) para o ângulo θ atual. À medida que θ cresce, o ponto percorre no sentido anti-horário a circunferência de raio 1, o arco já varrido é desenhado a âmbar e linhas tracejadas descem do ponto até aos dois eixos. A faixa de baixo traça cos θ e sin θ ao longo de uma volta completa, com um cursor no ângulo atual: a circunferência e as duas ondas são um único movimento.",
+      "O canvas grande é o plano complexo, com os números reais da esquerda para a direita e os imaginários para cima. O ponto brilhante é e^(iθ) para o ângulo θ atual. À medida que θ cresce, o ponto percorre a circunferência de raio 1 no sentido contrário ao dos ponteiros do relógio, o arco já varrido é desenhado a âmbar e linhas tracejadas descem do ponto até aos dois eixos. A faixa de baixo traça cos θ e sin θ ao longo de uma volta completa, com um marcador no ângulo atual: a circunferência e as duas ondas são um único movimento.",
     sections: [
       {
         heading: "Uma fórmula, três leituras",
@@ -340,16 +340,16 @@ export const EULER_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "O cursor «Ângulo θ» vai de 0 a 2π em passos de 0,01 radianos. Os cinco botões por baixo saltam para os quartos de volta 0, π/2, π, 3π/2 e 2π, e têm como etiqueta o sítio onde o ponto vai parar: 1, i, −1, −i e outra vez 1. O quadro no canto do plano mostra θ, cos θ, sin θ e o ponto escrito como a + bi.",
+          "O cursor «Ângulo θ» vai de 0 a 2π em passos de 0,01 radianos, e a leitura por cima dele mostra o valor em radianos e em graus. Os cinco botões por baixo saltam para os quartos de volta 0, π/2, π, 3π/2 e 2π, e têm como etiqueta o sítio onde o ponto vai parar: 1, i, −1, −i e outra vez 1. O painel no canto do plano mostra θ, cos θ, sin θ e o ponto escrito como a + bi.",
           "«Reproduzir» anima θ a uma velocidade angular constante, definida pelo cursor «Velocidade» entre 0,05 e 3 radianos por segundo (0,6 por omissão, pelo que uma volta completa demora cerca de 10,5 segundos). Quando θ passa de 2π, volta a 0. «Repor» põe θ outra vez em 0. Sempre que θ está a menos de 0,02 radianos de π, o ponto fica cor-de-rosa, o plano ganha um leve véu rosado e aparece no topo a faixa e^(iπ) + 1 = 0.",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
-          "As duas imagens são telas 2D dimensionadas pela densidade de píxeis do dispositivo. Não há um ciclo de animação permanente: cada tela só é redesenhada quando muda θ, o tamanho da tela ou o contador de reposições, o que significa que uma página parada não desenha absolutamente nada.",
+          "As duas imagens são canvas 2D dimensionados pela densidade de píxeis do dispositivo. Não há um ciclo de animação permanente: cada canvas só é redesenhado quando muda θ, o tamanho do canvas ou o contador de reposições, o que significa que uma página parada não desenha absolutamente nada.",
           "O ciclo de animação só existe enquanto «Reproduzir» está ativo. Em cada fotograma mede o tempo desde o fotograma anterior, limita-o a 0,05 segundos para que o regresso a um separador em segundo plano não atire o ponto para longe, soma a θ a velocidade vezes o tempo decorrido e reconduz o resultado ao intervalo de 0 a 2π. Como a página abre em pausa e só se mexe quando carregas em «Reproduzir», não há nada a desligar para o movimento reduzido; arrastar o cursor funciona da mesma maneira nos dois casos.",
-          "O renderizador converte θ em coordenadas de ecrã com um cosseno e um seno. O sinal de menos na coordenada y é a única subtileza: o y da tela aponta para baixo, o y matemático aponta para cima.",
+          "O renderizador converte θ em coordenadas de ecrã com um cosseno e um seno. O sinal de menos na coordenada y é a única subtileza: o y do canvas aponta para baixo, o y matemático aponta para cima.",
         ],
         code: TICK_EXCERPT,
       },
@@ -368,7 +368,7 @@ export const EULER_GUIDE: ExplorerGuide = {
       },
       {
         title: "Lê cos e sin na circunferência",
-        text: "Arrasta θ devagar de 0 a π/2. No plano, o ponto sobe e desloca-se para a esquerda; na faixa, a curva ciano de sin sobe até 1 enquanto a curva âmbar de cos desce até 0. Em π/2 o quadro mostra z = 0.000 + 1.000 i, que é i.",
+        text: "Arrasta θ devagar de 0 a π/2. No plano, o ponto sobe e desloca-se para a esquerda; na faixa, a curva ciano de sin sobe até 1 enquanto a curva âmbar de cos desce até 0. Em π/2 o painel mostra z = 0.000 + 1.000 i, que é i.",
       },
       {
         title: "Descobre onde cos é igual a sin",
@@ -407,7 +407,7 @@ export const EULER_GUIDE: ExplorerGuide = {
         heading: "Hur den är byggd",
         paragraphs: [
           "Båda bilderna är 2D-canvasar som anpassas efter enhetens pixeltäthet. Det finns ingen permanent animationsslinga: varje canvas ritas om bara när θ, canvasens storlek eller återställningsräknaren ändras, vilket betyder att en sida i vila inte ritar någonting alls.",
-          "Animationsslingan finns bara medan ”Spela” är aktivt. Varje bildruta mäter den tiden sedan den förra bildrutan, begränsar den till 0,05 sekunder så att punkten inte slungas iväg när du kommer tillbaka till en flik i bakgrunden, lägger hastigheten gånger den förflutna tiden till θ och för tillbaka resultatet till intervallet 0 till 2π. Eftersom sidan öppnas pausad och bara rör sig när du trycker på ”Spela” finns det inget att stänga av för reducerad rörelse. Att dra i reglaget fungerar likadant i båda fallen.",
+          "Animationsslingan finns bara medan ”Spela” är aktivt. Varje bildruta mäter tiden sedan den förra bildrutan, begränsar den till 0,05 sekunder så att punkten inte slungas iväg när du kommer tillbaka till en flik i bakgrunden, lägger hastigheten gånger den förflutna tiden till θ och för tillbaka resultatet till intervallet 0 till 2π. Eftersom sidan öppnas pausad och bara rör sig när du trycker på ”Spela” finns det inget att stänga av för minskad rörelse. Att dra i reglaget fungerar likadant i båda fallen.",
           "Renderaren räknar om θ till skärmkoordinater med en cosinus och en sinus. Minustecknet på y-koordinaten är den enda finessen: canvasens y pekar nedåt, det matematiska y pekar uppåt.",
         ],
         code: TICK_EXCERPT,
@@ -419,7 +419,7 @@ export const EULER_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Fånga identitetens ögonblick",
@@ -441,10 +441,10 @@ export const EULER_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Se Eulers formel e^(iθ) = cos θ + i sin θ i bevegelse: dra vinkelen rundt enhetssirkelen, følg bølgene til cos og sin, og land på e^(iπ) + 1 = 0.",
+      "Se Eulers formel e^(iθ) = cos θ + i sin θ i bevegelse: Dra vinkelen rundt enhetssirkelen, følg bølgene til cos og sin, og land på e^(iπ) + 1 = 0.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Det store lerretet er det komplekse planet, med de reelle tallene fra venstre mot høyre og de imaginære oppover. Det lysende punktet er e^(iθ) for den gjeldende vinkelen θ. Når θ vokser, beveger punktet seg mot klokka rundt sirkelen med radius 1, buen det har sveipet over, tegnes i rav, og stiplede linjer går fra punktet ned til begge aksene. Stripen under tegner cos θ og sin θ over en hel omdreining, med en markør ved den gjeldende vinkelen: sirkelen og de to bølgene er én og samme bevegelse.",
+      "Det store lerretet er det komplekse planet, med de reelle tallene fra venstre mot høyre og de imaginære oppover. Det lysende punktet er e^(iθ) for den gjeldende vinkelen θ. Når θ vokser, beveger punktet seg mot klokken rundt sirkelen med radius 1, buen det har sveipet over, tegnes i rav, og stiplede linjer går fra punktet ned til begge aksene. Stripen under tegner cos θ og sin θ over en hel omdreining, med en markør ved den gjeldende vinkelen: Sirkelen og de to bølgene er én og samme bevegelse.",
     sections: [
       {
         heading: "Én formel, tre lesemåter",
@@ -458,15 +458,15 @@ export const EULER_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "Glidebryteren «Vinkel θ» går fra 0 til 2π i steg på 0,01 radianer. De fem knappene under hopper til kvartomdreiningene 0, π/2, π, 3π/2 og 2π, merket med hvor punktet lander: 1, i, −1, −i og 1 igjen. Feltet i hjørnet av planet viser θ, cos θ, sin θ og punktet skrevet som a + bi.",
+          "Glidebryteren «Vinkel θ» går fra 0 til 2π i steg på 0,01 radianer, og avlesningen over den viser verdien i radianer og grader. De fem knappene under hopper til kvartomdreiningene 0, π/2, π, 3π/2 og 2π, merket med hvor punktet lander: 1, i, −1, −i og 1 igjen. Feltet i hjørnet av planet viser θ, cos θ, sin θ og punktet skrevet som a + bi.",
           "«Spill» animerer θ med konstant vinkelhastighet, som stilles inn med glidebryteren «Fart» fra 0,05 til 3 radianer per sekund (standard 0,6, så en hel omdreining tar omtrent 10,5 sekunder). Når θ passerer 2π, begynner den på 0 igjen. «Nullstill» setter θ tilbake til 0. Så snart θ er innenfor 0,02 radianer fra π, blir punktet rosa, planet får et svakt rosa skjær, og banneret e^(iπ) + 1 = 0 vises øverst.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Begge bildene er 2D-lerreter som tilpasses pikseltettheten til enheten. Det finnes ingen permanent animasjonsløkke: hvert lerret tegnes på nytt bare når θ, lerretsstørrelsen eller nullstillingstelleren endres, noe som betyr at en side i ro ikke tegner noe som helst.",
-          "Animasjonsløkken finnes bare mens «Spill» er aktiv. For hver rute måler den tiden siden forrige rute, begrenser den til 0,05 sekunder slik at punktet ikke slynges av gårde når du kommer tilbake til en fane i bakgrunnen, legger farten ganger den medgåtte tiden til θ og fører resultatet tilbake til intervallet fra 0 til 2π. Fordi siden åpner i pause og bare beveger seg når du trykker «Spill», er det ingenting å slå av for redusert bevegelse. Å dra i glidebryteren fungerer likt i begge tilfeller.",
+          "Begge bildene er 2D-lerreter som tilpasses pikseltettheten til enheten. Det finnes ingen permanent animasjonsløkke: Hvert lerret tegnes på nytt bare når θ, lerretsstørrelsen eller nullstillingstelleren endres, noe som betyr at en side i ro ikke tegner noe som helst.",
+          "Animasjonsløkken finnes bare mens «Spill» er aktiv. For hvert bilde måler den tiden siden forrige bilde, begrenser den til 0,05 sekunder slik at punktet ikke slynges av gårde når du kommer tilbake til en fane i bakgrunnen, legger farten ganger den medgåtte tiden til θ og fører resultatet tilbake til intervallet fra 0 til 2π. Fordi siden åpner i pause og bare beveger seg når du trykker «Spill», er det ingenting å slå av for redusert bevegelse. Å dra i glidebryteren fungerer likt i begge tilfeller.",
           "Tegnekoden regner om θ til skjermkoordinater med én cosinus og én sinus. Minustegnet på y-koordinaten er den eneste finurligheten: y på lerretet peker nedover, matematisk y peker oppover.",
         ],
         code: TICK_EXCERPT,
@@ -474,7 +474,7 @@ export const EULER_GUIDE: ExplorerGuide = {
       {
         heading: "Hvorfor vinklene måles i radianer her",
         paragraphs: [
-          "Formelen blir bare så ryddig når θ er i radianer, der én radian er vinkelen som har en bue med lengde 1 på enhetssirkelen. Derfor er θ også lengden på den ravfargede buen: ved θ = π er buen halve omkretsen av en sirkel med radius 1, altså π. Måler du vinkelen i grader i stedet, får formelen en klønete faktor π/180 i eksponenten.",
+          "Formelen blir bare så ryddig når θ er i radianer, der én radian er vinkelen som har en bue med lengde 1 på enhetssirkelen. Derfor er θ også lengden på den ravfargede buen: Ved θ = π er buen halve omkretsen av en sirkel med radius 1, altså π. Måler du vinkelen i grader i stedet, får formelen en klønete faktor π/180 i eksponenten.",
         ],
       },
     ],

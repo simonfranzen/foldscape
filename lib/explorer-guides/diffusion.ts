@@ -82,10 +82,10 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
   },
   de: {
     metaDescription:
-      "Ein Diffusionsmodell live im Browser trainieren sehen: Ein kleines MLP lernt Rauschen auf 2D-Daten vorherzusagen, DDPM-Walker entrauschen sich zur Datenform.",
+      "Ein Diffusionsmodell live im Browser trainieren sehen: Ein kleines MLP lernt Rauschen auf 2D-Daten vorherzusagen, DDPM-Wanderer entrauschen sich zur Datenform.",
     heading: "So funktioniert dieser Explorer",
     intro:
-      "Auf diesem Canvas passieren zwei Dinge gleichzeitig. Im Hintergrund wird ein sehr kleines neuronales Netz darauf trainiert, Rauschen zu erkennen. Im Vordergrund starten rosafarbene Walker als Wolke aus reinem Gaußschen Rauschen und nutzen dieses Netz, um Schritt für Schritt zurück auf die cyanfarbenen Daten zu laufen. Sind sie angekommen, wird eine neue Wolke gezogen, und alles beginnt von vorn. So siehst du von Kohorte zu Kohorte, wie das Modell besser wird. Es ist dasselbe Rezept, das Bild-Diffusionsmodelle verwenden, nur geschrumpft von Millionen Pixeln auf zwei Koordinaten.",
+      "Auf diesem Canvas passieren zwei Dinge gleichzeitig. Im Hintergrund wird ein sehr kleines neuronales Netz darauf trainiert, Rauschen zu erkennen. Im Vordergrund starten rosafarbene Wanderer als Wolke aus reinem Gaußschen Rauschen und nutzen dieses Netz, um Schritt für Schritt zurück auf die cyanfarbenen Daten zu laufen. Sind sie angekommen, wird eine neue Wolke gezogen, und alles beginnt von vorn. So siehst du von Kohorte zu Kohorte, wie das Modell besser wird. Es ist dasselbe Rezept, das Bild-Diffusionsmodelle verwenden, nur geschrumpft von Millionen Pixeln auf zwei Koordinaten.",
     sections: [
       {
         heading: "Rauschen vorwärts, Lernen rückwärts",
@@ -99,8 +99,8 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
       {
         heading: "Was die Regler bewirken",
         paragraphs: [
-          "Der Datensatz bestimmt die Zielform: zwei Monde (Standard), drei Gaußsche Klumpen oder eine zweiarmige Spirale, jeweils mit 256 Punkten. Der Rauschfahrplan wechselt zwischen einem linearen β-Fahrplan, bei dem das Rauschen pro Schritt gleichmäßig von 0,0001 auf 0,02 wächst, und dem Kosinus-Fahrplan für ᾱ (Standard), der das verbleibende Signal wie einen Viertelkosinus formt, also am Anfang und am Ende sanft abfallen lässt.",
-          "Die Diffusionsschritte T reichen von 10 bis 120 in Fünferschritten, Standard ist 40. Änderst du Datensatz, Fahrplan oder T, wird das Netz verworfen und neu trainiert, denn ein Modell für einen Fahrplan versteht keinen anderen. Die Walker-Zahl (20 bis 400, Standard 160) ändert nur, wie viele Punkte gesampelt werden, das trainierte Modell bleibt. Pause friert Training und Sampling ein, «Modell zurücksetzen» startet das Training neu, ohne eine Einstellung zu ändern.",
+          "Der Datensatz bestimmt die Zielform: zwei Monde (Standard), drei Gaußsche Cluster oder eine zweiarmige Spirale, jeweils mit 256 Punkten. Der Rauschplan wechselt zwischen einem linearen β-Fahrplan, bei dem das Rauschen pro Schritt gleichmäßig von 0,0001 auf 0,02 wächst, und dem Kosinus-Fahrplan für ᾱ (Standard), der das verbleibende Signal wie einen Viertelkosinus formt, also am Anfang und am Ende sanft abfallen lässt.",
+          "Die Diffusionsschritte T reichen von 10 bis 120 in Fünferschritten, Standard ist 40. Änderst du Datensatz, Fahrplan oder T, wird das Netz verworfen und neu trainiert, denn ein Modell für einen Fahrplan versteht keinen anderen. Der Regler «Wanderer» (20 bis 400, Standard 160) ändert nur, wie viele Punkte gesampelt werden, das trainierte Modell bleibt. Pause friert Training und Sampling ein, «Modell zurücksetzen» startet das Training neu, ohne eine Einstellung zu ändern.",
           "Die Statusleiste zeigt einen laufenden Verlust, geglättet mit einem exponentiellen gleitenden Mittel, und einen Epochenzähler, der per Konvention alle 30 Mini-Batches weiterspringt.",
         ],
       },
@@ -108,7 +108,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
         heading: "Wie es gebaut ist",
         paragraphs: [
           "Hier steckt keine Machine-Learning-Bibliothek dahinter. Das Netz ist von Hand in schlichtem TypeScript geschrieben: vier Eingänge (x, y sowie Sinus und Kosinus von πt/T als Zeiteinbettung), zwei versteckte Schichten mit je 32 Neuronen und GELU-Aktivierung, zwei Ausgänge. Die Gewichte liegen in Float32Arrays, starten mit He-Initialisierung aus einem Zufallsgenerator mit festem Seed und werden per handgeschriebener Backpropagation und Adam-Optimierer mit Lernrate 0,005 angepasst.",
-          "Jeder Animationsframe rechnet sechs Mini-Batches mit je 48 Trainingsbeispielen und bewegt dann jeden Walker um zwei Rückwärtsschritte, mit dem Update unten. Das ist der übliche DDPM-Schritt mit der Posterior-Varianz als Rauschstärke. Alle 12 Frames wird das Netz auf einem 28 × 28-Gitter bei mittlerem Rauschniveau ausgewertet. Die Größe seiner Rauschvorhersage, invertiert und normiert, erscheint als zartes cyanfarbenes Leuchten. Wo das vorhergesagte Rauschen klein ist, sieht der Punkt schon wie Daten aus. Jeder Walker zieht eine Spur über acht Frames hinter sich her.",
+          "Jeder Animationsframe rechnet sechs Mini-Batches mit je 48 Trainingsbeispielen und bewegt dann jeden Wanderer um zwei Rückwärtsschritte, mit dem Update unten. Das ist der übliche DDPM-Schritt mit der Posterior-Varianz als Rauschstärke. Alle 12 Frames wird das Netz auf einem 28 × 28-Gitter bei mittlerem Rauschniveau ausgewertet. Die Größe seiner Rauschvorhersage, invertiert und normiert, erscheint als zartes cyanfarbenes Leuchten. Wo das vorhergesagte Rauschen klein ist, sieht der Punkt schon wie Daten aus. Jeder Wanderer zieht eine Spur über acht Frames hinter sich her.",
           "Ist reduzierte Bewegung eingestellt, startet die Animationsschleife gar nicht. Das Netz trainiert unsichtbar 1800 Mini-Batches lang, der Rückwärtsprozess läuft einmal vom Rauschen bis t = 0, und das Canvas zeigt diesen fertigen Zustand als Standbild. Änderst du einen Regler, entsteht ein neues Standbild, und die Pause ist deaktiviert.",
         ],
         code: REVERSE_EXCERPT,
@@ -124,19 +124,19 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Den linearen Fahrplan an seine Grenze bringen",
-        text: "Wechsle zu linearem β und senke T auf 10. Dann liegt ᾱ_T bei etwa 0,90, das Netz bekommt im Training also nie etwas zu sehen, das reinem Rauschen nahekommt. Vergleiche das Verhalten der Walker mit dem Kosinus-Fahrplan beim selben T.",
+        text: "Wechsle zu linearem β und senke T auf 10. Dann liegt ᾱ_T bei etwa 0,90, das Netz bekommt im Training also nie etwas zu sehen, das reinem Rauschen nahekommt. Vergleiche das Verhalten der Wanderer mit dem Kosinus-Fahrplan beim selben T.",
       },
       {
         title: "Lernen zwischen den Kohorten beobachten",
-        text: "Drück «Modell zurücksetzen» beim Spiral-Datensatz und schau dir die ersten Kohorten an. Frühe Walker irren umher und verfehlen die Arme. Hat sich der Verlust eingependelt, zeichnet dieselbe Rückwärtskette die Spirale viel genauer nach.",
+        text: "Drück «Modell zurücksetzen» beim Spiral-Datensatz und schau dir die ersten Kohorten an. Frühe Wanderer irren umher und verfehlen die Arme. Hat sich der Verlust eingependelt, zeichnet dieselbe Rückwärtskette die Spirale viel genauer nach.",
       },
       {
         title: "Mehr Schritte, feinerer Weg",
         text: "Bleib beim Kosinus-Fahrplan und stell T auf 120. Jede Kohorte braucht jetzt 60 statt 20 Frames, und die Spuren zeigen einen glatteren, allmählicheren Abstieg aus der Wolke auf die Monde.",
       },
       {
-        title: "Die Klumpen aufteilen",
-        text: "Wähle drei Klumpen und erhöhe die Walker auf 400. Schätze, wie viele Walker in jedem Klumpen landen. Ein gut trainiertes Modell verteilt sie ungefähr gleichmäßig, weil jeder Klumpen in den Daten gleich viele Punkte hat.",
+        title: "Die Cluster aufteilen",
+        text: "Wähle «drei Cluster» und erhöhe «Wanderer» auf 400. Schätze, wie viele Wanderer in jedem Cluster landen. Ein gut trainiertes Modell verteilt sie ungefähr gleichmäßig, weil jeder Cluster in den Daten gleich viele Punkte hat.",
       },
     ],
   },
@@ -229,7 +229,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Il n'y a ici aucune bibliothèque d'apprentissage automatique. Le réseau de score est écrit à la main en TypeScript pur : quatre entrées (x, y, ainsi que le sinus et le cosinus de πt/T comme encodage du temps), deux couches cachées de 32 unités avec des activations GELU, et deux sorties. Les poids sont stockés dans des Float32Array, démarrent avec une initialisation de He issue d'un générateur aléatoire à graine fixe, et sont mis à jour par une rétropropagation et un optimiseur Adam écrits à la main, avec un taux d'apprentissage de 0,005.",
           "Chaque image de l'animation exécute six mini-lots de 48 exemples d'entraînement, puis fait avancer chaque marcheur de deux pas inverses avec la mise à jour montrée ci-dessous, qui est le pas DDPM standard avec la variance a posteriori comme échelle de bruit. Toutes les 12 images, le réseau est évalué sur une grille de 28 × 28 au niveau de bruit médian, et l'amplitude de sa prédiction de bruit, inversée et normalisée, est peinte sous la forme d'une faible lueur cyan. Là où le bruit prédit est faible, le point ressemble déjà à une donnée. Chaque marcheur garde une traînée de huit images.",
-          "Quand la réduction des animations est activée, la boucle d'animation ne démarre jamais. Le réseau s'entraîne hors écran pendant 1800 mini-lots, le processus inverse s'exécute une fois du bruit jusqu'à t = 0, et le canevas montre cet état final sous forme d'image fixe. Modifier une commande produit une nouvelle image fixe, et « Pause » est désactivé.",
+          "Quand la réduction des animations est activée, la boucle d'animation ne démarre jamais. Le réseau s'entraîne hors écran pendant 1 800 mini-lots, le processus inverse s'exécute une fois du bruit jusqu'à t = 0, et le canevas montre cet état final sous forme d'image fixe. Modifier une commande produit une nouvelle image fixe, et « Pause » est désactivé.",
         ],
         code: REVERSE_EXCERPT,
       },
@@ -280,7 +280,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
           "«Dataset» sceglie la forma bersaglio: due lune (la scelta predefinita), tre nuvole gaussiane o una spirale a due bracci. Ognuna contiene 256 punti. «Calendario di rumore» passa da un calendario lineare di β, in cui il rumore aggiunto a ogni passo cresce in modo uniforme da 0,0001 a 0,02, al calendario coseno di ᾱ (predefinito), che dà al segnale residuo la forma di un quarto di coseno, così che cali dolcemente all'inizio e alla fine.",
-          "«Passi di diffusione T» va da 10 a 120 a scatti di 5, con 40 come valore predefinito. Cambiare il dataset, il calendario o T butta via la rete e ne addestra una nuova da zero, perché un modello addestrato per un calendario non ne capisce un altro. «Camminatori» (da 20 a 400, predefinito 160) cambia solo quanti punti vengono campionati e mantiene il modello addestrato. «Pausa» congela addestramento e campionamento, e «Reset modello» fa ripartire l'addestramento senza toccare alcuna impostazione.",
+          "«Passi di diffusione T» va da 10 a 120 a passi di 5, con 40 come valore predefinito. Cambiare il dataset, il calendario o T butta via la rete e ne addestra una nuova da zero, perché un modello addestrato per un calendario non ne capisce un altro. «Camminatori» (da 20 a 400, predefinito 160) cambia solo quanti punti vengono campionati e mantiene il modello addestrato. «Pausa» congela addestramento e campionamento, e «Reset modello» fa ripartire l'addestramento senza toccare alcuna impostazione.",
           "La striscia di stato riporta una perdita corrente, smussata con una media mobile esponenziale, e un contatore di epoche che per convenzione scatta una volta ogni 30 mini-batch.",
         ],
       },
@@ -300,7 +300,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Da provare",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Manda in crisi il calendario lineare",
@@ -325,7 +325,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
       "Vê um modelo de difusão a treinar ao vivo no teu navegador: um MLP minúsculo aprende a prever ruído em dados 2D e os caminhantes DDPM removem o ruído.",
     heading: "Como funciona este explorador",
     intro:
-      "Nesta tela acontecem duas coisas ao mesmo tempo. Em segundo plano, uma rede neuronal muito pequena está a ser treinada para reconhecer ruído. Em primeiro plano, caminhantes cor-de-rosa começam como uma nuvem de puro ruído gaussiano e usam essa rede, passo a passo, para regressar aos dados a ciano. Quando chegam, é sorteada uma nuvem nova e a caminhada recomeça, por isso vês o mesmo modelo a melhorar de uma coorte para a seguinte. É a mesma receita que os modelos de difusão de imagens usam, reduzida de milhões de píxeis para duas coordenadas.",
+      "Neste canvas acontecem duas coisas ao mesmo tempo. Em segundo plano, uma rede neuronal muito pequena está a ser treinada para reconhecer ruído. Em primeiro plano, caminhantes cor-de-rosa começam como uma nuvem de puro ruído gaussiano e usam essa rede, passo a passo, para regressar aos dados a ciano. Quando chegam, é sorteada uma nuvem nova e a caminhada recomeça, por isso vês o mesmo modelo a melhorar de uma coorte para a seguinte. É a mesma receita que os modelos de difusão de imagens usam, reduzida de milhões de píxeis para duas coordenadas.",
     sections: [
       {
         heading: "Ruído para a frente, aprendizagem para trás",
@@ -341,15 +341,15 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
         paragraphs: [
           "«Conjunto de dados» escolhe a forma alvo: duas luas (a opção por omissão), três manchas gaussianas ou uma espiral de dois braços. Cada uma tem 256 pontos. «Calendário de ruído» alterna entre um calendário linear de β, em que o ruído acrescentado por passo cresce uniformemente de 0,0001 a 0,02, e o calendário cosseno de ᾱ (por omissão), que dá ao sinal sobrevivente a forma de um quarto de cosseno, para que caia suavemente no início e no fim.",
           "«Passos de difusão T» vai de 10 a 120 em saltos de 5, com 40 por omissão. Mudar o conjunto de dados, o calendário ou T deita a rede fora e treina uma nova de raiz, porque um modelo treinado para um calendário não entende outro. «Caminhantes» (de 20 a 400, 160 por omissão) só muda quantos pontos são amostrados e mantém o modelo treinado. «Pausar» congela o treino e a amostragem, e «Reset do modelo» recomeça o treino sem alterar nenhuma definição.",
-          "A faixa de estado apresenta uma perda corrente, suavizada com uma média móvel exponencial, e um contador de épocas que, por convenção, avança uma vez a cada 30 mini-lotes.",
+          "A faixa de estado apresenta uma perda corrente, suavizada com uma média móvel exponencial, e um contador de épocas que, por convenção, avança uma vez a cada 30 minilotes.",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
           "Aqui não há nenhuma biblioteca de aprendizagem automática. A rede de score está escrita à mão em TypeScript simples: quatro entradas (x, y, e o seno e o cosseno de πt/T como codificação do tempo), duas camadas ocultas de 32 unidades com ativações GELU e duas saídas. Os pesos vivem em Float32Arrays, arrancam com a inicialização de He a partir de um gerador aleatório com semente fixa e são atualizados por uma retropropagação e um otimizador Adam escritos à mão, com taxa de aprendizagem 0,005.",
-          "Cada fotograma da animação corre seis mini-lotes de 48 exemplos de treino e depois move cada caminhante dois passos inversos com a atualização mostrada abaixo, que é o passo DDPM padrão com a variância a posteriori como escala do ruído. De 12 em 12 fotogramas, a rede é avaliada numa grelha de 28 × 28 no nível de ruído intermédio, e a magnitude da sua previsão de ruído, invertida e normalizada, é pintada como o ténue brilho ciano. Onde o ruído previsto é pequeno, o ponto já se parece com um dado. Cada caminhante mantém um rasto de oito fotogramas.",
-          "Com o movimento reduzido ativado, o ciclo de animação nem chega a arrancar. A rede treina fora do ecrã durante 1800 mini-lotes, o processo inverso corre uma vez desde o ruído até t = 0, e a tela mostra esse estado final como imagem fixa. Mudar um controlo produz uma nova imagem fixa, e «Pausar» fica desativado.",
+          "Cada fotograma da animação corre seis minilotes de 48 exemplos de treino e depois move cada caminhante dois passos inversos com a atualização mostrada abaixo, que é o passo DDPM padrão com a variância a posteriori como escala do ruído. De 12 em 12 fotogramas, a rede é avaliada numa grelha de 28 × 28 no nível de ruído intermédio, e a magnitude da sua previsão de ruído, invertida e normalizada, é pintada como o ténue brilho ciano. Onde o ruído previsto é pequeno, o ponto já se parece com um dado. Cada caminhante mantém um rasto de oito fotogramas.",
+          "Com o movimento reduzido ativado, o ciclo de animação nem chega a arrancar. A rede treina fora do ecrã durante 1800 minilotes, o processo inverso corre uma vez desde o ruído até t = 0, e o canvas mostra esse estado final como imagem fixa. Mudar um controlo produz uma nova imagem fixa, e «Pausar» fica desativado.",
         ],
         code: REVERSE_EXCERPT,
       },
@@ -390,7 +390,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
       {
         heading: "Brus framåt, lärande bakåt",
         paragraphs: [
-          "En diffusionsmodell definieras av en framåtprocess som ingen behöver lära sig: ta en datapunkt x₀ och blanda den med gaussiskt brus ε i T små steg. Schemat ᾱ_t anger hur mycket av originalet som finns kvar vid steg t, så ett brusigt prov kan tas fram i ett enda slag med formeln nedan. Vid det sista steget ska det helst inte finnas något kvar av datan.",
+          "En diffusionsmodell definieras av en framåtprocess som ingen behöver lära sig: ta en datapunkt x₀ och blanda den med gaussiskt brus ε i T små steg. Schemat ᾱ_t anger hur mycket av originalet som finns kvar vid steg t, så ett brusigt prov kan tas fram i ett enda slag med formeln nedan. Vid det sista steget ska det helst inte finnas något kvar av datapunkten.",
           "Nätverket ε_θ får den brusiga punkten x_t och tiden t, och dess enda uppgift är att gissa vilket ε som blandades in. Förlusten är helt enkelt det kvadrerade avståndet mellan gissningen och det sanna bruset. När det väl gissar bra kan man köra processen baklänges: börja från rent brus, dra bort det förutsagda bruset lite i taget, lägg tillbaka en liten mängd ny slump och upprepa tills t = 0. Den här omvända kedjan är DDPM-samplaren (denoising diffusion probabilistic model).",
         ],
         formula:
@@ -407,9 +407,9 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Här finns inget bibliotek för maskininlärning. Score-nätverket är skrivet för hand i ren TypeScript: fyra ingångar (x, y samt sinus och kosinus av πt/T som tidsinbäddning), två dolda lager med 32 enheter och GELU-aktivering, och två utgångar. Vikterna ligger i Float32Array, startar med He-initiering från en slumpgenerator med fast frö och uppdateras med handskriven bakåtpropagering och en Adam-optimerare med inlärningstakt 0,005.",
+          "Här finns inget bibliotek för maskininlärning. Score-nätverket är skrivet för hand i ren TypeScript: fyra ingångar (x, y samt sinus och kosinus av πt/T som tidsinbäddning), två dolda lager med 32 enheter och GELU-aktivering, och två utgångar. Vikterna ligger i Float32Array, startar med He-initiering från en slumpgenerator med fast frö och uppdateras med handskriven backpropagation och en Adam-optimerare med inlärningshastighet 0,005.",
           "Varje animationsbildruta kör sex minibatcher med 48 träningsexempel och flyttar sedan varje vandrare två omvända steg med uppdateringen som visas nedan, vilket är det vanliga DDPM-steget med posteriorvariansen som brusskala. Var 12:e bildruta utvärderas nätverket på ett rutnät med 28 × 28 celler vid den mellersta brusnivån, och storleken på dess brusförutsägelse, inverterad och normaliserad, målas som det svaga cyanfärgade skenet. Där det förutsagda bruset är litet ser punkten redan ut som data. Varje vandrare behåller ett spår på åtta bildrutor.",
-          "Med reducerad rörelse aktiverad startar animationsslingan aldrig. Nätverket tränas utanför skärmen i 1800 minibatcher, den omvända processen körs en gång från brus ner till t = 0, och ytan visar det färdiga tillståndet som en stillbild. Om du ändrar ett reglage skapas en ny stillbild, och ”Paus” är inaktiverad.",
+          "Med minskad rörelse aktiverad startar animationsslingan aldrig. Nätverket tränas utanför skärmen i 1800 minibatcher, den omvända processen körs en gång från brus ner till t = 0, och ytan visar det färdiga tillståndet som en stillbild. Om du ändrar ett reglage skapas en ny stillbild, och ”Paus” är inaktiverad.",
         ],
         code: REVERSE_EXCERPT,
       },
@@ -420,7 +420,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Knäck det linjära schemat",
@@ -436,13 +436,13 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
       },
       {
         title: "Dela upp klustren",
-        text: "Välj ”tre kluster” och höj vandrarna till 400. Räkna ungefär hur många vandrare som hamnar i varje kluster. En vältränad modell fördelar dem ungefär jämnt, eftersom datan har lika många punkter i varje kluster.",
+        text: "Välj ”tre kluster” och höj vandrarna till 400. Räkna ungefär hur många vandrare som hamnar i varje kluster. En vältränad modell fördelar dem ungefär jämnt, eftersom datamängden har lika många punkter i varje kluster.",
       },
     ],
   },
   no: {
     metaDescription:
-      "Se en diffusjonsmodell bli trent live i nettleseren: et lite MLP lærer å forutsi støy på 2D-data, og DDPM-vandrere fjerner støyen fra en gaussisk sky.",
+      "Se en diffusjonsmodell bli trent live i nettleseren: Et lite MLP lærer å forutsi støy på 2D-data, og DDPM-vandrere fjerner støyen fra en gaussisk sky.",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "To ting skjer samtidig på dette lerretet. I bakgrunnen trenes et svært lite nevralt nettverk til å kjenne igjen støy. I forgrunnen starter rosa vandrere som en sky av ren gaussisk støy og bruker nettverket, steg for steg, til å gå tilbake til de cyanfargede dataene. Når de er framme, trekkes en ny sky, og vandringen begynner på nytt, så du ser den samme modellen bli bedre fra en kohort til den neste. Dette er den samme oppskriften som diffusjonsmodeller for bilder bruker, krympet fra millioner av piksler til to koordinater.",
@@ -450,8 +450,8 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
       {
         heading: "Støy framover, læring bakover",
         paragraphs: [
-          "En diffusjonsmodell er definert av en framoverprosess som ingen trenger å lære: ta et datapunkt x₀ og bland det med gaussisk støy ε i T små steg. Planen ᾱ_t sier hvor mye av originalen som er igjen ved steg t, så en støyete prøve kan lages i ett jafs med formelen nedenfor. Ved det siste steget skal det ideelt sett ikke være noe igjen av dataene.",
-          "Nettverket ε_θ får det støyete punktet x_t og tiden t, og den eneste jobben er å gjette hvilken ε som ble blandet inn. Tapet er ganske enkelt den kvadrerte avstanden mellom gjetningen og den sanne støyen. Når det gjetter godt, kan prosessen kjøres baklengs: start fra ren støy, trekk fra den forutsagte støyen litt om gangen, legg tilbake en liten mengde fersk tilfeldighet, og gjenta til t = 0. Denne omvendte kjeden er DDPM-sampleren (denoising diffusion probabilistic model).",
+          "En diffusjonsmodell er definert av en framoverprosess som ingen trenger å lære: Ta et datapunkt x₀ og bland det med gaussisk støy ε i T små steg. Planen ᾱ_t sier hvor mye av originalen som er igjen ved steg t, så en støyete prøve kan lages i ett jafs med formelen nedenfor. Ved det siste steget skal det ideelt sett ikke være noe igjen av dataene.",
+          "Nettverket ε_θ får det støyete punktet x_t og tiden t, og den eneste jobben er å gjette hvilken ε som ble blandet inn. Tapet er ganske enkelt den kvadrerte avstanden mellom gjetningen og den sanne støyen. Når det gjetter godt, kan prosessen kjøres baklengs: Start fra ren støy, trekk fra den forutsagte støyen litt om gangen, legg tilbake en liten mengde fersk tilfeldighet, og gjenta til t = 0. Denne omvendte kjeden er DDPM-sampleren (denoising diffusion probabilistic model).",
         ],
         formula:
           "x_t = \\sqrt{\\bar\\alpha_t}\\, x_0 + \\sqrt{1 - \\bar\\alpha_t}\\, \\varepsilon, \\qquad \\mathcal{L} = \\big\\lVert \\varepsilon - \\varepsilon_\\theta(x_t, t) \\big\\rVert^2",
@@ -460,15 +460,15 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "«Datasett» velger målformen: to måner (standard), tre gaussiske klynger eller en spiral med to armer. Hver av dem har 256 punkter. «Støyplan» veksler mellom en lineær β-plan, der støyen som legges til per steg vokser jevnt fra 0,0001 til 0,02, og kosinusplanen for ᾱ (standard), som former det gjenværende signalet som en kvart kosinus, slik at det faller mykt i starten og mot slutten.",
-          "«Diffusjonssteg T» går fra 10 til 120 i sprang på 5, med 40 som standard. Bytter du datasett, plan eller T, kastes nettverket og et nytt trenes fra bunnen av, fordi en modell som er trent for én plan, ikke forstår en annen. «Vandrere» (20 til 400, standard 160) endrer bare hvor mange punkter som samples, og beholder den trente modellen. «Pause» fryser trening og sampling, og «Tilbakestill modellen» starter treningen på nytt uten å endre noen innstilling.",
+          "«Diffusjonssteg T» går fra 10 til 120 i sprang på 5, med 40 som standard. Bytter du datasett, plan eller T, kastes nettverket og et nytt trenes fra bunnen av, fordi en modell som er trent for én plan, ikke forstår en annen. «Vandrere» (20 til 400, standard 160) endrer bare hvor mange punkter som trekkes, og beholder den trente modellen. «Pause» fryser trening og sampling, og «Tilbakestill modellen» starter treningen på nytt uten å endre noen innstilling.",
           "Statuslinjen viser et løpende tap, glattet med et eksponentielt glidende gjennomsnitt, og en epoketeller som etter konvensjon tikker én gang for hver 30. minibatch.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Det finnes ikke noe maskinlæringsbibliotek her. Score-nettverket er skrevet for hånd i ren TypeScript: fire innganger (x, y samt sinus og kosinus av πt/T som tidsinnbygging), to skjulte lag med 32 enheter og GELU-aktivering, og to utganger. Vektene ligger i Float32Array, starter med He-initialisering fra en tilfeldighetsgenerator med fast frø og oppdateres med håndskrevet tilbakepropagering og en Adam-optimerer med læringsrate 0,005.",
-          "Hver animasjonsrute kjører seks minibatcher med 48 treningseksempler og flytter deretter hver vandrer to omvendte steg med oppdateringen som vises nedenfor, som er det vanlige DDPM-steget med posteriorvariansen som støyskala. Hver 12. rute evalueres nettverket på et rutenett med 28 × 28 celler ved det midterste støynivået, og størrelsen på støyprediksjonen, invertert og normalisert, males som det svake cyanfargede skjæret. Der den forutsagte støyen er liten, ser punktet allerede ut som data. Hver vandrer beholder et spor på åtte ruter.",
+          "Det finnes ikke noe maskinlæringsbibliotek her. Score-nettverket er skrevet for hånd i ren TypeScript: fire innganger (x, y samt sinus og kosinus av πt/T som tidsinnbygging), to skjulte lag med 32 enheter og GELU-aktivering, og to utganger. Vektene ligger i Float32Array, starter med He-initialisering fra en tilfeldighetsgenerator med fast frø og oppdateres med håndskrevet backpropagation og en Adam-optimerer med læringsrate 0,005.",
+          "Hvert animasjonsbilde kjører seks minibatcher med 48 treningseksempler og flytter deretter hver vandrer to omvendte steg med oppdateringen som vises nedenfor, som er det vanlige DDPM-steget med posteriorvariansen som støyskala. I hvert 12. bilde evalueres nettverket på et rutenett med 28 × 28 celler ved det midterste støynivået, og størrelsen på støyprediksjonen, invertert og normalisert, males som det svake cyanfargede skjæret. Der den forutsagte støyen er liten, ser punktet allerede ut som data. Hver vandrer beholder et spor på åtte bilder.",
           "Med redusert bevegelse slått på starter animasjonsløkken aldri. Nettverket trenes utenfor skjermen i 1800 minibatcher, den omvendte prosessen kjøres én gang fra støy ned til t = 0, og lerretet viser den ferdige tilstanden som et stillbilde. Endrer du en kontroll, lages et nytt stillbilde, og «Pause» er deaktivert.",
         ],
         code: REVERSE_EXCERPT,
@@ -492,7 +492,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
       },
       {
         title: "Flere steg, finere vandring",
-        text: "Behold kosinus og sett T til 120. Hver kohort tar nå 60 ruter i stedet for 20, og sporene viser en jevnere, mer gradvis nedstigning fra skyen til månene.",
+        text: "Behold kosinus og sett T til 120. Hver kohort tar nå 60 bilder i stedet for 20, og sporene viser en jevnere, mer gradvis nedstigning fra skyen til månene.",
       },
       {
         title: "Skill klyngene",

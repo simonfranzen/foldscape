@@ -164,7 +164,7 @@ export const SAT_GUIDE: ExplorerGuide = {
         heading: "Qué hacen los controles",
         paragraphs: [
           "Hay tres fórmulas disponibles. La primera tiene cuatro variables y seis cláusulas y es satisfacible, pero solo después de que el solver se retire de una primera conjetura equivocada. La segunda consta de las ocho cláusulas de tres literales sobre a, b y c; cada una prohíbe exactamente una de las ocho asignaciones posibles, así que juntas las prohíben todas. La tercera tiene cinco variables y siete cláusulas y es satisfacible.",
-          "Paso ejecuta exactamente una acción de DPLL. Reproducir la repite de forma automática a la velocidad que marca el deslizador, de 1 a 12 pasos por segundo (3 por defecto), y se detiene sola cuando se encuentra la respuesta; Pausa y Reiniciar hacen lo que dicen.",
+          "«Paso» ejecuta exactamente una acción de DPLL. «Reproducir» la repite de forma automática a la velocidad que marca el deslizador, de 1 a 12 pasos por segundo (3 por defecto), y se detiene sola cuando se encuentra la respuesta; «Pausa» y «Reiniciar» hacen lo que dicen.",
           "Cada cláusula se colorea según su estado bajo la asignación actual: verde cuando está satisfecha, ámbar cuando es una cláusula unitaria a la que le queda exactamente un literal por forzar, rosa cuando todos los literales son falsos, y neutra mientras sigue indecisa. Los literales falsos aparecen tachados. La ruta de búsqueda enumera las asignaciones en orden: las fichas violetas son decisiones (▼ para una primera conjetura, ⤺ para una volteada), las fichas cian están forzadas por propagación. Una línea en la parte inferior narra cada movimiento.",
         ],
       },
@@ -173,7 +173,7 @@ export const SAT_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Todo el solver es una única función pura, step(), que recibe la fórmula y el estado actual y devuelve el estado siguiente. Intenta cuatro cosas en un orden fijo. Si alguna cláusula está en conflicto, retrocede. Si no, y alguna cláusula es unitaria, fija el literal forzado. Si no, y todas las variables tienen valor, la fórmula está satisfecha. Si no, decide: toma la primera variable sin asignar en orden alfabético y la pone a verdadero.",
           "El retroceso es cronológico. El solver va quitando del final de la traza las asignaciones forzadas y las decisiones que ya ha volteado hasta llegar a la decisión más reciente que solo se ha probado en un sentido, y entonces voltea esa. Si la traza se vacía antes, todas las ramas han fracasado y la fórmula es insatisfacible. A propósito, no hay aprendizaje de cláusulas ni un orden de variables ingenioso; los solvers modernos añaden justo eso sobre este esqueleto.",
-          "Reproducir usa un temporizador sencillo y nunca arranca por su cuenta, así que nada se mueve si no lo pides.",
+          "«Reproducir» usa un temporizador sencillo y nunca arranca por su cuenta, así que nada se mueve si no lo pides.",
         ],
         code: BACKTRACK_EXCERPT,
       },
@@ -189,11 +189,11 @@ export const SAT_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "El coste de una mala conjetura",
-        text: "Con la primera fórmula, pulsa Paso varias veces. Tras el segundo paso la cláusula 2 se vuelve rosa; el tercer paso cambia la ficha violeta de a de ▼ a ⤺. Una decisión equivocada ha costado aquí dos pasos de más; en una fórmula grande puede costar un subárbol enorme.",
+        text: "Con la primera fórmula, pulsa «Paso» varias veces. Tras el segundo paso la cláusula 2 se vuelve rosa; el tercer paso cambia la ficha violeta de a de ▼ a ⤺. Una decisión equivocada ha costado aquí dos pasos de más; en una fórmula grande puede costar un subárbol enorme.",
       },
       {
         title: "Demuestra una negación",
-        text: "Selecciona la fórmula insatisfacible y pulsa Reproducir a 2 pasos por segundo. El solver visita las cuatro ramas de a y b, y solo cuando el retroceso pasa de la raíz declara la fórmula insatisfacible. Una respuesta «no» necesita el árbol entero; no hay un certificado corto que comprobar.",
+        text: "Selecciona la fórmula insatisfacible y pulsa «Reproducir» a 2 pasos por segundo. El solver visita las cuatro ramas de a y b, y solo cuando el retroceso pasa de la raíz declara la fórmula insatisfacible. Una respuesta «no» necesita el árbol entero; no hay un certificado corto que comprobar.",
       },
       {
         title: "Deja que la propagación haga el trabajo",
@@ -225,7 +225,7 @@ export const SAT_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "Trois formules sont proposées. La première a quatre variables et six clauses et elle est satisfaisable, mais seulement après que le solveur est revenu sur un premier pari erroné. La deuxième réunit les huit clauses à trois littéraux sur a, b et c ; chacune interdit exactement une des huit affectations possibles, si bien qu'ensemble elles les interdisent toutes. La troisième a cinq variables et sept clauses et elle est satisfaisable.",
-          "Pas exécute exactement une action de DPLL. Lecture la répète automatiquement à la vitesse fixée par le curseur, de 1 à 12 pas par seconde (3 par défaut), et s'arrête d'elle-même quand la réponse est trouvée ; Pause et Réinitialiser font ce que leur nom indique.",
+          "« Pas » exécute exactement une action de DPLL. « Lecture » la répète automatiquement à la vitesse fixée par le curseur, de 1 à 12 pas par seconde (3 par défaut), et s'arrête d'elle-même quand la réponse est trouvée ; « Pause » et « Réinitialiser » font ce que leur nom indique.",
           "Chaque clause est colorée selon son état sous l'affectation courante : verte quand elle est satisfaite, ambre quand c'est une clause unitaire à laquelle il reste exactement un littéral à forcer, rose quand tous ses littéraux sont faux, et neutre tant qu'elle est indécise. Les littéraux faux sont barrés. Le chemin de recherche liste les affectations dans l'ordre : les jetons violets sont des décisions (▼ pour un premier pari, ⤺ pour une décision inversée), les jetons cyan sont forcés par propagation. Une ligne en bas raconte chaque coup.",
         ],
       },
@@ -234,7 +234,7 @@ export const SAT_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Tout le solveur tient en une seule fonction pure, step(), qui reçoit la formule et l'état courant et renvoie l'état suivant. Elle essaie quatre choses dans un ordre fixe. Si une clause est en conflit, elle revient en arrière. Sinon, si une clause est unitaire, elle fixe le littéral forcé. Sinon, si toutes les variables ont une valeur, la formule est satisfaite. Sinon, elle décide : elle prend la première variable non affectée dans l'ordre alphabétique et la met à vrai.",
           "Le retour arrière est chronologique. Le solveur retire de la fin de la trace les affectations forcées et les décisions déjà inversées jusqu'à atteindre la décision la plus récente qui n'a été essayée que dans un sens, puis il inverse celle-là. Si la trace se vide avant, toutes les branches ont échoué et la formule est insatisfaisable. Il n'y a délibérément ni apprentissage de clauses ni ordre astucieux des variables ; les solveurs modernes ajoutent précisément cela par-dessus cette ossature.",
-          "Lecture utilise un simple minuteur et ne démarre jamais toute seule : rien ne bouge tant que tu ne le demandes pas.",
+          "« Lecture » utilise un simple minuteur et ne démarre jamais toute seule : rien ne bouge tant que tu ne le demandes pas.",
         ],
         code: BACKTRACK_EXCERPT,
       },
@@ -250,11 +250,11 @@ export const SAT_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Le prix d'un mauvais pari",
-        text: "Avec la première formule, appuie plusieurs fois sur Pas. Après le deuxième pas, la clause 2 devient rose ; le troisième pas fait passer le jeton violet de a de ▼ à ⤺. Une seule mauvaise décision a coûté ici deux pas de plus ; dans une grande formule, elle peut coûter un sous-arbre gigantesque.",
+        text: "Avec la première formule, appuie plusieurs fois sur « Pas ». Après le deuxième pas, la clause 2 devient rose ; le troisième pas fait passer le jeton violet de a de ▼ à ⤺. Une seule mauvaise décision a coûté ici deux pas de plus ; dans une grande formule, elle peut coûter un sous-arbre gigantesque.",
       },
       {
-        title: "Prouver une réponse négative",
-        text: "Sélectionne la formule insatisfaisable et appuie sur Lecture à 2 pas par seconde. Le solveur visite les quatre branches pour a et b, et ce n'est que lorsque le retour arrière dépasse la racine qu'il déclare la formule insatisfaisable. Une réponse « non » exige l'arbre entier ; il n'existe pas de certificat court à vérifier.",
+        title: "Prouve une réponse négative",
+        text: "Sélectionne la formule insatisfaisable et appuie sur « Lecture » à 2 pas par seconde. Le solveur visite les quatre branches pour a et b, et ce n'est que lorsque le retour arrière dépasse la racine qu'il déclare la formule insatisfaisable. Une réponse « non » exige l'arbre entier ; il n'existe pas de certificat court à vérifier.",
       },
       {
         title: "Laisse la propagation faire le travail",
@@ -283,10 +283,10 @@ export const SAT_GUIDE: ExplorerGuide = {
           "(\\lnot a \\lor b) \\land (\\lnot a \\lor \\lnot b) \\land (a \\lor c) \\land (\\lnot c \\lor d) \\land (c \\lor \\lnot d) \\land (a \\lor d)",
       },
       {
-        heading: "A cosa servono i controlli",
+        heading: "Che cosa fanno i controlli",
         paragraphs: [
           "Sono disponibili tre formule. La prima ha quattro variabili e sei clausole ed è soddisfacibile, ma solo dopo che il solver si è tirato fuori da un primo tentativo sbagliato. La seconda è composta da tutte le otto clausole di tre letterali su a, b e c; ciascuna vieta esattamente uno degli otto assegnamenti possibili, quindi insieme li vietano tutti. La terza ha cinque variabili e sette clausole ed è soddisfacibile.",
-          "Passo esegue esattamente un'azione di DPLL. Avvia la ripete in automatico alla velocità impostata dal cursore, da 1 a 12 passi al secondo (3 come valore predefinito), e si ferma da solo quando la risposta è stata trovata; Pausa e Azzera fanno quello che dicono.",
+          "«Passo» esegue esattamente un'azione di DPLL. «Avvia» la ripete in automatico alla velocità impostata dal cursore, da 1 a 12 passi al secondo (3 come valore predefinito), e si ferma da solo quando la risposta è stata trovata; «Pausa» e «Azzera» fanno quello che dicono.",
           "Ogni clausola è colorata in base al suo stato sotto l'assegnamento attuale: verde quando è soddisfatta, ambra quando è una clausola unitaria a cui resta esattamente un letterale da forzare, rosa quando tutti i letterali sono falsi, e neutra finché è indecisa. I letterali falsi sono barrati. Il percorso di ricerca elenca gli assegnamenti in ordine: le etichette viola sono decisioni (▼ per un primo tentativo, ⤺ per una decisione ribaltata), le etichette ciano sono forzate dalla propagazione. Una riga in basso racconta ogni mossa.",
         ],
       },
@@ -295,7 +295,7 @@ export const SAT_GUIDE: ExplorerGuide = {
         paragraphs: [
           "L'intero solver è un'unica funzione pura, step(), che riceve la formula e lo stato attuale e restituisce lo stato successivo. Prova quattro cose in un ordine fisso. Se qualche clausola è in conflitto, torna indietro. Altrimenti, se qualche clausola è unitaria, imposta il letterale forzato. Altrimenti, se ogni variabile ha un valore, la formula è soddisfatta. Altrimenti decide: prende la prima variabile non assegnata in ordine alfabetico e la imposta a vero.",
           "Il backtracking è cronologico. Il solver toglie dalla fine della traccia gli assegnamenti forzati e le decisioni che ha già ribaltato, finché arriva alla decisione più recente provata in un solo verso, e poi ribalta quella. Se la traccia si svuota prima, ogni ramo è fallito e la formula è insoddisfacibile. Di proposito non ci sono né apprendimento di clausole né un ordinamento furbo delle variabili; i solver moderni aggiungono proprio questo sopra lo stesso scheletro.",
-          "Avvia usa un semplice timer e non parte mai da solo, quindi non si muove nulla se non lo chiedi tu.",
+          "«Avvia» usa un semplice timer e non parte mai da solo, quindi non si muove nulla se non lo chiedi tu.",
         ],
         code: BACKTRACK_EXCERPT,
       },
@@ -311,11 +311,11 @@ export const SAT_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Il costo di un tentativo sbagliato",
-        text: "Con la prima formula, premi Passo più volte. Dopo il secondo passo la clausola 2 diventa rosa; il terzo passo cambia l'etichetta viola di a da ▼ a ⤺. Qui una decisione sbagliata è costata due passi in più; in una formula grande può costare un sottoalbero enorme.",
+        text: "Con la prima formula, premi «Passo» più volte. Dopo il secondo passo la clausola 2 diventa rosa; il terzo passo cambia l'etichetta viola di a da ▼ a ⤺. Qui una decisione sbagliata è costata due passi in più; in una formula grande può costare un sottoalbero enorme.",
       },
       {
-        title: "Dimostrare una risposta negativa",
-        text: "Seleziona la formula insoddisfacibile e premi Avvia a 2 passi al secondo. Il solver visita tutti e quattro i rami per a e b, e solo quando il backtracking supera la radice dichiara la formula insoddisfacibile. Una risposta «no» richiede l'albero intero; non esiste un certificato breve da verificare.",
+        title: "Dimostra una risposta negativa",
+        text: "Seleziona la formula insoddisfacibile e premi «Avvia» a 2 passi al secondo. Il solver visita tutti e quattro i rami per a e b, e solo quando il backtracking supera la radice dichiara la formula insoddisfacibile. Una risposta «no» richiede l'albero intero; non esiste un certificato breve da verificare.",
       },
       {
         title: "Lascia lavorare la propagazione",
@@ -347,7 +347,7 @@ export const SAT_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "Há três fórmulas disponíveis. A primeira tem quatro variáveis e seis cláusulas e é satisfazível, mas só depois de o solver recuar de um primeiro palpite errado. A segunda é composta por todas as oito cláusulas de três literais sobre a, b e c; cada uma proíbe exatamente uma das oito atribuições possíveis, pelo que juntas as proíbem todas. A terceira tem cinco variáveis e sete cláusulas e é satisfazível.",
-          "Passo executa exatamente uma ação de DPLL. Reproduzir repete-a automaticamente à velocidade definida pelo cursor, de 1 a 12 passos por segundo (3 por omissão), e para sozinho quando a resposta é encontrada; Pausa e Reiniciar fazem o que dizem.",
+          "«Passo» executa exatamente uma ação de DPLL. «Reproduzir» repete-a automaticamente à velocidade definida pelo cursor, de 1 a 12 passos por segundo (3 por omissão), e para sozinho quando a resposta é encontrada; «Pausa» e «Reiniciar» fazem o que dizem.",
           "Cada cláusula é colorida conforme o seu estado sob a atribuição atual: verde quando está satisfeita, âmbar quando é uma cláusula unitária a que resta exatamente um literal por forçar, rosa quando todos os literais são falsos, e neutra enquanto está indecisa. Os literais falsos aparecem riscados. O caminho de busca lista as atribuições por ordem: as fichas violeta são decisões (▼ para um primeiro palpite, ⤺ para uma decisão invertida), as fichas ciano são forçadas por propagação. Uma linha ao fundo narra cada jogada.",
         ],
       },
@@ -356,7 +356,7 @@ export const SAT_GUIDE: ExplorerGuide = {
         paragraphs: [
           "O solver inteiro é uma única função pura, step(), que recebe a fórmula e o estado atual e devolve o estado seguinte. Tenta quatro coisas numa ordem fixa. Se alguma cláusula está em conflito, retrocede. Caso contrário, se alguma cláusula é unitária, define o literal forçado. Caso contrário, se todas as variáveis têm valor, a fórmula está satisfeita. Caso contrário, decide: escolhe a primeira variável por atribuir, por ordem alfabética, e põe-na a verdadeiro.",
           "O retrocesso é cronológico. O solver retira do fim do rasto as atribuições forçadas e as decisões que já inverteu, até chegar à decisão mais recente que só foi tentada num sentido, e depois inverte essa. Se o rasto ficar vazio antes disso, todos os ramos falharam e a fórmula é insatisfazível. De propósito, não há aprendizagem de cláusulas nem uma ordenação engenhosa das variáveis; os solvers modernos acrescentam exatamente isso por cima deste esqueleto.",
-          "Reproduzir usa um temporizador simples e nunca arranca sozinho, por isso nada se mexe a menos que o peças.",
+          "«Reproduzir» usa um temporizador simples e nunca arranca sozinho, por isso nada se mexe a menos que o peças.",
         ],
         code: BACKTRACK_EXCERPT,
       },
@@ -368,15 +368,15 @@ export const SAT_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Experimenta",
+    experimentsHeading: "Experimenta isto",
     experiments: [
       {
         title: "O custo de um mau palpite",
-        text: "Com a primeira fórmula, carrega em Passo várias vezes. Depois do segundo passo, a cláusula 2 fica rosa; o terceiro passo muda a ficha violeta de a de ▼ para ⤺. Uma decisão errada custou aqui dois passos a mais; numa fórmula grande pode custar uma subárvore enorme.",
+        text: "Com a primeira fórmula, carrega em «Passo» várias vezes. Depois do segundo passo, a cláusula 2 fica rosa; o terceiro passo muda a ficha violeta de a de ▼ para ⤺. Uma decisão errada custou aqui dois passos a mais; numa fórmula grande pode custar uma subárvore enorme.",
       },
       {
         title: "Provar uma resposta negativa",
-        text: "Seleciona a fórmula insatisfazível e carrega em Reproduzir a 2 passos por segundo. O solver visita os quatro ramos para a e b, e só quando o retrocesso passa da raiz é que declara a fórmula insatisfazível. Uma resposta «não» precisa da árvore inteira; não há um certificado curto para verificar.",
+        text: "Seleciona a fórmula insatisfazível e carrega em «Reproduzir» a 2 passos por segundo. O solver visita os quatro ramos para a e b, e só quando o retrocesso passa da raiz é que declara a fórmula insatisfazível. Uma resposta «não» precisa da árvore inteira; não há um certificado curto para verificar.",
       },
       {
         title: "Deixa a propagação fazer o trabalho",
@@ -391,7 +391,7 @@ export const SAT_GUIDE: ExplorerGuide = {
   sv: {
     metaDescription:
       "Se en DPLL-baserad SAT-lösare arbeta steg för steg: beslut, enhetspropagering och backtracking på tre KNF-formler, varav en är bevisligen osatisfierbar.",
-    heading: "Så fungerar utforskaren",
+    heading: "Så fungerar den här utforskaren",
     intro:
       "Formeln i mitten är skriven på konjunktiv normalform: en lista av klausuler som binds ihop med OCH, där varje klausul är några literaler som binds ihop med ELLER. Frågan är om någon tilldelning av sant och falskt till variablerna gör alla klausuler sanna på en gång. Lösaren besvarar den med DPLL, den backtrackingmetod som fortfarande utgör skelettet i moderna SAT-lösare, och den gör det ett drag per klick, så att du kan följa varje gissning, varje framtvingad följd och varje reträtt.",
     sections: [
@@ -408,16 +408,16 @@ export const SAT_GUIDE: ExplorerGuide = {
         heading: "Vad reglagen gör",
         paragraphs: [
           "Det finns tre formler att välja mellan. Den första har fyra variabler och sex klausuler och är satisfierbar, men först efter att lösaren har backat ur en felaktig första gissning. Den andra består av alla åtta klausuler med tre literaler över a, b och c; var och en förbjuder exakt en av de åtta möjliga tilldelningarna, så tillsammans förbjuder de alla. Den tredje har fem variabler och sju klausuler och är satisfierbar.",
-          "Steg utför exakt en DPLL-åtgärd. Spela upprepar den automatiskt i den hastighet som reglaget anger, från 1 till 12 steg per sekund (3 som standard), och stannar av sig själv när svaret är funnet; Paus och Återställ gör vad de heter.",
+          "”Steg” utför exakt en DPLL-åtgärd. ”Spela” upprepar den automatiskt i den hastighet som reglaget anger, från 1 till 12 steg per sekund (3 som standard), och stannar av sig själv när svaret är funnet; ”Paus” och ”Återställ” gör vad de heter.",
           "Varje klausul färgas efter sitt tillstånd under den aktuella tilldelningen: grön när den är satisfierad, bärnstensgul när den är en enhetsklausul med exakt en literal kvar att tvinga, rosa när alla literaler är falska och neutral så länge den är obestämd. Falska literaler är överstrukna. Sökvägen listar tilldelningarna i ordning: violetta brickor är beslut (▼ för en första gissning, ⤺ för ett vänt beslut), cyanfärgade brickor är tvingade av propagering. En rad längst ner berättar om varje drag.",
         ],
       },
       {
-        heading: "Så är den byggd",
+        heading: "Hur den är byggd",
         paragraphs: [
-          "Hela lösaren är en enda ren funktion, step(), som tar formeln och det aktuella tillståndet och returnerar nästa tillstånd. Den prövar fyra saker i en fast ordning. Om någon klausul är i konflikt backar den. Annars, om någon klausul är en enhetsklausul, sätter den den tvingade literalen. Annars, om varje variabel har ett värde, är formeln satisfierad. Annars fattar den ett beslut: den tar den första otilldelade variabeln i bokstavsordning och sätter den till sant.",
+          "Hela lösaren är en enda ren funktion, step(), som tar formeln och det aktuella tillståndet och returnerar nästa tillstånd. Den prövar fyra saker i en fast ordning. Om någon klausul är i konflikt backar den. Annars, om någon klausul är en enhetsklausul, sätter lösaren den tvingade literalen. Annars, om varje variabel har ett värde, är formeln satisfierad. Annars fattar den ett beslut: den tar den första otilldelade variabeln i bokstavsordning och sätter den till sant.",
           "Backtrackingen är kronologisk. Lösaren tar bort tvingade tilldelningar och beslut som den redan har vänt från slutet av spåret tills den når det senaste beslutet som bara har prövats åt ett håll, och vänder sedan det. Om spåret töms först har varje gren misslyckats och formeln är osatisfierbar. Det finns avsiktligt ingen klausulinlärning och ingen smart variabelordning; moderna lösare lägger till just detta ovanpå det här skelettet.",
-          "Spela använder en vanlig timer och startar aldrig av sig själv, så ingenting rör sig om du inte ber om det.",
+          "”Spela” använder en vanlig timer och startar aldrig av sig själv, så ingenting rör sig om du inte ber om det.",
         ],
         code: BACKTRACK_EXCERPT,
       },
@@ -425,7 +425,7 @@ export const SAT_GUIDE: ExplorerGuide = {
         heading: "Att läsa de tre körningarna",
         paragraphs: [
           "Den första formeln tar sju steg. Lösaren gissar a = sant, klausul 1 tvingar då b = sant, och klausul 2 står kvar med alla literaler falska. Den vänder a till falskt; nu tvingar klausul 3 fram c och klausul 4 fram d. Ingenting begränsar b längre, men varje variabel behöver ett värde, så lösaren beslutar b = sant och rapporterar att formeln är satisfierbar med a = falskt och b, c, d sanna.",
-          "Den osatisfierbara formeln tar elva steg: var och en av de fyra kombinationerna av a och b slutar med att c tvingas åt ett håll medan en klausul kräver det andra. Formeln med fem variabler behöver bara sex steg och inte en enda backtrack: efter a = sant tvingar propageringen fram c, d och e, och bara b återstår att besluta.",
+          "Den osatisfierbara formeln tar elva steg: var och en av de fyra kombinationerna av a och b slutar med att c tvingas åt ett håll medan en klausul kräver det andra. Formeln med fem variabler behöver bara sex steg och inte en enda backning: efter a = sant tvingar propageringen fram c, d och e, och bara b återstår att besluta.",
         ],
       },
     ],
@@ -433,15 +433,15 @@ export const SAT_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Priset för en dålig gissning",
-        text: "Tryck på Steg flera gånger med den första formeln. Efter det andra steget blir klausul 2 rosa; det tredje steget ändrar den violetta brickan för a från ▼ till ⤺. Ett felaktigt beslut kostade två extra steg här; i en stor formel kan det kosta ett enormt delträd.",
+        text: "Tryck på ”Steg” flera gånger med den första formeln. Efter det andra steget blir klausul 2 rosa; det tredje steget ändrar den violetta brickan för a från ▼ till ⤺. Ett felaktigt beslut kostade två extra steg här; i en stor formel kan det kosta ett enormt delträd.",
       },
       {
         title: "Bevisa ett nej",
-        text: "Välj den osatisfierbara formeln och tryck på Spela med 2 steg per sekund. Lösaren besöker alla fyra grenarna för a och b, och först när backtrackingen går förbi roten förklarar den formeln osatisfierbar. Ett ”nej” kräver hela trädet; det finns inget kort certifikat att kontrollera.",
+        text: "Välj den osatisfierbara formeln och tryck på ”Spela” med 2 steg per sekund. Lösaren besöker alla fyra grenarna för a och b, och först när backtrackingen går förbi roten förklarar den formeln osatisfierbar. Ett ”nej” kräver hela trädet; det finns inget kort certifikat att kontrollera.",
       },
       {
         title: "Låt propageringen göra jobbet",
-        text: "Välj formeln med fem variabler och stega igenom den. Räkna brickorna: två beslut, tre propageringar, noll backtrackar. Enhetspropagering är skälet till att DPLL slår en blind uppräkning av alla 32 tilldelningar.",
+        text: "Välj formeln med fem variabler och stega igenom den. Räkna brickorna: två beslut, tre propageringar, noll backningar. Enhetspropagering är skälet till att DPLL slår en blind uppräkning av alla 32 tilldelningar.",
       },
       {
         title: "Kontrollera certifikatet själv",
@@ -451,16 +451,16 @@ export const SAT_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Se en DPLL-basert SAT-løser arbeide steg for steg: beslutninger, enhetspropagering og backtracking på tre KNF-formler, der én beviselig er uoppfyllbar.",
-    heading: "Slik fungerer utforskeren",
+      "Se en DPLL-basert SAT-løser arbeide steg for steg: beslutninger, enhetspropagering og tilbakesporing på tre KNF-formler, der én beviselig er uoppfyllbar.",
+    heading: "Slik fungerer denne utforskeren",
     intro:
-      "Formelen i midten er skrevet på konjunktiv normalform: en liste med klausuler bundet sammen med OG, der hver klausul er noen få literaler bundet sammen med ELLER. Spørsmålet er om en tildeling av sann og usann til variablene gjør alle klausulene sanne på én gang. Løseren svarer med DPLL, backtrackingmetoden som fortsatt er skjelettet i moderne SAT-løsere, og den gjør det ett trekk per klikk, slik at du kan følge hver gjetning, hver tvungen følge og hver retrett.",
+      "Formelen i midten er skrevet på konjunktiv normalform: en liste med klausuler bundet sammen med OG, der hver klausul er noen få literaler bundet sammen med ELLER. Spørsmålet er om en tilordning av sann og usann til variablene gjør alle klausulene sanne på én gang. Løseren svarer med DPLL, metoden med tilbakesporing (backtracking) som fortsatt er skjelettet i moderne SAT-løsere, og den gjør det ett trekk per klikk, slik at du kan følge hver gjetning, hver tvungen følge og hver retrett.",
     sections: [
       {
         heading: "Oppfyllbarhet",
         paragraphs: [
-          "Det er lett å kontrollere et foreslått svar: sett inn verdiene og les hver klausul én gang. Å finne et svar er noe helt annet, fordi n variabler gir 2ⁿ tildelinger, og ingen kjenner en metode som unngår eksponentiell tid på alle formler. I 1971 beviste Stephen Cook at SAT er NP-komplett, og Leonid Levin fant det samme uavhengig av ham: ethvert problem der løsningene er raske å kontrollere, kan oversettes til en SAT-formel.",
-          "Metoden som brukes her, går tilbake til Davis, Putnam, Logemann og Loveland (1962). Den er et dybde-først-søk med én avgjørende snarvei: hver gang en klausul har alle literaler unntatt én usanne, er den siste literalen tvunget, så løseren setter den uten å gjette. Under står det første eksempelet, formelen siden åpner med.",
+          "Det er lett å kontrollere et foreslått svar: Sett inn verdiene og les hver klausul én gang. Å finne et svar er noe helt annet, fordi n variabler gir 2ⁿ tilordninger, og ingen kjenner en metode som unngår eksponentiell tid på alle formler. I 1971 beviste Stephen Cook at SAT er NP-komplett, og Leonid Levin fant det samme uavhengig av ham: Ethvert problem der løsningene er raske å kontrollere, kan oversettes til en SAT-formel.",
+          "Metoden som brukes her, går tilbake til Davis, Putnam, Logemann og Loveland (1962). Den er et dybde-først-søk med én avgjørende snarvei: Hver gang en klausul har alle literaler unntatt én usanne, er den siste literalen tvunget, så løseren setter den uten å gjette. Under står det første eksempelet, formelen siden åpner med.",
         ],
         formula:
           "(\\lnot a \\lor b) \\land (\\lnot a \\lor \\lnot b) \\land (a \\lor c) \\land (\\lnot c \\lor d) \\land (c \\lor \\lnot d) \\land (a \\lor d)",
@@ -468,17 +468,17 @@ export const SAT_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "Tre formler er tilgjengelige. Den første har fire variabler og seks klausuler og er oppfyllbar, men først etter at løseren har trukket seg ut av en feil første gjetning. Den andre består av alle åtte klausuler med tre literaler over a, b og c; hver av dem forbyr nøyaktig én av de åtte mulige tildelingene, så sammen forbyr de alle. Den tredje har fem variabler og sju klausuler og er oppfyllbar.",
-          "Steg utfører nøyaktig én DPLL-handling. Spill gjentar den automatisk i hastigheten glidebryteren angir, fra 1 til 12 steg per sekund (3 som standard), og stopper av seg selv når svaret er funnet; Pause og Nullstill gjør det de sier.",
-          "Hver klausul farges etter tilstanden sin under den gjeldende tildelingen: grønn når den er oppfylt, ravgul når den er en enhetsklausul med nøyaktig én literal igjen å tvinge, rosa når alle literalene er usanne, og nøytral så lenge den er ubestemt. Usanne literaler er strøket over. Søkestien lister tildelingene i rekkefølge: fiolette brikker er beslutninger (▼ for en første gjetning, ⤺ for en vendt beslutning), cyan brikker er tvunget fram av propagering. En linje nederst forteller om hvert trekk.",
+          "Tre formler er tilgjengelige. Den første har fire variabler og seks klausuler og er oppfyllbar, men først etter at løseren har trukket seg ut av en feil første gjetning. Den andre består av alle åtte klausuler med tre literaler over a, b og c; hver av dem forbyr nøyaktig én av de åtte mulige tilordningene, så sammen forbyr de alle. Den tredje har fem variabler og sju klausuler og er oppfyllbar.",
+          "«Steg» utfører nøyaktig én DPLL-handling. «Spill» gjentar den automatisk i hastigheten glidebryteren angir, fra 1 til 12 steg per sekund (3 som standard), og stopper av seg selv når svaret er funnet. «Pause» og «Nullstill» gjør det de sier.",
+          "Hver klausul farges etter tilstanden sin under den gjeldende tilordningen: grønn når den er oppfylt, ravgul når den er en enhetsklausul med nøyaktig én literal igjen å tvinge, rosa når alle literalene er usanne, og nøytral så lenge den er ubestemt. Usanne literaler er strøket over. Søkestien lister tilordningene i rekkefølge: Fiolette brikker er beslutninger (▼ for en første gjetning, ⤺ for en vendt beslutning), cyan brikker er tvunget fram av propagering. En linje nederst forteller om hvert trekk.",
         ],
       },
       {
         heading: "Slik er den bygget",
         paragraphs: [
-          "Hele løseren er én ren funksjon, step(), som tar formelen og den gjeldende tilstanden og returnerer neste tilstand. Den prøver fire ting i fast rekkefølge. Hvis en klausul er i konflikt, går den tilbake. Ellers, hvis en klausul er en enhetsklausul, setter den den tvungne literalen. Ellers, hvis alle variablene har en verdi, er formelen oppfylt. Ellers tar den en beslutning: den velger den første utildelte variabelen i alfabetisk rekkefølge og setter den til sann.",
-          "Backtrackingen er kronologisk. Løseren fjerner tvungne tildelinger og beslutninger den allerede har vendt, fra slutten av sporet, helt til den når den nyeste beslutningen som bare er prøvd én vei, og så vender den denne. Hvis sporet blir tomt først, har alle grenene feilet, og formelen er uoppfyllbar. Det er med vilje ingen klausullæring og ingen smart variabelrekkefølge; moderne løsere legger nettopp dette oppå dette skjelettet.",
-          "Spill bruker en vanlig timer og starter aldri av seg selv, så ingenting beveger seg uten at du ber om det.",
+          "Hele løseren er én ren funksjon, step(), som tar formelen og den gjeldende tilstanden og returnerer neste tilstand. Den prøver fire ting i fast rekkefølge. Hvis en klausul er i konflikt, går den tilbake. Ellers, hvis en klausul er en enhetsklausul, setter den den tvungne literalen. Ellers, hvis alle variablene har en verdi, er formelen oppfylt. Ellers tar den en beslutning: Den velger den første variabelen uten verdi i alfabetisk rekkefølge og setter den til sann.",
+          "Tilbakesporingen er kronologisk. Løseren fjerner tvungne tilordninger og beslutninger den allerede har vendt, fra slutten av sporet, helt til den når den nyeste beslutningen som bare er prøvd én vei, og så vender den denne. Hvis sporet blir tomt først, har alle grenene feilet, og formelen er uoppfyllbar. Det er med vilje ingen klausullæring og ingen smart variabelrekkefølge; moderne løsere legger nettopp dette oppå dette skjelettet.",
+          "«Spill» bruker en vanlig timer og starter aldri av seg selv, så ingenting beveger seg uten at du ber om det.",
         ],
         code: BACKTRACK_EXCERPT,
       },
@@ -486,7 +486,7 @@ export const SAT_GUIDE: ExplorerGuide = {
         heading: "Slik leser du de tre kjøringene",
         paragraphs: [
           "Den første formelen tar sju steg. Løseren gjetter a = sann, klausul 1 tvinger da fram b = sann, og klausul 2 står igjen med alle literalene usanne. Den vender a til usann; nå tvinger klausul 3 fram c og klausul 4 fram d. Ingenting begrenser b lenger, men hver variabel trenger en verdi, så løseren beslutter b = sann og melder at formelen er oppfyllbar med a = usann og b, c, d sanne.",
-          "Den uoppfyllbare formelen tar elleve steg: hver av de fire kombinasjonene av a og b ender med at c tvinges én vei mens en klausul krever den andre. Formelen med fem variabler trenger bare seks steg og ikke én eneste backtrack: etter a = sann tvinger propageringen fram c, d og e, og bare b gjenstår å beslutte.",
+          "Den uoppfyllbare formelen tar elleve steg: Hver av de fire kombinasjonene av a og b ender med at c tvinges én vei mens en klausul krever den andre. Formelen med fem variabler trenger bare seks steg og ikke én eneste tilbakesporing: Etter a = sann tvinger propageringen fram c, d og e, og bare b gjenstår å beslutte.",
         ],
       },
     ],
@@ -494,19 +494,19 @@ export const SAT_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Prisen for én dårlig gjetning",
-        text: "Trykk på Steg flere ganger med den første formelen. Etter det andre steget blir klausul 2 rosa; det tredje steget endrer den fiolette brikken for a fra ▼ til ⤺. Én feil beslutning kostet to ekstra steg her; i en stor formel kan den koste et enormt deltre.",
+        text: "Trykk på «Steg» flere ganger med den første formelen. Etter det andre steget blir klausul 2 rosa; det tredje steget endrer den fiolette brikken for a fra ▼ til ⤺. Én feil beslutning kostet to ekstra steg her; i en stor formel kan den koste et enormt deltre.",
       },
       {
         title: "Bevis et nei",
-        text: "Velg den uoppfyllbare formelen og trykk på Spill med 2 steg per sekund. Løseren besøker alle fire grenene for a og b, og først når backtrackingen går forbi roten, erklærer den formelen uoppfyllbar. Et «nei» krever hele treet; det finnes ikke noe kort sertifikat å kontrollere.",
+        text: "Velg den uoppfyllbare formelen og trykk på «Spill» med 2 steg per sekund. Løseren besøker alle fire grenene for a og b, og først når tilbakesporingen går forbi roten, erklærer den formelen uoppfyllbar. Et «nei» krever hele treet; det finnes ikke noe kort sertifikat å kontrollere.",
       },
       {
         title: "La propageringen gjøre jobben",
-        text: "Velg formelen med fem variabler og gå gjennom den steg for steg. Tell brikkene: to beslutninger, tre propageringer, null backtracker. Enhetspropagering er grunnen til at DPLL slår blind opplisting av alle 32 tildelinger.",
+        text: "Velg formelen med fem variabler og gå gjennom den steg for steg. Tell brikkene: to beslutninger, tre propageringer, null tilbakesporinger. Enhetspropagering er grunnen til at DPLL slår blind opplisting av alle 32 tilordninger.",
       },
       {
         title: "Kontroller sertifikatet selv",
-        text: "Når den første formelen er meldt oppfyllbar, tar du a = usann, b = sann, c = sann, d = sann og kontrollerer hver av de seks klausulene for hånd. Det tar noen sekunder, og det er asymmetrien i hjertet av NP: å finne er vanskelig, å kontrollere er lett.",
+        text: "Når den første formelen er meldt oppfyllbar, tar du a = usann, b = sann, c = sann, d = sann og kontrollerer hver av de seks klausulene for hånd. Det tar noen sekunder, og det er asymmetrien i hjertet av NP: Å finne er vanskelig, å kontrollere er lett.",
       },
     ],
   },

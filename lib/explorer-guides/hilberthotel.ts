@@ -146,7 +146,7 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
   },
   es: {
     metaDescription:
-      "Aloja huéspedes en el Hotel de Hilbert paso a paso: uno, k, infinitos, y luego infinitos autocares repartidos por habitaciones con potencias de primos.",
+      "Aloja huéspedes en el hotel de Hilbert paso a paso: uno, k, infinitos, y luego infinitos autocares repartidos por habitaciones con potencias de primos.",
     heading: "Cómo funciona este explorador",
     intro:
       "La cuadrícula muestra las primeras 64 habitaciones de un hotel con infinitas habitaciones, numeradas 1, 2, 3 y así para siempre. Las celdas discontinuas del final representan todo lo que hay más allá de la habitación 64. Al principio todas las habitaciones están ocupadas: cada punto blanco suave es un huésped. Quienes llegan esperan en la franja del vestíbulo, abajo, y el hotel tiene que acomodar a todo el mundo sin echar a nadie. Cada pulsación de «Paso» mueve exactamente a un huésped.",
@@ -170,7 +170,7 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "Cada huésped es un pequeño objeto con un origen (existente, nuevo o de autocar), un índice y una habitación actual; la habitación 0 significa que sigue esperando en el vestíbulo. La cuadrícula es HTML corriente: 64 celdas cuadradas en filas de 8, más seis celdas discontinuas para la cola infinita, y cada una dibuja hasta cuatro puntos de color para sus ocupantes. No hay canvas ni animación continua, solo una breve transición de color cuando se resalta una habitación, así que no hace falta congelar nada para el movimiento reducido.",
+          "Cada huésped es un pequeño objeto con un origen (existente, nuevo o de autocar), un índice y una habitación actual; la habitación 0 significa que sigue esperando en el vestíbulo. La cuadrícula es HTML corriente: 64 celdas cuadradas en filas de 8, más seis celdas discontinuas para la cola infinita, y cada una dibuja hasta cuatro puntos de color para sus ocupantes. No hay lienzo ni animación continua, solo una breve transición de color cuando se resalta una habitación, así que no hace falta congelar nada para el movimiento reducido.",
           "Hay un detalle que importa para que todo sea correcto. Los desplazamientos van de la habitación visible más alta hacia abajo. Si el huésped 1 se moviera primero, aterrizaría en la habitación 2 mientras su ocupante sigue allí. Empezar por la habitación 64 garantiza que cada habitación de destino ya ha quedado libre cuando llega alguien. En el hotel matemático todo el mundo se mueve a la vez, de modo que el orden solo importa para la animación.",
           "Para los autocares, la página muestra los autocares 1 a 8 con los primos 3, 5, 7, 11, 13, 17, 19 y 23, y solo pone en cola a los pasajeros cuya habitación pₖᵐ es como máximo 64. Eso da 12 pasajeros de autocar visibles, por ejemplo las habitaciones 3, 9 y 27 para el autocar 1.",
         ],
@@ -229,7 +229,7 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Chaque client est un petit objet doté d'une origine (présent, nouveau ou car), d'un indice et d'une chambre courante ; la chambre 0 signifie qu'il attend encore dans le hall. La grille est du HTML ordinaire : 64 cases carrées en rangées de 8, plus six cases en pointillés pour la queue infinie, chacune dessinant jusqu'à quatre points colorés pour ses occupants. Il n'y a ni canvas ni animation continue, seulement une brève transition de couleur quand une chambre est mise en évidence, si bien que rien n'a besoin d'être figé pour la réduction des animations.",
+          "Chaque client est un petit objet doté d'une origine (présent, nouveau ou car), d'un indice et d'une chambre courante ; la chambre 0 signifie qu'il attend encore dans le hall. La grille est du HTML ordinaire : 64 cases carrées en rangées de 8, plus six cases en pointillés pour la queue infinie, chacune dessinant jusqu'à quatre points colorés pour ses occupants. Il n'y a ni canevas ni animation continue, seulement une brève transition de couleur quand une chambre est mise en évidence, si bien que rien n'a besoin d'être figé pour la réduction des animations.",
           "Un détail compte pour que tout reste correct. Les décalages partent de la chambre visible la plus haute et descendent. Si le client 1 bougeait en premier, il arriverait dans la chambre 2 alors que son occupant y est encore. Commencer par la chambre 64 garantit que chaque chambre de destination a déjà été libérée quand quelqu'un y arrive. Dans l'hôtel mathématique, tout le monde bouge en même temps, l'ordre ne compte donc que pour l'animation.",
           "Pour les cars, la page montre les cars 1 à 8 avec les nombres premiers 3, 5, 7, 11, 13, 17, 19 et 23, et ne met en file que les passagers dont la chambre pₖᵐ vaut au plus 64. Cela donne 12 passagers de car visibles, par exemple les chambres 3, 9 et 27 pour le car 1.",
         ],
@@ -238,7 +238,7 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
       {
         heading: "Pourquoi les nombres premiers ne se télescopent jamais",
         paragraphs: [
-          "Tout entier supérieur à 1 possède exactement une décomposition en facteurs premiers. Une puissance de 2 n'a que le facteur 2, et une puissance d'un nombre premier impair n'a que ce nombre premier, de sorte que 2ⁿ, 3ᵐ, 5ᵐ et ainsi de suite ne peuvent jamais coïncider. C'est aussi du gaspillage : des chambres comme 6, 10, 12 ou 15 ont deux facteurs premiers différents et restent vides pour toujours. L'hôtel se retrouve avec une infinité de chambres libres même après avoir absorbé une infinité de cars infinis. Ce qu'il ne pourra jamais absorber, c'est une foule aussi grande que les nombres réels. C'est l'argument diagonal de Cantor, raconté sur la page du récit.",
+          "Tout entier supérieur à 1 possède exactement une décomposition en facteurs premiers. Une puissance de 2 n'a que le facteur 2, et une puissance d'un nombre premier impair n'a que ce nombre premier, de sorte que 2ⁿ, 3ᵐ, 5ᵐ et ainsi de suite ne peuvent jamais coïncider. C'est aussi du gaspillage : des chambres comme 6, 10, 12 ou 15 ont deux facteurs premiers différents et restent vides pour toujours. L'hôtel se retrouve avec une infinité de chambres libres même après avoir absorbé une infinité de cars infinis. Ce qu'il ne pourra jamais absorber, c'est une foule aussi grande que les nombres réels. C'est l'argument diagonal de Cantor, raconté sur la page de l'histoire.",
         ],
       },
     ],
@@ -264,24 +264,24 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
   },
   it: {
     metaDescription:
-      "Sistema gli ospiti nell'albergo di Hilbert passo dopo passo: uno, k, infiniti, e poi infiniti pullman distribuiti nelle stanze con le potenze dei primi.",
+      "Sistema gli ospiti nell'hotel di Hilbert passo dopo passo: uno, k, infiniti, e poi infiniti pullman distribuiti nelle stanze con le potenze dei primi.",
     heading: "Come funziona questo esploratore",
     intro:
-      "La griglia mostra le prime 64 stanze di un albergo con infinite stanze, numerate 1, 2, 3 e così via per sempre. Le celle tratteggiate alla fine rappresentano tutto ciò che sta oltre la stanza 64. All'inizio ogni stanza è occupata: ogni puntino bianco tenue è un ospite. I nuovi arrivati aspettano nella striscia della hall, in basso, e l'albergo deve sistemarli tutti senza mandare via nessuno. Ogni pressione di «Passo» sposta esattamente un ospite.",
+      "La griglia mostra le prime 64 stanze di un hotel con infinite stanze, numerate 1, 2, 3 e così via per sempre. Le celle tratteggiate alla fine rappresentano tutto ciò che sta oltre la stanza 64. All'inizio ogni stanza è occupata: ogni puntino bianco tenue è un ospite. I nuovi arrivati aspettano nella striscia della hall, in basso, e l'hotel deve sistemarli tutti senza mandare via nessuno. Ogni pressione di «Passo» sposta esattamente un ospite.",
     sections: [
       {
-        heading: "Un albergo pieno che ha ancora posto",
+        heading: "Un hotel pieno che ha ancora posto",
         paragraphs: [
-          "David Hilbert abbozzò questo albergo in una lezione del 1924 per mostrare quanto siano strani gli insiemi infiniti. In un albergo finito, pieno vuol dire pieno. In uno infinito puoi chiedere a ogni ospite di spostarsi dalla stanza n alla stanza n + 1 nello stesso istante. Nessuno resta fuori, perché ogni n ha un successore, e la stanza 1 è all'improvviso vuota. La stessa idea con n → n + k libera k stanze.",
-          "Il trucco dietro tutti e quattro gli scenari è una funzione dai numeri di stanza ai numeri di stanza che è iniettiva (due ospiti non vengono mai mandati nella stessa stanza) ma non suriettiva (qualche stanza avanza). Un insieme finito non può mai essere mandato in modo iniettivo in una sua parte propria; un insieme infinito può sempre.",
-          "Gli scenari più grandi richiedono trucchi più grandi. Per una folla infinita numerabile di nuovi ospiti (ℵ₀, aleph zero, la grandezza dei numeri naturali) ogni ospite presente si sposta da n a 2n. Tutte le stanze pari sono occupate, tutte le dispari sono libere, e il nuovo ospite numero i prende la stanza 2i − 1. Per infiniti pullman, ciascuno con infiniti passeggeri, l'albergo usa i numeri primi: l'ospite presente n si sposta in 2ⁿ, e il passeggero m del pullman k va in pₖᵐ, dove pₖ è il k-esimo primo dispari.",
+          "David Hilbert abbozzò questo hotel in una lezione del 1924 per mostrare quanto siano strani gli insiemi infiniti. In un hotel finito, pieno vuol dire pieno. In uno infinito puoi chiedere a ogni ospite di spostarsi dalla stanza n alla stanza n + 1 nello stesso istante. Nessuno resta fuori, perché ogni n ha un successore, e la stanza 1 è all'improvviso vuota. La stessa idea con n → n + k libera k stanze.",
+          "Il trucco dietro tutti e quattro gli scenari è una funzione dai numeri di stanza ai numeri di stanza che è iniettiva (due ospiti non vengono mai mandati nella stessa stanza) ma non suriettiva (qualche stanza avanza). Un insieme finito non può mai essere mandato in modo iniettivo in una sua parte propria; un insieme infinito sì, sempre.",
+          "Gli scenari più grandi richiedono trucchi più grandi. Per una folla infinita numerabile di nuovi ospiti (ℵ₀, aleph zero, la grandezza dei numeri naturali) ogni ospite presente si sposta da n a 2n. Tutte le stanze pari sono occupate, tutte le dispari sono libere, e il nuovo ospite numero i prende la stanza 2i − 1. Per infiniti pullman, ciascuno con infiniti passeggeri, l'hotel usa i numeri primi: l'ospite presente n si sposta in 2ⁿ, e il passeggero m del pullman k va in pₖᵐ, dove pₖ è il k-esimo primo dispari.",
         ],
         formula: ROOM_MAP_FORMULA,
       },
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "I quattro pulsanti di scenario scelgono chi arriva: un ospite nuovo, k ospiti nuovi, ℵ₀ ospiti nuovi, oppure ℵ₀ pullman con ℵ₀ ospiti ciascuno. L'etichetta sopra la griglia mostra la regola in vigore. Nello scenario k compare un cursore che imposta k da 1 a 10 (3 di default).",
+          "I quattro pulsanti di scenario scelgono chi arriva: un ospite nuovo, k ospiti nuovi, ℵ₀ ospiti nuovi, oppure ℵ₀ pullman con ℵ₀ ospiti ciascuno. L'etichetta sopra la griglia mostra la regola in vigore. Nello scenario k compare un cursore che imposta k da 1 a 10 (predefinito 3).",
           "«Passo» esegue una mossa, «Play» la ripete automaticamente, «Pausa» ferma tutto e «Azzera» fa ripartire lo scenario. Il cursore della velocità imposta da 1 a 40 passi al secondo e parte da 6. La barra di avanzamento conta le mosse, per esempio 65 per un ospite (64 spostamenti, poi un check-in). I contorni ambra indicano la stanza che un ospite sta lasciando e quella in cui si trasferisce, il ciano indica un nuovo ospite che fa il check-in, il rosa un passeggero di pullman. Il contatore a destra nella striscia della hall dice quanti ospiti si trovano ormai in stanze oltre la 64.",
         ],
       },
@@ -289,7 +289,7 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
         heading: "Com'è costruito",
         paragraphs: [
           "Ogni ospite è un piccolo oggetto con un'origine (presente, nuovo o pullman), un indice e una stanza corrente; la stanza 0 significa che sta ancora aspettando nella hall. La griglia è normale HTML: 64 celle quadrate in righe da 8, più sei celle tratteggiate per la coda infinita, e ognuna disegna fino a quattro puntini colorati per i suoi occupanti. Non c'è canvas e non c'è animazione continua, solo una breve transizione di colore quando una stanza viene evidenziata, quindi non occorre congelare nulla per il movimento ridotto.",
-          "Un dettaglio conta per la correttezza. Gli spostamenti procedono dalla stanza visibile più alta verso il basso. Se l'ospite 1 si muovesse per primo, finirebbe nella stanza 2 mentre il suo occupante è ancora lì. Partire dalla stanza 64 significa che ogni stanza di destinazione è già stata liberata quando arriva qualcuno. Nell'albergo matematico tutti si muovono insieme, quindi l'ordine conta solo per l'animazione.",
+          "Un dettaglio conta per la correttezza. Gli spostamenti procedono dalla stanza visibile più alta verso il basso. Se l'ospite 1 si muovesse per primo, finirebbe nella stanza 2 mentre il suo occupante è ancora lì. Partire dalla stanza 64 significa che ogni stanza di destinazione è già stata liberata quando arriva qualcuno. Nell'hotel matematico tutti si muovono insieme, quindi l'ordine conta solo per l'animazione.",
           "Per i pullman la pagina mostra i pullman da 1 a 8 con i primi 3, 5, 7, 11, 13, 17, 19 e 23, e mette in coda solo i passeggeri la cui stanza pₖᵐ è al massimo 64. Ne risultano 12 passeggeri di pullman visibili, per esempio le stanze 3, 9 e 27 per il pullman 1.",
         ],
         code: STEP_EXCERPT,
@@ -297,15 +297,15 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
       {
         heading: "Perché i primi non si scontrano mai",
         paragraphs: [
-          "Ogni numero intero maggiore di 1 ha esattamente una fattorizzazione in primi. Una potenza di 2 ha solo il fattore 2, e una potenza di un primo dispari ha solo quel primo, quindi 2ⁿ, 3ᵐ, 5ᵐ e così via non possono mai coincidere. È anche uno spreco: stanze come la 6, la 10, la 12 o la 15 hanno due fattori primi diversi e restano vuote per sempre. L'albergo si ritrova con infinite stanze libere anche dopo aver assorbito infiniti pullman infiniti. Ciò che non potrà mai assorbire è una folla grande quanto i numeri reali. È l'argomento diagonale di Cantor, raccontato nella pagina della storia.",
+          "Ogni numero intero maggiore di 1 ha esattamente una fattorizzazione in primi. Una potenza di 2 ha solo il fattore 2, e una potenza di un primo dispari ha solo quel primo, quindi 2ⁿ, 3ᵐ, 5ᵐ e così via non possono mai coincidere. È anche uno spreco: stanze come la 6, la 10, la 12 o la 15 hanno due fattori primi diversi e restano vuote per sempre. L'hotel si ritrova con infinite stanze libere anche dopo aver assorbito infiniti pullman infiniti. Ciò che non potrà mai assorbire è una folla grande quanto i numeri reali. È l'argomento diagonale di Cantor, raccontato nella pagina della storia.",
         ],
       },
     ],
-    experimentsHeading: "Prova tu",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Segui l'ultimo ospite fuori dalla vista",
-        text: "Scegli «1 ospite nuovo» e premi «Passo» una volta. L'ospite della stanza 64 si sposta nella stanza 65, fuori dalla griglia, e il contatore della hall segnala un ospite oltre la stanza 64. Quell'ospite non è svanito: nell'albergo infinito c'è sempre una stanza successiva.",
+        text: "Scegli «1 ospite nuovo» e premi «Passo» una volta. L'ospite della stanza 64 si sposta nella stanza 65, fuori dalla griglia, e il contatore della hall segnala un ospite oltre la stanza 64. Quell'ospite non è svanito: nell'hotel infinito c'è sempre una stanza successiva.",
       },
       {
         title: "Libera dieci stanze in un colpo",
@@ -406,7 +406,7 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Varje gäst är ett litet objekt med ett ursprung (befintlig, ny eller buss), ett index och ett aktuellt rum. Rum 0 betyder att gästen fortfarande väntar i lobbyn. Rutnätet är vanlig HTML: 64 kvadratiska rutor i rader om 8, plus sex streckade rutor för den oändliga svansen, och varje ruta ritar upp till fyra färgade prickar för dem som bor där. Det finns ingen canvas och ingen kontinuerlig animation, bara en kort färgövergång när ett rum markeras, så ingenting behöver frysas för reducerad rörelse.",
+          "Varje gäst är ett litet objekt med ett ursprung (befintlig, ny eller buss), ett index och ett aktuellt rum. Rum 0 betyder att gästen fortfarande väntar i lobbyn. Rutnätet är vanlig HTML: 64 kvadratiska rutor i rader om 8, plus sex streckade rutor för den oändliga svansen, och varje ruta ritar upp till fyra färgade prickar för dem som bor där. Det finns ingen canvas och ingen kontinuerlig animation, bara en kort färgövergång när ett rum markeras, så ingenting behöver frysas för minskad rörelse.",
           "En detalj är viktig för att det ska bli rätt. Förskjutningarna går från det högsta synliga rummet och nedåt. Om gäst 1 flyttade först skulle den hamna i rum 2 medan den som bor där fortfarande är kvar. Att börja i rum 64 innebär att varje målrum redan har utrymts när någon kommer dit. I det matematiska hotellet flyttar alla på en gång, så ordningen spelar bara roll för animationen.",
           "För bussarna visar sidan buss 1 till 8 med primtalen 3, 5, 7, 11, 13, 17, 19 och 23, och köar bara de passagerare vars rum pₖᵐ är högst 64. Det ger 12 synliga busspassagerare, till exempel rum 3, 9 och 27 för buss 1.",
         ],
@@ -419,7 +419,7 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Följ den översta gästen ut ur bild",
@@ -444,14 +444,14 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
       "Sjekk inn gjester på Hilberts hotell steg for steg: én gjest, k gjester, uendelig mange og så uendelig mange busser som får rom via primtallspotenser.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Rutenettet viser de første 64 rommene i et hotell med uendelig mange rom, nummerert 1, 2, 3 og så videre i det uendelige. De stiplede rutene til slutt står for alt bortenfor rom 64. I starten er alle rom opptatt: hver myke hvite prikk er en gjest. Nyankomne venter i lobbystripen nedenfor, og hotellet må få plass til alle uten å kaste ut noen. Hvert trykk på «Steg» flytter nøyaktig én gjest.",
+      "Rutenettet viser de første 64 rommene i et hotell med uendelig mange rom, nummerert 1, 2, 3 og så videre i det uendelige. De stiplede rutene til slutt står for alt bortenfor rom 64. I starten er alle rom opptatt: Hver myke hvite prikk er en gjest. Nyankomne venter i lobbystripen nedenfor, og hotellet må få plass til alle uten å kaste ut noen. Hvert trykk på «Steg» flytter nøyaktig én gjest.",
     sections: [
       {
         heading: "Et fullt hotell som likevel har plass",
         paragraphs: [
           "David Hilbert skisserte dette hotellet i en forelesning i 1924 for å vise hvor merkelige uendelige mengder er. I et endelig hotell betyr fullt at det er fullt. I et uendelig kan du be hver gjest flytte fra rom n til rom n + 1 i samme øyeblikk. Ingen blir kastet ut, fordi hver n har en etterfølger, og rom 1 er plutselig ledig. Den samme ideen med n → n + k frigjør k rom.",
-          "Trikset bak alle de fire scenarioene er en funksjon fra romnumre til romnumre som er injektiv (to gjester sendes aldri til samme rom), men ikke surjektiv (noen rom blir til overs). En endelig mengde kan aldri avbildes injektivt inn i en ekte del av seg selv. En uendelig mengde kan det alltid.",
-          "De større scenarioene krever større triks. For en tellbart uendelig flokk av nye gjester (ℵ₀, alef-null, størrelsen på de naturlige tallene) flytter hver nåværende gjest fra n til 2n. Alle partallsrom er opptatt, alle oddetallsrom er ledige, og ny gjest nummer i tar rom 2i − 1. For uendelig mange busser, hver med uendelig mange passasjerer, bruker hotellet primtall: nåværende gjest n flytter til 2ⁿ, og passasjer m i buss k går til pₖᵐ, der pₖ er det k-te odde primtallet.",
+          "Trikset bak alle de fire scenarioene er en funksjon fra romnumre til romnumre som er injektiv (to gjester sendes aldri til samme rom), men ikke surjektiv (noen rom blir til overs). En endelig mengde kan aldri avbildes injektivt inn i en ekte delmengde av seg selv. En uendelig mengde kan det alltid.",
+          "De større scenarioene krever større triks. For en tellbart uendelig flokk av nye gjester (ℵ₀, alef-null, størrelsen på de naturlige tallene) flytter hver nåværende gjest fra n til 2n. Alle partallsrom er opptatt, alle oddetallsrom er ledige, og ny gjest nummer i tar rom 2i − 1. For uendelig mange busser, hver med uendelig mange passasjerer, bruker hotellet primtall: Nåværende gjest n flytter til 2ⁿ, og passasjer m i buss k går til pₖᵐ, der pₖ er det k-te odde primtallet.",
         ],
         formula: ROOM_MAP_FORMULA,
       },
@@ -459,13 +459,13 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "De fire scenarioknappene velger hvem som ankommer: én ny gjest, k nye gjester, ℵ₀ nye gjester eller ℵ₀ busser med ℵ₀ gjester hver. Merket over rutenettet viser regelen som gjelder. I k-scenarioet dukker det opp en glidebryter som setter k fra 1 til 10 (standard 3).",
-          "«Steg» utfører én flytting, «Spill» gjentar det automatisk, «Pause» stopper, og «Nullstill» starter scenarioet på nytt. Hastighetsbryteren setter 1 til 40 steg per sekund og starter på 6. Framdriftslinjen teller flyttingene, for eksempel 65 for én gjest (64 forskyvninger og så én innsjekking). Ravgule omriss markerer rommet en gjest forlater og rommet gjesten flytter inn i, cyan markerer en ny gjest som sjekker inn, rosa en busspassasjer. Telleren til høyre i lobbystripen sier hvor mange gjester som nå bor i rom bortenfor 64.",
+          "«Steg» utfører én flytting, «Spill» gjentar det automatisk, «Pause» stopper, og «Nullstill» starter scenarioet på nytt. Glidebryteren for hastighet setter 1 til 40 steg per sekund og starter på 6. Framdriftslinjen teller flyttingene, for eksempel 65 for én gjest (64 forskyvninger og så én innsjekking). Ravgule omriss markerer rommet en gjest forlater og rommet gjesten flytter inn i, cyan markerer en ny gjest som sjekker inn, rosa en busspassasjer. Telleren til høyre i lobbystripen sier hvor mange gjester som nå bor i rom bortenfor 64.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Hver gjest er et lite objekt med et opphav (eksisterende, ny eller buss), en indeks og et gjeldende rom. Rom 0 betyr at gjesten fortsatt venter i lobbyen. Rutenettet er vanlig HTML: 64 kvadratiske ruter i rader på 8, pluss seks stiplede ruter for den uendelige halen, og hver rute tegner opptil fire fargede prikker for dem som bor der. Det finnes ikke noe canvas og ingen kontinuerlig animasjon, bare en kort fargeovergang når et rom utheves, så ingenting trenger å fryses for redusert bevegelse.",
+          "Hver gjest er et lite objekt med et opphav (eksisterende, ny eller buss), en indeks og et gjeldende rom. Rom 0 betyr at gjesten fortsatt venter i lobbyen. Rutenettet er vanlig HTML: 64 kvadratiske ruter i rader på 8, pluss seks stiplede ruter for den uendelige halen, og hver rute tegner opptil fire fargede prikker for dem som bor der. Det finnes ikke noe lerret og ingen kontinuerlig animasjon, bare en kort fargeovergang når et rom utheves, så ingenting trenger å fryses for redusert bevegelse.",
           "Én detalj er viktig for at det skal bli riktig. Forskyvningene går fra det høyeste synlige rommet og nedover. Hvis gjest 1 flyttet først, ville den havnet i rom 2 mens den som bor der, fortsatt var der. Å starte i rom 64 betyr at hvert målrom allerede er fraflyttet når noen kommer dit. I det matematiske hotellet flytter alle samtidig, så rekkefølgen betyr bare noe for animasjonen.",
           "For bussene viser siden buss 1 til 8 med primtallene 3, 5, 7, 11, 13, 17, 19 og 23, og setter bare de passasjerene i kø som har et rom pₖᵐ på høyst 64. Det gir 12 synlige busspassasjerer, for eksempel rom 3, 9 og 27 for buss 1.",
         ],
@@ -474,7 +474,7 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
       {
         heading: "Hvorfor primtallene aldri kolliderer",
         paragraphs: [
-          "Hvert heltall større enn 1 har nøyaktig én primtallsfaktorisering. En potens av 2 har bare faktoren 2, og en potens av et odde primtall har bare det primtallet, så 2ⁿ, 3ᵐ, 5ᵐ og så videre kan aldri falle sammen. Det er også sløsing: rom som 6, 10, 12 eller 15 har to ulike primfaktorer og står tomme for alltid. Hotellet ender opp med uendelig mange ledige rom selv etter å ha tatt imot uendelig mange uendelige busser. Det eneste det aldri kan ta imot, er en flokk like stor som de reelle tallene. Det er Cantors diagonalargument, som fortelles på historiesiden.",
+          "Hvert heltall større enn 1 har nøyaktig én primtallsfaktorisering. En potens av 2 har bare faktoren 2, og en potens av et odde primtall har bare det primtallet, så 2ⁿ, 3ᵐ, 5ᵐ og så videre kan aldri falle sammen. Det er også sløsing: Rom som 6, 10, 12 eller 15 har to ulike primfaktorer og står tomme for alltid. Hotellet ender opp med uendelig mange ledige rom selv etter å ha tatt imot uendelig mange uendelige busser. Det eneste det aldri kan ta imot, er en flokk like stor som de reelle tallene. Det er Cantors diagonalargument, som fortelles på historiesiden.",
         ],
       },
     ],
@@ -482,7 +482,7 @@ export const HILBERTHOTEL_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Følg den øverste gjesten ut av syne",
-        text: "Velg «1 ny gjest» og trykk på «Steg» én gang. Gjesten i rom 64 flytter til rom 65, utenfor rutenettet, og lobbytelleren melder om én gjest bortenfor rom 64. Den gjesten forsvant ikke: i det uendelige hotellet finnes det alltid et neste rom.",
+        text: "Velg «1 ny gjest» og trykk på «Steg» én gang. Gjesten i rom 64 flytter til rom 65, utenfor rutenettet, og lobbytelleren melder om én gjest bortenfor rom 64. Den gjesten forsvant ikke: I det uendelige hotellet finnes det alltid et neste rom.",
       },
       {
         title: "Frigjør ti rom på én gang",

@@ -171,8 +171,8 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "Toda la imagen se calcula en un canvas 2D de una sola pasada. El código solo guarda la fila anterior, como un Uint8Array de restos, y a partir de ella construye la siguiente con la regla de suma tomada mod p. Como p vale como mucho 23, cualquier suma de dos restos cabe de sobra en un byte. La memoria crece por tanto con la longitud de la fila, no con el tamaño del triángulo, y con 512 filas el bucle recorre unas 131 000 celdas.",
-          "Cada celda no nula se convierte en un cuadrado relleno. La fila n se desplaza media celda a la derecha por cada entrada que le falta, lo que centra el triángulo, y las filas se colocan a 0,92 alturas de celda de distancia, de modo que el triángulo es algo más plano que ancho. El canvas se dimensiona en píxeles del dispositivo, así que las celdas se ven nítidas en pantallas de alta densidad. No hay ninguna animación: la imagen solo se vuelve a dibujar cuando cambias p o el número de filas, o cuando un ResizeObserver comunica un nuevo tamaño del canvas. Eso significa también que no hay nada que frenar cuando el sistema pide movimiento reducido.",
+          "Toda la imagen se calcula en un lienzo 2D de una sola pasada. El código solo guarda la fila anterior, como un Uint8Array de restos, y a partir de ella construye la siguiente con la regla de suma tomada mod p. Como p vale como mucho 23, cualquier suma de dos restos cabe de sobra en un byte. La memoria crece por tanto con la longitud de la fila, no con el tamaño del triángulo, y con 512 filas el bucle recorre unas 131 000 celdas.",
+          "Cada celda no nula se convierte en un cuadrado relleno. La fila n se desplaza media celda a la derecha por cada entrada que le falta, lo que centra el triángulo, y las filas se colocan a 0,92 alturas de celda de distancia, de modo que el triángulo es algo más plano que ancho. El lienzo se dimensiona en píxeles del dispositivo, así que las celdas se ven nítidas en pantallas de alta densidad. No hay ninguna animación: la imagen solo se vuelve a dibujar cuando cambias p o el número de filas, o cuando un ResizeObserver comunica un nuevo tamaño del lienzo. Eso significa también que no hay nada que frenar cuando el sistema pide movimiento reducido.",
         ],
         code: ROWS_EXCERPT,
       },
@@ -180,7 +180,7 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
         heading: "Contar acarreos: la mirada de Kummer",
         paragraphs: [
           "La pista de la barra lateral menciona el teorema de Lucas. El teorema de Kummer mira el mismo patrón desde otro ángulo. Dice que el exponente de p en C(n, k) es igual al número de acarreos que se producen al sumar k y n − k en base p. Así, una celda queda en blanco exactamente cuando esa suma produce al menos un acarreo, y coloreada exactamente cuando no produce ninguno.",
-          "Con cualquiera de los dos teoremas puedes contar las celdas coloreadas. Las primeras p^m filas contienen exactamente (p(p + 1)/2)^m entradas no divisibles por p, porque cada nivel del patrón consta de p(p + 1)/2 copias más pequeñas. Eso da al fractal una dimensión de log(p(p + 1)/2) / log p: aproximadamente 1,585 para p = 2, 1,631 para p = 3 y 1,683 para p = 5. Cuanto mayor es el primo, más se acerca la dimensión a 2 y más relleno parece el triángulo.",
+          "Con cualquiera de los dos teoremas puedes contar las celdas coloreadas. Las primeras p^m filas contienen exactamente (p(p + 1)/2)^m entradas no divisibles por p, porque cada nivel del patrón consta de p(p + 1)/2 copias más pequeñas. Eso da al fractal una dimensión de log(p(p + 1)/2) / log p: aproximadamente 1,585 para p = 2; 1,631 para p = 3 y 1,683 para p = 5. Cuanto mayor es el primo, más se acerca la dimensión a 2 y más relleno parece el triángulo.",
         ],
       },
     ],
@@ -229,8 +229,8 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Toute l'image est calculée sur un canvas 2D en une seule passe. Le code ne conserve que la ligne précédente, sous forme d'un Uint8Array de restes, et construit la suivante à partir d'elle avec la règle d'addition prise mod p. Comme p vaut au plus 23, toute somme de deux restes tient largement dans un octet. La mémoire croît donc avec la longueur de la ligne, pas avec la taille du triangle, et avec 512 lignes la boucle parcourt environ 131 000 cellules.",
-          "Chaque cellule non nulle devient un carré plein. La ligne n est décalée vers la droite d'une demi-cellule par entrée manquante, ce qui centre le triangle, et les lignes sont espacées de 0,92 hauteur de cellule, de sorte que le triangle est un peu plus plat que large. Le canvas est dimensionné en pixels physiques, les cellules restent donc nettes sur les écrans à haute densité. Il n'y a aucune animation : l'image n'est redessinée que lorsque tu changes p ou le nombre de lignes, ou lorsqu'un ResizeObserver signale une nouvelle taille du canvas. Il n'y a donc rien non plus à ralentir quand le système demande de réduire les animations.",
+          "Toute l'image est calculée sur un canevas 2D en une seule passe. Le code ne conserve que la ligne précédente, sous forme d'un Uint8Array de restes, et construit la suivante à partir d'elle avec la règle d'addition prise mod p. Comme p vaut au plus 23, toute somme de deux restes tient largement dans un octet. La mémoire croît donc avec la longueur de la ligne, pas avec la taille du triangle, et avec 512 lignes la boucle parcourt environ 131 000 cellules.",
+          "Chaque cellule non nulle devient un carré plein. La ligne n est décalée vers la droite d'une demi-cellule par entrée manquante, ce qui centre le triangle, et les lignes sont espacées de 0,92 hauteur de cellule, de sorte que le triangle est un peu plus plat que large. Le canevas est dimensionné en pixels physiques, les cellules restent donc nettes sur les écrans à haute densité. Il n'y a aucune animation : l'image n'est redessinée que lorsque tu changes p ou le nombre de lignes, ou lorsqu'un ResizeObserver signale une nouvelle taille du canevas. Il n'y a donc rien non plus à ralentir quand le système demande de réduire les animations.",
         ],
         code: ROWS_EXCERPT,
       },
@@ -253,11 +253,11 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
         text: "Choisis p = 7 et règle le nombre de lignes sur 344. Les 343 premières lignes (7 au cube) forment un tamis complet de niveau trois, et la ligne supplémentaire en dessous, la ligne 343, ne montre que ses deux cellules d'angle. Chaque segment coloré d'une ligne suit les chiffres en base 7 de son numéro de ligne.",
       },
       {
-        title: "Lire la ligne alternée",
+        title: "Lis la ligne alternée",
         text: "Prends p = 5 avec 16 lignes et compare la ligne 4 à la légende. Ses entrées 1, 4, 6, 4, 1 deviennent 1, 4, 1, 4, 1 mod 5 : en général, la ligne p − 1 alterne entre 1 et p − 1, car C(p − 1, k) ≡ (−1)^k mod p.",
       },
       {
-        title: "Regarder les trous rétrécir",
+        title: "Regarde les trous rétrécir",
         text: "Avec 512 lignes, passe en revue p = 2, 3, 5, 11 et 23. Les triangles vides se raréfient et la surface colorée grandit, exactement comme le prédit la formule de la dimension. Pour p = 23, le bloc de base fait 23 lignes de haut, et 512 lignes ne suffisent même pas à terminer le deuxième niveau du motif : il en faudrait 23 × 23 = 529.",
       },
     ],
@@ -267,7 +267,7 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
       "Colora il triangolo di Tartaglia (o di Pascal) modulo un primo e guarda nascere i triangoli di Sierpiński. Teoremi di Lucas e Kummer, fino a 512 righe.",
     heading: "Come funziona questo esploratore",
     intro:
-      "Ogni quadratino della tela è un coefficiente binomiale C(n, k), il numero che sta nella riga n e nella posizione k del triangolo di Pascal. Invece di scrivere il numero, l'esploratore ne conserva solo il resto della divisione per un primo p e dipinge quel resto come un colore. Il resto zero, cioè il caso in cui p divide il numero, rimane vuoto. Quello che resta non è rumore, ma un motivo annidato di triangoli dentro triangoli: per p = 2 è il triangolo di Sierpiński, per gli altri primi un setaccio con p(p + 1)/2 copie di sé stesso invece di tre.",
+      "Ogni quadratino del canvas è un coefficiente binomiale C(n, k), il numero che sta nella riga n e nella posizione k del triangolo di Pascal. Invece di scrivere il numero, l'esploratore ne conserva solo il resto della divisione per un primo p e dipinge quel resto come un colore. Il resto zero, cioè il caso in cui p divide il numero, rimane vuoto. Quello che resta non è rumore, ma un motivo annidato di triangoli dentro triangoli: per p = 2 è il triangolo di Sierpiński, per gli altri primi una guarnizione con p(p + 1)/2 copie di sé stesso invece di tre.",
     sections: [
       {
         heading: "Una sola regola di somma, letta modulo p",
@@ -280,12 +280,12 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "I pulsanti «Modulo p» scelgono il primo p tra 2, 3, 5, 7, 11, 13, 17, 19 e 23; l'esploratore parte da p = 2. La scritta in sovrimpressione dà un nome al risultato: «Sierpiński» per p = 2, altrimenti «p-gasket». Il cursore «Righe» va da 16 a 512 a passi di 8 e parte da 256. Più righe significano celle più piccole e livelli più profondi del frattale; il triangolo viene sempre scalato per stare nella tela.",
+          "I pulsanti «Modulo p» scelgono il primo p tra 2, 3, 5, 7, 11, 13, 17, 19 e 23; l'esploratore parte da p = 2. La scritta in sovrimpressione dà un nome al risultato: «Sierpiński» per p = 2, altrimenti «p-gasket». Il cursore «Righe» va da 16 a 512 a passi di 8 e parte da 256. Più righe significano celle più piccole e livelli più profondi del frattale; il triangolo viene sempre scalato per stare nel canvas.",
           "La «Legenda dei resti» nella barra laterale mostra quale colore corrisponde a quale resto da 0 a p − 1. Per i resti non nulli ci sono undici colori distinti, quindi da p = 13 in su i colori cominciano a ripetersi. Il vuoto, invece, non viene mai riutilizzato: un resto non nullo non può mai essere dipinto come lo sfondo, perciò ogni buco che vedi è davvero un multiplo di p.",
         ],
       },
       {
-        heading: "Come è costruito",
+        heading: "Com'è costruito",
         paragraphs: [
           "L'intera immagine viene calcolata su un canvas 2D in un solo passaggio. Il codice tiene in memoria soltanto la riga precedente, come Uint8Array di resti, e da quella costruisce la successiva con la regola di somma presa mod p. Poiché p vale al massimo 23, qualsiasi somma di due resti sta comodamente in un byte. La memoria cresce quindi con la lunghezza della riga, non con la grandezza del triangolo, e con 512 righe il ciclo visita circa 131.000 celle.",
           "Ogni cella non nulla diventa un quadrato pieno. La riga n viene spostata a destra di mezza cella per ogni elemento mancante, il che centra il triangolo, e le righe distano 0,92 altezze di cella l'una dall'altra, così il triangolo risulta leggermente più schiacciato che largo. Il canvas è dimensionato in pixel del dispositivo, quindi le celle restano nitide sugli schermi ad alta densità. Non c'è alcuna animazione: l'immagine viene ridisegnata solo quando cambi p o il numero di righe, oppure quando un ResizeObserver segnala una nuova dimensione del canvas. Di conseguenza non c'è nulla da rallentare nemmeno quando il sistema chiede di ridurre il movimento.",
@@ -307,8 +307,8 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
         text: "Tieni p = 2 e 256 righe. La riga più in basso è la 255, e 255 in binario si scrive 11111111, quindi ogni elemento è dispari e la riga è tutta piena. Porta il cursore a 264: compare la riga 256, vuota tranne che alle due estremità, perché 256 è un solo 1 seguito da zeri.",
       },
       {
-        title: "Esattamente un setaccio di 343 righe",
-        text: "Scegli p = 7 e imposta 344 righe. Le prime 343 righe (7 al cubo) formano un setaccio completo di terzo livello, e la riga in più lì sotto, la 343, mostra soltanto le sue due celle d'angolo. Ogni tratto colorato di una riga segue le cifre in base 7 del suo numero di riga.",
+        title: "Esattamente una guarnizione di 343 righe",
+        text: "Scegli p = 7 e imposta 344 righe. Le prime 343 righe (7 al cubo) formano una guarnizione completa di terzo livello, e la riga in più lì sotto, la 343, mostra soltanto le sue due celle d'angolo. Ogni tratto colorato di una riga segue le cifre in base 7 del suo numero di riga.",
       },
       {
         title: "Leggi la riga alternata",
@@ -322,10 +322,10 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
   },
   pt: {
     metaDescription:
-      "Pinta o triângulo de Pascal módulo um primo e vê surgir triângulos de Sierpiński. Explora os teoremas de Lucas e de Kummer com até 512 linhas, no browser.",
+      "Pinta o triângulo de Pascal módulo um primo e vê surgir triângulos de Sierpiński. Explora os teoremas de Lucas e de Kummer com até 512 linhas, no navegador.",
     heading: "Como funciona este explorador",
     intro:
-      "Cada quadradinho da tela é um coeficiente binomial C(n, k), o número que está na linha n e na posição k do triângulo de Pascal. Em vez de escrever o número, o explorador guarda apenas o seu resto na divisão por um primo p e pinta esse resto como uma cor. O resto zero, ou seja, quando p divide o número, fica em branco. O que sobra não é ruído, mas um padrão encaixado de triângulos dentro de triângulos: para p = 2 é o triângulo de Sierpiński, para outros primos um peneiro com p(p + 1)/2 cópias de si mesmo em vez de três.",
+      "Cada quadradinho do canvas é um coeficiente binomial C(n, k), o número que está na linha n e na posição k do triângulo de Pascal. Em vez de escrever o número, o explorador guarda apenas o seu resto na divisão por um primo p e pinta esse resto como uma cor. O resto zero, ou seja, quando p divide o número, fica em branco. O que sobra não é ruído, mas um padrão encaixado de triângulos dentro de triângulos: para p = 2 é o triângulo de Sierpiński, para outros primos uma figura análoga com p(p + 1)/2 cópias de si mesma em vez de três.",
     sections: [
       {
         heading: "Uma só regra de adição, lida módulo p",
@@ -338,7 +338,7 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "Os botões «Módulo p» escolhem o primo p entre 2, 3, 5, 7, 11, 13, 17, 19 e 23; o explorador começa em p = 2. A legenda sobreposta dá nome ao resultado: «Sierpiński» para p = 2, «p-gasket» nos restantes casos. O cursor «Linhas» vai de 16 a 512 em passos de 8 e começa em 256. Mais linhas significam células mais pequenas e níveis mais profundos do fractal; o triângulo é sempre redimensionado para caber na tela.",
+          "Os botões «Módulo p» escolhem o primo p entre 2, 3, 5, 7, 11, 13, 17, 19 e 23; o explorador começa em p = 2. A legenda sobreposta dá nome ao resultado: «Sierpiński» para p = 2, «p-gasket» nos restantes casos. O cursor «Linhas» vai de 16 a 512 em passos de 8 e começa em 256. Mais linhas significam células mais pequenas e níveis mais profundos do fractal; o triângulo é sempre redimensionado para caber no canvas.",
           "A «Legenda de resíduos» na barra lateral mostra que cor corresponde a cada resto de 0 a p − 1. Há onze cores distintas para os restos não nulos, por isso a partir de p = 13 as cores começam a repetir-se. Já o branco nunca é reutilizado: um resto não nulo nunca pode ser pintado como fundo, de modo que cada buraco que vês é mesmo um múltiplo de p.",
         ],
       },
@@ -358,15 +358,15 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Experimenta",
+    experimentsHeading: "Experimenta isto",
     experiments: [
       {
         title: "Uma linha cheia, depois uma vazia",
         text: "Mantém p = 2 e 256 linhas. A linha de baixo é a linha 255, e 255 escreve-se 11111111 em binário, por isso todas as entradas são ímpares e a linha fica toda preenchida. Sobe o cursor para 264: aparece a linha 256, em branco exceto nas duas pontas, porque 256 é um único 1 seguido de zeros.",
       },
       {
-        title: "Exatamente um peneiro de 343 linhas",
-        text: "Escolhe p = 7 e define 344 linhas. As primeiras 343 linhas (7 ao cubo) formam um peneiro completo de nível três, e a linha extra por baixo, a linha 343, mostra apenas as suas duas células de canto. Cada troço colorido de uma linha segue os algarismos na base 7 do seu número de linha.",
+        title: "Exatamente um triângulo fractal de 343 linhas",
+        text: "Escolhe p = 7 e define 344 linhas. As primeiras 343 linhas (7 ao cubo) formam um triângulo fractal completo de nível três, e a linha extra por baixo, a linha 343, mostra apenas as suas duas células de canto. Cada troço colorido de uma linha segue os algarismos na base 7 do seu número de linha.",
       },
       {
         title: "Lê a linha alternada",
@@ -380,10 +380,10 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
   },
   sv: {
     metaDescription:
-      "Färglägg Pascals triangel modulo ett primtal och se Sierpińskitrianglar växa fram. Utforska Lucas och Kummers satser med upp till 512 rader, i webbläsaren.",
+      "Färglägg Pascals triangel modulo ett primtal och se Sierpiński-trianglar växa fram. Utforska Lucas och Kummers satser med upp till 512 rader, i webbläsaren.",
     heading: "Så fungerar den här utforskaren",
     intro:
-      "Varje liten kvadrat på ytan är en binomialkoefficient C(n, k), talet på rad n och plats k i Pascals triangel. I stället för att skriva ut talet behåller utforskaren bara dess rest vid division med ett primtal p och målar den resten som en färg. Rest noll, alltså att p delar talet, lämnas tom. Det som blir kvar är inget brus utan ett mönster av trianglar inuti trianglar: för p = 2 är det Sierpińskitriangeln, för andra primtal en sil med p(p + 1)/2 kopior av sig själv i stället för tre.",
+      "Varje liten kvadrat på ytan är en binomialkoefficient C(n, k), talet på rad n och plats k i Pascals triangel. I stället för att skriva ut talet behåller utforskaren bara dess rest vid division med ett primtal p och målar den resten som en färg. Rest noll, alltså att p delar talet, lämnas tom. Det som blir kvar är inget brus utan ett mönster av trianglar inuti trianglar: för p = 2 är det Sierpiński-triangeln, för andra primtal en sil med p(p + 1)/2 kopior av sig själv i stället för tre.",
     sections: [
       {
         heading: "En enda additionsregel, läst modulo p",
@@ -401,9 +401,9 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
         ],
       },
       {
-        heading: "Så är den byggd",
+        heading: "Hur den är byggd",
         paragraphs: [
-          "Hela bilden beräknas på en 2D-canvas i ett enda svep. Koden sparar bara föregående rad, som en Uint8Array med rester, och bygger nästa rad utifrån den med additionsregeln räknad mod p. Eftersom p är högst 23 ryms varje summa av två rester gott och väl i en byte. Minnet växer därför med radens längd, inte med triangelns storlek, och med 512 rader besöker slingan omkring 131 000 celler.",
+          "Hela bilden beräknas på en 2D-canvas i ett enda svep. Koden sparar bara föregående rad, som en Uint8Array med rester, och bygger nästa rad utifrån den med additionsregeln räknad mod p. Eftersom p är högst 23 ryms varje summa av två rester gott och väl i en byte. Minnet växer därför med radens längd, inte med triangelns storlek, och med 512 rader besöker slingan omkring 131\u00a0000 celler.",
           "Varje cell skild från noll blir en fylld kvadrat. Rad n skjuts en halv cell åt höger för varje tal som saknas, vilket centrerar triangeln, och raderna ligger 0,92 cellhöjder från varandra, så triangeln är något plattare än den är bred. Canvasen dimensioneras i enhetspixlar, så cellerna förblir skarpa på högupplösta skärmar. Det finns ingen animation alls: bilden ritas om bara när du ändrar p eller antalet rader, eller när en ResizeObserver rapporterar en ny canvasstorlek. Det betyder också att det inte finns något att bromsa när systemet ber om minskad rörelse.",
         ],
         code: ROWS_EXCERPT,
@@ -441,12 +441,12 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
       "Fargelegg Pascals trekant modulo et primtall og se Sierpiński-trekanter vokse fram. Utforsk Lucas' og Kummers teoremer med opptil 512 rader, rett i nettleseren.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Hver lille rute på lerretet er en binomialkoeffisient C(n, k), tallet i rad n og posisjon k i Pascals trekant. I stedet for å skrive ut tallet beholder utforskeren bare resten ved divisjon med et primtall p og maler den resten som en farge. Rest null, altså at p deler tallet, står tom. Det som blir igjen, er ikke støy, men et mønster av trekanter inni trekanter: for p = 2 er det Sierpiński-trekanten, for andre primtall en sil med p(p + 1)/2 kopier av seg selv i stedet for tre.",
+      "Hver lille rute på lerretet er en binomialkoeffisient C(n, k), tallet i rad n og posisjon k i Pascals trekant. I stedet for å skrive ut tallet beholder utforskeren bare resten ved divisjon med et primtall p og maler den resten som en farge. Rest null, altså at p deler tallet, står tom. Det som blir igjen, er ikke støy, men et mønster av trekanter inni trekanter: For p = 2 er det Sierpiński-trekanten, for andre primtall en sil med p(p + 1)/2 kopier av seg selv i stedet for tre.",
     sections: [
       {
         heading: "Én addisjonsregel, lest modulo p",
         paragraphs: [
-          "Pascals trekant bygges med én eneste regel: hvert tall er summen av de to tallene over, med enere langs begge kantene. Tallene vokser svært raskt (midten av rad 511, den siste du kan tegne, har mer enn 150 sifre), men rester oppfører seg pent under addisjon. Hvis du bare bryr deg om C(n, k) mod p, kan du bruke den samme regelen på restene og trenger aldri å røre et stort tall.",
+          "Pascals trekant bygges med én eneste regel: Hvert tall er summen av de to tallene over, med enere langs begge kantene. Tallene vokser svært raskt (midten av rad 511, den siste du kan tegne, har mer enn 150 sifre), men rester oppfører seg pent under addisjon. Hvis du bare bryr deg om C(n, k) mod p, kan du bruke den samme regelen på restene og trenger aldri å røre et stort tall.",
           "Hvorfor de tomme områdene danner trekanter, forklares av Lucas' teorem. Skriv n og k i grunntall p, med sifrene n_i og k_i. Da er C(n, k) mod p ganske enkelt produktet av de små koeffisientene C(n_i, k_i), siffer for siffer. En faktor er null nøyaktig når et siffer i k er større enn det tilsvarende sifferet i n. For p = 2 gir det en berømt snarvei: C(n, k) er et oddetall nøyaktig når hver binære ener i k også finnes i n.",
         ],
         formula: LUCAS_FORMULA,
@@ -455,21 +455,21 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "Knappene under «Modulus p» velger primtallet p blant 2, 3, 5, 7, 11, 13, 17, 19 og 23; utforskeren starter på p = 2. Teksten oppå bildet gir resultatet et navn: «Sierpiński» for p = 2, ellers «p-gasket». Glidebryteren «Rader» går fra 16 til 512 i steg på 8 og starter på 256. Flere rader betyr mindre celler og dypere nivåer av fraktalen; trekanten skaleres alltid slik at den får plass på lerretet.",
-          "«Rest-forklaring» i sidefeltet viser hvilken farge som står for hvilken rest fra 0 til p − 1. Det finnes elleve ulike farger for rester forskjellig fra null, så fra p = 13 og oppover begynner fargene å gjenta seg. Det tomme blir derimot aldri gjenbrukt: en rest forskjellig fra null kan aldri males som bakgrunn, så hvert hull du ser, er virkelig et multiplum av p.",
+          "«Rest-forklaring» i sidefeltet viser hvilken farge som står for hvilken rest fra 0 til p − 1. Det finnes elleve ulike farger for rester forskjellig fra null, så fra p = 13 og oppover begynner fargene å gjenta seg. Det tomme blir derimot aldri gjenbrukt: En rest forskjellig fra null kan aldri males som bakgrunn, så hvert hull du ser, er virkelig et multiplum av p.",
         ],
       },
       {
         heading: "Slik er den bygget",
         paragraphs: [
-          "Hele bildet beregnes på et 2D-canvas i ett gjennomløp. Koden tar bare vare på forrige rad, som en Uint8Array med rester, og bygger neste rad ut fra den med addisjonsregelen regnet mod p. Siden p er høyst 23, får enhver sum av to rester god plass i en byte. Minnet vokser derfor med lengden på raden, ikke med størrelsen på trekanten, og med 512 rader besøker løkken omtrent 131 000 celler.",
-          "Hver celle forskjellig fra null blir til en fylt rute. Rad n forskyves en halv celle mot høyre for hvert tall som mangler, noe som sentrerer trekanten, og radene ligger 0,92 cellehøyder fra hverandre, så trekanten er litt flatere enn den er bred. Canvaset dimensjoneres i enhetspiksler, så cellene holder seg skarpe på skjermer med høy pikseltetthet. Det finnes ingen animasjon i det hele tatt: bildet tegnes på nytt bare når du endrer p eller antall rader, eller når en ResizeObserver melder om en ny canvasstørrelse. Det betyr også at det ikke er noe å bremse når systemet ber om redusert bevegelse.",
+          "Hele bildet beregnes på et 2D-lerret i ett gjennomløp. Koden tar bare vare på forrige rad, som en Uint8Array med rester, og bygger neste rad ut fra den med addisjonsregelen regnet mod p. Siden p er høyst 23, får enhver sum av to rester god plass i en byte. Minnet vokser derfor med lengden på raden, ikke med størrelsen på trekanten, og med 512 rader besøker løkken omtrent 131\u00a0000 celler.",
+          "Hver celle forskjellig fra null blir til en fylt rute. Rad n forskyves en halv celle mot høyre for hvert tall som mangler, noe som sentrerer trekanten, og radene ligger 0,92 cellehøyder fra hverandre, så trekanten er litt flatere enn den er bred. Lerretet dimensjoneres i enhetspiksler, så cellene holder seg skarpe på skjermer med høy pikseltetthet. Det finnes ingen animasjon i det hele tatt: Bildet tegnes på nytt bare når du endrer p eller antall rader, eller når en ResizeObserver melder om en ny lerretsstørrelse. Det betyr også at det ikke er noe å bremse når systemet ber om redusert bevegelse.",
         ],
         code: ROWS_EXCERPT,
       },
       {
-        heading: "Å telle menteoverføringer: Kummers blikk",
+        heading: "Å telle menter: Kummers blikk",
         paragraphs: [
-          "Hintet i sidefeltet nevner Lucas' teorem. Kummers teorem ser det samme mønsteret fra en annen kant. Det sier at eksponenten til p i C(n, k) er lik antall menteoverføringer når du adderer k og n − k i grunntall p. En celle er altså tom nøyaktig når den addisjonen gir minst én menteoverføring, og farget nøyaktig når den ikke gir noen.",
+          "Hintet i sidefeltet nevner Lucas' teorem. Kummers teorem ser det samme mønsteret fra en annen kant. Det sier at eksponenten til p i C(n, k) er lik antall menter når du adderer k og n − k i grunntall p. En celle er altså tom nøyaktig når den addisjonen gir minst én mente, og farget nøyaktig når den ikke gir noen.",
           "Med hvilket som helst av de to teoremene kan du telle de fargede cellene. De første p^m radene inneholder nøyaktig (p(p + 1)/2)^m tall som ikke er delelige med p, fordi hvert nivå i mønsteret består av p(p + 1)/2 mindre kopier. Det gir fraktalen dimensjonen log(p(p + 1)/2) / log p: omtrent 1,585 for p = 2, omtrent 1,631 for p = 3 og omtrent 1,683 for p = 5. Jo større primtallet er, desto nærmere 2 kommer dimensjonen, og desto mer utfylt ser trekanten ut.",
         ],
       },
@@ -478,7 +478,7 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "En full rad, så en tom",
-        text: "Behold p = 2 og 256 rader. Den nederste raden er rad 255, og 255 er 11111111 binært, så hvert tall er et oddetall og raden er helt fylt. Dra glidebryteren til 264: rad 256 dukker opp, og den er tom bortsett fra de to endene, fordi 256 er en enkelt ener fulgt av nuller.",
+        text: "Behold p = 2 og 256 rader. Den nederste raden er rad 255, og 255 er 11111111 binært, så hvert tall er et oddetall og raden er helt fylt. Dra glidebryteren til 264: Rad 256 dukker opp, og den er tom bortsett fra de to endene, fordi 256 er en enkelt ener fulgt av nuller.",
       },
       {
         title: "Nøyaktig én sil på 343 rader",
@@ -486,11 +486,11 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
       },
       {
         title: "Les den alternerende raden",
-        text: "Velg p = 5 med 16 rader og sammenlign rad 4 med forklaringen. Tallene 1, 4, 6, 4, 1 blir til 1, 4, 1, 4, 1 mod 5: generelt veksler rad p − 1 mellom 1 og p − 1, fordi C(p − 1, k) ≡ (−1)^k mod p.",
+        text: "Velg p = 5 med 16 rader og sammenlign rad 4 med forklaringen. Tallene 1, 4, 6, 4, 1 blir til 1, 4, 1, 4, 1 mod 5: Generelt veksler rad p − 1 mellom 1 og p − 1, fordi C(p − 1, k) ≡ (−1)^k mod p.",
       },
       {
         title: "Se hullene krympe",
-        text: "Gå med 512 rader gjennom p = 2, 3, 5, 11 og 23. De tomme trekantene blir sjeldnere og det fargede arealet vokser, akkurat slik dimensjonsformelen forutsier. Ved p = 23 er grunnblokken 23 rader høy, så 512 rader er ikke engang nok til å fullføre det andre nivået i mønsteret: det ville kreve 23 × 23 = 529 rader.",
+        text: "Gå med 512 rader gjennom p = 2, 3, 5, 11 og 23. De tomme trekantene blir sjeldnere og det fargede arealet vokser, akkurat slik dimensjonsformelen forutsier. Ved p = 23 er grunnblokken 23 rader høy, så 512 rader er ikke engang nok til å fullføre det andre nivået i mønsteret: Det ville kreve 23 × 23 = 529 rader.",
       },
     ],
   },

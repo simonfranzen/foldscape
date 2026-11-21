@@ -76,7 +76,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       },
       {
         title: "Randomness that draws order",
-        text: "Switch to the chaos game and drag the points per frame down to 100. In the first second the dots look like scattered noise, yet none of them falls into the large central hole. Then push it to 20,000.",
+        text: "Switch to the chaos game and drag Points / frame down to 100. In the first second the dots look like scattered noise, yet none of them falls into the large central hole. Then push it to 20,000.",
       },
       {
         title: "Find the powers of two",
@@ -137,7 +137,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       },
       {
         title: "Zufall, der Ordnung zeichnet",
-        text: "Wechsle zum Chaosspiel und zieh die Punkte pro Frame auf 100 herunter. In der ersten Sekunde wirken die Punkte wie verstreutes Rauschen, und trotzdem fällt keiner in das große Loch in der Mitte. Schieb den Regler dann auf 20.000.",
+        text: "Wechsle zum Chaosspiel und zieh «Punkte / Frame» auf 100 herunter. In der ersten Sekunde wirken die Punkte wie verstreutes Rauschen, und trotzdem fällt keiner in das große Loch in der Mitte. Schieb den Regler dann auf 20.000.",
       },
       {
         title: "Die Zweierpotenzen finden",
@@ -197,7 +197,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       },
       {
         title: "Un azar que dibuja orden",
-        text: "Cambia al «Juego del Caos» y baja los puntos por fotograma hasta 100. Durante el primer segundo los puntos parecen ruido disperso, y sin embargo ninguno cae en el gran agujero central. Después súbelo a 20 000.",
+        text: "Cambia al «Juego del Caos» y baja «Puntos / fotograma» hasta 100. Durante el primer segundo los puntos parecen ruido disperso, y sin embargo ninguno cae en el gran agujero central. Después súbelo a 20 000.",
       },
       {
         title: "Encuentra las potencias de dos",
@@ -227,8 +227,8 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       {
         heading: "Les quatre constructions et leurs réglages",
         paragraphs: [
-          "« Subdivision » trace le triangle à la profondeur de ton choix, de 0 à 10, en partant de 6. Quand tu changes la profondeur, l'image se reconstruit niveau par niveau, un niveau toutes les 280 millisecondes. Le compteur affiche 3^profondeur triangles, soit 59 049 à la profondeur 10.",
-          "Le « Jeu du Chaos » part du centre du canevas, choisit au hasard l'un des trois sommets, saute à mi-chemin dans sa direction, pose un point et recommence. Le curseur fixe le nombre de points posés par image d'animation, de 100 à 20 000 (4 000 par défaut), et le compteur affiche le total cumulé.",
+          "« Subdivision » trace le triangle à la profondeur de ton choix, de 0 à 10, en partant de 6. Quand tu changes la profondeur, l'image se reconstruit niveau par niveau, un niveau toutes les 280 millisecondes. Le compteur affiche 3^profondeur triangles, soit 59 049 à la profondeur 10.",
+          "Le « Jeu du Chaos » part du centre du canevas, choisit au hasard l'un des trois sommets, saute à mi-chemin dans sa direction, pose un point et recommence. Le curseur fixe le nombre de points posés par image d'animation, de 100 à 20 000 (4 000 par défaut), et le compteur affiche le total cumulé.",
           "« Pascal mod 2 » construit le triangle de Pascal et ne remplit une cellule que là où le coefficient binomial C(n, k) est impair. Le curseur fixe le nombre de lignes, de 10 à 256 (64 par défaut). La « Règle 90 » part d'une seule cellule vivante et fait de chaque cellule le XOR de ses deux voisines de la ligne du dessus ; le curseur fixe le nombre de générations, là aussi de 10 à 256 (96 par défaut). Les pastilles de couleur recolorent le dessin, et « Redémarrer » relance la construction en cours depuis le début.",
         ],
       },
@@ -237,7 +237,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Tout est dessiné sur un canevas 2D dimensionné selon la densité de pixels de l'appareil et redessiné quand sa taille change. La subdivision est la fonction récursive ci-dessous : elle coupe les trois arêtes en deux, descend dans les trois triangles des coins et ne remplit un triangle que lorsque la profondeur atteint zéro, de sorte que le triangle central de chaque niveau n'est tout simplement jamais peint.",
           "Le jeu du chaos tourne dans une boucle d'animation. Avant de tracer quoi que ce soit, il effectue 20 sauts d'échauffement, puis dessine chaque point comme un rectangle d'un pixel dans une couleur semi-transparente, si bien que les zones les plus visitées deviennent plus lumineuses. Pascal mod 2 ne calcule jamais de coefficient binomial : chaque ligne se construit à partir de la précédente avec XOR, qui est l'addition modulo 2. C'est pourquoi 256 lignes s'affichent instantanément, alors que C(255, 127) compte 76 chiffres. La règle 90 utilise pour chaque génération un Uint8Array large de 2 · générations − 1 cellules, assez large pour que le motif n'atteigne jamais le bord.",
-          "Quand la réduction des animations est activée, la subdivision passe directement à la profondeur finale, et le jeu du chaos trace d'un coup un unique lot de 60 000 points puis s'arrête. Pascal et la règle 90 sont de toute façon des dessins statiques.",
+          "Quand la réduction des animations est activée, la subdivision passe directement à la profondeur finale, et le jeu du chaos trace d'un coup un unique lot de 60 000 points puis s'arrête. Pascal et la règle 90 sont de toute façon des dessins statiques.",
         ],
         code: SUBDIVISION_EXCERPT,
       },
@@ -253,11 +253,11 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Compte les triangles",
-        text: "En mode « Subdivision », règle la profondeur sur 1, 2 puis 3. Tu obtiens 3, 9 et 27 triangles, qui couvrent 3/4, 9/16 et 27/64 de l'aire de départ. À la profondeur 10, les 59 049 triangles en couvrent moins de 6 %.",
+        text: "En mode « Subdivision », règle la profondeur sur 1, 2 puis 3. Tu obtiens 3, 9 et 27 triangles, qui couvrent 3/4, 9/16 et 27/64 de l'aire de départ. À la profondeur 10, les 59 049 triangles en couvrent moins de 6 %.",
       },
       {
         title: "Un hasard qui dessine de l'ordre",
-        text: "Passe au « Jeu du Chaos » et descends le nombre de points par image à 100. Pendant la première seconde, les points ressemblent à du bruit éparpillé, et pourtant aucun ne tombe dans le grand trou central. Monte ensuite à 20 000.",
+        text: "Passe au « Jeu du Chaos » et descends « Points / image » à 100. Pendant la première seconde, les points ressemblent à du bruit éparpillé, et pourtant aucun ne tombe dans le grand trou central. Monte ensuite à 20 000.",
       },
       {
         title: "Trouve les puissances de deux",
@@ -271,10 +271,10 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
   },
   it: {
     metaDescription:
-      "Disegna il triangolo di Sierpiński in quattro modi: suddivisione ricorsiva, gioco del caos, Pascal modulo 2 e regola 90, e scopri perché coincidono.",
+      "Disegna il triangolo di Sierpiński in quattro modi: suddivisione ricorsiva, gioco del caos, Pascal modulo 2 e Regola 90, e scopri perché coincidono.",
     heading: "Come funziona questo esploratore",
     intro:
-      "Qui la stessa figura viene disegnata in quattro modi del tutto diversi: ritagliando triangoli da un triangolo, con una passeggiata aleatoria, con la parità dei coefficienti binomiali e con un automa cellulare unidimensionale. Cambiare modalità cambia la ricetta, non il risultato. Che quattro procedimenti senza alcun legame arrivino allo stesso frattale è il vero senso di questa stanza.",
+      "Qui la stessa figura viene disegnata in quattro modi del tutto diversi: ritagliando triangoli da un triangolo, con una passeggiata casuale, con la parità dei coefficienti binomiali e con un automa cellulare unidimensionale. Cambiare modalità cambia la ricetta, non il risultato. Che quattro procedimenti senza alcun legame arrivino allo stesso frattale è il vero senso di questa stanza.",
     sections: [
       {
         heading: "Un triangolo con buchi a ogni scala",
@@ -288,16 +288,16 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
         heading: "Le quattro costruzioni e i loro controlli",
         paragraphs: [
           "«Suddivisione» disegna il triangolo alla profondità che scegli, da 0 a 10, partendo da 6. Quando cambi la profondità, l'immagine viene ricostruita livello per livello, un livello ogni 280 millisecondi. Il contatore mostra 3^profondità triangoli, cioè 59.049 a profondità 10.",
-          "Il «Gioco del Caos» parte dal centro del canvas, sceglie a caso uno dei tre vertici, salta a metà strada verso di esso, segna un punto e ripete. Il cursore stabilisce quanti punti vengono segnati per ogni fotogramma dell'animazione, da 100 a 20.000 (4000 di default), e il contatore mostra il totale progressivo.",
-          "«Pascal mod 2» costruisce il triangolo di Tartaglia (o di Pascal) e riempie una cella solo dove il coefficiente binomiale C(n, k) è dispari. Il cursore stabilisce il numero di righe, da 10 a 256 (64 di default). La «Regola 90» parte da una sola cella viva e rende ogni cella lo XOR delle sue due vicine nella riga sopra; il cursore stabilisce il numero di generazioni, anche qui da 10 a 256 (96 di default). I campioni di colore ricolorano il disegno, e «Riavvia» fa ripartire da capo la costruzione corrente.",
+          "Il «Gioco del Caos» parte dal centro del canvas, sceglie a caso uno dei tre vertici, salta a metà strada verso di esso, segna un punto e ripete. Il cursore stabilisce quanti punti vengono segnati per ogni fotogramma dell'animazione, da 100 a 20.000 (predefinito 4000), e il contatore mostra il totale progressivo.",
+          "«Pascal mod 2» costruisce il triangolo di Tartaglia (o di Pascal) e riempie una cella solo dove il coefficiente binomiale C(n, k) è dispari. Il cursore stabilisce il numero di righe, da 10 a 256 (predefinito 64). La «Regola 90» parte da una sola cella viva e rende ogni cella lo XOR delle sue due vicine nella riga sopra; il cursore stabilisce il numero di generazioni, anche qui da 10 a 256 (predefinito 96). I campioni di colore ricolorano il disegno, e «Riavvia» fa ripartire da capo la costruzione corrente.",
         ],
       },
       {
         heading: "Com'è costruito",
         paragraphs: [
           "Tutto è disegnato su un canvas 2D dimensionato in base alla densità di pixel del dispositivo e ridisegnato quando viene ridimensionato. La suddivisione è la funzione ricorsiva qui sotto: dimezza i tre lati, scende nei tre triangoli d'angolo e riempie un triangolo solo quando la profondità arriva a zero, così il triangolo centrale di ogni livello semplicemente non viene mai dipinto.",
-          "Il gioco del caos gira in un ciclo di animazione. Prima di segnare qualsiasi cosa fa 20 salti di riscaldamento, poi disegna ogni punto come un rettangolo di un pixel in un colore semitrasparente, così le zone visitate più spesso diventano più luminose. Pascal mod 2 non calcola mai un coefficiente binomiale: ogni riga è costruita dalla precedente con lo XOR, che è l'addizione modulo 2. Per questo 256 righe sono istantanee, benché C(255, 127) abbia 76 cifre. La regola 90 usa per ogni generazione un Uint8Array largo 2 · generazioni − 1 celle, abbastanza perché il motivo non raggiunga mai il bordo.",
-          "Con la riduzione del movimento attiva, la suddivisione salta direttamente alla profondità finale, e il gioco del caos segna in una volta sola un unico blocco di 60.000 punti e poi si ferma. Pascal e la regola 90 sono in ogni caso disegni statici.",
+          "Il gioco del caos gira in un ciclo di animazione. Prima di segnare qualsiasi cosa fa 20 salti di riscaldamento, poi disegna ogni punto come un rettangolo di un pixel in un colore semitrasparente, così le zone visitate più spesso diventano più luminose. Pascal mod 2 non calcola mai un coefficiente binomiale: ogni riga è costruita dalla precedente con lo XOR, che è l'addizione modulo 2. Per questo 256 righe sono istantanee, benché C(255, 127) abbia 76 cifre. La Regola 90 usa per ogni generazione un Uint8Array largo 2 · generazioni − 1 celle, abbastanza perché il motivo non raggiunga mai il bordo.",
+          "Con il movimento ridotto attivo, la suddivisione salta direttamente alla profondità finale, e il gioco del caos segna in una volta sola un unico blocco di 60.000 punti e poi si ferma. Pascal e la Regola 90 sono in ogni caso disegni statici.",
         ],
         code: SUBDIVISION_EXCERPT,
       },
@@ -305,11 +305,11 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
         heading: "Perché le quattro immagini coincidono",
         paragraphs: [
           "Il gioco del caos funziona perché il triangolo di Sierpiński è l'unico insieme ricoperto esattamente dalle sue tre copie dimezzate. Ogni salto applica una delle tre trasformazioni «dimezza la distanza dal vertice i». Un punto del triangolo ci rimane, e un punto esterno si avvicina del doppio a ogni salto. Dopo i 20 salti di riscaldamento, qualsiasi errore iniziale si è ridotto di un fattore di circa un milione, molto al di sotto di un pixel, quindi nemmeno un punto finisce in un buco.",
-          "Pascal e la regola 90 coincidono perché sono la stessa regola. La regola di Pascal C(n, k) = C(n − 1, k − 1) + C(n − 1, k), letta modulo 2, dice che ogni elemento è lo XOR dei due elementi sopra di esso, e questa è la regola 90 con le celle distanziate. Il teorema di Lucas ti dice poi esattamente quali celle sono piene: C(n, k) è dispari precisamente quando ogni cifra binaria di k è al più uguale alla cifra corrispondente di n. Quindi la riga n ha 2^s elementi dispari, dove s è il numero di uno nella scrittura binaria di n.",
+          "Pascal e la Regola 90 coincidono perché sono la stessa regola. La regola di Pascal C(n, k) = C(n − 1, k − 1) + C(n − 1, k), letta modulo 2, dice che ogni elemento è lo XOR dei due elementi sopra di esso, e questa è la Regola 90 con le celle distanziate. Il teorema di Lucas ti dice poi esattamente quali celle sono piene: C(n, k) è dispari precisamente quando ogni cifra binaria di k è al più uguale alla cifra corrispondente di n. Quindi la riga n ha 2^s elementi dispari, dove s è il numero di uno nella scrittura binaria di n.",
         ],
       },
     ],
-    experimentsHeading: "Prova questo",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Conta i triangoli",
@@ -325,13 +325,13 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       },
       {
         title: "Stesso triangolo, spaziatura diversa",
-        text: "Confronta «Pascal mod 2» con 64 righe e la «Regola 90» con 64 generazioni. I motivi coincidono, salvo che la regola 90 usa il doppio delle colonne e le sue celle vive occupano solo una posizione su due, perché ogni elemento di Pascal cade tra le due celle da cui deriva.",
+        text: "Confronta «Pascal mod 2» con 64 righe e la «Regola 90» con 64 generazioni. I motivi coincidono, salvo che la Regola 90 usa il doppio delle colonne e le sue celle vive occupano solo una posizione su due, perché ogni elemento di Pascal cade tra le due celle da cui deriva.",
       },
     ],
   },
   pt: {
     metaDescription:
-      "Desenha o triângulo de Sierpiński de quatro maneiras: subdivisão recursiva, jogo do caos, Pascal módulo 2 e regra 90, e descobre porque coincidem.",
+      "Desenha o triângulo de Sierpiński de quatro maneiras: subdivisão recursiva, jogo do caos, Pascal módulo 2 e Regra 90, e descobre porque coincidem.",
     heading: "Como funciona este explorador",
     intro:
       "Aqui a mesma figura é desenhada de quatro maneiras completamente diferentes: recortando triângulos de um triângulo, com um passeio aleatório, com a paridade dos coeficientes binomiais e com um autómato celular unidimensional. Mudar de modo muda a receita, não o resultado. Que quatro processos sem relação entre si cheguem ao mesmo fractal é o verdadeiro sentido desta sala.",
@@ -347,17 +347,17 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       {
         heading: "As quatro construções e os seus controlos",
         paragraphs: [
-          "«Subdivisão» desenha o triângulo com a profundidade que escolheres, de 0 a 10, começando em 6. Quando mudas a profundidade, a imagem é reconstruída nível a nível, um nível a cada 280 milissegundos. O contador mostra 3^profundidade triângulos, ou seja, 59.049 com profundidade 10.",
-          "O «Jogo do Caos» começa no centro da tela, escolhe ao acaso um dos três vértices, salta até meio do caminho na sua direção, marca um ponto e repete. O cursor define quantos pontos são marcados por fotograma da animação, de 100 a 20.000 (4000 por omissão), e o contador mostra o total acumulado.",
+          "«Subdivisão» desenha o triângulo com a profundidade que escolheres, de 0 a 10, começando em 6. Quando mudas a profundidade, a imagem é reconstruída nível a nível, um nível a cada 280 milissegundos. O contador mostra 3^profundidade triângulos, ou seja, 59 049 com profundidade 10.",
+          "O «Jogo do Caos» começa no centro do canvas, escolhe ao acaso um dos três vértices, salta até meio do caminho na sua direção, marca um ponto e repete. O cursor define quantos pontos são marcados por fotograma da animação, de 100 a 20 000 (4000 por omissão), e o contador mostra o total acumulado.",
           "«Pascal mod 2» constrói o triângulo de Pascal e preenche uma célula apenas onde o coeficiente binomial C(n, k) é ímpar. O cursor define o número de linhas, de 10 a 256 (64 por omissão). A «Regra 90» parte de uma única célula viva e faz de cada célula o XOR das suas duas vizinhas na linha de cima; o cursor define o número de gerações, também de 10 a 256 (96 por omissão). As amostras de cor mudam a cor do desenho, e «Reiniciar» volta a executar do zero a construção atual.",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
-          "Tudo é desenhado numa tela 2D dimensionada de acordo com a densidade de píxeis do dispositivo e redesenhada quando muda de tamanho. A subdivisão é a função recursiva abaixo: divide ao meio as três arestas, desce aos três triângulos dos cantos e só preenche um triângulo quando a profundidade chega a zero, pelo que o triângulo central de cada nível simplesmente nunca é pintado.",
-          "O jogo do caos corre num ciclo de animação. Antes de marcar seja o que for, dá 20 saltos de aquecimento, e depois desenha cada ponto como um retângulo de um píxel numa cor semitransparente, de modo que as zonas mais visitadas ficam mais brilhantes. Pascal mod 2 nunca calcula um coeficiente binomial: cada linha é construída a partir da anterior com XOR, que é a adição módulo 2. É por isso que 256 linhas são instantâneas, embora C(255, 127) tenha 76 algarismos. A regra 90 usa, por geração, um Uint8Array com 2 · gerações − 1 células de largura, o suficiente para o padrão nunca chegar à borda.",
-          "Com o movimento reduzido ativado, a subdivisão salta diretamente para a profundidade final, e o jogo do caos marca de uma só vez um único lote de 60.000 pontos e depois para. Pascal e a regra 90 são, de qualquer modo, desenhos estáticos.",
+          "Tudo é desenhado num canvas 2D dimensionado de acordo com a densidade de píxeis do dispositivo e redesenhado quando muda de tamanho. A subdivisão é a função recursiva abaixo: divide ao meio os três lados, desce aos três triângulos dos cantos e só preenche um triângulo quando a profundidade chega a zero, pelo que o triângulo central de cada nível simplesmente nunca é pintado.",
+          "O jogo do caos corre num ciclo de animação. Antes de marcar seja o que for, dá 20 saltos de aquecimento, e depois desenha cada ponto como um retângulo de um píxel numa cor semitransparente, de modo que as zonas mais visitadas ficam mais brilhantes. Pascal mod 2 nunca calcula um coeficiente binomial: cada linha é construída a partir da anterior com XOR, que é a adição módulo 2. É por isso que 256 linhas são instantâneas, embora C(255, 127) tenha 76 algarismos. A Regra 90 usa, por geração, um Uint8Array com 2 · gerações − 1 células de largura, o suficiente para o padrão nunca chegar à margem.",
+          "Com o movimento reduzido ativado, a subdivisão salta diretamente para a profundidade final, e o jogo do caos marca de uma só vez um único lote de 60 000 pontos e depois para. Pascal e a Regra 90 são, de qualquer modo, desenhos estáticos.",
         ],
         code: SUBDIVISION_EXCERPT,
       },
@@ -365,7 +365,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
         heading: "Porque é que as quatro imagens coincidem",
         paragraphs: [
           "O jogo do caos funciona porque o triângulo de Sierpiński é o único conjunto exatamente coberto pelas suas três cópias reduzidas a metade. Cada salto aplica uma das três transformações «reduz a metade a distância ao vértice i». Um ponto do triângulo permanece nele, e um ponto de fora fica duas vezes mais perto a cada salto. Depois dos 20 saltos de aquecimento, qualquer erro inicial encolheu por um fator de cerca de um milhão, muito abaixo de um píxel, pelo que nem um único ponto cai num buraco.",
-          "Pascal e a regra 90 coincidem porque são a mesma regra. A regra de Pascal C(n, k) = C(n − 1, k − 1) + C(n − 1, k), lida módulo 2, diz que cada entrada é o XOR das duas entradas acima dela, e isso é a regra 90 com as células afastadas. O teorema de Lucas diz-te então exatamente que células estão preenchidas: C(n, k) é ímpar precisamente quando cada dígito binário de k é, no máximo, o dígito correspondente de n. Assim, a linha n tem 2^s entradas ímpares, onde s é o número de uns na representação binária de n.",
+          "Pascal e a Regra 90 coincidem porque são a mesma regra. A regra de Pascal C(n, k) = C(n − 1, k − 1) + C(n − 1, k), lida módulo 2, diz que cada entrada é o XOR das duas entradas acima dela, e isso é a Regra 90 com as células afastadas. O teorema de Lucas diz-te então exatamente que células estão preenchidas: C(n, k) é ímpar precisamente quando cada dígito binário de k é, no máximo, o dígito correspondente de n. Assim, a linha n tem 2^s entradas ímpares, onde s é o número de uns na representação binária de n.",
         ],
       },
     ],
@@ -373,11 +373,11 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Conta os triângulos",
-        text: "No modo «Subdivisão», põe a profundidade em 1, 2 e 3. Obténs 3, 9 e 27 triângulos, que cobrem 3/4, 9/16 e 27/64 da área original. Com profundidade 10, os 59.049 triângulos cobrem menos de 6 por cento dela.",
+        text: "No modo «Subdivisão», põe a profundidade em 1, 2 e 3. Obténs 3, 9 e 27 triângulos, que cobrem 3/4, 9/16 e 27/64 da área original. Com profundidade 10, os 59 049 triângulos cobrem menos de 6 por cento dela.",
       },
       {
         title: "Um acaso que desenha ordem",
-        text: "Muda para o «Jogo do Caos» e baixa os pontos por fotograma para 100. No primeiro segundo os pontos parecem ruído disperso, e no entanto nenhum cai no grande buraco central. Depois sobe para 20.000.",
+        text: "Muda para o «Jogo do Caos» e baixa «Pontos / frame» para 100. No primeiro segundo os pontos parecem ruído disperso, e no entanto nenhum cai no grande buraco central. Depois sobe para 20 000.",
       },
       {
         title: "Encontra as potências de dois",
@@ -385,13 +385,13 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       },
       {
         title: "O mesmo triângulo, outro espaçamento",
-        text: "Compara «Pascal mod 2» com 64 linhas e a «Regra 90» com 64 gerações. Os padrões coincidem, só que a regra 90 usa o dobro das colunas e as suas células vivas ocupam apenas uma em cada duas posições, porque cada entrada de Pascal cai entre as duas células de onde veio.",
+        text: "Compara «Pascal mod 2» com 64 linhas e a «Regra 90» com 64 gerações. Os padrões coincidem, só que a Regra 90 usa o dobro das colunas e as suas células vivas ocupam apenas uma em cada duas posições, porque cada entrada de Pascal cai entre as duas células de onde veio.",
       },
     ],
   },
   sv: {
     metaDescription:
-      "Rita Sierpińskitriangeln på fyra sätt: rekursiv uppdelning, kaosspelet, Pascals triangel modulo 2 och regel 90, och se varför alla ger samma fraktal.",
+      "Rita Sierpiński-triangeln på fyra sätt: rekursiv uppdelning, kaosspelet, Pascals triangel modulo 2 och Regel 90, och se varför alla ger samma fraktal.",
     heading: "Så fungerar den här utforskaren",
     intro:
       "Samma form ritas här på fyra helt olika sätt: genom att skära ut trianglar ur en triangel, genom en slumpvandring, genom binomialkoefficienternas paritet och genom en endimensionell cellulär automat. När du byter läge ändras receptet, inte resultatet. Att fyra orelaterade metoder hamnar i samma fraktal är själva poängen med det här rummet.",
@@ -400,32 +400,32 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
         heading: "En triangel med hål i alla skalor",
         paragraphs: [
           "Börja med en fylld triangel och förbind sidornas mittpunkter. Då delas den i fyra mindre trianglar; ta bort den i mitten. Kvar blir tre kopior i halv storlek, och du upprepar steget på var och en av dem, i all oändlighet. Efter n steg finns det 3ⁿ trianglar, var och en med 2ⁿ gånger kortare sidor, så den återstående arean är (3/4)ⁿ av den ursprungliga och går mot noll. Wacław Sierpiński beskrev mängden 1915.",
-          "Det som blir kvar är självlikformigt: det består av exakt tre kopior av sig självt, var och en förminskad till hälften. För en vanlig fylld triangel ger en halvering av storleken fyra kopior; för en sträcka två. Löser man 2^d = 3 får man den fraktala dimensionen d = log 3 / log 2, så Sierpińskitriangeln är mer än en kurva och mindre än en yta.",
+          "Det som blir kvar är självlikt: det består av exakt tre kopior av sig självt, var och en förminskad till hälften. För en vanlig fylld triangel ger en halvering av storleken fyra kopior; för en sträcka två. Löser man 2^d = 3 får man den fraktala dimensionen d = log 3 / log 2, så Sierpiński-triangeln är mer än en kurva och mindre än en yta.",
         ],
         formula: SIERPINSKI_FORMULA_COMMA,
       },
       {
         heading: "De fyra konstruktionerna och deras reglage",
         paragraphs: [
-          "”Uppdelning” ritar triangeln med ett valfritt djup från 0 till 10, med 6 som startvärde. När du ändrar djupet byggs bilden upp på nytt nivå för nivå, en nivå var 280:e millisekund. Räknaren visar 3^djup trianglar, vilket är 59 049 vid djup 10.",
-          "”Kaosspelet” börjar mitt på ritytan, väljer slumpmässigt ett av de tre hörnen, hoppar halvvägs dit, sätter ut en punkt och upprepar. Reglaget bestämmer hur många punkter som sätts ut per animationsbildruta, från 100 till 20 000 (förvalt 4 000), och räknaren visar den löpande summan.",
-          "”Pascal mod 2” bygger upp Pascals triangel och fyller en cell bara där binomialkoefficienten C(n, k) är udda. Reglaget bestämmer antalet rader, från 10 till 256 (förvalt 64). ”Regel 90” utgår från en enda levande cell och låter varje cell bli XOR av sina två grannar i raden ovanför; reglaget bestämmer antalet generationer, även här från 10 till 256 (förvalt 96). Färgrutorna färgar om teckningen, och ”Starta om” kör den aktuella konstruktionen från början igen.",
+          "”Uppdelning” ritar triangeln med ett valfritt djup från 0 till 10, med 6 som startvärde. När du ändrar djupet byggs bilden upp på nytt nivå för nivå, en nivå var 280:e millisekund. Räknaren visar 3^djup trianglar, vilket är 59\u00a0049 vid djup 10.",
+          "”Kaosspelet” börjar mitt på ritytan, väljer slumpmässigt ett av de tre hörnen, hoppar halvvägs dit, sätter ut en punkt och upprepar. Reglaget bestämmer hur många punkter som sätts ut per animationsbildruta, från 100 till 20\u00a0000 (standard 4000), och räknaren visar den löpande summan.",
+          "”Pascal mod 2” bygger upp Pascals triangel och fyller en cell bara där binomialkoefficienten C(n, k) är udda. Reglaget bestämmer antalet rader, från 10 till 256 (standard 64). ”Regel 90” utgår från en enda levande cell och låter varje cell bli XOR av sina två grannar i raden ovanför; reglaget bestämmer antalet generationer, även här från 10 till 256 (standard 96). Färgrutorna färgar om teckningen, och ”Starta om” kör den aktuella konstruktionen från början igen.",
         ],
       },
       {
-        heading: "Så är den byggd",
+        heading: "Hur den är byggd",
         paragraphs: [
           "Allt ritas på en 2D-canvas som är anpassad till enhetens pixeltäthet och ritas om när storleken ändras. Uppdelningen är den rekursiva funktionen nedan: den halverar de tre kanterna, går vidare in i de tre hörntrianglarna och fyller en triangel först när djupet når noll, så mittentriangeln på varje nivå blir helt enkelt aldrig målad.",
-          "Kaosspelet körs i en animationsloop. Innan något ritas gör det 20 uppvärmningshopp, och sedan ritas varje punkt som en rektangel på en pixel i en halvgenomskinlig färg, så att områden som besöks oftare blir ljusare. Pascal mod 2 beräknar aldrig någon binomialkoefficient: varje rad byggs från den föregående med XOR, som är addition modulo 2. Därför går 256 rader på ett ögonblick, trots att C(255, 127) har 76 siffror. Regel 90 använder för varje generation en Uint8Array som är 2 · generationer − 1 celler bred, tillräckligt bred för att mönstret aldrig ska nå kanten.",
-          "Med reducerad rörelse påslagen hoppar uppdelningen direkt till slutdjupet, och kaosspelet ritar en enda omgång på 60 000 punkter på en gång och stannar sedan. Pascal och regel 90 är statiska teckningar i vilket fall.",
+          "Kaosspelet körs i en animationsslinga. Innan något ritas gör det 20 uppvärmningshopp, och sedan ritas varje punkt som en rektangel på en pixel i en halvgenomskinlig färg, så att områden som besöks oftare blir ljusare. Pascal mod 2 beräknar aldrig någon binomialkoefficient: varje rad byggs från den föregående med XOR, som är addition modulo 2. Därför går 256 rader på ett ögonblick, trots att C(255, 127) har 76 siffror. Regel 90 använder för varje generation en Uint8Array som är 2 · generationer − 1 celler bred, tillräckligt bred för att mönstret aldrig ska nå kanten.",
+          "Med minskad rörelse påslagen hoppar uppdelningen direkt till slutdjupet, och kaosspelet ritar en enda omgång på 60\u00a0000 punkter på en gång och stannar sedan. Pascal och Regel 90 är statiska teckningar i vilket fall.",
         ],
         code: SUBDIVISION_EXCERPT,
       },
       {
         heading: "Varför de fyra bilderna stämmer överens",
         paragraphs: [
-          "Kaosspelet fungerar eftersom Sierpińskitriangeln är den enda mängd som täcks exakt av sina tre halverade kopior. Varje hopp tillämpar en av de tre avbildningarna ”halvera avståndet till hörn i”. En punkt på triangeln stannar kvar på den, och en punkt utanför kommer dubbelt så nära för varje hopp. Efter de 20 uppvärmningshoppen har varje startfel krympt med en faktor på ungefär en miljon, långt under en pixel, så inte en enda punkt hamnar i ett hål.",
-          "Pascal och regel 90 stämmer överens eftersom de är samma regel. Pascals regel C(n, k) = C(n − 1, k − 1) + C(n − 1, k), läst modulo 2, säger att varje element är XOR av de två elementen ovanför, och det är regel 90 med cellerna utdragna. Lucas sats talar sedan om exakt vilka celler som är fyllda: C(n, k) är udda precis när varje binär siffra i k är högst lika stor som motsvarande siffra i n. Rad n har alltså 2^s udda element, där s är antalet ettor i den binära utvecklingen av n.",
+          "Kaosspelet fungerar eftersom Sierpiński-triangeln är den enda mängd som täcks exakt av sina tre halverade kopior. Varje hopp tillämpar en av de tre avbildningarna ”halvera avståndet till hörn i”. En punkt på triangeln stannar kvar på den, och en punkt utanför kommer dubbelt så nära för varje hopp. Efter de 20 uppvärmningshoppen har varje startfel krympt med en faktor på ungefär en miljon, långt under en pixel, så inte en enda punkt hamnar i ett hål.",
+          "Pascal och Regel 90 stämmer överens eftersom de är samma regel. Pascals regel C(n, k) = C(n − 1, k − 1) + C(n − 1, k), läst modulo 2, säger att varje element är XOR av de två elementen ovanför, och det är Regel 90 med cellerna utdragna. Lucas sats talar sedan om exakt vilka celler som är fyllda: C(n, k) är udda precis när varje binär siffra i k är högst lika stor som motsvarande siffra i n. Rad n har alltså 2^s udda element, där s är antalet ettor i den binära utvecklingen av n.",
         ],
       },
     ],
@@ -433,11 +433,11 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Räkna trianglarna",
-        text: "Ställ in djupet på 1, 2 och 3 i läget ”Uppdelning”. Du får 3, 9 och 27 trianglar, som täcker 3/4, 9/16 och 27/64 av den ursprungliga arean. Vid djup 10 täcker de 59 049 trianglarna mindre än 6 procent av den.",
+        text: "Ställ in djupet på 1, 2 och 3 i läget ”Uppdelning”. Du får 3, 9 och 27 trianglar, som täcker 3/4, 9/16 och 27/64 av den ursprungliga arean. Vid djup 10 täcker de 59\u00a0049 trianglarna mindre än 6 procent av den.",
       },
       {
         title: "Slump som ritar ordning",
-        text: "Byt till ”Kaosspelet” och dra ner punkter per bildruta till 100. Under den första sekunden ser punkterna ut som utspritt brus, och ändå hamnar ingen av dem i det stora hålet i mitten. Dra sedan upp till 20 000.",
+        text: "Byt till ”Kaosspelet” och dra ner punkter per bildruta till 100. Under den första sekunden ser punkterna ut som utspritt brus, och ändå hamnar ingen av dem i det stora hålet i mitten. Dra sedan upp till 20\u00a0000.",
       },
       {
         title: "Hitta tvåpotenserna",
@@ -445,7 +445,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       },
       {
         title: "Samma triangel, annat avstånd",
-        text: "Jämför ”Pascal mod 2” med 64 rader och ”Regel 90” med 64 generationer. Mönstren stämmer överens, förutom att regel 90 använder dubbelt så många kolumner och att dess levande celler bara sitter på varannan position, eftersom varje Pascalelement hamnar mellan de två celler det kom från.",
+        text: "Jämför ”Pascal mod 2” med 64 rader och ”Regel 90” med 64 generationer. Mönstren stämmer överens, förutom att Regel 90 använder dubbelt så många kolumner och att dess levande celler bara sitter på varannan position, eftersom varje Pascalelement hamnar mellan de två celler det kom från.",
       },
     ],
   },
@@ -467,8 +467,8 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       {
         heading: "De fire konstruksjonene og kontrollene deres",
         paragraphs: [
-          "«Oppdeling» tegner trekanten med en valgfri dybde fra 0 til 10, med 6 som startverdi. Når du endrer dybden, bygges bildet opp på nytt nivå for nivå, ett nivå hvert 280. millisekund. Telleren viser 3^dybde trekanter, som er 59 049 ved dybde 10.",
-          "«Kaosspillet» starter midt på lerretet, velger tilfeldig ett av de tre hjørnene, hopper halvveis dit, setter et punkt og gjentar. Glidebryteren bestemmer hvor mange punkter som settes per animasjonsbilde, fra 100 til 20 000 (standard 4000), og telleren viser den løpende summen.",
+          "«Oppdeling» tegner trekanten med en valgfri dybde fra 0 til 10, med 6 som startverdi. Når du endrer dybden, bygges bildet opp på nytt nivå for nivå, ett nivå hvert 280. millisekund. Telleren viser 3^dybde trekanter, som er 59\u00a0049 ved dybde 10.",
+          "«Kaosspillet» starter midt på lerretet, velger tilfeldig ett av de tre hjørnene, hopper halvveis dit, setter et punkt og gjentar. Glidebryteren bestemmer hvor mange punkter som settes per animasjonsbilde, fra 100 til 20\u00a0000 (standard 4000), og telleren viser den løpende summen.",
           "«Pascal mod 2» bygger opp Pascals trekant og fyller en celle bare der binomialkoeffisienten C(n, k) er odde. Glidebryteren bestemmer antall rader, fra 10 til 256 (standard 64). «Regel 90» starter med én enkelt levende celle og lar hver celle bli XOR av de to naboene i raden over; glidebryteren bestemmer antall generasjoner, også her fra 10 til 256 (standard 96). Fargefeltene gir tegningen ny farge, og «Start på nytt» kjører den gjeldende konstruksjonen fra begynnelsen igjen.",
         ],
       },
@@ -477,7 +477,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Alt tegnes på et 2D-lerret som er tilpasset enhetens pikseltetthet og tegnes på nytt når størrelsen endres. Oppdelingen er den rekursive funksjonen nedenfor: Den halverer de tre kantene, går videre inn i de tre hjørnetrekantene og fyller en trekant først når dybden når null, så den midterste trekanten på hvert nivå blir rett og slett aldri malt.",
           "Kaosspillet kjører i en animasjonsløkke. Før noe tegnes, gjør det 20 oppvarmingshopp, og deretter tegnes hvert punkt som et rektangel på én piksel i en halvgjennomsiktig farge, slik at områder som besøkes oftere, blir lysere. Pascal mod 2 beregner aldri en binomialkoeffisient: Hver rad bygges fra den forrige med XOR, som er addisjon modulo 2. Derfor går 256 rader på et øyeblikk, selv om C(255, 127) har 76 sifre. Regel 90 bruker for hver generasjon en Uint8Array som er 2 · generasjoner − 1 celler bred, bred nok til at mønsteret aldri når kanten.",
-          "Med redusert bevegelse slått på hopper oppdelingen rett til sluttdybden, og kaosspillet tegner én enkelt omgang på 60 000 punkter på en gang og stopper deretter. Pascal og regel 90 er uansett statiske tegninger.",
+          "Med redusert bevegelse slått på hopper oppdelingen rett til sluttdybden, og kaosspillet tegner én enkelt omgang på 60\u00a0000 punkter på en gang og stopper deretter. Pascal og regel 90 er uansett statiske tegninger.",
         ],
         code: SUBDIVISION_EXCERPT,
       },
@@ -485,7 +485,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
         heading: "Hvorfor de fire bildene stemmer overens",
         paragraphs: [
           "Kaosspillet virker fordi Sierpiński-trekanten er den eneste mengden som dekkes nøyaktig av sine tre halverte kopier. Hvert hopp anvender én av de tre avbildningene «halver avstanden til hjørne i». Et punkt på trekanten blir værende på den, og et punkt utenfor kommer dobbelt så nær for hvert hopp. Etter de 20 oppvarmingshoppene har enhver startfeil krympet med en faktor på omtrent en million, langt under en piksel, så ikke et eneste punkt havner i et hull.",
-          "Pascal og regel 90 stemmer overens fordi de er den samme regelen. Pascals regel C(n, k) = C(n − 1, k − 1) + C(n − 1, k), lest modulo 2, sier at hvert element er XOR av de to elementene over, og det er regel 90 med cellene trukket fra hverandre. Lucas' sats forteller deretter nøyaktig hvilke celler som er fylt: C(n, k) er odde nettopp når hvert binære siffer i k er høyst like stort som det tilsvarende sifferet i n. Rad n har altså 2^s odde elementer, der s er antall enere i den binære utviklingen av n.",
+          "Pascal og regel 90 stemmer overens fordi de er den samme regelen. Pascals regel C(n, k) = C(n − 1, k − 1) + C(n − 1, k), lest modulo 2, sier at hvert element er XOR av de to elementene over, og det er regel 90 med cellene trukket fra hverandre. Lucas' teorem forteller deretter nøyaktig hvilke celler som er fylt: C(n, k) er odde nettopp når hvert binære siffer i k er høyst like stort som det tilsvarende sifferet i n. Rad n har altså 2^s odde elementer, der s er antall enere i den binære utviklingen av n.",
         ],
       },
     ],
@@ -493,11 +493,11 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Tell trekantene",
-        text: "Sett dybden til 1, 2 og 3 i modusen «Oppdeling». Du får 3, 9 og 27 trekanter, som dekker 3/4, 9/16 og 27/64 av det opprinnelige arealet. Ved dybde 10 dekker de 59 049 trekantene mindre enn 6 prosent av det.",
+        text: "Sett dybden til 1, 2 og 3 i modusen «Oppdeling». Du får 3, 9 og 27 trekanter, som dekker 3/4, 9/16 og 27/64 av det opprinnelige arealet. Ved dybde 10 dekker de 59\u00a0049 trekantene mindre enn 6 prosent av det.",
       },
       {
         title: "Tilfeldighet som tegner orden",
-        text: "Bytt til «Kaosspillet» og dra punkter per bilde ned til 100. Det første sekundet ser punktene ut som spredt støy, og likevel havner ingen av dem i det store hullet i midten. Dra deretter opp til 20 000.",
+        text: "Bytt til «Kaosspillet» og dra punkter per bilde ned til 100. Det første sekundet ser punktene ut som spredt støy, og likevel havner ingen av dem i det store hullet i midten. Dra deretter opp til 20\u00a0000.",
       },
       {
         title: "Finn toerpotensene",

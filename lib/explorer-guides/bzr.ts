@@ -50,7 +50,7 @@ export const BZR_GUIDE: ExplorerGuide = {
         heading: "How it is built",
         paragraphs: [
           "The grid is a Uint8Array of 40 000 bytes, one byte per cell, and a second array of the same size receives the next generation. After each step the two references are swapped, so no memory is allocated while the animation runs. The edges wrap around (the grid is a torus), so waves leaving on the right come back on the left.",
-          "Drawing uses a 100-entry RGBA lookup table built once per colour map. Each frame copies four bytes per cell from the table into an ImageData buffer and puts it onto a 200 by 200 canvas, which CSS scales up with pixelated rendering so each cell stays a crisp square. The default speed is one generation per frame on purpose: at higher rates the colour fronts can flicker fast enough to be uncomfortable. If your system asks for reduced motion, the loop is never started and you see a single still frame; Restart and Seed spiral repaint that frame.",
+          "Drawing uses a 100-entry RGBA lookup table built once per colour map. Each frame copies four bytes per cell from the table into an ImageData buffer and puts it onto a 200 by 200 canvas, which CSS scales up with pixelated rendering so each cell stays a crisp square. The default speed is one generation per frame on purpose: at higher rates the colour fronts can flicker fast enough to be uncomfortable. If your system asks for reduced motion, the loop is never started and you see a single still frame; Restart and Seed broken wave repaint that frame.",
         ],
         code: STEP_EXCERPT,
       },
@@ -109,7 +109,7 @@ export const BZR_GUIDE: ExplorerGuide = {
         heading: "Wie es gebaut ist",
         paragraphs: [
           "Das Gitter ist ein Uint8Array mit 40 000 Bytes, ein Byte pro Zelle, und ein zweites Array derselben Größe nimmt die nächste Generation auf. Nach jedem Schritt werden die beiden Referenzen getauscht, während der Animation wird also kein Speicher angelegt. Die Ränder sind verbunden (das Gitter ist ein Torus), Wellen, die rechts hinauslaufen, kommen also links wieder herein.",
-          "Gezeichnet wird über eine RGBA-Tabelle mit 100 Einträgen, die pro Farbskala einmal berechnet wird. Jeder Frame kopiert vier Bytes pro Zelle aus der Tabelle in einen ImageData-Puffer und legt ihn auf ein 200 mal 200 Pixel großes Canvas, das CSS mit pixeliger Darstellung hochskaliert, damit jede Zelle ein scharfes Quadrat bleibt. Die Voreinstellung von einer Generation pro Frame ist Absicht: Bei höheren Raten können die Farbfronten so schnell flackern, dass es unangenehm wird. Wünscht dein System reduzierte Bewegung, startet die Schleife gar nicht, und du siehst ein einzelnes Standbild; Restart und Seed spiral zeichnen es neu.",
+          "Gezeichnet wird über eine RGBA-Tabelle mit 100 Einträgen, die pro Farbskala einmal berechnet wird. Jeder Frame kopiert vier Bytes pro Zelle aus der Tabelle in einen ImageData-Puffer und legt ihn auf ein 200 mal 200 Pixel großes Canvas, das CSS mit pixeliger Darstellung hochskaliert, damit jede Zelle ein scharfes Quadrat bleibt. Die Voreinstellung von einer Generation pro Frame ist Absicht: Bei höheren Raten können die Farbfronten so schnell flackern, dass es unangenehm wird. Wünscht dein System reduzierte Bewegung, startet die Schleife gar nicht, und du siehst ein einzelnes Standbild; Restart und Seed broken wave zeichnen es neu.",
         ],
         code: STEP_EXCERPT,
       },
@@ -142,10 +142,10 @@ export const BZR_GUIDE: ExplorerGuide = {
   },
   es: {
     metaDescription:
-      "Haz crecer espirales de Belousov-Zhabotinsky en un autómata celular hodgepodge: ajusta k₁, k₂ y g en una rejilla de 200 × 200 y mira cómo está programado.",
+      "Haz crecer espirales de Belousov-Zhabotinsky en un autómata celular hodgepodge: ajusta k₁, k₂ y g en una cuadrícula de 200 × 200 y mira cómo está programado.",
     heading: "Cómo funciona este explorador",
     intro:
-      "El campo es una rejilla de 200 por 200 células, y cada una guarda un número entero entre 0 y 99. En cada fotograma todas las células miran a sus ocho vecinas y se actualizan a la vez, siguiendo tres reglas breves. Nada se difunde y, sin embargo, con los ajustes por defecto el ruido se organiza en unos pocos cientos de iteraciones en espirales giratorias que se parecen de forma asombrosa a la reacción de Belousov-Zhabotinsky en una placa de Petri. Las espirales son propias de los medios excitables en general, no de un conjunto concreto de moléculas.",
+      "El campo es una cuadrícula de 200 por 200 células, y cada una guarda un número entero entre 0 y 99. En cada fotograma todas las células miran a sus ocho vecinas y se actualizan a la vez, siguiendo tres reglas breves. Nada se difunde y, sin embargo, con los ajustes por defecto el ruido se organiza en unos pocos cientos de iteraciones en espirales giratorias que se parecen de forma asombrosa a la reacción de Belousov-Zhabotinsky en una placa de Petri. Las espirales son propias de los medios excitables en general, no de un conjunto concreto de moléculas.",
     sections: [
       {
         heading: "Sana, infectada, enferma",
@@ -160,14 +160,14 @@ export const BZR_GUIDE: ExplorerGuide = {
         paragraphs: [
           "En la fórmula, a cuenta las vecinas infectadas, b las vecinas enfermas y S es la suma de los estados de la célula y de sus ocho vecinas, de modo que una célula infectada pasa a la media de todas las células no sanas que la rodean, enfermas incluidas, más g. Los resultados por encima de 99 se recortan a 99. k₁ («infected weight», de 1 a 8) divide el número de infectadas cuando una célula sana decide si se contagia; k₂ («ill weight», de 1 a 8) hace lo mismo con las vecinas enfermas. Con k₁ = k₂ = 8, una célula sana solo reacciona cuando sus ocho vecinas están infectadas o las ocho están enfermas.",
           "g («reaction rate», de 1 a 60) indica cuánto empeora una célula infectada en cada paso, además de la media local. Fija la duración de la fase excitada: una célula necesita unos 99 / g pasos para subir desde el primer contagio hasta el estado enfermo. En ejecuciones de prueba con inicio aleatorio, la media fue de 3,7 pasos con g = 28 y de algo más de 8 con g = 12.",
-          "Los cuatro preajustes son Classic spirals (k₁ = 3, k₂ = 3, g = 28, el valor por defecto), Tight scrolls (3, 2, 36), Target rings (2, 2, 40) y Turbulent (3, 3, 40). Restart llena la rejilla de estados aleatorios uniformes; Seed broken wave parte de una rejilla vacía con una semirrecta de células enfermas flanqueada por filas en los estados 60 y 20, un frente de onda roto a propósito que emite ondas en un patrón con simetría especular. Speed fija cuántas generaciones se calculan por fotograma de animación, de 1 a 8.",
+          "Los cuatro preajustes son «Classic spirals» (k₁ = 3, k₂ = 3, g = 28, el valor por defecto), «Tight scrolls» (3, 2, 36), «Target rings» (2, 2, 40) y «Turbulent» (3, 3, 40). «Restart» llena la cuadrícula de estados aleatorios uniformes; «Seed broken wave» parte de una cuadrícula vacía con una semirrecta de células enfermas flanqueada por filas en los estados 60 y 20, un frente de onda roto a propósito que emite ondas en un patrón con simetría especular. «Speed» fija cuántas generaciones se calculan por fotograma de animación, de 1 a 8.",
         ],
       },
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "La rejilla es un Uint8Array de 40 000 bytes, un byte por célula, y un segundo array del mismo tamaño recibe la generación siguiente. Tras cada paso se intercambian las dos referencias, así que no se reserva memoria mientras corre la animación. Los bordes están conectados (la rejilla es un toro), de modo que las ondas que salen por la derecha vuelven a entrar por la izquierda.",
-          "Para dibujar se usa una tabla de consulta RGBA de 100 entradas que se construye una vez por cada mapa de colores. Cada fotograma copia cuatro bytes por célula de la tabla a un búfer ImageData y lo coloca en un canvas de 200 por 200, que el CSS amplía con renderizado pixelado para que cada célula siga siendo un cuadrado nítido. La velocidad por defecto es de una generación por fotograma a propósito: a ritmos mayores, los frentes de color pueden parpadear tan deprisa que resulta molesto. Si tu sistema pide movimiento reducido, el bucle no llega a arrancar y ves un único fotograma fijo; Restart y Seed broken wave vuelven a pintar ese fotograma.",
+          "La cuadrícula es un Uint8Array de 40 000 bytes, un byte por célula, y un segundo array del mismo tamaño recibe la generación siguiente. Tras cada paso se intercambian las dos referencias, así que no se reserva memoria mientras corre la animación. Los bordes están conectados (la cuadrícula es un toro), de modo que las ondas que salen por la derecha vuelven a entrar por la izquierda.",
+          "Para dibujar se usa una tabla de consulta RGBA de 100 entradas que se construye una vez por cada mapa de colores. Cada fotograma copia cuatro bytes por célula de la tabla a un búfer ImageData y lo coloca en un lienzo de 200 por 200, que el CSS amplía con renderizado pixelado para que cada célula siga siendo un cuadrado nítido. La velocidad por defecto es de una generación por fotograma a propósito: a ritmos mayores, los frentes de color pueden parpadear tan deprisa que resulta molesto. Si tu sistema pide movimiento reducido, el bucle no llega a arrancar y ves un único fotograma fijo; «Restart» y «Seed broken wave» vuelven a pintar ese fotograma.",
         ],
         code: STEP_EXCERPT,
       },
@@ -182,7 +182,7 @@ export const BZR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Una onda rota",
-        text: "Elige Classic spirals y pulsa Seed broken wave. Desde la línea se extiende una lente de frentes de onda que da la vuelta por los bordes, y tras unas 300 iteraciones toda la rejilla queda cubierta de espirales, dispuestas con simetría especular porque la semilla es simétrica.",
+        text: "Elige «Classic spirals» y pulsa «Seed broken wave». Desde la línea se extiende una lente de frentes de onda que da la vuelta por los bordes, y tras unas 300 iteraciones toda la cuadrícula queda cubierta de espirales, dispuestas con simetría especular porque la semilla es simétrica.",
       },
       {
         title: "Alarga la fase excitada",
@@ -194,7 +194,7 @@ export const BZR_GUIDE: ExplorerGuide = {
       },
       {
         title: "Anillos o turbulencia",
-        text: "Carga Target rings (k₁ = 2, k₂ = 2, g = 40) y reinicia desde un estado aleatorio. En ejecuciones de prueba el campo se asentó en un patrón estable de anillos concéntricos alrededor de muchos centros. Carga después Turbulent: subir k₁ y k₂ a 3 con el mismo g dio un campo inquieto y de grano fino, sin estructura duradera.",
+        text: "Carga «Target rings» (k₁ = 2, k₂ = 2, g = 40) y reinicia desde un estado aleatorio. En ejecuciones de prueba el campo se asentó en un patrón estable de anillos concéntricos alrededor de muchos centros. Carga después «Turbulent»: subir k₁ y k₂ a 3 con el mismo g dio un campo inquieto y de grano fino, sin estructura duradera.",
       },
     ],
   },
@@ -218,14 +218,14 @@ export const BZR_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Dans la formule, a compte les voisines infectées, b les voisines malades, et S est la somme des états de la cellule et de ses huit voisines : une cellule infectée passe donc à la moyenne de toutes les cellules non saines qui l'entourent, malades comprises, plus g. Les résultats supérieurs à 99 sont plafonnés à 99. k₁ (« infected weight », de 1 à 8) divise le nombre de voisines infectées quand une cellule saine décide si elle attrape l'infection ; k₂ (« ill weight », de 1 à 8) fait de même pour les voisines malades. Avec k₁ = k₂ = 8, une cellule saine ne réagit que si ses huit voisines sont infectées ou si toutes les huit sont malades.",
           "g (« reaction rate », de 1 à 60) indique de combien l'état d'une cellule infectée s'aggrave à chaque pas, en plus de la moyenne locale. Il fixe la durée de la phase excitée : il faut à une cellule environ 99 / g pas pour grimper de la première infection à l'état malade. Lors d'essais à partir d'un état aléatoire, la moyenne était de 3,7 pas avec g = 28 et d'un peu plus de 8 avec g = 12.",
-          "Les quatre préréglages sont Classic spirals (k₁ = 3, k₂ = 3, g = 28, la valeur par défaut), Tight scrolls (3, 2, 36), Target rings (2, 2, 40) et Turbulent (3, 3, 40). Restart remplit la grille d'états aléatoires uniformes ; Seed broken wave part d'une grille vide avec une demi-droite de cellules malades, bordée de rangées dans les états 60 et 20, un front d'onde volontairement brisé qui émet des ondes selon un motif à symétrie miroir. Speed fixe le nombre de générations calculées par image d'animation, de 1 à 8.",
+          "Les quatre préréglages sont « Classic spirals » (k₁ = 3, k₂ = 3, g = 28, la valeur par défaut), « Tight scrolls » (3, 2, 36), « Target rings » (2, 2, 40) et « Turbulent » (3, 3, 40). « Restart » remplit la grille d'états aléatoires uniformes ; « Seed broken wave » part d'une grille vide avec une demi-droite de cellules malades, bordée de rangées dans les états 60 et 20, un front d'onde volontairement brisé qui émet des ondes selon un motif à symétrie miroir. « Speed » fixe le nombre de générations calculées par image d'animation, de 1 à 8.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
           "La grille est un Uint8Array de 40 000 octets, un octet par cellule, et un second tableau de même taille reçoit la génération suivante. Après chaque pas, les deux références sont échangées, si bien qu'aucune mémoire n'est allouée pendant l'animation. Les bords se rejoignent (la grille est un tore) : les ondes qui sortent à droite reviennent par la gauche.",
-          "Le dessin s'appuie sur une table de correspondance RGBA de 100 entrées, construite une fois par palette de couleurs. Chaque image copie quatre octets par cellule depuis la table vers un tampon ImageData et le pose sur un canvas de 200 sur 200, que le CSS agrandit avec un rendu pixellisé pour que chaque cellule reste un carré net. La vitesse par défaut est volontairement d'une génération par image : à des cadences plus élevées, les fronts colorés peuvent clignoter assez vite pour devenir désagréables. Si ton système demande une réduction des animations, la boucle n'est jamais lancée et tu vois une seule image fixe ; Restart et Seed broken wave redessinent cette image.",
+          "Le dessin s'appuie sur une table de correspondance RGBA de 100 entrées, construite une fois par palette de couleurs. Chaque image copie quatre octets par cellule depuis la table vers un tampon ImageData et le pose sur un canevas de 200 sur 200, que le CSS agrandit avec un rendu pixellisé pour que chaque cellule reste un carré net. La vitesse par défaut est volontairement d'une génération par image : à des cadences plus élevées, les fronts colorés peuvent clignoter assez vite pour devenir désagréables. Si ton système demande une réduction des animations, la boucle n'est jamais lancée et tu vois une seule image fixe ; « Restart » et « Seed broken wave » redessinent cette image.",
         ],
         code: STEP_EXCERPT,
       },
@@ -240,28 +240,28 @@ export const BZR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Une onde brisée",
-        text: "Choisis Classic spirals et appuie sur Seed broken wave. Une lentille de fronts d'onde s'étend à partir de la ligne, fait le tour par les bords, et après environ 300 itérations toute la grille est couverte de spirales, disposées en symétrie miroir parce que la configuration de départ est symétrique.",
+        text: "Choisis « Classic spirals » et appuie sur « Seed broken wave ». Une lentille de fronts d'onde s'étend à partir de la ligne, fait le tour par les bords, et après environ 300 itérations toute la grille est couverte de spirales, disposées en symétrie miroir parce que la configuration de départ est symétrique.",
       },
       {
-        title: "Allonger la phase excitée",
-        text: "Garde k₁ = k₂ = 3, règle g sur 12 et relance. Les bandes de couleur sont plus larges, car chaque cellule met plus de pas à grimper vers l'état malade, et les spirales mettent bien plus longtemps à apparaître (lors des essais, parfois plus de 1500 itérations). Avec g = 6, aucune spirale ne s'est formée : de grandes plages clignotent presque à l'unisson.",
+        title: "Allonge la phase excitée",
+        text: "Garde k₁ = k₂ = 3, règle g sur 12 et relance. Les bandes de couleur sont plus larges, car chaque cellule met plus de pas à grimper vers l'état malade, et les spirales mettent bien plus longtemps à apparaître (lors des essais, parfois plus de 1 500 itérations). Avec g = 6, aucune spirale ne s'est formée : de grandes plages clignotent presque à l'unisson.",
       },
       {
-        title: "Rendre le milieu récalcitrant",
+        title: "Rends le milieu récalcitrant",
         text: "Règle k₁ et k₂ sur 4 ou plus, garde g = 28 et relance à partir d'un état aléatoire. Les cellules saines ont maintenant besoin d'au moins quatre voisines infectées ou quatre voisines malades avant de réagir. Lors des essais, aucune onde n'a survécu : en moins de 50 itérations, tout le champ était sain et il est resté sombre.",
       },
       {
         title: "Anneaux ou turbulence",
-        text: "Charge Target rings (k₁ = 2, k₂ = 2, g = 40) et relance à partir d'un état aléatoire. Lors des essais, le champ s'est stabilisé en un motif d'anneaux concentriques autour de nombreux centres. Charge ensuite Turbulent : en passant k₁ et k₂ à 3 pour le même g, on obtient un champ agité, à grain fin, sans structure durable.",
+        text: "Charge « Target rings » (k₁ = 2, k₂ = 2, g = 40) et relance à partir d'un état aléatoire. Lors des essais, le champ s'est stabilisé en un motif d'anneaux concentriques autour de nombreux centres. Charge ensuite « Turbulent » : en passant k₁ et k₂ à 3 pour le même g, on obtient un champ agité, à grain fin, sans structure durable.",
       },
     ],
   },
   it: {
     metaDescription:
-      "Fai crescere le spirali di Belousov-Zhabotinsky in un automa cellulare hodgepodge: regola k₁, k₂ e g su una griglia 200 × 200 e scopri com'è programmato.",
+      "Spirali di Belousov-Zhabotinsky in un automa cellulare hodgepodge: regola k₁, k₂ e g su una griglia 200 × 200 e scopri com'è programmato il mezzo eccitabile.",
     heading: "Come funziona questo esploratore",
     intro:
-      "Il campo è una griglia di 200 per 200 celle, ognuna delle quali contiene un numero intero compreso tra 0 e 99. A ogni fotogramma tutte le celle guardano le otto vicine e si aggiornano nello stesso istante, seguendo tre regole brevi. Nulla diffonde, eppure con le impostazioni predefinite il rumore si organizza nel giro di qualche centinaio di iterazioni in spirali rotanti che somigliano in modo sorprendente alla reazione di Belousov-Zhabotinsky in una capsula di Petri. Le spirali appartengono ai mezzi eccitabili in generale, non a un particolare insieme di molecole.",
+      "Il campo è una griglia di 200 per 200 celle, ognuna delle quali contiene un numero intero compreso tra 0 e 99. A ogni fotogramma tutte le celle guardano le otto vicine e si aggiornano nello stesso istante, seguendo tre regole brevi. Nulla si diffonde, eppure con le impostazioni predefinite il rumore si organizza nel giro di qualche centinaio di iterazioni in spirali rotanti che somigliano in modo sorprendente alla reazione di Belousov-Zhabotinsky in una capsula di Petri. Le spirali appartengono ai mezzi eccitabili in generale, non a un particolare insieme di molecole.",
     sections: [
       {
         heading: "Sana, infetta, malata",
@@ -276,14 +276,14 @@ export const BZR_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Nella formula, a conta le vicine infette, b le vicine malate e S è la somma degli stati della cella e delle sue otto vicine: una cella infetta passa quindi alla media di tutte le celle non sane che la circondano, malate comprese, più g. I risultati superiori a 99 vengono limitati a 99. k₁ («infected weight», da 1 a 8) divide il numero delle infette quando una cella sana decide se prendere l'infezione; k₂ («ill weight», da 1 a 8) fa lo stesso per le vicine malate. Con k₁ = k₂ = 8 una cella sana reagisce solo quando tutte e otto le vicine sono infette oppure tutte e otto sono malate.",
           "g («reaction rate», da 1 a 60) indica di quanto peggiora una cella infetta a ogni passo, oltre alla media locale. Stabilisce la durata della fase eccitata: a una cella servono circa 99 / g passi per salire dalla prima infezione allo stato malato. Nelle prove con partenza casuale la media è stata di 3,7 passi con g = 28 e di poco più di 8 con g = 12.",
-          "Le quattro preimpostazioni sono Classic spirals (k₁ = 3, k₂ = 3, g = 28, quella predefinita), Tight scrolls (3, 2, 36), Target rings (2, 2, 40) e Turbulent (3, 3, 40). Restart riempie la griglia di stati casuali uniformi; Seed broken wave parte da una griglia vuota con una semiretta di celle malate affiancata da righe negli stati 60 e 20, un fronte d'onda spezzato di proposito che emette onde in una configurazione a simmetria speculare. Speed stabilisce quante generazioni vengono calcolate per ogni fotogramma dell'animazione, da 1 a 8.",
+          "I quattro preset sono «Classic spirals» (k₁ = 3, k₂ = 3, g = 28, quello predefinito), «Tight scrolls» (3, 2, 36), «Target rings» (2, 2, 40) e «Turbulent» (3, 3, 40). «Restart · random» riempie la griglia di stati casuali uniformi; «Seed broken wave» parte da una griglia vuota con una semiretta di celle malate affiancata da righe negli stati 60 e 20, un fronte d'onda spezzato di proposito che emette onde in una configurazione a simmetria speculare. «Speed» stabilisce quante generazioni vengono calcolate per ogni fotogramma dell'animazione, da 1 a 8.",
         ],
       },
       {
         heading: "Com'è costruito",
         paragraphs: [
-          "La griglia è un Uint8Array di 40 000 byte, un byte per cella, e un secondo array della stessa dimensione riceve la generazione successiva. Dopo ogni passo i due riferimenti vengono scambiati, così durante l'animazione non viene allocata memoria. I bordi sono collegati (la griglia è un toro), perciò le onde che escono a destra rientrano da sinistra.",
-          "Il disegno usa una tabella di ricerca RGBA di 100 voci, costruita una volta per ogni mappa di colori. Ogni fotogramma copia quattro byte per cella dalla tabella in un buffer ImageData e lo mette su un canvas di 200 per 200, che il CSS ingrandisce con resa a pixel netti, in modo che ogni cella resti un quadrato nitido. La velocità predefinita è volutamente di una generazione per fotogramma: a ritmi più alti i fronti di colore possono sfarfallare così in fretta da risultare fastidiosi. Se il tuo sistema chiede di ridurre il movimento, il ciclo non viene mai avviato e vedi un unico fotogramma fermo; Restart e Seed broken wave ridisegnano quel fotogramma.",
+          "La griglia è un Uint8Array di 40.000 byte, un byte per cella, e un secondo array della stessa dimensione riceve la generazione successiva. Dopo ogni passo i due riferimenti vengono scambiati, così durante l'animazione non viene allocata memoria. I bordi sono collegati (la griglia è un toro), perciò le onde che escono a destra rientrano da sinistra.",
+          "Il disegno usa una tabella di ricerca RGBA di 100 voci, costruita una volta per ogni mappa di colori. Ogni fotogramma copia quattro byte per cella dalla tabella in un buffer ImageData e lo mette su un canvas di 200 per 200, che il CSS ingrandisce con resa a pixel netti, in modo che ogni cella resti un quadrato nitido. La velocità predefinita è volutamente di una generazione per fotogramma: a ritmi più alti i fronti di colore possono sfarfallare così in fretta da risultare fastidiosi. Se il tuo sistema chiede di ridurre il movimento, il ciclo non viene mai avviato e vedi un unico fotogramma fermo; «Restart · random» e «Seed broken wave» ridisegnano quel fotogramma.",
         ],
         code: STEP_EXCERPT,
       },
@@ -298,7 +298,7 @@ export const BZR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Un'onda spezzata",
-        text: "Scegli Classic spirals e premi Seed broken wave. Dalla linea si allarga una lente di fronti d'onda che fa il giro passando per i bordi, e dopo circa 300 iterazioni l'intera griglia è coperta di spirali, disposte in simmetria speculare perché la configurazione iniziale è simmetrica.",
+        text: "Scegli «Classic spirals» e premi «Seed broken wave». Dalla linea si allarga una lente di fronti d'onda che fa il giro passando per i bordi, e dopo circa 300 iterazioni l'intera griglia è coperta di spirali, disposte in simmetria speculare perché la configurazione iniziale è simmetrica.",
       },
       {
         title: "Allunga la fase eccitata",
@@ -310,7 +310,7 @@ export const BZR_GUIDE: ExplorerGuide = {
       },
       {
         title: "Anelli o turbolenza",
-        text: "Carica Target rings (k₁ = 2, k₂ = 2, g = 40) e riavvia da uno stato casuale. Nelle prove il campo si è assestato in una configurazione stabile di anelli concentrici attorno a molti centri. Poi carica Turbulent: portare k₁ e k₂ a 3 con lo stesso g ha dato un campo irrequieto, a grana fine, senza strutture durature.",
+        text: "Carica «Target rings» (k₁ = 2, k₂ = 2, g = 40) e riavvia da uno stato casuale. Nelle prove il campo si è assestato in una configurazione stabile di anelli concentrici attorno a molti centri. Poi carica «Turbulent»: portare k₁ e k₂ a 3 con lo stesso g ha dato un campo irrequieto, a grana fine, senza strutture durature.",
       },
     ],
   },
@@ -319,7 +319,7 @@ export const BZR_GUIDE: ExplorerGuide = {
       "Faz crescer espirais de Belousov-Zhabotinsky num autómato celular hodgepodge: ajusta k₁, k₂ e g numa grelha de 200 × 200 e vê como o modelo está programado.",
     heading: "Como funciona este explorador",
     intro:
-      "O campo é uma grelha de 200 por 200 células, e cada uma guarda um número inteiro entre 0 e 99. Em cada fotograma, todas as células olham para as suas oito vizinhas e atualizam-se ao mesmo tempo, seguindo três regras curtas. Nada se difunde e, no entanto, com as definições predefinidas o ruído organiza-se em poucas centenas de iterações em espirais rotativas que se parecem de forma impressionante com a reação de Belousov-Zhabotinsky numa placa de Petri. As espirais pertencem aos meios excitáveis em geral, não a um conjunto específico de moléculas.",
+      "O campo é uma grelha de 200 por 200 células, e cada uma guarda um número inteiro entre 0 e 99. Em cada fotograma, todas as células olham para as suas oito vizinhas e atualizam-se ao mesmo tempo, seguindo três regras curtas. Nada se difunde e, no entanto, com os valores predefinidos o ruído organiza-se em poucas centenas de iterações em espirais rotativas que se parecem de forma impressionante com a reação de Belousov-Zhabotinsky numa placa de Petri. As espirais pertencem aos meios excitáveis em geral, não a um conjunto específico de moléculas.",
     sections: [
       {
         heading: "Saudável, infetada, doente",
@@ -334,14 +334,14 @@ export const BZR_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Na fórmula, a conta as vizinhas infetadas, b as vizinhas doentes e S é a soma dos estados da célula e das suas oito vizinhas, pelo que uma célula infetada passa para a média de todas as células não saudáveis à sua volta, doentes incluídas, mais g. Os resultados acima de 99 são limitados a 99. k₁ («infected weight», de 1 a 8) divide o número de infetadas quando uma célula saudável decide se apanha a infeção; k₂ («ill weight», de 1 a 8) faz o mesmo para as vizinhas doentes. Com k₁ = k₂ = 8, uma célula saudável só reage quando as oito vizinhas estão infetadas ou as oito estão doentes.",
           "g («reaction rate», de 1 a 60) indica quanto piora uma célula infetada em cada passo, para além da média local. Define a duração da fase excitada: uma célula precisa de cerca de 99 / g passos para subir da primeira infeção até ao estado doente. Em execuções de teste com início aleatório, a média foi de 3,7 passos com g = 28 e de pouco mais de 8 com g = 12.",
-          "As quatro predefinições são Classic spirals (k₁ = 3, k₂ = 3, g = 28, a que vem por omissão), Tight scrolls (3, 2, 36), Target rings (2, 2, 40) e Turbulent (3, 3, 40). Restart enche a grelha de estados aleatórios uniformes; Seed broken wave parte de uma grelha vazia com uma semirreta de células doentes ladeada por filas nos estados 60 e 20, uma frente de onda quebrada de propósito que emite ondas num padrão com simetria de espelho. Speed define quantas gerações são calculadas por fotograma de animação, de 1 a 8.",
+          "As quatro predefinições são «Classic spirals» (k₁ = 3, k₂ = 3, g = 28, a predefinida), «Tight scrolls» (3, 2, 36), «Target rings» (2, 2, 40) e «Turbulent» (3, 3, 40). «Restart» enche a grelha de estados aleatórios uniformes; «Seed broken wave» parte de uma grelha vazia com uma semirreta de células doentes ladeada por filas nos estados 60 e 20, uma frente de onda quebrada de propósito que emite ondas num padrão com simetria de espelho. «Speed» define quantas gerações são calculadas por fotograma de animação, de 1 a 8.",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
           "A grelha é um Uint8Array de 40 000 bytes, um byte por célula, e um segundo array do mesmo tamanho recebe a geração seguinte. Depois de cada passo as duas referências são trocadas, por isso não se reserva memória enquanto a animação corre. As margens estão ligadas (a grelha é um toro), pelo que as ondas que saem pela direita voltam a entrar pela esquerda.",
-          "O desenho usa uma tabela de consulta RGBA com 100 entradas, construída uma vez por cada mapa de cores. Cada fotograma copia quatro bytes por célula da tabela para um buffer ImageData e coloca-o num canvas de 200 por 200, que o CSS amplia com renderização pixelizada para que cada célula continue a ser um quadrado nítido. A velocidade predefinida é de uma geração por fotograma de propósito: a ritmos mais altos, as frentes de cor podem tremeluzir tão depressa que se torna desconfortável. Se o teu sistema pedir movimento reduzido, o ciclo nunca chega a arrancar e vês um único fotograma parado; Restart e Seed broken wave voltam a pintar esse fotograma.",
+          "O desenho usa uma tabela de consulta RGBA com 100 entradas, construída uma vez por cada mapa de cores. Cada fotograma copia quatro bytes por célula da tabela para um buffer ImageData e coloca-o num canvas de 200 por 200, que o CSS amplia com renderização pixelizada para que cada célula continue a ser um quadrado nítido. A velocidade predefinida é de uma geração por fotograma de propósito: a ritmos mais altos, as frentes de cor podem tremeluzir tão depressa que se torna desconfortável. Se o teu sistema pedir movimento reduzido, o ciclo nunca chega a arrancar e vês um único fotograma parado; «Restart» e «Seed broken wave» voltam a pintar esse fotograma.",
         ],
         code: STEP_EXCERPT,
       },
@@ -356,7 +356,7 @@ export const BZR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Uma onda quebrada",
-        text: "Escolhe Classic spirals e carrega em Seed broken wave. Uma lente de frentes de onda espalha-se a partir da linha, dá a volta pelas margens, e ao fim de cerca de 300 iterações toda a grelha está coberta de espirais, dispostas com simetria de espelho porque a configuração inicial é simétrica.",
+        text: "Escolhe «Classic spirals» e carrega em «Seed broken wave». Uma lente de frentes de onda espalha-se a partir da linha, dá a volta pelas margens, e ao fim de cerca de 300 iterações toda a grelha está coberta de espirais, dispostas com simetria de espelho porque a configuração inicial é simétrica.",
       },
       {
         title: "Estica a fase excitada",
@@ -368,7 +368,7 @@ export const BZR_GUIDE: ExplorerGuide = {
       },
       {
         title: "Anéis ou turbulência",
-        text: "Carrega Target rings (k₁ = 2, k₂ = 2, g = 40) e reinicia a partir de um estado aleatório. Em execuções de teste, o campo estabilizou num padrão de anéis concêntricos em torno de muitos centros. Depois carrega Turbulent: subir k₁ e k₂ para 3 com o mesmo g deu um campo inquieto, de grão fino, sem estrutura duradoura.",
+        text: "Carrega «Target rings» (k₁ = 2, k₂ = 2, g = 40) e reinicia a partir de um estado aleatório. Em execuções de teste, o campo estabilizou num padrão de anéis concêntricos em torno de muitos centros. Depois carrega «Turbulent»: subir k₁ e k₂ para 3 com o mesmo g deu um campo inquieto, de grão fino, sem estrutura duradoura.",
       },
     ],
   },
@@ -392,14 +392,14 @@ export const BZR_GUIDE: ExplorerGuide = {
         paragraphs: [
           "I formeln räknar a de smittade grannarna och b de sjuka, och S är summan av tillstånden hos cellen och dess åtta grannar. En smittad cell går alltså till medelvärdet av alla icke friska celler omkring sig, de sjuka inräknade, plus g. Resultat över 99 kapas till 99. k₁ (”infected weight”, 1 till 8) delar antalet smittade när en frisk cell avgör om den ska bli smittad, och k₂ (”ill weight”, 1 till 8) gör samma sak för sjuka grannar. Med k₁ = k₂ = 8 reagerar en frisk cell bara när alla åtta grannar är smittade eller alla åtta är sjuka.",
           "g (”reaction rate”, 1 till 60) är hur mycket sämre en smittad cell blir per steg utöver det lokala medelvärdet. Det bestämmer hur lång den exciterade fasen är: en cell behöver ungefär 99 / g steg för att klättra från första smittan till sjuk. I testkörningar från en slumpmässig start var medelvärdet 3,7 steg med g = 28 och lite över 8 med g = 12.",
-          "De fyra förinställningarna är Classic spirals (k₁ = 3, k₂ = 3, g = 28, standardvalet), Tight scrolls (3, 2, 36), Target rings (2, 2, 40) och Turbulent (3, 3, 40). Restart fyller rutnätet med likformigt slumpade tillstånd. Seed broken wave utgår från ett tomt rutnät med en halvlinje av sjuka celler, kantad av rader i tillstånden 60 och 20: en avsiktligt bruten vågfront som sänder ut vågor i ett spegelsymmetriskt mönster. Speed anger hur många generationer som körs per animationsbildruta, från 1 till 8.",
+          "De fyra förvalen är ”Classic spirals” (k₁ = 3, k₂ = 3, g = 28, standardvalet), ”Tight scrolls” (3, 2, 36), ”Target rings” (2, 2, 40) och ”Turbulent” (3, 3, 40). ”Restart” fyller rutnätet med likformigt slumpade tillstånd. ”Seed broken wave” utgår från ett tomt rutnät med en halvlinje av sjuka celler, kantad av rader i tillstånden 60 och 20: en avsiktligt bruten vågfront som sänder ut vågor i ett spegelsymmetriskt mönster. ”Speed” anger hur många generationer som körs per animationsbildruta, från 1 till 8.",
         ],
       },
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Rutnätet är en Uint8Array på 40 000 byte, en byte per cell, och en andra array av samma storlek tar emot nästa generation. Efter varje steg byter de två referenserna plats, så inget minne allokeras medan animationen går. Kanterna sitter ihop (rutnätet är en torus), så vågor som går ut till höger kommer tillbaka in från vänster.",
-          "Ritningen använder en RGBA-uppslagstabell med 100 poster som byggs en gång per färgskala. Varje bildruta kopierar fyra byte per cell från tabellen till en ImageData-buffert och lägger den på en canvas på 200 gånger 200 pixlar, som CSS skalar upp med pixlad rendering så att varje cell förblir en skarp kvadrat. Standardhastigheten är med flit en generation per bildruta: vid högre takt kan färgfronterna flimra så snabbt att det blir obehagligt. Om ditt system ber om minskad rörelse startas slingan aldrig och du ser en enda stillbild. Restart och Seed broken wave ritar om den bilden.",
+          "Rutnätet är en Uint8Array på 40\u00a0000 byte, en byte per cell, och en andra array av samma storlek tar emot nästa generation. Efter varje steg byter de två referenserna plats, så inget minne allokeras medan animationen går. Kanterna sitter ihop (rutnätet är en torus), så vågor som går ut till höger kommer tillbaka in från vänster.",
+          "Ritningen använder en RGBA-uppslagstabell med 100 poster som byggs en gång per färgskala. Varje bildruta kopierar fyra byte per cell från tabellen till en ImageData-buffert och lägger den på en canvas på 200 gånger 200 pixlar, som CSS skalar upp med pixlad rendering så att varje cell förblir en skarp kvadrat. Standardhastigheten är med flit en generation per bildruta: vid högre takt kan färgfronterna flimra så snabbt att det blir obehagligt. Om ditt system ber om minskad rörelse startas slingan aldrig och du ser en enda stillbild. ”Restart” och ”Seed broken wave” ritar om den bilden.",
         ],
         code: STEP_EXCERPT,
       },
@@ -414,7 +414,7 @@ export const BZR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "En bruten våg",
-        text: "Välj Classic spirals och tryck på Seed broken wave. En lins av vågfronter breder ut sig från linjen och går runt via kanterna, och efter ungefär 300 iterationer är hela rutnätet täckt av spiraler, spegelsymmetriskt ordnade eftersom startmönstret är symmetriskt.",
+        text: "Välj ”Classic spirals” och tryck på ”Seed broken wave”. En lins av vågfronter breder ut sig från linjen och går runt via kanterna, och efter ungefär 300 iterationer är hela rutnätet täckt av spiraler, spegelsymmetriskt ordnade eftersom startmönstret är symmetriskt.",
       },
       {
         title: "Dra ut den exciterade fasen",
@@ -426,22 +426,22 @@ export const BZR_GUIDE: ExplorerGuide = {
       },
       {
         title: "Ringar eller turbulens",
-        text: "Ladda Target rings (k₁ = 2, k₂ = 2, g = 40) och starta om från ett slumpat läge. I testkörningar stabiliserades fältet i ett mönster av koncentriska ringar kring många centrum. Ladda sedan Turbulent: när k₁ och k₂ höjdes till 3 med samma g blev resultatet ett oroligt, finkornigt fält utan bestående struktur.",
+        text: "Ladda ”Target rings” (k₁ = 2, k₂ = 2, g = 40) och starta om från ett slumpat läge. I testkörningar stabiliserades fältet i ett mönster av koncentriska ringar kring många centrum. Ladda sedan ”Turbulent”: när k₁ och k₂ höjdes till 3 med samma g blev resultatet ett oroligt, finkornigt fält utan bestående struktur.",
       },
     ],
   },
   no: {
     metaDescription:
-      "La Belousov-Zhabotinskij-spiraler vokse fram i en cellulær automat av typen hodgepodge: still inn k₁, k₂ og g på et rutenett med 200 × 200 celler og se koden.",
+      "La Belousov-Zhabotinskij-spiraler vokse i en hodgepodge-automat: Still inn k₁, k₂ og g på 200 × 200 celler og se hvordan det eksiterbare mediet er kodet.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Feltet er et rutenett med 200 ganger 200 celler, og hver celle inneholder et heltall mellom 0 og 99. I hvert bilde ser alle cellene på de åtte naboene sine og oppdateres samtidig etter tre korte regler. Ingenting diffunderer, og likevel organiserer støyen seg med standardinnstillingene i løpet av noen hundre iterasjoner til roterende spiraler som ligner påfallende på Belousov-Zhabotinskij-reaksjonen i en petriskål. Spiralene hører til eksitable medier generelt, ikke til ett bestemt sett med molekyler.",
+      "Feltet er et rutenett med 200 ganger 200 celler, og hver celle inneholder et heltall mellom 0 og 99. I hvert bilde ser alle cellene på de åtte naboene sine og oppdateres samtidig etter tre korte regler. Ingenting diffunderer, og likevel organiserer støyen seg med standardinnstillingene i løpet av noen hundre iterasjoner til roterende spiraler som ligner påfallende på Belousov-Zhabotinskij-reaksjonen i en petriskål. Spiralene hører til eksiterbare medier generelt, ikke til ett bestemt sett med molekyler.",
     sections: [
       {
         heading: "Frisk, smittet, syk",
         paragraphs: [
           "Regelen er kjent som hodgepodge-maskinen, en cellulær automat som Martin Gerhardt og Heike Schuster beskrev som en leketøysmodell av en oscillerende kjemisk reaksjon. Den låner ordforrådet fra en epidemi. Tilstand 0 er frisk, den høyeste tilstanden 99 er syk, og alt imellom er smittet i større eller mindre grad. En frisk celle blir smittet av naboene sine, en smittet celle blir stadig verre, og en syk celle blir helt frisk igjen i ett eneste steg.",
-          "Den sløyfen (hvile, stigende eksitasjon, kollaps, hvile) er den samme syklusen som en flekk BZ-løsning går gjennom: katalysatoren er i redusert tilstand, en terskel passeres, oksidasjonen løper løpsk, og systemet nullstilles. Fordi hver celle drar naboene med seg, blir syklusen til en vandrende bølge. Overalt der en bølgefront brytes, krøller den frie enden seg sammen, og den krøllen er spiralen.",
+          "Den sløyfen (hvile, stigende eksitasjon, kollaps, hvile) er den samme syklusen som en flekk BZ-løsning går gjennom: Katalysatoren er i redusert tilstand, en terskel passeres, oksidasjonen løper løpsk, og systemet nullstilles. Fordi hver celle drar naboene med seg, blir syklusen til en vandrende bølge. Overalt der en bølgefront brytes, krøller den frie enden seg sammen, og den krøllen er spiralen.",
         ],
         formula: hodgepodgeFormula("ellers"),
       },
@@ -449,15 +449,15 @@ export const BZR_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "I formelen teller a de smittede naboene og b de syke, og S er summen av tilstandene til cellen og de åtte naboene. En smittet celle går altså til gjennomsnittet av alle celler rundt seg som ikke er friske, de syke medregnet, pluss g. Resultater over 99 kappes til 99. k₁ («infected weight», 1 til 8) deler antallet smittede når en frisk celle avgjør om den blir smittet, og k₂ («ill weight», 1 til 8) gjør det samme for syke naboer. Med k₁ = k₂ = 8 reagerer en frisk celle bare når alle åtte naboene er smittet eller alle åtte er syke.",
-          "g («reaction rate», 1 til 60) er hvor mye verre en smittet celle blir per steg, i tillegg til det lokale gjennomsnittet. Den bestemmer lengden på den eksiterte fasen: en celle trenger omtrent 99 / g steg for å klatre fra første smitte til syk. I testkjøringer fra en tilfeldig start var gjennomsnittet 3,7 steg med g = 28 og litt over 8 med g = 12.",
-          "De fire forhåndsinnstillingene er Classic spirals (k₁ = 3, k₂ = 3, g = 28, standardvalget), Tight scrolls (3, 2, 36), Target rings (2, 2, 40) og Turbulent (3, 3, 40). Restart fyller rutenettet med uniformt tilfeldige tilstander. Seed broken wave starter fra et tomt rutenett med en halvlinje av syke celler, flankert av rader i tilstandene 60 og 20: en bølgefront som er brutt med vilje og sender ut bølger i et speilsymmetrisk mønster. Speed bestemmer hvor mange generasjoner som kjøres per animasjonsbilde, fra 1 til 8.",
+          "g («reaction rate», 1 til 60) er hvor mye verre en smittet celle blir per steg, i tillegg til det lokale gjennomsnittet. Den bestemmer lengden på den eksiterte fasen: En celle trenger omtrent 99 / g steg for å klatre fra første smitte til syk. I testkjøringer fra en tilfeldig start var gjennomsnittet 3,7 steg med g = 28 og litt over 8 med g = 12.",
+          "De fire forhåndsvalgene er «Classic spirals» (k₁ = 3, k₂ = 3, g = 28, standardvalget), «Tight scrolls» (3, 2, 36), «Target rings» (2, 2, 40) og «Turbulent» (3, 3, 40). «Restart» fyller rutenettet med uniformt tilfeldige tilstander. «Seed broken wave» starter fra et tomt rutenett med en halvlinje av syke celler, flankert av rader i tilstandene 60 og 20: en bølgefront som er brutt med vilje og sender ut bølger i et speilsymmetrisk mønster. «Speed» bestemmer hvor mange generasjoner som kjøres per animasjonsbilde, fra 1 til 8.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Rutenettet er en Uint8Array på 40 000 byte, én byte per celle, og en annen array av samme størrelse tar imot neste generasjon. Etter hvert steg bytter de to referansene plass, så det blir ikke allokert noe minne mens animasjonen går. Kantene henger sammen (rutenettet er en torus), så bølger som går ut til høyre, kommer inn igjen fra venstre.",
-          "Tegningen bruker en RGBA-oppslagstabell med 100 oppføringer som bygges én gang per fargekart. Hvert bilde kopierer fire byte per celle fra tabellen til en ImageData-buffer og legger den på et canvas på 200 ganger 200 piksler, som CSS skalerer opp med pikselert gjengivelse slik at hver celle forblir et skarpt kvadrat. Standardfarten er med vilje én generasjon per bilde: ved høyere takt kan fargefrontene flimre så raskt at det blir ubehagelig. Hvis systemet ditt ber om redusert bevegelse, startes sløyfen aldri, og du ser ett enkelt stillbilde. Restart og Seed broken wave tegner det bildet på nytt.",
+          "Rutenettet er en Uint8Array på 40\u00a0000 byte, én byte per celle, og en annen array av samme størrelse tar imot neste generasjon. Etter hvert steg bytter de to referansene plass, så det blir ikke allokert noe minne mens animasjonen går. Kantene henger sammen (rutenettet er en torus), så bølger som går ut til høyre, kommer inn igjen fra venstre.",
+          "Tegningen bruker en RGBA-oppslagstabell med 100 oppføringer som bygges én gang per fargekart. Hvert bilde kopierer fire byte per celle fra tabellen til en ImageData-buffer og legger den på et lerret på 200 ganger 200 piksler, som CSS skalerer opp med pikselert gjengivelse slik at hver celle forblir et skarpt kvadrat. Standardfarten er med vilje én generasjon per bilde: Ved høyere takt kan fargefrontene flimre så raskt at det blir ubehagelig. Hvis systemet ditt ber om redusert bevegelse, startes sløyfen aldri, og du ser ett enkelt stillbilde. «Restart» og «Seed broken wave» tegner det bildet på nytt.",
         ],
         code: STEP_EXCERPT,
       },
@@ -472,19 +472,19 @@ export const BZR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "En brutt bølge",
-        text: "Velg Classic spirals og trykk på Seed broken wave. En linse av bølgefronter brer seg ut fra linjen og går rundt via kantene, og etter omtrent 300 iterasjoner er hele rutenettet dekket av spiraler, speilsymmetrisk ordnet fordi startmønsteret er symmetrisk.",
+        text: "Velg «Classic spirals» og trykk på «Seed broken wave». En linse av bølgefronter brer seg ut fra linjen og går rundt via kantene, og etter omtrent 300 iterasjoner er hele rutenettet dekket av spiraler, speilsymmetrisk ordnet fordi startmønsteret er symmetrisk.",
       },
       {
         title: "Strekk den eksiterte fasen",
-        text: "Behold k₁ = k₂ = 3, sett g til 12 og start på nytt. Fargebåndene er bredere, fordi hver celle bruker flere steg på å klatre mot den syke tilstanden, og det tar mye lengre tid før spiralene dukker opp (i testkjøringer noen ganger mer enn 1500 iterasjoner). Med g = 6 ble det ikke dannet noen spiraler i det hele tatt: store flekker blinker nesten i takt.",
+        text: "Behold k₁ = k₂ = 3, sett g til 12 og start på nytt. Fargebåndene er bredere, fordi hver celle bruker flere steg på å klatre mot den syke tilstanden, og det tar mye lengre tid før spiralene dukker opp (i testkjøringer noen ganger mer enn 1500 iterasjoner). Med g = 6 ble det ikke dannet noen spiraler i det hele tatt: Store flekker blinker nesten i takt.",
       },
       {
         title: "Gjør mediet sta",
-        text: "Sett k₁ og k₂ til 4 eller mer, behold g = 28 og start på nytt fra en tilfeldig tilstand. Friske celler trenger nå minst fire smittede eller fire syke naboer før de reagerer. I testkjøringer overlevde ingen bølge: innen 50 iterasjoner var hele feltet friskt, og det forble mørkt.",
+        text: "Sett k₁ og k₂ til 4 eller mer, behold g = 28 og start på nytt fra en tilfeldig tilstand. Friske celler trenger nå minst fire smittede eller fire syke naboer før de reagerer. I testkjøringer overlevde ingen bølge: Innen 50 iterasjoner var hele feltet friskt, og det forble mørkt.",
       },
       {
         title: "Ringer eller turbulens",
-        text: "Last inn Target rings (k₁ = 2, k₂ = 2, g = 40) og start på nytt fra en tilfeldig tilstand. I testkjøringer falt feltet til ro i et stabilt mønster av konsentriske ringer rundt mange sentre. Last deretter inn Turbulent: å øke k₁ og k₂ til 3 med samme g ga et urolig, finkornet felt uten varig struktur.",
+        text: "Last inn «Target rings» (k₁ = 2, k₂ = 2, g = 40) og start på nytt fra en tilfeldig tilstand. I testkjøringer falt feltet til ro i et stabilt mønster av konsentriske ringer rundt mange sentre. Last deretter inn «Turbulent»: Å øke k₁ og k₂ til 3 med samme g ga et urolig, finkornet felt uten varig struktur.",
       },
     ],
   },

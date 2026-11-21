@@ -45,7 +45,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
         heading: "What the controls do",
         paragraphs: [
           "The rule buttons switch the preset and restart from an empty grid. The label above the canvas shows the active rule and its number of colours, the counter on the right shows how many steps the ant has taken.",
-          "Steps per frame runs from 1 to 5000 and starts at 800. At around 60 frames per second the default already means tens of thousands of steps per second, so the classic ant reaches its highway within a fraction of a second. To actually watch the chaotic phase, drop the slider to 10 or 20. At 10 steps per frame the ant needs roughly a quarter of a minute to reach step 10 000.",
+          "Steps / frame runs from 1 to 5000 and starts at 800. At around 60 frames per second the default already means tens of thousands of steps per second, so the classic ant reaches its highway within a fraction of a second. To actually watch the chaotic phase, drop the slider to 10 or 20. At 10 steps per frame the ant needs roughly a quarter of a minute to reach step 10 000.",
           "Cell size sets how many CSS pixels one grid cell covers, from 2 to 10, starting at 4. Changing it restarts the run, because the grid has to be rebuilt. Play and Pause freeze the ant without losing anything, Reset clears the grid and puts the ant back in the centre, facing north.",
         ],
       },
@@ -70,11 +70,11 @@ export const LANGTON_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Catch the highway forming",
-        text: "Choose the classic RL rule, set steps per frame to 10 and press Reset. Watch the counter: for a long time the blob grows without any visible plan, and shortly after step 10 000 a narrow diagonal stripe starts to leave it. That stripe repeats the same 104 steps over and over and moves two cells per cycle.",
+        text: "Choose the classic RL rule, set Steps / frame to 10 and press Reset. Watch the counter: for a long time the blob grows without any visible plan, and shortly after step 10 000 a narrow diagonal stripe starts to leave it. That stripe repeats the same 104 steps over and over and moves two cells per cycle.",
       },
       {
         title: "Let the highway crash",
-        text: "Keep RL, set the cell size to 10 and steps per frame to 5000. The grid is now small, so the highway wraps around the edge quickly and hits the old pattern. Watch the order break down into chaos again.",
+        text: "Keep RL, set the cell size to 10 and Steps / frame to 5000. The grid is now small, so the highway wraps around the edge quickly and hits the old pattern. Watch the order break down into chaos again.",
       },
       {
         title: "Compare symmetric and chaotic growth",
@@ -135,7 +135,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
       },
       {
         title: "Die Autobahn crashen lassen",
-        text: "Bleib bei RL, stell die Zellgröße auf 10 und die Schritte pro Frame auf 5000. Das Gitter ist jetzt klein, die Autobahn wickelt sich schnell über den Rand und trifft auf das alte Muster. Beobachte, wie die Ordnung wieder in Chaos zerfällt.",
+        text: "Bleib bei RL, stell die Zellgröße auf 10 und «Schritte / Frame» auf 5000. Das Gitter ist jetzt klein, die Autobahn wickelt sich schnell über den Rand und trifft auf das alte Muster. Beobachte, wie die Ordnung wieder in Chaos zerfällt.",
       },
       {
         title: "Symmetrisch gegen chaotisch",
@@ -149,7 +149,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
   },
   es: {
     metaDescription:
-      "La hormiga de Langton en vivo: mira el caos volverse una autopista de 104 pasos cerca del paso 10 000 y prueba reglas multicolor como RLR y LLRR.",
+      "La hormiga de Langton en vivo: mira el caos volverse una autopista de 104 pasos cerca del paso 10 000 y prueba reglas multicolor como RLR y LLRR.",
     heading: "Cómo funciona este explorador",
     intro:
       "El cuadrado blanco es la hormiga. Está sobre una cuadrícula de celdas que empiezan todas vacías, y sigue una sola regla: mira el color que tienes debajo, gira a la izquierda o a la derecha según ese color, cambia el color, da un paso adelante. No ocurre nada más. Y aun así la imagen pasa por tres fases muy distintas: un pequeño comienzo simétrico, un largo tramo de caos aparente y luego, de repente, un orden perfecto.",
@@ -165,16 +165,16 @@ export const LANGTON_GUIDE: ExplorerGuide = {
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "Los botones de regla cambian el ajuste predefinido y reinician desde una cuadrícula vacía. La etiqueta sobre el canvas muestra la regla activa y su número de colores, y el contador de la derecha muestra cuántos pasos ha dado la hormiga.",
-          "«Pasos / fotograma» va de 1 a 5000 y empieza en 800. A unos 60 fotogramas por segundo, el valor por defecto ya supone decenas de miles de pasos por segundo, así que la hormiga clásica llega a su autopista en una fracción de segundo. Para ver de verdad la fase caótica, baja el deslizador a 10 o 20. Con 10 pasos por fotograma, la hormiga necesita más o menos un cuarto de minuto para llegar al paso 10 000.",
+          "Los botones de regla cambian el preajuste y reinician desde una cuadrícula vacía. La etiqueta sobre el lienzo muestra la regla activa y su número de colores, y el contador de la derecha muestra cuántos pasos ha dado la hormiga.",
+          "«Pasos / fotograma» va de 1 a 5000 y empieza en 800. A unos 60 fotogramas por segundo, el valor por defecto ya supone decenas de miles de pasos por segundo, así que la hormiga clásica llega a su autopista en una fracción de segundo. Para ver de verdad la fase caótica, baja el deslizador a 10 o 20. Con 10 pasos por fotograma, la hormiga necesita más o menos un cuarto de minuto para llegar al paso 10 000.",
           "«Tamaño de celda» fija cuántos píxeles CSS ocupa una celda de la cuadrícula, de 2 a 10, empezando en 4. Cambiarlo reinicia la ejecución, porque hay que reconstruir la cuadrícula. «Play» y «Pausa» congelan la hormiga sin perder nada, y «Reiniciar» vacía la cuadrícula y devuelve la hormiga al centro, mirando al norte.",
         ],
       },
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "La cuadrícula es un único Uint8Array con un byte por celda, que guarda el índice de color. Su tamaño es el tamaño del canvas dividido entre el tamaño de celda, pero nunca menor de 40 por 40 celdas. La hormiga en sí son solo tres números: su columna, su fila y una dirección de 0 a 3 para norte, este, sur y oeste. Girar a la derecha suma uno a la dirección, girar a la izquierda suma tres, y un AND bit a bit con 3 mantiene el resultado dentro del rango sin necesidad de un módulo.",
-          "El dibujo es incremental. Un paso cambia exactamente una celda, así que la función de paso pinta exactamente esa celda y nada más; el canvas nunca se borra entre fotogramas. Por eso miles de pasos por fotograma siguen saliendo baratos. La cabeza blanca se dibuja encima después de cada lote y se repinta con el color real de la celda al comienzo del fotograma siguiente.",
+          "La cuadrícula es un único Uint8Array con un byte por celda, que guarda el índice de color. Su tamaño es el tamaño del lienzo dividido entre el tamaño de celda, pero nunca menor de 40 por 40 celdas. La hormiga en sí son solo tres números: su columna, su fila y una dirección de 0 a 3 para norte, este, sur y oeste. Girar a la derecha suma uno a la dirección, girar a la izquierda suma tres, y un AND bit a bit con 3 mantiene el resultado dentro del rango sin necesidad de un módulo.",
+          "El dibujo es incremental. Un paso cambia exactamente una celda, así que la función de paso pinta exactamente esa celda y nada más; el lienzo nunca se borra entre fotogramas. Por eso miles de pasos por fotograma siguen saliendo baratos. La cabeza blanca se dibuja encima después de cada lote y se repinta con el color real de la celda al comienzo del fotograma siguiente.",
           "El contador de pasos superpuesto es estado de React, pero solo se actualiza cuando han ocurrido al menos 30 pasos nuevos. Si tu sistema pide movimiento reducido, el explorador arranca en pausa y espera a que pulses «Play».",
         ],
         code: STEP_EXCERPT,
@@ -191,11 +191,11 @@ export const LANGTON_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Pilla la autopista en plena formación",
-        text: "Elige la regla clásica RL, pon «Pasos / fotograma» en 10 y pulsa «Reiniciar». Fíjate en el contador: durante mucho tiempo la mancha crece sin ningún plan visible, y poco después del paso 10 000 empieza a salir de ella una franja diagonal estrecha. Esa franja repite una y otra vez los mismos 104 pasos y avanza dos celdas por ciclo.",
+        text: "Elige la regla clásica RL, pon «Pasos / fotograma» en 10 y pulsa «Reiniciar». Fíjate en el contador: durante mucho tiempo la mancha crece sin ningún plan visible, y poco después del paso 10 000 empieza a salir de ella una franja diagonal estrecha. Esa franja repite una y otra vez los mismos 104 pasos y avanza dos celdas por ciclo.",
       },
       {
         title: "Haz que la autopista se estrelle",
-        text: "Sigue con RL, pon el tamaño de celda en 10 y los pasos por fotograma en 5000. Ahora la cuadrícula es pequeña, así que la autopista da la vuelta por el borde enseguida y choca con el patrón antiguo. Mira cómo el orden vuelve a deshacerse en caos.",
+        text: "Sigue con RL, pon el tamaño de celda en 10 y «Pasos / fotograma» en 5000. Ahora la cuadrícula es pequeña, así que la autopista da la vuelta por el borde enseguida y choca con el patrón antiguo. Mira cómo el orden vuelve a deshacerse en caos.",
       },
       {
         title: "Compara el crecimiento simétrico y el caótico",
@@ -223,18 +223,18 @@ export const LANGTON_GUIDE: ExplorerGuide = {
         formula: ruleFormula("état", "cap", "selon la lettre"),
       },
       {
-        heading: "À quoi servent les réglages",
+        heading: "À quoi servent les commandes",
         paragraphs: [
-          "Les boutons de règle changent de préréglage et repartent d'une grille vide. L'étiquette au-dessus du canvas indique la règle active et son nombre de couleurs, le compteur à droite indique combien de pas la fourmi a effectués.",
-          "« Pas / image » va de 1 à 5000 et démarre à 800. À environ 60 images par seconde, la valeur par défaut représente déjà des dizaines de milliers de pas par seconde, si bien que la fourmi classique atteint son autoroute en une fraction de seconde. Pour vraiment observer la phase chaotique, descends le curseur à 10 ou 20. À 10 pas par image, il faut à la fourmi à peu près un quart de minute pour atteindre le pas 10 000.",
+          "Les boutons de règle changent de préréglage et repartent d'une grille vide. L'étiquette au-dessus du canevas indique la règle active et son nombre de couleurs, le compteur à droite indique combien de pas la fourmi a effectués.",
+          "« Pas / image » va de 1 à 5 000 et démarre à 800. À environ 60 images par seconde, la valeur par défaut représente déjà des dizaines de milliers de pas par seconde, si bien que la fourmi classique atteint son autoroute en une fraction de seconde. Pour vraiment observer la phase chaotique, descends le curseur à 10 ou 20. À 10 pas par image, il faut à la fourmi à peu près un quart de minute pour atteindre le pas 10 000.",
           "« Taille de cellule » fixe le nombre de pixels CSS que couvre une cellule de la grille, de 2 à 10, avec 4 au départ. La modifier relance la simulation, car la grille doit être reconstruite. « Lecture » et « Pause » figent la fourmi sans rien perdre, « Réinit. » vide la grille et replace la fourmi au centre, tournée vers le nord.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "La grille est un unique Uint8Array avec un octet par cellule, qui contient l'indice de couleur. Sa taille est celle du canvas divisée par la taille de cellule, mais jamais inférieure à 40 sur 40 cellules. La fourmi elle-même se résume à trois nombres : sa colonne, sa ligne et une direction de 0 à 3 pour nord, est, sud et ouest. Tourner à droite ajoute un à la direction, tourner à gauche ajoute trois, et un ET bit à bit avec 3 maintient le résultat dans l'intervalle sans modulo.",
-          "Le dessin est incrémental. Un pas modifie exactement une cellule, donc la fonction de pas peint exactement cette cellule et rien d'autre ; le canvas n'est jamais effacé entre deux images. C'est pourquoi des milliers de pas par image restent peu coûteux. La tête blanche est dessinée par-dessus après chaque lot, puis repeinte avec la vraie couleur de la cellule au début de l'image suivante.",
+          "La grille est un unique Uint8Array avec un octet par cellule, qui contient l'indice de couleur. Sa taille est celle du canevas divisée par la taille de cellule, mais jamais inférieure à 40 sur 40 cellules. La fourmi elle-même se résume à trois nombres : sa colonne, sa ligne et une direction de 0 à 3 pour nord, est, sud et ouest. Tourner à droite ajoute un à la direction, tourner à gauche ajoute trois, et un ET bit à bit avec 3 maintient le résultat dans l'intervalle sans modulo.",
+          "Le dessin est incrémental. Un pas modifie exactement une cellule, donc la fonction de pas peint exactement cette cellule et rien d'autre ; le canevas n'est jamais effacé entre deux images. C'est pourquoi des milliers de pas par image restent peu coûteux. La tête blanche est dessinée par-dessus après chaque lot, puis repeinte avec la vraie couleur de la cellule au début de l'image suivante.",
           "Le compteur de pas en surimpression est un état React, mais il n'est mis à jour que lorsqu'au moins 30 nouveaux pas ont eu lieu. Si ton système demande une réduction des animations, l'explorateur démarre en pause et attend que tu appuies sur « Lecture ».",
         ],
         code: STEP_EXCERPT,
@@ -255,7 +255,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
       },
       {
         title: "Envoie l'autoroute dans le décor",
-        text: "Garde RL, règle la taille de cellule sur 10 et les pas par image sur 5000. La grille est maintenant petite, l'autoroute fait donc vite le tour par le bord et heurte l'ancien motif. Regarde l'ordre se défaire de nouveau en chaos.",
+        text: "Garde RL, règle la taille de cellule sur 10 et « Pas / image » sur 5 000. La grille est maintenant petite, l'autoroute fait donc vite le tour par le bord et heurte l'ancien motif. Regarde l'ordre se défaire de nouveau en chaos.",
       },
       {
         title: "Compare croissance symétrique et croissance chaotique",
@@ -269,7 +269,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
   },
   it: {
     metaDescription:
-      "La formica di Langton dal vivo: guarda il caos diventare un'autostrada di 104 passi intorno al passo 10 000 e prova regole multicolore come RLR e LLRR.",
+      "La formica di Langton dal vivo: guarda il caos diventare un'autostrada di 104 passi intorno al passo 10.000 e prova regole multicolore come RLR e LLRR.",
     heading: "Come funziona questo esploratore",
     intro:
       "Il quadrato bianco è la formica. Sta su una griglia di celle che all'inizio sono tutte vuote, e segue un'unica regola: guarda il colore sotto di te, gira a sinistra o a destra a seconda di quel colore, cambia il colore, fai un passo avanti. Non succede nient'altro. Eppure l'immagine attraversa tre fasi molto diverse: un piccolo inizio simmetrico, un lungo tratto di caos apparente e poi, all'improvviso, un ordine perfetto.",
@@ -285,8 +285,8 @@ export const LANGTON_GUIDE: ExplorerGuide = {
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "I pulsanti delle regole cambiano la preimpostazione e ripartono da una griglia vuota. L'etichetta sopra il canvas mostra la regola attiva e il suo numero di colori, il contatore a destra mostra quanti passi ha fatto la formica.",
-          "«Passi / frame» va da 1 a 5000 e parte da 800. A circa 60 fotogrammi al secondo, il valore predefinito significa già decine di migliaia di passi al secondo, quindi la formica classica raggiunge la sua autostrada in una frazione di secondo. Per osservare davvero la fase caotica, abbassa il cursore a 10 o 20. A 10 passi per fotogramma, alla formica serve all'incirca un quarto di minuto per arrivare al passo 10 000.",
+          "I pulsanti delle regole cambiano il preset e ripartono da una griglia vuota. L'etichetta sopra il canvas mostra la regola attiva e il suo numero di colori, il contatore a destra mostra quanti passi ha fatto la formica.",
+          "«Passi / frame» va da 1 a 5000 e parte da 800. A circa 60 fotogrammi al secondo, il valore predefinito significa già decine di migliaia di passi al secondo, quindi la formica classica raggiunge la sua autostrada in una frazione di secondo. Per osservare davvero la fase caotica, abbassa il cursore a 10 o 20. A 10 passi per fotogramma, alla formica serve all'incirca un quarto di minuto per arrivare al passo 10.000.",
           "«Dimensione cella» imposta quanti pixel CSS copre una cella della griglia, da 2 a 10, partendo da 4. Cambiarla fa ripartire la simulazione, perché la griglia va ricostruita. «Play» e «Pausa» congelano la formica senza perdere nulla, «Reset» svuota la griglia e rimette la formica al centro, rivolta a nord.",
         ],
       },
@@ -307,11 +307,11 @@ export const LANGTON_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Prova tu",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Cogli l'autostrada mentre si forma",
-        text: "Scegli la regola classica RL, imposta «Passi / frame» a 10 e premi «Reset». Tieni d'occhio il contatore: per molto tempo la macchia cresce senza alcun piano visibile, e poco dopo il passo 10 000 comincia a uscirne una stretta striscia diagonale. Quella striscia ripete di continuo gli stessi 104 passi e avanza di due celle per ciclo.",
+        text: "Scegli la regola classica RL, imposta «Passi / frame» a 10 e premi «Reset». Tieni d'occhio il contatore: per molto tempo la macchia cresce senza alcun piano visibile, e poco dopo il passo 10.000 comincia a uscirne una stretta striscia diagonale. Quella striscia ripete di continuo gli stessi 104 passi e avanza di due celle per ciclo.",
       },
       {
         title: "Fai schiantare l'autostrada",
@@ -389,7 +389,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
   },
   sv: {
     metaDescription:
-      "Langtons myra i realtid: se kaoset övergå i en motorväg på 104 steg nära steg 10 000, testa flerfärgsregler som RLR och LLRR och se hur den är kodad.",
+      "Langtons myra i realtid: se kaoset övergå i en motorväg på 104 steg nära steg 10\u00a0000, testa flerfärgsregler som RLR och LLRR och se hur den är kodad.",
     heading: "Så fungerar den här utforskaren",
     intro:
       "Den vita kvadraten är myran. Den står på ett rutnät av celler som alla är tomma från början, och den följer en enda regel: titta på färgen under dig, sväng vänster eller höger beroende på färgen, byt färgen, ta ett steg framåt. Inget annat händer. Ändå går bilden igenom tre mycket olika faser: en liten symmetrisk början, en lång sträcka av skenbart kaos och sedan, plötsligt, perfekt ordning.",
@@ -405,8 +405,8 @@ export const LANGTON_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "Regelknapparna byter förinställning och startar om från ett tomt rutnät. Etiketten ovanför canvasen visar den aktiva regeln och dess antal färger, och räknaren till höger visar hur många steg myran har tagit.",
-          "”Steg / bildruta” går från 1 till 5000 och börjar på 800. Vid ungefär 60 bildrutor per sekund innebär redan standardvärdet tiotusentals steg per sekund, så den klassiska myran når sin motorväg på en bråkdel av en sekund. Vill du faktiskt se den kaotiska fasen drar du ner reglaget till 10 eller 20. Vid 10 steg per bildruta behöver myran ungefär en kvarts minut för att nå steg 10 000.",
+          "Regelknapparna byter förval och startar om från ett tomt rutnät. Etiketten ovanför canvasen visar den aktiva regeln och dess antal färger, och räknaren till höger visar hur många steg myran har tagit.",
+          "”Steg / bildruta” går från 1 till 5000 och börjar på 800. Vid ungefär 60 bildrutor per sekund innebär redan standardvärdet tiotusentals steg per sekund, så den klassiska myran når sin motorväg på en bråkdel av en sekund. Vill du faktiskt se den kaotiska fasen drar du ner reglaget till 10 eller 20. Vid 10 steg per bildruta behöver myran ungefär en kvarts minut för att nå steg 10\u00a0000.",
           "”Cellstorlek” bestämmer hur många CSS-pixlar en cell i rutnätet täcker, från 2 till 10, med 4 från början. Ändrar du den startar körningen om, eftersom rutnätet måste byggas upp på nytt. ”Spela” och ”Paus” fryser myran utan att något går förlorat, ”Återställ” tömmer rutnätet och ställer myran i mitten igen, vänd mot norr.",
         ],
       },
@@ -415,7 +415,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Rutnätet är en enda Uint8Array med en byte per cell, som innehåller färgindexet. Dess storlek är canvasens storlek delad med cellstorleken, men aldrig mindre än 40 gånger 40 celler. Själva myran är bara tre tal: dess kolumn, dess rad och en riktning från 0 till 3 för norr, öster, söder och väster. En högersväng lägger ett till riktningen, en vänstersväng lägger till tre, och ett bitvis OCH med 3 håller resultatet inom intervallet utan någon modulo.",
           "Ritningen är inkrementell. Ett steg ändrar exakt en cell, så stegfunktionen målar exakt den cellen och inget annat. Canvasen rensas aldrig mellan bildrutorna. Därför förblir tusentals steg per bildruta billiga. Det vita huvudet ritas ovanpå efter varje omgång och målas över med cellens riktiga färg i början av nästa bildruta.",
-          "Stegräknaren i överlägget är React-tillstånd, men den uppdateras bara när minst 30 nya steg har tagits. Om ditt system ber om reducerad rörelse startar utforskaren pausad och väntar på att du trycker på ”Spela”.",
+          "Stegräknaren i överlägget är React-tillstånd, men den uppdateras bara när minst 30 nya steg har tagits. Om ditt system ber om minskad rörelse startar utforskaren pausad och väntar på att du trycker på ”Spela”.",
         ],
         code: STEP_EXCERPT,
       },
@@ -427,11 +427,11 @@ export const LANGTON_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Fånga motorvägen när den bildas",
-        text: "Välj den klassiska regeln RL, ställ ”Steg / bildruta” på 10 och tryck på ”Återställ”. Håll ögonen på räknaren: länge växer klumpen utan någon synlig plan, och strax efter steg 10 000 börjar en smal diagonal remsa lämna den. Remsan upprepar samma 104 steg om och om igen och flyttar sig två celler per cykel.",
+        text: "Välj den klassiska regeln RL, ställ ”Steg / bildruta” på 10 och tryck på ”Återställ”. Håll ögonen på räknaren: länge växer klumpen utan någon synlig plan, och strax efter steg 10\u00a0000 börjar en smal diagonal remsa lämna den. Remsan upprepar samma 104 steg om och om igen och flyttar sig två celler per cykel.",
       },
       {
         title: "Låt motorvägen krascha",
@@ -449,15 +449,15 @@ export const LANGTON_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Langtons maur i sanntid: se kaoset gå over i en motorvei på 104 steg nær steg 10 000, prøv flerfargeregler som RLR og LLRR, og se hvordan den er kodet.",
+      "Langtons maur i sanntid: Se kaoset gå over i en motorvei på 104 steg nær steg 10\u00a0000, prøv flerfargeregler som RLR og LLRR, og se hvordan den er kodet.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Den hvite firkanten er mauren. Den står på et rutenett av celler som alle er tomme i starten, og den følger én regel: se på fargen under deg, sving til venstre eller høyre avhengig av fargen, bytt fargen, ta ett steg fram. Ingenting annet skjer. Likevel går bildet gjennom tre svært ulike faser: en liten symmetrisk start, en lang strekning med tilsynelatende kaos, og så, plutselig, perfekt orden.",
+      "Den hvite firkanten er mauren. Den står på et rutenett av celler som alle er tomme i starten, og den følger én regel: Se på fargen under deg, sving til venstre eller høyre avhengig av fargen, bytt fargen, ta ett steg fram. Ingenting annet skjer. Likevel går bildet gjennom tre svært ulike faser: en liten symmetrisk start, en lang strekning med tilsynelatende kaos, og så, plutselig, perfekt orden.",
     sections: [
       {
         heading: "Regelen, skrevet som en streng",
         paragraphs: [
-          "Christopher Langton beskrev mauren i 1986. I den klassiske formen finnes det to farger. På en tom celle svinger mauren til høyre, på en farget celle svinger den til venstre, og i begge tilfeller bytter den fargen på cellen før den går videre. Utforskeren skriver dette som regelstrengen RL: den første bokstaven er svingen på farge 0, den andre svingen på farge 1.",
+          "Christopher Langton beskrev mauren i 1986. I den klassiske formen finnes det to farger. På en tom celle svinger mauren til høyre, på en farget celle svinger den til venstre, og i begge tilfeller bytter den fargen på cellen før den går videre. Utforskeren skriver dette som regelstrengen RL: Den første bokstaven er svingen på farge 0, den andre svingen på farge 1.",
           "Den notasjonen lar seg straks generalisere. En regel med n bokstaver bruker n farger, og hvert besøk flytter en celle til neste farge i syklusen. RLR har tre farger, LLRR fire, og så videre. Disse generaliserte maurene kalles ofte turmitter.",
         ],
         formula: ruleFormula("tilstand", "retning", "etter bokstav"),
@@ -465,16 +465,16 @@ export const LANGTON_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "Regelknappene bytter forhåndsinnstilling og starter på nytt fra et tomt rutenett. Etiketten over canvaset viser den aktive regelen og antall farger, og telleren til høyre viser hvor mange steg mauren har tatt.",
-          "«Steg / bilde» går fra 1 til 5000 og starter på 800. Ved rundt 60 bilder per sekund betyr allerede standardverdien titusenvis av steg per sekund, så den klassiske mauren når motorveien sin på en brøkdel av et sekund. Vil du faktisk se den kaotiske fasen, drar du glidebryteren ned til 10 eller 20. Ved 10 steg per bilde trenger mauren omtrent et kvart minutt for å nå steg 10 000.",
+          "Regelknappene bytter forhåndsvalg og starter på nytt fra et tomt rutenett. Etiketten over lerretet viser den aktive regelen og antall farger, og telleren til høyre viser hvor mange steg mauren har tatt.",
+          "«Steg / bilde» går fra 1 til 5000 og starter på 800. Ved rundt 60 bilder per sekund betyr allerede standardverdien titusenvis av steg per sekund, så den klassiske mauren når motorveien sin på en brøkdel av et sekund. Vil du faktisk se den kaotiske fasen, drar du glidebryteren ned til 10 eller 20. Ved 10 steg per bilde trenger mauren omtrent et kvart minutt for å nå steg 10\u00a0000.",
           "«Cellestørrelse» bestemmer hvor mange CSS-piksler én celle i rutenettet dekker, fra 2 til 10, med 4 som start. Endrer du den, starter kjøringen på nytt, fordi rutenettet må bygges opp igjen. «Spill» og «Pause» fryser mauren uten at noe går tapt, «Nullstill» tømmer rutenettet og setter mauren tilbake i midten, vendt mot nord.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Rutenettet er ett enkelt Uint8Array med én byte per celle, som holder fargeindeksen. Størrelsen er canvasstørrelsen delt på cellestørrelsen, men aldri mindre enn 40 ganger 40 celler. Selve mauren er bare tre tall: kolonnen, raden og en retning fra 0 til 3 for nord, øst, sør og vest. En høyresving legger én til retningen, en venstresving legger til tre, og en bitvis OG med 3 holder resultatet innenfor området uten modulo.",
-          "Tegningen er inkrementell. Et steg endrer nøyaktig én celle, så stegfunksjonen maler nøyaktig den cellen og ingenting annet. Canvaset tømmes aldri mellom bildene. Derfor forblir tusenvis av steg per bilde billige. Det hvite hodet tegnes oppå etter hver bunke og males over med cellens virkelige farge i starten av neste bilde.",
+          "Rutenettet er ett enkelt Uint8Array med én byte per celle, som holder fargeindeksen. Størrelsen er lerretsstørrelsen delt på cellestørrelsen, men aldri mindre enn 40 ganger 40 celler. Selve mauren er bare tre tall: kolonnen, raden og en retning fra 0 til 3 for nord, øst, sør og vest. En høyresving legger én til retningen, en venstresving legger til tre, og en bitvis OG med 3 holder resultatet innenfor området uten modulo.",
+          "Tegningen er inkrementell. Et steg endrer nøyaktig én celle, så stegfunksjonen maler nøyaktig den cellen og ingenting annet. Lerretet tømmes aldri mellom bildene. Derfor forblir tusenvis av steg per bilde billige. Det hvite hodet tegnes oppå etter hver bunke og males over med cellens virkelige farge i starten av neste bilde.",
           "Stegtelleren i overlegget er React-tilstand, men den oppdateres bare når minst 30 nye steg har skjedd. Hvis systemet ditt ber om redusert bevegelse, starter utforskeren i pause og venter på at du trykker på «Spill».",
         ],
         code: STEP_EXCERPT,
@@ -482,7 +482,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
       {
         heading: "Hvorfor kantene betyr noe",
         paragraphs: [
-          "Rutenettet går rundt: en maur som forlater brettet til høyre, kommer tilbake til venstre, og det samme gjelder oppe og nede. Matematisk er brettet en torus. På et uendelig plan ville motorveien til den klassiske mauren fortsatt for alltid, og man vet at banen dens alltid er ubegrenset. På en torus går motorveien til slutt rundt og kjører inn i restene mauren la igjen tidligere, og bevegelsen blir uregelmessig igjen, noen ganger helt til en ny motorvei dannes.",
+          "Rutenettet går rundt: En maur som forlater brettet til høyre, kommer tilbake til venstre, og det samme gjelder oppe og nede. Matematisk er brettet en torus. På et uendelig plan ville motorveien til den klassiske mauren fortsatt for alltid, og man vet at banen dens alltid er ubegrenset. På en torus går motorveien til slutt rundt og kjører inn i restene mauren la igjen tidligere, og bevegelsen blir uregelmessig igjen, noen ganger helt til en ny motorvei dannes.",
           "Det finnes en dypere konsekvens. Torusen har endelig mange celler, hver med endelig mange farger, og mauren har endelig mange posisjoner og retninger. Et deterministisk system med endelig mange tilstander må før eller siden gjenta seg selv nøyaktig. Hver kjøring i denne utforskeren er altså, strengt tatt, periodisk. Perioden er bare astronomisk lang for ethvert rutenett du kan se.",
         ],
       },
@@ -491,7 +491,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Fang motorveien idet den dannes",
-        text: "Velg den klassiske regelen RL, sett «Steg / bilde» til 10 og trykk på «Nullstill». Følg med på telleren: lenge vokser klumpen uten noen synlig plan, og like etter steg 10 000 begynner en smal diagonal stripe å forlate den. Stripen gjentar de samme 104 stegene om og om igjen og flytter seg to celler per syklus.",
+        text: "Velg den klassiske regelen RL, sett «Steg / bilde» til 10 og trykk på «Nullstill». Følg med på telleren: Lenge vokser klumpen uten noen synlig plan, og like etter steg 10\u00a0000 begynner en smal diagonal stripe å forlate den. Stripen gjentar de samme 104 stegene om og om igjen og flytter seg to celler per syklus.",
       },
       {
         title: "La motorveien krasje",

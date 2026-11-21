@@ -203,7 +203,7 @@ export const BANACH_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "« Profondeur de l'arbre », de 1 à 7 (5 par défaut), fixe le nombre maximal de lettres des mots dessinés. Chaque nouveau niveau multiplie par trois les mots les plus récents, car tout mot peut être prolongé par n'importe quelle lettre sauf l'inverse de sa dernière. À la profondeur d, l'image contient 2 · 3ᵈ − 1 points : 485 à la profondeur par défaut, 4373 à la profondeur 7.",
+          "« Profondeur de l'arbre », de 1 à 7 (5 par défaut), fixe le nombre maximal de lettres des mots dessinés. Chaque nouveau niveau multiplie par trois les mots les plus récents, car tout mot peut être prolongé par n'importe quelle lettre sauf l'inverse de sa dernière. À la profondeur d, l'image contient 2 · 3ᵈ − 1 points : 485 à la profondeur par défaut, 4 373 à la profondeur 7.",
           "Les quatre boutons W(a), W(a⁻¹), W(b) et W(b⁻¹) mettent un morceau en évidence et estompent le reste ; un nouvel appui sur le bouton actif annule la sélection. Les couleurs suivent les générateurs : a pointe vers la droite, a⁻¹ vers la gauche, b vers le haut, b⁻¹ vers le bas. Une fois un morceau sélectionné, « Montrer le tour » le fait glisser d'un pas vers le centre et double sa taille en chemin, version visuelle de sa multiplication par l'inverse de sa première lettre, et une légende énonce l'identité : W(g) décalé par g⁻¹ recouvre F₂ privé de W(g⁻¹).",
         ],
       },
@@ -424,18 +424,18 @@ export const BANACH_GUIDE: ExplorerGuide = {
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
           "Treet tegnes på et 2D-lerret av en kort rekursiv vandring. Fra midten prøver den alle fire retningene, hopper over den som ville opphevet forrige steg (det ville gitt et ikke-redusert ord), og fortsetter rekursivt med halvert grenlengde. Hvert segment husker første bokstav i ordet sitt, så fargeleggingen etter bit trenger ingen ekstra gjennomgang. Rotgrenen er en firedel av den korteste siden av lerretet; siden lengdene halveres, når treet høyst dobbelt så langt og får alltid plass.",
-          "Trikset er en transformasjon av den ferdige tegningen, ikke en ny beregning: hvert segment og hver prikk i den fremhevede biten flyttes én rotlengde mot den inverse generatoren og skaleres med faktoren to om midten, med myk start og oppbremsing over 1,4 sekunder. Bare kanten som ender mellom midten og naboen, beholder lengden sin. Lerretet tegnes bare på nytt når dybde, valg, animasjonens fremdrift eller størrelse endres. Hvis systemet ditt ber om redusert bevegelse, hoppes animasjonen over, og sluttilstanden med bildeteksten vises med en gang.",
+          "Trikset er en transformasjon av den ferdige tegningen, ikke en ny beregning: Hvert segment og hver prikk i den fremhevede biten flyttes én rotlengde mot den inverse generatoren og skaleres med faktoren to om midten, med myk start og oppbremsing over 1,4 sekunder. Bare kanten som ender mellom midten og naboen, beholder lengden sin. Lerretet tegnes bare på nytt når dybde, valg, animasjonens fremdrift eller størrelse endres. Hvis systemet ditt ber om redusert bevegelse, hoppes animasjonen over, og sluttilstanden med bildeteksten vises med en gang.",
         ],
         code: WALK_EXCERPT,
       },
       {
         heading: "Fra treet til to kuler",
         paragraphs: [
-          "Animasjonen trenger en fotnote. Grenene tegnes halvparten så lange på hvert nivå for at det uendelige treet skal få plass på skjermen, og en bit som bare gled, ville vært halvparten så stor som de tre deltrærne den skal dekke. Derfor dobler utforskeren biten mens den beveger seg, og den lander nøyaktig. Doblingen hører til tegningen, ikke til matematikken: i gruppen finnes det ikke noe størrelsesbegrep i det hele tatt, bare telling, og treet har eksponentielt mange ord av hver lengde. Det er umulig å gi disse bitene størrelser som summeres på en motsigelsesfri måte, og det er det som gjør dem paradoksale.",
-          "Felix Hausdorff flyttet dette over på kuleflaten i 1914: la F₂ virke ved rotasjoner, bruk utvalgsaksiomet til å plukke ett punkt fra hver bane, og før gruppens biter over på kuleflaten. Banach og Tarski utvidet det til den massive kulen i 1924, og Raphael Robinson viste i 1947 at fem biter er nok og færre ikke er det. I planet kan ikke noe slikt skje med stive bevegelser alene, fordi gruppen av planets stive bevegelser er løsbar og ikke inneholder noen fri gruppe med to generatorer. Paradokset trenger tre dimensjoner.",
+          "Animasjonen trenger en fotnote. Grenene tegnes halvparten så lange på hvert nivå for at det uendelige treet skal få plass på skjermen, og en bit som bare gled, ville vært halvparten så stor som de tre deltrærne den skal dekke. Derfor dobler utforskeren biten mens den beveger seg, og den lander nøyaktig. Doblingen hører til tegningen, ikke til matematikken: I gruppen finnes det ikke noe størrelsesbegrep i det hele tatt, bare telling, og treet har eksponentielt mange ord av hver lengde. Det er umulig å gi disse bitene størrelser som summeres på en motsigelsesfri måte, og det er det som gjør dem paradoksale.",
+          "Felix Hausdorff flyttet dette over på kuleflaten i 1914: La F₂ virke ved rotasjoner, bruk utvalgsaksiomet til å plukke ett punkt fra hver bane, og før gruppens biter over på kuleflaten. Banach og Tarski utvidet det til den massive kulen i 1924, og Raphael Robinson viste i 1947 at fem biter er nok og færre ikke er det. I planet kan ikke noe slikt skje med stive bevegelser alene, fordi gruppen av planets stive bevegelser er løsbar og ikke inneholder noen fri gruppe med to generatorer. Paradokset trenger tre dimensjoner.",
         ],
       },
     ],
@@ -451,7 +451,7 @@ export const BANACH_GUIDE: ExplorerGuide = {
       },
       {
         title: "To kopier av fire biter",
-        text: "Kjør trikset på W(a⁻¹): den forskjøvne biten fyller hver arm unntatt den som peker mot høyre, og den manglende armen er nøyaktig W(a). Sammen gir de tilbake hele gruppen. Kjør det så på W(b⁻¹) og sjekk at W(b) fyller hullet. Fire biter, to fullstendige kopier av F₂. Det er gruppeversjonen av at én kule blir til to.",
+        text: "Kjør trikset på W(a⁻¹): Den forskjøvne biten fyller hver arm unntatt den som peker mot høyre, og den manglende armen er nøyaktig W(a). Sammen gir de tilbake hele gruppen. Kjør det så på W(b⁻¹) og sjekk at W(b) fyller hullet. Fire biter, to fullstendige kopier av F₂. Det er gruppeversjonen av at én kule blir til to.",
       },
     ],
   },

@@ -146,10 +146,10 @@ export const ULAM_GUIDE: ExplorerGuide = {
   },
   es: {
     metaDescription:
-      "Explora la espiral de Ulam de los números primos: hasta 251.001 números en una espiral cuadrada, diagonales ricas en primos y el n² − n + 41 de Euler.",
+      "Explora la espiral de Ulam de los números primos: hasta 251 001 números en una espiral cuadrada, diagonales ricas en primos y el n² − n + 41 de Euler.",
     heading: "Cómo funciona este explorador",
     intro:
-      "Escribe el 1 en el centro de una cuadrícula, el 2 a su derecha, y sigue contando en una espiral cuadrada, en sentido antihorario, anillo tras anillo. Después marca solo los primos. Con el tamaño por defecto de 251 × 251 la cuadrícula contiene 63.001 números, de los cuales 6320 son primos, y las marcas no parecen polvo esparcido al azar: se alinean a lo largo de diagonales. Stanisław Ulam lo observó en 1963 mientras garabateaba durante una conferencia. Una parte del patrón tiene una explicación sencilla y otra parte sigue siendo un problema abierto.",
+      "Escribe el 1 en el centro de una cuadrícula, el 2 a su derecha, y sigue contando en una espiral cuadrada, en sentido antihorario, anillo tras anillo. Después marca solo los primos. Con el tamaño por defecto de 251 × 251 la cuadrícula contiene 63 001 números, de los cuales 6320 son primos, y las marcas no parecen polvo esparcido al azar: se alinean a lo largo de diagonales. Stanisław Ulam lo observó en 1963 mientras garabateaba durante una conferencia. Una parte del patrón tiene una explicación sencilla y otra parte sigue siendo un problema abierto.",
     sections: [
       {
         heading: "Por qué a los primos les gustan las diagonales",
@@ -157,12 +157,13 @@ export const ULAM_GUIDE: ExplorerGuide = {
           "La primera razón es la paridad. En esta espiral un número es impar exactamente cuando x + y es par, de modo que pares e impares forman un tablero de ajedrez. Un paso en diagonal cambia x + y en 0 o en 2, lo que conserva la paridad, así que toda diagonal está formada solo por números impares o solo por números pares. Como todo primo salvo el 2 es impar, la mitad de las diagonales no lleva ningún primo (aparte del solitario 2) y los primos se ven obligados a repartirse en la otra mitad.",
           "La segunda razón es el álgebra. Al recorrer una semirrecta diagonal, los números que encuentras son los valores de un polinomio cuadrático, por ejemplo 1, 9, 25, 49, … = (2n + 1)² en la semirrecta que sale del 1 hacia abajo a la derecha. Algunos polinomios cuadráticos nunca pueden dar primos, porque se factorizan o porque siempre son divisibles por un primo pequeño. Otros esquivan todos los divisores pequeños y producen primos con mucha más frecuencia que la media. Hardy y Littlewood conjeturaron en 1923 con qué frecuencia exacta debería dar primos cada polinomio cuadrático; nadie ha demostrado que alguno de ellos produzca infinitos.",
         ],
-        formula: EULER_FORMULA,
+        formula:
+          "f(n) = n^2 - n + 41 \\text{ es primo para } n = 0, 1, \\dots, 40, \\qquad f(41) = 41^2",
       },
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "El lado de la cuadrícula va de 51 a 501 en pasos de 2. Se mantiene impar para que el 1 ocupe exactamente la celda central, que aparece con un borde cian. La cabecera muestra cuántos números contiene la cuadrícula y cuántos de ellos son primos: 378 primos entre 2601 números en el tamaño más pequeño, 22.115 entre 251.001 en el más grande.",
+          "El lado de la cuadrícula va de 51 a 501 en pasos de 2. Se mantiene impar para que el 1 ocupe exactamente la celda central, que aparece con un borde cian. La cabecera muestra cuántos números contiene la cuadrícula y cuántos de ellos son primos: 378 primos entre 2601 números en el tamaño más pequeño, 22 115 entre 251 001 en el más grande.",
           "El menú de resaltado colorea de rosa los primos que son valores de un polinomio cuadrático elegido: el n² − n + 41 de Euler (la opción por defecto), n² + n + 17, n² + n + 11, 4n² − 2n + 41 y n², o bien desactiva el resaltado. Solo se dibujan los primos, así que una celda rosa es siempre un valor primo del polinomio; se comprueban los valores para n de 0 a 599.",
         ],
       },
@@ -171,7 +172,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
         paragraphs: [
           "La primalidad sale de una criba de Eratóstenes sobre un Uint8Array con un byte por número hasta lado² + 5, que solo se recalcula cuando cambia el tamaño de la cuadrícula. Incluso en el tamaño más grande son alrededor de un cuarto de millón de bytes y tarda unos pocos milisegundos.",
           "Para colocar un número no hace falta recorrer la espiral. El anillo k alrededor del centro contiene los números de (2k − 1)² + 1 a (2k + 1)², porque cada anillo termina con un cuadrado impar en su esquina inferior derecha. A partir de n el código calcula su anillo con una sola raíz cuadrada y después su desplazamiento dentro del anillo, y ese desplazamiento indica en cuál de los cuatro lados está y en qué posición. La función de abajo es esa fórmula cerrada.",
-          "El canvas se dimensiona según la densidad de píxeles del dispositivo y se redibuja cada vez que cambia el tamaño de la cuadrícula, el resaltado o el tamaño de la ventana. Cada primo es un cuadrado relleno, ámbar o rosa. Las celdas resaltadas se guardan en un Set de claves (x, y) empaquetadas, de modo que el bucle de dibujo puede comprobar cada primo en tiempo constante. No hay nada animado, así que el ajuste de movimiento reducido no tiene nada que desactivar.",
+          "El lienzo se dimensiona según la densidad de píxeles del dispositivo y se redibuja cada vez que cambia el tamaño de la cuadrícula, el resaltado o el tamaño de la ventana. Cada primo es un cuadrado relleno, ámbar o rosa. Las celdas resaltadas se guardan en un Set de claves (x, y) empaquetadas, de modo que el bucle de dibujo puede comprobar cada primo en tiempo constante. No hay nada animado, así que el ajuste de movimiento reducido no tiene nada que desactivar.",
         ],
         code: SPIRAL_EXCERPT,
       },
@@ -187,7 +188,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Mide cómo escasean los primos",
-        text: "Compara la cuadrícula más pequeña (378 primos entre 2601 números, alrededor del 14,5 por ciento) con la más grande (22.115 entre 251.001, alrededor del 8,8 por ciento). Ambas coinciden con la estimación 1/(ln N − 1) del teorema de los números primos con un margen de unas pocas décimas de punto porcentual.",
+        text: "Compara la cuadrícula más pequeña (378 primos entre 2601 números, alrededor del 14,5 por ciento) con la más grande (22 115 entre 251 001, alrededor del 8,8 por ciento). Ambas coinciden con la estimación 1/(ln N − 1) del teorema de los números primos con un margen de unas pocas décimas de punto porcentual.",
       },
       {
         title: "Sigue las rectas de Euler",
@@ -205,10 +206,10 @@ export const ULAM_GUIDE: ExplorerGuide = {
   },
   fr: {
     metaDescription:
-      "Explore la spirale d'Ulam des nombres premiers : jusqu'à 251\u202f001 nombres sur une spirale carrée, des diagonales riches en premiers et le n² − n + 41 d'Euler.",
+      "Explore la spirale d'Ulam des nombres premiers : jusqu'à 251 001 nombres sur une spirale carrée, des diagonales riches en premiers et le n² − n + 41 d'Euler.",
     heading: "Comment fonctionne cet explorateur",
     intro:
-      "Écris 1 au centre d'une grille, 2 à sa droite, puis continue de compter en spirale carrée, dans le sens inverse des aiguilles d'une montre, anneau après anneau. Ensuite, ne marque que les nombres premiers. À la taille par défaut de 251 × 251, la grille contient 63\u202f001 nombres, dont 6\u202f320 premiers, et les marques ne ressemblent pas à une poussière aléatoire : elles s'alignent le long de diagonales. Stanisław Ulam l'a remarqué en 1963 en griffonnant pendant un exposé. Une partie du motif a une explication simple, une autre reste un problème ouvert.",
+      "Écris 1 au centre d'une grille, 2 à sa droite, puis continue de compter en spirale carrée, dans le sens inverse des aiguilles d'une montre, anneau après anneau. Ensuite, ne marque que les nombres premiers. À la taille par défaut de 251 × 251, la grille contient 63 001 nombres, dont 6 320 premiers, et les marques ne ressemblent pas à une poussière aléatoire : elles s'alignent le long de diagonales. Stanisław Ulam l'a remarqué en 1963 en griffonnant pendant un exposé. Une partie du motif a une explication simple, une autre reste un problème ouvert.",
     sections: [
       {
         heading: "Pourquoi les nombres premiers aiment les diagonales",
@@ -219,9 +220,9 @@ export const ULAM_GUIDE: ExplorerGuide = {
         formula: EULER_FORMULA,
       },
       {
-        heading: "À quoi servent les réglages",
+        heading: "À quoi servent les commandes",
         paragraphs: [
-          "Le côté de la grille va de 51 à 501 par pas de 2. Il reste impair pour que 1 occupe exactement la case centrale, entourée de cyan. L'en-tête indique combien de nombres contient la grille et combien d'entre eux sont premiers : 378 nombres premiers parmi 2\u202f601 nombres à la plus petite taille, 22\u202f115 parmi 251\u202f001 à la plus grande.",
+          "Le côté de la grille va de 51 à 501 par pas de 2. Il reste impair pour que 1 occupe exactement la case centrale, entourée de cyan. L'en-tête indique combien de nombres contient la grille et combien d'entre eux sont premiers : 378 nombres premiers parmi 2 601 nombres à la plus petite taille, 22 115 parmi 251 001 à la plus grande.",
           "Le menu de mise en évidence colore en rose les nombres premiers qui sont des valeurs d'un polynôme du second degré choisi : le n² − n + 41 d'Euler (choix par défaut), n² + n + 17, n² + n + 11, 4n² − 2n + 41 et n², ou bien désactive la mise en évidence. Seuls les nombres premiers sont dessinés, donc une case rose est toujours une valeur première du polynôme ; les valeurs sont testées pour n de 0 à 599.",
         ],
       },
@@ -230,7 +231,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
         paragraphs: [
           "La primalité vient d'un crible d'Ératosthène sur un Uint8Array, avec un octet par nombre jusqu'à côté² + 5, recalculé uniquement quand la taille de la grille change. Même à la plus grande taille, cela représente environ un quart de million d'octets et prend quelques millisecondes.",
           "Placer un nombre n'oblige pas à parcourir la spirale. L'anneau k autour du centre contient les nombres de (2k − 1)² + 1 à (2k + 1)², parce que chaque anneau se termine par un carré impair dans son coin inférieur droit. À partir de n, le code calcule son anneau avec une seule racine carrée, puis son décalage dans l'anneau, et ce décalage indique sur lequel des quatre côtés il se trouve et à quel endroit. La fonction ci-dessous est cette formule close.",
-          "Le canvas est dimensionné selon la densité de pixels de l'appareil et redessiné dès que la taille de la grille, la mise en évidence ou la taille de la fenêtre change. Chaque nombre premier est un carré plein, ambre ou rose. Les cases mises en évidence sont stockées dans un Set de clés (x, y) compactées, ce qui permet à la boucle de dessin de tester chaque nombre premier en temps constant. Rien n'est animé, le réglage de réduction des animations n'a donc rien à désactiver.",
+          "Le canevas est dimensionné selon la densité de pixels de l'appareil et redessiné dès que la taille de la grille, la mise en évidence ou la taille de la fenêtre change. Chaque nombre premier est un carré plein, ambre ou rose. Les cases mises en évidence sont stockées dans un Set de clés (x, y) compactées, ce qui permet à la boucle de dessin de tester chaque nombre premier en temps constant. Rien n'est animé, le réglage de réduction des animations n'a donc rien à désactiver.",
         ],
         code: SPIRAL_EXCERPT,
       },
@@ -246,7 +247,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Mesure la raréfaction des nombres premiers",
-        text: "Compare la plus petite grille (378 nombres premiers parmi 2\u202f601 nombres, environ 14,5 pour cent) à la plus grande (22\u202f115 parmi 251\u202f001, environ 8,8 pour cent). Les deux rejoignent l'estimation 1/(ln N − 1) du théorème des nombres premiers à quelques dixièmes de point de pourcentage près.",
+        text: "Compare la plus petite grille (378 nombres premiers parmi 2 601 nombres, environ 14,5 pour cent) à la plus grande (22 115 parmi 251 001, environ 8,8 pour cent). Les deux rejoignent l'estimation 1/(ln N − 1) du théorème des nombres premiers à quelques dixièmes de point de pourcentage près.",
       },
       {
         title: "Suis les droites d'Euler",
@@ -267,7 +268,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
       "Esplora la spirale di Ulam dei numeri primi: fino a 251.001 numeri su una spirale quadrata, diagonali ricche di primi e il polinomio n² − n + 41 di Eulero.",
     heading: "Come funziona questo esploratore",
     intro:
-      "Scrivi 1 al centro di una griglia, 2 alla sua destra, e continua a contare lungo una spirale quadrata, in senso antiorario, anello dopo anello. Poi segna soltanto i numeri primi. Alla dimensione predefinita di 251 × 251 la griglia contiene 63.001 numeri, di cui 6.320 primi, e i segni non sembrano polvere sparsa a caso: si allineano lungo le diagonali. Stanisław Ulam se ne accorse nel 1963, scarabocchiando durante una conferenza. Una parte dello schema ha una spiegazione semplice, un'altra è ancora un problema aperto.",
+      "Scrivi 1 al centro di una griglia, 2 alla sua destra, e continua a contare lungo una spirale quadrata, in senso antiorario, anello dopo anello. Poi segna soltanto i numeri primi. Alla dimensione predefinita di 251 × 251 la griglia contiene 63.001 numeri, di cui 6320 primi, e i segni non sembrano polvere sparsa a caso: si allineano lungo le diagonali. Stanisław Ulam se ne accorse nel 1963, scarabocchiando durante una conferenza. Una parte dello schema ha una spiegazione semplice, un'altra è ancora un problema aperto.",
     sections: [
       {
         heading: "Perché ai primi piacciono le diagonali",
@@ -278,9 +279,9 @@ export const ULAM_GUIDE: ExplorerGuide = {
         formula: EULER_FORMULA,
       },
       {
-        heading: "Cosa fanno i controlli",
+        heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "Il lato della griglia va da 51 a 501 a passi di 2. Resta dispari perché l'1 occupi esattamente la cella centrale, che ha un contorno ciano. L'intestazione mostra quanti numeri contiene la griglia e quanti di essi sono primi: 378 primi su 2.601 numeri alla dimensione minima, 22.115 su 251.001 alla massima.",
+          "Il lato della griglia va da 51 a 501 a passi di 2. Resta dispari perché l'1 occupi esattamente la cella centrale, che ha un contorno ciano. L'intestazione mostra quanti numeri contiene la griglia e quanti di essi sono primi: 378 primi su 2601 numeri alla dimensione minima, 22.115 su 251.001 alla massima.",
           "Il menu di evidenziazione colora di rosa i primi che sono valori di un polinomio quadratico scelto: n² − n + 41 di Eulero (l'impostazione predefinita), n² + n + 17, n² + n + 11, 4n² − 2n + 41 e n², oppure disattiva l'evidenziazione. Vengono disegnati solo i primi, quindi una cella rosa è sempre un valore primo del polinomio; si controllano i valori per n da 0 a 599.",
         ],
       },
@@ -305,7 +306,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Misura come si diradano i primi",
-        text: "Confronta la griglia più piccola (378 primi su 2.601 numeri, circa il 14,5 per cento) con la più grande (22.115 su 251.001, circa l'8,8 per cento). Entrambe concordano con la stima 1/(ln N − 1) del teorema dei numeri primi a meno di pochi decimi di punto percentuale.",
+        text: "Confronta la griglia più piccola (378 primi su 2601 numeri, circa il 14,5 per cento) con la più grande (22.115 su 251.001, circa l'8,8 per cento). Entrambe concordano con la stima 1/(ln N − 1) del teorema dei numeri primi a meno di pochi decimi di punto percentuale.",
       },
       {
         title: "Segui le rette di Eulero",
@@ -323,10 +324,10 @@ export const ULAM_GUIDE: ExplorerGuide = {
   },
   pt: {
     metaDescription:
-      "Explora a espiral de Ulam dos números primos: até 251\u00a0001 números numa espiral quadrada, diagonais ricas em primos e o n² − n + 41 de Euler em destaque.",
+      "Explora a espiral de Ulam dos números primos: até 251 001 números numa espiral quadrada, diagonais ricas em primos e o n² − n + 41 de Euler em destaque.",
     heading: "Como funciona este explorador",
     intro:
-      "Escreve o 1 no centro de uma grelha, o 2 à sua direita, e continua a contar numa espiral quadrada, no sentido contrário ao dos ponteiros do relógio, anel após anel. Depois marca apenas os primos. No tamanho predefinido de 251 × 251, a grelha contém 63\u00a0001 números, dos quais 6320 são primos, e as marcas não parecem poeira espalhada ao acaso: alinham-se ao longo de diagonais. Stanisław Ulam reparou nisto em 1963, enquanto rabiscava durante uma palestra. Uma parte do padrão tem uma explicação simples e outra parte continua a ser um problema em aberto.",
+      "Escreve o 1 no centro de uma grelha, o 2 à sua direita, e continua a contar numa espiral quadrada, no sentido contrário ao dos ponteiros do relógio, anel após anel. Depois marca apenas os primos. No tamanho predefinido de 251 × 251, a grelha contém 63 001 números, dos quais 6320 são primos, e as marcas não parecem poeira espalhada ao acaso: alinham-se ao longo de diagonais. Stanisław Ulam reparou nisto em 1963, enquanto rabiscava durante uma palestra. Uma parte do padrão tem uma explicação simples e outra parte continua a ser um problema em aberto.",
     sections: [
       {
         heading: "Porque é que os primos gostam de diagonais",
@@ -339,7 +340,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "O lado da grelha vai de 51 a 501 em passos de 2. Mantém-se ímpar para que o 1 fique exatamente na célula central, que tem um contorno ciano. O cabeçalho mostra quantos números a grelha contém e quantos deles são primos: 378 primos entre 2601 números no tamanho mais pequeno, 22\u00a0115 entre 251\u00a0001 no maior.",
+          "O lado da grelha vai de 51 a 501 em passos de 2. Mantém-se ímpar para que o 1 fique exatamente na célula central, que tem um contorno ciano. O cabeçalho mostra quantos números a grelha contém e quantos deles são primos: 378 primos entre 2601 números no tamanho mais pequeno, 22 115 entre 251 001 no maior.",
           "O menu de destaque pinta de rosa os primos que são valores de um polinómio quadrático escolhido: o n² − n + 41 de Euler (a opção predefinida), n² + n + 17, n² + n + 11, 4n² − 2n + 41 e n², ou então desliga o destaque. Só os primos são desenhados, por isso uma célula rosa é sempre um valor primo do polinómio; são verificados os valores para n de 0 a 599.",
         ],
       },
@@ -360,11 +361,11 @@ export const ULAM_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Experimenta",
+    experimentsHeading: "Experimenta isto",
     experiments: [
       {
         title: "Mede como os primos rareiam",
-        text: "Compara a grelha mais pequena (378 primos entre 2601 números, cerca de 14,5 por cento) com a maior (22\u00a0115 entre 251\u00a0001, cerca de 8,8 por cento). Ambas coincidem com a estimativa 1/(ln N − 1) do teorema dos números primos, com uma diferença de poucas décimas de ponto percentual.",
+        text: "Compara a grelha mais pequena (378 primos entre 2601 números, cerca de 14,5 por cento) com a maior (22 115 entre 251 001, cerca de 8,8 por cento). Ambas coincidem com a estimativa 1/(ln N − 1) do teorema dos números primos, com uma diferença de poucas décimas de ponto percentual.",
       },
       {
         title: "Segue as retas de Euler",
@@ -385,7 +386,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
       "Utforska Ulams spiral av primtal: upp till 251\u00a0001 tal i en kvadratisk spiral, primtalsrika diagonaler och Eulers n² − n + 41 markerat direkt i bilden.",
     heading: "Så fungerar den här utforskaren",
     intro:
-      "Skriv 1 mitt i ett rutnät, 2 till höger om den, och fortsätt räkna i en kvadratisk spiral, moturs, varv efter varv. Markera sedan bara primtalen. I standardstorleken 251 × 251 rymmer rutnätet 63\u00a0001 tal, varav 6\u00a0320 är primtal, och markeringarna ser inte ut som slumpmässigt damm: de radar upp sig längs diagonaler. Stanisław Ulam lade märke till det 1963 när han satt och klottrade under ett föredrag. En del av mönstret har en enkel förklaring, och en del är fortfarande ett öppet problem.",
+      "Skriv 1 mitt i ett rutnät, 2 till höger om den, och fortsätt räkna i en kvadratisk spiral, moturs, varv efter varv. Markera sedan bara primtalen. I standardstorleken 251 × 251 rymmer rutnätet 63\u00a0001 tal, varav 6320 är primtal, och markeringarna ser inte ut som slumpmässigt damm: de radar upp sig längs diagonaler. Stanisław Ulam lade märke till det 1963 när han satt och klottrade under ett föredrag. En del av mönstret har en enkel förklaring, och en del är fortfarande ett öppet problem.",
     sections: [
       {
         heading: "Varför primtal gillar diagonaler",
@@ -398,16 +399,16 @@ export const ULAM_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "Rutnätets sida går från 51 till 501 i steg om 2. Den förblir udda så att 1 hamnar exakt i mittrutan, som har en cyanfärgad ram. Rubrikraden visar hur många tal rutnätet rymmer och hur många av dem som är primtal: 378 primtal bland 2\u00a0601 tal i den minsta storleken, 22\u00a0115 bland 251\u00a0001 i den största.",
-          "Markeringsmenyn färgar de primtal rosa som är värden av ett valt andragradspolynom: Eulers n² − n + 41 (förvalt), n² + n + 17, n² + n + 11, 4n² − 2n + 41 och n², eller stänger av markeringen. Bara primtal ritas ut, så en rosa ruta är alltid ett primtalsvärde av polynomet; värdena för n från 0 till 599 kontrolleras.",
+          "Rutnätets sida går från 51 till 501 i steg om 2. Den förblir udda så att 1 hamnar exakt i mittrutan, som har en cyanfärgad ram. Rubrikraden visar hur många tal rutnätet rymmer och hur många av dem som är primtal: 378 primtal bland 2601 tal i den minsta storleken, 22\u00a0115 bland 251\u00a0001 i den största.",
+          "Markeringsmenyn färgar de primtal rosa som är värden av ett valt andragradspolynom: Eulers n² − n + 41 (standard), n² + n + 17, n² + n + 11, 4n² − 2n + 41 och n², eller stänger av markeringen. Bara primtal ritas ut, så en rosa ruta är alltid ett primtalsvärde av polynomet; värdena för n från 0 till 599 kontrolleras.",
         ],
       },
       {
-        heading: "Så är den byggd",
+        heading: "Hur den är byggd",
         paragraphs: [
           "Om ett tal är ett primtal avgörs med Eratosthenes såll över en Uint8Array med en byte per tal upp till sida² + 5, och det räknas bara om när rutnätets storlek ändras. Även i den största storleken handlar det om ungefär en kvarts miljon byte och några få millisekunder.",
           "För att placera ett tal behöver man inte vandra längs spiralen. Ring k runt mitten innehåller talen från (2k − 1)² + 1 till (2k + 1)², eftersom varje ring slutar med en udda kvadrat i sitt nedre högra hörn. Utifrån n beräknar koden ringen med en enda kvadratrot och sedan förskjutningen inom ringen, och förskjutningen avgör vilken av de fyra sidorna talet ligger på och var. Funktionen nedan är den slutna formeln.",
-          "Canvasen anpassas efter enhetens pixeltäthet och ritas om varje gång rutnätets storlek, markeringen eller fönstrets storlek ändras. Varje primtal är en fylld kvadrat, bärnstensfärgad eller rosa. De markerade rutorna lagras i ett Set av packade (x, y)-nycklar, så ritloopen kan kontrollera varje primtal på konstant tid. Ingenting är animerat, så en inställning för minskad rörelse har inget att stänga av.",
+          "Canvasen anpassas efter enhetens pixeltäthet och ritas om varje gång rutnätets storlek, markeringen eller fönstrets storlek ändras. Varje primtal är en fylld kvadrat, bärnstensfärgad eller rosa. De markerade rutorna lagras i ett Set av packade (x, y)-nycklar, så ritslingan kan kontrollera varje primtal på konstant tid. Ingenting är animerat, så en inställning för minskad rörelse har inget att stänga av.",
         ],
         code: SPIRAL_EXCERPT,
       },
@@ -419,11 +420,11 @@ export const ULAM_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Mät hur primtalen glesnar",
-        text: "Jämför det minsta rutnätet (378 primtal bland 2\u00a0601 tal, ungefär 14,5 procent) med det största (22\u00a0115 bland 251\u00a0001, ungefär 8,8 procent). Båda stämmer med primtalssatsens uppskattning 1/(ln N − 1) på några tiondels procentenheter när.",
+        text: "Jämför det minsta rutnätet (378 primtal bland 2601 tal, ungefär 14,5 procent) med det största (22\u00a0115 bland 251\u00a0001, ungefär 8,8 procent). Båda stämmer med primtalssatsens uppskattning 1/(ln N − 1) på några tiondels procentenheter när.",
       },
       {
         title: "Följ Eulers linjer",
@@ -444,7 +445,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
       "Utforsk Ulam-spiralen av primtall: opptil 251\u00a0001 tall i en kvadratisk spiral, primtallsrike diagonaler og Eulers n² − n + 41 fremhevet rett i bildet.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Skriv 1 midt i et rutenett, 2 til høyre for den, og fortsett å telle i en kvadratisk spiral, mot klokka, ring etter ring. Marker deretter bare primtallene. I standardstørrelsen 251 × 251 rommer rutenettet 63\u00a0001 tall, hvorav 6\u00a0320 er primtall, og merkene ser ikke ut som tilfeldig støv: de stiller seg opp langs diagonaler. Stanisław Ulam la merke til dette i 1963 mens han satt og rablet under et foredrag. En del av mønsteret har en enkel forklaring, og en del er fortsatt et åpent problem.",
+      "Skriv 1 midt i et rutenett, 2 til høyre for den, og fortsett å telle i en kvadratisk spiral, mot klokken, ring etter ring. Marker deretter bare primtallene. I standardstørrelsen 251 × 251 rommer rutenettet 63\u00a0001 tall, hvorav 6320 er primtall, og merkene ser ikke ut som tilfeldig støv: De stiller seg opp langs diagonaler. Stanisław Ulam la merke til dette i 1963 mens han satt og rablet under et foredrag. En del av mønsteret har en enkel forklaring, og en del er fortsatt et åpent problem.",
     sections: [
       {
         heading: "Hvorfor primtall liker diagonaler",
@@ -457,7 +458,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "Rutenettets side går fra 51 til 501 i steg på 2. Den forblir odde slik at 1 havner nøyaktig i midtruten, som har en cyanfarget ramme. Topplinjen viser hvor mange tall rutenettet rommer og hvor mange av dem som er primtall: 378 primtall blant 2\u00a0601 tall i den minste størrelsen, 22\u00a0115 blant 251\u00a0001 i den største.",
+          "Rutenettets side går fra 51 til 501 i steg på 2. Den forblir odde slik at 1 havner nøyaktig i midtruten, som har en cyanfarget ramme. Topplinjen viser hvor mange tall rutenettet rommer og hvor mange av dem som er primtall: 378 primtall blant 2601 tall i den minste størrelsen, 22\u00a0115 blant 251\u00a0001 i den største.",
           "Fremhevingsmenyen farger de primtallene rosa som er verdier av et valgt andregradspolynom: Eulers n² − n + 41 (standardvalget), n² + n + 17, n² + n + 11, 4n² − 2n + 41 og n², eller slår fremhevingen av. Bare primtall tegnes, så en rosa rute er alltid en primtallsverdi av polynomet; verdiene for n fra 0 til 599 blir sjekket.",
         ],
       },
@@ -466,7 +467,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Om et tall er et primtall, avgjøres med Eratosthenes' sil over en Uint8Array med én byte per tall opp til side² + 5, og den regnes bare ut på nytt når størrelsen på rutenettet endres. Selv i den største størrelsen er det omtrent en kvart million byte, og det tar noen få millisekunder.",
           "For å plassere et tall trenger man ikke å gå langs spiralen. Ring k rundt midten inneholder tallene fra (2k − 1)² + 1 til (2k + 1)², fordi hver ring slutter med et odde kvadrattall i nedre høyre hjørne. Ut fra n beregner koden ringen med én enkelt kvadratrot og deretter forskyvningen innenfor ringen, og forskyvningen forteller hvilken av de fire sidene tallet ligger på, og hvor. Funksjonen nedenfor er denne lukkede formelen.",
-          "Canvaset tilpasses enhetens pikseltetthet og tegnes på nytt hver gang størrelsen på rutenettet, fremhevingen eller vindusstørrelsen endres. Hvert primtall er et fylt kvadrat, ravgult eller rosa. De fremhevede rutene lagres i et Set av pakkede (x, y)-nøkler, så tegneløkken kan sjekke hvert primtall i konstant tid. Ingenting er animert, så en innstilling for redusert bevegelse har ingenting å slå av.",
+          "Lerretet tilpasses enhetens pikseltetthet og tegnes på nytt hver gang størrelsen på rutenettet, fremhevingen eller vindusstørrelsen endres. Hvert primtall er et fylt kvadrat, ravgult eller rosa. De fremhevede rutene lagres i et Set av pakkede (x, y)-nøkler, så tegneløkken kan sjekke hvert primtall i konstant tid. Ingenting er animert, så en innstilling for redusert bevegelse har ingenting å slå av.",
         ],
         code: SPIRAL_EXCERPT,
       },
@@ -474,7 +475,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
         heading: "Hva polynomene viser",
         paragraphs: [
           "Eulers polynom n² − n + 41 gir primtall for de 41 påfølgende verdiene n = 0 til 40 og svikter ved n = 41, der det blir 41². n² + n + 17 er et primtall for n = 0 til 15 og n² + n + 11 for n = 0 til 9. 4n² − 2n + 41 er Eulers polynom beregnet i 2n, så det plukker ut annenhver verdi og er et primtall for n = 0 til 20.",
-          "På spiralen ligger disse garanterte primtallene spredt nær midten, fordi konstanten 41 er større enn de indre ringene. Fra n = 40 og utover havner derimot hver verdi av Eulers polynom på en av to diagonale linjer som går fra nede til venstre til oppe til høyre, forskjøvet 40 kolonner til hver side av diagonalen gjennom 1. Innenfor standardrutenettet er omtrent sju av ti av disse senere verdiene fortsatt primtall, så linjene forblir synlig rosa. n² er moteksemplet: ingen kvadrattall er primtall, så ingenting blir rosa.",
+          "På spiralen ligger disse garanterte primtallene spredt nær midten, fordi konstanten 41 er større enn de indre ringene. Fra n = 40 og utover havner derimot hver verdi av Eulers polynom på en av to diagonale linjer som går fra nede til venstre til oppe til høyre, forskjøvet 40 kolonner til hver side av diagonalen gjennom 1. Innenfor standardrutenettet er omtrent sju av ti av disse senere verdiene fortsatt primtall, så linjene forblir synlig rosa. n² er moteksemplet: Ingen kvadrattall er primtall, så ingenting blir rosa.",
         ],
       },
     ],
@@ -482,15 +483,15 @@ export const ULAM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Mål hvordan primtallene tynnes ut",
-        text: "Sammenlign det minste rutenettet (378 primtall blant 2\u00a0601 tall, omtrent 14,5 prosent) med det største (22\u00a0115 blant 251\u00a0001, omtrent 8,8 prosent). Begge stemmer med primtallsteoremets anslag 1/(ln N − 1) på noen få tideler av et prosentpoeng nær.",
+        text: "Sammenlign det minste rutenettet (378 primtall blant 2601 tall, omtrent 14,5 prosent) med det største (22\u00a0115 blant 251\u00a0001, omtrent 8,8 prosent). Begge stemmer med primtallsteoremets anslag 1/(ln N − 1) på noen få tideler av et prosentpoeng nær.",
       },
       {
         title: "Følg Eulers linjer",
-        text: "La Eulers polynom være valgt med side 251. Se bort fra den rosa klyngen nær midten og se lenger ut: to parallelle rosa diagonaler går fra nede til venstre til oppe til høyre, 40 ruter fra midten på hver side.",
+        text: "La Eulers polynom være valgt med side 251. Se bort fra den rosa klyngen nær midten og se lenger ut: To parallelle rosa diagonaler går fra nede til venstre til oppe til høyre, 40 ruter fra midten på hver side.",
       },
       {
         title: "Finn den tomme diagonalen",
-        text: "Velg n² og start i midtruten med cyanfarget ramme. Følg diagonalen nedover til høyre: på den ligger 9, 25, 49 og alle andre odde kvadrattall, så ikke en eneste rute på den er markert. Den mørke strålen er den enkleste primtallsfrie diagonalen som finnes.",
+        text: "Velg n² og start i midtruten med cyanfarget ramme. Følg diagonalen nedover til høyre: På den ligger 9, 25, 49 og alle andre odde kvadrattall, så ikke en eneste rute på den er markert. Den mørke strålen er den enkleste primtallsfrie diagonalen som finnes.",
       },
       {
         title: "Zoom ut",

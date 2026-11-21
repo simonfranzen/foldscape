@@ -102,7 +102,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
       {
         heading: "Was die Bedienelemente tun",
         paragraphs: [
-          "Die Sandbox startet pausiert, mit einer Gosper-Gleiterkanone nahe der linken oberen Ecke. Play startet die Uhr, Pause hält sie an, und Schritt rückt genau eine Generation vor (während die Simulation läuft, ist der Knopf gesperrt). Der Geschwindigkeitsregler stellt 1 bis 60 Generationen pro Sekunde ein, Startwert ist 12.",
+          "Die Sandbox startet pausiert, mit einer Gosper-Gleiterkanone nahe der linken oberen Ecke. Start startet die Uhr, Pause hält sie an, und Schritt rückt genau eine Generation vor (während die Simulation läuft, ist der Knopf gesperrt). Der Geschwindigkeitsregler stellt 1 bis 60 Generationen pro Sekunde ein, Startwert ist 12.",
           "Ein Klick auf eine Zelle schaltet sie um. Der Zustand, den dieser erste Klick erzeugt, legt fest, was Ziehen bewirkt: Hast du eine Zelle eingeschaltet, malst du beim Ziehen lebende Zellen, hast du eine ausgeschaltet, radierst du. Zeichnen funktioniert auch bei laufender Simulation. Zufall füllt das Brett so, dass jede Zelle mit Wahrscheinlichkeit 25 % lebt, Leeren räumt es ab, und beide setzen den Generationszähler zurück.",
           "Die Musterknöpfe leeren das Brett und setzen ein klassisches Muster in die Nähe der Mitte: den Gleiter, das leichte Raumschiff, den Pulsar mit Periode 3, die Gosper-Kanone und drei langlebige Startmuster, das R-Pentomino, die Eichel (Acorn) und Diehard. Die Farbknöpfe ändern nur, wie lebende Zellen gemalt werden. Die Anzeige oben zeigt Generation, Zahl der lebenden Zellen und ihren Anteil an den 8400.",
         ],
@@ -112,7 +112,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Das Brett ist ein einziges Uint8Array mit 120 × 70 Bytes, ein Byte pro Zelle. Generation t + 1 wird nie an Ort und Stelle berechnet, denn eine Zelle muss ihre Nachbarn so sehen, wie sie waren, nicht wie sie gerade aktualisiert werden. Deshalb gibt es zwei Arrays: step() liest aus dem aktuellen, schreibt in das andere, danach werden die beiden Referenzen getauscht. Während das Spiel läuft, wird kein Speicher neu angelegt.",
           "Die Ränder sind verbunden. Der Nachbar einer Zelle in der rechten Spalte liegt in der linken Spalte, genauso oben und unten. Damit wird das Rechteck zur Oberfläche eines Torus. Deshalb taucht ein Gleiter, der unten rechts hinausläuft, oben links wieder auf, statt zu verschwinden.",
-          "Die Uhr nutzt requestAnimationFrame mit einem Zeitakkumulator: Sie summiert die echte Zeit seit dem letzten Frame und rechnet so viele Generationen, wie bei der gewählten Geschwindigkeit hineinpassen, aber nie mehr als 20 pro Frame, damit ein langsames Gerät nicht beim Aufholen hängen bleibt. Zeichnen ist von der Simulation getrennt. Alle lebenden Zellen kommen in einen einzigen Canvas-Pfad aus kleinen Kreisen, der in einem Aufruf mit weichem Leuchten gefüllt wird, über einem zarten Hilfsgitter alle zehn Zellen. Bis du Play drückst, bewegt sich nichts, die Seite bleibt also ruhig für alle, die reduzierte Bewegung bevorzugen.",
+          "Die Uhr nutzt requestAnimationFrame mit einem Zeitakkumulator: Sie summiert die echte Zeit seit dem letzten Frame und rechnet so viele Generationen, wie bei der gewählten Geschwindigkeit hineinpassen, aber nie mehr als 20 pro Frame, damit ein langsames Gerät nicht beim Aufholen hängen bleibt. Zeichnen ist von der Simulation getrennt. Alle lebenden Zellen kommen in einen einzigen Canvas-Pfad aus kleinen Kreisen, der in einem Aufruf mit weichem Leuchten gefüllt wird, über einem zarten Hilfsgitter alle zehn Zellen. Bis du Start drückst, bewegt sich nichts, die Seite bleibt also ruhig für alle, die reduzierte Bewegung bevorzugen.",
         ],
         code: STEP_EXCERPT,
       },
@@ -128,7 +128,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Bis 130 zählen",
-        text: "Lade Diehard und drück ein paar Mal auf Schritt, um die Veränderung zu sehen, dann Play bei 12 Gen/s. Keine Form wiederholt sich, und bei Generation 130 fällt der Populationszähler auf genau 0.",
+        text: "Lade Diehard und drück ein paar Mal auf Schritt, um die Veränderung zu sehen, dann Start bei 12 Gen/s. Keine Form wiederholt sich, und bei Generation 130 fällt der Populationszähler auf genau 0.",
       },
       {
         title: "Ein Raumschiff vermessen",
@@ -136,16 +136,16 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
       },
       {
         title: "Die Kanone überrennt ihre eigene Welt",
-        text: "Drück Play bei der Gleiterkanone vom Start. Zuerst verlässt sie alle 30 Generationen ein sauberer Strom von Gleitern. Beobachte weiter, wie der Strom um den Torus herumläuft: Früher oder später prallen zurückkehrende Gleiter auf die Kanone selbst, und die saubere Maschine zerfällt in Trümmer.",
+        text: "Drück Start bei der Gleiterkanone vom Start. Zuerst verlässt sie alle 30 Generationen ein sauberer Strom von Gleitern. Beobachte weiter, wie der Strom um den Torus herumläuft: Früher oder später prallen zurückkehrende Gleiter auf die Kanone selbst, und die saubere Maschine zerfällt in Trümmer.",
       },
     ],
   },
   es: {
     metaDescription:
-      "Dibuja células, carga planeadores, el cañón de Gosper o el R-pentominó y ejecuta el Juego de la vida de Conway en un toro de 120 × 70. Con reglas y código.",
+      "Dibuja células, carga planeadores, el cañón de Gosper o el R-pentominó y ejecuta el juego de la vida de Conway en un toro de 120 × 70. Con reglas y código.",
     heading: "Cómo funciona este sandbox",
     intro:
-      "La cuadrícula es un universo de 8400 células, cada una viva (un punto luminoso) o muerta (vacía). El tiempo avanza en generaciones discretas, y en cada generación todas las células se actualizan a la vez según la misma regla diminuta. No hay jugadores ni azar una vez que pulsas reproducir: lo que dibujas o cargas es toda la entrada, y todo lo que viene después está determinado. Lo sorprendente del Juego de la vida de Conway es cuánto comportamiento cabe en una regla así: partículas que viajan, máquinas que fabrican otras partículas y patrones que bullen durante miles de generaciones antes de calmarse.",
+      "La cuadrícula es un universo de 8400 células, cada una viva (un punto luminoso) o muerta (vacía). El tiempo avanza en generaciones discretas, y en cada generación todas las células se actualizan a la vez según la misma regla diminuta. No hay jugadores ni azar una vez que pulsas reproducir: lo que dibujas o cargas es toda la entrada, y todo lo que viene después está determinado. Lo sorprendente del juego de la vida de Conway es cuánto comportamiento cabe en una regla así: partículas que viajan, máquinas que fabrican otras partículas y patrones que bullen durante miles de generaciones antes de calmarse.",
     sections: [
       {
         heading: "La regla",
@@ -168,7 +168,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         paragraphs: [
           "El tablero es un único Uint8Array de 120 × 70 bytes, un byte por célula. La generación t + 1 nunca se calcula in situ, porque una célula tiene que ver a sus vecinas tal como estaban, no tal como están quedando al actualizarse. En su lugar hay dos arrays: step() lee del actual, escribe en el otro, y después se intercambian las dos referencias. No se reserva memoria mientras el juego corre.",
           "Los bordes se conectan entre sí. La vecina de una célula de la columna más a la derecha está en la columna más a la izquierda, y lo mismo vale para arriba y abajo, lo que convierte el rectángulo en la superficie de un toro. Por eso un planeador que sale por abajo a la derecha reaparece arriba a la izquierda en lugar de desaparecer.",
-          "El reloj usa requestAnimationFrame con un acumulador de tiempo: suma el tiempo real transcurrido desde el último fotograma y ejecuta tantas generaciones como quepan en él a la velocidad elegida, pero nunca más de 20 por fotograma, para que un dispositivo lento no se quede atascado intentando ponerse al día. El dibujo va separado de la simulación. Todas las células vivas se añaden a un único trazado de canvas hecho de pequeños círculos y se rellenan en una sola llamada con un resplandor suave, sobre una tenue cuadrícula de guía cada diez células. Nada se mueve hasta que pulsas «Reproducir», así que la página permanece quieta para quienes prefieren movimiento reducido.",
+          "El reloj usa requestAnimationFrame con un acumulador de tiempo: suma el tiempo real transcurrido desde el último fotograma y ejecuta tantas generaciones como quepan en él a la velocidad elegida, pero nunca más de 20 por fotograma, para que un dispositivo lento no se quede atascado intentando ponerse al día. El dibujo va separado de la simulación. Todas las células vivas se añaden a un único trazado del lienzo hecho de pequeños círculos y se rellenan en una sola llamada con un resplandor suave, sobre una tenue cuadrícula de guía cada diez células. Nada se mueve hasta que pulsas «Reproducir», así que la página permanece quieta para quienes prefieren movimiento reducido.",
         ],
         code: STEP_EXCERPT,
       },
@@ -198,10 +198,10 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
   },
   fr: {
     metaDescription:
-      "Dessine des cellules, charge des planeurs, le canon de Gosper ou le R-pentomino et lance le Jeu de la vie de Conway sur un tore de 120 × 70, règles comprises.",
+      "Dessine des cellules, charge des planeurs, le canon de Gosper ou le R-pentomino et lance le jeu de la vie de Conway sur un tore de 120 × 70, règles comprises.",
     heading: "Comment fonctionne ce bac à sable",
     intro:
-      "La grille est un univers de 8400 cellules, chacune vivante (un point lumineux) ou morte (vide). Le temps avance par générations discrètes, et à chaque génération toutes les cellules se mettent à jour en même temps selon la même règle minuscule. Il n'y a ni joueur ni hasard une fois la lecture lancée : ce que tu dessines ou charges constitue toute l'entrée, et tout ce qui suit est imposé. La surprise du Jeu de la vie de Conway, c'est la quantité de comportements qui tient dans une telle règle : des particules qui voyagent, des machines qui fabriquent d'autres particules, et des motifs qui bouillonnent pendant des milliers de générations avant de se stabiliser.",
+      "La grille est un univers de 8 400 cellules, chacune vivante (un point lumineux) ou morte (vide). Le temps avance par générations discrètes, et à chaque génération toutes les cellules se mettent à jour en même temps selon la même règle minuscule. Il n'y a ni joueur ni hasard une fois la lecture lancée : ce que tu dessines ou charges constitue toute l'entrée, et tout ce qui suit est imposé. La surprise du jeu de la vie de Conway, c'est la quantité de comportements qui tient dans une telle règle : des particules qui voyagent, des machines qui fabriquent d'autres particules, et des motifs qui bouillonnent pendant des milliers de générations avant de se stabiliser.",
     sections: [
       {
         heading: "La règle",
@@ -216,7 +216,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Le bac à sable s'ouvre en pause, avec un canon à planeurs de Gosper près du coin supérieur gauche. « Lecture » lance l'horloge, « Pause » l'arrête et « Pas » avance d'exactement une génération (il est désactivé pendant que la simulation tourne). Le curseur de vitesse règle la cadence de 1 à 60 générations par seconde et démarre à 12.",
           "Clique sur une cellule pour la basculer. L'état que tu crées avec ce premier clic décide de l'effet du glisser : si tu as allumé une cellule, glisser peint des cellules vivantes ; si tu en as éteint une, glisser efface. Dessiner fonctionne aussi pendant que la simulation tourne. « Aléatoire » remplit le plateau de sorte que chaque cellule soit vivante avec une probabilité de 25 %, « Effacer » le vide, et les deux remettent à zéro le compteur de générations.",
-          "Les boutons de motifs vident le plateau et placent un motif classique près du centre : le planeur (« Glider »), le vaisseau léger (« Lightweight spaceship »), le pulsar de période 3, le canon à planeurs de Gosper et trois graines à longue durée de vie, le R-pentomino, le gland (« Acorn ») et Diehard. Les boutons de couleur changent seulement la façon dont les cellules vivantes sont peintes. Le badge en haut affiche la génération, le nombre de cellules vivantes et leur part des 8400.",
+          "Les boutons de motifs vident le plateau et placent un motif classique près du centre : le planeur (« Glider »), le vaisseau léger (« Lightweight spaceship »), le pulsar de période 3, le canon à planeurs de Gosper et trois graines à longue durée de vie, le R-pentomino, le gland (« Acorn ») et Diehard. Les boutons de couleur changent seulement la façon dont les cellules vivantes sont peintes. Le badge en haut affiche la génération, le nombre de cellules vivantes et leur part des 8 400.",
         ],
       },
       {
@@ -224,7 +224,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Le plateau est un unique Uint8Array de 120 × 70 octets, un octet par cellule. La génération t + 1 n'est jamais calculée sur place, parce qu'une cellule doit voir ses voisines telles qu'elles étaient, et non telles qu'elles sont en train d'être mises à jour. Il y a donc deux tableaux : step() lit dans le tableau courant, écrit dans l'autre, puis les deux références sont échangées. Aucune mémoire n'est allouée pendant que le jeu tourne.",
           "Les bords se rejoignent. La voisine d'une cellule de la colonne la plus à droite se trouve dans la colonne la plus à gauche, et il en va de même pour le haut et le bas, ce qui transforme le rectangle en surface d'un tore. C'est pourquoi un planeur qui sort en bas à droite réapparaît en haut à gauche au lieu de disparaître.",
-          "L'horloge utilise requestAnimationFrame avec un accumulateur de temps : elle additionne le temps réel écoulé depuis la dernière image et exécute autant de générations qu'il peut en contenir à la vitesse choisie, mais jamais plus de 20 par image, pour qu'un appareil lent ne reste pas bloqué à rattraper son retard. Le dessin est séparé de la simulation. Toutes les cellules vivantes sont ajoutées à un seul tracé de canvas fait de petits cercles et remplies en un seul appel avec une lueur douce, sur une discrète grille de repère toutes les dix cellules. Rien ne bouge tant que tu n'as pas appuyé sur « Lecture », la page reste donc immobile pour les personnes qui préfèrent des animations réduites.",
+          "L'horloge utilise requestAnimationFrame avec un accumulateur de temps : elle additionne le temps réel écoulé depuis la dernière image et exécute autant de générations qu'il peut en contenir à la vitesse choisie, mais jamais plus de 20 par image, pour qu'un appareil lent ne reste pas bloqué à rattraper son retard. Le dessin est séparé de la simulation. Toutes les cellules vivantes sont ajoutées à un seul tracé de canevas fait de petits cercles et remplies en un seul appel avec une lueur douce, sur une discrète grille de repère toutes les dix cellules. Rien ne bouge tant que tu n'as pas appuyé sur « Lecture », la page reste donc immobile pour les personnes qui préfèrent des animations réduites.",
         ],
         code: STEP_EXCERPT,
       },
@@ -232,7 +232,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         heading: "Un monde fini se répète toujours",
         paragraphs: [
           "Sur un plan infini, le canon de Gosper grandit indéfiniment en émettant un nouveau planeur toutes les 30 générations. Sur ce plateau, c'est impossible. Un tore de 120 × 70 possède 2^8400 configurations possibles, un nombre énorme mais fini, et chacune a exactement un successeur. Tôt ou tard, la suite doit repasser par une configuration déjà vue, et à partir de là elle boucle pour toujours. Chaque exécution ici se termine donc par une structure stable, une oscillation ou une très longue boucle.",
-          "Le rebouclage modifie aussi les fameuses durées de vie. Les 1103 générations du R-pentomino et les 5206 du gland sont mesurées sur un plan sans bornes. Ici, les planeurs qu'ils libèrent font le tour et viennent percuter les débris restants, si bien que l'histoire que tu vois diffère de celle des manuels. Diehard est assez petit pour ne pas être affecté : il disparaît après 130 générations dans les deux cas.",
+          "Le rebouclage modifie aussi les fameuses durées de vie. Les 1 103 générations du R-pentomino et les 5 206 du gland sont mesurées sur un plan sans bornes. Ici, les planeurs qu'ils libèrent font le tour et viennent percuter les débris restants, si bien que l'histoire que tu vois diffère de celle des manuels. Diehard est assez petit pour ne pas être affecté : il disparaît après 130 générations dans les deux cas.",
         ],
       },
     ],
@@ -244,7 +244,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
       },
       {
         title: "Mesure un vaisseau",
-        text: "Charge « Lightweight spaceship », le vaisseau léger, et règle la vitesse sur 60. Il avance de deux cellules toutes les quatre générations, il traverse donc les 120 colonnes et revient à son point de départ après 240 générations. Un planeur met bien plus longtemps : en avançant d'une cellule en diagonale toutes les quatre générations, il ne retrouve sa cellule de départ exacte qu'après 3360 générations, parce que 840 est le plus petit nombre divisible à la fois par 120 et par 70.",
+        text: "Charge « Lightweight spaceship », le vaisseau léger, et règle la vitesse sur 60. Il avance de deux cellules toutes les quatre générations, il traverse donc les 120 colonnes et revient à son point de départ après 240 générations. Un planeur met bien plus longtemps : en avançant d'une cellule en diagonale toutes les quatre générations, il ne retrouve sa cellule de départ exacte qu'après 3 360 générations, parce que 840 est le plus petit nombre divisible à la fois par 120 et par 70.",
       },
       {
         title: "Regarde le canon submerger son propre monde",
@@ -271,7 +271,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
           "La sandbox si apre in pausa, con un cannone di alianti di Gosper vicino all'angolo in alto a sinistra. «Riproduci» fa partire l'orologio, «Pausa» lo ferma e «Passo» avanza di una sola generazione (è disattivato mentre la simulazione è in corso). Il cursore della velocità imposta il ritmo da 1 a 60 generazioni al secondo e parte da 12.",
-          "Fai clic su una cella per cambiarne lo stato. Lo stato che crei con quel primo clic decide che cosa fa il trascinamento: se hai acceso una cella, trascinando dipingi celle vive; se ne hai spenta una, trascinando cancelli. Si può disegnare anche mentre la simulazione è in corso. «Casuale» riempie il tavoliere in modo che ogni cella sia viva con probabilità 25%, «Svuota» lo libera, ed entrambi azzerano il contatore delle generazioni.",
+          "Fai clic su una cella per cambiarne lo stato. Lo stato che crei con quel primo clic decide che cosa fa il trascinamento: se hai acceso una cella, trascinando dipingi celle vive; se ne hai spenta una, trascinando cancelli. Si può disegnare anche mentre la simulazione è in corso. «Casuale» riempie il tavoliere in modo che ogni cella sia viva con probabilità del 25 %, «Svuota» lo libera, ed entrambi azzerano il contatore delle generazioni.",
           "I pulsanti degli schemi svuotano il tavoliere e collocano uno schema classico vicino al centro: l'aliante («Glider»), l'astronave leggera («Lightweight spaceship»), il pulsar di periodo 3, il cannone di alianti di Gosper e tre semi longevi, l'R-pentomino, la ghianda («Acorn») e Diehard. I pulsanti dei colori cambiano solo il modo in cui sono dipinte le celle vive. L'etichetta in alto mostra la generazione, il numero di celle vive e la loro quota sulle 8400.",
         ],
       },
@@ -292,7 +292,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Prova tu",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Conta fino a 130",
@@ -369,7 +369,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
       "Rita celler, ladda glidare, Gospers kanon eller R-pentominon och kör Conways Game of Life på en torus med 120 × 70 celler. Lär dig reglerna och koden bakom.",
     heading: "Så fungerar den här sandlådan",
     intro:
-      "Rutnätet är ett universum med 8400 celler, där varje cell antingen lever (en lysande prick) eller är död (tom). Tiden går i diskreta generationer, och i varje generation uppdateras alla celler samtidigt enligt samma lilla regel. Det finns ingen spelare och ingen slump när du väl har tryckt på spela: det du ritar eller laddar är hela indatan, och allt som följer är förutbestämt. Det överraskande med Conways Game of Life är hur mycket beteende som ryms i en sådan regel: partiklar som färdas, maskiner som bygger andra partiklar och mönster som sjuder i tusentals generationer innan de lugnar sig.",
+      "Rutnätet är ett universum med 8400 celler, där varje cell antingen lever (en lysande prick) eller är död (tom). Tiden går i diskreta generationer, och i varje generation uppdateras alla celler samtidigt enligt samma lilla regel. Det finns ingen spelare och ingen slump när du väl har tryckt på spela: det du ritar eller laddar är hela inmatningen, och allt som följer är förutbestämt. Det överraskande med Conways Game of Life är hur mycket beteende som ryms i en sådan regel: partiklar som färdas, maskiner som bygger andra partiklar och mönster som sjuder i tusentals generationer innan de lugnar sig.",
     sections: [
       {
         heading: "Regeln",
@@ -392,7 +392,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Brädet är en enda Uint8Array på 120 × 70 byte, en byte per cell. Generation t + 1 beräknas aldrig på plats, eftersom en cell måste se sina grannar som de var och inte som de håller på att bli under uppdateringen. I stället finns två arrayer: step() läser från den aktuella, skriver till den andra, och sedan byter de två referenserna plats. Inget minne allokeras medan spelet körs.",
           "Kanterna går runt. Grannen till en cell i kolumnen längst till höger finns i kolumnen längst till vänster, och detsamma gäller uppåt och nedåt, vilket gör rektangeln till ytan av en torus. Därför dyker en glidare som lämnar nere till höger upp igen uppe till vänster i stället för att försvinna.",
-          "Klockan använder requestAnimationFrame med en tidsackumulator: den lägger ihop den verkliga tiden sedan förra bildrutan och kör så många generationer som ryms i den vid vald hastighet, men aldrig fler än 20 per bildruta, så att en långsam enhet inte fastnar i att försöka komma ikapp. Ritningen är skild från simuleringen. Alla levande celler läggs till i en enda canvas-bana av små cirklar och fylls i ett enda anrop med ett mjukt sken, ovanpå ett svagt stödrutnät var tionde cell. Ingenting rör sig förrän du trycker på ”Spela”, så sidan står stilla för den som föredrar reducerad rörelse.",
+          "Klockan använder requestAnimationFrame med en tidsackumulator: den lägger ihop den verkliga tiden sedan förra bildrutan och kör så många generationer som ryms i den vid vald hastighet, men aldrig fler än 20 per bildruta, så att en långsam enhet inte fastnar i att försöka komma ikapp. Ritningen är skild från simuleringen. Alla levande celler läggs till i en enda canvas-bana av små cirklar och fylls i ett enda anrop med ett mjukt sken, ovanpå ett svagt stödrutnät var tionde cell. Ingenting rör sig förrän du trycker på ”Spela”, så sidan står stilla för den som föredrar minskad rörelse.",
         ],
         code: STEP_EXCERPT,
       },
@@ -404,7 +404,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Räkna till 130",
@@ -425,7 +425,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
       "Tegn celler, last inn glidere, Gospers kanon eller R-pentominoen og kjør Conways Game of Life på en torus med 120 × 70 celler. Lær reglene og koden bak.",
     heading: "Slik fungerer denne sandkassen",
     intro:
-      "Rutenettet er et univers med 8400 celler, der hver celle enten lever (en lysende prikk) eller er død (tom). Tiden går i diskrete generasjoner, og i hver generasjon oppdateres alle cellene samtidig etter den samme lille regelen. Det finnes ingen spiller og ingen tilfeldighet når du først har trykket på spill: det du tegner eller laster inn, er hele inndataen, og alt som følger, er tvunget. Det overraskende med Conways Game of Life er hvor mye oppførsel som får plass i en slik regel: partikler som reiser, maskiner som bygger andre partikler, og mønstre som koker i tusenvis av generasjoner før de faller til ro.",
+      "Rutenettet er et univers med 8400 celler, der hver celle enten lever (en lysende prikk) eller er død (tom). Tiden går i diskrete generasjoner, og i hver generasjon oppdateres alle cellene samtidig etter den samme lille regelen. Det finnes ingen spiller og ingen tilfeldighet når du først har trykket på «Spill»: Det du tegner eller laster inn, er de eneste inndataene, og alt som følger, er tvunget. Det overraskende med Conways Game of Life er hvor mye oppførsel som får plass i en slik regel: partikler som reiser, maskiner som bygger andre partikler, og mønstre som koker i tusenvis av generasjoner før de faller til ro.",
     sections: [
       {
         heading: "Regelen",
@@ -438,17 +438,17 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "Sandkassen åpner i pause, med en Gospers gliderkanon nær øvre venstre hjørne. «Spill» starter klokka, «Pause» stopper den, og «Steg» går fram nøyaktig én generasjon (knappen er deaktivert mens simuleringen kjører). Hastighetsbryteren setter takten fra 1 til 60 generasjoner per sekund og starter på 12.",
-          "Klikk på en celle for å veksle den. Tilstanden du lager med det første klikket, avgjør hva et drag gjør: hvis du slo på en celle, maler du levende celler når du drar, og hvis du slo av en, visker du ut. Du kan også tegne mens simuleringen kjører. «Tilfeldig» fyller brettet slik at hver celle lever med sannsynlighet 25 %, «Tøm» tømmer det, og begge nullstiller generasjonstelleren.",
-          "Mønsterknappene tømmer brettet og plasserer ett klassisk mønster nær midten: glideren («Glider»), det lette romskipet («Lightweight spaceship»), pulsaren med periode 3, Gospers gliderkanon og tre langlivede frø, R-pentominoen, eikenøtta («Acorn») og Diehard. Fargeknappene endrer bare hvordan levende celler males. Merket øverst viser generasjonen, antallet levende celler og andelen deres av de 8400.",
+          "Sandkassen åpner i pause, med en Gospers gliderkanon nær øvre venstre hjørne. «Spill» starter klokken, «Pause» stopper den, og «Steg» går fram nøyaktig én generasjon (knappen er deaktivert mens simuleringen kjører). Glidebryteren for hastighet setter takten fra 1 til 60 generasjoner per sekund og starter på 12.",
+          "Klikk på en celle for å veksle den. Tilstanden du lager med det første klikket, avgjør hva et drag gjør: Hvis du slo på en celle, maler du levende celler når du drar, og hvis du slo av en, visker du ut. Du kan også tegne mens simuleringen kjører. «Tilfeldig» fyller brettet slik at hver celle lever med sannsynlighet 25 %, «Tøm» tømmer det, og begge nullstiller generasjonstelleren.",
+          "Mønsterknappene tømmer brettet og plasserer ett klassisk mønster nær midten: glideren («Glider»), det lette romskipet («Lightweight spaceship»), pulsaren med periode 3, Gospers gliderkanon og tre langlivede frø, R-pentominoen, eikenøtten («Acorn») og Diehard. Fargeknappene endrer bare hvordan levende celler males. Merket øverst viser generasjonen, antallet levende celler og andelen deres av de 8400.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
           "Brettet er ett enkelt Uint8Array på 120 × 70 byte, én byte per celle. Generasjon t + 1 regnes aldri ut på stedet, fordi en celle må se naboene sine slik de var, ikke slik de er i ferd med å bli under oppdateringen. I stedet finnes det to arrayer: step() leser fra den gjeldende, skriver til den andre, og så bytter de to referansene plass. Det allokeres ikke noe minne mens spillet kjører.",
           "Kantene går rundt. Naboen til en celle i kolonnen lengst til høyre ligger i kolonnen lengst til venstre, og det samme gjelder oppe og nede, noe som gjør rektangelet til overflaten av en torus. Derfor dukker en glider som forlater brettet nede til høyre, opp igjen oppe til venstre i stedet for å forsvinne.",
-          "Klokka bruker requestAnimationFrame med en tidsakkumulator: den legger sammen den virkelige tiden siden forrige bilde og kjører så mange generasjoner som får plass i den ved valgt hastighet, men aldri mer enn 20 per bilde, slik at en treg enhet ikke blir sittende fast i forsøket på å ta igjen etterslepet. Tegningen er atskilt fra simuleringen. Alle levende celler legges til i én enkelt canvas-bane av små sirkler og fylles i ett kall med et mykt skjær, oppå et svakt hjelperutenett for hver tiende celle. Ingenting beveger seg før du trykker på «Spill», så siden står stille for dem som foretrekker redusert bevegelse.",
+          "Klokken bruker requestAnimationFrame med en tidsakkumulator: Den legger sammen den virkelige tiden siden forrige bilde og kjører så mange generasjoner som får plass i den ved valgt hastighet, men aldri mer enn 20 per bilde, slik at en treg enhet ikke blir sittende fast i forsøket på å ta igjen etterslepet. Tegningen er atskilt fra simuleringen. Alle levende celler legges til i én enkelt tegnebane av små sirkler og fylles i ett kall med et mykt skjær, oppå et svakt hjelperutenett for hver tiende celle. Ingenting beveger seg før du trykker på «Spill», så siden står stille for dem som foretrekker redusert bevegelse.",
         ],
         code: STEP_EXCERPT,
       },
@@ -456,7 +456,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         heading: "En endelig verden gjentar seg alltid",
         paragraphs: [
           "På et uendelig plan vokser Gospers kanon for alltid og sender ut en ny glider hver 30. generasjon. På dette brettet kan ikke det skje. En torus med 120 × 70 celler har 2^8400 mulige konfigurasjoner, et enormt, men endelig antall, og hver av dem har nøyaktig én etterfølger. Før eller siden må følgen komme tilbake til en konfigurasjon den allerede har sett, og fra da av går den i syklus for alltid. Hver kjøring her ender derfor i et stilleben, en oscillasjon eller en svært lang sløyfe.",
-          "At kantene går rundt, endrer også de berømte levetidene. R-pentominoens 1103 generasjoner og eikenøttas 5206 er målt på et ubegrenset plan. Her kommer gliderne de slipper fra seg, rundt igjen og krasjer inn i restene som er igjen, så historien du ser, avviker fra lærebokas. Diehard er liten nok til ikke å bli påvirket: den forsvinner etter 130 generasjoner uansett.",
+          "At kantene går rundt, endrer også de berømte levetidene. R-pentominoens 1103 generasjoner og eikenøttens 5206 er målt på et ubegrenset plan. Her kommer gliderne de slipper fra seg, rundt igjen og krasjer inn i restene som er igjen, så historien du ser, avviker fra lærebokens. Diehard er liten nok til ikke å bli påvirket: Den forsvinner etter 130 generasjoner uansett.",
         ],
       },
     ],
@@ -468,11 +468,11 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
       },
       {
         title: "Mål et romskip",
-        text: "Last inn «Lightweight spaceship», det lette romskipet, og sett hastigheten til 60. Det flytter seg to celler hver fjerde generasjon, så det krysser alle de 120 kolonnene og er tilbake der det startet etter 240 generasjoner. En glider trenger mye lengre tid: den flytter seg én celle diagonalt hver fjerde generasjon og er derfor først tilbake i nøyaktig startcellen sin etter 3360 generasjoner, fordi 840 er det minste tallet som er delelig med både 120 og 70.",
+        text: "Last inn «Lightweight spaceship», det lette romskipet, og sett hastigheten til 60. Det flytter seg to celler hver fjerde generasjon, så det krysser alle de 120 kolonnene og er tilbake der det startet etter 240 generasjoner. En glider trenger mye lengre tid: Den flytter seg én celle diagonalt hver fjerde generasjon og er derfor først tilbake i nøyaktig startcellen sin etter 3360 generasjoner, fordi 840 er det minste tallet som er delelig med både 120 og 70.",
       },
       {
         title: "Se kanonen overkjøre sin egen verden",
-        text: "Trykk på «Spill» med gliderkanonen fra starten. Til å begynne med forlater en ryddig strøm av glidere den, én hver 30. generasjon. Fortsett å se på mens strømmen går rundt torusen: før eller siden kjører glidere på vei tilbake inn i selve kanonen, og den ryddige maskinen går i oppløsning.",
+        text: "Trykk på «Spill» med gliderkanonen fra starten. Til å begynne med forlater en ryddig strøm av glidere den, én hver 30. generasjon. Fortsett å se på mens strømmen går rundt torusen: Før eller siden kjører glidere på vei tilbake inn i selve kanonen, og den ryddige maskinen går i oppløsning.",
       },
     ],
   },

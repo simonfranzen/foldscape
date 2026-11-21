@@ -151,7 +151,7 @@ export const FOURIER_GUIDE: ExplorerGuide = {
       "Construye una onda cuadrada, de sierra o triangular con hasta 48 armónicos, compara la serie de Fourier con el objetivo y observa el fenómeno de Gibbs.",
     heading: "Cómo funciona este explorador",
     intro:
-      "La curva ámbar brillante es una suma de ondas sinusoidales. La curva blanca tenue es la forma en la que intenta convertirse: una onda cuadrada, un diente de sierra o una triangular. Las finas curvas cian que hay detrás son las ondas sinusoidales individuales que se van sumando, y el gráfico de barras de abajo muestra el tamaño de cada una. Arrastra el deslizador de armónicos y verás cómo un vaivén suave se convierte, término a término, en una forma con esquinas afiladas y saltos bruscos.",
+      "La curva ámbar brillante es una suma de ondas senoidales. La curva blanca tenue es la forma en la que intenta convertirse: una onda cuadrada, un diente de sierra o una triangular. Las finas curvas cian que hay detrás son las ondas senoidales individuales que se van sumando, y el gráfico de barras de abajo muestra el tamaño de cada una. Arrastra el deslizador de armónicos y verás cómo un vaivén suave se convierte, término a término, en una forma con esquinas afiladas y saltos bruscos.",
     sections: [
       {
         heading: "Toda forma periódica es una suma de senos",
@@ -165,7 +165,7 @@ export const FOURIER_GUIDE: ExplorerGuide = {
         heading: "Qué hacen los controles",
         paragraphs: [
           "«Onda objetivo» cambia entre «Onda cuadrada» (la opción por defecto), «Diente de sierra» y «Triangular». «Armónicos» fija N, el armónico más alto incluido, de 1 a 48, por defecto 8; los botones 1, 3, 8 y 24 saltan a valores útiles. N cuenta armónicos, no términos distintos de cero: para la onda cuadrada con N = 8 solo contribuyen k = 1, 3, 5 y 7, y las barras pares del espectro se quedan vacías.",
-          "En «Capas», «Objetivo (blanco)» muestra u oculta la forma ideal, y «Armónicos individuales (cian)» muestra u oculta las curvas sinusoidales por separado. El espectro que hay bajo el lienzo principal dibuja una barra por armónico, escalada respecto a la mayor. Las barras cian tienen coeficientes positivos y las rosas negativos, y por eso el diente de sierra y la triangular muestran colores alternos.",
+          "En «Capas», «Objetivo (blanco)» muestra u oculta la forma ideal, y «Armónicos individuales (cian)» muestra u oculta las curvas senoidales por separado. El espectro que hay bajo el lienzo principal dibuja una barra por armónico, escalada respecto a la mayor. Las barras cian tienen coeficientes positivos y las rosas negativos, y por eso el diente de sierra y la triangular muestran colores alternos.",
         ],
       },
       {
@@ -297,7 +297,7 @@ export const FOURIER_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Da provare",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Un solo seno è più alto dell'onda quadra",
@@ -336,14 +336,14 @@ export const FOURIER_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "«Onda alvo» alterna entre «Onda quadrada» (a opção por omissão), «Dente de serra» e «Triangular». «Harmônicos» define N, o harmónico mais alto incluído, de 1 a 48, 8 por omissão; os botões 1, 3, 8 e 24 saltam para valores úteis. N conta harmónicos, não termos diferentes de zero: para a onda quadrada com N = 8 só contribuem k = 1, 3, 5 e 7, e as barras pares do espetro ficam vazias.",
-          "Em «Camadas», «Alvo (branco)» mostra ou esconde a forma ideal, e «Harmônicos individuais (ciano)» mostra ou esconde as curvas sinusoidais separadas. O espetro por baixo da tela principal desenha uma barra por harmónico, à escala da maior. As barras ciano têm coeficientes positivos e as cor-de-rosa negativos, e é por isso que o dente de serra e a triangular mostram cores alternadas.",
+          "Em «Camadas», «Alvo (branco)» mostra ou esconde a forma ideal, e «Harmônicos individuais (ciano)» mostra ou esconde as curvas sinusoidais separadas. O espetro por baixo do canvas principal desenha uma barra por harmónico, à escala da maior. As barras ciano têm coeficientes positivos e as cor-de-rosa negativos, e é por isso que o dente de serra e a triangular mostram cores alternadas.",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
-          "Aqui nada é calculado numericamente a partir do alvo. Os coeficientes são os valores exatos em forma fechada das séries habituais, gerados pela função abaixo, e a soma parcial é avaliada diretamente em cada píxel horizontal da tela. A curva alvo é desenhada à parte a partir da sua definição por ramos, pelo que a folga que vês entre o branco e o âmbar é o verdadeiro erro de aproximação, não um artefacto do desenho.",
-          "As duas telas são redesenhadas sempre que muda a onda, N, um interruptor de camada ou o tamanho da tela, e são dimensionadas pela densidade de píxeis do dispositivo. Não há ciclo de animação, pelo que a página fica estática enquanto não mudares nada e se comporta da mesma maneira com movimento reduzido. O eixo vertical vai de −1,5 a 1,5, o que deixa espaço para ver as somas parciais que ultrapassam o alvo.",
+          "Aqui nada é calculado numericamente a partir do alvo. Os coeficientes são os valores exatos em forma fechada das séries habituais, gerados pela função abaixo, e a soma parcial é avaliada diretamente em cada píxel horizontal do canvas. A curva alvo é desenhada à parte a partir da sua definição por ramos, pelo que a folga que vês entre o branco e o âmbar é o verdadeiro erro de aproximação, não um artefacto do desenho.",
+          "Os dois canvas são redesenhados sempre que muda a onda, N, um interruptor de camada ou o tamanho do canvas, e são dimensionados pela densidade de píxeis do dispositivo. Não há ciclo de animação, pelo que a página fica estática enquanto não mudares nada e se comporta da mesma maneira com movimento reduzido. O eixo vertical vai de −1,5 a 1,5, o que deixa espaço para ver as somas parciais que ultrapassam o alvo.",
         ],
         code: SERIES_EXCERPT,
       },
@@ -400,7 +400,7 @@ export const FOURIER_GUIDE: ExplorerGuide = {
         heading: "Hur den är byggd",
         paragraphs: [
           "Ingenting här beräknas numeriskt utifrån målet. Koefficienterna är de exakta värdena på sluten form från standardserierna, genererade av funktionen nedan, och partialsumman beräknas direkt i varje vågrät pixel på ytan. Målkurvan ritas separat utifrån sin styckvisa definition, så glappet du ser mellan vitt och bärnsten är det verkliga approximationsfelet, inte en ritartefakt.",
-          "Båda ytorna ritas om varje gång vågen, N, en lageromkopplare eller ytans storlek ändras, och de anpassas efter enhetens pixeltäthet. Det finns ingen animationsslinga, så sidan är statisk tills du ändrar något och beter sig likadant med reducerad rörelse. Den lodräta axeln sträcker sig från −1,5 till 1,5, vilket ger plats att se partialsummor som skjuter över målet.",
+          "Båda ytorna ritas om varje gång vågen, N, en lageromkopplare eller ytans storlek ändras, och de anpassas efter enhetens pixeltäthet. Det finns ingen animationsslinga, så sidan är statisk tills du ändrar något och beter sig likadant med minskad rörelse. Den lodräta axeln sträcker sig från −1,5 till 1,5, vilket ger plats att se partialsummor som skjuter över målet.",
         ],
         code: SERIES_EXCERPT,
       },
@@ -411,7 +411,7 @@ export const FOURIER_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "En enda sinus är högre än fyrkanten",
@@ -442,19 +442,19 @@ export const FOURIER_GUIDE: ExplorerGuide = {
         heading: "Enhver periodisk form er en sum av sinusbølger",
         paragraphs: [
           "Joseph Fourier hevdet i arbeidet sitt om varme, utgitt som bok i 1822, at en periodisk funksjon kan skrives som en sum av sinus- og cosinusledd med frekvenser som er hele multipler av en grunnfrekvens. Det k-te leddet kalles den k-te overtonen, og amplituden a_k måler hvor mye av den frekvensen formen inneholder. For de tre bølgene her, valgt slik at de er odde om midtpunktet sitt, trengs bare sinusledd, og formelen nedenfor forteller hele historien.",
-          "Koeffisientene følger et mønster du kan lese av stolpediagrammet. Firkantbølgen bruker bare odde overtoner, med amplitude 4/(πk). Sagtannen bruker alle overtonene, med amplitude 2/(πk) og vekslende fortegn. Trekanten bruker igjen bare odde overtoner, men de krymper som 1/k², med vekslende fortegn. Hvor raskt koeffisientene avtar, forteller hvor glatt formen er: et hopp betyr 1/k, et hjørne uten hopp betyr 1/k².",
+          "Koeffisientene følger et mønster du kan lese av stolpediagrammet. Firkantbølgen bruker bare odde overtoner, med amplitude 4/(πk). Sagtannen bruker alle overtonene, med amplitude 2/(πk) og vekslende fortegn. Trekanten bruker igjen bare odde overtoner, men de krymper som 1/k², med vekslende fortegn. Hvor raskt koeffisientene avtar, forteller hvor glatt formen er: Et hopp betyr 1/k, et hjørne uten hopp betyr 1/k².",
         ],
         formula: PARTIAL_SUM_FORMULA,
       },
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "«Målbølge» veksler mellom «Firkantbølge» (standard), «Sagtann» og «Trekant». «Overtoner» setter N, den høyeste overtonen som tas med, fra 1 til 48, standard 8. Knappene 1, 3, 8 og 24 hopper til nyttige verdier. N teller overtoner, ikke ledd som er forskjellige fra null: for firkantbølgen ved N = 8 bidrar bare k = 1, 3, 5 og 7, og de jevne stolpene i spekteret forblir tomme.",
+          "«Målbølge» veksler mellom «Firkantbølge» (standard), «Sagtann» og «Trekant». «Overtoner» setter N, den høyeste overtonen som tas med, fra 1 til 48, standard 8. Knappene 1, 3, 8 og 24 hopper til nyttige verdier. N teller overtoner, ikke ledd som er forskjellige fra null: For firkantbølgen ved N = 8 bidrar bare k = 1, 3, 5 og 7, og de jevne stolpene i spekteret forblir tomme.",
           "Under «Lag» viser eller skjuler «Mål (hvitt)» den ideelle formen, og «Enkelte overtoner (cyan)» viser eller skjuler de separate sinuskurvene. Spekteret under hovedlerretet tegner én stolpe per overtone, skalert etter den største. Cyanfargede stolper har positive koeffisienter og rosa har negative, og derfor viser sagtannen og trekanten vekslende farger.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
           "Ingenting her regnes ut numerisk fra målet. Koeffisientene er de eksakte verdiene på lukket form fra standardrekkene, generert av funksjonen nedenfor, og delsummen regnes ut direkte i hver vannrette piksel på lerretet. Målkurven tegnes for seg ut fra den stykkevise definisjonen, så gapet du ser mellom hvitt og rav, er den virkelige tilnærmingsfeilen, ikke en tegneartefakt.",
           "Begge lerretene tegnes på nytt hver gang bølgen, N, en lagbryter eller lerretsstørrelsen endres, og de tilpasses pikseltettheten til enheten. Det finnes ingen animasjonsløkke, så siden er statisk til du endrer noe, og oppfører seg likt med redusert bevegelse. Den loddrette aksen går fra −1,5 til 1,5, noe som gir plass til å se delsummer som skyter over målet.",
@@ -464,7 +464,7 @@ export const FOURIER_GUIDE: ExplorerGuide = {
       {
         heading: "Oversvinget som aldri forsvinner",
         paragraphs: [
-          "Ved siden av hvert hopp i firkantbølgen og sagtannen skyter delsummen over, svinger et øyeblikk og faller så til ro. Flere overtoner presser krusningen tettere inn mot hoppet, men høyden krymper ikke: den blir liggende på omtrent 9 prosent av hoppet. For firkantbølgen, der hoppet er 2, ligger toppen nær 1,18 uansett hvor stor N blir. Dette er Gibbs' fenomen, oppkalt etter Josiah Willard Gibbs. Det motsier ikke konvergensen: i ethvert fast punkt unna hoppet går feilen fortsatt mot null, kulen flytter seg bare stadig nærmere diskontinuiteten. Trekanten har ingen hopp, så den viser ikke noe Gibbs-oversving i det hele tatt.",
+          "Ved siden av hvert hopp i firkantbølgen og sagtannen skyter delsummen over, svinger et øyeblikk og faller så til ro. Flere overtoner presser krusningen tettere inn mot hoppet, men høyden krymper ikke: Den blir liggende på omtrent 9 prosent av hoppet. For firkantbølgen, der hoppet er 2, ligger toppen nær 1,18 uansett hvor stor N blir. Dette er Gibbs' fenomen, oppkalt etter Josiah Willard Gibbs. Det motsier ikke konvergensen: I ethvert fast punkt unna hoppet går feilen fortsatt mot null, kulen flytter seg bare stadig nærmere diskontinuiteten. Trekanten har ingen hopp, så den viser ikke noe Gibbs-oversving i det hele tatt.",
         ],
       },
     ],
@@ -484,7 +484,7 @@ export const FOURIER_GUIDE: ExplorerGuide = {
       },
       {
         title: "Les fortegnene",
-        text: "Velg sagtannen med 8 overtoner og slå på de enkelte overtonene. Sammenlign stolpene med de cyanfargede kurvene: hver rosa stolpe hører til en sinusbølge som starter med å gå nedover, og det er det som bøyer summen til en rampe.",
+        text: "Velg sagtannen med 8 overtoner og slå på de enkelte overtonene. Sammenlign stolpene med de cyanfargede kurvene: Hver rosa stolpe hører til en sinusbølge som starter med å gå nedover, og det er det som bøyer summen til en rampe.",
       },
     ],
   },

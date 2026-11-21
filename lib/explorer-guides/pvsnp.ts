@@ -41,7 +41,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
       {
         heading: "What the controls do",
         paragraphs: [
-          "Five presets load fixed instances. «Trivially SAT» is the two-clause formula above. «All 8 clauses on 3 vars» lists every possible three-literal clause over x₁, x₂, x₃, and since each assignment falsifies exactly one of them, the formula is unsatisfiable. «Phase transition» is a random instance with 7 variables and 30 clauses, a ratio close to 4.26; this particular instance turns out to be unsatisfiable. «Pigeonhole» encodes the claim that 4 pigeons fit into 3 holes with no hole shared, using 12 variables and 22 clauses; it is false, so the formula is unsatisfiable. «Verify-only» loads a 4-variable formula together with a candidate assignment and switches to Verify mode.",
+          "Five presets load fixed instances. «Trivially SAT» is the two-clause formula above. «All 8 clauses on 3 vars» lists every possible three-literal clause over x₁, x₂, x₃, and since each assignment falsifies exactly one of them, the formula is unsatisfiable. «Phase-transition» is a random instance with 7 variables and 30 clauses, a ratio close to 4.26; this particular instance turns out to be unsatisfiable. «Pigeonhole» encodes the claim that 4 pigeons fit into 3 holes with no hole shared, using 12 variables and 22 clauses; it is false, so the formula is unsatisfiable. «Verify-only» loads a 4-variable formula together with a candidate assignment and switches to Verify mode.",
           "The random generator builds a 3-SAT formula from n variables (3 to 12, default 5), m clauses (3 to 50, default 20) and a seed (1 to 999). Each clause picks three distinct variables and negates each with probability one half, so the same seed always produces the same formula. The m / n readout tells you where you are relative to the phase transition.",
           "In Solve mode, Step advances the solver by exactly one action, Run repeats it at the chosen speed (1 to 60 steps per second, default 8) and Reset returns to the empty assignment. In Verify mode you click a variable to cycle it through T, F and unset; every clause lights up as satisfied, falsified or still open, and the verdict updates instantly.",
         ],
@@ -65,7 +65,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "A no that takes the whole tree",
-        text: "Load «Phase transition» and press Run. This instance has no solution, so the solver cannot stop at a lucky guess: it has to refute every branch before it may answer UNSAT. Note the branch and conflict counters at the end. There is no assignment you could type into Verify mode to confirm that answer, and nobody knows a short certificate for unsatisfiability in general (that is the NP versus coNP question).",
+        text: "Load «Phase-transition» and press Run. This instance has no solution, so the solver cannot stop at a lucky guess: it has to refute every branch before it may answer UNSAT. Note the branch and conflict counters at the end. There is no assignment you could type into Verify mode to confirm that answer, and nobody knows a short certificate for unsatisfiability in general (that is the NP versus coNP question).",
       },
       {
         title: "Easy, hard, hopeless",
@@ -141,10 +141,10 @@ export const PVSNP_GUIDE: ExplorerGuide = {
   },
   es: {
     metaDescription:
-      "Mira cómo un solver DPLL ataca 3-SAT paso a paso y comprueba una solución de una pasada. P vs NP en la práctica: encontrar es difícil, verificar es fácil.",
+      "Mira cómo un solver DPLL ataca 3-SAT paso a paso y comprueba una solución de una pasada. P frente a NP en la práctica: encontrar es difícil, verificar es fácil.",
     heading: "Cómo funciona este explorador",
     intro:
-      "La fila de paréntesis de arriba es una fórmula booleana en forma normal conjuntiva: una lista de cláusulas unidas por Y, cada una un O de unos pocos literales como x₁ o ¬x₃. La pregunta es si alguna elección de verdadero y falso para las variables hace verdaderas todas las cláusulas a la vez. Esa pregunta, llamada SAT, está en el centro del problema P contra NP. El explorador te deja sentir sus dos mitades: en el modo «Resolver» un algoritmo de búsqueda persigue una respuesta y dibuja su árbol de búsqueda, en el modo «Verificar» le entregas una respuesta y él se limita a comprobarla.",
+      "La fila de paréntesis de arriba es una fórmula booleana en forma normal conjuntiva: una lista de cláusulas unidas por Y, cada una un O de unos pocos literales como x₁ o ¬x₃. La pregunta es si alguna elección de verdadero y falso para las variables hace verdaderas todas las cláusulas a la vez. Esa pregunta, llamada SAT, está en el centro del problema P frente a NP. El explorador te deja sentir sus dos mitades: en el modo «Resolver» un algoritmo de búsqueda persigue una respuesta y dibuja su árbol de búsqueda, en el modo «Verificar» le entregas una respuesta y él se limita a comprobarla.",
     sections: [
       {
         heading: "Encontrar frente a comprobar",
@@ -157,7 +157,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "Cinco ejemplos predefinidos cargan instancias fijas. «Trivialmente SAT» es la fórmula de dos cláusulas de arriba. «Las 8 cláusulas sobre 3 variables» enumera todas las cláusulas posibles de tres literales sobre x₁, x₂, x₃, y como cada asignación hace falsa exactamente una de ellas, la fórmula es insatisfacible. «Transición de fase» es una instancia aleatoria con 7 variables y 30 cláusulas, una proporción cercana a 4,26; esta instancia en concreto resulta ser insatisfacible. «Palomar» codifica la afirmación de que 4 palomas caben en 3 huecos sin compartir ninguno, con 12 variables y 22 cláusulas; es falsa, así que la fórmula es insatisfacible. «Sólo verificar» carga una fórmula de 4 variables junto con una asignación candidata y cambia al modo «Verificar».",
+          "Cinco preajustes cargan instancias fijas. «Trivialmente SAT» es la fórmula de dos cláusulas de arriba. «Las 8 cláusulas sobre 3 variables» enumera todas las cláusulas posibles de tres literales sobre x₁, x₂, x₃, y como cada asignación hace falsa exactamente una de ellas, la fórmula es insatisfacible. «Transición de fase» es una instancia aleatoria con 7 variables y 30 cláusulas, una proporción cercana a 4,26; esta instancia en concreto resulta ser insatisfacible. «Palomar» codifica la afirmación de que 4 palomas caben en 3 huecos sin compartir ninguno, con 12 variables y 22 cláusulas; es falsa, así que la fórmula es insatisfacible. «Sólo verificar» carga una fórmula de 4 variables junto con una asignación candidata y cambia al modo «Verificar».",
           "El generador aleatorio construye una fórmula 3-SAT a partir de n variables (de 3 a 12, 5 por defecto), m cláusulas (de 3 a 50, 20 por defecto) y una semilla (de 1 a 999). Cada cláusula elige tres variables distintas y niega cada una con probabilidad un medio, de modo que la misma semilla produce siempre la misma fórmula. El indicador m / n te dice dónde estás respecto a la transición de fase.",
           "En el modo «Resolver», «Paso» hace avanzar el solver exactamente una acción, «Ejecutar» lo repite a la velocidad elegida (de 1 a 60 pasos por segundo, 8 por defecto) y «Reiniciar» vuelve a la asignación vacía. En el modo «Verificar» pulsas una variable para hacerla pasar por T, F y sin asignar; cada cláusula se ilumina como satisfecha, falsada o todavía abierta, y el veredicto se actualiza al instante.",
         ],
@@ -181,7 +181,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Un no que cuesta el árbol entero",
-        text: "Carga «Transición de fase» y pulsa «Ejecutar». Esta instancia no tiene solución, así que el solver no puede detenerse con un golpe de suerte: tiene que refutar cada rama antes de poder responder UNSAT. Fíjate al final en los contadores de ramas y conflictos. No existe ninguna asignación que puedas introducir en el modo «Verificar» para confirmar esa respuesta, y nadie conoce en general un certificado corto de insatisfacibilidad (esa es la cuestión NP contra coNP).",
+        text: "Carga «Transición de fase» y pulsa «Ejecutar». Esta instancia no tiene solución, así que el solver no puede detenerse con un golpe de suerte: tiene que refutar cada rama antes de poder responder UNSAT. Fíjate al final en los contadores de ramas y conflictos. No existe ninguna asignación que puedas introducir en el modo «Verificar» para confirmar esa respuesta, y nadie conoce en general un certificado corto de insatisfacibilidad (esa es la cuestión NP frente a coNP).",
       },
       {
         title: "Fácil, difícil, imposible",
@@ -199,7 +199,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
   },
   fr: {
     metaDescription:
-      "Regarde un solveur DPLL attaquer 3-SAT pas à pas, puis vérifie une solution en une seule passe. P vs NP en pratique : trouver est dur, vérifier est facile.",
+      "Regarde un solveur DPLL attaquer 3-SAT pas à pas, puis vérifie une solution en une seule passe. P contre NP en pratique : trouver est dur, vérifier est facile.",
     heading: "Comment fonctionne cet explorateur",
     intro:
       "La rangée de parenthèses en haut est une formule booléenne en forme normale conjonctive : une liste de clauses reliées par des ET, chaque clause étant un OU de quelques littéraux comme x₁ ou ¬x₃. La question est de savoir s'il existe un choix de vrai et de faux pour les variables qui rende toutes les clauses vraies en même temps. Cette question, appelée SAT, est au cœur du problème P contre NP. L'explorateur te fait éprouver ses deux moitiés : en mode « Résoudre », un algorithme de recherche traque une réponse et dessine son arbre de recherche ; en mode « Vérifier », tu lui fournis une réponse et il se contente de la contrôler.",
@@ -213,7 +213,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
         formula: PVSNP_FORMULA,
       },
       {
-        heading: "À quoi servent les réglages",
+        heading: "À quoi servent les commandes",
         paragraphs: [
           "Cinq préréglages chargent des instances fixes. « Trivialement SAT » est la formule à deux clauses ci-dessus. « Les 8 clauses sur 3 variables » énumère toutes les clauses possibles de trois littéraux sur x₁, x₂, x₃, et comme chaque affectation en rend exactement une fausse, la formule est insatisfaisable. « Transition de phase » est une instance aléatoire de 7 variables et 30 clauses, soit un rapport proche de 4,26 ; il se trouve que cette instance précise est insatisfaisable. « Tiroirs » encode l'affirmation selon laquelle 4 pigeons tiennent dans 3 trous sans qu'aucun trou soit partagé, avec 12 variables et 22 clauses ; elle est fausse, la formule est donc insatisfaisable. « Vérification seule » charge une formule à 4 variables accompagnée d'une affectation candidate et bascule en mode « Vérifier ».",
           "Le générateur aléatoire construit une formule 3-SAT à partir de n variables (de 3 à 12, 5 par défaut), de m clauses (de 3 à 50, 20 par défaut) et d'une graine (de 1 à 999). Chaque clause choisit trois variables distinctes et nie chacune avec une probabilité d'un demi, si bien qu'une même graine produit toujours la même formule. L'affichage m / n t'indique où tu te situes par rapport à la transition de phase.",
@@ -274,15 +274,15 @@ export const PVSNP_GUIDE: ExplorerGuide = {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
           "Cinque preset caricano istanze fisse. «Banalmente SAT» è la formula a due clausole qui sopra. «Tutte le 8 clausole su 3 variabili» elenca ogni possibile clausola di tre letterali su x₁, x₂, x₃ e, poiché ogni assegnamento ne rende falsa esattamente una, la formula è insoddisfacibile. «Transizione di fase» è un'istanza casuale con 7 variabili e 30 clausole, un rapporto vicino a 4,26; questa particolare istanza risulta insoddisfacibile. «Cassetti» codifica l'affermazione che 4 piccioni stiano in 3 buchi senza condividerne nessuno, con 12 variabili e 22 clausole; è falsa, quindi la formula è insoddisfacibile. «Solo verifica» carica una formula a 4 variabili insieme a un assegnamento candidato e passa alla modalità «Verifica».",
-          "Il generatore casuale costruisce una formula 3-SAT a partire da n variabili (da 3 a 12, 5 per impostazione predefinita), m clausole (da 3 a 50, 20 per impostazione predefinita) e un seed (da 1 a 999). Ogni clausola sceglie tre variabili distinte e nega ciascuna con probabilità un mezzo, perciò lo stesso seed produce sempre la stessa formula. L'indicatore m / n ti dice dove ti trovi rispetto alla transizione di fase.",
+          "Il generatore casuale costruisce una formula 3-SAT a partire da n variabili (da 3 a 12, 5 per impostazione predefinita), m clausole (da 3 a 50, 20 per impostazione predefinita) e un seme («Seed», da 1 a 999). Ogni clausola sceglie tre variabili distinte e nega ciascuna con probabilità un mezzo, perciò lo stesso seme produce sempre la stessa formula. L'indicatore m / n ti dice dove ti trovi rispetto alla transizione di fase.",
           "Nella modalità «Risolvi», «Passo» fa avanzare il solver di una sola azione, «Avvia» la ripete alla velocità scelta (da 1 a 60 passi al secondo, 8 per impostazione predefinita) e «Reset» torna all'assegnamento vuoto. Nella modalità «Verifica» clicchi una variabile per farla passare tra T, F e non assegnata; ogni clausola si illumina come soddisfatta, falsificata o ancora aperta, e il verdetto si aggiorna all'istante.",
         ],
       },
       {
         heading: "Com'è costruito",
         paragraphs: [
-          "Una clausola è un array di interi con segno: 3 significa x₃, −3 significa ¬x₃. Il solver è una piccola versione della procedura DPLL (Davis, Putnam, Logemann e Loveland, 1962) scritta con uno stack esplicito al posto della ricorsione, così da potersi fermare dopo ogni singolo passo. Ogni passo fa la prima cosa applicabile: dichiarare SAT se tutte le clausole sono soddisfatte, tornare indietro se una clausola è falsificata, applicare la propagazione unitaria (una clausola con tutti i letterali falsi tranne uno non assegnato impone quel letterale), applicare l'eliminazione dei letterali puri (una variabile che nelle clausole rimanenti compare con un solo segno può essere fissata senza rischi in modo da renderlo vero) e, altrimenti, ramificare.",
-          "La ramificazione è volutamente ingenua: prende la variabile non assegnata con l'indice più basso e prova prima vero. Prima di ramificare salva sullo stack un'istantanea dell'assegnamento. In caso di conflitto, il backtracking ripristina l'istantanea del frame più recente che ha ancora un valore non provato e porta quella variabile a falso; i frame con entrambi i valori provati vengono tolti dallo stack. Quando lo stack è vuoto, ogni ramo è fallito e il verdetto è UNSAT. Ogni passo restituisce un nuovo oggetto di stato, che React disegna come clausole colorate e come un albero SVG in cui i nodi ciano sono aperti, i grigi esplorati, i rosa sono conflitti e il nodo ambra è la soluzione. Nulla si muove finché non premi «Passo» o «Avvia», quindi non c'è alcun movimento da ridurre.",
+          "Una clausola è un array di interi con segno: 3 significa x₃, −3 significa ¬x₃. Il solver è una piccola versione della procedura DPLL (Davis, Putnam, Logemann e Loveland, 1962) scritta con una pila esplicita al posto della ricorsione, così da potersi fermare dopo ogni singolo passo. Ogni passo fa la prima cosa applicabile: dichiarare SAT se tutte le clausole sono soddisfatte, tornare indietro se una clausola è falsificata, applicare la propagazione unitaria (una clausola con tutti i letterali falsi tranne uno non assegnato impone quel letterale), applicare l'eliminazione dei letterali puri (una variabile che nelle clausole rimanenti compare con un solo segno può essere fissata senza rischi in modo da renderlo vero) e, altrimenti, ramificare.",
+          "La ramificazione è volutamente ingenua: prende la variabile non assegnata con l'indice più basso e prova prima vero. Prima di ramificare salva sulla pila un'istantanea dell'assegnamento. In caso di conflitto, il backtracking ripristina l'istantanea del frame più recente che ha ancora un valore non provato e porta quella variabile a falso; i frame con entrambi i valori provati vengono tolti dalla pila. Quando la pila è vuota, ogni ramo è fallito e il verdetto è UNSAT. Ogni passo restituisce un nuovo oggetto di stato, che React disegna come clausole colorate e come un albero SVG in cui i nodi ciano sono aperti, i grigi esplorati, i rosa sono conflitti e il nodo ambra è la soluzione. Nulla si muove finché non premi «Passo» o «Avvia», quindi non c'è alcun movimento da ridurre.",
         ],
         code: DPLL_EXCERPT,
       },
@@ -318,7 +318,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
       "Vê um solver DPLL atacar o 3-SAT passo a passo e verifica uma solução numa só passagem. P vs NP na prática: encontrar é difícil, verificar é fácil.",
     heading: "Como funciona este explorador",
     intro:
-      "A fila de parênteses no topo é uma fórmula booleana em forma normal conjuntiva: uma lista de cláusulas ligadas por E, cada uma um OU de alguns literais como x₁ ou ¬x₃. A pergunta é se alguma escolha de verdadeiro e falso para as variáveis torna todas as cláusulas verdadeiras ao mesmo tempo. Essa pergunta, chamada SAT, está no centro do problema P contra NP. O explorador deixa-te sentir as duas metades: no modo «Resolver» um algoritmo de procura persegue uma resposta e desenha a sua árvore de procura, no modo «Verificar» entregas-lhe uma resposta e ele limita-se a conferi-la.",
+      "A fila de parênteses no topo é uma fórmula booleana em forma normal conjuntiva: uma lista de cláusulas ligadas por E, cada uma um OU de alguns literais como x₁ ou ¬x₃. A pergunta é se alguma escolha de verdadeiro e falso para as variáveis torna todas as cláusulas verdadeiras ao mesmo tempo. Essa pergunta, chamada SAT, está no centro do problema P contra NP. O explorador deixa-te sentir as duas metades: no modo «Resolver» um algoritmo de busca persegue uma resposta e desenha a sua árvore de busca, no modo «Verificar» entregas-lhe uma resposta e ele limita-se a conferi-la.",
     sections: [
       {
         heading: "Encontrar contra conferir",
@@ -351,7 +351,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Experimenta",
+    experimentsHeading: "Experimenta isto",
     experiments: [
       {
         title: "Um não que custa a árvore inteira",
@@ -373,7 +373,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
   },
   sv: {
     metaDescription:
-      "Se en DPLL-lösare angripa 3-SAT steg för steg och kontrollera sedan en lösning i ett enda svep. P vs NP i praktiken: att hitta är svårt, att verifiera lätt.",
+      "Se en DPLL-lösare angripa 3-SAT steg för steg och kontrollera sedan en lösning i ett enda svep. P mot NP i praktiken: att hitta är svårt, att verifiera lätt.",
     heading: "Så fungerar den här utforskaren",
     intro:
       "Raden av parenteser högst upp är en boolesk formel i konjunktiv normalform: en lista av klausuler som binds ihop med OCH, där varje klausul är ett ELLER av några få literaler som x₁ eller ¬x₃. Frågan är om något val av sant och falskt för variablerna gör alla klausuler sanna på en gång. Den frågan kallas SAT och står i centrum för problemet P mot NP. Utforskaren låter dig känna på båda halvorna: i läget ”Lös” jagar en sökalgoritm ett svar och ritar sitt sökträd, i läget ”Verifiera” ger du den ett svar och den kontrollerar det bara.",
@@ -431,16 +431,16 @@ export const PVSNP_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Se en DPLL-løser angripe 3-SAT steg for steg, og kontroller deretter en løsning i ett gjennomløp. P vs NP i praksis: å finne er vanskelig, å verifisere lett.",
+      "Se en DPLL-løser angripe 3-SAT steg for steg, og kontroller deretter en løsning i ett gjennomløp. P vs NP i praksis: Å finne er vanskelig, å verifisere lett.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Raden med parenteser øverst er en boolsk formel på konjunktiv normalform: en liste med klausuler som er bundet sammen med OG, der hver klausul er et ELLER av noen få literaler som x₁ eller ¬x₃. Spørsmålet er om et eller annet valg av sant og usant for variablene gjør alle klausulene sanne på én gang. Dette spørsmålet kalles SAT og står i sentrum av problemet P mot NP. Utforskeren lar deg kjenne på begge halvdelene: i modusen «Løs» jakter en søkealgoritme på et svar og tegner søketreet sitt, i modusen «Verifiser» gir du den et svar, og den bare kontrollerer det.",
+      "Raden med parenteser øverst er en boolsk formel på konjunktiv normalform: en liste med klausuler som er bundet sammen med OG, der hver klausul er et ELLER av noen få literaler som x₁ eller ¬x₃. Spørsmålet er om et eller annet valg av sant og usant for variablene gjør alle klausulene sanne på én gang. Dette spørsmålet kalles SAT og står i sentrum av problemet P mot NP. Utforskeren lar deg kjenne på begge halvdelene: I modusen «Løs» jakter en søkealgoritme på et svar og tegner søketreet sitt, i modusen «Verifiser» gir du den et svar, og den bare kontrollerer det.",
     sections: [
       {
         heading: "Å finne eller å kontrollere",
         paragraphs: [
           "NP er klassen av ja-eller-nei-problemer der et ja-svar kommer med et sertifikat som kan kontrolleres raskt, det vil si i tid som er polynomisk i størrelsen på inndataene. For SAT er sertifikatet en tilordning som oppfyller formelen, og å kontrollere den betyr å lese hver klausul én gang: lineært i størrelsen på formelen. P er klassen av problemer som også kan løses raskt, uten at man får sertifikatet utlevert. Om P er lik NP, er et åpent spørsmål, og det er et av millenniumsproblemene til Clay Mathematics Institute.",
-          "SAT er så viktig fordi det er NP-komplett: ethvert problem i NP kan oversettes effektivt til SAT. Det viste Stephen Cook i 1971 og, uavhengig av ham, Leonid Levin. En rask algoritme for SAT ville derfor gi en rask algoritme for ethvert problem i NP. Varianten som brukes her, 3-SAT, begrenser klausulene til tre literaler og er fortsatt NP-komplett.",
+          "SAT er så viktig fordi det er NP-komplett: Ethvert problem i NP kan oversettes effektivt til SAT. Det viste Stephen Cook i 1971 og, uavhengig av ham, Leonid Levin. En rask algoritme for SAT ville derfor gi en rask algoritme for ethvert problem i NP. Varianten som brukes her, 3-SAT, begrenser klausulene til tre literaler og er fortsatt NP-komplett.",
         ],
         formula: PVSNP_FORMULA,
       },
@@ -453,17 +453,17 @@ export const PVSNP_GUIDE: ExplorerGuide = {
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
           "En klausul er en array av heltall med fortegn: 3 betyr x₃, −3 betyr ¬x₃. Løseren er en liten versjon av DPLL-prosedyren (Davis, Putnam, Logemann og Loveland, 1962), skrevet med en eksplisitt stakk i stedet for rekursjon, slik at den kan stoppe etter hvert enkelt steg. Hvert steg gjør det første som passer: melde SAT hvis alle klausulene er oppfylt, gå tilbake hvis en klausul er falsifisert, bruke enhetspropagering (en klausul der alle literalene er usanne bortsett fra én som ikke har fått verdi, tvinger fram den literalen), bruke eliminering av rene literaler (en variabel som bare forekommer med ett fortegn i de gjenværende klausulene, kan trygt settes slik at literalen blir sann), og ellers forgrene.",
-          "Forgreningen er bevisst naiv: den tar variabelen uten verdi som har lavest nummer, og prøver sant først. Før den forgrener, legger den et øyeblikksbilde av tilordningen på stakken. Ved en konflikt gjenoppretter tilbakesporingen øyeblikksbildet fra den nyeste rammen som fortsatt har en uprøvd verdi, og slår den variabelen om til usant; rammer der begge verdiene er prøvd, fjernes fra stakken. Når stakken er tom, har hver gren mislyktes, og dommen er UNSAT. Hvert steg returnerer et nytt tilstandsobjekt, som React tegner som fargede klausuler og et SVG-tre der cyanfargede noder er åpne, grå noder utforsket, rosa noder konflikter og den ravfargede noden løsningen. Ingenting beveger seg med mindre du trykker på «Steg» eller «Kjør», så det finnes ingen bevegelse å redusere.",
+          "Forgreningen er bevisst naiv: Den tar variabelen uten verdi som har lavest nummer, og prøver sant først. Før den forgrener, legger den et øyeblikksbilde av tilordningen på stakken. Ved en konflikt gjenoppretter tilbakesporingen øyeblikksbildet fra den nyeste rammen som fortsatt har en uprøvd verdi, og slår den variabelen om til usant; rammer der begge verdiene er prøvd, fjernes fra stakken. Når stakken er tom, har hver gren mislyktes, og dommen er UNSAT. Hvert steg returnerer et nytt tilstandsobjekt, som React tegner som fargede klausuler og et SVG-tre der cyanfargede noder er åpne, grå noder utforsket, rosa noder konflikter og den ravfargede noden løsningen. Ingenting beveger seg med mindre du trykker på «Steg» eller «Kjør», så det finnes ingen bevegelse å redusere.",
         ],
         code: DPLL_EXCERPT,
       },
       {
         heading: "Hvorfor 4,26 er spesielt",
         paragraphs: [
-          "For tilfeldig 3-SAT forklarer allerede en enkel opptelling mye. En tilfeldig klausul med tre literaler er usann for nøyaktig én av de åtte kombinasjonene av variablene sine, så en fast tilordning oppfyller den med sannsynlighet 7/8. Det forventede antallet tilordninger som oppfyller formelen, er derfor 2^n · (7/8)^m, som faller under én så snart m / n overstiger omtrent 5,19. Den virkelige terskelen ligger lavere: eksperimenter viser at tilfeldige formler slår om fra nesten alltid oppfyllbare til nesten alltid uoppfyllbare rundt m / n ≈ 4,26, og løsere som denne trenger empirisk mest arbeid nær det forholdet. Under det finnes det løsninger i overflod, og den første nedstigningen lykkes ofte. Langt over det dukker motsigelser opp etter noen få tilordninger.",
+          "For tilfeldig 3-SAT forklarer allerede en enkel opptelling mye. En tilfeldig klausul med tre literaler er usann for nøyaktig én av de åtte kombinasjonene av variablene sine, så en fast tilordning oppfyller den med sannsynlighet 7/8. Det forventede antallet tilordninger som oppfyller formelen, er derfor 2^n · (7/8)^m, som faller under én så snart m / n overstiger omtrent 5,19. Den virkelige terskelen ligger lavere: Eksperimenter viser at tilfeldige formler slår om fra nesten alltid oppfyllbare til nesten alltid uoppfyllbare rundt m / n ≈ 4,26, og løsere som denne trenger empirisk mest arbeid nær det forholdet. Under det finnes det løsninger i overflod, og den første nedstigningen lykkes ofte. Langt over det dukker motsigelser opp etter noen få tilordninger.",
         ],
       },
     ],
@@ -471,7 +471,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Et nei som koster hele treet",
-        text: "Last inn «Faseovergang» og trykk på «Kjør». Denne instansen har ingen løsning, så løseren kan ikke stoppe ved en heldig gjetning: den må motbevise hver gren før den får svare UNSAT. Legg merke til tellerne for grener og konflikter til slutt. Det finnes ingen tilordning du kunne skrive inn i modusen «Verifiser» for å bekrefte det svaret, og ingen kjenner noe kort sertifikat for uoppfyllbarhet generelt (det er spørsmålet om NP mot coNP).",
+        text: "Last inn «Faseovergang» og trykk på «Kjør». Denne instansen har ingen løsning, så løseren kan ikke stoppe ved en heldig gjetning: Den må motbevise hver gren før den får svare UNSAT. Legg merke til tellerne for grener og konflikter til slutt. Det finnes ingen tilordning du kunne skrive inn i modusen «Verifiser» for å bekrefte det svaret, og ingen kjenner noe kort sertifikat for uoppfyllbarhet generelt (det er spørsmålet om NP mot coNP).",
       },
       {
         title: "Lett, vanskelig, håpløst",
@@ -483,7 +483,7 @@ export const PVSNP_GUIDE: ExplorerGuide = {
       },
       {
         title: "Ødelegg en løsning for hånd",
-        text: "Last inn «Kun verifiser». Kandidaten x₁ = T, x₂ = T, x₃ = F, x₄ = T oppfyller alle de seks klausulene. Klikk på x₃ to ganger (fra F til uten verdi, deretter til T), og se hvordan klausul c4 blir falsifisert: det holder med én eneste snudd bit for å ødelegge sertifikatet.",
+        text: "Last inn «Kun verifiser». Kandidaten x₁ = T, x₂ = T, x₃ = F, x₄ = T oppfyller alle de seks klausulene. Klikk på x₃ to ganger (fra F til uten verdi, deretter til T), og se hvordan klausul c4 blir falsifisert: Det holder med én eneste snudd bit for å ødelegge sertifikatet.",
       },
     ],
   },

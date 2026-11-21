@@ -46,7 +46,7 @@ export const DLA_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Seed decides where growth starts. Point puts a single frozen cell in the centre and launches walkers from a circle near the edge of the canvas. Line freezes the whole second row from the bottom and drops walkers in at the top edge, like a crystal growing upwards from a surface. Ring draws a closed circle with a radius of one third of the shorter side and spawns walkers uniformly inside it, so the coral grows inwards from the wall.",
           "Walkers / frame sets how many particles are wandering at the same time (10 to 1000, default 150, hard cap 4000). More walkers means faster growth, because every walker moves once per frame. Stickiness (0.1 to 1.0, default 1.0) is the probability that a walker next to the cluster actually freezes; otherwise it keeps walking. Cell size (2 to 8 pixels, default 3) sets the grid resolution: smaller cells give a finer, larger lattice. Changing the seed or the cell size restarts the simulation.",
-          "The four presets combine these: Centre seed with 80 walkers, Centre fast with 300, Bottom line with 200 and Ring seed with 200, all with stickiness 1. The colour swatches only change the tint.",
+          "The four presets combine these: Centre seed with 80 walkers, Centre · fast with 300, Bottom line with 200 and Ring seed with 200, all with stickiness 1. The colour swatches only change the tint.",
         ],
       },
       {
@@ -225,7 +225,7 @@ export const DLA_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "« Graine » décide de l'endroit où la croissance démarre. « point » place une seule cellule figée au centre et lance les marcheurs depuis un cercle proche du bord du canevas. « ligne » fige toute la deuxième rangée en partant du bas et fait entrer les marcheurs par le bord supérieur, comme un cristal qui pousse vers le haut à partir d'une surface. « anneau » trace un cercle fermé dont le rayon vaut un tiers du plus petit côté et fait apparaître les marcheurs uniformément à l'intérieur, si bien que le corail pousse vers l'intérieur depuis la paroi.",
-          "« Marcheurs / image » fixe le nombre de particules qui errent en même temps (de 10 à 1000, 150 par défaut, plafond absolu de 4000). Plus de marcheurs, c'est une croissance plus rapide, puisque chaque marcheur bouge une fois par image. « Adhérence » (de 0,1 à 1,0, 1,0 par défaut) est la probabilité qu'un marcheur voisin de l'amas se fige réellement ; sinon, il continue de marcher. « Taille de cellule » (de 2 à 8 pixels, 3 par défaut) fixe la résolution de la grille : des cellules plus petites donnent un réseau plus fin et plus grand. Changer la graine ou la taille de cellule relance la simulation.",
+          "« Marcheurs / image » fixe le nombre de particules qui errent en même temps (de 10 à 1 000, 150 par défaut, plafond absolu de 4 000). Plus de marcheurs, c'est une croissance plus rapide, puisque chaque marcheur bouge une fois par image. « Adhérence » (de 0,1 à 1,0 ; 1,0 par défaut) est la probabilité qu'un marcheur voisin de l'amas se fige réellement ; sinon, il continue de marcher. « Taille de cellule » (de 2 à 8 pixels, 3 par défaut) fixe la résolution de la grille : des cellules plus petites donnent un réseau plus fin et plus grand. Changer la graine ou la taille de cellule relance la simulation.",
           "Les quatre préréglages combinent ces paramètres : « Graine centrale » avec 80 marcheurs, « Centre · rapide » avec 300, « Ligne du bas » avec 200 et « Graine anneau » avec 200, tous avec une adhérence de 1. Les pastilles de couleur ne changent que la teinte.",
         ],
       },
@@ -234,7 +234,7 @@ export const DLA_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Le monde est un Uint8Array avec un octet par cellule de la grille : 0 signifie vide, toute autre valeur signifie figée. Les marcheurs sont un simple tableau de coordonnées entières. Chaque image complète la réserve jusqu'au nombre visé, puis déplace chaque marcheur d'un pas à gauche, à droite, en haut ou en bas avec la même probabilité. Les marcheurs sont retenus au bord du canevas, et un pas vers une cellule figée est refusé : les particules ne peuvent donc jamais traverser un bras.",
           "Après son déplacement, le marcheur examine ses quatre voisins directs (le voisinage de von Neumann). Si l'un d'eux est figé et qu'un nombre aléatoire tombe sous l'adhérence, la cellule se fige et le marcheur est retiré. La valeur figée enregistre aussi le moment où la cellule s'est attachée : elle augmente de quatre toutes les 60 images, et les cellules plus anciennes sont dessinées un peu plus sombres que les récentes, de sorte que la croissance extérieure brille un peu plus.",
-          "Quand la réduction des animations est activée, la boucle ne s'anime pas. La page exécute 1200 pas de simulation d'un coup, peint une seule image fixe et affiche la taille de l'amas obtenu.",
+          "Quand la réduction des animations est activée, la boucle ne s'anime pas. La page exécute 1 200 pas de simulation d'un coup, peint une seule image fixe et affiche la taille de l'amas obtenu.",
         ],
         code: WALK_EXCERPT,
       },
@@ -261,7 +261,7 @@ export const DLA_GUIDE: ExplorerGuide = {
       },
       {
         title: "Résolution et patience",
-        text: "Règle la taille de cellule sur 2 et les marcheurs sur 1000. Le réseau compte maintenant beaucoup plus de cellules, et l'amas montre une ramification plus fine et plus détaillée. Avec une taille de cellule de 8, la même règle produit un corail massif, façon pixel art.",
+        text: "Règle la taille de cellule sur 2 et les marcheurs sur 1 000. Le réseau compte maintenant beaucoup plus de cellules, et l'amas montre une ramification plus fine et plus détaillée. Avec une taille de cellule de 8, la même règle produit un corail massif, façon pixel art.",
       },
     ],
   },
@@ -275,7 +275,7 @@ export const DLA_GUIDE: ExplorerGuide = {
       {
         heading: "L'idea: crescere per arrivi casuali",
         paragraphs: [
-          "L'aggregazione limitata dalla diffusione (DLA, dalla sigla inglese) è stata introdotta da Thomas Witten e Leonard Sander nel 1981. La regola è breve: rilascia una particella lontano, lasciale fare una passeggiata aleatoria e, quando atterra accanto all'ammasso, attaccala. Poi rilascia la successiva. Il nome dice che cosa governa la velocità: la crescita è limitata dalla rapidità con cui le particelle diffondono fino alla superficie, non da una qualche chimica sulla superficie.",
+          "L'aggregazione limitata dalla diffusione (DLA, dalla sigla inglese) è stata introdotta da Thomas Witten e Leonard Sander nel 1981. La regola è breve: rilascia una particella lontano, lasciale fare una passeggiata casuale e, quando atterra accanto all'ammasso, attaccala. Poi rilascia la successiva. Il nome dice che cosa governa la velocità: la crescita è limitata dalla rapidità con cui le particelle arrivano per diffusione fino alla superficie, non da una qualche chimica sulla superficie.",
           "La ramificazione nasce da un effetto di schermatura. Un camminatore casuale che arriva da fuori ha molte più probabilità di urtare una punta sporgente che di inoltrarsi in una stretta fessura tra due bracci. Le punte quindi crescono più in fretta, il che le fa sporgere ancora di più, mentre i fiordi tra l'una e l'altra restano a secco. Piccole differenze casuali si amplificano fino alla caratteristica forma aperta, simile a un albero.",
           "Quella forma è un frattale. Se conti le particelle N dentro un cerchio di raggio R attorno al seme, non ottieni l'R² che ti aspetteresti da un disco pieno. Per la DLA nel piano, N cresce all'incirca come R elevato a una potenza di circa 1,71, una dimensione frattale compresa tra quella di una linea (1) e quella di un'area piena (2).",
         ],
@@ -305,11 +305,11 @@ export const DLA_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Da provare",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Corallo sottile contro corallo spesso",
-        text: "Avvia il seme «punto» con aderenza 1,0, poi resetta e avvialo con aderenza 0,15. Confronta i due quando raggiungono una dimensione simile: il secondo ha bracci più spessi e molti meno fiordi vuoti.",
+        text: "Avvia il seme «punto» con aderenza 1,0, poi premi «Reset» e avvialo con aderenza 0,15. Confronta i due quando raggiungono una dimensione simile: il secondo ha bracci più spessi e molti meno fiordi vuoti.",
       },
       {
         title: "Una foresta da una superficie",
@@ -330,7 +330,7 @@ export const DLA_GUIDE: ExplorerGuide = {
       "Faz crescer ao vivo a agregação limitada por difusão: caminhantes aleatórios colam-se a uma semente e constroem coral fractal. Ajusta aderência e semente.",
     heading: "Como funciona este explorador",
     intro:
-      "Cada célula brilhante da tela já foi uma partícula errante. As partículas deambulam ao acaso pela grelha, um passo de rede por fotograma, até tocarem no agregado em crescimento e ficarem congeladas no lugar. Ninguém diz ao agregado para se ramificar e, no entanto, em poucos segundos crescem-lhe braços finos, aos braços crescem braços laterais, e o resultado lembra a geada numa janela ou as ramificações do delta de um rio. Os pontos ténues que vês a mexer são os caminhantes que ainda vêm a caminho.",
+      "Cada célula brilhante do canvas já foi uma partícula errante. As partículas deambulam ao acaso pela grelha, um passo de rede por fotograma, até tocarem no agregado em crescimento e ficarem congeladas no lugar. Ninguém diz ao agregado para se ramificar e, no entanto, em poucos segundos crescem-lhe braços finos, aos braços crescem braços laterais, e o resultado lembra a geada numa janela ou as ramificações do delta de um rio. Os pontos ténues que vês a mexer são os caminhantes que ainda vêm a caminho.",
     sections: [
       {
         heading: "A ideia: crescer por chegadas ao acaso",
@@ -344,7 +344,7 @@ export const DLA_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "«Semente» decide onde começa o crescimento. «ponto» põe uma única célula congelada no centro e lança os caminhantes a partir de um círculo junto ao limite da tela. «linha» congela toda a segunda fila a contar de baixo e larga os caminhantes pela margem superior, como um cristal que cresce para cima a partir de uma superfície. «anel» desenha um círculo fechado com raio igual a um terço do lado mais curto e gera os caminhantes uniformemente no seu interior, pelo que o coral cresce para dentro a partir da parede.",
+          "«Semente» decide onde começa o crescimento. «ponto» põe uma única célula congelada no centro e lança os caminhantes a partir de um círculo junto ao limite do canvas. «linha» congela toda a segunda fila a contar de baixo e larga os caminhantes pela margem superior, como um cristal que cresce para cima a partir de uma superfície. «anel» desenha um círculo fechado com raio igual a um terço do lado mais curto e gera os caminhantes uniformemente no seu interior, pelo que o coral cresce para dentro a partir da parede.",
           "«Caminhantes / quadro» define quantas partículas deambulam ao mesmo tempo (de 10 a 1000, 150 por omissão, limite absoluto 4000). Mais caminhantes significa crescimento mais rápido, porque cada caminhante se move uma vez por fotograma. «Aderência» (de 0,1 a 1,0, 1,0 por omissão) é a probabilidade de um caminhante junto ao agregado congelar de facto; caso contrário, continua a caminhar. «Tamanho da célula» (de 2 a 8 píxeis, 3 por omissão) define a resolução da grelha: células mais pequenas dão uma rede mais fina e maior. Mudar a semente ou o tamanho da célula reinicia a simulação.",
           "As quatro predefinições combinam tudo isto: «Semente central» com 80 caminhantes, «Centro · rápido» com 300, «Linha inferior» com 200 e «Semente anel» com 200, todas com aderência 1. As amostras de cor só mudam a tonalidade.",
         ],
@@ -352,7 +352,7 @@ export const DLA_GUIDE: ExplorerGuide = {
       {
         heading: "Como está construído",
         paragraphs: [
-          "O mundo é um Uint8Array com um byte por célula da grelha: 0 significa vazia, qualquer outro valor significa congelada. Os caminhantes são um simples array de coordenadas inteiras. Cada fotograma repõe a reserva até ao número pretendido e depois move cada caminhante um passo para a esquerda, para a direita, para cima ou para baixo com igual probabilidade. Os caminhantes ficam retidos no limite da tela, e um passo para uma célula congelada é recusado, pelo que as partículas nunca conseguem atravessar um braço por efeito de túnel.",
+          "O mundo é um Uint8Array com um byte por célula da grelha: 0 significa vazia, qualquer outro valor significa congelada. Os caminhantes são um simples array de coordenadas inteiras. Cada fotograma repõe a reserva até ao número pretendido e depois move cada caminhante um passo para a esquerda, para a direita, para cima ou para baixo com igual probabilidade. Os caminhantes ficam retidos no limite do canvas, e um passo para uma célula congelada é recusado, pelo que as partículas nunca conseguem atravessar um braço por efeito de túnel.",
           "Depois de se mover, o caminhante verifica os seus quatro vizinhos diretos (a vizinhança de von Neumann). Se um deles estiver congelado e um número aleatório ficar abaixo da aderência, a célula congela e o caminhante é removido. O valor congelado regista também quando a célula se ligou: sobe quatro unidades a cada 60 fotogramas, e as células mais antigas são desenhadas um pouco mais apagadas do que as mais recentes, pelo que o crescimento exterior brilha um pouco mais.",
           "Com o movimento reduzido ativado, o ciclo não é animado. A página corre 1200 passos de simulação de uma vez, pinta um único fotograma fixo e mostra o tamanho do agregado resultante.",
         ],
@@ -369,7 +369,7 @@ export const DLA_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Coral fino contra coral grosso",
-        text: "Corre a semente «ponto» com aderência 1,0, depois repõe e corre-a com aderência 0,15. Compara os dois quando chegarem a um tamanho parecido: o segundo tem braços mais grossos e muito menos fiordes vazios.",
+        text: "Corre a semente «ponto» com aderência 1,0, depois reinicia e corre-a com aderência 0,15. Compara os dois quando chegarem a um tamanho parecido: o segundo tem braços mais grossos e muito menos fiordes vazios.",
       },
       {
         title: "Uma floresta a partir de uma superfície",
@@ -406,7 +406,7 @@ export const DLA_GUIDE: ExplorerGuide = {
         paragraphs: [
           "”Frö” avgör var tillväxten börjar. ”punkt” lägger en enda frusen cell i mitten och skickar ut vandrare från en cirkel nära ytans kant. ”linje” fryser hela den näst nedersta raden och släpper in vandrare vid överkanten, som en kristall som växer uppåt från en yta. ”ring” ritar en sluten cirkel med en radie på en tredjedel av den kortare sidan och skapar vandrare jämnt fördelade inuti den, så korallen växer inåt från väggen.",
           "”Vandrare / bildruta” anger hur många partiklar som irrar omkring samtidigt (10 till 1000, standard 150, hårt tak 4000). Fler vandrare ger snabbare tillväxt, eftersom varje vandrare rör sig en gång per bildruta. ”Klibbighet” (0,1 till 1,0, standard 1,0) är sannolikheten att en vandrare intill klustret verkligen fryser fast. Annars vandrar den vidare. ”Cellstorlek” (2 till 8 pixlar, standard 3) anger rutnätets upplösning: mindre celler ger ett finare och större gitter. Om du byter frö eller cellstorlek startar simuleringen om.",
-          "De fyra förinställningarna kombinerar detta: ”Mittfrö” med 80 vandrare, ”Mitten · snabbt” med 300, ”Bottenlinje” med 200 och ”Ringfrö” med 200, alla med klibbighet 1. Färgrutorna ändrar bara färgtonen.",
+          "De fyra förvalen kombinerar detta: ”Mittfrö” med 80 vandrare, ”Mitten · snabbt” med 300, ”Bottenlinje” med 200 och ”Ringfrö” med 200, alla med klibbighet 1. Färgrutorna ändrar bara färgtonen.",
         ],
       },
       {
@@ -414,7 +414,7 @@ export const DLA_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Världen är en Uint8Array med en byte per cell i rutnätet: 0 betyder tom, alla andra värden betyder frusen. Vandrarna är en vanlig array med heltalskoordinater. Varje bildruta fyller på förrådet till målantalet och flyttar sedan varje vandrare ett steg åt vänster, höger, uppåt eller nedåt med lika sannolikhet. Vandrarna hålls kvar vid ytans kant, och ett steg in på en frusen cell nekas, så partiklarna kan aldrig tunnla genom en arm.",
           "Efter förflyttningen kontrollerar vandraren sina fyra direkta grannar (von Neumann-grannskapet). Om någon av dem är frusen och ett slumptal hamnar under klibbigheten fryser cellen och vandraren tas bort. Det frusna värdet registrerar också när cellen fäste: det stiger med fyra var 60:e bildruta, och äldre celler ritas något mattare än nyare, så den yttre tillväxten lyser lite starkare.",
-          "Med reducerad rörelse aktiverad animeras inte slingan. Sidan kör 1200 simuleringssteg på en gång, målar en enda stillbild och visar den resulterande klusterstorleken.",
+          "Med minskad rörelse aktiverad animeras inte slingan. Sidan kör 1200 simuleringssteg på en gång, målar en enda stillbild och visar den resulterande klusterstorleken.",
         ],
         code: WALK_EXCERPT,
       },
@@ -425,7 +425,7 @@ export const DLA_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Tunn mot tjock korall",
@@ -433,7 +433,7 @@ export const DLA_GUIDE: ExplorerGuide = {
       },
       {
         title: "En skog från en yta",
-        text: "Välj förinställningen ”Bottenlinje”. Många små träd börjar växa längs golvet, men snart skuggar några höga resten och bara de fortsätter att växa. Det är samma skärmningseffekt, som nu verkar mellan grannar.",
+        text: "Välj förvalet ”Bottenlinje”. Många små träd börjar växa längs golvet, men snart skuggar några höga resten och bara de fortsätter att växa. Det är samma skärmningseffekt, som nu verkar mellan grannar.",
       },
       {
         title: "Tillväxt utifrån och in",
@@ -447,15 +447,15 @@ export const DLA_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "La diffusjonsbegrenset aggregering vokse live: tilfeldige vandrere fester seg til et frø og bygger fraktal korall. Juster klebrighet, vandrere og frøform.",
+      "La diffusjonsbegrenset aggregering vokse live: Tilfeldige vandrere fester seg til et frø og bygger fraktal korall. Juster klebrighet, vandrere og frøform.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Hver lysende celle på lerretet var en gang en omflakkende partikkel. Partiklene driver tilfeldig rundt på rutenettet, ett gittersteg per bilderute, helt til de berører klyngen som vokser, og fryser fast på stedet. Ingen ber klyngen om å forgreine seg, og likevel får den i løpet av sekunder tynne armer, armene får sidearmer, og resultatet ligner rim på en vindusrute eller forgreiningene i et elvedelta. De svake prikkene du ser bevege seg, er vandrerne som fortsatt er underveis.",
+      "Hver lysende celle på lerretet var en gang en omflakkende partikkel. Partiklene driver tilfeldig rundt på rutenettet, ett gittersteg per bilde, helt til de berører klyngen som vokser, og fryser fast på stedet. Ingen ber klyngen om å forgreine seg, og likevel får den i løpet av sekunder tynne armer, armene får sidearmer, og resultatet ligner rim på en vindusrute eller forgreiningene i et elvedelta. De svake prikkene du ser bevege seg, er vandrerne som fortsatt er underveis.",
     sections: [
       {
         heading: "Ideen: vekst ved tilfeldig ankomst",
         paragraphs: [
-          "Diffusjonsbegrenset aggregering (DLA) ble innført av Thomas Witten og Leonard Sander i 1981. Regelen er kort: slipp en partikkel langt unna, la den gå en tilfeldig vandring, og når den lander inntil klyngen, fester du den. Slipp så den neste. Navnet sier hva som styrer farten: veksten er begrenset av hvor raskt partiklene diffunderer til overflaten, ikke av noen kjemi ved overflaten.",
+          "Diffusjonsbegrenset aggregering (DLA) ble innført av Thomas Witten og Leonard Sander i 1981. Regelen er kort: Slipp en partikkel langt unna, la den gå en tilfeldig vandring, og når den lander inntil klyngen, fester du den. Slipp så den neste. Navnet sier hva som styrer farten: Veksten er begrenset av hvor raskt partiklene diffunderer til overflaten, ikke av noen kjemi ved overflaten.",
           "Forgreiningen kommer av en skjermingseffekt. En tilfeldig vandrer som kommer utenfra, støter mye lettere på en spiss som stikker ut, enn den finner veien dypt inn i en trang sprekk mellom to armer. Spissene vokser derfor raskere, noe som får dem til å stikke enda lenger ut, mens fjordene mellom dem sulter. Små tilfeldige forskjeller forsterkes til den typiske åpne, trelignende formen.",
           "Den formen er en fraktal. Teller du partiklene N innenfor en sirkel med radius R rundt frøet, får du ikke den R² du ville ventet av en fylt skive. For DLA i planet vokser N omtrent som R opphøyd i rundt 1,71, en fraktal dimensjon mellom en linje (1) og en fylt flate (2).",
         ],
@@ -465,15 +465,15 @@ export const DLA_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "«Frø» avgjør hvor veksten starter. «punkt» legger én frossen celle i midten og sender ut vandrere fra en sirkel nær kanten av lerretet. «linje» fryser hele den nest nederste raden og slipper inn vandrere ved overkanten, som en krystall som vokser oppover fra en flate. «ring» tegner en lukket sirkel med radius lik en tredjedel av den korteste siden og lager vandrere jevnt fordelt inni den, så korallen vokser innover fra veggen.",
-          "«Vandrere / ramme» bestemmer hvor mange partikler som vandrer samtidig (10 til 1000, standard 150, absolutt tak 4000). Flere vandrere gir raskere vekst, fordi hver vandrer flytter seg én gang per bilderute. «Klebrighet» (0,1 til 1,0, standard 1,0) er sannsynligheten for at en vandrer inntil klyngen faktisk fryser fast. Ellers går den videre. «Cellestørrelse» (2 til 8 piksler, standard 3) bestemmer oppløsningen på rutenettet: mindre celler gir et finere og større gitter. Bytter du frø eller cellestørrelse, starter simuleringen på nytt.",
-          "De fire forhåndsinnstillingene kombinerer dette: «Sentrum-frø» med 80 vandrere, «Sentrum · rask» med 300, «Bunnlinje» med 200 og «Ringfrø» med 200, alle med klebrighet 1. Fargeprøvene endrer bare fargetonen.",
+          "«Vandrere / ramme» bestemmer hvor mange partikler som vandrer samtidig (10 til 1000, standard 150, absolutt tak 4000). Flere vandrere gir raskere vekst, fordi hver vandrer flytter seg én gang per bilde. «Klebrighet» (0,1 til 1,0, standard 1,0) er sannsynligheten for at en vandrer inntil klyngen faktisk fryser fast. Ellers går den videre. «Cellestørrelse» (2 til 8 piksler, standard 3) bestemmer oppløsningen på rutenettet: Mindre celler gir et finere og større gitter. Bytter du frø eller cellestørrelse, starter simuleringen på nytt.",
+          "De fire forhåndsvalgene kombinerer dette: «Sentrum-frø» med 80 vandrere, «Sentrum · rask» med 300, «Bunnlinje» med 200 og «Ringfrø» med 200, alle med klebrighet 1. Fargeprøvene endrer bare fargetonen.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Verden er en Uint8Array med én byte per celle i rutenettet: 0 betyr tom, alle andre verdier betyr frossen. Vandrerne er en vanlig array med heltallskoordinater. Hver bilderute fyller opp beholdningen til målantallet og flytter deretter hver vandrer ett steg til venstre, til høyre, opp eller ned med lik sannsynlighet. Vandrerne holdes igjen ved kanten av lerretet, og et steg inn på en frossen celle avvises, så partiklene kan aldri tunnelere gjennom en arm.",
-          "Etter flyttingen sjekker vandreren de fire direkte naboene sine (von Neumann-nabolaget). Hvis en av dem er frossen og et tilfeldig tall havner under klebrigheten, fryser cellen og vandreren fjernes. Den frosne verdien registrerer også når cellen festet seg: den stiger med fire for hver 60. bilderute, og eldre celler tegnes litt mattere enn nyere, så den ytre veksten lyser litt sterkere.",
+          "Verden er en Uint8Array med én byte per celle i rutenettet: 0 betyr tom, alle andre verdier betyr frossen. Vandrerne er en vanlig array med heltallskoordinater. Hvert bilde fyller opp beholdningen til målantallet og flytter deretter hver vandrer ett steg til venstre, til høyre, opp eller ned med lik sannsynlighet. Vandrerne holdes igjen ved kanten av lerretet, og et steg inn på en frossen celle avvises, så partiklene kan aldri tunnelere gjennom en arm.",
+          "Etter flyttingen sjekker vandreren de fire direkte naboene sine (von Neumann-nabolaget). Hvis en av dem er frossen og et tilfeldig tall havner under klebrigheten, fryser cellen og vandreren fjernes. Den frosne verdien registrerer også når cellen festet seg: Den stiger med fire for hvert 60. bilde, og eldre celler tegnes litt mattere enn nyere, så den ytre veksten lyser litt sterkere.",
           "Med redusert bevegelse slått på animeres ikke løkken. Siden kjører 1200 simuleringssteg på én gang, maler ett enkelt stillbilde og viser den resulterende klyngestørrelsen.",
         ],
         code: WALK_EXCERPT,
@@ -489,11 +489,11 @@ export const DLA_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Tynn mot tykk korall",
-        text: "Kjør frøet «punkt» med klebrighet 1,0, nullstill så og kjør det med klebrighet 0,15. Sammenlign de to når de har nådd omtrent samme størrelse: den andre har tykkere armer og langt færre tomme fjorder.",
+        text: "Kjør frøet «punkt» med klebrighet 1,0, nullstill så og kjør det med klebrighet 0,15. Sammenlign de to når de har nådd omtrent samme størrelse: Den andre har tykkere armer og langt færre tomme fjorder.",
       },
       {
         title: "En skog fra en flate",
-        text: "Velg forhåndsinnstillingen «Bunnlinje». Mange små trær starter langs gulvet, men snart skygger noen få høye for resten, og bare de fortsetter å vokse. Det er den samme skjermingseffekten, som nå virker mellom naboer.",
+        text: "Velg forhåndsvalget «Bunnlinje». Mange små trær starter langs gulvet, men snart skygger noen få høye for resten, og bare de fortsetter å vokse. Det er den samme skjermingseffekten, som nå virker mellom naboer.",
       },
       {
         title: "Vekst utenfra og inn",

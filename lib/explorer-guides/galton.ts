@@ -43,7 +43,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
         heading: "What the controls do",
         paragraphs: [
           "Rows N sets the depth of the board, from 4 to 40 rows (default 16). More rows mean more bins and a smoother curve, but also a wider one: the standard deviation grows like the square root of N. At N = 16 and p = 0.5 the spread is exactly 2 bins; at N = 40 it is about 3.16.",
-          "Spawn per step (1 to 12, default 2) is how many new balls enter at the top on each physics step. It only changes the speed at which the histogram fills, not its shape. Right-bias p (0 to 1, default 0.5) is the probability of bouncing right at every peg. At 0.5 the board is fair and the pile is symmetric around the middle bin; any other value shifts the centre to Np and makes the shape lean.",
+          "Spawn / step (1 to 12, default 2) is how many new balls enter at the top on each physics step. It only changes the speed at which the histogram fills, not its shape. Right-bias p (0 to 1, default 0.5) is the probability of bouncing right at every peg. At 0.5 the board is fair and the pile is symmetric around the middle bin; any other value shifts the centre to Np and makes the shape lean.",
           "The overlay checkbox draws the normal curve 𝒩(Np, Np(1−p)) in rose on top of the bars, scaled to the number of balls that have landed. It only appears once more than 20 balls are in, and it disappears at p = 0 or p = 1, where the variance is zero and every ball lands in the same bin. Changing N or p empties the histogram, so the curve is never fitted to a mixture of counts from different settings. Pause freezes the board, Clear histogram starts counting from zero.",
         ],
       },
@@ -67,7 +67,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Follow a single ball",
-        text: "Set Spawn per step to 1 and Rows N to 30. Pick one ball near the top and follow it down. Its path looks aimless, and yet the histogram it contributes to is already taking the bell shape after a few hundred balls.",
+        text: "Set Spawn / step to 1 and Rows N to 30. Pick one ball near the top and follow it down. Its path looks aimless, and yet the histogram it contributes to is already taking the bell shape after a few hundred balls.",
       },
       {
         title: "Watch the curve sharpen",
@@ -98,7 +98,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
         heading: "Was die Regler bewirken",
         paragraphs: [
           "Reihen N legt die Tiefe des Bretts fest, von 4 bis 40 Reihen (Standard 16). Mehr Reihen bedeuten mehr Fächer und eine glattere Kurve, aber auch eine breitere: Die Standardabweichung wächst mit der Wurzel aus N. Bei N = 16 und p = 0,5 beträgt die Streuung genau 2 Fächer, bei N = 40 etwa 3,16.",
-          "Spawn pro Schritt (1 bis 12, Standard 2) bestimmt, wie viele neue Kugeln pro Physikschritt oben einfallen. Das ändert nur, wie schnell sich das Histogramm füllt, nicht seine Form. Der Rechts-Bias p (0 bis 1, Standard 0,5) ist die Wahrscheinlichkeit, an jedem Stift nach rechts zu springen. Bei 0,5 ist das Brett fair und der Haufen symmetrisch um das mittlere Fach; jeder andere Wert verschiebt die Mitte nach Np und lässt die Form kippen.",
+          "Spawn / Schritt (1 bis 12, Standard 2) bestimmt, wie viele neue Kugeln pro Physikschritt oben einfallen. Das ändert nur, wie schnell sich das Histogramm füllt, nicht seine Form. Der Rechts-Bias p (0 bis 1, Standard 0,5) ist die Wahrscheinlichkeit, an jedem Stift nach rechts zu springen. Bei 0,5 ist das Brett fair und der Haufen symmetrisch um das mittlere Fach; jeder andere Wert verschiebt die Mitte nach Np und lässt die Form kippen.",
           "Die Checkbox für die Überlagerung zeichnet die Normalverteilung 𝒩(Np, Np(1−p)) in Rosa über die Balken, skaliert auf die Zahl der gelandeten Kugeln. Sie erscheint erst, wenn mehr als 20 Kugeln angekommen sind, und verschwindet bei p = 0 oder p = 1, denn dann ist die Varianz null und alle Kugeln landen im selben Fach. Wenn du N oder p änderst, wird das Histogramm geleert, damit die Kurve nie an eine Mischung aus verschiedenen Einstellungen angepasst wird. Pause friert das Brett ein, «Histogramm leeren» zählt von vorn.",
         ],
       },
@@ -122,7 +122,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Einer einzelnen Kugel folgen",
-        text: "Stell Spawn pro Schritt auf 1 und Reihen N auf 30. Such dir oben eine Kugel aus und verfolge sie nach unten. Ihr Weg wirkt ziellos, und doch nimmt das Histogramm, zu dem sie beiträgt, schon nach ein paar hundert Kugeln die Glockenform an.",
+        text: "Stell Spawn / Schritt auf 1 und Reihen N auf 30. Such dir oben eine Kugel aus und verfolge sie nach unten. Ihr Weg wirkt ziellos, und doch nimmt das Histogramm, zu dem sie beiträgt, schon nach ein paar hundert Kugeln die Glockenform an.",
       },
       {
         title: "Die Kurve schärfer werden sehen",
@@ -154,13 +154,13 @@ export const GALTON_GUIDE: ExplorerGuide = {
         paragraphs: [
           "«Filas N» fija la profundidad del tablero, de 4 a 40 filas (16 por defecto). Más filas significan más casillas y una curva más suave, pero también más ancha: la desviación típica crece como la raíz cuadrada de N. Con N = 16 y p = 0,5 la dispersión es exactamente de 2 casillas; con N = 40 ronda las 3,16.",
           "«Spawn / paso» (de 1 a 12, 2 por defecto) indica cuántas bolas nuevas entran por arriba en cada paso de la física. Solo cambia la velocidad a la que se llena el histograma, no su forma. «Sesgo derecha p» (de 0 a 1, 0,5 por defecto) es la probabilidad de rebotar a la derecha en cada clavo. Con 0,5 el tablero es justo y el montón es simétrico respecto a la casilla central; cualquier otro valor desplaza el centro a Np e inclina la forma.",
-          "La casilla de superposición dibuja en rosa la curva normal 𝒩(Np, Np(1−p)) sobre las barras, escalada al número de bolas que han aterrizado. Solo aparece cuando han entrado más de 20 bolas, y desaparece con p = 0 o p = 1, donde la varianza es cero y todas las bolas caen en la misma casilla. Cambiar N o p vacía el histograma, de modo que la curva nunca se ajusta a una mezcla de recuentos de configuraciones distintas. «Pausa» congela el tablero y «Limpiar histograma» empieza a contar desde cero.",
+          "La casilla de verificación de superposición dibuja en rosa la curva normal 𝒩(Np, Np(1−p)) sobre las barras, escalada al número de bolas que han aterrizado. Solo aparece cuando han entrado más de 20 bolas, y desaparece con p = 0 o p = 1, donde la varianza es cero y todas las bolas caen en la misma casilla. Cambiar N o p vacía el histograma, de modo que la curva nunca se ajusta a una mezcla de recuentos de configuraciones distintas. «Pausa» congela el tablero y «Limpiar histograma» empieza a contar desde cero.",
         ],
       },
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "Todo se dibuja en un canvas 2D escalado a la densidad de píxeles de tu pantalla. Una bola no rebota físicamente: guarda su fila y y un desplazamiento horizontal x respecto a la línea central, y en cada paso baja una fila y se mueve medio espacio entre clavos a la izquierda o a la derecha, según una única llamada a Math.random() comparada con p. Cuando llega a la fila N, su desplazamiento se convierte directamente en un índice de casilla, porque x + N/2 es igual al número de rebotes a la derecha.",
+          "Todo se dibuja en un lienzo 2D escalado a la densidad de píxeles de tu pantalla. Una bola no rebota físicamente: guarda su fila y y un desplazamiento horizontal x respecto a la línea central, y en cada paso baja una fila y se mueve medio espacio entre clavos a la izquierda o a la derecha, según una única llamada a Math.random() comparada con p. Cuando llega a la fila N, su desplazamiento se convierte directamente en un índice de casilla, porque x + N/2 es igual al número de rebotes a la derecha.",
           "La física solo avanza en uno de cada cuatro fotogramas de animación (STEP_EVERY = 4). Es deliberado: a una fila por fotograma, una bola cruza el tablero más rápido de lo que el ojo puede seguir, mientras que a una fila cada cuatro fotogramas puedes seguir un camino concreto. Las barras se escalan respecto a la casilla más alta, así que el histograma aprovecha siempre toda la altura de su franja, sin importar cuántas bolas hayan aterrizado.",
           "Si tu sistema pide movimiento reducido, no cae ninguna bola. En su lugar, el histograma se rellena con las probabilidades binomiales exactas para los N y p actuales, multiplicadas por 5000 y redondeadas, y el tablero se dibuja una sola vez.",
         ],
@@ -205,7 +205,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
         formula: BINOMIAL_FORMULA,
       },
       {
-        heading: "À quoi servent les réglages",
+        heading: "À quoi servent les commandes",
         paragraphs: [
           "« Rangées N » fixe la profondeur de la planche, de 4 à 40 rangées (16 par défaut). Plus de rangées, c'est plus de cases et une courbe plus lisse, mais aussi plus large : l'écart type croît comme la racine carrée de N. Pour N = 16 et p = 0,5, la dispersion vaut exactement 2 cases ; pour N = 40, elle est d'environ 3,16.",
           "« Spawn / pas » (de 1 à 12, 2 par défaut) indique combien de nouvelles billes entrent par le haut à chaque pas de la physique. Cela ne change que la vitesse à laquelle l'histogramme se remplit, pas sa forme. « Biais droite p » (de 0 à 1, 0,5 par défaut) est la probabilité de rebondir à droite à chaque clou. À 0,5, la planche est équitable et le tas est symétrique autour de la case centrale ; toute autre valeur déplace le centre vers Np et fait pencher la forme.",
@@ -215,9 +215,9 @@ export const GALTON_GUIDE: ExplorerGuide = {
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Tout est dessiné sur un canvas 2D mis à l'échelle de la densité de pixels de ton écran. Une bille ne rebondit pas physiquement : elle mémorise sa rangée y et un décalage horizontal x par rapport à l'axe central, et à chaque pas elle descend d'une rangée et se déplace d'un demi-intervalle entre clous vers la gauche ou vers la droite, selon un unique appel à Math.random() comparé à p. Quand elle atteint la rangée N, son décalage se convertit directement en indice de case, car x + N/2 est égal au nombre de rebonds à droite.",
+          "Tout est dessiné sur un canevas 2D mis à l'échelle de la densité de pixels de ton écran. Une bille ne rebondit pas physiquement : elle mémorise sa rangée y et un décalage horizontal x par rapport à l'axe central, et à chaque pas elle descend d'une rangée et se déplace d'un demi-intervalle entre clous vers la gauche ou vers la droite, selon un unique appel à Math.random() comparé à p. Quand elle atteint la rangée N, son décalage se convertit directement en indice de case, car x + N/2 est égal au nombre de rebonds à droite.",
           "La physique n'avance qu'une image d'animation sur quatre (STEP_EVERY = 4). C'est voulu : à une rangée par image, une bille traverse la planche plus vite que l'œil ne peut la suivre, alors qu'à une rangée toutes les quatre images tu peux suivre un chemin précis. Les barres sont mises à l'échelle par rapport à la case la plus haute, de sorte que l'histogramme occupe toujours toute la hauteur de sa bande, quel que soit le nombre de billes tombées.",
-          "Si ton système demande une réduction des animations, aucune bille ne tombe. À la place, l'histogramme est rempli avec les probabilités binomiales exactes pour les N et p courants, multipliées par 5000 et arrondies, et la planche est dessinée une seule fois.",
+          "Si ton système demande une réduction des animations, aucune bille ne tombe. À la place, l'histogramme est rempli avec les probabilités binomiales exactes pour les N et p courants, multipliées par 5 000 et arrondies, et la planche est dessinée une seule fois.",
         ],
         code: STEP_EXCERPT,
       },
@@ -262,8 +262,8 @@ export const GALTON_GUIDE: ExplorerGuide = {
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "«File N» imposta la profondità della tavola, da 4 a 40 file (16 di default). Più file significano più scomparti e una curva più liscia, ma anche più larga: la deviazione standard cresce come la radice quadrata di N. Con N = 16 e p = 0,5 la dispersione è esattamente di 2 scomparti; con N = 40 è circa 3,16.",
-          "«Spawn / passo» (da 1 a 12, 2 di default) è il numero di nuove palline che entrano dall'alto a ogni passo della fisica. Cambia soltanto la velocità con cui l'istogramma si riempie, non la sua forma. «Bias a destra p» (da 0 a 1, 0,5 di default) è la probabilità di rimbalzare a destra a ogni piolo. A 0,5 la tavola è equa e il mucchio è simmetrico attorno allo scomparto centrale; qualsiasi altro valore sposta il centro in Np e fa pendere la forma.",
+          "«File N» imposta la profondità della tavola, da 4 a 40 file (predefinito 16). Più file significano più scomparti e una curva più liscia, ma anche più larga: la deviazione standard cresce come la radice quadrata di N. Con N = 16 e p = 0,5 la dispersione è esattamente di 2 scomparti; con N = 40 è circa 3,16.",
+          "«Spawn / passo» (da 1 a 12, predefinito 2) è il numero di nuove palline che entrano dall'alto a ogni passo della fisica. Cambia soltanto la velocità con cui l'istogramma si riempie, non la sua forma. «Bias a destra p» (da 0 a 1, predefinito 0,5) è la probabilità di rimbalzare a destra a ogni piolo. A 0,5 la tavola è equa e il mucchio è simmetrico attorno allo scomparto centrale; qualsiasi altro valore sposta il centro in Np e fa pendere la forma.",
           "La casella di sovrapposizione disegna in rosa la curva normale 𝒩(Np, Np(1−p)) sopra le barre, scalata sul numero di palline atterrate. Compare solo quando sono arrivate più di 20 palline, e sparisce per p = 0 o p = 1, dove la varianza è zero e tutte le palline finiscono nello stesso scomparto. Cambiare N o p svuota l'istogramma, così la curva non viene mai adattata a un miscuglio di conteggi provenienti da impostazioni diverse. «Pausa» congela la tavola, «Pulisci istogramma» fa ripartire il conteggio da zero.",
         ],
       },
@@ -283,7 +283,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Prova tu",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Segui una sola pallina",
@@ -382,7 +382,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Allt ritas på en 2D-canvas som skalas efter skärmens pixeltäthet. En kula studsar inte fysikaliskt. Den lagrar sin rad y och en horisontell förskjutning x från mittlinjen, och i varje steg flyttas den en rad nedåt och ett halvt spikavstånd åt vänster eller höger, vilket avgörs av ett enda anrop till Math.random() som jämförs med p. När den når rad N omvandlas förskjutningen direkt till ett fackindex, eftersom x + N/2 är lika med antalet högerstudsar.",
           "Fysiken går bara framåt i var fjärde animationsbildruta (STEP_EVERY = 4). Det är avsiktligt: med en rad per bildruta korsar en kula brädan fortare än ögat hinner med, medan du med en rad var fjärde bildruta kan följa en enskild väg. Staplarna skalas i förhållande till det högsta facket, så histogrammet utnyttjar alltid hela höjden på sin remsa oavsett hur många kulor som har landat.",
-          "Om ditt system ber om reducerad rörelse faller inga kulor alls. I stället fylls histogrammet med de exakta binomiala sannolikheterna för aktuella N och p, multiplicerade med 5000 och avrundade, och brädan ritas en gång.",
+          "Om ditt system ber om minskad rörelse faller inga kulor alls. I stället fylls histogrammet med de exakta binomiala sannolikheterna för aktuella N och p, multiplicerade med 5000 och avrundade, och brädan ritas en gång.",
         ],
         code: STEP_EXCERPT,
       },
@@ -393,7 +393,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Följ en enda kula",
@@ -411,7 +411,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Et Galtonbrett i sanntid: endre antall rader og høyrebias p, se det binomiske histogrammet vokse fram og sammenlign med normalkurven 𝒩(Np, Np(1−p)).",
+      "Et Galtonbrett i sanntid: Endre antall rader og høyrebias p, se det binomiske histogrammet vokse fram og sammenlign med normalkurven 𝒩(Np, Np(1−p)).",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "Hver ravgule prikk er en kule som slippes fra toppen av et trekantet felt av pinner. Ved hver pinne spretter den til venstre eller høyre, og etter den siste raden faller den ned i en av båsene nederst. Ingen enkeltkule lar seg forutsi, men haugen av tusenvis av dem vokser likevel til den samme klokkeformen hver gang.",
@@ -419,24 +419,24 @@ export const GALTON_GUIDE: ExplorerGuide = {
       {
         heading: "Å telle sprett til høyre",
         paragraphs: [
-          "Francis Galton beskrev dette apparatet, som han kalte quincunx, i boka Natural Inheritance fra 1889. Matematikken bak er et telleargument. Med N rader tar en kule N uavhengige valg. Hvis hvert av dem går til høyre med sannsynlighet p, er båsen kula havner i ganske enkelt antallet høyresprett k, som går fra 0 til N. Det finnes altså N + 1 båser, og sjansen for å havne i bås k er den binomiske sannsynligheten nedenfor: antallet veier med nøyaktig k høyresvinger, ganger sannsynligheten for én slik vei.",
-          "For store N tilnærmes denne binomiske formen av en normalfordeling med forventning Np og varians Np(1−p). Den påstanden er de Moivre-Laplaces teorem, det eldste spesialtilfellet av sentralgrenseteoremet: legg sammen mange små uavhengige effekter, og en klokkekurve dukker opp.",
+          "Francis Galton beskrev dette apparatet, som han kalte quincunx, i boken Natural Inheritance fra 1889. Matematikken bak er et telleargument. Med N rader tar en kule N uavhengige valg. Hvis hvert av dem går til høyre med sannsynlighet p, er båsen kulen havner i ganske enkelt antallet høyresprett k, som går fra 0 til N. Det finnes altså N + 1 båser, og sjansen for å havne i bås k er den binomiske sannsynligheten nedenfor: antallet veier med nøyaktig k høyresvinger, ganger sannsynligheten for én slik vei.",
+          "For store N tilnærmes denne binomiske formen av en normalfordeling med forventning Np og varians Np(1−p). Den påstanden er de Moivre-Laplaces teorem, det eldste spesialtilfellet av sentralgrenseteoremet: Legg sammen mange små uavhengige effekter, og en klokkekurve dukker opp.",
         ],
         formula: BINOMIAL_FORMULA,
       },
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "«Rader N» bestemmer dybden på brettet, fra 4 til 40 rader (standard 16). Flere rader gir flere båser og en jevnere kurve, men også en bredere: standardavviket vokser som kvadratroten av N. Ved N = 16 og p = 0,5 er spredningen nøyaktig 2 båser, ved N = 40 omtrent 3,16.",
+          "«Rader N» bestemmer dybden på brettet, fra 4 til 40 rader (standard 16). Flere rader gir flere båser og en jevnere kurve, men også en bredere: Standardavviket vokser som kvadratroten av N. Ved N = 16 og p = 0,5 er spredningen nøyaktig 2 båser, ved N = 40 omtrent 3,16.",
           "«Spawn / steg» (1 til 12, standard 2) er hvor mange nye kuler som slippes inn øverst i hvert fysikksteg. Det endrer bare hvor fort histogrammet fylles, ikke formen. «Høyrebias p» (0 til 1, standard 0,5) er sannsynligheten for å sprette til høyre ved hver pinne. Ved 0,5 er brettet rettferdig og haugen symmetrisk om den midterste båsen. Alle andre verdier flytter midten til Np og får formen til å helle.",
           "Avkrysningsboksen for overlegg tegner normalkurven 𝒩(Np, Np(1−p)) i rosa oppå søylene, skalert etter antallet kuler som har landet. Den vises først når mer enn 20 kuler er kommet ned, og den forsvinner ved p = 0 eller p = 1, der variansen er null og alle kulene havner i samme bås. Når du endrer N eller p, tømmes histogrammet, slik at kurven aldri tilpasses en blanding av tellinger fra ulike innstillinger. «Pause» fryser brettet, «Tøm histogram» starter tellingen fra null.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Alt tegnes på et 2D-canvas som skaleres etter pikseltettheten på skjermen din. En kule spretter ikke fysisk. Den lagrer raden sin y og en horisontal forskyvning x fra midtlinjen, og i hvert steg flytter den seg én rad ned og en halv pinneavstand til venstre eller høyre, avgjort av ett enkelt kall til Math.random() som sammenlignes med p. Når den når rad N, gjøres forskyvningen direkte om til en båsindeks, fordi x + N/2 er lik antallet høyresprett.",
-          "Fysikken går bare videre i hvert fjerde animasjonsbilde (STEP_EVERY = 4). Det er med vilje: med én rad per bilde krysser en kule brettet raskere enn øyet klarer å følge, mens du med én rad hvert fjerde bilde kan følge en enkelt vei. Søylene skaleres i forhold til den høyeste båsen, så histogrammet bruker alltid hele høyden av stripen sin, uansett hvor mange kuler som har landet.",
+          "Alt tegnes på et 2D-lerret som skaleres etter pikseltettheten på skjermen din. En kule spretter ikke fysisk. Den lagrer raden sin y og en horisontal forskyvning x fra midtlinjen, og i hvert steg flytter den seg én rad ned og en halv pinneavstand til venstre eller høyre, avgjort av ett enkelt kall til Math.random() som sammenlignes med p. Når den når rad N, gjøres forskyvningen direkte om til en båsindeks, fordi x + N/2 er lik antallet høyresprett.",
+          "Fysikken går bare videre i hvert fjerde animasjonsbilde (STEP_EVERY = 4). Det er med vilje: Med én rad per bilde krysser en kule brettet raskere enn øyet klarer å følge, mens du med én rad hvert fjerde bilde kan følge en enkelt vei. Søylene skaleres i forhold til den høyeste båsen, så histogrammet bruker alltid hele høyden av stripen sin, uansett hvor mange kuler som har landet.",
           "Hvis systemet ditt ber om redusert bevegelse, faller det ingen kuler i det hele tatt. I stedet fylles histogrammet med de eksakte binomiske sannsynlighetene for gjeldende N og p, multiplisert med 5000 og avrundet, og brettet tegnes én gang.",
         ],
         code: STEP_EXCERPT,
@@ -444,7 +444,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
       {
         heading: "Når klokkekurven svikter",
         paragraphs: [
-          "Normalkurven er en tilnærming, og overlegget lar deg se hvor den bryter sammen. Med sterk bias og få rader, la oss si p = 0,1 og N = 8, er forventningsverdien 0,8, og binomialfordelingen blir skjev: en høy søyle ved 0 eller 1 og en kort hale mot høyre. Gausskurven er symmetrisk og klarer ikke å følge med: en del av massen hører hjemme nedenfor bås 0, der det ikke finnes båser, så på brettet blir den rett og slett kuttet ved venstre kant. En vanlig tommelfingerregel er at tilnærmingen blir god når Np(1−p) med god margin er større enn omtrent 9. Å øke N vinner alltid til slutt, og det er nettopp det sentralgrenseteoremet lover.",
+          "Normalkurven er en tilnærming, og overlegget lar deg se hvor den bryter sammen. Med sterk bias og få rader, la oss si p = 0,1 og N = 8, er forventningsverdien 0,8, og binomialfordelingen blir skjev: en høy søyle ved 0 eller 1 og en kort hale mot høyre. Gausskurven er symmetrisk og klarer ikke å følge med: En del av massen hører hjemme nedenfor bås 0, der det ikke finnes båser, så på brettet blir den rett og slett kuttet ved venstre kant. En vanlig tommelfingerregel er at tilnærmingen blir god når Np(1−p) med god margin er større enn omtrent 9. Å øke N vinner alltid til slutt, og det er nettopp det sentralgrenseteoremet lover.",
         ],
       },
     ],
@@ -460,7 +460,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
       },
       {
         title: "Knekk tilnærmingen",
-        text: "Sett N = 8 og p = 0,1, og la noen hundre kuler lande. De fleste hoper seg opp i bås 0 og 1, og den symmetriske gausskurven bommer synlig på skjevheten. Øk så N til 40 og behold p = 0,1: forventningen flytter seg til 4, variansen til 3,6, og tilpasningen blir merkbart bedre.",
+        text: "Sett N = 8 og p = 0,1, og la noen hundre kuler lande. De fleste hoper seg opp i bås 0 og 1, og den symmetriske gausskurven bommer synlig på skjevheten. Øk så N til 40 og behold p = 0,1: Forventningen flytter seg til 4, variansen til 3,6, og tilpasningen blir merkbart bedre.",
       },
     ],
   },

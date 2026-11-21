@@ -277,17 +277,17 @@ export const MOBIUS_GUIDE: ExplorerGuide = {
         formula: MOBIUS_FORMULA,
       },
       {
-        heading: "Che cosa fanno i comandi",
+        heading: "Che cosa fanno i controlli",
         paragraphs: [
           "«Superficie» passa dal nastro di Möbius alla bottiglia di Klein e viceversa. «Rotazione auto» fa ruotare il modello attorno al suo asse verticale alla velocità scelta, da 0 a 1,5 radianti al secondo (valore predefinito 0,45); se il tuo sistema chiede movimento ridotto, all'inizio è disattivata. Trascinando sul canvas lo ruoti a mano in qualsiasi momento, di circa 0,005 radianti per pixel.",
           "«Larghezza w» è la semilarghezza del nastro, da 0,05 a 0,5 con un raggio centrale pari a 1 (valore predefinito 0,32). «Numero di mezzi giri» imposta k da 1 a 5. Il rapporto di taglio c, da 0 a 0,5, segna le due linee v = ±c·w: tutto ciò che è più vicino alla linea centrale diventa ambra, tutto ciò che sta fuori conserva la sfumatura dal rosso al blu. «Apri il taglio» apre una fessura sottile lungo le linee di taglio, senza spostare i pezzi, così puoi vedere come restano agganciati.",
-          "Una parola sulle preimpostazioni: ogni rapporto di taglio maggiore di zero è, topologicamente, lo stesso esperimento. Su un nastro con un mezzo giro le due linee v = c e v = −c sono in realtà un'unica curva, perché dopo un giro v diventa −v. Tagliando lungo questa curva restano sempre un nastro di Möbius più stretto al centro (ambra) e un lungo nastro a due facce attorno, e i due sono concatenati. La preimpostazione 1/3 è la versione classica: tre larghezze uguali. La preimpostazione «linea centrale» è un esperimento diverso: un unico taglio lungo v = 0 che si chiude dopo un giro. Resta un solo pezzo, un nastro a due facce lungo il doppio con due giri completi, qui disegnato con una fessura sottile. Le righe di risultato sotto le preimpostazioni valgono per un mezzo giro e vengono nascoste per gli altri valori.",
+          "Una parola sui preset: ogni rapporto di taglio maggiore di zero è, topologicamente, lo stesso esperimento. Su un nastro con un mezzo giro le due linee v = c e v = −c sono in realtà un'unica curva, perché dopo un giro v diventa −v. Tagliando lungo questa curva restano sempre un nastro di Möbius più stretto al centro (ambra) e un lungo nastro a due facce attorno, e i due sono concatenati. Il preset 1/3 è la versione classica: tre larghezze uguali. Il preset «linea centrale» è un esperimento diverso: un unico taglio lungo v = 0 che si chiude dopo un giro. Resta un solo pezzo, un nastro a due facce lungo il doppio con due giri completi, qui disegnato con una fessura sottile. Le righe di risultato sotto i preset valgono per un mezzo giro e vengono nascoste per gli altri valori.",
         ],
       },
       {
-        heading: "Come è costruito",
+        heading: "Com'è costruito",
         paragraphs: [
-          "Qui non c'è nessuna libreria 3D. La pagina campiona la superficie su una griglia (160 × 16 quadrilateri per il nastro, 120 × 36 per la bottiglia di Klein), divide ogni quadrilatero in due triangoli, ruota i vertici attorno agli assi x, y e z e li proietta su un canvas 2D con una semplice divisione prospettica. La camera si trova a 4,5 unità di distanza per il nastro e a 6,5 per la bottiglia. Tutti i triangoli vengono poi ordinati in base alla profondità media e dipinti da dietro in avanti: è l'algoritmo del pittore.",
+          "Qui non c'è nessuna libreria 3D. La pagina campiona la superficie su una griglia (160 × 16 quadrilateri per il nastro, 120 × 36 per la bottiglia di Klein), divide ogni quadrilatero in due triangoli, ruota i vertici attorno agli assi x, y e z e li proietta su un canvas 2D con una semplice divisione prospettica. La telecamera si trova a 4,5 unità di distanza per il nastro e a 6,5 per la bottiglia. Tutti i triangoli vengono poi ordinati in base alla profondità media e dipinti da dietro in avanti: è l'algoritmo del pittore.",
           "L'ombreggiatura contiene l'unica scelta progettuale specifica di questo argomento. Una superficie a una sola faccia non ha una normale coerente: segui il vettore normale per un giro lungo un nastro di Möbius e tornerà puntando nel verso opposto. Il renderer quindi non può decidere quale faccia sia quella anteriore. Illumina ogni triangolo con il valore assoluto del prodotto scalare tra la sua normale e la direzione della luce, così entrambe le facce ricevono la stessa ombreggiatura di Lambert. Cambia solo il contorno sottile, chiaro o scuro a seconda del segno, e puoi vedere quel segno invertirsi mentre segui il nastro.",
           "Il colore scorre lungo il nastro invece che da una faccia all'altra: rosso in u = 0, blu poco prima di 2π. Il brusco cambio di colore nel punto in cui il nastro si chiude indica soltanto dove ricomincia la parametrizzazione; non è una proprietà della superficie.",
         ],
@@ -308,7 +308,7 @@ export const MOBIUS_GUIDE: ExplorerGuide = {
       },
       {
         title: "Il taglio in terzi",
-        text: "Premi la preimpostazione 1/3, poi «Apri il taglio». Il terzo centrale color ambra è un nastro di Möbius più stretto, la parte esterna è un unico nastro lungo, e non si possono separare senza tagliare di nuovo. Poi premi «linea centrale»: la fessura fa tutto il giro, eppure il nastro resta in un pezzo solo.",
+        text: "Premi il preset 1/3, poi «Apri il taglio». Il terzo centrale color ambra è un nastro di Möbius più stretto, la parte esterna è un unico nastro lungo, e non si possono separare senza tagliare di nuovo. Poi premi «linea centrale»: la fessura fa tutto il giro, eppure il nastro resta in un pezzo solo.",
       },
       {
         title: "Dispari contro pari",
@@ -359,7 +359,7 @@ export const MOBIUS_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Experimenta",
+    experimentsHeading: "Experimenta isto",
     experiments: [
       {
         title: "Segue o bordo único",
@@ -414,7 +414,7 @@ export const MOBIUS_GUIDE: ExplorerGuide = {
       {
         heading: "Kleinflaskan",
         paragraphs: [
-          "Limma ihop två Möbiusband längs kanterna, så får du en Kleinflaska: en sluten yta helt utan rand, fortfarande med bara en sida. Liksom bandet har den Eulerkarakteristiken 0. I fyra dimensioner kan den byggas utan att röra vid sig själv, men i det vanliga tredimensionella rummet måste varje sluten ensidig yta gå igenom sig själv. Utforskaren använder åttaimmersionen med a = 2: ett tvärsnitt i form av en åtta som förs runt en cirkel medan det vrids ett halvt varv. Ytan skär sig själv längs cirkeln med radien 2 i planet z = 0.",
+          "Limma ihop två Möbiusband längs kanterna, så får du en Kleinflaska: en sluten yta helt utan rand, fortfarande med bara en sida. Liksom bandet har den Eulerkarakteristiken 0. I fyra dimensioner kan den byggas utan att röra vid sig själv, men i det vanliga tredimensionella rummet måste varje sluten ensidig yta gå igenom sig själv. Utforskaren använder den åttaformade immersionen med a = 2: ett tvärsnitt i form av en åtta som förs runt en cirkel medan det vrids ett halvt varv. Ytan skär sig själv längs cirkeln med radien 2 i planet z = 0.",
         ],
       },
     ],
@@ -449,7 +449,7 @@ export const MOBIUS_GUIDE: ExplorerGuide = {
         heading: "Én formel, mange bånd",
         paragraphs: [
           "Båndet tegnes ut fra en parametrisering. u går én gang rundt midtsirkelen med radius R, v går på tvers av bredden fra −w til w. Når u går fra 0 til 2π, dreies tverrsnittet med k·u/2, så etter en hel runde har det dreid k halvomdreininger. For k = 1 er segmentet ved u = 2π startsegmentet snudd ende mot ende, og når det limes til seg selv, oppstår den énsidige flaten.",
-          "Om resultatet er énsidig, avhenger bare av om k er oddetall eller partall. Odde k (1, 3, 5) gir et ikke-orienterbart bånd; jevn k (2, 4) gir et tosidig bånd som topologisk er en vanlig sylinder. Kanten forteller en historie til: for odde k er den én eneste lukket kurve, for jevn k er den to atskilte sirkler. Med én halvomdreining er den ene kanten en løkke uten knute, med tre er den en trekløverknute, og med to er de to kantsirklene lenket i hverandre én gang.",
+          "Om resultatet er énsidig, avhenger bare av om k er oddetall eller partall. Odde k (1, 3, 5) gir et ikke-orienterbart bånd; jevn k (2, 4) gir et tosidig bånd som topologisk er en vanlig sylinder. Kanten forteller en historie til: For odde k er den én eneste lukket kurve, for jevn k er den to atskilte sirkler. Med én halvomdreining er den ene kanten en løkke uten knute, med tre er den en trekløverknute, og med to er de to kantsirklene lenket i hverandre én gang.",
         ],
         formula: MOBIUS_FORMULA,
       },
@@ -457,15 +457,15 @@ export const MOBIUS_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "«Flate» veksler mellom Möbiusbåndet og Kleinflasken. «Auto-rotasjon» roterer modellen rundt den loddrette aksen med den valgte hastigheten, fra 0 til 1,5 radianer per sekund (standard 0,45); hvis systemet ditt ber om redusert bevegelse, er den slått av fra starten. Ved å dra på lerretet kan du alltid rotere modellen for hånd, omtrent 0,005 radianer per piksel.",
-          "«Bredde w» er den halve bredden til båndet, fra 0,05 til 0,5 med en midtradius på 1 (standard 0,32). «Antall halvomdreininger» setter k fra 1 til 5. Kuttforholdet c, fra 0 til 0,5, markerer de to linjene v = ±c·w: alt som ligger nærmere midtlinjen enn dette, blir ravfarget, alt utenfor beholder fargeovergangen fra rødt til blått. «Åpne kuttet» åpner en smal spalte langs kuttlinjene, uten å flytte delene, slik at du ser hvordan de henger sammen.",
-          "Et ord om forhåndsvalgene: ethvert kuttforhold over null er topologisk det samme eksperimentet. På et bånd med én halvomdreining er de to linjene v = c og v = −c egentlig én kurve, fordi v blir til −v etter én runde. Et kutt langs den etterlater alltid et smalere Möbiusbånd i midten (ravfarget) og ett langt tosidig bånd rundt, og de to er lenket sammen. Forhåndsvalget 1/3 er den klassiske varianten: tre like bredder. Forhåndsvalget «midtlinjen» er et annet eksperiment: ett enkelt kutt langs v = 0 som lukker seg etter én runde. Igjen blir én del, et tosidig bånd som er dobbelt så langt og har to hele omdreininger, her tegnet med en tynn spalte. Resultatlinjene under forhåndsvalgene gjelder for én halvomdreining og skjules for andre verdier.",
+          "«Bredde w» er den halve bredden til båndet, fra 0,05 til 0,5 med en midtradius på 1 (standard 0,32). «Antall halvomdreininger» setter k fra 1 til 5. Kuttforholdet c, fra 0 til 0,5, markerer de to linjene v = ±c·w: Alt som ligger nærmere midtlinjen enn dette, blir ravfarget, alt utenfor beholder fargeovergangen fra rødt til blått. «Åpne kuttet» åpner en smal spalte langs kuttlinjene, uten å flytte delene, slik at du ser hvordan de henger sammen.",
+          "Et ord om forhåndsvalgene: Ethvert kuttforhold over null er topologisk det samme eksperimentet. På et bånd med én halvomdreining er de to linjene v = c og v = −c egentlig én kurve, fordi v blir til −v etter én runde. Et kutt langs den etterlater alltid et smalere Möbiusbånd i midten (ravfarget) og ett langt tosidig bånd rundt, og de to er lenket sammen. Forhåndsvalget 1/3 er den klassiske varianten: tre like bredder. Forhåndsvalget «midtlinjen» er et annet eksperiment: ett enkelt kutt langs v = 0 som lukker seg etter én runde. Igjen blir én del, et tosidig bånd som er dobbelt så langt og har to hele omdreininger, her tegnet med en tynn spalte. Resultatlinjene under forhåndsvalgene gjelder for én halvomdreining og skjules for andre verdier.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Her finnes det ikke noe 3D-bibliotek. Siden sampler flaten på et rutenett (160 × 16 firkanter for båndet, 120 × 36 for Kleinflasken), deler hver firkant i to trekanter, roterer hjørnene rundt x-, y- og z-aksen og projiserer dem med en enkel perspektivdivisjon på et 2D-lerret. Kameraet står 4,5 enheter unna for båndet og 6,5 for flasken. Deretter sorteres alle trekantene etter gjennomsnittlig dybde og males bakfra og forover, den såkalte maleralgoritmen.",
-          "I skyggeleggingen ligger det ene designvalget som er spesielt for dette temaet. En énsidig flate har ingen konsistent normal: følg normalvektoren én runde rundt et Möbiusbånd, og den kommer tilbake og peker motsatt vei. Rendereren kan altså ikke avgjøre hvilken side som er forsiden. Den belyser hver trekant med absoluttverdien av skalarproduktet mellom normalen og lysretningen, slik at begge sidene får samme Lambert-skyggelegging. Bare den tynne konturen endrer seg, lys eller mørk avhengig av fortegnet, og du kan se fortegnet slå om når du følger båndet rundt.",
+          "Her finnes det ikke noe 3D-bibliotek. Siden regner ut flaten i punktene på et rutenett (160 × 16 firkanter for båndet, 120 × 36 for Kleinflasken), deler hver firkant i to trekanter, roterer hjørnene rundt x-, y- og z-aksen og projiserer dem med en enkel perspektivdivisjon på et 2D-lerret. Kameraet står 4,5 enheter unna for båndet og 6,5 for flasken. Deretter sorteres alle trekantene etter gjennomsnittlig dybde og males bakfra og forover, den såkalte maleralgoritmen.",
+          "I skyggeleggingen ligger det ene designvalget som er spesielt for dette temaet. En énsidig flate har ingen konsistent normal: Følg normalvektoren én runde rundt et Möbiusbånd, og den kommer tilbake og peker motsatt vei. Tegnekoden kan altså ikke avgjøre hvilken side som er forsiden. Den belyser hver trekant med absoluttverdien av skalarproduktet mellom normalen og lysretningen, slik at begge sidene får samme Lambert-skyggelegging. Bare den tynne konturen endrer seg, lys eller mørk avhengig av fortegnet, og du kan se fortegnet slå om når du følger båndet rundt.",
           "Fargen løper langs båndet i stedet for over sidene: rødt ved u = 0, blått like før 2π. Det brå fargeskiftet der båndet lukker seg, markerer bare hvor parametriseringen starter på nytt; det er ikke en egenskap ved flaten.",
         ],
         code: MOBIUS_EXCERPT,
@@ -481,11 +481,11 @@ export const MOBIUS_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Følg den ene kanten",
-        text: "Behold én halvomdreining, slå av «Auto-rotasjon» og dra sakte. Følg ytterkanten med øynene: den går to ganger rundt før den møter seg selv. Med 2 halvomdreininger er det to atskilte kanter.",
+        text: "Behold én halvomdreining, slå av «Auto-rotasjon» og dra sakte. Følg ytterkanten med øynene: Den går to ganger rundt før den møter seg selv. Med 2 halvomdreininger er det to atskilte kanter.",
       },
       {
         title: "Kuttet i tredjedeler",
-        text: "Trykk på forhåndsvalget 1/3 og deretter på «Åpne kuttet». Den ravfargede midterste tredjedelen er et smalere Möbiusbånd, den ytre delen er ett langt bånd, og de kan ikke trekkes fra hverandre uten å klippe på nytt. Trykk så på «midtlinjen»: spalten går hele veien rundt, og likevel forblir båndet i ett stykke.",
+        text: "Trykk på forhåndsvalget 1/3 og deretter på «Åpne kuttet». Den ravfargede midterste tredjedelen er et smalere Möbiusbånd, den ytre delen er ett langt bånd, og de kan ikke trekkes fra hverandre uten å klippe på nytt. Trykk så på «midtlinjen»: Spalten går hele veien rundt, og likevel forblir båndet i ett stykke.",
       },
       {
         title: "Oddetall mot partall",
@@ -493,7 +493,7 @@ export const MOBIUS_GUIDE: ExplorerGuide = {
       },
       {
         title: "Finn selvskjæringen",
-        text: "Bytt til Kleinflasken og senk rotasjonshastigheten til omtrent 0,15. Se på midten av figuren: røret går gjennom seg selv langs en ring, prisen for å vise et firedimensjonalt objekt i tre dimensjoner.",
+        text: "Bytt til Kleinflasken og senk rotasjonshastigheten til omtrent 0,15. Se på midten av figuren: Røret går gjennom seg selv langs en ring, prisen for å vise et firedimensjonalt objekt i tre dimensjoner.",
       },
     ],
   },

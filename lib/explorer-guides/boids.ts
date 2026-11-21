@@ -43,7 +43,7 @@ export const BOIDS_GUIDE: ExplorerGuide = {
         paragraphs: [
           "The three weight sliders scale the rules from 0 to 3. The defaults are separation 1.5, alignment 1.0 and cohesion 1.0; separation starts a bit stronger so the flock does not collapse into a single dot. The Active rules buttons switch a rule off entirely. For the motion that is the same as a weight of zero, but the toggle keeps your tuned weight, so one click brings it back.",
           "Perception radius (20 to 200 px, default 80) decides how far a boid can see. Separation radius (10 to 80 px, default 25) is the personal space inside which the push-away rule kicks in. Only boids that are already within the perception radius count for separation, so a separation radius larger than the perception radius has no extra effect. Max speed (1 to 8, default 4) caps the length of every velocity vector.",
-          "The population slider ranges from 50 to 500 boids, default 220. Plus Cluster drops 30 new boids into a small disc in the centre with random headings, up to the same cap of 500. Reset scatters the current number of boids over the canvas with random positions and speeds. Edge behaviour switches between a torus, where a boid leaving on the right re-enters on the left, and a bounded box with walls.",
+          "The population slider ranges from 50 to 500 boids, default 220. + Cluster drops 30 new boids into a small disc in the centre with random headings, up to the same cap of 500. Reset scatters the current number of boids over the canvas with random positions and speeds. Edge behaviour switches between a torus, where a boid leaving on the right re-enters on the left, and a bounded box with walls.",
         ],
       },
       {
@@ -72,7 +72,7 @@ export const BOIDS_GUIDE: ExplorerGuide = {
       },
       {
         title: "Crowd control",
-        text: "Set separation to 0 and press Plus Cluster a few times. The boids collapse onto almost the same point. Raise separation to 3 and the cluster explodes into an evenly spaced lattice that still flies together.",
+        text: "Set separation to 0 and press + Cluster a few times. The boids collapse onto almost the same point. Raise separation to 3 and the cluster explodes into an evenly spaced lattice that still flies together.",
       },
     ],
   },
@@ -95,8 +95,8 @@ export const BOIDS_GUIDE: ExplorerGuide = {
         heading: "Was die Regler bewirken",
         paragraphs: [
           "Die drei Gewichtsregler skalieren die Regeln von 0 bis 3. Voreingestellt sind Separation 1,5, Ausrichtung 1,0 und Kohäsion 1,0. Die Separation startet etwas stärker, damit der Schwarm nicht zu einem einzigen Punkt zusammenfällt. Mit den Knöpfen unter «Active rules» schaltest du eine Regel ganz ab. Auf die Bewegung wirkt das wie Gewicht null, aber du kommst mit einem Klick zu deinem eingestellten Gewicht zurück.",
-          "Der Wahrnehmungsradius (20 bis 200 px, Standard 80) legt fest, wie weit ein Boid sieht. Der Separationsradius (10 bis 80 px, Standard 25) ist der persönliche Abstand, ab dem die Ausweichregel greift. Für die Separation zählen nur Boids, die schon im Wahrnehmungsradius liegen; ein Separationsradius größer als der Wahrnehmungsradius bringt also nichts zusätzlich. Die Höchstgeschwindigkeit (1 bis 8, Standard 4) begrenzt die Länge jedes Geschwindigkeitsvektors.",
-          "Die Population reicht von 50 bis 500 Boids, Standard 220. «+ Cluster» setzt 30 neue Boids mit zufälligen Richtungen in eine kleine Scheibe in der Mitte, bis zur selben Obergrenze von 500. «Reset» verteilt die aktuelle Anzahl neu mit zufälligen Positionen und Geschwindigkeiten. Beim Randverhalten wählst du zwischen einem Torus, auf dem ein Boid, der rechts hinausfliegt, links wieder auftaucht, und einer Box mit Wänden.",
+          "Der Wahrnehmungsradius («Perception radius», 20 bis 200 px, Standard 80) legt fest, wie weit ein Boid sieht. Der Separationsradius («Separation radius», 10 bis 80 px, Standard 25) ist der persönliche Abstand, ab dem die Ausweichregel greift. Für die Separation zählen nur Boids, die schon im Wahrnehmungsradius liegen; ein Separationsradius größer als der Wahrnehmungsradius bringt also nichts zusätzlich. Die Höchstgeschwindigkeit («Max speed», 1 bis 8, Standard 4) begrenzt die Länge jedes Geschwindigkeitsvektors.",
+          "Die Population reicht von 50 bis 500 Boids, Standard 220. «+ Cluster» setzt 30 neue Boids mit zufälligen Richtungen in eine kleine Scheibe in der Mitte, bis zur selben Obergrenze von 500. «Reset» verteilt die aktuelle Anzahl neu mit zufälligen Positionen und Geschwindigkeiten. Beim Randverhalten («Edge behaviour») wählst du zwischen einem Torus, auf dem ein Boid, der rechts hinausfliegt, links wieder auftaucht, und einer Box mit Wänden.",
         ],
       },
       {
@@ -155,7 +155,7 @@ export const BOIDS_GUIDE: ExplorerGuide = {
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "Todos los boids viven en un único Float32Array con cuatro números por boid: x, y, vx y vy. Cada fotograma de animación compara cada boid con todos los demás, lo que cuesta n al cuadrado comprobaciones de distancia: unas 48 000 con los 220 boids por defecto y unas 250 000 con 500. Eso es lo bastante barato para un navegador moderno sin necesidad de una rejilla espacial. Las nuevas velocidades se escriben primero en un búfer aparte, de modo que cada boid reacciona a la misma instantánea de la bandada y no a vecinos que ya se han movido.",
+          "Todos los boids viven en un único Float32Array con cuatro números por boid: x, y, vx y vy. Cada fotograma de animación compara cada boid con todos los demás, lo que cuesta n al cuadrado comprobaciones de distancia: unas 48 000 con los 220 boids por defecto y unas 250 000 con 500. Eso es lo bastante barato para un navegador moderno sin necesidad de una rejilla espacial. Las nuevas velocidades se escriben primero en un búfer aparte, de modo que cada boid reacciona a la misma instantánea de la bandada y no a vecinos que ya se han movido.",
           "La separación suma los vectores que apuntan en sentido contrario a los vecinos cercanos, cada uno dividido por la distancia al cuadrado, así que domina el vecino más próximo. Después la suma se normaliza, lo que significa que la separación tiene siempre la misma intensidad por muchos boids que se apiñen. La alineación recorre en cada fotograma un 5 por ciento del camino hacia la velocidad media de los vecinos, y la cohesión añade una centésima del desplazamiento medio hacia ellos. Si un boid llega a quedarse por debajo de una velocidad minúscula, recibe un empujón aleatorio para que no pueda quedarse clavado en el sitio.",
           "En modo toro, las distancias se miden por el camino corto a través de los bordes. Sin eso, dos boids a ambos lados de una costura parecerían estar a una pantalla entera de distancia y la bandada se rasgaría cada vez que cruzara el borde. En modo acotado, los boids que están a menos de 30 px de una pared reciben un empujoncito hacia dentro y rebotan si aun así la tocan. Cada boid se dibuja como un triángulo girado según su velocidad, sobre un relleno translúcido que deja breves estelas de movimiento. Si tu sistema pide movimiento reducido, la simulación arranca en pausa y muestra un único fotograma nítido; con «Play» activas la animación por decisión propia.",
         ],
@@ -237,7 +237,7 @@ export const BOIDS_GUIDE: ExplorerGuide = {
   },
   it: {
     metaDescription:
-      "Regola dal vivo i boids di Craig Reynolds: dosa separazione, allineamento e coesione, cambia il raggio di percezione e guarda uno stormo nascere da tre regole.",
+      "Regola dal vivo i boid di Craig Reynolds: dosa separazione, allineamento e coesione, cambia il raggio di percezione e guarda uno stormo nascere da tre regole.",
     heading: "Come funziona questo esploratore",
     intro:
       "Ogni triangolino sul canvas è un boid, un uccello simulato che non sa nulla dello stormo nel suo insieme. Guarda soltanto i boid che si trovano entro un raggio fisso intorno a sé e a ogni fotogramma corregge un poco la propria velocità. Non c'è una guida, non c'è una meta, non c'è un piano condiviso. Eppure nel giro di pochi secondi i triangoli sparsi si allineano in correnti, si fondono in sciami e vorticano gli uni intorno agli altri. Lo stormo non è programmato da nessuna parte: emerge dalle interazioni.",
@@ -245,7 +245,7 @@ export const BOIDS_GUIDE: ExplorerGuide = {
       {
         heading: "Tre regole, nient'altro",
         paragraphs: [
-          "Craig Reynolds introdusse i boid in un articolo presentato al SIGGRAPH nel 1987. Ogni boid segue tre regole di sterzata. Separazione: allontanati dai vicini troppo vicini. Allineamento: ruota verso la direzione media dei vicini. Coesione: muoviti verso la posizione media dei vicini. Ogni regola produce una piccola accelerazione, le tre vengono sommate con pesi regolabili e la somma modifica la velocità.",
+          "Craig Reynolds introdusse i boid in un articolo presentato al SIGGRAPH nel 1987. Ogni boid segue tre regole di sterzata. Separazione: allontanati dai vicini troppo ravvicinati. Allineamento: ruota verso la direzione media dei vicini. Coesione: muoviti verso la posizione media dei vicini. Ogni regola produce una piccola accelerazione, le tre vengono sommate con pesi regolabili e la somma modifica la velocità.",
           "Nessuna delle regole nomina lo stormo. Riguardano soltanto ciò che un singolo boid riesce a vedere, ed è per questo che il modello è un esempio classico di emergenza: ordine globale da decisioni puramente locali. Disattiva una qualsiasi delle tre e il comportamento collettivo cambia in modo caratteristico, come puoi vedere direttamente con gli esperimenti qui sotto.",
         ],
         formula: BOIDS_FORMULA,
@@ -261,8 +261,8 @@ export const BOIDS_GUIDE: ExplorerGuide = {
       {
         heading: "Com'è costruito",
         paragraphs: [
-          "Tutti i boid vivono in un unico Float32Array con quattro numeri per boid: x, y, vx e vy. A ogni fotogramma dell'animazione ogni boid viene confrontato con tutti gli altri, il che costa n al quadrato controlli di distanza: circa 48 000 con i 220 boid predefiniti e circa 250 000 con 500. Per un browser moderno è abbastanza leggero anche senza una griglia spaziale. Le nuove velocità finiscono prima in un buffer separato, così ogni boid reagisce alla stessa istantanea dello stormo e non a vicini che si sono già mossi.",
-          "La separazione somma i vettori che puntano via dai vicini più prossimi, ciascuno diviso per il quadrato della distanza, per cui domina il vicino più vicino. La somma viene poi normalizzata, il che significa che la separazione ha sempre la stessa intensità, per quanti boid si accalchino. L'allineamento sterza a ogni fotogramma del 5 per cento verso la velocità media dei vicini, la coesione aggiunge un centesimo dello scostamento medio verso i vicini. Se un boid scende sotto una velocità minuscola, riceve una spinta casuale perché non resti bloccato sul posto.",
+          "Tutti i boid vivono in un unico Float32Array con quattro numeri per boid: x, y, vx e vy. A ogni fotogramma dell'animazione ogni boid viene confrontato con tutti gli altri, il che costa n al quadrato controlli di distanza: circa 48.000 con i 220 boid predefiniti e circa 250.000 con 500. Per un browser moderno è abbastanza leggero anche senza una griglia spaziale. Le nuove velocità finiscono prima in un buffer separato, così ogni boid reagisce alla stessa istantanea dello stormo e non a vicini che si sono già mossi.",
+          "La separazione somma i vettori che puntano in direzione opposta ai vicini troppo ravvicinati, ciascuno diviso per il quadrato della distanza, per cui domina quello più vicino. La somma viene poi normalizzata, il che significa che la separazione ha sempre la stessa intensità, per quanti boid si accalchino. L'allineamento sterza a ogni fotogramma del 5 per cento verso la velocità media dei vicini, la coesione aggiunge un centesimo dello scostamento medio verso i vicini. Se un boid scende sotto una velocità minuscola, riceve una spinta casuale perché non resti bloccato sul posto.",
           "In modalità toro le distanze si misurano lungo la via più breve attraverso i bordi. Altrimenti due boid ai lati opposti di una cucitura sembrerebbero lontani un intero schermo e lo stormo si strapperebbe ogni volta che attraversa il confine. In modalità limitata i boid a meno di 30 px da una parete vengono sospinti verso l'interno e, se la toccano lo stesso, riflessi. Ogni boid è disegnato come un triangolo ruotato secondo la sua velocità, sopra un riempimento traslucido che lascia brevi scie di movimento. Se il tuo sistema chiede di ridurre il movimento, la simulazione parte in pausa e mostra un solo fotogramma nitido; con «Play» scegli tu di avviare l'animazione.",
         ],
         code: STEER_EXCERPT,
@@ -359,7 +359,7 @@ export const BOIDS_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "De tre viktreglagen (”Separation w”, ”Alignment w” och ”Cohesion w”) skalar reglerna från 0 till 3. Standardvärdena är separation 1,5, inriktning 1,0 och sammanhållning 1,0. Separationen börjar lite starkare så att flocken inte faller ihop till en enda punkt. Knapparna under ”Active rules” stänger av en regel helt. För rörelsen är det samma sak som vikten noll, men knappen behåller den vikt du har ställt in, så ett klick tar dig tillbaka.",
+          "De tre viktreglagen (”Separation w”, ”Alignment w” och ”Cohesion w”) skalar reglerna från 0 till 3. Standardvärdena är separation 1,5; inriktning 1,0 och sammanhållning 1,0. Separationen börjar lite starkare så att flocken inte faller ihop till en enda punkt. Knapparna under ”Active rules” stänger av en regel helt. För rörelsen är det samma sak som vikten noll, men knappen behåller den vikt du har ställt in, så ett klick tar dig tillbaka.",
           "Synradien (”Perception radius”, 20 till 200 px, standard 80) avgör hur långt en boid kan se. Separationsradien (”Separation radius”, 10 till 80 px, standard 25) är det personliga utrymme där regeln om att vika undan slår till. Bara boids som redan ligger inom synradien räknas för separationen, så en separationsradie som är större än synradien ger ingen extra effekt. Maxfarten (”Max speed”, 1 till 8, standard 4) begränsar längden på varje hastighetsvektor.",
           "Populationsreglaget går från 50 till 500 boids, standard 220. ”+ Cluster” släpper 30 nya boids med slumpmässiga kurser i en liten skiva i mitten, upp till samma tak på 500. ”Reset” sprider ut det aktuella antalet boids över ritytan med slumpmässiga positioner och hastigheter. ”Edge behaviour” växlar mellan en torus, där en boid som lämnar ytan till höger kommer in igen till vänster, och en avgränsad låda med väggar.",
         ],
@@ -367,7 +367,7 @@ export const BOIDS_GUIDE: ExplorerGuide = {
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Alla boids ligger i en enda Float32Array med fyra tal per boid: x, y, vx och vy. I varje animationsbildruta jämförs varje boid med alla andra, vilket kostar n i kvadrat avståndskontroller: ungefär 48 000 med standardvärdet 220 boids och ungefär 250 000 med 500. Det är billigt nog för en modern webbläsare utan något rumsligt rutnät. De nya hastigheterna skrivs först till en separat buffert, så att varje boid reagerar på samma ögonblicksbild av flocken och inte på grannar som redan har flyttat sig.",
+          "Alla boids ligger i en enda Float32Array med fyra tal per boid: x, y, vx och vy. I varje animationsbildruta jämförs varje boid med alla andra, vilket kostar n i kvadrat avståndskontroller: ungefär 48\u00a0000 med standardvärdet 220 boids och ungefär 250\u00a0000 med 500. Det är billigt nog för en modern webbläsare utan något rumsligt rutnät. De nya hastigheterna skrivs först till en separat buffert, så att varje boid reagerar på samma ögonblicksbild av flocken och inte på grannar som redan har flyttat sig.",
           "Separationen summerar vektorerna som pekar bort från nära grannar, var och en dividerad med avståndet i kvadrat, så att den närmaste grannen dominerar. Summan normeras sedan, vilket betyder att separationen alltid är lika stark oavsett hur många boids som trängs. Inriktningen styr 5 procent av vägen mot grannarnas medelhastighet per bildruta, sammanhållningen lägger till en hundradel av den genomsnittliga förskjutningen till grannarna. Om en boid någon gång hamnar under en pytteliten fart får den en slumpmässig knuff så att den inte kan frysa fast.",
           "I torusläget mäts avstånd den korta vägen över kanterna. Utan det skulle två boids på var sin sida om en söm se ut att ligga en hel skärm isär, och flocken skulle slitas sönder varje gång den korsade kanten. I det avgränsade läget knuffas boids som är närmare en vägg än 30 px inåt och reflekteras om de ändå träffar den. Varje boid ritas som en triangel vriden efter sin hastighet, över en halvgenomskinlig fyllning som lämnar korta rörelsespår. Om ditt system ber om minskad rörelse startar simuleringen pausad och visar en enda skarp bild. Med ”Play” väljer du själv att slå på animationen.",
         ],
@@ -396,7 +396,7 @@ export const BOIDS_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Styr Craig Reynolds' boids direkte: vekt separasjon, innretting og samhold, endre synsradien og se en flokk vokse fram av tre enkle, lokale regler.",
+      "Styr Craig Reynolds' boids direkte: Vekt separasjon, innretting og samhold, endre synsradien og se en flokk vokse fram av tre enkle, lokale regler.",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "Hver lille trekant på lerretet er en boid, en simulert fugl som ikke vet noe om flokken som helhet. Den ser bare på boidene innenfor en fast radius rundt seg og justerer farten sin litt i hvert bilde. Det finnes ingen leder, ikke noe mål og ingen felles plan. Likevel ordner de spredte trekantene seg i løpet av få sekunder i strømmer, smelter sammen til svermer og virvler rundt hverandre. Flokken er ikke programmert noe sted, den oppstår av samspillet.",
@@ -404,7 +404,7 @@ export const BOIDS_GUIDE: ExplorerGuide = {
       {
         heading: "Tre regler, ikke noe mer",
         paragraphs: [
-          "Craig Reynolds introduserte boids i en artikkel som ble presentert på SIGGRAPH i 1987. Hver boid følger tre styreregler. Separasjon: beveg deg bort fra naboer som er for nær. Innretting: drei mot naboenes gjennomsnittlige kurs. Samhold: beveg deg mot naboenes gjennomsnittlige posisjon. Hver regel gir en liten akselerasjon, de tre legges sammen med justerbare vekter, og summen endrer hastigheten.",
+          "Craig Reynolds introduserte boids i en artikkel som ble presentert på SIGGRAPH i 1987. Hver boid følger tre styreregler. Separasjon: Beveg deg bort fra naboer som er for nær. Innretting: Drei mot naboenes gjennomsnittlige kurs. Samhold: Beveg deg mot naboenes gjennomsnittlige posisjon. Hver regel gir en liten akselerasjon, de tre legges sammen med justerbare vekter, og summen endrer hastigheten.",
           "Ingen av reglene nevner flokken. De handler bare om det en enkelt boid kan se, og derfor er modellen et standardeksempel på emergens: global orden ut av rent lokale beslutninger. Slå av hvilken som helst av de tre, og den kollektive oppførselen endrer seg på en karakteristisk måte, noe du kan se direkte i eksperimentene nedenfor.",
         ],
         formula: BOIDS_FORMULA,
@@ -418,9 +418,9 @@ export const BOIDS_GUIDE: ExplorerGuide = {
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Alle boidene ligger i én enkelt Float32Array med fire tall per boid: x, y, vx og vy. I hvert animasjonsbilde sammenlignes hver boid med alle de andre, noe som koster n i andre avstandssjekker: omtrent 48 000 med standardverdien 220 boider og omtrent 250 000 med 500. Det er billig nok for en moderne nettleser uten noe romlig rutenett. De nye hastighetene skrives først til en egen buffer, slik at hver boid reagerer på det samme øyeblikksbildet av flokken og ikke på naboer som allerede har flyttet seg.",
+          "Alle boidene ligger i én enkelt Float32Array med fire tall per boid: x, y, vx og vy. I hvert animasjonsbilde sammenlignes hver boid med alle de andre, noe som koster n i andre avstandssjekker: omtrent 48\u00a0000 med standardverdien 220 boider og omtrent 250\u00a0000 med 500. Det er billig nok for en moderne nettleser uten noe romlig rutenett. De nye hastighetene skrives først til en egen buffer, slik at hver boid reagerer på det samme øyeblikksbildet av flokken og ikke på naboer som allerede har flyttet seg.",
           "Separasjonen summerer vektorene som peker bort fra nære naboer, hver av dem delt på kvadratet av avstanden, slik at den nærmeste naboen dominerer. Summen normaliseres deretter, noe som betyr at separasjonen alltid er like sterk uansett hvor mange boider som trenger seg sammen. Innrettingen styrer 5 prosent av veien mot naboenes gjennomsnittshastighet per bilde, samholdet legger til en hundredel av den gjennomsnittlige forskyvningen til naboene. Hvis en boid noen gang havner under en bitte liten fart, får den et tilfeldig dytt slik at den ikke kan fryse fast.",
           "I torusmodus måles avstander den korte veien over kantene. Uten det ville to boider på hver sin side av en søm se ut til å ligge en hel skjerm fra hverandre, og flokken ville revne hver gang den krysset kanten. I avgrenset modus dyttes boider som er nærmere en vegg enn 30 px, innover og reflekteres hvis de likevel treffer den. Hver boid tegnes som en trekant dreid etter hastigheten sin, over en halvgjennomsiktig fylling som etterlater korte bevegelsesspor. Hvis systemet ditt ber om redusert bevegelse, starter simuleringen på pause og viser ett skarpt bilde. Med «Play» velger du selv å slå på animasjonen.",
         ],

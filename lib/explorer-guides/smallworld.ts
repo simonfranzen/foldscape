@@ -166,7 +166,7 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "N fija el número de nodos, de 20 a 200 (80 por defecto). k fija el número de vecinos a cada lado, de 2 a 10 (4 por defecto), así que cada nodo empieza con grado 2k. p es la probabilidad de reconexión, de 0 a 1 en pasos de 0,01 (0,1 por defecto); los botones de debajo saltan a 0, 0,01, 0,1 y 1. «Generate (new seed)» genera un nuevo grafo aleatorio con los mismos ajustes.",
+          "N fija el número de nodos, de 20 a 200 (80 por defecto). k fija el número de vecinos a cada lado, de 2 a 10 (4 por defecto), así que cada nodo empieza con grado 2k. p es la probabilidad de reconexión, de 0 a 1 en pasos de 0,01 (0,1 por defecto); los botones de debajo saltan a 0; 0,01; 0,1 y 1. «Generate (new seed)» genera un nuevo grafo aleatorio con los mismos ajustes.",
           "Haz clic en un nodo cualquiera y luego en otro, y una búsqueda en anchura resalta en ámbar un camino más corto entre ambos; un tercer clic inicia una nueva selección, y «Clear path» la borra. El panel de estadísticas muestra L, C, ambos en relación con el anillo sin reconectar (L/L₀ y C/C₀), y el grado máximo, que crece a medida que la reconexión acumula enlaces de más en algunos nodos.",
           "El gráfico inferior es la famosa imagen de Watts y Strogatz para tus valores de N y k. Muestra L/L₀ en cian y C/C₀ en rosa para once valores de p entre 0 y 1 en un eje logarítmico; la línea discontinua de color ámbar marca tu p actual.",
         ],
@@ -223,9 +223,9 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
         formula: RING_FORMULA,
       },
       {
-        heading: "À quoi servent les réglages",
+        heading: "À quoi servent les commandes",
         paragraphs: [
-          "N fixe le nombre de nœuds, de 20 à 200 (80 par défaut). k fixe le nombre de voisins de chaque côté, de 2 à 10 (4 par défaut), de sorte que chaque nœud commence avec un degré 2k. p est la probabilité de recâblage, de 0 à 1 par pas de 0,01 (0,1 par défaut) ; les boutons en dessous sautent à 0, 0,01, 0,1 et 1. « Generate (new seed) » tire un nouveau graphe aléatoire avec les mêmes réglages.",
+          "N fixe le nombre de nœuds, de 20 à 200 (80 par défaut). k fixe le nombre de voisins de chaque côté, de 2 à 10 (4 par défaut), de sorte que chaque nœud commence avec un degré 2k. p est la probabilité de recâblage, de 0 à 1 par pas de 0,01 (0,1 par défaut) ; les boutons en dessous sautent à 0 ; 0,01 ; 0,1 et 1. « Generate (new seed) » tire un nouveau graphe aléatoire avec les mêmes réglages.",
           "Clique sur un nœud quelconque, puis sur un second, et un parcours en largeur met en évidence en ambre un plus court chemin entre les deux ; un troisième clic lance une nouvelle sélection, et « Clear path » l'efface. Le panneau de statistiques indique L, C, tous deux rapportés à l'anneau non recâblé (L/L₀ et C/C₀), ainsi que le degré maximal, qui augmente à mesure que le recâblage accumule des liens supplémentaires sur certains nœuds.",
           "Le graphique du bas est la célèbre figure de Watts et Strogatz pour tes valeurs de N et k. Il montre L/L₀ en cyan et C/C₀ en rose pour onze valeurs de p entre 0 et 1 sur un axe logarithmique ; la ligne ambre en pointillés marque ton p actuel.",
         ],
@@ -242,7 +242,7 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
       {
         heading: "Pourquoi si peu de raccourcis suffisent",
         paragraphs: [
-          "Un seul raccourci abrège le trajet de tous les nœuds proches de l'une ou l'autre de ses extrémités, donc chaque nouveau raccourci aide beaucoup de paires à la fois. Le clustering, lui, ne baisse que pour les quelques triangles auxquels appartenait le lien recâblé. Avec les valeurs par défaut N = 80 et k = 4, l'anneau a L₀ = 5,44 et C₀ = 9/14 ≈ 0,643. À p = 0,1, la longueur des chemins est typiquement divisée par deux, à environ 2,8, alors que le clustering conserve à peu près les trois quarts de sa valeur, près de 0,47. Ce n'est qu'à p = 1 que le clustering s'effondre, en dessous de 0,1, tandis que L ne s'améliore plus guère, jusqu'à environ 2,3.",
+          "Un seul raccourci abrège le trajet de tous les nœuds proches de l'une ou l'autre de ses extrémités, donc chaque nouveau raccourci aide beaucoup de paires à la fois. Le clustering, lui, ne baisse que pour les quelques triangles auxquels appartenait le lien recâblé. Avec les valeurs par défaut N = 80 et k = 4, l'anneau a L₀ = 5,44 et C₀ = 9/14 ≈ 0,643. À p = 0,1, la longueur des chemins est en général divisée par deux, à environ 2,8, alors que le clustering conserve à peu près les trois quarts de sa valeur, près de 0,47. Ce n'est qu'à p = 1 que le clustering s'effondre, en dessous de 0,1, tandis que L ne s'améliore plus guère, jusqu'à environ 2,3.",
         ],
       },
     ],
@@ -258,11 +258,11 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
       },
       {
         title: "Un anneau long et mince",
-        text: "Règle N = 200 et k = 2, puis compare p = 0 et p = 0,01. L'anneau part de L ≈ 25,4, et les quatre raccourcis environ que crée p = 0,01 divisent typiquement cette valeur à peu près par deux, alors que C descend à peine sous 0,5.",
+        text: "Règle N = 200 et k = 2, puis compare p = 0 et p = 0,01. L'anneau part de L ≈ 25,4, et les quatre raccourcis environ que crée p = 0,01 divisent le plus souvent cette valeur à peu près par deux, alors que C descend à peine sous 0,5.",
       },
       {
         title: "Suis un chemin d'un bord à l'autre",
-        text: "Avec p = 0, N = 80 et k = 4, clique sur deux nœuds situés de part et d'autre du cercle : le plus court chemin demande 10 sauts. Monte maintenant p à 0,1 sans cliquer sur quoi que ce soit d'autre. Le chemin est recalculé sur le nouveau graphe, emprunte typiquement un ou deux raccourcis cyan et ne demande en général que deux à cinq sauts.",
+        text: "Avec p = 0, N = 80 et k = 4, clique sur deux nœuds situés de part et d'autre du cercle : le plus court chemin demande 10 sauts. Monte maintenant p à 0,1 sans cliquer sur quoi que ce soit d'autre. Le chemin est recalculé sur le nouveau graphe, emprunte le plus souvent un ou deux raccourcis cyan et ne demande en général que deux à cinq sauts.",
       },
     ],
   },
@@ -284,7 +284,7 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "N imposta il numero di nodi, da 20 a 200 (80 di default). k imposta il numero di vicini per lato, da 2 a 10 (4 di default), quindi ogni nodo parte con grado 2k. p è la probabilità di ricablaggio, da 0 a 1 a passi di 0,01 (0,1 di default); i pulsanti sotto saltano a 0, 0,01, 0,1 e 1. «Generate (new seed)» estrae un nuovo grafo casuale con le stesse impostazioni.",
+          "N imposta il numero di nodi, da 20 a 200 (predefinito 80). k imposta il numero di vicini per lato, da 2 a 10 (predefinito 4), quindi ogni nodo parte con grado 2k. p è la probabilità di ricablaggio, da 0 a 1 a passi di 0,01 (predefinito 0,1); i pulsanti sotto saltano a 0; 0,01; 0,1 e 1. «Generate (new seed)» estrae un nuovo grafo casuale con le stesse impostazioni.",
           "Fai clic su un nodo qualsiasi, poi su un secondo, e una ricerca in ampiezza evidenzia in ambra un cammino minimo tra i due; un terzo clic avvia una nuova selezione, e «Clear path» la rimuove. Il pannello delle statistiche elenca L, C, entrambi in rapporto all'anello non ricablato (L/L₀ e C/C₀), e il grado massimo, che cresce man mano che il ricablaggio accumula collegamenti in più su alcuni nodi.",
           "Il grafico in basso è la celebre figura di Watts e Strogatz per i tuoi N e k. Mostra L/L₀ in ciano e C/C₀ in rosa per undici valori di p tra 0 e 1 su un asse logaritmico; la linea tratteggiata color ambra indica il tuo p attuale.",
         ],
@@ -293,7 +293,7 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
         heading: "Com'è costruito",
         paragraphs: [
           "Il grafo è un array di insiemi: adj[i] contiene i vicini del nodo i, il che rende «questi due sono collegati?» una domanda a tempo costante. Il costruttore crea prima il reticolo ad anello, poi scorre i k collegamenti in avanti di ogni nodo e, con probabilità p, sposta l'estremità lontana su un nodo a caso, saltando i cappi e i collegamenti doppi (rinuncia dopo 50 tentativi falliti). I numeri casuali vengono da un piccolo generatore con seme, mulberry32, quindi lo stesso seme dà sempre lo stesso grafo e «Generate» si limita a incrementare il seme.",
-          "L è calcolato esattamente lanciando una ricerca in ampiezza da ogni nodo; le coppie che non possono raggiungersi vengono escluse. C conta, per ogni nodo, quante coppie dei suoi vicini sono adiacenti. La curva sotto ripete entrambi i calcoli per undici grafi generati separatamente ogni volta che cambia N, k o il seme. Anche con N = 200 e k = 10 si tratta solo di qualche migliaio di ricerche su qualche migliaio di archi.",
+          "L è calcolato esattamente lanciando una ricerca in ampiezza da ogni nodo; le coppie che non possono raggiungersi vengono escluse. C conta, per ogni nodo, quante coppie dei suoi vicini sono adiacenti. La curva sotto ripete entrambi i calcoli per undici grafi generati separatamente ogni volta che cambia N, k o il seme. Anche con N = 200 e k = 10 si tratta solo di qualche migliaio di ricerche su qualche migliaio di collegamenti.",
           "Entrambi i canvas vengono disegnati una volta a ogni modifica e al ridimensionamento. I nodi stanno su un cerchio, e un collegamento è disegnato in grigio se i suoi estremi distano al massimo k posti lungo l'anello, in ciano altrimenti. Niente è animato, quindi non c'è alcun movimento da ridurre.",
         ],
         code: REWIRE_EXCERPT,
@@ -301,11 +301,11 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
       {
         heading: "Perché bastano così poche scorciatoie",
         paragraphs: [
-          "Una sola scorciatoia accorcia il tragitto per tutti i nodi vicini a una delle sue estremità, quindi ogni nuova scorciatoia aiuta molte coppie in una volta. Il clustering, invece, cala solo per i pochi triangoli di cui faceva parte il collegamento ricablato. Con i valori di default N = 80 e k = 4, l'anello ha L₀ = 5,44 e C₀ = 9/14 ≈ 0,643. Con p = 0,1 la lunghezza dei cammini tipicamente si dimezza, a circa 2,8, mentre il clustering conserva all'incirca tre quarti del suo valore, intorno a 0,47. Solo con p = 1 il clustering crolla, sotto 0,1, mentre L migliora ancora di poco, fino a circa 2,3.",
+          "Una sola scorciatoia accorcia il tragitto per tutti i nodi vicini a una delle sue estremità, quindi ogni nuova scorciatoia aiuta molte coppie in una volta. Il clustering, invece, cala solo per i pochi triangoli di cui faceva parte il collegamento ricablato. Con i valori predefiniti N = 80 e k = 4, l'anello ha L₀ = 5,44 e C₀ = 9/14 ≈ 0,643. Con p = 0,1 la lunghezza dei cammini tipicamente si dimezza, a circa 2,8, mentre il clustering conserva all'incirca tre quarti del suo valore, intorno a 0,47. Solo con p = 1 il clustering crolla, sotto 0,1, mentre L migliora ancora di poco, fino a circa 2,3.",
         ],
       },
     ],
-    experimentsHeading: "Prova questo",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Verifica le formule del reticolo",
@@ -343,8 +343,8 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "N define o número de nós, de 20 a 200 (80 por omissão). k define o número de vizinhos de cada lado, de 2 a 10 (4 por omissão), pelo que cada nó começa com grau 2k. p é a probabilidade de religação, de 0 a 1 em passos de 0,01 (0,1 por omissão); os botões por baixo saltam para 0, 0,01, 0,1 e 1. «Generate (new seed)» gera um novo grafo aleatório com as mesmas definições.",
-          "Clica num nó qualquer e depois noutro, e uma pesquisa em largura destaca a âmbar um caminho mais curto entre os dois; um terceiro clique inicia uma nova seleção, e «Clear path» remove-a. O painel de estatísticas lista L, C, ambos em relação ao anel sem religação (L/L₀ e C/C₀), e o grau máximo, que cresce à medida que a religação acumula ligações a mais em alguns nós.",
+          "N define o número de nós, de 20 a 200 (80 por omissão). k define o número de vizinhos de cada lado, de 2 a 10 (4 por omissão), pelo que cada nó começa com grau 2k. p é a probabilidade de religação, de 0 a 1 em passos de 0,01 (0,1 por omissão); os botões por baixo saltam para 0; 0,01; 0,1 e 1. «Generate (new seed)» gera um novo grafo aleatório com as mesmas definições.",
+          "Clica num nó qualquer e depois noutro, e uma busca em largura destaca a âmbar um caminho mais curto entre os dois; um terceiro clique inicia uma nova seleção, e «Clear path» remove-a. O painel de estatísticas lista L, C, ambos em relação ao anel sem religação (L/L₀ e C/C₀), e o grau máximo, que cresce à medida que a religação acumula ligações a mais em alguns nós.",
           "O gráfico de baixo é a famosa figura de Watts e Strogatz para os teus N e k. Mostra L/L₀ a ciano e C/C₀ a rosa para onze valores de p entre 0 e 1 num eixo logarítmico; a linha tracejada âmbar assinala o teu p atual.",
         ],
       },
@@ -352,8 +352,8 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
         heading: "Como está construído",
         paragraphs: [
           "O grafo é um array de conjuntos: adj[i] guarda os vizinhos do nó i, o que faz de «estes dois estão ligados?» uma pergunta de tempo constante. O construtor cria primeiro o reticulado em anel, depois percorre as k ligações para a frente de cada nó e, com probabilidade p, muda a ponta distante para um nó ao acaso, saltando os laços sobre o próprio nó e as ligações duplicadas (desiste ao fim de 50 tentativas falhadas). Os números aleatórios vêm de um pequeno gerador com semente, mulberry32, pelo que a mesma semente dá sempre o mesmo grafo e «Generate» limita-se a incrementar a semente.",
-          "L é calculado de forma exata, correndo uma pesquisa em largura a partir de cada nó; os pares que não conseguem alcançar-se ficam de fora. C conta, para cada nó, quantos pares dos seus vizinhos são adjacentes. A curva por baixo repete os dois cálculos para onze grafos gerados separadamente sempre que N, k ou a semente mudam. Mesmo com N = 200 e k = 10, são apenas alguns milhares de pesquisas sobre alguns milhares de arestas.",
-          "As duas telas são desenhadas uma vez por cada alteração e ao redimensionar. Os nós ficam sobre um círculo, e uma ligação é desenhada a cinzento se as suas pontas estiverem no máximo a k lugares de distância ao longo do anel, e a ciano caso contrário. Nada é animado, pelo que não há movimento para reduzir.",
+          "L é calculado de forma exata, correndo uma busca em largura a partir de cada nó; os pares que não conseguem alcançar-se ficam de fora. C conta, para cada nó, quantos pares dos seus vizinhos são adjacentes. A curva por baixo repete os dois cálculos para onze grafos gerados separadamente sempre que N, k ou a semente mudam. Mesmo com N = 200 e k = 10, são apenas alguns milhares de buscas sobre alguns milhares de arestas.",
+          "Os dois canvas são desenhados uma vez por cada alteração e ao redimensionar. Os nós ficam sobre um círculo, e uma ligação é desenhada a cinzento se as suas pontas estiverem no máximo a k lugares de distância ao longo do anel, e a ciano caso contrário. Nada é animado, pelo que não há movimento para reduzir.",
         ],
         code: REWIRE_EXCERPT,
       },
@@ -402,24 +402,24 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "N anger antalet noder, från 20 till 200 (förvalt 80). k anger antalet grannar på vardera sidan, från 2 till 10 (förvalt 4), så varje nod börjar med grad 2k. p är omkopplingssannolikheten, från 0 till 1 i steg om 0,01 (förvalt 0,1); knapparna under hoppar till 0, 0,01, 0,1 och 1. ”Generate (new seed)” drar en ny slumpgraf med samma inställningar.",
+          "N anger antalet noder, från 20 till 200 (standard 80). k anger antalet grannar på vardera sidan, från 2 till 10 (standard 4), så varje nod börjar med grad 2k. p är omkopplingssannolikheten, från 0 till 1 i steg om 0,01 (standard 0,1); knapparna under hoppar till 0; 0,01; 0,1 och 1. ”Generate (new seed)” drar en ny slumpgraf med samma inställningar.",
           "Klicka på en valfri nod och sedan på en till, så markerar en bredden-först-sökning en kortaste väg mellan dem i bärnstensfärg; ett tredje klick påbörjar ett nytt urval, och ”Clear path” tar bort det. Statistikpanelen visar L, C, båda i förhållande till den icke omkopplade ringen (L/L₀ och C/C₀), samt den största graden, som växer när omkopplingen lastar extra länkar på vissa noder.",
           "Det nedre diagrammet är den berömda Watts-Strogatz-bilden för ditt N och k. Det visar L/L₀ i cyan och C/C₀ i rosa för elva värden på p från 0 till 1 på en logaritmisk axel; den streckade bärnstensfärgade linjen markerar ditt nuvarande p.",
         ],
       },
       {
-        heading: "Så är den byggd",
+        heading: "Hur den är byggd",
         paragraphs: [
           "Grafen är en array av mängder: adj[i] innehåller grannarna till nod i, vilket gör ”är de här två länkade?” till en fråga som besvaras i konstant tid. Byggaren skapar först ringgittret, går sedan igenom de k framåtlänkarna för varje nod och flyttar med sannolikheten p den bortre änden till en slumpmässig nod, och hoppar då över öglor och dubbla länkar (den ger upp efter 50 misslyckade försök). Slumptalen kommer från en liten generator med frö, mulberry32, så samma frö ger alltid samma graf och ”Generate” räknar helt enkelt upp fröet.",
           "L beräknas exakt genom en bredden-först-sökning från varje nod; par som inte kan nå varandra utelämnas. C räknar för varje nod hur många par av dess grannar som är grannar med varandra. Kurvan nedanför upprepar båda beräkningarna för elva separat genererade grafer varje gång N, k eller fröet ändras. Även vid N = 200 och k = 10 är det bara några tusen sökningar över några tusen kanter.",
-          "Båda ritytorna ritas en gång per ändring och när storleken ändras. Noderna sitter på en cirkel, och en länk ritas grå om dess ändpunkter ligger högst k platser ifrån varandra längs ringen, annars cyan. Ingenting är animerat, så det finns ingen rörelse att reducera.",
+          "Båda ritytorna ritas en gång per ändring och när storleken ändras. Noderna sitter på en cirkel, och en länk ritas grå om dess ändpunkter ligger högst k platser ifrån varandra längs ringen, annars cyan. Ingenting är animerat, så det finns ingen rörelse att minska.",
         ],
         code: REWIRE_EXCERPT,
       },
       {
         heading: "Varför det räcker med så få genvägar",
         paragraphs: [
-          "En enda genväg förkortar resan för varje nod i närheten av någon av dess ändar, så varje ny genväg hjälper många par på en gång. Klustringen sjunker däremot bara för de få trianglar som den omkopplade länken ingick i. Med förvalda N = 80 och k = 4 har ringen L₀ = 5,44 och C₀ = 9/14 ≈ 0,643. Vid p = 0,1 halveras väglängden typiskt till omkring 2,8 medan klustringen behåller ungefär tre fjärdedelar av sitt värde, nära 0,47. Först vid p = 1 rasar klustringen, till under 0,1, medan L knappt förbättras ytterligare, till omkring 2,3.",
+          "En enda genväg förkortar resan för varje nod i närheten av någon av dess ändar, så varje ny genväg hjälper många par på en gång. Klustringen sjunker däremot bara för de få trianglar som den omkopplade länken ingick i. Med förvalda N = 80 och k = 4 har ringen L₀ = 5,44 och C₀ = 9/14 ≈ 0,643. Vid p = 0,1 halveras väglängden vanligen till omkring 2,8 medan klustringen behåller ungefär tre fjärdedelar av sitt värde, nära 0,47. Först vid p = 1 rasar klustringen, till under 0,1, medan L knappt förbättras ytterligare, till omkring 2,3.",
         ],
       },
     ],
@@ -439,13 +439,13 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
       },
       {
         title: "Följ en väg tvärs över",
-        text: "Med p = 0, N = 80 och k = 4 klickar du på två noder på motsatta sidor av cirkeln: den kortaste vägen kräver 10 hopp. Höj nu p till 0,1 utan att klicka på något annat. Vägen beräknas om på den nya grafen, använder typiskt en eller två cyanfärgade genvägar och behöver oftast bara två till fem hopp.",
+        text: "Med p = 0, N = 80 och k = 4 klickar du på två noder på motsatta sidor av cirkeln: den kortaste vägen kräver 10 hopp. Höj nu p till 0,1 utan att klicka på något annat. Vägen beräknas om på den nya grafen, använder vanligen en eller två cyanfärgade genvägar och behöver oftast bara två till fem hopp.",
       },
     ],
   },
   no: {
     metaDescription:
-      "Utforsk Watts og Strogatz' modell for småverdensnettverk: kobl om et ringnettverk med sannsynlighet p, og se veilengden rase mens klyngingen holder seg.",
+      "Utforsk Watts og Strogatz' modell for småverdensnettverk: Koble om et ringnettverk med sannsynlighet p, og se veilengden rase mens klyngingen holder seg.",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "Sirkelen av prikker er et nettverk med N noder. Det starter som en ryddig ring der hver node er koblet til sine k nærmeste naboer på hver side, så venners venner er som regel også venner. Deretter får hver kobling sjansen p til å bli løsnet i den ene enden og festet til en tilfeldig node. Grå linjer er de lokale koblingene som overlevde, cyanfargede linjer er de langtrekkende snarveiene som omkoblingen skapte. De to tallene i toppfeltet måler hvor langt fra hverandre nodene ligger (L), og hvor klikkete nettverket er (C).",
@@ -454,14 +454,14 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
         heading: "En liten verden i to tall",
         paragraphs: [
           "L er det gjennomsnittlige antallet hopp langs den korteste veien mellom to noder, tatt over alle par. C, klyngekoeffisienten, spør for hver node hvor stor andel av naboene som også er koblet til hverandre, og tar gjennomsnittet over alle noder. Et ringgitter er sterkt klynget, men har lange veier: For å krysse det må du gå rundt, k noder om gangen. En helt tilfeldig graf har korte veier, men nesten ingen klynging.",
-          "Duncan Watts og Steven Strogatz viste i 1998 at man ikke trenger å velge. Kobl om bare noen få prosent av koblingene, så faller L nesten til tilfeldighetsverdien, mens C knapt rører seg. Nettverk med begge egenskapene, korte veier og tette lokale klikker, kalles små verdener, og de viste seg å finnes overalt, fra bekjentskapsnettverk til strømnett og koblingene mellom nerveceller. For ringen uten omkobling finnes det enkle formler for begge tallene.",
+          "Duncan Watts og Steven Strogatz viste i 1998 at man ikke trenger å velge. Koble om bare noen få prosent av koblingene, så faller L nesten til tilfeldighetsverdien, mens C knapt rører seg. Nettverk med begge egenskapene, korte veier og tette lokale klikker, kalles små verdener, og de viste seg å finnes overalt, fra bekjentskapsnettverk til strømnett og koblingene mellom nerveceller. For ringen uten omkobling finnes det enkle formler for begge tallene.",
         ],
         formula: RING_FORMULA,
       },
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "N setter antall noder, fra 20 til 200 (standard 80). k setter antall naboer på hver side, fra 2 til 10 (standard 4), så hver node starter med grad 2k. p er omkoblingssannsynligheten, fra 0 til 1 i steg på 0,01 (standard 0,1); knappene under hopper til 0, 0,01, 0,1 og 1. «Generate (new seed)» trekker en ny tilfeldig graf med de samme innstillingene.",
+          "N setter antall noder, fra 20 til 200 (standard 80). k setter antall naboer på hver side, fra 2 til 10 (standard 4), så hver node starter med grad 2k. p er omkoblingssannsynligheten, fra 0 til 1 i steg på 0,01 (standard 0,1); knappene under hopper til 0; 0,01; 0,1 og 1. «Generate (new seed)» trekker en ny tilfeldig graf med de samme innstillingene.",
           "Klikk på en hvilken som helst node og deretter på en til, så markerer et bredde-først-søk en korteste vei mellom dem i ravgult; et tredje klikk starter et nytt utvalg, og «Clear path» fjerner det. Statistikkpanelet viser L, C, begge i forhold til ringen uten omkobling (L/L₀ og C/C₀), og den største graden, som vokser når omkoblingen lesser ekstra koblinger på enkelte noder.",
           "Det nederste diagrammet er det berømte Watts-Strogatz-bildet for din N og k. Det viser L/L₀ i cyan og C/C₀ i rosa for elleve verdier av p fra 0 til 1 på en logaritmisk akse; den stiplede ravgule linjen markerer din nåværende p.",
         ],

@@ -166,7 +166,7 @@ export const PHI_GUIDE: ExplorerGuide = {
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "Cada panel es un canvas 2D sencillo que se redibuja cuando se mueve un deslizador o cambia el tamaño del panel. Los canvas se escalan según la densidad de píxeles del dispositivo para que las líneas se vean nítidas, y nada está animado, así que no hay movimiento que reducir: cada imagen es una foto fija de los ajustes actuales.",
+          "Cada panel es un lienzo 2D sencillo que se redibuja cuando se mueve un deslizador o cambia el tamaño del panel. Los lienzos se escalan según la densidad de píxeles del dispositivo para que las líneas se vean nítidas, y nada está animado, así que no hay movimiento que reducir: cada imagen es una foto fija de los ajustes actuales.",
           "La espiral se construye cuadrado a cuadrado. El primero está en el origen; cada uno de los siguientes se adosa al rectángulo envolvente, que va creciendo, por la izquierda, arriba, la derecha y abajo, por turnos, y ocupa todo el lado que toca. El arco de cada cuadrado tiene su centro en la esquina que comparte con sus dos vecinos, y por eso los cuartos de círculo se unen sin quiebros. El código invierte los extremos de los arcos donde hace falta para que un solo trazado recorra toda la espiral.",
           "El girasol usa el modelo de Vogel de 1979. La semilla n está en el ángulo n·α y a un radio c·√n. La raíz cuadrada es lo importante: el área de un disco crece con el cuadrado de su radio, así que colocar las semillas en √n da a cada una la misma porción de área y mantiene la cabeza uniformemente llena del centro al borde. La constante c se elige para que la última semilla caiga justo en el borde del disco.",
         ],
@@ -215,17 +215,17 @@ export const PHI_GUIDE: ExplorerGuide = {
         formula: PHI_FORMULA,
       },
       {
-        heading: "À quoi servent les réglages",
+        heading: "À quoi servent les commandes",
         paragraphs: [
           "Spirale : le curseur de profondeur choisit le nombre de carrés à dessiner, de 3 à 14 (10 par défaut). Les côtés vont de F₁ à Fₙ : les deux plus petits carrés ont donc tous deux un côté de 1, et le plus grand, à la profondeur 14, un côté de 377. Ensemble, ils forment toujours un rectangle de Fₙ sur Fₙ₊₁, et la barre d'état affiche son rapport largeur sur hauteur : 89/55 ≈ 1,61818182 à la profondeur par défaut.",
           "Rapports : le curseur n fixe le nombre de rapports Fₙ₊₁/Fₙ à tracer, de 2 à 20 (12 par défaut), face à une ligne en pointillés placée en φ sur un axe vertical allant de 1,0 à 2,5. Les premières valeurs zigzaguent fortement (1 ; 2 ; 1,5 ; 1,667 ; 1,6), puis la courbe vient s'aplatir sur la ligne. Les n impairs tombent sous φ, les n pairs au-dessus, et chaque erreur vaut environ 0,382 fois la précédente, soit ψ². À n = 20, le rapport 10946/6765 s'écarte de moins de 10⁻⁸.",
-          "Tournesol : le curseur de l'angle de divergence ne couvre que l'intervalle de 137,4° à 137,6°, par pas de 0,0005°, car tout ce qui est intéressant se passe dans cette fenêtre étroite. Le curseur du nombre de graines va de 50 à 2000 (800 par défaut). Le bouton « Aller à l'angle φ » rétablit l'angle d'or exact, 360°/φ² ≈ 137,5078°.",
+          "Tournesol : le curseur de l'angle de divergence ne couvre que l'intervalle de 137,4° à 137,6°, par pas de 0,0005°, car tout ce qui est intéressant se passe dans cette fenêtre étroite. Le curseur du nombre de graines va de 50 à 2 000 (800 par défaut). Le bouton « Aller à l'angle φ » rétablit l'angle d'or exact, 360°/φ² ≈ 137,5078°.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Chaque panneau est un simple canvas 2D qui se redessine dès qu'un curseur bouge ou que le panneau change de taille. Les canvas sont mis à l'échelle selon la densité de pixels de l'appareil pour que les traits restent nets, et rien n'est animé : il n'y a donc aucun mouvement à réduire, chaque image est une vue fixe des réglages en cours.",
+          "Chaque panneau est un simple canevas 2D qui se redessine dès qu'un curseur bouge ou que le panneau change de taille. Les canevas sont mis à l'échelle selon la densité de pixels de l'appareil pour que les traits restent nets, et rien n'est animé : il n'y a donc aucun mouvement à réduire, chaque image est une vue fixe des réglages en cours.",
           "La spirale se construit carré après carré. Le premier est posé à l'origine ; chacun des suivants vient s'accoler au rectangle englobant, qui grandit, tour à tour à gauche, en haut, à droite et en bas, en couvrant tout le côté qu'il touche. L'arc de chaque carré est centré sur le coin qu'il partage avec ses deux voisins : c'est ce qui permet aux quarts de cercle de se raccorder sans cassure. Le code inverse les extrémités des arcs là où c'est nécessaire, afin qu'un seul tracé parcoure toute la spirale.",
           "Le tournesol utilise le modèle de Vogel, qui date de 1979. La graine n se trouve à l'angle n·α et au rayon c·√n. La racine carrée est l'élément essentiel : l'aire d'un disque croît comme le carré de son rayon, si bien que placer les graines en √n donne à chacune la même part de surface et garde le capitule uniformément rempli, du centre au bord. La constante c est choisie pour que la dernière graine arrive exactement sur le bord du disque.",
         ],
@@ -241,19 +241,19 @@ export const PHI_GUIDE: ExplorerGuide = {
     experimentsHeading: "À essayer",
     experiments: [
       {
-        title: "Tomber sur une fraction",
-        text: "Dans le panneau du tournesol, règle le nombre de graines sur 2000 et fais glisser l'angle jusqu'à 137,5000° exactement. Cela représente 55/144 d'un tour complet, et les graines s'alignent donc en 144 rayons rectilignes. Appuie sur « Aller à l'angle φ » et les rayons se dissolvent en un champ régulier.",
+        title: "Tombe sur une fraction",
+        text: "Dans le panneau du tournesol, règle le nombre de graines sur 2 000 et fais glisser l'angle jusqu'à 137,5000° exactement. Cela représente 55/144 d'un tour complet, et les graines s'alignent donc en 144 rayons rectilignes. Appuie sur « Aller à l'angle φ » et les rayons se dissolvent en un champ régulier.",
       },
       {
-        title: "S'écarter d'un rien de l'angle d'or",
+        title: "Écarte-toi d'un rien de l'angle d'or",
         text: "Appuie sur « Aller à l'angle φ », puis amène le curseur sur 137,52°, à un centième de degré à peine. Des bras spiraux courbes apparaissent, surtout visibles près du bord, là où la petite erreur s'est accumulée sur le plus grand nombre de graines.",
       },
       {
-        title: "Compter les dépassements",
+        title: "Compte les dépassements",
         text: "Dans le panneau des rapports, règle n sur 6 et lis les valeurs : 1 ; 2 ; 1,5 ; 1,667 ; 1,6 ; 1,625. Chacune passe de l'autre côté de φ, et l'écart est multiplié par environ 0,38 à chaque étape. Pousse n jusqu'à 20 et les derniers points ne se distinguent plus de la ligne en pointillés.",
       },
       {
-        title: "Faire grandir le rectangle d'or",
+        title: "Fais grandir le rectangle d'or",
         text: "Dans le panneau de la spirale, augmente la profondeur pas à pas de 3 à 14 et observe le rapport dans la barre d'état : 1,5 ; 1,667 ; 1,6, puis de plus en plus près de 1,6180339887. À la profondeur 14, le rectangle mesure 377 sur 610, et son rapport coïncide avec φ jusqu'à la cinquième décimale.",
       },
     ],
@@ -319,10 +319,10 @@ export const PHI_GUIDE: ExplorerGuide = {
   },
   pt: {
     metaDescription:
-      "Explora a proporção áurea φ ≈ 1,618 em três vistas: uma espiral de quadrados de Fibonacci, razões que se aproximam de φ e um girassol com o ângulo áureo.",
+      "Explora a razão áurea φ ≈ 1,618 em três vistas: uma espiral de quadrados de Fibonacci, razões que se aproximam de φ e um girassol com o ângulo áureo.",
     heading: "Como funciona este explorador",
     intro:
-      "A proporção áurea φ = (1 + √5)/2 ≈ 1,618 aparece aqui em três sítios, cada um no seu próprio painel. O painel da espiral constrói um retângulo com quadrados cujos lados são números de Fibonacci. O painel das razões mostra a rapidez com que o quociente de números de Fibonacci consecutivos se aproxima de φ. O painel do girassol coloca sementes uma após outra, cada uma rodada de um ângulo fixo, e mostra porque é que um ângulo em particular, o ângulo áureo de cerca de 137,5°, as arruma melhor do que qualquer outro.",
+      "A razão áurea φ = (1 + √5)/2 ≈ 1,618 aparece aqui em três sítios, cada um no seu próprio painel. O painel da espiral constrói um retângulo com quadrados cujos lados são números de Fibonacci. O painel das razões mostra a rapidez com que o quociente de números de Fibonacci consecutivos se aproxima de φ. O painel do girassol coloca sementes uma após outra, cada uma rodada de um ângulo fixo, e mostra porque é que um ângulo em particular, o ângulo áureo de cerca de 137,5°, as arruma melhor do que qualquer outro.",
     sections: [
       {
         heading: "Um número, três faces",
@@ -356,7 +356,7 @@ export const PHI_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Experimenta",
+    experimentsHeading: "Experimenta isto",
     experiments: [
       {
         title: "Aterra numa fração",
@@ -395,7 +395,7 @@ export const PHI_GUIDE: ExplorerGuide = {
         heading: "Vad reglagen gör",
         paragraphs: [
           "Spiral: djupreglaget väljer hur många kvadrater som ritas, från 3 till 14 (standard 10). Sidorna är F₁ till Fₙ, så de två minsta kvadraterna har båda sidan 1 och den största vid djup 14 har sidan 377. Tillsammans bildar de alltid en rektangel på Fₙ gånger Fₙ₊₁, och statusraden visar dess sidförhållande: 89/55 ≈ 1,61818182 vid standarddjupet.",
-          "Kvoter: n-reglaget bestämmer hur många kvoter Fₙ₊₁/Fₙ som ritas, från 2 till 20 (standard 12), mot en streckad linje vid φ på en lodrät axel från 1,0 till 2,5. De första värdena hoppar vilt i sicksack (1; 2; 1,5; 1,667; 1,6), sedan planar kurvan ut mot linjen. Udda n hamnar under φ, jämna över, och varje fel är ungefär 0,382 gånger så stort som det föregående, vilket är ψ². Vid n = 20 avviker kvoten 10946/6765 med mindre än 10⁻⁸.",
+          "Kvoter: n-reglaget bestämmer hur många kvoter Fₙ₊₁/Fₙ som ritas, från 2 till 20 (standard 12), mot en streckad linje vid φ på en lodrät axel från 1,0 till 2,5. De första värdena hoppar vilt i sicksack (1; 2; 1,5; 1,667; 1,6), sedan planar kurvan ut mot linjen. Udda n hamnar under φ, jämna över, och varje fel är ungefär 0,382 gånger så stort som det föregående, vilket är ψ². Vid n = 20 avviker kvoten 10\u00a0946/6765 med mindre än 10⁻⁸.",
           "Solros: reglaget för divergensvinkeln täcker bara 137,4° till 137,6°, i steg om 0,0005°, eftersom allt intressant händer i det smala fönstret. Reglaget för antalet frön går från 50 till 2000 (standard 800). Knappen ”Hoppa till φ-vinkeln” återställer den exakta gyllene vinkeln, 360°/φ² ≈ 137,5078°.",
         ],
       },
@@ -446,31 +446,31 @@ export const PHI_GUIDE: ExplorerGuide = {
         heading: "Ett tall, tre ansikter",
         paragraphs: [
           "φ er den positive løsningen av x² = x + 1. Denne ene ligningen forklarer de fleste av triksene til tallet. Deler du på x, får du φ = 1 + 1/φ, så 1/φ ≈ 0,618 har de samme sifrene etter komma, og ganger du med φ, får du φ² = φ + 1 ≈ 2,618. Den andre løsningen, ψ = (1 − √5)/2 ≈ −0,618, er den stille partneren som dukker opp i feilleddene.",
-          "Fibonacci-tallene 1, 1, 2, 3, 5, 8, 13 følger den samme regelen i diskret form: hvert tall er summen av de to foregående. Binets formel nedenfor gjør sammenhengen eksakt. Fordi |ψ| er mindre enn 1, krymper leddet ψⁿ til ingenting, og Fₙ er ganske enkelt det hele tallet som ligger nærmest φⁿ/√5. Derfor går forholdet mellom naboer mot φ.",
+          "Fibonacci-tallene 1, 1, 2, 3, 5, 8, 13 følger den samme regelen i diskret form: Hvert tall er summen av de to foregående. Binets formel nedenfor gjør sammenhengen eksakt. Fordi |ψ| er mindre enn 1, krymper leddet ψⁿ til ingenting, og Fₙ er ganske enkelt det hele tallet som ligger nærmest φⁿ/√5. Derfor går forholdet mellom naboer mot φ.",
         ],
         formula: PHI_FORMULA,
       },
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "Spiral: dybdeglideren velger hvor mange kvadrater som tegnes, fra 3 til 14 (standard 10). Sidene er F₁ til Fₙ, så de to minste kvadratene har begge side 1, og det største ved dybde 14 har side 377. Sammen danner de alltid et rektangel på Fₙ ganger Fₙ₊₁, og statuslinjen viser sideforholdet: 89/55 ≈ 1,61818182 ved standarddybden.",
-          "Forhold: n-glideren bestemmer hvor mange forhold Fₙ₊₁/Fₙ som tegnes, fra 2 til 20 (standard 12), mot en stiplet linje ved φ på en loddrett akse fra 1,0 til 2,5. De første verdiene hopper vilt i sikksakk (1; 2; 1,5; 1,667; 1,6), så flater kurven ut mot linjen. Odde n havner under φ, like n over, og hver feil er omtrent 0,382 ganger så stor som den forrige, altså ψ². Ved n = 20 avviker forholdet 10946/6765 med mindre enn 10⁻⁸.",
-          "Solsikke: glideren for divergensvinkelen dekker bare 137,4° til 137,6°, i steg på 0,0005°, fordi alt det interessante skjer i dette smale vinduet. Glideren for antall frø går fra 50 til 2000 (standard 800). Knappen «Hopp til φ-vinkelen» gjenoppretter den eksakte gylne vinkelen, 360°/φ² ≈ 137,5078°.",
+          "Spiral: Glidebryteren for dybde velger hvor mange kvadrater som tegnes, fra 3 til 14 (standard 10). Sidene er F₁ til Fₙ, så de to minste kvadratene har begge side 1, og det største ved dybde 14 har side 377. Sammen danner de alltid et rektangel på Fₙ ganger Fₙ₊₁, og statuslinjen viser sideforholdet: 89/55 ≈ 1,61818182 ved standarddybden.",
+          "Forhold: Glidebryteren for n bestemmer hvor mange forhold Fₙ₊₁/Fₙ som tegnes, fra 2 til 20 (standard 12), mot en stiplet linje ved φ på en loddrett akse fra 1,0 til 2,5. De første verdiene hopper vilt i sikksakk (1; 2; 1,5; 1,667; 1,6), så flater kurven ut mot linjen. Odde n havner under φ, jevne n over, og hver feil er omtrent 0,382 ganger så stor som den forrige, altså ψ². Ved n = 20 avviker forholdet 10946/6765 med mindre enn 10⁻⁸.",
+          "Solsikke: Glidebryteren for divergensvinkelen dekker bare 137,4° til 137,6°, i steg på 0,0005°, fordi alt det interessante skjer i dette smale vinduet. Glidebryteren for antall frø går fra 50 til 2000 (standard 800). Knappen «Hopp til φ-vinkelen» gjenoppretter den eksakte gylne vinkelen, 360°/φ² ≈ 137,5078°.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Hvert panel er et enkelt 2D-canvas som tegnes på nytt hver gang en glider flyttes eller panelet endrer størrelse. Canvasene skaleres etter enhetens pikseltetthet slik at linjene holder seg skarpe, og ingenting er animert, så det finnes ingen bevegelse å redusere: hvert bilde er et stillbilde av de gjeldende innstillingene.",
+          "Hvert panel er et enkelt 2D-lerret som tegnes på nytt hver gang en glidebryter flyttes eller panelet endrer størrelse. Lerretene skaleres etter enhetens pikseltetthet slik at linjene holder seg skarpe, og ingenting er animert, så det finnes ingen bevegelse å redusere: Hvert bilde er et stillbilde av de gjeldende innstillingene.",
           "Spiralen bygges kvadrat for kvadrat. Det første ligger i origo; hvert nytt kvadrat festes til det voksende omsluttende rektangelet, etter tur til venstre, øverst, til høyre og nederst, og dekker hele siden det ligger inntil. Buen i hvert kvadrat har sentrum i hjørnet som kvadratet deler med begge naboene, og det er derfor kvartsirklene møtes uten knekk. Koden bytter om endepunktene på buene der det trengs, slik at én enkelt bane tegner hele spiralen.",
-          "Solsikken bruker Vogels modell fra 1979. Frø n sitter ved vinkelen n·α og radien c·√n. Kvadratroten er det viktige: arealet av en sirkelskive vokser med kvadratet av radien, så når frøene plasseres ved √n, får hvert av dem den samme andelen av arealet, og blomsterkurven holder seg jevnt fylt fra sentrum til kanten. Konstanten c er valgt slik at det siste frøet havner akkurat på randen av skiven.",
+          "Solsikken bruker Vogels modell fra 1979. Frø n sitter ved vinkelen n·α og radien c·√n. Kvadratroten er det viktige: Arealet av en sirkelskive vokser med kvadratet av radien, så når frøene plasseres ved √n, får hvert av dem den samme andelen av arealet, og blomsterkurven holder seg jevnt fylt fra sentrum til kanten. Konstanten c er valgt slik at det siste frøet havner akkurat på randen av skiven.",
         ],
         code: SUNFLOWER_EXCERPT,
       },
       {
         heading: "Hvorfor den gylne vinkelen vinner",
         paragraphs: [
-          "Hvis vinkelen er en enkel brøkdel av en hel omdreining, la oss si p/q, havner hvert q-te frø på den samme strålen, og blomsterkurven deler seg i q rette eiker med tomme kiler imellom. Enhver rasjonal brøk gjør dette før eller siden; gode tilnærminger til et rasjonalt tall bruker bare lengre tid og bøyer eikene til spiralarmer. Den beste vinkelen er den som er vanskeligst å tilnærme med brøker, og i en presis forstand er det φ: kjedebrøken er 1 + 1/(1 + 1/(1 + …)), bare enere, den utviklingen som konvergerer saktest av alle. De beste tilnærmingene er forhold mellom Fibonacci-tall, og derfor har ekte solsikker og furukongler 34 og 55 eller 55 og 89 spiraler, og ikke for eksempel 40 og 60.",
+          "Hvis vinkelen er en enkel brøkdel av en hel omdreining, la oss si p/q, havner hvert q-te frø på den samme strålen, og blomsterkurven deler seg i q rette eiker med tomme kiler imellom. Enhver rasjonal brøk gjør dette før eller siden; gode tilnærminger til et rasjonalt tall bruker bare lengre tid og bøyer eikene til spiralarmer. Den beste vinkelen er den som er vanskeligst å tilnærme med brøker, og i en presis forstand er det φ: Kjedebrøken er 1 + 1/(1 + 1/(1 + …)), bare enere, den utviklingen som konvergerer saktest av alle. De beste tilnærmingene er forhold mellom Fibonacci-tall, og derfor har ekte solsikker og furukongler 34 og 55 eller 55 og 89 spiraler, og ikke for eksempel 40 og 60.",
         ],
       },
     ],
@@ -482,7 +482,7 @@ export const PHI_GUIDE: ExplorerGuide = {
       },
       {
         title: "Dytt deg litt bort fra den gylne vinkelen",
-        text: "Trykk på «Hopp til φ-vinkelen», og flytt deretter glideren til 137,52°, bare omtrent en hundredels grad unna. Buede spiralarmer kommer til syne, tydeligst nær kanten, der den lille feilen har summert seg over flest frø.",
+        text: "Trykk på «Hopp til φ-vinkelen», og flytt deretter glidebryteren til 137,52°, bare omtrent en hundredels grad unna. Buede spiralarmer kommer til syne, tydeligst nær kanten, der den lille feilen har summert seg over flest frø.",
       },
       {
         title: "Tell overskytingene",

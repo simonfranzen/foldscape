@@ -135,7 +135,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
       },
       {
         title: "Verfeinern, ohne χ zu ändern",
-        text: "Vergleiche das Ikosaeder mit der Ikosphäre. Die Ikosphäre hat mehr als zehnmal so viele Ecken, Kanten und Flächen, trotzdem landen beide Summen bei 2. Schalte die Drehung aus und schau, wie die ursprünglichen zwölf Ecken immer noch dort sitzen, wo fünf Dreiecke zusammentreffen.",
+        text: "Vergleiche das Ikosaeder mit der Ikosphäre. Die Ikosphäre hat mehr als zehnmal so viele Ecken, Kanten und Flächen, trotzdem landen beide Summen bei 2. Schalte die Auto-Rotation aus und schau, wie die ursprünglichen zwölf Ecken immer noch dort sitzen, wo fünf Dreiecke zusammentreffen.",
       },
       {
         title: "Ein Henkel kostet zwei",
@@ -172,7 +172,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "No hay ninguna biblioteca 3D. Cada figura es una lista de coordenadas de vértices y una lista de caras, donde una cara es un ciclo de índices de vértices. La lista de aristas se deduce de las caras con la función de abajo, así que E nunca se escribe a mano: es lo que implican las caras, y los recuentos en pantalla son los recuentos reales de la malla. Los sólidos platónicos y arquimedianos usan sus coordenadas estándar (varias incluyen la proporción áurea), escaladas para caber en una esfera unidad.",
+          "No hay ninguna biblioteca 3D. Cada figura es una lista de coordenadas de vértices y una lista de caras, donde una cara es un ciclo de índices de vértices. La lista de aristas se deduce de las caras con la función de abajo, así que E nunca se escribe a mano: es lo que implican las caras, y los recuentos en pantalla son los recuentos reales de la malla. Los sólidos platónicos y arquimedianos usan sus coordenadas estándar (varias incluyen el número áureo), escaladas para caber en una esfera unidad.",
           "Cada fotograma rota todos los vértices alrededor del eje vertical y luego del horizontal, y los proyecta en perspectiva con la cámara a 3,2 unidades de distancia. Las caras se ordenan de lejos a cerca y se pintan en ese orden (el algoritmo del pintor), las caras que dan la espalda a la cámara se omiten, y cada cara visible se sombrea según el ángulo entre su normal y una dirección de luz fija, con un brillo mínimo para que nada quede del todo negro.",
           "La icosfera parte del icosaedro y divide cada triángulo en cuatro, dos veces, empujando los nuevos puntos medios hacia fuera hasta la esfera. El toro es una cuadrícula de 18 por 10 cuadriláteros enrollada en ambas direcciones.",
         ],
@@ -254,7 +254,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
         text: "Compte le cube (8, 12, 6), puis l'octaèdre (6, 12, 8). V et F s'échangent tandis que E reste identique. Le dodécaèdre (20, 30, 12) et l'icosaèdre (12, 30, 20) forment une autre paire de ce genre.",
       },
       {
-        title: "Raffiner sans changer χ",
+        title: "Raffine sans changer χ",
         text: "Compare l'icosaèdre et l'icosphère. L'icosphère a plus de dix fois plus de sommets, d'arêtes et de faces, et pourtant les deux sommes tombent sur 2. Désactive « Rotation auto » et regarde comment les douze sommets d'origine se trouvent toujours là où cinq triangles se rejoignent.",
       },
       {
@@ -277,7 +277,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
       {
         heading: "Un numero che ignora dimensione e forma",
         paragraphs: [
-          "Prendi un qualsiasi poliedro convesso, conta i suoi vertici V, gli spigoli E e le facce F, e calcola V − E + F. Un cubo dà 8 − 12 + 6 = 2, un icosaedro 12 − 30 + 20 = 2, la forma del pallone da calcio 60 − 90 + 32 = 2. Leonhard Euler lo enunciò negli anni Cinquanta del Settecento, e oggi quel valore si chiama caratteristica di Eulero χ (chi).",
+          "Prendi un qualsiasi poliedro convesso, conta i suoi vertici V, gli spigoli E e le facce F, e calcola V − E + F. Un cubo dà 8 − 12 + 6 = 2, un icosaedro 12 − 30 + 20 = 2, la forma del pallone da calcio 60 − 90 + 32 = 2. Eulero lo enunciò negli anni Cinquanta del Settecento, e oggi quel valore si chiama caratteristica di Eulero χ (chi).",
           "Il motivo per cui non cambia mai è che χ è una proprietà della superficie, non del modo in cui la tagli a pezzi. Dividi una faccia in due con un nuovo spigolo tra vertici esistenti e sia E sia F aumentano di uno. Metti un nuovo vertice a metà di uno spigolo e sia V sia E aumentano di uno. Ogni raffinamento cambia la somma di zero. A cambiare χ è invece la topologia: ogni manico, cioè ogni buco che attraversa la forma, la abbassa di 2. Per una superficie chiusa e orientabile con g manici vale la formula qui sotto, quindi una sfera ha χ = 2 e un toro χ = 0.",
         ],
         formula: CHI_FORMULA,
@@ -285,7 +285,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "L'elenco «Poliedro» contiene undici forme predefinite: i cinque solidi platonici, il tetraedro troncato, il cubottaedro, l'icosaedro troncato, un'icosfera, un toro e un doppio toro. Ogni voce mostra i suoi conteggi, così puoi confrontarli a colpo d'occhio. La pagina parte dal cubo.",
+          "L'elenco «Poliedro» contiene undici preset: i cinque solidi platonici, il tetraedro troncato, il cubottaedro, l'icosaedro troncato, un'icosfera, un toro e un doppio toro. Ogni voce mostra i suoi conteggi, così puoi confrontarli a colpo d'occhio. La pagina parte dal cubo.",
           "«Conta vertici», «Conta spigoli» e «Conta facce» eseguono ciascuno una fase del conteggio. Le forme piccole rivelano un elemento ogni 60 millisecondi; le mesh grandi rivelano a blocchi ogni 20 millisecondi e fermano l'animazione dopo 200 elementi, portando il conto al numero reale, così non devi aspettare 480 spigoli uno per uno. «Mostra tutto» salta direttamente allo stato finale, e «Reimposta» azzera il conto. «Rotazione auto» fa ruotare la forma in modo continuo; il suo cursore di velocità va da 0 a 2 (predefinito 0,6), e disattivare «Rotazione auto» blocca la forma nell'orientamento corrente. Se il tuo sistema chiede il movimento ridotto, la forma resta ferma e «Rotazione auto» è disattivata, mentre le fasi di conteggio continuano a funzionare.",
         ],
       },
@@ -293,7 +293,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
         heading: "Com'è costruito",
         paragraphs: [
           "Non c'è nessuna libreria 3D. Ogni forma è un elenco di coordinate dei vertici e un elenco di facce, dove una faccia è un ciclo di indici di vertici. L'elenco degli spigoli viene ricavato dalle facce con la funzione qui sotto, quindi E non è mai scritto a mano: è quello che le facce implicano, e i conteggi sullo schermo sono i conteggi reali della mesh. I solidi platonici e archimedei usano le loro coordinate standard (parecchie coinvolgono la sezione aurea), scalate per stare in una sfera unitaria.",
-          "Ogni fotogramma ruota tutti i vertici attorno all'asse verticale e poi a quello orizzontale, e li proietta in prospettiva con la camera a 3,2 unità di distanza. Le facce vengono ordinate dalla più lontana alla più vicina e dipinte in quell'ordine (l'algoritmo del pittore), le facce rivolte dalla parte opposta alla camera vengono saltate, e ogni faccia visibile è ombreggiata in base all'angolo tra la sua normale e una direzione di luce fissa, con una luminosità minima perché nulla diventi completamente nero.",
+          "Ogni fotogramma ruota tutti i vertici attorno all'asse verticale e poi a quello orizzontale, e li proietta in prospettiva con la telecamera a 3,2 unità di distanza. Le facce vengono ordinate dalla più lontana alla più vicina e dipinte in quell'ordine (l'algoritmo del pittore), le facce rivolte dalla parte opposta alla telecamera vengono saltate, e ogni faccia visibile è ombreggiata in base all'angolo tra la sua normale e una direzione di luce fissa, con una luminosità minima perché nulla diventi completamente nero.",
           "L'icosfera parte dall'icosaedro e divide ogni triangolo in quattro, per due volte, spingendo i nuovi punti medi verso l'esterno fino alla sfera. Il toro è una griglia di 18 per 10 quadrilateri avvolta su sé stessa in entrambe le direzioni.",
         ],
         code: EDGES_EXCERPT,
@@ -307,7 +307,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Da provare",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Coppie duali",
@@ -332,7 +332,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
       "Conta vértices, arestas e faces em poliedros a rodar, num toro e numa esfera subdividida, e vê porque a característica de Euler fica em 2 ou cai para 0.",
     heading: "Como funciona este explorador",
     intro:
-      "Uma forma roda no meio da tela. Carrega por ordem nos três botões de passo e o explorador conta as peças por ti: primeiro acendem-se os vértices a âmbar, depois as arestas são traçadas uma a seguir à outra, depois as faces preenchem-se com sombreado. O painel no canto vai fazendo a conta, e quando as três contagens estão feitas mostra a soma alternada V − E + F. Para todas as formas que se podem deformar numa esfera, do tetraedro de quatro faces a uma esfera feita de 320 triângulos, a resposta é a mesma: 2.",
+      "Uma forma roda no meio do canvas. Carrega por ordem nos três botões de passo e o explorador conta as peças por ti: primeiro acendem-se os vértices a âmbar, depois as arestas são traçadas uma a seguir à outra, depois as faces preenchem-se com sombreado. O painel no canto vai fazendo a conta, e quando as três contagens estão feitas mostra a soma alternada V − E + F. Para todas as formas que se podem deformar numa esfera, do tetraedro de quatro faces a uma esfera feita de 320 triângulos, a resposta é a mesma: 2.",
     sections: [
       {
         heading: "Um número que ignora tamanho e forma",
@@ -352,7 +352,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
       {
         heading: "Como está construído",
         paragraphs: [
-          "Não há nenhuma biblioteca 3D. Cada forma é uma lista de coordenadas de vértices e uma lista de faces, em que uma face é um ciclo de índices de vértices. A lista de arestas é deduzida das faces pela função abaixo, pelo que E nunca é escrito à mão: é aquilo que as faces implicam, e as contagens no ecrã são as contagens verdadeiras da malha. Os sólidos platónicos e arquimedianos usam as suas coordenadas habituais (várias envolvem a razão de ouro), escaladas para caberem numa esfera unitária.",
+          "Não há nenhuma biblioteca 3D. Cada forma é uma lista de coordenadas de vértices e uma lista de faces, em que uma face é um ciclo de índices de vértices. A lista de arestas é deduzida das faces pela função abaixo, pelo que E nunca é escrito à mão: é aquilo que as faces implicam, e as contagens no ecrã são as contagens verdadeiras da malha. Os sólidos platónicos e arquimedianos usam as suas coordenadas habituais (várias envolvem a razão áurea), escaladas para caberem numa esfera unitária.",
           "Cada fotograma roda todos os vértices em torno do eixo vertical e depois do horizontal, e projeta-os em perspetiva com a câmara a 3,2 unidades de distância. As faces são ordenadas da mais distante para a mais próxima e pintadas por essa ordem (o algoritmo do pintor), as faces viradas para o lado oposto à câmara são ignoradas, e cada face visível é sombreada pelo ângulo entre a sua normal e uma direção de luz fixa, com um brilho mínimo para que nada fique completamente preto.",
           "A icosfera parte do icosaedro e divide cada triângulo em quatro, duas vezes, empurrando os novos pontos médios para fora até à esfera. O toro é uma grelha de 18 por 10 quadriláteros enrolada nas duas direções.",
         ],
@@ -392,7 +392,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
       "Räkna hörn, kanter och sidor på snurrande polyedrar, en torus och en uppdelad sfär, och se varför Eulerkarakteristiken V − E + F blir 2 eller faller till 0.",
     heading: "Så fungerar den här utforskaren",
     intro:
-      "En form snurrar mitt på ytan. Tryck på de tre stegknapparna i tur och ordning, så räknar utforskaren delarna åt dig: först tänds hörnen i bärnsten, sedan ritas kanterna en efter en, och till sist fylls sidorna med skuggning. Panelen i hörnet håller räkningen, och när alla tre antalen är klara visar den den alternerande summan V − E + F. För varje form som kan deformeras till en sfär, från tetraedern med fyra sidor till en sfär av 320 trianglar, blir svaret detsamma: 2.",
+      "En form snurrar mitt på ytan. Tryck på de tre stegknapparna i tur och ordning, så räknar utforskaren delarna åt dig: först tänds hörnen i bärnsten, sedan ritas kanterna en efter en, och till sist fylls sidorna med skuggning. Panelen i hörnet håller räkningen, och när alla tre antalen är klara visar panelen den alternerande summan V − E + F. För varje form som kan deformeras till en sfär, från tetraedern med fyra sidor till en sfär av 320 trianglar, blir svaret detsamma: 2.",
     sections: [
       {
         heading: "Ett tal som struntar i storlek och form",
@@ -406,7 +406,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
         heading: "Vad reglagen gör",
         paragraphs: [
           "Listan ”Polyeder” innehåller elva förval: de fem platonska kropparna, den stympade tetraedern, kuboktaedern, den stympade ikosaedern, en ikosfär, en torus och en dubbeltorus. Varje post visar sina antal så att du kan jämföra dem med en blick. Sidan börjar med kuben.",
-          "”Räkna hörn”, ”Räkna kanter” och ”Räkna sidor” kör var sitt räknesteg. Små former visar ett element var 60:e millisekund. Stora nät visar i klumpar var 20:e millisekund och stoppar animationen efter 200 element, och skalar upp räkningen till det verkliga antalet så att du slipper vänta på 480 kanter en i taget. ”Visa allt” hoppar direkt till det färdiga läget, och ”Återställ” nollställer räkningen. ”Auto-rotation” roterar formen kontinuerligt. Dess hastighetsreglage går från 0 till 2 (standard 0,6), och om du stänger av ”Auto-rotation” fryser formen i sin nuvarande orientering. Om ditt system begär reducerad rörelse står formen still och ”Auto-rotation” är inaktiverad, medan räknestegen fortsätter att fungera.",
+          "”Räkna hörn”, ”Räkna kanter” och ”Räkna sidor” kör var sitt räknesteg. Små former visar ett element var 60:e millisekund. Stora nät visar i klumpar var 20:e millisekund och stoppar animationen efter 200 element, och skalar upp räkningen till det verkliga antalet så att du slipper vänta på 480 kanter en i taget. ”Visa allt” hoppar direkt till det färdiga läget, och ”Återställ” nollställer räkningen. ”Auto-rotation” roterar formen kontinuerligt. Dess hastighetsreglage går från 0 till 2 (standard 0,6), och om du stänger av ”Auto-rotation” fryser formen i sin nuvarande orientering. Om ditt system begär minskad rörelse står formen still och ”Auto-rotation” är inaktiverad, medan räknestegen fortsätter att fungera.",
         ],
       },
       {
@@ -427,7 +427,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Duala par",
@@ -452,29 +452,29 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
       "Tell hjørner, kanter og flater på roterende polyedre, en torus og en oppdelt kule, og se hvorfor Euler-karakteristikken V − E + F blir 2 eller faller til 0.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "En form roterer midt på lerretet. Trykk på de tre stegknappene i rekkefølge, så teller utforskeren delene for deg: først lyser hjørnene opp i rav, så tegnes kantene én etter én, og til slutt fylles flatene med skyggelegging. Panelet i hjørnet fører regnskap, og når alle tre tellingene er inne, viser det den alternerende summen V − E + F. For enhver form som kan deformeres til en kule, fra tetraederet med fire flater til en kule laget av 320 trekanter, er svaret det samme: 2.",
+      "En form roterer midt på lerretet. Trykk på de tre stegknappene i rekkefølge, så teller utforskeren delene for deg: Først lyser hjørnene opp i rav, så tegnes kantene én etter én, og til slutt fylles flatene med skyggelegging. Panelet i hjørnet fører regnskap, og når alle tre tellingene er inne, viser det den alternerende summen V − E + F. For enhver form som kan deformeres til en kule, fra tetraederet med fire flater til en kule laget av 320 trekanter, er svaret det samme: 2.",
     sections: [
       {
         heading: "Et tall som ikke bryr seg om størrelse og form",
         paragraphs: [
           "Ta et hvilket som helst konvekst polyeder, tell hjørnene V, kantene E og flatene F, og regn ut V − E + F. En terning gir 8 − 12 + 6 = 2, et ikosaeder 12 − 30 + 20 = 2, fotballformen 60 − 90 + 32 = 2. Leonhard Euler formulerte dette på 1750-tallet, og verdien kalles i dag Euler-karakteristikken χ (khi).",
-          "Grunnen til at den aldri endrer seg, er at χ er en egenskap ved flaten, ikke ved hvordan du deler den opp i biter. Del en flate i to med en ny kant mellom eksisterende hjørner, og både E og F øker med én. Sett et nytt hjørne midt på en kant, og både V og E øker med én. Enhver forfining endrer summen med null. Det som derimot endrer χ, er topologien: hver hank, altså hvert hull gjennom formen, senker den med 2. For en lukket, orienterbar flate med g hanker gjelder formelen nedenfor, så en kule har χ = 2 og en torus χ = 0.",
+          "Grunnen til at den aldri endrer seg, er at χ er en egenskap ved flaten, ikke ved hvordan du deler den opp i biter. Del en flate i to med en ny kant mellom eksisterende hjørner, og både E og F øker med én. Sett et nytt hjørne midt på en kant, og både V og E øker med én. Enhver forfining endrer summen med null. Det som derimot endrer χ, er topologien: Hvert håndtak, altså hvert hull gjennom formen, senker den med 2. For en lukket, orienterbar flate med g håndtak gjelder formelen nedenfor, så en kule har χ = 2 og en torus χ = 0.",
         ],
         formula: CHI_FORMULA,
       },
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "Listen «Polyeder» inneholder elleve forhåndsvalg: de fem platonske legemene, det avstumpede tetraederet, kuboktaederet, det avstumpede ikosaederet, en ikosfære, en torus og en dobbeltorus. Hver oppføring viser tellingene sine, slik at du kan sammenligne dem med et blikk. Siden starter med terningen.",
-          "«Tell hjørner», «Tell kanter» og «Tell flater» kjører hvert sitt telletrinn. Små former avdekker ett element hvert 60. millisekund. Store nett avdekker i klumper hvert 20. millisekund og stopper animasjonen etter 200 elementer, og skalerer tellingen opp til det sanne antallet, slik at du slipper å vente på 480 kanter én for én. «Vis alt» hopper rett til den ferdige tilstanden, og «Tilbakestill» nullstiller tellingen. «Auto-rotasjon» roterer formen kontinuerlig. Hastighetsglideren går fra 0 til 2 (standard 0,6), og slår du av «Auto-rotasjon», fryser formen i den orienteringen den har. Hvis systemet ditt ber om redusert bevegelse, står formen stille og «Auto-rotasjon» er deaktivert, mens telletrinnene fortsatt virker.",
+          "Listen «Polyeder» inneholder elleve forhåndsvalg: de fem platonske legemene, det avstumpede tetraederet, kuboktaederet, det avstumpede ikosaederet, en ikosfære, en torus og en dobbelttorus. Hver oppføring viser tellingene sine, slik at du kan sammenligne dem med et blikk. Siden starter med terningen.",
+          "«Tell hjørner», «Tell kanter» og «Tell flater» kjører hvert sitt telletrinn. Små former avdekker ett element hvert 60. millisekund. Store nett avdekker i klumper hvert 20. millisekund og stopper animasjonen etter 200 elementer, og skalerer tellingen opp til det sanne antallet, slik at du slipper å vente på 480 kanter én for én. «Vis alt» hopper rett til den ferdige tilstanden, og «Tilbakestill» nullstiller tellingen. «Auto-rotasjon» roterer formen kontinuerlig. Glidebryteren for hastighet går fra 0 til 2 (standard 0,6), og slår du av «Auto-rotasjon», fryser formen i den orienteringen den har. Hvis systemet ditt ber om redusert bevegelse, står formen stille og «Auto-rotasjon» er deaktivert, mens telletrinnene fortsatt virker.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Det finnes ikke noe 3D-bibliotek. Hver form er en liste med hjørnekoordinater og en liste med flater, der en flate er en sykel av hjørneindekser. Kantlisten utledes fra flatene med funksjonen nedenfor, så E skrives aldri inn for hånd: den er det flatene innebærer, og tellingene på skjermen er de sanne tellingene for nettet. De platonske og arkimediske legemene bruker standardkoordinatene sine (flere inneholder det gylne snitt), skalert slik at de får plass i en enhetskule.",
-          "Hver bilderute roterer alle hjørnene om den loddrette aksen og deretter den vannrette, og projiserer dem i perspektiv med kameraet 3,2 enheter unna. Flatene sorteres fra fjern til nær og males i den rekkefølgen (maleralgoritmen), flater som vender bort fra kameraet, hoppes over, og hver synlige flate skyggelegges etter vinkelen mellom normalen og en fast lysretning, med en minste lysstyrke slik at ingenting blir helt svart.",
-          "Ikosfæren starter fra ikosaederet og deler hver trekant i fire, to ganger, og skyver de nye midtpunktene ut på kula. Torusen er et rutenett av 18 ganger 10 firkanter som er viklet rundt i begge retninger.",
+          "Det finnes ikke noe 3D-bibliotek. Hver form er en liste med hjørnekoordinater og en liste med flater, der en flate er en sykel av hjørneindekser. Kantlisten utledes fra flatene med funksjonen nedenfor, så E skrives aldri inn for hånd: Den er det flatene innebærer, og tellingene på skjermen er de sanne tellingene for nettet. De platonske og arkimediske legemene bruker standardkoordinatene sine (flere inneholder det gylne snitt), skalert slik at de får plass i en enhetskule.",
+          "Hvert bilde roterer alle hjørnene om den loddrette aksen og deretter den vannrette, og projiserer dem i perspektiv med kameraet 3,2 enheter unna. Flatene sorteres fra fjern til nær og males i den rekkefølgen (maleralgoritmen), flater som vender bort fra kameraet, hoppes over, og hver synlige flate skyggelegges etter vinkelen mellom normalen og en fast lysretning, med en minste lysstyrke slik at ingenting blir helt svart.",
+          "Ikosfæren starter fra ikosaederet og deler hver trekant i fire, to ganger, og skyver de nye midtpunktene ut på kulen. Torusen er et rutenett av 18 ganger 10 firkanter som er viklet rundt i begge retninger.",
         ],
         code: EDGES_EXCERPT,
       },
@@ -482,7 +482,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
         heading: "Hva tellingene avslører",
         paragraphs: [
           "Å dele opp hver trekant legger til ett hjørne per gammel kant, gjør hver kant til to pluss tre nye per flate, og firedobler antall flater. Endringene opphever hverandre, og derfor ender ikosfæren på 162 − 480 + 320 = 2, akkurat som ikosaederet den kom fra. Rutenettet til torusen har like mange hjørner som flater og dobbelt så mange kanter, så det gir 180 − 360 + 180 = 0.",
-          "Dobbeltorusen viser hva en ekstra hank koster. Den er en sammenhengende sum: to torusnett med 14 ganger 8 firkanter mister hver sin flate (hvert av dem faller til χ = −1), og de to hullene limes sammen langs de fire randkantene sine. En sirkel har χ = 0, så å lime langs en sirkel endrer ingenting: resultatet er −2, i samsvar med 2 − 2·2. Tellingene for nettet stemmer: 220 − 444 + 222 = −2.",
+          "Dobbelttorusen viser hva et ekstra håndtak koster. Den er en sammenhengende sum: To torusnett med 14 ganger 8 firkanter mister hver sin flate (hvert av dem faller til χ = −1), og de to hullene limes sammen langs de fire randkantene sine. En sirkel har χ = 0, så å lime langs en sirkel endrer ingenting: Resultatet er −2, i samsvar med 2 − 2·2. Tellingene for nettet stemmer: 220 − 444 + 222 = −2.",
           "Den samme formelen forklarer fotballen. Hvis et polyeder bare består av femkanter og sekskanter med tre flater i hvert hjørne, tvinger χ = 2 fram nøyaktig 12 femkanter, uansett hvor mange sekskanter det er.",
         ],
       },
@@ -498,8 +498,8 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
         text: "Sammenlign ikosaederet med ikosfæren. Ikosfæren har mer enn ti ganger så mange hjørner, kanter og flater, og likevel ender begge summene på 2. Slå av «Auto-rotasjon» og se hvordan de tolv opprinnelige hjørnene fortsatt sitter der fem trekanter møtes.",
       },
       {
-        title: "En hank koster to",
-        text: "Velg torusen og trykk «Vis alt». Tellingen viser 180 − 360 + 180 = 0. Hvert hjørne har fire kanter og hver flate har fire sider, og den balansen er nettopp det én enkelt hank gir.",
+        title: "Et håndtak koster to",
+        text: "Velg torusen og trykk «Vis alt». Tellingen viser 180 − 360 + 180 = 0. Hvert hjørne har fire kanter og hver flate har fire sider, og den balansen er nettopp det ett enkelt håndtak gir.",
       },
       {
         title: "Tell femkantene",

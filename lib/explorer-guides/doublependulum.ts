@@ -203,7 +203,7 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
   },
   fr: {
     metaDescription:
-      "Simule en direct un pendule double chaotique : règle masses, longueurs, gravité et angles de départ, et regarde dériver un jumeau décalé de 0,000001 rad.",
+      "Simule en direct un double pendule chaotique : règle masses, longueurs, gravité et angles de départ, et regarde dériver un jumeau décalé de 0,000001 rad.",
     heading: "Comment fonctionne cet explorateur",
     intro:
       "Deux tiges rigides, deux masses ponctuelles, un pivot, la gravité, et aucun frottement. Voilà tout le système présent sur le canevas, et pour de petites oscillations il se comporte comme un pendule ordinaire. Lâche-le de plus haut et le bras inférieur se met à basculer, à tournoyer et à marquer des pauses d'une façon qui ne se répète jamais tout à fait. La traînée rose suit la masse inférieure. La copie bleu pâle derrière elle, le jumeau fantôme, part presque exactement de la même position et montre à quelle vitesse presque pareil devient complètement différent.",
@@ -211,7 +211,7 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
       {
         heading: "Des pièces simples, un tout chaotique",
         paragraphs: [
-          "L'état du pendule double tient en quatre nombres : les deux angles θ₁ et θ₂ mesurés à partir de la verticale descendante, et les deux vitesses angulaires ω₁ et ω₂. Les équations du mouvement découlent du lagrangien, énergie cinétique moins énergie potentielle, écrit avec ces angles. Comme la seconde tige est suspendue à un point mobile, les deux angles sont couplés par des termes en cos(θ₁ − θ₂), et c'est ce couplage qui rend le mouvement chaotique aux énergies élevées.",
+          "L'état du double pendule tient en quatre nombres : les deux angles θ₁ et θ₂ mesurés à partir de la verticale descendante, et les deux vitesses angulaires ω₁ et ω₂. Les équations du mouvement découlent du lagrangien, énergie cinétique moins énergie potentielle, écrit avec ces angles. Comme la seconde tige est suspendue à un point mobile, les deux angles sont couplés par des termes en cos(θ₁ − θ₂), et c'est ce couplage qui rend le mouvement chaotique aux énergies élevées.",
           "Sans frottement, l'énergie totale ci-dessous ne peut pas changer, et c'est la seule quantité conservée que le système possède en général. Avec quatre variables d'état et une seule loi de conservation, il y a de la place pour le chaos, et pour des oscillations assez amples il apparaît : d'infimes différences au départ croissent de façon à peu près exponentielle jusqu'à ce que les deux mouvements n'aient plus rien en commun.",
         ],
         formula: ENERGY_FORMULA,
@@ -219,8 +219,8 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "m₁ et m₂ fixent les deux masses (de 0,5 à 2, toutes deux à 1 par défaut) ; les boules grossissent comme la racine carrée de leur masse. L₁ et L₂ sont les longueurs des tiges en pixels (de 40 à 200, 120 par défaut). La gravité g va de 200 à 2400 px/s², 1000 par défaut. Longueurs et gravité partagent volontairement le pixel comme unité : un pendule simple de 120 px soumis à 1000 px/s² oscillerait avec une période d'environ 2,2 secondes, si bien que le mouvement se lit comme celui d'un vrai pendule de mêmes proportions.",
-          "« θ₁ initial » et « θ₂ initial » fixent les angles de lâcher (de −180° à 180°) ; tous deux démarrent à 90°, les deux tiges à l'horizontale et pointant du même côté. Modifier une valeur physique ou un angle de départ relance le mouvement à partir du repos. « Vitesse » règle le rapport entre temps simulé et temps réel, de 0,1× à 3×. « Pas de temps dt » (de 0,001 à 0,02, 0,005 par défaut) est la taille d'un pas d'intégration. « Longueur de traînée » conserve les 200 à 2000 dernières positions de la boule inférieure.",
+          "m₁ et m₂ fixent les deux masses (de 0,5 à 2, toutes deux à 1 par défaut) ; les boules grossissent comme la racine carrée de leur masse. L₁ et L₂ sont les longueurs des tiges en pixels (de 40 à 200, 120 par défaut). La gravité g va de 200 à 2 400 px/s², 1 000 par défaut. Longueurs et gravité partagent volontairement le pixel comme unité : un pendule simple de 120 px soumis à 1 000 px/s² oscillerait avec une période d'environ 2,2 secondes, si bien que le mouvement se lit comme celui d'un vrai pendule de mêmes proportions.",
+          "« θ₁ initial » et « θ₂ initial » fixent les angles de lâcher (de −180° à 180°) ; tous deux démarrent à 90°, les deux tiges à l'horizontale et pointant du même côté. Modifier une valeur physique ou un angle de départ relance le mouvement à partir du repos. « Vitesse » règle le rapport entre temps simulé et temps réel, de 0,1× à 3×. « Pas de temps dt » (de 0,001 à 0,02 ; 0,005 par défaut) est la taille d'un pas d'intégration. « Longueur de traînée » conserve les 200 à 2 000 dernières positions de la boule inférieure.",
           "Le jumeau fantôme démarre avec un θ₁ plus grand d'un millionième de radian. L'affichage indique les deux angles, l'énergie totale E et Δ, la distance en pixels entre les deux boules inférieures.",
         ],
       },
@@ -278,7 +278,7 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
           "m₁ e m₂ impostano le due masse (da 0,5 a 2, entrambe 1 per impostazione predefinita); le sfere crescono con la radice quadrata della loro massa. L₁ e L₂ sono le lunghezze delle aste in pixel (da 40 a 200, predefinito 120). La gravità g va da 200 a 2400 px/s², predefinito 1000. Lunghezze e gravità condividono di proposito il pixel come unità: un pendolo semplice di 120 px sotto 1000 px/s² oscillerebbe con un periodo di circa 2,2 secondi, quindi il moto si legge come quello di un pendolo reale con le stesse proporzioni.",
-          "«θ₁ iniziale» e «θ₂ iniziale» impostano gli angoli di rilascio (da −180° a 180°); entrambi partono da 90°, con le due aste orizzontali e rivolte dalla stessa parte. Cambiare un qualsiasi valore fisico o angolo iniziale fa ripartire il moto da fermo. «Velocità» scala il tempo simulato rispetto al tempo reale da 0,1× a 3×. «Passo temporale dt» (da 0,001 a 0,02, predefinito 0,005) è l'ampiezza di un passo di integrazione. «Lunghezza scia» conserva le ultime 200 fino a 2000 posizioni della sfera inferiore.",
+          "«θ₁ iniziale» e «θ₂ iniziale» impostano gli angoli di rilascio (da −180° a 180°); entrambi partono da 90°, con le due aste orizzontali e rivolte dalla stessa parte. Cambiare un qualsiasi valore fisico o angolo iniziale fa ripartire il moto da fermo. «Velocità» scala il tempo simulato rispetto al tempo reale da 0,1× a 3×. «Passo temporale dt» (da 0,001 a 0,02, predefinito 0,005) è l'ampiezza di un passo di integrazione. «Lunghezza scia» conserva le ultime posizioni della sfera inferiore, da 200 a 2000.",
           "Il gemello fantasma parte con un θ₁ più grande di un milionesimo di radiante. La lettura mostra entrambi gli angoli, l'energia totale E e Δ, la distanza in pixel tra le due sfere inferiori.",
         ],
       },
@@ -297,7 +297,7 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Da provare",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Conta i secondi di accordo",
@@ -322,13 +322,13 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
       "Simula ao vivo um pêndulo duplo caótico: ajusta massas, comprimentos, gravidade e ângulos iniciais, e vê afastar-se um fantasma desviado 0,000001 rad.",
     heading: "Como funciona este explorador",
     intro:
-      "Duas hastes rígidas, duas massas pontuais, um pivô, gravidade e nenhum atrito. É este o sistema todo que está na tela, e para oscilações pequenas comporta-se como um pêndulo vulgar. Larga-o de mais alto e o braço inferior começa a dar a volta, a rodopiar e a parar de maneiras que nunca se repetem por completo. O rasto cor-de-rosa segue a massa inferior. A cópia azul-pálida atrás dela, o gémeo fantasma, começa quase exatamente na mesma posição e mostra a rapidez com que quase igual se torna completamente diferente.",
+      "Duas hastes rígidas, duas massas pontuais, um pivô, gravidade e nenhum atrito. É este o sistema todo que está no canvas, e para oscilações pequenas comporta-se como um pêndulo vulgar. Larga-o de mais alto e o braço inferior começa a dar a volta, a rodopiar e a parar de maneiras que nunca se repetem por completo. O rasto cor-de-rosa segue a massa inferior. A cópia azul-pálida atrás dela, o gémeo fantasma, começa quase exatamente na mesma posição e mostra a rapidez com que quase igual se torna completamente diferente.",
     sections: [
       {
         heading: "Peças simples, conjunto caótico",
         paragraphs: [
           "O estado do pêndulo duplo são quatro números: os dois ângulos θ₁ e θ₂ medidos a partir da vertical para baixo, e as duas velocidades angulares ω₁ e ω₂. As equações do movimento resultam do lagrangiano, energia cinética menos energia potencial, escrito nesses ângulos. Como a segunda haste está pendurada num ponto que se move, os dois ângulos ficam acoplados por termos com cos(θ₁ − θ₂), e é esse acoplamento que torna o movimento caótico a energias mais altas.",
-          "Sem atrito, a energia total abaixo não pode mudar, e essa é a única quantidade conservada que o sistema tem em geral. Com quatro variáveis de estado e uma só lei de conservação há espaço para o caos, e para oscilações suficientemente grandes ele aparece: diferenças minúsculas no arranque crescem de forma aproximadamente exponencial até os dois movimentos não terem nada em comum.",
+          "Sem atrito, a energia total abaixo não pode mudar, e essa é a única grandeza conservada que o sistema tem em geral. Com quatro variáveis de estado e uma só lei de conservação há espaço para o caos, e para oscilações suficientemente grandes ele aparece: diferenças minúsculas no arranque crescem de forma aproximadamente exponencial até os dois movimentos não terem nada em comum.",
         ],
         formula: ENERGY_FORMULA,
       },
@@ -402,7 +402,7 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
         heading: "Hur den är byggd",
         paragraphs: [
           "Funktionen nedan returnerar tidsderivatorna av de fyra tillståndsvariablerna, på den vanliga slutna formen för två punktmassor på masslösa stänger. Den integreras med den klassiska Runge-Kutta-metoden av fjärde ordningen. Varje animationsbildruta mäter den verkliga tid som gått sedan den förra (med ett tak på 0,05 s så att en flik i bakgrunden inte gör ett hopp), multiplicerar den med hastigheten och kör så många RK4-steg av storleken dt som får plats, och tar med resten till nästa bildruta. Det håller rörelsen i samma takt på skärmar med 60 Hz och 120 Hz.",
-          "Huvudpendeln och spöket integreras sida vid sida med samma steg. Båda spåren är ringbuffertar i Float32Array, där NaN markerar tomma platser, och ritas som små kvadrater som tonar från gammalt till nytt. Om någon vinkel eller hastighet slutar vara ändlig eller om en vinkelhastighet överstiger 100 rad/s återställer en spärr båda pendlarna och visar ett kort meddelande. Med reducerad rörelse aktiverad startar simuleringen pausad och visar en stillbild. Knappen ”Spela” sätter igång den när du vill.",
+          "Huvudpendeln och spöket integreras sida vid sida med samma steg. Båda spåren är ringbuffertar i Float32Array, där NaN markerar tomma platser, och ritas som små kvadrater som tonar från gammalt till nytt. Om någon vinkel eller hastighet slutar vara ändlig eller om en vinkelhastighet överstiger 100 rad/s återställer en spärr båda pendlarna och visar ett kort meddelande. Med minskad rörelse aktiverad startar simuleringen pausad och visar en stillbild. Knappen ”Spela” sätter igång den när du vill.",
         ],
         code: DERIV_EXCERPT,
       },
@@ -413,7 +413,7 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Räkna sekunderna av samstämmighet",
@@ -435,7 +435,7 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Simuler en kaotisk dobbeltpendel live: still inn masser, stanglengder, tyngdekraft og startvinkler, og se en tvilling forskjøvet 0,000001 rad drive bort.",
+      "Simuler en kaotisk dobbeltpendel live: Still inn masser, stanglengder, tyngdekraft og startvinkler, og se en tvilling forskjøvet 0,000001 rad drive bort.",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "To stive stenger, to punktmasser, ett opphengspunkt, tyngdekraft og ingen friksjon. Det er hele systemet på lerretet, og ved små utslag oppfører det seg som en vanlig pendel. Slipp det høyere oppe, og den nedre armen begynner å slå rundt, virvle og stanse opp på måter som aldri helt gjentar seg. Det rosa sporet følger den nedre massen. Den blekblå kopien bak den, spøkelsestvillingen, starter i nesten nøyaktig samme posisjon og viser hvor fort nesten det samme blir noe helt annet.",
@@ -444,22 +444,22 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
         heading: "Enkle deler, kaotisk helhet",
         paragraphs: [
           "Tilstanden til dobbeltpendelen er fire tall: de to vinklene θ₁ og θ₂, målt fra rett ned, og de to vinkelhastighetene ω₁ og ω₂. Bevegelsesligningene følger av Lagrange-funksjonen, kinetisk energi minus potensiell energi, skrevet med disse vinklene. Fordi den andre stangen henger i et punkt som beveger seg, kobles de to vinklene sammen gjennom ledd med cos(θ₁ − θ₂), og det er denne koblingen som gjør bevegelsen kaotisk ved høyere energier.",
-          "Uten friksjon kan ikke den totale energien nedenfor endre seg, og det er den eneste bevarte størrelsen systemet har generelt. Med fire tilstandsvariabler og én bevaringslov er det rom for kaos, og ved store nok utslag dukker det opp: ørsmå forskjeller i starten vokser omtrent eksponentielt til de to bevegelsene ikke har noe til felles.",
+          "Uten friksjon kan ikke den totale energien nedenfor endre seg, og det er den eneste bevarte størrelsen systemet har generelt. Med fire tilstandsvariabler og én bevaringslov er det rom for kaos, og ved store nok utslag dukker det opp: Ørsmå forskjeller i starten vokser omtrent eksponentielt til de to bevegelsene ikke har noe til felles.",
         ],
         formula: ENERGY_FORMULA,
       },
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "m₁ og m₂ setter de to massene (0,5 til 2, begge 1 som standard). Kulene vokser med kvadratroten av massen. L₁ og L₂ er stanglengdene i piksler (40 til 200, standard 120). Tyngdekraften g går fra 200 til 2400 px/s², standard 1000. Lengder og tyngdekraft deler med vilje pikselen som enhet: en enkel pendel på 120 px under 1000 px/s² ville svingt med en periode på omtrent 2,2 sekunder, så bevegelsen ser ut som hos en virkelig pendel med de samme proporsjonene.",
-          "«θ₁ start» og «θ₂ start» setter slippvinklene (−180° til 180°). Begge starter på 90°, med begge stengene vannrette og pekende samme vei. Endrer du en fysisk verdi eller en startvinkel, starter bevegelsen på nytt fra ro. «Fart» skalerer simulert tid mot virkelig tid fra 0,1× til 3×. «Tidssteg dt» (0,001 til 0,02, standard 0,005) er størrelsen på ett integrasjonssteg. «Sporlengde» beholder de siste 200 til 2000 posisjonene til den nedre kula.",
+          "m₁ og m₂ setter de to massene (0,5 til 2, begge 1 som standard). Kulene vokser med kvadratroten av massen. L₁ og L₂ er stanglengdene i piksler (40 til 200, standard 120). Tyngdekraften g går fra 200 til 2400 px/s², standard 1000. Lengder og tyngdekraft deler med vilje pikselen som enhet: En enkel pendel på 120 px under 1000 px/s² ville svingt med en periode på omtrent 2,2 sekunder, så bevegelsen ser ut som hos en virkelig pendel med de samme proporsjonene.",
+          "«θ₁ start» og «θ₂ start» setter slippvinklene (−180° til 180°). Begge starter på 90°, med begge stengene vannrette og pekende samme vei. Endrer du en fysisk verdi eller en startvinkel, starter bevegelsen på nytt fra ro. «Fart» skalerer simulert tid mot virkelig tid fra 0,1× til 3×. «Tidssteg dt» (0,001 til 0,02, standard 0,005) er størrelsen på ett integrasjonssteg. «Sporlengde» beholder de siste 200 til 2000 posisjonene til den nedre kulen.",
           "Spøkelsestvillingen starter med en θ₁ som er en milliondels radian større. Avlesningen viser begge vinklene, den totale energien E og Δ, avstanden i piksler mellom de to nedre kulene.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Funksjonen nedenfor returnerer de tidsderiverte av de fire tilstandsvariablene, på den vanlige lukkede formen for to punktmasser på masseløse stenger. Den integreres med den klassiske Runge-Kutta-metoden av fjerde orden. Hver animasjonsrute måler den virkelige tiden som har gått siden den forrige (med et tak på 0,05 s, slik at en fane i bakgrunnen ikke gjør et hopp), multipliserer den med farten og kjører så mange RK4-steg av størrelse dt som det er plass til, og tar med resten til neste rute. Det holder bevegelsen i samme tempo på skjermer med 60 Hz og 120 Hz.",
+          "Funksjonen nedenfor returnerer de tidsderiverte av de fire tilstandsvariablene, på den vanlige lukkede formen for to punktmasser på masseløse stenger. Den integreres med den klassiske Runge-Kutta-metoden av fjerde orden. Hvert animasjonsbilde måler den virkelige tiden som har gått siden den forrige (med et tak på 0,05 s, slik at en fane i bakgrunnen ikke gjør et hopp), multipliserer den med farten og kjører så mange RK4-steg av størrelse dt som det er plass til, og tar med resten til neste bilde. Det holder bevegelsen i samme tempo på skjermer med 60 Hz og 120 Hz.",
           "Hovedpendelen og spøkelset integreres side om side med de samme stegene. Begge sporene er ringbuffere i Float32Array, der NaN markerer tomme plasser, og tegnes som små kvadrater som toner fra gammelt til nytt. Hvis en vinkel eller hastighet slutter å være endelig, eller en vinkelhastighet overstiger 100 rad/s, tilbakestiller en sperre begge pendlene og viser en kort melding. Med redusert bevegelse slått på starter simuleringen i pause og viser et stillbilde. Knappen «Spill» setter den i gang når du vil.",
         ],
         code: DERIV_EXCERPT,
@@ -467,7 +467,7 @@ export const DOUBLE_PENDULUM_GUIDE: ExplorerGuide = {
       {
         heading: "Å lese av energien",
         paragraphs: [
-          "Energien er ærlighetstesten for integratoren. Med standardstarten slippes pendelen fra ro med begge massene i høyde med opphengspunktet, så E starter på nøyaktig 0 og burde bli der. Ved dt = 0,005 holder den seg innenfor omtrent én enhet i løpet av et minutt, mot en naturlig skala på hundretusener. RK4 bevarer likevel ikke energien eksakt, og ved dt = 0,02 vokser driften til hundrevis av enheter i løpet av det første minuttet. Δ forteller en annen historie: den vokser på grunn av kaos, ikke numeriske feil, og det gjør den selv når E er helt stabil.",
+          "Energien er ærlighetstesten for integratoren. Med standardstarten slippes pendelen fra ro med begge massene i høyde med opphengspunktet, så E starter på nøyaktig 0 og burde bli der. Ved dt = 0,005 holder den seg innenfor omtrent én enhet i løpet av et minutt, mot en naturlig skala på hundretusener. RK4 bevarer likevel ikke energien eksakt, og ved dt = 0,02 vokser driften til hundrevis av enheter i løpet av det første minuttet. Δ forteller en annen historie: Den vokser på grunn av kaos, ikke numeriske feil, og det gjør den selv når E er helt stabil.",
         ],
       },
     ],

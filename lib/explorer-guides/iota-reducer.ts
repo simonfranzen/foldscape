@@ -129,7 +129,7 @@ export const IOTA_REDUCER_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "K und S aus ι zurückgewinnen",
-        text: "Lade das Beispiel, das K aus ι gewinnt, und lies die neun Schritte bis K. Dann das für S: ein ι mehr, elf Schritte, und heraus kommt S. Weil S und K für alles reichen, reicht auch ι.",
+        text: "Lade «Recover K from ι» und lies die neun Schritte bis K. Dann «Recover S from ι»: ein ι mehr, elf Schritte, und heraus kommt S. Weil S und K für alles reichen, reicht auch ι.",
       },
       {
         title: "Die versteckte Identität finden",
@@ -271,7 +271,7 @@ export const IOTA_REDUCER_GUIDE: ExplorerGuide = {
       {
         heading: "Quattro regole di riscrittura",
         paragraphs: [
-          "La logica combinatoria risale agli anni Venti del Novecento, a Moses Schönfinkel e poi a Haskell Curry. Ha tre combinatori di base. I restituisce il proprio argomento. K prende due argomenti e tiene il primo, buttando via il secondo. S prende tre argomenti e distribuisce il terzo sui primi due. S e K da soli sono già Turing completi, e I è una comodità, perché S K K si comporta esattamente come I.",
+          "La logica combinatoria risale agli anni Venti del Novecento, a Moses Schönfinkel e poi a Haskell Curry. Ha tre combinatori di base. I restituisce il proprio argomento. K prende due argomenti e tiene il primo, buttando via il secondo. S prende tre argomenti e distribuisce il terzo sui primi due. S e K da soli sono già Turing-completi, e I è una comodità, perché S K K si comporta esattamente come I.",
           "Iota, un linguaggio proposto da Chris Barker, fa un passo in più e usa un unico combinatore ι definito da ι x = x S K. Applicato a sé stesso dà ι ι = S K (K K), che agisce come l'identità. Annidalo più in profondità e ne escono K e S, quindi tutto ciò che si scrive con S e K si può riscrivere con il solo ι. Le regole usate dal riduttore sono esattamente le quattro della barra laterale:",
         ],
         formula: REDUCTION_RULES_FORMULA,
@@ -299,7 +299,7 @@ export const IOTA_REDUCER_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Prova tu",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Ricostruisci K e S a partire da ι",
@@ -402,8 +402,8 @@ export const IOTA_REDUCER_GUIDE: ExplorerGuide = {
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Varje term är ett binärt träd. Ett löv är en av symbolerna S, K, I eller ι, och en inre nod är en applikation av en funktion på ett argument. En liten rekursivt nedstigande parser gör om texten till det trädet och viker ihop juxtaposition till vänsternästlade applikationer. Utskriftsfunktionen gör om trädet till text igen och sätter bara parenteser kring ett argument som självt är en applikation.",
-          "Varje steg anropar reduceOnce, som först tittar på roten. Om roten matchar en av de fyra reglerna tillämpas den regeln. Annars går funktionen rekursivt in i funktionssidan och först därefter in i argumentet. Det här är reduktion längst till vänster och ytterst, även kallad normalordning. Spårloopen upprepas tills reduceOnce returnerar null (en normalform) eller steggränsen nås. Allt räknas om varje gång du redigerar texten eller flyttar reglaget. Det finns ingen animation, så ingenting ändras vid reducerad rörelse.",
+          "Varje term är ett binärt träd. Ett löv är en av symbolerna S, K, I eller ι, och en inre nod är en applikation av en funktion på ett argument. En liten parser med rekursiv nedstigning gör om texten till det trädet och viker ihop juxtaposition till vänsternästlade applikationer. Utskriftsfunktionen gör om trädet till text igen och sätter bara parenteser kring ett argument som självt är en applikation.",
+          "Varje steg anropar reduceOnce, som först tittar på roten. Om roten matchar en av de fyra reglerna tillämpas den regeln. Annars går funktionen rekursivt in i funktionssidan och först därefter in i argumentet. Det här är reduktion längst till vänster och ytterst, även kallad normalordning. Spårloopen upprepas tills reduceOnce returnerar null (en normalform) eller steggränsen nås. Allt räknas om varje gång du redigerar texten eller flyttar reglaget. Det finns ingen animation, så ingenting ändras vid minskad rörelse.",
           "Termer kopieras, de delas inte. När S duplicerar sitt tredje argument z innehåller trädet verkligen två kopior av z, och därför blir vissa spår bredare för varje rad.",
         ],
         code: REDUCE_EXCERPT,
@@ -415,7 +415,7 @@ export const IOTA_REDUCER_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Bygg K och S av ι",
@@ -437,10 +437,10 @@ export const IOTA_REDUCER_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "En reduserer for SKI- og Iota-kombinatorer i nettleseren: skriv en term, se den bli omskrevet steg for steg, og bygg K og S av kombinatoren ι alene.",
+      "En reduserer for SKI- og Iota-kombinatorer i nettleseren: Skriv en term, se den bli omskrevet steg for steg, og bygg K og S av kombinatoren ι alene.",
     heading: "Slik fungerer denne redusereren",
     intro:
-      "Tekstfeltet inneholder en term i kombinatorisk logikk, et programmeringsspråk helt uten variabler. Alt bygges av noen få kombinatorer som anvendes på hverandre. Lista under feltet er reduksjonssporet: hver linje er den forrige med nøyaktig én regel anvendt, helt til ingen regel passer lenger eller steggrensen er nådd. Standardeksempelet starter med ingenting annet enn den ene kombinatoren ι og ender ni steg senere i K. Det er poenget med Iota: ett eneste symbol er nok til å uttrykke enhver beregnbar funksjon.",
+      "Tekstfeltet inneholder en term i kombinatorisk logikk, et programmeringsspråk helt uten variabler. Alt bygges av noen få kombinatorer som anvendes på hverandre. Listen under feltet er reduksjonssporet: Hver linje er den forrige med nøyaktig én regel anvendt, helt til ingen regel passer lenger eller steggrensen er nådd. Standardeksempelet starter med ingenting annet enn den ene kombinatoren ι og ender ni steg senere i K. Det er poenget med Iota: Ett eneste symbol er nok til å uttrykke enhver beregnbar funksjon.",
     sections: [
       {
         heading: "Fire omskrivingsregler",
@@ -458,10 +458,10 @@ export const IOTA_REDUCER_GUIDE: ExplorerGuide = {
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
           "Hver term er et binært tre. Et blad er ett av symbolene S, K, I eller ι, og en indre node er en anvendelse av en funksjon på et argument. En liten rekursivt nedstigende parser gjør teksten om til det treet og bretter sammenstilling om til venstrenøstede anvendelser. Utskriftsfunksjonen gjør treet om til tekst igjen og setter bare parenteser rundt et argument som selv er en anvendelse.",
-          "Hvert steg kaller reduceOnce, som først ser på roten. Hvis roten passer med en av de fire reglene, utløses den regelen. Ellers går funksjonen rekursivt inn i funksjonssiden og først deretter inn i argumentet. Dette er reduksjon lengst til venstre og ytterst, også kalt normal orden. Sporløkka gjentas til reduceOnce returnerer null (en normalform) eller steggrensen er nådd. Alt regnes ut på nytt hver gang du redigerer teksten eller flytter glidebryteren. Det finnes ingen animasjon, så ingenting endres ved redusert bevegelse.",
+          "Hvert steg kaller reduceOnce, som først ser på roten. Hvis roten passer med en av de fire reglene, utløses den regelen. Ellers går funksjonen rekursivt inn i funksjonssiden og først deretter inn i argumentet. Dette er reduksjon lengst til venstre og ytterst, også kalt normal orden. Sporløkken gjentas til reduceOnce returnerer null (en normalform) eller steggrensen er nådd. Alt regnes ut på nytt hver gang du redigerer teksten eller flytter glidebryteren. Det finnes ingen animasjon, så ingenting endres ved redusert bevegelse.",
           "Termer kopieres, de deles ikke. Når S dupliserer det tredje argumentet sitt z, inneholder treet virkelig to kopier av z, og derfor blir noen spor bredere for hver linje.",
         ],
         code: REDUCE_EXCERPT,
@@ -469,7 +469,7 @@ export const IOTA_REDUCER_GUIDE: ExplorerGuide = {
       {
         heading: "Hvorfor reduksjonsrekkefølgen betyr noe",
         paragraphs: [
-          "Noen termer når aldri en normalform. Den klassiske er S I I (S I I): S I I x reduseres til x x, så termen fortsetter å reprodusere seg selv og vokser, uten deling, for hver runde. Legg den nå inni K I (S I I (S I I)). En strategi som evaluerer argumentene først, ville blitt sittende fast i den uendelige delen for alltid. Normal orden ser først på den ytterste K, ser at det andre argumentet kommer til å bli kastet, og er ferdig på ett steg med I. For kombinatorisk logikk er dette et teorem og ikke flaks: hvis en term i det hele tatt har en normalform, finner reduksjon lengst til venstre og ytterst den.",
+          "Noen termer når aldri en normalform. Den klassiske er S I I (S I I): S I I x reduseres til x x, så termen fortsetter å reprodusere seg selv og vokser, uten deling, for hver runde. Legg den nå inni K I (S I I (S I I)). En strategi som evaluerer argumentene først, ville blitt sittende fast i den uendelige delen for alltid. Normal orden ser først på den ytterste K, ser at det andre argumentet kommer til å bli kastet, og er ferdig på ett steg med I. For kombinatorisk logikk er dette et teorem og ikke flaks: Hvis en term i det hele tatt har en normalform, finner reduksjon lengst til venstre og ytterst den.",
         ],
       },
     ],

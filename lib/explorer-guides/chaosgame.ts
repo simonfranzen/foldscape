@@ -41,7 +41,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Vertices n runs from 3 to 8, the jump ratio r from 0.1 to 0.9. With Auto magic ratio on, r is set to the value at which the n shrunken copies just touch without overlapping: 0.5 for the triangle and the square, about 0.618 (one over the golden ratio) for the pentagon, 2/3 for the hexagon and about 0.7071 (one over the square root of 2) for the octagon. Moving the slider by hand switches this off.",
           "Restriction changes which vertex may be chosen next, based on the previous choice. No repeat forbids picking the same vertex twice in a row. No neighbour forbids the two vertices next to the last one. No opposite forbids the vertex directly across, or, for odd n, the two vertices that are almost across. This one-step memory carves holes into shapes that would otherwise be solid.",
-          "Speed sets how many points are added per frame, from 100 to 50,000, starting at 1500. The four presets load a triangle with r = 0.5, a square with r = 0.5 and no repeat, a pentagon with its magic ratio, and Barnsley's fern. Clear wipes the canvas, as does any change of rule, speed or colour.",
+          "Speed sets how many points are added per frame, from 100 to 50,000, starting at 1500. The four presets load a triangle with r = 0.5, a square with r = 0.5 and no repeat, a pentagon with its magic ratio, and Barnsley's fern. Clear wipes the canvas, as does any change of rule, speed or colour, so the counter always matches the picture.",
         ],
       },
       {
@@ -141,10 +141,10 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
   },
   es: {
     metaDescription:
-      "Juega al juego del caos en vivo: elige vértices, razón de salto y reglas, y mira cómo surgen el triángulo de Sierpinski o el helecho de Barnsley del puro azar.",
+      "Juega al juego del caos en vivo: elige vértices, razón de salto y reglas, y mira cómo surgen el triángulo de Sierpiński o el helecho de Barnsley del puro azar.",
     heading: "Cómo funciona este explorador",
     intro:
-      "Cada punto del lienzo sale de una sola regla aplicada una y otra vez: elige al azar un vértice del polígono y salta parte del camino hacia él. Nada en la regla habla de triángulos dentro de triángulos y, sin embargo, tras unos pocos miles de saltos el triángulo de Sierpinski es inconfundible. El azar solo decide el orden en que se rellena la imagen; la forma queda fijada por los vértices y la razón de salto. Fue Michael Barnsley quien dio nombre a este juego.",
+      "Cada punto del lienzo sale de una sola regla aplicada una y otra vez: elige al azar un vértice del polígono y salta parte del camino hacia él. Nada en la regla habla de triángulos dentro de triángulos y, sin embargo, tras unos pocos miles de saltos el triángulo de Sierpiński es inconfundible. El azar solo decide el orden en que se rellena la imagen; la forma queda fijada por los vértices y la razón de salto. Fue Michael Barnsley quien dio nombre a este juego.",
     sections: [
       {
         heading: "La regla",
@@ -159,11 +159,11 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "«Vértices n» va de 3 a 8, la razón de salto r de 0,1 a 0,9. Con «Razón mágica automática» activada, r toma el valor con el que las n copias encogidas se tocan justo sin solaparse: 0,5 para el triángulo y el cuadrado, aproximadamente 0,618 (uno entre el número áureo) para el pentágono, 2/3 para el hexágono y aproximadamente 0,7071 (uno entre la raíz cuadrada de 2) para el octógono. Si mueves el deslizador a mano, esto se desactiva.",
           "«Restricción» cambia qué vértice puede elegirse a continuación, en función de la elección anterior. «Sin repetir» prohíbe elegir el mismo vértice dos veces seguidas. «Sin vecino» prohíbe los dos vértices contiguos al último. «Sin opuesto» prohíbe el vértice situado justo enfrente o, si n es impar, los dos vértices que están casi enfrente. Esta memoria de un solo paso abre huecos en formas que de otro modo serían macizas.",
-          "«Velocidad» fija cuántos puntos se añaden por fotograma, de 100 a 50 000, empezando en 1500. Los cuatro preajustes cargan un triángulo con r = 0,5, un cuadrado con r = 0,5 y «Sin repetir», un pentágono con su razón mágica y el helecho de Barnsley. «Borrar» limpia el lienzo, igual que cualquier cambio de regla, velocidad o color.",
+          "«Velocidad» fija cuántos puntos se añaden por fotograma, de 100 a 50 000, empezando en 1500. Los cuatro preajustes cargan un triángulo con r = 0,5, un cuadrado con r = 0,5 y «Sin repetir», un pentágono con su razón mágica y el helecho de Barnsley. «Borrar» limpia el lienzo, igual que cualquier cambio de regla, velocidad o color, de modo que el contador siempre coincide con la imagen.",
         ],
       },
       {
-        heading: "Cómo está hecho",
+        heading: "Cómo está construido",
         paragraphs: [
           "Los vértices se sitúan sobre una circunferencia que ocupa el lienzo salvo un margen de 24 píxeles, con el primer vértice arriba. Cada fotograma ejecuta un bucle muy ajustado: sortea un vértice, lo rechaza si la restricción lo prohíbe (y se rinde tras 64 intentos, para que una regla que lo prohíbe todo no pueda congelar la página), salta, recuerda la elección y pinta un único píxel con un relleno ligeramente transparente. Como los puntos son translúcidos, los lugares más visitados se vuelven más brillantes.",
           "El helecho usa la misma maquinaria con cuatro aplicaciones afines en lugar de n saltos hacia vértices. Cada aplicación es una matriz más un desplazamiento, elegida con probabilidades del 1, 85, 7 y 7 por ciento: la menos frecuente lo aplasta todo sobre el tallo, la más frecuente copia el helecho entero algo más pequeño y más arriba, y las otras dos producen las frondas inferiores izquierda y derecha.",
@@ -182,7 +182,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Reduce el triángulo a polvo",
-        text: "Carga el preajuste «Triángulo» y arrastra r de 0,5 a 0,6. Las tres copias se separan y el triángulo de Sierpinski se deshace en cúmulos cada vez más finos. En 0,4 los huecos se cierran y el triángulo queda casi macizo.",
+        text: "Carga el preajuste «Triángulo» y arrastra r de 0,5 a 0,6. Las tres copias se separan y el triángulo de Sierpiński se deshace en cúmulos cada vez más finos. En 0,4 los huecos se cierran y el triángulo queda casi macizo.",
       },
       {
         title: "Una regla que no deja elección",
@@ -203,13 +203,13 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
       "Joue au jeu du chaos en direct : règle sommets, ratio de saut et restrictions, et vois naître le triangle de Sierpiński ou la fougère de Barnsley du hasard.",
     heading: "Comment fonctionne cet explorateur",
     intro:
-      "Chaque point de la zone de dessin provient d'une seule règle appliquée encore et encore : choisis au hasard un sommet du polygone et saute d'une partie du chemin dans sa direction. Rien dans la règle ne parle de triangles dans des triangles, et pourtant, après quelques milliers de sauts, le triangle de Sierpiński est reconnaissable entre tous. Le hasard ne décide que de l'ordre dans lequel l'image se remplit ; la forme est fixée par les sommets et le ratio de saut. C'est Michael Barnsley qui a donné son nom à ce jeu.",
+      "Chaque point du canevas provient d'une seule règle appliquée encore et encore : choisis au hasard un sommet du polygone et saute d'une partie du chemin dans sa direction. Rien dans la règle ne parle de triangles dans des triangles, et pourtant, après quelques milliers de sauts, le triangle de Sierpiński est reconnaissable entre tous. Le hasard ne décide que de l'ordre dans lequel l'image se remplit ; la forme est fixée par les sommets et le ratio de saut. C'est Michael Barnsley qui a donné son nom à ce jeu.",
     sections: [
       {
         heading: "La règle",
         paragraphs: [
           "Place n sommets, de v₁ à vₙ, sur un polygone régulier et pars de n'importe où. À chaque étape, choisis un sommet vᵢ et déplace le point courant p d'une fraction r du chemin vers lui. Avec r = 0,5, tu arrives exactement à mi-chemin. Chaque déplacement est une contraction qui rétrécit le plan d'un facteur 1 − r vers son sommet. L'ensemble formé de copies rétrécies de lui-même par ces applications est l'attracteur d'un système de fonctions itérées, et la marche aléatoire le dessine peu à peu.",
-          "Le point de départ n'a aucune importance. Chaque saut réduit la distance à l'attracteur d'un facteur 1 − r, si bien qu'avec r = 0,5 une erreur initiale de toute une zone de dessin passe sous le pixel après une dizaine de sauts.",
+          "Le point de départ n'a aucune importance. Chaque saut réduit la distance à l'attracteur d'un facteur 1 − r, si bien qu'avec r = 0,5 une erreur initiale de tout un canevas passe sous le pixel après une dizaine de sauts.",
         ],
         formula: "p_{k+1} = p_k + r\\,(v_i - p_k), \\qquad i \\text{ choisi au hasard}",
       },
@@ -218,15 +218,15 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "« Sommets n » va de 3 à 8, le ratio de saut r de 0,1 à 0,9. Quand « Ratio magique auto » est activé, r prend la valeur pour laquelle les n copies rétrécies se touchent tout juste sans se chevaucher : 0,5 pour le triangle et le carré, environ 0,618 (l'inverse du nombre d'or) pour le pentagone, 2/3 pour l'hexagone et environ 0,7071 (l'inverse de la racine carrée de 2) pour l'octogone. Déplacer le curseur à la main désactive ce réglage.",
           "« Restriction » modifie le sommet qui peut être choisi ensuite, en fonction du choix précédent. « Sans répétition » interdit de choisir deux fois de suite le même sommet. « Sans voisin » interdit les deux sommets voisins du dernier. « Sans opposé » interdit le sommet situé juste en face ou, pour n impair, les deux sommets qui sont presque en face. Cette mémoire d'un seul coup creuse des trous dans des formes qui seraient pleines autrement.",
-          "« Vitesse » règle le nombre de points ajoutés par image, de 100 à 50 000, avec 1500 au départ. Les quatre préréglages chargent un triangle avec r = 0,5, un carré avec r = 0,5 et « Sans répétition », un pentagone avec son ratio magique, et la fougère de Barnsley. « Effacer » vide la zone de dessin, tout comme n'importe quel changement de règle, de vitesse ou de couleur.",
+          "« Vitesse » règle le nombre de points ajoutés par image, de 100 à 50 000, avec 1 500 au départ. Les quatre préréglages chargent un triangle avec r = 0,5, un carré avec r = 0,5 et « Sans répétition », un pentagone avec son ratio magique, et la fougère de Barnsley. « Effacer » vide le canevas, tout comme n'importe quel changement de règle, de vitesse ou de couleur, si bien que le compteur correspond toujours à l'image.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Les sommets sont posés sur un cercle qui remplit la zone de dessin à une marge de 24 pixels près, le premier sommet en haut. Chaque image exécute une boucle serrée : tirer un sommet au hasard, le rejeter si la restriction l'interdit (en abandonnant après 64 tentatives, pour qu'une règle qui interdit tout ne puisse pas figer la page), sauter, mémoriser le choix et tracer un unique pixel avec un remplissage légèrement transparent. Comme les points sont translucides, les endroits souvent visités deviennent plus lumineux.",
+          "Les sommets sont posés sur un cercle qui remplit le canevas à une marge de 24 pixels près, le premier sommet en haut. Chaque image exécute une boucle serrée : tirer un sommet au hasard, le rejeter si la restriction l'interdit (en abandonnant après 64 tentatives, pour qu'une règle qui interdit tout ne puisse pas figer la page), sauter, mémoriser le choix et tracer un unique pixel avec un remplissage légèrement transparent. Comme les points sont translucides, les endroits souvent visités deviennent plus lumineux.",
           "La fougère utilise la même mécanique avec quatre applications affines au lieu de n sauts vers des sommets. Chaque application est une matrice plus une translation, choisie avec des probabilités de 1, 85, 7 et 7 pour cent : la plus rare écrase tout sur la tige, la plus fréquente recopie la fougère entière un peu plus petite et un peu plus haut, et les deux autres produisent les frondes les plus basses, à gauche et à droite.",
-          "Au bout de deux millions de points, la boucle s'arrête, puisque l'image ne peut plus devenir plus dense. Le compteur se met à jour une dizaine de fois par seconde. Si ton système demande de réduire les animations, il n'y a pas d'animation : 200 000 points sont calculés d'un coup et l'image terminée est dessinée en une seule fois.",
+          "Au bout de deux millions de points, la boucle s'arrête, puisque l'image ne peut plus devenir plus dense. Le compteur se met à jour une dizaine de fois par seconde. Si ton système demande de réduire les animations, il n'y a pas d'animation : 200 000 points sont calculés d'un coup et l'image terminée est dessinée en une seule fois.",
         ],
         code: LOOP_EXCERPT,
       },
@@ -245,7 +245,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
       },
       {
         title: "Une règle qui ne laisse aucun choix",
-        text: "Règle n = 3 et choisis « Sans voisin ». Dans un triangle, tout autre sommet est un voisin, donc la marche ne peut que reprendre le même coin. Tous les points s'entassent sur un seul sommet et la zone de dessin reste presque vide.",
+        text: "Règle n = 3 et choisis « Sans voisin ». Dans un triangle, tout autre sommet est un voisin, donc la marche ne peut que reprendre le même coin. Tous les points s'entassent sur un seul sommet et le canevas reste presque vide.",
       },
       {
         title: "Transforme un carré en ligne",
@@ -259,16 +259,16 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
   },
   it: {
     metaDescription:
-      "Gioca al gioco del caos dal vivo: scegli vertici, rapporto di salto e regole e guarda nascere il triangolo di Sierpinski o la felce di Barnsley dal puro caso.",
+      "Gioca al gioco del caos dal vivo: scegli vertici, rapporto di salto e regole e guarda nascere il triangolo di Sierpiński o la felce di Barnsley dal puro caso.",
     heading: "Come funziona questo esploratore",
     intro:
-      "Ogni punto sulla tela nasce da un'unica regola applicata più e più volte: scegli a caso un vertice del poligono e salta per una parte del tragitto verso di esso. Nulla nella regola parla di triangoli dentro triangoli, eppure dopo qualche migliaio di salti il triangolo di Sierpinski è inconfondibile. Il caso decide soltanto l'ordine in cui l'immagine si riempie; la forma è fissata dai vertici e dal rapporto di salto. È stato Michael Barnsley a dare il nome a questo gioco.",
+      "Ogni punto sul canvas nasce da un'unica regola applicata più e più volte: scegli a caso un vertice del poligono e salta per una parte del tragitto verso di esso. Nulla nella regola parla di triangoli dentro triangoli, eppure dopo qualche migliaio di salti il triangolo di Sierpiński è inconfondibile. Il caso decide soltanto l'ordine in cui l'immagine si riempie; la forma è fissata dai vertici e dal rapporto di salto. È stato Michael Barnsley a dare il nome a questo gioco.",
     sections: [
       {
         heading: "La regola",
         paragraphs: [
-          "Disponi n vertici, da v₁ a vₙ, su un poligono regolare e parti da un punto qualsiasi. A ogni passo scegli un vertice vᵢ e sposta il punto corrente p di una frazione r del tragitto verso di esso. Con r = 0,5 arrivi esattamente a metà strada. Ogni mossa è una contrazione che rimpicciolisce il piano del fattore 1 − r verso il proprio vertice. L'insieme formato da copie rimpicciolite di sé stesso sotto queste mappe è l'attrattore di un sistema di funzioni iterate, e la passeggiata aleatoria lo disegna a poco a poco.",
-          "Il punto di partenza non conta. Ogni salto riduce la distanza dall'attrattore del fattore 1 − r, quindi con r = 0,5 un errore iniziale grande quanto l'intera tela scende sotto il pixel dopo una decina di salti.",
+          "Disponi n vertici, da v₁ a vₙ, su un poligono regolare e parti da un punto qualsiasi. A ogni passo scegli un vertice vᵢ e sposta il punto corrente p di una frazione r del tragitto verso di esso. Con r = 0,5 arrivi esattamente a metà strada. Ogni mossa è una contrazione che rimpicciolisce il piano del fattore 1 − r verso il proprio vertice. L'insieme formato da copie rimpicciolite di sé stesso sotto queste mappe è l'attrattore di un sistema di funzioni iterate, e la passeggiata casuale lo disegna a poco a poco.",
+          "Il punto di partenza non conta. Ogni salto riduce la distanza dall'attrattore del fattore 1 − r, quindi con r = 0,5 un errore iniziale grande quanto l'intero canvas scende sotto il pixel dopo una decina di salti.",
         ],
         formula: "p_{k+1} = p_k + r\\,(v_i - p_k), \\qquad i \\text{ scelto a caso}",
       },
@@ -277,14 +277,14 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "«Vertici n» va da 3 a 8, il rapporto di salto r da 0,1 a 0,9. Con «Rapporto magico automatico» attivo, r assume il valore per cui le n copie rimpicciolite si toccano appena senza sovrapporsi: 0,5 per il triangolo e il quadrato, circa 0,618 (uno diviso la sezione aurea) per il pentagono, 2/3 per l'esagono e circa 0,7071 (uno diviso la radice quadrata di 2) per l'ottagono. Se muovi il cursore a mano, l'opzione si disattiva.",
           "«Restrizione» cambia quale vertice può essere scelto al passo successivo, in base alla scelta precedente. «Senza ripetizione» vieta di scegliere lo stesso vertice due volte di fila. «Nessun vicino» vieta i due vertici accanto all'ultimo. «Nessun opposto» vieta il vertice direttamente di fronte oppure, per n dispari, i due vertici che stanno quasi di fronte. Questa memoria di un solo passo scava buchi in forme che altrimenti sarebbero piene.",
-          "«Velocità» imposta quanti punti vengono aggiunti per fotogramma, da 100 a 50.000, partendo da 1500. Le quattro preimpostazioni caricano un triangolo con r = 0,5, un quadrato con r = 0,5 e «Senza ripetizione», un pentagono con il suo rapporto magico e la felce di Barnsley. «Pulisci» svuota la tela, come fa qualsiasi cambio di regola, velocità o colore.",
+          "«Velocità» imposta quanti punti vengono aggiunti per fotogramma, da 100 a 50.000, partendo da 1500. I quattro preset caricano un triangolo con r = 0,5, un quadrato con r = 0,5 e «Senza ripetizione», un pentagono con il suo rapporto magico e la felce di Barnsley. «Pulisci» svuota il canvas, come fa qualsiasi cambio di regola, velocità o colore.",
         ],
       },
       {
         heading: "Com'è costruito",
         paragraphs: [
-          "I vertici stanno su una circonferenza che riempie la tela a meno di un margine di 24 pixel, con il primo vertice in alto. Ogni fotogramma esegue un ciclo serrato: estrae un vertice a caso, lo scarta se la restrizione lo vieta (rinunciando dopo 64 tentativi, così una regola che vieta tutto non può bloccare la pagina), salta, ricorda la scelta e disegna un singolo pixel con un riempimento leggermente trasparente. Poiché i punti sono traslucidi, i luoghi visitati più spesso diventano più luminosi.",
-          "La felce usa lo stesso meccanismo con quattro mappe affini al posto degli n salti verso i vertici. Ogni mappa è una matrice più una traslazione, scelta con probabilità dell'1, 85, 7 e 7 per cento: quella rara schiaccia tutto sullo stelo, quella comune copia l'intera felce un po' più piccola e più in alto, e le altre due producono le fronde più basse a sinistra e a destra.",
+          "I vertici stanno su una circonferenza che riempie il canvas a meno di un margine di 24 pixel, con il primo vertice in alto. Ogni fotogramma esegue un ciclo serrato: estrae un vertice a caso, lo scarta se la restrizione lo vieta (rinunciando dopo 64 tentativi, così una regola che vieta tutto non può bloccare la pagina), salta, ricorda la scelta e disegna un singolo pixel con un riempimento leggermente trasparente. Poiché i punti sono traslucidi, i luoghi visitati più spesso diventano più luminosi.",
+          "La felce usa lo stesso meccanismo con quattro mappe affini al posto degli n salti verso i vertici. Ogni mappa è una matrice più una traslazione, scelta con probabilità dell'1, dell'85, del 7 e del 7 per cento: quella rara schiaccia tutto sullo stelo, quella comune copia l'intera felce un po' più piccola e più in alto, e le altre due producono le fronde più basse a sinistra e a destra.",
           "Dopo due milioni di punti il ciclo si ferma, perché l'immagine non può diventare più densa. Il contatore si aggiorna circa dieci volte al secondo. Se il tuo sistema chiede di ridurre il movimento, non c'è alcuna animazione: 200.000 punti vengono calcolati in una volta sola e l'immagine finita è disegnata in un unico fotogramma.",
         ],
         code: LOOP_EXCERPT,
@@ -292,7 +292,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
       {
         heading: "Perché il rapporto magico è magico",
         paragraphs: [
-          "Sotto il rapporto magico le copie si sovrappongono e si impastano fino a formare una regione piena; sopra si allontanano e si sbriciolano in polvere. Esattamente al valore magico le copie si sfiorano, lato contro lato o angolo contro angolo, e il risultato è un frattale autosimile pulito. Per il quadrato succede qualcosa di speciale: con il rapporto magico 0,5 le quattro copie tassellano perfettamente il quadrato, quindi il semplice gioco del caos lo riempie solo di rumore uniforme. Per questo la preimpostazione del quadrato aggiunge la regola «Senza ripetizione».",
+          "Sotto il rapporto magico le copie si sovrappongono e si impastano fino a formare una regione piena; sopra si allontanano e si sbriciolano in polvere. Esattamente al valore magico le copie si sfiorano, lato contro lato o angolo contro angolo, e il risultato è un frattale autosimile pulito. Per il quadrato succede qualcosa di speciale: con il rapporto magico 0,5 le quattro copie tassellano perfettamente il quadrato, quindi il semplice gioco del caos lo riempie solo di rumore uniforme. Per questo il preset del quadrato aggiunge la regola «Senza ripetizione».",
         ],
       },
     ],
@@ -300,11 +300,11 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Riduci il triangolo in polvere",
-        text: "Carica la preimpostazione «Triangolo» e trascina r da 0,5 fino a 0,6. Le tre copie si separano e il triangolo di Sierpinski si sfalda in grappoli sempre più fini. A 0,4 i vuoti si chiudono e il triangolo è quasi pieno.",
+        text: "Carica il preset «Triangolo» e trascina r da 0,5 fino a 0,6. Le tre copie si separano e il triangolo di Sierpiński si sfalda in grappoli sempre più fini. A 0,4 i vuoti si chiudono e il triangolo è quasi pieno.",
       },
       {
         title: "Una regola che non lascia scelta",
-        text: "Imposta n = 3 e scegli «Nessun vicino». In un triangolo ogni altro vertice è un vicino, quindi la passeggiata può solo scegliere di nuovo lo stesso angolo. Tutti i punti si ammucchiano in un vertice e la tela resta quasi vuota.",
+        text: "Imposta n = 3 e scegli «Nessun vicino». In un triangolo ogni altro vertice è un vicino, quindi la passeggiata può solo scegliere di nuovo lo stesso angolo. Tutti i punti si ammucchiano in un vertice e il canvas resta quasi vuota.",
       },
       {
         title: "Trasforma un quadrato in una linea",
@@ -312,7 +312,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
       },
       {
         title: "Guarda crescere la felce",
-        text: "Scegli la preimpostazione «Felce di Barnsley» e imposta «Velocità» su 100. La parte alta della felce si definisce per prima, perché l'85 per cento di tutti i salti finisce lì. Le due fronde più basse ricevono ciascuna solo il 7 per cento dei punti, e lo stelo principale appena l'1 per cento, quindi resta sbiadito più a lungo.",
+        text: "Scegli il preset «Felce di Barnsley» e imposta «Velocità» su 100. La parte alta della felce si definisce per prima, perché l'85 per cento di tutti i salti finisce lì. Le due fronde più basse ricevono ciascuna solo il 7 per cento dei punti, e lo stelo principale appena l'1 per cento, quindi resta sbiadito più a lungo.",
       },
     ],
   },
@@ -321,37 +321,37 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
       "Joga o jogo do caos ao vivo: ajusta vértices, razão de salto e regras e vê o triângulo de Sierpinski ou o feto de Barnsley surgirem de saltos ao acaso.",
     heading: "Como funciona este explorador",
     intro:
-      "Cada ponto no ecrã vem de uma única regra aplicada repetidas vezes: escolhe ao acaso um vértice do polígono e salta parte do caminho na direção dele. Nada na regra fala de triângulos dentro de triângulos e, mesmo assim, depois de alguns milhares de saltos o triângulo de Sierpinski é inconfundível. O acaso decide apenas a ordem em que a imagem se preenche; a forma é fixada pelos vértices e pela razão de salto. Foi Michael Barnsley quem deu nome a este jogo.",
+      "Cada ponto no canvas vem de uma única regra aplicada repetidas vezes: escolhe ao acaso um vértice do polígono e salta parte do caminho na direção dele. Nada na regra fala de triângulos dentro de triângulos e, mesmo assim, depois de alguns milhares de saltos o triângulo de Sierpinski é inconfundível. O acaso decide apenas a ordem em que a imagem se preenche; a forma é fixada pelos vértices e pela razão de salto. Foi Michael Barnsley quem deu nome a este jogo.",
     sections: [
       {
         heading: "A regra",
         paragraphs: [
-          "Coloca n vértices, de v₁ a vₙ, num polígono regular e começa em qualquer lugar. A cada passo, escolhe um vértice vᵢ e move o ponto atual p por uma fração r do caminho até ele. Com r = 0,5 ficas exatamente a meio caminho. Cada movimento é uma contração que encolhe o plano pelo fator 1 − r em direção ao seu vértice. O conjunto formado por cópias encolhidas de si mesmo sob esses mapas é o atrator de um sistema de funções iteradas, e o passeio aleatório vai desenhando esse conjunto.",
-          "O ponto de partida não importa. Cada salto reduz a distância até o atrator pelo fator 1 − r, de modo que, com r = 0,5, um erro inicial do tamanho do ecrã inteiro fica abaixo de um píxel depois de uns dez saltos.",
+          "Coloca n vértices, de v₁ a vₙ, num polígono regular e começa em qualquer lugar. A cada passo, escolhe um vértice vᵢ e move o ponto atual p uma fração r do caminho até ele. Com r = 0,5 ficas exatamente a meio caminho. Cada movimento é uma contração que encolhe o plano pelo fator 1 − r em direção ao seu vértice. O conjunto formado por cópias encolhidas de si mesmo sob estas aplicações é o atrator de um sistema de funções iteradas, e o passeio aleatório vai desenhando esse conjunto.",
+          "O ponto de partida não importa. Cada salto reduz a distância ao atrator pelo fator 1 − r, de modo que, com r = 0,5, um erro inicial do tamanho do canvas inteiro fica abaixo de um píxel depois de uns dez saltos.",
         ],
         formula: "p_{k+1} = p_k + r\\,(v_i - p_k), \\qquad i \\text{ escolhido ao acaso}",
       },
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "«Vértices n» vai de 3 a 8, a razão de salto r de 0,1 a 0,9. Com «Razão mágica automática» ativada, r assume o valor em que as n cópias encolhidas apenas se tocam, sem se sobreporem: 0,5 para o triângulo e o quadrado, cerca de 0,618 (um dividido pela razão áurea) para o pentágono, 2/3 para o hexágono e cerca de 0,7071 (um dividido pela raiz quadrada de 2) para o octógono. Mover o cursor à mão desativa essa opção.",
-          "«Restrição» muda qual vértice pode ser escolhido em seguida, com base na escolha anterior. «Sem repetir» proíbe escolher o mesmo vértice duas vezes seguidas. «Sem vizinho» proíbe os dois vértices ao lado do último. «Sem oposto» proíbe o vértice diretamente em frente ou, para n ímpar, os dois vértices que ficam quase em frente. Essa memória de um único passo abre buracos em formas que, de outro modo, seriam sólidas.",
-          "«Velocidade» define quantos pontos são acrescentados por fotograma, de 100 a 50 000, começando em 1500. As quatro predefinições carregam um triângulo com r = 0,5, um quadrado com r = 0,5 e «Sem repetir», um pentágono com a sua razão mágica e o feto de Barnsley. «Limpar» apaga o ecrã, assim como qualquer mudança de regra, velocidade ou cor.",
+          "«Vértices n» vai de 3 a 8, a razão de salto r de 0,1 a 0,9. Com «Razão mágica automática» ativada, r assume o valor em que as n cópias encolhidas apenas se tocam, sem se sobreporem: 0,5 para o triângulo e o quadrado, cerca de 0,618 (um a dividir pela razão áurea) para o pentágono, 2/3 para o hexágono e cerca de 0,7071 (um a dividir pela raiz quadrada de 2) para o octógono. Mover o cursor à mão desativa essa opção.",
+          "«Restrição» altera o vértice que pode ser escolhido a seguir, com base na escolha anterior. «Sem repetir» proíbe escolher o mesmo vértice duas vezes seguidas. «Sem vizinho» proíbe os dois vértices ao lado do último. «Sem oposto» proíbe o vértice diretamente em frente ou, para n ímpar, os dois vértices que ficam quase em frente. Esta memória de um único passo abre buracos em formas que, de outro modo, seriam sólidas.",
+          "«Velocidade» define quantos pontos são acrescentados por fotograma, de 100 a 50 000, começando em 1500. As quatro predefinições carregam um triângulo com r = 0,5, um quadrado com r = 0,5 e «Sem repetir», um pentágono com a sua razão mágica e o feto de Barnsley. «Limpar» apaga o canvas, tal como qualquer mudança de regra, velocidade ou cor, pelo que o contador corresponde sempre à imagem.",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
-          "Os vértices ficam sobre um círculo que preenche o ecrã, menos uma margem de 24 píxeis, com o primeiro vértice no topo. Cada fotograma executa um ciclo enxuto: sorteia um vértice, rejeita o sorteio se a restrição o proibir (desistindo após 64 tentativas, para que uma regra que proíbe tudo não consiga bloquear a página), salta, guarda a escolha e pinta um único píxel com um preenchimento ligeiramente transparente. Como os pontos são translúcidos, os lugares mais visitados ficam mais claros.",
-          "O feto usa o mesmo mecanismo com quatro mapas afins no lugar de n saltos em direção aos vértices. Cada mapa é uma matriz mais um deslocamento, escolhido com probabilidades de 1, 85, 7 e 7 por cento: o raro achata tudo sobre o caule, o comum copia o feto inteiro um pouco mais pequeno e mais acima, e os outros dois produzem as frondes mais baixas, à esquerda e à direita.",
-          "Depois de dois milhões de pontos o ciclo para, já que a imagem não pode ficar mais densa. O contador é atualizado cerca de dez vezes por segundo. Se o teu sistema pedir movimento reduzido, não há animação: 200 000 pontos são calculados de uma vez e a imagem pronta é desenhada num único fotograma.",
+          "Os vértices ficam sobre um círculo que preenche o canvas, menos uma margem de 24 píxeis, com o primeiro vértice no topo. Cada fotograma executa um ciclo apertado: sorteia um vértice, rejeita o sorteio se a restrição o proibir (desistindo após 64 tentativas, para que uma regra que proíbe tudo não consiga bloquear a página), salta, guarda a escolha e pinta um único píxel com um preenchimento ligeiramente transparente. Como os pontos são translúcidos, os lugares mais visitados ficam mais claros.",
+          "O feto usa o mesmo mecanismo com quatro aplicações afins em vez de n saltos em direção aos vértices. Cada aplicação é uma matriz mais um deslocamento, escolhida com probabilidades de 1, 85, 7 e 7 por cento: a rara achata tudo sobre o caule, a comum copia o feto inteiro um pouco mais pequeno e mais acima, e as outras duas produzem as frondes mais baixas, à esquerda e à direita.",
+          "Depois de dois milhões de pontos o ciclo para, já que a imagem não pode ficar mais densa. O contador é atualizado cerca de dez vezes por segundo. Se o teu sistema pedir movimento reduzido, não há animação: 200 000 pontos são calculados de uma vez e a imagem final é desenhada num único fotograma.",
         ],
         code: LOOP_EXCERPT,
       },
       {
         heading: "Porque é que a razão mágica é mágica",
         paragraphs: [
-          "Abaixo da razão mágica, as cópias sobrepõem-se e esbatem-se em direção a uma região preenchida; acima dela, afastam-se e viram poeira. Exatamente no valor mágico as cópias beijam-se, lado com lado ou canto com canto, e o resultado é um fractal autossimilar limpo. Com o quadrado acontece algo especial: a razão mágica 0,5 faz as quatro cópias pavimentarem o quadrado na perfeição, pelo que o jogo do caos simples apenas o preenche com ruído uniforme. É por isso que a predefinição do quadrado acrescenta a regra «Sem repetir».",
+          "Abaixo da razão mágica, as cópias sobrepõem-se e esbatem-se em direção a uma região preenchida; acima dela, afastam-se e desfazem-se em poeira. Exatamente no valor mágico as cópias beijam-se, lado com lado ou canto com canto, e o resultado é um fractal autossemelhante limpo. Com o quadrado acontece algo especial: a razão mágica 0,5 faz as quatro cópias pavimentarem o quadrado na perfeição, pelo que o jogo do caos simples apenas o preenche com ruído uniforme. É por isso que a predefinição do quadrado acrescenta a regra «Sem repetir».",
         ],
       },
     ],
@@ -359,28 +359,28 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Desfaz o triângulo em poeira",
-        text: "Carrega a predefinição «Triângulo» e arrasta r de 0,5 até 0,6. As três cópias separam-se e o triângulo de Sierpinski desfaz-se em aglomerados cada vez mais finos. Em 0,4 as lacunas fecham-se e o triângulo fica quase sólido.",
+        text: "Carrega a predefinição «Triângulo» e arrasta r de 0,5 até 0,6. As três cópias separam-se e o triângulo de Sierpinski desfaz-se em aglomerados cada vez mais finos. Com r = 0,4 as lacunas fecham-se e o triângulo fica quase sólido.",
       },
       {
         title: "Uma regra que não deixa escolha",
-        text: "Ajusta n = 3 e escolhe «Sem vizinho». Num triângulo, qualquer outro vértice é vizinho, pelo que o passeio só pode escolher de novo o mesmo canto. Todos os pontos amontoam-se num vértice e o ecrã fica quase vazia.",
+        text: "Põe n = 3 e escolhe «Sem vizinho». Num triângulo, qualquer outro vértice é vizinho, pelo que o passeio só pode escolher de novo o mesmo canto. Todos os pontos se amontoam num vértice e o canvas fica quase vazio.",
       },
       {
         title: "Transforma um quadrado numa linha",
-        text: "Ajusta n = 4 com r = 0,5 e escolhe «Sem vizinho». Só são permitidos o mesmo vértice ou o oposto, pelo que o passeio fica preso numa diagonal. Depois compara «Sem oposto» e «Sem repetir».",
+        text: "Põe n = 4 com r = 0,5 e escolhe «Sem vizinho». Só são permitidos o mesmo vértice ou o oposto, pelo que o passeio fica preso numa diagonal. Depois compara «Sem oposto» e «Sem repetir».",
       },
       {
         title: "Vê o feto crescer",
-        text: "Escolhe a predefinição «Samambaia de Barnsley» e ajusta «Velocidade» para 100. A parte de cima do feto ganha nitidez mais depressa porque 85 por cento de todos os saltos caem nela. As duas frondes mais baixas recebem apenas 7 por cento dos pontos cada uma, e o caule principal só 1 por cento, por isso ele fica apagado por mais tempo.",
+        text: "Escolhe a predefinição «Samambaia de Barnsley» e põe «Velocidade» em 100. A parte de cima do feto ganha nitidez mais depressa porque 85 por cento de todos os saltos caem nela. As duas frondes mais baixas recebem apenas 7 por cento dos pontos cada uma, e o caule principal só 1 por cento, por isso é o que fica ténue durante mais tempo.",
       },
     ],
   },
   sv: {
     metaDescription:
-      "Spela kaosspelet live: välj hörn, hoppkvot och begränsningar och se hur Sierpinskitriangeln eller Barnsleys ormbunke växer fram ur helt slumpmässiga hopp.",
+      "Spela kaosspelet live: välj hörn, hoppkvot och begränsningar och se hur Sierpiński-triangeln eller Barnsleys ormbunke växer fram ur helt slumpmässiga hopp.",
     heading: "Så fungerar den här utforskaren",
     intro:
-      "Varje prick på ritytan kommer från en enda regel som tillämpas om och om igen: välj ett av månghörningens hörn på måfå och hoppa en del av vägen mot det. Ingenting i regeln nämner trianglar inuti trianglar, och ändå går Sierpinskitriangeln inte att ta miste på efter några tusen hopp. Slumpen avgör bara i vilken ordning bilden fylls i; formen bestäms av hörnen och hoppkvoten. Det var Michael Barnsley som gav spelet dess namn.",
+      "Varje prick på ritytan kommer från en enda regel som tillämpas om och om igen: välj ett av månghörningens hörn på måfå och hoppa en del av vägen mot det. Ingenting i regeln nämner trianglar inuti trianglar, och ändå går Sierpiński-triangeln inte att ta miste på efter några tusen hopp. Slumpen avgör bara i vilken ordning bilden fylls i; formen bestäms av hörnen och hoppkvoten. Det var Michael Barnsley som gav spelet dess namn.",
     sections: [
       {
         heading: "Regeln",
@@ -395,15 +395,15 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "”Hörn n” går från 3 till 8, hoppkvoten r från 0,1 till 0,9. När ”Magisk kvot automatiskt” är på sätts r till det värde där de n krympta kopiorna precis rör vid varandra utan att överlappa: 0,5 för triangeln och kvadraten, ungefär 0,618 (ett genom gyllene snittet) för femhörningen, 2/3 för sexhörningen och ungefär 0,7071 (ett genom roten ur 2) för åttahörningen. Flyttar du reglaget för hand stängs det här av.",
           "”Begränsning” ändrar vilket hörn som får väljas härnäst, utifrån det föregående valet. ”Ingen upprepning” förbjuder att samma hörn väljs två gånger i rad. ”Ingen granne” förbjuder de två hörnen intill det senaste. ”Ingen motsatt” förbjuder hörnet rakt över eller, för udda n, de två hörn som ligger nästan rakt över. Det här minnet på ett enda steg karvar hål i former som annars skulle vara fyllda.",
-          "”Hastighet” bestämmer hur många punkter som läggs till per bildruta, från 100 till 50 000, med 1500 som startvärde. De fyra förvalen laddar en triangel med r = 0,5, en kvadrat med r = 0,5 och ”Ingen upprepning”, en femhörning med sin magiska kvot och Barnsleys ormbunke. ”Rensa” tömmer ritytan, och det gör också varje ändring av regel, hastighet eller färg.",
+          "”Hastighet” bestämmer hur många punkter som läggs till per bildruta, från 100 till 50\u00a0000, med 1500 som startvärde. De fyra förvalen laddar en triangel med r = 0,5, en kvadrat med r = 0,5 och ”Ingen upprepning”, en femhörning med sin magiska kvot och Barnsleys ormbunke. ”Rensa” tömmer ritytan, och det gör också varje ändring av regel, hastighet eller färg.",
         ],
       },
       {
-        heading: "Så är den byggd",
+        heading: "Hur den är byggd",
         paragraphs: [
-          "Hörnen ligger på en cirkel som fyller ritytan så när som på en marginal på 24 pixlar, med det första hörnet överst. Varje bildruta kör en tajt loop: dra ett slumpmässigt hörn, förkasta det om begränsningen förbjuder det (och ge upp efter 64 försök, så att en regel som förbjuder allt inte kan frysa sidan), hoppa, kom ihåg valet och rita en enda pixel med en lätt genomskinlig fyllning. Eftersom prickarna är halvgenomskinliga blir ofta besökta ställen ljusare.",
+          "Hörnen ligger på en cirkel som fyller ritytan så när som på en marginal på 24 pixlar, med det första hörnet överst. Varje bildruta kör en snäv slinga: dra ett slumpmässigt hörn, förkasta det om begränsningen förbjuder det (och ge upp efter 64 försök, så att en regel som förbjuder allt inte kan frysa sidan), hoppa, kom ihåg valet och rita en enda pixel med en lätt genomskinlig fyllning. Eftersom prickarna är halvgenomskinliga blir ofta besökta ställen ljusare.",
           "Ormbunken använder samma maskineri med fyra affina avbildningar i stället för n hopp mot hörn. Varje avbildning är en matris plus en förskjutning och väljs med sannolikheterna 1, 85, 7 och 7 procent: den sällsynta trycker ihop allt till stjälken, den vanliga kopierar hela ormbunken lite mindre och högre upp, och de två andra ger de nedersta bladen till vänster och höger.",
-          "Efter två miljoner punkter stannar loopen, eftersom bilden inte kan bli tätare. Räknaren uppdateras ungefär tio gånger per sekund. Om ditt system ber om minskad rörelse blir det ingen animation: 200 000 punkter räknas ut på en gång och den färdiga bilden ritas i en enda bildruta.",
+          "Efter två miljoner punkter stannar slingan, eftersom bilden inte kan bli tätare. Räknaren uppdateras ungefär tio gånger per sekund. Om ditt system ber om minskad rörelse blir det ingen animation: 200\u00a0000 punkter räknas ut på en gång och den färdiga bilden ritas i en enda bildruta.",
         ],
         code: LOOP_EXCERPT,
       },
@@ -418,7 +418,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Slå sönder triangeln till damm",
-        text: "Ladda förvalet ”Triangel” och dra r från 0,5 upp till 0,6. De tre kopiorna skiljs åt och Sierpinskitriangeln faller isär i allt finare klungor. Vid 0,4 sluts luckorna och triangeln är nästan helt fylld.",
+        text: "Ladda förvalet ”Triangel” och dra r från 0,5 upp till 0,6. De tre kopiorna skiljs åt och Sierpiński-triangeln faller isär i allt finare klungor. Vid 0,4 sluts luckorna och triangeln är nästan helt fylld.",
       },
       {
         title: "En regel som inte lämnar något val",
@@ -436,16 +436,16 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Spill kaosspillet live: velg hjørner, hoppforhold og begrensninger, og se Sierpinski-trekanten eller Barnsleys bregne vokse fram av helt tilfeldige hopp.",
+      "Spill kaosspillet live: Velg hjørner, hoppforhold og begrensninger, og se Sierpiński-trekanten eller Barnsleys bregne vokse fram av helt tilfeldige hopp.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Hver prikk på tegneflaten kommer fra én regel som brukes om og om igjen: velg et tilfeldig hjørne i mangekanten og hopp en del av veien mot det. Ingenting i regelen nevner trekanter inni trekanter, og likevel er Sierpinski-trekanten ikke til å ta feil av etter noen tusen hopp. Tilfeldighetene avgjør bare rekkefølgen bildet fylles i; formen er bestemt av hjørnene og hoppforholdet. Det var Michael Barnsley som ga spillet navnet.",
+      "Hver prikk på lerretet kommer fra én regel som brukes om og om igjen: Velg et tilfeldig hjørne i mangekanten og hopp en del av veien mot det. Ingenting i regelen nevner trekanter inni trekanter, og likevel er Sierpiński-trekanten ikke til å ta feil av etter noen tusen hopp. Tilfeldighetene avgjør bare rekkefølgen bildet fylles i; formen er bestemt av hjørnene og hoppforholdet. Det var Michael Barnsley som ga spillet navnet.",
     sections: [
       {
         heading: "Regelen",
         paragraphs: [
           "Plasser n hjørner, v₁ til vₙ, på en regulær mangekant og start hvor som helst. I hvert steg velger du et hjørne vᵢ og flytter det gjeldende punktet p andelen r av veien mot det. Med r = 0,5 lander du nøyaktig halvveis. Hvert trekk er en kontraksjon som krymper planet med faktoren 1 − r inn mot hjørnet sitt. Mengden som består av krympede kopier av seg selv under disse avbildningene, er attraktoren til et iterert funksjonssystem, og den tilfeldige vandringen tegner den opp.",
-          "Startpunktet spiller ingen rolle. Hvert hopp krymper avstanden til attraktoren med faktoren 1 − r, så med r = 0,5 er en startfeil på en hel tegneflate under én piksel etter omtrent ti hopp.",
+          "Startpunktet spiller ingen rolle. Hvert hopp krymper avstanden til attraktoren med faktoren 1 − r, så med r = 0,5 er en startfeil på et helt lerret under én piksel etter omtrent ti hopp.",
         ],
         formula: "p_{k+1} = p_k + r\\,(v_i - p_k), \\qquad i \\text{ velges tilfeldig}",
       },
@@ -454,22 +454,22 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "«Hjørner n» går fra 3 til 8, hoppforholdet r fra 0,1 til 0,9. Når «Magisk kvot automatisk» er på, settes r til verdien der de n krympede kopiene så vidt berører hverandre uten å overlappe: 0,5 for trekanten og kvadratet, omtrent 0,618 (én delt på det gylne snitt) for femkanten, 2/3 for sekskanten og omtrent 0,7071 (én delt på kvadratroten av 2) for åttekanten. Flytter du glidebryteren for hånd, slås dette av.",
           "«Begrensning» endrer hvilket hjørne som kan velges neste gang, ut fra det forrige valget. «Ingen gjentakelse» forbyr å velge samme hjørne to ganger på rad. «Ingen nabo» forbyr de to hjørnene ved siden av det siste. «Ingen motsatt» forbyr hjørnet rett overfor eller, for odde n, de to hjørnene som ligger nesten rett overfor. Dette minnet på ett enkelt steg skjærer hull i former som ellers ville vært fylte.",
-          "«Hastighet» bestemmer hvor mange punkter som legges til per bilde, fra 100 til 50 000, med 1500 som startverdi. De fire forhåndsvalgene laster en trekant med r = 0,5, et kvadrat med r = 0,5 og «Ingen gjentakelse», en femkant med sitt magiske forhold og Barnsleys bregne. «Tøm» visker ut tegneflaten, og det gjør også enhver endring av regel, hastighet eller farge.",
+          "«Hastighet» bestemmer hvor mange punkter som legges til per bilde, fra 100 til 50\u00a0000, med 1500 som startverdi. De fire forhåndsvalgene laster en trekant med r = 0,5, et kvadrat med r = 0,5 og «Ingen gjentakelse», en femkant med sitt magiske forhold og Barnsleys bregne. «Tøm» visker ut lerretet, og det gjør også enhver endring av regel, hastighet eller farge.",
         ],
       },
       {
-        heading: "Slik er den bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Hjørnene ligger på en sirkel som fyller tegneflaten bortsett fra en marg på 24 piksler, med det første hjørnet øverst. Hvert bilde kjører en tett løkke: trekk et tilfeldig hjørne, forkast det hvis begrensningen forbyr det (og gi opp etter 64 forsøk, slik at en regel som forbyr alt, ikke kan fryse siden), hopp, husk valget og tegn én enkelt piksel med en svakt gjennomsiktig fyllfarge. Fordi prikkene er halvgjennomsiktige, blir ofte besøkte steder lysere.",
-          "Bregnen bruker det samme maskineriet med fire affine avbildninger i stedet for n hopp mot hjørner. Hver avbildning er en matrise pluss en forskyvning og velges med sannsynlighetene 1, 85, 7 og 7 prosent: den sjeldne klemmer alt sammen på stilken, den vanlige kopierer hele bregnen litt mindre og høyere opp, og de to andre lager de nederste bladene til venstre og høyre.",
-          "Etter to millioner punkter stopper løkken, siden bildet ikke kan bli tettere. Telleren oppdateres omtrent ti ganger i sekundet. Hvis systemet ditt ber om redusert bevegelse, er det ingen animasjon: 200 000 punkter beregnes på én gang, og det ferdige bildet tegnes i ett enkelt bilde.",
+          "Hjørnene ligger på en sirkel som fyller lerretet bortsett fra en marg på 24 piksler, med det første hjørnet øverst. Hvert bilde kjører en tett løkke: Trekk et tilfeldig hjørne, forkast det hvis begrensningen forbyr det (og gi opp etter 64 forsøk, slik at en regel som forbyr alt, ikke kan fryse siden), hopp, husk valget og tegn én enkelt piksel med en svakt gjennomsiktig fyllfarge. Fordi prikkene er halvgjennomsiktige, blir ofte besøkte steder lysere.",
+          "Bregnen bruker det samme maskineriet med fire affine avbildninger i stedet for n hopp mot hjørner. Hver avbildning er en matrise pluss en forskyvning og velges med sannsynlighetene 1, 85, 7 og 7 prosent: Den sjeldne klemmer alt sammen på stilken, den vanlige kopierer hele bregnen litt mindre og høyere opp, og de to andre lager de nederste bladene til venstre og høyre.",
+          "Etter to millioner punkter stopper løkken, siden bildet ikke kan bli tettere. Telleren oppdateres omtrent ti ganger i sekundet. Hvis systemet ditt ber om redusert bevegelse, er det ingen animasjon: 200\u00a0000 punkter beregnes på én gang, og det ferdige bildet tegnes i ett enkelt bilde.",
         ],
         code: LOOP_EXCERPT,
       },
       {
         heading: "Hvorfor det magiske forholdet er magisk",
         paragraphs: [
-          "Under det magiske forholdet overlapper kopiene og smøres ut mot et fylt område; over det glir de fra hverandre og blir til støv. Nøyaktig ved den magiske verdien kysser kopiene hverandre, kant mot kant eller hjørne mot hjørne, og resultatet er en ren selvlik fraktal. For kvadratet skjer det noe spesielt: med det magiske forholdet 0,5 dekker de fire kopiene kvadratet perfekt, så det vanlige kaosspillet fyller det bare med jevn støy. Derfor legger forhåndsvalget for kvadratet til regelen «Ingen gjentakelse».",
+          "Under det magiske forholdet overlapper kopiene og smøres ut mot et fylt område; over det glir de fra hverandre og blir til støv. Nøyaktig ved den magiske verdien kysser kopiene hverandre, kant mot kant eller hjørne mot hjørne, og resultatet er en ren selvlik fraktal. For kvadratet skjer det noe spesielt: Med det magiske forholdet 0,5 dekker de fire kopiene kvadratet perfekt, så det vanlige kaosspillet fyller det bare med jevn støy. Derfor legger forhåndsvalget for kvadratet til regelen «Ingen gjentakelse».",
         ],
       },
     ],
@@ -477,11 +477,11 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Knus trekanten til støv",
-        text: "Last forhåndsvalget «Trekant» og dra r fra 0,5 opp til 0,6. De tre kopiene skiller lag, og Sierpinski-trekanten faller fra hverandre i stadig finere klynger. Ved 0,4 lukkes hullene, og trekanten er nesten helt fylt.",
+        text: "Last forhåndsvalget «Trekant» og dra r fra 0,5 opp til 0,6. De tre kopiene skiller lag, og Sierpiński-trekanten faller fra hverandre i stadig finere klynger. Ved 0,4 lukkes hullene, og trekanten er nesten helt fylt.",
       },
       {
         title: "En regel som ikke gir noe valg",
-        text: "Sett n = 3 og velg «Ingen nabo». I en trekant er hvert annet hjørne en nabo, så vandringen kan bare velge det samme hjørnet igjen. Alle punktene hoper seg opp i ett hjørne, og tegneflaten forblir nesten tom.",
+        text: "Sett n = 3 og velg «Ingen nabo». I en trekant er begge de andre hjørnene naboer, så vandringen kan bare velge det samme hjørnet igjen. Alle punktene hoper seg opp i ett hjørne, og lerretet forblir nesten tom.",
       },
       {
         title: "Gjør et kvadrat om til en linje",

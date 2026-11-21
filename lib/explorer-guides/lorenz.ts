@@ -65,7 +65,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       },
       {
         title: "Switch off the chaos with σ",
-        text: "Keep ρ at 28 and lower σ to 3. The equilibria are stable again and the point spirals into one wing. Raise σ back above 4 and the butterfly returns.",
+        text: "Keep ρ at 28 and lower σ to 3. The equilibria are stable again and the point spirals into one wing. Raise σ back to 7 or more and the butterfly returns.",
       },
       {
         title: "Let the fluid rest",
@@ -123,7 +123,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       },
       {
         title: "Das Chaos mit σ abschalten",
-        text: "Lass ρ auf 28 und senke σ auf 3. Die Gleichgewichte sind wieder stabil, und der Punkt spiralt in einen Flügel. Hebst du σ wieder über 4, kehrt der Schmetterling zurück.",
+        text: "Lass ρ auf 28 und senke σ auf 3. Die Gleichgewichte sind wieder stabil, und der Punkt spiralt in einen Flügel. Hebst du σ wieder auf 7 oder mehr, kehrt der Schmetterling zurück.",
       },
       {
         title: "Die Flüssigkeit zur Ruhe bringen",
@@ -158,10 +158,10 @@ export const LORENZ_GUIDE: ExplorerGuide = {
         ],
       },
       {
-        heading: "Cómo está hecho",
+        heading: "Cómo está construido",
         paragraphs: [
-          "La simulación se ejecuta por completo en tu navegador, sobre un canvas 2D. Integra las ecuaciones con el método clásico de Runge-Kutta de cuarto orden (RK4), que evalúa el lado derecho cuatro veces por paso y combina las pendientes. Frente al ingenuo método de Euler, RK4 sigue siendo preciso con pasos mucho mayores, algo que importa cuando quieres doce pasos por fotograma de animación en un móvil.",
-          "Cada nueva posición entra en un búfer circular de 6000 puntos guardado en un Float32Array, de modo que la memoria permanece constante por mucho tiempo que la página lleve abierta. Los puntos se colorean según su edad, desde un ámbar cálido para los más recientes hasta el violeta para los más antiguos, y cada fotograma pinta una capa semitransparente sobre el canvas, lo que produce la suave estela de movimiento. Los botones de proyección eligen cuáles dos de las tres coordenadas se dibujan: XZ muestra la mariposa de siempre, XY la vista desde arriba, YZ la vista lateral.",
+          "La simulación se ejecuta por completo en tu navegador, sobre un lienzo 2D. Integra las ecuaciones con el método clásico de Runge-Kutta de cuarto orden (RK4), que evalúa el lado derecho cuatro veces por paso y combina las pendientes. Frente al ingenuo método de Euler, RK4 sigue siendo preciso con pasos mucho mayores, algo que importa cuando quieres doce pasos por fotograma de animación en un móvil.",
+          "Cada nueva posición entra en un búfer circular de 6000 puntos guardado en un Float32Array, de modo que la memoria permanece constante por mucho tiempo que la página lleve abierta. Los puntos se colorean según su edad, desde un ámbar cálido para los más recientes hasta el violeta para los más antiguos, y cada fotograma pinta una capa semitransparente sobre el lienzo, lo que produce la suave estela de movimiento. Los botones de proyección eligen cuáles dos de las tres coordenadas se dibujan: XZ muestra la mariposa de siempre, XY la vista desde arriba, YZ la vista lateral.",
           "Al cambiar σ, ρ o β, la trayectoria vuelve a empezar en (0,1; 0; 0), así que siempre ves evolucionar la misma condición inicial bajo reglas nuevas. Si tu sistema pide movimiento reducido, la animación se sustituye por una imagen fija: la simulación ejecuta 800 pasos de calentamiento para llegar al atractor, integra después toda la estela de una vez y la dibuja una sola vez.",
         ],
         code: RK4_EXCERPT,
@@ -181,7 +181,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       },
       {
         title: "Apaga el caos con σ",
-        text: "Deja ρ en 28 y baja σ a 3. Los equilibrios vuelven a ser estables y el punto cae en espiral hacia un ala. Sube σ otra vez por encima de 4 y la mariposa regresa.",
+        text: "Deja ρ en 28 y baja σ a 3. Los equilibrios vuelven a ser estables y el punto cae en espiral hacia un ala. Sube σ otra vez hasta 7 o más y la mariposa regresa.",
       },
       {
         title: "Deja reposar el fluido",
@@ -218,8 +218,8 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "La simulation tourne entièrement dans ton navigateur, sur un canvas 2D. Elle intègre les équations avec la méthode classique de Runge-Kutta d'ordre quatre (RK4), qui évalue le membre de droite quatre fois par pas et combine les pentes. Comparée à la méthode d'Euler, plus naïve, RK4 reste précise avec des pas bien plus grands, ce qui compte quand on veut douze pas par image d'animation sur un téléphone.",
-          "Chaque nouvelle position entre dans un tampon circulaire de 6000 points stocké dans un Float32Array, si bien que la mémoire reste constante quelle que soit la durée d'exécution de la page. Les points sont colorés selon leur âge, d'un ambre chaud pour les plus récents au violet pour les plus anciens, et chaque image peint une couche semi-transparente sur le canvas, ce qui produit la douce traînée de mouvement. Les boutons de projection choisissent lesquelles des trois coordonnées sont dessinées, deux à la fois : XZ montre le papillon bien connu, XY la vue de dessus, YZ la vue de côté.",
+          "La simulation tourne entièrement dans ton navigateur, sur un canevas 2D. Elle intègre les équations avec la méthode classique de Runge-Kutta d'ordre quatre (RK4), qui évalue le membre de droite quatre fois par pas et combine les pentes. Comparée à la méthode d'Euler, plus naïve, RK4 reste précise avec des pas bien plus grands, ce qui compte quand on veut douze pas par image d'animation sur un téléphone.",
+          "Chaque nouvelle position entre dans un tampon circulaire de 6 000 points stocké dans un Float32Array, si bien que la mémoire reste constante quelle que soit la durée d'exécution de la page. Les points sont colorés selon leur âge, d'un ambre chaud pour les plus récents au violet pour les plus anciens, et chaque image peint une couche semi-transparente sur le canevas, ce qui produit la douce traînée de mouvement. Les boutons de projection choisissent lesquelles des trois coordonnées sont dessinées, deux à la fois : XZ montre le papillon bien connu, XY la vue de dessus, YZ la vue de côté.",
           "Modifier σ, ρ ou β relance la trajectoire en (0,1 ; 0 ; 0) : tu vois donc toujours la même condition initiale évoluer sous de nouvelles règles. Si ton système demande une réduction des animations, l'animation est remplacée par une image fixe : la simulation effectue 800 pas d'échauffement pour rejoindre l'attracteur, puis intègre toute la traînée d'un coup et la dessine une seule fois.",
         ],
         code: RK4_EXCERPT,
@@ -239,7 +239,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       },
       {
         title: "Éteins le chaos avec σ",
-        text: "Garde ρ à 28 et abaisse σ à 3. Les équilibres redeviennent stables et le point s'enroule en spirale dans une aile. Remonte σ au-dessus de 4 et le papillon revient.",
+        text: "Garde ρ à 28 et abaisse σ à 3. Les équilibres redeviennent stables et le point s'enroule en spirale dans une aile. Remonte σ à 7 ou plus et le papillon revient.",
       },
       {
         title: "Laisse le fluide se reposer",
@@ -327,15 +327,15 @@ export const LORENZ_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "σ (sigma) é o número de Prandtl, a razão entre a rapidez com que o fluido suaviza o movimento e a rapidez com que suaviza o calor. ρ (ró) é o número de Rayleigh, ou seja, a intensidade com que a camada é aquecida. β (beta) codifica a geometria da célula de convecção. Os valores clássicos usados por Lorenz são σ = 10, ρ = 28 e β = 8/3; o botão de reposição regressa exatamente a eles.",
-          "ρ é o controlo mais dramático. Abaixo de ρ = 1 todas as trajetórias caem na origem: o fluido está em repouso. Acima de 1 surgem dois novos pontos de equilíbrio, um no centro de cada asa, e para valores moderados de ρ o ponto limita-se a descer em espiral para um deles. Por volta de ρ ≈ 13,93 as trajetórias começam a alternar entre as asas antes de assentarem, e em ρ ≈ 24,74 ambos os equilíbrios perdem a estabilidade. A partir daí nada consegue assentar e a borboleta é permanente.",
+          "ρ é o cursor mais dramático. Abaixo de ρ = 1 todas as trajetórias caem na origem: o fluido está em repouso. Acima de 1 surgem dois novos pontos de equilíbrio, um no centro de cada asa, e para valores moderados de ρ o ponto limita-se a descer em espiral para um deles. Por volta de ρ ≈ 13,93 as trajetórias começam a alternar entre as asas antes de assentarem, e em ρ ≈ 24,74 ambos os equilíbrios perdem a estabilidade. A partir daí nada consegue assentar e a borboleta é permanente.",
           "Esse limiar não é um palpite. Para σ = 10 e β = 8/3 resulta da fórmula ρ = σ(σ + β + 3) / (σ − β − 1). Ela explica também um efeito mais discreto: se levares σ abaixo de β + 1, o denominador fica negativo e os dois equilíbrios mantêm-se estáveis por mais que aumentes ρ.",
         ],
       },
       {
-        heading: "Como é construído",
+        heading: "Como está construído",
         paragraphs: [
           "A simulação corre inteiramente no teu navegador, num canvas 2D. Integra as equações com o método clássico de Runge-Kutta de quarta ordem (RK4), que avalia o lado direito quatro vezes por passo e combina os declives. Comparado com o ingénuo método de Euler, o RK4 mantém-se preciso com passos muito maiores, o que conta quando se querem doze passos por fotograma de animação num telemóvel.",
-          "Cada nova posição entra num buffer circular de 6000 pontos guardado num Float32Array, pelo que a memória se mantém constante por muito tempo que a página esteja aberta. Os pontos são coloridos pela idade, de um âmbar quente para os mais recentes até ao violeta para os mais antigos, e cada fotograma pinta uma camada semitransparente sobre o canvas, o que produz o suave rasto de movimento. Os botões de projeção escolhem quais duas das três coordenadas são desenhadas: XZ mostra a borboleta conhecida, XY a vista de cima, YZ a vista de lado.",
+          "Cada nova posição entra num buffer circular de 6000 pontos guardado num Float32Array, pelo que a memória se mantém constante por muito tempo que a página esteja aberta. Os pontos são coloridos pela idade, de um âmbar quente para os mais recentes até ao violeta para os mais antigos, e cada fotograma pinta uma camada semitransparente sobre o canvas, o que produz o suave rasto de movimento. Os botões de projeção escolhem que duas das três coordenadas são desenhadas: XZ mostra a borboleta conhecida, XY a vista de cima, YZ a vista de lado.",
           "Alterar σ, ρ ou β reinicia a trajetória em (0,1; 0; 0), por isso vês sempre a mesma condição inicial a evoluir sob regras novas. Se o teu sistema pedir movimento reduzido, a animação é substituída por uma imagem fixa: a simulação executa 800 passos de aquecimento para chegar ao atrator, depois integra todo o rasto de uma vez e desenha-o uma única vez.",
         ],
         code: RK4_EXCERPT,
@@ -343,7 +343,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       {
         heading: "Porque é que o passo temporal importa",
         paragraphs: [
-          "O controlo dt define o tamanho de cada passo de integração. Um dt menor torna a curva mais suave e mais lenta, um maior torna-a mais rápida e mais grosseira. E aqui está a reviravolta: num sistema caótico, até o minúsculo erro numérico do RK4 cresce exponencialmente e, com os parâmetros clássicos, duplica mais ou menos a cada 0,8 unidades de tempo. Duas execuções com dt diferentes seguem por isso caminhos diferentes ao fim de pouco tempo, embora ambas sejam imagens corretas do atrator. A forma é fiável; o percurso exato não. É a descoberta original de Lorenz, reproduzida pelo teu próprio navegador.",
+          "O cursor dt define o tamanho de cada passo de integração. Um dt menor torna a curva mais suave e mais lenta, um maior torna-a mais rápida e mais grosseira. E aqui está a reviravolta: num sistema caótico, até o minúsculo erro numérico do RK4 cresce exponencialmente e, com os parâmetros clássicos, duplica mais ou menos a cada 0,8 unidades de tempo. Duas execuções com dt diferentes seguem por isso caminhos diferentes ao fim de pouco tempo, embora ambas sejam imagens corretas do atrator. A forma é fiável; o percurso exato não. É a descoberta original de Lorenz, reproduzida pelo teu próprio navegador.",
         ],
       },
     ],
@@ -355,7 +355,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       },
       {
         title: "Desliga o caos com σ",
-        text: "Mantém ρ em 28 e baixa σ para 3. Os equilíbrios voltam a ser estáveis e o ponto desce em espiral para uma asa. Volta a subir σ acima de 4 e a borboleta regressa.",
+        text: "Mantém ρ em 28 e baixa σ para 3. Os equilíbrios voltam a ser estáveis e o ponto desce em espiral para uma asa. Volta a subir σ para 7 ou mais e a borboleta regressa.",
       },
       {
         title: "Deixa o fluido repousar",
@@ -392,7 +392,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Simuleringen körs helt och hållet i din webbläsare på en 2D-canvas. Den integrerar ekvationerna med den klassiska Runge-Kutta-metoden av fjärde ordningen (RK4), som utvärderar högerledet fyra gånger per steg och väger samman lutningarna. Jämfört med den naiva Eulermetoden förblir RK4 noggrann med mycket större steg, vilket spelar roll när man vill ha tolv steg per animationsruta på en mobil.",
+          "Simuleringen körs helt och hållet i din webbläsare på en 2D-canvas. Den integrerar ekvationerna med den klassiska Runge-Kutta-metoden av fjärde ordningen (RK4), som utvärderar högerledet fyra gånger per steg och väger samman lutningarna. Jämfört med den naiva Eulermetoden förblir RK4 noggrann med mycket större steg, vilket spelar roll när man vill ha tolv steg per animationsbildruta på en mobil.",
           "Varje ny position hamnar i en ringbuffert med 6000 punkter som lagras i en Float32Array, så minnesåtgången är konstant hur länge sidan än körs. Punkterna färgas efter ålder, från varm bärnsten för de nyaste till violett för de äldsta, och varje bildruta målar ett halvgenomskinligt lager över canvasen, vilket ger det mjuka rörelsespåret. Projektionsknapparna väljer vilka två av de tre koordinaterna som ritas: XZ visar den välbekanta fjärilen, XY vyn ovanifrån, YZ vyn från sidan.",
           "När du ändrar σ, ρ eller β startar banan om i (0,1; 0; 0), så du ser alltid samma begynnelsevillkor utvecklas under nya regler. Om ditt system ber om minskad rörelse ersätts animationen av en stillbild: simuleringen kör 800 uppvärmningssteg för att landa på attraktorn, integrerar sedan hela spåret på en gång och ritar det en enda gång.",
         ],
@@ -401,7 +401,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       {
         heading: "Varför tidssteget spelar roll",
         paragraphs: [
-          "Reglaget dt bestämmer storleken på varje integrationssteg. Ett mindre dt gör kurvan jämnare och långsammare, ett större gör den snabbare och grövre. Här kommer det oväntade: i ett kaotiskt system växer till och med RK4:s pyttelilla numeriska fel exponentiellt och fördubblas ungefär var 0,8:e tidsenhet för de klassiska parametrarna. Två körningar med olika dt följer därför olika vägar efter en kort stund, trots att båda är korrekta bilder av attraktorn. Formen går att lita på, den exakta vägen gör det inte. Det är Lorenz ursprungliga upptäckt, återskapad av din egen webbläsare.",
+          "Reglaget dt bestämmer storleken på varje integrationssteg. Ett mindre dt gör kurvan jämnare och långsammare, ett större gör den snabbare och grövre. Här kommer det oväntade: i ett kaotiskt system växer till och med RK4:s pyttelilla numeriska fel exponentiellt och fördubblas ungefär en gång per 0,8 tidsenheter för de klassiska parametrarna. Två körningar med olika dt följer därför olika vägar efter en kort stund, trots att båda är korrekta bilder av attraktorn. Formen går att lita på, den exakta vägen gör det inte. Det är Lorenz ursprungliga upptäckt, återskapad av din egen webbläsare.",
         ],
       },
     ],
@@ -427,7 +427,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Utforsk Lorenz-attraktoren direkte: endre σ, ρ og β, se sommerfuglen bli til ved ρ ≈ 24,74, og les hvordan RK4-simuleringen bak kurven er bygget opp.",
+      "Utforsk Lorenz-attraktoren direkte: Endre σ, ρ og β, se sommerfuglen bli til ved ρ ≈ 24,74, og les hvordan RK4-simuleringen bak kurven er bygget opp.",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "Den lysende kurven er ett enkelt punkt som beveger seg gjennom det tredimensjonale rommet etter Lorenz-ligningene. For hvert bilde flytter simuleringen det litt videre og etterlater et spor som blekner, så det som ser ut som en tegning, er egentlig den nyeste historien til én eneste bane. Den gjentar seg aldri og faller aldri til ro, men den forlater heller aldri det sommerfuglformede området. Den kombinasjonen er det matematikere kaller en merkelig attraktor.",
@@ -443,15 +443,15 @@ export const LORENZ_GUIDE: ExplorerGuide = {
         heading: "Hva glidebryterne gjør",
         paragraphs: [
           "σ (sigma) er Prandtl-tallet, forholdet mellom hvor raskt væsken jevner ut bevegelse og hvor raskt den jevner ut varme. ρ (rho) er Rayleigh-tallet, altså hvor kraftig laget varmes opp. β (beta) beskriver geometrien til konveksjonscellen. De klassiske verdiene Lorenz brukte, er σ = 10, ρ = 28 og β = 8/3; tilbakestillingsknappen går tilbake til nøyaktig disse.",
-          "ρ er glidebryteren med mest dramatikk. Under ρ = 1 faller hver bane inn i origo: væsken er i ro. Over 1 oppstår to nye likevektspunkter, ett midt i hver vinge, og for moderate ρ går punktet ganske enkelt i spiral inn mot ett av dem. Rundt ρ ≈ 13,93 begynner banene å veksle mellom vingene før de faller til ro, og ved ρ ≈ 24,74 mister begge likevektene stabiliteten. Derfra kan ingenting falle til ro, og sommerfuglen er permanent.",
+          "ρ er glidebryteren med mest dramatikk. Under ρ = 1 faller hver bane inn i origo: Væsken er i ro. Over 1 oppstår to nye likevektspunkter, ett midt i hver vinge, og for moderate ρ går punktet ganske enkelt i spiral inn mot ett av dem. Rundt ρ ≈ 13,93 begynner banene å veksle mellom vingene før de faller til ro, og ved ρ ≈ 24,74 mister begge likevektene stabiliteten. Derfra kan ingenting falle til ro, og sommerfuglen er permanent.",
           "Den terskelen er ingen gjetning. For σ = 10 og β = 8/3 følger den av formelen ρ = σ(σ + β + 3) / (σ − β − 1). Den forklarer også en mer lavmælt effekt: Hvis du skyver σ under β + 1, blir nevneren negativ, og de to likevektene forblir stabile uansett hvor høyt du øker ρ.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Simuleringen kjører i sin helhet i nettleseren din på et 2D-canvas. Den integrerer ligningene med den klassiske Runge-Kutta-metoden av fjerde orden (RK4), som evaluerer høyresiden fire ganger per steg og kombinerer stigningene. Sammenlignet med den naive Euler-metoden holder RK4 seg nøyaktig med mye større steg, og det teller når man vil ha tolv steg per animasjonsbilde på en mobil.",
-          "Hver ny posisjon går inn i en ringbuffer med 6000 punkter lagret i en Float32Array, så minnebruken er konstant uansett hvor lenge siden kjører. Punktene farges etter alder, fra varm rav for de nyeste til fiolett for de eldste, og hvert bilde maler et halvgjennomsiktig lag over canvaset, noe som gir det myke bevegelsessporet. Projeksjonsknappene velger hvilke to av de tre koordinatene som tegnes: XZ viser den velkjente sommerfuglen, XY utsikten ovenfra, YZ utsikten fra siden.",
+          "Simuleringen kjører i sin helhet i nettleseren din på et 2D-lerret. Den integrerer ligningene med den klassiske Runge-Kutta-metoden av fjerde orden (RK4), som evaluerer høyresiden fire ganger per steg og kombinerer stigningene. Sammenlignet med den naive Euler-metoden holder RK4 seg nøyaktig med mye større steg, og det teller når man vil ha tolv steg per animasjonsbilde på en mobil.",
+          "Hver ny posisjon går inn i en ringbuffer med 6000 punkter lagret i en Float32Array, så minnebruken er konstant uansett hvor lenge siden kjører. Punktene farges etter alder, fra varm rav for de nyeste til fiolett for de eldste, og hvert bilde maler et halvgjennomsiktig lag over lerretet, noe som gir det myke bevegelsessporet. Projeksjonsknappene velger hvilke to av de tre koordinatene som tegnes: XZ viser den velkjente sommerfuglen, XY utsikten ovenfra, YZ utsikten fra siden.",
           "Når du endrer σ, ρ eller β, starter banen på nytt i (0,1; 0; 0), så du ser alltid den samme startbetingelsen utvikle seg under nye regler. Hvis systemet ditt ber om redusert bevegelse, erstattes animasjonen av et stillbilde: Simuleringen kjører 800 oppvarmingssteg for å lande på attraktoren, integrerer deretter hele sporet på én gang og tegner det én eneste gang.",
         ],
         code: RK4_EXCERPT,

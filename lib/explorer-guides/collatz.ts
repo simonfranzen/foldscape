@@ -159,15 +159,15 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "El campo numérico acepta cualquier semilla de 1 a 1.000.000; pulsa Intro o sal del campo para aplicarla, y las entradas no válidas vuelven a la semilla anterior. El deslizador de debajo cubre de 1 a 10.000 para recorrer valores con rapidez. La página se abre con n = 27, la sorpresa clásica: un número pequeño que necesita 111 pasos y sube hasta 9232 (en el paso 77) antes de caer por fin.",
-          "Los cuatro botones de acceso rápido son 27, 97, 871 y 6171. Los dos últimos son récords: 871 necesita 178 pasos, más que cualquier otro inicio por debajo de 1000, y 6171 necesita 261 pasos, más que cualquier otro inicio por debajo de 10.000. El panel de estadísticas muestra el número de pasos, el valor pico, el paso en el que se alcanza el pico y la longitud del camino (siempre uno más que el número de pasos, porque el inicio también cuenta).",
+          "El campo numérico acepta cualquier semilla de 1 a 1 000 000; pulsa Intro o sal del campo para aplicarla, y las entradas no válidas vuelven a la semilla anterior. El deslizador de debajo cubre de 1 a 10 000 para recorrer valores con rapidez. La página se abre con n = 27, la sorpresa clásica: un número pequeño que necesita 111 pasos y sube hasta 9232 (en el paso 77) antes de caer por fin.",
+          "Los cuatro botones de preajuste son 27, 97, 871 y 6171. Los dos últimos son récords: 871 necesita 178 pasos, más que cualquier otro inicio por debajo de 1000, y 6171 necesita 261 pasos, más que cualquier otro inicio por debajo de 10 000. El panel de estadísticas muestra el número de pasos, el valor pico, el paso en el que se alcanza el pico y la longitud del camino (siempre uno más que el número de pasos, porque el inicio también cuenta).",
           "«Mostrar árbol inverso» muestra u oculta la imagen inferior, y «Profundidad del árbol» (de 3 a 10, por defecto 8) fija cuántos pasos hacia atrás se exploran desde 1.",
         ],
       },
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "Aquí no hay nada animado. Las dos imágenes son SVG puro que se recalcula con useMemo de React cada vez que cambian la semilla o los ajustes del árbol, de modo que la página se ve igual con o sin movimiento reducido. La función de trayectoria de abajo es todo el cálculo hacia delante. Tiene un tope de 2000 pasos como red de seguridad, pero ninguna semilla del rango permitido se acerca siquiera: la más larga por debajo de un millón es 837.799, con 524 pasos.",
+          "Aquí no hay nada animado. Las dos imágenes son SVG puro que se recalcula con useMemo de React cada vez que cambian la semilla o los ajustes del árbol, de modo que la página se ve igual con o sin movimiento reducido. La función de trayectoria de abajo es todo el cálculo hacia delante. Tiene un tope de 2000 pasos como red de seguridad, pero ninguna semilla del rango permitido se acerca siquiera: la más larga por debajo de un millón es 837 799, con 524 pasos.",
           "El gráfico asigna linealmente el índice del paso al eje x y el log10 del valor al eje y, con líneas de cuadrícula en cada potencia de diez. Sin la escala logarítmica, el pico 9232 de n = 27 aplastaría el resto del camino en una línea plana pegada al borde inferior. Un anillo cian marca el pico.",
           "El árbol inverso es una búsqueda en anchura desde 1. Cada nodo v recibe siempre el predecesor 2v. Recibe un segundo predecesor (v − 1)/3 solo si v deja resto 4 al dividirlo entre 6, porque justo entonces (v − 1)/3 es un entero impar; el código además se salta v = 4 para que no reaparezca el bucle trivial 1, 4, 2, 1. La disposición es radial: la profundidad fija la distancia al centro, y cada hijo recibe una porción del ángulo de su padre proporcional al número de hojas que cuelgan de él.",
         ],
@@ -219,16 +219,16 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "Le champ numérique accepte n'importe quelle graine de 1 à 1 000 000 ; appuie sur Entrée ou quitte le champ pour la valider, et une saisie invalide revient à la graine précédente. Le curseur placé dessous couvre 1 à 10 000 pour balayer rapidement les valeurs. La page s'ouvre sur n = 27, la surprise classique : un petit nombre qui demande 111 étapes et grimpe jusqu'à 9232 (à l'étape 77) avant de retomber enfin.",
-          "Les quatre boutons de raccourci sont 27, 97, 871 et 6171. Les deux derniers sont des records : 871 demande 178 étapes, plus que tout autre départ inférieur à 1000, et 6171 demande 261 étapes, plus que tout autre départ inférieur à 10 000. Le panneau de statistiques affiche le nombre d'étapes, la valeur du sommet, l'étape à laquelle le sommet est atteint et la longueur du chemin (toujours une de plus que le nombre d'étapes, puisque le départ est compté).",
+          "Le champ numérique accepte n'importe quelle graine de 1 à 1 000 000 ; appuie sur Entrée ou quitte le champ pour la valider, et une saisie invalide revient à la graine précédente. Le curseur placé dessous couvre 1 à 10 000 pour balayer rapidement les valeurs. La page s'ouvre sur n = 27, la surprise classique : un petit nombre qui demande 111 étapes et grimpe jusqu'à 9 232 (à l'étape 77) avant de retomber enfin.",
+          "Les quatre boutons de raccourci sont 27, 97, 871 et 6171. Les deux derniers sont des records : 871 demande 178 étapes, plus que tout autre départ inférieur à 1 000, et 6171 demande 261 étapes, plus que tout autre départ inférieur à 10 000. Le panneau de statistiques affiche le nombre d'étapes, la valeur du sommet, l'étape à laquelle le sommet est atteint et la longueur du chemin (toujours une de plus que le nombre d'étapes, puisque le départ est compté).",
           "« Afficher l'arbre inverse » affiche ou masque l'image du bas, et « Profondeur de l'arbre » (de 3 à 10, 8 par défaut) fixe le nombre d'étapes explorées à rebours depuis 1.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Rien ne s'anime ici. Les deux images sont du SVG tout simple, recalculé avec le useMemo de React dès que la graine ou les réglages de l'arbre changent : la page a donc le même rendu avec ou sans réduction des animations. La fonction de trajectoire ci-dessous constitue tout le calcul dans le sens direct. Elle est plafonnée à 2000 étapes par sécurité, mais aucune graine de la plage autorisée ne s'en approche : la plus longue en dessous d'un million est 837 799, avec 524 étapes.",
-          "Le graphique associe linéairement l'indice de l'étape à l'axe des x et le log10 de la valeur à l'axe des y, avec des lignes de grille à chaque puissance de dix. Sans l'échelle logarithmique, le sommet 9232 de n = 27 écraserait le reste du chemin en une ligne plate au ras du bord inférieur. Un anneau cyan marque le sommet.",
+          "Rien ne s'anime ici. Les deux images sont du SVG tout simple, recalculé avec le useMemo de React dès que la graine ou les réglages de l'arbre changent : la page a donc le même rendu avec ou sans réduction des animations. La fonction de trajectoire ci-dessous constitue tout le calcul dans le sens direct. Elle est plafonnée à 2 000 étapes par sécurité, mais aucune graine de la plage autorisée ne s'en approche : la plus longue en dessous d'un million est 837 799, avec 524 étapes.",
+          "Le graphique associe linéairement l'indice de l'étape à l'axe des x et le log10 de la valeur à l'axe des y, avec des lignes de grille à chaque puissance de dix. Sans l'échelle logarithmique, le sommet 9 232 de n = 27 écraserait le reste du chemin en une ligne plate au ras du bord inférieur. Un anneau cyan marque le sommet.",
           "L'arbre inverse est un parcours en largeur à partir de 1. Chaque nœud v reçoit toujours le prédécesseur 2v. Il ne reçoit un second prédécesseur (v − 1)/3 que si v a pour reste 4 dans la division par 6, car c'est exactement dans ce cas que (v − 1)/3 est un entier impair ; le code écarte aussi v = 4 pour que la boucle triviale 1, 4, 2, 1 ne réapparaisse pas. La disposition est radiale : la profondeur fixe la distance au centre, et chaque enfant reçoit une part de l'angle de son parent proportionnelle au nombre de feuilles qui pendent sous lui.",
         ],
         code: TRAJECTORY_EXCERPT,
@@ -244,7 +244,7 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "27 face à ses voisins",
-        text: "Tape 26, puis 27, puis 28. La graine 26 demande 10 étapes et la 28 en demande 18, alors que la 27 en demande 111 et bondit jusqu'à 9232. Rien ne distingue 27 tant qu'on n'a pas appliqué la règle.",
+        text: "Tape 26, puis 27, puis 28. La graine 26 demande 10 étapes et la 28 en demande 18, alors que la 27 en demande 111 et bondit jusqu'à 9 232. Rien ne distingue 27 tant qu'on n'a pas appliqué la règle.",
       },
       {
         title: "Les puissances de deux tombent tout droit",
@@ -280,8 +280,8 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
           "Il campo numerico accetta qualsiasi seme da 1 a 1.000.000; premi Invio o esci dal campo per applicarlo, e i valori non validi tornano al seme precedente. Il cursore sottostante copre da 1 a 10.000 per scorrere in fretta. La pagina si apre su n = 27, la sorpresa classica: un numero piccolo che impiega 111 passi e sale fino a 9232 (al passo 77) prima di cadere finalmente.",
-          "I quattro pulsanti di scelta rapida sono 27, 97, 871 e 6171. Gli ultimi due sono record: 871 richiede 178 passi, più di qualsiasi altra partenza sotto 1000, e 6171 richiede 261 passi, più di qualsiasi altra partenza sotto 10.000. Il pannello delle statistiche mostra il numero di passi, il valore di picco, il passo in cui il picco viene raggiunto e la lunghezza del percorso (sempre uno in più del numero di passi, perché si conta anche la partenza).",
-          "«Mostra l'albero inverso» mostra o nasconde l'immagine in basso, e «Profondità dell'albero» (da 3 a 10, predefinito 8) stabilisce quanti passi all'indietro vengono esplorati a partire da 1.",
+          "I quattro pulsanti dei preset sono 27, 97, 871 e 6171. Gli ultimi due sono record: 871 richiede 178 passi, più di qualsiasi altra partenza sotto 1000, e 6171 richiede 261 passi, più di qualsiasi altra partenza sotto 10.000. Il pannello delle statistiche mostra il numero di passi, il valore di picco, il passo in cui il picco viene raggiunto e la lunghezza del percorso (sempre uno in più del numero di passi, perché si conta anche la partenza).",
+          "«Mostra l'albero inverso» mostra o nasconde l'immagine in basso, e «Profondità dell'albero» (da 3 a 10, predefinita 8) stabilisce quanti passi all'indietro vengono esplorati a partire da 1.",
         ],
       },
       {
@@ -289,7 +289,7 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Qui non c'è nulla di animato. Entrambe le immagini sono semplice SVG, ricalcolato con useMemo di React ogni volta che cambiano il seme o le impostazioni dell'albero, quindi la pagina ha lo stesso aspetto con o senza movimento ridotto. La funzione di traiettoria qui sotto è l'intero calcolo in avanti. Ha un tetto di 2000 passi come rete di sicurezza, ma nessun seme dell'intervallo ammesso ci si avvicina: il più lungo sotto il milione è 837.799, con 524 passi.",
           "Il grafico associa linearmente l'indice del passo all'asse x e il log10 del valore all'asse y, con linee di griglia a ogni potenza di dieci. Senza la scala logaritmica, il picco 9232 di n = 27 schiaccerebbe il resto del percorso in una linea piatta lungo il bordo inferiore. Un anello ciano segna il picco.",
-          "L'albero inverso è una visita in ampiezza a partire da 1. Ogni nodo v riceve sempre il predecessore 2v. Riceve un secondo predecessore (v − 1)/3 solo se v dà resto 4 nella divisione per 6, perché è esattamente allora che (v − 1)/3 è un intero dispari; il codice salta inoltre v = 4, così il ciclo banale 1, 4, 2, 1 non ricompare. La disposizione è radiale: la profondità fissa la distanza dal centro, e ogni figlio riceve una fetta dell'angolo del genitore proporzionale al numero di foglie che pendono sotto di lui.",
+          "L'albero inverso è una visita in ampiezza a partire da 1. Ogni nodo v riceve sempre il predecessore 2v. Riceve un secondo predecessore (v − 1)/3 solo se v dà resto 4 nella divisione per 6, perché è esattamente allora che (v − 1)/3 è un intero dispari; il codice salta inoltre v = 4, così il ciclo banale 1, 4, 2, 1 non ricompare. La disposizione è radiale: la profondità fissa la distanza dal centro, e ogni figlio riceve una fetta dell'angolo del genitore proporzionale al numero di foglie che pendono sotto di esso.",
         ],
         code: TRAJECTORY_EXCERPT,
       },
@@ -300,7 +300,7 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Da provare",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "27 contro i suoi vicini",
@@ -339,17 +339,17 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "O campo numérico aceita qualquer semente de 1 a 1.000.000; carrega em Enter ou sai do campo para a aplicar, e as entradas inválidas voltam à semente anterior. O cursor por baixo cobre de 1 a 10.000 para percorrer valores depressa. A página abre em n = 27, a surpresa clássica: um número pequeno que precisa de 111 passos e sobe até 9232 (no passo 77) antes de finalmente cair.",
-          "Os quatro botões de atalho são 27, 97, 871 e 6171. Os dois últimos são recordes: 871 precisa de 178 passos, mais do que qualquer outro início abaixo de 1000, e 6171 precisa de 261 passos, mais do que qualquer outro início abaixo de 10.000. O painel de estatísticas mostra o número de passos, o valor de pico, o passo em que o pico acontece e o comprimento do caminho (sempre um a mais do que o número de passos, porque o início também conta).",
+          "O campo numérico aceita qualquer semente de 1 a 1 000 000; carrega em Enter ou sai do campo para a aplicar, e as entradas inválidas voltam à semente anterior. O cursor por baixo cobre de 1 a 10 000 para percorrer valores depressa. A página abre em n = 27, a surpresa clássica: um número pequeno que precisa de 111 passos e sobe até 9232 (no passo 77) antes de finalmente cair.",
+          "Os quatro botões de predefinição são 27, 97, 871 e 6171. Os dois últimos são recordes: 871 precisa de 178 passos, mais do que qualquer outro início abaixo de 1000, e 6171 precisa de 261 passos, mais do que qualquer outro início abaixo de 10 000. O painel de estatísticas mostra o número de passos, o valor de pico, o passo em que o pico acontece e o comprimento do caminho (sempre um a mais do que o número de passos, porque o início também conta).",
           "«Mostrar árvore inversa» mostra ou esconde a imagem de baixo, e «Profundidade da árvore» (de 3 a 10, 8 por omissão) define quantos passos para trás são explorados a partir de 1.",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
-          "Aqui nada é animado. As duas imagens são SVG simples, recalculado com o useMemo do React sempre que a semente ou as definições da árvore mudam, pelo que a página fica igual com ou sem movimento reduzido. A função de trajetória abaixo é todo o cálculo no sentido direto. Está limitada a 2000 passos como rede de segurança, mas nenhuma semente do intervalo permitido se aproxima disso: a mais longa abaixo de um milhão é 837.799, com 524 passos.",
+          "Aqui nada é animado. As duas imagens são SVG simples, recalculado com o useMemo do React sempre que a semente ou as definições da árvore mudam, pelo que a página fica igual com ou sem movimento reduzido. A função de trajetória abaixo é todo o cálculo no sentido direto. Está limitada a 2000 passos como rede de segurança, mas nenhuma semente do intervalo permitido se aproxima disso: a mais longa abaixo de um milhão é 837 799, com 524 passos.",
           "O gráfico faz corresponder linearmente o índice do passo ao eixo x e o log10 do valor ao eixo y, com linhas de grelha em cada potência de dez. Sem a escala logarítmica, o pico 9232 de n = 27 esmagaria o resto do caminho numa linha plana junto ao fundo. Um anel ciano assinala o pico.",
-          "A árvore inversa é uma pesquisa em largura a partir de 1. Cada nó v recebe sempre o predecessor 2v. Só recebe um segundo predecessor (v − 1)/3 se v der resto 4 na divisão por 6, porque é exatamente nesse caso que (v − 1)/3 é um inteiro ímpar; o código salta também v = 4, para que o ciclo trivial 1, 4, 2, 1 não reapareça. A disposição é radial: a profundidade define a distância ao centro, e cada filho recebe uma fatia do ângulo do pai proporcional ao número de folhas que dele pendem.",
+          "A árvore inversa é uma busca em largura a partir de 1. Cada nó v recebe sempre o predecessor 2v. Só recebe um segundo predecessor (v − 1)/3 se v der resto 4 na divisão por 6, porque é exatamente nesse caso que (v − 1)/3 é um inteiro ímpar; o código salta também v = 4, para que o ciclo trivial 1, 4, 2, 1 não reapareça. A disposição é radial: a profundidade define a distância ao centro, e cada filho recebe uma fatia do ângulo do pai proporcional ao número de folhas que dele pendem.",
         ],
         code: TRAJECTORY_EXCERPT,
       },
@@ -399,15 +399,15 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "Talfältet tar emot vilket frö som helst från 1 till 1 000 000. Tryck på Enter eller lämna fältet för att använda det, och ogiltiga inmatningar hoppar tillbaka till det förra fröet. Skjutreglaget under täcker 1 till 10 000 för snabb bläddring. Sidan öppnas med n = 27, den klassiska överraskningen: ett litet tal som behöver 111 steg och klättrar till 9232 (vid steg 77) innan det äntligen faller.",
-          "De fyra snabbvalsknapparna är 27, 97, 871 och 6171. De två sista är rekord: 871 behöver 178 steg, fler än något annat starttal under 1000, och 6171 behöver 261 steg, fler än något annat starttal under 10 000. Statistikpanelen visar antalet steg, toppvärdet, steget där toppen nås och banlängden (alltid ett mer än antalet steg, eftersom starten räknas med).",
+          "Talfältet tar emot vilket frö som helst från 1 till 1\u00a0000\u00a0000. Tryck på Enter eller lämna fältet för att använda det, och ogiltiga inmatningar hoppar tillbaka till det förra fröet. Skjutreglaget under täcker 1 till 10\u00a0000 för snabb bläddring. Sidan öppnas med n = 27, den klassiska överraskningen: ett litet tal som behöver 111 steg och klättrar till 9232 (vid steg 77) innan det äntligen faller.",
+          "De fyra förvalsknapparna är 27, 97, 871 och 6171. De två sista är rekord: 871 behöver 178 steg, fler än något annat starttal under 1000, och 6171 behöver 261 steg, fler än något annat starttal under 10\u00a0000. Statistikpanelen visar antalet steg, toppvärdet, steget där toppen nås och banlängden (alltid ett mer än antalet steg, eftersom starten räknas med).",
           "”Visa omvänt träd” visar eller döljer den nedre bilden, och ”Träddjup” (3 till 10, standard 8) bestämmer hur många steg bakåt som utforskas från 1.",
         ],
       },
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Här finns ingenting som animeras. Båda bilderna är ren SVG som räknas om med Reacts useMemo varje gång fröet eller trädinställningarna ändras, så sidan ser likadan ut med eller utan reducerad rörelse. Banfunktionen nedan är hela framåtberäkningen. Den har ett tak på 2000 steg som skyddsnät, men inget frö i det tillåtna intervallet kommer i närheten: det längsta under en miljon är 837 799 med 524 steg.",
+          "Här finns ingenting som animeras. Båda bilderna är ren SVG som räknas om med Reacts useMemo varje gång fröet eller trädinställningarna ändras, så sidan ser likadan ut med eller utan minskad rörelse. Banfunktionen nedan är hela framåtberäkningen. Den har ett tak på 2000 steg som skyddsnät, men inget frö i det tillåtna intervallet kommer i närheten: det längsta under en miljon är 837\u00a0799 med 524 steg.",
           "Diagrammet avbildar stegindex linjärt på x-axeln och log10 av värdet på y-axeln, med rutnätslinjer vid varje tiopotens. Utan den logaritmiska skalan skulle toppen 9232 för n = 27 pressa ihop resten av banan till en platt linje längs nederkanten. En cyanfärgad ring markerar toppen.",
           "Det omvända trädet är en bredden-först-sökning från 1. Varje nod v får alltid föregångaren 2v. Den får en andra föregångare (v − 1)/3 bara om v ger resten 4 vid division med 6, eftersom det är precis då som (v − 1)/3 är ett udda heltal. Koden hoppar dessutom över v = 4 så att den triviala slingan 1, 4, 2, 1 inte dyker upp igen. Layouten är radiell: djupet bestämmer avståndet från mitten, och varje barn får en del av förälderns vinkel i proportion till hur många löv som hänger under det.",
         ],
@@ -420,7 +420,7 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "27 mot sina grannar",
@@ -442,16 +442,16 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Utforsk Collatz-formodningen: tegn enhver haglsteinsfølge opp til en million i logaritmisk skala, finn toppen og la det omvendte treet vokse fra 1.",
+      "Utforsk Collatz-formodningen: Tegn enhver haglsteinsfølge opp til en million i logaritmisk skala, finn toppen og la det omvendte treet vokse fra 1.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Det øverste diagrammet er haglsteinsfølgen til ett enkelt starttall n. Hvert punkt er ett trinn i Collatz-regelen, tegnet fra venstre mot høyre, og høyden viser verdien på en logaritmisk skala. Det nederste bildet kjører den samme regelen baklengs: det starter i 1 og lar et tre vokse fram av alle tall som når 1 i løpet av noen få trinn. Banen til frøet ditt lyser i cyan overalt der den går gjennom treet.",
+      "Det øverste diagrammet er haglsteinsfølgen til ett enkelt starttall n. Hvert punkt er ett trinn i Collatz-regelen, tegnet fra venstre mot høyre, og høyden viser verdien på en logaritmisk skala. Det nederste bildet kjører den samme regelen baklengs: Det starter i 1 og lar et tre vokse fram av alle tall som når 1 i løpet av noen få trinn. Banen til frøet ditt lyser i cyan overalt der den går gjennom treet.",
     sections: [
       {
         heading: "Én regel, ett åpent spørsmål",
         paragraphs: [
           "Regelen får plass på en serviett. Hvis n er et partall, halverer du det. Hvis n er et oddetall, tredobler du det og legger til én. Gjenta. Start på 6, og du får 6, 3, 10, 5, 16, 8, 4, 2, 1. Vel framme ved 1 ville følgen gått i ring gjennom 4, 2, 1 for alltid, så utforskeren stopper der og teller trinnene.",
-          "Collatz-formodningen, oppkalt etter Lothar Collatz som formulerte den i 1937, sier at ethvert positivt heltall til slutt når 1. Datamaskiner har sjekket alle startverdier til forbi 10^20 uten å finne et moteksempel, men ingen har et bevis. Vanskeligheten er at halvering og tredobling trekker i hver sin retning: i gjennomsnitt multipliserer et oddetallstrinn med omtrent 3/2 etter halveringen som må følge, mens rekker av partallstrinn dividerer med potenser av 2, og ingen vet hvordan man får kontroll på blandingen for enhver n.",
+          "Collatz-formodningen, oppkalt etter Lothar Collatz som formulerte den i 1937, sier at ethvert positivt heltall til slutt når 1. Datamaskiner har sjekket alle startverdier til forbi 10^20 uten å finne et moteksempel, men ingen har et bevis. Vanskeligheten er at halvering og tredobling trekker i hver sin retning: I gjennomsnitt multipliserer et oddetallstrinn med omtrent 3/2 etter halveringen som må følge, mens rekker av partallstrinn dividerer med potenser av 2, og ingen vet hvordan man får kontroll på blandingen for enhver n.",
         ],
         formula:
           "T(n) = \\begin{cases} n/2 & n \\text{ partall} \\\\ 3n + 1 & n \\text{ oddetall} \\end{cases}",
@@ -459,17 +459,17 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "Tallfeltet tar imot et hvilket som helst frø fra 1 til 1 000 000. Trykk Enter eller forlat feltet for å ta det i bruk, og ugyldige verdier hopper tilbake til det forrige frøet. Glidebryteren under dekker 1 til 10 000 for rask blaing. Siden åpner med n = 27, den klassiske overraskelsen: et lite tall som trenger 111 trinn og klatrer til 9232 (ved trinn 77) før det endelig faller.",
-          "De fire hurtigvalgknappene er 27, 97, 871 og 6171. De to siste er rekorder: 871 trenger 178 trinn, flere enn noe annet starttall under 1000, og 6171 trenger 261 trinn, flere enn noe annet starttall under 10 000. Statistikkpanelet viser antall trinn, toppverdien, trinnet der toppen nås, og banelengden (alltid én mer enn antall trinn, fordi starten telles med).",
+          "Tallfeltet tar imot et hvilket som helst frø fra 1 til 1\u00a0000\u00a0000. Trykk Enter eller forlat feltet for å ta det i bruk, og ugyldige verdier hopper tilbake til det forrige frøet. Glidebryteren under dekker 1 til 10\u00a0000 for rask blaing. Siden åpner med n = 27, den klassiske overraskelsen: et lite tall som trenger 111 trinn og klatrer til 9232 (ved trinn 77) før det endelig faller.",
+          "De fire forhåndsvalgknappene er 27, 97, 871 og 6171. De to siste er rekorder: 871 trenger 178 trinn, flere enn noe annet starttall under 1000, og 6171 trenger 261 trinn, flere enn noe annet starttall under 10\u00a0000. Statistikkpanelet viser antall trinn, toppverdien, trinnet der toppen nås, og banelengden (alltid én mer enn antall trinn, fordi starten telles med).",
           "«Vis omvendt tre» viser eller skjuler det nederste bildet, og «Tredybde» (3 til 10, standard 8) bestemmer hvor mange trinn bakover som utforskes fra 1.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Ingenting her er animert. Begge bildene er ren SVG som regnes ut på nytt med Reacts useMemo hver gang frøet eller treinnstillingene endres, så siden ser lik ut med eller uten redusert bevegelse. Banefunksjonen nedenfor er hele beregningen framover. Den har et tak på 2000 trinn som sikkerhetsnett, men ingen frø i det tillatte området kommer i nærheten: det lengste under en million er 837 799 med 524 trinn.",
+          "Ingenting her er animert. Begge bildene er ren SVG som regnes ut på nytt med Reacts useMemo hver gang frøet eller treinnstillingene endres, så siden ser lik ut med eller uten redusert bevegelse. Banefunksjonen nedenfor er hele beregningen framover. Den har et tak på 2000 trinn som sikkerhetsnett, men ingen frø i det tillatte området kommer i nærheten: Det lengste under en million er 837\u00a0799 med 524 trinn.",
           "Diagrammet avbilder trinnindeksen lineært på x-aksen og log10 av verdien på y-aksen, med rutenettlinjer ved hver tierpotens. Uten den logaritmiske skalaen ville toppen 9232 for n = 27 klemt resten av banen sammen til en flat linje langs bunnen. En cyanfarget ring markerer toppen.",
-          "Det omvendte treet er et bredde-først-søk fra 1. Hver node v får alltid forgjengeren 2v. Den får en andre forgjenger (v − 1)/3 bare hvis v gir rest 4 ved divisjon med 6, for det er nettopp da (v − 1)/3 er et odde heltall. Koden hopper dessuten over v = 4, slik at den trivielle løkken 1, 4, 2, 1 ikke dukker opp igjen. Oppsettet er radialt: dybden bestemmer avstanden fra sentrum, og hvert barn får en del av forelderens vinkel i forhold til hvor mange blader som henger under det.",
+          "Det omvendte treet er et bredde-først-søk fra 1. Hver node v får alltid forgjengeren 2v. Den får en andre forgjenger (v − 1)/3 bare hvis v gir rest 4 ved divisjon med 6, for det er nettopp da (v − 1)/3 er et odde heltall. Koden hopper dessuten over v = 4, slik at den trivielle løkken 1, 4, 2, 1 ikke dukker opp igjen. Oppsettet er radialt: Dybden bestemmer avstanden fra sentrum, og hvert barn får en del av forelderens vinkel i forhold til hvor mange blader som henger under det.",
         ],
         code: TRAJECTORY_EXCERPT,
       },
@@ -492,7 +492,7 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
       },
       {
         title: "En bane som bor inne i treet",
-        text: "Sett «Tredybde» til 9 og frøet til 13. Banen 13, 40, 20, 10, 5, 16, 8, 4, 2, 1 ligger helt inne i treet, så hver node på den lyser i cyan. Frøet 85 gjør det samme: det hopper til 256 og halveres så hele veien ned.",
+        text: "Sett «Tredybde» til 9 og frøet til 13. Banen 13, 40, 20, 10, 5, 16, 8, 4, 2, 1 ligger helt inne i treet, så hver node på den lyser i cyan. Frøet 85 gjør det samme: Det hopper til 256 og halveres så hele veien ned.",
       },
       {
         title: "Rekordholderen under en million",

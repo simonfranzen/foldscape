@@ -43,7 +43,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       {
         heading: "What the controls do",
         paragraphs: [
-          "View switches between a rotating 3D wireframe and a 2D side view of the profile y = ±1/x. In 3D you can drag to rotate (also by touch); Spin toggles the slow automatic rotation and Reset returns to the starting angle. The x_max slider sets the cutoff on a logarithmic scale from 1.5 to 1000, starting at 10. Animate growth sweeps x_max from 1.5 to 1000 and then starts over, about eleven seconds per pass.",
+          "View switches between a rotating 3D wireframe and a 2D side view of the profile y = ±1/x. In 3D you can drag to rotate (also by touch); Spin and Hold toggle the slow automatic rotation and Reset returns to the starting angle. The x_max slider sets the cutoff on a logarithmic scale from 1.5 to 1000, starting at 10. Animate growth sweeps x_max from 1.5 to 1000 and then starts over, about eleven seconds per pass.",
           "The live values show the volume of the cut piece, the surface area computed numerically, the lower bound 2π ln(x_max), and V/π, which tells you how close the volume is to its limit. The painter's paradox panel adds a paint thickness ε from 0.001 to 0.1 (default 0.01) and compares the paint needed to coat the surface, A times ε, with the paint needed to fill the horn.",
         ],
       },
@@ -159,7 +159,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "«Vista» alterna entre una malla de alambre 3D que gira y una vista lateral 2D del perfil y = ±1/x. En 3D puedes arrastrar para girar (también con el dedo); «Gira» activa o desactiva la rotación automática lenta y «Reiniciar» vuelve al ángulo inicial. El deslizador de x_max fija el corte en una escala logarítmica de 1,5 a 1000 y empieza en 10. «Animar crecimiento» recorre x_max de 1,5 a 1000 y luego vuelve a empezar, unos once segundos por pasada.",
+          "«Vista» alterna entre una malla de alambre 3D que gira y una vista lateral 2D del perfil y = ±1/x. En 3D puedes arrastrar para girar (también con el dedo); «Gira» y «Fija» activan y desactivan la rotación automática lenta y «Reiniciar» vuelve al ángulo inicial. El deslizador de x_max fija el corte en una escala logarítmica de 1,5 a 1000 y empieza en 10. «Animar crecimiento» recorre x_max de 1,5 a 1000 y luego vuelve a empezar, unos once segundos por pasada.",
           "Los valores en vivo muestran el volumen del trozo cortado, el área de la superficie calculada numéricamente, la cota inferior 2π ln(x_max) y V/π, que te dice lo cerca que está el volumen de su límite. El panel «Paradoja del pintor» añade un grosor de pintura ε de 0,001 a 0,1 (por defecto 0,01) y compara la pintura necesaria para cubrir la superficie, A por ε, con la necesaria para llenar el cuerno.",
         ],
       },
@@ -201,7 +201,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
   },
   fr: {
     metaDescription:
-      "Explore la trompette de Gabriel : coupe y = 1/x jusqu'à 1000, vois le volume tendre vers π quand l'aire croît sans fin, et teste le paradoxe du peintre.",
+      "Explore la trompette de Gabriel : coupe y = 1/x jusqu'à 1 000, vois le volume tendre vers π quand l'aire croît sans fin, et teste le paradoxe du peintre.",
     heading: "Comment fonctionne cet explorateur",
     intro:
       "La forme sur le canevas est ce que l'on obtient en faisant tourner la courbe y = 1/x, pour x à partir de 1, autour de l'axe des x. Elle commence par une embouchure de rayon 1 et se resserre indéfiniment sans jamais se fermer. L'explorateur la coupe à la longueur que tu choisis, x_max, et calcule deux nombres pour ce tronçon : le volume intérieur et l'aire de la surface. Plus tu repousses x_max, plus l'un des nombres se stabilise, tandis que l'autre ne cesse de croître. Ce décalage est toute l'énigme de la trompette de Gabriel.",
@@ -217,14 +217,14 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "« Vue » bascule entre un modèle filaire 3D en rotation et une vue de côté 2D du profil y = ±1/x. En 3D, tu peux faire glisser pour tourner (au doigt aussi) ; « Tourne » active ou coupe la lente rotation automatique et « Réinitialiser » revient à l'angle de départ. Le curseur x_max fixe la coupure sur une échelle logarithmique de 1,5 à 1000, avec 10 au départ. « Animer la croissance » fait balayer x_max de 1,5 à 1000 puis recommence, environ onze secondes par passage.",
+          "« Vue » bascule entre un modèle filaire 3D en rotation et une vue de côté 2D du profil y = ±1/x. En 3D, tu peux faire glisser pour tourner (au doigt aussi) ; « Tourne » et « Fige » activent ou coupent la lente rotation automatique et « Réinitialiser » revient à l'angle de départ. Le curseur x_max fixe la coupure sur une échelle logarithmique de 1,5 à 1 000, avec 10 au départ. « Animer la croissance » fait balayer x_max de 1,5 à 1 000 puis recommence, environ onze secondes par passage.",
           "Les valeurs en direct indiquent le volume du tronçon coupé, l'aire de la surface calculée numériquement, le minorant 2π ln(x_max), et V/π, qui te dit à quel point le volume est proche de sa limite. Le panneau « Paradoxe du peintre » ajoute une épaisseur de peinture ε de 0,001 à 0,1 (0,01 par défaut) et compare la peinture nécessaire pour couvrir la surface, A fois ε, à celle qu'il faut pour remplir la trompette.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Le volume a une forme close, il est donc simplement évalué. L'aire de la surface n'a pas de primitive élémentaire et se calcule par la méthode de Simpson. L'intégrande direct en x est raide près de l'embouchure et très plat au loin, ce qui rend une grille régulière en x imprécise pour les longues trompettes. Le code effectue donc le changement de variable u = ln x, qui transforme l'intégrande en √(1 + e^(−4u)), une fonction lisse comprise entre 1 et √2, et l'intègre sur 2000 pas égaux. Le résultat reste exact à six chiffres significatifs sur toute la plage.",
+          "Le volume a une forme close, il est donc simplement évalué. L'aire de la surface n'a pas de primitive élémentaire et se calcule par la méthode de Simpson. L'intégrande direct en x est raide près de l'embouchure et très plat au loin, ce qui rend une grille régulière en x imprécise pour les longues trompettes. Le code effectue donc le changement de variable u = ln x, qui transforme l'intégrande en √(1 + e^(−4u)), une fonction lisse comprise entre 1 et √2, et l'intègre sur 2 000 pas égaux. Le résultat reste exact à six chiffres significatifs sur toute la plage.",
           "La vue 3D est dessinée à la main sur un canevas 2D : 29 sections circulaires et 14 lignes dans le sens de la longueur, tournées puis projetées en perspective. Pour faire tenir une trompette longue de mille unités à côté d'une embouchure de rayon 1, l'axe est comprimé de façon logarithmique : la vue 3D montre donc la forme, mais pas ses vraies proportions. La vue 2D utilise un axe des x linéaire et montre le profil réel, l'intérieur étant ombré comme de la peinture. Quand la réduction des animations est activée, la rotation automatique et la croissance sont coupées ; faire glisser continue de tourner la trompette et la redessine à chaque mouvement.",
         ],
         code: AREA_EXCERPT,
@@ -241,7 +241,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Regarde le volume plafonner",
-        text: "Fais passer x_max de 10 à 100 puis à 1000 et lis V/π : 0,9 ; 0,99 ; 0,999. La trompette devient cent fois plus longue alors que le volume gagne moins d'un dixième de π.",
+        text: "Fais passer x_max de 10 à 100 puis à 1 000 et lis V/π : 0,9 ; 0,99 ; 0,999. La trompette devient cent fois plus longue alors que le volume gagne moins d'un dixième de π.",
       },
       {
         title: "Regarde l'aire continuer",
@@ -253,7 +253,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       },
       {
         title: "Compare les deux vues",
-        text: "Règle x_max sur 1000 et passe en 2D. Le profil est un filet qui colle à l'axe presque aussitôt. Reviens en 3D : l'axe logarithmique étire la queue étroite pour que tu puisses encore voir ses anneaux.",
+        text: "Règle x_max sur 1 000 et passe en 2D. Le profil est un filet qui colle à l'axe presque aussitôt. Reviens en 3D : l'axe logarithmique étire la queue étroite pour que tu puisses encore voir ses anneaux.",
       },
     ],
   },
@@ -295,7 +295,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Da provare",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Guarda il volume fermarsi",
@@ -320,7 +320,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       "Explora a trombeta de Gabriel: corta y = 1/x em qualquer comprimento até 1000, vê o volume tender para π enquanto a área cresce e testa o paradoxo do pintor.",
     heading: "Como funciona este explorador",
     intro:
-      "A forma na tela é o que se obtém quando se faz rodar a curva y = 1/x, para x a partir de 1, em torno do eixo x. Começa como uma boca de raio 1 e estreita para sempre sem nunca fechar. O explorador corta-a no comprimento que escolheres, x_max, e calcula dois números para esse pedaço: o volume interior e a área da superfície. À medida que empurras x_max para mais longe, um dos números estabiliza e o outro nunca para de crescer. Esse desencontro é todo o enigma da trombeta de Gabriel.",
+      "A forma no canvas é o que se obtém quando se faz rodar a curva y = 1/x, para x a partir de 1, em torno do eixo x. Começa como uma boca de raio 1 e estreita para sempre sem nunca fechar. O explorador corta-a no comprimento que escolheres, x_max, e calcula dois números para esse pedaço: o volume interior e a área da superfície. À medida que empurras x_max para mais longe, um dos números estabiliza e o outro nunca para de crescer. Esse desencontro é todo o enigma da trombeta de Gabriel.",
     sections: [
       {
         heading: "Volume finito, área infinita",
@@ -333,7 +333,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "«Vista» alterna entre um modelo de arame 3D a rodar e uma vista lateral 2D do perfil y = ±1/x. Em 3D podes arrastar para rodar (também com o dedo); «Roda» liga ou desliga a rotação automática lenta e «Repor» volta ao ângulo inicial. O cursor de x_max define o corte numa escala logarítmica de 1,5 a 1000, começando em 10. «Animar crescimento» varre x_max de 1,5 a 1000 e depois recomeça, cerca de onze segundos por passagem.",
+          "«Vista» alterna entre um modelo de arame 3D a rodar e uma vista lateral 2D do perfil y = ±1/x. Em 3D podes arrastar para rodar (também com o dedo); «Roda» e «Fixa» ligam e desligam a rotação automática lenta e «Repor» volta ao ângulo inicial. O cursor de x_max define o corte numa escala logarítmica de 1,5 a 1000, começando em 10. «Animar crescimento» varre x_max de 1,5 a 1000 e depois recomeça, cerca de onze segundos por passagem.",
           "Os valores ao vivo mostram o volume do pedaço cortado, a área da superfície calculada numericamente, o minorante 2π ln(x_max) e V/π, que te diz quão perto o volume está do seu limite. O painel «Paradoxo do pintor» acrescenta uma espessura de tinta ε de 0,001 a 0,1 (0,01 por omissão) e compara a tinta necessária para cobrir a superfície, A vezes ε, com a tinta necessária para encher a trombeta.",
         ],
       },
@@ -341,7 +341,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
         heading: "Como está construído",
         paragraphs: [
           "O volume tem uma forma fechada, por isso é simplesmente avaliado. A área da superfície não tem primitiva elementar e é calculada com a regra de Simpson. A integranda direta em x é íngreme perto da boca e muito plana ao longe, o que torna imprecisa uma grelha uniforme em x para trombetas compridas. Por isso o código faz a substituição u = ln x, que transforma a integranda em √(1 + e^(−4u)), uma função suave entre 1 e √2, e integra-a em 2000 passos iguais. O resultado mantém-se exato até seis algarismos significativos em toda a gama.",
-          "A vista 3D é desenhada à mão numa tela 2D: 29 secções circulares e 14 linhas ao longo do comprimento, rodadas e projetadas em perspetiva. Para caber uma trombeta com mil unidades de comprimento ao lado de uma boca de raio 1, o eixo é comprimido logaritmicamente, pelo que a vista 3D mostra a forma mas não as suas proporções verdadeiras. A vista 2D usa um eixo x linear e mostra o perfil real, com o interior sombreado como tinta. Com o movimento reduzido ativado, a rotação automática e o crescimento ficam desligados; arrastar continua a rodar a trombeta e redesenha-a a cada movimento.",
+          "A vista 3D é desenhada à mão num canvas 2D: 29 secções circulares e 14 linhas ao longo do comprimento, rodadas e projetadas em perspetiva. Para caber uma trombeta com mil unidades de comprimento ao lado de uma boca de raio 1, o eixo é comprimido logaritmicamente, pelo que a vista 3D mostra a forma mas não as suas proporções verdadeiras. A vista 2D usa um eixo x linear e mostra o perfil real, com o interior sombreado como tinta. Com o movimento reduzido ativado, a rotação automática e o crescimento ficam desligados; arrastar continua a rodar a trombeta e redesenha-a a cada movimento.",
         ],
         code: AREA_EXCERPT,
       },
@@ -399,7 +399,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
         heading: "Hur den är byggd",
         paragraphs: [
           "Volymen har ett slutet uttryck, så den räknas helt enkelt ut. Ytarean saknar elementär primitiv funktion och beräknas med Simpsons regel. Den direkta integranden i x är brant nära mynningen och mycket flack långt ut, vilket gör ett jämnt rutnät i x onoggrant för långa horn. Koden gör därför substitutionen u = ln x, som förvandlar integranden till √(1 + e^(−4u)), en slät funktion mellan 1 och √2, och integrerar den över 2000 lika stora steg. Resultatet håller sex gällande siffror över hela intervallet.",
-          "3D-vyn ritas för hand på en 2D-canvas: 29 cirkulära tvärsnitt och 14 linjer längs hornet, roterade och projicerade i perspektiv. För att få plats med ett horn som är tusen enheter långt bredvid en mynning med radien 1 trycks axeln ihop logaritmiskt, så 3D-vyn visar formen men inte dess verkliga proportioner. 2D-vyn använder en linjär x-axel och visar den verkliga profilen, med insidan skuggad som färg. Med reducerad rörelse aktiverad är den automatiska rotationen och tillväxten avstängda. Att dra roterar fortfarande hornet och ritar om det vid varje rörelse.",
+          "3D-vyn ritas för hand på en 2D-canvas: 29 cirkulära tvärsnitt och 14 linjer längs hornet, roterade och projicerade i perspektiv. För att få plats med ett horn som är tusen enheter långt bredvid en mynning med radien 1 trycks axeln ihop logaritmiskt, så 3D-vyn visar formen men inte dess verkliga proportioner. 2D-vyn använder en linjär x-axel och visar den verkliga profilen, med insidan skuggad som färg. Med minskad rörelse aktiverad är den automatiska rotationen och tillväxten avstängda. Att dra roterar fortfarande hornet och ritar om det vid varje rörelse.",
         ],
         code: AREA_EXCERPT,
       },
@@ -411,7 +411,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Se volymen stanna av",
@@ -433,7 +433,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Utforsk Gabriels horn: kutt y = 1/x ved valgfri lengde opp til 1000, se volumet nærme seg π mens arealet fortsetter å vokse, og test malerens paradoks.",
+      "Utforsk Gabriels horn: Kutt y = 1/x ved valgfri lengde opp til 1000, se volumet nærme seg π mens arealet fortsetter å vokse, og test malerens paradoks.",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "Formen på lerretet er det du får når du lar kurven y = 1/x, for x fra 1 og utover, rotere om x-aksen. Den begynner som en munning med radius 1 og smalner i det uendelige uten noen gang å lukke seg. Utforskeren kutter den ved en lengde du velger, x_max, og regner ut to tall for biten: volumet inni og arealet av overflaten. Når du skyver x_max lenger ut, faller det ene tallet til ro, mens det andre aldri slutter å vokse. Det misforholdet er hele gåten med Gabriels horn.",
@@ -441,8 +441,8 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       {
         heading: "Endelig volum, uendelig areal",
         paragraphs: [
-          "Volumet kommer av å legge sammen tynne skiver med radius 1/x, hver med areal π/x². Det integralet er lett og holder seg begrenset: biten fram til x_max rommer π(1 − 1/x_max), så hele det uendelige hornet rommer nøyaktig π. Overflatearealet legger i stedet sammen tynne bånd, og hvert bånd bidrar med minst 2π/x ganger bredden sin. Integralet av 1/x er logaritmen, som vokser uten grense, så arealet av hele hornet er uendelig.",
-          "Evangelista Torricelli studerte dette legemet på 1640-tallet, og det skapte virkelig uro i samtiden: et legeme med uendelig utstrekning og endelig volum så ut til å motsi intuisjonen om at uendelige ting må være uendelig store på alle måter. Navnet Gabriels horn, etter erkeengelens trompet, kom senere.",
+          "Volumet kommer av å legge sammen tynne skiver med radius 1/x, hver med areal π/x². Det integralet er lett og holder seg begrenset: Biten fram til x_max rommer π(1 − 1/x_max), så hele det uendelige hornet rommer nøyaktig π. Overflatearealet legger i stedet sammen tynne bånd, og hvert bånd bidrar med minst 2π/x ganger bredden sin. Integralet av 1/x er logaritmen, som vokser uten grense, så arealet av hele hornet er uendelig.",
+          "Evangelisten Torricelli studerte dette legemet på 1640-tallet, og det skapte virkelig uro i samtiden: Et legeme med uendelig utstrekning og endelig volum så ut til å motsi intuisjonen om at uendelige ting må være uendelig store på alle måter. Navnet Gabriels horn, etter erkeengelens trompet, kom senere.",
         ],
         formula: HORN_FORMULA,
       },
@@ -454,7 +454,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
           "Volumet har et lukket uttrykk, så det regnes ganske enkelt ut. Overflatearealet har ingen elementær antiderivert og regnes ut med Simpsons regel. Den direkte integranden i x er bratt nær munningen og svært flat langt ute, noe som gjør et jevnt rutenett i x unøyaktig for lange horn. Koden gjør derfor substitusjonen u = ln x, som gjør integranden til √(1 + e^(−4u)), en glatt funksjon mellom 1 og √2, og integrerer den over 2000 like store steg. Resultatet er nøyaktig til seks gjeldende sifre over hele området.",
           "3D-visningen tegnes for hånd på et 2D-lerret: 29 sirkulære tverrsnitt og 14 linjer langs lengden, rotert og projisert i perspektiv. For å få plass til et horn som er tusen enheter langt ved siden av en munning med radius 1, presses aksen sammen logaritmisk, så 3D-visningen viser formen, men ikke de virkelige proporsjonene. 2D-visningen bruker en lineær x-akse og viser den virkelige profilen, med innsiden skyggelagt som maling. Med redusert bevegelse slått på er den automatiske rotasjonen og veksten slått av. Å dra roterer fortsatt hornet og tegner det på nytt for hver bevegelse.",
@@ -465,7 +465,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
         heading: "Hvor paradokset kommer fra",
         paragraphs: [
           "Den populære versjonen sier at du kan fylle hornet med π enheter maling, men aldri male overflaten. Panelet viser hvorfor dette er mindre rart enn det høres ut. Virkelig maling har en tykkelse ε, så å dekke arealet A krever omtrent A·ε maling, og siden A vokser ubegrenset, overstiger det til slutt enhver endelig mengde. Forbi x = 1/ε er hornet dessuten smalere enn selve malingslaget, så et strøk med den tykkelsen får ikke lenger plass inni. Å fylle hornet og å male det er ulike spørsmål, og bare den matematiske versjonen med tykkelse null får dem til å kollidere.",
-          "Tallene viser også hvor sakte arealet divergerer. Avstanden mellom A og den nedre grensen 2π ln(x_max) faller til ro på omtrent 0,710, så arealet vokser nøyaktig som en logaritme: å gjøre hornet ti ganger lengre legger bare rundt 14,5 til arealet.",
+          "Tallene viser også hvor sakte arealet divergerer. Avstanden mellom A og den nedre grensen 2π ln(x_max) faller til ro på omtrent 0,710, så arealet vokser nøyaktig som en logaritme: Å gjøre hornet ti ganger lengre legger bare rundt 14,5 til arealet.",
         ],
       },
     ],
@@ -485,7 +485,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       },
       {
         title: "Sammenlign de to visningene",
-        text: "Sett x_max til 1000 og bytt til 2D. Profilen er en flis som nesten med en gang legger seg tett inntil aksen. Bytt tilbake til 3D: den logaritmiske aksen strekker ut den smale halen, slik at du fortsatt kan se ringene.",
+        text: "Sett x_max til 1000 og bytt til 2D. Profilen er en flis som nesten med en gang legger seg tett inntil aksen. Bytt tilbake til 3D: Den logaritmiske aksen strekker ut den smale halen, slik at du fortsatt kan se ringene.",
       },
     ],
   },

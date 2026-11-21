@@ -163,7 +163,7 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
         ],
       },
       {
-        heading: "Cómo está hecho",
+        heading: "Cómo está construido",
         paragraphs: [
           "Todo se dibuja en un único lienzo 2D ajustado a la densidad de píxeles de tu pantalla. Para la taza, cada rayo se coloca en un ángulo φ sobre la mitad del fondo del círculo y se refleja con la fórmula del espejo r = d − 2(d·n)n, donde d es la dirección de llegada y n la normal hacia dentro. Los rayos que solo rozarían la pared se omiten. La envolvente se dibuja a partir de la ecuación de la propia nefroide, no se calcula a partir de los rayos, y puedes ver cómo los rayos se acumulan a lo largo de ella.",
           "La vista de rodadura avanza su parámetro 0,012 radianes por fotograma, así que una vuelta dura algo más de 500 fotogramas, unos nueve segundos a 60 Hz. La vista de Mandelbrot ejecuta el algoritmo de tiempo de escape en cada píxel: itera z ↦ z² + c desde z = 0 hasta 40 pasos y se detiene en cuanto |z| supera 2. Los píxeles que nunca escapan quedan casi negros, el resto se tiñe de violeta según lo rápido que se fueron. Esos píxeles se guardan en caché y solo se recalculan cuando el lienzo cambia de tamaño.",
@@ -174,7 +174,7 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
       {
         heading: "Por qué el conjunto de Mandelbrot tiene una cardioide",
         paragraphs: [
-          "El cuerpo principal del conjunto de Mandelbrot es exactamente el conjunto de los c para los que z ↦ z² + c tiene un punto fijo atractivo. Un punto fijo cumple z = z² + c y atrae cuando la derivada 2z tiene módulo menor que 1. Escribe 2z = μ con |μ| < 1; entonces c = μ/2 − μ²/4, y al hacer que μ recorra la circunferencia unidad se traza precisamente la fórmula de arriba. En la cúspide, c = 1/4, el multiplicador vale exactamente 1 y los dos puntos fijos se funden. Tocando la cardioide en c = −3/4 hay un disco perfecto de radio 1/4 centrado en −1: los parámetros con un ciclo atractivo de periodo 2.",
+          "El cuerpo principal del conjunto de Mandelbrot es exactamente el conjunto de los c para los que z ↦ z² + c tiene un punto fijo atractor. Un punto fijo cumple z = z² + c y atrae cuando la derivada 2z tiene módulo menor que 1. Escribe 2z = μ con |μ| < 1; entonces c = μ/2 − μ²/4, y al hacer que μ recorra la circunferencia unidad se traza precisamente la fórmula de arriba. En la cúspide, c = 1/4, el multiplicador vale exactamente 1 y los dos puntos fijos se funden. Tocando la cardioide en c = −3/4 hay un disco perfecto de radio 1/4 centrado en −1: los parámetros con un ciclo atractor de periodo 2.",
         ],
       },
     ],
@@ -318,7 +318,7 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
   },
   pt: {
     metaDescription:
-      "Explora a cardioide de três maneiras: a luz refletida numa chávena de café, um círculo que rola sobre outro e o bulbo principal do conjunto de Mandelbrot.",
+      "Explora a cardioide de três maneiras: a luz refletida numa chávena de café, um círculo que rola sobre outro e o bolbo principal do conjunto de Mandelbrot.",
     heading: "Como funciona este explorador",
     intro:
       "A cardioide é a curva em forma de coração com uma única cúspide. Aparece em lugares surpreendentemente diferentes: no desenho brilhante que a luz traça na superfície de uma chávena, na trajetória de um ponto de uma roda que rola em torno de outra e como a maior região do conjunto de Mandelbrot. Os três botões à direita alternam entre essas cenas, cada uma obtida por uma construção diferente.",
@@ -327,7 +327,7 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
         heading: "Uma curva, três construções",
         paragraphs: [
           "Em coordenadas polares, com a cúspide na origem, a cardioide é r = 2a(1 − cos θ). A vista «Rolling circle» constrói-a mecanicamente: no centro fica um círculo fixo de raio a, um segundo círculo com o mesmo raio rola por fora dele sem deslizar e um ponto marcado no círculo que rola traça a curva. Como os dois raios são iguais, o ponto toca no círculo fixo exatamente uma vez por volta, e esse toque é a cúspide.",
-          "Como curva parametrizada, a construção por rolamento dá x = 2a cos t − a cos 2t e y = 2a sen t − a sen 2t. A fronteira do conjunto de Mandelbrot é a mesma expressão com a = 1/4 em forma complexa, e é por isso que o contorno âmbar da terceira vista fica exatamente sobre a borda do conjunto.",
+          "Como curva parametrizada, a construção por rolamento dá x = 2a cos t − a cos 2t e y = 2a sen t − a sen 2t. A fronteira do conjunto de Mandelbrot é a mesma expressão com a = 1/4 em forma complexa, e é por isso que o contorno âmbar da terceira vista fica exatamente sobre a fronteira do conjunto.",
         ],
         formula: BULB_FORMULA,
       },
@@ -335,7 +335,7 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "«Coffee cup» desenha um espelho circular (a parede da chávena vista de cima) e envia raios paralelos a partir da direita. O cursor «Rays» define quantos, de 20 a 300 em passos de 2, começando em 120. Cada raio reflete-se na parede do fundo, e onde os raios refletidos se aglomeram formam uma envolvente brilhante chamada cáustica. «Show rays» e «Show envelope» ligam e desligam as duas camadas de forma independente.",
-          "Há uma reviravolta que convém admitir, e o painel admite-a: para luz paralela, como a do sol, a envolvente não é uma cardioide, mas sim uma nefroide, uma curva aparentada com duas cúspides. A página desenha a nefroide inteira; a metade do lado do fundo é a cáustica desses raios, a metade espelhada pertence à luz que vem da esquerda. Uma verdadeira cardioide aparece quando a fonte de luz fica na borda da chávena. As duas curvas são epicicloides, e é por isso que a linha brilhante numa caneca real costuma parecer um coração.",
+          "Há uma reviravolta que convém admitir, e o painel admite-a: para luz paralela, como a do sol, a envolvente não é uma cardioide, mas sim uma nefroide, uma curva aparentada com duas cúspides. A página desenha a nefroide inteira; a metade do lado do fundo é a cáustica desses raios, a metade espelhada pertence à luz que vem da esquerda. Uma verdadeira cardioide aparece quando a fonte de luz fica no rebordo da chávena. As duas curvas são epicicloides, e é por isso que a linha brilhante numa caneca real costuma parecer um coração.",
           "«Rolling circle» anima a construção e tem um único botão, «Pause» ou «Roll». «Mandelbrot bulb» mostra o conjunto com a cardioide exata sobreposta.",
         ],
       },
@@ -343,7 +343,7 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
         heading: "Como está construído",
         paragraphs: [
           "Tudo é desenhado num único canvas 2D ajustado à densidade de píxeis do teu ecrã. Para a chávena, cada raio é posicionado num ângulo φ na metade do fundo do círculo e refletido com a fórmula do espelho r = d − 2(d·n)n, em que d é a direção de chegada e n a normal voltada para dentro. Os raios que apenas roçariam a parede são ignorados. A envolvente é desenhada a partir da equação da própria nefroide, e não calculada a partir dos raios, e consegues ver os raios a acumularem-se ao longo dela.",
-          "A vista do rolamento avança o seu parâmetro 0,012 radianos por fotograma, de modo que uma volta leva pouco mais de 500 fotogramas, cerca de nove segundos a 60 Hz. A vista de Mandelbrot executa o algoritmo de tempo de escape em cada píxel: itera z ↦ z² + c a partir de z = 0 por até 40 passos e para assim que |z| ultrapassa 2. Os píxeis que nunca escapam ficam quase pretos, os demais são tingidos de violeta conforme a rapidez com que saíram. Esses píxeis ficam em cache e só são recalculados quando o canvas muda de tamanho.",
+          "A vista do rolamento avança o seu parâmetro 0,012 radianos por fotograma, de modo que uma volta leva pouco mais de 500 fotogramas, cerca de nove segundos a 60 Hz. A vista de Mandelbrot executa o algoritmo de tempo de escape em cada píxel: itera z ↦ z² + c a partir de z = 0 durante 40 passos no máximo e para assim que |z| ultrapassa 2. Os píxeis que nunca escapam ficam quase pretos, os restantes são tingidos de violeta conforme a rapidez com que saíram. Esses píxeis ficam em cache e só são recalculados quando o canvas muda de tamanho.",
           "As vistas estáticas só são redesenhadas quando alguma entrada muda. Se o teu sistema pedir movimento reduzido, o círculo que rola fica congelado num único fotograma estático.",
         ],
         code: REFLECT_EXCERPT,
@@ -359,15 +359,15 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Faz a cáustica surgir do nada",
-        text: "Em «Coffee cup», desmarca «Show envelope» e ajusta «Rays» para 20. Depois arrasta devagar até 300: os cruzamentos condensam-se numa curva brilhante com uma ponta aguda a meio caminho entre a parede e o centro, embora a curva em si não esteja desenhada.",
+        text: "Em «Coffee cup», desmarca «Show envelope» e põe «Rays» em 20. Depois arrasta devagar até 300: os cruzamentos condensam-se numa curva brilhante com uma ponta aguda a meio caminho entre a parede e o centro, embora a curva em si não esteja desenhada.",
       },
       {
         title: "Apanha a cúspide",
-        text: "Abre «Rolling circle» e faz pausa quando o ponto ciano chegar ao lugar onde os círculos se tocam. Ali o ponto fica em repouso por um instante, e é por isso que a curva tem uma cúspide em vez de uma viragem suave.",
+        text: "Abre «Rolling circle» e põe em pausa quando o ponto ciano chegar ao lugar onde os círculos se tocam. Ali o ponto fica em repouso por um instante, e é por isso que a curva tem uma cúspide em vez de uma viragem suave.",
       },
       {
         title: "Encontra o limite da estabilidade",
-        text: "Em «Mandelbrot bulb», segue a linha âmbar: dentro dela todas as órbitas assentam num único ponto. À esquerda toca no bulbo redondo em c = −3/4, onde o ponto fixo dá lugar a um ciclo de período 2.",
+        text: "Em «Mandelbrot bulb», segue a linha âmbar: dentro dela todas as órbitas assentam num único ponto. À esquerda toca no bolbo redondo em c = −3/4, onde o ponto fixo dá lugar a um ciclo de período 2.",
       },
       {
         title: "Compara os dois corações",
@@ -393,15 +393,15 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "”Coffee cup” ritar en cirkelformad spegel (koppens vägg sedd uppifrån) och skickar in parallella strålar från höger. Reglaget ”Rays” bestämmer hur många, från 20 till 300 i steg om 2, med 120 som startvärde. Varje stråle reflekteras mot den bortre väggen, och där de reflekterade strålarna trängs ihop bildar de en ljus enveloppkurva som kallas kaustika. ”Show rays” och ”Show envelope” slår av och på de två lagren oberoende av varandra.",
-          "Här finns en ärlig knorr, och panelen säger det själv: för parallellt ljus, som solljus, är enveloppen inte en kardioid utan en nefroid, en besläktad kurva med två spetsar. Sidan ritar hela nefroiden; halvan på den bortre sidan är de här strålarnas kaustika, den speglade halvan hör till ljus från vänster. En äkta kardioid uppstår när ljuskällan sitter på koppens kant. Båda kurvorna är epicykloider, och därför ser den ljusa linjen i en riktig mugg ofta hjärtformad ut.",
+          "”Coffee cup” ritar en cirkelformad spegel (koppens vägg sedd uppifrån) och skickar in parallella strålar från höger. Reglaget ”Rays” bestämmer hur många, från 20 till 300 i steg om 2, med 120 som startvärde. Varje stråle reflekteras mot den bortre väggen, och där de reflekterade strålarna trängs ihop bildar de en ljus höljekurva som kallas kaustika. ”Show rays” och ”Show envelope” slår av och på de två lagren oberoende av varandra.",
+          "Här finns en ärlig knorr, och panelen säger det själv: för parallellt ljus, som solljus, är höljekurvan inte en kardioid utan en nefroid, en besläktad kurva med två spetsar. Sidan ritar hela nefroiden; halvan på den bortre sidan är de här strålarnas kaustika, den speglade halvan hör till ljus från vänster. En äkta kardioid uppstår när ljuskällan sitter på koppens kant. Båda kurvorna är epicykloider, och därför ser den ljusa linjen i en riktig mugg ofta hjärtformad ut.",
           "”Rolling circle” animerar konstruktionen och har en enda knapp, ”Pause” eller ”Roll”. ”Mandelbrot bulb” visar mängden med den exakta kardioiden lagd ovanpå.",
         ],
       },
       {
-        heading: "Så är den byggd",
+        heading: "Hur den är byggd",
         paragraphs: [
-          "Allt ritas på en enda 2D-canvas som är skalad efter din skärms pixeltäthet. För koppen placeras varje stråle vid en vinkel φ på cirkelns bortre halva och reflekteras med spegelformeln r = d − 2(d·n)n, där d är den infallande riktningen och n den inåtriktade normalen. Strålar som bara skulle snudda vid väggen hoppas över. Enveloppen ritas utifrån nefroidens egen ekvation, den räknas inte fram ur strålarna, och du kan se hur strålarna hopar sig längs den.",
+          "Allt ritas på en enda 2D-canvas som är skalad efter din skärms pixeltäthet. För koppen placeras varje stråle vid en vinkel φ på cirkelns bortre halva och reflekteras med spegelformeln r = d − 2(d·n)n, där d är den infallande riktningen och n den inåtriktade normalen. Strålar som bara skulle snudda vid väggen hoppas över. Höljekurvan ritas utifrån nefroidens egen ekvation, den räknas inte fram ur strålarna, och du kan se hur strålarna hopar sig längs den.",
           "Rullvyn flyttar fram sin parameter med 0,012 radianer per bildruta, så ett varv tar lite över 500 bildrutor, ungefär nio sekunder vid 60 Hz. Mandelbrotvyn kör flykttidsalgoritmen för varje pixel: iterera z ↦ z² + c från z = 0 i upp till 40 steg och avbryt så snart |z| överstiger 2. Pixlar som aldrig flyr blir nästan svarta, resten tonas i violett efter hur fort de försvann. De här pixlarna cachas och räknas bara om när ritytan ändrar storlek.",
           "De stillastående vyerna ritas bara om när en inmatning ändras. Om ditt system ber om minskad rörelse fryses den rullande cirkeln i en enda statisk bild.",
         ],
@@ -444,7 +444,7 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
       {
         heading: "Én kurve, tre konstruksjoner",
         paragraphs: [
-          "I polarkoordinater, med spissen i origo, er kardioiden r = 2a(1 − cos θ). Visningen «Rolling circle» bygger den mekanisk: i midten ligger en fast sirkel med radius a, en annen sirkel med samme radius ruller rundt utsiden uten å gli, og et merket punkt på den rullende sirkelen tegner kurven. Fordi de to radiene er like, berører punktet den faste sirkelen nøyaktig én gang per runde, og den berøringen er spissen.",
+          "I polarkoordinater, med spissen i origo, er kardioiden r = 2a(1 − cos θ). Visningen «Rolling circle» bygger den mekanisk: I midten ligger en fast sirkel med radius a, en annen sirkel med samme radius ruller rundt utsiden uten å gli, og et merket punkt på den rullende sirkelen tegner kurven. Fordi de to radiene er like, berører punktet den faste sirkelen nøyaktig én gang per runde, og den berøringen er spissen.",
           "Som parametrisert kurve gir rullekonstruksjonen x = 2a cos t − a cos 2t og y = 2a sin t − a sin 2t. Randen til Mandelbrotmengden er det samme uttrykket med a = 1/4 på kompleks form, og derfor ligger det ravgule omrisset i den tredje visningen nøyaktig på kanten av mengden.",
         ],
         formula: BULB_FORMULA,
@@ -453,15 +453,15 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "«Coffee cup» tegner et sirkelformet speil (koppveggen sett ovenfra) og sender parallelle stråler inn fra høyre. Glidebryteren «Rays» bestemmer hvor mange, fra 20 til 300 i steg på 2, med 120 som startverdi. Hver stråle reflekteres fra den bortre veggen, og der de reflekterte strålene klumper seg sammen, danner de en lys innhyllingskurve som kalles en kaustikk. «Show rays» og «Show envelope» slår de to lagene av og på uavhengig av hverandre.",
-          "Her er det en ærlig vri, og panelet sier det selv: for parallelt lys, som sollys, er innhyllingskurven ikke en kardioide, men en nefroide, en beslektet kurve med to spisser. Siden tegner hele nefroiden; halvdelen på den bortre siden er kaustikken til disse strålene, den speilvendte halvdelen hører til lys fra venstre. En ekte kardioide oppstår når lyskilden sitter på kanten av koppen. Begge kurvene er episykloider, og derfor ser den lyse linjen i et ekte krus ofte hjerteformet ut.",
+          "Her er det en ærlig vri, og panelet sier det selv: For parallelt lys, som sollys, er innhyllingskurven ikke en kardioide, men en nefroide, en beslektet kurve med to spisser. Siden tegner hele nefroiden; halvdelen på den bortre siden er kaustikken til disse strålene, den speilvendte halvdelen hører til lys fra venstre. En ekte kardioide oppstår når lyskilden sitter på kanten av koppen. Begge kurvene er episykloider, og derfor ser den lyse linjen i et ekte krus ofte hjerteformet ut.",
           "«Rolling circle» animerer konstruksjonen og har én knapp, «Pause» eller «Roll». «Mandelbrot bulb» viser mengden med den eksakte kardioiden lagt oppå.",
         ],
       },
       {
-        heading: "Slik er den bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Alt tegnes på ett 2D-canvas som er skalert etter pikseltettheten på skjermen din. For koppen plasseres hver stråle ved en vinkel φ på den bortre halvdelen av sirkelen og reflekteres med speilformelen r = d − 2(d·n)n, der d er innfallsretningen og n normalen som peker innover. Stråler som bare ville streife veggen, hoppes over. Innhyllingskurven tegnes ut fra nefroidens egen ligning, den beregnes ikke fra strålene, og du kan se hvordan strålene hoper seg opp langs den.",
-          "Rullevisningen flytter parameteren sin fram med 0,012 radianer per bilde, så én runde tar litt over 500 bilder, omtrent ni sekunder ved 60 Hz. Mandelbrotvisningen kjører flukttidsalgoritmen for hver piksel: iterer z ↦ z² + c fra z = 0 i opptil 40 steg, og stopp så snart |z| blir større enn 2. Piksler som aldri unnslipper, blir nesten svarte, resten får en fiolett tone etter hvor fort de forsvant. Disse pikslene mellomlagres og beregnes bare på nytt når tegneflaten endrer størrelse.",
+          "Alt tegnes på ett 2D-lerret som er skalert etter pikseltettheten på skjermen din. For koppen plasseres hver stråle ved en vinkel φ på den bortre halvdelen av sirkelen og reflekteres med speilformelen r = d − 2(d·n)n, der d er innfallsretningen og n normalen som peker innover. Stråler som bare ville streife veggen, hoppes over. Innhyllingskurven tegnes ut fra nefroidens egen ligning, den beregnes ikke fra strålene, og du kan se hvordan strålene hoper seg opp langs den.",
+          "Rullevisningen flytter parameteren sin fram med 0,012 radianer per bilde, så én runde tar litt over 500 bilder, omtrent ni sekunder ved 60 Hz. Mandelbrotvisningen kjører rømningstidsalgoritmen for hver piksel: Iterer z ↦ z² + c fra z = 0 i opptil 40 steg, og stopp så snart |z| blir større enn 2. Piksler som aldri rømmer, blir nesten svarte, resten får en fiolett tone etter hvor fort de forsvant. Disse pikslene mellomlagres og beregnes bare på nytt når lerretet endrer størrelse.",
           "De stillestående visningene tegnes bare på nytt når en inndataverdi endres. Hvis systemet ditt ber om redusert bevegelse, fryses den rullende sirkelen i ett enkelt statisk bilde.",
         ],
         code: REFLECT_EXCERPT,
@@ -477,7 +477,7 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "La kaustikken oppstå av ingenting",
-        text: "I «Coffee cup» fjerner du haken ved «Show envelope» og setter «Rays» til 20. Dra så sakte opp til 300: kryssingene fortettes til en lys kurve med en skarp spiss halvveis mellom veggen og midten, selv om selve kurven ikke er tegnet.",
+        text: "I «Coffee cup» fjerner du haken ved «Show envelope» og setter «Rays» til 20. Dra så sakte opp til 300: Kryssingene fortettes til en lys kurve med en skarp spiss halvveis mellom veggen og midten, selv om selve kurven ikke er tegnet.",
       },
       {
         title: "Fang spissen",
@@ -485,7 +485,7 @@ export const CARDIOID_GUIDE: ExplorerGuide = {
       },
       {
         title: "Finn grensen for stabilitet",
-        text: "I «Mandelbrot bulb» følger du den ravgule linjen: innenfor den faller hver bane til ro i ett enkelt punkt. Til venstre berører den den runde knoppen i c = −3/4, der fikspunktet viker plassen for en sykel med periode 2.",
+        text: "I «Mandelbrot bulb» følger du den ravgule linjen: Innenfor den faller hver bane til ro i ett enkelt punkt. Til venstre berører den den runde knoppen i c = −3/4, der fikspunktet viker plassen for en sykel med periode 2.",
       },
       {
         title: "Sammenlign de to hjertene",

@@ -164,13 +164,13 @@ export const GODEL_GUIDE: ExplorerGuide = {
         heading: "Qué hacen los controles",
         paragraphs: [
           "La barra lateral tiene dos partes. «Recorre la demostración» te lleva por los cuatro pasos: «Paso» avanza uno (se detiene en el paso 4) y «Reiniciar» vuelve al alfabeto.",
-          "«Prueba una fórmula» ofrece cuatro fórmulas: 0 = 0 (verdadera), 0 = S0 (falsa, porque S0 es el número 1), ¬(0 = 0) y ∀x (0 = 0). Si eliges una mientras estás en el paso uno, saltas directamente al paso dos, donde cada símbolo aparece con su código y su primo, seguido del producto de potencias de primos y del número de Gödel resultante. Las cuatro fórmulas tienen 3, 4, 6 y 7 símbolos, y sus números crecen desde 243 000 000 para 0 = 0 hasta un número de 31 cifras para ¬(0 = 0) y uno de 42 cifras para ∀x (0 = 0). La verdad no interviene en la codificación: la falsa 0 = S0 recibe un número con la misma facilidad que la verdadera 0 = 0.",
+          "«Prueba una fórmula» ofrece cuatro fórmulas: 0 = 0 (verdadera), 0 = S0 (falsa, porque S0 es el número 1), ¬(0 = 0) y ∀x (0 = 0). Si eliges una mientras estás en el paso uno, saltas directamente al paso dos, donde cada símbolo aparece con su código y su primo, seguido del producto de potencias de primos y del número de Gödel resultante. Las cuatro fórmulas tienen 3, 4, 6 y 7 símbolos, y sus números crecen desde 243 000 000 para 0 = 0 hasta un número de 31 cifras para ¬(0 = 0) y uno de 42 cifras para ∀x (0 = 0). La verdad no interviene en la codificación: la falsa 0 = S0 recibe un número con la misma facilidad que la verdadera 0 = 0.",
         ],
       },
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "El explorador es React sin más, sin canvas y sin bucle de animación, así que no hay nada que frenar para el movimiento reducido. Los cuatro pasos son componentes de panel independientes, y una sola variable de estado decide cuál se monta. Las fórmulas se guardan como listas de tokens, y cada token se busca en la tabla del alfabeto para obtener su código.",
+          "El explorador es React sin más, sin lienzo y sin bucle de animación, así que no hay nada que frenar para el movimiento reducido. Los cuatro pasos son componentes de panel independientes, y una sola variable de estado decide cuál se monta. Las fórmulas se guardan como listas de tokens, y cada token se busca en la tabla del alfabeto para obtener su código.",
           "El número de Gödel se calcula con BigInt de JavaScript, porque los números de coma flotante corrientes dejan de representar enteros exactos por encima de 2⁵³ y aquí los productos superan ese límite enseguida. Los diez primos más pequeños están escritos directamente en el código, lo que basta para la fórmula más larga que se ofrece.",
           "En el paso tres, el recuadro bajo ⌜G⌝ no muestra el número de la propia G. El verdadero ⌜G⌝ codifica una sentencia que contiene todo un predicado de demostrabilidad formalizado; es un número natural bien definido, pero demasiado largo para escribirlo. El recuadro lo dice y muestra, a modo de comparación, el número ⌜φ⌝ de la fórmula que has seleccionado.",
         ],
@@ -189,11 +189,11 @@ export const GODEL_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Decodifica un número a mano",
-        text: "Selecciona 0 = 0 y fíjate en 243 000 000. Divide entre 2 hasta que no puedas más: seis veces, así que el primer símbolo tiene el código 6, el numeral 0. Luego divide entre 3 (cinco veces, código 5, el signo igual) y entre 5 (seis veces, otra vez 0). Has recuperado la fórmula a partir del número y nada más.",
+        text: "Selecciona 0 = 0 y fíjate en 243 000 000. Divide entre 2 hasta que no puedas más: seis veces, así que el primer símbolo tiene el código 6, el numeral 0. Luego divide entre 3 (cinco veces, código 5, el signo igual) y entre 5 (seis veces, otra vez 0). Has recuperado la fórmula a partir del número y nada más.",
       },
       {
         title: "Lo verdadero y lo falso reciben números por igual",
-        text: "Compara 0 = 0 con 0 = S0. El símbolo adicional S añade un factor 5⁷ y desplaza el 0 final al primo 7, de modo que el número crece hasta 142 943 535 000 000. Codificar es pura sintaxis; que una fórmula sea verdadera es otra cuestión.",
+        text: "Compara 0 = 0 con 0 = S0. El símbolo adicional S añade un factor 5⁷ y desplaza el 0 final al primo 7, de modo que el número crece hasta 142 943 535 000 000. Codificar es pura sintaxis; que una fórmula sea verdadera es otra cuestión.",
       },
       {
         title: "Mira cómo se dispara la longitud",
@@ -230,7 +230,7 @@ export const GODEL_GUIDE: ExplorerGuide = {
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "L'explorateur est du React tout simple, sans canvas ni boucle d'animation, il n'y a donc rien à ralentir pour la réduction des animations. Les quatre étapes sont des composants de panneau distincts, et une seule variable d'état décide lequel est monté. Les formules sont stockées sous forme de listes de tokens, et chaque token est recherché dans la table de l'alphabet pour trouver son code.",
+          "L'explorateur est du React tout simple, sans canevas ni boucle d'animation, il n'y a donc rien à ralentir pour la réduction des animations. Les quatre étapes sont des composants de panneau distincts, et une seule variable d'état décide lequel est monté. Les formules sont stockées sous forme de listes de jetons, et chaque jeton est recherché dans la table de l'alphabet pour trouver son code.",
           "Le nombre de Gödel est calculé avec le type BigInt de JavaScript, car les nombres à virgule flottante ordinaires ne représentent plus exactement les entiers au-delà de 2⁵³ et les produits dépassent vite cette limite ici. Les dix plus petits nombres premiers sont écrits en dur, ce qui suffit pour la plus longue formule proposée.",
           "À l'étape trois, l'encadré sous ⌜G⌝ n'affiche pas le nombre de G lui-même. Le véritable ⌜G⌝ code un énoncé qui contient tout un prédicat de prouvabilité formalisé ; c'est un entier naturel bien déterminé, mais beaucoup trop long pour être écrit. L'encadré le dit et montre, à titre de comparaison, le nombre ⌜φ⌝ de la formule que tu as sélectionnée.",
         ],
@@ -305,7 +305,7 @@ export const GODEL_GUIDE: ExplorerGuide = {
         formula: G_SENTENCE_FORMULA,
       },
     ],
-    experimentsHeading: "Prova tu",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Decodifica un numero a mano",
@@ -330,7 +330,7 @@ export const GODEL_GUIDE: ExplorerGuide = {
       "O teorema da incompletude de Gödel passo a passo: codifica fórmulas como números de Gödel, constrói a frase «Não sou demonstrável» e segue os dois ramos.",
     heading: "Como funciona este explorador",
     intro:
-      "Esta sala percorre em quatro passos o núcleo do primeiro teorema da incompletude de Gödel. Primeiro, cada símbolo de uma pequena linguagem aritmética recebe um número. Depois, uma fórmula inteira é empacotada num único número natural com potências de primos. O passo três usa esse truque para construir uma sentença G que fala da sua própria demonstrabilidade, e o passo quatro pergunta o que acontece se G for demonstrável e o que acontece se não for. Nada aqui é metáfora: os números no ecrã são calculados de forma exata no teu navegador, e a lógica é a mesma que Gödel publicou em 1931.",
+      "Esta sala percorre em quatro passos o núcleo do primeiro teorema da incompletude de Gödel. Primeiro, cada símbolo de uma pequena linguagem aritmética recebe um número. Depois, uma fórmula inteira é empacotada num único número natural com potências de primos. O passo três usa esse truque para construir uma frase G que fala da sua própria demonstrabilidade, e o passo quatro pergunta o que acontece se G for demonstrável e o que acontece se não for. Nada aqui é metáfora: os números no ecrã são calculados de forma exata no teu navegador, e a lógica é a mesma que Gödel publicou em 1931.",
     sections: [
       {
         heading: "Transformar fórmulas em números",
@@ -352,15 +352,15 @@ export const GODEL_GUIDE: ExplorerGuide = {
         paragraphs: [
           "O explorador é React simples, sem canvas e sem ciclo de animação, por isso não há nada para abrandar no modo de movimento reduzido. Os quatro passos são componentes de painel separados, e uma única variável de estado decide qual deles é montado. As fórmulas são guardadas como listas de tokens, e cada token é procurado na tabela do alfabeto para encontrar o seu código.",
           "O número de Gödel é calculado com BigInt de JavaScript, porque os números de vírgula flutuante comuns deixam de representar inteiros exatos acima de 2⁵³ e os produtos aqui ultrapassam esse limite rapidamente. Os dez primos mais pequenos estão escritos diretamente no código, o que chega para a fórmula mais longa disponível.",
-          "No passo três, a caixa por baixo de ⌜G⌝ não mostra o número da própria G. O verdadeiro ⌜G⌝ codifica uma sentença que contém todo um predicado de demonstrabilidade formalizado; é um número natural bem definido, mas demasiado longo para ser escrito. A caixa diz isso mesmo e mostra, para comparação, o número ⌜φ⌝ da fórmula que selecionaste.",
+          "No passo três, a caixa por baixo de ⌜G⌝ não mostra o número da própria G. O verdadeiro ⌜G⌝ codifica uma frase que contém todo um predicado de demonstrabilidade formalizado; é um número natural bem definido, mas demasiado longo para ser escrito. A caixa diz isso mesmo e mostra, para comparação, o número ⌜φ⌝ da fórmula que selecionaste.",
         ],
         code: GODEL_NUMBER_EXCERPT,
       },
       {
         heading: "Dos números à autorreferência",
         paragraphs: [
-          "Assim que as fórmulas são números, as afirmações sobre fórmulas tornam-se afirmações sobre números. «y é o código de uma prova válida da fórmula com código x» transforma-se numa relação aritmética Prov(y, x) que o próprio sistema consegue exprimir. O lema diagonal diz então: para toda a propriedade P(x) existe uma sentença G que é demonstravelmente equivalente a P(⌜G⌝). Escolhendo para P(x) «nenhum y prova x», obtém-se a sentença no ecrã.",
-          "O passo quatro desenvolve os dois casos. Se o sistema S prova G, essa prova tem um código n. S consegue verificá-la e assim prova que algum y é uma prova de G, o que é exatamente a negação de G. S provaria uma sentença e a sua negação, e um S consistente nunca o faz. Logo, um S consistente não prova G, e então aquilo que G diz é verdade. G é uma afirmação verdadeira da aritmética que S não consegue provar. A incompletude exige ainda que S não prove ¬G. A prova original de Gödel obtém isso da ω-consistência, uma hipótese mais forte do que a consistência; a sentença modificada de Rosser (1936) arranja-se apenas com a consistência. Formalizar este mesmo argumento dentro de S dá o segundo teorema: um sistema consistente e suficientemente forte para a aritmética não consegue provar a sua própria consistência.",
+          "Assim que as fórmulas são números, as afirmações sobre fórmulas tornam-se afirmações sobre números. «y é o código de uma prova válida da fórmula com código x» transforma-se numa relação aritmética Prov(y, x) que o próprio sistema consegue exprimir. O lema diagonal diz então: para toda a propriedade P(x) existe uma frase G que é demonstravelmente equivalente a P(⌜G⌝). Escolhendo para P(x) «nenhum y prova x», obtém-se a frase no ecrã.",
+          "O passo quatro desenvolve os dois casos. Se o sistema S prova G, essa prova tem um código n. S consegue verificá-la e assim prova que algum y é uma prova de G, o que é exatamente a negação de G. S provaria uma frase e a sua negação, e um S consistente nunca o faz. Logo, um S consistente não prova G, e então aquilo que G diz é verdade. G é uma afirmação verdadeira da aritmética que S não consegue provar. A incompletude exige ainda que S não prove ¬G. A prova original de Gödel obtém isso da ω-consistência, uma hipótese mais forte do que a consistência; a frase modificada de Rosser (1936) arranja-se apenas com a consistência. Formalizar este mesmo argumento dentro de S dá o segundo teorema: um sistema consistente e suficientemente forte para a aritmética não consegue provar a sua própria consistência.",
         ],
         formula: G_SENTENCE_FORMULA,
       },
@@ -404,13 +404,13 @@ export const GODEL_GUIDE: ExplorerGuide = {
         heading: "Vad reglagen gör",
         paragraphs: [
           "Sidofältet har två delar. ”Gå igenom beviset” tar dig genom de fyra stegen: ”Steg” går ett steg framåt (och stannar vid steg 4), ”Återställ” hoppar tillbaka till alfabetet.",
-          "”Pröva en formel” erbjuder fyra formler: 0 = 0 (sann), 0 = S0 (falsk, eftersom S0 är talet 1), ¬(0 = 0) och ∀x (0 = 0). Väljer du en av dem medan du är på steg ett hoppar du direkt till steg två, där varje symbol listas med sin kod och sitt primtal, följt av produkten av primtalspotenser och det Gödeltal som blir resultatet. De fyra formlerna har 3, 4, 6 och 7 symboler, och deras tal växer från 243 000 000 för 0 = 0 till ett 31-siffrigt tal för ¬(0 = 0) och ett 42-siffrigt för ∀x (0 = 0). Sanning spelar ingen roll för kodningen: den falska 0 = S0 får ett tal lika lätt som den sanna 0 = 0.",
+          "”Pröva en formel” erbjuder fyra formler: 0 = 0 (sann), 0 = S0 (falsk, eftersom S0 är talet 1), ¬(0 = 0) och ∀x (0 = 0). Väljer du en av dem medan du är på steg ett hoppar du direkt till steg två, där varje symbol listas med sin kod och sitt primtal, följt av produkten av primtalspotenser och det Gödeltal som blir resultatet. De fyra formlerna har 3, 4, 6 och 7 symboler, och deras tal växer från 243\u00a0000\u00a0000 för 0 = 0 till ett 31-siffrigt tal för ¬(0 = 0) och ett 42-siffrigt för ∀x (0 = 0). Sanning spelar ingen roll för kodningen: den falska 0 = S0 får ett tal lika lätt som den sanna 0 = 0.",
         ],
       },
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Utforskaren är vanlig React utan canvas och utan animationsloop, så det finns inget att bromsa för reducerad rörelse. De fyra stegen är separata panelkomponenter, och en enda tillståndsvariabel avgör vilken som visas. Formlerna lagras som tokenlistor, och varje token slås upp i alfabetstabellen för att hitta dess kod.",
+          "Utforskaren är vanlig React utan canvas och utan animationsslinga, så det finns inget att bromsa för minskad rörelse. De fyra stegen är separata panelkomponenter, och en enda tillståndsvariabel avgör vilken som visas. Formlerna lagras som tokenlistor, och varje token slås upp i alfabetstabellen för att hitta dess kod.",
           "Gödeltalet beräknas med JavaScripts BigInt, eftersom vanliga flyttal inte längre återger heltal exakt över 2⁵³ och produkterna här snabbt växer förbi den gränsen. De tio minsta primtalen är hårdkodade, vilket räcker för den längsta formeln som erbjuds.",
           "I steg tre skriver rutan under ⌜G⌝ inte ut G:s eget tal. Det verkliga ⌜G⌝ kodar en sats som innehåller ett helt formaliserat bevisbarhetspredikat. Det är ett bestämt naturligt tal, men alldeles för långt för att skrivas ut. Rutan säger det och visar som jämförelse talet ⌜φ⌝ för den formel du har valt.",
         ],
@@ -425,15 +425,15 @@ export const GODEL_GUIDE: ExplorerGuide = {
         formula: G_SENTENCE_FORMULA,
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Avkoda ett tal för hand",
-        text: "Välj 0 = 0 och titta på 243 000 000. Dela med 2 tills det inte går längre: sex gånger, så den första symbolen har kod 6, siffran 0. Dela sedan med 3 (fem gånger, kod 5, likhetstecknet) och med 5 (sex gånger, 0 igen). Du har återskapat formeln ur enbart talet.",
+        text: "Välj 0 = 0 och titta på 243\u00a0000\u00a0000. Dela med 2 tills det inte går längre: sex gånger, så den första symbolen har kod 6, siffran 0. Dela sedan med 3 (fem gånger, kod 5, likhetstecknet) och med 5 (sex gånger, 0 igen). Du har återskapat formeln ur enbart talet.",
       },
       {
         title: "Sant och falskt får tal på samma sätt",
-        text: "Jämför 0 = 0 med 0 = S0. Den extra symbolen S lägger till en faktor 5⁷ och flyttar den sista nollan till primtalet 7, så talet växer till 142 943 535 000 000. Kodning är ren syntax. Om en formel är sann är en annan fråga.",
+        text: "Jämför 0 = 0 med 0 = S0. Den extra symbolen S lägger till en faktor 5⁷ och flyttar den sista nollan till primtalet 7, så talet växer till 142\u00a0943\u00a0535\u00a0000\u00a0000. Kodning är ren syntax. Om en formel är sann är en annan fråga.",
       },
       {
         title: "Se längden explodera",
@@ -447,16 +447,16 @@ export const GODEL_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Gödels ufullstendighetsteorem steg for steg: kod formler som Gödel-tall med primtallspotenser, bygg setningen «Jeg er ikke bevisbar» og følg begge grenene.",
+      "Gödels ufullstendighetsteorem steg for steg: Kod formler som Gödel-tall med primtallspotenser, bygg setningen «Jeg er ikke bevisbar» og følg begge grenene.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Dette rommet går gjennom kjernen i Gödels første ufullstendighetsteorem i fire steg. Først får hvert symbol i et lite aritmetisk språk et nummer. Deretter pakkes en hel formel inn i ett eneste naturlig tall ved hjelp av primtallspotenser. Steg tre bruker det trikset til å bygge en setning G som snakker om sin egen bevisbarhet, og steg fire spør hva som skjer hvis G er bevisbar, og hva som skjer hvis den ikke er det. Ingenting her er en metafor: tallene på skjermen regnes ut eksakt i nettleseren din, og logikken er den samme som Gödel publiserte i 1931.",
+      "Dette rommet går gjennom kjernen i Gödels første ufullstendighetsteorem i fire steg. Først får hvert symbol i et lite aritmetisk språk et nummer. Deretter pakkes en hel formel inn i ett eneste naturlig tall ved hjelp av primtallspotenser. Steg tre bruker det trikset til å bygge en setning G som snakker om sin egen bevisbarhet, og steg fire spør hva som skjer hvis G er bevisbar, og hva som skjer hvis den ikke er det. Ingenting her er en metafor: Tallene på skjermen regnes ut eksakt i nettleseren din, og logikken er den samme som Gödel publiserte i 1931.",
     sections: [
       {
         heading: "Å gjøre formler om til tall",
         paragraphs: [
           "Alfabetet i steg én har elleve symboler, hvert med en fast kode: ¬ er 1, ∨ er 2, ∀ er 3, ∃ er 4, = er 5, sifferet 0 er 6, etterfølgeren S er 7, + er 8, parentesene er 9 og 10, og variabelen x er 11. En formel er en endelig streng av disse symbolene, så den blir en endelig liste av koder c₁, c₂, …, cₖ.",
-          "For å presse den lista inn i ett enkelt tall blir den i-te koden eksponenten til det i-te primtallet. Siden hvert naturlig tall har nøyaktig én primtallsfaktorisering, kan du alltid lese lista ut av produktet igjen. Derfor starter alle kodene på 1 og ikke på 0: en eksponent 0 ville gjort et symbol usynlig i faktoriseringen.",
+          "For å presse den listen inn i ett enkelt tall blir den i-te koden eksponenten til det i-te primtallet. Siden hvert naturlig tall har nøyaktig én primtallsfaktorisering, kan du alltid lese listen ut av produktet igjen. Derfor starter alle kodene på 1 og ikke på 0: En eksponent 0 ville gjort et symbol usynlig i faktoriseringen.",
         ],
         formula: ENCODING_FORMULA,
       },
@@ -464,13 +464,13 @@ export const GODEL_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "Sidefeltet har to deler. «Gå gjennom beviset» tar deg gjennom de fire stegene: «Steg» går ett steg fram (og stopper ved steg 4), «Nullstill» hopper tilbake til alfabetet.",
-          "«Prøv en formel» tilbyr fire formler: 0 = 0 (sann), 0 = S0 (falsk, siden S0 er tallet 1), ¬(0 = 0) og ∀x (0 = 0). Velger du en av dem mens du er på steg én, hopper du rett til steg to, der hvert symbol står oppført med koden sin og primtallet sitt, fulgt av produktet av primtallspotenser og det ferdige Gödel-tallet. De fire formlene har 3, 4, 6 og 7 symboler, og tallene deres vokser fra 243 000 000 for 0 = 0 til et 31-sifret tall for ¬(0 = 0) og et 42-sifret for ∀x (0 = 0). Sannhet spiller ingen rolle i kodingen: den usanne 0 = S0 får et tall like lett som den sanne 0 = 0.",
+          "«Prøv en formel» tilbyr fire formler: 0 = 0 (sann), 0 = S0 (falsk, siden S0 er tallet 1), ¬(0 = 0) og ∀x (0 = 0). Velger du en av dem mens du er på steg én, hopper du rett til steg to, der hvert symbol står oppført med koden sin og primtallet sitt, fulgt av produktet av primtallspotenser og det ferdige Gödel-tallet. De fire formlene har 3, 4, 6 og 7 symboler, og tallene deres vokser fra 243\u00a0000\u00a0000 for 0 = 0 til et 31-sifret tall for ¬(0 = 0) og et 42-sifret for ∀x (0 = 0). Sannhet spiller ingen rolle i kodingen: Den usanne 0 = S0 får et tall like lett som den sanne 0 = 0.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Utforskeren er ren React uten canvas og uten animasjonsløkke, så det er ingenting å bremse for redusert bevegelse. De fire stegene er egne panelkomponenter, og én enkelt tilstandsvariabel avgjør hvilken som vises. Formlene er lagret som tokenlister, og hvert token slås opp i alfabettabellen for å finne koden.",
+          "Utforskeren er ren React uten lerret og uten animasjonsløkke, så det er ingenting å bremse for redusert bevegelse. De fire stegene er egne panelkomponenter, og én enkelt tilstandsvariabel avgjør hvilken som vises. Formlene er lagret som tokenlister, og hvert token slås opp i alfabettabellen for å finne koden.",
           "Gödel-tallet regnes ut med BigInt i JavaScript, fordi vanlige flyttall ikke lenger gjengir heltall eksakt over 2⁵³, og produktene her vokser raskt forbi den grensen. De ti minste primtallene er hardkodet, og det holder for den lengste formelen som tilbys.",
           "I steg tre skriver ikke boksen under ⌜G⌝ ut G sitt eget tall. Det virkelige ⌜G⌝ koder en setning som inneholder et helt formalisert bevisbarhetspredikat. Det er et bestemt naturlig tall, men altfor langt til å skrives ut. Boksen sier nettopp det og viser til sammenligning tallet ⌜φ⌝ for formelen du har valgt.",
         ],
@@ -479,8 +479,8 @@ export const GODEL_GUIDE: ExplorerGuide = {
       {
         heading: "Fra tall til selvreferanse",
         paragraphs: [
-          "Når formler først er tall, blir påstander om formler til påstander om tall. «y er koden til et gyldig bevis for formelen med kode x» blir en aritmetisk relasjon Prov(y, x) som systemet selv kan uttrykke. Diagonallemmaet sier da: for enhver egenskap P(x) finnes det en setning G som er bevisbart ekvivalent med P(⌜G⌝). Velger man P(x) som «ingen y beviser x», får man setningen på skjermen.",
-          "Steg fire spiller gjennom begge tilfellene. Hvis systemet S beviser G, har det beviset en kode n. S kan kontrollere det og beviser dermed at en eller annen y er et bevis for G, og det er nøyaktig negasjonen av G. S ville bevist en setning og negasjonen av den, og det gjør et motsigelsesfritt S aldri. Altså beviser ikke et motsigelsesfritt S setningen G, og da er det G sier, sant. G er en sann aritmetisk påstand som S ikke kan bevise. Ufullstendighet krever dessuten at S ikke beviser ¬G. Gödels opprinnelige bevis får det fra ω-konsistens, en sterkere antakelse enn motsigelsesfrihet. Rossers modifiserte setning (1936) klarer seg med ren motsigelsesfrihet. Å formalisere nettopp dette argumentet inne i S gir det andre teoremet: et motsigelsesfritt system som er sterkt nok for aritmetikk, kan ikke bevise sin egen motsigelsesfrihet.",
+          "Når formler først er tall, blir påstander om formler til påstander om tall. «y er koden til et gyldig bevis for formelen med kode x» blir en aritmetisk relasjon Prov(y, x) som systemet selv kan uttrykke. Diagonallemmaet sier da: For enhver egenskap P(x) finnes det en setning G som er bevisbart ekvivalent med P(⌜G⌝). Velger man P(x) som «ingen y beviser x», får man setningen på skjermen.",
+          "Steg fire spiller gjennom begge tilfellene. Hvis systemet S beviser G, har det beviset en kode n. S kan kontrollere det og beviser dermed at en eller annen y er et bevis for G, og det er nøyaktig negasjonen av G. S ville bevist en setning og negasjonen av den, og det gjør et motsigelsesfritt S aldri. Altså beviser ikke et motsigelsesfritt S setningen G, og da er det G sier, sant. G er en sann aritmetisk påstand som S ikke kan bevise. Ufullstendighet krever dessuten at S ikke beviser ¬G. Gödels opprinnelige bevis får det fra ω-konsistens, en sterkere antakelse enn motsigelsesfrihet. Rossers modifiserte setning (1936) klarer seg med ren motsigelsesfrihet. Å formalisere nettopp dette argumentet inne i S gir det andre teoremet: Et motsigelsesfritt system som er sterkt nok for aritmetikk, kan ikke bevise sin egen motsigelsesfrihet.",
         ],
         formula: G_SENTENCE_FORMULA,
       },
@@ -489,11 +489,11 @@ export const GODEL_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Dekod et tall for hånd",
-        text: "Velg 0 = 0 og se på 243 000 000. Del på 2 så lenge det går: seks ganger, så det første symbolet har kode 6, sifferet 0. Del så på 3 (fem ganger, kode 5, likhetstegnet) og på 5 (seks ganger, 0 igjen). Du har hentet formelen tilbake fra tallet alene.",
+        text: "Velg 0 = 0 og se på 243\u00a0000\u00a0000. Del på 2 så lenge det går: seks ganger, så det første symbolet har kode 6, sifferet 0. Del så på 3 (fem ganger, kode 5, likhetstegnet) og på 5 (seks ganger, 0 igjen). Du har hentet formelen tilbake fra tallet alene.",
       },
       {
         title: "Sant og usant får tall på samme måte",
-        text: "Sammenlign 0 = 0 med 0 = S0. Det ekstra symbolet S legger til en faktor 5⁷ og flytter den siste nullen til primtallet 7, så tallet vokser til 142 943 535 000 000. Koding er ren syntaks. Om en formel er sann, er et annet spørsmål.",
+        text: "Sammenlign 0 = 0 med 0 = S0. Det ekstra symbolet S legger til en faktor 5⁷ og flytter den siste nullen til primtallet 7, så tallet vokser til 142\u00a0943\u00a0535\u00a0000\u00a0000. Koding er ren syntaks. Om en formel er sann, er et annet spørsmål.",
       },
       {
         title: "Se lengden eksplodere",

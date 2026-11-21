@@ -100,7 +100,7 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
         heading: "Was die Regler bewirken",
         paragraphs: [
           "Die Magnetstärke k (0,05 bis 1,5, Standard 0,4) skaliert den Zug aller drei Magneten. Die Dämpfung γ (0,01 bis 0,6, Standard 0,18) ist die Reibung: Bei kleinen Werten fliegt das Pendel viele Male an den Magneten vorbei, bevor es zur Ruhe kommt, bei großen bleibt es fast dort stehen, wohin es gezielt war. Die Rückstellung ω² (0,05 bis 2, Standard 0,5) ist die Steifigkeit des Zugs zur Mitte. Die Pendelhöhe h (0,05 bis 0,6, Standard 0,18) legt fest, wie dicht das Pendel über die Magneten streicht; kleines h bedeutet scharfe, starke Kräfte direkt über einem Magneten, großes h verschmiert das Feld.",
-          "Der Ausschnitt (0,8 bis 4, Standard 2,0) wählt das Quadrat der Startpunkte, von −span bis +span in beide Richtungen; kleinere Werte zoomen also auf die Mitte. Die Auflösung (60 bis 360 Pixel pro Seite, Standard 180) bestimmt, wie viele Startpunkte simuliert werden. Mit eingeschalteter Schattierung wird jedes Pixel nach der Einfangzeit abgedunkelt: hell heißt schnell gefangen, dunkel heißt langer, chaotischer Flug. «Neu berechnen» rechnet die ganze Karte noch einmal; jede Regleränderung tut das ohnehin automatisch.",
+          "Der Ausschnitt (0,8 bis 4, Standard 2,0) wählt das Quadrat der Startpunkte, von −span bis +span in beide Richtungen; kleinere Werte zoomen also auf die Mitte. Die Auflösung (60 bis 360 Pixel pro Seite, Standard 180) bestimmt, wie viele Startpunkte simuliert werden. Mit eingeschalteter Schattierung wird jedes Pixel nach der Einfangzeit abgedunkelt: Hell heißt schnell gefangen, dunkel heißt langer, chaotischer Flug. «Neu berechnen» rechnet die ganze Karte noch einmal; jede Regleränderung tut das ohnehin automatisch.",
         ],
       },
       {
@@ -167,7 +167,7 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Cada píxel suelta la bola en reposo desde el centro de su celda e integra la ecuación con el método de Euler semiimplícito y un paso fijo de dt = 0,02: primero se actualiza la velocidad a partir de la aceleración y después la posición a partir de la nueva velocidad. Ese orden apenas cuesta más que el Euler simple, pero evita que las oscilaciones ganen energía de la nada, y aquí basta con eso porque el único resultado que importa es qué imán gana.",
           "Cada ocho pasos el código comprueba si la bola está a una distancia menor que √0,06 ≈ 0,245 de un imán y se mueve más despacio que √0,005 ≈ 0,07. Si es así, ese imán es el ganador y el número de pasos pasa a ser el tiempo de captura. Si transcurren 3000 pasos sin captura, o los números se disparan, se toma el imán más cercano y el píxel recibe el tono más oscuro.",
-          "Con la resolución por defecto son 32 400 trayectorias de hasta 3000 pasos cada una, así que el mapa se calcula en franjas de seis filas por fotograma de animación. El indicador de progreso va subiendo mientras la imagen se llena de arriba abajo, y el navegador sigue respondiendo. Los píxeles van a un búfer ImageData con la resolución elegida, que luego se amplía sin suavizado hasta el mayor cuadrado centrado del canvas, de modo que el triángulo nunca se deforma. No hay ninguna animación continua: en cuanto el indicador dice «listo», la imagen se queda quieta.",
+          "Con la resolución por defecto son 32 400 trayectorias de hasta 3000 pasos cada una, así que el mapa se calcula en franjas de seis filas por fotograma de animación. El indicador de progreso va subiendo mientras la imagen se llena de arriba abajo, y el navegador sigue respondiendo. Los píxeles van a un búfer ImageData con la resolución elegida, que luego se amplía sin suavizado hasta el mayor cuadrado centrado del lienzo, de modo que el triángulo nunca se deforma. No hay ninguna animación continua: en cuanto el indicador dice «listo», la imagen se queda quieta.",
         ],
         code: STEP_EXCERPT,
       },
@@ -215,7 +215,7 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
           "\\ddot{\\mathbf p} = -\\gamma\\,\\dot{\\mathbf p} - \\omega^2 \\mathbf p - \\sum_{i=1}^{3} \\frac{k\\,(\\mathbf p - \\mathbf m_i)}{\\left(|\\mathbf p - \\mathbf m_i|^2 + h^2\\right)^{3/2}}",
       },
       {
-        heading: "À quoi servent les réglages",
+        heading: "À quoi servent les commandes",
         paragraphs: [
           "« Force d'aimant k » (de 0,05 à 1,5 ; 0,4 par défaut) met à l'échelle l'attraction des trois aimants. « Amortissement γ » (de 0,01 à 0,6 ; 0,18 par défaut) est le frottement : avec de faibles valeurs, la masse passe de nombreuses fois à côté des aimants avant de s'arrêter, avec de fortes valeurs elle s'immobilise presque là où elle était lancée. « Rappel ω² » (de 0,05 à 2 ; 0,5 par défaut) est la raideur de la force qui la ramène au centre. « Hauteur du pendule h » (de 0,05 à 0,6 ; 0,18 par défaut) fixe à quelle distance la masse passe au-dessus des aimants ; un petit h donne des attractions fortes et brusques juste au-dessus d'un aimant, un grand h étale le champ.",
           "« Fenêtre ± » (de 0,8 à 4 ; 2,0 par défaut) choisit le carré des points de départ, de −span à +span dans les deux directions, si bien qu'en la réduisant tu zoomes sur le centre. « Résolution » (de 60 à 360 pixels par côté ; 180 par défaut) fixe le nombre de points de départ simulés. Quand « Ombrer par temps de capture » est activé, chaque pixel est assombri selon la durée de la capture : clair veut dire capturée rapidement, sombre veut dire un long vol chaotique. « Recalculer » relance le calcul de toute la carte ; toute modification d'un curseur le fait automatiquement.",
@@ -224,9 +224,9 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Chaque pixel lâche la masse au repos au centre de sa cellule et intègre l'équation par la méthode d'Euler semi-implicite avec un pas fixe dt = 0,02 : la vitesse est d'abord mise à jour à partir de l'accélération, puis la position à partir de la nouvelle vitesse. Cet ordre coûte à peine plus cher que l'Euler simple, mais empêche les oscillations de gagner de l'énergie à partir de rien, ce qui suffit ici, car le seul résultat qui compte est de savoir quel aimant l'emporte.",
-          "Tous les huit pas, le code vérifie si la masse se trouve à une distance inférieure à √0,06 ≈ 0,245 d'un aimant et se déplace moins vite que √0,005 ≈ 0,07. Si c'est le cas, cet aimant est le vainqueur et le nombre de pas devient le temps de capture. Si 3000 pas s'écoulent sans capture, ou si les nombres explosent, c'est l'aimant le plus proche qui est retenu et le pixel reçoit la teinte la plus sombre.",
-          "À la résolution par défaut, cela fait 32 400 trajectoires de 3000 pas au maximum chacune, et la carte est donc calculée par tranches de six lignes par image d'animation. L'indicateur de progression grimpe pendant que l'image se remplit de haut en bas, et le navigateur reste réactif. Les pixels sont écrits dans un tampon ImageData à la résolution choisie, qui est ensuite agrandi sans lissage dans le plus grand carré centré du canvas, de sorte que le triangle n'est jamais déformé. Il n'y a aucune animation permanente : dès que l'indicateur affiche « prêt », l'image ne bouge plus.",
+          "Chaque pixel lâche la masse au repos au centre de sa cellule et intègre l'équation par la méthode d'Euler semi-implicite avec un pas fixe dt = 0,02 : la vitesse est d'abord mise à jour à partir de l'accélération, puis la position à partir de la nouvelle vitesse. Cet ordre coûte à peine plus cher que la méthode d'Euler simple, mais empêche les oscillations de gagner de l'énergie à partir de rien, ce qui suffit ici, car le seul résultat qui compte est de savoir quel aimant l'emporte.",
+          "Tous les huit pas, le code vérifie si la masse se trouve à une distance inférieure à √0,06 ≈ 0,245 d'un aimant et se déplace moins vite que √0,005 ≈ 0,07. Si c'est le cas, cet aimant est le vainqueur et le nombre de pas devient le temps de capture. Si 3 000 pas s'écoulent sans capture, ou si les nombres explosent, c'est l'aimant le plus proche qui est retenu et le pixel reçoit la teinte la plus sombre.",
+          "À la résolution par défaut, cela fait 32 400 trajectoires de 3 000 pas au maximum chacune, et la carte est donc calculée par tranches de six lignes par image d'animation. L'indicateur de progression grimpe pendant que l'image se remplit de haut en bas, et le navigateur reste réactif. Les pixels sont écrits dans un tampon ImageData à la résolution choisie, qui est ensuite agrandi sans lissage dans le plus grand carré centré du canevas, de sorte que le triangle n'est jamais déformé. Il n'y a aucune animation permanente : dès que l'indicateur affiche « prêt », l'image ne bouge plus.",
         ],
         code: STEP_EXCERPT,
       },
@@ -253,13 +253,13 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
       },
       {
         title: "Des aimants trop faibles pour retenir",
-        text: "Règle k sur 0,05 et ω² sur 2. Le ressort l'emporte désormais sur les aimants, et la masse a tendance à s'immobiliser près du centre, là où aucun aimant ne peut la revendiquer. La capture n'est jamais enregistrée, le code se rabat sur l'aimant le plus proche au bout de 3000 pas et, avec l'ombrage activé, la carte devient sombre.",
+        text: "Règle k sur 0,05 et ω² sur 2. Le ressort l'emporte désormais sur les aimants, et la masse a tendance à s'immobiliser près du centre, là où aucun aimant ne peut la revendiquer. La capture n'est jamais enregistrée, le code se rabat sur l'aimant le plus proche au bout de 3 000 pas et, avec l'ombrage activé, la carte devient sombre.",
       },
     ],
   },
   it: {
     metaDescription:
-      "Mappa di bacini del pendolo magnetico: ogni pixel simula un pendolo sopra tre magneti. Regola forza, smorzamento e altezza e osserva i confini frattali.",
+      "Mappa dei bacini del pendolo magnetico: ogni pixel simula un pendolo sopra tre magneti. Regola forza, smorzamento e altezza e osserva i confini frattali.",
     heading: "Come funziona questo esploratore",
     intro:
       "Immagina il peso di un pendolo appeso sopra una piastra con tre magneti disposti a triangolo. Lo sposti in un punto, lo lasci andare e dopo un po' si ferma sopra uno dei magneti. La mappa colora ogni punto di partenza in base al magnete che alla fine lo cattura: rosa, ciano o verde. Le grandi zone tranquille indicano un comportamento prevedibile. Dove i colori si intrecciano in bande sottili e alternate, una differenza minuscola nel punto di rilascio decide l'esito. Ogni pixel è una simulazione completa a sé.",
@@ -281,11 +281,11 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
         ],
       },
       {
-        heading: "Come è costruito",
+        heading: "Com'è costruito",
         paragraphs: [
           "Ogni pixel fa partire il peso da fermo dal centro della propria cella e integra l'equazione con il metodo di Eulero semi-implicito a passo fisso dt = 0,02: prima si aggiorna la velocità a partire dall'accelerazione, poi la posizione a partire dalla nuova velocità. Quest'ordine costa appena più dell'Eulero semplice, ma impedisce alle oscillazioni di guadagnare energia dal nulla, e qui tanto basta, perché l'unico risultato che conta è quale magnete vince.",
           "Ogni otto passi il codice controlla se il peso si trova a una distanza inferiore a √0,06 ≈ 0,245 da un magnete e si muove più lentamente di √0,005 ≈ 0,07. In tal caso quel magnete è il vincitore e il numero di passi diventa il tempo di cattura. Se trascorrono 3000 passi senza cattura, o se i numeri esplodono, si prende il magnete più vicino e il pixel riceve la tonalità più scura.",
-          "Alla risoluzione predefinita sono 32 400 traiettorie da 3000 passi al massimo ciascuna, quindi la mappa viene calcolata a fette di sei righe per fotogramma di animazione. L'indicatore di avanzamento sale mentre l'immagine si riempie dall'alto verso il basso, e il browser resta reattivo. I pixel finiscono in un buffer ImageData alla risoluzione scelta, che viene poi ingrandito senza interpolazione nel più grande quadrato centrato del canvas, così il triangolo non risulta mai deformato. Non c'è alcuna animazione continua: appena l'indicatore segna «pronto», l'immagine resta ferma.",
+          "Alla risoluzione predefinita sono 32.400 traiettorie da 3000 passi al massimo ciascuna, quindi la mappa viene calcolata a fette di sei righe per fotogramma di animazione. L'indicatore di avanzamento sale mentre l'immagine si riempie dall'alto verso il basso, e il browser resta reattivo. I pixel finiscono in un buffer ImageData alla risoluzione scelta, che viene poi ingrandito senza interpolazione nel più grande quadrato centrato del canvas, così il triangolo non risulta mai deformato. Non c'è alcuna animazione continua: appena l'indicatore segna «pronto», l'immagine resta ferma.",
         ],
         code: STEP_EXCERPT,
       },
@@ -355,7 +355,7 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Experimenta",
+    experimentsHeading: "Experimenta isto",
     experiments: [
       {
         title: "Acalma o pêndulo",
@@ -394,8 +394,8 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "”Magnetstyrka k” (0,05 till 1,5; standard 0,4) skalar dragkraften hos alla tre magneterna. ”Dämpning γ” (0,01 till 0,6; standard 0,18) är friktionen: med låga värden flyger kulan förbi magneterna många gånger innan den kommer till ro, med höga värden stannar den nästan där den siktades. ”Återföring ω²” (0,05 till 2; standard 0,5) är styvheten i kraften som drar tillbaka mot mitten. ”Pendelhöjd h” (0,05 till 0,6; standard 0,18) bestämmer hur nära kulan passerar över magneterna; litet h ger skarpa, starka ryck rakt ovanför en magnet, stort h smetar ut fältet.",
-          "”Vy ±” (0,8 till 4; standard 2,0) väljer kvadraten av startpunkter, från −span till +span i båda riktningarna, så ett lägre värde zoomar in mot mitten. ”Upplösning” (60 till 360 pixlar per sida; standard 180) bestämmer hur många startpunkter som simuleras. Med ”Skugga efter infångningstid” påslaget mörkas varje pixel efter hur lång tid infångningen tog: ljust betyder snabbt fångad, mörkt betyder en lång, kaotisk färd. ”Räkna om” kör hela kartan en gång till; varje reglageändring gör det automatiskt.",
+          "”Magnetstyrka k” (0,05 till 1,5, standard 0,4) skalar dragkraften hos alla tre magneterna. ”Dämpning γ” (0,01 till 0,6, standard 0,18) är friktionen: med låga värden flyger kulan förbi magneterna många gånger innan den kommer till ro, med höga värden stannar den nästan där den siktades. ”Återföring ω²” (0,05 till 2, standard 0,5) är styvheten i kraften som drar tillbaka mot mitten. ”Pendelhöjd h” (0,05 till 0,6, standard 0,18) bestämmer hur nära kulan passerar över magneterna; litet h ger skarpa, starka ryck rakt ovanför en magnet, stort h smetar ut fältet.",
+          "”Vy ±” (0,8 till 4, standard 2,0) väljer kvadraten av startpunkter, från −span till +span i båda riktningarna, så ett lägre värde zoomar in mot mitten. ”Upplösning” (60 till 360 pixlar per sida, standard 180) bestämmer hur många startpunkter som simuleras. Med ”Skugga efter infångningstid” påslaget mörkas varje pixel efter hur lång tid infångningen tog: ljust betyder snabbt fångad, mörkt betyder en lång, kaotisk färd. ”Räkna om” kör hela kartan en gång till; varje reglageändring gör det automatiskt.",
         ],
       },
       {
@@ -403,7 +403,7 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Varje pixel startar kulan i vila i mitten av sin cell och integrerar ekvationen med den semi-implicita Eulermetoden med fast steg dt = 0,02: först uppdateras hastigheten från accelerationen, sedan läget från den nya hastigheten. Den ordningen kostar knappt mer än vanlig Euler men hindrar svängningarna från att vinna energi ur tomma intet, och det räcker här eftersom det enda resultat som spelar roll är vilken magnet som vinner.",
           "Vart åttonde steg kontrollerar koden om kulan är närmare en magnet än √0,06 ≈ 0,245 och långsammare än √0,005 ≈ 0,07. I så fall är den magneten vinnaren, och antalet steg blir infångningstiden. Om 3000 steg går utan infångning, eller om talen skenar, väljs den närmaste magneten i stället och pixeln får den mörkaste nyansen.",
-          "Med standardupplösningen blir det 32 400 banor på upp till 3000 steg vardera, så kartan beräknas i skivor om sex rader per animationsbildruta. Förloppsindikatorn räknar uppåt medan bilden fylls uppifrån och ned, och webbläsaren förblir responsiv. Pixlarna hamnar i en ImageData-buffert i den valda upplösningen, som sedan skalas upp utan utjämning till den största centrerade kvadraten på canvasen, så triangeln blir aldrig utdragen. Det finns ingen pågående animation: så fort indikatorn visar ”klar” står bilden still.",
+          "Med standardupplösningen blir det 32\u00a0400 banor på upp till 3000 steg vardera, så kartan beräknas i skivor om sex rader per animationsbildruta. Förloppsindikatorn räknar uppåt medan bilden fylls uppifrån och ned, och webbläsaren fortsätter att svara på inmatning. Pixlarna hamnar i en ImageData-buffert i den valda upplösningen, som sedan skalas upp utan utjämning till den största centrerade kvadraten på canvasen, så triangeln blir aldrig utdragen. Det finns ingen pågående animation: så fort indikatorn visar ”klar” står bilden still.",
         ],
         code: STEP_EXCERPT,
       },
@@ -436,7 +436,7 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Bassengkart for den magnetiske pendelen: hver piksel er en egen simulering over tre magneter. Endre styrke, demping og høyde og se fraktale grenser.",
+      "Bassengkart for den magnetiske pendelen: Hver piksel er en egen simulering over tre magneter. Endre styrke, demping og høyde og se fraktale grenser.",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "Se for deg en pendelkule som henger over en plate med tre magneter plassert i en trekant. Du trekker den til et punkt, slipper, og etter en stund faller den til ro over en av magnetene. Kartet farger hvert startpunkt etter magneten som til slutt fanger kulen: rosa, cyan eller grønt. Store rolige felt betyr forutsigbar oppførsel. Der fargene flettes sammen til tynne, vekslende bånd, avgjør en ørliten forskjell i hvor du slipper kulen hvordan det går. Hver piksel er en egen, fullstendig simulering.",
@@ -453,23 +453,23 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "«Magnetstyrke k» (0,05 til 1,5; standard 0,4) skalerer trekket fra alle tre magnetene. «Demping γ» (0,01 til 0,6; standard 0,18) er friksjonen: med lave verdier flyr kulen forbi magnetene mange ganger før den faller til ro, med høye verdier stopper den nesten der den ble siktet. «Tilbakestilling ω²» (0,05 til 2; standard 0,5) er stivheten i kraften som trekker tilbake mot midten. «Pendelhøyde h» (0,05 til 0,6; standard 0,18) bestemmer hvor nær kulen passerer over magnetene; liten h gir skarpe, sterke rykk rett over en magnet, stor h smører feltet utover.",
-          "«Utsnitt ±» (0,8 til 4; standard 2,0) velger kvadratet av startpunkter, fra −span til +span i begge retninger, så en lavere verdi zoomer inn mot midten. «Oppløsning» (60 til 360 piksler per side; standard 180) bestemmer hvor mange startpunkter som simuleres. Med «Skyggelegg etter innfangingstid» slått på blir hver piksel gjort mørkere etter hvor lang tid innfangingen tok: lyst betyr raskt fanget, mørkt betyr en lang, kaotisk ferd. «Beregn på nytt» kjører hele kartet en gang til; enhver endring av en glidebryter gjør det automatisk.",
+          "«Magnetstyrke k» (0,05 til 1,5; standard 0,4) skalerer trekket fra alle tre magnetene. «Demping γ» (0,01 til 0,6; standard 0,18) er friksjonen: Med lave verdier flyr kulen forbi magnetene mange ganger før den faller til ro, med høye verdier stopper den nesten der den ble siktet. «Tilbakestilling ω²» (0,05 til 2; standard 0,5) er stivheten i kraften som trekker tilbake mot midten. «Pendelhøyde h» (0,05 til 0,6; standard 0,18) bestemmer hvor nær kulen passerer over magnetene; liten h gir skarpe, sterke rykk rett over en magnet, stor h smører feltet utover.",
+          "«Utsnitt ±» (0,8 til 4; standard 2,0) velger kvadratet av startpunkter, fra −span til +span i begge retninger, så en lavere verdi zoomer inn mot midten. «Oppløsning» (60 til 360 piksler per side; standard 180) bestemmer hvor mange startpunkter som simuleres. Med «Skyggelegg etter innfangingstid» slått på blir hver piksel gjort mørkere etter hvor lang tid innfangingen tok: Lyst betyr raskt fanget, mørkt betyr en lang, kaotisk ferd. «Beregn på nytt» kjører hele kartet en gang til; enhver endring av en glidebryter gjør det automatisk.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Hver piksel starter kulen i ro i midten av cellen sin og integrerer ligningen med den semi-implisitte Euler-metoden med fast steg dt = 0,02: først oppdateres farten ut fra akselerasjonen, deretter posisjonen ut fra den nye farten. Den rekkefølgen koster knapt mer enn vanlig Euler, men hindrer svingningene i å vinne energi ut av intet, og det holder her fordi det eneste resultatet som teller, er hvilken magnet som vinner.",
+          "Hver piksel starter kulen i ro i midten av cellen sin og integrerer ligningen med den semi-implisitte Euler-metoden med fast steg dt = 0,02: Først oppdateres farten ut fra akselerasjonen, deretter posisjonen ut fra den nye farten. Den rekkefølgen koster knapt mer enn vanlig Euler, men hindrer svingningene i å vinne energi ut av intet, og det holder her fordi det eneste resultatet som teller, er hvilken magnet som vinner.",
           "Hvert åttende steg sjekker koden om kulen er nærmere en magnet enn √0,06 ≈ 0,245 og langsommere enn √0,005 ≈ 0,07. I så fall er den magneten vinneren, og antall steg blir innfangingstiden. Går det 3000 steg uten innfanging, eller løper tallene løpsk, velges den nærmeste magneten i stedet, og pikselen får den mørkeste nyansen.",
-          "Med standardoppløsningen blir det 32 400 baner på opptil 3000 steg hver, så kartet beregnes i skiver på seks rader per animasjonsbilde. Fremdriftsindikatoren teller oppover mens bildet fylles ovenfra og ned, og nettleseren forblir responsiv. Pikslene havner i en ImageData-buffer i den valgte oppløsningen, som deretter skaleres opp uten utjevning til det største sentrerte kvadratet på canvaset, så trekanten aldri blir strukket. Det finnes ingen løpende animasjon: så snart indikatoren viser «klar», står bildet stille.",
+          "Med standardoppløsningen blir det 32\u00a0400 baner på opptil 3000 steg hver, så kartet beregnes i skiver på seks rader per animasjonsbilde. Fremdriftsindikatoren teller oppover mens bildet fylles ovenfra og ned, og nettleseren forblir responsiv. Pikslene havner i en ImageData-buffer i den valgte oppløsningen, som deretter skaleres opp uten utjevning til det største sentrerte kvadratet på lerretet, så trekanten aldri blir strukket. Det finnes ingen løpende animasjon: Så snart indikatoren viser «klar», står bildet stille.",
         ],
         code: STEP_EXCERPT,
       },
       {
         heading: "Hvorfor grensene ser fraktale ut",
         paragraphs: [
-          "Nær grensen mellom to farger passerer en bane tett forbi en magnet uten å bli fanget, slynges mot en annen, og så gjentar det seg. Hver nestenfangst strekker ut små forskjeller i startpunktet, så jo nærmere du ser på en grense, desto flere tynne bånd i alle tre fargene dukker opp mellom de to. Det er sensitiv avhengighet av startbetingelsene, men her tegnet som et kart i stedet for som én enkelt vinglende kurve. Legg merke til hva kartet ikke sier: det betyr ikke at utfallet er tilfeldig. Hver piksel er fullstendig deterministisk og gir samme svar hver gang; problemet er at en ørlite annerledes piksel kan gi et annet.",
+          "Nær grensen mellom to farger passerer en bane tett forbi en magnet uten å bli fanget, slynges mot en annen, og så gjentar det seg. Hver nestenfangst strekker ut små forskjeller i startpunktet, så jo nærmere du ser på en grense, desto flere tynne bånd i alle tre fargene dukker opp mellom de to. Det er følsom avhengighet av startbetingelsene, men her tegnet som et kart i stedet for som én enkelt vinglende kurve. Legg merke til hva kartet ikke sier: Det betyr ikke at utfallet er tilfeldig. Hver piksel er fullstendig deterministisk og gir samme svar hver gang; problemet er at en ørlite annerledes piksel kan gi et annet.",
         ],
       },
     ],

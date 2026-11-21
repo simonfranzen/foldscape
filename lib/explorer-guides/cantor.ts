@@ -44,7 +44,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "What the controls do",
         paragraphs: [
-          "Step adds one digit of s, Play adds them automatically, and Reset clears s and starts again. The speed slider sets the pause between automatic steps, from 1500 ms down to 50 ms; the default is 700 ms. The amber cell is the diagonal digit being used right now, the faint amber cells have already been used, and the column on the right records each comparison as sₙ ≠ dₙₙ. After the sixteenth digit the contradiction panel appears and rows can be highlighted by hover or keyboard focus.",
+          "Step adds one digit of s, Play adds them automatically, and Reset clears s and starts again. The speed slider sets the pause between automatic steps, from 1500 ms down to 100 ms; the default is 700 ms. The amber cell is the diagonal digit being used right now, the faint amber cells have already been used, and the column on the right records each comparison as sₙ ≠ dₙₙ. After the sixteenth digit the contradiction panel appears and rows can be highlighted by hover or keyboard focus.",
           "Number source chooses where the table comes from. Decimal fills it with pseudo-random digits, Binary with pseudo-random zeros and ones, and the reshuffle button draws a new table. Custom lets you type one decimal per line. The prefilled custom list starts with the digits of π, e, √2, the golden ratio, ln 2 and the Euler-Mascheroni constant, shifted behind the decimal point.",
           "The digit-change rule decides how dₙₙ is altered. Swap 5 ↔ 6 turns a 5 into a 6 and every other digit into a 5. +1 mod 10 adds one but skips 0 and 9, so an 8 or a 9 becomes 1. In binary mode the rule is ignored and bits simply flip between 0 and 1; the rows are then treated as 0/1 sequences, not numbers (the prefix «0.» is dropped).",
         ],
@@ -90,7 +90,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       "Cantors Diagonalargument Schritt für Schritt: in einer 16 × 16 Tabelle die fehlende Zahl Ziffer für Ziffer bauen und sehen, warum ℝ überabzählbar ist.",
     heading: "So funktioniert dieser Explorer",
     intro:
-      "Die Tabelle ist eine Liste von sechzehn reellen Zahlen zwischen 0 und 1, jede mit sechzehn Nachkommastellen ausgeschrieben. Stell dir vor, das ist der Anfang einer Liste, die jede reelle Zahl aus diesem Intervall enthalten soll. Jeder Druck auf Step schaut sich eine Zelle auf der Diagonale an (Ziffer 1 von Zeile 1, Ziffer 2 von Zeile 2 und so weiter), verändert diese Ziffer und hängt das Ergebnis an eine neue Zahl s unten an. Ist die Diagonale verbraucht, weicht s von jeder Zeile irgendwo ab und kann deshalb nicht in der Liste stehen. Das ist Cantors Diagonalargument.",
+      "Die Tabelle ist eine Liste von sechzehn reellen Zahlen zwischen 0 und 1, jede mit sechzehn Nachkommastellen ausgeschrieben. Stell dir vor, das ist der Anfang einer Liste, die jede reelle Zahl aus diesem Intervall enthalten soll. Jeder Druck auf «Schritt» schaut sich eine Zelle auf der Diagonale an (Ziffer 1 von Zeile 1, Ziffer 2 von Zeile 2 und so weiter), verändert diese Ziffer und hängt das Ergebnis an eine neue Zahl s unten an. Ist die Diagonale verbraucht, weicht s von jeder Zeile irgendwo ab und kann deshalb nicht in der Liste stehen. Das ist Cantors Diagonalargument.",
     sections: [
       {
         heading: "Das Argument",
@@ -104,16 +104,16 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "Was die Regler bewirken",
         paragraphs: [
-          "Step fügt eine Ziffer von s hinzu, Play erledigt das automatisch, und Reset löscht s und fängt neu an. Der Geschwindigkeitsregler legt die Pause zwischen den automatischen Schritten fest, von 1500 ms bis hinunter zu 50 ms; voreingestellt sind 700 ms. Die bernsteinfarbene Zelle ist die Diagonalziffer, die gerade verwendet wird, die blasseren sind schon verbraucht, und die Spalte rechts protokolliert jeden Vergleich als sₙ ≠ dₙₙ. Nach der sechzehnten Ziffer erscheint der Widerspruch, und die Zeilen lassen sich per Maus oder Tastatur hervorheben.",
-          "Die Zahlenquelle bestimmt, woher die Tabelle kommt. Decimal füllt sie mit pseudozufälligen Ziffern, Binary mit pseudozufälligen Nullen und Einsen, und der Mischen-Knopf zieht eine neue Tabelle. Bei Custom tippst du eine Dezimalzahl pro Zeile ein. Die vorausgefüllte Liste beginnt mit den Ziffern von π, e, √2, dem goldenen Schnitt, ln 2 und der Euler-Mascheroni-Konstante, jeweils hinter das Komma verschoben.",
-          "Die Änderungsregel bestimmt, wie dₙₙ verändert wird. Swap 5 ↔ 6 macht aus einer 5 eine 6 und aus jeder anderen Ziffer eine 5. +1 mod 10 zählt eins dazu, überspringt aber 0 und 9, aus einer 8 oder 9 wird also eine 1. Im Binärmodus wird die Regel ignoriert, und die Bits wechseln einfach zwischen 0 und 1; die Zeilen gelten dann als 0/1-Folgen, nicht als Zahlen (das vorangestellte «0.» entfällt).",
+          "«Schritt» fügt eine Ziffer von s hinzu, «Start» erledigt das automatisch, und «Zurück» löscht s und fängt neu an. Der Tempo-Regler legt die Pause zwischen den automatischen Schritten fest, von 1500 ms bis hinunter zu 100 ms; voreingestellt sind 700 ms. Die bernsteinfarbene Zelle ist die Diagonalziffer, die gerade verwendet wird, die blasseren sind schon verbraucht, und die Spalte rechts protokolliert jeden Vergleich als sₙ ≠ dₙₙ. Nach der sechzehnten Ziffer erscheint der Widerspruch, und die Zeilen lassen sich per Maus oder Tastatur hervorheben.",
+          "Die Zahlenquelle bestimmt, woher die Tabelle kommt. «Dezimal» füllt sie mit pseudozufälligen Ziffern, «Binär» mit pseudozufälligen Nullen und Einsen, und der Mischen-Knopf zieht eine neue Tabelle. Bei «Eigene» tippst du eine Dezimalzahl pro Zeile ein. Die vorausgefüllte Liste beginnt mit den Ziffern von π, e, √2, dem goldenen Schnitt, ln 2 und der Euler-Mascheroni-Konstante, jeweils hinter das Komma verschoben.",
+          "Die Ziffern-Tausch-Regel bestimmt, wie dₙₙ verändert wird. «Tausch 5 ↔ 6» macht aus einer 5 eine 6 und aus jeder anderen Ziffer eine 5. +1 mod 10 zählt eins dazu, überspringt aber 0 und 9, aus einer 8 oder 9 wird also eine 1. Im Binärmodus wird die Regel ignoriert, und die Bits wechseln einfach zwischen 0 und 1; die Zeilen gelten dann als 0/1-Folgen, nicht als Zahlen (das vorangestellte «0.» entfällt).",
         ],
       },
       {
         heading: "Wie es gebaut ist",
         paragraphs: [
           "Es gibt kein Canvas: Die Tabelle ist eine gewöhnliche HTML-Tabelle, Screenreader können sie also durchgehen. Die Zufallstabellen stammen aus einem kleinen linearen Kongruenzgenerator (Faktor 1664525, Inkrement 1013904223, modulo 2³²), dessen Startwert sich beim Mischen ändert.",
-          "Die Ziffern von s werden gar nicht als Zustand gespeichert. Die Komponente merkt sich nur den aktuellen Schritt und berechnet s bei jedem Rendern neu aus der Tabelle, indem sie die Diagonale liest und die gewählte Regel anwendet. Deshalb setzt ein Wechsel der Quelle, der Regel oder einer eigenen Zeile den Schritt zurück. Play ist ein einfacher Intervall-Timer, der den Schritt weiterzählt. Die einzige Daueranimation ist ein sanftes Pulsieren der neuesten Ziffer, das die seitenweite Regel für reduzierte Bewegung abschaltet.",
+          "Die Ziffern von s werden gar nicht als Zustand gespeichert. Die Komponente merkt sich nur den aktuellen Schritt und berechnet s bei jedem Rendern neu aus der Tabelle, indem sie die Diagonale liest und die gewählte Regel anwendet. Deshalb setzt ein Wechsel der Quelle, der Regel oder einer eigenen Zeile den Schritt zurück. «Start» ist ein einfacher Intervall-Timer, der den Schritt weiterzählt. Die einzige Daueranimation ist ein sanftes Pulsieren der neuesten Ziffer, das die seitenweite Regel für reduzierte Bewegung abschaltet.",
         ],
         code: FLIP_EXCERPT,
       },
@@ -129,19 +129,19 @@ export const CANTOR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Sieh zu, wie s entkommt",
-        text: "Bleib bei der Dezimalquelle und Swap 5 ↔ 6, drück Play und folge der bernsteinfarbenen Zelle die Diagonale hinunter.",
+        text: "Bleib bei der Dezimalquelle und «Tausch 5 ↔ 6», drück «Start» und folge der bernsteinfarbenen Zelle die Diagonale hinunter.",
       },
       {
         title: "Versuch, s zu fangen",
-        text: "Wechsle zu Custom und lass Zeile 1 mit 5 beginnen, Zeile 2 mit 05, Zeile 3 mit 005 und so weiter. Mit Swap 5 ↔ 6 wird jede 5 auf der Diagonale zur 6, und s = 0,666… schlüpft trotzdem an jeder Zeile vorbei.",
+        text: "Wechsle zu «Eigene» und lass Zeile 1 mit 5 beginnen, Zeile 2 mit 05, Zeile 3 mit 005 und so weiter. Mit «Tausch 5 ↔ 6» wird jede 5 auf der Diagonale zur 6, und s = 0,666… schlüpft trotzdem an jeder Zeile vorbei.",
       },
       {
         title: "Die beiden Regeln vergleichen",
-        text: "Lass dieselbe Tabelle einmal mit Swap 5 ↔ 6 und einmal mit +1 mod 10 laufen. Du bekommst zwei verschiedene Zahlen s, beide fehlen in der Liste. Der Beweis liefert so viele fehlende reelle Zahlen, wie du willst.",
+        text: "Lass dieselbe Tabelle einmal mit «Tausch 5 ↔ 6» und einmal mit +1 mod 10 laufen. Du bekommst zwei verschiedene Zahlen s, beide fehlen in der Liste. Der Beweis liefert so viele fehlende reelle Zahlen, wie du willst.",
       },
       {
         title: "Binärmodus",
-        text: "Wähle Binary und geh Schritt für Schritt durch. Jedes Diagonalbit wird umgedreht, und s ist eine 0/1-Folge, die in der Liste fehlt. Achte darauf, dass das Panel jetzt von Folgen spricht, nicht von Zahlen, wegen des Hakens mit 0,0111… = 0,1000… von oben.",
+        text: "Wähle «Binär» und geh Schritt für Schritt durch. Jedes Diagonalbit wird umgedreht, und s ist eine 0/1-Folge, die in der Liste fehlt. Achte darauf, dass das Panel jetzt von Folgen spricht, nicht von Zahlen, wegen des Hakens mit 0,0111… = 0,1000… von oben.",
       },
     ],
   },
@@ -150,7 +150,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       "Recorre el argumento diagonal de Cantor en una tabla de 16 × 16: construye el número que falta dígito a dígito y mira por qué los reales no son numerables.",
     heading: "Cómo funciona este explorador",
     intro:
-      "La tabla es una lista de dieciséis números reales entre 0 y 1, cada uno escrito con dieciséis cifras decimales. Imagina que es el comienzo de una lista que pretende contener todos los números reales de ese intervalo. Cada pulsación de Paso mira una celda de la diagonal (el dígito 1 de la fila 1, el dígito 2 de la fila 2, y así sucesivamente), cambia ese dígito y añade el resultado a un número nuevo s, abajo. Cuando se agota la diagonal, s discrepa de cada fila en algún lugar, así que no puede estar en la lista. Ese es el argumento diagonal de Cantor.",
+      "La tabla es una lista de dieciséis números reales entre 0 y 1, cada uno escrito con dieciséis cifras decimales. Imagina que es el comienzo de una lista que pretende contener todos los números reales de ese intervalo. Cada pulsación de «Paso» mira una celda de la diagonal (el dígito 1 de la fila 1, el dígito 2 de la fila 2, y así sucesivamente), cambia ese dígito y añade el resultado a un número nuevo s, abajo. Cuando se agota la diagonal, s discrepa de cada fila en algún lugar, así que no puede estar en la lista. Ese es el argumento diagonal de Cantor.",
     sections: [
       {
         heading: "El argumento",
@@ -163,23 +163,23 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "Paso añade un dígito de s, Reproducir los añade automáticamente y Reiniciar borra s y vuelve a empezar. El deslizador de velocidad fija la pausa entre pasos automáticos, desde 1500 ms hasta 50 ms; el valor por defecto es 700 ms. La celda ámbar es el dígito diagonal que se está usando ahora mismo, las celdas de ámbar tenue ya se han usado, y la columna de la derecha registra cada comparación como sₙ ≠ dₙₙ. Tras el decimosexto dígito aparece el panel de la contradicción, y las filas pueden resaltarse pasando el ratón o con el foco del teclado.",
-          "Fuente de números elige de dónde sale la tabla. Decimal la llena de dígitos pseudoaleatorios, Binario de ceros y unos pseudoaleatorios, y el botón de rebarajar saca una tabla nueva. Personal te deja escribir un decimal por línea. La lista personal que viene rellenada empieza con las cifras de π, e, √2, el número áureo, ln 2 y la constante de Euler-Mascheroni, desplazadas detrás de la coma decimal.",
-          "La regla de cambio de dígito decide cómo se altera dₙₙ. Cambiar 5 ↔ 6 convierte un 5 en un 6 y cualquier otro dígito en un 5. +1 mod 10 suma uno pero se salta el 0 y el 9, así que un 8 o un 9 se convierten en 1. En modo binario la regla se ignora y los bits simplemente alternan entre 0 y 1; las filas se tratan entonces como sucesiones de 0 y 1, no como números (se omite el prefijo «0.»).",
+          "«Paso» añade un dígito de s, «Reproducir» los añade automáticamente y «Reiniciar» borra s y vuelve a empezar. El deslizador de velocidad fija la pausa entre pasos automáticos, desde 1500 ms hasta 100 ms; el valor por defecto es 700 ms. La celda ámbar es el dígito diagonal que se está usando ahora mismo, las celdas de ámbar tenue ya se han usado, y la columna de la derecha registra cada comparación como sₙ ≠ dₙₙ. Tras el decimosexto dígito aparece el panel de la contradicción, y las filas pueden resaltarse pasando el ratón o con el foco del teclado.",
+          "«Fuente de números» elige de dónde sale la tabla. «Decimal» la llena de dígitos pseudoaleatorios, «Binario» de ceros y unos pseudoaleatorios, y el botón de rebarajar saca una tabla nueva. «Personal» te deja escribir un decimal por línea. La lista personal que viene rellenada empieza con las cifras de π, e, √2, el número áureo, ln 2 y la constante de Euler-Mascheroni, desplazadas detrás de la coma decimal.",
+          "La regla de cambio de dígito decide cómo se altera dₙₙ. «Cambiar 5 ↔ 6» convierte un 5 en un 6 y cualquier otro dígito en un 5. «+1 mod 10» suma uno pero se salta el 0 y el 9, así que un 8 o un 9 se convierten en 1. En modo binario la regla se ignora y los bits simplemente alternan entre 0 y 1; las filas se tratan entonces como sucesiones de 0 y 1, no como números (se omite el prefijo «0.»).",
         ],
       },
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "No hay canvas: la tabla es una tabla HTML corriente, de modo que los lectores de pantalla pueden recorrerla. Las tablas aleatorias salen de un pequeño generador lineal congruencial (multiplicador 1664525, incremento 1013904223, módulo 2³²) cuya semilla es un número que cambia cuando rebarajas.",
-          "Los dígitos de s no se guardan como estado. El componente solo conserva el paso actual y recalcula s a partir de la tabla en cada renderizado, leyendo la diagonal y aplicando la regla elegida. Por eso, cambiar la fuente, la regla o una línea personal reinicia el paso. Reproducir es un simple temporizador de intervalo que hace avanzar el paso. La única animación continua es un pulso suave en el dígito más reciente, que la regla de movimiento reducido de todo el sitio desactiva.",
+          "No hay lienzo: la tabla es una tabla HTML corriente, de modo que los lectores de pantalla pueden recorrerla. Las tablas aleatorias salen de un pequeño generador congruencial lineal (multiplicador 1664525, incremento 1013904223, módulo 2³²) cuya semilla es un número que cambia cuando rebarajas.",
+          "Los dígitos de s no se guardan como estado. El componente solo conserva el paso actual y recalcula s a partir de la tabla en cada renderizado, leyendo la diagonal y aplicando la regla elegida. Por eso, cambiar la fuente, la regla o una línea personal reinicia el paso. «Reproducir» es un simple temporizador de intervalo que hace avanzar el paso. La única animación continua es un pulso suave en el dígito más reciente, que la regla de movimiento reducido de todo el sitio desactiva.",
         ],
         code: FLIP_EXCERPT,
       },
       {
         heading: "Por qué evitar el 0 y el 9",
         paragraphs: [
-          "Algunos números reales tienen dos desarrollos decimales: 0,4999… y 0,5000… son el mismo número. Si s terminara en una ristra infinita de nueves, podría coincidir con un número de la lista escrito con ceros al final, aunque los dos discrepen dígito a dígito, y la demostración se vendría abajo. Elegir dígitos de reemplazo que nunca sean 0 ni 9 lo descarta, porque un desarrollo sin ceros ni nueves es la única manera de escribir ese número. Las dos reglas decimales lo respetan. En binario existe la misma trampa (0,0111… es igual a 0,1000…), y voltear bits no puede evitarla. Así que en modo binario el explorador hace lo que hace el libro de texto: razona con sucesiones infinitas de 0 y 1 en lugar de con números reales, y su conclusión es que hay más sucesiones de ese tipo que números naturales.",
+          "Algunos números reales tienen dos desarrollos decimales: 0,4999… y 0,5000… son el mismo número. Si s terminara en una ristra infinita de nueves, podría coincidir con un número de la lista escrito con ceros al final, aunque los dos discrepen dígito a dígito, y la demostración se vendría abajo. Elegir dígitos de reemplazo que nunca sean 0 ni 9 lo descarta, porque un desarrollo sin ceros ni nueves es la única manera de escribir ese número. Las dos reglas decimales lo respetan. En binario existe la misma trampa (0,0111… es igual a 0,1000…), e invertir los bits no puede evitarla. Así que en modo binario el explorador hace lo que hace el libro de texto: razona con sucesiones infinitas de 0 y 1 en lugar de con números reales, y su conclusión es que hay más sucesiones de ese tipo que números naturales.",
           "Ten presente que dieciséis filas son solo una ilustración. A una lista finita siempre se la puede vencer por fuerza bruta; la fuerza del argumento es que la misma receta derrota a una lista infinita, porque la fila n se comprueba en el dígito n por muy abajo que esté.",
         ],
       },
@@ -188,19 +188,19 @@ export const CANTOR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Mira cómo escapa s",
-        text: "Mantén la fuente decimal y Cambiar 5 ↔ 6, pulsa Reproducir y sigue la celda ámbar diagonal abajo.",
+        text: "Mantén la fuente decimal y «Cambiar 5 ↔ 6», pulsa «Reproducir» y sigue la celda ámbar diagonal abajo.",
       },
       {
         title: "Intenta atrapar a s",
-        text: "Cambia a Personal y haz que la fila 1 empiece por 5, la fila 2 por 05, la fila 3 por 005, y así sucesivamente. Con Cambiar 5 ↔ 6 cada 5 de la diagonal se convierte en 6, así que s = 0,666… se escabulle de todas las filas igualmente.",
+        text: "Cambia a «Personal» y haz que la fila 1 empiece por 5, la fila 2 por 05, la fila 3 por 005, y así sucesivamente. Con «Cambiar 5 ↔ 6» cada 5 de la diagonal se convierte en 6, así que s = 0,666… se escabulle de todas las filas igualmente.",
       },
       {
         title: "Compara las dos reglas",
-        text: "Recorre la misma tabla una vez con Cambiar 5 ↔ 6 y otra con +1 mod 10. Obtienes dos números s distintos, y ambos faltan en la lista. La demostración produce tantos reales ausentes como quieras.",
+        text: "Recorre la misma tabla una vez con «Cambiar 5 ↔ 6» y otra con «+1 mod 10». Obtienes dos números s distintos, y ambos faltan en la lista. La demostración produce tantos reales ausentes como quieras.",
       },
       {
         title: "Modo binario",
-        text: "Elige Binario y avanza paso a paso. Cada bit de la diagonal se voltea, y s es una sucesión de 0 y 1 que falta en la lista. Fíjate en que el panel habla ahora de sucesiones, no de números, por la salvedad 0,0111… = 0,1000… de más arriba.",
+        text: "Elige «Binario» y avanza paso a paso. Cada bit de la diagonal se invierte, y s es una sucesión de 0 y 1 que falta en la lista. Fíjate en que el panel habla ahora de sucesiones, no de números, por la salvedad 0,0111… = 0,1000… de más arriba.",
       },
     ],
   },
@@ -209,7 +209,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       "Suis l'argument diagonal de Cantor pas à pas dans un tableau 16 × 16 : construis le nombre manquant chiffre par chiffre et vois pourquoi ℝ est indénombrable.",
     heading: "Comment fonctionne cet explorateur",
     intro:
-      "Le tableau est une liste de seize nombres réels compris entre 0 et 1, chacun écrit avec seize chiffres après la virgule. Fais comme si c'était le début d'une liste censée contenir tous les nombres réels de cet intervalle. Chaque appui sur Pas examine une case de la diagonale (le chiffre 1 de la ligne 1, le chiffre 2 de la ligne 2, et ainsi de suite), modifie ce chiffre et ajoute le résultat à un nouveau nombre s, en bas. Une fois la diagonale épuisée, s diffère de chaque ligne quelque part : il ne peut donc pas figurer dans la liste. C'est l'argument diagonal de Cantor.",
+      "Le tableau est une liste de seize nombres réels compris entre 0 et 1, chacun écrit avec seize chiffres après la virgule. Fais comme si c'était le début d'une liste censée contenir tous les nombres réels de cet intervalle. Chaque appui sur « Pas » examine une case de la diagonale (le chiffre 1 de la ligne 1, le chiffre 2 de la ligne 2, et ainsi de suite), modifie ce chiffre et ajoute le résultat à un nouveau nombre s, en bas. Une fois la diagonale épuisée, s diffère de chaque ligne quelque part : il ne peut donc pas figurer dans la liste. C'est l'argument diagonal de Cantor.",
     sections: [
       {
         heading: "L'argument",
@@ -222,16 +222,16 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "Pas ajoute un chiffre à s, Lecture les ajoute automatiquement, et Réinitialiser efface s et recommence. Le curseur de vitesse règle la pause entre deux pas automatiques, de 1500 ms jusqu'à 50 ms ; la valeur par défaut est 700 ms. La case ambrée est le chiffre diagonal utilisé en ce moment, les cases d'un ambre plus pâle ont déjà servi, et la colonne de droite consigne chaque comparaison sous la forme sₙ ≠ dₙₙ. Après le seizième chiffre, le panneau de la contradiction apparaît et les lignes peuvent être mises en évidence au survol ou au focus clavier.",
-          "Source des nombres choisit d'où vient le tableau. Décimal le remplit de chiffres pseudo-aléatoires, Binaire de zéros et de uns pseudo-aléatoires, et le bouton pour rebattre tire un nouveau tableau. Perso te laisse saisir un nombre décimal par ligne. La liste personnalisée préremplie commence par les chiffres de π, e, √2, du nombre d'or, de ln 2 et de la constante d'Euler-Mascheroni, décalés derrière la virgule.",
-          "La règle de changement de chiffre décide comment dₙₙ est modifié. Échange 5 ↔ 6 transforme un 5 en 6 et tout autre chiffre en 5. +1 mod 10 ajoute un, mais saute 0 et 9 : un 8 ou un 9 devient donc 1. En mode binaire, la règle est ignorée et les bits basculent simplement entre 0 et 1 ; les lignes sont alors traitées comme des suites de 0 et de 1, pas comme des nombres (le préfixe « 0. » disparaît).",
+          "« Pas » ajoute un chiffre à s, « Lecture » les ajoute automatiquement, et « Réinitialiser » efface s et recommence. Le curseur de vitesse règle la pause entre deux pas automatiques, de 1 500 ms jusqu'à 100 ms ; la valeur par défaut est 700 ms. La case ambrée est le chiffre diagonal utilisé en ce moment, les cases d'un ambre plus pâle ont déjà servi, et la colonne de droite consigne chaque comparaison sous la forme sₙ ≠ dₙₙ. Après le seizième chiffre, le panneau de la contradiction apparaît et les lignes peuvent être mises en évidence au survol ou au focus clavier.",
+          "« Source des nombres » choisit d'où vient le tableau. « Décimal » le remplit de chiffres pseudo-aléatoires, « Binaire » de zéros et de uns pseudo-aléatoires, et le bouton « Rebattre la liste » tire un nouveau tableau. « Perso » te laisse saisir un nombre décimal par ligne. La liste personnalisée préremplie commence par les chiffres de π, e, √2, du nombre d'or, de ln 2 et de la constante d'Euler-Mascheroni, décalés derrière la virgule.",
+          "La règle de changement de chiffre décide comment dₙₙ est modifié. « Échange 5 ↔ 6 » transforme un 5 en 6 et tout autre chiffre en 5. « +1 mod 10 » ajoute un, mais saute 0 et 9 : un 8 ou un 9 devient donc 1. En mode binaire, la règle est ignorée et les bits basculent simplement entre 0 et 1 ; les lignes sont alors traitées comme des suites de 0 et de 1, pas comme des nombres (le préfixe « 0. » disparaît).",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Il n'y a pas de canvas : le tableau est un tableau HTML ordinaire, que les lecteurs d'écran peuvent donc parcourir. Les tableaux aléatoires proviennent d'un petit générateur congruentiel linéaire (multiplicateur 1664525, incrément 1013904223, modulo 2³²) initialisé avec un nombre qui change quand tu rebats la liste.",
-          "Les chiffres de s ne sont pas du tout stockés dans l'état. Le composant ne garde que le pas courant et recalcule s à partir du tableau à chaque rendu, en lisant la diagonale et en appliquant la règle choisie. Changer la source, la règle ou une ligne personnalisée remet donc le pas à zéro. Lecture est un simple minuteur à intervalle qui fait avancer le pas. La seule animation continue est une légère pulsation sur le chiffre le plus récent, que la règle de réduction des animations du site désactive.",
+          "Il n'y a pas de canevas : le tableau est un tableau HTML ordinaire, que les lecteurs d'écran peuvent donc parcourir. Les tableaux aléatoires proviennent d'un petit générateur congruentiel linéaire (multiplicateur 1 664 525, incrément 1 013 904 223, modulo 2³²) initialisé avec un nombre qui change quand tu rebats la liste.",
+          "Les chiffres de s ne sont pas du tout stockés dans l'état. Le composant ne garde que le pas courant et recalcule s à partir du tableau à chaque rendu, en lisant la diagonale et en appliquant la règle choisie. Changer la source, la règle ou une ligne personnalisée remet donc le pas à zéro. « Lecture » est un simple minuteur à intervalle qui fait avancer le pas. La seule animation continue est une légère pulsation sur le chiffre le plus récent, que la règle de réduction des animations du site désactive.",
         ],
         code: FLIP_EXCERPT,
       },
@@ -247,19 +247,19 @@ export const CANTOR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Regarde s s'échapper",
-        text: "Garde la source décimale et Échange 5 ↔ 6, appuie sur Lecture et suis la case ambrée le long de la diagonale.",
+        text: "Garde la source décimale et « Échange 5 ↔ 6 », appuie sur « Lecture » et suis la case ambrée le long de la diagonale.",
       },
       {
         title: "Essaie de piéger s",
-        text: "Passe sur Perso et fais commencer la ligne 1 par 5, la ligne 2 par 05, la ligne 3 par 005, et ainsi de suite. Avec Échange 5 ↔ 6, chaque 5 de la diagonale devient un 6, si bien que s = 0,666… échappe quand même à toutes les lignes.",
+        text: "Passe sur « Perso » et fais commencer la ligne 1 par 5, la ligne 2 par 05, la ligne 3 par 005, et ainsi de suite. Avec « Échange 5 ↔ 6 », chaque 5 de la diagonale devient un 6, si bien que s = 0,666… échappe quand même à toutes les lignes.",
       },
       {
         title: "Compare les deux règles",
-        text: "Parcours le même tableau une fois avec Échange 5 ↔ 6 et une fois avec +1 mod 10. Tu obtiens deux nombres s différents, tous deux absents de la liste. La démonstration fournit autant de réels manquants que tu veux.",
+        text: "Parcours le même tableau une fois avec « Échange 5 ↔ 6 » et une fois avec « +1 mod 10 ». Tu obtiens deux nombres s différents, tous deux absents de la liste. La démonstration fournit autant de réels manquants que tu veux.",
       },
       {
         title: "Mode binaire",
-        text: "Choisis Binaire et avance pas à pas. Chaque bit de la diagonale est inversé, et s est une suite de 0 et de 1 absente de la liste. Remarque que le panneau parle désormais de suites, et non de nombres, à cause de la réserve 0,0111… = 0,1000… évoquée plus haut.",
+        text: "Choisis « Binaire » et avance pas à pas. Chaque bit de la diagonale est inversé, et s est une suite de 0 et de 1 absente de la liste. Remarque que le panneau parle désormais de suites, et non de nombres, à cause de la réserve 0,0111… = 0,1000… évoquée plus haut.",
       },
     ],
   },
@@ -268,7 +268,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       "Segui l'argomento diagonale di Cantor in una tabella 16 × 16: costruisci il numero mancante cifra per cifra e scopri perché i reali non sono numerabili.",
     heading: "Come funziona questo esploratore",
     intro:
-      "La tabella è un elenco di sedici numeri reali compresi tra 0 e 1, ognuno scritto con sedici cifre dopo la virgola. Fai finta che sia l'inizio di un elenco che dovrebbe contenere tutti i numeri reali di quell'intervallo. A ogni pressione di Passo si guarda una cella della diagonale (la cifra 1 della riga 1, la cifra 2 della riga 2, e così via), si cambia quella cifra e si aggiunge il risultato a un nuovo numero s, in basso. Quando la diagonale è esaurita, s è in disaccordo con ogni riga in qualche punto, quindi non può stare nell'elenco. È l'argomento diagonale di Cantor.",
+      "La tabella è un elenco di sedici numeri reali compresi tra 0 e 1, ognuno scritto con sedici cifre dopo la virgola. Fai finta che sia l'inizio di un elenco che dovrebbe contenere tutti i numeri reali di quell'intervallo. A ogni pressione di «Passo» si guarda una cella della diagonale (la cifra 1 della riga 1, la cifra 2 della riga 2, e così via), si cambia quella cifra e si aggiunge il risultato a un nuovo numero s, in basso. Quando la diagonale è esaurita, s è in disaccordo con ogni riga in qualche punto, quindi non può stare nell'elenco. È l'argomento diagonale di Cantor.",
     sections: [
       {
         heading: "L'argomento",
@@ -281,16 +281,16 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "Passo aggiunge una cifra di s, Riproduci le aggiunge automaticamente e Reimposta cancella s e ricomincia. Il cursore della velocità regola la pausa tra i passi automatici, da 1500 ms fino a 50 ms; il valore predefinito è 700 ms. La cella ambra è la cifra diagonale in uso in questo momento, le celle di un ambra tenue sono già state usate, e la colonna a destra registra ogni confronto come sₙ ≠ dₙₙ. Dopo la sedicesima cifra compare il pannello della contraddizione e le righe si possono evidenziare passandoci sopra con il mouse o con il focus da tastiera.",
-          "Sorgente numeri sceglie da dove arriva la tabella. Decimale la riempie di cifre pseudocasuali, Binario di zeri e uni pseudocasuali, e il pulsante per rimescolare estrae una nuova tabella. Personale ti lascia scrivere un numero decimale per riga. L'elenco personale precompilato comincia con le cifre di π, e, √2, della sezione aurea, di ln 2 e della costante di Eulero-Mascheroni, spostate dopo la virgola.",
-          "La regola di cambio cifra decide come viene alterato dₙₙ. Scambia 5 ↔ 6 trasforma un 5 in un 6 e ogni altra cifra in un 5. +1 mod 10 aggiunge uno ma salta lo 0 e il 9, quindi un 8 o un 9 diventano 1. In modalità binaria la regola viene ignorata e i bit passano semplicemente da 0 a 1 e viceversa; le righe sono allora trattate come successioni di 0 e 1, non come numeri (il prefisso «0.» viene omesso).",
+          "«Passo» aggiunge una cifra di s, «Riproduci» le aggiunge automaticamente e «Reimposta» cancella s e ricomincia. Il cursore della velocità regola la pausa tra i passi automatici, da 1500 ms fino a 50 ms; il valore predefinito è 700 ms. La cella ambra è la cifra diagonale in uso in questo momento, le celle di un ambra tenue sono già state usate, e la colonna a destra registra ogni confronto come sₙ ≠ dₙₙ. Dopo la sedicesima cifra compare il pannello della contraddizione e le righe si possono evidenziare passandoci sopra con il mouse o con il focus da tastiera.",
+          "«Sorgente numeri» sceglie da dove arriva la tabella. «Decimale» la riempie di cifre pseudocasuali, «Binario» di zeri e uni pseudocasuali, e il pulsante «Rimescola la lista» estrae una nuova tabella. «Personale» ti lascia scrivere un numero decimale per riga. L'elenco personale precompilato comincia con le cifre di π, e, √2, della sezione aurea, di ln 2 e della costante di Eulero-Mascheroni, spostate dopo la virgola.",
+          "La «Regola di cambio cifra» decide come viene alterata dₙₙ. «Scambia 5 ↔ 6» trasforma un 5 in un 6 e ogni altra cifra in un 5. «+1 mod 10» aggiunge uno ma salta lo 0 e il 9, quindi un 8 o un 9 diventano 1. In modalità binaria la regola viene ignorata e i bit passano semplicemente da 0 a 1 e viceversa; le righe sono allora trattate come successioni di 0 e 1, non come numeri (il prefisso «0.» viene omesso).",
         ],
       },
       {
         heading: "Com'è costruito",
         paragraphs: [
           "Non c'è nessun canvas: la tabella è una normale tabella HTML, così gli screen reader possono percorrerla. Le tabelle casuali vengono da un piccolo generatore lineare congruenziale (moltiplicatore 1664525, incremento 1013904223, modulo 2³²) il cui seme è un numero che cambia quando rimescoli.",
-          "Le cifre di s non sono affatto memorizzate nello stato. Il componente conserva solo il passo corrente e ricalcola s dalla tabella a ogni rendering, leggendo la diagonale e applicando la regola scelta. Per questo cambiare la sorgente, la regola o una riga personale azzera il passo. Riproduci è un semplice timer a intervalli che fa avanzare il passo. L'unica animazione continua è una lieve pulsazione sulla cifra più recente, che la regola di riduzione del movimento valida per tutto il sito disattiva.",
+          "Le cifre di s non sono affatto memorizzate nello stato. Il componente conserva solo il passo corrente e ricalcola s dalla tabella a ogni rendering, leggendo la diagonale e applicando la regola scelta. Per questo cambiare la sorgente, la regola o una riga personale azzera il passo. «Riproduci» è un semplice timer a intervalli che fa avanzare il passo. L'unica animazione continua è una lieve pulsazione sulla cifra più recente, disattivata dalla regola sul movimento ridotto che vale per tutto il sito.",
         ],
         code: FLIP_EXCERPT,
       },
@@ -306,19 +306,19 @@ export const CANTOR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Guarda s che scappa",
-        text: "Tieni la sorgente decimale e Scambia 5 ↔ 6, premi Riproduci e segui la cella ambra lungo la diagonale.",
+        text: "Tieni la sorgente decimale e «Scambia 5 ↔ 6», premi «Riproduci» e segui la cella ambra lungo la diagonale.",
       },
       {
         title: "Prova a intrappolare s",
-        text: "Passa a Personale e fai cominciare la riga 1 con 5, la riga 2 con 05, la riga 3 con 005, e così via. Con Scambia 5 ↔ 6 ogni 5 sulla diagonale diventa un 6, quindi s = 0,666… sfugge comunque a ogni riga.",
+        text: "Passa a «Personale» e fai cominciare la riga 1 con 5, la riga 2 con 05, la riga 3 con 005, e così via. Con «Scambia 5 ↔ 6» ogni 5 sulla diagonale diventa un 6, quindi s = 0,666… sfugge comunque a ogni riga.",
       },
       {
         title: "Confronta le due regole",
-        text: "Percorri la stessa tabella una volta con Scambia 5 ↔ 6 e una volta con +1 mod 10. Ottieni due numeri s diversi, entrambi assenti dall'elenco. La dimostrazione fornisce tutti i reali mancanti che vuoi.",
+        text: "Percorri la stessa tabella una volta con «Scambia 5 ↔ 6» e una volta con «+1 mod 10». Ottieni due numeri s diversi, entrambi assenti dall'elenco. La dimostrazione fornisce tutti i reali mancanti che vuoi.",
       },
       {
         title: "Modalità binaria",
-        text: "Scegli Binario e avanza un passo alla volta. Ogni bit della diagonale viene invertito, e s è una successione di 0 e 1 che manca dall'elenco. Nota che ora il pannello parla di successioni, non di numeri, per via dell'avvertenza 0,0111… = 0,1000… vista sopra.",
+        text: "Scegli «Binario» e avanza un passo alla volta. Ogni bit della diagonale viene invertito, e s è una successione di 0 e 1 che manca dall'elenco. Nota che ora il pannello parla di successioni, non di numeri, per via dell'avvertenza 0,0111… = 0,1000… vista sopra.",
       },
     ],
   },
@@ -327,7 +327,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       "Percorre o argumento diagonal de Cantor numa tabela de 16 × 16: constrói o número em falta dígito a dígito e vê porque os números reais não são numeráveis.",
     heading: "Como funciona este explorador",
     intro:
-      "A tabela é uma lista de dezasseis números reais entre 0 e 1, cada um escrito com dezasseis casas decimais. Faz de conta que é o início de uma lista que pretende conter todos os números reais desse intervalo. Cada clique em Passo olha para uma célula da diagonal (o dígito 1 da linha 1, o dígito 2 da linha 2, e assim por diante), altera esse dígito e acrescenta o resultado a um novo número s, em baixo. Quando a diagonal se esgota, s discorda de cada linha em algum ponto, por isso não pode estar na lista. É o argumento diagonal de Cantor.",
+      "A tabela é uma lista de dezasseis números reais entre 0 e 1, cada um escrito com dezasseis casas decimais. Faz de conta que é o início de uma lista que pretende conter todos os números reais desse intervalo. Cada clique em «Passo» olha para uma célula da diagonal (o dígito 1 da linha 1, o dígito 2 da linha 2, e assim por diante), altera esse dígito e acrescenta o resultado a um novo número s, em baixo. Quando a diagonal se esgota, s discorda de cada linha em algum ponto, por isso não pode estar na lista. É o argumento diagonal de Cantor.",
     sections: [
       {
         heading: "O argumento",
@@ -340,16 +340,16 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "Passo acrescenta um dígito de s, Reproduzir acrescenta-os automaticamente e Reiniciar apaga s e recomeça. O cursor de velocidade define a pausa entre passos automáticos, de 1500 ms até 50 ms; o valor predefinido é 700 ms. A célula âmbar é o dígito diagonal que está a ser usado neste momento, as células de âmbar ténue já foram usadas, e a coluna da direita regista cada comparação como sₙ ≠ dₙₙ. Depois do décimo sexto dígito aparece o painel da contradição, e as linhas podem ser realçadas ao passar o rato ou com o foco do teclado.",
-          "Fonte de números escolhe de onde vem a tabela. Decimal enche-a de dígitos pseudoaleatórios, Binário de zeros e uns pseudoaleatórios, e o botão de baralhar tira uma tabela nova. Personalizado deixa-te escrever um decimal por linha. A lista personalizada que vem preenchida começa com os dígitos de π, e, √2, do número de ouro, de ln 2 e da constante de Euler-Mascheroni, deslocados para depois da vírgula.",
-          "A regra de troca de dígito decide como dₙₙ é alterado. Trocar 5 ↔ 6 transforma um 5 num 6 e qualquer outro dígito num 5. +1 mod 10 soma um mas salta o 0 e o 9, pelo que um 8 ou um 9 passam a 1. No modo binário a regra é ignorada e os bits alternam simplesmente entre 0 e 1; as linhas são então tratadas como sucessões de 0 e 1, não como números (o prefixo «0.» é omitido).",
+          "«Passo» acrescenta um dígito de s, «Reproduzir» acrescenta-os automaticamente e «Reiniciar» apaga s e recomeça. O cursor de velocidade define a pausa entre passos automáticos, de 1500 ms até 100 ms; o valor predefinido é 700 ms. A célula âmbar é o dígito diagonal que está a ser usado neste momento, as células de âmbar ténue já foram usadas, e a coluna da direita regista cada comparação como sₙ ≠ dₙₙ. Depois do décimo sexto dígito aparece o painel da contradição, e as linhas podem ser realçadas ao passar o rato ou com o foco do teclado.",
+          "«Fonte de números» escolhe de onde vem a tabela. «Decimal» enche-a de dígitos pseudoaleatórios, «Binário» de zeros e uns pseudoaleatórios, e o botão «Baralhar a lista» tira uma tabela nova. «Personalizado» deixa-te escrever um decimal por linha. A lista personalizada que vem preenchida começa com os dígitos de π, e, √2, da razão áurea, de ln 2 e da constante de Euler-Mascheroni, deslocados para depois da vírgula.",
+          "A «Regra de troca de dígito» decide como dₙₙ é alterado. «Trocar 5 ↔ 6» transforma um 5 num 6 e qualquer outro dígito num 5. «+1 mod 10» soma um mas salta o 0 e o 9, pelo que um 8 ou um 9 passam a 1. No modo binário a regra é ignorada e os bits alternam simplesmente entre 0 e 1; as linhas são então tratadas como sucessões de 0 e 1, não como números (o prefixo «0.» é omitido).",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
           "Não há canvas: a tabela é uma tabela HTML normal, por isso os leitores de ecrã conseguem percorrê-la. As tabelas aleatórias vêm de um pequeno gerador congruencial linear (multiplicador 1664525, incremento 1013904223, módulo 2³²) cuja semente é um número que muda quando baralhas.",
-          "Os dígitos de s não são guardados como estado. O componente guarda apenas o passo atual e recalcula s a partir da tabela em cada renderização, lendo a diagonal e aplicando a regra escolhida. Por isso, mudar a fonte, a regra ou uma linha personalizada repõe o passo a zero. Reproduzir é um simples temporizador de intervalo que faz avançar o passo. A única animação contínua é uma pulsação suave no dígito mais recente, que a regra de movimento reduzido de todo o site desliga.",
+          "Os dígitos de s não são guardados como estado. O componente guarda apenas o passo atual e recalcula s a partir da tabela em cada renderização, lendo a diagonal e aplicando a regra escolhida. Por isso, mudar a fonte, a regra ou uma linha personalizada repõe o passo a zero. «Reproduzir» é um simples temporizador de intervalo que faz avançar o passo. A única animação contínua é uma pulsação suave no dígito mais recente, que a regra de movimento reduzido de todo o site desliga.",
         ],
         code: FLIP_EXCERPT,
       },
@@ -365,19 +365,19 @@ export const CANTOR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Vê s a escapar",
-        text: "Mantém a fonte decimal e Trocar 5 ↔ 6, carrega em Reproduzir e segue a célula âmbar pela diagonal abaixo.",
+        text: "Mantém a fonte decimal e «Trocar 5 ↔ 6», carrega em «Reproduzir» e segue a célula âmbar pela diagonal abaixo.",
       },
       {
         title: "Tenta apanhar s",
-        text: "Muda para Personalizado e faz a linha 1 começar por 5, a linha 2 por 05, a linha 3 por 005, e assim por diante. Com Trocar 5 ↔ 6, cada 5 da diagonal passa a 6, pelo que s = 0,666… escapa a todas as linhas na mesma.",
+        text: "Muda para «Personalizado» e faz a linha 1 começar por 5, a linha 2 por 05, a linha 3 por 005, e assim por diante. Com «Trocar 5 ↔ 6», cada 5 da diagonal passa a 6, pelo que s = 0,666… escapa a todas as linhas na mesma.",
       },
       {
         title: "Compara as duas regras",
-        text: "Percorre a mesma tabela uma vez com Trocar 5 ↔ 6 e outra com +1 mod 10. Obténs dois números s diferentes, ambos ausentes da lista. A demonstração dá-te tantos reais em falta quantos quiseres.",
+        text: "Percorre a mesma tabela uma vez com «Trocar 5 ↔ 6» e outra com «+1 mod 10». Obténs dois números s diferentes, ambos ausentes da lista. A demonstração dá-te tantos reais em falta quantos quiseres.",
       },
       {
         title: "Modo binário",
-        text: "Escolhe Binário e avança passo a passo. Cada bit da diagonal é invertido, e s é uma sucessão de 0 e 1 que falta na lista. Repara que o painel fala agora de sucessões, não de números, por causa da ressalva 0,0111… = 0,1000… referida acima.",
+        text: "Escolhe «Binário» e avança passo a passo. Cada bit da diagonal é invertido, e s é uma sucessão de 0 e 1 que falta na lista. Repara que o painel fala agora de sucessões, não de números, por causa da ressalva 0,0111… = 0,1000… referida acima.",
       },
     ],
   },
@@ -386,7 +386,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       "Stega igenom Cantors diagonalargument i en tabell med 16 × 16 siffror: bygg det saknade talet siffra för siffra och se varför ℝ är överuppräknelig.",
     heading: "Så fungerar den här utforskaren",
     intro:
-      "Tabellen är en lista med sexton reella tal mellan 0 och 1, vart och ett utskrivet med sexton decimaler. Låtsas att den är början på en lista som ska innehålla varje reellt tal i det intervallet. Varje tryck på Steg tittar på en cell på diagonalen (siffra 1 i rad 1, siffra 2 i rad 2 och så vidare), ändrar den siffran och lägger till resultatet i ett nytt tal s längst ner. När diagonalen är förbrukad skiljer sig s från varje rad någonstans, så det kan inte stå på listan. Det är Cantors diagonalargument.",
+      "Tabellen är en lista med sexton reella tal mellan 0 och 1, vart och ett utskrivet med sexton decimaler. Låtsas att den är början på en lista som ska innehålla varje reellt tal i det intervallet. Varje tryck på ”Steg” tittar på en cell på diagonalen (siffra 1 i rad 1, siffra 2 i rad 2 och så vidare), ändrar den siffran och lägger till resultatet i ett nytt tal s längst ner. När diagonalen är förbrukad skiljer sig s från varje rad någonstans, så det kan inte stå på listan. Det är Cantors diagonalargument.",
     sections: [
       {
         heading: "Argumentet",
@@ -399,16 +399,16 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "Steg lägger till en siffra i s, Spela lägger till dem automatiskt och Återställ rensar s och börjar om. Hastighetsreglaget bestämmer pausen mellan de automatiska stegen, från 1500 ms ner till 50 ms. Standardvärdet är 700 ms. Den bärnstensfärgade cellen är den diagonalsiffra som används just nu, de svagt bärnstensfärgade cellerna är redan använda, och kolumnen till höger antecknar varje jämförelse som sₙ ≠ dₙₙ. Efter den sextonde siffran visas motsägelsepanelen, och raderna kan markeras genom att hovra eller med tangentbordsfokus.",
-          "Talkälla väljer var tabellen kommer ifrån. Decimal fyller den med pseudoslumpade siffror, Binär med pseudoslumpade nollor och ettor, och knappen för att blanda om drar en ny tabell. Med Egen kan du skriva ett decimaltal per rad. Den förifyllda egna listan börjar med siffrorna i π, e, √2, gyllene snittet, ln 2 och Euler-Mascheronis konstant, flyttade bakom decimaltecknet.",
-          "Sifferbytesregeln avgör hur dₙₙ ändras. Byt 5 ↔ 6 gör en 5:a till en 6:a och varje annan siffra till en 5:a. +1 mod 10 lägger till ett men hoppar över 0 och 9, så en 8:a eller en 9:a blir 1. I binärläget ignoreras regeln och bitarna växlar helt enkelt mellan 0 och 1. Raderna behandlas då som 0/1-följder, inte som tal (prefixet ”0.” faller bort).",
+          "”Steg” lägger till en siffra i s, ”Spela” lägger till dem automatiskt och ”Återställ” rensar s och börjar om. Hastighetsreglaget bestämmer pausen mellan de automatiska stegen, från 1500 ms ner till 50 ms. Standardvärdet är 700 ms. Den bärnstensfärgade cellen är den diagonalsiffra som används just nu, de svagt bärnstensfärgade cellerna är redan använda, och kolumnen till höger antecknar varje jämförelse som sₙ ≠ dₙₙ. Efter den sextonde siffran visas motsägelsepanelen, och raderna kan markeras genom att hålla pekaren över dem eller med tangentbordsfokus.",
+          "”Talkälla” väljer var tabellen kommer ifrån. ”Decimal” fyller den med pseudoslumpade siffror, ”Binär” med pseudoslumpade nollor och ettor, och knappen för att blanda om drar en ny tabell. Med ”Egen” kan du skriva ett decimaltal per rad. Den förifyllda egna listan börjar med siffrorna i π, e, √2, gyllene snittet, ln 2 och Euler-Mascheronis konstant, flyttade bakom decimaltecknet.",
+          "”Sifferbytesregel” avgör hur dₙₙ ändras. ”Byt 5 ↔ 6” gör en 5:a till en 6:a och varje annan siffra till en 5:a. ”+1 mod 10” lägger till ett men hoppar över 0 och 9, så en 8:a eller en 9:a blir 1. I binärläget ignoreras regeln och bitarna växlar helt enkelt mellan 0 och 1. Raderna behandlas då som 0/1-följder, inte som tal (prefixet ”0.” faller bort).",
         ],
       },
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Det finns ingen canvas: tabellen är en vanlig HTML-tabell, så skärmläsare kan gå igenom den. De slumpade tabellerna kommer från en liten linjär kongruensgenerator (multiplikator 1664525, inkrement 1013904223, modulo 2³²) vars frö är ett tal som ändras när du blandar om.",
-          "Siffrorna i s lagras inte alls som tillstånd. Komponenten håller bara reda på det aktuella steget och räknar om s från tabellen vid varje rendering genom att läsa diagonalen och tillämpa den valda regeln. Därför nollställs steget när du byter källa, regel eller en egen rad. Spela är en enkel intervalltimer som räknar upp steget. Den enda kontinuerliga animationen är en mjuk puls på den nyaste siffran, och den stängs av av webbplatsens regel för minskad rörelse.",
+          "Det finns ingen canvas: tabellen är en vanlig HTML-tabell, så skärmläsare kan gå igenom den. De slumpade tabellerna kommer från en liten linjär kongruensgenerator (multiplikator 1\u00a0664\u00a0525, inkrement 1\u00a0013\u00a0904\u00a0223, modulo 2³²) vars frö är ett tal som ändras när du blandar om.",
+          "Siffrorna i s lagras inte alls som tillstånd. Komponenten håller bara reda på det aktuella steget och räknar om s från tabellen vid varje rendering genom att läsa diagonalen och tillämpa den valda regeln. Därför nollställs steget när du byter källa, regel eller en egen rad. ”Spela” är en enkel intervalltimer som räknar upp steget. Den enda kontinuerliga animationen är en mjuk puls på den nyaste siffran, och den stängs av av webbplatsens regel för minskad rörelse.",
         ],
         code: FLIP_EXCERPT,
       },
@@ -424,28 +424,28 @@ export const CANTOR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Se s smita",
-        text: "Behåll decimalkällan och Byt 5 ↔ 6, tryck på Spela och följ den bärnstensfärgade cellen nedför diagonalen.",
+        text: "Behåll decimalkällan och ”Byt 5 ↔ 6”, tryck på ”Spela” och följ den bärnstensfärgade cellen nedför diagonalen.",
       },
       {
         title: "Försök fånga s",
-        text: "Växla till Egen och låt rad 1 börja med 5, rad 2 med 05, rad 3 med 005 och så vidare. Med Byt 5 ↔ 6 blir varje 5:a på diagonalen en 6:a, så s = 0,666… slinker förbi varje rad ändå.",
+        text: "Växla till ”Egen” och låt rad 1 börja med 5, rad 2 med 05, rad 3 med 005 och så vidare. Med ”Byt 5 ↔ 6” blir varje 5:a på diagonalen en 6:a, så s = 0,666… slinker förbi varje rad ändå.",
       },
       {
         title: "Jämför de två reglerna",
-        text: "Kör samma tabell en gång med Byt 5 ↔ 6 och en gång med +1 mod 10. Du får två olika tal s, och båda saknas på listan. Beviset ger hur många saknade reella tal du vill.",
+        text: "Kör samma tabell en gång med ”Byt 5 ↔ 6” och en gång med ”+1 mod 10”. Du får två olika tal s, och båda saknas på listan. Beviset ger hur många saknade reella tal du vill.",
       },
       {
         title: "Binärläget",
-        text: "Välj Binär och stega igenom. Varje diagonalbit vänds, och s är en 0/1-följd som saknas på listan. Lägg märke till att panelen nu talar om följder, inte tal, på grund av förbehållet 0,0111… = 0,1000… ovan.",
+        text: "Välj ”Binär” och stega igenom. Varje diagonalbit vänds, och s är en 0/1-följd som saknas på listan. Lägg märke till att panelen nu talar om följder, inte tal, på grund av förbehållet 0,0111… = 0,1000… ovan.",
       },
     ],
   },
   no: {
     metaDescription:
-      "Gå gjennom Cantors diagonalargument steg for steg i en tabell på 16 × 16 sifre: bygg det manglende tallet siffer for siffer og se hvorfor ℝ er overtellbar.",
+      "Gå gjennom Cantors diagonalargument steg for steg i en tabell på 16 × 16 sifre: Bygg det manglende tallet siffer for siffer og se hvorfor ℝ er overtellbar.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Tabellen er en liste med seksten reelle tall mellom 0 og 1, hvert skrevet ut med seksten desimaler. Lat som om den er starten på en liste som skal inneholde hvert eneste reelle tall i det intervallet. Hvert trykk på Steg ser på én celle på diagonalen (siffer 1 i rad 1, siffer 2 i rad 2 og så videre), endrer det sifferet og legger resultatet til et nytt tall s nederst. Når diagonalen er brukt opp, avviker s fra hver rad et eller annet sted, så det kan ikke stå på listen. Det er Cantors diagonalargument.",
+      "Tabellen er en liste med seksten reelle tall mellom 0 og 1, hvert skrevet ut med seksten desimaler. Lat som om den er starten på en liste som skal inneholde hvert eneste reelle tall i det intervallet. Hvert trykk på «Steg» ser på én celle på diagonalen (siffer 1 i rad 1, siffer 2 i rad 2 og så videre), endrer det sifferet og legger resultatet til et nytt tall s nederst. Når diagonalen er brukt opp, avviker s fra hver rad et eller annet sted, så det kan ikke stå på listen. Det er Cantors diagonalargument.",
     sections: [
       {
         heading: "Argumentet",
@@ -458,23 +458,23 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "Steg legger til ett siffer i s, Spill legger dem til automatisk, og Nullstill tømmer s og begynner på nytt. Fartsglideren bestemmer pausen mellom de automatiske stegene, fra 1500 ms ned til 50 ms. Standardverdien er 700 ms. Den ravgule cellen er diagonalsifferet som brukes akkurat nå, de svakt ravgule cellene er allerede brukt, og kolonnen til høyre noterer hver sammenligning som sₙ ≠ dₙₙ. Etter det sekstende sifferet dukker motsigelsespanelet opp, og radene kan fremheves ved å holde pekeren over dem eller med tastaturfokus.",
-          "Tallkilde velger hvor tabellen kommer fra. Desimal fyller den med pseudotilfeldige sifre, Binær med pseudotilfeldige nuller og enere, og knappen for å stokke på nytt trekker en ny tabell. Med Egen kan du skrive inn ett desimaltall per linje. Den forhåndsutfylte egne listen begynner med sifrene i π, e, √2, det gylne snitt, ln 2 og Euler-Mascheroni-konstanten, flyttet bak desimaltegnet.",
-          "Sifferbytteregelen avgjør hvordan dₙₙ endres. Bytt 5 ↔ 6 gjør en 5-er til en 6-er og alle andre sifre til en 5-er. +1 mod 10 legger til én, men hopper over 0 og 9, så en 8-er eller en 9-er blir til 1. I binærmodus ignoreres regelen, og bitene veksler ganske enkelt mellom 0 og 1. Radene behandles da som 0/1-følger, ikke som tall (prefikset «0.» faller bort).",
+          "«Steg» legger til ett siffer i s, «Spill» legger dem til automatisk, og «Nullstill» tømmer s og begynner på nytt. Glidebryteren «Fart» bestemmer pausen mellom de automatiske stegene, fra 1500 ms ned til 50 ms. Standardverdien er 700 ms. Den ravgule cellen er diagonalsifferet som brukes akkurat nå, de svakt ravgule cellene er allerede brukt, og kolonnen til høyre noterer hver sammenligning som sₙ ≠ dₙₙ. Etter det sekstende sifferet dukker motsigelsespanelet opp, og radene kan fremheves ved å holde pekeren over dem eller med tastaturfokus.",
+          "«Tallkilde» velger hvor tabellen kommer fra. «Desimal» fyller den med pseudotilfeldige sifre, «Binær» med pseudotilfeldige nuller og enere, og knappen for å stokke på nytt trekker en ny tabell. Med «Egen» kan du skrive inn ett desimaltall per linje. Den forhåndsutfylte egne listen begynner med sifrene i π, e, √2, det gylne snitt, ln 2 og Euler-Mascheroni-konstanten, flyttet bak desimaltegnet.",
+          "Sifferbytteregelen avgjør hvordan dₙₙ endres. «Bytt 5 ↔ 6» gjør en 5-er til en 6-er og alle andre sifre til en 5-er. «+1 mod 10» legger til én, men hopper over 0 og 9, så en 8-er eller en 9-er blir til 1. I binærmodus ignoreres regelen, og bitene veksler ganske enkelt mellom 0 og 1. Radene behandles da som 0/1-følger, ikke som tall (prefikset «0.» faller bort).",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Det finnes ikke noe canvas: tabellen er en vanlig HTML-tabell, så skjermlesere kan gå gjennom den. De tilfeldige tabellene kommer fra en liten lineær kongruensgenerator (multiplikator 1664525, inkrement 1013904223, modulo 2³²) med et frø som endres når du stokker på nytt.",
-          "Sifrene i s lagres ikke som tilstand i det hele tatt. Komponenten holder bare rede på det gjeldende steget og regner ut s på nytt fra tabellen ved hver rendring, ved å lese diagonalen og bruke den valgte regelen. Derfor nullstilles steget når du endrer kilden, regelen eller en egen linje. Spill er en enkel intervalltimer som teller steget oppover. Den eneste kontinuerlige animasjonen er en myk puls på det nyeste sifferet, og den slås av av nettstedets regel for redusert bevegelse.",
+          "Det finnes ikke noe lerret: Tabellen er en vanlig HTML-tabell, så skjermlesere kan gå gjennom den. De tilfeldige tabellene kommer fra en liten lineær kongruensgenerator (multiplikator 1664525, inkrement 1013904223, modulo 2³²) med et frø som endres når du stokker på nytt.",
+          "Sifrene i s lagres ikke som tilstand i det hele tatt. Komponenten holder bare rede på det gjeldende steget og regner ut s på nytt fra tabellen ved hver rendring, ved å lese diagonalen og bruke den valgte regelen. Derfor nullstilles steget når du endrer kilden, regelen eller en egen linje. «Spill» er en enkel intervalltimer som teller steget oppover. Den eneste kontinuerlige animasjonen er en myk puls på det nyeste sifferet, og den slås av av nettstedets regel for redusert bevegelse.",
         ],
         code: FLIP_EXCERPT,
       },
       {
         heading: "Hvorfor unngå 0 og 9",
         paragraphs: [
-          "Noen reelle tall har to desimalutviklinger: 0,4999… og 0,5000… er samme tall. Hvis s endte i en uendelig rekke 9-ere, kunne det falle sammen med et tall på listen som er skrevet med 0-er til slutt, selv om de to avviker siffer for siffer, og beviset ville bryte sammen. Å velge erstatningssifre som aldri er 0 eller 9, utelukker dette, fordi en utvikling uten 0-er og 9-ere er den eneste måten å skrive det tallet på. Begge desimalreglene overholder dette. I det binære finnes den samme fellen (0,0111… er lik 0,1000…), og den kan ikke unngås ved å snu biter. I binærmodus gjør utforskeren derfor som læreboka: den argumenterer med uendelige 0/1-følger i stedet for reelle tall, og konklusjonen er at det finnes flere slike følger enn naturlige tall.",
+          "Noen reelle tall har to desimalutviklinger: 0,4999… og 0,5000… er samme tall. Hvis s endte i en uendelig rekke 9-ere, kunne det falle sammen med et tall på listen som er skrevet med 0-er til slutt, selv om de to avviker siffer for siffer, og beviset ville bryte sammen. Å velge erstatningssifre som aldri er 0 eller 9, utelukker dette, fordi en utvikling uten 0-er og 9-ere er den eneste måten å skrive det tallet på. Begge desimalreglene overholder dette. I det binære finnes den samme fellen (0,0111… er lik 0,1000…), og den kan ikke unngås ved å snu biter. I binærmodus gjør utforskeren derfor som læreboken: Den argumenterer med uendelige 0/1-følger i stedet for reelle tall, og konklusjonen er at det finnes flere slike følger enn naturlige tall.",
           "Husk at seksten rader bare er en illustrasjon. En endelig liste kan alltid slås med rå makt. Styrken i argumentet er at den samme oppskriften slår en uendelig liste, fordi rad n kontrolleres ved siffer n uansett hvor langt nede den står.",
         ],
       },
@@ -483,19 +483,19 @@ export const CANTOR_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Se s slippe unna",
-        text: "Behold desimalkilden og Bytt 5 ↔ 6, trykk på Spill og følg den ravgule cellen nedover diagonalen.",
+        text: "Behold desimalkilden og «Bytt 5 ↔ 6», trykk på «Spill» og følg den ravgule cellen nedover diagonalen.",
       },
       {
         title: "Prøv å fange s",
-        text: "Bytt til Egen og la rad 1 begynne med 5, rad 2 med 05, rad 3 med 005 og så videre. Med Bytt 5 ↔ 6 blir hver 5-er på diagonalen til en 6-er, så s = 0,666… smetter forbi hver rad likevel.",
+        text: "Bytt til «Egen» og la rad 1 begynne med 5, rad 2 med 05, rad 3 med 005 og så videre. Med «Bytt 5 ↔ 6» blir hver 5-er på diagonalen til en 6-er, så s = 0,666… smetter forbi hver rad likevel.",
       },
       {
         title: "Sammenlign de to reglene",
-        text: "Kjør den samme tabellen én gang med Bytt 5 ↔ 6 og én gang med +1 mod 10. Du får to forskjellige tall s, og begge mangler på listen. Beviset gir deg så mange manglende reelle tall du vil.",
+        text: "Kjør den samme tabellen én gang med «Bytt 5 ↔ 6» og én gang med «+1 mod 10». Du får to forskjellige tall s, og begge mangler på listen. Beviset gir deg så mange manglende reelle tall du vil.",
       },
       {
         title: "Binærmodus",
-        text: "Velg Binær og gå gjennom steg for steg. Hver diagonalbit snus, og s er en 0/1-følge som mangler på listen. Legg merke til at panelet nå snakker om følger, ikke tall, på grunn av forbeholdet 0,0111… = 0,1000… ovenfor.",
+        text: "Velg «Binær» og gå gjennom steg for steg. Hver diagonalbit snus, og s er en 0/1-følge som mangler på listen. Legg merke til at panelet nå snakker om følger, ikke tall, på grunn av forbeholdet 0,0111… = 0,1000… ovenfor.",
       },
     ],
   },

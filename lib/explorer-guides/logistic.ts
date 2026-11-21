@@ -141,15 +141,15 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
   },
   es: {
     metaDescription:
-      "Explora el diagrama de bifurcación de la aplicación logística: mueve r de 2,5 a 4, mira cómo la duplicación de periodo lleva al caos y lee el código.",
+      "Explora el diagrama de bifurcación del mapa logístico: mueve r de 2,5 a 4, mira cómo la duplicación de periodo lleva al caos y lee el código.",
     heading: "Cómo funciona este explorador",
     intro:
-      "La gran imagen rosa es el diagrama de bifurcación de la aplicación logística. Cada fina columna vertical corresponde a un valor de la tasa de crecimiento r, y los puntos de esa columna son los valores que la aplicación sigue visitando una vez que ha olvidado dónde empezó. Donde la columna muestra un punto, el sistema se asienta en un único valor; dos puntos significan que alterna; una banda difuminada significa que nunca se repite. La línea cian marca el r que has elegido, y el gráfico ámbar de abajo muestra la sucesión real de valores para ese r, una iteración tras otra.",
+      "La gran imagen rosa es el diagrama de bifurcación del mapa logístico. Cada fina columna vertical corresponde a un valor de la tasa de crecimiento r, y los puntos de esa columna son los valores que el mapa sigue visitando una vez que ha olvidado dónde empezó. Donde la columna muestra un punto, el sistema se asienta en un único valor; dos puntos significan que alterna; una banda difuminada significa que nunca se repite. La línea cian marca el r que has elegido, y el gráfico ámbar de abajo muestra la sucesión real de valores para ese r, una iteración tras otra.",
     sections: [
       {
         heading: "Una línea de aritmética",
         paragraphs: [
-          "La regla es la forma discreta del crecimiento logístico. Lee x como la fracción de un hábitat que está ocupada, entre 0 y 1. La fracción de la generación siguiente es r por la fracción de este año por el espacio que aún queda libre. Las poblaciones pequeñas crecen, las apiñadas menguan, y r fija con cuánta fuerza la población se pasa de largo. Robert May hizo famosa esta aplicación en un artículo de 1976 en Nature, precisamente para mostrar que una regla tan simple puede comportarse de maneras muy complicadas.",
+          "La regla es la forma discreta del crecimiento logístico. Lee x como la fracción de un hábitat que está ocupada, entre 0 y 1. La fracción de la generación siguiente es r por la fracción de este año por el espacio que aún queda libre. Las poblaciones pequeñas crecen, las apiñadas menguan, y r fija con cuánta fuerza la población se pasa de largo. Robert May hizo famoso este mapa en un artículo de 1976 en Nature, precisamente para mostrar que una regla tan simple puede comportarse de maneras muy complicadas.",
           "Para r entre 1 y 3, toda órbita es atraída hacia el punto fijo x* = 1 − 1/r. En r = 3 ese punto se vuelve inestable y toma el relevo un ciclo estable de periodo 2. En r = 1 + √6 ≈ 3,4495 el 2-ciclo se duplica en un 4-ciclo, luego en 8, 16 y así sucesivamente, y cada duplicación llega antes que la anterior. Los intervalos se encogen en un factor que tiende a la constante de Feigenbaum δ ≈ 4,6692, y las duplicaciones se acumulan en r∞ ≈ 3,5699. Más allá de ese punto, la mayoría de los valores de r dan caos.",
         ],
         formula: MAP_FORMULA_DECIMAL_COMMA,
@@ -157,15 +157,15 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "«Tasa de crecimiento r» va de 2,5 a 4 en pasos de 0,0005 y empieza en 3,7, en la región caótica. Los ocho botones predefinidos saltan a puntos de referencia: 2,5 (punto fijo tranquilo en 0,6), 3,0 (la primera bifurcación), 3,45 (justo después del nacimiento del 4-ciclo), 3,56995 (el inicio del caos), 3,7 (caos profundo), 3,83 (dentro de la ventana de periodo 3, un 3-ciclo limpio), 3,9 (caos otra vez) y 4,0 (caos total, donde la órbita cubre todo el intervalo).",
-          "x₀ es el valor inicial, de 0,001 a 0,999, 0,2 por defecto. «Calentamiento» (de 0 a 2000, 200 por defecto) es el número de iteraciones que se calculan y se desechan antes de que empiece la serie temporal, y «Mostrar» (de 20 a 1000, 200 por defecto) es cuántas se dibujan después. Poner el calentamiento a 0 te deja ver el transitorio: cómo vaga la órbita antes de caer sobre su atractor.",
+          "«Tasa de crecimiento r» va de 2,5 a 4 en pasos de 0,0005 y empieza en 3,7, en la región caótica. Los ocho botones de preajuste saltan a puntos de referencia: 2,5 (punto fijo tranquilo en 0,6); 3,0 (la primera bifurcación); 3,45 (justo después del nacimiento del 4-ciclo); 3,56995 (el inicio del caos); 3,7 (caos profundo); 3,83 (dentro de la ventana de periodo 3, un 3-ciclo limpio); 3,9 (caos otra vez) y 4,0 (caos total, donde la órbita cubre todo el intervalo).",
+          "x₀ es el valor inicial, de 0,001 a 0,999, con 0,2 por defecto. «Calentamiento» (de 0 a 2000, 200 por defecto) es el número de iteraciones que se calculan y se desechan antes de que empiece la serie temporal, y «Mostrar» (de 20 a 1000, 200 por defecto) es cuántas se dibujan después. Poner el calentamiento a 0 te deja ver el transitorio: cómo vaga la órbita antes de caer sobre su atractor.",
         ],
       },
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "Las dos imágenes se dibujan en canvas 2D corrientes, sin ningún bucle de animación. El diagrama de bifurcación es la parte costosa: 701 columnas de r, cada una partiendo de x = 0,5, que itera 300 veces para descartar el transitorio y luego dibuja los 200 valores siguientes como pequeños puntos semitransparentes. Son unas 350 000 evaluaciones de la aplicación, así que el resultado se guarda una sola vez como ImageData y solo se recalcula cuando el canvas cambia de tamaño o cambia la densidad de píxeles de la pantalla.",
-          "Mover el deslizador de r no toca ese trabajo. Restaura la imagen guardada con putImageData y dibuja encima el cursor cian y su etiqueta, lo que sale lo bastante barato como para seguir a tu dedo. La serie temporal se recalcula desde cero con cada cambio de r, x₀, «Calentamiento» o «Mostrar»: itera la aplicación, une los valores con una línea y marca cada uno con un punto. Nada se mueve por sí solo, así que el movimiento reducido no cambia nada aquí.",
+          "Las dos imágenes se dibujan en lienzos 2D corrientes, sin ningún bucle de animación. El diagrama de bifurcación es la parte costosa: 701 columnas de r, cada una partiendo de x = 0,5, que itera 300 veces para descartar el transitorio y luego dibuja los 200 valores siguientes como pequeños puntos semitransparentes. Son unas 350 000 evaluaciones del mapa, así que el resultado se guarda una sola vez como ImageData y solo se recalcula cuando el lienzo cambia de tamaño o cambia la densidad de píxeles de la pantalla.",
+          "Mover el deslizador de r no toca ese trabajo. Restaura la imagen guardada con putImageData y dibuja encima el cursor cian y su etiqueta, lo que sale lo bastante barato como para seguir a tu dedo. La serie temporal se recalcula desde cero con cada cambio de r, x₀, «Calentamiento» o «Mostrar»: itera el mapa, une los valores con una línea y marca cada uno con un punto. Nada se mueve por sí solo, así que el movimiento reducido no cambia nada aquí.",
         ],
         code: BIFURCATION_EXCERPT,
       },
@@ -173,7 +173,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
         heading: "Leer el diagrama con honestidad",
         paragraphs: [
           "Cerca de cada punto de bifurcación las ramas se ven gruesas y borrosas en lugar de nítidas. No es un fallo del dibujo. En el momento exacto en que un ciclo pierde la estabilidad, las órbitas se acercan a él con extrema lentitud, así que 300 iteraciones descartadas no bastan para llegar hasta él. En matemáticas esto se llama ralentización crítica, y el diagrama la muestra como manchas en r = 3 y en torno a 3,45.",
-          "Dentro de la banda caótica verás también finas franjas blancas. Son ventanas periódicas, intervalos de r donde el orden regresa por un momento. La más ancha empieza en r = 1 + √8 ≈ 3,8284 con un 3-ciclo estable, que luego duplica su periodo a 6, 12 y 24 antes de que vuelva el caos. Por un teorema de Li y Yorke, una aplicación como esta que tiene un ciclo de periodo 3 tiene también ciclos de todos los demás periodos.",
+          "Dentro de la banda caótica verás también finas franjas blancas. Son ventanas periódicas, intervalos de r donde el orden regresa por un momento. La más ancha empieza en r = 1 + √8 ≈ 3,8284 con un 3-ciclo estable, que luego duplica su periodo a 6, 12 y 24 antes de que vuelva el caos. Por un teorema de Li y Yorke, un mapa como este que tiene un ciclo de periodo 3 tiene también ciclos de todos los demás periodos.",
         ],
       },
     ],
@@ -181,7 +181,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Caza la intermitencia",
-        text: "Pulsa el botón predefinido 3,83 y pon «Mostrar» en 1000: un 3-ciclo limpio. Ahora baja r a 3,8280, un pelo por debajo del borde de la ventana en 3,8284. La órbita pasa tramos de unas pocas decenas de pasos repitiendo casi tres valores, luego estalla en caos y después vuelve a calmarse.",
+        text: "Pulsa el botón de preajuste 3,83 y pon «Mostrar» en 1000: un 3-ciclo limpio. Ahora baja r a 3,8280, un pelo por debajo del borde de la ventana en 3,8284. La órbita pasa tramos de unas pocas decenas de pasos repitiendo casi tres valores, luego estalla en caos y después vuelve a calmarse.",
       },
       {
         title: "Pon a prueba la dependencia sensible",
@@ -193,7 +193,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       },
       {
         title: "Cuenta las duplicaciones",
-        text: "Con «Calentamiento» en 2000, lleva r por 3,2, 3,5 y 3,56. La serie temporal se repite cada 2, 4 y 8 iteraciones. Cada periodo nuevo vive en un intervalo de r unas 4,7 veces más estrecho que el anterior, y eso es la δ de Feigenbaum en acción.",
+        text: "Con «Calentamiento» en 2000, lleva r por 3,2; 3,5 y 3,56. La serie temporal se repite cada 2, 4 y 8 iteraciones. Cada periodo nuevo vive en un intervalo de r unas 4,7 veces más estrecho que el anterior, y eso es la δ de Feigenbaum en acción.",
       },
     ],
   },
@@ -213,16 +213,16 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
         formula: MAP_FORMULA_DECIMAL_COMMA,
       },
       {
-        heading: "À quoi servent les réglages",
+        heading: "À quoi servent les commandes",
         paragraphs: [
           "« Taux de croissance r » va de 2,5 à 4 par pas de 0,0005 et démarre à 3,7, dans la région chaotique. Les huit boutons de préréglage sautent vers des repères : 2,5 (point fixe calme en 0,6), 3,0 (la première bifurcation), 3,45 (juste après la naissance du 4-cycle), 3,56995 (le début du chaos), 3,7 (chaos profond), 3,83 (dans la fenêtre de période 3, un 3-cycle bien net), 3,9 (de nouveau le chaos) et 4,0 (chaos total, où l'orbite couvre tout l'intervalle).",
-          "x₀ est la valeur de départ, de 0,001 à 0,999, 0,2 par défaut. « Rodage » (de 0 à 2000, 200 par défaut) est le nombre d'itérations calculées puis jetées avant que la série temporelle ne commence, et « Afficher » (de 20 à 1000, 200 par défaut) le nombre d'itérations dessinées ensuite. Mettre le rodage à 0 te laisse observer le régime transitoire : la façon dont l'orbite erre avant de tomber sur son attracteur.",
+          "x₀ est la valeur de départ, de 0,001 à 0,999 (0,2 par défaut). « Rodage » (de 0 à 2 000, 200 par défaut) est le nombre d'itérations calculées puis jetées avant que la série temporelle ne commence, et « Afficher » (de 20 à 1 000, 200 par défaut) le nombre d'itérations dessinées ensuite. Mettre le rodage à 0 te laisse observer le régime transitoire : la façon dont l'orbite erre avant de tomber sur son attracteur.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Les deux images sont dessinées sur de simples canvas 2D, sans aucune boucle d'animation. Le diagramme de bifurcation est la partie coûteuse : 701 colonnes de r, chacune partant de x = 0,5, itérant 300 fois pour écarter le régime transitoire puis traçant les 200 valeurs suivantes sous forme de petits points semi-transparents. Cela fait environ 350 000 évaluations de la fonction, le résultat est donc stocké une fois pour toutes en ImageData et n'est recalculé que lorsque le canvas change de taille ou que la densité de pixels de l'écran change.",
+          "Les deux images sont dessinées sur de simples canevas 2D, sans aucune boucle d'animation. Le diagramme de bifurcation est la partie coûteuse : 701 colonnes de r, chacune partant de x = 0,5, itérant 300 fois pour écarter le régime transitoire puis traçant les 200 valeurs suivantes sous forme de petits points semi-transparents. Cela fait environ 350 000 évaluations de la fonction, le résultat est donc stocké une fois pour toutes en ImageData et n'est recalculé que lorsque le canevas change de taille ou que la densité de pixels de l'écran change.",
           "Déplacer le curseur de r ne touche pas à ce travail. L'image en cache est restaurée avec putImageData, puis le curseur cyan et son étiquette sont dessinés par-dessus, ce qui est assez léger pour suivre ton doigt. La série temporelle est recalculée de zéro à chaque changement de r, de x₀, de « Rodage » ou d'« Afficher » : elle itère la fonction, relie les valeurs par une ligne et marque chacune d'un point. Rien ne bouge tout seul, la réduction des animations ne change donc rien ici.",
         ],
         code: BIFURCATION_EXCERPT,
@@ -239,7 +239,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Surprends l'intermittence",
-        text: "Appuie sur le préréglage 3,83 et règle « Afficher » sur 1000 : un 3-cycle bien net. Descends maintenant r à 3,8280, un cheveu en dessous du bord de la fenêtre en 3,8284. L'orbite passe des séquences de quelques dizaines de pas à répéter presque trois valeurs, puis éclate en chaos, puis se calme de nouveau.",
+        text: "Appuie sur le préréglage 3,83 et règle « Afficher » sur 1 000 : un 3-cycle bien net. Descends maintenant r à 3,8280, un cheveu en dessous du bord de la fenêtre en 3,8284. L'orbite passe des séquences de quelques dizaines de pas à répéter presque trois valeurs, puis éclate en chaos, puis se calme de nouveau.",
       },
       {
         title: "Teste la sensibilité aux conditions initiales",
@@ -247,11 +247,11 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       },
       {
         title: "Observe le ralentissement",
-        text: "Règle r sur 3,0, « Rodage » sur 0 et « Afficher » sur 1000. L'orbite zigzague autour de 0,667 et se resserre avec une lenteur pénible. Passe r à 2,8 et elle se stabilise en quelques dizaines de pas.",
+        text: "Règle r sur 3,0, « Rodage » sur 0 et « Afficher » sur 1 000. L'orbite zigzague autour de 0,667 et se resserre avec une lenteur pénible. Passe r à 2,8 et elle se stabilise en quelques dizaines de pas.",
       },
       {
         title: "Compte les doublements",
-        text: "Avec « Rodage » à 2000, fais passer r par 3,2, 3,5 et 3,56. La série temporelle se répète toutes les 2, 4 et 8 itérations. Chaque nouvelle période vit sur une plage de r environ 4,7 fois plus étroite que la précédente, et c'est le δ de Feigenbaum à l'œuvre.",
+        text: "Avec « Rodage » à 2 000, fais passer r par 3,2 ; 3,5 et 3,56. La série temporelle se répète toutes les 2, 4 et 8 itérations. Chaque nouvelle période vit sur une plage de r environ 4,7 fois plus étroite que la précédente, et c'est le δ de Feigenbaum à l'œuvre.",
       },
     ],
   },
@@ -273,14 +273,14 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "«Tasso di crescita r» va da 2,5 a 4 a passi di 0,0005 e parte da 3,7, nella regione caotica. Gli otto pulsanti preimpostati saltano a punti di riferimento: 2,5 (punto fisso tranquillo in 0,6), 3,0 (la prima biforcazione), 3,45 (subito dopo la nascita del 4-ciclo), 3,56995 (l'inizio del caos), 3,7 (caos profondo), 3,83 (dentro la finestra di periodo 3, un 3-ciclo pulito), 3,9 (di nuovo caos) e 4,0 (caos pieno, dove l'orbita copre l'intero intervallo).",
-          "x₀ è il valore iniziale, da 0,001 a 0,999, 0,2 di default. «Assestamento» (da 0 a 2000, 200 di default) è il numero di iterazioni calcolate e scartate prima che cominci la serie temporale, e «Mostra» (da 20 a 1000, 200 di default) è quante ne vengono disegnate dopo. Impostare l'assestamento a 0 ti fa osservare il transitorio: come l'orbita vaga prima di cadere sul suo attrattore.",
+          "«Tasso di crescita r» va da 2,5 a 4 a passi di 0,0005 e parte da 3,7, nella regione caotica. Gli otto pulsanti dei preset saltano a punti di riferimento: 2,5 (punto fisso tranquillo in 0,6), 3,0 (la prima biforcazione), 3,45 (subito dopo la nascita del 4-ciclo), 3,56995 (l'inizio del caos), 3,7 (caos profondo), 3,83 (dentro la finestra di periodo 3, un 3-ciclo pulito), 3,9 (di nuovo caos) e 4,0 (caos pieno, dove l'orbita copre l'intero intervallo).",
+          "x₀ è il valore iniziale, da 0,001 a 0,999, predefinito 0,2. «Assestamento» (da 0 a 2000, predefinito 200) è il numero di iterazioni calcolate e scartate prima che cominci la serie temporale, e «Mostra» (da 20 a 1000, predefinito 200) è quante ne vengono disegnate dopo. Impostare l'assestamento a 0 ti fa osservare il transitorio: come l'orbita vaga prima di cadere sul suo attrattore.",
         ],
       },
       {
         heading: "Com'è costruito",
         paragraphs: [
-          "Entrambe le immagini sono disegnate su semplici canvas 2D, senza alcun ciclo di animazione. Il diagramma di biforcazione è la parte costosa: 701 colonne di r, ciascuna a partire da x = 0,5, che itera 300 volte per scartare il transitorio e poi traccia i 200 valori successivi come piccoli puntini semitrasparenti. Sono circa 350 000 valutazioni della mappa, quindi il risultato viene salvato una volta sola come ImageData e ricalcolato soltanto quando il canvas cambia dimensione o cambia la densità di pixel dello schermo.",
+          "Entrambe le immagini sono disegnate su semplici canvas 2D, senza alcun ciclo di animazione. Il diagramma di biforcazione è la parte costosa: 701 colonne di r, ciascuna a partire da x = 0,5, che itera 300 volte per scartare il transitorio e poi traccia i 200 valori successivi come piccoli puntini semitrasparenti. Sono circa 350.000 valutazioni della mappa, quindi il risultato viene salvato una volta sola come ImageData e ricalcolato soltanto quando il canvas cambia dimensione o cambia la densità di pixel dello schermo.",
           "Muovere il cursore di r non tocca quel lavoro. Ripristina l'immagine in cache con putImageData e ci disegna sopra il cursore ciano con la sua etichetta, il che costa abbastanza poco da seguire il tuo dito. La serie temporale viene ricalcolata da capo a ogni modifica di r, x₀, «Assestamento» o «Mostra»: itera la mappa, unisce i valori con una linea e segna ciascuno con un puntino. Niente si muove da solo, quindi qui il movimento ridotto non cambia nulla.",
         ],
         code: BIFURCATION_EXCERPT,
@@ -293,11 +293,11 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Prova tu",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Cattura l'intermittenza",
-        text: "Premi il pulsante preimpostato 3,83 e imposta «Mostra» a 1000: un 3-ciclo pulito. Ora abbassa r a 3,8280, un soffio sotto il bordo della finestra in 3,8284. L'orbita passa tratti di qualche decina di passi a ripetere quasi tre valori, poi esplode nel caos, poi si calma di nuovo.",
+        text: "Premi il preset 3,83 e imposta «Mostra» a 1000: un 3-ciclo pulito. Ora abbassa r a 3,8280, un soffio sotto il bordo della finestra in 3,8284. L'orbita passa tratti di qualche decina di passi a ripetere quasi tre valori, poi esplode nel caos, poi si calma di nuovo.",
       },
       {
         title: "Metti alla prova la dipendenza sensibile",
@@ -324,14 +324,14 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
         heading: "Uma linha de aritmética",
         paragraphs: [
           "A regra é a forma discreta do crescimento logístico. Lê x como a fração ocupada de um habitat, entre 0 e 1. A fração da geração seguinte é r vezes a fração deste ano vezes o espaço que ainda está livre. As populações pequenas crescem, as apinhadas encolhem, e r define com que força a população ultrapassa o alvo. Robert May tornou este mapa famoso num artigo de 1976 na Nature, precisamente para mostrar que uma regra tão simples pode comportar-se de formas muito complicadas.",
-          "Para r entre 1 e 3, todas as órbitas são atraídas para o ponto fixo x* = 1 − 1/r. Em r = 3 esse ponto torna-se instável e um ciclo estável de período 2 toma o seu lugar. Em r = 1 + √6 ≈ 3,4495 o 2-ciclo duplica para um 4-ciclo, depois para 8, 16 e assim por diante, com cada duplicação a chegar mais cedo do que a anterior. Os intervalos encolhem por um fator que tende para a constante de Feigenbaum δ ≈ 4,6692, e as duplicações acumulam-se em r∞ ≈ 3,5699. Para lá desse ponto, a maioria dos valores de r dá caos.",
+          "Para r entre 1 e 3, todas as órbitas são atraídas para o ponto fixo x* = 1 − 1/r. Em r = 3 esse ponto torna-se instável e um ciclo estável de período 2 toma o seu lugar. Em r = 1 + √6 ≈ 3,4495 o ciclo de período 2 duplica para um de período 4, depois para 8, 16 e assim por diante, com cada duplicação a chegar mais cedo do que a anterior. Os intervalos encolhem por um fator que tende para a constante de Feigenbaum δ ≈ 4,6692, e as duplicações acumulam-se em r∞ ≈ 3,5699. Para lá desse ponto, a maioria dos valores de r dá caos.",
         ],
         formula: MAP_FORMULA_DECIMAL_COMMA,
       },
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "«Taxa de crescimento r» vai de 2,5 a 4 em passos de 0,0005 e começa em 3,7, na região caótica. Os oito botões predefinidos saltam para marcos: 2,5 (ponto fixo calmo em 0,6), 3,0 (a primeira bifurcação), 3,45 (logo a seguir ao nascimento do 4-ciclo), 3,56995 (o início do caos), 3,7 (caos profundo), 3,83 (dentro da janela de período 3, um 3-ciclo limpo), 3,9 (caos outra vez) e 4,0 (caos total, onde a órbita cobre todo o intervalo).",
+          "«Taxa de crescimento r» vai de 2,5 a 4 em passos de 0,0005 e começa em 3,7, na região caótica. Os oito botões de predefinição saltam para marcos: 2,5 (ponto fixo calmo em 0,6); 3,0 (a primeira bifurcação); 3,45 (logo a seguir ao nascimento do ciclo de período 4); 3,56995 (o início do caos); 3,7 (caos profundo); 3,83 (dentro da janela de período 3, um ciclo de período 3 limpo); 3,9 (caos outra vez) e 4,0 (caos total, onde a órbita cobre todo o intervalo).",
           "x₀ é o valor inicial, de 0,001 a 0,999, 0,2 por omissão. «Aquecimento» (de 0 a 2000, 200 por omissão) é o número de iterações calculadas e deitadas fora antes de a série temporal começar, e «Mostrar» (de 20 a 1000, 200 por omissão) é quantas são desenhadas depois disso. Pôr o aquecimento a 0 deixa-te ver o transitório: como a órbita vagueia antes de cair no seu atrator.",
         ],
       },
@@ -339,7 +339,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
         heading: "Como está construído",
         paragraphs: [
           "As duas imagens são desenhadas em canvas 2D simples, sem qualquer ciclo de animação. O diagrama de bifurcação é a parte cara: 701 colunas de r, cada uma a partir de x = 0,5, que itera 300 vezes para descartar o transitório e depois desenha os 200 valores seguintes como pequenos pontos semitransparentes. São cerca de 350 000 avaliações do mapa, pelo que o resultado é guardado uma única vez como ImageData e só é recalculado quando o canvas muda de tamanho ou a densidade de píxeis do ecrã se altera.",
-          "Mover o cursor de r não toca nesse trabalho. Repõe a imagem em cache com putImageData e desenha por cima o cursor ciano e a sua etiqueta, o que é barato o suficiente para acompanhar o teu dedo. A série temporal é recalculada de raiz a cada alteração de r, x₀, «Aquecimento» ou «Mostrar»: itera o mapa, une os valores com uma linha e marca cada um com um ponto. Nada se move sozinho, por isso o movimento reduzido não muda nada aqui.",
+          "Mover o cursor de r não toca nesse trabalho. Repõe a imagem em cache com putImageData e desenha por cima o marcador ciano e a sua etiqueta, o que é barato o suficiente para acompanhar o teu dedo. A série temporal é recalculada de raiz a cada alteração de r, x₀, «Aquecimento» ou «Mostrar»: itera o mapa, une os valores com uma linha e marca cada um com um ponto. Nada se move sozinho, por isso o movimento reduzido não muda nada aqui.",
         ],
         code: BIFURCATION_EXCERPT,
       },
@@ -347,7 +347,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
         heading: "Ler o diagrama com honestidade",
         paragraphs: [
           "Perto de cada ponto de bifurcação, os ramos parecem grossos e difusos em vez de nítidos. Não é um defeito do desenho. No momento exato em que um ciclo perde a estabilidade, as órbitas aproximam-se dele com extrema lentidão, pelo que 300 iterações descartadas não chegam para lá aterrar. Em matemática chama-se a isto abrandamento crítico, e o diagrama mostra-o como borrões em r = 3 e por volta de 3,45.",
-          "Dentro da faixa caótica verás também finas riscas brancas. São janelas periódicas, intervalos de r onde a ordem regressa por instantes. A mais larga começa em r = 1 + √8 ≈ 3,8284 com um 3-ciclo estável, que depois duplica o período para 6, 12 e 24 antes de o caos voltar. Por um teorema de Li e Yorke, um mapa como este que tenha um ciclo de período 3 tem também ciclos de todos os outros períodos.",
+          "Dentro da faixa caótica verás também finas riscas brancas. São janelas periódicas, intervalos de r onde a ordem regressa por instantes. A mais larga começa em r = 1 + √8 ≈ 3,8284 com um ciclo estável de período 3, que depois duplica o período para 6, 12 e 24 antes de o caos voltar. Por um teorema de Li e Yorke, um mapa como este que tenha um ciclo de período 3 tem também ciclos de todos os outros períodos.",
         ],
       },
     ],
@@ -355,11 +355,11 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Apanha a intermitência",
-        text: "Carrega no botão predefinido 3,83 e põe «Mostrar» em 1000: um 3-ciclo limpo. Agora desce r para 3,8280, um cabelo abaixo da margem da janela em 3,8284. A órbita passa troços de algumas dezenas de passos quase a repetir três valores, depois rebenta em caos, depois acalma outra vez.",
+        text: "Carrega no botão de predefinição 3,83 e põe «Mostrar» em 1000: um ciclo de período 3 limpo. Agora desce r para 3,8280, um nadinha abaixo da margem da janela em 3,8284. A órbita passa troços de algumas dezenas de passos quase a repetir três valores, depois rebenta em caos, depois acalma outra vez.",
       },
       {
         title: "Testa a dependência sensível",
-        text: "Em r = 4,0 repara na forma da série temporal e depois move x₀ um único passo, de 0,200 para 0,201. Ao fim de 200 iterações de aquecimento, as duas imagens não têm nada em comum. Repete em r = 3,2 e não muda rigorosamente nada, porque todos os começos acabam no mesmo 2-ciclo.",
+        text: "Em r = 4,0 repara na forma da série temporal e depois move x₀ um único passo, de 0,200 para 0,201. Ao fim de 200 iterações de aquecimento, as duas imagens não têm nada em comum. Repete em r = 3,2 e não muda rigorosamente nada, porque todos os começos acabam no mesmo ciclo de período 2.",
       },
       {
         title: "Observa o abrandamento",
@@ -367,7 +367,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       },
       {
         title: "Conta as duplicações",
-        text: "Com «Aquecimento» em 2000, leva r por 3,2, 3,5 e 3,56. A série temporal repete-se a cada 2, 4 e 8 iterações. Cada novo período vive num intervalo de r cerca de 4,7 vezes mais estreito do que o anterior, e isso é o δ de Feigenbaum em ação.",
+        text: "Com «Aquecimento» em 2000, leva r por 3,2; 3,5 e 3,56. A série temporal repete-se a cada 2, 4 e 8 iterações. Cada novo período vive num intervalo de r cerca de 4,7 vezes mais estreito do que o anterior, e isso é o δ de Feigenbaum em ação.",
       },
     ],
   },
@@ -389,15 +389,15 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "”Tillväxttakt r” går från 2,5 till 4 i steg om 0,0005 och börjar på 3,7, i det kaotiska området. De åtta förvalsknapparna hoppar till riktmärken: 2,5 (lugn fixpunkt vid 0,6), 3,0 (den första bifurkationen), 3,45 (strax efter 4-cykelns födelse), 3,56995 (kaosets början), 3,7 (djupt kaos), 3,83 (inne i period-3-fönstret, en ren 3-cykel), 3,9 (kaos igen) och 4,0 (fullt kaos, där banan täcker hela intervallet).",
+          "”Tillväxttakt r” går från 2,5 till 4 i steg om 0,0005 och börjar på 3,7, i det kaotiska området. De åtta förvalsknapparna hoppar till riktmärken: 2,5 (lugn fixpunkt vid 0,6); 3,0 (den första bifurkationen); 3,45 (strax efter 4-cykelns födelse); 3,56995 (kaosets början); 3,7 (djupt kaos); 3,83 (inne i period-3-fönstret, en ren 3-cykel); 3,9 (kaos igen) och 4,0 (fullt kaos, där banan täcker hela intervallet).",
           "x₀ är startvärdet, från 0,001 till 0,999, med 0,2 som standard. ”Inkörning” (0 till 2000, standard 200) är hur många iterationer som beräknas och kastas innan tidsserien börjar, och ”Visa” (20 till 1000, standard 200) är hur många som ritas därefter. Sätter du inkörningen till 0 får du se transienten: hur banan irrar omkring innan den faller ner på sin attraktor.",
         ],
       },
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Båda bilderna ritas på vanliga 2D-canvasar, utan någon animationsloop. Bifurkationsdiagrammet är den dyra delen: 701 kolumner av r, som var och en startar från x = 0,5, itererar 300 gånger för att göra sig av med transienten och sedan ritar de följande 200 värdena som små halvgenomskinliga prickar. Det blir ungefär 350 000 evalueringar av avbildningen, så resultatet sparas en gång som ImageData och räknas bara om när canvasen ändrar storlek eller skärmens pixeltäthet ändras.",
-          "Att flytta r-reglaget rör inte det arbetet. Den cachade bilden återställs med putImageData, och den cyanfärgade markören och dess etikett ritas ovanpå, vilket är billigt nog för att följa ditt finger. Tidsserien räknas om från början vid varje ändring av r, x₀, ”Inkörning” eller ”Visa”: den itererar avbildningen, binder ihop värdena med en linje och markerar vart och ett med en prick. Ingenting rör sig av sig självt, så reducerad rörelse ändrar ingenting här.",
+          "Båda bilderna ritas på vanliga 2D-canvasar, utan någon animationsslinga. Bifurkationsdiagrammet är den dyra delen: 701 kolumner av r, som var och en startar från x = 0,5, itererar 300 gånger för att göra sig av med transienten och sedan ritar de följande 200 värdena som små halvgenomskinliga prickar. Det blir ungefär 350\u00a0000 evalueringar av avbildningen, så resultatet sparas en gång som ImageData och räknas bara om när canvasen ändrar storlek eller skärmens pixeltäthet ändras.",
+          "Att flytta r-reglaget rör inte det arbetet. Den cachade bilden återställs med putImageData, och den cyanfärgade markören och dess etikett ritas ovanpå, vilket är billigt nog för att följa ditt finger. Tidsserien räknas om från början vid varje ändring av r, x₀, ”Inkörning” eller ”Visa”: den itererar avbildningen, binder ihop värdena med en linje och markerar vart och ett med en prick. Ingenting rör sig av sig självt, så minskad rörelse ändrar ingenting här.",
         ],
         code: BIFURCATION_EXCERPT,
       },
@@ -409,14 +409,14 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Fånga intermittensen",
         text: "Tryck på förvalet 3,83 och ställ ”Visa” på 1000: en ren 3-cykel. Flytta nu ner r till 3,8280, en hårsmån under fönstrets kant vid 3,8284. Banan ägnar sträckor på några dussin steg åt att nästan upprepa tre värden, bryter sedan ut i kaos och lugnar sig sedan igen.",
       },
       {
-        title: "Testa känsligheten för begynnelsevärden",
+        title: "Testa känsligheten för begynnelsevillkoren",
         text: "Lägg märke till tidsseriens form vid r = 4,0 och flytta sedan x₀ ett enda steg, från 0,200 till 0,201. Efter 200 iterationers inkörning har de två bilderna ingenting gemensamt. Upprepa vid r = 3,2 så ändras ingenting alls, eftersom varje start slutar på samma 2-cykel.",
       },
       {
@@ -425,13 +425,13 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       },
       {
         title: "Räkna fördubblingarna",
-        text: "Med ”Inkörning” på 2000, stega r genom 3,2, 3,5 och 3,56. Tidsserien upprepar sig var 2:a, 4:e och 8:e iteration. Varje ny period lever på ett intervall av r som är ungefär 4,7 gånger smalare än det föregående, och det är Feigenbaums δ i arbete.",
+        text: "Med ”Inkörning” på 2000, stega r genom 3,2; 3,5 och 3,56. Tidsserien upprepar sig var 2:a, 4:e och 8:e iteration. Varje ny period lever på ett intervall av r som är ungefär 4,7 gånger smalare än det föregående, och det är Feigenbaums δ i arbete.",
       },
     ],
   },
   no: {
     metaDescription:
-      "Utforsk bifurkasjonsdiagrammet for den logistiske avbildningen: dra r fra 2,5 til 4, se periodedobling bli til kaos, og les koden bak hvert punkt.",
+      "Utforsk bifurkasjonsdiagrammet for den logistiske avbildningen: Dra r fra 2,5 til 4, se periodedobling bli til kaos, og les koden bak hvert punkt.",
     heading: "Slik fungerer denne utforskeren",
     intro:
       "Det store rosa bildet er bifurkasjonsdiagrammet for den logistiske avbildningen. Hver tynne loddrette kolonne hører til én verdi av vekstraten r, og prikkene i kolonnen er verdiene avbildningen fortsetter å besøke når den først har glemt hvor den startet. Der kolonnen viser én prikk, faller systemet til ro på én enkelt verdi. To prikker betyr at det veksler, og et utsmurt bånd betyr at det aldri gjentar seg. Den cyanfargede linjen markerer den r-en du har valgt, og det ravgule diagrammet nedenfor viser den faktiske følgen av verdier for den r-en, én iterasjon om gangen.",
@@ -447,15 +447,15 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "«Vekstrate r» går fra 2,5 til 4 i steg på 0,0005 og starter på 3,7, i det kaotiske området. De åtte forvalgsknappene hopper til landemerker: 2,5 (rolig fikspunkt ved 0,6), 3,0 (den første bifurkasjonen), 3,45 (like etter at 4-sykelen blir til), 3,56995 (starten på kaoset), 3,7 (dypt kaos), 3,83 (inne i periode-3-vinduet, en ren 3-sykel), 3,9 (kaos igjen) og 4,0 (fullt kaos, der banen dekker hele intervallet).",
+          "«Vekstrate r» går fra 2,5 til 4 i steg på 0,0005 og starter på 3,7, i det kaotiske området. De åtte forhåndsvalgknappene hopper til landemerker: 2,5 (rolig fikspunkt ved 0,6); 3,0 (den første bifurkasjonen); 3,45 (like etter at 4-sykelen blir til); 3,56995 (starten på kaoset); 3,7 (dypt kaos); 3,83 (inne i periode-3-vinduet, en ren 3-sykel); 3,9 (kaos igjen) og 4,0 (fullt kaos, der banen dekker hele intervallet).",
           "x₀ er startverdien, fra 0,001 til 0,999, med 0,2 som standard. «Innkjøring» (0 til 2000, standard 200) er hvor mange iterasjoner som regnes ut og kastes før tidsserien begynner, og «Vis» (20 til 1000, standard 200) er hvor mange som tegnes etterpå. Setter du innkjøringen til 0, får du se transienten: hvordan banen vandrer rundt før den faller ned på attraktoren sin.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Begge bildene tegnes på vanlige 2D-canvaser, uten noen animasjonsløkke. Bifurkasjonsdiagrammet er den dyre delen: 701 kolonner av r, som hver starter fra x = 0,5, itererer 300 ganger for å kvitte seg med transienten og deretter tegner de neste 200 verdiene som små halvgjennomsiktige prikker. Det blir omtrent 350 000 evalueringer av avbildningen, så resultatet lagres én gang som ImageData og regnes bare ut på nytt når canvaset endrer størrelse eller pikseltettheten på skjermen endres.",
-          "Å flytte r-bryteren rører ikke det arbeidet. Det mellomlagrede bildet gjenopprettes med putImageData, og den cyanfargede markøren og etiketten tegnes oppå, noe som er billig nok til å følge fingeren din. Tidsserien regnes ut helt på nytt ved hver endring av r, x₀, «Innkjøring» eller «Vis»: den itererer avbildningen, binder verdiene sammen med en linje og markerer hver av dem med en prikk. Ingenting beveger seg av seg selv, så redusert bevegelse endrer ingenting her.",
+          "Begge bildene tegnes på vanlige 2D-lerreter, uten noen animasjonsløkke. Bifurkasjonsdiagrammet er den dyre delen: 701 kolonner av r, som hver starter fra x = 0,5, itererer 300 ganger for å kvitte seg med transienten og deretter tegner de neste 200 verdiene som små halvgjennomsiktige prikker. Det blir omtrent 350\u00a0000 evalueringer av avbildningen, så resultatet lagres én gang som ImageData og regnes bare ut på nytt når lerretet endrer størrelse eller pikseltettheten på skjermen endres.",
+          "Å flytte glidebryteren for r rører ikke det arbeidet. Det mellomlagrede bildet gjenopprettes med putImageData, og den cyanfargede markøren og etiketten tegnes oppå, noe som er billig nok til å følge fingeren din. Tidsserien regnes ut helt på nytt ved hver endring av r, x₀, «Innkjøring» eller «Vis»: Den itererer avbildningen, binder verdiene sammen med en linje og markerer hver av dem med en prikk. Ingenting beveger seg av seg selv, så redusert bevegelse endrer ingenting her.",
         ],
         code: BIFURCATION_EXCERPT,
       },
@@ -471,7 +471,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Fang intermittensen",
-        text: "Trykk på forvalget 3,83 og sett «Vis» til 1000: en ren 3-sykel. Flytt nå r ned til 3,8280, en hårsbredd under kanten av vinduet ved 3,8284. Banen bruker strekninger på noen titalls steg på nesten å gjenta tre verdier, bryter så ut i kaos og roer seg deretter igjen.",
+        text: "Trykk på forhåndsvalget 3,83 og sett «Vis» til 1000: en ren 3-sykel. Flytt nå r ned til 3,8280, en hårsbredd under kanten av vinduet ved 3,8284. Banen bruker strekninger på noen titalls steg på nesten å gjenta tre verdier, bryter så ut i kaos og roer seg deretter igjen.",
       },
       {
         title: "Test følsomheten for startverdier",
@@ -483,7 +483,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       },
       {
         title: "Tell doblingene",
-        text: "Med «Innkjøring» på 2000, gå r gjennom 3,2, 3,5 og 3,56. Tidsserien gjentar seg hver 2., 4. og 8. iterasjon. Hver ny periode lever på et intervall av r som er omtrent 4,7 ganger smalere enn det forrige, og det er Feigenbaums δ i arbeid.",
+        text: "Med «Innkjøring» på 2000, la r gå gjennom 3,2; 3,5 og 3,56. Tidsserien gjentar seg hver 2., 4. og 8. iterasjon. Hver ny periode lever på et intervall av r som er omtrent 4,7 ganger smalere enn det forrige, og det er Feigenbaums δ i arbeid.",
       },
     ],
   },

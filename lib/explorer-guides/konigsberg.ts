@@ -49,7 +49,7 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
         heading: "What the controls do",
         paragraphs: [
           "Start at chooses the land mass where your walk begins; it is highlighted on the map. On the canvas, the bridges you may cross next light up when you hover over them. A click within a short distance of a bridge crosses it, as long as it touches your current land mass and has not been used yet. Crossed bridges fade and get a numbered marker.",
-          "The bridges list has ten entries: the seven historical bridges, which are on by default, plus three hypothetical ones that never existed and are drawn dashed (two direct bank to bank bridges, AD and AD2, and a second bridge between the islands, BC2). Toggling any of them recomputes every degree, the odd or even badge of each vertex and the status at the top: Eulerian circuit, Eulerian path (with its two possible end points), not Eulerian, or disconnected. Changing the bridge set or the start resets your walk.",
+          "The bridges list has ten entries: the seven historical bridges, which are on by default, plus three hypothetical ones that never existed and are drawn dashed (two direct bank to bank bridges, AD and AD2, and a second bridge between the islands, BC2). Toggling any of them recomputes every degree, the odd or even badge of each vertex and the status at the top: Eulerian circuit, Eulerian path (with its two possible end points), Eulerian: no, or disconnected. Changing the bridge set or the start resets your walk.",
           "The auto button changes its job with the graph. If an Eulerian path or circuit exists, it animates Hierholzer's algorithm crossing every bridge exactly once, one bridge every 650 milliseconds. It begins at your start if a complete walk can begin there, and otherwise moves the start to an odd vertex. If not, it runs a greedy walk that picks a random unused bridge at every step until none is left, and you watch it get stuck.",
         ],
       },
@@ -111,7 +111,7 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
         heading: "Was die Bedienelemente bewirken",
         paragraphs: [
           "«Start bei» legt fest, auf welchem Landstück dein Weg beginnt; es wird auf der Karte hervorgehoben. Auf dem Canvas leuchten die Brücken auf, die du als Nächstes nehmen darfst, sobald du mit der Maus darüberfährst. Ein Klick in der Nähe einer Brücke überquert sie, sofern sie an deinem aktuellen Landstück liegt und noch nicht benutzt wurde. Überquerte Brücken verblassen und bekommen eine Nummer.",
-          "Die Brückenliste hat zehn Einträge: die sieben historischen Brücken, die anfangs aktiv sind, und drei hypothetische, die es nie gab und die gestrichelt gezeichnet sind (zwei direkte Brücken von Ufer zu Ufer, AD und AD2, und eine zweite Brücke zwischen den Inseln, BC2). Jedes Umschalten berechnet alle Grade neu, dazu die Markierung gerade oder ungerade an jedem Knoten und den Status oben: Eulerkreis, Eulerweg (mit seinen beiden möglichen Endpunkten), nicht eulersch oder unzusammenhängend. Eine neue Brückenauswahl oder ein neuer Start setzt deinen Weg zurück.",
+          "Die Brückenliste hat zehn Einträge: die sieben historischen Brücken, die anfangs aktiv sind, und drei hypothetische, die es nie gab und die gestrichelt gezeichnet sind (zwei direkte Brücken von Ufer zu Ufer, AD und AD2, und eine zweite Brücke zwischen den Inseln, BC2). Jedes Umschalten berechnet alle Grade neu, dazu die Markierung gerade oder ungerade an jedem Knoten und den Status oben: «Eulerscher Kreis», «Eulerscher Weg» (mit seinen beiden möglichen Endpunkten), «Eulersch: nein» oder unzusammenhängend. Eine neue Brückenauswahl oder ein neuer Start setzt deinen Weg zurück.",
           "Der Auto-Knopf ändert seine Aufgabe je nach Graph. Gibt es einen Eulerweg oder Eulerkreis, animiert er den Algorithmus von Hierholzer, der jede Brücke genau einmal überquert, alle 650 Millisekunden eine. Er beginnt an deinem Start, wenn ein vollständiger Weg dort beginnen kann, und verlegt den Start sonst auf einen ungeraden Knoten. Gibt es keinen, läuft ein gieriger Weg, der bei jedem Schritt zufällig eine unbenutzte Brücke wählt, bis keine mehr übrig ist, und du siehst ihn stecken bleiben.",
         ],
       },
@@ -140,11 +140,11 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
       },
       {
         title: "Eine Brücke, die es nie gab",
-        text: "Schalte AD ein, eine direkte Brücke zwischen den Ufern. Jetzt haben A und D den Grad vier, und nur noch B und C sind ungerade. Der Status springt auf Eulerweg, von B nach C. Startest du bei B, schaffst du die Runde; startest du bei A, sitzt du irgendwann fest.",
+        text: "Schalte AD ein, eine direkte Brücke zwischen den Ufern. Jetzt haben A und D den Grad vier, und nur noch B und C sind ungerade. Der Status springt auf «Eulerscher Weg», von B nach C. Startest du bei B, schaffst du die Runde; startest du bei A, sitzt du irgendwann fest.",
       },
       {
         title: "Den Kreis schließen",
-        text: "Lass AD an und schalte zusätzlich BC2 ein. Jetzt ist jeder Knoten gerade, und der Status meldet einen Eulerkreis: eine Rundtour über alle neun Brücken, die dort endet, wo sie begann.",
+        text: "Lass AD an und schalte zusätzlich BC2 ein. Jetzt ist jeder Knoten gerade, und der Status meldet «Eulerscher Kreis»: eine Rundtour über alle neun Brücken, die dort endet, wo sie begann.",
       },
       {
         title: "Wegnehmen statt bauen",
@@ -171,17 +171,17 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "«Empezar en» elige la zona de tierra donde comienza tu recorrido, que queda resaltada en el mapa. En el canvas, los puentes que puedes cruzar a continuación se iluminan al pasar el puntero por encima. Un clic a poca distancia de un puente lo cruza, siempre que toque tu zona de tierra actual y aún no se haya usado. Los puentes cruzados se atenúan y reciben un marcador numerado.",
-          "La lista «Puentes» tiene diez entradas: los siete puentes históricos, activos por defecto, y tres hipotéticos que nunca existieron y se dibujan con línea discontinua (dos puentes directos de orilla a orilla, AD y AD2, y un segundo puente entre las islas, BC2). Al activar o desactivar cualquiera se recalculan todos los grados, la etiqueta de par o impar de cada vértice y el estado de arriba: circuito euleriano, camino euleriano (con sus dos extremos posibles), no euleriano o desconectado. Cambiar el conjunto de puentes o el punto de partida reinicia tu recorrido.",
+          "«Empezar en» elige la zona de tierra donde comienza tu recorrido, que queda resaltada en el mapa. En el lienzo, los puentes que puedes cruzar a continuación se iluminan al pasar el puntero por encima. Un clic a poca distancia de un puente lo cruza, siempre que toque tu zona de tierra actual y aún no se haya usado. Los puentes cruzados se atenúan y reciben un marcador numerado.",
+          "La lista «Puentes» tiene diez entradas: los siete puentes históricos, activos por defecto, y tres hipotéticos que nunca existieron y se dibujan con línea discontinua (dos puentes directos de orilla a orilla, AD y AD2, y un segundo puente entre las islas, BC2). Al activar o desactivar cualquiera se recalculan todos los grados, la etiqueta de par o impar de cada vértice y el estado de arriba: «Circuito euleriano», «Camino euleriano» (con sus dos extremos posibles), «Euleriano: no» o desconectado. Cambiar el conjunto de puentes o el punto de partida reinicia tu recorrido.",
           "El botón automático cambia de tarea según el grafo. Si existe un camino o un circuito euleriano, anima el algoritmo de Hierholzer cruzando cada puente exactamente una vez, un puente cada 650 milisegundos. Empieza en tu punto de partida si un recorrido completo puede comenzar ahí; de lo contrario, traslada el inicio a un vértice impar. Si no existe, ejecuta un recorrido voraz que en cada paso elige al azar un puente sin usar hasta que no queda ninguno, y lo ves quedarse atascado.",
         ],
       },
       {
         heading: "Cómo está construido",
         paragraphs: [
-          "El mapa se dibuja en un canvas 2D con un espacio lógico fijo de 800 por 500 unidades, escalado a tu pantalla y a su densidad de píxeles. Cada puente es una curva de Bézier cúbica entre los centros de dos vértices. Para decidir en qué puente has hecho clic, el explorador muestrea cada curva en 25 puntos y toma el puente cuya muestra más cercana queda a menos de 30 unidades del puntero.",
+          "El mapa se dibuja en un lienzo 2D con un espacio lógico fijo de 800 por 500 unidades, escalado a tu pantalla y a su densidad de píxeles. Cada puente es una curva de Bézier cúbica entre los centros de dos vértices. Para decidir en qué puente has hecho clic, el explorador muestrea cada curva en 25 puntos y toma el puente cuya muestra más cercana queda a menos de 30 unidades del puntero.",
           "El grafo en sí es simplemente la lista de identificadores de los puentes activos. Los grados se cuentan recorriendo esa lista una vez. La conexidad es una búsqueda en profundidad sobre los vértices que aún conservan al menos un puente, de modo que una zona de tierra a la que se le han quitado todos los puentes sencillamente se ignora en lugar de hacer que el grafo cuente como desconectado. El algoritmo de Hierholzer usa una pila: va siguiendo aristas sin usar y, cada vez que llega a un callejón sin salida, retrocede y anota la arista por la que da marcha atrás. Al invertir ese registro se obtiene el recorrido euleriano.",
-          "En esta página no hay animación continua. El mapa solo se redibuja cuando algo cambia (un paso del puntero, un cruce, un puente que se activa o desactiva) o cuando se redimensiona el canvas.",
+          "En esta página no hay animación continua. El mapa solo se redibuja cuando algo cambia (un paso del puntero, un cruce, un puente que se activa o desactiva) o cuando se redimensiona el lienzo.",
         ],
         code: CLASSIFY_EXCERPT,
       },
@@ -232,17 +232,17 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "« Départ en » choisit la terre où commence ton parcours ; elle est mise en évidence sur la carte. Sur le canvas, les ponts que tu peux franchir ensuite s'illuminent quand tu les survoles. Un clic à faible distance d'un pont le franchit, à condition qu'il touche la terre où tu te trouves et qu'il n'ait pas encore servi. Les ponts franchis s'estompent et reçoivent un repère numéroté.",
-          "La liste « Ponts » compte dix entrées : les sept ponts historiques, activés par défaut, plus trois ponts hypothétiques qui n'ont jamais existé et sont tracés en pointillés (deux ponts directs de rive à rive, AD et AD2, et un second pont entre les îles, BC2). Basculer l'un d'eux recalcule tous les degrés, le badge pair ou impair de chaque sommet et le statut en haut : circuit eulérien, chemin eulérien (avec ses deux extrémités possibles), non eulérien ou non connexe. Changer l'ensemble des ponts ou le point de départ réinitialise ton parcours.",
+          "« Départ en » choisit la terre où commence ton parcours ; elle est mise en évidence sur la carte. Sur le canevas, les ponts que tu peux franchir ensuite s'illuminent quand tu les survoles. Un clic à faible distance d'un pont le franchit, à condition qu'il touche la terre où tu te trouves et qu'il n'ait pas encore servi. Les ponts franchis s'estompent et reçoivent un repère numéroté.",
+          "La liste « Ponts » compte dix entrées : les sept ponts historiques, activés par défaut, plus trois ponts hypothétiques qui n'ont jamais existé et sont tracés en pointillés (deux ponts directs de rive à rive, AD et AD2, et un second pont entre les îles, BC2). Basculer l'un d'eux recalcule tous les degrés, le badge pair ou impair de chaque sommet et le statut en haut : circuit eulérien, chemin eulérien (avec ses deux extrémités possibles), « Eulérien : non » ou non connexe. Changer l'ensemble des ponts ou le point de départ réinitialise ton parcours.",
           "Le bouton automatique change de rôle selon le graphe. S'il existe un chemin ou un circuit eulérien, il anime l'algorithme de Hierholzer qui franchit chaque pont exactement une fois, à raison d'un pont toutes les 650 millisecondes. Il part de ton point de départ si un parcours complet peut y commencer, et déplace sinon le départ vers un sommet impair. S'il n'en existe pas, il lance un parcours glouton qui choisit à chaque pas un pont inutilisé au hasard jusqu'à ce qu'il n'en reste plus, et tu le regardes se coincer.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "La carte est dessinée sur un canvas 2D dans un espace logique fixe de 800 sur 500 unités, mis à l'échelle de ton écran et de sa densité de pixels. Chaque pont est une courbe de Bézier cubique entre les centres de deux sommets. Pour déterminer sur quel pont tu as cliqué, l'explorateur échantillonne chaque courbe en 25 points et retient le pont dont l'échantillon le plus proche se trouve à moins de 30 unités du pointeur.",
+          "La carte est dessinée sur un canevas 2D dans un espace logique fixe de 800 sur 500 unités, mis à l'échelle de ton écran et de sa densité de pixels. Chaque pont est une courbe de Bézier cubique entre les centres de deux sommets. Pour déterminer sur quel pont tu as cliqué, l'explorateur échantillonne chaque courbe en 25 points et retient le pont dont l'échantillon le plus proche se trouve à moins de 30 unités du pointeur.",
           "Le graphe lui-même n'est que la liste des identifiants des ponts actifs. Les degrés se comptent en parcourant cette liste une fois. La connexité est un parcours en profondeur sur les sommets qui ont encore au moins un pont, de sorte qu'une terre privée de tous ses ponts est simplement ignorée au lieu de faire passer le graphe pour non connexe. L'algorithme de Hierholzer utilise une pile : il suit sans relâche des arêtes inutilisées et, chaque fois qu'il atteint une impasse, il revient en arrière et note l'arête par laquelle il recule. En inversant ce relevé, on obtient le parcours eulérien.",
-          "Il n'y a pas d'animation continue sur cette page. La carte n'est redessinée que lorsque quelque chose change (un survol, une traversée, une bascule) ou lorsque le canvas est redimensionné.",
+          "Il n'y a pas d'animation continue sur cette page. La carte n'est redessinée que lorsque quelque chose change (un survol, une traversée, une bascule) ou lorsque le canevas est redimensionné.",
         ],
         code: CLASSIFY_EXCERPT,
       },
@@ -262,7 +262,7 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
       },
       {
         title: "Ajoute un pont qui n'a jamais existé",
-        text: "Active AD, un pont direct entre les rives. Désormais A et D sont de degré quatre, et seuls B et C sont impairs. Le statut passe à « Chemin eulérien », de B à C. Pars de B et tu pourras terminer la tournée ; pars de A et tu resteras en rade.",
+        text: "Active AD, un pont direct entre les rives. Désormais A et D sont de degré quatre, et seuls B et C sont impairs. Le statut passe à « Chemin eulérien », de B à C. Pars de B et tu pourras terminer la tournée ; pars de A et tu resteras coincé.",
       },
       {
         title: "Ferme le circuit",
@@ -284,8 +284,8 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
       {
         heading: "L'argomento di parità di Eulero",
         paragraphs: [
-          "Nel 1736 Leonhard Euler, per noi Eulero, si accorse che la forma del terreno e la lunghezza dei ponti sono irrilevanti. Conta soltanto quali zone di terra sono collegate, e da quanti ponti. Oggi questo si chiama grafo: le zone di terra sono vertici, i ponti sono archi, e il numero di ponti che toccano una zona è il suo grado.",
-          "Ogni volta che un percorso attraversa una zona di terra, usa un ponte per arrivare e un altro per ripartire. Quindi ogni vertice intermedio del percorso consuma i suoi ponti a coppie. Solo la partenza e l'arrivo possono avere un ponte che avanza. Un percorso che usa ogni arco esattamente una volta (un cammino euleriano) è perciò possibile solo se al massimo due vertici hanno grado dispari. Se deve finire dove è iniziato (un circuito euleriano), ogni grado deve essere pari. Per un grafo connesso, queste condizioni sono anche sufficienti.",
+          "Nel 1736 Eulero si accorse che la forma del terreno e la lunghezza dei ponti sono irrilevanti. Conta soltanto quali zone di terra sono collegate, e da quanti ponti. Oggi questo si chiama grafo: le zone di terra sono vertici, i ponti sono spigoli, e il numero di ponti che toccano una zona è il suo grado.",
+          "Ogni volta che un percorso attraversa una zona di terra, usa un ponte per arrivare e un altro per ripartire. Quindi ogni vertice intermedio del percorso consuma i suoi ponti a coppie. Solo la partenza e l'arrivo possono avere un ponte che avanza. Un percorso che usa ogni spigolo esattamente una volta (un cammino euleriano) è perciò possibile solo se al massimo due vertici hanno grado dispari. Se deve finire dove è iniziato (un circuito euleriano), ogni grado deve essere pari. Per un grafo connesso, queste condizioni sono anche sufficienti.",
           "Nella configurazione predefinita, l'isola B ha cinque ponti e A, C e D ne hanno tre ciascuna. Quattro vertici dispari, quindi un percorso del genere non esiste, da qualunque punto tu parta e per quanto astute siano le tue scelte.",
         ],
         formula: parityFormula("dispari", "è pari"),
@@ -302,7 +302,7 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
         heading: "Com'è costruito",
         paragraphs: [
           "La mappa è disegnata su un canvas 2D in uno spazio logico fisso di 800 per 500 unità, scalato sul tuo schermo e sulla sua densità di pixel. Ogni ponte è una curva di Bézier cubica tra i centri di due vertici. Per decidere su quale ponte hai fatto clic, l'esploratore campiona ogni curva in 25 punti e prende il ponte il cui campione più vicino si trova entro 30 unità dal puntatore.",
-          "Il grafo in sé è soltanto l'elenco degli identificatori dei ponti attivi. I gradi si contano scorrendo quell'elenco una volta. La connessione è una ricerca in profondità sui vertici che hanno ancora almeno un ponte, così una zona di terra a cui sono stati tolti tutti i ponti viene semplicemente ignorata anziché far risultare il grafo sconnesso. L'algoritmo di Hierholzer usa una pila: continua a seguire archi non usati e, ogni volta che arriva a un vicolo cieco, torna indietro e registra l'arco da cui si ritira. Invertendo quella registrazione si ottiene il percorso euleriano.",
+          "Il grafo in sé è soltanto l'elenco degli identificatori dei ponti attivi. I gradi si contano scorrendo quell'elenco una volta. La connessione è una ricerca in profondità sui vertici che hanno ancora almeno un ponte, così una zona di terra a cui sono stati tolti tutti i ponti viene semplicemente ignorata anziché far risultare il grafo sconnesso. L'algoritmo di Hierholzer usa una pila: continua a seguire spigoli non usati e, ogni volta che arriva a un vicolo cieco, torna indietro e registra lo spigolo da cui si ritira. Invertendo quella registrazione si ottiene il percorso euleriano.",
           "In questa pagina non c'è animazione continua. La mappa viene ridisegnata solo quando qualcosa cambia (un passaggio del puntatore, un attraversamento, un ponte attivato o disattivato) o quando il canvas viene ridimensionato.",
         ],
         code: CLASSIFY_EXCERPT,
@@ -310,12 +310,12 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
       {
         heading: "Perché un solo ponte cambia tutto",
         paragraphs: [
-          "Aggiungere o togliere un singolo ponte cambia di uno il grado di esattamente due vertici, quindi inverte la parità di entrambi gli estremi. Ecco perché lo stato salta a passi di due: da quattro vertici dispari a due, o da due a zero. Ed ecco perché un grafo non ha mai esattamente uno o tre vertici dispari: la somma dei gradi è sempre il doppio del numero di archi.",
+          "Aggiungere o togliere un singolo ponte cambia di uno il grado di esattamente due vertici, quindi inverte la parità di entrambi gli estremi. Ecco perché lo stato salta a passi di due: da quattro vertici dispari a due, o da due a zero. Ed ecco perché un grafo non ha mai esattamente uno o tre vertici dispari: la somma dei gradi è sempre il doppio del numero di spigoli.",
           "La mappa è uno schema della disposizione che Eulero analizzò nel 1736. Kneiphof (B) ha cinque ponti: due verso ciascuna riva e uno verso l'isola vicina, Lomse (C), che a sua volta ha un ponte verso ciascuna riva. Forme e distanze sono semplificate, ma quale zona di terra è collegata a quale, e quante volte, è storia.",
         ],
       },
     ],
-    experimentsHeading: "Prova tu",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Resta bloccato apposta",
@@ -323,7 +323,7 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
       },
       {
         title: "Aggiungi un ponte mai esistito",
-        text: "Attiva AD, un ponte diretto tra le rive. Ora A e D hanno grado quattro, e solo B e C sono dispari. Lo stato diventa «Cammino euleriano», da B a C. Parti da B e riuscirai a completare il giro; parti da A e resterai a piedi.",
+        text: "Attiva AD, un ponte diretto tra le rive. Ora A e D hanno grado quattro, e solo B e C sono dispari. Lo stato diventa «Cammino euleriano», da B a C. Parti da B e riuscirai a completare il giro; parti da A e resterai bloccato.",
       },
       {
         title: "Chiudi il circuito",
@@ -355,7 +355,7 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "«Começar em» escolhe a massa de terra onde o teu percurso começa, que fica destacada no mapa. No canvas, as pontes que podes atravessar a seguir acendem-se quando passas o ponteiro por cima delas. Um clique a curta distância de uma ponte atravessa-a, desde que ela toque a tua massa de terra atual e ainda não tenha sido usada. As pontes atravessadas esbatem-se e recebem um marcador numerado.",
-          "A lista «Pontes» tem dez entradas: as sete pontes históricas, ligadas à partida, mais três hipotéticas que nunca existiram e são desenhadas a tracejado (duas pontes diretas de margem a margem, AD e AD2, e uma segunda ponte entre as ilhas, BC2). Ligar ou desligar qualquer uma recalcula todos os graus, a etiqueta de par ou ímpar de cada vértice e o estado no topo: circuito euleriano, caminho euleriano (com os seus dois extremos possíveis), não euleriano ou desconectado. Mudar o conjunto de pontes ou o ponto de partida reinicia o teu percurso.",
+          "A lista «Pontes» tem dez entradas: as sete pontes históricas, ligadas à partida, mais três hipotéticas que nunca existiram e são desenhadas a tracejado (duas pontes diretas de margem a margem, AD e AD2, e uma segunda ponte entre as ilhas, BC2). Ligar ou desligar qualquer uma recalcula todos os graus, a etiqueta de par ou ímpar de cada vértice e o estado no topo: circuito euleriano, caminho euleriano (com os seus dois extremos possíveis), «Euleriano: não» ou desconectado. Mudar o conjunto de pontes ou o ponto de partida reinicia o teu percurso.",
           "O botão automático muda de função consoante o grafo. Se existir um caminho ou circuito euleriano, anima o algoritmo de Hierholzer a atravessar cada ponte exatamente uma vez, uma ponte a cada 650 milissegundos. Começa no teu ponto de partida se um percurso completo puder começar aí; caso contrário, muda o início para um vértice ímpar. Se não existir, corre um percurso guloso que em cada passo escolhe ao acaso uma ponte por usar até não sobrar nenhuma, e tu vê-lo ficar encalhado.",
         ],
       },
@@ -363,7 +363,7 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
         heading: "Como está construído",
         paragraphs: [
           "O mapa é desenhado num canvas 2D num espaço lógico fixo de 800 por 500 unidades, à escala do teu ecrã e da sua densidade de píxeis. Cada ponte é uma curva de Bézier cúbica entre os centros de dois vértices. Para decidir em que ponte clicaste, o explorador amostra cada curva em 25 pontos e fica com a ponte cuja amostra mais próxima está a menos de 30 unidades do ponteiro.",
-          "O grafo em si é apenas a lista de identificadores das pontes ativas. Os graus contam-se percorrendo essa lista uma vez. A conexidade é uma pesquisa em profundidade sobre os vértices que ainda têm pelo menos uma ponte, pelo que uma massa de terra a que foram retiradas todas as pontes é simplesmente ignorada, em vez de fazer o grafo contar como desconectado. O algoritmo de Hierholzer usa uma pilha: vai seguindo arestas por usar e, sempre que chega a um beco sem saída, recua e regista a aresta por onde recua. Invertendo esse registo obtém-se o percurso euleriano.",
+          "O grafo em si é apenas a lista de identificadores das pontes ativas. Os graus contam-se percorrendo essa lista uma vez. A conexidade é uma busca em profundidade sobre os vértices que ainda têm pelo menos uma ponte, pelo que uma massa de terra a que foram retiradas todas as pontes é simplesmente ignorada, em vez de fazer o grafo contar como desconectado. O algoritmo de Hierholzer usa uma pilha: vai seguindo arestas por usar e, sempre que chega a um beco sem saída, recua e regista a aresta por onde recua. Invertendo esse registo obtém-se o percurso euleriano.",
           "Não há animação contínua nesta página. O mapa só é redesenhado quando algo muda (uma passagem do ponteiro, uma travessia, uma ponte ligada ou desligada) ou quando o canvas é redimensionado.",
         ],
         code: CLASSIFY_EXCERPT,
@@ -437,7 +437,7 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Kör fast med flit",
@@ -462,12 +462,12 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
       "Gå over Königsbergs sju broer selv, slå broer av og på, se gradene til hjørnene endre seg, og oppdag Eulers paritetsregel og Hierholzers algoritme i arbeid.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Kartet viser to elvebredder (A i nord, D i sør) og to øyer (Kneiphof, B, og Lomse, C), forbundet med broer. Du velger et startpunkt og klikker så på broer for å krysse dem, én etter én, uten noen gang å bruke samme bro to ganger. Spørsmålet er det innbyggerne i Königsberg skal ha stilt: kan man krysse hver bro nøyaktig én gang? Med de sju broene er svaret nei, og det kan du finne ut på den ærlige måten: ved å kjøre deg fast.",
+      "Kartet viser to elvebredder (A i nord, D i sør) og to øyer (Kneiphof, B, og Lomse, C), forbundet med broer. Du velger et startpunkt og klikker så på broer for å krysse dem, én etter én, uten noen gang å bruke samme bro to ganger. Spørsmålet er det innbyggerne i Königsberg skal ha stilt: Kan man krysse hver bro nøyaktig én gang? Med de sju broene er svaret nei, og det kan du finne ut på den ærlige måten: ved å kjøre deg fast.",
     sections: [
       {
         heading: "Eulers paritetsargument",
         paragraphs: [
-          "I 1736 la Leonhard Euler merke til at formen på landet og lengden på broene er uten betydning. Det eneste som teller, er hvilke landområder som henger sammen, og med hvor mange broer. I dag kalles dette en graf: landområdene er hjørner, broene er kanter, og antallet broer ved et landområde er graden til hjørnet.",
+          "I 1736 la Leonhard Euler merke til at formen på landet og lengden på broene er uten betydning. Det eneste som teller, er hvilke landområder som henger sammen, og med hvor mange broer. I dag kalles dette en graf: Landområdene er hjørner, broene er kanter, og antallet broer ved et landområde er graden til hjørnet.",
           "Hver gang en vandring går gjennom et landområde, bruker den én bro for å komme dit og en annen for å dra videre. Hvert hjørne midt i vandringen bruker altså opp broene sine parvis. Bare starten og slutten kan ha en bro til overs. En vandring som bruker hver kant nøyaktig én gang (en Eulervei), er derfor bare mulig hvis høyst to hjørner har odde grad. Skal den slutte der den begynte (en Eulerkrets), må alle grader være jevne. For en sammenhengende graf er disse betingelsene også tilstrekkelige.",
           "I standardoppsettet har øya B fem broer, og A, C og D har tre hver. Fire odde hjørner, så en slik vandring finnes ikke, uansett hvor du starter eller hvor lurt du velger.",
         ],
@@ -476,24 +476,24 @@ export const KONIGSBERG_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "«Start ved» velger landområdet der vandringen din begynner, og det utheves på kartet. På canvaset lyser broene du kan krysse som det neste, opp når du holder pekeren over dem. Et klikk i kort avstand fra en bro krysser den, så lenge den berører landområdet du står på, og ikke er brukt ennå. Kryssede broer blekner og får en nummerert markør.",
-          "Lista «Broer» har ti oppføringer: de sju historiske broene, som er på fra starten, pluss tre hypotetiske som aldri har eksistert og tegnes stiplet (to direkte broer fra bredd til bredd, AD og AD2, og en ekstra bro mellom øyene, BC2). Når du slår en av dem av eller på, regnes alle grader ut på nytt, i tillegg til merket odde eller jevn ved hvert hjørne og statusen øverst: Eulerkrets, Eulervei (med de to mulige endepunktene), ikke eulersk eller usammenhengende. Endrer du brosettet eller starten, tilbakestilles vandringen din.",
+          "«Start ved» velger landområdet der vandringen din begynner, og det utheves på kartet. På lerretet lyser broene du kan krysse som det neste, opp når du holder pekeren over dem. Et klikk i kort avstand fra en bro krysser den, så lenge den berører landområdet du står på, og ikke er brukt ennå. Kryssede broer blekner og får en nummerert markør.",
+          "Listen «Broer» har ti oppføringer: de sju historiske broene, som er på fra starten, pluss tre hypotetiske som aldri har eksistert og tegnes stiplet (to direkte broer fra bredd til bredd, AD og AD2, og en ekstra bro mellom øyene, BC2). Når du slår en av dem av eller på, regnes alle grader ut på nytt, i tillegg til merket odde eller jevn ved hvert hjørne og statusen øverst: Eulerkrets, Eulervei (med de to mulige endepunktene), ikke eulersk eller usammenhengende. Endrer du brosettet eller starten, tilbakestilles vandringen din.",
           "Autoknappen bytter oppgave etter grafen. Hvis det finnes en Eulervei eller Eulerkrets, animerer den Hierholzers algoritme som krysser hver bro nøyaktig én gang, én bro hvert 650. millisekund. Den begynner ved starten din hvis en fullstendig vandring kan begynne der, og flytter ellers starten til et odde hjørne. Hvis ingen finnes, kjører den en grådig vandring som i hvert steg velger en tilfeldig ubrukt bro til det ikke er flere igjen, og du ser den kjøre seg fast.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Kartet tegnes på et 2D-canvas i et fast logisk koordinatrom på 800 ganger 500 enheter, skalert etter skjermen din og pikseltettheten. Hver bro er en kubisk Bézier-kurve mellom midtpunktene til to hjørner. For å avgjøre hvilken bro du klikket på, sampler utforskeren hver kurve i 25 punkter og tar den broen som har sitt nærmeste sampel innenfor 30 enheter fra pekeren.",
-          "Selve grafen er bare lista over ID-ene til de aktive broene. Gradene telles ved å gå gjennom den lista én gang. Sammenheng avgjøres med et dybde-først-søk over de hjørnene som fortsatt har minst én bro, så et landområde som har mistet alle broene sine, blir rett og slett ignorert i stedet for at grafen regnes som usammenhengende. Hierholzers algoritme bruker en stakk: den fortsetter å følge ubrukte kanter, og hver gang den når en blindvei, går den tilbake og noterer kanten den rygger ut av. Snur man den noteringen, får man Eulervandringen.",
-          "Det finnes ingen kontinuerlig animasjon på denne siden. Kartet tegnes bare på nytt når noe endrer seg (en peker over en bro, en kryssing, en bro som slås av eller på) eller når canvaset endrer størrelse.",
+          "Kartet tegnes på et 2D-lerret i et fast logisk koordinatrom på 800 ganger 500 enheter, skalert etter skjermen din og pikseltettheten. Hver bro er en kubisk Bézier-kurve mellom midtpunktene til to hjørner. For å avgjøre hvilken bro du klikket på, regner utforskeren ut 25 punkter langs hver kurve og tar den broen som har sitt nærmeste punkt innenfor 30 enheter fra pekeren.",
+          "Selve grafen er bare listen over ID-ene til de aktive broene. Gradene telles ved å gå gjennom den listen én gang. Sammenheng avgjøres med et dybde-først-søk over de hjørnene som fortsatt har minst én bro, så et landområde som har mistet alle broene sine, blir rett og slett ignorert i stedet for at grafen regnes som usammenhengende. Hierholzers algoritme bruker en stakk: Den fortsetter å følge ubrukte kanter, og hver gang den når en blindvei, går den tilbake og noterer kanten den rygger ut av. Snur man den noteringen, får man Eulervandringen.",
+          "Det finnes ingen kontinuerlig animasjon på denne siden. Kartet tegnes bare på nytt når noe endrer seg (en peker over en bro, en kryssing, en bro som slås av eller på) eller når lerretet endrer størrelse.",
         ],
         code: CLASSIFY_EXCERPT,
       },
       {
         heading: "Hvorfor én bro endrer alt",
         paragraphs: [
-          "Å legge til eller fjerne én enkelt bro endrer graden til nøyaktig to hjørner med én, og snur dermed pariteten i begge ender. Derfor hopper statusen i steg på to: fra fire odde hjørner til to, eller fra to til null. Det er også derfor en graf aldri har nøyaktig ett eller tre odde hjørner: gradene summerer seg alltid til det dobbelte av antallet kanter.",
+          "Å legge til eller fjerne én enkelt bro endrer graden til nøyaktig to hjørner med én, og snur dermed pariteten i begge ender. Derfor hopper statusen i steg på to: fra fire odde hjørner til to, eller fra to til null. Det er også derfor en graf aldri har nøyaktig ett eller tre odde hjørner: Gradene summerer seg alltid til det dobbelte av antallet kanter.",
           "Kartet er en skjematisk framstilling av oppsettet Euler analyserte i 1736. Kneiphof (B) har fem broer: to til hver bredd og én til naboøya Lomse (C), som igjen har én bro til hver bredd. Former og avstander er forenklet, men hvilket landområde som er forbundet med hvilket, og hvor mange ganger, er historisk.",
         ],
       },

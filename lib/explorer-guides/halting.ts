@@ -113,7 +113,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
       {
         heading: "Wie es gebaut ist",
         paragraphs: [
-          "Die Maschine versteht einen Befehlssatz im Stil von Brainfuck: + und − ändern die aktuelle Zelle (8 Bit, modulo 256), > und < bewegen den Zeiger (am Ende des Bandes geht es vorne weiter), und [ ] bilden eine Schleife, die übersprungen oder wiederholt wird, je nachdem, ob die aktuelle Zelle null ist. Jedes andere Zeichen ist Kommentar. Vor dem Start baut die Seite in einem Durchgang mit einem Stapel eine Sprungtabelle, sodass jede Klammer ihr Gegenstück in konstanter Zeit findet. Die Registermaschine ist noch einfacher: ganzzahlige Register, nummerierte Zeilen, eine Zeile pro Schritt. Eine Zeile weist zu, prüft, springt oder hält an, und prime(p) ist ein eingebauter Test per Probedivision.",
+          "Die Maschine versteht einen Befehlssatz im Stil von Brainfuck: + und − ändern die aktuelle Zelle (8 Bit, modulo 256), > und < bewegen den Zeiger (am Ende des 32 Zellen langen Bandes geht es vorne weiter), und [ ] bilden eine Schleife, die übersprungen oder wiederholt wird, je nachdem, ob die aktuelle Zelle null ist. Jedes andere Zeichen ist Kommentar. Vor dem Start baut die Seite in einem Durchgang mit einem Stapel eine Sprungtabelle, sodass jede Klammer ihr Gegenstück in konstanter Zeit findet. Die Registermaschine ist noch einfacher: ganzzahlige Register, nummerierte Zeilen, eine Zeile pro Schritt. Eine Zeile weist zu, prüft, springt oder hält an, und prime(p) ist ein eingebauter Test per Probedivision.",
           "Der Zustand liegt in React: ein Uint8Array als Band, Zeiger, Programmzähler, Schrittzahl und Status. Jeder Schritt kopiert die 32 Byte des Bandes, bevor er etwas ändert, denn React ruft Updater im Entwicklungsmodus manchmal doppelt auf, und eine Änderung an Ort und Stelle würde jedes + zweimal anwenden. Im Dauerbetrieb sammelt eine requestAnimationFrame-Schleife die verstrichene Zeit mal Geschwindigkeit und führt so viele ganze Schritte pro Frame aus, höchstens 500. Sobald der Status nicht mehr «läuft» ist, hält sie sich selbst an. Wünscht dein System reduzierte Bewegung, überspringt Los das Abspielen: Die Seite rechnet direkt bis zum Urteil durch (angehalten oder Limit erreicht) und zeigt den Endzustand. «Schritt» geht weiterhin Befehl für Befehl vor.",
         ],
         code: STEP_EXCERPT,
@@ -164,7 +164,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
         heading: "Qué hacen los controles",
         paragraphs: [
           "La lista de programas ofrece seis entradas, y cada una hace lo que su nombre indica. «Incrementar sin fin» (+[>+<]) pone la celda 0 a 1 y luego gira en bucle sobre ella mientras va subiendo la celda 1, así que nunca se detiene; «Contar hasta 100» pone 100 en la celda 0 y el bucle [-] la va descontando, y se detiene tras exactamente 301 pasos (100 incrementos, una comprobación de entrada y después dos pasos por vuelta). Los otros cuatro necesitan números mayores de los que caben en una celda de 8 bits y corren en la máquina de registros. «Collatz de 27» itera n/2 o 3n+1 y cuenta las rondas en el registro k: se detiene con k = 111 tras 446 pasos de máquina. «Collatz de una entrada» es el mismo programa con un valor inicial que escribes tú. «Búsqueda de Goldbach» comprueba 4, 6, 8, … uno tras otro y solo se detendría ante un número par que no sea suma de dos primos. «D autorreferencial» es una ilustración y así lo dice: no se puede escribir un halts de verdad, de modo que introduces la respuesta que daría un supuesto decisor para halts(D, D), y D hace lo contrario. La línea «Lo que sabemos» bajo cada programa dice lo que las matemáticas saben realmente.",
-          "«Paso» ejecuta una instrucción, «Ejecutar» y «Pausa» controlan la marcha continua y «Reiniciar» vacía la máquina. El deslizador del límite de pasos va de 10 a 10000 en saltos de 10 y empieza en 2000; el de velocidad va de 1 a 200 pasos por segundo y empieza en 40. El cian marca la siguiente instrucción y el puntero, y el ámbar las celdas y los registros distintos de cero.",
+          "«Paso» ejecuta una instrucción, «Ejecutar» y «Pausa» controlan la marcha continua y «Reiniciar» vacía la máquina. El deslizador del límite de pasos va de 10 a 10 000 en saltos de 10 y empieza en 2000; el de velocidad va de 1 a 200 pasos por segundo y empieza en 40. El cian marca la siguiente instrucción y el puntero, y el ámbar las celdas y los registros distintos de cero.",
         ],
       },
       {
@@ -178,7 +178,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
       {
         heading: "Por qué un límite mayor no ayuda",
         paragraphs: [
-          "Para «Contar hasta 100», el veredicto rosa es pura impaciencia: sube el límite y la respuesta se vuelve definitiva. Pero para la búsqueda de Goldbach ningún límite finito resuelve nada. Aquí llega a n = 220 en 2000 pasos y a n = 848 en 10000. Los ordenadores han comprobado todos los números pares hasta 4·10¹⁸ y cada uno ha resultado ser suma de dos primos, así que una búsqueda real tendría que correr al menos todo ese tramo antes de encontrar un contraejemplo, y si Goldbach es cierta corre para siempre. El teorema de Turing dice que esto no es una debilidad de esta página en concreto: sea cual sea el analizador más listo que construyas, algún programa lo dejará en la misma situación.",
+          "Para «Contar hasta 100», el veredicto rosa es pura impaciencia: sube el límite y la respuesta se vuelve definitiva. Pero para la búsqueda de Goldbach ningún límite finito resuelve nada. Aquí llega a n = 220 en 2000 pasos y a n = 848 en 10 000. Los ordenadores han comprobado todos los números pares hasta 4·10¹⁸ y cada uno ha resultado ser suma de dos primos, así que una búsqueda real tendría que correr al menos todo ese tramo antes de encontrar un contraejemplo, y si Goldbach es cierta corre para siempre. El teorema de Turing dice que esto no es una debilidad de esta página en concreto: sea cual sea el analizador más listo que construyas, algún programa lo dejará en la misma situación.",
         ],
       },
     ],
@@ -221,7 +221,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "La liste des programmes propose six entrées, et chacune fait ce que son nom annonce. « Incrémenter sans fin » (+[>+<]) met la cellule 0 à 1 puis boucle dessus tout en augmentant la cellule 1, et ne s'arrête donc jamais ; « Compter jusqu'à 100 » place 100 dans la cellule 0 et la boucle [-] la décompte, avec un arrêt après exactement 301 pas (100 incréments, un test d'entrée, puis deux pas par tour). Les quatre autres ont besoin de nombres plus grands que ce que contient une cellule de 8 bits et tournent sur la machine à registres. « Collatz sur 27 » itère n/2 ou 3n+1 et compte les tours dans le registre k : il s'arrête avec k = 111 après 446 pas de machine. « Collatz sur une entrée » est le même programme avec une valeur de départ que tu saisis. « Recherche de Goldbach » teste 4, 6, 8, … tour à tour et ne s'arrêterait que sur un nombre pair qui n'est pas la somme de deux nombres premiers. « D autoréférentiel » est une illustration et le dit : aucun vrai halts ne peut être écrit, tu saisis donc la réponse qu'un prétendu décideur donnerait pour halts(D, D), et D fait le contraire. La ligne « Ce que l'on sait » sous chaque programme indique ce que les mathématiques savent réellement.",
-          "« Pas » exécute une instruction, « Lancer » et « Pause » pilotent la machine en continu, et « Réinitialiser » vide la machine. Le curseur de limite de pas va de 10 à 10000 par crans de 10 et démarre à 2000 ; le curseur de vitesse va de 1 à 200 pas par seconde et démarre à 40. Le cyan marque la prochaine instruction et le pointeur, l'ambre les cellules et les registres non nuls.",
+          "« Pas » exécute une instruction, « Lancer » et « Pause » pilotent la machine en continu, et « Réinitialiser » vide la machine. Le curseur de limite de pas va de 10 à 10 000 par crans de 10 et démarre à 2 000 ; le curseur de vitesse va de 1 à 200 pas par seconde et démarre à 40. Le cyan marque la prochaine instruction et le pointeur, l'ambre les cellules et les registres non nuls.",
         ],
       },
       {
@@ -235,7 +235,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
       {
         heading: "Pourquoi une limite plus grande n'aide pas",
         paragraphs: [
-          "Pour « Compter jusqu'à 100 », le verdict rose n'est que de l'impatience : augmente la limite et la réponse devient définitive. Mais pour la recherche de Goldbach, aucune limite finie ne règle quoi que ce soit. Ici, elle atteint n = 220 en 2000 pas et n = 848 en 10000. Des ordinateurs ont vérifié tous les nombres pairs jusqu'à 4·10¹⁸ et chacun s'est révélé être la somme de deux nombres premiers, de sorte qu'une vraie recherche tournerait au moins aussi longtemps avant de trouver un contre-exemple, et si Goldbach est vraie elle tourne pour toujours. Le théorème de Turing dit que ce n'est pas une faiblesse de cette page en particulier : quel que soit l'analyseur plus malin que tu construis, un programme le laissera dans la même situation.",
+          "Pour « Compter jusqu'à 100 », le verdict rose n'est que de l'impatience : augmente la limite et la réponse devient définitive. Mais pour la recherche de Goldbach, aucune limite finie ne règle quoi que ce soit. Ici, elle atteint n = 220 en 2 000 pas et n = 848 en 10 000. Des ordinateurs ont vérifié tous les nombres pairs jusqu'à 4·10¹⁸ et chacun s'est révélé être la somme de deux nombres premiers, de sorte qu'une vraie recherche tournerait au moins aussi longtemps avant de trouver un contre-exemple, et si Goldbach est vraie elle tourne pour toujours. Le théorème de Turing dit que ce n'est pas une faiblesse de cette page en particulier : quel que soit l'analyseur plus malin que tu construis, un programme le laissera dans la même situation.",
         ],
       },
     ],
@@ -247,11 +247,11 @@ export const HALTING_GUIDE: ExplorerGuide = {
       },
       {
         title: "La même chose avec Collatz",
-        text: "Prends « Collatz sur 27 » et règle la limite sur 440. Il abandonne. À 450, le programme s'arrête au pas 446 avec k = 111. En chemin, le registre n grimpe jusqu'à 9232 avant de retomber à 1.",
+        text: "Prends « Collatz sur 27 » et règle la limite sur 440. Il abandonne. À 450, le programme s'arrête au pas 446 avec k = 111. En chemin, le registre n grimpe jusqu'à 9 232 avant de retomber à 1.",
       },
       {
         title: "Regarde une cellule reboucler",
-        text: "Sélectionne « Incrémenter sans fin », monte la vitesse à 200 et la limite à 2000. La cellule 1 grimpe jusqu'à 255 puis repasse à 0, parce que les cellules contiennent des valeurs de 8 bits. La boucle elle-même est gardée par la cellule 0, qui reste à 1, de sorte que le rebouclage ne laisse jamais le programme s'échapper.",
+        text: "Sélectionne « Incrémenter sans fin », monte la vitesse à 200 et la limite à 2 000. La cellule 1 grimpe jusqu'à 255 puis repasse à 0, parce que les cellules contiennent des valeurs de 8 bits. La boucle elle-même est gardée par la cellule 0, qui reste à 1, de sorte que le rebouclage ne laisse jamais le programme s'échapper.",
       },
       {
         title: "Donne à D les deux réponses",
@@ -261,7 +261,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
   },
   it: {
     metaDescription:
-      "Esegui brevi programmi su una macchina giocattolo e guarda il limite di passi decidere. Il problema della fermata e la sua indecidibilità, da toccare con mano.",
+      "Esegui brevi programmi su una macchina giocattolo e guarda il limite di passi decidere. Il problema dell'arresto e la sua indecidibilità, da toccare con mano.",
     heading: "Come funziona questo esploratore",
     intro:
       "A sinistra c'è un computer in miniatura. Due dei sei programmi girano su una macchina a nastro (un linguaggio di sei simboli, 32 celle di memoria e un puntatore che le percorre), gli altri quattro su una piccola macchina a registri con righe numerate. Premi «Avvia» ed esegue un'istruzione alla volta finché il programma termina (ambra: «fermato al passo k») oppure scatta il limite di passi (rosa: ancora in esecuzione, e non c'è modo di dire se si fermerebbe mai). Questa seconda risposta è il senso della stanza.",
@@ -269,7 +269,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
       {
         heading: "La domanda a cui nessun programma sa rispondere",
         paragraphs: [
-          "Il problema della fermata chiede un'unica procedura halts(P, x) che prenda un qualsiasi programma P e un qualsiasi input x e risponda sempre, in tempo finito, se P prima o poi si ferma su x. Alan Turing dimostrò nel 1936 che una procedura simile non esiste. La dimostrazione è un trucco diagonale: supponi che halts esista e costruisci un programma D che, dato un programma P, chiede halts(P, P) e poi fa il contrario (cicla per sempre se la risposta è sì, si ferma se è no). Ora chiediti che cosa fa D su sé stesso. Se D(D) si ferma, halts ha detto sì, quindi D cicla. Se D(D) cicla, halts ha detto no, quindi D si ferma. Entrambi i casi contraddicono la definizione, perciò l'ipotesi era sbagliata.",
+          "Il problema dell'arresto chiede un'unica procedura halts(P, x) che prenda un qualsiasi programma P e un qualsiasi input x e risponda sempre, in tempo finito, se P prima o poi si ferma su x. Alan Turing dimostrò nel 1936 che una procedura simile non esiste. La dimostrazione è un trucco diagonale: supponi che halts esista e costruisci un programma D che, dato un programma P, chiede halts(P, P) e poi fa il contrario (cicla per sempre se la risposta è sì, si ferma se è no). Ora chiediti che cosa fa D su sé stesso. Se D(D) si ferma, halts ha detto sì, quindi D cicla. Se D(D) cicla, halts ha detto no, quindi D si ferma. Entrambi i casi contraddicono la definizione, perciò l'ipotesi era sbagliata.",
           "Indecidibile non significa che nessun programma si possa analizzare. Significa che ogni analizzatore, per quanto ingegnoso, ha programmi sui quali deve dare una risposta sbagliata oppure non rispondere mai. Il limite di passi è l'analizzatore più semplice possibile: esegui il programma per N passi e riferisci ciò che hai visto. Ha sempre ragione quando dice «fermato», e non può mai essere sicuro quando non dice nulla.",
         ],
         formula: diagonalFormula("ciclare per sempre", "fermarsi", "se"),
@@ -278,7 +278,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
           "L'elenco dei programmi offre sei voci, e ciascuna fa ciò che dice il suo nome. «Incrementa all'infinito» (+[>+<]) imposta la cella 0 a 1 e poi ci cicla sopra mentre fa salire la cella 1, quindi non si ferma mai; «Conta fino a 100» mette 100 nella cella 0 e il ciclo [-] la decrementa, fermandosi dopo esattamente 301 passi (100 incrementi, un controllo d'ingresso, poi due passi per giro). Gli altri quattro hanno bisogno di numeri più grandi di quelli che entrano in una cella a 8 bit e girano sulla macchina a registri. «Collatz su 27» itera n/2 oppure 3n+1 e conta i giri nel registro k: si ferma con k = 111 dopo 446 passi di macchina. «Collatz su input» è lo stesso programma con un valore iniziale che digiti tu. «Ricerca di Goldbach» controlla 4, 6, 8, … uno dopo l'altro e si fermerebbe solo davanti a un numero pari che non è somma di due primi. «D autoreferenziale» è un'illustrazione e lo dichiara: un vero halts non si può scrivere, perciò inserisci la risposta che un presunto decisore darebbe per halts(D, D), e D fa il contrario. La riga «Ciò che sappiamo» sotto ogni programma dice che cosa la matematica sa davvero.",
-          "«Passo» esegue un'istruzione, «Avvia» e «Pausa» comandano l'esecuzione continua e «Reimposta» azzera la macchina. Il cursore del limite di passi va da 10 a 10000 a scatti di 10 e parte da 2000; quello della velocità va da 1 a 200 passi al secondo e parte da 40. Il ciano indica la prossima istruzione e il puntatore, l'ambra le celle e i registri diversi da zero.",
+          "«Passo» esegue un'istruzione, «Avvia» e «Pausa» comandano l'esecuzione continua e «Reimposta» azzera la macchina. Il cursore del limite di passi va da 10 a 10.000 a passi di 10 e parte da 2000; quello della velocità va da 1 a 200 passi al secondo e parte da 40. Il ciano indica la prossima istruzione e il puntatore, l'ambra le celle e i registri diversi da zero.",
         ],
       },
       {
@@ -292,11 +292,11 @@ export const HALTING_GUIDE: ExplorerGuide = {
       {
         heading: "Perché un limite più grande non aiuta",
         paragraphs: [
-          "Per «Conta fino a 100» il verdetto rosa è solo impazienza: alza il limite e la risposta diventa definitiva. Ma per la ricerca di Goldbach nessun limite finito risolve qualcosa. Qui arriva a n = 220 entro 2000 passi e a n = 848 entro 10000. I computer hanno controllato ogni numero pari fino a 4·10¹⁸ e ognuno è risultato somma di due primi, quindi una ricerca vera girerebbe almeno altrettanto a lungo prima di trovare un controesempio, e se Goldbach è vera gira per sempre. Il teorema di Turing dice che questa non è una debolezza di questa pagina in particolare: qualunque analizzatore più astuto tu costruisca, qualche programma lo lascerà nella stessa posizione.",
+          "Per «Conta fino a 100» il verdetto rosa è solo impazienza: alza il limite e la risposta diventa definitiva. Ma per la ricerca di Goldbach nessun limite finito risolve qualcosa. Qui arriva a n = 220 entro 2000 passi e a n = 848 entro 10.000. I computer hanno controllato ogni numero pari fino a 4·10¹⁸ e ognuno è risultato somma di due primi, quindi una ricerca vera girerebbe almeno altrettanto a lungo prima di trovare un controesempio, e se la congettura di Goldbach è vera gira per sempre. Il teorema di Turing dice che questa non è una debolezza di questa pagina in particolare: qualunque analizzatore più astuto tu costruisca, qualche programma lo lascerà nella stessa posizione.",
         ],
       },
     ],
-    experimentsHeading: "Prova tu",
+    experimentsHeading: "Prova così",
     experiments: [
       {
         title: "Cogli l'analizzatore a un passo dal traguardo",
@@ -335,7 +335,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "A lista de programas oferece seis entradas, e cada uma faz o que o nome diz. «Incrementar sem fim» (+[>+<]) põe a célula 0 a 1 e depois fica em ciclo sobre ela enquanto vai aumentando a célula 1, pelo que nunca para; «Contar até 100» coloca 100 na célula 0 e o ciclo [-] vai decrementando, parando ao fim de exatamente 301 passos (100 incrementos, uma verificação de entrada, depois dois passos por volta). Os outros quatro precisam de números maiores do que cabe numa célula de 8 bits e correm na máquina de registos. «Collatz de 27» itera n/2 ou 3n+1 e conta as rondas no registo k: para com k = 111 ao fim de 446 passos de máquina. «Collatz de uma entrada» é o mesmo programa com um valor inicial que tu escreves. «Busca de Goldbach» testa 4, 6, 8, … à vez e só pararia num número par que não fosse soma de dois primos. «D autorreferencial» é uma ilustração e di-lo: não é possível escrever um halts verdadeiro, por isso introduzes a resposta que um suposto decisor daria para halts(D, D), e D faz o contrário. A linha «O que sabemos» por baixo de cada programa diz o que a matemática sabe de facto.",
-          "«Passo» executa uma instrução, «Executar» e «Pausa» comandam a execução contínua, e «Redefinir» limpa a máquina. O cursor do limite de passos vai de 10 a 10000 em saltos de 10 e começa em 2000; o da velocidade vai de 1 a 200 passos por segundo e começa em 40. O ciano marca a próxima instrução e o ponteiro, o âmbar as células e os registos diferentes de zero.",
+          "«Passo» executa uma instrução, «Executar» e «Pausa» comandam a execução contínua, e «Redefinir» limpa a máquina. O cursor do limite de passos vai de 10 a 10 000 em saltos de 10 e começa em 2000; o da velocidade vai de 1 a 200 passos por segundo e começa em 40. O ciano marca a próxima instrução e o ponteiro, o âmbar as células e os registos diferentes de zero.",
         ],
       },
       {
@@ -349,7 +349,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
       {
         heading: "Porque é que um limite maior não ajuda",
         paragraphs: [
-          "Para «Contar até 100», o veredicto rosa é só impaciência: sobe o limite e a resposta torna-se definitiva. Mas para a busca de Goldbach nenhum limite finito resolve coisa alguma. Aqui ela chega a n = 220 em 2000 passos e a n = 848 em 10000. Os computadores verificaram todos os números pares até 4·10¹⁸ e cada um revelou-se soma de dois primos, pelo que uma busca a sério correria pelo menos esse tempo todo antes de encontrar um contraexemplo, e se Goldbach for verdadeira corre para sempre. O teorema de Turing diz que isto não é uma fraqueza desta página em particular: qualquer que seja o analisador mais esperto que construas, algum programa vai deixá-lo na mesma posição.",
+          "Para «Contar até 100», o veredicto rosa é só impaciência: sobe o limite e a resposta torna-se definitiva. Mas para a busca de Goldbach nenhum limite finito resolve coisa alguma. Aqui ela chega a n = 220 em 2000 passos e a n = 848 em 10 000. Os computadores verificaram todos os números pares até 4·10¹⁸ e cada um revelou-se soma de dois primos, pelo que uma busca a sério correria pelo menos esse tempo todo antes de encontrar um contraexemplo, e se Goldbach for verdadeira corre para sempre. O teorema de Turing diz que isto não é uma fraqueza desta página em particular: qualquer que seja o analisador mais esperto que construas, algum programa vai deixá-lo na mesma posição.",
         ],
       },
     ],
@@ -383,7 +383,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
       {
         heading: "Frågan som inget program kan besvara",
         paragraphs: [
-          "Stopproblemet efterfrågar en enda procedur halts(P, x) som tar vilket program P och vilken indata x som helst och alltid svarar, på ändlig tid, om P till slut stannar på x. Alan Turing bevisade 1936 att någon sådan procedur inte finns. Beviset är ett diagonaltrick: anta att halts finns och bygg ett program D som, givet ett program P, frågar halts(P, P) och sedan gör tvärtom (loopar för evigt om svaret är ja, stannar om det är nej). Fråga nu vad D gör med sig självt. Om D(D) stannar sa halts ja, så D loopar. Om D(D) loopar sa halts nej, så D stannar. Båda fallen motsäger definitionen, så antagandet var fel.",
+          "Stopproblemet efterfrågar en enda procedur halts(P, x) som tar vilket program P och vilka indata x som helst och alltid svarar, på ändlig tid, om P till slut stannar på x. Alan Turing bevisade 1936 att någon sådan procedur inte finns. Beviset är ett diagonaltrick: anta att halts finns och bygg ett program D som, givet ett program P, frågar halts(P, P) och sedan gör tvärtom (loopar för evigt om svaret är ja, stannar om det är nej). Fråga nu vad D gör med sig självt. Om D(D) stannar sa halts ja, så D loopar. Om D(D) loopar sa halts nej, så D stannar. Båda fallen motsäger definitionen, så antagandet var fel.",
           "Oavgörbart betyder inte att inget program kan analyseras. Det betyder att varje analysator, hur smart den än är, har program där den antingen måste svara fel eller aldrig svara alls. Steggränsen är den enklaste tänkbara analysatorn: kör programmet i N steg och rapportera vad du såg. Den har alltid rätt när den säger ”stannade”, och den kan aldrig vara säker när den inte säger något.",
         ],
         formula: diagonalFormula("loopa för evigt", "stanna", "om"),
@@ -392,25 +392,25 @@ export const HALTING_GUIDE: ExplorerGuide = {
         heading: "Vad reglagen gör",
         paragraphs: [
           "Programlistan har sex poster, och var och en gör vad namnet säger. ”Räkna upp för evigt” (+[>+<]) sätter cell 0 till 1 och loopar sedan på den medan cell 1 räknas upp, så det stannar aldrig. ”Räkna till 100” lägger 100 i cell 0 och loopen [-] räknar ner den, och programmet stannar efter exakt 301 steg (100 ökningar, en ingångskontroll, sedan två steg per varv). De andra fyra behöver större tal än en 8-bitarscell rymmer och körs på registermaskinen. ”Collatz på 27” itererar n/2 eller 3n+1 och räknar varven i register k: det stannar med k = 111 efter 446 maskinsteg. ”Collatz på indata” är samma program med ett startvärde som du skriver in. ”Goldbach-sökning” testar 4, 6, 8, … i tur och ordning och skulle bara stanna vid ett jämnt tal som inte är summan av två primtal. ”Självrefererande D” är en illustration och säger det också: något riktigt halts går inte att skriva, så du matar in svaret som en påstådd avgörare skulle ge på halts(D, D), och D gör tvärtom. Raden ”Vad vi vet” under varje program säger vad matematiken faktiskt vet.",
-          "”Steg” utför en instruktion, ”Kör” och ”Paus” styr den kontinuerliga körningen och ”Återställ” nollställer maskinen. Reglaget för steggränsen går från 10 till 10000 i steg om 10 och börjar på 2000. Hastighetsreglaget går från 1 till 200 steg per sekund och börjar på 40. Cyan markerar nästa instruktion och pekaren, bärnsten de celler och register som inte är noll.",
+          "”Steg” utför en instruktion, ”Kör” och ”Paus” styr den kontinuerliga körningen och ”Återställ” nollställer maskinen. Reglaget för steggränsen går från 10 till 10\u00a0000 i steg om 10 och börjar på 2000. Hastighetsreglaget går från 1 till 200 steg per sekund och börjar på 40. Cyan markerar nästa instruktion och pekaren, bärnsten de celler och register som inte är noll.",
         ],
       },
       {
         heading: "Hur den är byggd",
         paragraphs: [
           "Maskinen talar en instruktionsuppsättning i Brainfuck-stil: + och − ändrar den aktuella cellen (8 bitar, med omslag modulo 256), > och < flyttar pekaren (som slår runt vid slutet av bandet med 32 celler), och [ ] bildar en loop som hoppas över eller upprepas beroende på om den aktuella cellen är noll. Alla andra tecken är kommentarer. Före körningen bygger sidan en hopptabell med hjälp av en stack i ett enda svep över källkoden, så att varje hakparentes hittar sin partner på konstant tid. Registermaskinen är ännu enklare: heltalsregister, numrerade rader, en rad per steg. En rad tilldelar, testar, hoppar eller stannar, och prime(p) är ett inbyggt test med provdivision.",
-          "Tillståndet ligger i React: ett band som Uint8Array, pekaren, programräknaren, antalet steg och en status. Varje steg kopierar bandets 32 byte innan det ändrar något, eftersom React kan anropa tillståndsuppdaterare två gånger i utvecklingsläge, och en ändring på plats skulle tillämpa varje + två gånger. I körläge samlar en requestAnimationFrame-loop ihop förfluten tid gånger vald hastighet och utför så många hela steg per bildruta, högst 500, och stoppar sig själv så snart statusen inte längre är ”kör”. Om ditt system ber om reducerad rörelse hoppar ”Kör” över uppspelningen: sidan räknar rakt fram till domen (stannat eller gränsen nådd) och visar sluttillståndet. ”Steg” går fortfarande fram en instruktion i taget.",
+          "Tillståndet ligger i React: ett band som Uint8Array, pekaren, programräknaren, antalet steg och en status. Varje steg kopierar bandets 32 byte innan det ändrar något, eftersom React kan anropa tillståndsuppdaterare två gånger i utvecklingsläge, och en ändring på plats skulle tillämpa varje + två gånger. I körläge samlar en requestAnimationFrame-loop ihop förfluten tid gånger vald hastighet och utför så många hela steg per bildruta, högst 500, och stoppar sig själv så snart statusen inte längre är ”kör”. Om ditt system ber om minskad rörelse hoppar ”Kör” över uppspelningen: sidan räknar rakt fram till domen (stannat eller gränsen nådd) och visar sluttillståndet. ”Steg” går fortfarande fram en instruktion i taget.",
         ],
         code: STEP_EXCERPT,
       },
       {
         heading: "Varför en högre gräns inte hjälper",
         paragraphs: [
-          "För ”Räkna till 100” är den rosa domen bara otålighet: höj gränsen så blir svaret definitivt. Men för Goldbach-sökningen avgör ingen ändlig gräns någonting. Här hinner den till n = 220 inom 2000 steg och till n = 848 inom 10000. Datorer har kontrollerat varje jämnt tal upp till 4·10¹⁸ och funnit att vart och ett är summan av två primtal, så en riktig sökning skulle köra minst så länge innan den hittade ett motexempel, och om Goldbach stämmer kör den för evigt. Turings sats säger att det här inte är en svaghet hos just den här sidan: vilken smartare analysator du än bygger kommer något program att försätta den i samma läge.",
+          "För ”Räkna till 100” är den rosa domen bara otålighet: höj gränsen så blir svaret definitivt. Men för Goldbach-sökningen avgör ingen ändlig gräns någonting. Här hinner den till n = 220 inom 2000 steg och till n = 848 inom 10\u00a0000. Datorer har kontrollerat varje jämnt tal upp till 4·10¹⁸ och funnit att vart och ett är summan av två primtal, så en riktig sökning skulle köra minst så länge innan den hittade ett motexempel, och om Goldbach stämmer kör den för evigt. Turings sats säger att det här inte är en svaghet hos just den här sidan: vilken smartare analysator du än bygger kommer något program att försätta den i samma läge.",
         ],
       },
     ],
-    experimentsHeading: "Testa det här",
+    experimentsHeading: "Prova det här",
     experiments: [
       {
         title: "Ta analysatorn på bar gärning ett steg för tidigt",
@@ -440,30 +440,30 @@ export const HALTING_GUIDE: ExplorerGuide = {
       {
         heading: "Spørsmålet ingen programmer kan svare på",
         paragraphs: [
-          "Stoppeproblemet ber om én enkelt prosedyre halts(P, x) som tar et hvilket som helst program P og en hvilken som helst inndata x, og som alltid svarer, på endelig tid, om P til slutt stopper på x. Alan Turing beviste i 1936 at en slik prosedyre ikke finnes. Beviset er et diagonaltriks: anta at halts finnes, og bygg et program D som, gitt et program P, spør halts(P, P) og så gjør det motsatte (går i evig løkke hvis svaret er ja, stopper hvis det er nei). Spør nå hva D gjør med seg selv. Hvis D(D) stopper, sa halts ja, så D går i løkke. Hvis D(D) går i løkke, sa halts nei, så D stopper. Begge tilfellene motsier definisjonen, så antakelsen var feil.",
-          "Uavgjørbart betyr ikke at ingen programmer kan analyseres. Det betyr at enhver analysator, uansett hvor smart, har programmer der den enten må svare feil eller aldri svare i det hele tatt. Steggrensen er den enkleste analysatoren man kan tenke seg: kjør programmet i N steg og rapporter hva du så. Den har alltid rett når den sier «stoppet», og den kan aldri være sikker når den ikke sier noe.",
+          "Stoppeproblemet ber om én enkelt prosedyre halts(P, x) som tar et hvilket som helst program P og vilkårlige inndata x, og som alltid svarer, på endelig tid, om P til slutt stopper på x. Alan Turing beviste i 1936 at en slik prosedyre ikke finnes. Beviset er et diagonaltriks: Anta at halts finnes, og bygg et program D som, gitt et program P, spør halts(P, P) og så gjør det motsatte (går i evig løkke hvis svaret er ja, stopper hvis det er nei). Spør nå hva D gjør med seg selv. Hvis D(D) stopper, sa halts ja, så D går i løkke. Hvis D(D) går i løkke, sa halts nei, så D stopper. Begge tilfellene motsier definisjonen, så antakelsen var feil.",
+          "Uavgjørbart betyr ikke at ingen programmer kan analyseres. Det betyr at enhver analysator, uansett hvor smart, har programmer der den enten må svare feil eller aldri svare i det hele tatt. Steggrensen er den enkleste analysatoren man kan tenke seg: Kjør programmet i N steg og rapporter hva du så. Den har alltid rett når den sier «stoppet», og den kan aldri være sikker når den ikke sier noe.",
         ],
         formula: diagonalFormula("evig løkke", "stopp", "hvis"),
       },
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "Programlista har seks oppføringer, og hver av dem gjør det navnet sier. «Tell opp for alltid» (+[>+<]) setter celle 0 til 1 og går så i løkke på den mens celle 1 telles opp, så det stopper aldri. «Tell til 100» legger 100 i celle 0, og løkka [-] teller den ned, slik at programmet stopper etter nøyaktig 301 steg (100 økninger, én inngangssjekk, deretter to steg per runde). De fire andre trenger større tall enn en 8-biters celle rommer, og kjører på registermaskinen. «Collatz på 27» itererer n/2 eller 3n+1 og teller rundene i register k: det stopper med k = 111 etter 446 maskinsteg. «Collatz på inndata» er det samme programmet med en startverdi du skriver inn. «Goldbach-søk» tester 4, 6, 8, … etter tur og ville bare stoppet ved et partall som ikke er summen av to primtall. «Selvrefererende D» er en illustrasjon og sier det selv: et ekte halts lar seg ikke skrive, så du taster inn svaret en påstått avgjører ville gitt på halts(D, D), og D gjør det motsatte. Linjen «Hva vi vet» under hvert program sier hva matematikken faktisk vet.",
-          "«Steg» utfører én instruksjon, «Kjør» og «Pause» styrer den kontinuerlige kjøringen, og «Tilbakestill» nullstiller maskinen. Glidebryteren for steggrensen går fra 10 til 10000 i steg på 10 og starter på 2000. Hastighetsbryteren går fra 1 til 200 steg per sekund og starter på 40. Cyan markerer neste instruksjon og pekeren, rav de cellene og registrene som ikke er null.",
+          "Programlisten har seks oppføringer, og hver av dem gjør det navnet sier. «Tell opp for alltid» (+[>+<]) setter celle 0 til 1 og går så i løkke på den mens celle 1 telles opp, så det stopper aldri. «Tell til 100» legger 100 i celle 0, og løkken [-] teller den ned, slik at programmet stopper etter nøyaktig 301 steg (100 økninger, én inngangssjekk, deretter to steg per runde). De fire andre trenger større tall enn en 8-biters celle rommer, og kjører på registermaskinen. «Collatz på 27» itererer n/2 eller 3n+1 og teller rundene i register k: Det stopper med k = 111 etter 446 maskinsteg. «Collatz på inndata» er det samme programmet med en startverdi du skriver inn. «Goldbach-søk» tester 4, 6, 8, … etter tur og ville bare stoppet ved et partall som ikke er summen av to primtall. «Selvrefererende D» er en illustrasjon og sier det selv: Et ekte halts lar seg ikke skrive, så du taster inn svaret en påstått avgjører ville gitt på halts(D, D), og D gjør det motsatte. Linjen «Hva vi vet» under hvert program sier hva matematikken faktisk vet.",
+          "«Steg» utfører én instruksjon, «Kjør» og «Pause» styrer den kontinuerlige kjøringen, og «Tilbakestill» nullstiller maskinen. Glidebryteren for steggrensen går fra 10 til 10\u00a0000 i steg på 10 og starter på 2000. Glidebryteren for hastighet går fra 1 til 200 steg per sekund og starter på 40. Cyan markerer neste instruksjon og pekeren, rav de cellene og registrene som ikke er null.",
         ],
       },
       {
-        heading: "Hvordan den er bygd",
+        heading: "Slik er den bygget",
         paragraphs: [
           "Maskinen snakker et instruksjonssett i Brainfuck-stil: + og − endrer den gjeldende cellen (8 biter, med omslag modulo 256), > og < flytter pekeren (som går rundt ved enden av båndet på 32 celler), og [ ] danner en løkke som hoppes over eller gjentas avhengig av om den gjeldende cellen er null. Alle andre tegn er kommentarer. Før kjøringen bygger siden en hopptabell ved hjelp av en stakk i ett enkelt gjennomløp av kildekoden, slik at hver hakeparentes finner partneren sin på konstant tid. Registermaskinen er enda enklere: heltallsregistre, nummererte linjer, én linje per steg. En linje tilordner, tester, hopper eller stopper, og prime(p) er en innebygd test med prøvedivisjon.",
-          "Tilstanden ligger i React: et bånd som Uint8Array, pekeren, programtelleren, antall steg og en status. Hvert steg kopierer båndets 32 byte før det endrer noe, fordi React kan kalle tilstandsoppdaterere to ganger under utvikling, og en endring på stedet ville brukt hver + to ganger. I kjøremodus samler en requestAnimationFrame-løkke opp medgått tid ganger valgt hastighet og utfører så mange hele steg per bilde, høyst 500, og stanser seg selv så snart statusen ikke lenger er «kjører». Hvis systemet ditt ber om redusert bevegelse, hopper «Kjør» over avspillingen: siden regner rett fram til dommen (stoppet eller grensen nådd) og viser sluttilstanden. «Steg» går fortsatt fram én instruksjon om gangen.",
+          "Tilstanden ligger i React: et bånd som Uint8Array, pekeren, programtelleren, antall steg og en status. Hvert steg kopierer båndets 32 byte før det endrer noe, fordi React kan kalle tilstandsoppdaterere to ganger under utvikling, og en endring på stedet ville brukt hver + to ganger. I kjøremodus samler en requestAnimationFrame-løkke opp medgått tid ganger valgt hastighet og utfører så mange hele steg per bilde, høyst 500, og stanser seg selv så snart statusen ikke lenger er «kjører». Hvis systemet ditt ber om redusert bevegelse, hopper «Kjør» over avspillingen: Siden regner rett fram til dommen (stoppet eller grensen nådd) og viser sluttilstanden. «Steg» går fortsatt fram én instruksjon om gangen.",
         ],
         code: STEP_EXCERPT,
       },
       {
         heading: "Hvorfor en høyere grense ikke hjelper",
         paragraphs: [
-          "For «Tell til 100» er den rosa dommen bare utålmodighet: øk grensen, så blir svaret endelig. Men for Goldbach-søket avgjør ingen endelig grense noe som helst. Her kommer det til n = 220 innen 2000 steg og til n = 848 innen 10000. Datamaskiner har sjekket hvert partall opp til 4·10¹⁸ og funnet at hvert av dem er summen av to primtall, så et ekte søk ville kjørt minst så lenge før det fant et moteksempel, og hvis Goldbach stemmer, kjører det for alltid. Turings teorem sier at dette ikke er en svakhet ved akkurat denne siden: uansett hvilken smartere analysator du bygger, vil et eller annet program sette den i samme stilling.",
+          "For «Tell til 100» er den rosa dommen bare utålmodighet: Øk grensen, så blir svaret endelig. Men for Goldbach-søket avgjør ingen endelig grense noe som helst. Her kommer det til n = 220 innen 2000 steg og til n = 848 innen 10\u00a0000. Datamaskiner har sjekket hvert partall opp til 4·10¹⁸ og funnet at hvert av dem er summen av to primtall, så et ekte søk ville kjørt minst så lenge før det fant et moteksempel, og hvis Goldbach stemmer, kjører det for alltid. Turings teorem sier at dette ikke er en svakhet ved akkurat denne siden: Uansett hvilken smartere analysator du bygger, vil et eller annet program sette den i samme stilling.",
         ],
       },
     ],
@@ -471,7 +471,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Ta analysatoren ett steg for tidlig",
-        text: "Velg «Tell til 100», sett steggrensen til 300 og trykk på «Kjør». Statusen blir rosa: fra analysatorens synspunkt kunne programmet kjørt for alltid. Tilbakestill, flytt grensen til 310 og kjør på nytt. Nå stopper det ved steg 301. Samme program, en annen dom, utelukkende på grunn av budsjettet.",
+        text: "Velg «Tell til 100», sett steggrensen til 300 og trykk på «Kjør». Statusen blir rosa: Fra analysatorens synspunkt kunne programmet kjørt for alltid. Tilbakestill, flytt grensen til 310 og kjør på nytt. Nå stopper det ved steg 301. Samme program, en annen dom, utelukkende på grunn av budsjettet.",
       },
       {
         title: "Det samme med Collatz",
@@ -479,7 +479,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
       },
       {
         title: "Se en celle gå rundt",
-        text: "Velg «Tell opp for alltid», øk hastigheten til 200 og grensen til 2000. Celle 1 klatrer til 255 og slår så om til 0, fordi cellene rommer 8-biters verdier. Selve løkka voktes av celle 0, som blir stående på 1, så omslaget slipper aldri programmet ut.",
+        text: "Velg «Tell opp for alltid», øk hastigheten til 200 og grensen til 2000. Celle 1 klatrer til 255 og slår så om til 0, fordi cellene rommer 8-biters verdier. Selve løkken voktes av celle 0, som blir stående på 1, så omslaget slipper aldri programmet ut.",
       },
       {
         title: "Gi D begge svarene",

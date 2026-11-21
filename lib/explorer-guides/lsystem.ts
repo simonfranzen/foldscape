@@ -144,7 +144,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
       "Crea fractales con sistemas L en el navegador: edita axioma, reglas y ángulo, haz crecer el copo de Koch, el dragón o una planta y mira cómo dibuja la tortuga.",
     heading: "Cómo funciona este explorador",
     intro:
-      "Cada imagen de este canvas empieza como una palabra corta, el axioma, y un puñado de reglas de reescritura. El explorador aplica las reglas a todas las letras de la palabra a la vez, una y otra vez, hasta que la palabra tiene miles de símbolos. Entonces una tortuga la recorre letra a letra: algunas letras significan «avanza un paso y dibuja una línea», otras «gira» o «recuerda dónde estás». Copos de nieve, curvas que llenan el plano y plantas ramificadas salen todos de la misma máquina diminuta. Solo cambian las reglas.",
+      "Cada imagen de este lienzo empieza como una palabra corta, el axioma, y un puñado de reglas de reescritura. El explorador aplica las reglas a todas las letras de la palabra a la vez, una y otra vez, hasta que la palabra tiene miles de símbolos. Entonces una tortuga la recorre letra a letra: algunas letras significan «avanza un paso y dibuja una línea», otras «gira» o «recuerda dónde estás». Copos de nieve, curvas que llenan el plano y plantas ramificadas salen todos de la misma máquina diminuta. Solo cambian las reglas.",
     sections: [
       {
         heading: "Reescritura en paralelo",
@@ -159,14 +159,14 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Los ocho preajustes cargan un sistema completo: curva de Koch (90°, 4 iteraciones), copo de nieve de Koch (60°, 4), curva punta de flecha de Sierpiński (60°, 6), triángulo de Sierpiński (120°, 5), curva del dragón (90°, 12), planta fractal (25°, 5), curva de Hilbert (90°, 5) y curva C de Lévy (45°, 10). Al elegir uno se sobrescriben el axioma, las reglas, el ángulo, la orientación inicial y el número de iteraciones. La curva de Koch es aquí la variante cuadrada con ángulos rectos, no la versión clásica de 60°; la triangular la muestra el preajuste del copo de nieve.",
           "El control de iteraciones va de 1 a 12, el del ángulo de 15° a 120° en grados enteros. El ángulo es lo que gira la tortuga en cada símbolo + o −, y como se aplica cientos de veces, un cambio de un solo grado puede torcer una curva pulcra hasta convertirla en espiral. El campo del axioma y el cuadro de reglas se pueden editar libremente. Escribe una regla por línea con la forma X = …; cada lado izquierdo debe ser un único carácter, y las líneas que no se pueden interpretar se ignoran. «Start heading» (de −180° a 180° en pasos de 5°) es la dirección hacia la que mira la tortuga antes de su primer paso: 0° apunta a la derecha y −90° directamente hacia arriba. El preajuste de la planta lo fija en −65°, todos los demás en 0°, y se queda donde lo pongas mientras editas el axioma y las reglas. Los botones de color solo cambian el trazo.",
-          "El contador bajo el canvas muestra la longitud de la cadena generada. Si un sistema crece por encima de 500 000 símbolos, la expansión se detiene justo ahí y aparece un aviso de color ámbar. Lo que ves en ese caso es el comienzo de la siguiente generación, no el fractal completo.",
+          "El contador bajo el lienzo muestra la longitud de la cadena generada. Si un sistema crece por encima de 500 000 símbolos, la expansión se detiene justo ahí y aparece un aviso de color ámbar. Lo que ves en ese caso es el comienzo de la siguiente generación, no el fractal completo.",
         ],
       },
       {
-        heading: "Cómo está hecho",
+        heading: "Cómo está construido",
         paragraphs: [
-          "La expansión es un simple bucle sobre la cadena con una consulta en el objeto de reglas, y solo se recalcula cuando cambian el axioma, las reglas o el número de iteraciones. El dibujo se hace en un canvas 2D en dos pasadas sobre la misma cadena. En la primera la tortuga camina sin dibujar y registra el rectángulo envolvente. A partir de él, el código calcula un único factor de escala uniforme y un desplazamiento, de modo que la figura siempre llena el canvas con un margen de 24 píxeles, tenga 10 segmentos o 100 000. En la segunda pasada vuelve a caminar y añade cada segmento a un único trazado, que se pinta una sola vez al final.",
-          "Cuatro letras dibujan: F, G, A y B. Todas las demás son invisibles para la tortuga, y justo por eso los preajustes del dragón y de Hilbert usan X e Y: dirigen cómo crece la cadena sin dejar marcas. Los corchetes apilan la posición y la orientación actuales en una pila y las recuperan después, que es lo que permite a la planta fractal echar ramas laterales y volver luego al tallo. No hay animación, así que el canvas solo se redibuja cuando cambia un control o se redimensiona la ventana, y los ajustes de movimiento reducido no necesitan ningún tratamiento especial.",
+          "La expansión es un simple bucle sobre la cadena con una consulta en el objeto de reglas, y solo se recalcula cuando cambian el axioma, las reglas o el número de iteraciones. El dibujo se hace en un lienzo 2D en dos pasadas sobre la misma cadena. En la primera la tortuga camina sin dibujar y registra el rectángulo envolvente. A partir de él, el código calcula un único factor de escala uniforme y un desplazamiento, de modo que la figura siempre llena el lienzo con un margen de 24 píxeles, tenga 10 segmentos o 100 000. En la segunda pasada vuelve a caminar y añade cada segmento a un único trazado, que se pinta una sola vez al final.",
+          "Cuatro letras dibujan: F, G, A y B. Todas las demás son invisibles para la tortuga, y justo por eso los preajustes del dragón y de Hilbert usan X e Y: dirigen cómo crece la cadena sin dejar marcas. Los corchetes apilan la posición y la orientación actuales en una pila y las recuperan después, que es lo que permite a la planta fractal echar ramas laterales y volver luego al tallo. No hay animación, así que el lienzo solo se redibuja cuando cambia un control o se redimensiona la ventana, y los ajustes de movimiento reducido no necesitan ningún tratamiento especial.",
         ],
         code: TURTLE_EXCERPT,
       },
@@ -181,7 +181,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Llega al límite de símbolos",
-        text: "Carga la curva de Koch y sube las iteraciones a 7. La cadena tiene 156 249 símbolos y aún se dibuja entera. Pasa a 8 y la cadena completa necesitaría 781 249 símbolos, así que el límite entra en acción y solo aparece una parte de la curva.",
+        text: "Carga la curva de Koch y sube las iteraciones a 7. La cadena tiene 156 249 símbolos y aún se dibuja entera. Pasa a 8 y la cadena completa necesitaría 781 249 símbolos, así que el límite entra en acción y solo aparece una parte de la curva.",
       },
       {
         title: "Tuerce el dragón",
@@ -202,7 +202,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
       "Crée des fractales par L-système dans le navigateur : modifie axiome, règles et angle, fais pousser le flocon de Koch, le dragon ou une plante avec la tortue.",
     heading: "Comment fonctionne cet explorateur",
     intro:
-      "Chaque image de ce canvas commence par un mot court, l'axiome, et une poignée de règles de réécriture. L'explorateur applique les règles à toutes les lettres du mot en même temps, encore et encore, jusqu'à ce que le mot compte des milliers de symboles. Une tortue le parcourt alors lettre par lettre : certaines lettres signifient « avance d'un pas et trace un trait », d'autres « tourne » ou « retiens où tu es ». Flocons de neige, courbes remplissant le plan et plantes ramifiées sortent tous de la même machine minuscule. Seules les règles changent.",
+      "Chaque image de ce canevas commence par un mot court, l'axiome, et une poignée de règles de réécriture. L'explorateur applique les règles à toutes les lettres du mot en même temps, encore et encore, jusqu'à ce que le mot compte des milliers de symboles. Une tortue le parcourt alors lettre par lettre : certaines lettres signifient « avance d'un pas et trace un trait », d'autres « tourne » ou « retiens où tu es ». Flocons de neige, courbes remplissant le plan et plantes ramifiées sortent tous de la même machine minuscule. Seules les règles changent.",
     sections: [
       {
         heading: "Réécrire en parallèle",
@@ -213,18 +213,18 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
         formula: KOCH_FORMULA,
       },
       {
-        heading: "À quoi servent les réglages",
+        heading: "À quoi servent les commandes",
         paragraphs: [
           "Les huit préréglages chargent chacun un système complet : courbe de Koch (90°, 4 itérations), flocon de Koch (60°, 4), courbe en pointe de flèche de Sierpiński (60°, 6), triangle de Sierpiński (120°, 5), courbe du dragon (90°, 12), plante fractale (25°, 5), courbe de Hilbert (90°, 5) et courbe C de Lévy (45°, 10). En choisir un écrase l'axiome, les règles, l'angle, l'orientation de départ et le nombre d'itérations. La courbe de Koch est ici la variante carrée à angles droits, pas la version classique à 60° ; la forme triangulaire, c'est le préréglage du flocon qui la montre.",
           "Le curseur des itérations va de 1 à 12, celui de l'angle de 15° à 120° par degrés entiers. L'angle est la quantité dont la tortue tourne à chaque symbole + ou −, et comme il est appliqué des centaines de fois, un écart d'un seul degré peut tordre une courbe bien nette en spirale. Le champ de l'axiome et la zone des règles sont entièrement modifiables. Écris une règle par ligne sous la forme X = … ; chaque membre de gauche doit être un caractère unique, et les lignes impossibles à interpréter sont ignorées. « Start heading » (de −180° à 180° par pas de 5°) est la direction vers laquelle la tortue regarde avant son premier pas : 0° pointe vers la droite et −90° droit vers le haut. Le préréglage de la plante le fixe à −65°, tous les autres à 0°, et il reste là où tu l'as mis pendant que tu modifies l'axiome et les règles. Les boutons de couleur ne changent que le trait.",
-          "Le compteur sous le canvas affiche la longueur de la chaîne générée. Si un système dépasse 500 000 symboles, l'expansion s'arrête à cet endroit précis et un avertissement ambré apparaît. Ce que tu vois alors est le début de la génération suivante, pas la fractale complète.",
+          "Le compteur sous le canevas affiche la longueur de la chaîne générée. Si un système dépasse 500 000 symboles, l'expansion s'arrête à cet endroit précis et un avertissement ambré apparaît. Ce que tu vois alors est le début de la génération suivante, pas la fractale complète.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "L'expansion est une simple boucle sur la chaîne avec une recherche dans l'objet des règles, recalculée uniquement quand l'axiome, les règles ou le nombre d'itérations changent. Le dessin se fait sur un canvas 2D en deux passes sur la même chaîne. La première fait marcher la tortue sans dessiner et enregistre la boîte englobante. À partir de cette boîte, le code calcule un facteur d'échelle uniforme et un décalage, de sorte que la figure remplit toujours le canvas avec une marge de 24 pixels, qu'elle compte 10 segments ou 100 000. La seconde passe refait le parcours et ajoute chaque segment à un chemin unique, tracé une seule fois à la fin.",
-          "Quatre lettres dessinent : F, G, A et B. Toutes les autres sont invisibles pour la tortue, et c'est exactement pour cela que les préréglages du dragon et de Hilbert utilisent X et Y : elles pilotent la croissance de la chaîne sans laisser de trace. Les crochets empilent la position et l'orientation courantes sur une pile puis les dépilent, ce qui permet à la plante fractale de pousser des branches latérales avant de revenir à la tige. Il n'y a pas d'animation : le canvas ne se redessine que lorsqu'un réglage change ou que la fenêtre est redimensionnée, et les préférences de réduction des animations ne demandent aucun traitement particulier.",
+          "L'expansion est une simple boucle sur la chaîne avec une recherche dans l'objet des règles, recalculée uniquement quand l'axiome, les règles ou le nombre d'itérations changent. Le dessin se fait sur un canevas 2D en deux passes sur la même chaîne. La première fait marcher la tortue sans dessiner et enregistre la boîte englobante. À partir de cette boîte, le code calcule un facteur d'échelle uniforme et un décalage, de sorte que la figure remplit toujours le canevas avec une marge de 24 pixels, qu'elle compte 10 segments ou 100 000. La seconde passe refait le parcours et ajoute chaque segment à un chemin unique, tracé une seule fois à la fin.",
+          "Quatre lettres dessinent : F, G, A et B. Toutes les autres sont invisibles pour la tortue, et c'est exactement pour cela que les préréglages du dragon et de Hilbert utilisent X et Y : elles pilotent la croissance de la chaîne sans laisser de trace. Les crochets empilent la position et l'orientation courantes sur une pile puis les dépilent, ce qui permet à la plante fractale de pousser des branches latérales avant de revenir à la tige. Il n'y a pas d'animation : le canevas ne se redessine que lorsqu'un réglage change ou que la fenêtre est redimensionnée, et les préférences de réduction des animations ne demandent aucun traitement particulier.",
         ],
         code: TURTLE_EXCERPT,
       },
@@ -257,7 +257,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
   },
   it: {
     metaDescription:
-      "Costruisci frattali con gli L-system nel browser: modifica assioma, regole e angolo, fai crescere il fiocco di Koch, il drago o una pianta con la tartaruga.",
+      "Costruisci frattali con i sistemi L nel browser: modifica assioma, regole e angolo, fai crescere il fiocco di Koch, il drago o una pianta con la tartaruga.",
     heading: "Come funziona questo esploratore",
     intro:
       "Ogni immagine su questo canvas nasce da una parola breve, l'assioma, e da una manciata di regole di riscrittura. L'esploratore applica le regole a tutte le lettere della parola nello stesso momento, ancora e ancora, finché la parola è lunga migliaia di simboli. Poi una tartaruga la percorre lettera per lettera: alcune lettere significano «fai un passo avanti e traccia una linea», altre «gira» o «ricorda dove sei». Fiocchi di neve, curve che riempiono il piano e piante ramificate escono tutti dalla stessa minuscola macchina. Cambiano solo le regole.",
@@ -265,7 +265,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
       {
         heading: "Riscrivere in parallelo",
         paragraphs: [
-          "I sistemi di Lindenmayer, o L-system, furono introdotti nel 1968 dal biologo ungherese Aristid Lindenmayer per descrivere come gli organismi semplici crescono cellula per cellula. La differenza chiave rispetto alle grammatiche ordinarie è che tutti i simboli vengono sostituiti simultaneamente, proprio come tutte le cellule di un filamento si dividono nella stessa generazione. Un simbolo senza regola viene copiato tale e quale.",
+          "I sistemi di Lindenmayer, o sistemi L (L-system), furono introdotti nel 1968 dal biologo ungherese Aristid Lindenmayer per descrivere come gli organismi semplici crescono cellula per cellula. La differenza chiave rispetto alle grammatiche ordinarie è che tutti i simboli vengono sostituiti simultaneamente, proprio come tutte le cellule di un filamento si dividono nella stessa generazione. Un simbolo senza regola viene copiato tale e quale.",
           "Prendi il preset della curva di Koch: assioma F, una sola regola F → F+F-F-F+F. Dopo un passo ci sono 5 copie di F, dopo due passi 25, dopo n passi 5ⁿ. La lunghezza della stringa cresce fino a 2 · 5ⁿ − 1 simboli, quindi quattro iterazioni danno 1249 simboli e 625 segmenti.",
         ],
         formula: KOCH_FORMULA,
@@ -289,7 +289,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
       {
         heading: "Perché l'angolo fa parte delle regole",
         paragraphs: [
-          "Le regole decidono la combinatoria, l'angolo decide la geometria. La stringa della curva del drago è una sequenza di svolte a sinistra e a destra; a 90° la curva tocca sé stessa negli angoli ma non percorre mai due volte lo stesso segmento, mentre la stessa stringa disegnata con un altro angolo può impilare segmenti uno sull'altro. In altre parole, un L-system non è un'immagine: è una ricetta che diventa un frattale preciso solo quando stabilisci di quanto ruota la tartaruga.",
+          "Le regole decidono la combinatoria, l'angolo decide la geometria. La stringa della curva del drago è una sequenza di svolte a sinistra e a destra; a 90° la curva tocca sé stessa negli angoli ma non percorre mai due volte lo stesso segmento, mentre la stessa stringa disegnata con un altro angolo può impilare segmenti uno sull'altro. In altre parole, un sistema L non è un'immagine: è una ricetta che diventa un frattale preciso solo quando stabilisci di quanto ruota la tartaruga.",
         ],
       },
     ],
@@ -332,15 +332,15 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "As oito predefinições carregam um sistema completo: curva de Koch (90°, 4 iterações), floco de neve de Koch (60°, 4), curva ponta de seta de Sierpiński (60°, 6), triângulo de Sierpiński (120°, 5), curva do dragão (90°, 12), planta fractal (25°, 5), curva de Hilbert (90°, 5) e curva C de Lévy (45°, 10). Escolher uma substitui o axioma, as regras, o ângulo, a orientação inicial e o número de iterações. A curva de Koch é aqui a variante quadrada com ângulos retos, não a versão clássica de 60°; a triangular é mostrada pela predefinição do floco de neve.",
-          "O controlo das iterações vai de 1 a 12, o do ângulo de 15° a 120° em graus inteiros. O ângulo é quanto a tartaruga roda em cada símbolo + ou −, e como é aplicado centenas de vezes, a diferença de um único grau pode dobrar uma curva arrumada numa espiral. O campo do axioma e a caixa das regras são totalmente editáveis. Escreve uma regra por linha na forma X = …; cada lado esquerdo tem de ser um único carácter, e as linhas que não se conseguem interpretar são ignoradas. «Start heading» (de −180° a 180° em passos de 5°) é a direção para onde a tartaruga está virada antes do primeiro passo: 0° aponta para a direita e −90° a direito para cima. A predefinição da planta coloca-o em −65°, todas as outras em 0°, e ele fica onde o puseres enquanto editas o axioma e as regras. Os botões de cor só alteram o traço.",
+          "O cursor das iterações vai de 1 a 12, o do ângulo de 15° a 120° em graus inteiros. O ângulo é quanto a tartaruga roda em cada símbolo + ou −, e como é aplicado centenas de vezes, a diferença de um único grau pode dobrar uma curva arrumada numa espiral. O campo do axioma e a caixa das regras são totalmente editáveis. Escreve uma regra por linha na forma X = …; cada lado esquerdo tem de ser um único carácter, e as linhas que não se conseguem interpretar são ignoradas. «Start heading» (de −180° a 180° em passos de 5°) é a direção para onde a tartaruga está virada antes do primeiro passo: 0° aponta para a direita e −90° a direito para cima. A predefinição da planta coloca-o em −65°, todas as outras em 0°, e ele fica onde o puseres enquanto editas o axioma e as regras. Os botões de cor só alteram o traço.",
           "O contador por baixo do canvas mostra o comprimento da cadeia gerada. Se um sistema crescer para lá de 500 000 símbolos, a expansão para exatamente aí e surge um aviso em âmbar. O que vês nesse caso é o início da geração seguinte, não o fractal completo.",
         ],
       },
       {
-        heading: "Como é construído",
+        heading: "Como está construído",
         paragraphs: [
           "A expansão é um simples ciclo sobre a cadeia com uma consulta ao objeto das regras, recalculada apenas quando mudam o axioma, as regras ou o número de iterações. O desenho é feito num canvas 2D em duas passagens sobre a mesma cadeia. Na primeira a tartaruga caminha sem desenhar e regista a caixa envolvente. A partir dessa caixa o código calcula um único fator de escala uniforme e um deslocamento, de modo que a figura preenche sempre o canvas com uma margem de 24 píxeis, tenha ela 10 segmentos ou 100 000. Na segunda passagem volta a caminhar e acrescenta cada segmento a um único caminho, que é traçado uma só vez no fim.",
-          "Quatro letras desenham: F, G, A e B. Todas as outras são invisíveis para a tartaruga, e é precisamente por isso que as predefinições do dragão e de Hilbert usam X e Y: orientam o crescimento da cadeia sem deixar marcas. Os parênteses retos empilham a posição e a orientação atuais numa pilha e voltam a retirá-las, e é isso que permite à planta fractal lançar ramos laterais e regressar depois ao caule. Não há animação, por isso o canvas só é redesenhado quando um controlo muda ou a janela é redimensionada, e as definições de movimento reduzido não precisam de tratamento especial.",
+          "Quatro letras desenham: F, G, A e B. Todas as outras são invisíveis para a tartaruga, e é precisamente por isso que as predefinições do dragão e de Hilbert usam X e Y: orientam o crescimento da cadeia sem deixar marcas. Os parênteses retos guardam a posição e a orientação atuais numa pilha e voltam a retirá-las, e é isso que permite à planta fractal lançar ramos laterais e regressar depois ao caule. Não há animação, por isso o canvas só é redesenhado quando um controlo muda ou a janela é redimensionada, e as definições de movimento reduzido não precisam de tratamento especial.",
         ],
         code: TURTLE_EXCERPT,
       },
@@ -382,22 +382,22 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
         heading: "Omskrivning parallellt",
         paragraphs: [
           "Lindenmayersystem, eller L-system, introducerades 1968 av den ungerske biologen Aristid Lindenmayer som ett sätt att beskriva hur enkla organismer växer cell för cell. Den avgörande skillnaden mot vanliga grammatiker är att alla symboler ersätts samtidigt, precis som alla celler i en celltråd delar sig i samma generation. En symbol utan regel kopieras oförändrad.",
-          "Ta förvalet Kochkurvan: axiom F, en enda regel F → F+F-F-F+F. Efter ett steg finns 5 kopior av F, efter två steg 25, efter n steg 5ⁿ. Strängens längd växer till 2 · 5ⁿ − 1 symboler, så fyra iterationer ger 1 249 symboler och 625 linjesegment.",
+          "Ta förvalet Kochkurvan: axiom F, en enda regel F → F+F-F-F+F. Efter ett steg finns 5 kopior av F, efter två steg 25, efter n steg 5ⁿ. Strängens längd växer till 2 · 5ⁿ − 1 symboler, så fyra iterationer ger 1249 symboler och 625 linjesegment.",
         ],
         formula: KOCH_FORMULA,
       },
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "De åtta förvalen laddar var sitt kompletta system: Kochkurvan (90°, 4 iterationer), Kochs snöflinga (60°, 4), Sierpińskis pilspetskurva (60°, 6), Sierpińskitriangeln (120°, 5), drakkurvan (90°, 12), fraktalväxten (25°, 5), Hilbertkurvan (90°, 5) och Lévys C-kurva (45°, 10). När du väljer ett skrivs axiom, regler, vinkel, startriktning och antal iterationer över. Kochkurvan är här den kantiga varianten med räta vinklar, inte den klassiska med 60°; den triangulära visas av snöflingeförvalet.",
+          "De åtta förvalen laddar var sitt kompletta system: Kochkurvan (”Koch curve”, 90°, 4 iterationer), Kochs snöflinga (”Koch snowflake”, 60°, 4), Sierpińskis pilspetskurva (”Sierpiński arrowhead”, 60°, 6), Sierpiński-triangeln (”Sierpiński triangle”, 120°, 5), drakkurvan (”Dragon curve”, 90°, 12), fraktalväxten (”Fractal plant”, 25°, 5), Hilbertkurvan (”Hilbert curve”, 90°, 5) och Lévys C-kurva (”Lévy C curve”, 45°, 10). När du väljer ett skrivs axiom, regler, vinkel, startriktning och antal iterationer över. Kochkurvan är här den kantiga varianten med räta vinklar, inte den klassiska med 60°; den triangulära visas av snöflingeförvalet.",
           "Iterationsreglaget går från 1 till 12, vinkelreglaget från 15° till 120° i hela grader. Vinkeln är hur mycket sköldpaddan svänger vid varje + eller −, och eftersom den tillämpas hundratals gånger kan en ändring på en enda grad böja en prydlig kurva till en spiral. Axiomfältet och regelrutan går att redigera fritt. Skriv en regel per rad på formen X = …; varje vänsterled måste vara ett enda tecken, och rader som inte går att tolka ignoreras. ”Start heading” (−180° till 180° i steg om 5°) är riktningen sköldpaddan tittar åt före sitt första steg: 0° pekar åt höger och −90° rakt upp. Växtförvalet sätter den till −65°, alla andra förval till 0°, och den stannar där du ställer den medan du redigerar axiom och regler. Färgknapparna ändrar bara linjefärgen.",
-          "Räknaren under canvasen visar längden på den genererade strängen. Om ett system växer förbi 500 000 symboler avbryts expansionen just där och en bärnstensfärgad varning visas. Det du ser då är början på nästa generation, inte den fullständiga fraktalen.",
+          "Räknaren under canvasen visar längden på den genererade strängen. Om ett system växer förbi 500\u00a0000 symboler avbryts expansionen just där och en bärnstensfärgad varning visas. Det du ser då är början på nästa generation, inte den fullständiga fraktalen.",
         ],
       },
       {
         heading: "Hur den är byggd",
         paragraphs: [
-          "Expansionen är en vanlig loop över strängen med en uppslagning i regelobjektet, och den räknas bara om när axiomet, reglerna eller antalet iterationer ändras. Ritandet sker på en 2D-canvas i två pass över samma sträng. I det första går sköldpaddan utan att rita och noterar den omslutande rektangeln. Utifrån den beräknar koden en enhetlig skalfaktor och en förskjutning, så att figuren alltid fyller canvasen med 24 pixlars marginal, oavsett om den har 10 segment eller 100 000. I det andra passet går den igen och lägger varje segment till en enda bana, som ritas ut en gång på slutet.",
+          "Expansionen är en vanlig loop över strängen med en uppslagning i regelobjektet, och den räknas bara om när axiomet, reglerna eller antalet iterationer ändras. Ritandet sker på en 2D-canvas i två pass över samma sträng. I det första går sköldpaddan utan att rita och noterar den omslutande rektangeln. Utifrån den beräknar koden en enhetlig skalfaktor och en förskjutning, så att figuren alltid fyller canvasen med 24 pixlars marginal, oavsett om den har 10 segment eller 100\u00a0000. I det andra passet går den igen och lägger varje segment till en enda bana, som ritas ut en gång på slutet.",
           "Fyra bokstäver ritar: F, G, A och B. Alla andra bokstäver är osynliga för sköldpaddan, och just därför använder drak- och Hilbertförvalen X och Y: de styr hur strängen växer utan att lämna spår. Hakparenteserna lägger aktuell position och riktning på en stack och hämtar tillbaka dem, och det är det som låter fraktalväxten skjuta sidogrenar och sedan återvända till stjälken. Det finns ingen animation, så canvasen ritas bara om när ett reglage ändras eller fönstret byter storlek, och inställningar för minskad rörelse kräver ingen särskild hantering.",
         ],
         code: TURTLE_EXCERPT,
@@ -413,7 +413,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Slå i symboltaket",
-        text: "Ladda Kochkurvan och höj iterationerna till 7. Strängen har 156 249 symboler och ritas fortfarande ut helt. Gå till 8 så skulle hela strängen kräva 781 249 symboler, så taket slår till och bara en del av kurvan syns.",
+        text: "Ladda Kochkurvan och höj iterationerna till 7. Strängen har 156\u00a0249 symboler och ritas fortfarande ut helt. Gå till 8 så skulle hela strängen kräva 781\u00a0249 symboler, så taket slår till och bara en del av kurvan syns.",
       },
       {
         title: "Böj draken",
@@ -431,10 +431,10 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
   },
   no: {
     metaDescription:
-      "Bygg L-system-fraktaler i nettleseren: endre aksiom, regler og vinkel, la Kochs snøflak, dragekurven eller en fraktalplante vokse, og se skilpadden tegne dem.",
+      "Bygg L-system-fraktaler i nettleseren: Endre aksiom, regler og vinkel, la Kochs snøflak, dragekurven eller en fraktalplante vokse, og se skilpadden tegne dem.",
     heading: "Slik fungerer denne utforskeren",
     intro:
-      "Hvert bilde på dette canvaset begynner som et kort ord, aksiomet, og en håndfull omskrivingsregler. Utforskeren bruker reglene på alle bokstavene i ordet samtidig, igjen og igjen, til ordet er flere tusen symboler langt. Så går en skilpadde gjennom det bokstav for bokstav: Noen bokstaver betyr «gå et steg fram og tegn en linje», andre «sving» eller «husk hvor du er». Snøflak, romfyllende kurver og forgrenede planter kommer alle ut av den samme bitte lille maskinen. Bare reglene endrer seg.",
+      "Hvert bilde på dette lerretet begynner som et kort ord, aksiomet, og en håndfull omskrivingsregler. Utforskeren bruker reglene på alle bokstavene i ordet samtidig, igjen og igjen, til ordet er flere tusen symboler langt. Så går en skilpadde gjennom det bokstav for bokstav: Noen bokstaver betyr «gå et steg fram og tegn en linje», andre «sving» eller «husk hvor du er». Snøflak, romfyllende kurver og forgrenede planter kommer alle ut av den samme bitte lille maskinen. Bare reglene endrer seg.",
     sections: [
       {
         heading: "Omskriving i parallell",
@@ -449,14 +449,14 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
         paragraphs: [
           "De åtte forhåndsvalgene laster hvert sitt komplette system: Koch-kurven (90°, 4 iterasjoner), Kochs snøflak (60°, 4), Sierpińskis pilspisskurve (60°, 6), Sierpiński-trekanten (120°, 5), dragekurven (90°, 12), fraktalplanten (25°, 5), Hilbert-kurven (90°, 5) og Lévys C-kurve (45°, 10). Når du velger ett, overskrives aksiom, regler, vinkel, startretning og antall iterasjoner. Koch-kurven er her den firkantede varianten med rette vinkler, ikke den klassiske med 60°; den trekantede vises av snøflak-forhåndsvalget.",
           "Glidebryteren for iterasjoner går fra 1 til 12, den for vinkel fra 15° til 120° i hele grader. Vinkelen er hvor mye skilpadden svinger ved hvert symbol + eller −, og siden den brukes hundrevis av ganger, kan en endring på én eneste grad bøye en ryddig kurve til en spiral. Aksiomfeltet og regelboksen kan redigeres fritt. Skriv én regel per linje på formen X = …; hver venstreside må være ett enkelt tegn, og linjer som ikke lar seg tolke, blir ignorert. «Start heading» (−180° til 180° i steg på 5°) er retningen skilpadden ser i før sitt første steg: 0° peker mot høyre og −90° rett opp. Plante-forhåndsvalget setter den til −65°, alle de andre til 0°, og den blir stående der du setter den mens du redigerer aksiom og regler. Fargeknappene endrer bare streken.",
-          "Telleren under canvaset viser lengden på den genererte strengen. Hvis et system vokser forbi 500 000 symboler, stopper ekspansjonen akkurat der, og en ravfarget advarsel dukker opp. Det du ser da, er begynnelsen på neste generasjon, ikke den fullstendige fraktalen.",
+          "Telleren under lerretet viser lengden på den genererte strengen. Hvis et system vokser forbi 500\u00a0000 symboler, stopper ekspansjonen akkurat der, og en ravfarget advarsel dukker opp. Det du ser da, er begynnelsen på neste generasjon, ikke den fullstendige fraktalen.",
         ],
       },
       {
-        heading: "Hvordan den er bygget",
+        heading: "Slik er den bygget",
         paragraphs: [
-          "Ekspansjonen er en enkel løkke over strengen med et oppslag i regelobjektet, og den beregnes bare på nytt når aksiomet, reglene eller antall iterasjoner endres. Tegningen skjer på et 2D-canvas i to gjennomganger av den samme strengen. I den første går skilpadden uten å tegne og registrerer det omsluttende rektangelet. Ut fra det beregner koden én felles skaleringsfaktor og en forskyvning, slik at figuren alltid fyller canvaset med en marg på 24 piksler, enten den har 10 linjestykker eller 100 000. I den andre gjennomgangen går den på nytt og legger hvert linjestykke til én enkelt bane, som tegnes opp én gang til slutt.",
-          "Fire bokstaver tegner: F, G, A og B. Alle andre bokstaver er usynlige for skilpadden, og nettopp derfor bruker forhåndsvalgene for dragen og Hilbert X og Y: De styrer hvordan strengen vokser uten å etterlate spor. Hakeparentesene legger gjeldende posisjon og retning på en stabel og henter dem tilbake igjen, og det er dette som lar fraktalplanten skyte sidegreiner og så vende tilbake til stilken. Det finnes ingen animasjon, så canvaset tegnes bare på nytt når en kontroll endres eller vinduet får ny størrelse, og innstillinger for redusert bevegelse trenger ingen særbehandling.",
+          "Ekspansjonen er en enkel løkke over strengen med et oppslag i regelobjektet, og den beregnes bare på nytt når aksiomet, reglene eller antall iterasjoner endres. Tegningen skjer på et 2D-lerret i to gjennomganger av den samme strengen. I den første går skilpadden uten å tegne og registrerer det omsluttende rektangelet. Ut fra det beregner koden én felles skaleringsfaktor og en forskyvning, slik at figuren alltid fyller lerretet med en marg på 24 piksler, enten den har 10 linjestykker eller 100\u00a0000. I den andre gjennomgangen går den på nytt og legger hvert linjestykke til én enkelt bane, som tegnes opp én gang til slutt.",
+          "Fire bokstaver tegner: F, G, A og B. Alle andre bokstaver er usynlige for skilpadden, og nettopp derfor bruker forhåndsvalgene for dragen og Hilbert X og Y: De styrer hvordan strengen vokser uten å etterlate spor. Hakeparentesene legger gjeldende posisjon og retning på en stakk og henter dem tilbake igjen, og det er dette som lar fraktalplanten skyte sidegreiner og så vende tilbake til stilken. Det finnes ingen animasjon, så lerretet tegnes bare på nytt når en kontroll endres eller vinduet får ny størrelse, og innstillinger for redusert bevegelse trenger ingen særbehandling.",
         ],
         code: TURTLE_EXCERPT,
       },
@@ -471,7 +471,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Treff symboltaket",
-        text: "Last Koch-kurven og øk iterasjonene til 7. Strengen har 156 249 symboler og tegnes fortsatt helt ut. Gå til 8, og hele strengen ville trengt 781 249 symboler, så taket slår inn og bare en del av kurven vises.",
+        text: "Last Koch-kurven og øk iterasjonene til 7. Strengen har 156\u00a0249 symboler og tegnes fortsatt helt ut. Gå til 8, og hele strengen ville trengt 781\u00a0249 symboler, så taket slår inn og bare en del av kurven vises.",
       },
       {
         title: "Bøy dragen",
