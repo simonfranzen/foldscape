@@ -1,6 +1,6 @@
 import type { ExplorerGuide } from "./types";
 
-// Numbers quoted here (16 x 16 table, 700 ms default, 50 to 1500 ms range,
+// Numbers quoted here (16 x 16 table, 700 ms default, 100 to 1500 ms range,
 // the two flip rules) match app/cantor/explorer/page.tsx; update both together.
 const FLIP_EXCERPT = `function flipDigit(d, strategy, source) {
   if (source === "binary") return d === 0 ? 1 : 0;
@@ -222,7 +222,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "« Pas » ajoute un chiffre à s, « Lecture » les ajoute automatiquement, et « Réinitialiser » efface s et recommence. Le curseur de vitesse règle la pause entre deux pas automatiques, de 1 500 ms jusqu'à 100 ms ; la valeur par défaut est 700 ms. La case ambrée est le chiffre diagonal utilisé en ce moment, les cases d'un ambre plus pâle ont déjà servi, et la colonne de droite consigne chaque comparaison sous la forme sₙ ≠ dₙₙ. Après le seizième chiffre, le panneau de la contradiction apparaît et les lignes peuvent être mises en évidence au survol ou au focus clavier.",
+          "« Pas » ajoute un chiffre à s, « Lecture » les ajoute automatiquement, et « Réinitialiser » efface s et recommence. Le curseur de vitesse règle la pause entre deux pas automatiques, de 1\u00a0500 ms jusqu'à 100 ms ; la valeur par défaut est 700 ms. La case ambrée est le chiffre diagonal utilisé en ce moment, les cases d'un ambre plus pâle ont déjà servi, et la colonne de droite consigne chaque comparaison sous la forme sₙ ≠ dₙₙ. Après le seizième chiffre, le panneau de la contradiction apparaît et les lignes peuvent être mises en évidence au survol ou au focus clavier.",
           "« Source des nombres » choisit d'où vient le tableau. « Décimal » le remplit de chiffres pseudo-aléatoires, « Binaire » de zéros et de uns pseudo-aléatoires, et le bouton « Rebattre la liste » tire un nouveau tableau. « Perso » te laisse saisir un nombre décimal par ligne. La liste personnalisée préremplie commence par les chiffres de π, e, √2, du nombre d'or, de ln 2 et de la constante d'Euler-Mascheroni, décalés derrière la virgule.",
           "La règle de changement de chiffre décide comment dₙₙ est modifié. « Échange 5 ↔ 6 » transforme un 5 en 6 et tout autre chiffre en 5. « +1 mod 10 » ajoute un, mais saute 0 et 9 : un 8 ou un 9 devient donc 1. En mode binaire, la règle est ignorée et les bits basculent simplement entre 0 et 1 ; les lignes sont alors traitées comme des suites de 0 et de 1, pas comme des nombres (le préfixe « 0. » disparaît).",
         ],
@@ -230,7 +230,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Il n'y a pas de canevas : le tableau est un tableau HTML ordinaire, que les lecteurs d'écran peuvent donc parcourir. Les tableaux aléatoires proviennent d'un petit générateur congruentiel linéaire (multiplicateur 1 664 525, incrément 1 013 904 223, modulo 2³²) initialisé avec un nombre qui change quand tu rebats la liste.",
+          "Il n'y a pas de canevas : le tableau est un tableau HTML ordinaire, que les lecteurs d'écran peuvent donc parcourir. Les tableaux aléatoires proviennent d'un petit générateur congruentiel linéaire (multiplicateur 1\u00a0664\u00a0525, incrément 1\u00a0013\u00a0904\u00a0223, modulo 2³²) initialisé avec un nombre qui change quand tu rebats la liste.",
           "Les chiffres de s ne sont pas du tout stockés dans l'état. Le composant ne garde que le pas courant et recalcule s à partir du tableau à chaque rendu, en lisant la diagonale et en appliquant la règle choisie. Changer la source, la règle ou une ligne personnalisée remet donc le pas à zéro. « Lecture » est un simple minuteur à intervalle qui fait avancer le pas. La seule animation continue est une légère pulsation sur le chiffre le plus récent, que la règle de réduction des animations du site désactive.",
         ],
         code: FLIP_EXCERPT,
@@ -281,7 +281,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "«Passo» aggiunge una cifra di s, «Riproduci» le aggiunge automaticamente e «Reimposta» cancella s e ricomincia. Il cursore della velocità regola la pausa tra i passi automatici, da 1500 ms fino a 50 ms; il valore predefinito è 700 ms. La cella ambra è la cifra diagonale in uso in questo momento, le celle di un ambra tenue sono già state usate, e la colonna a destra registra ogni confronto come sₙ ≠ dₙₙ. Dopo la sedicesima cifra compare il pannello della contraddizione e le righe si possono evidenziare passandoci sopra con il mouse o con il focus da tastiera.",
+          "«Passo» aggiunge una cifra di s, «Riproduci» le aggiunge automaticamente e «Reimposta» cancella s e ricomincia. Il cursore della velocità regola la pausa tra i passi automatici, da 1500 ms fino a 100 ms; il valore predefinito è 700 ms. La cella ambra è la cifra diagonale in uso in questo momento, le celle di un ambra tenue sono già state usate, e la colonna a destra registra ogni confronto come sₙ ≠ dₙₙ. Dopo la sedicesima cifra compare il pannello della contraddizione e le righe si possono evidenziare passandoci sopra con il mouse o con il focus da tastiera.",
           "«Sorgente numeri» sceglie da dove arriva la tabella. «Decimale» la riempie di cifre pseudocasuali, «Binario» di zeri e uni pseudocasuali, e il pulsante «Rimescola la lista» estrae una nuova tabella. «Personale» ti lascia scrivere un numero decimale per riga. L'elenco personale precompilato comincia con le cifre di π, e, √2, della sezione aurea, di ln 2 e della costante di Eulero-Mascheroni, spostate dopo la virgola.",
           "La «Regola di cambio cifra» decide come viene alterata dₙₙ. «Scambia 5 ↔ 6» trasforma un 5 in un 6 e ogni altra cifra in un 5. «+1 mod 10» aggiunge uno ma salta lo 0 e il 9, quindi un 8 o un 9 diventano 1. In modalità binaria la regola viene ignorata e i bit passano semplicemente da 0 a 1 e viceversa; le righe sono allora trattate come successioni di 0 e 1, non come numeri (il prefisso «0.» viene omesso).",
         ],
@@ -399,7 +399,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "”Steg” lägger till en siffra i s, ”Spela” lägger till dem automatiskt och ”Återställ” rensar s och börjar om. Hastighetsreglaget bestämmer pausen mellan de automatiska stegen, från 1500 ms ner till 50 ms. Standardvärdet är 700 ms. Den bärnstensfärgade cellen är den diagonalsiffra som används just nu, de svagt bärnstensfärgade cellerna är redan använda, och kolumnen till höger antecknar varje jämförelse som sₙ ≠ dₙₙ. Efter den sextonde siffran visas motsägelsepanelen, och raderna kan markeras genom att hålla pekaren över dem eller med tangentbordsfokus.",
+          "”Steg” lägger till en siffra i s, ”Spela” lägger till dem automatiskt och ”Återställ” rensar s och börjar om. Hastighetsreglaget bestämmer pausen mellan de automatiska stegen, från 1500 ms ner till 100 ms. Standardvärdet är 700 ms. Den bärnstensfärgade cellen är den diagonalsiffra som används just nu, de svagt bärnstensfärgade cellerna är redan använda, och kolumnen till höger antecknar varje jämförelse som sₙ ≠ dₙₙ. Efter den sextonde siffran visas motsägelsepanelen, och raderna kan markeras genom att hålla pekaren över dem eller med tangentbordsfokus.",
           "”Talkälla” väljer var tabellen kommer ifrån. ”Decimal” fyller den med pseudoslumpade siffror, ”Binär” med pseudoslumpade nollor och ettor, och knappen för att blanda om drar en ny tabell. Med ”Egen” kan du skriva ett decimaltal per rad. Den förifyllda egna listan börjar med siffrorna i π, e, √2, gyllene snittet, ln 2 och Euler-Mascheronis konstant, flyttade bakom decimaltecknet.",
           "”Sifferbytesregel” avgör hur dₙₙ ändras. ”Byt 5 ↔ 6” gör en 5:a till en 6:a och varje annan siffra till en 5:a. ”+1 mod 10” lägger till ett men hoppar över 0 och 9, så en 8:a eller en 9:a blir 1. I binärläget ignoreras regeln och bitarna växlar helt enkelt mellan 0 och 1. Raderna behandlas då som 0/1-följder, inte som tal (prefixet ”0.” faller bort).",
         ],
@@ -458,7 +458,7 @@ export const CANTOR_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "«Steg» legger til ett siffer i s, «Spill» legger dem til automatisk, og «Nullstill» tømmer s og begynner på nytt. Glidebryteren «Fart» bestemmer pausen mellom de automatiske stegene, fra 1500 ms ned til 50 ms. Standardverdien er 700 ms. Den ravgule cellen er diagonalsifferet som brukes akkurat nå, de svakt ravgule cellene er allerede brukt, og kolonnen til høyre noterer hver sammenligning som sₙ ≠ dₙₙ. Etter det sekstende sifferet dukker motsigelsespanelet opp, og radene kan fremheves ved å holde pekeren over dem eller med tastaturfokus.",
+          "«Steg» legger til ett siffer i s, «Spill» legger dem til automatisk, og «Nullstill» tømmer s og begynner på nytt. Glidebryteren «Fart» bestemmer pausen mellom de automatiske stegene, fra 1500 ms ned til 100 ms. Standardverdien er 700 ms. Den ravgule cellen er diagonalsifferet som brukes akkurat nå, de svakt ravgule cellene er allerede brukt, og kolonnen til høyre noterer hver sammenligning som sₙ ≠ dₙₙ. Etter det sekstende sifferet dukker motsigelsespanelet opp, og radene kan fremheves ved å holde pekeren over dem eller med tastaturfokus.",
           "«Tallkilde» velger hvor tabellen kommer fra. «Desimal» fyller den med pseudotilfeldige sifre, «Binær» med pseudotilfeldige nuller og enere, og knappen for å stokke på nytt trekker en ny tabell. Med «Egen» kan du skrive inn ett desimaltall per linje. Den forhåndsutfylte egne listen begynner med sifrene i π, e, √2, det gylne snitt, ln 2 og Euler-Mascheroni-konstanten, flyttet bak desimaltegnet.",
           "Sifferbytteregelen avgjør hvordan dₙₙ endres. «Bytt 5 ↔ 6» gjør en 5-er til en 6-er og alle andre sifre til en 5-er. «+1 mod 10» legger til én, men hopper over 0 og 9, så en 8-er eller en 9-er blir til 1. I binærmodus ignoreres regelen, og bitene veksler ganske enkelt mellom 0 og 1. Radene behandles da som 0/1-følger, ikke som tall (prefikset «0.» faller bort).",
         ],

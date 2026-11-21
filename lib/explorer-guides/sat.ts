@@ -165,14 +165,14 @@ export const SAT_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Hay tres fórmulas disponibles. La primera tiene cuatro variables y seis cláusulas y es satisfacible, pero solo después de que el solver se retire de una primera conjetura equivocada. La segunda consta de las ocho cláusulas de tres literales sobre a, b y c; cada una prohíbe exactamente una de las ocho asignaciones posibles, así que juntas las prohíben todas. La tercera tiene cinco variables y siete cláusulas y es satisfacible.",
           "«Paso» ejecuta exactamente una acción de DPLL. «Reproducir» la repite de forma automática a la velocidad que marca el deslizador, de 1 a 12 pasos por segundo (3 por defecto), y se detiene sola cuando se encuentra la respuesta; «Pausa» y «Reiniciar» hacen lo que dicen.",
-          "Cada cláusula se colorea según su estado bajo la asignación actual: verde cuando está satisfecha, ámbar cuando es una cláusula unitaria a la que le queda exactamente un literal por forzar, rosa cuando todos los literales son falsos, y neutra mientras sigue indecisa. Los literales falsos aparecen tachados. La ruta de búsqueda enumera las asignaciones en orden: las fichas violetas son decisiones (▼ para una primera conjetura, ⤺ para una volteada), las fichas cian están forzadas por propagación. Una línea en la parte inferior narra cada movimiento.",
+          "Cada cláusula se colorea según su estado bajo la asignación actual: verde cuando está satisfecha, ámbar cuando es una cláusula unitaria a la que le queda exactamente un literal por forzar, rosa cuando todos los literales son falsos, y neutra mientras sigue indecisa. Los literales falsos aparecen tachados. La ruta de búsqueda enumera las asignaciones en orden: las fichas violetas son decisiones (▼ para una primera conjetura, ⤺ para una invertida), las fichas cian están forzadas por propagación. Una línea en la parte inferior narra cada movimiento.",
         ],
       },
       {
         heading: "Cómo está construido",
         paragraphs: [
           "Todo el solver es una única función pura, step(), que recibe la fórmula y el estado actual y devuelve el estado siguiente. Intenta cuatro cosas en un orden fijo. Si alguna cláusula está en conflicto, retrocede. Si no, y alguna cláusula es unitaria, fija el literal forzado. Si no, y todas las variables tienen valor, la fórmula está satisfecha. Si no, decide: toma la primera variable sin asignar en orden alfabético y la pone a verdadero.",
-          "El retroceso es cronológico. El solver va quitando del final de la traza las asignaciones forzadas y las decisiones que ya ha volteado hasta llegar a la decisión más reciente que solo se ha probado en un sentido, y entonces voltea esa. Si la traza se vacía antes, todas las ramas han fracasado y la fórmula es insatisfacible. A propósito, no hay aprendizaje de cláusulas ni un orden de variables ingenioso; los solvers modernos añaden justo eso sobre este esqueleto.",
+          "El retroceso es cronológico. El solver va quitando del final de la traza las asignaciones forzadas y las decisiones que ya ha invertido hasta llegar a la decisión más reciente que solo se ha probado en un sentido, y entonces invierte esa. Si la traza se vacía antes, todas las ramas han fracasado y la fórmula es insatisfacible. A propósito, no hay aprendizaje de cláusulas ni un orden de variables ingenioso; los solvers modernos añaden justo eso sobre este esqueleto.",
           "«Reproducir» usa un temporizador sencillo y nunca arranca por su cuenta, así que nada se mueve si no lo pides.",
         ],
         code: BACKTRACK_EXCERPT,
@@ -180,7 +180,7 @@ export const SAT_GUIDE: ExplorerGuide = {
       {
         heading: "Cómo leer las tres ejecuciones",
         paragraphs: [
-          "La primera fórmula necesita siete pasos. El solver supone a = verdadero, la cláusula 1 fuerza entonces b = verdadero, y la cláusula 2 se queda con todos sus literales falsos. Voltea a a falso; ahora la cláusula 3 fuerza c y la cláusula 4 fuerza d. Ya nada restringe b, pero toda variable necesita un valor, así que el solver decide b = verdadero e informa de que la fórmula es satisfacible con a = falso y b, c, d verdaderos.",
+          "La primera fórmula necesita siete pasos. El solver supone a = verdadero, la cláusula 1 fuerza entonces b = verdadero, y la cláusula 2 se queda con todos sus literales falsos. Invierte a a falso; ahora la cláusula 3 fuerza c y la cláusula 4 fuerza d. Ya nada restringe b, pero toda variable necesita un valor, así que el solver decide b = verdadero e informa de que la fórmula es satisfacible con a = falso y b, c, d verdaderos.",
           "La fórmula insatisfacible necesita once pasos: cada una de las cuatro combinaciones de a y b termina con c forzada en un sentido y una cláusula que exige el otro. La fórmula de cinco variables solo necesita seis pasos y ni un solo retroceso: tras a = verdadero, la propagación fuerza c, d y e, y solo queda b por decidir.",
         ],
       },

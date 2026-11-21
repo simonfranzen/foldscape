@@ -143,7 +143,7 @@ const EXPLORER_UI: Record<Locale, ExplorerUi> = {
       RRLLLRLLLRRR: { label: "Triângulo", note: "triângulo preenchido, cresce e desloca-se" },
     },
     ruleHeading: "Regra",
-    stepsPerFrame: "Passos / frame",
+    stepsPerFrame: "Passos / fotograma",
     cellSize: "Tamanho da célula (px)",
     play: "Play",
     pause: "Pausa",

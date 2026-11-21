@@ -166,7 +166,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
         heading: "Qué hacen los controles",
         paragraphs: [
           "La lista «Poliedro» contiene once figuras predefinidas: los cinco sólidos platónicos, el tetraedro truncado, el cuboctaedro, el icosaedro truncado, una icosfera, un toro y un doble toro. Cada entrada muestra sus recuentos para que puedas compararlos de un vistazo. La página empieza con el cubo.",
-          "«Contar vértices», «Contar aristas» y «Contar caras» ejecutan cada uno una etapa del recuento. Las figuras pequeñas revelan un elemento cada 60 milisegundos; las mallas grandes revelan por bloques cada 20 milisegundos y detienen la animación tras 200 elementos, escalando la cuenta hasta el número real para que no tengas que esperar 480 aristas una por una. «Mostrar todo» salta directamente al estado final, y «Restablecer» borra la cuenta. «Auto-rotación» hace girar la figura de forma continua; su deslizador de velocidad va de 0 a 2 (por defecto 0,6), y desactivar «Auto-rotación» congela la figura en su orientación actual. Si tu sistema pide movimiento reducido, la figura se queda quieta y «Auto-rotación» está desactivada, mientras que los pasos de recuento siguen funcionando.",
+          "«Contar vértices», «Contar aristas» y «Contar caras» ejecutan cada uno una etapa del recuento. Las figuras pequeñas revelan un elemento cada 60 milisegundos; las mallas grandes revelan por bloques cada 20 milisegundos y detienen la animación tras 200 elementos, escalando la cuenta hasta el número real para que no tengas que esperar 480 aristas una por una. «Mostrar todo» salta directamente al estado final, y «Restablecer» borra la cuenta. «Autorrotación» hace girar la figura de forma continua; su deslizador de velocidad va de 0 a 2 (por defecto 0,6), y desactivar «Autorrotación» congela la figura en su orientación actual. Si tu sistema pide movimiento reducido, la figura se queda quieta y «Autorrotación» está desactivada, mientras que los pasos de recuento siguen funcionando.",
         ],
       },
       {
@@ -195,7 +195,7 @@ export const EULERCHAR_GUIDE: ExplorerGuide = {
       },
       {
         title: "Refina sin cambiar χ",
-        text: "Compara el icosaedro con la icosfera. La icosfera tiene más de diez veces más vértices, aristas y caras, y aun así las dos sumas dan 2. Desactiva «Auto-rotación» y fíjate en que las doce esquinas originales siguen estando donde se juntan cinco triángulos.",
+        text: "Compara el icosaedro con la icosfera. La icosfera tiene más de diez veces más vértices, aristas y caras, y aun así las dos sumas dan 2. Desactiva «Autorrotación» y fíjate en que las doce esquinas originales siguen estando donde se juntan cinco triángulos.",
       },
       {
         title: "Un asa cuesta dos",

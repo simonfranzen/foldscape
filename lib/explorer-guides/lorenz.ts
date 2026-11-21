@@ -219,7 +219,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
         heading: "Comment c'est construit",
         paragraphs: [
           "La simulation tourne entièrement dans ton navigateur, sur un canevas 2D. Elle intègre les équations avec la méthode classique de Runge-Kutta d'ordre quatre (RK4), qui évalue le membre de droite quatre fois par pas et combine les pentes. Comparée à la méthode d'Euler, plus naïve, RK4 reste précise avec des pas bien plus grands, ce qui compte quand on veut douze pas par image d'animation sur un téléphone.",
-          "Chaque nouvelle position entre dans un tampon circulaire de 6 000 points stocké dans un Float32Array, si bien que la mémoire reste constante quelle que soit la durée d'exécution de la page. Les points sont colorés selon leur âge, d'un ambre chaud pour les plus récents au violet pour les plus anciens, et chaque image peint une couche semi-transparente sur le canevas, ce qui produit la douce traînée de mouvement. Les boutons de projection choisissent lesquelles des trois coordonnées sont dessinées, deux à la fois : XZ montre le papillon bien connu, XY la vue de dessus, YZ la vue de côté.",
+          "Chaque nouvelle position entre dans un tampon circulaire de 6\u00a0000 points stocké dans un Float32Array, si bien que la mémoire reste constante quelle que soit la durée d'exécution de la page. Les points sont colorés selon leur âge, d'un ambre chaud pour les plus récents au violet pour les plus anciens, et chaque image peint une couche semi-transparente sur le canevas, ce qui produit la douce traînée de mouvement. Les boutons de projection choisissent lesquelles des trois coordonnées sont dessinées, deux à la fois : XZ montre le papillon bien connu, XY la vue de dessus, YZ la vue de côté.",
           "Modifier σ, ρ ou β relance la trajectoire en (0,1 ; 0 ; 0) : tu vois donc toujours la même condition initiale évoluer sous de nouvelles règles. Si ton système demande une réduction des animations, l'animation est remplacée par une image fixe : la simulation effectue 800 pas d'échauffement pour rejoindre l'attracteur, puis intègre toute la traînée d'un coup et la dessine une seule fois.",
         ],
         code: RK4_EXCERPT,
@@ -297,7 +297,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       },
       {
         title: "Spegni il caos con σ",
-        text: "Tieni ρ a 28 e abbassa σ a 3. Gli equilibri tornano stabili e il punto scende a spirale in un'ala. Riporta σ sopra 4 e la farfalla ritorna.",
+        text: "Tieni ρ a 28 e abbassa σ a 3. Gli equilibri tornano stabili e il punto scende a spirale in un'ala. Riporta σ a 7 o più e la farfalla ritorna.",
       },
       {
         title: "Lascia riposare il fluido",
@@ -413,7 +413,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       },
       {
         title: "Stäng av kaoset med σ",
-        text: "Låt ρ stå på 28 och sänk σ till 3. Jämviktslägena är stabila igen och punkten går i spiral in i en vinge. Höj σ över 4 igen och fjärilen kommer tillbaka.",
+        text: "Låt ρ stå på 28 och sänk σ till 3. Jämviktslägena är stabila igen och punkten går i spiral in i en vinge. Höj σ till 7 eller mer igen och fjärilen kommer tillbaka.",
       },
       {
         title: "Låt vätskan vila",
@@ -471,7 +471,7 @@ export const LORENZ_GUIDE: ExplorerGuide = {
       },
       {
         title: "Slå av kaoset med σ",
-        text: "La ρ stå på 28 og senk σ til 3. Likevektene er stabile igjen, og punktet går i spiral inn i én vinge. Hev σ over 4 igjen, og sommerfuglen kommer tilbake.",
+        text: "La ρ stå på 28 og senk σ til 3. Likevektene er stabile igjen, og punktet går i spiral inn i én vinge. Hev σ til 7 eller mer igjen, og sommerfuglen kommer tilbake.",
       },
       {
         title: "La væsken hvile",

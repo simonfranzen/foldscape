@@ -225,8 +225,8 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
         heading: "Comment c'est construit",
         paragraphs: [
           "Chaque pixel lâche la masse au repos au centre de sa cellule et intègre l'équation par la méthode d'Euler semi-implicite avec un pas fixe dt = 0,02 : la vitesse est d'abord mise à jour à partir de l'accélération, puis la position à partir de la nouvelle vitesse. Cet ordre coûte à peine plus cher que la méthode d'Euler simple, mais empêche les oscillations de gagner de l'énergie à partir de rien, ce qui suffit ici, car le seul résultat qui compte est de savoir quel aimant l'emporte.",
-          "Tous les huit pas, le code vérifie si la masse se trouve à une distance inférieure à √0,06 ≈ 0,245 d'un aimant et se déplace moins vite que √0,005 ≈ 0,07. Si c'est le cas, cet aimant est le vainqueur et le nombre de pas devient le temps de capture. Si 3 000 pas s'écoulent sans capture, ou si les nombres explosent, c'est l'aimant le plus proche qui est retenu et le pixel reçoit la teinte la plus sombre.",
-          "À la résolution par défaut, cela fait 32 400 trajectoires de 3 000 pas au maximum chacune, et la carte est donc calculée par tranches de six lignes par image d'animation. L'indicateur de progression grimpe pendant que l'image se remplit de haut en bas, et le navigateur reste réactif. Les pixels sont écrits dans un tampon ImageData à la résolution choisie, qui est ensuite agrandi sans lissage dans le plus grand carré centré du canevas, de sorte que le triangle n'est jamais déformé. Il n'y a aucune animation permanente : dès que l'indicateur affiche « prêt », l'image ne bouge plus.",
+          "Tous les huit pas, le code vérifie si la masse se trouve à une distance inférieure à √0,06 ≈ 0,245 d'un aimant et se déplace moins vite que √0,005 ≈ 0,07. Si c'est le cas, cet aimant est le vainqueur et le nombre de pas devient le temps de capture. Si 3\u00a0000 pas s'écoulent sans capture, ou si les nombres explosent, c'est l'aimant le plus proche qui est retenu et le pixel reçoit la teinte la plus sombre.",
+          "À la résolution par défaut, cela fait 32\u00a0400 trajectoires de 3\u00a0000 pas au maximum chacune, et la carte est donc calculée par tranches de six lignes par image d'animation. L'indicateur de progression grimpe pendant que l'image se remplit de haut en bas, et le navigateur reste réactif. Les pixels sont écrits dans un tampon ImageData à la résolution choisie, qui est ensuite agrandi sans lissage dans le plus grand carré centré du canevas, de sorte que le triangle n'est jamais déformé. Il n'y a aucune animation permanente : dès que l'indicateur affiche « prêt », l'image ne bouge plus.",
         ],
         code: STEP_EXCERPT,
       },
@@ -253,7 +253,7 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
       },
       {
         title: "Des aimants trop faibles pour retenir",
-        text: "Règle k sur 0,05 et ω² sur 2. Le ressort l'emporte désormais sur les aimants, et la masse a tendance à s'immobiliser près du centre, là où aucun aimant ne peut la revendiquer. La capture n'est jamais enregistrée, le code se rabat sur l'aimant le plus proche au bout de 3 000 pas et, avec l'ombrage activé, la carte devient sombre.",
+        text: "Règle k sur 0,05 et ω² sur 2. Le ressort l'emporte désormais sur les aimants, et la masse a tendance à s'immobiliser près du centre, là où aucun aimant ne peut la revendiquer. La capture n'est jamais enregistrée, le code se rabat sur l'aimant le plus proche au bout de 3\u00a0000 pas et, avec l'ombrage activé, la carte devient sombre.",
       },
     ],
   },
@@ -344,7 +344,7 @@ export const MAGPENDULUM_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Cada píxel larga o peso em repouso no centro da sua célula e integra a equação com o método de Euler semi-implícito, com um passo fixo de dt = 0,02: primeiro atualiza-se a velocidade a partir da aceleração, depois a posição a partir da nova velocidade. Esta ordem custa pouco mais do que o Euler simples, mas impede que as oscilações ganhem energia do nada, o que aqui é suficiente, porque o único resultado que interessa é qual dos ímanes ganha.",
           "De oito em oito passos, o código verifica se o peso está a uma distância inferior a √0,06 ≈ 0,245 de um íman e se move mais devagar do que √0,005 ≈ 0,07. Se assim for, esse íman é o vencedor e o número de passos passa a ser o tempo de captura. Se passarem 3000 passos sem captura, ou se os números dispararem, toma-se o íman mais próximo e o píxel recebe o tom mais escuro.",
-          "Na resolução predefinida são 32 400 trajetórias com um máximo de 3000 passos cada, pelo que o mapa é calculado em fatias de seis linhas por fotograma de animação. O indicador de progresso vai subindo enquanto a imagem se preenche de cima para baixo, e o navegador continua a responder. Os píxeis vão para um buffer ImageData na resolução escolhida, que é depois ampliado sem suavização para o maior quadrado centrado do canvas, de modo que o triângulo nunca fica deformado. Não há nenhuma animação contínua: assim que o indicador mostra «pronto», a imagem fica parada.",
+          "Na resolução predefinida são 32\u00a0400 trajetórias com um máximo de 3000 passos cada, pelo que o mapa é calculado em fatias de seis linhas por fotograma de animação. O indicador de progresso vai subindo enquanto a imagem se preenche de cima para baixo, e o navegador continua a responder. Os píxeis vão para um buffer ImageData na resolução escolhida, que é depois ampliado sem suavização para o maior quadrado centrado do canvas, de modo que o triângulo nunca fica deformado. Não há nenhuma animação contínua: assim que o indicador mostra «pronto», a imagem fica parada.",
         ],
         code: STEP_EXCERPT,
       },

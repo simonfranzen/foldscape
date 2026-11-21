@@ -406,10 +406,10 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     walkProgress: (v, t) => `${v} / ${t} pontes atravessadas`,
     walkComplete: "Percurso completo: cada ponte usada exatamente uma vez.",
     parityLabel: "Paridade",
-    paritySubDisconnected: "O grafo está desconectado",
+    paritySubDisconnected: "O grafo não é conexo",
     paritySubOdd: (n) => `${n} vértices de grau ímpar`,
     paritySubZero: "0 vértices ímpares, percurso fechado possível",
-    paritySubEnds: (a, b) => `comece em ${a}, termine em ${b}`,
+    paritySubEnds: (a, b) => `começa em ${a}, termina em ${b}`,
     legendLabel: "Legenda",
     legendHint:
       "Clica numa ponte âmbar a partir do teu vértice atual. Pontes cinzentas estão inativas.",

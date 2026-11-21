@@ -589,7 +589,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     twoOrbits: {
       captionA: "Trajetória A · x₀ = 0,1",
       captionB: "Trajetória B · x₀ = 0,1 + 10⁻⁵",
-      playLabel: "Tocar",
+      playLabel: "Reproduzir",
       pauseLabel: "Pausa",
       resetLabel: "Reset",
       timeLabel: "t",

@@ -229,7 +229,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Il n'y a ici aucune bibliothèque d'apprentissage automatique. Le réseau de score est écrit à la main en TypeScript pur : quatre entrées (x, y, ainsi que le sinus et le cosinus de πt/T comme encodage du temps), deux couches cachées de 32 unités avec des activations GELU, et deux sorties. Les poids sont stockés dans des Float32Array, démarrent avec une initialisation de He issue d'un générateur aléatoire à graine fixe, et sont mis à jour par une rétropropagation et un optimiseur Adam écrits à la main, avec un taux d'apprentissage de 0,005.",
           "Chaque image de l'animation exécute six mini-lots de 48 exemples d'entraînement, puis fait avancer chaque marcheur de deux pas inverses avec la mise à jour montrée ci-dessous, qui est le pas DDPM standard avec la variance a posteriori comme échelle de bruit. Toutes les 12 images, le réseau est évalué sur une grille de 28 × 28 au niveau de bruit médian, et l'amplitude de sa prédiction de bruit, inversée et normalisée, est peinte sous la forme d'une faible lueur cyan. Là où le bruit prédit est faible, le point ressemble déjà à une donnée. Chaque marcheur garde une traînée de huit images.",
-          "Quand la réduction des animations est activée, la boucle d'animation ne démarre jamais. Le réseau s'entraîne hors écran pendant 1 800 mini-lots, le processus inverse s'exécute une fois du bruit jusqu'à t = 0, et le canevas montre cet état final sous forme d'image fixe. Modifier une commande produit une nouvelle image fixe, et « Pause » est désactivé.",
+          "Quand la réduction des animations est activée, la boucle d'animation ne démarre jamais. Le réseau s'entraîne hors écran pendant 1\u00a0800 mini-lots, le processus inverse s'exécute une fois du bruit jusqu'à t = 0, et le canevas montre cet état final sous forme d'image fixe. Modifier une commande produit une nouvelle image fixe, et « Pause » est désactivé.",
         ],
         code: REVERSE_EXCERPT,
       },
@@ -340,7 +340,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "«Conjunto de dados» escolhe a forma alvo: duas luas (a opção por omissão), três manchas gaussianas ou uma espiral de dois braços. Cada uma tem 256 pontos. «Calendário de ruído» alterna entre um calendário linear de β, em que o ruído acrescentado por passo cresce uniformemente de 0,0001 a 0,02, e o calendário cosseno de ᾱ (por omissão), que dá ao sinal sobrevivente a forma de um quarto de cosseno, para que caia suavemente no início e no fim.",
-          "«Passos de difusão T» vai de 10 a 120 em saltos de 5, com 40 por omissão. Mudar o conjunto de dados, o calendário ou T deita a rede fora e treina uma nova de raiz, porque um modelo treinado para um calendário não entende outro. «Caminhantes» (de 20 a 400, 160 por omissão) só muda quantos pontos são amostrados e mantém o modelo treinado. «Pausar» congela o treino e a amostragem, e «Reset do modelo» recomeça o treino sem alterar nenhuma definição.",
+          "«Passos de difusão T» vai de 10 a 120 em saltos de 5, com 40 por omissão. Mudar o conjunto de dados, o calendário ou T deita a rede fora e treina uma nova de raiz, porque um modelo treinado para um calendário não entende outro. «Caminhantes» (de 20 a 400, 160 por omissão) só muda quantos pontos são amostrados e mantém o modelo treinado. «Pausar» congela o treino e a amostragem, e «Reiniciar o modelo» recomeça o treino sem alterar nenhuma definição.",
           "A faixa de estado apresenta uma perda corrente, suavizada com uma média móvel exponencial, e um contador de épocas que, por convenção, avança uma vez a cada 30 minilotes.",
         ],
       },
@@ -368,7 +368,7 @@ export const DIFFUSION_GUIDE: ExplorerGuide = {
       },
       {
         title: "Observa a aprendizagem entre coortes",
-        text: "Carrega em «Reset do modelo» com o conjunto de dados em espiral e observa as primeiras coortes. Os primeiros caminhantes vagueiam e falham os braços; depois de a perda estabilizar, a mesma cadeia inversa desenha a espiral com muito mais fidelidade.",
+        text: "Carrega em «Reiniciar o modelo» com o conjunto de dados em espiral e observa as primeiras coortes. Os primeiros caminhantes vagueiam e falham os braços; depois de a perda estabilizar, a mesma cadeia inversa desenha a espiral com muito mais fidelidade.",
       },
       {
         title: "Mais passos, caminhada mais fina",

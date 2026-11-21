@@ -281,7 +281,7 @@ export const EULER_GUIDE: ExplorerGuide = {
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "Il cursore «Angolo θ» va da 0 a 2π a passi di 0,01 radianti. I cinque pulsanti sotto saltano ai quarti di giro 0, π/2, π, 3π/2 e 2π, e riportano come etichetta il punto di arrivo: 1, i, −1, −i e di nuovo 1. Il riquadro nell'angolo del piano mostra θ, cos θ, sin θ e il punto scritto come a + bi.",
+          "Il cursore «Angolo θ» va da 0 a 2π a passi di 0,01 radianti, e la lettura sopra di esso mostra il valore in radianti e in gradi. I cinque pulsanti sotto saltano ai quarti di giro 0, π/2, π, 3π/2 e 2π, e riportano come etichetta il punto di arrivo: 1, i, −1, −i e di nuovo 1. Il riquadro nell'angolo del piano mostra θ, cos θ, sin θ e il punto scritto come a + bi.",
           "«Avvia» anima θ a velocità angolare costante, impostata dal cursore «Velocità» tra 0,05 e 3 radianti al secondo (predefinito 0,6, quindi un giro completo dura circa 10,5 secondi). Quando θ supera 2π riparte da 0. «Reimposta» riporta θ a 0. Ogni volta che θ dista meno di 0,02 radianti da π, il punto diventa rosa, il piano si copre di un leggero velo rosa e in alto compare la scritta e^(iπ) + 1 = 0.",
         ],
       },
@@ -399,7 +399,7 @@ export const EULER_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "Reglaget ”Vinkel θ” går från 0 till 2π i steg om 0,01 radianer. De fem knapparna under hoppar till kvartsvarven 0, π/2, π, 3π/2 och 2π, märkta med var punkten hamnar: 1, i, −1, −i och 1 igen. Rutan i planets hörn visar θ, cos θ, sin θ och punkten skriven som a + bi.",
+          "Reglaget ”Vinkel θ” går från 0 till 2π i steg om 0,01 radianer, och avläsningen ovanför visar värdet i radianer och grader. De fem knapparna under hoppar till kvartsvarven 0, π/2, π, 3π/2 och 2π, märkta med var punkten hamnar: 1, i, −1, −i och 1 igen. Rutan i planets hörn visar θ, cos θ, sin θ och punkten skriven som a + bi.",
           "”Spela” animerar θ med konstant vinkelhastighet, som ställs in med reglaget ”Hastighet” från 0,05 till 3 radianer per sekund (standard 0,6, så ett helt varv tar ungefär 10,5 sekunder). När θ passerar 2π börjar den om från 0. ”Återställ” sätter θ till 0 igen. Så snart θ ligger inom 0,02 radianer från π blir punkten rosa, planet får en svag rosa ton och texten e^(iπ) + 1 = 0 visas högst upp.",
         ],
       },

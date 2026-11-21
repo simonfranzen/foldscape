@@ -760,10 +760,10 @@ const pt: RichStory = {
   miniSim: {
     seedBadge: "semente central",
     stuck: "fixados",
-    walkers: "Caminhantes / quadro",
+    walkers: "Caminhantes / fotograma",
     stickiness: "Aderência",
     pause: "❚❚ Pausa",
-    play: "▶ Jogar",
+    play: "▶ Reproduzir",
     reset: "⟳ Repor",
     hint: "Mais caminhantes · crescimento mais rápido. Menos aderência · aglomerado mais denso e compacto: os caminhantes passam pelas pontas antes de congelar.",
     canvasLabel: "Simulação DLA ao vivo a crescer a partir de uma semente central",
@@ -940,7 +940,7 @@ const no: RichStory = {
   miniSim: {
     seedBadge: "senterfrø",
     stuck: "festet",
-    walkers: "Vandrere / ramme",
+    walkers: "Vandrere / bilde",
     stickiness: "Klebrighet",
     pause: "❚❚ Pause",
     play: "▶ Spill",

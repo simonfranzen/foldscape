@@ -209,7 +209,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
   },
   fr: {
     metaDescription:
-      "La fourmi de Langton en direct : regarde le chaos devenir une autoroute de 104 pas vers le pas 10 000 et essaie des règles multicolores comme RLR et LLRR.",
+      "La fourmi de Langton en direct : regarde le chaos devenir une autoroute de 104 pas vers le pas 10\u00a0000 et essaie des règles multicolores comme RLR et LLRR.",
     heading: "Comment fonctionne cet explorateur",
     intro:
       "Le carré blanc, c'est la fourmi. Elle se trouve sur une grille de cellules toutes vides au départ, et elle suit une seule règle : regarde la couleur sous toi, tourne à gauche ou à droite selon cette couleur, change la couleur, avance d'un pas. Il ne se passe rien d'autre. Et pourtant l'image traverse trois phases très différentes : un petit début symétrique, une longue période de chaos apparent, puis, soudain, un ordre parfait.",
@@ -226,7 +226,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "Les boutons de règle changent de préréglage et repartent d'une grille vide. L'étiquette au-dessus du canevas indique la règle active et son nombre de couleurs, le compteur à droite indique combien de pas la fourmi a effectués.",
-          "« Pas / image » va de 1 à 5 000 et démarre à 800. À environ 60 images par seconde, la valeur par défaut représente déjà des dizaines de milliers de pas par seconde, si bien que la fourmi classique atteint son autoroute en une fraction de seconde. Pour vraiment observer la phase chaotique, descends le curseur à 10 ou 20. À 10 pas par image, il faut à la fourmi à peu près un quart de minute pour atteindre le pas 10 000.",
+          "« Pas / image » va de 1 à 5\u00a0000 et démarre à 800. À environ 60 images par seconde, la valeur par défaut représente déjà des dizaines de milliers de pas par seconde, si bien que la fourmi classique atteint son autoroute en une fraction de seconde. Pour vraiment observer la phase chaotique, descends le curseur à 10 ou 20. À 10 pas par image, il faut à la fourmi à peu près un quart de minute pour atteindre le pas 10\u00a0000.",
           "« Taille de cellule » fixe le nombre de pixels CSS que couvre une cellule de la grille, de 2 à 10, avec 4 au départ. La modifier relance la simulation, car la grille doit être reconstruite. « Lecture » et « Pause » figent la fourmi sans rien perdre, « Réinit. » vide la grille et replace la fourmi au centre, tournée vers le nord.",
         ],
       },
@@ -251,11 +251,11 @@ export const LANGTON_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Surprends l'autoroute en train de se former",
-        text: "Choisis la règle classique RL, règle « Pas / image » sur 10 et appuie sur « Réinit. ». Surveille le compteur : pendant longtemps la tache grossit sans plan visible, et peu après le pas 10 000 une étroite bande diagonale commence à s'en détacher. Cette bande répète sans cesse les mêmes 104 pas et avance de deux cellules par cycle.",
+        text: "Choisis la règle classique RL, règle « Pas / image » sur 10 et appuie sur « Réinit. ». Surveille le compteur : pendant longtemps la tache grossit sans plan visible, et peu après le pas 10\u00a0000 une étroite bande diagonale commence à s'en détacher. Cette bande répète sans cesse les mêmes 104 pas et avance de deux cellules par cycle.",
       },
       {
         title: "Envoie l'autoroute dans le décor",
-        text: "Garde RL, règle la taille de cellule sur 10 et « Pas / image » sur 5 000. La grille est maintenant petite, l'autoroute fait donc vite le tour par le bord et heurte l'ancien motif. Regarde l'ordre se défaire de nouveau en chaos.",
+        text: "Garde RL, règle la taille de cellule sur 10 et « Pas / image » sur 5\u00a0000. La grille est maintenant petite, l'autoroute fait donc vite le tour par le bord et heurte l'ancien motif. Regarde l'ordre se défaire de nouveau en chaos.",
       },
       {
         title: "Compare croissance symétrique et croissance chaotique",
@@ -315,7 +315,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
       },
       {
         title: "Fai schiantare l'autostrada",
-        text: "Resta su RL, imposta la dimensione della cella a 10 e i passi per fotogramma a 5000. Ora la griglia è piccola, quindi l'autostrada fa presto il giro oltre il bordo e colpisce il vecchio disegno. Guarda l'ordine sfaldarsi di nuovo nel caos.",
+        text: "Resta su RL, imposta la dimensione della cella a 10 e «Passi / frame» a 5000. Ora la griglia è piccola, quindi l'autostrada fa presto il giro oltre il bordo e colpisce il vecchio disegno. Guarda l'ordine sfaldarsi di nuovo nel caos.",
       },
       {
         title: "Confronta crescita simmetrica e crescita caotica",
@@ -329,7 +329,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
   },
   pt: {
     metaDescription:
-      "A formiga de Langton ao vivo: vê o caos tornar-se uma autoestrada de 104 passos perto do passo 10 000 e experimenta regras multicolores como RLR e LLRR.",
+      "A formiga de Langton ao vivo: vê o caos tornar-se uma autoestrada de 104 passos perto do passo 10\u00a0000 e experimenta regras multicolores como RLR e LLRR.",
     heading: "Como funciona este explorador",
     intro:
       "O quadrado branco é a formiga. Está numa grelha de células que começam todas vazias, e segue uma única regra: olha para a cor que tens por baixo, vira à esquerda ou à direita consoante essa cor, muda a cor, dá um passo em frente. Não acontece mais nada. E, no entanto, a imagem passa por três fases muito diferentes: um pequeno início simétrico, um longo período de caos aparente e depois, de repente, ordem perfeita.",
@@ -346,7 +346,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "Os botões de regra mudam a predefinição e recomeçam a partir de uma grelha vazia. A etiqueta por cima do canvas mostra a regra ativa e o seu número de cores, o contador à direita mostra quantos passos a formiga já deu.",
-          "«Passos / frame» vai de 1 a 5000 e começa em 800. A cerca de 60 fotogramas por segundo, o valor por omissão já significa dezenas de milhares de passos por segundo, pelo que a formiga clássica chega à sua autoestrada numa fração de segundo. Para veres mesmo a fase caótica, baixa o cursor para 10 ou 20. Com 10 passos por fotograma, a formiga precisa de mais ou menos um quarto de minuto para chegar ao passo 10 000.",
+          "«Passos / fotograma» vai de 1 a 5000 e começa em 800. A cerca de 60 fotogramas por segundo, o valor por omissão já significa dezenas de milhares de passos por segundo, pelo que a formiga clássica chega à sua autoestrada numa fração de segundo. Para veres mesmo a fase caótica, baixa o cursor para 10 ou 20. Com 10 passos por fotograma, a formiga precisa de mais ou menos um quarto de minuto para chegar ao passo 10\u00a0000.",
           "«Tamanho da célula» define quantos píxeis CSS ocupa uma célula da grelha, de 2 a 10, começando em 4. Alterá-lo recomeça a execução, porque a grelha tem de ser reconstruída. «Play» e «Pausa» congelam a formiga sem perder nada, «Repor» limpa a grelha e volta a pôr a formiga no centro, virada para norte.",
         ],
       },
@@ -371,11 +371,11 @@ export const LANGTON_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Apanha a autoestrada a formar-se",
-        text: "Escolhe a regra clássica RL, põe «Passos / frame» em 10 e carrega em «Repor». Observa o contador: durante muito tempo a mancha cresce sem qualquer plano visível, e pouco depois do passo 10 000 uma faixa diagonal estreita começa a sair dela. Essa faixa repete vezes sem conta os mesmos 104 passos e avança duas células por ciclo.",
+        text: "Escolhe a regra clássica RL, põe «Passos / fotograma» em 10 e carrega em «Repor». Observa o contador: durante muito tempo a mancha cresce sem qualquer plano visível, e pouco depois do passo 10\u00a0000 uma faixa diagonal estreita começa a sair dela. Essa faixa repete vezes sem conta os mesmos 104 passos e avança duas células por ciclo.",
       },
       {
         title: "Deixa a autoestrada despistar-se",
-        text: "Mantém RL, põe o tamanho da célula em 10 e os passos por fotograma em 5000. A grelha é agora pequena, por isso a autoestrada dá depressa a volta pela margem e embate no padrão antigo. Vê a ordem a desfazer-se outra vez em caos.",
+        text: "Mantém RL, põe o tamanho da célula em 10 e «Passos / fotograma» em 5000. A grelha é agora pequena, por isso a autoestrada dá depressa a volta pela margem e embate no padrão antigo. Vê a ordem a desfazer-se outra vez em caos.",
       },
       {
         title: "Compara o crescimento simétrico e o caótico",
@@ -435,7 +435,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
       },
       {
         title: "Låt motorvägen krascha",
-        text: "Behåll RL, ställ cellstorleken på 10 och steg per bildruta på 5000. Rutnätet är nu litet, så motorvägen går snabbt runt kanten och träffar det gamla mönstret. Se hur ordningen faller sönder i kaos igen.",
+        text: "Behåll RL, ställ cellstorleken på 10 och ”Steg / bildruta” på 5000. Rutnätet är nu litet, så motorvägen går snabbt runt kanten och träffar det gamla mönstret. Se hur ordningen faller sönder i kaos igen.",
       },
       {
         title: "Jämför symmetrisk och kaotisk tillväxt",
@@ -495,7 +495,7 @@ export const LANGTON_GUIDE: ExplorerGuide = {
       },
       {
         title: "La motorveien krasje",
-        text: "Behold RL, sett cellestørrelsen til 10 og steg per bilde til 5000. Rutenettet er nå lite, så motorveien går raskt rundt kanten og treffer det gamle mønsteret. Se hvordan ordenen bryter sammen i kaos igjen.",
+        text: "Behold RL, sett cellestørrelsen til 10 og «Steg / bilde» til 5000. Rutenettet er nå lite, så motorveien går raskt rundt kanten og treffer det gamle mønsteret. Se hvordan ordenen bryter sammen i kaos igjen.",
       },
       {
         title: "Sammenlign symmetrisk og kaotisk vekst",

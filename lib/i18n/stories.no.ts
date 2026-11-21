@@ -106,8 +106,8 @@ export const no: StoriesDict = {
       title: "Iota-kombinatoren",
       tagline: "Ett symbol, Turing-komplett.",
       intro:
-        "Iota er den enkleste kjente basisen med én kombinator: en enkelt omskrivingsregel som enhver beregnbar funksjon følger fra. Reduseren leser ethvert SKI- eller Iota-uttrykk og skriver det om, trinn for trinn, til normalformen.",
-      ctaInteractive: "→ Åpne Reduseren",
+        "Iota er den enkleste kjente basisen med én kombinator: en enkelt omskrivingsregel som enhver beregnbar funksjon følger fra. Redusereren leser ethvert SKI- eller Iota-uttrykk og skriver det om, trinn for trinn, til normalformen.",
+      ctaInteractive: "→ Åpne Redusereren",
       sections: [
         {
           pretitle: "Trinn én · Kombinatorisk logikk",
@@ -127,7 +127,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Hvorfor det betyr noe",
           title: "En filosofisk kvittering",
-          body: "Iota produserer ikke raske eller lesbare programmer; den produserer eksistensbevis. Enhver algoritme som kan skrives i hvilket som helst språk, kan kodes som et Iota-uttrykk. Reduseren i naborommet lar deg skrive et uttrykk og se det omskrives, trinn for trinn, til normalformen (når en finnes). Det er beregning i sin mest avkledde form: ett enkelt symbol, én enkelt regel, hele matematikken.",
+          body: "Iota produserer ikke raske eller lesbare programmer; den produserer eksistensbevis. Enhver algoritme som kan skrives i hvilket som helst språk, kan kodes som et Iota-uttrykk. Redusereren i naborommet lar deg skrive et uttrykk og se det omskrives, trinn for trinn, til normalformen (når en finnes). Det er beregning i sin mest avkledde form: ett enkelt symbol, én enkelt regel, hele matematikken.",
         },
       ],
     },

@@ -177,7 +177,7 @@ export const AIZAWA_GUIDE: ExplorerGuide = {
         heading: "Qué hacen los controles",
         paragraphs: [
           "Los seis deslizadores de parámetros cubren a de 0,5 a 1,5, b de 0,3 a 1,2, c de 0,2 a 1,5, d de 2 a 6, e de 0,1 a 0,6 y f de 0 a 0,3. Cambiar un parámetro no reinicia la órbita: el punto sigue adelante con las nuevas reglas, y tú ves cómo la forma antigua se disuelve en la nueva. El deslizador dt (de 0,005 a 0,02, por defecto 0,01) fija el tamaño de cada paso de integración.",
-          "«Pasos / fotograma» va de 200 a 6000 y empieza en 2400. Arrastra el lienzo para girar la vista, desactiva la auto-rotación para detener el giro lento y usa «Borrar y reiniciar» para limpiar el lienzo y devolver el punto a su posición inicial (0,1; 0; 0). Los botones de atractor cambian a Rössler, Thomas o Halvorsen con sus propios parámetros clásicos.",
+          "«Pasos / fotograma» va de 200 a 6000 y empieza en 2400. Arrastra el lienzo para girar la vista, desactiva la autorrotación para detener el giro lento y usa «Borrar y reiniciar» para limpiar el lienzo y devolver el punto a su posición inicial (0,1; 0; 0). Los botones de atractor cambian a Rössler, Thomas o Halvorsen con sus propios parámetros clásicos.",
         ],
       },
       {
@@ -201,7 +201,7 @@ export const AIZAWA_GUIDE: ExplorerGuide = {
       },
       {
         title: "Sigue una sola órbita",
-        text: "Desactiva la auto-rotación y baja «Pasos / fotograma» a 200. Ahora puedes ver cómo el punto gira en espiral alrededor del eje, sube por el tubo central y vuelve a caer sobre la envoltura.",
+        text: "Desactiva la autorrotación y baja «Pasos / fotograma» a 200. Ahora puedes ver cómo el punto gira en espiral alrededor del eje, sube por el tubo central y vuelve a caer sobre la envoltura.",
       },
       {
         title: "Visita a los parientes",
@@ -235,14 +235,14 @@ export const AIZAWA_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "Les six curseurs de paramètres couvrent a de 0,5 à 1,5 ; b de 0,3 à 1,2 ; c de 0,2 à 1,5 ; d de 2 à 6 ; e de 0,1 à 0,6 et f de 0 à 0,3. Modifier un paramètre ne relance pas l'orbite : le point continue simplement selon les nouvelles règles, et tu vois l'ancienne forme se dissoudre dans la nouvelle. Le curseur dt (de 0,005 à 0,02 ; 0,01 par défaut) fixe la taille de chaque pas d'intégration.",
-          "« Pas / image » va de 200 à 6 000 et démarre à 2 400. Fais glisser le canevas pour faire tourner la vue, désactive la rotation auto pour arrêter la lente rotation, et utilise « Effacer et redémarrer » pour vider le canevas et renvoyer le point à sa position de départ (0,1 ; 0 ; 0). Les boutons d'attracteur passent à Rössler, Thomas ou Halvorsen avec leurs propres paramètres classiques.",
+          "« Pas / image » va de 200 à 6\u00a0000 et démarre à 2\u00a0400. Fais glisser le canevas pour faire tourner la vue, désactive la rotation auto pour arrêter la lente rotation, et utilise « Effacer et redémarrer » pour vider le canevas et renvoyer le point à sa position de départ (0,1 ; 0 ; 0). Les boutons d'attracteur passent à Rössler, Thomas ou Halvorsen avec leurs propres paramètres classiques.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
           "Tout s'exécute dans ton navigateur, sur un canevas 2D. Comme l'explorateur de Lorenz, il intègre avec la méthode classique de Runge-Kutta d'ordre quatre (RK4) : quatre évaluations de la dérivée par pas, combinées de sorte que l'erreur par pas diminue comme la puissance cinquième de dt. La méthode d'Euler explicite, plus simple (une évaluation, on multiplie par dt, on additionne), n'était pas assez précise ici : avec dt = 0,02, son orbite d'Aizawa s'effondrait sur un point fixe, et sur le système de Halvorsen elle divergeait. Avec RK4, la forme reste la même sur toute la course du curseur dt. Un garde-fou replace tout de même le point en (0,1 ; 0 ; 0) dès qu'une coordonnée devient NaN ou infinie, si bien que le canevas se rétablit au lieu de rester vide.",
-          "Chaque point 3D devient un pixel par deux rotations, d'abord autour de l'axe vertical (lacet), puis autour de l'axe horizontal (tangage), suivies d'une simple projection orthographique. Une valeur de profondeur règle l'opacité de chaque point, ce qui rend la face proche plus lumineuse. La traînée vient du fait que la couleur de fond est repeinte sur tout le canevas avec 4 % d'opacité à chaque image, de sorte que les anciens points s'effacent en une seconde environ. Si ton système demande de réduire les animations, il n'y a aucune animation : l'explorateur intègre 24 000 pas d'un coup, saute les 600 premiers pour que le régime transitoire n'apparaisse pas, dessine une seule image figée et la repeint quand tu fais glisser la vue ou déplaces un curseur.",
+          "Chaque point 3D devient un pixel par deux rotations, d'abord autour de l'axe vertical (lacet), puis autour de l'axe horizontal (tangage), suivies d'une simple projection orthographique. Une valeur de profondeur règle l'opacité de chaque point, ce qui rend la face proche plus lumineuse. La traînée vient du fait que la couleur de fond est repeinte sur tout le canevas avec 4 % d'opacité à chaque image, de sorte que les anciens points s'effacent en une seconde environ. Si ton système demande de réduire les animations, il n'y a aucune animation : l'explorateur intègre 24\u00a0000 pas d'un coup, saute les 600 premiers pour que le régime transitoire n'apparaisse pas, dessine une seule image figée et la repeint quand tu fais glisser la vue ou déplaces un curseur.",
         ],
         code: RK4_EXCERPT,
       },
@@ -351,14 +351,14 @@ export const AIZAWA_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "Os seis cursores de parâmetros cobrem a de 0,5 a 1,5, b de 0,3 a 1,2, c de 0,2 a 1,5, d de 2 a 6, e de 0,1 a 0,6 e f de 0 a 0,3. Alterar um parâmetro não reinicia a órbita: o ponto continua simplesmente segundo as novas regras, e tu vês a forma antiga dissolver-se na nova. O cursor dt (de 0,005 a 0,02, predefinido 0,01) define o tamanho de cada passo de integração.",
-          "«Passos / quadro» vai de 200 a 6000 e começa em 2400. Arrasta o canvas para rodar a vista, desliga a rotação automática para parar a rotação lenta e usa «Limpar e reiniciar» para apagar o canvas e mandar o ponto de volta à posição inicial (0,1; 0; 0). Os botões de atrator mudam para Rössler, Thomas ou Halvorsen com os seus próprios parâmetros clássicos.",
+          "«Passos / fotograma» vai de 200 a 6000 e começa em 2400. Arrasta o canvas para rodar a vista, desliga a rotação automática para parar a rotação lenta e usa «Limpar e reiniciar» para apagar o canvas e mandar o ponto de volta à posição inicial (0,1; 0; 0). Os botões de atrator mudam para Rössler, Thomas ou Halvorsen com os seus próprios parâmetros clássicos.",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
           "Tudo corre no teu navegador, num canvas 2D. Tal como o explorador de Lorenz, integra com o método clássico de Runge-Kutta de quarta ordem (RK4): quatro avaliações da derivada por passo, combinadas de modo que o erro por passo diminui com a quinta potência de dt. O método de Euler explícito, mais simples (uma avaliação, multiplicar por dt, somar), não era suficientemente preciso aqui: com dt = 0,02 a sua órbita de Aizawa colapsava num ponto fixo, e no sistema de Halvorsen divergia. Com RK4 a forma mantém-se igual em todo o cursor dt. Ainda assim, uma salvaguarda volta a colocar o ponto em (0,1; 0; 0) sempre que uma coordenada se torna NaN ou infinita, para que o canvas recupere em vez de ficar vazio.",
-          "Cada ponto 3D torna-se um píxel através de duas rotações, primeiro em torno do eixo vertical (guinada), depois em torno do horizontal (arfagem), seguidas de uma simples projeção ortográfica. Um valor de profundidade define a opacidade de cada ponto, pelo que o lado mais próximo parece mais brilhante. O rasto resulta de pintar a cor de fundo sobre todo o canvas com 4 % de opacidade em cada fotograma, e assim os pontos antigos desaparecem em cerca de um segundo. Se o teu sistema pedir movimento reduzido, não há qualquer animação: o explorador integra 24 000 passos de uma vez, salta os primeiros 600 para que o regime transitório não se veja, desenha um único fotograma fixo e volta a desenhá-lo quando arrastas ou moves um cursor.",
+          "Cada ponto 3D torna-se um píxel através de duas rotações, primeiro em torno do eixo vertical (guinada), depois em torno do horizontal (arfagem), seguidas de uma simples projeção ortográfica. Um valor de profundidade define a opacidade de cada ponto, pelo que o lado mais próximo parece mais brilhante. O rasto resulta de pintar a cor de fundo sobre todo o canvas com 4 % de opacidade em cada fotograma, e assim os pontos antigos desaparecem em cerca de um segundo. Se o teu sistema pedir movimento reduzido, não há qualquer animação: o explorador integra 24\u00a0000 passos de uma vez, salta os primeiros 600 para que o regime transitório não se veja, desenha um único fotograma fixo e volta a desenhá-lo quando arrastas ou moves um cursor.",
         ],
         code: RK4_EXCERPT,
       },
@@ -375,7 +375,7 @@ export const AIZAWA_GUIDE: ExplorerGuide = {
       },
       {
         title: "Segue uma única órbita",
-        text: "Desliga a rotação automática e baixa «Passos / quadro» para 200. Agora consegues ver o ponto a espiralar em torno do eixo, a subir pelo tubo central e a cair de novo sobre a casca.",
+        text: "Desliga a rotação automática e baixa «Passos / fotograma» para 200. Agora consegues ver o ponto a espiralar em torno do eixo, a subir pelo tubo central e a cair de novo sobre a casca.",
       },
       {
         title: "Visita os parentes",

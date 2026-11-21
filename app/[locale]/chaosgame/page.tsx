@@ -704,7 +704,7 @@ const pt: RichStory = {
   liveResetLabel: "↺ reset",
   livePointsLabel: (n) => `${fmt(n)} pontos`,
   fernCaption: "Interativo · o feto de Barnsley cresce",
-  fernPlay: "▶ tocar",
+  fernPlay: "▶ reproduzir",
   fernPause: "⏸ pausa",
   fernReset: "↺ reset",
   fernFastForward: "⏩ +100k",

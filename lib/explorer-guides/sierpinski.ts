@@ -227,8 +227,8 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       {
         heading: "Les quatre constructions et leurs réglages",
         paragraphs: [
-          "« Subdivision » trace le triangle à la profondeur de ton choix, de 0 à 10, en partant de 6. Quand tu changes la profondeur, l'image se reconstruit niveau par niveau, un niveau toutes les 280 millisecondes. Le compteur affiche 3^profondeur triangles, soit 59 049 à la profondeur 10.",
-          "Le « Jeu du Chaos » part du centre du canevas, choisit au hasard l'un des trois sommets, saute à mi-chemin dans sa direction, pose un point et recommence. Le curseur fixe le nombre de points posés par image d'animation, de 100 à 20 000 (4 000 par défaut), et le compteur affiche le total cumulé.",
+          "« Subdivision » trace le triangle à la profondeur de ton choix, de 0 à 10, en partant de 6. Quand tu changes la profondeur, l'image se reconstruit niveau par niveau, un niveau toutes les 280 millisecondes. Le compteur affiche 3^profondeur triangles, soit 59\u00a0049 à la profondeur 10.",
+          "Le « Jeu du Chaos » part du centre du canevas, choisit au hasard l'un des trois sommets, saute à mi-chemin dans sa direction, pose un point et recommence. Le curseur fixe le nombre de points posés par image d'animation, de 100 à 20\u00a0000 (4\u00a0000 par défaut), et le compteur affiche le total cumulé.",
           "« Pascal mod 2 » construit le triangle de Pascal et ne remplit une cellule que là où le coefficient binomial C(n, k) est impair. Le curseur fixe le nombre de lignes, de 10 à 256 (64 par défaut). La « Règle 90 » part d'une seule cellule vivante et fait de chaque cellule le XOR de ses deux voisines de la ligne du dessus ; le curseur fixe le nombre de générations, là aussi de 10 à 256 (96 par défaut). Les pastilles de couleur recolorent le dessin, et « Redémarrer » relance la construction en cours depuis le début.",
         ],
       },
@@ -237,7 +237,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Tout est dessiné sur un canevas 2D dimensionné selon la densité de pixels de l'appareil et redessiné quand sa taille change. La subdivision est la fonction récursive ci-dessous : elle coupe les trois arêtes en deux, descend dans les trois triangles des coins et ne remplit un triangle que lorsque la profondeur atteint zéro, de sorte que le triangle central de chaque niveau n'est tout simplement jamais peint.",
           "Le jeu du chaos tourne dans une boucle d'animation. Avant de tracer quoi que ce soit, il effectue 20 sauts d'échauffement, puis dessine chaque point comme un rectangle d'un pixel dans une couleur semi-transparente, si bien que les zones les plus visitées deviennent plus lumineuses. Pascal mod 2 ne calcule jamais de coefficient binomial : chaque ligne se construit à partir de la précédente avec XOR, qui est l'addition modulo 2. C'est pourquoi 256 lignes s'affichent instantanément, alors que C(255, 127) compte 76 chiffres. La règle 90 utilise pour chaque génération un Uint8Array large de 2 · générations − 1 cellules, assez large pour que le motif n'atteigne jamais le bord.",
-          "Quand la réduction des animations est activée, la subdivision passe directement à la profondeur finale, et le jeu du chaos trace d'un coup un unique lot de 60 000 points puis s'arrête. Pascal et la règle 90 sont de toute façon des dessins statiques.",
+          "Quand la réduction des animations est activée, la subdivision passe directement à la profondeur finale, et le jeu du chaos trace d'un coup un unique lot de 60\u00a0000 points puis s'arrête. Pascal et la règle 90 sont de toute façon des dessins statiques.",
         ],
         code: SUBDIVISION_EXCERPT,
       },
@@ -253,11 +253,11 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Compte les triangles",
-        text: "En mode « Subdivision », règle la profondeur sur 1, 2 puis 3. Tu obtiens 3, 9 et 27 triangles, qui couvrent 3/4, 9/16 et 27/64 de l'aire de départ. À la profondeur 10, les 59 049 triangles en couvrent moins de 6 %.",
+        text: "En mode « Subdivision », règle la profondeur sur 1, 2 puis 3. Tu obtiens 3, 9 et 27 triangles, qui couvrent 3/4, 9/16 et 27/64 de l'aire de départ. À la profondeur 10, les 59\u00a0049 triangles en couvrent moins de 6 %.",
       },
       {
         title: "Un hasard qui dessine de l'ordre",
-        text: "Passe au « Jeu du Chaos » et descends « Points / image » à 100. Pendant la première seconde, les points ressemblent à du bruit éparpillé, et pourtant aucun ne tombe dans le grand trou central. Monte ensuite à 20 000.",
+        text: "Passe au « Jeu du Chaos » et descends « Points / image » à 100. Pendant la première seconde, les points ressemblent à du bruit éparpillé, et pourtant aucun ne tombe dans le grand trou central. Monte ensuite à 20\u00a0000.",
       },
       {
         title: "Trouve les puissances de deux",
@@ -317,7 +317,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       },
       {
         title: "Un caso che disegna ordine",
-        text: "Passa al «Gioco del Caos» e abbassa i punti per fotogramma a 100. Nel primo secondo i punti sembrano rumore sparso, eppure nessuno cade nel grande buco centrale. Poi portalo a 20.000.",
+        text: "Passa al «Gioco del Caos» e abbassa «Punti / frame» a 100. Nel primo secondo i punti sembrano rumore sparso, eppure nessuno cade nel grande buco centrale. Poi portalo a 20.000.",
       },
       {
         title: "Trova le potenze di due",
@@ -347,8 +347,8 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       {
         heading: "As quatro construções e os seus controlos",
         paragraphs: [
-          "«Subdivisão» desenha o triângulo com a profundidade que escolheres, de 0 a 10, começando em 6. Quando mudas a profundidade, a imagem é reconstruída nível a nível, um nível a cada 280 milissegundos. O contador mostra 3^profundidade triângulos, ou seja, 59 049 com profundidade 10.",
-          "O «Jogo do Caos» começa no centro do canvas, escolhe ao acaso um dos três vértices, salta até meio do caminho na sua direção, marca um ponto e repete. O cursor define quantos pontos são marcados por fotograma da animação, de 100 a 20 000 (4000 por omissão), e o contador mostra o total acumulado.",
+          "«Subdivisão» desenha o triângulo com a profundidade que escolheres, de 0 a 10, começando em 6. Quando mudas a profundidade, a imagem é reconstruída nível a nível, um nível a cada 280 milissegundos. O contador mostra 3^profundidade triângulos, ou seja, 59\u00a0049 com profundidade 10.",
+          "O «Jogo do Caos» começa no centro do canvas, escolhe ao acaso um dos três vértices, salta até meio do caminho na sua direção, marca um ponto e repete. O cursor define quantos pontos são marcados por fotograma da animação, de 100 a 20\u00a0000 (4000 por omissão), e o contador mostra o total acumulado.",
           "«Pascal mod 2» constrói o triângulo de Pascal e preenche uma célula apenas onde o coeficiente binomial C(n, k) é ímpar. O cursor define o número de linhas, de 10 a 256 (64 por omissão). A «Regra 90» parte de uma única célula viva e faz de cada célula o XOR das suas duas vizinhas na linha de cima; o cursor define o número de gerações, também de 10 a 256 (96 por omissão). As amostras de cor mudam a cor do desenho, e «Reiniciar» volta a executar do zero a construção atual.",
         ],
       },
@@ -357,7 +357,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Tudo é desenhado num canvas 2D dimensionado de acordo com a densidade de píxeis do dispositivo e redesenhado quando muda de tamanho. A subdivisão é a função recursiva abaixo: divide ao meio os três lados, desce aos três triângulos dos cantos e só preenche um triângulo quando a profundidade chega a zero, pelo que o triângulo central de cada nível simplesmente nunca é pintado.",
           "O jogo do caos corre num ciclo de animação. Antes de marcar seja o que for, dá 20 saltos de aquecimento, e depois desenha cada ponto como um retângulo de um píxel numa cor semitransparente, de modo que as zonas mais visitadas ficam mais brilhantes. Pascal mod 2 nunca calcula um coeficiente binomial: cada linha é construída a partir da anterior com XOR, que é a adição módulo 2. É por isso que 256 linhas são instantâneas, embora C(255, 127) tenha 76 algarismos. A Regra 90 usa, por geração, um Uint8Array com 2 · gerações − 1 células de largura, o suficiente para o padrão nunca chegar à margem.",
-          "Com o movimento reduzido ativado, a subdivisão salta diretamente para a profundidade final, e o jogo do caos marca de uma só vez um único lote de 60 000 pontos e depois para. Pascal e a Regra 90 são, de qualquer modo, desenhos estáticos.",
+          "Com o movimento reduzido ativado, a subdivisão salta diretamente para a profundidade final, e o jogo do caos marca de uma só vez um único lote de 60\u00a0000 pontos e depois para. Pascal e a Regra 90 são, de qualquer modo, desenhos estáticos.",
         ],
         code: SUBDIVISION_EXCERPT,
       },
@@ -373,11 +373,11 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Conta os triângulos",
-        text: "No modo «Subdivisão», põe a profundidade em 1, 2 e 3. Obténs 3, 9 e 27 triângulos, que cobrem 3/4, 9/16 e 27/64 da área original. Com profundidade 10, os 59 049 triângulos cobrem menos de 6 por cento dela.",
+        text: "No modo «Subdivisão», põe a profundidade em 1, 2 e 3. Obténs 3, 9 e 27 triângulos, que cobrem 3/4, 9/16 e 27/64 da área original. Com profundidade 10, os 59\u00a0049 triângulos cobrem menos de 6 por cento dela.",
       },
       {
         title: "Um acaso que desenha ordem",
-        text: "Muda para o «Jogo do Caos» e baixa «Pontos / frame» para 100. No primeiro segundo os pontos parecem ruído disperso, e no entanto nenhum cai no grande buraco central. Depois sobe para 20 000.",
+        text: "Muda para o «Jogo do Caos» e baixa «Pontos / fotograma» para 100. No primeiro segundo os pontos parecem ruído disperso, e no entanto nenhum cai no grande buraco central. Depois sobe para 20\u00a0000.",
       },
       {
         title: "Encontra as potências de dois",
@@ -437,7 +437,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       },
       {
         title: "Slump som ritar ordning",
-        text: "Byt till ”Kaosspelet” och dra ner punkter per bildruta till 100. Under den första sekunden ser punkterna ut som utspritt brus, och ändå hamnar ingen av dem i det stora hålet i mitten. Dra sedan upp till 20\u00a0000.",
+        text: "Byt till ”Kaosspelet” och dra ner ”Punkter / bildruta” till 100. Under den första sekunden ser punkterna ut som utspritt brus, och ändå hamnar ingen av dem i det stora hålet i mitten. Dra sedan upp till 20\u00a0000.",
       },
       {
         title: "Hitta tvåpotenserna",
@@ -497,7 +497,7 @@ export const SIERPINSKI_GUIDE: ExplorerGuide = {
       },
       {
         title: "Tilfeldighet som tegner orden",
-        text: "Bytt til «Kaosspillet» og dra punkter per bilde ned til 100. Det første sekundet ser punktene ut som spredt støy, og likevel havner ingen av dem i det store hullet i midten. Dra deretter opp til 20\u00a0000.",
+        text: "Bytt til «Kaosspillet» og dra «Punkter / bilde» ned til 100. Det første sekundet ser punktene ut som spredt støy, og likevel havner ingen av dem i det store hullet i midten. Dra deretter opp til 20\u00a0000.",
       },
       {
         title: "Finn toerpotensene",

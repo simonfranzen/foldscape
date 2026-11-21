@@ -216,13 +216,13 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "« Taux de croissance r » va de 2,5 à 4 par pas de 0,0005 et démarre à 3,7, dans la région chaotique. Les huit boutons de préréglage sautent vers des repères : 2,5 (point fixe calme en 0,6), 3,0 (la première bifurcation), 3,45 (juste après la naissance du 4-cycle), 3,56995 (le début du chaos), 3,7 (chaos profond), 3,83 (dans la fenêtre de période 3, un 3-cycle bien net), 3,9 (de nouveau le chaos) et 4,0 (chaos total, où l'orbite couvre tout l'intervalle).",
-          "x₀ est la valeur de départ, de 0,001 à 0,999 (0,2 par défaut). « Rodage » (de 0 à 2 000, 200 par défaut) est le nombre d'itérations calculées puis jetées avant que la série temporelle ne commence, et « Afficher » (de 20 à 1 000, 200 par défaut) le nombre d'itérations dessinées ensuite. Mettre le rodage à 0 te laisse observer le régime transitoire : la façon dont l'orbite erre avant de tomber sur son attracteur.",
+          "x₀ est la valeur de départ, de 0,001 à 0,999 (0,2 par défaut). « Rodage » (de 0 à 2\u00a0000, 200 par défaut) est le nombre d'itérations calculées puis jetées avant que la série temporelle ne commence, et « Afficher » (de 20 à 1\u00a0000, 200 par défaut) le nombre d'itérations dessinées ensuite. Mettre le rodage à 0 te laisse observer le régime transitoire : la façon dont l'orbite erre avant de tomber sur son attracteur.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Les deux images sont dessinées sur de simples canevas 2D, sans aucune boucle d'animation. Le diagramme de bifurcation est la partie coûteuse : 701 colonnes de r, chacune partant de x = 0,5, itérant 300 fois pour écarter le régime transitoire puis traçant les 200 valeurs suivantes sous forme de petits points semi-transparents. Cela fait environ 350 000 évaluations de la fonction, le résultat est donc stocké une fois pour toutes en ImageData et n'est recalculé que lorsque le canevas change de taille ou que la densité de pixels de l'écran change.",
+          "Les deux images sont dessinées sur de simples canevas 2D, sans aucune boucle d'animation. Le diagramme de bifurcation est la partie coûteuse : 701 colonnes de r, chacune partant de x = 0,5, itérant 300 fois pour écarter le régime transitoire puis traçant les 200 valeurs suivantes sous forme de petits points semi-transparents. Cela fait environ 350\u00a0000 évaluations de la fonction, le résultat est donc stocké une fois pour toutes en ImageData et n'est recalculé que lorsque le canevas change de taille ou que la densité de pixels de l'écran change.",
           "Déplacer le curseur de r ne touche pas à ce travail. L'image en cache est restaurée avec putImageData, puis le curseur cyan et son étiquette sont dessinés par-dessus, ce qui est assez léger pour suivre ton doigt. La série temporelle est recalculée de zéro à chaque changement de r, de x₀, de « Rodage » ou d'« Afficher » : elle itère la fonction, relie les valeurs par une ligne et marque chacune d'un point. Rien ne bouge tout seul, la réduction des animations ne change donc rien ici.",
         ],
         code: BIFURCATION_EXCERPT,
@@ -239,7 +239,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Surprends l'intermittence",
-        text: "Appuie sur le préréglage 3,83 et règle « Afficher » sur 1 000 : un 3-cycle bien net. Descends maintenant r à 3,8280, un cheveu en dessous du bord de la fenêtre en 3,8284. L'orbite passe des séquences de quelques dizaines de pas à répéter presque trois valeurs, puis éclate en chaos, puis se calme de nouveau.",
+        text: "Appuie sur le préréglage 3,83 et règle « Afficher » sur 1\u00a0000 : un 3-cycle bien net. Descends maintenant r à 3,8280, un cheveu en dessous du bord de la fenêtre en 3,8284. L'orbite passe des séquences de quelques dizaines de pas à répéter presque trois valeurs, puis éclate en chaos, puis se calme de nouveau.",
       },
       {
         title: "Teste la sensibilité aux conditions initiales",
@@ -247,11 +247,11 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       },
       {
         title: "Observe le ralentissement",
-        text: "Règle r sur 3,0, « Rodage » sur 0 et « Afficher » sur 1 000. L'orbite zigzague autour de 0,667 et se resserre avec une lenteur pénible. Passe r à 2,8 et elle se stabilise en quelques dizaines de pas.",
+        text: "Règle r sur 3,0, « Rodage » sur 0 et « Afficher » sur 1\u00a0000. L'orbite zigzague autour de 0,667 et se resserre avec une lenteur pénible. Passe r à 2,8 et elle se stabilise en quelques dizaines de pas.",
       },
       {
         title: "Compte les doublements",
-        text: "Avec « Rodage » à 2 000, fais passer r par 3,2 ; 3,5 et 3,56. La série temporelle se répète toutes les 2, 4 et 8 itérations. Chaque nouvelle période vit sur une plage de r environ 4,7 fois plus étroite que la précédente, et c'est le δ de Feigenbaum à l'œuvre.",
+        text: "Avec « Rodage » à 2\u00a0000, fais passer r par 3,2 ; 3,5 et 3,56. La série temporelle se répète toutes les 2, 4 et 8 itérations. Chaque nouvelle période vit sur une plage de r environ 4,7 fois plus étroite que la précédente, et c'est le δ de Feigenbaum à l'œuvre.",
       },
     ],
   },
@@ -338,7 +338,7 @@ export const LOGISTIC_GUIDE: ExplorerGuide = {
       {
         heading: "Como está construído",
         paragraphs: [
-          "As duas imagens são desenhadas em canvas 2D simples, sem qualquer ciclo de animação. O diagrama de bifurcação é a parte cara: 701 colunas de r, cada uma a partir de x = 0,5, que itera 300 vezes para descartar o transitório e depois desenha os 200 valores seguintes como pequenos pontos semitransparentes. São cerca de 350 000 avaliações do mapa, pelo que o resultado é guardado uma única vez como ImageData e só é recalculado quando o canvas muda de tamanho ou a densidade de píxeis do ecrã se altera.",
+          "As duas imagens são desenhadas em canvas 2D simples, sem qualquer ciclo de animação. O diagrama de bifurcação é a parte cara: 701 colunas de r, cada uma a partir de x = 0,5, que itera 300 vezes para descartar o transitório e depois desenha os 200 valores seguintes como pequenos pontos semitransparentes. São cerca de 350\u00a0000 avaliações do mapa, pelo que o resultado é guardado uma única vez como ImageData e só é recalculado quando o canvas muda de tamanho ou a densidade de píxeis do ecrã se altera.",
           "Mover o cursor de r não toca nesse trabalho. Repõe a imagem em cache com putImageData e desenha por cima o marcador ciano e a sua etiqueta, o que é barato o suficiente para acompanhar o teu dedo. A série temporal é recalculada de raiz a cada alteração de r, x₀, «Aquecimento» ou «Mostrar»: itera o mapa, une os valores com uma linha e marca cada um com um ponto. Nada se move sozinho, por isso o movimento reduzido não muda nada aqui.",
         ],
         code: BIFURCATION_EXCERPT,

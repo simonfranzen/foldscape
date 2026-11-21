@@ -217,7 +217,7 @@ export const GALTON_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Tout est dessiné sur un canevas 2D mis à l'échelle de la densité de pixels de ton écran. Une bille ne rebondit pas physiquement : elle mémorise sa rangée y et un décalage horizontal x par rapport à l'axe central, et à chaque pas elle descend d'une rangée et se déplace d'un demi-intervalle entre clous vers la gauche ou vers la droite, selon un unique appel à Math.random() comparé à p. Quand elle atteint la rangée N, son décalage se convertit directement en indice de case, car x + N/2 est égal au nombre de rebonds à droite.",
           "La physique n'avance qu'une image d'animation sur quatre (STEP_EVERY = 4). C'est voulu : à une rangée par image, une bille traverse la planche plus vite que l'œil ne peut la suivre, alors qu'à une rangée toutes les quatre images tu peux suivre un chemin précis. Les barres sont mises à l'échelle par rapport à la case la plus haute, de sorte que l'histogramme occupe toujours toute la hauteur de sa bande, quel que soit le nombre de billes tombées.",
-          "Si ton système demande une réduction des animations, aucune bille ne tombe. À la place, l'histogramme est rempli avec les probabilités binomiales exactes pour les N et p courants, multipliées par 5 000 et arrondies, et la planche est dessinée une seule fois.",
+          "Si ton système demande une réduction des animations, aucune bille ne tombe. À la place, l'histogramme est rempli avec les probabilités binomiales exactes pour les N et p courants, multipliées par 5\u00a0000 et arrondies, et la planche est dessinée une seule fois.",
         ],
         code: STEP_EXCERPT,
       },

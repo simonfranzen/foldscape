@@ -219,7 +219,7 @@ export const PHI_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Spirale : le curseur de profondeur choisit le nombre de carrés à dessiner, de 3 à 14 (10 par défaut). Les côtés vont de F₁ à Fₙ : les deux plus petits carrés ont donc tous deux un côté de 1, et le plus grand, à la profondeur 14, un côté de 377. Ensemble, ils forment toujours un rectangle de Fₙ sur Fₙ₊₁, et la barre d'état affiche son rapport largeur sur hauteur : 89/55 ≈ 1,61818182 à la profondeur par défaut.",
           "Rapports : le curseur n fixe le nombre de rapports Fₙ₊₁/Fₙ à tracer, de 2 à 20 (12 par défaut), face à une ligne en pointillés placée en φ sur un axe vertical allant de 1,0 à 2,5. Les premières valeurs zigzaguent fortement (1 ; 2 ; 1,5 ; 1,667 ; 1,6), puis la courbe vient s'aplatir sur la ligne. Les n impairs tombent sous φ, les n pairs au-dessus, et chaque erreur vaut environ 0,382 fois la précédente, soit ψ². À n = 20, le rapport 10946/6765 s'écarte de moins de 10⁻⁸.",
-          "Tournesol : le curseur de l'angle de divergence ne couvre que l'intervalle de 137,4° à 137,6°, par pas de 0,0005°, car tout ce qui est intéressant se passe dans cette fenêtre étroite. Le curseur du nombre de graines va de 50 à 2 000 (800 par défaut). Le bouton « Aller à l'angle φ » rétablit l'angle d'or exact, 360°/φ² ≈ 137,5078°.",
+          "Tournesol : le curseur de l'angle de divergence ne couvre que l'intervalle de 137,4° à 137,6°, par pas de 0,0005°, car tout ce qui est intéressant se passe dans cette fenêtre étroite. Le curseur du nombre de graines va de 50 à 2\u00a0000 (800 par défaut). Le bouton « Aller à l'angle φ » rétablit l'angle d'or exact, 360°/φ² ≈ 137,5078°.",
         ],
       },
       {
@@ -242,7 +242,7 @@ export const PHI_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Tombe sur une fraction",
-        text: "Dans le panneau du tournesol, règle le nombre de graines sur 2 000 et fais glisser l'angle jusqu'à 137,5000° exactement. Cela représente 55/144 d'un tour complet, et les graines s'alignent donc en 144 rayons rectilignes. Appuie sur « Aller à l'angle φ » et les rayons se dissolvent en un champ régulier.",
+        text: "Dans le panneau du tournesol, règle le nombre de graines sur 2\u00a0000 et fais glisser l'angle jusqu'à 137,5000° exactement. Cela représente 55/144 d'un tour complet, et les graines s'alignent donc en 144 rayons rectilignes. Appuie sur « Aller à l'angle φ » et les rayons se dissolvent en un champ régulier.",
       },
       {
         title: "Écarte-toi d'un rien de l'angle d'or",

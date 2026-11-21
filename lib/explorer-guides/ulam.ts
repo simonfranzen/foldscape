@@ -206,10 +206,10 @@ export const ULAM_GUIDE: ExplorerGuide = {
   },
   fr: {
     metaDescription:
-      "Explore la spirale d'Ulam des nombres premiers : jusqu'à 251 001 nombres sur une spirale carrée, des diagonales riches en premiers et le n² − n + 41 d'Euler.",
+      "Explore la spirale d'Ulam des nombres premiers : jusqu'à 251\u00a0001 nombres sur une spirale carrée, des diagonales riches en premiers et le n² − n + 41 d'Euler.",
     heading: "Comment fonctionne cet explorateur",
     intro:
-      "Écris 1 au centre d'une grille, 2 à sa droite, puis continue de compter en spirale carrée, dans le sens inverse des aiguilles d'une montre, anneau après anneau. Ensuite, ne marque que les nombres premiers. À la taille par défaut de 251 × 251, la grille contient 63 001 nombres, dont 6 320 premiers, et les marques ne ressemblent pas à une poussière aléatoire : elles s'alignent le long de diagonales. Stanisław Ulam l'a remarqué en 1963 en griffonnant pendant un exposé. Une partie du motif a une explication simple, une autre reste un problème ouvert.",
+      "Écris 1 au centre d'une grille, 2 à sa droite, puis continue de compter en spirale carrée, dans le sens inverse des aiguilles d'une montre, anneau après anneau. Ensuite, ne marque que les nombres premiers. À la taille par défaut de 251 × 251, la grille contient 63\u00a0001 nombres, dont 6\u00a0320 premiers, et les marques ne ressemblent pas à une poussière aléatoire : elles s'alignent le long de diagonales. Stanisław Ulam l'a remarqué en 1963 en griffonnant pendant un exposé. Une partie du motif a une explication simple, une autre reste un problème ouvert.",
     sections: [
       {
         heading: "Pourquoi les nombres premiers aiment les diagonales",
@@ -222,7 +222,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "Le côté de la grille va de 51 à 501 par pas de 2. Il reste impair pour que 1 occupe exactement la case centrale, entourée de cyan. L'en-tête indique combien de nombres contient la grille et combien d'entre eux sont premiers : 378 nombres premiers parmi 2 601 nombres à la plus petite taille, 22 115 parmi 251 001 à la plus grande.",
+          "Le côté de la grille va de 51 à 501 par pas de 2. Il reste impair pour que 1 occupe exactement la case centrale, entourée de cyan. L'en-tête indique combien de nombres contient la grille et combien d'entre eux sont premiers : 378 nombres premiers parmi 2\u00a0601 nombres à la plus petite taille, 22\u00a0115 parmi 251\u00a0001 à la plus grande.",
           "Le menu de mise en évidence colore en rose les nombres premiers qui sont des valeurs d'un polynôme du second degré choisi : le n² − n + 41 d'Euler (choix par défaut), n² + n + 17, n² + n + 11, 4n² − 2n + 41 et n², ou bien désactive la mise en évidence. Seuls les nombres premiers sont dessinés, donc une case rose est toujours une valeur première du polynôme ; les valeurs sont testées pour n de 0 à 599.",
         ],
       },
@@ -247,7 +247,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Mesure la raréfaction des nombres premiers",
-        text: "Compare la plus petite grille (378 nombres premiers parmi 2 601 nombres, environ 14,5 pour cent) à la plus grande (22 115 parmi 251 001, environ 8,8 pour cent). Les deux rejoignent l'estimation 1/(ln N − 1) du théorème des nombres premiers à quelques dixièmes de point de pourcentage près.",
+        text: "Compare la plus petite grille (378 nombres premiers parmi 2\u00a0601 nombres, environ 14,5 pour cent) à la plus grande (22\u00a0115 parmi 251\u00a0001, environ 8,8 pour cent). Les deux rejoignent l'estimation 1/(ln N − 1) du théorème des nombres premiers à quelques dixièmes de point de pourcentage près.",
       },
       {
         title: "Suis les droites d'Euler",
@@ -324,10 +324,10 @@ export const ULAM_GUIDE: ExplorerGuide = {
   },
   pt: {
     metaDescription:
-      "Explora a espiral de Ulam dos números primos: até 251 001 números numa espiral quadrada, diagonais ricas em primos e o n² − n + 41 de Euler em destaque.",
+      "Explora a espiral de Ulam dos números primos: até 251\u00a0001 números numa espiral quadrada, diagonais ricas em primos e o n² − n + 41 de Euler em destaque.",
     heading: "Como funciona este explorador",
     intro:
-      "Escreve o 1 no centro de uma grelha, o 2 à sua direita, e continua a contar numa espiral quadrada, no sentido contrário ao dos ponteiros do relógio, anel após anel. Depois marca apenas os primos. No tamanho predefinido de 251 × 251, a grelha contém 63 001 números, dos quais 6320 são primos, e as marcas não parecem poeira espalhada ao acaso: alinham-se ao longo de diagonais. Stanisław Ulam reparou nisto em 1963, enquanto rabiscava durante uma palestra. Uma parte do padrão tem uma explicação simples e outra parte continua a ser um problema em aberto.",
+      "Escreve o 1 no centro de uma grelha, o 2 à sua direita, e continua a contar numa espiral quadrada, no sentido contrário ao dos ponteiros do relógio, anel após anel. Depois marca apenas os primos. No tamanho predefinido de 251 × 251, a grelha contém 63\u00a0001 números, dos quais 6320 são primos, e as marcas não parecem poeira espalhada ao acaso: alinham-se ao longo de diagonais. Stanisław Ulam reparou nisto em 1963, enquanto rabiscava durante uma palestra. Uma parte do padrão tem uma explicação simples e outra parte continua a ser um problema em aberto.",
     sections: [
       {
         heading: "Porque é que os primos gostam de diagonais",
@@ -340,7 +340,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "O lado da grelha vai de 51 a 501 em passos de 2. Mantém-se ímpar para que o 1 fique exatamente na célula central, que tem um contorno ciano. O cabeçalho mostra quantos números a grelha contém e quantos deles são primos: 378 primos entre 2601 números no tamanho mais pequeno, 22 115 entre 251 001 no maior.",
+          "O lado da grelha vai de 51 a 501 em passos de 2. Mantém-se ímpar para que o 1 fique exatamente na célula central, que tem um contorno ciano. O cabeçalho mostra quantos números a grelha contém e quantos deles são primos: 378 primos entre 2601 números no tamanho mais pequeno, 22\u00a0115 entre 251\u00a0001 no maior.",
           "O menu de destaque pinta de rosa os primos que são valores de um polinómio quadrático escolhido: o n² − n + 41 de Euler (a opção predefinida), n² + n + 17, n² + n + 11, 4n² − 2n + 41 e n², ou então desliga o destaque. Só os primos são desenhados, por isso uma célula rosa é sempre um valor primo do polinómio; são verificados os valores para n de 0 a 599.",
         ],
       },
@@ -365,7 +365,7 @@ export const ULAM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Mede como os primos rareiam",
-        text: "Compara a grelha mais pequena (378 primos entre 2601 números, cerca de 14,5 por cento) com a maior (22 115 entre 251 001, cerca de 8,8 por cento). Ambas coincidem com a estimativa 1/(ln N − 1) do teorema dos números primos, com uma diferença de poucas décimas de ponto percentual.",
+        text: "Compara a grelha mais pequena (378 primos entre 2601 números, cerca de 14,5 por cento) com a maior (22\u00a0115 entre 251\u00a0001, cerca de 8,8 por cento). Ambas coincidem com a estimativa 1/(ln N − 1) do teorema dos números primos, com uma diferença de poucas décimas de ponto percentual.",
       },
       {
         title: "Segue as retas de Euler",

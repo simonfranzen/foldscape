@@ -254,7 +254,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     topoPretitle: "Topologi · hvert håndtak koster to",
     topoTitle: "χ = 2 − 2g",
     topoParagraph:
-      "Kulen har ingen håndtak: g = 0, χ = 2. En torus har ett: g = 1, χ = 0. En dobbeltorus har to: g = 2, χ = −2. Hver lukket orienterbar flate i tre dimensjoner bor på denne stigen. Gauss-Bonnet sier at samme tall faller ut av å integrere krumningen: geometri og topologi, koblet sammen.",
+      "Kulen har ingen håndtak: g = 0, χ = 2. En torus har ett: g = 1, χ = 0. En dobbelttorus har to: g = 2, χ = −2. Hver lukket orienterbar flate i tre dimensjoner bor på denne stigen. Gauss-Bonnet sier at samme tall faller ut av å integrere krumningen: geometri og topologi, koblet sammen.",
     truncIcoLabel: "Avstumpet ikosaeder",
     truncIcoFaces: "12 fem. + 20 hex.",
     platonicNames: {
@@ -271,7 +271,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       dodeca: "12 femkanter",
       icosa: "20 trekanter",
     },
-    genusLabels: { sphere: "Kule", torus: "Torus", doubleTorus: "Dobbeltorus" },
+    genusLabels: { sphere: "Kule", torus: "Torus", doubleTorus: "Dobbelttorus" },
     genusAria: (label, chi) => `${label}, Eulerkarakteristikk ${chi}`,
   },
 };

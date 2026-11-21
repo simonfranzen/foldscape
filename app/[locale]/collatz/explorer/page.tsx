@@ -173,7 +173,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     statPeakValue: "Valor de pico",
     statPeakAtStep: "Pico no passo",
     seedLabel: "Semente n",
-    sliderCaption: (max) => `controle: 1 … 10 000 · entrada: 1 … ${max}`,
+    sliderCaption: (max) => `cursor: 1 … 10 000 · entrada: 1 … ${max}`,
     statsHeading: "Estatísticas",
     steps: "Passos",
     peakValue: "Valor de pico",

@@ -1224,7 +1224,7 @@ const no: RichStory = {
         body: "Det er beviset på at Turing-fullstendighet kan nås med ÉN primitiv operasjon. Det binder sammen logikk, informatikk og bevissthetsfilosofi: Kan tanken selv reduseres til ett eneste symbol?",
       },
     ],
-    tryIt: "Under: Kjør reduseren, se K og S i arbeid, og bygg dem opp fra bunnen.",
+    tryIt: "Under: Kjør redusereren, se K og S i arbeid, og bygg dem opp fra bunnen.",
   },
   sections: [
     {
@@ -1258,11 +1258,11 @@ const no: RichStory = {
       body: "Curry og Feys' Combinatory Logic (1958) er en lang bok hvis sentrale teorem er kort: Enhver λ-term kan oversettes til en term bygget bare av S og K. Kombinert med det vi nettopp gjorde (iota produserer S og iota produserer K) er kjeden lukket. Alt en Turingmaskin, et Python-program eller en menneskelig matematiker kan beregne, kan iota kode. Prisen er en brutal lengdeeksplosjon; gevinsten er begrepsmessig. Iota står bak funksjonell programmering, typeteori, bevisassistenter og enhver implementasjon av ML-lignende språk som den ultimate minimale modellen.",
     },
   ],
-  reducerCaption: "Interaktiv · trinn-for-trinn-reduser",
-  reducerPretitle: "Prøv · reduseren",
+  reducerCaption: "Interaktiv · trinn-for-trinn-reduserer",
+  reducerPretitle: "Prøv · redusereren",
   reducerTitle: "Se en utledning folde seg ut",
   reducerBody:
-    "Velg en berømt utledning (ι (ι (ι ι)) → K, eller ι (ι (ι (ι ι))) → S), eller skriv ditt eget uttrykk. Trykk Steg for å anvende én reduksjon; den nye termen erstatter den gamle. Reduseren følger venstre-ytterste rekkefølge, nøyaktig strategien fra lærebøkene.",
+    "Velg en berømt utledning (ι (ι (ι ι)) → K, eller ι (ι (ι (ι ι))) → S), eller skriv ditt eget uttrykk. Trykk Steg for å anvende én reduksjon; den nye termen erstatter den gamle. Redusereren følger venstre-ytterste rekkefølge, nøyaktig strategien fra lærebøkene.",
   ksCaption: "Interaktiv · K- og S-lekeplass",
   ksPretitle: "Prøv · K og S",
   ksTitle: "Føl hva K og S faktisk gjør",
@@ -1285,10 +1285,10 @@ const no: RichStory = {
     sShort: "Mat z til både x og y; bruk resultatene.",
   },
   closingPretitle: "Gå videre",
-  closingTitle: "Åpne Reduseren.",
+  closingTitle: "Åpne Redusereren.",
   closingBody:
-    "Reduseren lar deg skrive hvilket som helst SKI- eller iota-uttrykk og se det skrives om, steg for steg, til normalform når den finnes. De berømte utledningene er forhåndslastet; resten er ditt å oppdage.",
-  ctaLabel: "→ Åpne Reduseren",
+    "Redusereren lar deg skrive hvilket som helst SKI- eller iota-uttrykk og se det skrives om, steg for steg, til normalform når den finnes. De berømte utledningene er forhåndslastet; resten er ditt å oppdage.",
+  ctaLabel: "→ Åpne Redusereren",
   reducerLabels: {
     customExpression: "eget uttrykk (overstyrer forvalget)",
     stepStatus: "steg",
@@ -1330,7 +1330,7 @@ const no: RichStory = {
       "bare K igjen",
     ],
     kNotePre: "Den nøyaktige kjeden avhenger av reduksjonsstrategien; den ",
-    kNoteLink: "fullstendige Reduseren",
+    kNoteLink: "fullstendige Redusereren",
     kNotePost: " bruker venstre-ytterste og lander på K på en håndfull steg.",
     sCaption: "ι (ι (ι (ι ι))) · S-utledningen",
     sAnn: [
@@ -1340,7 +1340,7 @@ const no: RichStory = {
       "den nakne kombinatoren S faller ut",
     ],
     sNotePre: "Fem iota, ingen andre primitiver, og S dukker opp. Legg det samme uttrykket inn i ",
-    sNoteLink: "Reduseren",
+    sNoteLink: "Redusereren",
     sNotePost: " og gå gjennom hvert steg.",
     chainCaption: "kjeden · skrevet ut",
     chainAnn: [

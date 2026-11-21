@@ -221,7 +221,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "La liste des programmes propose six entrées, et chacune fait ce que son nom annonce. « Incrémenter sans fin » (+[>+<]) met la cellule 0 à 1 puis boucle dessus tout en augmentant la cellule 1, et ne s'arrête donc jamais ; « Compter jusqu'à 100 » place 100 dans la cellule 0 et la boucle [-] la décompte, avec un arrêt après exactement 301 pas (100 incréments, un test d'entrée, puis deux pas par tour). Les quatre autres ont besoin de nombres plus grands que ce que contient une cellule de 8 bits et tournent sur la machine à registres. « Collatz sur 27 » itère n/2 ou 3n+1 et compte les tours dans le registre k : il s'arrête avec k = 111 après 446 pas de machine. « Collatz sur une entrée » est le même programme avec une valeur de départ que tu saisis. « Recherche de Goldbach » teste 4, 6, 8, … tour à tour et ne s'arrêterait que sur un nombre pair qui n'est pas la somme de deux nombres premiers. « D autoréférentiel » est une illustration et le dit : aucun vrai halts ne peut être écrit, tu saisis donc la réponse qu'un prétendu décideur donnerait pour halts(D, D), et D fait le contraire. La ligne « Ce que l'on sait » sous chaque programme indique ce que les mathématiques savent réellement.",
-          "« Pas » exécute une instruction, « Lancer » et « Pause » pilotent la machine en continu, et « Réinitialiser » vide la machine. Le curseur de limite de pas va de 10 à 10 000 par crans de 10 et démarre à 2 000 ; le curseur de vitesse va de 1 à 200 pas par seconde et démarre à 40. Le cyan marque la prochaine instruction et le pointeur, l'ambre les cellules et les registres non nuls.",
+          "« Pas » exécute une instruction, « Lancer » et « Pause » pilotent la machine en continu, et « Réinitialiser » vide la machine. Le curseur de limite de pas va de 10 à 10\u00a0000 par crans de 10 et démarre à 2\u00a0000 ; le curseur de vitesse va de 1 à 200 pas par seconde et démarre à 40. Le cyan marque la prochaine instruction et le pointeur, l'ambre les cellules et les registres non nuls.",
         ],
       },
       {
@@ -235,7 +235,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
       {
         heading: "Pourquoi une limite plus grande n'aide pas",
         paragraphs: [
-          "Pour « Compter jusqu'à 100 », le verdict rose n'est que de l'impatience : augmente la limite et la réponse devient définitive. Mais pour la recherche de Goldbach, aucune limite finie ne règle quoi que ce soit. Ici, elle atteint n = 220 en 2 000 pas et n = 848 en 10 000. Des ordinateurs ont vérifié tous les nombres pairs jusqu'à 4·10¹⁸ et chacun s'est révélé être la somme de deux nombres premiers, de sorte qu'une vraie recherche tournerait au moins aussi longtemps avant de trouver un contre-exemple, et si Goldbach est vraie elle tourne pour toujours. Le théorème de Turing dit que ce n'est pas une faiblesse de cette page en particulier : quel que soit l'analyseur plus malin que tu construis, un programme le laissera dans la même situation.",
+          "Pour « Compter jusqu'à 100 », le verdict rose n'est que de l'impatience : augmente la limite et la réponse devient définitive. Mais pour la recherche de Goldbach, aucune limite finie ne règle quoi que ce soit. Ici, elle atteint n = 220 en 2\u00a0000 pas et n = 848 en 10\u00a0000. Des ordinateurs ont vérifié tous les nombres pairs jusqu'à 4·10¹⁸ et chacun s'est révélé être la somme de deux nombres premiers, de sorte qu'une vraie recherche tournerait au moins aussi longtemps avant de trouver un contre-exemple, et si Goldbach est vraie elle tourne pour toujours. Le théorème de Turing dit que ce n'est pas une faiblesse de cette page en particulier : quel que soit l'analyseur plus malin que tu construis, un programme le laissera dans la même situation.",
         ],
       },
     ],
@@ -247,11 +247,11 @@ export const HALTING_GUIDE: ExplorerGuide = {
       },
       {
         title: "La même chose avec Collatz",
-        text: "Prends « Collatz sur 27 » et règle la limite sur 440. Il abandonne. À 450, le programme s'arrête au pas 446 avec k = 111. En chemin, le registre n grimpe jusqu'à 9 232 avant de retomber à 1.",
+        text: "Prends « Collatz sur 27 » et règle la limite sur 440. Il abandonne. À 450, le programme s'arrête au pas 446 avec k = 111. En chemin, le registre n grimpe jusqu'à 9\u00a0232 avant de retomber à 1.",
       },
       {
         title: "Regarde une cellule reboucler",
-        text: "Sélectionne « Incrémenter sans fin », monte la vitesse à 200 et la limite à 2 000. La cellule 1 grimpe jusqu'à 255 puis repasse à 0, parce que les cellules contiennent des valeurs de 8 bits. La boucle elle-même est gardée par la cellule 0, qui reste à 1, de sorte que le rebouclage ne laisse jamais le programme s'échapper.",
+        text: "Sélectionne « Incrémenter sans fin », monte la vitesse à 200 et la limite à 2\u00a0000. La cellule 1 grimpe jusqu'à 255 puis repasse à 0, parce que les cellules contiennent des valeurs de 8 bits. La boucle elle-même est gardée par la cellule 0, qui reste à 1, de sorte que le rebouclage ne laisse jamais le programme s'échapper.",
       },
       {
         title: "Donne à D les deux réponses",
@@ -335,7 +335,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "A lista de programas oferece seis entradas, e cada uma faz o que o nome diz. «Incrementar sem fim» (+[>+<]) põe a célula 0 a 1 e depois fica em ciclo sobre ela enquanto vai aumentando a célula 1, pelo que nunca para; «Contar até 100» coloca 100 na célula 0 e o ciclo [-] vai decrementando, parando ao fim de exatamente 301 passos (100 incrementos, uma verificação de entrada, depois dois passos por volta). Os outros quatro precisam de números maiores do que cabe numa célula de 8 bits e correm na máquina de registos. «Collatz de 27» itera n/2 ou 3n+1 e conta as rondas no registo k: para com k = 111 ao fim de 446 passos de máquina. «Collatz de uma entrada» é o mesmo programa com um valor inicial que tu escreves. «Busca de Goldbach» testa 4, 6, 8, … à vez e só pararia num número par que não fosse soma de dois primos. «D autorreferencial» é uma ilustração e di-lo: não é possível escrever um halts verdadeiro, por isso introduzes a resposta que um suposto decisor daria para halts(D, D), e D faz o contrário. A linha «O que sabemos» por baixo de cada programa diz o que a matemática sabe de facto.",
-          "«Passo» executa uma instrução, «Executar» e «Pausa» comandam a execução contínua, e «Redefinir» limpa a máquina. O cursor do limite de passos vai de 10 a 10 000 em saltos de 10 e começa em 2000; o da velocidade vai de 1 a 200 passos por segundo e começa em 40. O ciano marca a próxima instrução e o ponteiro, o âmbar as células e os registos diferentes de zero.",
+          "«Passo» executa uma instrução, «Executar» e «Pausa» comandam a execução contínua, e «Redefinir» limpa a máquina. O cursor do limite de passos vai de 10 a 10\u00a0000 em saltos de 10 e começa em 2000; o da velocidade vai de 1 a 200 passos por segundo e começa em 40. O ciano marca a próxima instrução e o ponteiro, o âmbar as células e os registos diferentes de zero.",
         ],
       },
       {
@@ -349,7 +349,7 @@ export const HALTING_GUIDE: ExplorerGuide = {
       {
         heading: "Porque é que um limite maior não ajuda",
         paragraphs: [
-          "Para «Contar até 100», o veredicto rosa é só impaciência: sobe o limite e a resposta torna-se definitiva. Mas para a busca de Goldbach nenhum limite finito resolve coisa alguma. Aqui ela chega a n = 220 em 2000 passos e a n = 848 em 10 000. Os computadores verificaram todos os números pares até 4·10¹⁸ e cada um revelou-se soma de dois primos, pelo que uma busca a sério correria pelo menos esse tempo todo antes de encontrar um contraexemplo, e se Goldbach for verdadeira corre para sempre. O teorema de Turing diz que isto não é uma fraqueza desta página em particular: qualquer que seja o analisador mais esperto que construas, algum programa vai deixá-lo na mesma posição.",
+          "Para «Contar até 100», o veredicto rosa é só impaciência: sobe o limite e a resposta torna-se definitiva. Mas para a busca de Goldbach nenhum limite finito resolve coisa alguma. Aqui ela chega a n = 220 em 2000 passos e a n = 848 em 10\u00a0000. Os computadores verificaram todos os números pares até 4·10¹⁸ e cada um revelou-se soma de dois primos, pelo que uma busca a sério correria pelo menos esse tempo todo antes de encontrar um contraexemplo, e se Goldbach for verdadeira corre para sempre. O teorema de Turing diz que isto não é uma fraqueza desta página em particular: qualquer que seja o analisador mais esperto que construas, algum programa vai deixá-lo na mesma posição.",
         ],
       },
     ],

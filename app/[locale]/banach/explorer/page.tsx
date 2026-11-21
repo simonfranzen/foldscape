@@ -197,7 +197,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP1:
       "A árvore infinita é o grafo de Cayley do grupo livre F₂ gerado por duas rotações a e b. Cada palavra reduzida em a, a⁻¹, b, b⁻¹ é um nó distinto; a raiz é a rotação identidade. Cada nó não-raiz tem três filhos (não pode voltar pelo inverso do passo que o produziu).",
     whatYouSeeP2:
-      "Pinta cada nó pela primeira letra da sua palavra e divides F₂ em quatro peças disjuntas W(a), W(a⁻¹), W(b), W(b⁻¹). O paradoxo é puramente combinatório: multiplicar W(a⁻¹) à esquerda por a (o seu inverso) cobre toda palavra que não começa por a, isto é, as outras três peças mais a identidade. Uma peça, deslocada, são três peças mais um ponto. Sobe isto do grupo para a esfera via Hausdorff (1914), depois para a bola, e uma bola torna-se duas.",
+      "Pinta cada nó pela primeira letra da sua palavra e divides F₂ em quatro peças disjuntas W(a), W(a⁻¹), W(b), W(b⁻¹). O paradoxo é puramente combinatório: multiplicar W(a⁻¹) à esquerda por a (o seu inverso) cobre toda a palavra que não começa por a, isto é, as outras três peças mais a identidade. Uma peça, deslocada, são três peças mais um ponto. Sobe isto do grupo para a esfera via Hausdorff (1914), depois para a bola, e uma bola torna-se duas.",
     overlayMsg: (h, inv) => `W(${h}) deslocada por ${inv} cobre F₂ ∖ W(${inv})`,
     overlaySubMsg:
       "esta peça, deslocada pelo seu gerador inverso, cobre-se a si mesma, outras duas peças e a identidade",

@@ -225,7 +225,7 @@ export const DLA_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "« Graine » décide de l'endroit où la croissance démarre. « point » place une seule cellule figée au centre et lance les marcheurs depuis un cercle proche du bord du canevas. « ligne » fige toute la deuxième rangée en partant du bas et fait entrer les marcheurs par le bord supérieur, comme un cristal qui pousse vers le haut à partir d'une surface. « anneau » trace un cercle fermé dont le rayon vaut un tiers du plus petit côté et fait apparaître les marcheurs uniformément à l'intérieur, si bien que le corail pousse vers l'intérieur depuis la paroi.",
-          "« Marcheurs / image » fixe le nombre de particules qui errent en même temps (de 10 à 1 000, 150 par défaut, plafond absolu de 4 000). Plus de marcheurs, c'est une croissance plus rapide, puisque chaque marcheur bouge une fois par image. « Adhérence » (de 0,1 à 1,0 ; 1,0 par défaut) est la probabilité qu'un marcheur voisin de l'amas se fige réellement ; sinon, il continue de marcher. « Taille de cellule » (de 2 à 8 pixels, 3 par défaut) fixe la résolution de la grille : des cellules plus petites donnent un réseau plus fin et plus grand. Changer la graine ou la taille de cellule relance la simulation.",
+          "« Marcheurs / image » fixe le nombre de particules qui errent en même temps (de 10 à 1\u00a0000, 150 par défaut, plafond absolu de 4\u00a0000). Plus de marcheurs, c'est une croissance plus rapide, puisque chaque marcheur bouge une fois par image. « Adhérence » (de 0,1 à 1,0 ; 1,0 par défaut) est la probabilité qu'un marcheur voisin de l'amas se fige réellement ; sinon, il continue de marcher. « Taille de cellule » (de 2 à 8 pixels, 3 par défaut) fixe la résolution de la grille : des cellules plus petites donnent un réseau plus fin et plus grand. Changer la graine ou la taille de cellule relance la simulation.",
           "Les quatre préréglages combinent ces paramètres : « Graine centrale » avec 80 marcheurs, « Centre · rapide » avec 300, « Ligne du bas » avec 200 et « Graine anneau » avec 200, tous avec une adhérence de 1. Les pastilles de couleur ne changent que la teinte.",
         ],
       },
@@ -234,7 +234,7 @@ export const DLA_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Le monde est un Uint8Array avec un octet par cellule de la grille : 0 signifie vide, toute autre valeur signifie figée. Les marcheurs sont un simple tableau de coordonnées entières. Chaque image complète la réserve jusqu'au nombre visé, puis déplace chaque marcheur d'un pas à gauche, à droite, en haut ou en bas avec la même probabilité. Les marcheurs sont retenus au bord du canevas, et un pas vers une cellule figée est refusé : les particules ne peuvent donc jamais traverser un bras.",
           "Après son déplacement, le marcheur examine ses quatre voisins directs (le voisinage de von Neumann). Si l'un d'eux est figé et qu'un nombre aléatoire tombe sous l'adhérence, la cellule se fige et le marcheur est retiré. La valeur figée enregistre aussi le moment où la cellule s'est attachée : elle augmente de quatre toutes les 60 images, et les cellules plus anciennes sont dessinées un peu plus sombres que les récentes, de sorte que la croissance extérieure brille un peu plus.",
-          "Quand la réduction des animations est activée, la boucle ne s'anime pas. La page exécute 1 200 pas de simulation d'un coup, peint une seule image fixe et affiche la taille de l'amas obtenu.",
+          "Quand la réduction des animations est activée, la boucle ne s'anime pas. La page exécute 1\u00a0200 pas de simulation d'un coup, peint une seule image fixe et affiche la taille de l'amas obtenu.",
         ],
         code: WALK_EXCERPT,
       },
@@ -261,7 +261,7 @@ export const DLA_GUIDE: ExplorerGuide = {
       },
       {
         title: "Résolution et patience",
-        text: "Règle la taille de cellule sur 2 et les marcheurs sur 1 000. Le réseau compte maintenant beaucoup plus de cellules, et l'amas montre une ramification plus fine et plus détaillée. Avec une taille de cellule de 8, la même règle produit un corail massif, façon pixel art.",
+        text: "Règle la taille de cellule sur 2 et les marcheurs sur 1\u00a0000. Le réseau compte maintenant beaucoup plus de cellules, et l'amas montre une ramification plus fine et plus détaillée. Avec une taille de cellule de 8, la même règle produit un corail massif, façon pixel art.",
       },
     ],
   },
@@ -345,7 +345,7 @@ export const DLA_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "«Semente» decide onde começa o crescimento. «ponto» põe uma única célula congelada no centro e lança os caminhantes a partir de um círculo junto ao limite do canvas. «linha» congela toda a segunda fila a contar de baixo e larga os caminhantes pela margem superior, como um cristal que cresce para cima a partir de uma superfície. «anel» desenha um círculo fechado com raio igual a um terço do lado mais curto e gera os caminhantes uniformemente no seu interior, pelo que o coral cresce para dentro a partir da parede.",
-          "«Caminhantes / quadro» define quantas partículas deambulam ao mesmo tempo (de 10 a 1000, 150 por omissão, limite absoluto 4000). Mais caminhantes significa crescimento mais rápido, porque cada caminhante se move uma vez por fotograma. «Aderência» (de 0,1 a 1,0, 1,0 por omissão) é a probabilidade de um caminhante junto ao agregado congelar de facto; caso contrário, continua a caminhar. «Tamanho da célula» (de 2 a 8 píxeis, 3 por omissão) define a resolução da grelha: células mais pequenas dão uma rede mais fina e maior. Mudar a semente ou o tamanho da célula reinicia a simulação.",
+          "«Caminhantes / fotograma» define quantas partículas deambulam ao mesmo tempo (de 10 a 1000, 150 por omissão, limite absoluto 4000). Mais caminhantes significa crescimento mais rápido, porque cada caminhante se move uma vez por fotograma. «Aderência» (de 0,1 a 1,0, 1,0 por omissão) é a probabilidade de um caminhante junto ao agregado congelar de facto; caso contrário, continua a caminhar. «Tamanho da célula» (de 2 a 8 píxeis, 3 por omissão) define a resolução da grelha: células mais pequenas dão uma rede mais fina e maior. Mudar a semente ou o tamanho da célula reinicia a simulação.",
           "As quatro predefinições combinam tudo isto: «Semente central» com 80 caminhantes, «Centro · rápido» com 300, «Linha inferior» com 200 e «Semente anel» com 200, todas com aderência 1. As amostras de cor só mudam a tonalidade.",
         ],
       },
@@ -465,7 +465,7 @@ export const DLA_GUIDE: ExplorerGuide = {
         heading: "Hva kontrollene gjør",
         paragraphs: [
           "«Frø» avgjør hvor veksten starter. «punkt» legger én frossen celle i midten og sender ut vandrere fra en sirkel nær kanten av lerretet. «linje» fryser hele den nest nederste raden og slipper inn vandrere ved overkanten, som en krystall som vokser oppover fra en flate. «ring» tegner en lukket sirkel med radius lik en tredjedel av den korteste siden og lager vandrere jevnt fordelt inni den, så korallen vokser innover fra veggen.",
-          "«Vandrere / ramme» bestemmer hvor mange partikler som vandrer samtidig (10 til 1000, standard 150, absolutt tak 4000). Flere vandrere gir raskere vekst, fordi hver vandrer flytter seg én gang per bilde. «Klebrighet» (0,1 til 1,0, standard 1,0) er sannsynligheten for at en vandrer inntil klyngen faktisk fryser fast. Ellers går den videre. «Cellestørrelse» (2 til 8 piksler, standard 3) bestemmer oppløsningen på rutenettet: Mindre celler gir et finere og større gitter. Bytter du frø eller cellestørrelse, starter simuleringen på nytt.",
+          "«Vandrere / bilde» bestemmer hvor mange partikler som vandrer samtidig (10 til 1000, standard 150, absolutt tak 4000). Flere vandrere gir raskere vekst, fordi hver vandrer flytter seg én gang per bilde. «Klebrighet» (0,1 til 1,0, standard 1,0) er sannsynligheten for at en vandrer inntil klyngen faktisk fryser fast. Ellers går den videre. «Cellestørrelse» (2 til 8 piksler, standard 3) bestemmer oppløsningen på rutenettet: Mindre celler gir et finere og større gitter. Bytter du frø eller cellestørrelse, starter simuleringen på nytt.",
           "De fire forhåndsvalgene kombinerer dette: «Sentrum-frø» med 80 vandrere, «Sentrum · rask» med 300, «Bunnlinje» med 200 og «Ringfrø» med 200, alle med klebrighet 1. Fargeprøvene endrer bare fargetonen.",
         ],
       },

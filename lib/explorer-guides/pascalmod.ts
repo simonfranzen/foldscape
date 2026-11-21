@@ -229,7 +229,7 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Toute l'image est calculée sur un canevas 2D en une seule passe. Le code ne conserve que la ligne précédente, sous forme d'un Uint8Array de restes, et construit la suivante à partir d'elle avec la règle d'addition prise mod p. Comme p vaut au plus 23, toute somme de deux restes tient largement dans un octet. La mémoire croît donc avec la longueur de la ligne, pas avec la taille du triangle, et avec 512 lignes la boucle parcourt environ 131 000 cellules.",
+          "Toute l'image est calculée sur un canevas 2D en une seule passe. Le code ne conserve que la ligne précédente, sous forme d'un Uint8Array de restes, et construit la suivante à partir d'elle avec la règle d'addition prise mod p. Comme p vaut au plus 23, toute somme de deux restes tient largement dans un octet. La mémoire croît donc avec la longueur de la ligne, pas avec la taille du triangle, et avec 512 lignes la boucle parcourt environ 131\u00a0000 cellules.",
           "Chaque cellule non nulle devient un carré plein. La ligne n est décalée vers la droite d'une demi-cellule par entrée manquante, ce qui centre le triangle, et les lignes sont espacées de 0,92 hauteur de cellule, de sorte que le triangle est un peu plus plat que large. Le canevas est dimensionné en pixels physiques, les cellules restent donc nettes sur les écrans à haute densité. Il n'y a aucune animation : l'image n'est redessinée que lorsque tu changes p ou le nombre de lignes, ou lorsqu'un ResizeObserver signale une nouvelle taille du canevas. Il n'y a donc rien non plus à ralentir quand le système demande de réduire les animations.",
         ],
         code: ROWS_EXCERPT,
@@ -345,7 +345,7 @@ export const PASCALMOD_GUIDE: ExplorerGuide = {
       {
         heading: "Como está construído",
         paragraphs: [
-          "Toda a imagem é calculada num canvas 2D numa única passagem. O código guarda apenas a linha anterior, como um Uint8Array de restos, e a partir dela constrói a seguinte com a regra de adição tomada mod p. Como p é no máximo 23, qualquer soma de dois restos cabe à vontade num byte. A memória cresce, portanto, com o comprimento da linha e não com o tamanho do triângulo, e com 512 linhas o ciclo percorre cerca de 131 000 células.",
+          "Toda a imagem é calculada num canvas 2D numa única passagem. O código guarda apenas a linha anterior, como um Uint8Array de restos, e a partir dela constrói a seguinte com a regra de adição tomada mod p. Como p é no máximo 23, qualquer soma de dois restos cabe à vontade num byte. A memória cresce, portanto, com o comprimento da linha e não com o tamanho do triângulo, e com 512 linhas o ciclo percorre cerca de 131\u00a0000 células.",
           "Cada célula não nula torna-se um quadrado preenchido. A linha n é deslocada meia célula para a direita por cada entrada em falta, o que centra o triângulo, e as linhas ficam a 0,92 alturas de célula umas das outras, pelo que o triângulo é ligeiramente mais achatado do que largo. O canvas é dimensionado em píxeis do dispositivo, por isso as células mantêm-se nítidas em ecrãs de alta densidade. Não há qualquer animação: a imagem só é redesenhada quando mudas p ou o número de linhas, ou quando um ResizeObserver comunica um novo tamanho do canvas. Isso significa também que não há nada para abrandar quando o sistema pede movimento reduzido.",
         ],
         code: ROWS_EXCERPT,

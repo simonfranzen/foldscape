@@ -335,8 +335,8 @@ export const FOURIER_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "«Onda alvo» alterna entre «Onda quadrada» (a opção por omissão), «Dente de serra» e «Triangular». «Harmônicos» define N, o harmónico mais alto incluído, de 1 a 48, 8 por omissão; os botões 1, 3, 8 e 24 saltam para valores úteis. N conta harmónicos, não termos diferentes de zero: para a onda quadrada com N = 8 só contribuem k = 1, 3, 5 e 7, e as barras pares do espetro ficam vazias.",
-          "Em «Camadas», «Alvo (branco)» mostra ou esconde a forma ideal, e «Harmônicos individuais (ciano)» mostra ou esconde as curvas sinusoidais separadas. O espetro por baixo do canvas principal desenha uma barra por harmónico, à escala da maior. As barras ciano têm coeficientes positivos e as cor-de-rosa negativos, e é por isso que o dente de serra e a triangular mostram cores alternadas.",
+          "«Onda alvo» alterna entre «Onda quadrada» (a opção por omissão), «Dente de serra» e «Triangular». «Harmónicos» define N, o harmónico mais alto incluído, de 1 a 48, 8 por omissão; os botões 1, 3, 8 e 24 saltam para valores úteis. N conta harmónicos, não termos diferentes de zero: para a onda quadrada com N = 8 só contribuem k = 1, 3, 5 e 7, e as barras pares do espetro ficam vazias.",
+          "Em «Camadas», «Alvo (branco)» mostra ou esconde a forma ideal, e «Harmónicos individuais (ciano)» mostra ou esconde as curvas sinusoidais separadas. O espetro por baixo do canvas principal desenha uma barra por harmónico, à escala da maior. As barras ciano têm coeficientes positivos e as cor-de-rosa negativos, e é por isso que o dente de serra e a triangular mostram cores alternadas.",
         ],
       },
       {

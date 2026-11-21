@@ -1021,8 +1021,8 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     headerModeVerify: "Modalità verifica · controllo O(m)",
     headerModeSolve: "Ricerca DPLL · 3-SAT",
     formulaTitle: "Formula φ: congiunzione di clausole",
-    candidateAssignment: "Assegnazione candidata",
-    partialAssignment: "Assegnazione parziale",
+    candidateAssignment: "Assegnamento candidato",
+    partialAssignment: "Assegnamento parziale",
     toggleHint: "Clicca le variabili per alternare T → F → non assegnata.",
     verifierOutput: "Output del verificatore",
     currentNode: "Nodo corrente",
@@ -1042,7 +1042,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       "unsat-all": {
         label: "Tutte le 8 clausole su 3 variabili: UNSAT",
         description:
-          "Ogni clausola di lunghezza 3 su {x1,x2,x3}. Nessuna assegnazione le soddisfa tutte.",
+          "Ogni clausola di lunghezza 3 su {x1,x2,x3}. Nessun assegnamento le soddisfa tutte.",
       },
       phase: {
         label: "Transizione di fase · m/n ≈ 4.26",
@@ -1057,7 +1057,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       verify: {
         label: "Solo verifica · istanza SAT a 4 variabili con candidato",
         description:
-          "Niente ricerca. Inserisci l'assegnazione candidata e leggi. È il verificatore O(m) che mette il problema in NP.",
+          "Niente ricerca. Inserisci l'assegnamento candidato e leggi. È il verificatore O(m) che mette il problema in NP.",
       },
     },
     randomTitle: "3-SAT casuale",
@@ -1084,9 +1084,9 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     modeSolve: "Risolvi",
     modeVerify: "Verifica",
     modeFootnote:
-      "«Risolvi» avvia DPLL (potenzialmente esponenziale). «Verifica» inserisce solo un'assegnazione in m clausole: è il certificato O(m) che pone 3-SAT in NP.",
+      "«Risolvi» avvia DPLL (potenzialmente esponenziale). «Verifica» inserisce solo un assegnamento in m clausole: è il certificato O(m) che pone 3-SAT in NP.",
     actionReady: "Pronto.",
-    actionSat: (depth) => `SAT: assegnazione trovata a profondità ${depth}.`,
+    actionSat: (depth) => `SAT: assegnamento trovato a profondità ${depth}.`,
     actionConflict: "Conflitto: backtracking.",
     actionUnit: (v, val) => `Propagazione unitaria · x${v} := ${tf(val)}`,
     actionPure: (v, val) => `Letterale puro · x${v} := ${tf(val)}`,
@@ -1105,10 +1105,10 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     formulaTitle: "Fórmula φ: conjunção de cláusulas",
     candidateAssignment: "Atribuição candidata",
     partialAssignment: "Atribuição parcial",
-    toggleHint: "Clique nas variáveis para alternar T → F → não atribuída.",
+    toggleHint: "Clica nas variáveis para alternar T → F → não atribuída.",
     verifierOutput: "Saída do verificador",
-    currentNode: "Nó actual",
-    verifierSatisfied: "✓ SATISFEITA: toda cláusula é verdadeira.",
+    currentNode: "Nó atual",
+    verifierSatisfied: "✓ SATISFEITA: todas as cláusulas são verdadeiras.",
     verifierFalsified: "✗ FALSIFICADA: pelo menos uma cláusula falha.",
     verifierIncomplete: "… incompleta: algumas variáveis sem atribuição.",
     verifierFootnote:
@@ -1124,7 +1124,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       "unsat-all": {
         label: "Todas as 8 cláusulas sobre 3 variáveis: UNSAT",
         description:
-          "Toda cláusula de comprimento 3 sobre {x1,x2,x3}. Nenhuma atribuição as satisfaz todas.",
+          "Todas as cláusulas de comprimento 3 sobre {x1,x2,x3}. Nenhuma atribuição as satisfaz todas.",
       },
       phase: {
         label: "Transição de fase · m/n ≈ 4.26",
@@ -1169,7 +1169,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       "«Resolver» lança DPLL (potencialmente exponencial). «Verificar» mete apenas uma atribuição em m cláusulas: é o certificado O(m) que põe 3-SAT em NP.",
     actionReady: "Pronto.",
     actionSat: (depth) => `SAT: atribuição encontrada à profundidade ${depth}.`,
-    actionConflict: "Conflito: retrocedendo.",
+    actionConflict: "Conflito: a retroceder.",
     actionUnit: (v, val) => `Propagação unitária · x${v} := ${tf(val)}`,
     actionPure: (v, val) => `Literal puro · x${v} := ${tf(val)}`,
     actionNoVars: "Sem variáveis, ainda insatisfeita → retroceder.",

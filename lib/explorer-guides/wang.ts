@@ -191,7 +191,7 @@ export const WANG_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Una búsqueda que nunca duda",
-        text: "Elige el Conjunto A, una malla de 24 × 24 y velocidad 400. El contador de retrocesos se queda en cero hasta las 576 teselas colocadas, porque para cada par de color superior e izquierdo hay una tesela que encaja.",
+        text: "Elige el Conjunto A, una malla de 24 × 24 y velocidad 400. El contador de retrocesos se queda en cero hasta las 576 teselas colocadas, porque para cada par de color inferior y derecho hay una tesela que encaja.",
       },
       {
         title: "Observa un callejón sin salida",
@@ -217,7 +217,7 @@ export const WANG_GUIDE: ExplorerGuide = {
       {
         heading: "La question de Wang",
         paragraphs: [
-          "En 1961, le logicien Hao Wang a demandé s'il existe un algorithme qui décide, pour tout ensemble fini de telles tuiles, si des copies de celles-ci peuvent recouvrir tout le plan infini. Il a conjecturé que tout jeu qui pave le plan peut aussi le paver périodiquement, ce qui aurait fourni un tel algorithme. En 1966, son étudiant Robert Berger a prouvé que les deux idées étaient fausses. Il existe des jeux de tuiles apériodiques, qui pavent le plan mais seulement sans aucune répétition, et Berger a montré que la question générale est indécidable, car on peut concevoir des tuiles qui imitent l'exécution d'une machine de Turing. Le jeu de Berger comptait 20 426 tuiles ; des travaux ultérieurs ont abaissé le record à 13 (Karel Culik, 1996) puis à 11 (Jeandel et Rao, 2015).",
+          "En 1961, le logicien Hao Wang a demandé s'il existe un algorithme qui décide, pour tout ensemble fini de telles tuiles, si des copies de celles-ci peuvent recouvrir tout le plan infini. Il a conjecturé que tout jeu qui pave le plan peut aussi le paver périodiquement, ce qui aurait fourni un tel algorithme. En 1966, son étudiant Robert Berger a prouvé que les deux idées étaient fausses. Il existe des jeux de tuiles apériodiques, qui pavent le plan mais seulement sans aucune répétition, et Berger a montré que la question générale est indécidable, car on peut concevoir des tuiles qui imitent l'exécution d'une machine de Turing. Le jeu de Berger comptait 20\u00a0426 tuiles ; des travaux ultérieurs ont abaissé le record à 13 (Karel Culik, 1996) puis à 11 (Jeandel et Rao, 2015).",
           "Un fait utile relie la question infinie à cette grille finie : un jeu de tuiles recouvre tout le plan exactement quand il peut remplir chaque carré n × n. Donc, si une recherche exhaustive prouve un jour qu'un certain carré ne peut pas être rempli, le jeu ne pourra jamais paver le plan. La réussite sur un carré fini, en revanche, ne prouve rien à elle seule.",
         ],
         formula: MATCH_FORMULA,
@@ -234,7 +234,7 @@ export const WANG_GUIDE: ExplorerGuide = {
         paragraphs: [
           "La recherche remplit la grille à rebours : elle commence dans le coin inférieur droit, avance vers la gauche le long de chaque ligne, puis remonte. Chaque case tient une liste des tuiles encore possibles à cet endroit. Pour tester une tuile, la recherche la pose à titre provisoire et raye des cases voisines toute tuile qui a perdu sa partenaire compatible, puis fait de même pour leurs voisines jusqu'à ce que plus rien ne change (c'est ce qu'on appelle la cohérence d'arc). Si une case se retrouve sans aucune tuile, la candidate est écartée. Les candidates restantes sont mélangées par un mélange de Fisher-Yates ; la première est posée et les autres sont gardées sur une pile comme alternatives non essayées. La grille a des bords fixes, sans repliement.",
           "Quand une case n'a plus aucune candidate, la recherche revient en arrière : elle remplace la tuile la plus récente par l'alternative suivante de cette case et, s'il n'y en a plus, elle vide la case et recule encore. Chacune de ces impasses incrémente le compteur de retours. Si la pile se vide, tous les arrangements ont été exclus et l'état affiche « aucun pavage possible (prouvé) ». Avec les trois jeux proposés ici, cela n'arrive jamais, car tous pavent le plan. Une boucle d'animation exécute autant d'étapes par image que la vitesse l'exige et s'arrête dès que la recherche est terminée.",
-          "Quand la réduction des animations est activée, la page exécute toute la recherche d'un coup et ne dessine que le résultat. Cette exécution dispose d'un budget fixe de taille de la grille² × nombre de tuiles × 50 étapes. S'il était épuisé, l'état afficherait « abandon après N étapes » au lieu de prétendre à une preuve. Sur 3 150 exécutions hors ligne du Jeu B pour toutes les tailles de grille, la recherche la plus longue a pris 4 454 étapes, alors que le plus petit budget, celui du 4 × 4, est de 10 400.",
+          "Quand la réduction des animations est activée, la page exécute toute la recherche d'un coup et ne dessine que le résultat. Cette exécution dispose d'un budget fixe de taille de la grille² × nombre de tuiles × 50 étapes. S'il était épuisé, l'état afficherait « abandon après N étapes » au lieu de prétendre à une preuve. Sur 3\u00a0150 exécutions hors ligne du Jeu B pour toutes les tailles de grille, la recherche la plus longue a pris 4\u00a0454 étapes, alors que le plus petit budget, celui du 4 × 4, est de 10\u00a0400.",
         ],
         code: SEARCH_EXCERPT,
       },
@@ -242,7 +242,7 @@ export const WANG_GUIDE: ExplorerGuide = {
         heading: "Pourquoi certains jeux ne reviennent jamais en arrière",
         paragraphs: [
           "À l'intérieur de la grille, chaque case réclame une paire précise : comme la recherche travaille à rebours, une couleur du bas donnée et une couleur de droite donnée. Si le jeu possède une tuile pour chaque paire possible, la recherche ne peut jamais se bloquer. Le Jeu A a une tuile pour chacune des quatre paires à deux couleurs, et le Jeu C en a quatre pour chacune : tous deux terminent donc toujours sans un seul retour en arrière.",
-          "Le Jeu B a quatre couleurs, donc 16 paires possibles, mais ses 13 tuiles ne couvrent que huit paires de couleurs du bas et de droite. L'anticipation élimine la plupart des impasses avant qu'une tuile ne soit posée, mais pas toutes, si bien que la recherche doit tout de même reculer. Le sens compte énormément : vues depuis le coin supérieur gauche, cinq paires de couleurs du haut et de gauche manquent, à savoir (0, 0), (0, 3), (1, 0), (2, 2) et (3, 1), et la même recherche lancée depuis ce coin a dépassé 200 000 étapes dans plus de la moitié de nos essais en 20 × 20. Depuis le coin inférieur droit, il lui en a fallu au plus quelques milliers, quelle que soit la taille.",
+          "Le Jeu B a quatre couleurs, donc 16 paires possibles, mais ses 13 tuiles ne couvrent que huit paires de couleurs du bas et de droite. L'anticipation élimine la plupart des impasses avant qu'une tuile ne soit posée, mais pas toutes, si bien que la recherche doit tout de même reculer. Le sens compte énormément : vues depuis le coin supérieur gauche, cinq paires de couleurs du haut et de gauche manquent, à savoir (0, 0), (0, 3), (1, 0), (2, 2) et (3, 1), et la même recherche lancée depuis ce coin a dépassé 200\u00a0000 étapes dans plus de la moitié de nos essais en 20 × 20. Depuis le coin inférieur droit, il lui en a fallu au plus quelques milliers, quelle que soit la taille.",
         ],
       },
     ],
@@ -258,7 +258,7 @@ export const WANG_GUIDE: ExplorerGuide = {
       },
       {
         title: "Un jeu difficile qui aboutit quand même",
-        text: "Garde le Jeu B et passe la grille à 24 × 24 avec la vitesse 400. La progression monte et retombe de nombreuses fois dans les lignes du bas, puis file jusqu'au bout : dans nos essais, cela a demandé environ 850 étapes et 50 retours dans le cas médian, et jamais plus de 5 000 étapes environ. « Redémarrer » mélange à nouveau et produit un pavage différent.",
+        text: "Garde le Jeu B et passe la grille à 24 × 24 avec la vitesse 400. La progression monte et retombe de nombreuses fois dans les lignes du bas, puis file jusqu'au bout : dans nos essais, cela a demandé environ 850 étapes et 50 retours dans le cas médian, et jamais plus de 5\u00a0000 étapes environ. « Redémarrer » mélange à nouveau et produit un pavage différent.",
       },
       {
         title: "Un hasard qui reste périodique",
@@ -309,7 +309,7 @@ export const WANG_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Una ricerca che non esita mai",
-        text: "Scegli l'Insieme A, una griglia 24 × 24 e velocità 400. Il contatore dei backtrack resta a zero fino ai 576 tasselli posati, perché per ogni coppia di colore superiore e sinistro c'è un tassello che combacia.",
+        text: "Scegli l'Insieme A, una griglia 24 × 24 e velocità 400. Il contatore dei backtrack resta a zero fino ai 576 tasselli posati, perché per ogni coppia di colore inferiore e destro c'è un tassello che combacia.",
       },
       {
         title: "Osserva un vicolo cieco",
@@ -335,7 +335,7 @@ export const WANG_GUIDE: ExplorerGuide = {
       {
         heading: "A pergunta de Wang",
         paragraphs: [
-          "Em 1961, o lógico Hao Wang perguntou se existe um algoritmo que decida, para qualquer conjunto finito de tijolos deste tipo, se cópias deles conseguem cobrir todo o plano infinito. Conjeturou que qualquer conjunto que ladrilha o plano também o consegue ladrilhar de forma periódica, o que teria dado esse algoritmo. Em 1966, o seu aluno Robert Berger provou que ambas as ideias estavam erradas. Existem conjuntos de tijolos aperiódicos, que ladrilham o plano mas apenas sem qualquer repetição, e Berger mostrou que a pergunta geral é indecidível, porque é possível desenhar tijolos que imitam a execução de uma máquina de Turing. O conjunto de Berger tinha 20 426 tijolos; trabalhos posteriores baixaram o recorde para 13 (Karel Culik, 1996) e por fim para 11 (Jeandel e Rao, 2015).",
+          "Em 1961, o lógico Hao Wang perguntou se existe um algoritmo que decida, para qualquer conjunto finito de tijolos deste tipo, se cópias deles conseguem cobrir todo o plano infinito. Conjeturou que qualquer conjunto que ladrilha o plano também o consegue ladrilhar de forma periódica, o que teria dado esse algoritmo. Em 1966, o seu aluno Robert Berger provou que ambas as ideias estavam erradas. Existem conjuntos de tijolos aperiódicos, que ladrilham o plano mas apenas sem qualquer repetição, e Berger mostrou que a pergunta geral é indecidível, porque é possível desenhar tijolos que imitam a execução de uma máquina de Turing. O conjunto de Berger tinha 20\u00a0426 tijolos; trabalhos posteriores baixaram o recorde para 13 (Karel Culik, 1996) e por fim para 11 (Jeandel e Rao, 2015).",
           "Um facto útil liga a pergunta infinita a esta grelha finita: um conjunto de tijolos cobre o plano inteiro exatamente quando consegue preencher qualquer quadrado n × n. Assim, se uma busca exaustiva alguma vez provar que um certo quadrado não pode ser preenchido, o conjunto nunca poderá ladrilhar o plano. Já o sucesso num quadrado finito, por si só, não prova nada.",
         ],
         formula: MATCH_FORMULA,
@@ -352,7 +352,7 @@ export const WANG_GUIDE: ExplorerGuide = {
         paragraphs: [
           "A busca preenche a grelha de trás para a frente: começa no canto inferior direito, avança para a esquerda ao longo de cada linha e depois sobe. Cada célula guarda uma lista dos tijolos que ainda são possíveis ali. Para testar um tijolo, a busca coloca-o provisoriamente e risca das células vizinhas todos os tijolos que perderam o parceiro compatível, fazendo depois o mesmo com as vizinhas destas até nada mudar (chama-se a isto consistência de arco). Se alguma célula ficar sem tijolo nenhum, o candidato é descartado. Os candidatos sobreviventes são baralhados com o algoritmo de Fisher-Yates; o primeiro é colocado e os restantes ficam guardados numa pilha como alternativas por experimentar. A grelha tem margens rígidas e não dá a volta.",
           "Quando uma célula não tem nenhum candidato sobrevivente, a busca recua: substitui o tijolo mais recente pela alternativa seguinte dessa célula e, se não houver nenhuma, esvazia a célula e recua ainda mais. Cada um destes becos sem saída incrementa o contador de retrocessos. Se a pilha ficar vazia, todas as disposições foram excluídas e o estado indica «não existe ladrilhamento (provado)». Com os três conjuntos aqui disponíveis isso nunca acontece, porque todos ladrilham o plano. Um ciclo de animação executa tantos passos por fotograma quantos a velocidade exigir e para assim que a busca termina.",
-          "Com o movimento reduzido ativado, a página executa a busca inteira de uma só vez e desenha apenas o resultado. Essa execução tem um orçamento fixo de tamanho da grelha² × número de tijolos × 50 passos. Se se esgotasse, o estado indicaria «desistiu após N passos» em vez de afirmar uma prova. Em 3150 execuções offline do Conjunto B com todos os tamanhos de grelha, a busca mais longa demorou 4454 passos, enquanto o orçamento mais pequeno, o de 4 × 4, é de 10 400.",
+          "Com o movimento reduzido ativado, a página executa a busca inteira de uma só vez e desenha apenas o resultado. Essa execução tem um orçamento fixo de tamanho da grelha² × número de tijolos × 50 passos. Se se esgotasse, o estado indicaria «desistiu após N passos» em vez de afirmar uma prova. Em 3150 execuções offline do Conjunto B com todos os tamanhos de grelha, a busca mais longa demorou 4454 passos, enquanto o orçamento mais pequeno, o de 4 × 4, é de 10\u00a0400.",
         ],
         code: SEARCH_EXCERPT,
       },
@@ -360,7 +360,7 @@ export const WANG_GUIDE: ExplorerGuide = {
         heading: "Porque é que alguns conjuntos nunca recuam",
         paragraphs: [
           "Dentro da grelha, cada célula pede um par específico: como a busca trabalha de trás para a frente, uma dada cor de baixo e uma dada cor da direita. Se o conjunto tiver um tijolo para cada par possível, a busca nunca pode ficar presa. O Conjunto A tem um tijolo para cada um dos quatro pares com duas cores, e o Conjunto C tem quatro para cada um, por isso ambos terminam sempre sem um único retrocesso.",
-          "O Conjunto B tem quatro cores, portanto 16 pares possíveis, mas os seus 13 tijolos cobrem apenas oito pares de cor de baixo e da direita. A antecipação elimina a maior parte dos becos sem saída antes de um tijolo ser colocado, mas não todos, pelo que a busca tem mesmo de recuar. A direção importa muito: vistos a partir do canto superior esquerdo, faltam cinco pares de cor de cima e da esquerda, nomeadamente (0, 0), (0, 3), (1, 0), (2, 2) e (3, 1), e a mesma busca iniciada nesse canto ultrapassou os 200 000 passos em mais de metade das nossas execuções de teste em 20 × 20. A partir do canto inferior direito, precisou no máximo de alguns milhares em todos os tamanhos.",
+          "O Conjunto B tem quatro cores, portanto 16 pares possíveis, mas os seus 13 tijolos cobrem apenas oito pares de cor de baixo e da direita. A antecipação elimina a maior parte dos becos sem saída antes de um tijolo ser colocado, mas não todos, pelo que a busca tem mesmo de recuar. A direção importa muito: vistos a partir do canto superior esquerdo, faltam cinco pares de cor de cima e da esquerda, nomeadamente (0, 0), (0, 3), (1, 0), (2, 2) e (3, 1), e a mesma busca iniciada nesse canto ultrapassou os 200\u00a0000 passos em mais de metade das nossas execuções de teste em 20 × 20. A partir do canto inferior direito, precisou no máximo de alguns milhares em todos os tamanhos.",
         ],
       },
     ],
@@ -427,7 +427,7 @@ export const WANG_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "En sökning som aldrig tvekar",
-        text: "Välj Uppsättning A, ett rutnät på 24 × 24 och hastighet 400. Räknaren för backningar står kvar på noll hela vägen till 576 lagda plattor, eftersom varje par av färg upptill och till vänster har en passande platta.",
+        text: "Välj Uppsättning A, ett rutnät på 24 × 24 och hastighet 400. Räknaren för backningar står kvar på noll hela vägen till 576 lagda plattor, eftersom varje par av färg nedtill och till höger har en passande platta.",
       },
       {
         title: "Se en återvändsgränd",
@@ -486,7 +486,7 @@ export const WANG_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Et søk som aldri nøler",
-        text: "Velg Sett A, et rutenett på 24 × 24 og hastighet 400. Telleren for tilbakespor står på null helt fram til 576 lagte fliser, fordi hvert par av farge øverst og til venstre har en flis som passer.",
+        text: "Velg Sett A, et rutenett på 24 × 24 og hastighet 400. Telleren for tilbakespor står på null helt fram til 576 lagte fliser, fordi hvert par av farge nederst og til høyre har en flis som passer.",
       },
       {
         title: "Se en blindvei",

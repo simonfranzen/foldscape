@@ -581,12 +581,12 @@ const no: RichStory = {
       {
         label: "01",
         title: "Hovedidéen",
-        body: "En boolsk formel bygges av variabler som hver er sanne eller usanne, bundet sammen med OG (∧), ELLER (∨) og IKKE (¬). Oppfyllbarhet stiller ett eneste spørsmål: Finnes det en måte å sette variablene på slik at hele formelen blir sann? Hvis ja, er formelen oppfyllbar: Oppgi tildelingen, så kan hvem som helst sjekke den på sekunder. Hvis nei, er den uoppfyllbar, og å bevise det kan bety å utelukke enhver mulighet.",
+        body: "En boolsk formel bygges av variabler som hver er sanne eller usanne, bundet sammen med OG (∧), ELLER (∨) og IKKE (¬). Oppfyllbarhet stiller ett eneste spørsmål: Finnes det en måte å sette variablene på slik at hele formelen blir sann? Hvis ja, er formelen oppfyllbar: Oppgi tilordningen, så kan hvem som helst sjekke den på sekunder. Hvis nei, er den uoppfyllbar, og å bevise det kan bety å utelukke enhver mulighet.",
       },
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Ta (x ∨ ¬y) ∧ (y ∨ z) ∧ (¬z ∨ ¬x). Tre klausuler bundet med OG, så alle tre må gjelde samtidig. Prøv x = sann, y = sann, z = usann: Første klausul er sann (x), andre sann (y), tredje sann (¬z). Oppfylt. Du verifiserte nettopp en løsning raskere enn du rakk å lese dette kortet, men med 100 variabler og 500 klausuler er det å finne den tildelingen en helt annen sak.",
+        body: "Ta (x ∨ ¬y) ∧ (y ∨ z) ∧ (¬z ∨ ¬x). Tre klausuler bundet med OG, så alle tre må gjelde samtidig. Prøv x = sann, y = sann, z = usann: Første klausul er sann (x), andre sann (y), tredje sann (¬z). Oppfylt. Du verifiserte nettopp en løsning raskere enn du rakk å lese dette kortet, men med 100 variabler og 500 klausuler er det å finne den tilordningen en helt annen sak.",
       },
       {
         label: "03",
@@ -606,7 +606,7 @@ const no: RichStory = {
     {
       pretitle: "Del 02 · Lett å sjekke, vanskelig å finne",
       title: "Hvorfor SAT bor i NP",
-      body: "Gi noen en tildeling, og de verifiserer den i ett eneste lineært gjennomløp: Sett inn verdiene, evaluer hver klausul. Det plasserer SAT i NP: klassen av problemer hvis ja-svar bærer et kort sertifikat som er raskt å sjekke. Det åpne spørsmålet er om det er like lett å finne sertifikatet som å sjekke det. Ingen har funnet en polynomtidsalgoritme for SAT, og ingen har bevist at ingen finnes. Det gapet er problemet P mot NP, og SAT ligger nøyaktig på forkastningslinjen.",
+      body: "Gi noen en tilordning, og de verifiserer den i ett eneste lineært gjennomløp: Sett inn verdiene, evaluer hver klausul. Det plasserer SAT i NP: klassen av problemer hvis ja-svar bærer et kort sertifikat som er raskt å sjekke. Det åpne spørsmålet er om det er like lett å finne sertifikatet som å sjekke det. Ingen har funnet en polynomtidsalgoritme for SAT, og ingen har bevist at ingen finnes. Det gapet er problemet P mot NP, og SAT ligger nøyaktig på forkastningslinjen.",
     },
     {
       pretitle: "Del 03 · Den første brikken",
@@ -616,7 +616,7 @@ const no: RichStory = {
     {
       pretitle: "Del 04 · Hvordan løsere faktisk vinner",
       title: "DPLL, og søket som beskjærer seg selv",
-      body: "Brute force-treet har 2ⁿ blader, ett per tildeling, håpløst forbi noen titalls variabler. Davis-Putnam-Logemann-Loveland-prosedyren (1962) gjør det til et søk som beskjærer seg selv: Velg en variabel, anta en verdi, propager følgene. Enhetspropagering: Har en klausul bare én utildelt literal igjen, er den literalen tvunget. Eliminering av ren literal: En variabel som bare opptrer positivt, kan rett og slett settes sann. Støter du på en motsigelse, gå tilbake. Moderne løsere legger til konfliktdrevet klausullæring, der hver blindvei lærer bort en ny klausul som blokkerer en hel familie av framtidige blindveier, og avgjør rutinemessig formler med millioner av variabler.",
+      body: "Brute force-treet har 2ⁿ blader, ett per tilordning, håpløst forbi noen titalls variabler. Davis-Putnam-Logemann-Loveland-prosedyren (1962) gjør det til et søk som beskjærer seg selv: Velg en variabel, anta en verdi, propager følgene. Enhetspropagering: Har en klausul bare én utilordnet literal igjen, er den literalen tvunget. Eliminering av ren literal: En variabel som bare opptrer positivt, kan rett og slett settes sann. Støter du på en motsigelse, gå tilbake. Moderne løsere legger til konfliktdrevet klausullæring, der hver blindvei lærer bort en ny klausul som blokkerer en hel familie av framtidige blindveier, og avgjør rutinemessig formler med millioner av variabler.",
     },
     {
       pretitle: "Del 05 · Der det blir vanskelig",
@@ -626,7 +626,7 @@ const no: RichStory = {
   ],
   toggleCaption: "Oppfyll for hånd",
   toggleHint:
-    "Klikk a, b eller c for å vippe mellom sann og usann. En klausul blir grønn så snart én av literalene er sann; formelen er oppfylt når alle fire klausuler er grønne. Fire av de åtte tildelingene virker. Finn én.",
+    "Klikk a, b eller c for å vippe mellom sann og usann. En klausul blir grønn så snart én av literalene er sann; formelen er oppfylt når alle fire klausuler er grønne. Fire av de åtte tilordningene virker. Finn én.",
   toggleSatisfied:
     "Oppfylt. Hver klausul har en sann literal, så hele formelen er sann, og du verifiserte det på sekunder. Å finne den var det lette tilfellet; tenk deg tusen variabler.",
   toggleUnsatisfied:

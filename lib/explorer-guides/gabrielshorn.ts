@@ -201,7 +201,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
   },
   fr: {
     metaDescription:
-      "Explore la trompette de Gabriel : coupe y = 1/x jusqu'à 1 000, vois le volume tendre vers π quand l'aire croît sans fin, et teste le paradoxe du peintre.",
+      "Explore la trompette de Gabriel : coupe y = 1/x jusqu'à 1\u00a0000, vois le volume tendre vers π quand l'aire croît sans fin, et teste le paradoxe du peintre.",
     heading: "Comment fonctionne cet explorateur",
     intro:
       "La forme sur le canevas est ce que l'on obtient en faisant tourner la courbe y = 1/x, pour x à partir de 1, autour de l'axe des x. Elle commence par une embouchure de rayon 1 et se resserre indéfiniment sans jamais se fermer. L'explorateur la coupe à la longueur que tu choisis, x_max, et calcule deux nombres pour ce tronçon : le volume intérieur et l'aire de la surface. Plus tu repousses x_max, plus l'un des nombres se stabilise, tandis que l'autre ne cesse de croître. Ce décalage est toute l'énigme de la trompette de Gabriel.",
@@ -217,14 +217,14 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "« Vue » bascule entre un modèle filaire 3D en rotation et une vue de côté 2D du profil y = ±1/x. En 3D, tu peux faire glisser pour tourner (au doigt aussi) ; « Tourne » et « Fige » activent ou coupent la lente rotation automatique et « Réinitialiser » revient à l'angle de départ. Le curseur x_max fixe la coupure sur une échelle logarithmique de 1,5 à 1 000, avec 10 au départ. « Animer la croissance » fait balayer x_max de 1,5 à 1 000 puis recommence, environ onze secondes par passage.",
+          "« Vue » bascule entre un modèle filaire 3D en rotation et une vue de côté 2D du profil y = ±1/x. En 3D, tu peux faire glisser pour tourner (au doigt aussi) ; « Tourne » et « Fige » activent ou coupent la lente rotation automatique et « Réinitialiser » revient à l'angle de départ. Le curseur x_max fixe la coupure sur une échelle logarithmique de 1,5 à 1\u00a0000, avec 10 au départ. « Animer la croissance » fait balayer x_max de 1,5 à 1\u00a0000 puis recommence, environ onze secondes par passage.",
           "Les valeurs en direct indiquent le volume du tronçon coupé, l'aire de la surface calculée numériquement, le minorant 2π ln(x_max), et V/π, qui te dit à quel point le volume est proche de sa limite. Le panneau « Paradoxe du peintre » ajoute une épaisseur de peinture ε de 0,001 à 0,1 (0,01 par défaut) et compare la peinture nécessaire pour couvrir la surface, A fois ε, à celle qu'il faut pour remplir la trompette.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Le volume a une forme close, il est donc simplement évalué. L'aire de la surface n'a pas de primitive élémentaire et se calcule par la méthode de Simpson. L'intégrande direct en x est raide près de l'embouchure et très plat au loin, ce qui rend une grille régulière en x imprécise pour les longues trompettes. Le code effectue donc le changement de variable u = ln x, qui transforme l'intégrande en √(1 + e^(−4u)), une fonction lisse comprise entre 1 et √2, et l'intègre sur 2 000 pas égaux. Le résultat reste exact à six chiffres significatifs sur toute la plage.",
+          "Le volume a une forme close, il est donc simplement évalué. L'aire de la surface n'a pas de primitive élémentaire et se calcule par la méthode de Simpson. L'intégrande direct en x est raide près de l'embouchure et très plat au loin, ce qui rend une grille régulière en x imprécise pour les longues trompettes. Le code effectue donc le changement de variable u = ln x, qui transforme l'intégrande en √(1 + e^(−4u)), une fonction lisse comprise entre 1 et √2, et l'intègre sur 2\u00a0000 pas égaux. Le résultat reste exact à six chiffres significatifs sur toute la plage.",
           "La vue 3D est dessinée à la main sur un canevas 2D : 29 sections circulaires et 14 lignes dans le sens de la longueur, tournées puis projetées en perspective. Pour faire tenir une trompette longue de mille unités à côté d'une embouchure de rayon 1, l'axe est comprimé de façon logarithmique : la vue 3D montre donc la forme, mais pas ses vraies proportions. La vue 2D utilise un axe des x linéaire et montre le profil réel, l'intérieur étant ombré comme de la peinture. Quand la réduction des animations est activée, la rotation automatique et la croissance sont coupées ; faire glisser continue de tourner la trompette et la redessine à chaque mouvement.",
         ],
         code: AREA_EXCERPT,
@@ -241,7 +241,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Regarde le volume plafonner",
-        text: "Fais passer x_max de 10 à 100 puis à 1 000 et lis V/π : 0,9 ; 0,99 ; 0,999. La trompette devient cent fois plus longue alors que le volume gagne moins d'un dixième de π.",
+        text: "Fais passer x_max de 10 à 100 puis à 1\u00a0000 et lis V/π : 0,9 ; 0,99 ; 0,999. La trompette devient cent fois plus longue alors que le volume gagne moins d'un dixième de π.",
       },
       {
         title: "Regarde l'aire continuer",
@@ -253,7 +253,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       },
       {
         title: "Compare les deux vues",
-        text: "Règle x_max sur 1 000 et passe en 2D. Le profil est un filet qui colle à l'axe presque aussitôt. Reviens en 3D : l'axe logarithmique étire la queue étroite pour que tu puisses encore voir ses anneaux.",
+        text: "Règle x_max sur 1\u00a0000 et passe en 2D. Le profil est un filet qui colle à l'axe presque aussitôt. Reviens en 3D : l'axe logarithmique étire la queue étroite pour que tu puisses encore voir ses anneaux.",
       },
     ],
   },
@@ -275,7 +275,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       {
         heading: "Che cosa fanno i controlli",
         paragraphs: [
-          "«Vista» passa da un wireframe 3D rotante a una vista laterale 2D del profilo y = ±1/x. In 3D puoi trascinare per ruotare (anche con il tocco); «Ruota» attiva o disattiva la lenta rotazione automatica e «Reimposta» torna all'angolo iniziale. Il cursore x_max imposta il taglio su una scala logaritmica da 1,5 a 1000, partendo da 10. «Anima la crescita» fa scorrere x_max da 1,5 a 1000 e poi ricomincia, circa undici secondi a passata.",
+          "«Vista» passa da un wireframe 3D rotante a una vista laterale 2D del profilo y = ±1/x. In 3D puoi trascinare per ruotare (anche con il tocco); «Ruota» e «Ferma» attivano o disattivano la lenta rotazione automatica e «Reimposta» torna all'angolo iniziale. Il cursore x_max imposta il taglio su una scala logaritmica da 1,5 a 1000, partendo da 10. «Anima la crescita» fa scorrere x_max da 1,5 a 1000 e poi ricomincia, circa undici secondi a passata.",
           "I valori dal vivo mostrano il volume del pezzo tagliato, l'area della superficie calcolata numericamente, il limite inferiore 2π ln(x_max) e V/π, che ti dice quanto il volume è vicino al suo limite. Il pannello «Paradosso del pittore» aggiunge uno spessore di vernice ε da 0,001 a 0,1 (predefinito 0,01) e confronta la vernice necessaria per rivestire la superficie, A per ε, con quella necessaria per riempire il corno.",
         ],
       },
@@ -391,7 +391,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       {
         heading: "Vad reglagen gör",
         paragraphs: [
-          "”Vy” växlar mellan en roterande 3D-trådmodell och en 2D-sidvy av profilen y = ±1/x. I 3D kan du dra för att rotera (även med fingret). ”Snurrar” slår på eller av den långsamma automatiska rotationen och ”Återställ” går tillbaka till startvinkeln. Reglaget för x_max anger kapningen på en logaritmisk skala från 1,5 till 1000 och börjar på 10. ”Animera tillväxt” sveper x_max från 1,5 till 1000 och börjar sedan om, ungefär elva sekunder per varv.",
+          "”Vy” växlar mellan en roterande 3D-trådmodell och en 2D-sidvy av profilen y = ±1/x. I 3D kan du dra för att rotera (även med fingret). ”Snurrar” och ”Stilla” slår på eller av den långsamma automatiska rotationen och ”Återställ” går tillbaka till startvinkeln. Reglaget för x_max anger kapningen på en logaritmisk skala från 1,5 till 1000 och börjar på 10. ”Animera tillväxt” sveper x_max från 1,5 till 1000 och börjar sedan om, ungefär elva sekunder per varv.",
           "Livevärdena visar volymen av den kapade biten, den numeriskt beräknade ytarean, den undre gränsen 2π ln(x_max) och V/π, som säger hur nära volymen är sitt gränsvärde. Panelen ”Målarens paradox” lägger till en färgtjocklek ε från 0,001 till 0,1 (standard 0,01) och jämför färgen som behövs för att täcka ytan, A gånger ε, med färgen som behövs för att fylla hornet.",
         ],
       },
@@ -449,7 +449,7 @@ export const GABRIELS_HORN_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "«Visning» veksler mellom en roterende 3D-trådmodell og en 2D-sidevisning av profilen y = ±1/x. I 3D kan du dra for å rotere (også med fingeren). «Snurrer» slår den langsomme automatiske rotasjonen av eller på, og «Nullstill» går tilbake til startvinkelen. Glidebryteren for x_max setter kuttet på en logaritmisk skala fra 1,5 til 1000 og starter på 10. «Animer vekst» sveiper x_max fra 1,5 til 1000 og begynner så på nytt, omtrent elleve sekunder per runde.",
+          "«Visning» veksler mellom en roterende 3D-trådmodell og en 2D-sidevisning av profilen y = ±1/x. I 3D kan du dra for å rotere (også med fingeren). «Snurrer» og «Fast» slår den langsomme automatiske rotasjonen av eller på, og «Nullstill» går tilbake til startvinkelen. Glidebryteren for x_max setter kuttet på en logaritmisk skala fra 1,5 til 1000 og starter på 10. «Animer vekst» sveiper x_max fra 1,5 til 1000 og begynner så på nytt, omtrent elleve sekunder per runde.",
           "Sanntidsverdiene viser volumet av den kuttede biten, overflatearealet regnet ut numerisk, den nedre grensen 2π ln(x_max) og V/π, som forteller hvor nær volumet er grenseverdien sin. Panelet «Malerens paradoks» legger til en malingstykkelse ε fra 0,001 til 0,1 (standard 0,01) og sammenligner malingen som trengs for å dekke overflaten, A ganger ε, med malingen som trengs for å fylle hornet.",
         ],
       },

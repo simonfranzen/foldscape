@@ -232,7 +232,7 @@ export const PENROSE_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "« Profondeur de déflation » va de 0 à 6 et démarre à 4. La profondeur 0 est la graine : dix demi-triangles fins dont le sommet est au centre et qui forment ensemble un décagone. Chaque étape remplace chaque moitié fine par deux triangles plus petits et chaque moitié épaisse par trois, tous réduits d'un facteur φ, de sorte que le disque garde la même taille pendant que les tuiles rapetissent. Le nombre total de demi-triangles vaut 10, 20, 50, 130, 340, 890, 2 330 et croît d'environ φ² ≈ 2,618 à chaque étape.",
+          "« Profondeur de déflation » va de 0 à 6 et démarre à 4. La profondeur 0 est la graine : dix demi-triangles fins dont le sommet est au centre et qui forment ensemble un décagone. Chaque étape remplace chaque moitié fine par deux triangles plus petits et chaque moitié épaisse par trois, tous réduits d'un facteur φ, de sorte que le disque garde la même taille pendant que les tuiles rapetissent. Le nombre total de demi-triangles vaut 10, 20, 50, 130, 340, 890, 2\u00a0330 et croît d'environ φ² ≈ 2,618 à chaque étape.",
           "« Rotation de la graine » fait tourner le décagone de départ de 0° à 360°. La graine alterne l'orientation des triangles voisins, elle possède donc une symétrie d'ordre cinq, et une rotation de 72° donne exactement la même image. Les boutons de mode basculent entre « Losanges », où les demi-triangles en miroir sont recollés en losanges entiers (épais en violet, fins en rose), et « Demi-triangles », qui montre la même subdivision un niveau plus bas (moitiés épaisses en violet, moitiés fines en ambre). Les interrupteurs d'affichage masquent les contours ou les couleurs. Le bouton « Centrer · réinitialiser la rotation » ramène la rotation à 0°.",
           "« Marques d'accord » dessine de petites pointes de flèche sur deux côtés opposés de chaque losange, ambre pour les épais et cyan pour les fins, avec à chaque fois une pointe simple et une pointe double. C'est une évocation visuelle simplifiée de l'idée de décorer les côtés, pas un jeu complet de règles d'accord de Penrose.",
         ],
@@ -258,7 +258,7 @@ export const PENROSE_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Regarde le rapport converger",
-        text: "Passe en « Demi-triangles » et augmente la profondeur pas à pas de 1 à 6. Le rapport affiche 1 ; 1,5 ; 1,6 ; 1,6154 ; 1,6176 et enfin 1,6180 à la profondeur 6, où l'on compte 1 440 moitiés épaisses et 890 fines.",
+        text: "Passe en « Demi-triangles » et augmente la profondeur pas à pas de 1 à 6. Le rapport affiche 1 ; 1,5 ; 1,6 ; 1,6154 ; 1,6176 et enfin 1,6180 à la profondeur 6, où l'on compte 1\u00a0440 moitiés épaisses et 890 fines.",
       },
       {
         title: "Trouve la symétrie d'ordre cinq",

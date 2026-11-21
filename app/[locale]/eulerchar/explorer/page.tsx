@@ -176,7 +176,7 @@ function buildPolyMap(locale: Locale): Record<string, LocalizedPoly> {
       },
       icosphere: { label: "Ikosfære", note: "χ forblir 2" },
       torus: { label: "Torus", note: "χ = 0 (ett hull)" },
-      doubleTorus: { label: "Dobbeltorus", note: "to håndtak · χ = −2 (genus 2)" },
+      doubleTorus: { label: "Dobbelttorus", note: "to håndtak · χ = −2 (genus 2)" },
     },
   };
   return dict[locale];
@@ -237,7 +237,7 @@ const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
   },
   es: {
     polyhedron: "Poliedro",
-    autoSpin: "Auto-rotación",
+    autoSpin: "Autorrotación",
     on: "act.",
     off: "inact.",
     speed: "velocidad",
@@ -333,7 +333,7 @@ const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
     notSphereLike: "χ ≠ 2: esta superfície não é do tipo esfera.",
     torusNote: "Uma superfície com uma asa: χ cai para 0.",
     doubleTorusNote: "Duas asas: χ = 2 − 2·2 = −2.",
-    stageIdle: "Escolha uma etapa →",
+    stageIdle: "Escolhe uma etapa →",
     stageVertices: "A contar vértices…",
     stageEdges: "A contar arestas…",
     stageFaces: "A contar faces…",

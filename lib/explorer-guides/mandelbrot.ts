@@ -186,7 +186,7 @@ export const MANDELBROT_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Deja sin iteraciones a la imagen",
-        text: "Carga el marcador «Espiral Triple» y arrastra el control de iteraciones hasta 100. Las espirales se llenan de oscuridad, porque los puntos que necesitan unos cientos de pasos para escapar ahora cuentan como interiores. Vuelve a subirlo a 1400 y los filamentos reaparecen.",
+        text: "Carga el marcador «Espiral Triple» y arrastra el control de iteraciones hasta 100. Las espirales se llenan de oscuridad, porque los puntos que necesitan unos cientos de pasos para escapar ahora cuentan como interiores. Súbelo a 1400 y los filamentos reaparecen.",
       },
       {
         title: "Recorre el eje real",
@@ -222,14 +222,14 @@ export const MANDELBROT_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "Fais glisser pour te déplacer. Un double-clic zoome d'un facteur deux autour du curseur, Maj plus double-clic dézoome. La molette ne zoome que si tu maintiens Cmd ou Ctrl, afin que la page continue de défiler normalement au-dessus de l'image. Les boutons +, − et ⟳ dans le coin zooment autour du centre ou reviennent à la vue de départ, centrée sur c = −0,75. Sa taille est de 2,6, mesurée le long du petit côté du canevas, de sorte que l'ensemble entier tient aussi bien sur les écrans larges que sur les écrans hauts. L'indicateur « Zoom » compte les puissances de dix à partir de cette vue.",
-          "« Itérations » est le nombre maximal de pas avant qu'un point soit déclaré intérieur, réglable de 50 à 3 000. Quand « auto » est activé (le réglage par défaut), il suit le zoom : 200 itérations dans la vue de départ, 80 de plus pour chaque facteur dix de zoom, avec un plafond de 3 000. Les points proches de la frontière mettent de plus en plus de temps à s'échapper, si bien qu'une vue profonde avec trop peu d'itérations paraît pâteuse et trop sombre, parce que des points qui s'échappent sont comptés à tort comme intérieurs. Déplacer le curseur à la main désactive « auto ».",
+          "« Itérations » est le nombre maximal de pas avant qu'un point soit déclaré intérieur, réglable de 50 à 3\u00a0000. Quand « auto » est activé (le réglage par défaut), il suit le zoom : 200 itérations dans la vue de départ, 80 de plus pour chaque facteur dix de zoom, avec un plafond de 3\u00a0000. Les points proches de la frontière mettent de plus en plus de temps à s'échapper, si bien qu'une vue profonde avec trop peu d'itérations paraît pâteuse et trop sombre, parce que des points qui s'échappent sont comptés à tort comme intérieurs. Déplacer le curseur à la main désactive « auto ».",
           "« Décalage de teinte » fait tourner la palette le long du compte d'échappement, « Exposition » éclaircit ou assombrit l'extérieur (l'intérieur n'est pas touché), et les cinq palettes changent la courbe de couleur. Les neuf signets sautent vers des lieux bien connus : la Vallée des Hippocampes, entre la cardioïde principale et le grand disque à sa gauche, la Vallée des Éléphants, au point de rebroussement près de c = 0,25, et plusieurs endroits sur l'aiguille qui s'étend jusqu'à c = −2.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Toute l'image est calculée sur ta carte graphique. Un shader de fragments WebGL2 s'exécute une fois par pixel sur un unique rectangle plein écran, si bien qu'un canevas de 2 000 sur 1 200 représente 2,4 millions d'orbites indépendantes par image, toutes en parallèle.",
+          "Toute l'image est calculée sur ta carte graphique. Un shader de fragments WebGL2 s'exécute une fois par pixel sur un unique rectangle plein écran, si bien qu'un canevas de 2\u00a0000 sur 1\u00a0200 représente 2,4 millions d'orbites indépendantes par image, toutes en parallèle.",
           "Le shader teste r² = |z|² > 256 au lieu de 4, ce qui revient à attendre que |z| dépasse 16. Ce rayon plus grand rend précis le compte d'itérations lissé : en soustrayant log₂(log₂|z|) du numéro du pas, le compte d'échappement entier devient une valeur continue, et les bandes de couleur se fondent au lieu de former des marches. La position dans la palette est cette valeur multipliée par 0,012 plus le décalage de teinte, et les couleurs reviennent donc environ toutes les 83 itérations. Les palettes sont des dégradés en cosinus de la forme a + b·cos(2π(c·t + d)). Les points qui ne s'échappent jamais reçoivent une encre presque noire avec une faible lueur qui dérive lentement au fil du temps.",
           "Si ton système demande de réduire les animations, la boucle d'animation qui pilote cette lueur est arrêtée et l'explorateur dessine une seule image chaque fois que tu modifies quelque chose : l'image se met toujours à jour, mais ne bouge jamais d'elle-même.",
         ],
@@ -238,7 +238,7 @@ export const MANDELBROT_GUIDE: ExplorerGuide = {
       {
         heading: "Là où le zoom s'épuise",
         paragraphs: [
-          "Tu peux zoomer jusqu'à une taille de vue de 10⁻¹⁰, mais le shader calcule en virgule flottante 32 bits (highp en WebGL2, sans émulation de la double précision), qui n'offre qu'environ sept chiffres significatifs. Entre 1 et 2 en valeur absolue, deux nombres représentables voisins sont séparés de 2⁻²³ ≈ 1,2 · 10⁻⁷. Près de c ≈ −1,75, deux colonnes de pixels voisines tombent donc sur la même partie réelle dès que la taille de la vue passe sous environ 1,2 · 10⁻⁷ fois le petit côté du canevas en pixels physiques : à peu près 1,2 · 10⁻⁴ pour 1 000 pixels, 2,4 · 10⁻⁴ pour 2 000. Près de l'axe réel, les parties imaginaires sont petites et restent bien plus finement résolues, si bien que les pixels fusionnent d'abord latéralement en courtes barres horizontales. Les signets restent tous au-dessus de cette limite. Ce n'est pas une propriété de l'ensemble : la frontière continue de produire de nouveaux détails à toutes les échelles. Les vidéos de zoom profond contournent l'obstacle grâce à l'arithmétique en précision arbitraire ou à des méthodes de perturbation qui calculent exactement une orbite de référence et toutes les autres comme de petits écarts par rapport à elle.",
+          "Tu peux zoomer jusqu'à une taille de vue de 10⁻¹⁰, mais le shader calcule en virgule flottante 32 bits (highp en WebGL2, sans émulation de la double précision), qui n'offre qu'environ sept chiffres significatifs. Entre 1 et 2 en valeur absolue, deux nombres représentables voisins sont séparés de 2⁻²³ ≈ 1,2 · 10⁻⁷. Près de c ≈ −1,75, deux colonnes de pixels voisines tombent donc sur la même partie réelle dès que la taille de la vue passe sous environ 1,2 · 10⁻⁷ fois le petit côté du canevas en pixels physiques : à peu près 1,2 · 10⁻⁴ pour 1\u00a0000 pixels, 2,4 · 10⁻⁴ pour 2\u00a0000. Près de l'axe réel, les parties imaginaires sont petites et restent bien plus finement résolues, si bien que les pixels fusionnent d'abord latéralement en courtes barres horizontales. Les signets restent tous au-dessus de cette limite. Ce n'est pas une propriété de l'ensemble : la frontière continue de produire de nouveaux détails à toutes les échelles. Les vidéos de zoom profond contournent l'obstacle grâce à l'arithmétique en précision arbitraire ou à des méthodes de perturbation qui calculent exactement une orbite de référence et toutes les autres comme de petits écarts par rapport à elle.",
         ],
       },
     ],
@@ -246,7 +246,7 @@ export const MANDELBROT_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Affame les itérations",
-        text: "Charge le signet Triple Spirale, puis fais descendre le curseur des itérations à 100. Les spirales se remplissent d'obscurité, parce que les points qui ont besoin de quelques centaines de pas pour s'échapper sont désormais comptés comme intérieurs. Monte-le à 1 400 et les filaments réapparaissent.",
+        text: "Charge le signet Triple Spirale, puis fais descendre le curseur des itérations à 100. Les spirales se remplissent d'obscurité, parce que les points qui ont besoin de quelques centaines de pas pour s'échapper sont désormais comptés comme intérieurs. Monte-le à 1\u00a0400 et les filaments réapparaissent.",
       },
       {
         title: "Parcours l'axe réel",
@@ -306,7 +306,7 @@ export const MANDELBROT_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Affama le iterazioni",
-        text: "Carica il segnalibro «Spirale Tripla», poi trascina il cursore delle iterazioni giù fino a 100. Le spirali si riempiono di buio, perché i punti che hanno bisogno di qualche centinaio di passi per fuggire ora vengono contati come interni. Riportalo a 1400 e i filamenti ricompaiono.",
+        text: "Carica il segnalibro «Spirale Tripla», poi trascina il cursore delle iterazioni giù fino a 100. Le spirali si riempiono di buio, perché i punti che hanno bisogno di qualche centinaio di passi per fuggire ora vengono contati come interni. Alzalo a 1400 e i filamenti ricompaiono.",
       },
       {
         title: "Percorri l'asse reale",
@@ -426,7 +426,7 @@ export const MANDELBROT_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Svält iterationerna",
-        text: "Ladda bokmärket ”Trippelspiral” och dra sedan iterationsreglaget ned till 100. Spiralerna fylls av mörker, eftersom punkter som behöver några hundra steg för att fly nu räknas som innanför. Höj det till 1400 igen så kommer filamenten tillbaka.",
+        text: "Ladda bokmärket ”Trippelspiral” och dra sedan iterationsreglaget ned till 100. Spiralerna fylls av mörker, eftersom punkter som behöver några hundra steg för att fly nu räknas som innanför. Höj det till 1400 så kommer filamenten tillbaka.",
       },
       {
         title: "Vandra längs den reella axeln",
@@ -486,7 +486,7 @@ export const MANDELBROT_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Sult ut iterasjonene",
-        text: "Last inn bokmerket «Trippelspiral», og dra så glidebryteren for iterasjoner ned til 100. Spiralene fylles av mørke, fordi punkter som trenger noen hundre steg for å rømme, nå telles som innenfor. Øk den til 1400 igjen, og filamentene dukker opp på nytt.",
+        text: "Last inn bokmerket «Trippelspiral», og dra så glidebryteren for iterasjoner ned til 100. Spiralene fylles av mørke, fordi punkter som trenger noen hundre steg for å rømme, nå telles som innenfor. Øk den til 1400, og filamentene dukker opp på nytt.",
       },
       {
         title: "Gå langs den reelle aksen",

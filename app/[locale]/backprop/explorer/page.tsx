@@ -284,7 +284,7 @@ const E: Record<Locale, RichExplorer> = {
     whatYouSeeInit:
       "Pesos aleatórios. A superfície de decisão é um gradiente suave e quase sem sentido: a rede ainda não sabe qual é a tarefa. Carrega em ir e observa a backprop remodelar a superfície até aos dados.",
     whatYouSeeTraining:
-      "Cada época percorre uma vez o conjunto de treino. A regra da cadeia, percorrida para trás por cada camada, dá a cada peso a sua quota de culpa pela perda atual; o optimizador empurra então cada peso a descer. A fronteira visível é o conjunto de nível ŷ = 0,5 da saída.",
+      "Cada época percorre uma vez o conjunto de treino. A regra da cadeia, percorrida para trás por cada camada, dá a cada peso a sua quota de culpa pela perda atual; o otimizador empurra então cada peso a descer. A fronteira visível é o conjunto de nível ŷ = 0,5 da saída.",
     whatYouSeeConverged:
       "A perda atingiu um planalto. A fronteira traça agora a estrutura da tarefa: cantos para XOR, um S entrelaçado para as duas luas, um círculo para o corte radial. A rede memorizou uma função suave que se ajusta aos pontos de treino e generaliza para os vizinhos.",
   },

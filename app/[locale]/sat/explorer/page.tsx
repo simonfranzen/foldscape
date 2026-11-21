@@ -389,7 +389,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     legendUnit: "unitaria: un literal forzado",
     legendConflict: "conflicto: todos falsos",
     legendOpen: "abierta: indecisa",
-    legendDecision: "▼ decisión · ⤺ volteada",
+    legendDecision: "▼ decisión · ⤺ invertida",
     legendPropagation: "propagación unitaria",
     tipSatisfied: "satisfecha",
     tipConflict: "conflicto: todos los literales falsos",
@@ -406,7 +406,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     narrateUnit: (clause, v, value) =>
       `Propagación unitaria: a la cláusula ${clause} le queda un literal, forzando ${v} = ${value ? "verdadero" : "falso"}.`,
     narrateBacktrack: (clause, v, value) =>
-      `Conflicto en la cláusula ${clause}: todos los literales son falsos. Retrocede y voltea la última decisión abierta: ${v} = ${value ? "verdadero" : "falso"}.`,
+      `Conflicto en la cláusula ${clause}: todos los literales son falsos. Retrocede e invierte la última decisión abierta: ${v} = ${value ? "verdadero" : "falso"}.`,
     narrateSat:
       "Cada variable está asignada y cada cláusula satisfecha: la fórmula es SATISFACIBLE. La asignación es un certificado que cualquiera comprueba en una pasada.",
     narrateUnsat:
@@ -521,7 +521,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
   pt: {
     presets: {
       sat: "Satisfazível: força um retrocesso",
-      unsat: "Insatisfazível: toda atribuição descartada",
+      unsat: "Insatisfazível: todas as atribuições descartadas",
       big: "Satisfazível: cinco variáveis",
     },
     vars: "vars",
@@ -626,8 +626,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
   },
   no: {
     presets: {
-      sat: "Oppfyllbar: tvinger fram en backtrack",
-      unsat: "Uoppfyllbar: hver tildeling utelukket",
+      sat: "Oppfyllbar: tvinger fram en tilbakesporing",
+      unsat: "Uoppfyllbar: hver tilordning utelukket",
       big: "Oppfyllbar: fem variabler",
     },
     vars: "var",
@@ -637,8 +637,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     statusSat: "⊨ OPPFYLLBAR",
     statusUnsat: "⊭ UOPPFYLLBAR",
     statusSolving: "løser…",
-    assignment: "Tildeling",
-    formulaUnderAssignment: "Formel · hver klausul under den gjeldende tildelingen",
+    assignment: "Tilordning",
+    formulaUnderAssignment: "Formel · hver klausul under den gjeldende tilordningen",
     formula: "Formel",
     controls: "Kontroller",
     speed: "Hastighet",
@@ -673,9 +673,9 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     narrateBacktrack: (clause, v, value) =>
       `Konflikt i klausul ${clause}: Hver literal er usann. Gå tilbake og vend den siste åpne beslutningen: ${v} = ${value ? "sann" : "usann"}.`,
     narrateSat:
-      "Hver variabel er tildelt og hver klausul oppfylt: Formelen er OPPFYLLBAR. Tildelingen er et sertifikat som hvem som helst kan sjekke i ett gjennomløp.",
+      "Hver variabel er tilordnet og hver klausul oppfylt: Formelen er OPPFYLLBAR. Tilordningen er et sertifikat som hvem som helst kan sjekke i ett gjennomløp.",
     narrateUnsat:
-      "Backtrackingen gikk forbi roten: Hver gren ender i konflikt. Formelen er UOPPFYLLBAR, og søket beviste det nettopp, den vanskelige retningen.",
+      "Tilbakesporingen gikk forbi roten: Hver gren ender i konflikt. Formelen er UOPPFYLLBAR, og søket beviste det nettopp, den vanskelige retningen.",
   },
 };
 

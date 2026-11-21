@@ -224,7 +224,7 @@ export const BZR_GUIDE: ExplorerGuide = {
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "La grille est un Uint8Array de 40 000 octets, un octet par cellule, et un second tableau de même taille reçoit la génération suivante. Après chaque pas, les deux références sont échangées, si bien qu'aucune mémoire n'est allouée pendant l'animation. Les bords se rejoignent (la grille est un tore) : les ondes qui sortent à droite reviennent par la gauche.",
+          "La grille est un Uint8Array de 40\u00a0000 octets, un octet par cellule, et un second tableau de même taille reçoit la génération suivante. Après chaque pas, les deux références sont échangées, si bien qu'aucune mémoire n'est allouée pendant l'animation. Les bords se rejoignent (la grille est un tore) : les ondes qui sortent à droite reviennent par la gauche.",
           "Le dessin s'appuie sur une table de correspondance RGBA de 100 entrées, construite une fois par palette de couleurs. Chaque image copie quatre octets par cellule depuis la table vers un tampon ImageData et le pose sur un canevas de 200 sur 200, que le CSS agrandit avec un rendu pixellisé pour que chaque cellule reste un carré net. La vitesse par défaut est volontairement d'une génération par image : à des cadences plus élevées, les fronts colorés peuvent clignoter assez vite pour devenir désagréables. Si ton système demande une réduction des animations, la boucle n'est jamais lancée et tu vois une seule image fixe ; « Restart » et « Seed broken wave » redessinent cette image.",
         ],
         code: STEP_EXCERPT,
@@ -244,7 +244,7 @@ export const BZR_GUIDE: ExplorerGuide = {
       },
       {
         title: "Allonge la phase excitée",
-        text: "Garde k₁ = k₂ = 3, règle g sur 12 et relance. Les bandes de couleur sont plus larges, car chaque cellule met plus de pas à grimper vers l'état malade, et les spirales mettent bien plus longtemps à apparaître (lors des essais, parfois plus de 1 500 itérations). Avec g = 6, aucune spirale ne s'est formée : de grandes plages clignotent presque à l'unisson.",
+        text: "Garde k₁ = k₂ = 3, règle g sur 12 et relance. Les bandes de couleur sont plus larges, car chaque cellule met plus de pas à grimper vers l'état malade, et les spirales mettent bien plus longtemps à apparaître (lors des essais, parfois plus de 1\u00a0500 itérations). Avec g = 6, aucune spirale ne s'est formée : de grandes plages clignotent presque à l'unisson.",
       },
       {
         title: "Rends le milieu récalcitrant",
@@ -340,7 +340,7 @@ export const BZR_GUIDE: ExplorerGuide = {
       {
         heading: "Como está construído",
         paragraphs: [
-          "A grelha é um Uint8Array de 40 000 bytes, um byte por célula, e um segundo array do mesmo tamanho recebe a geração seguinte. Depois de cada passo as duas referências são trocadas, por isso não se reserva memória enquanto a animação corre. As margens estão ligadas (a grelha é um toro), pelo que as ondas que saem pela direita voltam a entrar pela esquerda.",
+          "A grelha é um Uint8Array de 40\u00a0000 bytes, um byte por célula, e um segundo array do mesmo tamanho recebe a geração seguinte. Depois de cada passo as duas referências são trocadas, por isso não se reserva memória enquanto a animação corre. As margens estão ligadas (a grelha é um toro), pelo que as ondas que saem pela direita voltam a entrar pela esquerda.",
           "O desenho usa uma tabela de consulta RGBA com 100 entradas, construída uma vez por cada mapa de cores. Cada fotograma copia quatro bytes por célula da tabela para um buffer ImageData e coloca-o num canvas de 200 por 200, que o CSS amplia com renderização pixelizada para que cada célula continue a ser um quadrado nítido. A velocidade predefinida é de uma geração por fotograma de propósito: a ritmos mais altos, as frentes de cor podem tremeluzir tão depressa que se torna desconfortável. Se o teu sistema pedir movimento reduzido, o ciclo nunca chega a arrancar e vês um único fotograma parado; «Restart» e «Seed broken wave» voltam a pintar esse fotograma.",
         ],
         code: STEP_EXCERPT,

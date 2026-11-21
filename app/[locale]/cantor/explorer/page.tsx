@@ -289,7 +289,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     flipWord: "byt",
     contradictionTitle: "Motsägelsen",
     contradictionBody:
-      " skiljer sig från varje rad i listan i minst en siffra, därför står det inte på listan. Men s ∈ [0, 1] är ett reellt tal. Hovra eller fokusera en rad för att se var s avviker från den. Listan var ofullständig: ",
+      " skiljer sig från varje rad i listan i minst en siffra, därför står det inte på listan. Men s ∈ [0, 1] är ett reellt tal. Håll pekaren över eller fokusera en rad för att se var s avviker från den. Listan var ofullständig: ",
     transportLabel: "Kontroll",
     stepLabel: "Steg",
     playLabel: "Spela",
@@ -310,7 +310,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     binaryNote:
       "Binärläget ignorerar regeln ovan: bitar växlar 0 ↔ 1. Raderna läses som oändliga 0/1-följder, inte som tal, eftersom två följder kan beteckna samma tal (0,0111… = 0,1000…).",
     contradictionBodyBinary:
-      " skiljer sig från varje rad i listan på minst en plats, därför står den här 0/1-följden inte på listan. Hovra eller fokusera en rad för att se var s avviker från den. Listan var ofullständig, det finns fler 0/1-följder än naturliga tal: ",
+      " skiljer sig från varje rad i listan på minst en plats, därför står den här 0/1-följden inte på listan. Håll pekaren över eller fokusera en rad för att se var s avviker från den. Listan var ofullständig, det finns fler 0/1-följder än naturliga tal: ",
     legendLabel: "Teckenförklaring",
     legend1: "diagonalcell · använd detta steg",
     legend2: "diagonalcell · redan använd",

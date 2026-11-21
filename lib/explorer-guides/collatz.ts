@@ -219,16 +219,16 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "Le champ numérique accepte n'importe quelle graine de 1 à 1 000 000 ; appuie sur Entrée ou quitte le champ pour la valider, et une saisie invalide revient à la graine précédente. Le curseur placé dessous couvre 1 à 10 000 pour balayer rapidement les valeurs. La page s'ouvre sur n = 27, la surprise classique : un petit nombre qui demande 111 étapes et grimpe jusqu'à 9 232 (à l'étape 77) avant de retomber enfin.",
-          "Les quatre boutons de raccourci sont 27, 97, 871 et 6171. Les deux derniers sont des records : 871 demande 178 étapes, plus que tout autre départ inférieur à 1 000, et 6171 demande 261 étapes, plus que tout autre départ inférieur à 10 000. Le panneau de statistiques affiche le nombre d'étapes, la valeur du sommet, l'étape à laquelle le sommet est atteint et la longueur du chemin (toujours une de plus que le nombre d'étapes, puisque le départ est compté).",
+          "Le champ numérique accepte n'importe quelle graine de 1 à 1\u00a0000\u00a0000 ; appuie sur Entrée ou quitte le champ pour la valider, et une saisie invalide revient à la graine précédente. Le curseur placé dessous couvre 1 à 10\u00a0000 pour balayer rapidement les valeurs. La page s'ouvre sur n = 27, la surprise classique : un petit nombre qui demande 111 étapes et grimpe jusqu'à 9\u00a0232 (à l'étape 77) avant de retomber enfin.",
+          "Les quatre boutons de raccourci sont 27, 97, 871 et 6171. Les deux derniers sont des records : 871 demande 178 étapes, plus que tout autre départ inférieur à 1\u00a0000, et 6171 demande 261 étapes, plus que tout autre départ inférieur à 10\u00a0000. Le panneau de statistiques affiche le nombre d'étapes, la valeur du sommet, l'étape à laquelle le sommet est atteint et la longueur du chemin (toujours une de plus que le nombre d'étapes, puisque le départ est compté).",
           "« Afficher l'arbre inverse » affiche ou masque l'image du bas, et « Profondeur de l'arbre » (de 3 à 10, 8 par défaut) fixe le nombre d'étapes explorées à rebours depuis 1.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "Rien ne s'anime ici. Les deux images sont du SVG tout simple, recalculé avec le useMemo de React dès que la graine ou les réglages de l'arbre changent : la page a donc le même rendu avec ou sans réduction des animations. La fonction de trajectoire ci-dessous constitue tout le calcul dans le sens direct. Elle est plafonnée à 2 000 étapes par sécurité, mais aucune graine de la plage autorisée ne s'en approche : la plus longue en dessous d'un million est 837 799, avec 524 étapes.",
-          "Le graphique associe linéairement l'indice de l'étape à l'axe des x et le log10 de la valeur à l'axe des y, avec des lignes de grille à chaque puissance de dix. Sans l'échelle logarithmique, le sommet 9 232 de n = 27 écraserait le reste du chemin en une ligne plate au ras du bord inférieur. Un anneau cyan marque le sommet.",
+          "Rien ne s'anime ici. Les deux images sont du SVG tout simple, recalculé avec le useMemo de React dès que la graine ou les réglages de l'arbre changent : la page a donc le même rendu avec ou sans réduction des animations. La fonction de trajectoire ci-dessous constitue tout le calcul dans le sens direct. Elle est plafonnée à 2\u00a0000 étapes par sécurité, mais aucune graine de la plage autorisée ne s'en approche : la plus longue en dessous d'un million est 837\u00a0799, avec 524 étapes.",
+          "Le graphique associe linéairement l'indice de l'étape à l'axe des x et le log10 de la valeur à l'axe des y, avec des lignes de grille à chaque puissance de dix. Sans l'échelle logarithmique, le sommet 9\u00a0232 de n = 27 écraserait le reste du chemin en une ligne plate au ras du bord inférieur. Un anneau cyan marque le sommet.",
           "L'arbre inverse est un parcours en largeur à partir de 1. Chaque nœud v reçoit toujours le prédécesseur 2v. Il ne reçoit un second prédécesseur (v − 1)/3 que si v a pour reste 4 dans la division par 6, car c'est exactement dans ce cas que (v − 1)/3 est un entier impair ; le code écarte aussi v = 4 pour que la boucle triviale 1, 4, 2, 1 ne réapparaisse pas. La disposition est radiale : la profondeur fixe la distance au centre, et chaque enfant reçoit une part de l'angle de son parent proportionnelle au nombre de feuilles qui pendent sous lui.",
         ],
         code: TRAJECTORY_EXCERPT,
@@ -244,7 +244,7 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "27 face à ses voisins",
-        text: "Tape 26, puis 27, puis 28. La graine 26 demande 10 étapes et la 28 en demande 18, alors que la 27 en demande 111 et bondit jusqu'à 9 232. Rien ne distingue 27 tant qu'on n'a pas appliqué la règle.",
+        text: "Tape 26, puis 27, puis 28. La graine 26 demande 10 étapes et la 28 en demande 18, alors que la 27 en demande 111 et bondit jusqu'à 9\u00a0232. Rien ne distingue 27 tant qu'on n'a pas appliqué la règle.",
       },
       {
         title: "Les puissances de deux tombent tout droit",
@@ -339,15 +339,15 @@ export const COLLATZ_GUIDE: ExplorerGuide = {
       {
         heading: "O que fazem os controlos",
         paragraphs: [
-          "O campo numérico aceita qualquer semente de 1 a 1 000 000; carrega em Enter ou sai do campo para a aplicar, e as entradas inválidas voltam à semente anterior. O cursor por baixo cobre de 1 a 10 000 para percorrer valores depressa. A página abre em n = 27, a surpresa clássica: um número pequeno que precisa de 111 passos e sobe até 9232 (no passo 77) antes de finalmente cair.",
-          "Os quatro botões de predefinição são 27, 97, 871 e 6171. Os dois últimos são recordes: 871 precisa de 178 passos, mais do que qualquer outro início abaixo de 1000, e 6171 precisa de 261 passos, mais do que qualquer outro início abaixo de 10 000. O painel de estatísticas mostra o número de passos, o valor de pico, o passo em que o pico acontece e o comprimento do caminho (sempre um a mais do que o número de passos, porque o início também conta).",
+          "O campo numérico aceita qualquer semente de 1 a 1\u00a0000\u00a0000; carrega em Enter ou sai do campo para a aplicar, e as entradas inválidas voltam à semente anterior. O cursor por baixo cobre de 1 a 10\u00a0000 para percorrer valores depressa. A página abre em n = 27, a surpresa clássica: um número pequeno que precisa de 111 passos e sobe até 9232 (no passo 77) antes de finalmente cair.",
+          "Os quatro botões de predefinição são 27, 97, 871 e 6171. Os dois últimos são recordes: 871 precisa de 178 passos, mais do que qualquer outro início abaixo de 1000, e 6171 precisa de 261 passos, mais do que qualquer outro início abaixo de 10\u00a0000. O painel de estatísticas mostra o número de passos, o valor de pico, o passo em que o pico acontece e o comprimento do caminho (sempre um a mais do que o número de passos, porque o início também conta).",
           "«Mostrar árvore inversa» mostra ou esconde a imagem de baixo, e «Profundidade da árvore» (de 3 a 10, 8 por omissão) define quantos passos para trás são explorados a partir de 1.",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
-          "Aqui nada é animado. As duas imagens são SVG simples, recalculado com o useMemo do React sempre que a semente ou as definições da árvore mudam, pelo que a página fica igual com ou sem movimento reduzido. A função de trajetória abaixo é todo o cálculo no sentido direto. Está limitada a 2000 passos como rede de segurança, mas nenhuma semente do intervalo permitido se aproxima disso: a mais longa abaixo de um milhão é 837 799, com 524 passos.",
+          "Aqui nada é animado. As duas imagens são SVG simples, recalculado com o useMemo do React sempre que a semente ou as definições da árvore mudam, pelo que a página fica igual com ou sem movimento reduzido. A função de trajetória abaixo é todo o cálculo no sentido direto. Está limitada a 2000 passos como rede de segurança, mas nenhuma semente do intervalo permitido se aproxima disso: a mais longa abaixo de um milhão é 837\u00a0799, com 524 passos.",
           "O gráfico faz corresponder linearmente o índice do passo ao eixo x e o log10 do valor ao eixo y, com linhas de grelha em cada potência de dez. Sem a escala logarítmica, o pico 9232 de n = 27 esmagaria o resto do caminho numa linha plana junto ao fundo. Um anel ciano assinala o pico.",
           "A árvore inversa é uma busca em largura a partir de 1. Cada nó v recebe sempre o predecessor 2v. Só recebe um segundo predecessor (v − 1)/3 se v der resto 4 na divisão por 6, porque é exatamente nesse caso que (v − 1)/3 é um inteiro ímpar; o código salta também v = 4, para que o ciclo trivial 1, 4, 2, 1 não reapareça. A disposição é radial: a profundidade define a distância ao centro, e cada filho recebe uma fatia do ângulo do pai proporcional ao número de folhas que dele pendem.",
         ],

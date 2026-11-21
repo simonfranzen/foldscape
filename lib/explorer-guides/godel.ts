@@ -224,7 +224,7 @@ export const GODEL_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "La barre latérale comporte deux parties. « Parcourir la preuve » te fait passer par les quatre étapes : « Étape » avance d'un cran (et s'arrête à l'étape 4), « Réinitialiser » revient à l'alphabet.",
-          "« Essayer une formule » propose quatre formules : 0 = 0 (vraie), 0 = S0 (fausse, puisque S0 est le nombre 1), ¬(0 = 0) et ∀x (0 = 0). En choisir une pendant que tu es à l'étape un te fait sauter directement à l'étape deux, où chaque symbole est listé avec son code et son nombre premier, suivi du produit des puissances de nombres premiers et du nombre de Gödel obtenu. Les quatre formules comptent 3, 4, 6 et 7 symboles, et leurs nombres vont de 243 000 000 pour 0 = 0 à un nombre de 31 chiffres pour ¬(0 = 0) et un de 42 chiffres pour ∀x (0 = 0). La vérité ne joue aucun rôle dans le codage : la formule fausse 0 = S0 reçoit un nombre aussi facilement que la formule vraie 0 = 0.",
+          "« Essayer une formule » propose quatre formules : 0 = 0 (vraie), 0 = S0 (fausse, puisque S0 est le nombre 1), ¬(0 = 0) et ∀x (0 = 0). En choisir une pendant que tu es à l'étape un te fait sauter directement à l'étape deux, où chaque symbole est listé avec son code et son nombre premier, suivi du produit des puissances de nombres premiers et du nombre de Gödel obtenu. Les quatre formules comptent 3, 4, 6 et 7 symboles, et leurs nombres vont de 243\u00a0000\u00a0000 pour 0 = 0 à un nombre de 31 chiffres pour ¬(0 = 0) et un de 42 chiffres pour ∀x (0 = 0). La vérité ne joue aucun rôle dans le codage : la formule fausse 0 = S0 reçoit un nombre aussi facilement que la formule vraie 0 = 0.",
         ],
       },
       {
@@ -249,11 +249,11 @@ export const GODEL_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Décode un nombre à la main",
-        text: "Sélectionne 0 = 0 et regarde 243 000 000. Divise par 2 tant que c'est possible : six fois, donc le premier symbole a le code 6, le chiffre 0. Divise ensuite par 3 (cinq fois, code 5, le signe égal) puis par 5 (six fois, de nouveau 0). Tu as retrouvé la formule à partir du nombre seul.",
+        text: "Sélectionne 0 = 0 et regarde 243\u00a0000\u00a0000. Divise par 2 tant que c'est possible : six fois, donc le premier symbole a le code 6, le chiffre 0. Divise ensuite par 3 (cinq fois, code 5, le signe égal) puis par 5 (six fois, de nouveau 0). Tu as retrouvé la formule à partir du nombre seul.",
       },
       {
         title: "Le vrai et le faux reçoivent des nombres de la même façon",
-        text: "Compare 0 = 0 et 0 = S0. Le symbole supplémentaire S ajoute un facteur 5⁷ et décale le 0 final sur le nombre premier 7, si bien que le nombre grimpe à 142 943 535 000 000. Le codage est pure syntaxe ; savoir si une formule est vraie est une autre question.",
+        text: "Compare 0 = 0 et 0 = S0. Le symbole supplémentaire S ajoute un facteur 5⁷ et décale le 0 final sur le nombre premier 7, si bien que le nombre grimpe à 142\u00a0943\u00a0535\u00a0000\u00a0000. Le codage est pure syntaxe ; savoir si une formule est vraie est une autre question.",
       },
       {
         title: "Regarde la longueur exploser",
@@ -344,7 +344,7 @@ export const GODEL_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "A barra lateral tem duas partes. «Percorrer a prova» leva-te pelos quatro passos: «Passo» avança um (para no passo 4) e «Reiniciar» volta ao alfabeto.",
-          "«Experimenta uma fórmula» oferece quatro fórmulas: 0 = 0 (verdadeira), 0 = S0 (falsa, porque S0 é o número 1), ¬(0 = 0) e ∀x (0 = 0). Se escolheres uma enquanto estás no passo um, saltas diretamente para o passo dois, onde cada símbolo aparece com o seu código e o seu primo, seguido do produto de potências de primos e do número de Gödel resultante. As quatro fórmulas têm 3, 4, 6 e 7 símbolos, e os seus números crescem de 243 000 000 para 0 = 0 até um número de 31 algarismos para ¬(0 = 0) e um de 42 algarismos para ∀x (0 = 0). A verdade não tem qualquer papel na codificação: a falsa 0 = S0 recebe um número com a mesma facilidade que a verdadeira 0 = 0.",
+          "«Experimenta uma fórmula» oferece quatro fórmulas: 0 = 0 (verdadeira), 0 = S0 (falsa, porque S0 é o número 1), ¬(0 = 0) e ∀x (0 = 0). Se escolheres uma enquanto estás no passo um, saltas diretamente para o passo dois, onde cada símbolo aparece com o seu código e o seu primo, seguido do produto de potências de primos e do número de Gödel resultante. As quatro fórmulas têm 3, 4, 6 e 7 símbolos, e os seus números crescem de 243\u00a0000\u00a0000 para 0 = 0 até um número de 31 algarismos para ¬(0 = 0) e um de 42 algarismos para ∀x (0 = 0). A verdade não tem qualquer papel na codificação: a falsa 0 = S0 recebe um número com a mesma facilidade que a verdadeira 0 = 0.",
         ],
       },
       {
@@ -369,11 +369,11 @@ export const GODEL_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Descodifica um número à mão",
-        text: "Seleciona 0 = 0 e olha para 243 000 000. Divide por 2 até não dar mais: seis vezes, logo o primeiro símbolo tem o código 6, o numeral 0. Depois divide por 3 (cinco vezes, código 5, o sinal de igual) e por 5 (seis vezes, outra vez 0). Recuperaste a fórmula só a partir do número.",
+        text: "Seleciona 0 = 0 e olha para 243\u00a0000\u00a0000. Divide por 2 até não dar mais: seis vezes, logo o primeiro símbolo tem o código 6, o numeral 0. Depois divide por 3 (cinco vezes, código 5, o sinal de igual) e por 5 (seis vezes, outra vez 0). Recuperaste a fórmula só a partir do número.",
       },
       {
         title: "Verdadeiro e falso recebem números da mesma maneira",
-        text: "Compara 0 = 0 com 0 = S0. O símbolo extra S acrescenta um fator 5⁷ e empurra o 0 final para o primo 7, pelo que o número cresce para 142 943 535 000 000. Codificar é pura sintaxe; se uma fórmula é verdadeira é outra questão.",
+        text: "Compara 0 = 0 com 0 = S0. O símbolo extra S acrescenta um fator 5⁷ e empurra o 0 final para o primo 7, pelo que o número cresce para 142\u00a0943\u00a0535\u00a0000\u00a0000. Codificar é pura sintaxe; se uma fórmula é verdadeira é outra questão.",
       },
       {
         title: "Vê o comprimento a explodir",

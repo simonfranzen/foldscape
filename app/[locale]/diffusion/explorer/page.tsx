@@ -280,7 +280,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     samplesUnit: "pontos",
     pauseButton: "❚❚ Pausar",
     resumeButton: "▶ Retomar",
-    resetModelButton: "↺ Reset do modelo (re-treinar)",
+    resetModelButton: "↺ Reiniciar o modelo (retreinar)",
     legendData: "distribuição dos dados",
     legendSamples: "amostras geradas",
     legendTrails: "rasto do processo inverso",
@@ -292,7 +292,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatNowNoise: "os caminhantes ainda são ruído puro de N(0, I)",
     whatNowMoving: "os caminhantes começam a aglomerar-se junto aos dados",
     whatNowConverged: "os caminhantes colapsaram sobre a variedade dos dados",
-    whatYouSeeLabel: "Ler a tela",
+    whatYouSeeLabel: "Ler o canvas",
     whatYouSeeP1:
       "Pontos ciano: a distribuição de dados de brincadeira. O denoiser só os vê (ruidosos) durante o treino: não memoriza posições; aprende o campo local de «para que lado fica dentro?».",
     whatYouSeeP2:

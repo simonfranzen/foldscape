@@ -314,7 +314,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     primeStaircaseBadge: "Escada dos primos π(x) vs Riemann R(x)",
     zetaTraceBadge: "ζ(½ + it) · traço no plano complexo",
     formulaBadge: "ζ(s) = 0 ⇒ Re(s) = ½",
-    tMaxLabel: "t_max: quanto subir pela recta crítica",
+    tMaxLabel: "t_max: quanto subir pela reta crítica",
     tMaxHint:
       "O alcance vertical do traço de ζ. Cada laço pela origem marca um zero não trivial. ~14 revela o primeiro; 60 revela 13.",
     nDirichletLabel: "N: termos da série de Dirichlet",
@@ -322,17 +322,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       "ζ é calculada como Σ_{n=1..N} (−1)^{n+1}/n^s escalada por 1/(1−2^{1−s}). 200 termos chegam e sobram para t ≤ 60.",
     nZerosLabel: "N_zeros: zeros usados na reconstrução de π",
     nZerosHint:
-      "Número de zeros não triviais introduzidos na correcção da fórmula explícita de Riemann. 0 = apenas a função suave R(x) de Riemann. Mais zeros = a curva suave trepa sobre a escada.",
+      "Número de zeros não triviais introduzidos na correção da fórmula explícita de Riemann. 0 = apenas a função suave R(x) de Riemann. Mais zeros = a curva suave trepa sobre a escada.",
     detectedHeadline: "Alturas de zeros atravessadas",
     detectedEmpty: "Sobe t_max para além de 14,13 para registar o primeiro zero.",
-    legendPiTrue: "π(x): escada exacta",
-    legendRApprox: "R(x) − Σ correcções · aproximação de Riemann",
+    legendPiTrue: "π(x): escada exata",
+    legendRApprox: "R(x) − Σ correções · aproximação de Riemann",
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "O que estás a ver",
     whatYouSeeP1:
-      "Gráfico superior: a escada π(x) salta 1 em cada primo, e a curva quente é a aproximação de Riemann reconstruída a partir dos primeiros N_zeros zeros não triviais. Com zero zeros, a curva é a R(x) de Riemann, uma estimativa suave que já passa pelo meio dos degraus. À medida que N_zeros cresce, as correcções encostam a curva à escada: é literalmente assim que os zeros codificam os primos.",
+      "Gráfico superior: a escada π(x) salta 1 em cada primo, e a curva quente é a aproximação de Riemann reconstruída a partir dos primeiros N_zeros zeros não triviais. Com zero zeros, a curva é a R(x) de Riemann, uma estimativa suave que já passa pelo meio dos degraus. À medida que N_zeros cresce, as correções encostam a curva à escada: é literalmente assim que os zeros codificam os primos.",
     whatYouSeeP2:
-      "Gráfico inferior: a imagem de ζ ao longo da recta crítica s = ½ + it, traçada no plano complexo. Cada laço pela origem é um zero. A hipótese diz que esta figura permanece exactamente igual para sempre: não há nenhum t em que a órbita derive e evite a origem enquanto a parte real de s estiver noutro sítio que não ½.",
+      "Gráfico inferior: a imagem de ζ ao longo da reta crítica s = ½ + it, traçada no plano complexo. Cada laço pela origem é um zero. A hipótese diz que esta figura permanece exatamente igual para sempre: não há nenhum t em que a órbita derive e evite a origem enquanto a parte real de s estiver noutro sítio que não ½.",
     errorLabel: "max |π(x) − R(x)| no intervalo visível",
     resetLabel: "↺ reiniciar",
   },

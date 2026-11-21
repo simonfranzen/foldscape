@@ -235,7 +235,7 @@ export const APOLLONIAN_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "Les boutons d'empilement prédéfini choisissent les quatre courbures de départ. Le premier nombre est toujours la courbure négative du cercle englobant, les trois autres appartiennent aux cercles qu'il contient. La vue se remet à l'échelle pour que le cercle extérieur remplisse toujours le canevas, quelle que soit sa taille.",
-          "La profondeur de récursion va de 0 à 8 et démarre à 4. La profondeur 0 ne remplit que les quatre interstices d'origine, ce qui donne 8 cercles. Chaque niveau supplémentaire triple le nombre de nouveaux cercles : la profondeur 4 en montre donc 488 et la profondeur 8 en montre 39 368 pour l'empilement par défaut. Pour les autres préréglages, quelques-uns des cercles les plus profonds passent sous le rayon de coupure et sont ignorés, si bien que leurs totaux à la profondeur 8 sont un peu plus faibles.",
+          "La profondeur de récursion va de 0 à 8 et démarre à 4. La profondeur 0 ne remplit que les quatre interstices d'origine, ce qui donne 8 cercles. Chaque niveau supplémentaire triple le nombre de nouveaux cercles : la profondeur 4 en montre donc 488 et la profondeur 8 en montre 39\u00a0368 pour l'empilement par défaut. Pour les autres préréglages, quelques-uns des cercles les plus profonds passent sous le rayon de coupure et sont ignorés, si bien que leurs totaux à la profondeur 8 sont un peu plus faibles.",
           "Les options d'affichage activent ou désactivent les courbures (dessinées seulement dans les cercles dont le rayon dépasse 14 pixels), un ombrage des interstices encore vides, la coloration selon la courbure et une marge plus large quand « Remplir le cadre » est désactivé.",
         ],
       },
@@ -243,7 +243,7 @@ export const APOLLONIAN_GUIDE: ExplorerGuide = {
         heading: "Comment c'est construit",
         paragraphs: [
           "Le germe est placé par de la géométrie élémentaire : le cercle extérieur est à l'origine, le deuxième le touche sur la partie négative de l'axe des x, le troisième s'obtient par l'intersection de deux conditions de distance, et le quatrième vient du théorème de Descartes complexe. Entre les deux centres candidats, le code garde celui qui touche le mieux les trois cercles parents.",
-          "La croissance passe par une pile explicite plutôt que par la récursion. Chaque entrée décrit un interstice par ses trois cercles frontières, plus le quatrième cercle situé de l'autre côté. Réfléchir ce quatrième cercle à travers l'interstice donne le nouveau cercle, qui divise ensuite l'interstice en trois nouvelles entrées. Les cercles de rayon inférieur à 0,00001 sont écartés, et une limite stricte de 60 000 insertions protège contre les entrées qui s'emballent.",
+          "La croissance passe par une pile explicite plutôt que par la récursion. Chaque entrée décrit un interstice par ses trois cercles frontières, plus le quatrième cercle situé de l'autre côté. Réfléchir ce quatrième cercle à travers l'interstice donne le nouveau cercle, qui divise ensuite l'interstice en trois nouvelles entrées. Les cercles de rayon inférieur à 0,00001 sont écartés, et une limite stricte de 60\u00a0000 insertions protège contre les entrées qui s'emballent.",
           "Le dessin se fait une seule fois à chaque changement des cercles ou des options, pas dans une boucle d'animation : il n'y a donc rien à ralentir pour la réduction des animations. Les couleurs viennent du logarithme décimal de la courbure : la teinte passe du rose à l'ambre, puis au cyan et au violet à mesure que les cercles rapetissent. Les cercles de moins de 0,4 pixel à l'écran sont ignorés.",
         ],
         code: GAP_EXCERPT,
@@ -257,7 +257,7 @@ export const APOLLONIAN_GUIDE: ExplorerGuide = {
       },
       {
         title: "Vois la loi de croissance",
-        text: "Augmente la profondeur pas à pas de 0 à 5 et lis le total : 8, 20, 56, 164, 488, 1 460. Chaque étape ajoute trois fois plus de cercles que la précédente, parce que chaque interstice rempli en laisse trois nouveaux.",
+        text: "Augmente la profondeur pas à pas de 0 à 5 et lis le total : 8, 20, 56, 164, 488, 1\u00a0460. Chaque étape ajoute trois fois plus de cercles que la précédente, parce que chaque interstice rempli en laisse trois nouveaux.",
       },
       {
         title: "Trouve où la place vient à manquer",
@@ -265,7 +265,7 @@ export const APOLLONIAN_GUIDE: ExplorerGuide = {
       },
       {
         title: "Compare les empilements",
-        text: "Alterne entre (−1, 2, 2, 3) et (−6, 11, 14, 15) à la profondeur 3, courbures affichées. Le second empilement est moins symétrique, et ses courbures croissent beaucoup plus vite : la plus grande à la profondeur 3 vaut 1 847 au lieu de 323.",
+        text: "Alterne entre (−1, 2, 2, 3) et (−6, 11, 14, 15) à la profondeur 3, courbures affichées. Le second empilement est moins symétrique, et ses courbures croissent beaucoup plus vite : la plus grande à la profondeur 3 vaut 1\u00a0847 au lieu de 323.",
       },
     ],
   },
@@ -326,7 +326,7 @@ export const APOLLONIAN_GUIDE: ExplorerGuide = {
       },
       {
         title: "Confronta gli impacchettamenti",
-        text: "Passa da (−1, 2, 2, 3) a (−6, 11, 14, 15) e viceversa a profondità 3, con le etichette attive. Le curvature del secondo impacchettamento crescono molto più in fretta: la più grande a profondità 3 è 1847 invece di 323.",
+        text: "Passa da (−1, 2, 2, 3) a (−6, 11, 14, 15) e viceversa a profondità 3, con le etichette attive. Il secondo impacchettamento è meno simmetrico e le sue curvature crescono molto più in fretta: la più grande a profondità 3 è 1847 invece di 323.",
       },
     ],
   },
@@ -357,7 +357,7 @@ export const APOLLONIAN_GUIDE: ExplorerGuide = {
         heading: "O que fazem os controlos",
         paragraphs: [
           "Os botões de empacotamento predefinido escolhem as quatro curvaturas semente. O primeiro número é sempre a curvatura negativa do círculo envolvente, e os outros três pertencem aos círculos dentro dele. A vista é reescalada para que o círculo exterior preencha sempre o canvas, seja qual for o seu tamanho.",
-          "A profundidade de recursão vai de 0 a 8 e começa em 4. A profundidade 0 preenche apenas as quatro lacunas originais, o que dá 8 círculos. Cada nível adicional triplica o número de círculos novos, de modo que a profundidade 4 mostra 488 e a profundidade 8 mostra 39 368 para o empacotamento predefinido. Nas outras predefinições, alguns dos círculos mais profundos ficam abaixo do raio de corte e são ignorados, pelo que as suas contagens à profundidade 8 ficam um pouco mais baixas.",
+          "A profundidade de recursão vai de 0 a 8 e começa em 4. A profundidade 0 preenche apenas as quatro lacunas originais, o que dá 8 círculos. Cada nível adicional triplica o número de círculos novos, de modo que a profundidade 4 mostra 488 e a profundidade 8 mostra 39\u00a0368 para o empacotamento predefinido. Nas outras predefinições, alguns dos círculos mais profundos ficam abaixo do raio de corte e são ignorados, pelo que as suas contagens à profundidade 8 ficam um pouco mais baixas.",
           "As opções de vista ligam e desligam as curvaturas (desenhadas apenas dentro de círculos com raio superior a 14 píxeis), um sombreado das lacunas que ainda estão vazias, a coloração por curvatura e uma margem mais larga quando «Preencher o quadro» está desligado.",
         ],
       },
@@ -365,7 +365,7 @@ export const APOLLONIAN_GUIDE: ExplorerGuide = {
         heading: "Como está construído",
         paragraphs: [
           "A semente é posicionada com geometria simples: o círculo exterior fica na origem, o segundo toca-lhe no eixo x negativo, o terceiro encontra-se intersetando duas condições de distância e o quarto vem do teorema de Descartes complexo. Dos dois centros candidatos, o código fica com aquele que melhor toca nos três círculos progenitores.",
-          "O crescimento usa uma pilha explícita em vez de recursão. Cada entrada descreve uma lacuna pelos três círculos que a delimitam, mais o quarto círculo do outro lado. Refletir esse quarto círculo através da lacuna dá o círculo novo, que por sua vez divide a lacuna em três novas entradas. Os círculos com raio inferior a 0,00001 são descartados, e um limite rígido de 60 000 inserções protege contra entradas descontroladas.",
+          "O crescimento usa uma pilha explícita em vez de recursão. Cada entrada descreve uma lacuna pelos três círculos que a delimitam, mais o quarto círculo do outro lado. Refletir esse quarto círculo através da lacuna dá o círculo novo, que por sua vez divide a lacuna em três novas entradas. Os círculos com raio inferior a 0,00001 são descartados, e um limite rígido de 60\u00a0000 inserções protege contra entradas descontroladas.",
           "O desenho acontece uma única vez sempre que os círculos ou as opções mudam, não num ciclo de animação, por isso não há nada a abrandar para o movimento reduzido. As cores vêm do logaritmo de base 10 da curvatura: o matiz vai do rosa ao violeta, passando pelo âmbar e pelo ciano, à medida que os círculos encolhem. Os círculos com menos de 0,4 píxeis no ecrã são ignorados.",
         ],
         code: GAP_EXCERPT,
@@ -448,7 +448,7 @@ export const APOLLONIAN_GUIDE: ExplorerGuide = {
       },
       {
         title: "Jämför packningarna",
-        text: "Växla mellan (−1, 2, 2, 3) och (−6, 11, 14, 15) vid djup 3 med värdena påslagna. Den andra packningens krökningar växer mycket snabbare: den största vid djup 3 är 1847 i stället för 323.",
+        text: "Växla mellan (−1, 2, 2, 3) och (−6, 11, 14, 15) vid djup 3 med värdena påslagna. Den andra packningen är mindre symmetrisk, och dess krökningar växer mycket snabbare: den största vid djup 3 är 1847 i stället för 323.",
       },
     ],
   },
@@ -509,7 +509,7 @@ export const APOLLONIAN_GUIDE: ExplorerGuide = {
       },
       {
         title: "Sammenlign pakningene",
-        text: "Bytt mellom (−1, 2, 2, 3) og (−6, 11, 14, 15) ved dybde 3 med verdiene slått på. Krumningene i den andre pakningen vokser mye raskere: Den største ved dybde 3 er 1847 i stedet for 323.",
+        text: "Bytt mellom (−1, 2, 2, 3) og (−6, 11, 14, 15) ved dybde 3 med verdiene slått på. Den andre pakningen er mindre symmetrisk, og krumningene i den vokser mye raskere: Den største ved dybde 3 er 1847 i stedet for 323.",
       },
     ],
   },

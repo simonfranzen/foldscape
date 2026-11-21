@@ -215,7 +215,7 @@ export const LOGISTIC_SOUND_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "« start audio » crée le moteur sonore ; les navigateurs n'autorisent le son qu'après un clic, le labo reste donc silencieux tant que tu n'as pas appuyé. « Master gain » (le volume général) va de 0 à 0,4 (0,2 par défaut). « Growth rate r » (le taux de croissance) couvre 2,5 à 4 par pas de 0,0005 et démarre à 3,7, en plein chaos. Les cinq boutons de saut mènent à 3,0 ; 3,5 (un cycle bien net de quatre notes) ; 3,56995 ; 3,83 (le cycle de trois notes) et 3,9.",
-          "« Auto-sweep r » fait avancer r régulièrement de sa valeur actuelle jusqu'à 4, puis repart de 2,5 ; « Sweep duration » (de 30 à 240 secondes, 120 par défaut) fixe la durée d'un passage complet de 2,5 à 4. « Iteration rate » règle le tempo, de 2 à 40 sons par seconde, 10 par défaut. « Pitch range » choisit la façon dont x est réparti sur les fréquences : de 220 à 440 Hz (une octave), de 220 à 880 Hz (deux octaves, la valeur par défaut), de 110 à 880 Hz (trois) ou de 55 à 1 760 Hz (cinq). « Quantize to major scale » cale chaque son sur la note la plus proche de la gamme de la majeur, à partir du la1 (A2, 110 Hz). « Sound source » choisit la forme d'onde de l'oscillateur : sinusoïdale (« sine », par défaut), triangulaire (« triangle »), en dents de scie (« sawtooth ») ou carrée (« square »).",
+          "« Auto-sweep r » fait avancer r régulièrement de sa valeur actuelle jusqu'à 4, puis repart de 2,5 ; « Sweep duration » (de 30 à 240 secondes, 120 par défaut) fixe la durée d'un passage complet de 2,5 à 4. « Iteration rate » règle le tempo, de 2 à 40 sons par seconde, 10 par défaut. « Pitch range » choisit la façon dont x est réparti sur les fréquences : de 220 à 440 Hz (une octave), de 220 à 880 Hz (deux octaves, la valeur par défaut), de 110 à 880 Hz (trois) ou de 55 à 1\u00a0760 Hz (cinq). « Quantize to major scale » cale chaque son sur la note la plus proche de la gamme de la majeur, à partir du la1 (A2, 110 Hz). « Sound source » choisit la forme d'onde de l'oscillateur : sinusoïdale (« sine », par défaut), triangulaire (« triangle »), en dents de scie (« sawtooth ») ou carrée (« square »).",
         ],
       },
       {
@@ -250,7 +250,7 @@ export const LOGISTIC_SOUND_GUIDE: ExplorerGuide = {
       },
       {
         title: "Rends le chaos musical",
-        text: "Règle r sur 3,9, la plage de hauteurs sur 55 à 1 760 Hz, la source sur « triangle » et active « Quantize to major scale ». Avec la cadence d'itération à 6, tu obtiens une mélodie en la majeur qui ne se répète jamais. Descends r à 3,2 et elle se verrouille sur deux notes.",
+        text: "Règle r sur 3,9, la plage de hauteurs sur 55 à 1\u00a0760 Hz, la source sur « triangle » et active « Quantize to major scale ». Avec la cadence d'itération à 6, tu obtiens une mélodie en la majeur qui ne se répète jamais. Descends r à 3,2 et elle se verrouille sur deux notes.",
       },
     ],
   },

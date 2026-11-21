@@ -201,7 +201,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
       "Dessine des cellules, charge des planeurs, le canon de Gosper ou le R-pentomino et lance le jeu de la vie de Conway sur un tore de 120 × 70, règles comprises.",
     heading: "Comment fonctionne ce bac à sable",
     intro:
-      "La grille est un univers de 8 400 cellules, chacune vivante (un point lumineux) ou morte (vide). Le temps avance par générations discrètes, et à chaque génération toutes les cellules se mettent à jour en même temps selon la même règle minuscule. Il n'y a ni joueur ni hasard une fois la lecture lancée : ce que tu dessines ou charges constitue toute l'entrée, et tout ce qui suit est imposé. La surprise du jeu de la vie de Conway, c'est la quantité de comportements qui tient dans une telle règle : des particules qui voyagent, des machines qui fabriquent d'autres particules, et des motifs qui bouillonnent pendant des milliers de générations avant de se stabiliser.",
+      "La grille est un univers de 8\u00a0400 cellules, chacune vivante (un point lumineux) ou morte (vide). Le temps avance par générations discrètes, et à chaque génération toutes les cellules se mettent à jour en même temps selon la même règle minuscule. Il n'y a ni joueur ni hasard une fois la lecture lancée : ce que tu dessines ou charges constitue toute l'entrée, et tout ce qui suit est imposé. La surprise du jeu de la vie de Conway, c'est la quantité de comportements qui tient dans une telle règle : des particules qui voyagent, des machines qui fabriquent d'autres particules, et des motifs qui bouillonnent pendant des milliers de générations avant de se stabiliser.",
     sections: [
       {
         heading: "La règle",
@@ -216,7 +216,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Le bac à sable s'ouvre en pause, avec un canon à planeurs de Gosper près du coin supérieur gauche. « Lecture » lance l'horloge, « Pause » l'arrête et « Pas » avance d'exactement une génération (il est désactivé pendant que la simulation tourne). Le curseur de vitesse règle la cadence de 1 à 60 générations par seconde et démarre à 12.",
           "Clique sur une cellule pour la basculer. L'état que tu crées avec ce premier clic décide de l'effet du glisser : si tu as allumé une cellule, glisser peint des cellules vivantes ; si tu en as éteint une, glisser efface. Dessiner fonctionne aussi pendant que la simulation tourne. « Aléatoire » remplit le plateau de sorte que chaque cellule soit vivante avec une probabilité de 25 %, « Effacer » le vide, et les deux remettent à zéro le compteur de générations.",
-          "Les boutons de motifs vident le plateau et placent un motif classique près du centre : le planeur (« Glider »), le vaisseau léger (« Lightweight spaceship »), le pulsar de période 3, le canon à planeurs de Gosper et trois graines à longue durée de vie, le R-pentomino, le gland (« Acorn ») et Diehard. Les boutons de couleur changent seulement la façon dont les cellules vivantes sont peintes. Le badge en haut affiche la génération, le nombre de cellules vivantes et leur part des 8 400.",
+          "Les boutons de motifs vident le plateau et placent un motif classique près du centre : le planeur (« Glider »), le vaisseau léger (« Lightweight spaceship »), le pulsar de période 3, le canon à planeurs de Gosper et trois graines à longue durée de vie, le R-pentomino, le gland (« Acorn ») et Diehard. Les boutons de couleur changent seulement la façon dont les cellules vivantes sont peintes. Le badge en haut affiche la génération, le nombre de cellules vivantes et leur part des 8\u00a0400.",
         ],
       },
       {
@@ -232,7 +232,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
         heading: "Un monde fini se répète toujours",
         paragraphs: [
           "Sur un plan infini, le canon de Gosper grandit indéfiniment en émettant un nouveau planeur toutes les 30 générations. Sur ce plateau, c'est impossible. Un tore de 120 × 70 possède 2^8400 configurations possibles, un nombre énorme mais fini, et chacune a exactement un successeur. Tôt ou tard, la suite doit repasser par une configuration déjà vue, et à partir de là elle boucle pour toujours. Chaque exécution ici se termine donc par une structure stable, une oscillation ou une très longue boucle.",
-          "Le rebouclage modifie aussi les fameuses durées de vie. Les 1 103 générations du R-pentomino et les 5 206 du gland sont mesurées sur un plan sans bornes. Ici, les planeurs qu'ils libèrent font le tour et viennent percuter les débris restants, si bien que l'histoire que tu vois diffère de celle des manuels. Diehard est assez petit pour ne pas être affecté : il disparaît après 130 générations dans les deux cas.",
+          "Le rebouclage modifie aussi les fameuses durées de vie. Les 1\u00a0103 générations du R-pentomino et les 5\u00a0206 du gland sont mesurées sur un plan sans bornes. Ici, les planeurs qu'ils libèrent font le tour et viennent percuter les débris restants, si bien que l'histoire que tu vois diffère de celle des manuels. Diehard est assez petit pour ne pas être affecté : il disparaît après 130 générations dans les deux cas.",
         ],
       },
     ],
@@ -244,7 +244,7 @@ export const LIFE_SANDBOX_GUIDE: ExplorerGuide = {
       },
       {
         title: "Mesure un vaisseau",
-        text: "Charge « Lightweight spaceship », le vaisseau léger, et règle la vitesse sur 60. Il avance de deux cellules toutes les quatre générations, il traverse donc les 120 colonnes et revient à son point de départ après 240 générations. Un planeur met bien plus longtemps : en avançant d'une cellule en diagonale toutes les quatre générations, il ne retrouve sa cellule de départ exacte qu'après 3 360 générations, parce que 840 est le plus petit nombre divisible à la fois par 120 et par 70.",
+        text: "Charge « Lightweight spaceship », le vaisseau léger, et règle la vitesse sur 60. Il avance de deux cellules toutes les quatre générations, il traverse donc les 120 colonnes et revient à son point de départ après 240 générations. Un planeur met bien plus longtemps : en avançant d'une cellule en diagonale toutes les quatre générations, il ne retrouve sa cellule de départ exacte qu'après 3\u00a0360 générations, parce que 840 est le plus petit nombre divisible à la fois par 120 et par 70.",
       },
       {
         title: "Regarde le canon submerger son propre monde",

@@ -141,7 +141,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     hudCut: (val, revealed) => `Corte en v = ±${val}${revealed ? "  ·  hueco abierto" : ""}`,
     hudCentreCut: "Corte por la línea central",
     dragHint: (autoSpin, mode) =>
-      `arrastra para rotar · auto-rotación ${autoSpin ? "activa" : "inactiva"} · ${mode}`,
+      `arrastra para rotar · autorrotación ${autoSpin ? "activa" : "inactiva"} · ${mode}`,
     on: "act.",
     off: "inact.",
     surface: "Superficie",
@@ -149,8 +149,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     kleinBottle: "Botella de Klein",
     surfaceNoteMobius: "Möbius y Listing, 1858. χ = 0, una cara, un borde.",
     surfaceNoteKlein:
-      "Felix Klein, 1882. En 4D es suave y cerrada; en 3D debe atravesarse a sí misma. La auto-rotación revela la autointersección.",
-    autoSpin: "Auto-rotación",
+      "Felix Klein, 1882. En 4D es suave y cerrada; en 3D debe atravesarse a sí misma. La autorrotación revela la autointersección.",
+    autoSpin: "Autorrotación",
     speed: "Velocidad",
     speedUnit: "rad/s",
     width: "Anchura w",
@@ -279,7 +279,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     hudCut: (val, revealed) => `Corte em v = ±${val}${revealed ? "  ·  fenda aberta" : ""}`,
     hudCentreCut: "Corte ao longo da linha central",
     dragHint: (autoSpin, mode) =>
-      `arraste para girar · rotação auto ${autoSpin ? "on" : "off"} · ${mode}`,
+      `arrasta para rodar · rotação auto ${autoSpin ? "on" : "off"} · ${mode}`,
     on: "on",
     off: "off",
     surface: "Superfície",
@@ -287,7 +287,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     kleinBottle: "Garrafa de Klein",
     surfaceNoteMobius: "Möbius e Listing, 1858. χ = 0, um lado, uma aresta.",
     surfaceNoteKlein:
-      "Felix Klein, 1882. Em 4D é lisa e fechada; em 3D precisa atravessar-se a si mesma. A rotação auto revela a autointerseção.",
+      "Felix Klein, 1882. Em 4D é lisa e fechada; em 3D precisa de se atravessar a si mesma. A rotação auto revela a autointerseção.",
     autoSpin: "Rotação auto",
     speed: "Velocidade",
     speedUnit: "rad/s",

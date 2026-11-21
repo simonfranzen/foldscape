@@ -761,13 +761,13 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     symbolsCount: (n) => `${n} símbolos`,
     sidebarHilbertLabel: "A pergunta de Hilbert",
     sidebarHilbertBody1:
-      "Poderá toda afirmação aritmética verdadeira ser provada dentro de um único sistema formal? Resposta de Gödel, 1931: ",
+      "Poderá toda a afirmação aritmética verdadeira ser provada dentro de um único sistema formal? Resposta de Gödel, 1931: ",
     sidebarHilbertNo: "não",
     sidebarHilbertBody2: ".",
     step1Pretitle: "O alfabeto da aritmética",
     step1Title: "Dá um número a cada símbolo.",
     step1Body:
-      "Escolhe uma convenção razoável. Aqui estão onze símbolos de uma linguagem aritmética simples, cada um com um número natural atribuído. Quando os símbolos são números, as sequências de símbolos (isto é, as fórmulas) são sequências de números, e toda sequência de números pode ser empacotada num único número natural.",
+      "Escolhe uma convenção razoável. Aqui estão onze símbolos de uma linguagem aritmética simples, cada um com um número natural atribuído. Quando os símbolos são números, as sequências de símbolos (isto é, as fórmulas) são sequências de números, e toda a sequência de números pode ser empacotada num único número natural.",
     step1Code: "código",
     step1Footer1: "A seguir: escolhe uma pequena fórmula como ",
     step1Footer2: " ou ",
@@ -776,13 +776,13 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2TitleSuffix: " torna-se um único número.",
     step2Body1:
       "Toma os códigos dos símbolos c₁, c₂, …, cₖ e eleva primos consecutivos a essas potências: ",
-    step2Body2: " A fatoração em primos é única, a codificação é, portanto, reversível.",
+    step2Body2: " A fatorização em primos é única, a codificação é, portanto, reversível.",
     step2Code: "código",
     step2Prime: "primo",
     step2ProductLabel: "Produto de potências de primos",
     step2GoedelLabel: "Número de Gödel ⌜φ⌝",
     step2FooterAbout: "",
-    step2FooterPre: "Agora toda fórmula tem um número. O crucial: as afirmações ",
+    step2FooterPre: "Agora toda a fórmula tem um número. O crucial: as afirmações ",
     step2FooterAboutWord: "sobre",
     step2FooterPost:
       " fórmulas (como «x é uma prova de y») também se tornam predicados aritméticos. O sistema pode falar de si próprio.",

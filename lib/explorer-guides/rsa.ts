@@ -220,7 +220,7 @@ export const RSA_GUIDE: ExplorerGuide = {
         heading: "À quoi servent les commandes",
         paragraphs: [
           "Les deux listes déroulantes proposent les nombres premiers de 11 à 97. La page démarre avec la clé d'école p = 17 et q = 11, ce qui donne n = 187 et φ(n) = 160. Choisir deux fois le même nombre premier est refusé, car la formule de φ(n) ne serait plus valable.",
-          "Le menu de l'exposant ne liste que des candidats qui fonctionnent vraiment : des nombres tirés d'une liste fixe (3, 5, 7 et ainsi de suite jusqu'à 61, plus 65 537) qui sont inférieurs à φ(n) et premiers avec lui. Pour φ(n) = 160, cela exclut 5, puisque 160 est divisible par 5. 65 537, l'exposant de presque toutes les vraies clés RSA, n'apparaît jamais : le plus grand φ(n) possible ici est 96 · 88 = 8 448. Si de nouveaux nombres premiers rendent ton e invalide, la page bascule sur le premier qui convient.",
+          "Le menu de l'exposant ne liste que des candidats qui fonctionnent vraiment : des nombres tirés d'une liste fixe (3, 5, 7 et ainsi de suite jusqu'à 61, plus 65\u00a0537) qui sont inférieurs à φ(n) et premiers avec lui. Pour φ(n) = 160, cela exclut 5, puisque 160 est divisible par 5. 65\u00a0537, l'exposant de presque toutes les vraies clés RSA, n'apparaît jamais : le plus grand φ(n) possible ici est 96 · 88 = 8\u00a0448. Si de nouveaux nombres premiers rendent ton e invalide, la page bascule sur le premier qui convient.",
           "Le champ du texte clair accepte tout entier de 0 à n − 1 ; la valeur par défaut est 88. Le champ de texte code chaque lettre de a à z par un nombre de 1 à 26 et chiffre chaque lettre comme un bloc à part (32 caractères au maximum). L'interrupteur « Step animation » affiche ou masque les tableaux, et « Reset to defaults » rétablit les valeurs par défaut ainsi que le mot « rsa ».",
         ],
       },
@@ -229,14 +229,14 @@ export const RSA_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Toute l'arithmétique passe par les BigInt de JavaScript : il n'y a donc de virgule flottante nulle part et rien n'est arrondi. Chaque valeur est dérivée des entrées au moment du rendu avec le useMemo de React ; il n'y a ni canevas ni animation, si bien que la réduction des animations n'a rien à désactiver.",
           "L'exposant privé provient de l'algorithme d'Euclide étendu, appliqué au couple (e, φ(n)). Chaque ligne du premier tableau correspond à une division, et les deux coefficients de Bézout s et t sont mis à jour en parallèle. Quand le reste atteint zéro, le dernier reste non nul est pgcd(e, φ(n)) = 1, et s vérifie e · s + φ(n) · t = 1. Comme s peut être négatif, la page le réduit modulo φ(n) pour obtenir d. Pour la clé par défaut, cela donne d = 23, et en effet 7 · 23 = 161 = 160 + 1.",
-          "Le chiffrement et le déchiffrement utilisent l'exponentiation rapide (square-and-multiply). L'exposant est écrit en binaire et lu à partir du bit de poids fort : chaque bit élève l'accumulateur au carré, et chaque bit à 1 le multiplie en plus par la base. Cela coûte au plus deux multiplications par bit au lieu de e − 1 au total, et c'est ce qui rend praticables des exposants de 2 048 bits. La fonction réelle enregistre en outre chaque valeur intermédiaire pour la trace.",
+          "Le chiffrement et le déchiffrement utilisent l'exponentiation rapide (square-and-multiply). L'exposant est écrit en binaire et lu à partir du bit de poids fort : chaque bit élève l'accumulateur au carré, et chaque bit à 1 le multiplie en plus par la base. Cela coûte au plus deux multiplications par bit au lieu de e − 1 au total, et c'est ce qui rend praticables des exposants de 2\u00a0048 bits. La fonction réelle enregistre en outre chaque valeur intermédiaire pour la trace.",
         ],
         code: MODPOW_EXCERPT,
       },
       {
         heading: "Pourquoi ce n'est pas une vraie sécurité",
         paragraphs: [
-          "Deux choses rendent ce jouet cassable instantanément. D'abord, n vaut au plus 97 · 89 = 8 633, de sorte que des divisions successives trouvent p et q tout de suite. Ensuite, le mode texte est du RSA d'école sans remplissage (padding) : la même lettre produit toujours le même texte chiffré, et la lettre a, codée par 1, se chiffre en 1 avec n'importe quelle clé, puisque 1 à n'importe quelle puissance vaut 1. Les systèmes réels ajoutent un remplissage aléatoire tel qu'OAEP et utilisent des modules de 2 048 bits ou plus.",
+          "Deux choses rendent ce jouet cassable instantanément. D'abord, n vaut au plus 97 · 89 = 8\u00a0633, de sorte que des divisions successives trouvent p et q tout de suite. Ensuite, le mode texte est du RSA d'école sans remplissage (padding) : la même lettre produit toujours le même texte chiffré, et la lettre a, codée par 1, se chiffre en 1 avec n'importe quelle clé, puisque 1 à n'importe quelle puissance vaut 1. Les systèmes réels ajoutent un remplissage aléatoire tel qu'OAEP et utilisent des modules de 2\u00a0048 bits ou plus.",
         ],
       },
     ],

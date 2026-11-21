@@ -218,7 +218,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "« Sommets n » va de 3 à 8, le ratio de saut r de 0,1 à 0,9. Quand « Ratio magique auto » est activé, r prend la valeur pour laquelle les n copies rétrécies se touchent tout juste sans se chevaucher : 0,5 pour le triangle et le carré, environ 0,618 (l'inverse du nombre d'or) pour le pentagone, 2/3 pour l'hexagone et environ 0,7071 (l'inverse de la racine carrée de 2) pour l'octogone. Déplacer le curseur à la main désactive ce réglage.",
           "« Restriction » modifie le sommet qui peut être choisi ensuite, en fonction du choix précédent. « Sans répétition » interdit de choisir deux fois de suite le même sommet. « Sans voisin » interdit les deux sommets voisins du dernier. « Sans opposé » interdit le sommet situé juste en face ou, pour n impair, les deux sommets qui sont presque en face. Cette mémoire d'un seul coup creuse des trous dans des formes qui seraient pleines autrement.",
-          "« Vitesse » règle le nombre de points ajoutés par image, de 100 à 50 000, avec 1 500 au départ. Les quatre préréglages chargent un triangle avec r = 0,5, un carré avec r = 0,5 et « Sans répétition », un pentagone avec son ratio magique, et la fougère de Barnsley. « Effacer » vide le canevas, tout comme n'importe quel changement de règle, de vitesse ou de couleur, si bien que le compteur correspond toujours à l'image.",
+          "« Vitesse » règle le nombre de points ajoutés par image, de 100 à 50\u00a0000, avec 1\u00a0500 au départ. Les quatre préréglages chargent un triangle avec r = 0,5, un carré avec r = 0,5 et « Sans répétition », un pentagone avec son ratio magique, et la fougère de Barnsley. « Effacer » vide le canevas, tout comme n'importe quel changement de règle, de vitesse ou de couleur, si bien que le compteur correspond toujours à l'image.",
         ],
       },
       {
@@ -226,7 +226,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Les sommets sont posés sur un cercle qui remplit le canevas à une marge de 24 pixels près, le premier sommet en haut. Chaque image exécute une boucle serrée : tirer un sommet au hasard, le rejeter si la restriction l'interdit (en abandonnant après 64 tentatives, pour qu'une règle qui interdit tout ne puisse pas figer la page), sauter, mémoriser le choix et tracer un unique pixel avec un remplissage légèrement transparent. Comme les points sont translucides, les endroits souvent visités deviennent plus lumineux.",
           "La fougère utilise la même mécanique avec quatre applications affines au lieu de n sauts vers des sommets. Chaque application est une matrice plus une translation, choisie avec des probabilités de 1, 85, 7 et 7 pour cent : la plus rare écrase tout sur la tige, la plus fréquente recopie la fougère entière un peu plus petite et un peu plus haut, et les deux autres produisent les frondes les plus basses, à gauche et à droite.",
-          "Au bout de deux millions de points, la boucle s'arrête, puisque l'image ne peut plus devenir plus dense. Le compteur se met à jour une dizaine de fois par seconde. Si ton système demande de réduire les animations, il n'y a pas d'animation : 200 000 points sont calculés d'un coup et l'image terminée est dessinée en une seule fois.",
+          "Au bout de deux millions de points, la boucle s'arrête, puisque l'image ne peut plus devenir plus dense. Le compteur se met à jour une dizaine de fois par seconde. Si ton système demande de réduire les animations, il n'y a pas d'animation : 200\u00a0000 points sont calculés d'un coup et l'image terminée est dessinée en une seule fois.",
         ],
         code: LOOP_EXCERPT,
       },
@@ -277,7 +277,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "«Vertici n» va da 3 a 8, il rapporto di salto r da 0,1 a 0,9. Con «Rapporto magico automatico» attivo, r assume il valore per cui le n copie rimpicciolite si toccano appena senza sovrapporsi: 0,5 per il triangolo e il quadrato, circa 0,618 (uno diviso la sezione aurea) per il pentagono, 2/3 per l'esagono e circa 0,7071 (uno diviso la radice quadrata di 2) per l'ottagono. Se muovi il cursore a mano, l'opzione si disattiva.",
           "«Restrizione» cambia quale vertice può essere scelto al passo successivo, in base alla scelta precedente. «Senza ripetizione» vieta di scegliere lo stesso vertice due volte di fila. «Nessun vicino» vieta i due vertici accanto all'ultimo. «Nessun opposto» vieta il vertice direttamente di fronte oppure, per n dispari, i due vertici che stanno quasi di fronte. Questa memoria di un solo passo scava buchi in forme che altrimenti sarebbero piene.",
-          "«Velocità» imposta quanti punti vengono aggiunti per fotogramma, da 100 a 50.000, partendo da 1500. I quattro preset caricano un triangolo con r = 0,5, un quadrato con r = 0,5 e «Senza ripetizione», un pentagono con il suo rapporto magico e la felce di Barnsley. «Pulisci» svuota il canvas, come fa qualsiasi cambio di regola, velocità o colore.",
+          "«Velocità» imposta quanti punti vengono aggiunti per fotogramma, da 100 a 50.000, partendo da 1500. I quattro preset caricano un triangolo con r = 0,5, un quadrato con r = 0,5 e «Senza ripetizione», un pentagono con il suo rapporto magico e la felce di Barnsley. «Pulisci» svuota il canvas, come fa qualsiasi cambio di regola, velocità o colore, così il contatore corrisponde sempre all'immagine.",
         ],
       },
       {
@@ -336,7 +336,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "«Vértices n» vai de 3 a 8, a razão de salto r de 0,1 a 0,9. Com «Razão mágica automática» ativada, r assume o valor em que as n cópias encolhidas apenas se tocam, sem se sobreporem: 0,5 para o triângulo e o quadrado, cerca de 0,618 (um a dividir pela razão áurea) para o pentágono, 2/3 para o hexágono e cerca de 0,7071 (um a dividir pela raiz quadrada de 2) para o octógono. Mover o cursor à mão desativa essa opção.",
           "«Restrição» altera o vértice que pode ser escolhido a seguir, com base na escolha anterior. «Sem repetir» proíbe escolher o mesmo vértice duas vezes seguidas. «Sem vizinho» proíbe os dois vértices ao lado do último. «Sem oposto» proíbe o vértice diretamente em frente ou, para n ímpar, os dois vértices que ficam quase em frente. Esta memória de um único passo abre buracos em formas que, de outro modo, seriam sólidas.",
-          "«Velocidade» define quantos pontos são acrescentados por fotograma, de 100 a 50 000, começando em 1500. As quatro predefinições carregam um triângulo com r = 0,5, um quadrado com r = 0,5 e «Sem repetir», um pentágono com a sua razão mágica e o feto de Barnsley. «Limpar» apaga o canvas, tal como qualquer mudança de regra, velocidade ou cor, pelo que o contador corresponde sempre à imagem.",
+          "«Velocidade» define quantos pontos são acrescentados por fotograma, de 100 a 50\u00a0000, começando em 1500. As quatro predefinições carregam um triângulo com r = 0,5, um quadrado com r = 0,5 e «Sem repetir», um pentágono com a sua razão mágica e o feto de Barnsley. «Limpar» apaga o canvas, tal como qualquer mudança de regra, velocidade ou cor, pelo que o contador corresponde sempre à imagem.",
         ],
       },
       {
@@ -344,7 +344,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Os vértices ficam sobre um círculo que preenche o canvas, menos uma margem de 24 píxeis, com o primeiro vértice no topo. Cada fotograma executa um ciclo apertado: sorteia um vértice, rejeita o sorteio se a restrição o proibir (desistindo após 64 tentativas, para que uma regra que proíbe tudo não consiga bloquear a página), salta, guarda a escolha e pinta um único píxel com um preenchimento ligeiramente transparente. Como os pontos são translúcidos, os lugares mais visitados ficam mais claros.",
           "O feto usa o mesmo mecanismo com quatro aplicações afins em vez de n saltos em direção aos vértices. Cada aplicação é uma matriz mais um deslocamento, escolhida com probabilidades de 1, 85, 7 e 7 por cento: a rara achata tudo sobre o caule, a comum copia o feto inteiro um pouco mais pequeno e mais acima, e as outras duas produzem as frondes mais baixas, à esquerda e à direita.",
-          "Depois de dois milhões de pontos o ciclo para, já que a imagem não pode ficar mais densa. O contador é atualizado cerca de dez vezes por segundo. Se o teu sistema pedir movimento reduzido, não há animação: 200 000 pontos são calculados de uma vez e a imagem final é desenhada num único fotograma.",
+          "Depois de dois milhões de pontos o ciclo para, já que a imagem não pode ficar mais densa. O contador é atualizado cerca de dez vezes por segundo. Se o teu sistema pedir movimento reduzido, não há animação: 200\u00a0000 pontos são calculados de uma vez e a imagem final é desenhada num único fotograma.",
         ],
         code: LOOP_EXCERPT,
       },
@@ -371,7 +371,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
       },
       {
         title: "Vê o feto crescer",
-        text: "Escolhe a predefinição «Samambaia de Barnsley» e põe «Velocidade» em 100. A parte de cima do feto ganha nitidez mais depressa porque 85 por cento de todos os saltos caem nela. As duas frondes mais baixas recebem apenas 7 por cento dos pontos cada uma, e o caule principal só 1 por cento, por isso é o que fica ténue durante mais tempo.",
+        text: "Escolhe a predefinição «Feto de Barnsley» e põe «Velocidade» em 100. A parte de cima do feto ganha nitidez mais depressa porque 85 por cento de todos os saltos caem nela. As duas frondes mais baixas recebem apenas 7 por cento dos pontos cada uma, e o caule principal só 1 por cento, por isso é o que fica ténue durante mais tempo.",
       },
     ],
   },
@@ -395,7 +395,7 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
         paragraphs: [
           "”Hörn n” går från 3 till 8, hoppkvoten r från 0,1 till 0,9. När ”Magisk kvot automatiskt” är på sätts r till det värde där de n krympta kopiorna precis rör vid varandra utan att överlappa: 0,5 för triangeln och kvadraten, ungefär 0,618 (ett genom gyllene snittet) för femhörningen, 2/3 för sexhörningen och ungefär 0,7071 (ett genom roten ur 2) för åttahörningen. Flyttar du reglaget för hand stängs det här av.",
           "”Begränsning” ändrar vilket hörn som får väljas härnäst, utifrån det föregående valet. ”Ingen upprepning” förbjuder att samma hörn väljs två gånger i rad. ”Ingen granne” förbjuder de två hörnen intill det senaste. ”Ingen motsatt” förbjuder hörnet rakt över eller, för udda n, de två hörn som ligger nästan rakt över. Det här minnet på ett enda steg karvar hål i former som annars skulle vara fyllda.",
-          "”Hastighet” bestämmer hur många punkter som läggs till per bildruta, från 100 till 50\u00a0000, med 1500 som startvärde. De fyra förvalen laddar en triangel med r = 0,5, en kvadrat med r = 0,5 och ”Ingen upprepning”, en femhörning med sin magiska kvot och Barnsleys ormbunke. ”Rensa” tömmer ritytan, och det gör också varje ändring av regel, hastighet eller färg.",
+          "”Hastighet” bestämmer hur många punkter som läggs till per bildruta, från 100 till 50\u00a0000, med 1500 som startvärde. De fyra förvalen laddar en triangel med r = 0,5, en kvadrat med r = 0,5 och ”Ingen upprepning”, en femhörning med sin magiska kvot och Barnsleys ormbunke. ”Rensa” tömmer ritytan, och det gör också varje ändring av regel, hastighet eller färg, så att räknaren alltid stämmer med bilden.",
         ],
       },
       {
@@ -452,9 +452,9 @@ export const CHAOSGAME_GUIDE: ExplorerGuide = {
       {
         heading: "Hva kontrollene gjør",
         paragraphs: [
-          "«Hjørner n» går fra 3 til 8, hoppforholdet r fra 0,1 til 0,9. Når «Magisk kvot automatisk» er på, settes r til verdien der de n krympede kopiene så vidt berører hverandre uten å overlappe: 0,5 for trekanten og kvadratet, omtrent 0,618 (én delt på det gylne snitt) for femkanten, 2/3 for sekskanten og omtrent 0,7071 (én delt på kvadratroten av 2) for åttekanten. Flytter du glidebryteren for hånd, slås dette av.",
+          "«Hjørner n» går fra 3 til 8, hoppforholdet r fra 0,1 til 0,9. Når «Magisk forhold automatisk» er på, settes r til verdien der de n krympede kopiene så vidt berører hverandre uten å overlappe: 0,5 for trekanten og kvadratet, omtrent 0,618 (én delt på det gylne snitt) for femkanten, 2/3 for sekskanten og omtrent 0,7071 (én delt på kvadratroten av 2) for åttekanten. Flytter du glidebryteren for hånd, slås dette av.",
           "«Begrensning» endrer hvilket hjørne som kan velges neste gang, ut fra det forrige valget. «Ingen gjentakelse» forbyr å velge samme hjørne to ganger på rad. «Ingen nabo» forbyr de to hjørnene ved siden av det siste. «Ingen motsatt» forbyr hjørnet rett overfor eller, for odde n, de to hjørnene som ligger nesten rett overfor. Dette minnet på ett enkelt steg skjærer hull i former som ellers ville vært fylte.",
-          "«Hastighet» bestemmer hvor mange punkter som legges til per bilde, fra 100 til 50\u00a0000, med 1500 som startverdi. De fire forhåndsvalgene laster en trekant med r = 0,5, et kvadrat med r = 0,5 og «Ingen gjentakelse», en femkant med sitt magiske forhold og Barnsleys bregne. «Tøm» visker ut lerretet, og det gjør også enhver endring av regel, hastighet eller farge.",
+          "«Hastighet» bestemmer hvor mange punkter som legges til per bilde, fra 100 til 50\u00a0000, med 1500 som startverdi. De fire forhåndsvalgene laster en trekant med r = 0,5, et kvadrat med r = 0,5 og «Ingen gjentakelse», en femkant med sitt magiske forhold og Barnsleys bregne. «Tøm» visker ut lerretet, og det gjør også enhver endring av regel, hastighet eller farge, slik at telleren alltid stemmer med bildet.",
         ],
       },
       {

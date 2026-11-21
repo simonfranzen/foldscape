@@ -203,7 +203,7 @@ export const BANACH_GUIDE: ExplorerGuide = {
       {
         heading: "À quoi servent les commandes",
         paragraphs: [
-          "« Profondeur de l'arbre », de 1 à 7 (5 par défaut), fixe le nombre maximal de lettres des mots dessinés. Chaque nouveau niveau multiplie par trois les mots les plus récents, car tout mot peut être prolongé par n'importe quelle lettre sauf l'inverse de sa dernière. À la profondeur d, l'image contient 2 · 3ᵈ − 1 points : 485 à la profondeur par défaut, 4 373 à la profondeur 7.",
+          "« Profondeur de l'arbre », de 1 à 7 (5 par défaut), fixe le nombre maximal de lettres des mots dessinés. Chaque nouveau niveau multiplie par trois les mots les plus récents, car tout mot peut être prolongé par n'importe quelle lettre sauf l'inverse de sa dernière. À la profondeur d, l'image contient 2 · 3ᵈ − 1 points : 485 à la profondeur par défaut, 4\u00a0373 à la profondeur 7.",
           "Les quatre boutons W(a), W(a⁻¹), W(b) et W(b⁻¹) mettent un morceau en évidence et estompent le reste ; un nouvel appui sur le bouton actif annule la sélection. Les couleurs suivent les générateurs : a pointe vers la droite, a⁻¹ vers la gauche, b vers le haut, b⁻¹ vers le bas. Une fois un morceau sélectionné, « Montrer le tour » le fait glisser d'un pas vers le centre et double sa taille en chemin, version visuelle de sa multiplication par l'inverse de sa première lettre, et une légende énonce l'identité : W(g) décalé par g⁻¹ recouvre F₂ privé de W(g⁻¹).",
         ],
       },

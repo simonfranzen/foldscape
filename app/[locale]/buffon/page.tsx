@@ -762,7 +762,7 @@ const pt: RichStory = {
     "O Explorador entrega-te os parâmetros: comprimento da agulha, espaçamento das linhas, ritmo de queda. Vê a estimativa corrente de π rastejar para o valor verdadeiro, vê o envelope 1 / √N apertar-se e sente por ti como o Monte Carlo é realmente lento, e fiável.",
   ctaLabel: "→ Abrir o Explorador",
   needleSimCaption: "Interativo · lançamentos de agulha ao vivo",
-  needleSimPlay: "▶ tocar",
+  needleSimPlay: "▶ reproduzir",
   needleSimPause: "⏸ pausa",
   needleSimReset: "↺ reset",
   needleSimFastForward: "⏩ +1000",

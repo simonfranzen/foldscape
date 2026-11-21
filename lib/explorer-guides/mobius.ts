@@ -161,7 +161,7 @@ export const MOBIUS_GUIDE: ExplorerGuide = {
       {
         heading: "Qué hacen los controles",
         paragraphs: [
-          "«Superficie» alterna entre la banda de Möbius y la botella de Klein. «Auto-rotación» hace girar el modelo alrededor de su eje vertical a la velocidad elegida, de 0 a 1,5 radianes por segundo (por defecto 0,45); si tu sistema pide movimiento reducido, empieza desactivada. Arrastrar sobre el lienzo lo gira a mano en todo momento, unos 0,005 radianes por píxel.",
+          "«Superficie» alterna entre la banda de Möbius y la botella de Klein. «Autorrotación» hace girar el modelo alrededor de su eje vertical a la velocidad elegida, de 0 a 1,5 radianes por segundo (por defecto 0,45); si tu sistema pide movimiento reducido, empieza desactivada. Arrastrar sobre el lienzo lo gira a mano en todo momento, unos 0,005 radianes por píxel.",
           "«Anchura w» es la semianchura de la banda, de 0,05 a 0,5 con un radio central de 1 (por defecto 0,32). «Número de medias vueltas» fija k entre 1 y 5. La razón de corte c, de 0 a 0,5, marca las dos líneas v = ±c·w: todo lo que queda más cerca de la línea central se vuelve ámbar, todo lo de fuera conserva el degradado de rojo a azul. «Abrir el corte» abre una rendija estrecha a lo largo de las líneas de corte, sin mover las piezas, para que veas cómo cuelgan unas de otras.",
           "Una nota sobre los preajustes: toda razón de corte mayor que cero es topológicamente el mismo experimento. En una banda con una media vuelta, las dos líneas v = c y v = −c son en realidad una sola curva, porque tras una vuelta v se convierte en −v. Cortar a lo largo de ella deja siempre una banda de Möbius más estrecha en el centro (ámbar) y una banda larga de dos caras a su alrededor, y las dos están enlazadas. El preajuste 1/3 es la versión clásica: tres anchuras iguales. El preajuste «línea central» es un experimento distinto: un único corte a lo largo de v = 0 que se cierra tras una vuelta. Deja una sola pieza, una banda de dos caras el doble de larga y con dos vueltas completas, dibujada aquí con una rendija fina. Las líneas de resultado bajo los preajustes valen para una media vuelta y se ocultan con otros valores.",
         ],
@@ -186,7 +186,7 @@ export const MOBIUS_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Sigue el único borde",
-        text: "Quédate con una media vuelta, desactiva «Auto-rotación» y arrastra despacio. Recorre el borde exterior con la mirada: da dos vueltas antes de encontrarse consigo mismo. Con 2 medias vueltas hay dos bordes separados.",
+        text: "Quédate con una media vuelta, desactiva «Autorrotación» y arrastra despacio. Recorre el borde exterior con la mirada: da dos vueltas antes de encontrarse consigo mismo. Con 2 medias vueltas hay dos bordes separados.",
       },
       {
         title: "El corte en tercios",

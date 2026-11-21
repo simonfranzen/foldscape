@@ -208,7 +208,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
         heading: "Réécrire en parallèle",
         paragraphs: [
           "Les systèmes de Lindenmayer, ou L-systèmes, ont été introduits en 1968 par le biologiste hongrois Aristid Lindenmayer pour décrire la croissance, cellule par cellule, d'organismes simples. La différence essentielle avec les grammaires ordinaires est que tous les symboles sont remplacés simultanément, tout comme toutes les cellules d'un filament se divisent à la même génération. Un symbole sans règle est recopié tel quel.",
-          "Prends le préréglage de la courbe de Koch : axiome F, une seule règle F → F+F-F-F+F. Après une étape il y a 5 copies de F, après deux étapes 25, après n étapes 5ⁿ. La longueur de la chaîne atteint 2 · 5ⁿ − 1 symboles : quatre itérations donnent donc 1 249 symboles et 625 segments.",
+          "Prends le préréglage de la courbe de Koch : axiome F, une seule règle F → F+F-F-F+F. Après une étape il y a 5 copies de F, après deux étapes 25, après n étapes 5ⁿ. La longueur de la chaîne atteint 2 · 5ⁿ − 1 symboles : quatre itérations donnent donc 1\u00a0249 symboles et 625 segments.",
         ],
         formula: KOCH_FORMULA,
       },
@@ -217,13 +217,13 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
         paragraphs: [
           "Les huit préréglages chargent chacun un système complet : courbe de Koch (90°, 4 itérations), flocon de Koch (60°, 4), courbe en pointe de flèche de Sierpiński (60°, 6), triangle de Sierpiński (120°, 5), courbe du dragon (90°, 12), plante fractale (25°, 5), courbe de Hilbert (90°, 5) et courbe C de Lévy (45°, 10). En choisir un écrase l'axiome, les règles, l'angle, l'orientation de départ et le nombre d'itérations. La courbe de Koch est ici la variante carrée à angles droits, pas la version classique à 60° ; la forme triangulaire, c'est le préréglage du flocon qui la montre.",
           "Le curseur des itérations va de 1 à 12, celui de l'angle de 15° à 120° par degrés entiers. L'angle est la quantité dont la tortue tourne à chaque symbole + ou −, et comme il est appliqué des centaines de fois, un écart d'un seul degré peut tordre une courbe bien nette en spirale. Le champ de l'axiome et la zone des règles sont entièrement modifiables. Écris une règle par ligne sous la forme X = … ; chaque membre de gauche doit être un caractère unique, et les lignes impossibles à interpréter sont ignorées. « Start heading » (de −180° à 180° par pas de 5°) est la direction vers laquelle la tortue regarde avant son premier pas : 0° pointe vers la droite et −90° droit vers le haut. Le préréglage de la plante le fixe à −65°, tous les autres à 0°, et il reste là où tu l'as mis pendant que tu modifies l'axiome et les règles. Les boutons de couleur ne changent que le trait.",
-          "Le compteur sous le canevas affiche la longueur de la chaîne générée. Si un système dépasse 500 000 symboles, l'expansion s'arrête à cet endroit précis et un avertissement ambré apparaît. Ce que tu vois alors est le début de la génération suivante, pas la fractale complète.",
+          "Le compteur sous le canevas affiche la longueur de la chaîne générée. Si un système dépasse 500\u00a0000 symboles, l'expansion s'arrête à cet endroit précis et un avertissement ambré apparaît. Ce que tu vois alors est le début de la génération suivante, pas la fractale complète.",
         ],
       },
       {
         heading: "Comment c'est construit",
         paragraphs: [
-          "L'expansion est une simple boucle sur la chaîne avec une recherche dans l'objet des règles, recalculée uniquement quand l'axiome, les règles ou le nombre d'itérations changent. Le dessin se fait sur un canevas 2D en deux passes sur la même chaîne. La première fait marcher la tortue sans dessiner et enregistre la boîte englobante. À partir de cette boîte, le code calcule un facteur d'échelle uniforme et un décalage, de sorte que la figure remplit toujours le canevas avec une marge de 24 pixels, qu'elle compte 10 segments ou 100 000. La seconde passe refait le parcours et ajoute chaque segment à un chemin unique, tracé une seule fois à la fin.",
+          "L'expansion est une simple boucle sur la chaîne avec une recherche dans l'objet des règles, recalculée uniquement quand l'axiome, les règles ou le nombre d'itérations changent. Le dessin se fait sur un canevas 2D en deux passes sur la même chaîne. La première fait marcher la tortue sans dessiner et enregistre la boîte englobante. À partir de cette boîte, le code calcule un facteur d'échelle uniforme et un décalage, de sorte que la figure remplit toujours le canevas avec une marge de 24 pixels, qu'elle compte 10 segments ou 100\u00a0000. La seconde passe refait le parcours et ajoute chaque segment à un chemin unique, tracé une seule fois à la fin.",
           "Quatre lettres dessinent : F, G, A et B. Toutes les autres sont invisibles pour la tortue, et c'est exactement pour cela que les préréglages du dragon et de Hilbert utilisent X et Y : elles pilotent la croissance de la chaîne sans laisser de trace. Les crochets empilent la position et l'orientation courantes sur une pile puis les dépilent, ce qui permet à la plante fractale de pousser des branches latérales avant de revenir à la tige. Il n'y a pas d'animation : le canevas ne se redessine que lorsqu'un réglage change ou que la fenêtre est redimensionnée, et les préférences de réduction des animations ne demandent aucun traitement particulier.",
         ],
         code: TURTLE_EXCERPT,
@@ -239,7 +239,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Atteins la limite de symboles",
-        text: "Charge la courbe de Koch et monte les itérations à 7. La chaîne compte 156 249 symboles et se dessine encore en entier. Passe à 8 et la chaîne complète demanderait 781 249 symboles : la limite s'applique et seule une partie de la courbe apparaît.",
+        text: "Charge la courbe de Koch et monte les itérations à 7. La chaîne compte 156\u00a0249 symboles et se dessine encore en entier. Passe à 8 et la chaîne complète demanderait 781\u00a0249 symboles : la limite s'applique et seule une partie de la courbe apparaît.",
       },
       {
         title: "Tords le dragon",
@@ -333,13 +333,13 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
         paragraphs: [
           "As oito predefinições carregam um sistema completo: curva de Koch (90°, 4 iterações), floco de neve de Koch (60°, 4), curva ponta de seta de Sierpiński (60°, 6), triângulo de Sierpiński (120°, 5), curva do dragão (90°, 12), planta fractal (25°, 5), curva de Hilbert (90°, 5) e curva C de Lévy (45°, 10). Escolher uma substitui o axioma, as regras, o ângulo, a orientação inicial e o número de iterações. A curva de Koch é aqui a variante quadrada com ângulos retos, não a versão clássica de 60°; a triangular é mostrada pela predefinição do floco de neve.",
           "O cursor das iterações vai de 1 a 12, o do ângulo de 15° a 120° em graus inteiros. O ângulo é quanto a tartaruga roda em cada símbolo + ou −, e como é aplicado centenas de vezes, a diferença de um único grau pode dobrar uma curva arrumada numa espiral. O campo do axioma e a caixa das regras são totalmente editáveis. Escreve uma regra por linha na forma X = …; cada lado esquerdo tem de ser um único carácter, e as linhas que não se conseguem interpretar são ignoradas. «Start heading» (de −180° a 180° em passos de 5°) é a direção para onde a tartaruga está virada antes do primeiro passo: 0° aponta para a direita e −90° a direito para cima. A predefinição da planta coloca-o em −65°, todas as outras em 0°, e ele fica onde o puseres enquanto editas o axioma e as regras. Os botões de cor só alteram o traço.",
-          "O contador por baixo do canvas mostra o comprimento da cadeia gerada. Se um sistema crescer para lá de 500 000 símbolos, a expansão para exatamente aí e surge um aviso em âmbar. O que vês nesse caso é o início da geração seguinte, não o fractal completo.",
+          "O contador por baixo do canvas mostra o comprimento da cadeia gerada. Se um sistema crescer para lá de 500\u00a0000 símbolos, a expansão para exatamente aí e surge um aviso em âmbar. O que vês nesse caso é o início da geração seguinte, não o fractal completo.",
         ],
       },
       {
         heading: "Como está construído",
         paragraphs: [
-          "A expansão é um simples ciclo sobre a cadeia com uma consulta ao objeto das regras, recalculada apenas quando mudam o axioma, as regras ou o número de iterações. O desenho é feito num canvas 2D em duas passagens sobre a mesma cadeia. Na primeira a tartaruga caminha sem desenhar e regista a caixa envolvente. A partir dessa caixa o código calcula um único fator de escala uniforme e um deslocamento, de modo que a figura preenche sempre o canvas com uma margem de 24 píxeis, tenha ela 10 segmentos ou 100 000. Na segunda passagem volta a caminhar e acrescenta cada segmento a um único caminho, que é traçado uma só vez no fim.",
+          "A expansão é um simples ciclo sobre a cadeia com uma consulta ao objeto das regras, recalculada apenas quando mudam o axioma, as regras ou o número de iterações. O desenho é feito num canvas 2D em duas passagens sobre a mesma cadeia. Na primeira a tartaruga caminha sem desenhar e regista a caixa envolvente. A partir dessa caixa o código calcula um único fator de escala uniforme e um deslocamento, de modo que a figura preenche sempre o canvas com uma margem de 24 píxeis, tenha ela 10 segmentos ou 100\u00a0000. Na segunda passagem volta a caminhar e acrescenta cada segmento a um único caminho, que é traçado uma só vez no fim.",
           "Quatro letras desenham: F, G, A e B. Todas as outras são invisíveis para a tartaruga, e é precisamente por isso que as predefinições do dragão e de Hilbert usam X e Y: orientam o crescimento da cadeia sem deixar marcas. Os parênteses retos guardam a posição e a orientação atuais numa pilha e voltam a retirá-las, e é isso que permite à planta fractal lançar ramos laterais e regressar depois ao caule. Não há animação, por isso o canvas só é redesenhado quando um controlo muda ou a janela é redimensionada, e as definições de movimento reduzido não precisam de tratamento especial.",
         ],
         code: TURTLE_EXCERPT,
@@ -355,7 +355,7 @@ export const LSYSTEM_GUIDE: ExplorerGuide = {
     experiments: [
       {
         title: "Chega ao limite de símbolos",
-        text: "Carrega a curva de Koch e sobe as iterações para 7. A cadeia tem 156 249 símbolos e ainda é desenhada por inteiro. Passa para 8 e a cadeia completa precisaria de 781 249 símbolos, por isso o limite entra em ação e só aparece parte da curva.",
+        text: "Carrega a curva de Koch e sobe as iterações para 7. A cadeia tem 156\u00a0249 símbolos e ainda é desenhada por inteiro. Passa para 8 e a cadeia completa precisaria de 781\u00a0249 símbolos, por isso o limite entra em ação e só aparece parte da curva.",
       },
       {
         title: "Dobra o dragão",
