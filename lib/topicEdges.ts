@@ -1,13 +1,13 @@
-// Affinities between topics — the "verwandtschaften" rendered as constellation
+// Affinities between topics: the "verwandtschaften" rendered as constellation
 // lines on the atlas landing. Pairs are listed once; the renderer treats them
 // as undirected. The `kind` lets the renderer style families differently:
 //
-//   bridge — a marquee cross-category link the jury should see ("aha!")
-//   family — same family, mutually reinforcing ideas
-//   echo   — a quieter resonance worth showing
+//   bridge: a marquee cross-category link the jury should see ("aha!")
+//   family: same family, mutually reinforcing ideas
+//   echo:   a quieter resonance worth showing
 //
 // Edges are deliberately curated, not exhaustive. Roughly two per topic on
-// average — enough to feel like a sky, sparse enough to read.
+// average: enough to feel like a sky, sparse enough to read.
 
 import type { TopicId } from "./topics";
 
@@ -25,7 +25,7 @@ export const TOPIC_EDGES: TopicEdge[] = [
   { a: "godel", b: "pvsnp", kind: "echo" },
   { a: "godel", b: "cantor", kind: "family" }, // diagonal arguments
   { a: "halting", b: "cantor", kind: "family" }, // diagonal arguments
-  { a: "sat", b: "pvsnp", kind: "bridge" }, // Cook–Levin: SAT is the first NP-complete problem
+  { a: "sat", b: "pvsnp", kind: "bridge" }, // Cook-Levin: SAT is the first NP-complete problem
   { a: "sat", b: "godel", kind: "echo" }, // the reach and the limits of formal logic
 
   // ── Combinator / building-blocks ───────────────────────────────────────
@@ -51,7 +51,7 @@ export const TOPIC_EDGES: TopicEdge[] = [
   { a: "doublependulum", b: "lorenz", kind: "echo" },
   { a: "magpendulum", b: "mandelbrot", kind: "echo" }, // basins of attraction
 
-  // ── Reaction–diffusion & emergence ─────────────────────────────────────
+  // ── Reaction-diffusion & emergence ─────────────────────────────────────
   { a: "bzr", b: "turingpattern", kind: "family" },
   { a: "turingpattern", b: "dla", kind: "echo" },
   { a: "dla", b: "sierpinski", kind: "echo" },
@@ -89,13 +89,13 @@ export const TOPIC_EDGES: TopicEdge[] = [
   { a: "banach", b: "hilberthotel", kind: "family" },
   { a: "banach", b: "cantor", kind: "echo" },
 
-  // ── Fifth wave — Backprop, Diffusion, Riemann ─────────────────────────
+  // ── Fifth wave: Backprop, Diffusion, Riemann ─────────────────────────
   { a: "backprop", b: "logistic", kind: "bridge" }, // sigmoid + chain rule
   { a: "backprop", b: "fourier", kind: "echo" }, // signal processing math
   { a: "backprop", b: "pvsnp", kind: "echo" }, // training NP-hardness
   { a: "backprop", b: "diffusion", kind: "family" }, // modern AI math
   { a: "diffusion", b: "lorenz", kind: "bridge" }, // stochastic dynamics
-  { a: "diffusion", b: "bzr", kind: "echo" }, // reaction–diffusion cousin
+  { a: "diffusion", b: "bzr", kind: "echo" }, // reaction-diffusion cousin
   { a: "diffusion", b: "turingpattern", kind: "family" }, // pattern formation via diffusion
   { a: "diffusion", b: "galton", kind: "echo" }, // Gaussian noise + CLT
   { a: "riemann", b: "ulam", kind: "bridge" }, // primes distribution

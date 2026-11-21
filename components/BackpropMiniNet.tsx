@@ -8,7 +8,7 @@ import { palette } from "@/lib/visual/palette";
 // 16 samples. We draw the net as three columns of circles with weighted
 // edges (opacity = |w|, hue = sign(w)) plus a loss-vs-step line chart below.
 // Everything is pure SVG so it scales and respects prefers-reduced-motion
-// trivially (no continuous animation — only on user click).
+// trivially (no continuous animation, only on user click).
 
 interface Props {
   caption: string;
@@ -21,7 +21,7 @@ interface Props {
   layerLabels: [string, string, string]; // input, hidden, output
 }
 
-// XOR truth table — the canonical "non-linear" toy problem.
+// XOR truth table, the canonical "non-linear" toy problem.
 const XOR: Array<{ x: [number, number]; y: number }> = [
   { x: [0, 0], y: 0 },
   { x: [0, 1], y: 1 },
@@ -29,7 +29,7 @@ const XOR: Array<{ x: [number, number]; y: number }> = [
   { x: [1, 1], y: 0 },
 ];
 
-const LR = 0.6; // learning rate — large because the net is tiny.
+const LR = 0.6; // learning rate, large because the net is tiny.
 
 const sig = (z: number) => 1 / (1 + Math.exp(-z));
 
@@ -181,7 +181,7 @@ export function BackpropMiniNet({
     };
   }, []);
 
-  // Layout — three columns at fixed x positions.
+  // Layout: three columns at fixed x positions.
   const W = 760;
   const H = 320;
   const COL_X = [140, W / 2, W - 140];
@@ -210,7 +210,7 @@ export function BackpropMiniNet({
     })
     .join(" ");
 
-  // Current predictions for the four XOR samples — shown as a tiny table.
+  // Current predictions for the four XOR samples, shown as a tiny table.
   const preds = XOR.map(({ x, y }) => {
     const { o } = forward(net, x);
     return { x, y, o };

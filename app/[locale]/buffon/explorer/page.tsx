@@ -193,7 +193,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     on: "Sim",
     off: "Não",
     rate: "Ritmo",
-    perFrame: "lançamentos/quadro",
+    perFrame: "lançamentos/fotograma",
     drop1k: "Lançar 1 000",
     drop10k: "Lançar 10 000",
     clear: "Limpar",

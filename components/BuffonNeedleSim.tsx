@@ -49,7 +49,7 @@ export function BuffonNeedleSim({
   const [crossings, setCrossings] = useState(0);
   const [resetTick, setResetTick] = useState(0);
 
-  // Mutable refs for the inner loop — avoid re-rendering on every drop.
+  // Mutable refs for the inner loop: avoid re-rendering on every drop.
   const dropsRef = useRef(0);
   const crossingsRef = useRef(0);
 
@@ -84,7 +84,7 @@ export function BuffonNeedleSim({
     return () => ro.disconnect();
   }, [resetTick, dpr]);
 
-  // Drop loop — runs only while `running` is true.
+  // Drop loop: runs only while `running` is true.
   useEffect(() => {
     if (!running) return;
     const canvas = canvasRef.current;
@@ -97,7 +97,7 @@ export function BuffonNeedleSim({
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
       // Drop a couple of needles per frame. 6/frame felt closer to a hailstorm
-      // than a Monte Carlo experiment — 2 lets the eye follow individual throws
+      // than a Monte Carlo experiment; 2 lets the eye follow individual throws
       // and the π estimate visibly drift toward 3.14 as samples accumulate.
       const PER_FRAME = 2;
       for (let i = 0; i < PER_FRAME; i++) {
@@ -230,10 +230,10 @@ export function BuffonNeedleSim({
                 {estimateLabel}
               </div>
               <div className="math-italic text-3xl leading-none text-signal-amber">
-                {crossings > 0 ? piEstimate.toFixed(5) : "—"}
+                {crossings > 0 ? piEstimate.toFixed(5) : "…"}
               </div>
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-400">
-                {trueLabel} · 3.14159 · Δ {crossings > 0 ? trueDelta.toFixed(5) : "—"}
+                {trueLabel} · 3.14159 · Δ {crossings > 0 ? trueDelta.toFixed(5) : "…"}
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ export function Reveal({ children, delay = 0, className = "", threshold = 0.15 }
     // Above-the-fold content: skip the IntersectionObserver and reveal
     // immediately so heroes don't briefly show as blank space after a page
     // reload. The CSS transition (with its --reveal-delay) still runs, so
-    // staggered fade-ins look identical — they just start at mount instead
+    // staggered fade-ins look identical; they just start at mount instead
     // of after the first scroll/IO tick.
     const rect = el.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;

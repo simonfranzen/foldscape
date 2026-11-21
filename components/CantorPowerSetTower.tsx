@@ -4,7 +4,7 @@ import { useState } from "react";
 import { palette } from "@/lib/visual/palette";
 
 // Visualisation of the power-set hierarchy. Cantor proved |𝒫(X)| > |X|
-// for any set X — so iterating the power set forever gives an unending
+// for any set X, so iterating the power set forever gives an unending
 // ladder of strictly larger infinities. We show eight rungs of the
 // tower; each rung lists |X|, |𝒫(X)| and can be expanded to display a
 // short note.
@@ -25,14 +25,14 @@ interface Props {
   hierarchyLabel: string;
 }
 
-// Cardinality labels are universal across locales — we use the standard
+// Cardinality labels are universal across locales: we use the standard
 // mathematical notation, not translated copy.
 const CARD_LABELS = ["ℵ₀", "2^ℵ₀", "2^(2^ℵ₀)", "2^(2^(2^ℵ₀))", "2^(2^(2^(2^ℵ₀)))", "⋯", "⋯", "⋯"];
 
 // The set each rung actually names: rung 0 is ℕ itself, rung 1 is ℝ = 𝒫(ℕ),
 // then iterated power sets. A rung at level ≥ 1 is the power set of the rung
 // below it, so its expand note reads "𝒫 of <previous set>". Universal
-// notation, not translated. Rung 0 is the base (ℵ₀ = |ℕ|), NOT a power set —
+// notation, not translated. Rung 0 is the base (ℵ₀ = |ℕ|), NOT a power set:
 // Cantor's theorem is |𝒫(ℕ)| > |ℕ|, so labelling ℕ as a power set would
 // contradict the very result this widget illustrates.
 const SET_SYMBOLS = ["ℕ", "ℝ", "𝒫(ℝ)", "𝒫(𝒫(ℝ))", "𝒫³(ℝ)", "𝒫⁴(ℝ)", "𝒫⁵(ℝ)", "⋯"];
@@ -74,7 +74,7 @@ export function CantorPowerSetTower({
       <div className="space-y-2">
         {rungData.map((rung) => {
           const isOpen = open === rung.level;
-          // Width scales with rung index — exponential intent, capped so
+          // Width scales with rung index: exponential intent, capped so
           // the visual stays inside the card. Bigger = "more elements".
           const widthPct = Math.min(20 + rung.level * 10, 100);
           const color = COLORS[rung.level % COLORS.length]!;
@@ -107,7 +107,7 @@ export function CantorPowerSetTower({
               {isOpen && (
                 <div className="mt-3 border-t border-ink-700/40 pt-3 text-xs leading-relaxed text-ink-200">
                   {/* Rung 0 (ℵ₀ = |ℕ|) is the base of the tower, not a power
-                      set of anything — only rungs ≥ 1 carry the "𝒫 of …" prefix. */}
+                      set of anything; only rungs ≥ 1 carry the "𝒫 of …" prefix. */}
                   {rung.level > 0 && (
                     <>
                       <span className="mr-1 font-mono text-[10px] uppercase tracking-widest2 text-signal-rose">

@@ -7,7 +7,7 @@ import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerG
 import { BZR_GUIDE } from "@/lib/explorer-guides/bzr";
 
 const GRID = 200;
-const STATES = 100; // n — number of cell states (0 = healthy, STATES-1 = ill)
+const STATES = 100; // n: number of cell states (0 = healthy, STATES-1 = ill)
 const ILL = STATES - 1;
 
 type ColourMap = "rose" | "violet" | "amber" | "cyan";
@@ -196,7 +196,7 @@ export default function BzrExplorer() {
   const [k1, setK1] = useState(3);
   const [k2, setK2] = useState(3);
   const [g, setG] = useState(28);
-  // Was 2 — at 60 fps that's ~120 grid-generations/s, which made the spiral
+  // Was 2. At 60 fps that's ~120 grid-generations/s, which made the spiral
   // colour fronts strobe (epilepsy risk). 1 is the safe default; the slider
   // still goes up to 8 for users who want it faster.
   const [speed, setSpeed] = useState(1); // steps per frame

@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { parse, reduceTrace } from "@/lib/iota/reduce";
 
-// Inline, story-page reducer. Tiny by design — pick one of a few preset
+// Inline, story-page reducer. Tiny by design: pick one of a few preset
 // derivations (or type your own), then walk forward / backward one step at
 // a time. The current step glows cyan; previous steps fade into the past.
 //

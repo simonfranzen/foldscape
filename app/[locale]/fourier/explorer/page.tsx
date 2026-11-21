@@ -150,17 +150,17 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
   pt: {
     waveLabels: { square: "Onda quadrada", sawtooth: "Dente de serra", triangle: "Triangular" },
     targetWave: "Onda alvo",
-    harmonics: "Harmônicos",
+    harmonics: "Harmónicos",
     layers: "Camadas",
-    spectrumLabel: "Espectro · amplitude por harmônico",
+    spectrumLabel: "Espectro · amplitude por harmónico",
     targetToggle: "Alvo (branco)",
-    harmonicsToggle: "Harmônicos individuais (ciano)",
+    harmonicsToggle: "Harmónicos individuais (ciano)",
     gibbsHint:
-      "Adicionar mais harmônicos afia os cantos. Repare no pequeno sobressinal perto dos saltos, o fenômeno de Gibbs.",
-    harmonicsCount: (n) => `${n} harmônico${n === 1 ? "" : "s"}`,
+      "Adicionar mais harmónicos afia os cantos. Repara no pequeno sobressinal perto dos saltos, o fenómeno de Gibbs.",
+    harmonicsCount: (n) => `${n} harmónico${n === 1 ? "" : "s"}`,
     waveCanvasLabel:
-      "Forma de onda: o alvo branco com a soma parcial âmbar dos harmônicos convergindo para ele.",
-    spectrumCanvasLabel: "Gráfico de barras das amplitudes dos harmônicos.",
+      "Forma de onda: o alvo branco com a soma parcial âmbar dos harmónicos a convergir para ele.",
+    spectrumCanvasLabel: "Gráfico de barras das amplitudes dos harmónicos.",
   },
   sv: {
     waveLabels: { square: "Fyrkantsvåg", sawtooth: "Sågtand", triangle: "Triangel" },

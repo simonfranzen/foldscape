@@ -12,7 +12,7 @@ import type { StoryPage } from "@/lib/i18n/stories";
 const ACCENT = "text-signal-coral";
 
 // -----------------------------------------------------------------------------
-// Aizawa Attractor — rich, locale-aware story content. We author the hero
+// Aizawa Attractor: rich, locale-aware story content. We author the hero
 // metadata ourselves so each locale gets a tailored pretitle / tagline /
 // intro, then inject `sections: []` into StoryPageShell (the long-form
 // sections render as children below). Tone reference: a.topics.aizawa.
@@ -45,7 +45,7 @@ type RichStory = {
   dimCurve: string;
   dimSolid: string;
   // Shape descriptors for the chaos-zoo grid (Lorenz, Rössler, Aizawa, Thomas,
-  // Halvorsen, Lorenz-84 — proper names/years stay as-is).
+  // Halvorsen, Lorenz-84; proper names/years stay as-is).
   zooShapes: [string, string, string, string, string, string];
 };
 
@@ -56,7 +56,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "The Aizawa Attractor",
       tagline: "Lorenz's stranger, more ornate cousin",
       intro:
-        "Three coupled equations, six dials, and a trajectory that folds itself into a basket-handled torus with a vertical spike through its heart. Aizawa lives in the same family as Lorenz and Rössler — but its geometry is uncannily sculptural, and a single parameter can melt it from basket to flower to chaos.",
+        "Three coupled equations, six dials, and a trajectory that folds itself into a basket-handled torus with a vertical spike through its heart. Aizawa lives in the same family as Lorenz and Rössler, but its geometry is uncannily sculptural, and a single parameter can melt it from basket to flower to chaos.",
       ctaInteractive: "Open the Explorer",
     },
     encounter: {
@@ -66,7 +66,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · The big idea",
           title: "Lorenz's stranger cousin",
-          body: "Yoji Aizawa and collaborators formulated this 3D system in the early 1980s; like Lorenz's butterfly it never settles and never repeats. But where Lorenz's attractor looks like two flat wings, Aizawa's looks like a torus threaded by a vertical spike — a geometry so distinctive it became a staple of strange-attractor galleries.",
+          body: "Yoji Aizawa and collaborators formulated this 3D system in the early 1980s; like Lorenz's butterfly it never settles and never repeats. But where Lorenz's attractor looks like two flat wings, Aizawa's looks like a torus threaded by a vertical spike, a geometry so distinctive it became a staple of strange-attractor galleries.",
         },
         {
           label: "02 · Concrete",
@@ -76,11 +76,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Why it matters",
           title: "A whole zoology of 3D chaos",
-          body: "Aizawa is one point in a rich landscape of chaotic attractors — Rössler, Thomas, Halvorsen, Lorenz-84. Studying it teaches us what 3D chaos looks like geometrically, and how a small parameter change can rebuild an entire shape continuously.",
+          body: "Aizawa is one point in a rich landscape of chaotic attractors: Rössler, Thomas, Halvorsen, Lorenz-84. Studying it teaches us what 3D chaos looks like geometrically, and how a small parameter change can rebuild an entire shape continuously.",
         },
       ],
       tryIt:
-        "Drag the canvas to rotate. Pull the «b» slider — watch the basket close, breathe, and bloom.",
+        "Drag the canvas to rotate. Pull the «b» slider: watch the basket close, breathe, and bloom.",
     },
     sections: [
       {
@@ -91,27 +91,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section two · Default geometry",
         title: "The basket-handled torus",
-        body: "At the canonical values the attractor looks like a doughnut threaded onto a vertical needle — a torus with a basket-style weave around its body and a tall spike piercing its centre. The trajectory winds many times around the torus before slipping up the spike and coming back down.",
+        body: "At the canonical values the attractor looks like a doughnut threaded onto a vertical needle: a torus with a basket-style weave around its body and a tall spike piercing its centre. The trajectory winds many times around the torus before slipping up the spike and coming back down.",
       },
       {
         pretitle: "Section three · Parameter sensitivity",
         title: "Turning one dial reshapes everything",
-        body: "Slide «b» from 0.3 to 1.2 and the basket morphs continuously: ribbon, weave, bowl, vase, chaos. There is no clean phase diagram — instead the parameter space is a smooth atlas of shapes, each a slightly different equilibrium between stretching and folding.",
+        body: "Slide «b» from 0.3 to 1.2 and the basket morphs continuously: ribbon, weave, bowl, vase, chaos. There is no clean phase diagram; instead the parameter space is a smooth atlas of shapes, each a slightly different equilibrium between stretching and folding.",
       },
       {
         pretitle: "Section four · The chaos zoo",
         title: "Aizawa among siblings",
-        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84 — all are smooth 3D systems whose orbits fold onto fractal sets. Sprott's atlas catalogues hundreds. They share the same machinery: stretching that amplifies tiny differences, folding that keeps them bounded.",
+        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84: all are smooth 3D systems whose orbits fold onto fractal sets. Sprott's atlas catalogues hundreds. They share the same machinery: stretching that amplifies tiny differences, folding that keeps them bounded.",
       },
       {
         pretitle: "Section five · Lyapunov & dimension",
         title: "How fractal is a basket?",
-        body: "The leading Lyapunov exponent is positive (reported numerical estimates sit around 0.1), meaning nearby trajectories separate exponentially — the signature of chaos. The Kaplan-Yorke conjecture turns the exponent spectrum into a fractal dimension; for Aizawa it lands just above 2 — barely thicker than a surface.",
+        body: "The leading Lyapunov exponent is positive (reported numerical estimates sit around 0.1), meaning nearby trajectories separate exponentially, the signature of chaos. The Kaplan-Yorke conjecture turns the exponent spectrum into a fractal dimension; for Aizawa it lands just above 2, barely thicker than a surface.",
       },
       {
         pretitle: "Section six · Why we care",
         title: "Visualisation, control, music",
-        body: "Aizawa is a poster child for teaching 3D chaos — its shape reads at a glance. Control theorists use such systems as benchmarks for nonlinear stabilisation. And the trajectory's gentle, never-repeating undulations make beautiful raw material for procedural animation and analog-style music synthesis.",
+        body: "Aizawa is a poster child for teaching 3D chaos: its shape reads at a glance. Control theorists use such systems as benchmarks for nonlinear stabilisation. And the trajectory's gentle, never-repeating undulations make beautiful raw material for procedural animation and analog-style music synthesis.",
       },
     ],
     closingTitle: "Spin the basket yourself",
@@ -150,7 +150,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "Der Aizawa-Attraktor",
       tagline: "Lorenz' seltsamerer, ornamentalerer Cousin",
       intro:
-        "Drei gekoppelte Gleichungen, sechs Regler und eine Bahn, die sich zu einem korbgeflochtenen Torus mit vertikaler Spitze durch sein Herz faltet. Aizawa gehört zur Familie von Lorenz und Rössler — aber seine Geometrie ist unheimlich skulptural, und ein einziger Parameter kann ihn von Korb zu Blume zu Chaos verwandeln.",
+        "Drei gekoppelte Gleichungen, sechs Regler und eine Bahn, die sich zu einem korbgeflochtenen Torus mit vertikaler Spitze durch sein Herz faltet. Aizawa gehört zur Familie von Lorenz und Rössler, aber seine Geometrie ist unheimlich skulptural, und ein einziger Parameter kann ihn von Korb zu Blume zu Chaos verwandeln.",
       ctaInteractive: "Explorer öffnen",
     },
     encounter: {
@@ -160,7 +160,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · Die große Idee",
           title: "Lorenz' seltsamerer Cousin",
-          body: "Yoji Aizawa und Kolleg:innen formulierten dieses 3D-System in den frühen 1980er-Jahren; wie Lorenz' Schmetterling kommt es nie zur Ruhe und wiederholt sich nie. Doch wo Lorenz zwei flache Flügel zeigt, zeigt Aizawa einen Torus, von einer vertikalen Spitze durchstochen — eine Geometrie, die zu einem Klassiker der Attraktor-Galerien wurde.",
+          body: "Yoji Aizawa und Kolleg:innen formulierten dieses 3D-System in den frühen 1980er-Jahren; wie Lorenz' Schmetterling kommt es nie zur Ruhe und wiederholt sich nie. Doch wo Lorenz zwei flache Flügel zeigt, zeigt Aizawa einen Torus, von einer vertikalen Spitze durchstochen, eine Geometrie, die zu einem Klassiker der Attraktor-Galerien wurde.",
         },
         {
           label: "02 · Konkret",
@@ -170,11 +170,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Warum es zählt",
           title: "Eine Zoologie des 3D-Chaos",
-          body: "Aizawa ist ein Punkt in einer reichen Landschaft chaotischer Attraktoren — Rössler, Thomas, Halvorsen, Lorenz-84. Ihn zu studieren lehrt, wie 3D-Chaos geometrisch aussieht und wie eine kleine Parameteränderung eine ganze Form kontinuierlich umbaut.",
+          body: "Aizawa ist ein Punkt in einer reichen Landschaft chaotischer Attraktoren: Rössler, Thomas, Halvorsen, Lorenz-84. Ihn zu studieren lehrt, wie 3D-Chaos geometrisch aussieht und wie eine kleine Parameteränderung eine ganze Form kontinuierlich umbaut.",
         },
       ],
       tryIt:
-        "Ziehe die Leinwand zum Drehen. Bewege den «b»-Regler — sieh den Korb sich schließen, atmen und blühen.",
+        "Ziehe die Leinwand zum Drehen. Bewege den «b»-Regler: Sieh den Korb sich schließen, atmen und blühen.",
     },
     sections: [
       {
@@ -185,27 +185,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt zwei · Standardgeometrie",
         title: "Der korbgeflochtene Torus",
-        body: "Bei den kanonischen Werten sieht der Attraktor aus wie ein Donut, auf eine vertikale Nadel gezogen — ein Torus mit Korbgeflecht um den Körper und einer hohen Spitze, die sein Zentrum durchsticht. Die Bahn windet sich vielfach um den Torus, bevor sie an der Spitze hinauf und wieder herab schlüpft.",
+        body: "Bei den kanonischen Werten sieht der Attraktor aus wie ein Donut, auf eine vertikale Nadel gezogen: ein Torus mit Korbgeflecht um den Körper und einer hohen Spitze, die sein Zentrum durchsticht. Die Bahn windet sich vielfach um den Torus, bevor sie an der Spitze hinauf und wieder herab schlüpft.",
       },
       {
         pretitle: "Abschnitt drei · Parameter-Empfindlichkeit",
         title: "Ein Regler formt alles um",
-        body: "Schiebe «b» von 0,3 bis 1,2 und der Korb wandelt sich kontinuierlich: Band, Geflecht, Schale, Vase, Chaos. Es gibt kein sauberes Phasendiagramm — stattdessen ist der Parameterraum ein glatter Atlas von Formen, jede ein leicht anderes Gleichgewicht zwischen Strecken und Falten.",
+        body: "Schiebe «b» von 0,3 bis 1,2 und der Korb wandelt sich kontinuierlich: Band, Geflecht, Schale, Vase, Chaos. Es gibt kein sauberes Phasendiagramm; stattdessen ist der Parameterraum ein glatter Atlas von Formen, jede ein leicht anderes Gleichgewicht zwischen Strecken und Falten.",
       },
       {
         pretitle: "Abschnitt vier · Der Chaos-Zoo",
         title: "Aizawa unter Geschwistern",
-        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84 — alles glatte 3D-Systeme, deren Bahnen sich auf fraktale Mengen falten. Sprotts Atlas katalogisiert Hunderte. Sie teilen dieselbe Mechanik: Strecken, das winzige Differenzen verstärkt, Falten, das sie eingegrenzt hält.",
+        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84: alles glatte 3D-Systeme, deren Bahnen sich auf fraktale Mengen falten. Sprotts Atlas katalogisiert Hunderte. Sie teilen dieselbe Mechanik: Strecken, das winzige Differenzen verstärkt, Falten, das sie eingegrenzt hält.",
       },
       {
         pretitle: "Abschnitt fünf · Lyapunov & Dimension",
         title: "Wie fraktal ist ein Korb?",
-        body: "Der größte Lyapunov-Exponent ist positiv (numerische Schätzungen liegen um 0,1), was bedeutet, dass nahe Bahnen exponentiell auseinanderlaufen — die Signatur des Chaos. Die Kaplan-Yorke-Vermutung verwandelt das Exponentenspektrum in eine fraktale Dimension; für Aizawa landet sie knapp über 2 — gerade etwas dicker als eine Fläche.",
+        body: "Der größte Lyapunov-Exponent ist positiv (numerische Schätzungen liegen um 0,1), was bedeutet, dass nahe Bahnen exponentiell auseinanderlaufen, die Signatur des Chaos. Die Kaplan-Yorke-Vermutung verwandelt das Exponentenspektrum in eine fraktale Dimension; für Aizawa landet sie knapp über 2, gerade etwas dicker als eine Fläche.",
       },
       {
         pretitle: "Abschnitt sechs · Warum es zählt",
         title: "Visualisierung, Regelung, Musik",
-        body: "Aizawa ist ein Aushängeschild zum Vermitteln von 3D-Chaos — die Form spricht auf einen Blick. Regelungstheoretiker:innen nutzen solche Systeme als Maßstäbe nichtlinearer Stabilisierung. Und die sanften, nie wiederkehrenden Wellen der Bahn liefern schönes Material für prozedurale Animation und analogartige Klangsynthese.",
+        body: "Aizawa ist ein Aushängeschild zum Vermitteln von 3D-Chaos: Die Form spricht auf einen Blick. Regelungstheoretiker:innen nutzen solche Systeme als Maßstäbe nichtlinearer Stabilisierung. Und die sanften, nie wiederkehrenden Wellen der Bahn liefern schönes Material für prozedurale Animation und analogartige Klangsynthese.",
       },
     ],
     closingTitle: "Dreh den Korb selbst",
@@ -244,7 +244,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "El atractor de Aizawa",
       tagline: "El primo más extraño y ornamental de Lorenz",
       intro:
-        "Tres ecuaciones acopladas, seis diales y una trayectoria que se pliega en un toro tejido como cesta atravesado por una espiga vertical en su corazón. Aizawa vive en la misma familia que Lorenz y Rössler — pero su geometría es asombrosamente escultórica, y un solo parámetro puede transformarlo de cesta a flor a caos.",
+        "Tres ecuaciones acopladas, seis diales y una trayectoria que se pliega en un toro tejido como cesta atravesado por una espiga vertical en su corazón. Aizawa vive en la misma familia que Lorenz y Rössler, pero su geometría es asombrosamente escultórica, y un solo parámetro puede transformarlo de cesta a flor a caos.",
       ctaInteractive: "Abrir el Explorer",
     },
     encounter: {
@@ -254,7 +254,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · La gran idea",
           title: "El primo más extraño de Lorenz",
-          body: "Yoji Aizawa y colaboradores formularon este sistema 3D a principios de los años 1980; como la mariposa de Lorenz, nunca se asienta y nunca se repite. Pero donde el atractor de Lorenz tiene dos alas planas, el de Aizawa parece un toro atravesado por una espiga vertical — una geometría tan distintiva que se volvió un clásico en galerías de atractores extraños.",
+          body: "Yoji Aizawa y colaboradores formularon este sistema 3D a principios de los años 1980; como la mariposa de Lorenz, nunca se asienta y nunca se repite. Pero donde el atractor de Lorenz tiene dos alas planas, el de Aizawa parece un toro atravesado por una espiga vertical, una geometría tan distintiva que se volvió un clásico en galerías de atractores extraños.",
         },
         {
           label: "02 · Concreto",
@@ -264,11 +264,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Por qué importa",
           title: "Toda una zoología del caos 3D",
-          body: "Aizawa es un punto en un rico paisaje de atractores caóticos — Rössler, Thomas, Halvorsen, Lorenz-84. Estudiarlo enseña cómo se ve el caos 3D geométricamente y cómo un pequeño cambio de parámetro puede reconstruir una forma entera de forma continua.",
+          body: "Aizawa es un punto en un rico paisaje de atractores caóticos: Rössler, Thomas, Halvorsen, Lorenz-84. Estudiarlo enseña cómo se ve el caos 3D geométricamente y cómo un pequeño cambio de parámetro puede reconstruir una forma entera de forma continua.",
         },
       ],
       tryIt:
-        "Arrastra el lienzo para girar. Mueve el control «b» — observa cómo la cesta se cierra, respira y florece.",
+        "Arrastra el lienzo para girar. Mueve el control «b»: observa cómo la cesta se cierra, respira y florece.",
     },
     sections: [
       {
@@ -279,27 +279,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sección dos · Geometría por defecto",
         title: "El toro tejido como cesta",
-        body: "En los valores canónicos el atractor parece un donut ensartado en una aguja vertical — un toro con trama de cesta alrededor del cuerpo y una espiga alta atravesando su centro. La trayectoria da muchas vueltas al toro antes de deslizarse por la espiga y volver a bajar.",
+        body: "En los valores canónicos el atractor parece un donut ensartado en una aguja vertical: un toro con trama de cesta alrededor del cuerpo y una espiga alta atravesando su centro. La trayectoria da muchas vueltas al toro antes de deslizarse por la espiga y volver a bajar.",
       },
       {
         pretitle: "Sección tres · Sensibilidad a parámetros",
         title: "Girar un dial lo reforma todo",
-        body: "Desliza «b» de 0,3 a 1,2 y la cesta se transforma de forma continua: cinta, trama, cuenco, jarrón, caos. No hay un diagrama de fase limpio — el espacio de parámetros es un atlas suave de formas, cada una un equilibrio ligeramente distinto entre estirar y plegar.",
+        body: "Desliza «b» de 0,3 a 1,2 y la cesta se transforma de forma continua: cinta, trama, cuenco, jarrón, caos. No hay un diagrama de fase limpio; el espacio de parámetros es un atlas suave de formas, cada una un equilibrio ligeramente distinto entre estirar y plegar.",
       },
       {
         pretitle: "Sección cuatro · El zoo del caos",
         title: "Aizawa entre hermanos",
-        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84 — todos sistemas 3D suaves cuyas órbitas se pliegan en conjuntos fractales. El atlas de Sprott cataloga cientos. Comparten la misma maquinaria: estiramiento que amplifica diferencias minúsculas, plegado que las mantiene acotadas.",
+        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84: todos sistemas 3D suaves cuyas órbitas se pliegan en conjuntos fractales. El atlas de Sprott cataloga cientos. Comparten la misma maquinaria: estiramiento que amplifica diferencias minúsculas, plegado que las mantiene acotadas.",
       },
       {
         pretitle: "Sección cinco · Lyapunov y dimensión",
         title: "¿Cuán fractal es una cesta?",
-        body: "El exponente de Lyapunov dominante es positivo (las estimaciones numéricas rondan 0,1), lo que significa que trayectorias cercanas se separan exponencialmente — la firma del caos. La conjetura de Kaplan-Yorke convierte el espectro de exponentes en una dimensión fractal; para Aizawa cae apenas por encima de 2 — apenas más gruesa que una superficie.",
+        body: "El exponente de Lyapunov dominante es positivo (las estimaciones numéricas rondan 0,1), lo que significa que trayectorias cercanas se separan exponencialmente, la firma del caos. La conjetura de Kaplan-Yorke convierte el espectro de exponentes en una dimensión fractal; para Aizawa cae apenas por encima de 2, apenas más gruesa que una superficie.",
       },
       {
         pretitle: "Sección seis · Por qué importa",
         title: "Visualización, control, música",
-        body: "Aizawa es un emblema para enseñar caos 3D — su forma se lee de un vistazo. Los teóricos del control usan tales sistemas como referencia para la estabilización no lineal. Y las ondulaciones suaves y no repetitivas de la trayectoria son materia hermosa para animación procedural y síntesis sonora estilo analógico.",
+        body: "Aizawa es un emblema para enseñar caos 3D: su forma se lee de un vistazo. Los teóricos del control usan tales sistemas como referencia para la estabilización no lineal. Y las ondulaciones suaves y no repetitivas de la trayectoria son materia hermosa para animación procedural y síntesis sonora estilo analógico.",
       },
     ],
     closingTitle: "Gira la cesta tú mismo",
@@ -338,7 +338,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "L'attracteur d'Aizawa",
       tagline: "Le cousin plus étrange et ornemental de Lorenz",
       intro:
-        "Trois équations couplées, six molettes et une trajectoire qui se replie en un tore tressé comme un panier traversé par une pointe verticale en son cœur. Aizawa vit dans la même famille que Lorenz et Rössler — mais sa géométrie est étrangement sculpturale, et un seul paramètre peut le faire fondre du panier à la fleur au chaos.",
+        "Trois équations couplées, six molettes et une trajectoire qui se replie en un tore tressé comme un panier traversé par une pointe verticale en son cœur. Aizawa vit dans la même famille que Lorenz et Rössler, mais sa géométrie est étrangement sculpturale, et un seul paramètre peut le faire fondre du panier à la fleur au chaos.",
       ctaInteractive: "Ouvrir l'Explorer",
     },
     encounter: {
@@ -348,7 +348,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · La grande idée",
           title: "Le cousin plus étrange de Lorenz",
-          body: "Yoji Aizawa et ses collaborateurs ont formulé ce système 3D au début des années 1980 ; comme le papillon de Lorenz, il ne se pose jamais et ne se répète jamais. Mais là où l'attracteur de Lorenz a deux ailes plates, celui d'Aizawa ressemble à un tore traversé par une pointe verticale — une géométrie si distinctive qu'elle est devenue un classique des galeries d'attracteurs étranges.",
+          body: "Yoji Aizawa et ses collaborateurs ont formulé ce système 3D au début des années 1980 ; comme le papillon de Lorenz, il ne se pose jamais et ne se répète jamais. Mais là où l'attracteur de Lorenz a deux ailes plates, celui d'Aizawa ressemble à un tore traversé par une pointe verticale, une géométrie si distinctive qu'elle est devenue un classique des galeries d'attracteurs étranges.",
         },
         {
           label: "02 · Concret",
@@ -358,11 +358,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Pourquoi ça compte",
           title: "Toute une zoologie du chaos 3D",
-          body: "Aizawa est un point dans un riche paysage d'attracteurs chaotiques — Rössler, Thomas, Halvorsen, Lorenz-84. L'étudier apprend à voir le chaos 3D géométriquement et comment un petit changement de paramètre peut reconstruire une forme entière en continu.",
+          body: "Aizawa est un point dans un riche paysage d'attracteurs chaotiques : Rössler, Thomas, Halvorsen, Lorenz-84. L'étudier apprend à voir le chaos 3D géométriquement et comment un petit changement de paramètre peut reconstruire une forme entière en continu.",
         },
       ],
       tryIt:
-        "Fais glisser le canevas pour tourner. Bouge le curseur «b» — regarde le panier se fermer, respirer et fleurir.",
+        "Fais glisser le canevas pour tourner. Bouge le curseur « b » : regarde le panier se fermer, respirer et fleurir.",
     },
     sections: [
       {
@@ -373,27 +373,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section deux · Géométrie par défaut",
         title: "Le tore tressé en panier",
-        body: "Aux valeurs canoniques, l'attracteur ressemble à un beignet enfilé sur une aiguille verticale — un tore au tressage de panier autour du corps et une haute pointe perçant son centre. La trajectoire fait de nombreux tours autour du tore avant de remonter le long de la pointe et de redescendre.",
+        body: "Aux valeurs canoniques, l'attracteur ressemble à un beignet enfilé sur une aiguille verticale : un tore au tressage de panier autour du corps et une haute pointe perçant son centre. La trajectoire fait de nombreux tours autour du tore avant de remonter le long de la pointe et de redescendre.",
       },
       {
         pretitle: "Section trois · Sensibilité aux paramètres",
         title: "Tourner une molette refond tout",
-        body: "Glisse «b» de 0,3 à 1,2 et le panier se transforme en continu : ruban, tressage, bol, vase, chaos. Pas de diagramme de phase propre — l'espace des paramètres est un atlas lisse de formes, chacune un équilibre légèrement différent entre étirement et pliage.",
+        body: "Glisse « b » de 0,3 à 1,2 et le panier se transforme en continu : ruban, tressage, bol, vase, chaos. Pas de diagramme de phase propre : l'espace des paramètres est un atlas lisse de formes, chacune un équilibre légèrement différent entre étirement et pliage.",
       },
       {
         pretitle: "Section quatre · Le zoo du chaos",
         title: "Aizawa parmi les frères",
-        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84 — tous des systèmes 3D lisses dont les orbites se replient sur des ensembles fractals. L'atlas de Sprott en catalogue des centaines. Ils partagent la même mécanique : un étirement qui amplifie les minuscules différences, un pliage qui les garde bornées.",
+        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84 : tous des systèmes 3D lisses dont les orbites se replient sur des ensembles fractals. L'atlas de Sprott en catalogue des centaines. Ils partagent la même mécanique : un étirement qui amplifie les minuscules différences, un pliage qui les garde bornées.",
       },
       {
         pretitle: "Section cinq · Lyapunov & dimension",
         title: "Un panier, est-ce fractal ?",
-        body: "L'exposant de Lyapunov dominant est positif (les estimations numériques tournent autour de 0,1), c'est-à-dire que les trajectoires voisines se séparent exponentiellement — la signature du chaos. La conjecture de Kaplan-Yorke convertit le spectre des exposants en dimension fractale ; pour Aizawa elle tombe juste au-dessus de 2 — à peine plus épaisse qu'une surface.",
+        body: "L'exposant de Lyapunov dominant est positif (les estimations numériques tournent autour de 0,1), c'est-à-dire que les trajectoires voisines se séparent exponentiellement, la signature du chaos. La conjecture de Kaplan-Yorke convertit le spectre des exposants en dimension fractale ; pour Aizawa elle tombe juste au-dessus de 2, à peine plus épaisse qu'une surface.",
       },
       {
         pretitle: "Section six · Pourquoi ça compte",
         title: "Visualisation, contrôle, musique",
-        body: "Aizawa est un emblème pour enseigner le chaos 3D — sa forme se lit d'un coup. Les théoriciens du contrôle utilisent ces systèmes comme bancs d'essai pour la stabilisation non linéaire. Et les ondulations douces et jamais répétitives de la trajectoire font une belle matière première pour l'animation procédurale et la synthèse sonore analogique.",
+        body: "Aizawa est un emblème pour enseigner le chaos 3D : sa forme se lit d'un coup. Les théoriciens du contrôle utilisent ces systèmes comme bancs d'essai pour la stabilisation non linéaire. Et les ondulations douces et jamais répétitives de la trajectoire font une belle matière première pour l'animation procédurale et la synthèse sonore analogique.",
       },
     ],
     closingTitle: "Fais tourner le panier toi-même",
@@ -432,7 +432,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "L'attrattore di Aizawa",
       tagline: "Il cugino più strano e ornamentale di Lorenz",
       intro:
-        "Tre equazioni accoppiate, sei manopole e una traiettoria che si piega in un toro intrecciato a cestino attraversato da una punta verticale nel suo cuore. Aizawa vive nella stessa famiglia di Lorenz e Rössler — ma la sua geometria è straordinariamente scultorea, e un solo parametro può farlo passare da cesto a fiore a caos.",
+        "Tre equazioni accoppiate, sei manopole e una traiettoria che si piega in un toro intrecciato a cestino attraversato da una punta verticale nel suo cuore. Aizawa vive nella stessa famiglia di Lorenz e Rössler, ma la sua geometria è straordinariamente scultorea, e un solo parametro può farlo passare da cesto a fiore a caos.",
       ctaInteractive: "Apri l'Explorer",
     },
     encounter: {
@@ -442,7 +442,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · La grande idea",
           title: "Il cugino più strano di Lorenz",
-          body: "Yoji Aizawa e collaboratori formularono questo sistema 3D nei primi anni 1980; come la farfalla di Lorenz, non si stabilizza mai e non si ripete mai. Ma dove l'attrattore di Lorenz mostra due ali piatte, quello di Aizawa sembra un toro infilato da una punta verticale — una geometria così distintiva da diventare un classico delle gallerie di attrattori strani.",
+          body: "Yoji Aizawa e collaboratori formularono questo sistema 3D nei primi anni 1980; come la farfalla di Lorenz, non si stabilizza mai e non si ripete mai. Ma dove l'attrattore di Lorenz mostra due ali piatte, quello di Aizawa sembra un toro infilato da una punta verticale, una geometria così distintiva da diventare un classico delle gallerie di attrattori strani.",
         },
         {
           label: "02 · Concreto",
@@ -452,11 +452,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Perché conta",
           title: "Un'intera zoologia del caos 3D",
-          body: "Aizawa è un punto in un ricco paesaggio di attrattori caotici — Rössler, Thomas, Halvorsen, Lorenz-84. Studiarlo insegna come si presenta geometricamente il caos 3D e come una piccola variazione di parametro possa ricostruire una forma intera in modo continuo.",
+          body: "Aizawa è un punto in un ricco paesaggio di attrattori caotici: Rössler, Thomas, Halvorsen, Lorenz-84. Studiarlo insegna come si presenta geometricamente il caos 3D e come una piccola variazione di parametro possa ricostruire una forma intera in modo continuo.",
         },
       ],
       tryIt:
-        "Trascina la tela per ruotare. Muovi il cursore «b» — guarda il cesto chiudersi, respirare e fiorire.",
+        "Trascina la tela per ruotare. Muovi il cursore «b»: guarda il cesto chiudersi, respirare e fiorire.",
     },
     sections: [
       {
@@ -467,27 +467,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Sezione due · Geometria di default",
         title: "Il toro intrecciato a cesto",
-        body: "Ai valori canonici l'attrattore sembra una ciambella infilata su un ago verticale — un toro con intreccio a cesto attorno al corpo e una punta alta che ne perfora il centro. La traiettoria si avvolge molte volte attorno al toro prima di risalire lungo la punta e ridiscendere.",
+        body: "Ai valori canonici l'attrattore sembra una ciambella infilata su un ago verticale: un toro con intreccio a cesto attorno al corpo e una punta alta che ne perfora il centro. La traiettoria si avvolge molte volte attorno al toro prima di risalire lungo la punta e ridiscendere.",
       },
       {
         pretitle: "Sezione tre · Sensibilità ai parametri",
         title: "Una manopola rimodella tutto",
-        body: "Scorri «b» da 0,3 a 1,2 e il cesto si trasforma con continuità: nastro, intreccio, ciotola, vaso, caos. Non c'è un diagramma di fase pulito — lo spazio dei parametri è un atlante liscio di forme, ciascuna un equilibrio leggermente diverso tra stiramento e ripiegamento.",
+        body: "Scorri «b» da 0,3 a 1,2 e il cesto si trasforma con continuità: nastro, intreccio, ciotola, vaso, caos. Non c'è un diagramma di fase pulito; lo spazio dei parametri è un atlante liscio di forme, ciascuna un equilibrio leggermente diverso tra stiramento e ripiegamento.",
       },
       {
         pretitle: "Sezione quattro · Lo zoo del caos",
         title: "Aizawa fra i fratelli",
-        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84 — tutti sistemi 3D lisci le cui orbite si piegano su insiemi frattali. L'atlante di Sprott ne cataloga centinaia. Condividono la stessa meccanica: stiramento che amplifica differenze minuscole, ripiegamento che le mantiene limitate.",
+        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84: tutti sistemi 3D lisci le cui orbite si piegano su insiemi frattali. L'atlante di Sprott ne cataloga centinaia. Condividono la stessa meccanica: stiramento che amplifica differenze minuscole, ripiegamento che le mantiene limitate.",
       },
       {
         pretitle: "Sezione cinque · Lyapunov e dimensione",
         title: "Quanto è frattale un cesto?",
-        body: "L'esponente di Lyapunov dominante è positivo (le stime numeriche si aggirano intorno a 0,1), cioè le traiettorie vicine si separano esponenzialmente — la firma del caos. La congettura di Kaplan-Yorke trasforma lo spettro degli esponenti in una dimensione frattale; per Aizawa cade appena sopra 2 — appena più spessa di una superficie.",
+        body: "L'esponente di Lyapunov dominante è positivo (le stime numeriche si aggirano intorno a 0,1), cioè le traiettorie vicine si separano esponenzialmente, la firma del caos. La congettura di Kaplan-Yorke trasforma lo spettro degli esponenti in una dimensione frattale; per Aizawa cade appena sopra 2, appena più spessa di una superficie.",
       },
       {
         pretitle: "Sezione sei · Perché conta",
         title: "Visualizzazione, controllo, musica",
-        body: "Aizawa è un'icona per insegnare il caos 3D — la forma si legge a colpo d'occhio. I teorici del controllo usano questi sistemi come banchi di prova per la stabilizzazione non lineare. E le ondulazioni morbide e mai ripetitive della traiettoria sono splendida materia per animazione procedurale e sintesi sonora in stile analogico.",
+        body: "Aizawa è un'icona per insegnare il caos 3D: la forma si legge a colpo d'occhio. I teorici del controllo usano questi sistemi come banchi di prova per la stabilizzazione non lineare. E le ondulazioni morbide e mai ripetitive della traiettoria sono splendida materia per animazione procedurale e sintesi sonora in stile analogico.",
       },
     ],
     closingTitle: "Fai ruotare il cesto tu",
@@ -526,7 +526,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "O atrator de Aizawa",
       tagline: "O primo mais estranho e ornamental de Lorenz",
       intro:
-        "Três equações acopladas, seis botões e uma trajetória que se dobra num toro trançado como cesto atravessado por uma espiga vertical em seu coração. Aizawa vive na mesma família de Lorenz e Rössler — mas sua geometria é assombrosamente escultural, e um único parâmetro pode transformá-lo de cesto a flor a caos.",
+        "Três equações acopladas, seis botões e uma trajetória que se dobra num toro trançado como cesto atravessado por uma espiga vertical em seu coração. Aizawa vive na mesma família de Lorenz e Rössler, mas sua geometria é assombrosamente escultural, e um único parâmetro pode transformá-lo de cesto a flor a caos.",
       ctaInteractive: "Abrir o Explorer",
     },
     encounter: {
@@ -536,7 +536,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · A grande ideia",
           title: "O primo mais estranho de Lorenz",
-          body: "Yoji Aizawa e colaboradores formularam este sistema 3D no início dos anos 1980; como a borboleta de Lorenz, nunca se acomoda e nunca se repete. Mas onde o atrator de Lorenz mostra duas asas planas, o de Aizawa parece um toro atravessado por uma espiga vertical — uma geometria tão distintiva que se tornou clássica em galerias de atratores estranhos.",
+          body: "Yoji Aizawa e colaboradores formularam este sistema 3D no início dos anos 1980; como a borboleta de Lorenz, nunca se acomoda e nunca se repete. Mas onde o atrator de Lorenz mostra duas asas planas, o de Aizawa parece um toro atravessado por uma espiga vertical, uma geometria tão distintiva que se tornou clássica em galerias de atratores estranhos.",
         },
         {
           label: "02 · Concreto",
@@ -546,11 +546,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Por que importa",
           title: "Uma zoologia inteira do caos 3D",
-          body: "Aizawa é um ponto numa paisagem rica de atratores caóticos — Rössler, Thomas, Halvorsen, Lorenz-84. Estudá-lo ensina como o caos 3D parece geometricamente e como uma pequena mudança de parâmetro pode reconstruir uma forma inteira de modo contínuo.",
+          body: "Aizawa é um ponto numa paisagem rica de atratores caóticos: Rössler, Thomas, Halvorsen, Lorenz-84. Estudá-lo ensina como o caos 3D parece geometricamente e como uma pequena mudança de parâmetro pode reconstruir uma forma inteira de modo contínuo.",
         },
       ],
       tryIt:
-        "Arraste a tela para girar. Mova o controle «b» — veja o cesto fechar, respirar e florescer.",
+        "Arraste a tela para girar. Mova o controle «b»: veja o cesto fechar, respirar e florescer.",
     },
     sections: [
       {
@@ -561,27 +561,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Seção dois · Geometria padrão",
         title: "O toro trançado como cesto",
-        body: "Nos valores canônicos o atrator parece um donut enfiado numa agulha vertical — um toro com trama de cesto ao redor do corpo e uma espiga alta perfurando seu centro. A trajetória dá muitas voltas em torno do toro antes de subir pela espiga e descer de novo.",
+        body: "Nos valores canônicos o atrator parece um donut enfiado numa agulha vertical: um toro com trama de cesto ao redor do corpo e uma espiga alta perfurando seu centro. A trajetória dá muitas voltas em torno do toro antes de subir pela espiga e descer de novo.",
       },
       {
         pretitle: "Seção três · Sensibilidade a parâmetros",
         title: "Um botão remodela tudo",
-        body: "Deslize «b» de 0,3 a 1,2 e o cesto se transforma continuamente: fita, trama, tigela, vaso, caos. Não há diagrama de fase limpo — o espaço de parâmetros é um atlas liso de formas, cada uma um equilíbrio ligeiramente diferente entre esticar e dobrar.",
+        body: "Deslize «b» de 0,3 a 1,2 e o cesto se transforma continuamente: fita, trama, tigela, vaso, caos. Não há diagrama de fase limpo; o espaço de parâmetros é um atlas liso de formas, cada uma um equilíbrio ligeiramente diferente entre esticar e dobrar.",
       },
       {
         pretitle: "Seção quatro · O zoológico do caos",
         title: "Aizawa entre irmãos",
-        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84 — todos sistemas 3D suaves cujas órbitas se dobram em conjuntos fractais. O atlas de Sprott cataloga centenas. Compartilham a mesma maquinaria: estiramento que amplifica diferenças minúsculas, dobramento que as mantém limitadas.",
+        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84: todos sistemas 3D suaves cujas órbitas se dobram em conjuntos fractais. O atlas de Sprott cataloga centenas. Compartilham a mesma maquinaria: estiramento que amplifica diferenças minúsculas, dobramento que as mantém limitadas.",
       },
       {
         pretitle: "Seção cinco · Lyapunov e dimensão",
         title: "Quão fractal é um cesto?",
-        body: "O expoente de Lyapunov dominante é positivo (estimativas numéricas ficam em torno de 0,1), ou seja, trajetórias próximas se separam exponencialmente — a assinatura do caos. A conjectura de Kaplan-Yorke converte o espectro de expoentes em dimensão fractal; para Aizawa ela cai apenas acima de 2 — apenas um pouco mais espessa que uma superfície.",
+        body: "O expoente de Lyapunov dominante é positivo (estimativas numéricas ficam em torno de 0,1), ou seja, trajetórias próximas se separam exponencialmente, a assinatura do caos. A conjectura de Kaplan-Yorke converte o espectro de expoentes em dimensão fractal; para Aizawa ela cai apenas acima de 2, apenas um pouco mais espessa que uma superfície.",
       },
       {
         pretitle: "Seção seis · Por que importa",
         title: "Visualização, controle, música",
-        body: "Aizawa é um cartão-postal para ensinar caos 3D — sua forma se lê de relance. Teóricos de controle usam tais sistemas como referências para estabilização não linear. E as ondulações suaves e nunca repetitivas da trajetória são bela matéria-prima para animação procedural e síntese sonora em estilo analógico.",
+        body: "Aizawa é um cartão-postal para ensinar caos 3D: sua forma se lê de relance. Teóricos de controle usam tais sistemas como referências para estabilização não linear. E as ondulações suaves e nunca repetitivas da trajetória são bela matéria-prima para animação procedural e síntese sonora em estilo analógico.",
       },
     ],
     closingTitle: "Gire o cesto você mesmo",
@@ -620,7 +620,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "Aizawa-attraktorn",
       tagline: "Lorenz mer sällsamma och prydligare kusin",
       intro:
-        "Tre kopplade ekvationer, sex rattar och en bana som viker sig till en korgflätad torus med en lodrät spets genom hjärtat. Aizawa hör till samma familj som Lorenz och Rössler — men dess geometri är kusligt skulptural, och en enda parameter kan smälta den från korg till blomma till kaos.",
+        "Tre kopplade ekvationer, sex rattar och en bana som viker sig till en korgflätad torus med en lodrät spets genom hjärtat. Aizawa hör till samma familj som Lorenz och Rössler, men dess geometri är kusligt skulptural, och en enda parameter kan smälta den från korg till blomma till kaos.",
       ctaInteractive: "Öppna Explorer",
     },
     encounter: {
@@ -630,7 +630,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · Den stora idén",
           title: "Lorenz mer sällsamma kusin",
-          body: "Yoji Aizawa och medarbetare formulerade detta 3D-system i början av 1980-talet; likt Lorenz fjäril lägger det sig aldrig till ro och upprepar sig aldrig. Men där Lorenz attraktor har två platta vingar liknar Aizawas en torus trädd på en lodrät spets — en geometri så distinkt att den blev en klassiker i attraktorgallerier.",
+          body: "Yoji Aizawa och medarbetare formulerade detta 3D-system i början av 1980-talet; likt Lorenz fjäril lägger det sig aldrig till ro och upprepar sig aldrig. Men där Lorenz attraktor har två platta vingar liknar Aizawas en torus trädd på en lodrät spets, en geometri så distinkt att den blev en klassiker i attraktorgallerier.",
         },
         {
           label: "02 · Konkret",
@@ -640,11 +640,10 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Varför det spelar roll",
           title: "En hel zoologi av 3D-kaos",
-          body: "Aizawa är en punkt i ett rikt landskap av kaotiska attraktorer — Rössler, Thomas, Halvorsen, Lorenz-84. Att studera den lär dig hur 3D-kaos ser ut geometriskt och hur en liten parameterändring kan bygga om en hel form kontinuerligt.",
+          body: "Aizawa är en punkt i ett rikt landskap av kaotiska attraktorer: Rössler, Thomas, Halvorsen, Lorenz-84. Att studera den lär dig hur 3D-kaos ser ut geometriskt och hur en liten parameterändring kan bygga om en hel form kontinuerligt.",
         },
       ],
-      tryIt:
-        "Dra duken för att rotera. Skjut reglaget «b» — se korgen sluta sig, andas och blomma.",
+      tryIt: "Dra duken för att rotera. Skjut reglaget «b»: se korgen sluta sig, andas och blomma.",
     },
     sections: [
       {
@@ -655,27 +654,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Avsnitt två · Standardgeometri",
         title: "Den korgflätade torusen",
-        body: "Vid de kanoniska värdena ser attraktorn ut som en munk trädd på en lodrät nål — en torus med korgflätning runt kroppen och en hög spets som genomborrar mitten. Banan virar sig många gånger runt torusen innan den glider upp längs spetsen och kommer ner igen.",
+        body: "Vid de kanoniska värdena ser attraktorn ut som en munk trädd på en lodrät nål: en torus med korgflätning runt kroppen och en hög spets som genomborrar mitten. Banan virar sig många gånger runt torusen innan den glider upp längs spetsen och kommer ner igen.",
       },
       {
         pretitle: "Avsnitt tre · Parameterkänslighet",
         title: "En ratt formar om allt",
-        body: "Dra «b» från 0,3 till 1,2 och korgen förvandlas kontinuerligt: band, flätning, skål, vas, kaos. Inget rent fasdiagram — parameterrummet är en jämn atlas av former, var och en en något annan balans mellan sträckning och vikning.",
+        body: "Dra «b» från 0,3 till 1,2 och korgen förvandlas kontinuerligt: band, flätning, skål, vas, kaos. Inget rent fasdiagram: parameterrummet är en jämn atlas av former, var och en en något annan balans mellan sträckning och vikning.",
       },
       {
         pretitle: "Avsnitt fyra · Kaoszoo",
         title: "Aizawa bland syskon",
-        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84 — alla släta 3D-system vars banor viks på fraktala mängder. Sprotts atlas katalogiserar hundratals. De delar samma mekanik: sträckning som förstärker små skillnader, vikning som håller dem begränsade.",
+        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84: alla släta 3D-system vars banor viks på fraktala mängder. Sprotts atlas katalogiserar hundratals. De delar samma mekanik: sträckning som förstärker små skillnader, vikning som håller dem begränsade.",
       },
       {
         pretitle: "Avsnitt fem · Lyapunov & dimension",
         title: "Hur fraktal är en korg?",
-        body: "Den ledande Lyapunov-exponenten är positiv (numeriska skattningar ligger runt 0,1), vilket betyder att närliggande banor separeras exponentiellt — kaosets signatur. Kaplan-Yorke-förmodan översätter exponentspektrumet till en fraktal dimension; för Aizawa hamnar den knappt över 2 — knappt tjockare än en yta.",
+        body: "Den ledande Lyapunov-exponenten är positiv (numeriska skattningar ligger runt 0,1), vilket betyder att närliggande banor separeras exponentiellt, kaosets signatur. Kaplan-Yorke-förmodan översätter exponentspektrumet till en fraktal dimension; för Aizawa hamnar den knappt över 2, knappt tjockare än en yta.",
       },
       {
         pretitle: "Avsnitt sex · Varför det spelar roll",
         title: "Visualisering, reglering, musik",
-        body: "Aizawa är ett emblem för att lära ut 3D-kaos — formen läses av med en blick. Reglerteoretiker använder sådana system som riktmärken för icke-linjär stabilisering. Och banans mjuka, aldrig återkommande dyningar är vacker råvara för procedurell animation och analoglik ljudsyntes.",
+        body: "Aizawa är ett emblem för att lära ut 3D-kaos: formen läses av med en blick. Reglerteoretiker använder sådana system som riktmärken för icke-linjär stabilisering. Och banans mjuka, aldrig återkommande dyningar är vacker råvara för procedurell animation och analoglik ljudsyntes.",
       },
     ],
     closingTitle: "Snurra korgen själv",
@@ -714,7 +713,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       title: "Aizawa-attraktoren",
       tagline: "Lorenz' selsommere og mer ornamentale fetter",
       intro:
-        "Tre koblede ligninger, seks rattenheter og en bane som folder seg til en kurvflettet torus med en loddrett spiss gjennom hjertet. Aizawa hører til samme familie som Lorenz og Rössler — men geometrien er underlig skulpturell, og en enkelt parameter kan smelte den fra kurv til blomst til kaos.",
+        "Tre koblede ligninger, seks rattenheter og en bane som folder seg til en kurvflettet torus med en loddrett spiss gjennom hjertet. Aizawa hører til samme familie som Lorenz og Rössler, men geometrien er underlig skulpturell, og en enkelt parameter kan smelte den fra kurv til blomst til kaos.",
       ctaInteractive: "Åpne Explorer",
     },
     encounter: {
@@ -724,7 +723,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "01 · Den store idéen",
           title: "Lorenz' selsommere fetter",
-          body: "Yoji Aizawa og medarbeidere formulerte dette 3D-systemet på begynnelsen av 1980-tallet; lik Lorenz-sommerfuglen faller det aldri til ro og gjentar seg aldri. Men der Lorenz-attraktoren har to flate vinger, ligner Aizawas en torus tredd på en loddrett spiss — en geometri så distinkt at den ble en klassiker i attraktorgallerier.",
+          body: "Yoji Aizawa og medarbeidere formulerte dette 3D-systemet på begynnelsen av 1980-tallet; lik Lorenz-sommerfuglen faller det aldri til ro og gjentar seg aldri. Men der Lorenz-attraktoren har to flate vinger, ligner Aizawas en torus tredd på en loddrett spiss, en geometri så distinkt at den ble en klassiker i attraktorgallerier.",
         },
         {
           label: "02 · Konkret",
@@ -734,11 +733,11 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "03 · Hvorfor det betyr noe",
           title: "En hel zoologi av 3D-kaos",
-          body: "Aizawa er ett punkt i et rikt landskap av kaotiske attraktorer — Rössler, Thomas, Halvorsen, Lorenz-84. Å studere den lærer hvordan 3D-kaos ser ut geometrisk, og hvordan en liten parameterendring kan bygge om en hel form kontinuerlig.",
+          body: "Aizawa er ett punkt i et rikt landskap av kaotiske attraktorer: Rössler, Thomas, Halvorsen, Lorenz-84. Å studere den lærer hvordan 3D-kaos ser ut geometrisk, og hvordan en liten parameterendring kan bygge om en hel form kontinuerlig.",
         },
       ],
       tryIt:
-        "Dra lerretet for å rotere. Skyv «b»-glidebryteren — se kurven lukke seg, puste og blomstre.",
+        "Dra lerretet for å rotere. Skyv «b»-glidebryteren: Se kurven lukke seg, puste og blomstre.",
     },
     sections: [
       {
@@ -749,27 +748,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del to · Standardgeometri",
         title: "Den kurvflettede torusen",
-        body: "Ved de kanoniske verdiene ser attraktoren ut som en smultring tredd på en loddrett nål — en torus med kurvfletting rundt kroppen og en høy spiss som perforerer midten. Banen vikler seg mange ganger rundt torusen før den glir opp langs spissen og kommer ned igjen.",
+        body: "Ved de kanoniske verdiene ser attraktoren ut som en smultring tredd på en loddrett nål: en torus med kurvfletting rundt kroppen og en høy spiss som perforerer midten. Banen vikler seg mange ganger rundt torusen før den glir opp langs spissen og kommer ned igjen.",
       },
       {
         pretitle: "Del tre · Parameterfølsomhet",
         title: "Én ratt former om alt",
-        body: "Skyv «b» fra 0,3 til 1,2 og kurven forvandler seg kontinuerlig: bånd, fletting, skål, vase, kaos. Det finnes ikke noe rent fasediagram — parameterrommet er et jevnt atlas av former, hver en litt annen balanse mellom strekking og folding.",
+        body: "Skyv «b» fra 0,3 til 1,2 og kurven forvandler seg kontinuerlig: bånd, fletting, skål, vase, kaos. Det finnes ikke noe rent fasediagram; parameterrommet er et jevnt atlas av former, hver en litt annen balanse mellom strekking og folding.",
       },
       {
         pretitle: "Del fire · Kaoszooen",
         title: "Aizawa blant søsken",
-        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84 — alle glatte 3D-systemer hvis baner folder seg på fraktale mengder. Sprotts atlas katalogiserer hundrevis. De deler samme maskineri: strekking som forsterker bittesmå forskjeller, folding som holder dem begrensede.",
+        body: "Lorenz (1963), Rössler (1976), Aizawa (1982), Thomas, Halvorsen, Lorenz-84: alle glatte 3D-systemer hvis baner folder seg på fraktale mengder. Sprotts atlas katalogiserer hundrevis. De deler samme maskineri: strekking som forsterker bittesmå forskjeller, folding som holder dem begrensede.",
       },
       {
         pretitle: "Del fem · Lyapunov & dimensjon",
         title: "Hvor fraktal er en kurv?",
-        body: "Den ledende Lyapunov-eksponenten er positiv (numeriske anslag ligger rundt 0,1), det vil si at nære baner skilles eksponentielt — kaosets signatur. Kaplan-Yorke-formodningen oversetter eksponentspekteret til en fraktal dimensjon; for Aizawa havner den så vidt over 2 — så vidt tykkere enn en flate.",
+        body: "Den ledende Lyapunov-eksponenten er positiv (numeriske anslag ligger rundt 0,1), det vil si at nære baner skilles eksponentielt, kaosets signatur. Kaplan-Yorke-formodningen oversetter eksponentspekteret til en fraktal dimensjon; for Aizawa havner den så vidt over 2, så vidt tykkere enn en flate.",
       },
       {
         pretitle: "Del seks · Hvorfor det betyr noe",
         title: "Visualisering, regulering, musikk",
-        body: "Aizawa er et emblem for å lære bort 3D-kaos — formen leses av med ett blikk. Reguleringsteoretikere bruker slike systemer som referansebenker for ikke-lineær stabilisering. Og banens myke, aldri gjentakende dønninger er vakkert råstoff for prosedyreanimasjon og analoglignende lydsyntese.",
+        body: "Aizawa er et emblem for å lære bort 3D-kaos: Formen leses av med ett blikk. Reguleringsteoretikere bruker slike systemer som referansebenker for ikke-lineær stabilisering. Og banens myke, aldri gjentakende dønninger er vakkert råstoff for prosedyreanimasjon og analoglignende lydsyntese.",
       },
     ],
     closingTitle: "Snurr kurven selv",
@@ -824,7 +823,7 @@ export default function AizawaStory() {
       }
       finalLabel={story.closingTitle}
     >
-      {/* Encounter — three approachable cards */}
+      {/* Encounter: three approachable cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -858,7 +857,7 @@ export default function AizawaStory() {
         </Reveal>
       </section>
 
-      {/* Section 1 — Equations + parameter table */}
+      {/* Section 1: Equations + parameter table */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[0]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -887,7 +886,7 @@ export default function AizawaStory() {
         </Reveal>
       </section>
 
-      {/* Section 2 — Default geometry + inline interactive */}
+      {/* Section 2: Default geometry + inline interactive */}
       <section className="mx-auto mb-32 max-w-5xl space-y-8">
         <div className="mx-auto max-w-4xl">
           <StoryCard {...story.sections[1]} accent={ACCENT} />
@@ -910,7 +909,7 @@ export default function AizawaStory() {
         </Reveal>
       </section>
 
-      {/* Section 3 — Parameter sensitivity */}
+      {/* Section 3: Parameter sensitivity */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[2]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -928,7 +927,7 @@ export default function AizawaStory() {
         </Reveal>
       </section>
 
-      {/* Section 4 — Chaos zoo */}
+      {/* Section 4: Chaos zoo */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[3]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -938,8 +937,8 @@ export default function AizawaStory() {
                 ["Lorenz", "1963"],
                 ["Rössler", "1976"],
                 ["Aizawa", "1982"],
-                ["Thomas", "—"],
-                ["Halvorsen", "—"],
+                ["Thomas", "·"],
+                ["Halvorsen", "·"],
                 ["Lorenz-84", "1984"],
               ] as const
             ).map(([name, year], i) => (
@@ -958,7 +957,7 @@ export default function AizawaStory() {
         </Reveal>
       </section>
 
-      {/* Section 5 — Lyapunov & dimension */}
+      {/* Section 5: Lyapunov & dimension */}
       <section className="mx-auto mb-32 max-w-4xl space-y-8">
         <StoryCard {...story.sections[4]} accent={ACCENT} />
         <Reveal delay={120}>
@@ -977,7 +976,7 @@ export default function AizawaStory() {
         </Reveal>
       </section>
 
-      {/* Section 6 — Why we care */}
+      {/* Section 6: Why we care */}
       <section className="mx-auto mb-32 max-w-4xl">
         <StoryCard {...story.sections[5]} accent={ACCENT} />
       </section>

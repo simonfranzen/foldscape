@@ -81,7 +81,7 @@ export function HilbertHotelCardinality({
   }, [mode, count]);
 
   // For the reals mode, compute the "diagonal" real that differs from
-  // every row at its own diagonal digit — Cantor's construction.
+  // every row at its own diagonal digit: Cantor's construction.
   const diagonal = useMemo(() => {
     if (mode !== "reals") return null;
     const len = Math.max(count, 8);

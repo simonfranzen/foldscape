@@ -47,7 +47,7 @@ export function ConstellationScene({ category, index, onProgress }: Props) {
   const color = CATEGORY_COLOR[category];
   const cosmos = COSMOS[locale];
 
-  // Edges that live *inside* this category — kept short list. Cross-category
+  // Edges that live *inside* this category, kept short list. Cross-category
   // bridges are shown only on the atlas overview, not per scene.
   const inSceneEdges = useMemo(() => {
     const idSet = new Set(layout.map((l) => l.topic.id));
@@ -77,7 +77,7 @@ export function ConstellationScene({ category, index, onProgress }: Props) {
   // 0.30..0.70. Hubs fade in while the scene slides up (0.08→0.26),
   // satellites cascade in as the pin engages (staggered from 0.20, see the
   // star loop below), edges draw during the first half of the pin
-  // (0.30→0.58) — so the finished constellation stands complete and still
+  // (0.30→0.58), so the finished constellation stands complete and still
   // for the back half of the dwell.
   const hubReveal = Math.max(0, Math.min(1, (progress - 0.08) / 0.18));
   const edgeReveal = Math.max(0, Math.min(1, (progress - 0.3) / 0.28));
@@ -105,7 +105,7 @@ export function ConstellationScene({ category, index, onProgress }: Props) {
             it head-on at peak) to −14° (it slips behind you), (c) push
             translateZ from −180 → 60 → −180 px so the cluster physically
             comes forward as you pass through it. That trio is the "world
-            opening up" the user kept asking for — a real fly-through
+            opening up" the user kept asking for: a real fly-through
             instead of a flat fade. */}
         <div
           className="relative w-full max-w-6xl px-6"
@@ -124,14 +124,14 @@ export function ConstellationScene({ category, index, onProgress }: Props) {
           {/* Category-specific quiet motion drifting behind the stars.
               pointer-events-none on the wrapper so it never blocks the
               clickable stars sitting in the SVG above it. The specimen
-              reveals its lines as the scene scrolls in — see Specimen. */}
+              reveals its lines as the scene scrolls in, see Specimen. */}
           <div className="pointer-events-none absolute inset-0">
             <Specimen category={category} progress={progress} />
           </div>
           {/* Title block: act numeral + chapter title (the narrative arc
-              I–VI), then the existing poetic tagline. The arc gives the
-              six scenes a sense of *sequence* — Krise → Stabilität →
-              Aufbau → Verlust → Form → Grenze — so the visitor feels
+              I-VI), then the existing poetic tagline. The arc gives the
+              six scenes a sense of *sequence* (Krise → Stabilität →
+              Aufbau → Verlust → Form → Grenze) so the visitor feels
               they're moving through a story, not flipping through a
               flat menu. */}
           <div className="pointer-events-none absolute left-1/2 top-6 z-10 -translate-x-1/2 px-4 text-center md:top-16 lg:top-20">
@@ -163,7 +163,7 @@ export function ConstellationScene({ category, index, onProgress }: Props) {
             viewBox={`0 0 ${SCENE_VB_W} ${SCENE_VB_H}`}
             className="block h-auto w-full"
             role="list"
-            aria-label={`${categoryName} — ${cosmos.taglines[category]}`}
+            aria-label={`${categoryName}: ${cosmos.taglines[category]}`}
           >
             {/* Edges (draw via stroke-dashoffset). aria-hidden because they
                 are pure decoration; the topic stars below are the real
@@ -186,7 +186,7 @@ export function ConstellationScene({ category, index, onProgress }: Props) {
             </g>
 
             {/* Stars. Satellites cascade in one after another (per-star
-                progress stagger) instead of as one block — now that the
+                progress stagger) instead of as one block, now that the
                 scene is pinned, the eye actually has time to watch the
                 cluster assemble itself. */}
             {layout.map((l, li) => {

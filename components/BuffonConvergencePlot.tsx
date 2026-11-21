@@ -134,7 +134,7 @@ export function BuffonConvergencePlot({
             {finalEstimateLabel}
           </span>
           <span className="math-italic text-lg text-signal-amber">
-            {finalEstimate !== null ? finalEstimate.toFixed(5) : "—"}
+            {finalEstimate !== null ? finalEstimate.toFixed(5) : "…"}
           </span>
         </div>
       </div>

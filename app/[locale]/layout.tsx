@@ -80,7 +80,7 @@ export default async function RootLayout({
       <head>
         {/* Preload the two KaTeX fonts that every formula on the site uses.
             Without this, the browser only discovers them after KaTeX hydrates
-            and writes its HTML in a useEffect — too late to avoid a visible
+            and writes its HTML in a useEffect, too late to avoid a visible
             FOIT/swap. Combined with font-display: swap (see globals.css) this
             removes the "weird-looking formula for half a second" symptom. */}
         <link

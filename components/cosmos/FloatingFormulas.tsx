@@ -5,15 +5,15 @@
 // very low opacity, slowly translating + breathing. They give the cosmos
 // the feeling that *something is alive* without ever competing with the
 // stars or the prose. Eight pieces, four visible at any one time after
-// fade math — sparse, on purpose.
+// fade math: sparse, on purpose.
 //
 // All motion is CSS-keyframe driven (no rAF loop, no scroll listener) so
 // the layer costs essentially nothing per frame. Reduced-motion freezes
-// the keyframes — see globals.css `.cosmos-drift`.
+// the keyframes, see globals.css `.cosmos-drift`.
 
 // Each piece carries its own drift angle so the layer doesn't feel like
 // a tiled logo (user feedback: "sieht wie Logo-Teppich aus"). Distances
-// are much bigger than v3 — 90–160 px range — and each formula uses a
+// are much bigger than v3 (90-160 px range) and each formula uses a
 // distinct CSS keyframe class so neighbours never move in lockstep.
 const PIECES: {
   glyph: string;
@@ -29,7 +29,7 @@ const PIECES: {
   { glyph: "\\aleph_0", x: 70, y: 78, size: 38, delay: 2, duration: 64, variant: 3 },
   { glyph: "\\nabla^2 u", x: 14, y: 84, size: 26, delay: 6, duration: 56, variant: 4 },
   { glyph: "\\varphi", x: 50, y: 30, size: 30, delay: 10, duration: 78, variant: 2 },
-  // x kept clear of the right edge — the desktop compass (right-6,
+  // x kept clear of the right edge: the desktop compass (right-6,
   // vertically centred) lives at ~95% x, and the drift adds up to ~8%.
   { glyph: "P \\stackrel{?}{=} NP", x: 76, y: 58, size: 22, delay: 8, duration: 68, variant: 1 },
   { glyph: "\\sigma(y-x)", x: 22, y: 48, size: 22, delay: 12, duration: 62, variant: 3 },
@@ -37,7 +37,7 @@ const PIECES: {
 ];
 
 // Render formulas as plain Unicode-ish strings (the LaTeX-y text is just
-// suggestive — we don't pull in KaTeX for the backdrop layer because that
+// suggestive; we don't pull in KaTeX for the backdrop layer because that
 // would explode the cost of "decorative drift" by an order of magnitude).
 // What ships visually is a serif italic glyph stream like "e^iπ + 1 = 0".
 function pretty(s: string): string {

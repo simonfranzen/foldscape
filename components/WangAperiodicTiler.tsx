@@ -76,7 +76,7 @@ const SETS: SetDef[] = [
   },
 ];
 
-// ─── Mulberry32 — small deterministic PRNG ───────────────────────────────────
+// ─── Mulberry32: small deterministic PRNG ───────────────────────────────────
 function mulberry32(a: number) {
   return function () {
     a |= 0;
@@ -175,7 +175,7 @@ function drawTile(ctx: CanvasRenderingContext2D, x: number, y: number, size: num
     [x + size, y + size],
     [x, y + size],
   ];
-  // edges: N=0, E=1, S=2, W=3 — triangle spanned by consecutive corners.
+  // edges: N=0, E=1, S=2, W=3; triangle spanned by consecutive corners.
   for (let i = 0; i < 4; i++) {
     const a = corners[i];
     const b = corners[(i + 1) % 4];

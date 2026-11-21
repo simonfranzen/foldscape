@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-// PascalmodCarryDemo — a tiny visual that demonstrates Kummer's theorem:
+// PascalmodCarryDemo: a tiny visual that demonstrates Kummer's theorem:
 // C(n, k) mod p ≠ 0  ⇔  no carries occur when k + (n−k) is added in base p.
 //
 // The user picks n, k and a prime p; the component renders the base-p digits
@@ -71,7 +71,7 @@ function binomMod(n: number, k: number, p: number): number {
     const ni = nn % p;
     const ki = kk % p;
     if (ki > ni) return 0;
-    // C(ni, ki) mod p — ni < p, so direct factorial is safe.
+    // C(ni, ki) mod p: ni < p, so direct factorial is safe.
     let num = 1;
     let den = 1;
     for (let i = 0; i < ki; i++) {

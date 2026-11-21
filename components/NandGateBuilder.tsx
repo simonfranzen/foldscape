@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { palette } from "@/lib/visual/palette";
 
-// Small SVG canvas showing how to wire 1–4 NAND gates into NOT / AND / OR /
+// Small SVG canvas showing how to wire 1 to 4 NAND gates into NOT / AND / OR /
 // XOR. The user picks a target gate; the diagram morphs (CSS transitions on
 // SVG attributes) to show the equivalent NAND circuit.
 
@@ -132,7 +132,7 @@ function layoutFor(target: Target): Layout {
     };
   }
 
-  // XOR — 4 NANDs.
+  // XOR: 4 NANDs.
   // t  = a NAND b
   // g2 = a NAND t
   // g3 = b NAND t

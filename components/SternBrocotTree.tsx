@@ -54,7 +54,7 @@ function walkPath(
   return out;
 }
 
-// Build the first `maxLevel` levels of the Stern–Brocot tree (one-sided,
+// Build the first `maxLevel` levels of the Stern-Brocot tree (one-sided,
 // positive rationals). Returns nodes laid out horizontally by inorder index.
 function buildTree(maxLevel: number): { nodes: Node[]; edges: Array<[number, number]> } {
   type Build = {
@@ -116,7 +116,7 @@ export function SternBrocotTree({ caption, depthLabel, targetLabel, pathLabel, p
 
   const { nodes, edges } = useMemo(() => buildTree(depth), [depth]);
 
-  // Highlighted path nodes — set of "num/den" strings reached when walking
+  // Highlighted path nodes: set of "num/den" strings reached when walking
   // toward `target`, capped at depth+1 visited mediants (so it sits inside
   // the rendered tree).
   const path = useMemo(() => {

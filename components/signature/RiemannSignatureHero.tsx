@@ -6,8 +6,8 @@ import { palette } from "@/lib/visual/palette";
 // Signature artefact for the Riemann page. A vertical critical line cuts
 // through an 800×320 canvas with the first twelve non-trivial zero heights
 // rendered as luminous beads strung along it, against a faint backdrop of
-// the prime counting staircase π(x). The beads softly breathe — the only
-// motion — and freeze entirely when `prefers-reduced-motion: reduce` is set.
+// the prime counting staircase π(x). The beads softly breathe (the only
+// motion) and freeze entirely when `prefers-reduced-motion: reduce` is set.
 
 // The first twelve known non-trivial zero heights (imaginary parts of
 // ζ-zeros on Re(s) = 1/2). Reference: Odlyzko's tables; these are accurate
@@ -19,7 +19,7 @@ const ZEROS = [
 
 const T_MAX = 60; // top of the visible critical line in t-units
 
-// The prime counting function π(x) — for the backdrop staircase. Bake in
+// The prime counting function π(x), for the backdrop staircase. Bake in
 // the first ~40 primes; that gives a recognisable step shape without ever
 // touching runtime arithmetic.
 const PRIMES = [
@@ -106,7 +106,7 @@ export function RiemannSignatureHero() {
         {/* Backdrop: faint π(x) staircase */}
         <path d={stairPath} fill="none" stroke="rgba(255,209,102,0.16)" strokeWidth="1.1" />
 
-        {/* The critical strip — a soft vertical wash from Re=0 to Re=1.
+        {/* The critical strip: a soft vertical wash from Re=0 to Re=1.
             We render it as a slim translucent rectangle centred on lineX. */}
         <rect
           x={lineX - 90}
@@ -136,7 +136,7 @@ export function RiemannSignatureHero() {
           strokeDasharray="2 4"
         />
 
-        {/* The critical line itself — Re(s) = 1/2 */}
+        {/* The critical line itself: Re(s) = 1/2 */}
         <line
           x1={lineX}
           x2={lineX}

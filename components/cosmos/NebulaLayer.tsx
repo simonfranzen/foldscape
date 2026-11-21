@@ -4,7 +4,7 @@
 // painting the screen. The v1 of this rendered six saturated category-
 // coloured clouds which read as "Christmas tree" (user feedback). This
 // version is monochrome, drastically dimmer, and exists only to give the
-// black a hint of shape — barely visible at peak, invisible at the edges.
+// black a hint of shape, barely visible at peak, invisible at the edges.
 
 import { useMouseParallax } from "@/lib/cosmos/hooks";
 

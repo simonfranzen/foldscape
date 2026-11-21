@@ -16,7 +16,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const W = 180;
 const H = 140;
 const SIZE = W * H;
-// Was 6 — at dt=0.18 that meant ~1 sim time-unit per frame at 60 fps, which
+// Was 6; at dt=0.18 that meant ~1 sim time-unit per frame at 60 fps, which
 // rotated the spiral waves so fast the colour fronts strobed (epilepsy risk).
 // 2 gives a calm, watchable swirl while still resolving the wave structure.
 const STEPS_PER_FRAME = 2;
@@ -54,7 +54,7 @@ function seed(u: Float32Array, v: Float32Array): void {
   u.fill(0);
   v.fill(0);
   // A horizontal stripe of "u" near the top, and a separate stripe of "v"
-  // (refractory) just below it — when this state evolves, the leading edge
+  // (refractory) just below it; when this state evolves, the leading edge
   // of u runs forward while the refractory tail blocks it from filling in,
   // and the asymmetry curls into a spiral pair.
   for (let y = 0; y < H; y++) {
@@ -72,7 +72,7 @@ function seed(u: Float32Array, v: Float32Array): void {
   }
 }
 
-// Plant a localised perturbation at (cx, cy) — used to nucleate a fresh
+// Plant a localised perturbation at (cx, cy), used to nucleate a fresh
 // spiral in the middle of an already-running field.
 function plantDefect(u: Float32Array, v: Float32Array, cx: number, cy: number): void {
   const r = 8;
@@ -83,7 +83,7 @@ function plantDefect(u: Float32Array, v: Float32Array, cx: number, cy: number): 
       const i = y * W + x;
       const d2 = dx * dx + dy * dy;
       if (d2 > r * r) continue;
-      // Half excitation, half refractory — the broken-symmetry seed.
+      // Half excitation, half refractory: the broken-symmetry seed.
       if (dx < 0) u[i] = 1.0;
       if (dx >= 0 && d2 < (r - 2) * (r - 2)) v[i] = 0.4;
     }

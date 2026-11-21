@@ -37,7 +37,7 @@ function target(wave: WaveType, t: number): number {
   const u = ((t % 1) + 1) % 1;
   if (wave === "square") return u < 0.5 ? 1 : -1;
   if (wave === "sawtooth") return 2 * (u - Math.floor(u + 0.5));
-  // triangle, peak ±1 — sine-phase so it matches the series above:
+  // triangle, peak ±1, sine-phase so it matches the series above:
   // 0 at t=0, +1 at t=0.25, −1 at t=0.75.
   return u < 0.25 ? 4 * u : u < 0.75 ? 2 - 4 * u : 4 * u - 4;
 }
@@ -100,7 +100,7 @@ export function FourierHarmonicBuilder({
       const X = (t: number) => t * W;
       const STEPS = 480;
 
-      // Target — faint white
+      // Target: faint white
       ctx.strokeStyle = "rgba(232,235,245,0.32)";
       ctx.lineWidth = 1.1;
       ctx.beginPath();
@@ -112,7 +112,7 @@ export function FourierHarmonicBuilder({
       }
       ctx.stroke();
 
-      // Individual harmonics — violet, dim
+      // Individual harmonics: violet, dim
       ctx.strokeStyle = "rgba(179,136,255,0.30)";
       ctx.lineWidth = 0.9;
       for (let k = 1; k <= N; k++) {
@@ -128,7 +128,7 @@ export function FourierHarmonicBuilder({
         ctx.stroke();
       }
 
-      // Partial sum — amber, bright
+      // Partial sum: amber, bright
       ctx.strokeStyle = palette.signal.amber;
       ctx.lineWidth = 1.8;
       ctx.beginPath();

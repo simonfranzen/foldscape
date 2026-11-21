@@ -153,9 +153,9 @@ export function TuringGrayScott({
     const data = image.data;
 
     // Canonical Pearson 1993 Gray-Scott constants. Da=1, Db=0.5 with dt=1
-    // gives a Laplace amplifier of 4·Da·dt = 4 (way over CFL = 1) — the
+    // gives a Laplace amplifier of 4·Da·dt = 4 (way over CFL = 1): the
     // hard-clamp prevented NaN but pinned the field to {0,1} so no pattern
-    // ever formed. 0.16/0.08 keeps 4·Da·dt = 0.64 — comfortably stable,
+    // ever formed. 0.16/0.08 keeps 4·Da·dt = 0.64, comfortably stable,
     // and matches the F/k values quoted in the Pearson zoo presets.
     const Da = 0.16;
     const Db = 0.08;

@@ -241,7 +241,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       "Die sieben historischen Brücken sind standardmäßig aktiv. Der Kneiphof (B) trägt fünf davon, darunter die Brücke zur Lomse (BC). Die drei als hypothetisch markierten Brücken (AD, AD2, BC2) gab es nie, sie sind gestrichelt gezeichnet: Schalte eine ein und beobachte, wie sich das Paritätsargument verschiebt.",
     resetWalk: "Lauf zurücksetzen",
     autoEulerian: "Auto-Lauf (Hierholzer)",
-    autoNotEulerian: "Lauf versuchen: zeig mir, wo es scheitert",
+    autoNotEulerian: "Lauf versuchen: Zeig mir, wo es scheitert",
     autoHintEulerian:
       "Animiert den Hierholzer-Algorithmus, der jede Brücke genau einmal überquert.",
     autoHintNotEulerian:
@@ -406,10 +406,10 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     walkProgress: (v, t) => `${v} / ${t} pontes atravessadas`,
     walkComplete: "Percurso completo: cada ponte usada exatamente uma vez.",
     parityLabel: "Paridade",
-    paritySubDisconnected: "O grafo está desconectado",
+    paritySubDisconnected: "O grafo não é conexo",
     paritySubOdd: (n) => `${n} vértices de grau ímpar`,
     paritySubZero: "0 vértices ímpares, percurso fechado possível",
-    paritySubEnds: (a, b) => `comece em ${a}, termine em ${b}`,
+    paritySubEnds: (a, b) => `começa em ${a}, termina em ${b}`,
     legendLabel: "Legenda",
     legendHint:
       "Clica numa ponte âmbar a partir do teu vértice atual. Pontes cinzentas estão inativas.",
@@ -524,10 +524,10 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     extraOn: "hypotetisk ✓",
     extraOff: "hypotetisk ✗",
     bridgesFootnote:
-      "De sju historiske broene er på som standard. Kneiphof (B) har fem av dem, blant annet broen til Lomse (BC). De tre broene som er merket som hypotetiske (AD, AD2, BC2), har aldri eksistert og tegnes stiplet: slå på én for å se hvordan paritetsargumentet skifter.",
+      "De sju historiske broene er på som standard. Kneiphof (B) har fem av dem, blant annet broen til Lomse (BC). De tre broene som er merket som hypotetiske (AD, AD2, BC2), har aldri eksistert og tegnes stiplet: Slå på én for å se hvordan paritetsargumentet skifter.",
     resetWalk: "Tilbakestill vandring",
     autoEulerian: "Auto-vandring (Hierholzer)",
-    autoNotEulerian: "Prøv en vandring: vis meg hvor den feiler",
+    autoNotEulerian: "Prøv en vandring: Vis meg hvor den feiler",
     autoHintEulerian: "Animerer Hierholzers algoritme som krysser hver bro nøyaktig én gang.",
     autoHintNotEulerian:
       "Königsbergs sju broer har ingen Eulervei. Klikk for å se en grådig vandring fra starten som setter seg fast. Det er hele poenget med Eulers argument.",

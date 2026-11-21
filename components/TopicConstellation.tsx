@@ -3,7 +3,7 @@
 // Atlas as constellation, v4.
 //
 // v3 had the category headers as DOM-layer pills above the SVG, but the page
-// also rendered a parallel row of filter chips above the constellation — two
+// also rendered a parallel row of filter chips above the constellation: two
 // places to do the same thing, easy to drift out of sync. v4 unifies them:
 //   - the parent owns one (filter, setFilter) and passes it in;
 //   - the pills inside the canvas are the single control;
@@ -14,7 +14,7 @@
 //   - floating +/- buttons zoom in/out (with a tween);
 //   - "Back to atlas" snaps the camera home AND clears the category.
 //
-// Camera tween for category open/close stays — it's what makes the cluster
+// Camera tween for category open/close stays: it's what makes the cluster
 // open gesture feel like a camera settling rather than a state swap.
 
 import Link from "@/components/LocaleLink";
@@ -34,7 +34,7 @@ const VB_H = 1000;
 // non-hub stars sit when the cluster is open). The bottom-row cy values used
 // to be ~750, which put the bottom category headers (cy + ry + 44 → y≈994)
 // flush against the viewBox edge. Bottom row is now ~620, leaving ~160 px of
-// breathing room below the headers — the empty middle band between rows is
+// breathing room below the headers; the empty middle band between rows is
 // still wide enough to read as deliberate negative space.
 interface ClusterFrame {
   cx: number;
@@ -43,7 +43,7 @@ interface ClusterFrame {
   ry: number;
 }
 // Bigger per-category footprints so non-hub stars have room to breathe when
-// the cluster is expanded — earlier the labels crowded into each other and
+// the cluster is expanded; earlier the labels crowded into each other and
 // crossed edges. The two rows are also vertically staggered (top row cy
 // 250/300/270, bottom 650/680/640) so hubs don't all line up on one
 // horizontal axis.
@@ -230,14 +230,14 @@ const MIN_VB_W = 540;
 const MAX_VB_W = 3600;
 
 // Ease-out cubic via the cheap polynomial t*(2-t). Smooth at t=0, decelerating
-// to 0 derivative at t=1 — feels like a camera settling, not a teleport.
+// to 0 derivative at t=1. Feels like a camera settling, not a teleport.
 function easeOutCubic(t: number): number {
   return t * (2 - t);
 }
 
 // Compute the bbox of an opened cluster's laid-out stars, expanded by
 // CAMERA_PADDING on all sides. Returns the HOME viewBox when the category
-// has no positioned topics (defensive — every category has hubs).
+// has no positioned topics (defensive: every category has hubs).
 function bboxForCategory(cat: TopicCategory, laidOut: LaidOutTopic[]): ViewBox {
   const inCat = laidOut.filter((l) => l.topic.category === cat);
   if (inCat.length === 0) return HOME_VB;
@@ -272,11 +272,11 @@ function bboxForCategory(cat: TopicCategory, laidOut: LaidOutTopic[]): ViewBox {
   let outX = x;
   let outY = y;
   if (boxAspect > homeAspect) {
-    // Wider than home — grow height.
+    // Wider than home: grow height.
     outH = w / homeAspect;
     outY = y - (outH - h) / 2;
   } else {
-    // Taller than home — grow width.
+    // Taller than home: grow width.
     outW = h * homeAspect;
     outX = x - (outW - w) / 2;
   }
@@ -349,7 +349,7 @@ export function TopicConstellation({ filter, setFilter }: Props) {
     }
   }, []);
 
-  // Imperative tween used by every "the camera should fly somewhere" call —
+  // Imperative tween used by every "the camera should fly somewhere" call:
   // category open/close, +/- zoom, back-to-atlas. Reads the current viewBox
   // via the ref so it always starts from where the camera actually is, even
   // mid-flight or right after a manual pan.
@@ -390,7 +390,7 @@ export function TopicConstellation({ filter, setFilter }: Props) {
   const laidOut = useMemo(() => layoutAll(), []);
 
   // Snap the camera whenever the selected category changes. Manual pan/zoom
-  // afterwards doesn't refire this — the effect only listens to filter, not
+  // afterwards doesn't refire this: the effect only listens to filter, not
   // viewBox.
   useEffect(() => {
     const target = openCategory ? bboxForCategory(openCategory, laidOut) : HOME_VB;
@@ -613,7 +613,7 @@ export function TopicConstellation({ filter, setFilter }: Props) {
         </form>
       </div>
 
-      {/* DOM-layer category pills. Single control surface — the parent doesn't
+      {/* DOM-layer category pills. Single control surface: the parent doesn't
           render a duplicate row in constellation view. Pills mutate the
           shared `filter` prop, which feeds back into both the camera tween
           and the dimming logic below. */}
@@ -665,7 +665,7 @@ export function TopicConstellation({ filter, setFilter }: Props) {
             position no matter how far the camera zooms.
 
             Back-to-atlas shows whenever the camera isn't at HOME. Zoom
-            buttons are always available — they're the manual escape hatch
+            buttons are always available: they're the manual escape hatch
             for users who want to explore the canvas freely. */}
         <div
           className="absolute right-4 top-3 z-10 flex items-center gap-2"
@@ -870,7 +870,7 @@ export function TopicConstellation({ filter, setFilter }: Props) {
                   <Link href={topic.href} className="focus:outline-none">
                     <g
                       role="link"
-                      aria-label={`${meta.title} — ${meta.tagline}`}
+                      aria-label={`${meta.title}: ${meta.tagline}`}
                       tabIndex={0}
                       onMouseEnter={() => setHovered(topic.id)}
                       onMouseLeave={() => setHovered((h) => (h === topic.id ? null : h))}

@@ -12,7 +12,7 @@ import { palette } from "@/lib/visual/palette";
 // faintly and the partial sums as bright lines.
 //
 // Below the plot, a small read-out shows what happens when you feed x = iπ
-// into the partial exp series — the running complex sum converges to −1.
+// into the partial exp series: the running complex sum converges to −1.
 
 interface Props {
   caption: string;
@@ -93,7 +93,7 @@ export function EulerTaylorBuilder({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   // Default at N=2 so the curves already show partial convergence but still
   // have visible room to grow as the user slides up. (Default of 4 used to
-  // sit at the high end of the interesting range — Taylor converges so fast
+  // sit at the high end of the interesting range: Taylor converges so fast
   // on [-π, π] that beyond N≈5 the curves move by < 1 px and the slider
   // felt unresponsive.)
   const [N, setN] = useState(2);
@@ -231,7 +231,7 @@ export function EulerTaylorBuilder({
           aria-label="number of Taylor terms"
         />
         {/* The prose talks about "the first N+1 terms" because the sum runs
-            k = 0..N. So the label has to display N+1, not N — otherwise
+            k = 0..N. So the label has to display N+1, not N; otherwise
             "15 Terme" at N=15 contradicts "die ersten N+1 Glieder". */}
         <span className="w-24 text-right font-mono text-xs text-signal-amber">
           {N + 1} {termsLabel}

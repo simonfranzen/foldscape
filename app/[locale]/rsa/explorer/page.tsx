@@ -284,13 +284,13 @@ export default function RsaExplorer() {
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
               <KvCell label="p" value={p.toString()} accent />
               <KvCell label="q" value={q.toString()} accent />
-              <KvCell label="n = p·q" value={derived.valid ? derived.n.toString() : "—"} />
+              <KvCell label="n = p·q" value={derived.valid ? derived.n.toString() : "…"} />
               <KvCell
                 label="φ(n) = (p−1)(q−1)"
-                value={derived.valid ? derived.phi.toString() : "—"}
+                value={derived.valid ? derived.phi.toString() : "…"}
               />
               <KvCell label="e" value={effectiveE.toString()} accent />
-              <KvCell label="d ≡ e⁻¹ mod φ(n)" value={d !== null ? d.toString() : "—"} accent />
+              <KvCell label="d ≡ e⁻¹ mod φ(n)" value={d !== null ? d.toString() : "…"} accent />
             </div>
 
             {!derived.valid && (
@@ -306,7 +306,7 @@ export default function RsaExplorer() {
                 </div>
                 {euclid.g !== 1n ? (
                   <div className="font-mono text-xs text-signal-rose">
-                    gcd(e, φ(n)) = {euclid.g.toString()} ≠ 1 — pick a different e.
+                    gcd(e, φ(n)) = {euclid.g.toString()} ≠ 1: pick a different e.
                   </div>
                 ) : showSteps ? (
                   <div className="overflow-x-auto">
@@ -343,13 +343,13 @@ export default function RsaExplorer() {
                         {euclid.t.toString()} = 1
                       </span>
                       . Reducing s mod φ(n) gives d ={" "}
-                      <span className="font-mono text-signal-cyan">{d?.toString() ?? "—"}</span>.
+                      <span className="font-mono text-signal-cyan">{d?.toString() ?? "…"}</span>.
                     </div>
                   </div>
                 ) : (
                   <div className="text-xs text-ink-300">
                     e·d ≡ 1 mod φ(n) &nbsp;⇒&nbsp; d ={" "}
-                    <span className="font-mono text-signal-cyan">{d?.toString() ?? "—"}</span>.
+                    <span className="font-mono text-signal-cyan">{d?.toString() ?? "…"}</span>.
                     Toggle steps on to see the row-by-row derivation.
                   </div>
                 )}
@@ -368,15 +368,15 @@ export default function RsaExplorer() {
             </div>
 
             <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-              <KvCell label="m (plaintext)" value={mBig !== null ? mBig.toString() : "—"} accent />
+              <KvCell label="m (plaintext)" value={mBig !== null ? mBig.toString() : "…"} accent />
               <KvCell
                 label="c = m^e mod n"
-                value={encryption ? encryption.value.toString() : "—"}
+                value={encryption ? encryption.value.toString() : "…"}
                 accent
               />
               <KvCell
                 label="c^d mod n"
-                value={decryption ? decryption.value.toString() : "—"}
+                value={decryption ? decryption.value.toString() : "…"}
                 accent
               />
             </div>
@@ -413,7 +413,7 @@ export default function RsaExplorer() {
               >
                 {decryption.value === mBig
                   ? `Round trip OK · c^d mod n = ${decryption.value.toString()} = m`
-                  : `Mismatch · ${decryption.value.toString()} ≠ ${mBig.toString()} — check the key`}
+                  : `Mismatch · ${decryption.value.toString()} ≠ ${mBig.toString()}: check the key`}
               </div>
             )}
           </section>
@@ -424,9 +424,9 @@ export default function RsaExplorer() {
                 Try as text · each letter is one RSA block
               </div>
               <p className="text-xs leading-relaxed text-ink-300">
-                Letters a–z are encoded as 1–26. With small primes this is just a demonstration —
-                the encoding is deterministic so the same plaintext always gives the same ciphertext
-                (no padding), which is why real RSA uses OAEP and 2048-bit moduli.
+                Letters a-z are encoded as 1-26. With small primes this is just a demonstration: the
+                encoding is deterministic so the same plaintext always gives the same ciphertext (no
+                padding), which is why real RSA uses OAEP and 2048-bit moduli.
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full font-mono text-xs">
@@ -444,9 +444,9 @@ export default function RsaExplorer() {
                       <tr key={i} className="hairline border-b text-ink-100 last:border-0">
                         <td className="p-1.5 text-signal-cyan">{b.ch}</td>
                         <td className="p-1.5 text-right">{b.m.toString()}</td>
-                        <td className="p-1.5 text-right">{b.c !== null ? b.c.toString() : "—"}</td>
+                        <td className="p-1.5 text-right">{b.c !== null ? b.c.toString() : "…"}</td>
                         <td className="p-1.5 text-right">
-                          {b.mBack !== null ? b.mBack.toString() : "—"}
+                          {b.mBack !== null ? b.mBack.toString() : "…"}
                         </td>
                         <td className="p-1.5 pl-3 text-signal-cyan">
                           {b.mBack !== null ? String.fromCharCode(Number(b.mBack) + 96) : "?"}
@@ -510,13 +510,13 @@ export default function RsaExplorer() {
               <div className="text-ink-300">
                 n ={" "}
                 <span className="text-signal-cyan">
-                  {derived.valid ? derived.n.toString() : "—"}
+                  {derived.valid ? derived.n.toString() : "…"}
                 </span>
               </div>
               <div className="text-ink-300">
                 φ(n) ={" "}
                 <span className="text-signal-cyan">
-                  {derived.valid ? derived.phi.toString() : "—"}
+                  {derived.valid ? derived.phi.toString() : "…"}
                 </span>
               </div>
             </div>
@@ -537,7 +537,7 @@ export default function RsaExplorer() {
               className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-cyan focus:border-signal-cyan/60 focus:outline-none disabled:opacity-50"
             >
               {validEs.length === 0 ? (
-                <option value="">— no valid e —</option>
+                <option value="">(no valid e)</option>
               ) : (
                 validEs.map((cand) => (
                   <option key={cand.toString()} value={cand.toString()}>
@@ -567,8 +567,8 @@ export default function RsaExplorer() {
               className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-cyan focus:border-signal-cyan/60 focus:outline-none"
             />
             <div className="font-mono text-[10px] text-ink-400">
-              n = {derived.valid ? derived.n.toString() : "—"} · max plaintext ={" "}
-              {derived.valid ? (derived.n - 1n).toString() : "—"}
+              n = {derived.valid ? derived.n.toString() : "…"} · max plaintext ={" "}
+              {derived.valid ? (derived.n - 1n).toString() : "…"}
             </div>
           </div>
 
@@ -589,7 +589,7 @@ export default function RsaExplorer() {
               className="hairline w-full rounded-md border bg-ink-950/60 px-3 py-2 font-mono text-sm text-signal-cyan focus:border-signal-cyan/60 focus:outline-none"
             />
             <div className="font-mono text-[10px] leading-relaxed text-ink-400">
-              a–z → 1–26 · each letter is encrypted as one block · whitespace ignored.
+              a-z → 1-26 · each letter is encrypted as one block · whitespace ignored.
             </div>
           </div>
 
@@ -697,7 +697,7 @@ function ModExpTrace({
                   {s.multiplyApplied ? (
                     <span className="text-signal-cyan">× base</span>
                   ) : (
-                    <span className="text-ink-400">—</span>
+                    <span className="text-ink-400">·</span>
                   )}
                 </td>
                 <td className="p-1.5 text-right text-signal-cyan">{s.accumulator.toString()}</td>

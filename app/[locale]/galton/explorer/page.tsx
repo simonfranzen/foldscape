@@ -159,7 +159,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     ballsUnit: "kuler",
     binsWord: "båser",
     landedWord: "landet",
-    canvasLabel: "Galton-brett-simulering: kuler faller mellom pinner og fyller et histogram.",
+    canvasLabel: "Galton-brett-simulering: Kuler faller mellom pinner og fyller et histogram.",
   },
 };
 
@@ -242,7 +242,7 @@ export default function GaltonExplorer() {
     }
     // Sub-frame-rate fall: balls advance one row only every STEP_EVERY frames so
     // the eye can follow a single path through N rows (~1.5s at N=22 instead of
-    // ~0.37s). Keep this gate — do not "optimise" by moving b.y++ back per-frame.
+    // ~0.37s). Keep this gate: do not "optimise" by moving b.y++ back per-frame.
     const STEP_EVERY = 4;
     let frame = 0;
 
@@ -291,7 +291,7 @@ export default function GaltonExplorer() {
         ctx.stroke();
       }
 
-      // simulate ball movement + spawn — physics gated to every 4th frame.
+      // simulate ball movement + spawn; physics gated to every 4th frame.
       // Reduced motion never spawns; the pre-filled histogram stands in.
       if (cfg.running && !reduced) {
         frame++;

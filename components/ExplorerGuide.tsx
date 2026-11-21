@@ -15,6 +15,12 @@ const GUIDE_ID = "how-it-works";
 const LABELS: Record<string, { help: string; close: string; story: string }> = {
   en: { help: "How does this work?", close: "Close", story: "Read the full story" },
   de: { help: "Wie funktioniert das?", close: "Schließen", story: "Zur ganzen Geschichte" },
+  es: { help: "¿Cómo funciona esto?", close: "Cerrar", story: "Leer la historia completa" },
+  fr: { help: "Comment ça marche ?", close: "Fermer", story: "Lire toute l'histoire" },
+  it: { help: "Come funziona?", close: "Chiudi", story: "Leggi tutta la storia" },
+  pt: { help: "Como funciona?", close: "Fechar", story: "Ler a história completa" },
+  sv: { help: "Hur fungerar det här?", close: "Stäng", story: "Läs hela berättelsen" },
+  no: { help: "Hvordan fungerer dette?", close: "Lukk", story: "Les hele historien" },
 };
 const labelsFor = (locale: string) => LABELS[locale] ?? LABELS.en;
 

@@ -5,7 +5,7 @@ import { palette } from "@/lib/visual/palette";
 
 // Signature artefact for the Gödel page. A typographic loop: the sentence
 // "G says ⌜G⌝ has no proof" is rendered along a self-intersecting curve
-// (a lemniscate — figure-8) so the sentence literally bites its own tail.
+// (a lemniscate, figure-8) so the sentence literally bites its own tail.
 // At the crossing, the symbol G and its Gödel number ⌜G⌝ pass through each
 // other. Honours prefers-reduced-motion: when set, the curve renders static.
 
@@ -13,7 +13,7 @@ const SENTENCE = " G  ↔  ¬Prov( ⌜G⌝ )  ·  the sentence numbered ⌜G⌝ 
 
 const SVG_W = 800;
 const SVG_H = 320;
-// Half-amplitude of the lemniscate — controls how wide the figure-8 is.
+// Half-amplitude of the lemniscate, controls how wide the figure-8 is.
 const LEMN_A = 180;
 // Number of line segments approximating the full lemniscate loop.
 const LEMN_SEGMENTS = 240;

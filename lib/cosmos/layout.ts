@@ -1,6 +1,6 @@
 // Per-category cluster layout. v5 ditched the hash-seeded ring positions
 // of v4 in favour of *hand-curated* coordinates so each constellation
-// reads as a recognisable shape — lemniscate, glider, butterfly,
+// reads as a recognisable shape: lemniscate, glider, butterfly,
 // pentagram, sine wave, single bright star. The shapes carry the
 // category's meaning (paradox = ∞, computation = Conway glider, etc.).
 //
@@ -47,7 +47,7 @@ export const CATEGORY_RGB: Record<TopicCategory, string> = {
 // Order in which scenes appear during the scroll. Picked so the user
 // travels from foundations (paradox, logic) through machine-like
 // clusters (computation, chaos) into the visual ones (geometry,
-// analysis) — a gentle drift from abstract toward concrete.
+// analysis): a gentle drift from abstract toward concrete.
 export const SCENE_ORDER: TopicCategory[] = [
   "paradox",
   "logic",
@@ -86,10 +86,10 @@ interface CuratedEntry {
 // All coordinates are in scene-local SVG units (SCENE_VB_W × SCENE_VB_H).
 // The cluster centre sits around (500, 372); the title hovers above ~y=180.
 // Hubs are listed in topicHubs.ts; the `isHub: true` here is a redundant
-// note (validated at module load — see below) so future readers can see
+// note (validated at module load, see below) so future readers can see
 // the shape clearly without cross-referencing.
 const CURATED: Record<TopicCategory, Record<string, CuratedEntry>> = {
-  // PARADOX — lemniscate ∞. The two loops of the figure-eight are
+  // PARADOX: lemniscate ∞. The two loops of the figure-eight are
   // centred on godel and banach; cantor sits at the crossing point
   // (where the two diagonal arguments collide). The other two trace
   // the outer curves.
@@ -101,7 +101,7 @@ const CURATED: Record<TopicCategory, Record<string, CuratedEntry>> = {
     gabrielshorn: { x: 590, y: 459 },
   },
 
-  // LOGIC — NAND, the universal gate, with SAT (the canonical
+  // LOGIC: NAND, the universal gate, with SAT (the canonical
   // NP-complete consequence) sitting to its right. Two stars holding
   // hands across a horizontal axis.
   logic: {
@@ -109,7 +109,7 @@ const CURATED: Record<TopicCategory, Record<string, CuratedEntry>> = {
     sat: { x: 620, y: 372 },
   },
 
-  // COMPUTATION — Conway's glider pentomino. Five lit cells form the
+  // COMPUTATION: Conway's glider pentomino. Five lit cells form the
   // famous "spaceship":
   //     . ⬛ .
   //     . . ⬛
@@ -128,7 +128,7 @@ const CURATED: Record<TopicCategory, Record<string, CuratedEntry>> = {
     langton: { x: 740, y: 250 }, // leading cell
   },
 
-  // CHAOS — Lorenz butterfly: two ellipsoidal wings sharing an axis.
+  // CHAOS: Lorenz butterfly: two ellipsoidal wings sharing an axis.
   // Mandelbrot anchors the left wing; lorenz the right. The other
   // eight topics sit at the four corners of each wing (upper-far,
   // upper-inner, lower-inner, lower-far) so the silhouette reads as
@@ -146,7 +146,7 @@ const CURATED: Record<TopicCategory, Record<string, CuratedEntry>> = {
     diffusion: { x: 800, y: 454 }, // lower-right far
   },
 
-  // GEOMETRY — pentagram (5-pointed star) plus the inner pentagon
+  // GEOMETRY: pentagram (5-pointed star) plus the inner pentagon
   // formed by the star's intersections. Penrose tops the star;
   // sierpinski sits at the lower-left arm. The inner pentagon vertices
   // hold the more abstract geometry topics (phi, etc.).
@@ -163,7 +163,7 @@ const CURATED: Record<TopicCategory, Record<string, CuratedEntry>> = {
     pascalmod: { x: 450, y: 308 }, // inner upper-left
   },
 
-  // ANALYSIS — sine wave across the sky. fourier sits at the first
+  // ANALYSIS: sine wave across the sky. fourier sits at the first
   // crest (the wave's natural anchor); riemann holds the centre, near
   // the "critical line" his hypothesis is about. The other ten
   // points trace two full cycles from edge to edge.
@@ -185,7 +185,7 @@ const CURATED: Record<TopicCategory, Record<string, CuratedEntry>> = {
 
 // Validate at module load: every topic in TOPICS has a curated entry
 // in its category, and every curated id references a real topic. Same
-// pattern as topicHubs.ts — catches drift the moment we add or rename a
+// pattern as topicHubs.ts: catches drift the moment we add or rename a
 // topic instead of letting a star vanish silently.
 (function validateCurated() {
   const seenIds = new Set<string>();
@@ -221,7 +221,7 @@ export function layoutScene(category: TopicCategory): LaidOutTopic[] {
   });
 }
 
-// Pre-computed at module load — six clusters × ~8 topics each is tiny
+// Pre-computed at module load: six clusters × ~8 topics each is tiny
 // work, and avoiding a per-render layout pass means scrolling stays buttery.
 export const SCENE_LAYOUTS: Record<TopicCategory, LaidOutTopic[]> = {
   logic: layoutScene("logic"),
@@ -243,7 +243,7 @@ export const SCENE_POSITION: Map<TopicId, { x: number; y: number }> = (() => {
   return m;
 })();
 
-// Quadratic Bezier with perpendicular bend — gives intersecting edges
+// Quadratic Bezier with perpendicular bend, which gives intersecting edges
 // visible curvature so the eye can disentangle them. Used by the
 // constellation scene renderer.
 function snap(n: number): number {

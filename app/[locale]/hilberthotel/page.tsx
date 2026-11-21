@@ -12,7 +12,7 @@ import type { StoryPage } from "@/lib/i18n/stories";
 const ACCENT = "text-signal-rose";
 
 // --------------------------------------------------------------------------
-// Hilbert's Hotel — long-form story page. The canonical hero (pretitle,
+// Hilbert's Hotel: long-form story page. The canonical hero (pretitle,
 // title, tagline, intro, ctaInteractive) lives inside RICH_STORY[locale].page
 // so the whole 8-locale bundle can be edited from a single file. The
 // six body sections, the two encounter cards, and the captions for the
@@ -76,9 +76,9 @@ const en: RichStory = {
   page: {
     pretitle: "Topic · Paradox",
     title: "Hilbert's Hotel",
-    tagline: "Always room for one more — even when full.",
+    tagline: "Always room for one more, even when full.",
     intro:
-      "David Hilbert sketched the hotel in a 1924 Göttingen lecture; George Gamow carried it to the public in his 1947 book One, Two, Three… Infinity. Below: the four classical scenarios, animated, plus the moment infinity finally pushes back — Cantor's diagonal.",
+      "David Hilbert sketched the hotel in a 1924 Göttingen lecture; George Gamow carried it to the public in his 1947 book One, Two, Three… Infinity. Below: the four classical scenarios, animated, plus the moment infinity finally pushes back, Cantor's diagonal.",
     ctaInteractive: "→ Open the Explorer",
   },
   encounter: {
@@ -88,7 +88,7 @@ const en: RichStory = {
       {
         label: "01",
         title: "The big idea",
-        body: "Infinity is not a very large number — it is a different kind of size, with its own arithmetic. A 'full' infinite hotel can still absorb more guests because ℵ₀ + 1 = ℵ₀.",
+        body: "Infinity is not a very large number: it is a different kind of size, with its own arithmetic. A 'full' infinite hotel can still absorb more guests because ℵ₀ + 1 = ℵ₀.",
       },
       {
         label: "02",
@@ -107,12 +107,12 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · Countably infinite",
       title: "Rooms 1, 2, 3, … forever",
-      body: "The hotel has one room for every natural number — a guest in 1, a guest in 17, a guest in 10¹⁰⁰. Tonight every room is taken, yet 'full' is the wrong word: the cardinality of the guests is ℵ₀, and ℵ₀ is not a number you can fill up.",
+      body: "The hotel has one room for every natural number: a guest in 1, a guest in 17, a guest in 10¹⁰⁰. Tonight every room is taken, yet 'full' is the wrong word: the cardinality of the guests is ℵ₀, and ℵ₀ is not a number you can fill up.",
     },
     {
       pretitle: "Section 02 · One new guest",
       title: "Shift n → n+1",
-      body: "A traveller knocks. The manager broadcasts a single instruction: every guest, move from room n to room n+1. Nobody is displaced — there is always a higher-numbered room waiting — and room 1 falls vacant for the newcomer.",
+      body: "A traveller knocks. The manager broadcasts a single instruction: every guest, move from room n to room n+1. Nobody is displaced (there is always a higher-numbered room waiting) and room 1 falls vacant for the newcomer.",
     },
     {
       pretitle: "Section 03 · k new guests",
@@ -122,24 +122,24 @@ const en: RichStory = {
     {
       pretitle: "Section 04 · ℵ₀ new guests",
       title: "Shift n → 2n; the odd rooms open",
-      body: "Now a countably infinite queue arrives. The manager sends each existing guest from room n to room 2n: every even room stays occupied and every odd room becomes free. The newcomers fill 1, 3, 5, 7, … — the equality ℵ₀ + ℵ₀ = ℵ₀, executed in one announcement.",
+      body: "Now a countably infinite queue arrives. The manager sends each existing guest from room n to room 2n: every even room stays occupied and every odd room becomes free. The newcomers fill 1, 3, 5, 7, …: the equality ℵ₀ + ℵ₀ = ℵ₀, executed in one announcement.",
     },
     {
       pretitle: "Section 05 · ℵ₀ buses × ℵ₀ guests",
       title: "Prime powers absorb ℵ₀ × ℵ₀",
-      body: "A fleet of ℵ₀ buses pulls up, each carrying ℵ₀ passengers. Send each existing guest n to room 2ⁿ, then send bus-k passenger m to room pₖᵐ, where pₖ is the k-th odd prime. The fundamental theorem of arithmetic guarantees no two guests collide — ℵ₀ × ℵ₀ = ℵ₀.",
+      body: "A fleet of ℵ₀ buses pulls up, each carrying ℵ₀ passengers. Send each existing guest n to room 2ⁿ, then send bus-k passenger m to room pₖᵐ, where pₖ is the k-th odd prime. The fundamental theorem of arithmetic guarantees no two guests collide: ℵ₀ × ℵ₀ = ℵ₀.",
     },
     {
       pretitle: "Section 06 · The uncountable bridge",
       title: "ℝ defeats the hotel",
-      body: "Push one step further and the trick breaks. Cantor's 1891 diagonal argument shows that the real numbers in [0,1] cannot be listed even once — for any proposed enumeration, a new real differs from row n at the n-th digit. The reals are uncountable; the hotel is not big enough.",
+      body: "Push one step further and the trick breaks. Cantor's 1891 diagonal argument shows that the real numbers in [0,1] cannot be listed even once: for any proposed enumeration, a new real differs from row n at the n-th digit. The reals are uncountable; the hotel is not big enough.",
     },
   ],
   closingTitle: "Open the Explorer.",
   closingBody:
     "Replay the four shifts, watch the prime-power assignment land bus by bus, then cross over to Cantor's diagonal and see why this particular trick stops working.",
   ctaLabel: "→ Open the Explorer",
-  inlineCaption: "Hilbert's hotel — animate a shift",
+  inlineCaption: "Hilbert's hotel: animate a shift",
   inlineOne: "+1 guest",
   inlineK: "+k guests",
   inlineInfinite: "+ℵ₀ guests",
@@ -152,14 +152,14 @@ const en: RichStory = {
   inlineExistingGuest: "existing",
   inlineBusGuest: "bus",
   inlineGapNote:
-    "Grey ∅ rooms are numbers that are not a prime power — no one maps there, so they stay empty. The packing wastes rooms but never collides.",
-  cardinalityCaption: "Bijection lab — does the hotel still fit?",
+    "Grey ∅ rooms are numbers that are not a prime power: no one maps there, so they stay empty. The packing wastes rooms but never collides.",
+  cardinalityCaption: "Bijection lab: does the hotel still fit?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
   cardinalityReals: "ℕ → ℝ ?",
   cardinalitySlider: "rows",
   cardinalityHint:
-    "The first two modes show a clean bijection — countable. The third tries to enumerate the reals; the diagonal real at the bottom differs from every row, so no list of reals can ever be complete. See /cantor for the full argument.",
+    "The first two modes show a clean bijection: countable. The third tries to enumerate the reals; the diagonal real at the bottom differs from every row, so no list of reals can ever be complete. See /cantor for the full argument.",
   cardinalityCountable: "ℵ₀",
   cardinalityUncountable: "uncountable",
   cardinalityBijection: "bijection",
@@ -184,9 +184,9 @@ const de: RichStory = {
   page: {
     pretitle: "Thema · Paradox",
     title: "Hilberts Hotel",
-    tagline: "Immer noch ein Zimmer frei — selbst wenn alles belegt ist.",
+    tagline: "Immer noch ein Zimmer frei, selbst wenn alles belegt ist.",
     intro:
-      "David Hilbert skizzierte das Hotel in einer Göttinger Vorlesung 1924; George Gamow trug es 1947 in seinem Buch Eins, Zwei, Drei… Unendlichkeit zum Publikum. Unten: die vier klassischen Szenarien, animiert, plus der Moment, in dem die Unendlichkeit doch zurückschlägt — Cantors Diagonale.",
+      "David Hilbert skizzierte das Hotel in einer Göttinger Vorlesung 1924; George Gamow trug es 1947 in seinem Buch Eins, Zwei, Drei… Unendlichkeit zum Publikum. Unten: die vier klassischen Szenarien, animiert, plus der Moment, in dem die Unendlichkeit doch zurückschlägt, Cantors Diagonale.",
     ctaInteractive: "→ Zum Explorer",
   },
   encounter: {
@@ -196,7 +196,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Unendlichkeit ist keine sehr große Zahl — sie ist eine andere Art von Größe, mit eigener Arithmetik. Ein «volles» unendliches Hotel kann immer noch mehr Gäste aufnehmen, weil ℵ₀ + 1 = ℵ₀.",
+        body: "Unendlichkeit ist keine sehr große Zahl, sie ist eine andere Art von Größe, mit eigener Arithmetik. Ein «volles» unendliches Hotel kann immer noch mehr Gäste aufnehmen, weil ℵ₀ + 1 = ℵ₀.",
       },
       {
         label: "02",
@@ -206,22 +206,22 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Hilberts Gedankenexperiment von 1924 ist das sauberste Argument, dass unendliche Mengen Regeln folgen, die unsere endliche Intuition nicht kennt. Es ist zugleich das Vorspiel zu Cantors tieferem Schlag: manche Unendlichkeiten sind wirklich größer als andere.",
+        body: "Hilberts Gedankenexperiment von 1924 ist das sauberste Argument, dass unendliche Mengen Regeln folgen, die unsere endliche Intuition nicht kennt. Es ist zugleich das Vorspiel zu Cantors tieferem Schlag: Manche Unendlichkeiten sind wirklich größer als andere.",
       },
     ],
     tryIt:
-      "Unten: spiele die vier Verschiebungen durch und sieh dann, wie die Unendlichkeit dem Hotel doch entwächst.",
+      "Unten: Spiele die vier Verschiebungen durch und sieh dann, wie die Unendlichkeit dem Hotel doch entwächst.",
   },
   sections: [
     {
       pretitle: "Abschnitt 01 · Abzählbar unendlich",
       title: "Zimmer 1, 2, 3, … bis ins Unendliche",
-      body: "Das Hotel hat ein Zimmer für jede natürliche Zahl — ein Gast in 1, ein Gast in 17, ein Gast in 10¹⁰⁰. Heute Nacht ist jedes belegt, doch «voll» ist das falsche Wort: die Mächtigkeit der Gäste ist ℵ₀, und ℵ₀ ist keine Zahl, die man auffüllen kann.",
+      body: "Das Hotel hat ein Zimmer für jede natürliche Zahl: ein Gast in 1, ein Gast in 17, ein Gast in 10¹⁰⁰. Heute Nacht ist jedes belegt, doch «voll» ist das falsche Wort: Die Mächtigkeit der Gäste ist ℵ₀, und ℵ₀ ist keine Zahl, die man auffüllen kann.",
     },
     {
       pretitle: "Abschnitt 02 · Ein neuer Gast",
       title: "Verschiebung n → n+1",
-      body: "Eine reisende Person klopft. Der Empfang gibt eine einzige Anweisung durch: jeder Gast, geh von Zimmer n nach Zimmer n+1. Niemand wird verdrängt, es wartet immer ein höher nummeriertes Zimmer, und Zimmer 1 ist frei für den neuen Gast.",
+      body: "Eine reisende Person klopft. Der Empfang gibt eine einzige Anweisung durch: Jeder Gast, geh von Zimmer n nach Zimmer n+1. Niemand wird verdrängt, es wartet immer ein höher nummeriertes Zimmer, und Zimmer 1 ist frei für den neuen Gast.",
     },
     {
       pretitle: "Abschnitt 03 · k neue Gäste",
@@ -231,24 +231,24 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · ℵ₀ neue Gäste",
       title: "Verschiebung n → 2n; die ungeraden Zimmer öffnen sich",
-      body: "Nun trifft eine abzählbar unendliche Schlange ein. Der Empfang schickt jeden bisherigen Gast aus Zimmer n in Zimmer 2n: jedes gerade Zimmer bleibt belegt, jedes ungerade wird frei. Die Neuen füllen 1, 3, 5, 7, … — die Gleichung ℵ₀ + ℵ₀ = ℵ₀, in einer einzigen Durchsage erledigt.",
+      body: "Nun trifft eine abzählbar unendliche Schlange ein. Der Empfang schickt jeden bisherigen Gast aus Zimmer n in Zimmer 2n: Jedes gerade Zimmer bleibt belegt, jedes ungerade wird frei. Die Neuen füllen 1, 3, 5, 7, …: die Gleichung ℵ₀ + ℵ₀ = ℵ₀, in einer einzigen Durchsage erledigt.",
     },
     {
       pretitle: "Abschnitt 05 · ℵ₀ Busse × ℵ₀ Gäste",
       title: "Primzahlpotenzen schlucken ℵ₀ × ℵ₀",
-      body: "Eine Flotte aus ℵ₀ Bussen fährt vor, jeder mit ℵ₀ Passagier:innen. Schick jeden bisherigen Gast n in Zimmer 2ⁿ, dann Bus-k-Passagier:in m in Zimmer pₖᵐ, wobei pₖ die k-te ungerade Primzahl ist. Der Hauptsatz der Arithmetik garantiert, dass nie zwei Gäste kollidieren — ℵ₀ × ℵ₀ = ℵ₀.",
+      body: "Eine Flotte aus ℵ₀ Bussen fährt vor, jeder mit ℵ₀ Passagier:innen. Schick jeden bisherigen Gast n in Zimmer 2ⁿ, dann Bus-k-Passagier:in m in Zimmer pₖᵐ, wobei pₖ die k-te ungerade Primzahl ist. Der Hauptsatz der Arithmetik garantiert, dass nie zwei Gäste kollidieren: ℵ₀ × ℵ₀ = ℵ₀.",
     },
     {
       pretitle: "Abschnitt 06 · Die überabzählbare Brücke",
       title: "ℝ schlägt das Hotel",
-      body: "Geh einen Schritt weiter, und der Trick bricht. Cantors Diagonalargument von 1891 zeigt, dass die reellen Zahlen in [0,1] nicht einmal aufgelistet werden können — zu jeder Aufzählung gibt es eine neue reelle Zahl, die sich in der n-ten Stelle von Zeile n unterscheidet. Die reellen Zahlen sind überabzählbar; das Hotel ist nicht groß genug.",
+      body: "Geh einen Schritt weiter, und der Trick bricht. Cantors Diagonalargument von 1891 zeigt, dass die reellen Zahlen in [0,1] nicht einmal aufgelistet werden können: Zu jeder Aufzählung gibt es eine neue reelle Zahl, die sich in der n-ten Stelle von Zeile n unterscheidet. Die reellen Zahlen sind überabzählbar; das Hotel ist nicht groß genug.",
     },
   ],
   closingTitle: "Öffne den Explorer.",
   closingBody:
     "Spiel die vier Verschiebungen erneut ab, sieh die Primzahlpotenz-Zuteilung Bus um Bus einlaufen, und wechsle dann zu Cantors Diagonale, um zu sehen, warum dieser Trick irgendwann nicht mehr greift.",
   ctaLabel: "→ Zum Explorer",
-  inlineCaption: "Hilberts Hotel — eine Verschiebung animieren",
+  inlineCaption: "Hilberts Hotel: eine Verschiebung animieren",
   inlineOne: "+1 Gast",
   inlineK: "+k Gäste",
   inlineInfinite: "+ℵ₀ Gäste",
@@ -261,14 +261,14 @@ const de: RichStory = {
   inlineExistingGuest: "bestehend",
   inlineBusGuest: "Bus",
   inlineGapNote:
-    "Graue ∅-Zimmer sind Nummern, die keine Primzahlpotenz sind — dorthin wird niemand abgebildet, sie bleiben leer. Das Schema verschenkt Zimmer, kollidiert aber nie.",
-  cardinalityCaption: "Bijektions-Labor — passt das Hotel noch?",
+    "Graue ∅-Zimmer sind Nummern, die keine Primzahlpotenz sind: Dorthin wird niemand abgebildet, sie bleiben leer. Das Schema verschenkt Zimmer, kollidiert aber nie.",
+  cardinalityCaption: "Bijektions-Labor: Passt das Hotel noch?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
   cardinalityReals: "ℕ → ℝ ?",
   cardinalitySlider: "Zeilen",
   cardinalityHint:
-    "Die ersten beiden Modi zeigen eine saubere Bijektion — abzählbar. Der dritte versucht, die reellen Zahlen aufzulisten; die Diagonal-Zahl unten unterscheidet sich von jeder Zeile, also kann keine Liste der reellen Zahlen je vollständig sein. Siehe /cantor für das volle Argument.",
+    "Die ersten beiden Modi zeigen eine saubere Bijektion: abzählbar. Der dritte versucht, die reellen Zahlen aufzulisten; die Diagonal-Zahl unten unterscheidet sich von jeder Zeile, also kann keine Liste der reellen Zahlen je vollständig sein. Siehe /cantor für das volle Argument.",
   cardinalityCountable: "ℵ₀",
   cardinalityUncountable: "überabzählbar",
   cardinalityBijection: "Bijektion",
@@ -283,7 +283,7 @@ const de: RichStory = {
   primeTableRowBus3: "Bus 3, Gast m",
   primeTableRowBusK: "Bus k, Gast m",
   primeTableNote:
-    "Die eindeutige Primfaktorzerlegung garantiert, dass nie zwei Gäste dasselbe Zimmer verlangen. Viele Zimmernummern (6, 10, 12, 14, …) bleiben frei: es ist Spielraum im Überfluss da.",
+    "Die eindeutige Primfaktorzerlegung garantiert, dass nie zwei Gäste dasselbe Zimmer verlangen. Viele Zimmernummern (6, 10, 12, 14, …) bleiben frei: Es ist Spielraum im Überfluss da.",
   cantorLinkLabel: "→ /cantor · das vollständige Diagonalargument",
   takeItFurther: "Geh weiter",
 };
@@ -293,9 +293,9 @@ const es: RichStory = {
   page: {
     pretitle: "Tema · Paradoja",
     title: "El hotel de Hilbert",
-    tagline: "Siempre hay sitio para uno más — incluso lleno.",
+    tagline: "Siempre hay sitio para uno más, incluso lleno.",
     intro:
-      "David Hilbert esbozó el hotel en una conferencia en Gotinga en 1924; George Gamow lo llevó al gran público en su libro de 1947 Uno, dos, tres… infinito. Abajo: los cuatro escenarios clásicos animados, más el momento en que el infinito devuelve el golpe — la diagonal de Cantor.",
+      "David Hilbert esbozó el hotel en una conferencia en Gotinga en 1924; George Gamow lo llevó al gran público en su libro de 1947 Uno, dos, tres… infinito. Abajo: los cuatro escenarios clásicos animados, más el momento en que el infinito devuelve el golpe, la diagonal de Cantor.",
     ctaInteractive: "→ Abrir el Explorador",
   },
   encounter: {
@@ -305,7 +305,7 @@ const es: RichStory = {
       {
         label: "01",
         title: "La idea grande",
-        body: "El infinito no es un número muy grande — es otro tipo de tamaño, con su propia aritmética. Un hotel infinito «lleno» todavía puede absorber más huéspedes porque ℵ₀ + 1 = ℵ₀.",
+        body: "El infinito no es un número muy grande: es otro tipo de tamaño, con su propia aritmética. Un hotel infinito «lleno» todavía puede absorber más huéspedes porque ℵ₀ + 1 = ℵ₀.",
       },
       {
         label: "02",
@@ -325,12 +325,12 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · Infinito numerable",
       title: "Habitaciones 1, 2, 3, … para siempre",
-      body: "El hotel tiene una habitación por cada número natural — un huésped en 1, un huésped en 17, un huésped en 10¹⁰⁰. Esta noche todas están ocupadas, pero «lleno» es la palabra equivocada: la cardinalidad de los huéspedes es ℵ₀, y ℵ₀ no es un número que se pueda colmar.",
+      body: "El hotel tiene una habitación por cada número natural: un huésped en 1, un huésped en 17, un huésped en 10¹⁰⁰. Esta noche todas están ocupadas, pero «lleno» es la palabra equivocada: la cardinalidad de los huéspedes es ℵ₀, y ℵ₀ no es un número que se pueda colmar.",
     },
     {
       pretitle: "Sección 02 · Un huésped nuevo",
       title: "Desplazamiento n → n+1",
-      body: "Llama a la puerta un viajero. La recepción emite una sola instrucción: cada huésped, pasa de la habitación n a la n+1. Nadie queda fuera — siempre hay una habitación de número mayor esperando — y la 1 queda libre para el recién llegado.",
+      body: "Llama a la puerta un viajero. La recepción emite una sola instrucción: cada huésped, pasa de la habitación n a la n+1. Nadie queda fuera (siempre hay una habitación de número mayor esperando) y la 1 queda libre para el recién llegado.",
     },
     {
       pretitle: "Sección 03 · k huéspedes nuevos",
@@ -340,24 +340,24 @@ const es: RichStory = {
     {
       pretitle: "Sección 04 · ℵ₀ huéspedes nuevos",
       title: "Desplazamiento n → 2n; se abren los impares",
-      body: "Ahora llega una cola numerablemente infinita. La recepción manda a cada huésped existente de la n a la 2n: toda habitación par sigue ocupada y toda impar queda libre. Los nuevos llenan 1, 3, 5, 7, … — la igualdad ℵ₀ + ℵ₀ = ℵ₀, resuelta en un solo anuncio.",
+      body: "Ahora llega una cola numerablemente infinita. La recepción manda a cada huésped existente de la n a la 2n: toda habitación par sigue ocupada y toda impar queda libre. Los nuevos llenan 1, 3, 5, 7, …: la igualdad ℵ₀ + ℵ₀ = ℵ₀, resuelta en un solo anuncio.",
     },
     {
       pretitle: "Sección 05 · ℵ₀ autocares × ℵ₀ huéspedes",
       title: "Las potencias de primos absorben ℵ₀ × ℵ₀",
-      body: "Una flota de ℵ₀ autocares aparca, cada uno con ℵ₀ pasajeros. Manda a cada huésped existente n a la habitación 2ⁿ, después al pasajero m del autocar k a la habitación pₖᵐ, siendo pₖ el k-ésimo primo impar. El teorema fundamental de la aritmética garantiza que no choquen dos huéspedes — ℵ₀ × ℵ₀ = ℵ₀.",
+      body: "Una flota de ℵ₀ autocares aparca, cada uno con ℵ₀ pasajeros. Manda a cada huésped existente n a la habitación 2ⁿ, después al pasajero m del autocar k a la habitación pₖᵐ, siendo pₖ el k-ésimo primo impar. El teorema fundamental de la aritmética garantiza que no choquen dos huéspedes: ℵ₀ × ℵ₀ = ℵ₀.",
     },
     {
       pretitle: "Sección 06 · El puente no numerable",
       title: "ℝ derrota al hotel",
-      body: "Avanza un paso más y el truco se rompe. El argumento diagonal de Cantor de 1891 muestra que los reales de [0,1] no pueden ni siquiera enumerarse — para cualquier enumeración propuesta, un nuevo real difiere de la fila n en el n-ésimo dígito. Los reales son no numerables; el hotel no es lo bastante grande.",
+      body: "Avanza un paso más y el truco se rompe. El argumento diagonal de Cantor de 1891 muestra que los reales de [0,1] no pueden ni siquiera enumerarse: para cualquier enumeración propuesta, un nuevo real difiere de la fila n en el n-ésimo dígito. Los reales son no numerables; el hotel no es lo bastante grande.",
     },
   ],
   closingTitle: "Abre el Explorador.",
   closingBody:
     "Vuelve a ejecutar los cuatro desplazamientos, mira cómo la asignación por potencias de primos coloca un autocar tras otro, y pasa después a la diagonal de Cantor para ver por qué este truco concreto deja de funcionar.",
   ctaLabel: "→ Abrir el Explorador",
-  inlineCaption: "Hotel de Hilbert — anima un desplazamiento",
+  inlineCaption: "Hotel de Hilbert: anima un desplazamiento",
   inlineOne: "+1 huésped",
   inlineK: "+k huéspedes",
   inlineInfinite: "+ℵ₀ huéspedes",
@@ -370,14 +370,14 @@ const es: RichStory = {
   inlineExistingGuest: "existente",
   inlineBusGuest: "autocar",
   inlineGapNote:
-    "Las habitaciones ∅ grises son números que no son potencia de primo — nadie va a parar ahí, quedan vacías. El esquema desperdicia habitaciones, pero nunca colisiona.",
-  cardinalityCaption: "Laboratorio de biyecciones — ¿sigue cabiendo en el hotel?",
+    "Las habitaciones ∅ grises son números que no son potencia de primo: nadie va a parar ahí, quedan vacías. El esquema desperdicia habitaciones, pero nunca colisiona.",
+  cardinalityCaption: "Laboratorio de biyecciones: ¿sigue cabiendo en el hotel?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
   cardinalityReals: "ℕ → ℝ ?",
   cardinalitySlider: "filas",
   cardinalityHint:
-    "Los dos primeros modos muestran una biyección limpia — numerable. El tercero intenta enumerar los reales; el real diagonal de abajo difiere de cada fila, así que ninguna lista de reales puede estar completa. Ver /cantor para el argumento entero.",
+    "Los dos primeros modos muestran una biyección limpia: numerable. El tercero intenta enumerar los reales; el real diagonal de abajo difiere de cada fila, así que ninguna lista de reales puede estar completa. Ver /cantor para el argumento entero.",
   cardinalityCountable: "ℵ₀",
   cardinalityUncountable: "no numerable",
   cardinalityBijection: "biyección",
@@ -402,9 +402,9 @@ const fr: RichStory = {
   page: {
     pretitle: "Thème · Paradoxe",
     title: "L'hôtel de Hilbert",
-    tagline: "Toujours une chambre de plus — même complet.",
+    tagline: "Toujours une chambre de plus, même complet.",
     intro:
-      "David Hilbert a esquissé l'hôtel dans une conférence à Göttingen en 1924 ; George Gamow l'a porté au grand public dans son livre de 1947 Un, deux, trois… l'infini. En bas : les quatre scénarios classiques animés, plus l'instant où l'infini riposte enfin — la diagonale de Cantor.",
+      "David Hilbert a esquissé l'hôtel dans une conférence à Göttingen en 1924 ; George Gamow l'a porté au grand public dans son livre de 1947 Un, deux, trois… l'infini. En bas : les quatre scénarios classiques animés, plus l'instant où l'infini riposte enfin, la diagonale de Cantor.",
     ctaInteractive: "→ Ouvrir l'Explorateur",
   },
   encounter: {
@@ -414,7 +414,7 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "L'infini n'est pas un très grand nombre — c'est un autre type de taille, avec sa propre arithmétique. Un hôtel infini « complet » peut quand même absorber plus de clients, car ℵ₀ + 1 = ℵ₀.",
+        body: "L'infini n'est pas un très grand nombre : c'est un autre type de taille, avec sa propre arithmétique. Un hôtel infini « complet » peut quand même absorber plus de clients, car ℵ₀ + 1 = ℵ₀.",
       },
       {
         label: "02",
@@ -434,12 +434,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · Infini dénombrable",
       title: "Chambres 1, 2, 3, … pour toujours",
-      body: "L'hôtel a une chambre pour chaque entier naturel — un client en 1, un client en 17, un client en 10¹⁰⁰. Ce soir toutes sont prises, mais « complet » est le mauvais mot : le cardinal des clients est ℵ₀, et ℵ₀ n'est pas un nombre que l'on puisse remplir.",
+      body: "L'hôtel a une chambre pour chaque entier naturel : un client en 1, un client en 17, un client en 10¹⁰⁰. Ce soir toutes sont prises, mais « complet » est le mauvais mot : le cardinal des clients est ℵ₀, et ℵ₀ n'est pas un nombre que l'on puisse remplir.",
     },
     {
       pretitle: "Section 02 · Un nouveau client",
       title: "Décalage n → n+1",
-      body: "Un voyageur frappe. La réception diffuse une seule consigne : chaque client, passe de la chambre n à la chambre n+1. Personne n'est délogé — il y a toujours une chambre de numéro plus haut qui attend — et la 1 se libère pour le nouveau venu.",
+      body: "Un voyageur frappe. La réception diffuse une seule consigne : chaque client, passe de la chambre n à la chambre n+1. Personne n'est délogé (il y a toujours une chambre de numéro plus haut qui attend) et la 1 se libère pour le nouveau venu.",
     },
     {
       pretitle: "Section 03 · k nouveaux clients",
@@ -449,24 +449,24 @@ const fr: RichStory = {
     {
       pretitle: "Section 04 · ℵ₀ nouveaux clients",
       title: "Décalage n → 2n ; les chambres impaires s'ouvrent",
-      body: "Une file dénombrablement infinie arrive. La réception envoie chaque client existant de la n vers la 2n : toute chambre paire reste occupée, toute chambre impaire devient libre. Les nouveaux remplissent 1, 3, 5, 7, … — l'égalité ℵ₀ + ℵ₀ = ℵ₀, exécutée en une seule annonce.",
+      body: "Une file dénombrablement infinie arrive. La réception envoie chaque client existant de la n vers la 2n : toute chambre paire reste occupée, toute chambre impaire devient libre. Les nouveaux remplissent 1, 3, 5, 7, … : l'égalité ℵ₀ + ℵ₀ = ℵ₀, exécutée en une seule annonce.",
     },
     {
       pretitle: "Section 05 · ℵ₀ cars × ℵ₀ clients",
       title: "Les puissances de premiers absorbent ℵ₀ × ℵ₀",
-      body: "Une flotte de ℵ₀ cars se gare, chacun avec ℵ₀ passagers. Envoie chaque client existant n vers la chambre 2ⁿ, puis le passager m du car k vers pₖᵐ, où pₖ est le k-ième nombre premier impair. Le théorème fondamental de l'arithmétique garantit qu'aucun client n'en croise un autre — ℵ₀ × ℵ₀ = ℵ₀.",
+      body: "Une flotte de ℵ₀ cars se gare, chacun avec ℵ₀ passagers. Envoie chaque client existant n vers la chambre 2ⁿ, puis le passager m du car k vers pₖᵐ, où pₖ est le k-ième nombre premier impair. Le théorème fondamental de l'arithmétique garantit qu'aucun client n'en croise un autre : ℵ₀ × ℵ₀ = ℵ₀.",
     },
     {
       pretitle: "Section 06 · Le pont non dénombrable",
       title: "ℝ bat l'hôtel",
-      body: "Pousse d'un cran de plus et l'astuce casse. L'argument diagonal de Cantor (1891) montre que les réels de [0,1] ne peuvent même pas être énumérés — pour toute énumération proposée, un nouveau réel diffère de la ligne n au n-ième chiffre. Les réels sont non dénombrables ; l'hôtel n'est pas assez grand.",
+      body: "Pousse d'un cran de plus et l'astuce casse. L'argument diagonal de Cantor (1891) montre que les réels de [0,1] ne peuvent même pas être énumérés : pour toute énumération proposée, un nouveau réel diffère de la ligne n au n-ième chiffre. Les réels sont non dénombrables ; l'hôtel n'est pas assez grand.",
     },
   ],
   closingTitle: "Ouvre l'Explorateur.",
   closingBody:
     "Rejoue les quatre décalages, regarde l'attribution par puissances de premiers atterrir car après car, puis bascule vers la diagonale de Cantor pour voir pourquoi ce tour précis finit par ne plus marcher.",
   ctaLabel: "→ Ouvrir l'Explorateur",
-  inlineCaption: "Hôtel de Hilbert — anime un décalage",
+  inlineCaption: "Hôtel de Hilbert : anime un décalage",
   inlineOne: "+1 client",
   inlineK: "+k clients",
   inlineInfinite: "+ℵ₀ clients",
@@ -479,14 +479,14 @@ const fr: RichStory = {
   inlineExistingGuest: "existant",
   inlineBusGuest: "car",
   inlineGapNote:
-    "Les chambres ∅ grises sont des numéros qui ne sont pas une puissance de premier — personne n'y est envoyé, elles restent vides. Le schéma gaspille des chambres, mais ne provoque jamais de collision.",
-  cardinalityCaption: "Labo de bijections — l'hôtel suffit-il encore ?",
+    "Les chambres ∅ grises sont des numéros qui ne sont pas une puissance de premier : personne n'y est envoyé, elles restent vides. Le schéma gaspille des chambres, mais ne provoque jamais de collision.",
+  cardinalityCaption: "Labo de bijections : l'hôtel suffit-il encore ?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
   cardinalityReals: "ℕ → ℝ ?",
   cardinalitySlider: "lignes",
   cardinalityHint:
-    "Les deux premiers modes montrent une bijection nette — dénombrable. Le troisième tente d'énumérer les réels ; le réel diagonal en bas diffère de chaque ligne, donc aucune liste de réels ne peut être complète. Voir /cantor pour l'argument entier.",
+    "Les deux premiers modes montrent une bijection nette : dénombrable. Le troisième tente d'énumérer les réels ; le réel diagonal en bas diffère de chaque ligne, donc aucune liste de réels ne peut être complète. Voir /cantor pour l'argument entier.",
   cardinalityCountable: "ℵ₀",
   cardinalityUncountable: "non dénombrable",
   cardinalityBijection: "bijection",
@@ -511,9 +511,9 @@ const it: RichStory = {
   page: {
     pretitle: "Tema · Paradosso",
     title: "L'hotel di Hilbert",
-    tagline: "C'è sempre posto per uno in più — anche quando è pieno.",
+    tagline: "C'è sempre posto per uno in più, anche quando è pieno.",
     intro:
-      "David Hilbert schizzò l'hotel in una conferenza a Gottinga nel 1924; George Gamow lo portò al pubblico nel suo libro del 1947 Uno, due, tre… infinito. Sotto: i quattro scenari classici animati, più il momento in cui l'infinito risponde — la diagonale di Cantor.",
+      "David Hilbert schizzò l'hotel in una conferenza a Gottinga nel 1924; George Gamow lo portò al pubblico nel suo libro del 1947 Uno, due, tre… infinito. Sotto: i quattro scenari classici animati, più il momento in cui l'infinito risponde, la diagonale di Cantor.",
     ctaInteractive: "→ Apri l'Esploratore",
   },
   encounter: {
@@ -523,7 +523,7 @@ const it: RichStory = {
       {
         label: "01",
         title: "L'idea grande",
-        body: "L'infinito non è un numero molto grande — è un altro tipo di grandezza, con la sua aritmetica. Un hotel infinito «pieno» può comunque assorbire altri ospiti perché ℵ₀ + 1 = ℵ₀.",
+        body: "L'infinito non è un numero molto grande: è un altro tipo di grandezza, con la sua aritmetica. Un hotel infinito «pieno» può comunque assorbire altri ospiti perché ℵ₀ + 1 = ℵ₀.",
       },
       {
         label: "02",
@@ -543,12 +543,12 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · Infinito numerabile",
       title: "Stanze 1, 2, 3, … per sempre",
-      body: "L'hotel ha una stanza per ogni numero naturale — un ospite in 1, uno in 17, uno in 10¹⁰⁰. Stanotte tutte sono occupate, ma «pieno» è la parola sbagliata: la cardinalità degli ospiti è ℵ₀, e ℵ₀ non è un numero che si possa riempire.",
+      body: "L'hotel ha una stanza per ogni numero naturale: un ospite in 1, uno in 17, uno in 10¹⁰⁰. Stanotte tutte sono occupate, ma «pieno» è la parola sbagliata: la cardinalità degli ospiti è ℵ₀, e ℵ₀ non è un numero che si possa riempire.",
     },
     {
       pretitle: "Sezione 02 · Un ospite nuovo",
       title: "Spostamento n → n+1",
-      body: "Un viaggiatore bussa. La reception trasmette una sola istruzione: ogni ospite, passa dalla stanza n alla n+1. Nessuno viene scalzato — c'è sempre una stanza con numero più alto in attesa — e la 1 si libera per il nuovo.",
+      body: "Un viaggiatore bussa. La reception trasmette una sola istruzione: ogni ospite, passa dalla stanza n alla n+1. Nessuno viene scalzato (c'è sempre una stanza con numero più alto in attesa) e la 1 si libera per il nuovo.",
     },
     {
       pretitle: "Sezione 03 · k ospiti nuovi",
@@ -558,24 +558,24 @@ const it: RichStory = {
     {
       pretitle: "Sezione 04 · ℵ₀ ospiti nuovi",
       title: "Spostamento n → 2n; si aprono le dispari",
-      body: "Ora arriva una coda numerabilmente infinita. La reception manda ogni ospite esistente dalla n alla 2n: ogni stanza pari resta occupata, ogni dispari si libera. I nuovi riempiono 1, 3, 5, 7, … — l'uguaglianza ℵ₀ + ℵ₀ = ℵ₀, eseguita in un unico annuncio.",
+      body: "Ora arriva una coda numerabilmente infinita. La reception manda ogni ospite esistente dalla n alla 2n: ogni stanza pari resta occupata, ogni dispari si libera. I nuovi riempiono 1, 3, 5, 7, …: l'uguaglianza ℵ₀ + ℵ₀ = ℵ₀, eseguita in un unico annuncio.",
     },
     {
       pretitle: "Sezione 05 · ℵ₀ pullman × ℵ₀ ospiti",
       title: "Le potenze di primi assorbono ℵ₀ × ℵ₀",
-      body: "Una flotta di ℵ₀ pullman accosta, ciascuno con ℵ₀ passeggeri. Manda ogni ospite esistente n alla stanza 2ⁿ, poi il passeggero m del pullman k alla stanza pₖᵐ, dove pₖ è il k-esimo primo dispari. Il teorema fondamentale dell'aritmetica garantisce che nessun ospite collida — ℵ₀ × ℵ₀ = ℵ₀.",
+      body: "Una flotta di ℵ₀ pullman accosta, ciascuno con ℵ₀ passeggeri. Manda ogni ospite esistente n alla stanza 2ⁿ, poi il passeggero m del pullman k alla stanza pₖᵐ, dove pₖ è il k-esimo primo dispari. Il teorema fondamentale dell'aritmetica garantisce che nessun ospite collida: ℵ₀ × ℵ₀ = ℵ₀.",
     },
     {
       pretitle: "Sezione 06 · Il ponte non numerabile",
       title: "ℝ batte l'hotel",
-      body: "Spingi un passo oltre e il trucco si rompe. L'argomento diagonale di Cantor del 1891 mostra che i reali di [0,1] non possono nemmeno essere elencati — per ogni enumerazione proposta, un nuovo reale differisce dalla riga n alla n-esima cifra. I reali sono non numerabili; l'hotel non è abbastanza grande.",
+      body: "Spingi un passo oltre e il trucco si rompe. L'argomento diagonale di Cantor del 1891 mostra che i reali di [0,1] non possono nemmeno essere elencati: per ogni enumerazione proposta, un nuovo reale differisce dalla riga n alla n-esima cifra. I reali sono non numerabili; l'hotel non è abbastanza grande.",
     },
   ],
   closingTitle: "Apri l'Esploratore.",
   closingBody:
     "Riproduci i quattro spostamenti, guarda l'assegnazione per potenze di primi atterrare pullman dopo pullman, poi passa alla diagonale di Cantor per vedere perché questo trucco a un certo punto smette di funzionare.",
   ctaLabel: "→ Apri l'Esploratore",
-  inlineCaption: "Hotel di Hilbert — anima uno spostamento",
+  inlineCaption: "Hotel di Hilbert: anima uno spostamento",
   inlineOne: "+1 ospite",
   inlineK: "+k ospiti",
   inlineInfinite: "+ℵ₀ ospiti",
@@ -588,14 +588,14 @@ const it: RichStory = {
   inlineExistingGuest: "esistente",
   inlineBusGuest: "pullman",
   inlineGapNote:
-    "Le stanze ∅ grigie sono numeri che non sono potenza di un primo — nessuno ci finisce, restano vuote. Lo schema spreca stanze, ma non collide mai.",
-  cardinalityCaption: "Laboratorio di biiezioni — l'hotel basta ancora?",
+    "Le stanze ∅ grigie sono numeri che non sono potenza di un primo: nessuno ci finisce, restano vuote. Lo schema spreca stanze, ma non collide mai.",
+  cardinalityCaption: "Laboratorio di biiezioni: l'hotel basta ancora?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
   cardinalityReals: "ℕ → ℝ ?",
   cardinalitySlider: "righe",
   cardinalityHint:
-    "I primi due modi mostrano una biiezione pulita — numerabile. Il terzo prova a enumerare i reali; il reale diagonale in basso differisce da ogni riga, quindi nessuna lista di reali può essere completa. Vedi /cantor per l'argomento intero.",
+    "I primi due modi mostrano una biiezione pulita: numerabile. Il terzo prova a enumerare i reali; il reale diagonale in basso differisce da ogni riga, quindi nessuna lista di reali può essere completa. Vedi /cantor per l'argomento intero.",
   cardinalityCountable: "ℵ₀",
   cardinalityUncountable: "non numerabile",
   cardinalityBijection: "biiezione",
@@ -620,9 +620,9 @@ const pt: RichStory = {
   page: {
     pretitle: "Tema · Paradoxo",
     title: "O hotel de Hilbert",
-    tagline: "Há sempre lugar para mais um — mesmo cheio.",
+    tagline: "Há sempre lugar para mais um, mesmo cheio.",
     intro:
-      "David Hilbert esboçou o hotel numa conferência em Gotinga em 1924; George Gamow levou-o ao público no seu livro de 1947 Um, Dois, Três… Infinito. Abaixo: os quatro cenários clássicos animados, mais o momento em que o infinito devolve o golpe — a diagonal de Cantor.",
+      "David Hilbert esboçou o hotel numa conferência em Gotinga em 1924; George Gamow levou-o ao público no seu livro de 1947 Um, Dois, Três… Infinito. Abaixo: os quatro cenários clássicos animados, mais o momento em que o infinito devolve o golpe, a diagonal de Cantor.",
     ctaInteractive: "→ Abrir o Explorador",
   },
   encounter: {
@@ -632,7 +632,7 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A ideia central",
-        body: "O infinito não é um número muito grande — é outro tipo de tamanho, com a sua própria aritmética. Um hotel infinito «cheio» ainda consegue absorver mais hóspedes porque ℵ₀ + 1 = ℵ₀.",
+        body: "O infinito não é um número muito grande: é outro tipo de tamanho, com a sua própria aritmética. Um hotel infinito «cheio» ainda consegue absorver mais hóspedes porque ℵ₀ + 1 = ℵ₀.",
       },
       {
         label: "02",
@@ -652,12 +652,12 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · Infinito numerável",
       title: "Quartos 1, 2, 3, … para sempre",
-      body: "O hotel tem um quarto para cada número natural — um hóspede em 1, um em 17, um em 10¹⁰⁰. Esta noite todos estão ocupados, mas «cheio» é a palavra errada: a cardinalidade dos hóspedes é ℵ₀, e ℵ₀ não é um número que se possa esgotar.",
+      body: "O hotel tem um quarto para cada número natural: um hóspede em 1, um em 17, um em 10¹⁰⁰. Esta noite todos estão ocupados, mas «cheio» é a palavra errada: a cardinalidade dos hóspedes é ℵ₀, e ℵ₀ não é um número que se possa esgotar.",
     },
     {
       pretitle: "Secção 02 · Um hóspede novo",
       title: "Deslocamento n → n+1",
-      body: "Bate um viajante. A recepção emite uma única instrução: cada hóspede, passa do quarto n para o n+1. Ninguém fica de fora — há sempre um quarto de número mais alto à espera — e o 1 fica livre para o novo.",
+      body: "Bate um viajante. A recepção emite uma única instrução: cada hóspede, passa do quarto n para o n+1. Ninguém fica de fora (há sempre um quarto de número mais alto à espera) e o 1 fica livre para o novo.",
     },
     {
       pretitle: "Secção 03 · k hóspedes novos",
@@ -667,24 +667,24 @@ const pt: RichStory = {
     {
       pretitle: "Secção 04 · ℵ₀ hóspedes novos",
       title: "Deslocamento n → 2n; abrem os ímpares",
-      body: "Chega agora uma fila numeravelmente infinita. A recepção manda cada hóspede existente do quarto n para o 2n: todo quarto par continua ocupado, todo ímpar fica livre. Os novos preenchem 1, 3, 5, 7, … — a igualdade ℵ₀ + ℵ₀ = ℵ₀, executada num único anúncio.",
+      body: "Chega agora uma fila numeravelmente infinita. A recepção manda cada hóspede existente do quarto n para o 2n: todo quarto par continua ocupado, todo ímpar fica livre. Os novos preenchem 1, 3, 5, 7, …: a igualdade ℵ₀ + ℵ₀ = ℵ₀, executada num único anúncio.",
     },
     {
       pretitle: "Secção 05 · ℵ₀ autocarros × ℵ₀ hóspedes",
       title: "As potências de primos absorvem ℵ₀ × ℵ₀",
-      body: "Uma frota de ℵ₀ autocarros encosta, cada um com ℵ₀ passageiros. Manda cada hóspede existente n para o quarto 2ⁿ, depois o passageiro m do autocarro k para o pₖᵐ, sendo pₖ o k-ésimo primo ímpar. O teorema fundamental da aritmética garante que nunca dois hóspedes colidem — ℵ₀ × ℵ₀ = ℵ₀.",
+      body: "Uma frota de ℵ₀ autocarros encosta, cada um com ℵ₀ passageiros. Manda cada hóspede existente n para o quarto 2ⁿ, depois o passageiro m do autocarro k para o pₖᵐ, sendo pₖ o k-ésimo primo ímpar. O teorema fundamental da aritmética garante que nunca dois hóspedes colidem: ℵ₀ × ℵ₀ = ℵ₀.",
     },
     {
       pretitle: "Secção 06 · A ponte não numerável",
       title: "ℝ derrota o hotel",
-      body: "Dá mais um passo e o truque parte-se. O argumento diagonal de Cantor de 1891 mostra que os reais de [0,1] não podem sequer ser enumerados — para qualquer enumeração proposta, um novo real difere da linha n no n-ésimo dígito. Os reais são não numeráveis; o hotel não é suficientemente grande.",
+      body: "Dá mais um passo e o truque parte-se. O argumento diagonal de Cantor de 1891 mostra que os reais de [0,1] não podem sequer ser enumerados: para qualquer enumeração proposta, um novo real difere da linha n no n-ésimo dígito. Os reais são não numeráveis; o hotel não é suficientemente grande.",
     },
   ],
   closingTitle: "Abre o Explorador.",
   closingBody:
     "Repete os quatro deslocamentos, vê a atribuição por potências de primos aterrar autocarro a autocarro, e passa depois à diagonal de Cantor para perceber por que este truque em particular deixa de funcionar.",
   ctaLabel: "→ Abrir o Explorador",
-  inlineCaption: "Hotel de Hilbert — animar um deslocamento",
+  inlineCaption: "Hotel de Hilbert: animar um deslocamento",
   inlineOne: "+1 hóspede",
   inlineK: "+k hóspedes",
   inlineInfinite: "+ℵ₀ hóspedes",
@@ -697,14 +697,14 @@ const pt: RichStory = {
   inlineExistingGuest: "existente",
   inlineBusGuest: "autocarro",
   inlineGapNote:
-    "Os quartos ∅ cinzentos são números que não são potência de primo — ninguém é mapeado para lá, ficam vazios. O esquema desperdiça quartos, mas nunca colide.",
-  cardinalityCaption: "Laboratório de bijecções — o hotel ainda chega?",
+    "Os quartos ∅ cinzentos são números que não são potência de primo: ninguém é mapeado para lá, ficam vazios. O esquema desperdiça quartos, mas nunca colide.",
+  cardinalityCaption: "Laboratório de bijecções: o hotel ainda chega?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
   cardinalityReals: "ℕ → ℝ ?",
   cardinalitySlider: "linhas",
   cardinalityHint:
-    "Os dois primeiros modos mostram uma bijecção limpa — numerável. O terceiro tenta enumerar os reais; o real diagonal em baixo difere de cada linha, logo nenhuma lista de reais pode estar completa. Ver /cantor para o argumento completo.",
+    "Os dois primeiros modos mostram uma bijecção limpa: numerável. O terceiro tenta enumerar os reais; o real diagonal em baixo difere de cada linha, logo nenhuma lista de reais pode estar completa. Ver /cantor para o argumento completo.",
   cardinalityCountable: "ℵ₀",
   cardinalityUncountable: "não numerável",
   cardinalityBijection: "bijecção",
@@ -729,9 +729,9 @@ const sv: RichStory = {
   page: {
     pretitle: "Ämne · Paradox",
     title: "Hilberts hotell",
-    tagline: "Alltid plats för en till — även när det är fullt.",
+    tagline: "Alltid plats för en till, även när det är fullt.",
     intro:
-      "David Hilbert skissade hotellet i en föreläsning i Göttingen 1924; George Gamow förde det vidare till allmänheten i sin bok från 1947 Ett, två, tre… oändligheten. Nedan: de fyra klassiska scenarierna animerade, plus ögonblicket då oändligheten slår tillbaka — Cantors diagonal.",
+      "David Hilbert skissade hotellet i en föreläsning i Göttingen 1924; George Gamow förde det vidare till allmänheten i sin bok från 1947 Ett, två, tre… oändligheten. Nedan: de fyra klassiska scenarierna animerade, plus ögonblicket då oändligheten slår tillbaka, Cantors diagonal.",
     ctaInteractive: "→ Öppna Utforskaren",
   },
   encounter: {
@@ -741,7 +741,7 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "Oändlighet är inte ett mycket stort tal — det är en annan sorts storlek, med egen aritmetik. Ett «fullt» oändligt hotell kan fortfarande ta emot fler gäster eftersom ℵ₀ + 1 = ℵ₀.",
+        body: "Oändlighet är inte ett mycket stort tal: det är en annan sorts storlek, med egen aritmetik. Ett «fullt» oändligt hotell kan fortfarande ta emot fler gäster eftersom ℵ₀ + 1 = ℵ₀.",
       },
       {
         label: "02",
@@ -760,12 +760,12 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Uppräkneligt oändligt",
       title: "Rum 1, 2, 3, … för evigt",
-      body: "Hotellet har ett rum för varje naturligt tal — en gäst i 1, en i 17, en i 10¹⁰⁰. I natt är alla tagna, men «fullt» är fel ord: gästernas kardinalitet är ℵ₀, och ℵ₀ är inte ett tal man kan fylla.",
+      body: "Hotellet har ett rum för varje naturligt tal: en gäst i 1, en i 17, en i 10¹⁰⁰. I natt är alla tagna, men «fullt» är fel ord: gästernas kardinalitet är ℵ₀, och ℵ₀ är inte ett tal man kan fylla.",
     },
     {
       pretitle: "Avsnitt 02 · En ny gäst",
       title: "Förskjutning n → n+1",
-      body: "En resenär knackar. Receptionen sänder ut en enda instruktion: varje gäst, gå från rum n till rum n+1. Ingen knuffas ut — det finns alltid ett rum med högre nummer som väntar — och 1 blir ledigt för nykomlingen.",
+      body: "En resenär knackar. Receptionen sänder ut en enda instruktion: varje gäst, gå från rum n till rum n+1. Ingen knuffas ut (det finns alltid ett rum med högre nummer som väntar) och 1 blir ledigt för nykomlingen.",
     },
     {
       pretitle: "Avsnitt 03 · k nya gäster",
@@ -775,24 +775,24 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 04 · ℵ₀ nya gäster",
       title: "Förskjutning n → 2n; udda rummen öppnar sig",
-      body: "Nu kommer en uppräkneligt oändlig kö. Receptionen skickar varje befintlig gäst från n till 2n: varje jämnt rum förblir taget, varje udda blir ledigt. De nya fyller 1, 3, 5, 7, … — likheten ℵ₀ + ℵ₀ = ℵ₀, utförd i ett enda meddelande.",
+      body: "Nu kommer en uppräkneligt oändlig kö. Receptionen skickar varje befintlig gäst från n till 2n: varje jämnt rum förblir taget, varje udda blir ledigt. De nya fyller 1, 3, 5, 7, …: likheten ℵ₀ + ℵ₀ = ℵ₀, utförd i ett enda meddelande.",
     },
     {
       pretitle: "Avsnitt 05 · ℵ₀ bussar × ℵ₀ gäster",
       title: "Primtalspotenser sväljer ℵ₀ × ℵ₀",
-      body: "En flotta av ℵ₀ bussar rullar fram, var och en med ℵ₀ passagerare. Skicka varje befintlig gäst n till rum 2ⁿ, sedan passagerare m i buss k till rum pₖᵐ, där pₖ är det k:e udda primtalet. Aritmetikens fundamentalsats garanterar att inga två gäster krockar — ℵ₀ × ℵ₀ = ℵ₀.",
+      body: "En flotta av ℵ₀ bussar rullar fram, var och en med ℵ₀ passagerare. Skicka varje befintlig gäst n till rum 2ⁿ, sedan passagerare m i buss k till rum pₖᵐ, där pₖ är det k:e udda primtalet. Aritmetikens fundamentalsats garanterar att inga två gäster krockar: ℵ₀ × ℵ₀ = ℵ₀.",
     },
     {
       pretitle: "Avsnitt 06 · Den överuppräkneliga bron",
       title: "ℝ besegrar hotellet",
-      body: "Ta ett steg till och tricket går sönder. Cantors diagonalargument från 1891 visar att de reella talen i [0,1] inte ens kan listas — för varje föreslagen uppräkning skiljer sig ett nytt reellt tal från rad n vid den n:e siffran. De reella är överuppräkneliga; hotellet räcker inte.",
+      body: "Ta ett steg till och tricket går sönder. Cantors diagonalargument från 1891 visar att de reella talen i [0,1] inte ens kan listas: för varje föreslagen uppräkning skiljer sig ett nytt reellt tal från rad n vid den n:e siffran. De reella är överuppräkneliga; hotellet räcker inte.",
     },
   ],
   closingTitle: "Öppna Utforskaren.",
   closingBody:
     "Spela upp de fyra förskjutningarna igen, se primtalspotens-tilldelningen landa buss för buss, och gå sedan över till Cantors diagonal för att se varför just det här tricket till slut inte fungerar längre.",
   ctaLabel: "→ Öppna Utforskaren",
-  inlineCaption: "Hilberts hotell — animera en förskjutning",
+  inlineCaption: "Hilberts hotell: animera en förskjutning",
   inlineOne: "+1 gäst",
   inlineK: "+k gäster",
   inlineInfinite: "+ℵ₀ gäster",
@@ -805,14 +805,14 @@ const sv: RichStory = {
   inlineExistingGuest: "befintlig",
   inlineBusGuest: "buss",
   inlineGapNote:
-    "Grå ∅-rum är nummer som inte är en primtalspotens — ingen hamnar där, de förblir tomma. Schemat slösar rum men krockar aldrig.",
-  cardinalityCaption: "Bijektionslabb — räcker hotellet ännu?",
+    "Grå ∅-rum är nummer som inte är en primtalspotens: ingen hamnar där, de förblir tomma. Schemat slösar rum men krockar aldrig.",
+  cardinalityCaption: "Bijektionslabb: räcker hotellet ännu?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
   cardinalityReals: "ℕ → ℝ ?",
   cardinalitySlider: "rader",
   cardinalityHint:
-    "De två första lägena visar en ren bijektion — uppräknelig. Det tredje försöker räkna upp de reella; det diagonala reella längst ner skiljer sig från varje rad, alltså kan ingen lista av reella tal vara fullständig. Se /cantor för hela argumentet.",
+    "De två första lägena visar en ren bijektion: uppräknelig. Det tredje försöker räkna upp de reella; det diagonala reella längst ner skiljer sig från varje rad, alltså kan ingen lista av reella tal vara fullständig. Se /cantor för hela argumentet.",
   cardinalityCountable: "ℵ₀",
   cardinalityUncountable: "överuppräknelig",
   cardinalityBijection: "bijektion",
@@ -837,9 +837,9 @@ const no: RichStory = {
   page: {
     pretitle: "Tema · Paradoks",
     title: "Hilberts hotell",
-    tagline: "Alltid plass til én til — selv når det er fullt.",
+    tagline: "Alltid plass til én til, selv når det er fullt.",
     intro:
-      "David Hilbert skisserte hotellet i en forelesning i Göttingen i 1924; George Gamow tok det videre til publikum i boken sin fra 1947 Én, to, tre… uendelig. Nedenfor: de fire klassiske scenariene animert, pluss øyeblikket der uendeligheten endelig slår tilbake — Cantors diagonal.",
+      "David Hilbert skisserte hotellet i en forelesning i Göttingen i 1924; George Gamow tok det videre til publikum i boken sin fra 1947 Én, to, tre… uendelig. Nedenfor: de fire klassiske scenariene animert, pluss øyeblikket der uendeligheten endelig slår tilbake, Cantors diagonal.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -849,7 +849,7 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store idéen",
-        body: "Uendelighet er ikke et veldig stort tall — det er en annen slags størrelse, med sin egen aritmetikk. Et «fullt» uendelig hotell kan fortsatt ta imot flere gjester fordi ℵ₀ + 1 = ℵ₀.",
+        body: "Uendelighet er ikke et veldig stort tall: Det er en annen slags størrelse, med sin egen aritmetikk. Et «fullt» uendelig hotell kan fortsatt ta imot flere gjester fordi ℵ₀ + 1 = ℵ₀.",
       },
       {
         label: "02",
@@ -859,21 +859,21 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Hilberts tankeeksperiment fra 1924 er det reneste argumentet for at uendelige mengder følger regler vår endelige intuisjon ikke kjenner. Det er også opptakten til Cantors dypere smell: noen uendeligheter er virkelig større enn andre.",
+        body: "Hilberts tankeeksperiment fra 1924 er det reneste argumentet for at uendelige mengder følger regler vår endelige intuisjon ikke kjenner. Det er også opptakten til Cantors dypere smell: Noen uendeligheter er virkelig større enn andre.",
       },
     ],
-    tryIt: "Nedenfor: kjør de fire forskyvningene, se så uendeligheten vokse ut av hotellet.",
+    tryIt: "Nedenfor: Kjør de fire forskyvningene, se så uendeligheten vokse ut av hotellet.",
   },
   sections: [
     {
       pretitle: "Avsnitt 01 · Tellbart uendelig",
       title: "Rom 1, 2, 3, … for alltid",
-      body: "Hotellet har ett rom for hvert naturlig tall — en gjest i 1, en i 17, en i 10¹⁰⁰. I natt er alle tatt, men «fullt» er feil ord: gjestenes kardinalitet er ℵ₀, og ℵ₀ er ikke et tall man kan fylle.",
+      body: "Hotellet har ett rom for hvert naturlig tall: en gjest i 1, en i 17, en i 10¹⁰⁰. I natt er alle tatt, men «fullt» er feil ord: Gjestenes kardinalitet er ℵ₀, og ℵ₀ er ikke et tall man kan fylle.",
     },
     {
       pretitle: "Avsnitt 02 · Én ny gjest",
       title: "Forskyvning n → n+1",
-      body: "En reisende banker på. Resepsjonen sender ut én enkelt instruksjon: hver gjest, gå fra rom n til rom n+1. Ingen blir skjøvet ut — det venter alltid et rom med høyere nummer — og 1 blir ledig for den nyankomne.",
+      body: "En reisende banker på. Resepsjonen sender ut én enkelt instruksjon: Hver gjest, gå fra rom n til rom n+1. Ingen blir skjøvet ut (det venter alltid et rom med høyere nummer) og 1 blir ledig for den nyankomne.",
     },
     {
       pretitle: "Avsnitt 03 · k nye gjester",
@@ -883,24 +883,24 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · ℵ₀ nye gjester",
       title: "Forskyvning n → 2n; oddetallsrommene åpner seg",
-      body: "Nå kommer en tellbart uendelig kø. Resepsjonen sender hver eksisterende gjest fra n til 2n: hvert partallsrom forblir tatt, hvert oddetallsrom blir ledig. De nye fyller 1, 3, 5, 7, … — likheten ℵ₀ + ℵ₀ = ℵ₀, utført i én enkelt kunngjøring.",
+      body: "Nå kommer en tellbart uendelig kø. Resepsjonen sender hver eksisterende gjest fra n til 2n: Hvert partallsrom forblir tatt, hvert oddetallsrom blir ledig. De nye fyller 1, 3, 5, 7, …: likheten ℵ₀ + ℵ₀ = ℵ₀, utført i én enkelt kunngjøring.",
     },
     {
       pretitle: "Avsnitt 05 · ℵ₀ busser × ℵ₀ gjester",
       title: "Primtallspotenser sluker ℵ₀ × ℵ₀",
-      body: "En flåte på ℵ₀ busser kjører frem, hver med ℵ₀ passasjerer. Send hver eksisterende gjest n til rom 2ⁿ, så passasjer m i buss k til rom pₖᵐ, der pₖ er det k-te oddetallsprimtallet. Aritmetikkens fundamentalteorem sikrer at ingen to gjester kolliderer — ℵ₀ × ℵ₀ = ℵ₀.",
+      body: "En flåte på ℵ₀ busser kjører frem, hver med ℵ₀ passasjerer. Send hver eksisterende gjest n til rom 2ⁿ, så passasjer m i buss k til rom pₖᵐ, der pₖ er det k-te oddetallsprimtallet. Aritmetikkens fundamentalteorem sikrer at ingen to gjester kolliderer: ℵ₀ × ℵ₀ = ℵ₀.",
     },
     {
       pretitle: "Avsnitt 06 · Den overtellbare broen",
       title: "ℝ slår hotellet",
-      body: "Ta ett skritt til, og trikset brekker. Cantors diagonalargument fra 1891 viser at de reelle tallene i [0,1] ikke engang kan listes: for enhver foreslått oppramsing skiller et nytt reelt tall seg fra rad n ved det n-te sifferet. De reelle er overtellbare; hotellet er ikke stort nok.",
+      body: "Ta ett skritt til, og trikset brekker. Cantors diagonalargument fra 1891 viser at de reelle tallene i [0,1] ikke engang kan listes: For enhver foreslått oppramsing skiller et nytt reelt tall seg fra rad n ved det n-te sifferet. De reelle er overtellbare; hotellet er ikke stort nok.",
     },
   ],
   closingTitle: "Åpne Utforskeren.",
   closingBody:
     "Spill av de fire forskyvningene igjen, se primtallspotens-tildelingen lande buss for buss, og gå så over til Cantors diagonal for å se hvorfor akkurat dette trikset til slutt ikke fungerer.",
   ctaLabel: "→ Åpne Utforskeren",
-  inlineCaption: "Hilberts hotell — animer en forskyvning",
+  inlineCaption: "Hilberts hotell: Animer en forskyvning",
   inlineOne: "+1 gjest",
   inlineK: "+k gjester",
   inlineInfinite: "+ℵ₀ gjester",
@@ -913,14 +913,14 @@ const no: RichStory = {
   inlineExistingGuest: "eksisterende",
   inlineBusGuest: "buss",
   inlineGapNote:
-    "Grå ∅-rom er tall som ikke er en primtallspotens — ingen havner der, de forblir tomme. Skjemaet sløser med rom, men kolliderer aldri.",
-  cardinalityCaption: "Bijeksjonslab — strekker hotellet fortsatt til?",
+    "Grå ∅-rom er tall som ikke er en primtallspotens: Ingen havner der, de forblir tomme. Skjemaet sløser med rom, men kolliderer aldri.",
+  cardinalityCaption: "Bijeksjonslab: Strekker hotellet fortsatt til?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
   cardinalityReals: "ℕ → ℝ ?",
   cardinalitySlider: "rader",
   cardinalityHint:
-    "De to første modusene viser en ren bijeksjon — tellbar. Den tredje prøver å ramse opp de reelle; det diagonale reelle tallet nederst skiller seg fra hver rad, så ingen liste over reelle tall kan være fullstendig. Se /cantor for hele argumentet.",
+    "De to første modusene viser en ren bijeksjon: tellbar. Den tredje prøver å ramse opp de reelle; det diagonale reelle tallet nederst skiller seg fra hver rad, så ingen liste over reelle tall kan være fullstendig. Se /cantor for hele argumentet.",
   cardinalityCountable: "ℵ₀",
   cardinalityUncountable: "overtellbar",
   cardinalityBijection: "bijeksjon",
@@ -935,7 +935,7 @@ const no: RichStory = {
   primeTableRowBus3: "Buss 3, passasjer m",
   primeTableRowBusK: "Buss k, passasjer m",
   primeTableNote:
-    "Den entydige primtallsfaktoriseringen garanterer at to passasjerer aldri ber om samme rom. Mange romnummer (6, 10, 12, 14, …) forblir tomme: det er rikelig med slark.",
+    "Den entydige primtallsfaktoriseringen garanterer at to passasjerer aldri ber om samme rom. Mange romnummer (6, 10, 12, 14, …) forblir tomme: Det er rikelig med slark.",
   cantorLinkLabel: "→ /cantor · hele diagonalargumentet",
   takeItFurther: "Gå videre",
 };
@@ -966,7 +966,7 @@ export default function HilbertHotelStory() {
       }
       finalLabel={story.closingTitle}
     >
-      {/* Encounter — three approachable cards */}
+      {/* Encounter: three approachable cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -998,7 +998,7 @@ export default function HilbertHotelStory() {
         </Reveal>
       </section>
 
-      {/* Section 01 — Countably infinite */}
+      {/* Section 01: Countably infinite */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec0!.pretitle}
@@ -1008,7 +1008,7 @@ export default function HilbertHotelStory() {
         />
       </section>
 
-      {/* Section 02 — One new guest */}
+      {/* Section 02: One new guest */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec1!.pretitle}
@@ -1018,7 +1018,7 @@ export default function HilbertHotelStory() {
         />
       </section>
 
-      {/* Section 03 — k new guests */}
+      {/* Section 03: k new guests */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec2!.pretitle}
@@ -1028,7 +1028,7 @@ export default function HilbertHotelStory() {
         />
       </section>
 
-      {/* Section 04 — ℵ₀ new guests + inline hotel animation */}
+      {/* Section 04: ℵ₀ new guests + inline hotel animation */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec3!.pretitle}
@@ -1054,7 +1054,7 @@ export default function HilbertHotelStory() {
         </Reveal>
       </section>
 
-      {/* Section 05 — ℵ₀ buses × ℵ₀ guests */}
+      {/* Section 05: ℵ₀ buses × ℵ₀ guests */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec4!.pretitle}
@@ -1102,7 +1102,7 @@ export default function HilbertHotelStory() {
         </Reveal>
       </section>
 
-      {/* Section 06 — The uncountable bridge + cardinality demo */}
+      {/* Section 06: The uncountable bridge + cardinality demo */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec5!.pretitle}

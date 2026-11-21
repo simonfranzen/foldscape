@@ -41,7 +41,7 @@ export function BoidsDemo({
     mq.addEventListener?.("change", on);
     return () => mq.removeEventListener?.("change", on);
   }, []);
-  // Bumping this tears down + restarts the simulation effect — flocks
+  // Bumping this tears down + restarts the simulation effect: flocks
   // re-seed from random positions so the user can watch the swarm form
   // from scratch.
   const [resetTick, setResetTick] = useState(0);
@@ -94,18 +94,18 @@ export function BoidsDemo({
     seed();
 
     // Tuned for a watchable demo: lonely boids find each other, form
-    // several sub-flocks, those streams cross and split — NOT one big ball.
+    // several sub-flocks, those streams cross and split, NOT one big ball.
     // Key levers:
     //   PERCEPTION small relative to canvas → multiple independent clusters
     //   W_COH weak relative to W_SEP        → flocks stay loose, don't collapse
     //   W_ALI moderate                       → recognisable streams
-    const PERCEPTION = 56; // css px — neighbour radius for ali + coh
-    const AVOIDANCE = 24; // css px — separation kicks in here
+    const PERCEPTION = 56; // css px, neighbour radius for ali + coh
+    const AVOIDANCE = 24; // css px, separation kicks in here
     const MAX_SPEED = 2.6; // css px / frame
     const MIN_SPEED = 1.5;
-    const W_SEP = 0.22; // ↑ from 0.12 — keeps flocks loose
+    const W_SEP = 0.22; // ↑ from 0.12, keeps flocks loose
     const W_ALI = 0.05; // ≈ same
-    const W_COH = 0.0006; // ↓ from 0.0012 — prevents collapse to one ball
+    const W_COH = 0.0006; // ↓ from 0.0012, prevents collapse to one ball
 
     const step = () => {
       const W = canvas.width;
@@ -172,7 +172,7 @@ export function BoidsDemo({
           nvx += aliX * W_ALI + cohX * W_COH;
           nvy += aliY * W_ALI + cohY * W_COH;
         }
-        // Separation always applied — it's the only thing keeping a dense
+        // Separation always applied: it's the only thing keeping a dense
         // cluster from collapsing to a point.
         nvx += sepX * W_SEP;
         nvy += sepY * W_SEP;
@@ -211,7 +211,7 @@ export function BoidsDemo({
     const draw = () => {
       const W = canvas.width;
       const H = canvas.height;
-      // Soft fade — gives motion trails without ghosting permanently.
+      // Soft fade, gives motion trails without ghosting permanently.
       ctx.fillStyle = rgba(palette.ink[950], 0.25);
       ctx.fillRect(0, 0, W, H);
 
@@ -240,7 +240,7 @@ export function BoidsDemo({
 
     if (reduced) {
       // Reduced motion: settle to a representative frame and draw it once, no
-      // rAF loop — the swarm is frozen mid-flock instead of swirling forever.
+      // rAF loop: the swarm is frozen mid-flock instead of swirling forever.
       for (let k = 0; k < 400; k++) step();
       ctx.fillStyle = palette.ink[950];
       ctx.fillRect(0, 0, canvas.width, canvas.height);

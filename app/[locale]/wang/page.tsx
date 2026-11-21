@@ -47,7 +47,7 @@ function MiniTile({ nesw, size = 44 }: { nesw: [number, number, number, number];
 // Tile A: N=0 E=1 S=1 W=1
 // Tile B: N=1 E=1 S=0 W=1
 // Tile C: N=0 E=1 S=0 W=1
-// 2×2:  [A B]   [C C]   — A.E=B.W=1, C.E=C.W=1, A.S=C.N=0 … etc.
+// 2×2:  [A B]   [C C]   A.E=B.W=1, C.E=C.W=1, A.S=C.N=0 … etc.
 // We just show A and B and a tiled 2×2 patch as a teaching diagram.
 const TILE_A: [number, number, number, number] = [0, 1, 1, 1];
 const TILE_B: [number, number, number, number] = [1, 1, 0, 1];
@@ -97,7 +97,7 @@ const en: RichStory = {
     title: "Wang Tiles",
     tagline: "Squares with coloured edges that quietly carry any computation.",
     intro:
-      "Hao Wang's 1961 puzzle — match the colours on touching edges — turned out to hide the halting problem inside a children's matching game. Below: the rules, the surprise, and two interactives that let you place tiles by hand and watch an aperiodic patch grow.",
+      "Hao Wang's 1961 puzzle (match the colours on touching edges) turned out to hide the halting problem inside a children's matching game. Below: the rules, the surprise, and two interactives that let you place tiles by hand and watch an aperiodic patch grow.",
     ctaInteractive: "→ Open the Explorer",
     sections: [],
   },
@@ -108,7 +108,7 @@ const en: RichStory = {
       {
         label: "01",
         title: "The big idea",
-        body: "Take a square. Paint each of its four edges a colour. That's a Wang tile. Place several side by side, but only where the edges that touch share a colour — north against south, east against west, with no rotations allowed. From that one rule, in a way nobody saw coming in 1961, you can encode any computation a machine can do.",
+        body: "Take a square. Paint each of its four edges a colour. That's a Wang tile. Place several side by side, but only where the edges that touch share a colour: north against south, east against west, with no rotations allowed. From that one rule, in a way nobody saw coming in 1961, you can encode any computation a machine can do.",
       },
       {
         label: "02",
@@ -118,7 +118,7 @@ const en: RichStory = {
       {
         label: "03",
         title: "Why it matters",
-        body: "In 1966 Robert Berger proved that no algorithm can decide, in general, whether a given Wang tile set tiles the plane. To do it he built a set of 20,426 tiles that tile only aperiodically — no translation of the pattern ever maps it back to itself. The line of work that followed shrank that record from 20,426 to 13 (Culik, 1996) to 11 (Jeandel–Rao, 2015) and lit the path to Penrose tilings and the modern aperiodic monotile.",
+        body: "In 1966 Robert Berger proved that no algorithm can decide, in general, whether a given Wang tile set tiles the plane. To do it he built a set of 20,426 tiles that tile only aperiodically: no translation of the pattern ever maps it back to itself. The line of work that followed shrank that record from 20,426 to 13 (Culik, 1996) to 11 (Jeandel-Rao, 2015) and lit the path to Penrose tilings and the modern aperiodic monotile.",
       },
     ],
     tryIt:
@@ -128,22 +128,22 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · Wang's question",
       title: "Can you decide if a tile set tiles the plane?",
-      body: "In 1961 the logician Hao Wang asked a deceptively concrete question: given a finite set of square tiles with coloured edges, is there an algorithm that decides whether copies of them (no rotations, no reflections) can be assembled into a tiling of the entire infinite plane? Wang's own conjecture said yes — and stronger, he believed every tile set that tiles the plane must admit some periodic tiling, a pattern that repeats by translation. If that were true, a finite check would settle the Domino Problem once and for all. The plane would yield to a finite calculation.",
+      body: "In 1961 the logician Hao Wang asked a deceptively concrete question: given a finite set of square tiles with coloured edges, is there an algorithm that decides whether copies of them (no rotations, no reflections) can be assembled into a tiling of the entire infinite plane? Wang's own conjecture said yes, and stronger, he believed every tile set that tiles the plane must admit some periodic tiling, a pattern that repeats by translation. If that were true, a finite check would settle the Domino Problem once and for all. The plane would yield to a finite calculation.",
     },
     {
       pretitle: "Section 02 · Berger's theorem",
       title: "Undecidable. And aperiodic tile sets exist.",
-      body: "In 1966, Wang's student Robert Berger destroyed both halves of the conjecture in one stroke. He constructed a set of 20,426 Wang tiles that does tile the plane — but only aperiodically. No translation of any tiling using that set ever maps it back to itself. And he proved the Domino Problem is undecidable: no algorithm, no clever finite check, will tell you in general whether a tile set tiles the plane at all. A finite list of squares with coloured edges can be Turing-complete in disguise.",
+      body: "In 1966, Wang's student Robert Berger destroyed both halves of the conjecture in one stroke. He constructed a set of 20,426 Wang tiles that does tile the plane, but only aperiodically. No translation of any tiling using that set ever maps it back to itself. And he proved the Domino Problem is undecidable: no algorithm, no clever finite check, will tell you in general whether a tile set tiles the plane at all. A finite list of squares with coloured edges can be Turing-complete in disguise.",
     },
     {
       pretitle: "Section 03 · Encoding computation",
       title: "Turing machines, painted onto edges",
-      body: "Berger's construction is a translation: take any Turing machine and produce a Wang tile set that tiles the upper half-plane if and only if the machine never halts on its blank input. Each row of tiles spells out one full machine configuration — the tape contents and the head position — and each row-to-row transition is forced by edge-matching to be exactly one step of the machine. The infinite tiling, if it exists, is the infinite computation. Asking «does this tile set tile?» becomes «does this machine run forever?» — and the latter is the halting problem, the oldest undecidable problem we know.",
+      body: "Berger's construction is a translation: take any Turing machine and produce a Wang tile set that tiles the upper half-plane if and only if the machine never halts on its blank input. Each row of tiles spells out one full machine configuration (the tape contents and the head position) and each row-to-row transition is forced by edge-matching to be exactly one step of the machine. The infinite tiling, if it exists, is the infinite computation. Asking «does this tile set tile?» becomes «does this machine run forever?», and the latter is the halting problem, the oldest undecidable problem we know.",
     },
     {
       pretitle: "Section 04 · From 20,426 to 11",
-      title: "Robinson, Culik, Jeandel–Rao",
-      body: "Berger's 20,426 tiles were a proof, not a sculpture. The decades that followed were a hunt for the smallest aperiodic Wang set. Raphael Robinson got it down to 56 in 1971 with a cleaner hierarchical construction. In 1996 Jarkko Kari published 14, then Karel Culik II, building directly on Kari's ideas, found 13 the same year — a record that stood for nearly two decades. In 2015 Emmanuel Jeandel and Michaël Rao proved by exhaustive computer search that 11 is the true minimum: there is an aperiodic set of 11 Wang tiles, and no set of 10 or fewer can be aperiodic. The story has a finite answer, and it is 11.",
+      title: "Robinson, Culik, Jeandel-Rao",
+      body: "Berger's 20,426 tiles were a proof, not a sculpture. The decades that followed were a hunt for the smallest aperiodic Wang set. Raphael Robinson got it down to 56 in 1971 with a cleaner hierarchical construction. In 1996 Jarkko Kari published 14, then Karel Culik II, building directly on Kari's ideas, found 13 the same year, a record that stood for nearly two decades. In 2015 Emmanuel Jeandel and Michaël Rao proved by exhaustive computer search that 11 is the true minimum: there is an aperiodic set of 11 Wang tiles, and no set of 10 or fewer can be aperiodic. The story has a finite answer, and it is 11.",
     },
     {
       pretitle: "Section 05 · Quasicrystals",
@@ -152,8 +152,8 @@ const en: RichStory = {
     },
     {
       pretitle: "Section 06 · The aperiodic monotile",
-      title: "2023 — one tile is enough",
-      body: "For more than half a century the open question was whether a single tile could force aperiodicity — an «einstein», from German ein Stein, one stone. In March 2023, David Smith, Joseph Myers, Craig Kaplan, and Chaim Goodman-Strauss announced the hat: a 13-sided polygon that tiles the plane only aperiodically, using reflections. Two months later the same team produced the spectre, an aperiodic monotile that needs no reflections. The chain that started with Wang's 1961 conjecture — through Berger's 20,426, Robinson's 56, Culik's 13, Jeandel–Rao's 11 — terminates, six decades later, at 1.",
+      title: "2023: one tile is enough",
+      body: "For more than half a century the open question was whether a single tile could force aperiodicity: an «einstein», from German ein Stein, one stone. In March 2023, David Smith, Joseph Myers, Craig Kaplan, and Chaim Goodman-Strauss announced the hat: a 13-sided polygon that tiles the plane only aperiodically, using reflections. Two months later the same team produced the spectre, an aperiodic monotile that needs no reflections. The chain that started with Wang's 1961 conjecture (through Berger's 20,426, Robinson's 56, Culik's 13, Jeandel-Rao's 11) terminates, six decades later, at 1.",
     },
   ],
   closingTitle: "Place a tile. The plane decides.",
@@ -163,7 +163,7 @@ const en: RichStory = {
   tilingCaption: "Interactive · place tiles, edges must match",
   tilingPalette: "Palette · 8 tiles",
   tilingHint:
-    "Click a cell to cycle through eight tiles; click again past the last one to clear it. A red ring marks a tile whose edge disagrees with a neighbour. Try to fill the 3×3 with every shared edge matching — some configurations have many solutions, others none.",
+    "Click a cell to cycle through eight tiles; click again past the last one to clear it. A red ring marks a tile whose edge disagrees with a neighbour. Try to fill the 3×3 with every shared edge matching: some configurations have many solutions, others none.",
   tilingOk: "Every edge matches.",
   tilingBad: "Some edges don't match.",
   tilingClear: "Clear",
@@ -193,7 +193,7 @@ const de: RichStory = {
     title: "Wang-Kacheln",
     tagline: "Quadrate mit gefärbten Kanten, die heimlich jede Berechnung tragen.",
     intro:
-      "Hao Wangs Puzzle von 1961 — passende Farben an berührenden Kanten — entpuppte sich als das Halteproblem in einem Kinderspiel. Unten: die Regeln, die Überraschung, und zwei Interaktionen, in denen du selbst Kacheln legst und einer aperiodischen Fläche beim Wachsen zusiehst.",
+      "Hao Wangs Puzzle von 1961 (passende Farben an berührenden Kanten) entpuppte sich als das Halteproblem in einem Kinderspiel. Unten: die Regeln, die Überraschung, und zwei Interaktionen, in denen du selbst Kacheln legst und einer aperiodischen Fläche beim Wachsen zusiehst.",
     ctaInteractive: "→ Explorer öffnen",
     sections: [],
   },
@@ -204,7 +204,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Nimm ein Quadrat. Färbe jede der vier Kanten. Das ist eine Wang-Kachel. Leg mehrere nebeneinander, aber nur dort, wo sich berührende Kanten die Farbe teilen — Nord gegen Süd, Ost gegen West, ohne Drehungen. Aus dieser einen Regel lässt sich, auf eine Art, die 1961 niemand kommen sah, jede Berechnung kodieren, die eine Maschine ausführen kann.",
+        body: "Nimm ein Quadrat. Färbe jede der vier Kanten. Das ist eine Wang-Kachel. Leg mehrere nebeneinander, aber nur dort, wo sich berührende Kanten die Farbe teilen: Nord gegen Süd, Ost gegen West, ohne Drehungen. Aus dieser einen Regel lässt sich, auf eine Art, die 1961 niemand kommen sah, jede Berechnung kodieren, die eine Maschine ausführen kann.",
       },
       {
         label: "02",
@@ -214,32 +214,32 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "1966 bewies Robert Berger, dass kein Algorithmus allgemein entscheiden kann, ob ein gegebener Wang-Kachelsatz die Ebene kachelt. Dafür baute er einen Satz aus 20 426 Kacheln, der die Ebene nur aperiodisch kachelt — keine Translation des Musters bildet es je auf sich selbst ab. Die Folgeforschung schrumpfte diesen Rekord von 20 426 auf 13 (Culik 1996) und 11 (Jeandel–Rao 2015) und ebnete den Weg zu Penrose-Mustern und zur modernen aperiodischen Monokachel.",
+        body: "1966 bewies Robert Berger, dass kein Algorithmus allgemein entscheiden kann, ob ein gegebener Wang-Kachelsatz die Ebene kachelt. Dafür baute er einen Satz aus 20 426 Kacheln, der die Ebene nur aperiodisch kachelt: Keine Translation des Musters bildet es je auf sich selbst ab. Die Folgeforschung schrumpfte diesen Rekord von 20 426 auf 13 (Culik 1996) und 11 (Jeandel-Rao 2015) und ebnete den Weg zu Penrose-Mustern und zur modernen aperiodischen Monokachel.",
       },
     ],
     tryIt:
-      "Unten: leg selbst Kacheln so, dass jede gemeinsame Kante passt, dann sieh einer Backtracking-Suche zu, wie sie eine Fläche mit einem Demosatz im Geiste der Rekorde von Culik und Jeandel-Rao füllt.",
+      "Unten: Leg selbst Kacheln so, dass jede gemeinsame Kante passt, dann sieh einer Backtracking-Suche zu, wie sie eine Fläche mit einem Demosatz im Geiste der Rekorde von Culik und Jeandel-Rao füllt.",
   },
   sections: [
     {
       pretitle: "Abschnitt 01 · Wangs Frage",
       title: "Lässt sich entscheiden, ob ein Kachelsatz die Ebene kachelt?",
-      body: "1961 stellte der Logiker Hao Wang eine täuschend konkrete Frage: Gibt es zu einem endlichen Satz quadratischer Kacheln mit gefärbten Kanten einen Algorithmus, der entscheidet, ob sich Kopien davon (ohne Drehungen, ohne Spiegelungen) zu einer Kachelung der gesamten unendlichen Ebene zusammenfügen lassen? Wangs eigene Vermutung war: ja — und stärker, jeder Kachelsatz, der die Ebene kachelt, müsse auch eine periodische Kachelung zulassen, ein Muster, das sich durch Translation wiederholt. Wäre das wahr, würde eine endliche Prüfung das Dominoproblem ein für alle Mal klären. Die Ebene würde einer endlichen Rechnung weichen.",
+      body: "1961 stellte der Logiker Hao Wang eine täuschend konkrete Frage: Gibt es zu einem endlichen Satz quadratischer Kacheln mit gefärbten Kanten einen Algorithmus, der entscheidet, ob sich Kopien davon (ohne Drehungen, ohne Spiegelungen) zu einer Kachelung der gesamten unendlichen Ebene zusammenfügen lassen? Wangs eigene Vermutung war: Ja, und stärker, jeder Kachelsatz, der die Ebene kachelt, müsse auch eine periodische Kachelung zulassen, ein Muster, das sich durch Translation wiederholt. Wäre das wahr, würde eine endliche Prüfung das Dominoproblem ein für alle Mal klären. Die Ebene würde einer endlichen Rechnung weichen.",
     },
     {
       pretitle: "Abschnitt 02 · Bergers Satz",
       title: "Unentscheidbar. Und aperiodische Kachelsätze existieren.",
-      body: "1966 zerschlug Wangs Schüler Robert Berger beide Hälften der Vermutung in einem Zug. Er konstruierte einen Satz aus 20 426 Wang-Kacheln, der die Ebene tatsächlich kachelt — aber nur aperiodisch. Keine Translation einer Kachelung mit diesem Satz bildet sie je auf sich selbst ab. Und er bewies, dass das Dominoproblem unentscheidbar ist: kein Algorithmus, keine clevere endliche Prüfung kann allgemein sagen, ob ein Kachelsatz die Ebene überhaupt kachelt. Eine endliche Liste farbiger Quadrate kann verkappt Turing-vollständig sein.",
+      body: "1966 zerschlug Wangs Schüler Robert Berger beide Hälften der Vermutung in einem Zug. Er konstruierte einen Satz aus 20 426 Wang-Kacheln, der die Ebene tatsächlich kachelt, aber nur aperiodisch. Keine Translation einer Kachelung mit diesem Satz bildet sie je auf sich selbst ab. Und er bewies, dass das Dominoproblem unentscheidbar ist: Kein Algorithmus, keine clevere endliche Prüfung kann allgemein sagen, ob ein Kachelsatz die Ebene überhaupt kachelt. Eine endliche Liste farbiger Quadrate kann verkappt Turing-vollständig sein.",
     },
     {
       pretitle: "Abschnitt 03 · Berechnung kodieren",
       title: "Turing-Maschinen, auf Kanten gemalt",
-      body: "Bergers Konstruktion ist eine Übersetzung: nimm irgendeine Turing-Maschine und erzeuge daraus einen Wang-Kachelsatz, der die obere Halbebene genau dann kachelt, wenn die Maschine bei leerem Band nie hält. Jede Kachelreihe buchstabiert eine vollständige Maschinenkonfiguration — Bandinhalt und Kopfposition — und jeder Übergang von Reihe zu Reihe wird durch die Kantenfarben gezwungen, exakt ein Maschinenschritt zu sein. Die unendliche Kachelung, falls sie existiert, ist die unendliche Rechnung. Aus «kachelt dieser Satz?» wird «läuft diese Maschine ewig?» — und das ist das Halteproblem, das älteste bekannte unentscheidbare Problem.",
+      body: "Bergers Konstruktion ist eine Übersetzung: Nimm irgendeine Turing-Maschine und erzeuge daraus einen Wang-Kachelsatz, der die obere Halbebene genau dann kachelt, wenn die Maschine bei leerem Band nie hält. Jede Kachelreihe buchstabiert eine vollständige Maschinenkonfiguration (Bandinhalt und Kopfposition) und jeder Übergang von Reihe zu Reihe wird durch die Kantenfarben gezwungen, exakt ein Maschinenschritt zu sein. Die unendliche Kachelung, falls sie existiert, ist die unendliche Rechnung. Aus «kachelt dieser Satz?» wird «läuft diese Maschine ewig?», und das ist das Halteproblem, das älteste bekannte unentscheidbare Problem.",
     },
     {
       pretitle: "Abschnitt 04 · Von 20 426 zu 11",
-      title: "Robinson, Culik, Jeandel–Rao",
-      body: "Bergers 20 426 Kacheln waren ein Beweis, keine Skulptur. Die folgenden Jahrzehnte waren eine Jagd nach dem kleinsten aperiodischen Wang-Satz. Raphael Robinson drückte ihn 1971 mit einer saubereren hierarchischen Konstruktion auf 56. 1996 veröffentlichte Jarkko Kari 14; Karel Culik II baute direkt auf Karis Ideen auf und fand im selben Jahr 13 — ein Rekord, der fast zwei Jahrzehnte hielt. 2015 bewiesen Emmanuel Jeandel und Michaël Rao per erschöpfender Computersuche, dass 11 das wahre Minimum ist: es gibt einen aperiodischen Satz aus 11 Wang-Kacheln, und keiner aus 10 oder weniger kann aperiodisch sein. Die Geschichte hat eine endliche Antwort, und sie heißt 11.",
+      title: "Robinson, Culik, Jeandel-Rao",
+      body: "Bergers 20 426 Kacheln waren ein Beweis, keine Skulptur. Die folgenden Jahrzehnte waren eine Jagd nach dem kleinsten aperiodischen Wang-Satz. Raphael Robinson drückte ihn 1971 mit einer saubereren hierarchischen Konstruktion auf 56. 1996 veröffentlichte Jarkko Kari 14; Karel Culik II baute direkt auf Karis Ideen auf und fand im selben Jahr 13, ein Rekord, der fast zwei Jahrzehnte hielt. 2015 bewiesen Emmanuel Jeandel und Michaël Rao per erschöpfender Computersuche, dass 11 das wahre Minimum ist: Es gibt einen aperiodischen Satz aus 11 Wang-Kacheln, und keiner aus 10 oder weniger kann aperiodisch sein. Die Geschichte hat eine endliche Antwort, und sie heißt 11.",
     },
     {
       pretitle: "Abschnitt 05 · Quasikristalle",
@@ -248,8 +248,8 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 06 · Die aperiodische Monokachel",
-      title: "2023 — eine Kachel reicht",
-      body: "Über ein halbes Jahrhundert war offen, ob eine einzige Kachel Aperiodizität erzwingen kann — ein «einstein», ein Stein. Im März 2023 verkündeten David Smith, Joseph Myers, Craig Kaplan und Chaim Goodman-Strauss den Hut: ein 13-eckiges Vieleck, das die Ebene nur aperiodisch kachelt, mit Spiegelungen. Zwei Monate später lieferte dasselbe Team den Spectre, eine aperiodische Monokachel ohne Spiegelungen. Die Kette, die mit Wangs Vermutung von 1961 begann — über Bergers 20 426, Robinsons 56, Culiks 13, Jeandel–Raos 11 — endet sechs Jahrzehnte später bei 1.",
+      title: "2023: Eine Kachel reicht",
+      body: "Über ein halbes Jahrhundert war offen, ob eine einzige Kachel Aperiodizität erzwingen kann: ein «einstein», ein Stein. Im März 2023 verkündeten David Smith, Joseph Myers, Craig Kaplan und Chaim Goodman-Strauss den Hut: ein 13-eckiges Vieleck, das die Ebene nur aperiodisch kachelt, mit Spiegelungen. Zwei Monate später lieferte dasselbe Team den Spectre, eine aperiodische Monokachel ohne Spiegelungen. Die Kette, die mit Wangs Vermutung von 1961 begann (über Bergers 20 426, Robinsons 56, Culiks 13, Jeandel-Raos 11), endet sechs Jahrzehnte später bei 1.",
     },
   ],
   closingTitle: "Leg eine Kachel. Die Ebene entscheidet.",
@@ -259,7 +259,7 @@ const de: RichStory = {
   tilingCaption: "Interaktiv · Kacheln legen, Kanten müssen passen",
   tilingPalette: "Palette · 8 Kacheln",
   tilingHint:
-    "Klick eine Zelle, um durch acht Kacheln zu schalten; nach der letzten wird sie wieder leer. Ein roter Ring markiert eine Kachel, deren Kante mit einem Nachbarn nicht übereinstimmt. Versuch, die 3×3 so zu füllen, dass jede gemeinsame Kante passt — manche Konfigurationen haben viele Lösungen, andere keine.",
+    "Klick eine Zelle, um durch acht Kacheln zu schalten; nach der letzten wird sie wieder leer. Ein roter Ring markiert eine Kachel, deren Kante mit einem Nachbarn nicht übereinstimmt. Versuch, die 3×3 so zu füllen, dass jede gemeinsame Kante passt: Manche Konfigurationen haben viele Lösungen, andere keine.",
   tilingOk: "Jede Kante passt.",
   tilingBad: "Einige Kanten passen nicht.",
   tilingClear: "Leeren",
@@ -289,7 +289,7 @@ const es: RichStory = {
     title: "Teselas de Wang",
     tagline: "Cuadrados con aristas de colores que llevan, en silencio, cualquier cómputo.",
     intro:
-      "El acertijo de Hao Wang de 1961 — encajar colores en las aristas que se tocan — escondía el problema de la parada dentro de un juego de niños. Abajo: las reglas, la sorpresa y dos interacciones para colocar teselas a mano y ver crecer un parche aperiódico.",
+      "El acertijo de Hao Wang de 1961 (encajar colores en las aristas que se tocan) escondía el problema de la parada dentro de un juego de niños. Abajo: las reglas, la sorpresa y dos interacciones para colocar teselas a mano y ver crecer un parche aperiódico.",
     ctaInteractive: "→ Abrir el Explorador",
     sections: [],
   },
@@ -300,7 +300,7 @@ const es: RichStory = {
       {
         label: "01",
         title: "La gran idea",
-        body: "Toma un cuadrado. Pinta cada una de sus cuatro aristas. Esa es una tesela de Wang. Pon varias lado a lado, pero solo donde las aristas que se tocan comparten color — norte contra sur, este contra oeste, sin giros. De esa única regla, de un modo que en 1961 nadie vio venir, se puede codificar cualquier cómputo que una máquina sepa hacer.",
+        body: "Toma un cuadrado. Pinta cada una de sus cuatro aristas. Esa es una tesela de Wang. Pon varias lado a lado, pero solo donde las aristas que se tocan comparten color: norte contra sur, este contra oeste, sin giros. De esa única regla, de un modo que en 1961 nadie vio venir, se puede codificar cualquier cómputo que una máquina sepa hacer.",
       },
       {
         label: "02",
@@ -310,7 +310,7 @@ const es: RichStory = {
       {
         label: "03",
         title: "Por qué importa",
-        body: "En 1966 Robert Berger demostró que ningún algoritmo decide, en general, si un conjunto dado de teselas de Wang tesela el plano. Para hacerlo construyó un conjunto de 20 426 teselas que tesela el plano solo de forma aperiódica — ninguna traslación del patrón lo deja invariante. Los trabajos siguientes redujeron el récord de 20 426 a 13 (Culik, 1996) y a 11 (Jeandel–Rao, 2015), y abrieron el camino a las teselaciones de Penrose y al moderno monotile aperiódico.",
+        body: "En 1966 Robert Berger demostró que ningún algoritmo decide, en general, si un conjunto dado de teselas de Wang tesela el plano. Para hacerlo construyó un conjunto de 20 426 teselas que tesela el plano solo de forma aperiódica: ninguna traslación del patrón lo deja invariante. Los trabajos siguientes redujeron el récord de 20 426 a 13 (Culik, 1996) y a 11 (Jeandel-Rao, 2015), y abrieron el camino a las teselaciones de Penrose y al moderno monotile aperiódico.",
       },
     ],
     tryIt:
@@ -320,22 +320,22 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · La pregunta de Wang",
       title: "¿Se puede decidir si un conjunto tesela el plano?",
-      body: "En 1961 el lógico Hao Wang planteó una pregunta engañosamente concreta: dado un conjunto finito de cuadrados con aristas coloreadas, ¿existe un algoritmo que decida si copias suyas (sin giros, sin reflexiones) se pueden ensamblar en una teselación de todo el plano infinito? La propia conjetura de Wang decía que sí — y más fuerte: todo conjunto que tesela el plano debe admitir alguna teselación periódica, un patrón que se repite por traslación. Si fuera cierto, una comprobación finita zanjaría el Problema del Dominó de una vez. El plano cedería ante un cálculo finito.",
+      body: "En 1961 el lógico Hao Wang planteó una pregunta engañosamente concreta: dado un conjunto finito de cuadrados con aristas coloreadas, ¿existe un algoritmo que decida si copias suyas (sin giros, sin reflexiones) se pueden ensamblar en una teselación de todo el plano infinito? La propia conjetura de Wang decía que sí, y más fuerte: todo conjunto que tesela el plano debe admitir alguna teselación periódica, un patrón que se repite por traslación. Si fuera cierto, una comprobación finita zanjaría el Problema del Dominó de una vez. El plano cedería ante un cálculo finito.",
     },
     {
       pretitle: "Sección 02 · El teorema de Berger",
       title: "Indecidible. Y existen conjuntos aperiódicos.",
-      body: "En 1966 el discípulo de Wang, Robert Berger, derribó ambas mitades de la conjetura de un golpe. Construyó un conjunto de 20 426 teselas de Wang que sí tesela el plano — pero solo aperiódicamente. Ninguna traslación de una teselación con ese conjunto lo deja invariante. Y demostró que el Problema del Dominó es indecidible: ningún algoritmo, ninguna comprobación finita, dirá en general si un conjunto tesela el plano. Una lista finita de cuadrados coloreados puede ser Turing-completa disfrazada.",
+      body: "En 1966 el discípulo de Wang, Robert Berger, derribó ambas mitades de la conjetura de un golpe. Construyó un conjunto de 20 426 teselas de Wang que sí tesela el plano, pero solo aperiódicamente. Ninguna traslación de una teselación con ese conjunto lo deja invariante. Y demostró que el Problema del Dominó es indecidible: ningún algoritmo, ninguna comprobación finita, dirá en general si un conjunto tesela el plano. Una lista finita de cuadrados coloreados puede ser Turing-completa disfrazada.",
     },
     {
       pretitle: "Sección 03 · Cómputo en la teselación",
       title: "Máquinas de Turing, pintadas en aristas",
-      body: "La construcción de Berger es una traducción: toma una máquina de Turing y produce un conjunto de teselas de Wang que tesela el semiplano superior si y solo si la máquina nunca se detiene con cinta en blanco. Cada fila de teselas deletrea una configuración completa de la máquina — el contenido de la cinta y la posición del cabezal — y cada transición de fila a fila queda forzada por las aristas a ser exactamente un paso de la máquina. La teselación infinita, si existe, es el cómputo infinito. «¿Tesela este conjunto?» se vuelve «¿esta máquina corre para siempre?» — y eso es el problema de la parada.",
+      body: "La construcción de Berger es una traducción: toma una máquina de Turing y produce un conjunto de teselas de Wang que tesela el semiplano superior si y solo si la máquina nunca se detiene con cinta en blanco. Cada fila de teselas deletrea una configuración completa de la máquina (el contenido de la cinta y la posición del cabezal) y cada transición de fila a fila queda forzada por las aristas a ser exactamente un paso de la máquina. La teselación infinita, si existe, es el cómputo infinito. «¿Tesela este conjunto?» se vuelve «¿esta máquina corre para siempre?», y eso es el problema de la parada.",
     },
     {
       pretitle: "Sección 04 · De 20 426 a 11",
-      title: "Robinson, Culik, Jeandel–Rao",
-      body: "Las 20 426 teselas de Berger eran demostración, no escultura. Las décadas siguientes fueron una caza del menor conjunto aperiódico. Raphael Robinson lo bajó a 56 en 1971 con una construcción jerárquica más limpia. En 1996 Jarkko Kari publicó 14; Karel Culik II, apoyándose directamente en las ideas de Kari, encontró 13 ese mismo año — un récord que se sostuvo casi dos décadas. En 2015 Emmanuel Jeandel y Michaël Rao demostraron por búsqueda computacional exhaustiva que 11 es el mínimo verdadero: hay un conjunto aperiódico de 11 teselas de Wang, y ninguno de 10 o menos puede serlo. La historia tiene respuesta finita, y es 11.",
+      title: "Robinson, Culik, Jeandel-Rao",
+      body: "Las 20 426 teselas de Berger eran demostración, no escultura. Las décadas siguientes fueron una caza del menor conjunto aperiódico. Raphael Robinson lo bajó a 56 en 1971 con una construcción jerárquica más limpia. En 1996 Jarkko Kari publicó 14; Karel Culik II, apoyándose directamente en las ideas de Kari, encontró 13 ese mismo año, un récord que se sostuvo casi dos décadas. En 2015 Emmanuel Jeandel y Michaël Rao demostraron por búsqueda computacional exhaustiva que 11 es el mínimo verdadero: hay un conjunto aperiódico de 11 teselas de Wang, y ninguno de 10 o menos puede serlo. La historia tiene respuesta finita, y es 11.",
     },
     {
       pretitle: "Sección 05 · Cuasicristales",
@@ -344,8 +344,8 @@ const es: RichStory = {
     },
     {
       pretitle: "Sección 06 · El monotile aperiódico",
-      title: "2023 — basta una tesela",
-      body: "Durante más de medio siglo la pregunta abierta era si una sola tesela podía forzar la aperiodicidad — un «einstein», una piedra. En marzo de 2023, David Smith, Joseph Myers, Craig Kaplan y Chaim Goodman-Strauss anunciaron el «hat»: un polígono de 13 lados que tesela el plano solo aperiódicamente, usando reflexiones. Dos meses después el mismo equipo produjo el «spectre», un monotile aperiódico que no necesita reflexiones. La cadena que arrancó con la conjetura de Wang en 1961 — por las 20 426 de Berger, las 56 de Robinson, las 13 de Culik, las 11 de Jeandel–Rao — termina, seis décadas después, en 1.",
+      title: "2023: basta una tesela",
+      body: "Durante más de medio siglo la pregunta abierta era si una sola tesela podía forzar la aperiodicidad: un «einstein», una piedra. En marzo de 2023, David Smith, Joseph Myers, Craig Kaplan y Chaim Goodman-Strauss anunciaron el «hat»: un polígono de 13 lados que tesela el plano solo aperiódicamente, usando reflexiones. Dos meses después el mismo equipo produjo el «spectre», un monotile aperiódico que no necesita reflexiones. La cadena que arrancó con la conjetura de Wang en 1961 (por las 20 426 de Berger, las 56 de Robinson, las 13 de Culik, las 11 de Jeandel-Rao) termina, seis décadas después, en 1.",
     },
   ],
   closingTitle: "Coloca una tesela. El plano decide.",
@@ -355,7 +355,7 @@ const es: RichStory = {
   tilingCaption: "Interactivo · coloca teselas, las aristas deben encajar",
   tilingPalette: "Paleta · 8 teselas",
   tilingHint:
-    "Pulsa una celda para ciclar entre ocho teselas; otra pulsación más allá de la última la vacía. Un anillo rojo marca una tesela cuya arista no concuerda con la vecina. Intenta llenar el 3×3 con todas las aristas compartidas en acuerdo — algunas configuraciones tienen muchas soluciones, otras ninguna.",
+    "Pulsa una celda para ciclar entre ocho teselas; otra pulsación más allá de la última la vacía. Un anillo rojo marca una tesela cuya arista no concuerda con la vecina. Intenta llenar el 3×3 con todas las aristas compartidas en acuerdo: algunas configuraciones tienen muchas soluciones, otras ninguna.",
   tilingOk: "Toda arista encaja.",
   tilingBad: "Hay aristas que no encajan.",
   tilingClear: "Vaciar",
@@ -385,7 +385,7 @@ const fr: RichStory = {
     title: "Tuiles de Wang",
     tagline: "Des carrés à bords colorés qui portent, en silence, n'importe quel calcul.",
     intro:
-      "L'énigme de Hao Wang en 1961 — faire correspondre les couleurs des bords qui se touchent — cachait le problème de l'arrêt dans un jeu d'enfant. Ci-dessous : les règles, la surprise et deux interactions pour poser les tuiles soi-même et regarder grandir un pavage apériodique.",
+      "L'énigme de Hao Wang en 1961 (faire correspondre les couleurs des bords qui se touchent) cachait le problème de l'arrêt dans un jeu d'enfant. Ci-dessous : les règles, la surprise et deux interactions pour poser les tuiles soi-même et regarder grandir un pavage apériodique.",
     ctaInteractive: "→ Ouvrir l'Explorateur",
     sections: [],
   },
@@ -396,7 +396,7 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Prends un carré. Peins chacun de ses quatre bords. C'est une tuile de Wang. Pose-en plusieurs côte à côte, mais seulement là où les bords qui se touchent partagent la couleur — nord contre sud, est contre ouest, sans rotations. À partir de cette seule règle, d'une manière que personne n'a vue venir en 1961, on peut coder n'importe quel calcul qu'une machine sait faire.",
+        body: "Prends un carré. Peins chacun de ses quatre bords. C'est une tuile de Wang. Pose-en plusieurs côte à côte, mais seulement là où les bords qui se touchent partagent la couleur : nord contre sud, est contre ouest, sans rotations. À partir de cette seule règle, d'une manière que personne n'a vue venir en 1961, on peut coder n'importe quel calcul qu'une machine sait faire.",
       },
       {
         label: "02",
@@ -406,7 +406,7 @@ const fr: RichStory = {
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "En 1966, Robert Berger a prouvé qu'aucun algorithme ne décide, en général, si un jeu donné de tuiles de Wang pave le plan. Pour le faire, il a construit un jeu de 20 426 tuiles qui ne pave le plan qu'apériodiquement — aucune translation du motif ne le ramène sur lui-même. La suite a fait chuter ce record de 20 426 à 13 (Culik, 1996), puis à 11 (Jeandel–Rao, 2015), et ouvert la route vers les pavages de Penrose et la monotile apériodique moderne.",
+        body: "En 1966, Robert Berger a prouvé qu'aucun algorithme ne décide, en général, si un jeu donné de tuiles de Wang pave le plan. Pour le faire, il a construit un jeu de 20 426 tuiles qui ne pave le plan qu'apériodiquement : aucune translation du motif ne le ramène sur lui-même. La suite a fait chuter ce record de 20 426 à 13 (Culik, 1996), puis à 11 (Jeandel-Rao, 2015), et ouvert la route vers les pavages de Penrose et la monotile apériodique moderne.",
       },
     ],
     tryIt:
@@ -416,22 +416,22 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · La question de Wang",
       title: "Peut-on décider si un jeu pave le plan ?",
-      body: "En 1961, le logicien Hao Wang a posé une question trompeusement concrète : étant donné un jeu fini de tuiles carrées à bords colorés, existe-t-il un algorithme qui décide si des copies (sans rotations, sans réflexions) peuvent s'assembler en un pavage du plan infini tout entier ? La conjecture de Wang disait oui — et plus fort : tout jeu qui pave le plan doit admettre un pavage périodique, un motif qui se répète par translation. Si c'était vrai, une vérification finie réglerait le Problème du Domino une fois pour toutes. Le plan se laisserait dompter par un calcul fini.",
+      body: "En 1961, le logicien Hao Wang a posé une question trompeusement concrète : étant donné un jeu fini de tuiles carrées à bords colorés, existe-t-il un algorithme qui décide si des copies (sans rotations, sans réflexions) peuvent s'assembler en un pavage du plan infini tout entier ? La conjecture de Wang disait oui, et plus fort : tout jeu qui pave le plan doit admettre un pavage périodique, un motif qui se répète par translation. Si c'était vrai, une vérification finie réglerait le Problème du Domino une fois pour toutes. Le plan se laisserait dompter par un calcul fini.",
     },
     {
       pretitle: "Section 02 · Le théorème de Berger",
       title: "Indécidable. Et il existe des jeux apériodiques.",
-      body: "En 1966, l'élève de Wang, Robert Berger, a fauché les deux moitiés de la conjecture d'un coup. Il a construit un jeu de 20 426 tuiles de Wang qui pave bel et bien le plan — mais seulement apériodiquement. Aucune translation d'un pavage par ce jeu ne le ramène sur lui-même. Et il a démontré que le Problème du Domino est indécidable : aucun algorithme, aucune vérification finie ne dira en général si un jeu pave le plan. Une liste finie de carrés colorés peut être Turing-complète, déguisée.",
+      body: "En 1966, l'élève de Wang, Robert Berger, a fauché les deux moitiés de la conjecture d'un coup. Il a construit un jeu de 20 426 tuiles de Wang qui pave bel et bien le plan, mais seulement apériodiquement. Aucune translation d'un pavage par ce jeu ne le ramène sur lui-même. Et il a démontré que le Problème du Domino est indécidable : aucun algorithme, aucune vérification finie ne dira en général si un jeu pave le plan. Une liste finie de carrés colorés peut être Turing-complète, déguisée.",
     },
     {
       pretitle: "Section 03 · Coder un calcul",
       title: "Des machines de Turing peintes sur les bords",
-      body: "La construction de Berger est une traduction : prends une machine de Turing, produis un jeu de tuiles de Wang qui pave le demi-plan supérieur si et seulement si la machine ne s'arrête jamais sur ruban vide. Chaque rangée de tuiles épelle une configuration complète de la machine — contenu du ruban et position de la tête — et chaque transition d'une rangée à la suivante est forcée par les couleurs des bords à être exactement un pas de la machine. Le pavage infini, s'il existe, est le calcul infini. « Ce jeu pave-t-il ? » devient « cette machine tourne-t-elle pour toujours ? » — c'est-à-dire le problème de l'arrêt.",
+      body: "La construction de Berger est une traduction : prends une machine de Turing, produis un jeu de tuiles de Wang qui pave le demi-plan supérieur si et seulement si la machine ne s'arrête jamais sur ruban vide. Chaque rangée de tuiles épelle une configuration complète de la machine (contenu du ruban et position de la tête) et chaque transition d'une rangée à la suivante est forcée par les couleurs des bords à être exactement un pas de la machine. Le pavage infini, s'il existe, est le calcul infini. « Ce jeu pave-t-il ? » devient « cette machine tourne-t-elle pour toujours ? », c'est-à-dire le problème de l'arrêt.",
     },
     {
       pretitle: "Section 04 · De 20 426 à 11",
-      title: "Robinson, Culik, Jeandel–Rao",
-      body: "Les 20 426 tuiles de Berger étaient une preuve, pas une sculpture. Les décennies suivantes ont été une chasse au plus petit jeu apériodique. Raphael Robinson est tombé à 56 en 1971 avec une construction hiérarchique plus propre. En 1996, Jarkko Kari a publié 14 ; Karel Culik II, s'appuyant directement sur les idées de Kari, en a trouvé 13 la même année — un record qui a tenu près de vingt ans. En 2015, Emmanuel Jeandel et Michaël Rao ont prouvé par recherche informatique exhaustive que 11 est le vrai minimum : il existe un jeu apériodique de 11 tuiles de Wang, et aucun jeu de 10 ou moins ne peut l'être. L'histoire a une réponse finie, et c'est 11.",
+      title: "Robinson, Culik, Jeandel-Rao",
+      body: "Les 20 426 tuiles de Berger étaient une preuve, pas une sculpture. Les décennies suivantes ont été une chasse au plus petit jeu apériodique. Raphael Robinson est tombé à 56 en 1971 avec une construction hiérarchique plus propre. En 1996, Jarkko Kari a publié 14 ; Karel Culik II, s'appuyant directement sur les idées de Kari, en a trouvé 13 la même année, un record qui a tenu près de vingt ans. En 2015, Emmanuel Jeandel et Michaël Rao ont prouvé par recherche informatique exhaustive que 11 est le vrai minimum : il existe un jeu apériodique de 11 tuiles de Wang, et aucun jeu de 10 ou moins ne peut l'être. L'histoire a une réponse finie, et c'est 11.",
     },
     {
       pretitle: "Section 05 · Quasicristaux",
@@ -440,8 +440,8 @@ const fr: RichStory = {
     },
     {
       pretitle: "Section 06 · La monotile apériodique",
-      title: "2023 — une seule tuile suffit",
-      body: "Pendant plus d'un demi-siècle la question ouverte était de savoir si une seule tuile pouvait forcer l'apériodicité — un « einstein », une pierre. En mars 2023, David Smith, Joseph Myers, Craig Kaplan et Chaim Goodman-Strauss annoncent le « chapeau » : un polygone à 13 côtés qui ne pave le plan qu'apériodiquement, en utilisant des réflexions. Deux mois plus tard, la même équipe livre le « spectre », une monotile apériodique qui se passe de réflexion. La chaîne ouverte par la conjecture de Wang en 1961 — passant par les 20 426 de Berger, les 56 de Robinson, les 13 de Culik, les 11 de Jeandel–Rao — se termine, soixante ans plus tard, à 1.",
+      title: "2023 : une seule tuile suffit",
+      body: "Pendant plus d'un demi-siècle la question ouverte était de savoir si une seule tuile pouvait forcer l'apériodicité : un « einstein », une pierre. En mars 2023, David Smith, Joseph Myers, Craig Kaplan et Chaim Goodman-Strauss annoncent le « chapeau » : un polygone à 13 côtés qui ne pave le plan qu'apériodiquement, en utilisant des réflexions. Deux mois plus tard, la même équipe livre le « spectre », une monotile apériodique qui se passe de réflexion. La chaîne ouverte par la conjecture de Wang en 1961 (passant par les 20 426 de Berger, les 56 de Robinson, les 13 de Culik, les 11 de Jeandel-Rao) se termine, soixante ans plus tard, à 1.",
     },
   ],
   closingTitle: "Pose une tuile. Le plan tranche.",
@@ -451,7 +451,7 @@ const fr: RichStory = {
   tilingCaption: "Interactif · pose les tuiles, les bords doivent s'accorder",
   tilingPalette: "Palette · 8 tuiles",
   tilingHint:
-    "Clique une cellule pour passer en cycle parmi huit tuiles ; un clic au-delà de la dernière la vide. Un anneau rouge marque une tuile dont le bord ne s'accorde pas avec un voisin. Essaie de remplir le 3×3 avec tous les bords partagés en accord — certaines configurations ont beaucoup de solutions, d'autres aucune.",
+    "Clique une cellule pour passer en cycle parmi huit tuiles ; un clic au-delà de la dernière la vide. Un anneau rouge marque une tuile dont le bord ne s'accorde pas avec un voisin. Essaie de remplir le 3×3 avec tous les bords partagés en accord : certaines configurations ont beaucoup de solutions, d'autres aucune.",
   tilingOk: "Tous les bords s'accordent.",
   tilingBad: "Certains bords ne s'accordent pas.",
   tilingClear: "Vider",
@@ -481,7 +481,7 @@ const it: RichStory = {
     title: "Tasselli di Wang",
     tagline: "Quadrati con bordi colorati che portano, in silenzio, qualsiasi calcolo.",
     intro:
-      "L'indovinello di Hao Wang del 1961 — far combaciare i colori dei bordi che si toccano — nascondeva il problema della fermata in un gioco da bambini. Sotto: le regole, la sorpresa e due interazioni per posare i tasselli a mano e veder crescere una macchia aperiodica.",
+      "L'indovinello di Hao Wang del 1961 (far combaciare i colori dei bordi che si toccano) nascondeva il problema della fermata in un gioco da bambini. Sotto: le regole, la sorpresa e due interazioni per posare i tasselli a mano e veder crescere una macchia aperiodica.",
     ctaInteractive: "→ Apri l'Esploratore",
     sections: [],
   },
@@ -492,7 +492,7 @@ const it: RichStory = {
       {
         label: "01",
         title: "L'idea centrale",
-        body: "Prendi un quadrato. Dipingi ognuno dei quattro bordi. È un tassello di Wang. Mettine diversi affiancati, ma solo dove i bordi che si toccano condividono il colore — nord contro sud, est contro ovest, niente rotazioni. Da quella sola regola, in un modo che nel 1961 nessuno vide arrivare, si può codificare qualsiasi calcolo che una macchina sappia fare.",
+        body: "Prendi un quadrato. Dipingi ognuno dei quattro bordi. È un tassello di Wang. Mettine diversi affiancati, ma solo dove i bordi che si toccano condividono il colore: nord contro sud, est contro ovest, niente rotazioni. Da quella sola regola, in un modo che nel 1961 nessuno vide arrivare, si può codificare qualsiasi calcolo che una macchina sappia fare.",
       },
       {
         label: "02",
@@ -502,7 +502,7 @@ const it: RichStory = {
       {
         label: "03",
         title: "Perché conta",
-        body: "Nel 1966 Robert Berger dimostrò che nessun algoritmo decide, in generale, se un dato insieme di tasselli di Wang piastrella il piano. Per farlo costruì un insieme di 20 426 tasselli che piastrella il piano solo aperiodicamente — nessuna traslazione del motivo lo riporta su sé stesso. I lavori successivi ridussero il record da 20 426 a 13 (Culik, 1996) e a 11 (Jeandel–Rao, 2015), e aprirono la via ai mosaici di Penrose e al moderno monotile aperiodico.",
+        body: "Nel 1966 Robert Berger dimostrò che nessun algoritmo decide, in generale, se un dato insieme di tasselli di Wang piastrella il piano. Per farlo costruì un insieme di 20 426 tasselli che piastrella il piano solo aperiodicamente: nessuna traslazione del motivo lo riporta su sé stesso. I lavori successivi ridussero il record da 20 426 a 13 (Culik, 1996) e a 11 (Jeandel-Rao, 2015), e aprirono la via ai mosaici di Penrose e al moderno monotile aperiodico.",
       },
     ],
     tryIt:
@@ -512,22 +512,22 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · La domanda di Wang",
       title: "Si può decidere se un insieme piastrella il piano?",
-      body: "Nel 1961 il logico Hao Wang pose una domanda ingannevolmente concreta: dato un insieme finito di quadrati con bordi colorati, esiste un algoritmo che decide se copie di essi (senza rotazioni, senza riflessioni) si possono assemblare in un mosaico dell'intero piano infinito? La congettura stessa di Wang diceva sì — e di più: ogni insieme che piastrella il piano deve ammettere un mosaico periodico, un motivo che si ripete per traslazione. Se fosse vero, un controllo finito risolverebbe il Problema del Domino una volta per tutte. Il piano cederebbe a un calcolo finito.",
+      body: "Nel 1961 il logico Hao Wang pose una domanda ingannevolmente concreta: dato un insieme finito di quadrati con bordi colorati, esiste un algoritmo che decide se copie di essi (senza rotazioni, senza riflessioni) si possono assemblare in un mosaico dell'intero piano infinito? La congettura stessa di Wang diceva sì, e di più: ogni insieme che piastrella il piano deve ammettere un mosaico periodico, un motivo che si ripete per traslazione. Se fosse vero, un controllo finito risolverebbe il Problema del Domino una volta per tutte. Il piano cederebbe a un calcolo finito.",
     },
     {
       pretitle: "Sezione 02 · Il teorema di Berger",
       title: "Indecidibile. E gli insiemi aperiodici esistono.",
-      body: "Nel 1966 l'allievo di Wang, Robert Berger, abbatté entrambe le metà della congettura in un colpo solo. Costruì un insieme di 20 426 tasselli di Wang che piastrella davvero il piano — ma solo aperiodicamente. Nessuna traslazione di un mosaico con quell'insieme lo riporta su sé stesso. E dimostrò che il Problema del Domino è indecidibile: nessun algoritmo, nessun controllo finito, dirà in generale se un insieme piastrella il piano. Una lista finita di quadrati colorati può essere Turing-completa travestita.",
+      body: "Nel 1966 l'allievo di Wang, Robert Berger, abbatté entrambe le metà della congettura in un colpo solo. Costruì un insieme di 20 426 tasselli di Wang che piastrella davvero il piano, ma solo aperiodicamente. Nessuna traslazione di un mosaico con quell'insieme lo riporta su sé stesso. E dimostrò che il Problema del Domino è indecidibile: nessun algoritmo, nessun controllo finito, dirà in generale se un insieme piastrella il piano. Una lista finita di quadrati colorati può essere Turing-completa travestita.",
     },
     {
       pretitle: "Sezione 03 · Calcolo nel mosaico",
       title: "Macchine di Turing dipinte sui bordi",
-      body: "La costruzione di Berger è una traduzione: prendi una macchina di Turing e produci un insieme di tasselli di Wang che piastrella il semipiano superiore se e solo se la macchina non si ferma mai su nastro vuoto. Ogni riga di tasselli scandisce una configurazione completa della macchina — contenuto del nastro e posizione della testa — e ogni passaggio da riga a riga è forzato dai bordi ad essere esattamente un passo della macchina. Il mosaico infinito, se esiste, è il calcolo infinito. « Questo insieme piastrella? » diventa « questa macchina gira per sempre? » — il problema della fermata.",
+      body: "La costruzione di Berger è una traduzione: prendi una macchina di Turing e produci un insieme di tasselli di Wang che piastrella il semipiano superiore se e solo se la macchina non si ferma mai su nastro vuoto. Ogni riga di tasselli scandisce una configurazione completa della macchina (contenuto del nastro e posizione della testa) e ogni passaggio da riga a riga è forzato dai bordi ad essere esattamente un passo della macchina. Il mosaico infinito, se esiste, è il calcolo infinito. « Questo insieme piastrella? » diventa « questa macchina gira per sempre? »: il problema della fermata.",
     },
     {
       pretitle: "Sezione 04 · Da 20 426 a 11",
-      title: "Robinson, Culik, Jeandel–Rao",
-      body: "I 20 426 tasselli di Berger erano una dimostrazione, non una scultura. I decenni seguenti furono una caccia al più piccolo insieme aperiodico. Raphael Robinson lo portò a 56 nel 1971 con una costruzione gerarchica più pulita. Nel 1996 Jarkko Kari pubblicò 14; Karel Culik II, appoggiandosi direttamente sulle idee di Kari, trovò 13 nello stesso anno — un record che tenne per quasi vent'anni. Nel 2015 Emmanuel Jeandel e Michaël Rao dimostrarono per ricerca esaustiva al calcolatore che 11 è il vero minimo: esiste un insieme aperiodico di 11 tasselli di Wang, e nessuno da 10 o meno può esserlo. La storia ha risposta finita, ed è 11.",
+      title: "Robinson, Culik, Jeandel-Rao",
+      body: "I 20 426 tasselli di Berger erano una dimostrazione, non una scultura. I decenni seguenti furono una caccia al più piccolo insieme aperiodico. Raphael Robinson lo portò a 56 nel 1971 con una costruzione gerarchica più pulita. Nel 1996 Jarkko Kari pubblicò 14; Karel Culik II, appoggiandosi direttamente sulle idee di Kari, trovò 13 nello stesso anno, un record che tenne per quasi vent'anni. Nel 2015 Emmanuel Jeandel e Michaël Rao dimostrarono per ricerca esaustiva al calcolatore che 11 è il vero minimo: esiste un insieme aperiodico di 11 tasselli di Wang, e nessuno da 10 o meno può esserlo. La storia ha risposta finita, ed è 11.",
     },
     {
       pretitle: "Sezione 05 · Quasicristalli",
@@ -536,8 +536,8 @@ const it: RichStory = {
     },
     {
       pretitle: "Sezione 06 · Il monotile aperiodico",
-      title: "2023 — basta un tassello",
-      body: "Per oltre mezzo secolo la domanda aperta era se un singolo tassello potesse forzare l'aperiodicità — un « einstein », una pietra. Nel marzo 2023, David Smith, Joseph Myers, Craig Kaplan e Chaim Goodman-Strauss annunciarono il « cappello »: un poligono a 13 lati che piastrella il piano solo aperiodicamente, usando riflessioni. Due mesi dopo lo stesso team produsse lo « spettro », un monotile aperiodico che non richiede riflessioni. La catena aperta dalla congettura di Wang nel 1961 — attraverso i 20 426 di Berger, i 56 di Robinson, i 13 di Culik, gli 11 di Jeandel–Rao — termina, sessant'anni dopo, a 1.",
+      title: "2023: basta un tassello",
+      body: "Per oltre mezzo secolo la domanda aperta era se un singolo tassello potesse forzare l'aperiodicità: un « einstein », una pietra. Nel marzo 2023, David Smith, Joseph Myers, Craig Kaplan e Chaim Goodman-Strauss annunciarono il « cappello »: un poligono a 13 lati che piastrella il piano solo aperiodicamente, usando riflessioni. Due mesi dopo lo stesso team produsse lo « spettro », un monotile aperiodico che non richiede riflessioni. La catena aperta dalla congettura di Wang nel 1961 (attraverso i 20 426 di Berger, i 56 di Robinson, i 13 di Culik, gli 11 di Jeandel-Rao) termina, sessant'anni dopo, a 1.",
     },
   ],
   closingTitle: "Posa un tassello. Il piano decide.",
@@ -547,7 +547,7 @@ const it: RichStory = {
   tilingCaption: "Interattivo · posa i tasselli, i bordi devono combaciare",
   tilingPalette: "Tavolozza · 8 tasselli",
   tilingHint:
-    "Clicca una cella per scorrere otto tasselli; un clic oltre l'ultimo la svuota. Un anello rosso segna un tassello il cui bordo non concorda col vicino. Prova a riempire il 3×3 con tutti i bordi condivisi in accordo — certe configurazioni hanno molte soluzioni, altre nessuna.",
+    "Clicca una cella per scorrere otto tasselli; un clic oltre l'ultimo la svuota. Un anello rosso segna un tassello il cui bordo non concorda col vicino. Prova a riempire il 3×3 con tutti i bordi condivisi in accordo: certe configurazioni hanno molte soluzioni, altre nessuna.",
   tilingOk: "Ogni bordo combacia.",
   tilingBad: "Alcuni bordi non combaciano.",
   tilingClear: "Svuota",
@@ -577,7 +577,7 @@ const pt: RichStory = {
     title: "Tijolos de Wang",
     tagline: "Quadrados com bordas coloridas que carregam, em silêncio, qualquer computação.",
     intro:
-      "O quebra-cabeças de Hao Wang de 1961 — casar as cores das bordas que se tocam — escondia o problema da paragem dentro de um jogo de crianças. Abaixo: as regras, a surpresa e duas interações para colocar os tijolos à mão e ver crescer um remendo aperiódico.",
+      "O quebra-cabeças de Hao Wang de 1961 (casar as cores das bordas que se tocam) escondia o problema da paragem dentro de um jogo de crianças. Abaixo: as regras, a surpresa e duas interações para colocar os tijolos à mão e ver crescer um remendo aperiódico.",
     ctaInteractive: "→ Abrir o Explorador",
     sections: [],
   },
@@ -588,7 +588,7 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A ideia central",
-        body: "Pega num quadrado. Pinta cada uma das quatro bordas. É um tijolo de Wang. Põe vários lado a lado, mas só onde as bordas que se tocam partilham a cor — norte contra sul, este contra oeste, sem rotações. Dessa única regra, de um modo que ninguém viu vir em 1961, dá para codificar qualquer computação que uma máquina saiba fazer.",
+        body: "Pega num quadrado. Pinta cada uma das quatro bordas. É um tijolo de Wang. Põe vários lado a lado, mas só onde as bordas que se tocam partilham a cor: norte contra sul, este contra oeste, sem rotações. Dessa única regra, de um modo que ninguém viu vir em 1961, dá para codificar qualquer computação que uma máquina saiba fazer.",
       },
       {
         label: "02",
@@ -598,7 +598,7 @@ const pt: RichStory = {
       {
         label: "03",
         title: "Porque importa",
-        body: "Em 1966 Robert Berger provou que nenhum algoritmo decide, em geral, se um conjunto dado de tijolos de Wang ladrilha o plano. Para isso construiu um conjunto de 20 426 tijolos que só ladrilha o plano aperiodicamente — nenhuma translação do padrão o devolve a si mesmo. O trabalho seguinte reduziu o recorde de 20 426 a 13 (Culik, 1996) e a 11 (Jeandel–Rao, 2015), e abriu o caminho aos mosaicos de Penrose e ao moderno monotile aperiódico.",
+        body: "Em 1966 Robert Berger provou que nenhum algoritmo decide, em geral, se um conjunto dado de tijolos de Wang ladrilha o plano. Para isso construiu um conjunto de 20 426 tijolos que só ladrilha o plano aperiodicamente: nenhuma translação do padrão o devolve a si mesmo. O trabalho seguinte reduziu o recorde de 20 426 a 13 (Culik, 1996) e a 11 (Jeandel-Rao, 2015), e abriu o caminho aos mosaicos de Penrose e ao moderno monotile aperiódico.",
       },
     ],
     tryIt:
@@ -608,22 +608,22 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · A pergunta de Wang",
       title: "Pode-se decidir se um conjunto ladrilha o plano?",
-      body: "Em 1961 o lógico Hao Wang colocou uma pergunta enganadoramente concreta: dado um conjunto finito de quadrados com bordas coloridas, existe um algoritmo que decide se cópias deles (sem rotações, sem reflexões) se podem juntar num ladrilhamento de todo o plano infinito? A própria conjetura de Wang dizia que sim — e mais forte: todo conjunto que ladrilha o plano tem de admitir um ladrilhamento periódico, um padrão que se repete por translação. Se fosse verdade, uma verificação finita resolvia o Problema do Dominó de vez. O plano cederia a uma conta finita.",
+      body: "Em 1961 o lógico Hao Wang colocou uma pergunta enganadoramente concreta: dado um conjunto finito de quadrados com bordas coloridas, existe um algoritmo que decide se cópias deles (sem rotações, sem reflexões) se podem juntar num ladrilhamento de todo o plano infinito? A própria conjetura de Wang dizia que sim, e mais forte: todo conjunto que ladrilha o plano tem de admitir um ladrilhamento periódico, um padrão que se repete por translação. Se fosse verdade, uma verificação finita resolvia o Problema do Dominó de vez. O plano cederia a uma conta finita.",
     },
     {
       pretitle: "Secção 02 · O teorema de Berger",
       title: "Indecidível. E há conjuntos aperiódicos.",
-      body: "Em 1966 o aluno de Wang, Robert Berger, derrubou ambas as metades da conjetura de uma vez. Construiu um conjunto de 20 426 tijolos de Wang que ladrilha o plano — mas só aperiodicamente. Nenhuma translação de um ladrilhamento com esse conjunto o devolve a si mesmo. E provou que o Problema do Dominó é indecidível: nenhum algoritmo, nenhuma verificação finita, dirá em geral se um conjunto ladrilha o plano. Uma lista finita de quadrados coloridos pode ser Turing-completa disfarçada.",
+      body: "Em 1966 o aluno de Wang, Robert Berger, derrubou ambas as metades da conjetura de uma vez. Construiu um conjunto de 20 426 tijolos de Wang que ladrilha o plano, mas só aperiodicamente. Nenhuma translação de um ladrilhamento com esse conjunto o devolve a si mesmo. E provou que o Problema do Dominó é indecidível: nenhum algoritmo, nenhuma verificação finita, dirá em geral se um conjunto ladrilha o plano. Uma lista finita de quadrados coloridos pode ser Turing-completa disfarçada.",
     },
     {
       pretitle: "Secção 03 · Computar com tijolos",
       title: "Máquinas de Turing pintadas nas bordas",
-      body: "A construção de Berger é uma tradução: pega numa máquina de Turing e produz um conjunto de tijolos de Wang que ladrilha o semi-plano superior se e só se a máquina nunca pára na fita em branco. Cada linha de tijolos soletra uma configuração completa da máquina — conteúdo da fita e posição da cabeça — e cada transição de linha a linha é forçada pelas bordas a ser exatamente um passo da máquina. O ladrilhamento infinito, se existe, é a computação infinita. « Este conjunto ladrilha? » torna-se « esta máquina corre para sempre? » — e isso é o problema da paragem.",
+      body: "A construção de Berger é uma tradução: pega numa máquina de Turing e produz um conjunto de tijolos de Wang que ladrilha o semi-plano superior se e só se a máquina nunca pára na fita em branco. Cada linha de tijolos soletra uma configuração completa da máquina (conteúdo da fita e posição da cabeça) e cada transição de linha a linha é forçada pelas bordas a ser exatamente um passo da máquina. O ladrilhamento infinito, se existe, é a computação infinita. « Este conjunto ladrilha? » torna-se « esta máquina corre para sempre? », e isso é o problema da paragem.",
     },
     {
       pretitle: "Secção 04 · De 20 426 a 11",
-      title: "Robinson, Culik, Jeandel–Rao",
-      body: "Os 20 426 tijolos de Berger eram demonstração, não escultura. As décadas seguintes foram uma caça ao menor conjunto aperiódico. Raphael Robinson chegou a 56 em 1971 com uma construção hierárquica mais limpa. Em 1996 Jarkko Kari publicou 14; Karel Culik II, apoiando-se directamente nas ideias de Kari, achou 13 no mesmo ano — um recorde que se manteve quase duas décadas. Em 2015, Emmanuel Jeandel e Michaël Rao provaram por busca computacional exaustiva que 11 é o verdadeiro mínimo: há um conjunto aperiódico de 11 tijolos de Wang, e nenhum de 10 ou menos o pode ser. A história tem resposta finita, e é 11.",
+      title: "Robinson, Culik, Jeandel-Rao",
+      body: "Os 20 426 tijolos de Berger eram demonstração, não escultura. As décadas seguintes foram uma caça ao menor conjunto aperiódico. Raphael Robinson chegou a 56 em 1971 com uma construção hierárquica mais limpa. Em 1996 Jarkko Kari publicou 14; Karel Culik II, apoiando-se directamente nas ideias de Kari, achou 13 no mesmo ano, um recorde que se manteve quase duas décadas. Em 2015, Emmanuel Jeandel e Michaël Rao provaram por busca computacional exaustiva que 11 é o verdadeiro mínimo: há um conjunto aperiódico de 11 tijolos de Wang, e nenhum de 10 ou menos o pode ser. A história tem resposta finita, e é 11.",
     },
     {
       pretitle: "Secção 05 · Quasicristais",
@@ -632,8 +632,8 @@ const pt: RichStory = {
     },
     {
       pretitle: "Secção 06 · O monotile aperiódico",
-      title: "2023 — um tijolo basta",
-      body: "Durante mais de meio século a pergunta em aberto era se um único tijolo podia forçar aperiodicidade — um « einstein », uma pedra. Em março de 2023, David Smith, Joseph Myers, Craig Kaplan e Chaim Goodman-Strauss anunciaram o « chapéu »: um polígono de 13 lados que só ladrilha o plano aperiodicamente, usando reflexões. Dois meses depois a mesma equipa apresentou o « espectro », um monotile aperiódico que dispensa reflexões. A cadeia aberta pela conjetura de Wang em 1961 — passando pelos 20 426 de Berger, pelos 56 de Robinson, pelos 13 de Culik, pelos 11 de Jeandel–Rao — acaba, seis décadas depois, em 1.",
+      title: "2023: um tijolo basta",
+      body: "Durante mais de meio século a pergunta em aberto era se um único tijolo podia forçar aperiodicidade: um « einstein », uma pedra. Em março de 2023, David Smith, Joseph Myers, Craig Kaplan e Chaim Goodman-Strauss anunciaram o « chapéu »: um polígono de 13 lados que só ladrilha o plano aperiodicamente, usando reflexões. Dois meses depois a mesma equipa apresentou o « espectro », um monotile aperiódico que dispensa reflexões. A cadeia aberta pela conjetura de Wang em 1961 (passando pelos 20 426 de Berger, pelos 56 de Robinson, pelos 13 de Culik, pelos 11 de Jeandel-Rao) acaba, seis décadas depois, em 1.",
     },
   ],
   closingTitle: "Coloca um tijolo. O plano decide.",
@@ -643,7 +643,7 @@ const pt: RichStory = {
   tilingCaption: "Interativo · coloca tijolos, as bordas têm de casar",
   tilingPalette: "Paleta · 8 tijolos",
   tilingHint:
-    "Clica numa célula para percorrer oito tijolos; um clique a seguir ao último esvazia-a. Um anel vermelho marca um tijolo cuja borda não concorda com a vizinha. Tenta encher o 3×3 com todas as bordas partilhadas em acordo — algumas configurações têm muitas soluções, outras nenhuma.",
+    "Clica numa célula para percorrer oito tijolos; um clique a seguir ao último esvazia-a. Um anel vermelho marca um tijolo cuja borda não concorda com a vizinha. Tenta encher o 3×3 com todas as bordas partilhadas em acordo: algumas configurações têm muitas soluções, outras nenhuma.",
   tilingOk: "Toda borda casa.",
   tilingBad: "Há bordas que não casam.",
   tilingClear: "Limpar",
@@ -673,7 +673,7 @@ const sv: RichStory = {
     title: "Wang-plattor",
     tagline: "Kvadrater med färgade kanter som tyst bär vilken beräkning som helst.",
     intro:
-      "Hao Wangs gåta från 1961 — matcha färgerna på kanter som möts — gömde stopproblemet i ett barnspel. Nedan: reglerna, överraskningen och två interaktioner där du lägger plattor själv och ser en aperiodisk yta växa fram.",
+      "Hao Wangs gåta från 1961 (matcha färgerna på kanter som möts) gömde stopproblemet i ett barnspel. Nedan: reglerna, överraskningen och två interaktioner där du lägger plattor själv och ser en aperiodisk yta växa fram.",
     ctaInteractive: "→ Öppna utforskaren",
     sections: [],
   },
@@ -684,7 +684,7 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "Ta en kvadrat. Måla var och en av de fyra kanterna. Det är en Wang-platta. Lägg flera bredvid varandra, men bara där kanterna som möts delar färg — nord mot syd, öst mot väst, utan rotationer. Ur den enda regeln kan man, på ett sätt ingen såg komma 1961, koda vilken beräkning som helst som en maskin kan utföra.",
+        body: "Ta en kvadrat. Måla var och en av de fyra kanterna. Det är en Wang-platta. Lägg flera bredvid varandra, men bara där kanterna som möts delar färg: nord mot syd, öst mot väst, utan rotationer. Ur den enda regeln kan man, på ett sätt ingen såg komma 1961, koda vilken beräkning som helst som en maskin kan utföra.",
       },
       {
         label: "02",
@@ -694,7 +694,7 @@ const sv: RichStory = {
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "1966 bevisade Robert Berger att ingen algoritm i allmänhet kan avgöra om en given Wang-uppsättning täcker planet. För att göra det byggde han en uppsättning av 20 426 plattor som täcker planet bara aperiodiskt — ingen translation av mönstret avbildar det på sig självt. Den fortsatta forskningen krympte rekordet från 20 426 till 13 (Culik 1996) och 11 (Jeandel–Rao 2015), och öppnade vägen till Penrose-mönster och den moderna aperiodiska monoplattan.",
+        body: "1966 bevisade Robert Berger att ingen algoritm i allmänhet kan avgöra om en given Wang-uppsättning täcker planet. För att göra det byggde han en uppsättning av 20 426 plattor som täcker planet bara aperiodiskt: ingen translation av mönstret avbildar det på sig självt. Den fortsatta forskningen krympte rekordet från 20 426 till 13 (Culik 1996) och 11 (Jeandel-Rao 2015), och öppnade vägen till Penrose-mönster och den moderna aperiodiska monoplattan.",
       },
     ],
     tryIt:
@@ -704,22 +704,22 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Wangs fråga",
       title: "Kan man avgöra om en uppsättning täcker planet?",
-      body: "1961 ställde logikern Hao Wang en bedrägligt konkret fråga: givet en ändlig uppsättning kvadratiska plattor med färgade kanter, finns det en algoritm som avgör om kopior av dem (utan rotationer, utan speglingar) kan fogas ihop till en täckning av hela det oändliga planet? Wangs egen förmodan sa ja — och starkare: varje uppsättning som täcker planet måste tillåta någon periodisk täckning, ett mönster som upprepas genom translation. Om det stämde skulle en ändlig kontroll lösa Dominoproblemet en gång för alla. Planet skulle falla för en ändlig beräkning.",
+      body: "1961 ställde logikern Hao Wang en bedrägligt konkret fråga: givet en ändlig uppsättning kvadratiska plattor med färgade kanter, finns det en algoritm som avgör om kopior av dem (utan rotationer, utan speglingar) kan fogas ihop till en täckning av hela det oändliga planet? Wangs egen förmodan sa ja, och starkare: varje uppsättning som täcker planet måste tillåta någon periodisk täckning, ett mönster som upprepas genom translation. Om det stämde skulle en ändlig kontroll lösa Dominoproblemet en gång för alla. Planet skulle falla för en ändlig beräkning.",
     },
     {
       pretitle: "Avsnitt 02 · Bergers sats",
       title: "Oavgörbart. Och aperiodiska uppsättningar finns.",
-      body: "1966 slog Wangs elev Robert Berger sönder båda halvorna av förmodan i ett enda slag. Han konstruerade en uppsättning på 20 426 Wang-plattor som faktiskt täcker planet — men bara aperiodiskt. Ingen translation av en täckning med den uppsättningen avbildar den på sig själv. Och han bevisade att Dominoproblemet är oavgörbart: ingen algoritm, ingen smart ändlig kontroll, kan i allmänhet säga om en uppsättning täcker planet alls. En ändlig lista av färgade kvadrater kan vara Turing-fullständig i förklädnad.",
+      body: "1966 slog Wangs elev Robert Berger sönder båda halvorna av förmodan i ett enda slag. Han konstruerade en uppsättning på 20 426 Wang-plattor som faktiskt täcker planet, men bara aperiodiskt. Ingen translation av en täckning med den uppsättningen avbildar den på sig själv. Och han bevisade att Dominoproblemet är oavgörbart: ingen algoritm, ingen smart ändlig kontroll, kan i allmänhet säga om en uppsättning täcker planet alls. En ändlig lista av färgade kvadrater kan vara Turing-fullständig i förklädnad.",
     },
     {
       pretitle: "Avsnitt 03 · Beräkning i mönstret",
       title: "Turingmaskiner målade på kanterna",
-      body: "Bergers konstruktion är en översättning: ta vilken Turingmaskin som helst och producera en Wang-uppsättning som täcker det övre halvplanet om och endast om maskinen aldrig stannar på tom indata. Varje rad plattor stavar ut en hel maskinkonfiguration — bandets innehåll och huvudets position — och varje övergång från rad till rad tvingas av kantfärgerna att vara exakt ett maskinsteg. Den oändliga täckningen, om den finns, är den oändliga beräkningen. « Täcker den här uppsättningen? » blir « kör den här maskinen i evighet? » — och det är stopproblemet.",
+      body: "Bergers konstruktion är en översättning: ta vilken Turingmaskin som helst och producera en Wang-uppsättning som täcker det övre halvplanet om och endast om maskinen aldrig stannar på tom indata. Varje rad plattor stavar ut en hel maskinkonfiguration (bandets innehåll och huvudets position) och varje övergång från rad till rad tvingas av kantfärgerna att vara exakt ett maskinsteg. Den oändliga täckningen, om den finns, är den oändliga beräkningen. « Täcker den här uppsättningen? » blir « kör den här maskinen i evighet? », och det är stopproblemet.",
     },
     {
       pretitle: "Avsnitt 04 · Från 20 426 till 11",
-      title: "Robinson, Culik, Jeandel–Rao",
-      body: "Bergers 20 426 plattor var ett bevis, inte en skulptur. Decennierna som följde var en jakt efter den minsta aperiodiska Wang-uppsättningen. Raphael Robinson tryckte ner den till 56 år 1971 med en renare hierarkisk konstruktion. 1996 publicerade Jarkko Kari 14; Karel Culik II byggde direkt på Karis idéer och hittade 13 samma år — ett rekord som höll i nästan två decennier. 2015 bevisade Emmanuel Jeandel och Michaël Rao genom uttömmande datorsökning att 11 är det sanna minimum: det finns en aperiodisk uppsättning av 11 Wang-plattor, och ingen uppsättning av 10 eller färre kan vara aperiodisk. Historien har ett ändligt svar, och det är 11.",
+      title: "Robinson, Culik, Jeandel-Rao",
+      body: "Bergers 20 426 plattor var ett bevis, inte en skulptur. Decennierna som följde var en jakt efter den minsta aperiodiska Wang-uppsättningen. Raphael Robinson tryckte ner den till 56 år 1971 med en renare hierarkisk konstruktion. 1996 publicerade Jarkko Kari 14; Karel Culik II byggde direkt på Karis idéer och hittade 13 samma år, ett rekord som höll i nästan två decennier. 2015 bevisade Emmanuel Jeandel och Michaël Rao genom uttömmande datorsökning att 11 är det sanna minimum: det finns en aperiodisk uppsättning av 11 Wang-plattor, och ingen uppsättning av 10 eller färre kan vara aperiodisk. Historien har ett ändligt svar, och det är 11.",
     },
     {
       pretitle: "Avsnitt 05 · Kvasikristaller",
@@ -728,8 +728,8 @@ const sv: RichStory = {
     },
     {
       pretitle: "Avsnitt 06 · Den aperiodiska monoplattan",
-      title: "2023 — en platta räcker",
-      body: "I mer än ett halvt sekel var den öppna frågan om en enda platta kan tvinga aperiodicitet — en « einstein », en sten. I mars 2023 tillkännagav David Smith, Joseph Myers, Craig Kaplan och Chaim Goodman-Strauss « hatten »: en 13-sidig polygon som täcker planet bara aperiodiskt, med speglingar. Två månader senare levererade samma team « spöket », en aperiodisk monoplatta som klarar sig utan speglingar. Kedjan som Wangs förmodan från 1961 öppnade — genom Bergers 20 426, Robinsons 56, Culiks 13, Jeandel–Raos 11 — slutar, sex decennier senare, i 1.",
+      title: "2023: en platta räcker",
+      body: "I mer än ett halvt sekel var den öppna frågan om en enda platta kan tvinga aperiodicitet: en « einstein », en sten. I mars 2023 tillkännagav David Smith, Joseph Myers, Craig Kaplan och Chaim Goodman-Strauss « hatten »: en 13-sidig polygon som täcker planet bara aperiodiskt, med speglingar. Två månader senare levererade samma team « spöket », en aperiodisk monoplatta som klarar sig utan speglingar. Kedjan som Wangs förmodan från 1961 öppnade (genom Bergers 20 426, Robinsons 56, Culiks 13, Jeandel-Raos 11) slutar, sex decennier senare, i 1.",
     },
   ],
   closingTitle: "Lägg en platta. Planet avgör.",
@@ -739,7 +739,7 @@ const sv: RichStory = {
   tilingCaption: "Interaktivt · lägg plattor, kanterna måste matcha",
   tilingPalette: "Palett · 8 plattor",
   tilingHint:
-    "Klicka en cell för att stega genom åtta plattor; ett klick efter den sista tömmer den. En röd ring markerar en platta vars kant inte stämmer med grannen. Försök fylla 3×3:an så att varje delad kant matchar — vissa konfigurationer har många lösningar, andra inga.",
+    "Klicka en cell för att stega genom åtta plattor; ett klick efter den sista tömmer den. En röd ring markerar en platta vars kant inte stämmer med grannen. Försök fylla 3×3:an så att varje delad kant matchar: vissa konfigurationer har många lösningar, andra inga.",
   tilingOk: "Alla kanter matchar.",
   tilingBad: "Vissa kanter matchar inte.",
   tilingClear: "Töm",
@@ -769,7 +769,7 @@ const no: RichStory = {
     title: "Wang-fliser",
     tagline: "Kvadrater med fargede kanter som stille bærer enhver beregning.",
     intro:
-      "Hao Wangs gåte fra 1961 — match fargene på kantene som møtes — skjulte stoppproblemet i en barneleik. Under: reglene, overraskelsen og to interaksjoner der du legger fliser selv og ser en aperiodisk flate vokse fram.",
+      "Hao Wangs gåte fra 1961 (match fargene på kantene som møtes) skjulte stoppproblemet i en barneleik. Under: reglene, overraskelsen og to interaksjoner der du legger fliser selv og ser en aperiodisk flate vokse fram.",
     ctaInteractive: "→ Åpne utforskeren",
     sections: [],
   },
@@ -780,7 +780,7 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store idéen",
-        body: "Ta en kvadrat. Mal hver av de fire kantene. Det er en Wang-flis. Legg flere ved siden av hverandre, men bare der kantene som møtes deler farge — nord mot sør, øst mot vest, uten rotasjoner. Fra den ene regelen kan man, på en måte ingen så komme i 1961, kode en hvilken som helst beregning en maskin kan gjøre.",
+        body: "Ta en kvadrat. Mal hver av de fire kantene. Det er en Wang-flis. Legg flere ved siden av hverandre, men bare der kantene som møtes deler farge: nord mot sør, øst mot vest, uten rotasjoner. Fra den ene regelen kan man, på en måte ingen så komme i 1961, kode en hvilken som helst beregning en maskin kan gjøre.",
       },
       {
         label: "02",
@@ -790,32 +790,32 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "I 1966 beviste Robert Berger at ingen algoritme generelt kan avgjøre om et gitt Wang-flisesett dekker planet. For å gjøre det bygde han et sett på 20 426 fliser som bare dekker planet aperiodisk — ingen translasjon av mønsteret avbilder det på seg selv. Den videre forskningen krympet rekorden fra 20 426 til 13 (Culik 1996) og 11 (Jeandel–Rao 2015), og åpnet veien til Penrose-mønstre og den moderne aperiodiske monoflisen.",
+        body: "I 1966 beviste Robert Berger at ingen algoritme generelt kan avgjøre om et gitt Wang-flisesett dekker planet. For å gjøre det bygde han et sett på 20 426 fliser som bare dekker planet aperiodisk: Ingen translasjon av mønsteret avbilder det på seg selv. Den videre forskningen krympet rekorden fra 20 426 til 13 (Culik 1996) og 11 (Jeandel-Rao 2015), og åpnet veien til Penrose-mønstre og den moderne aperiodiske monoflisen.",
       },
     ],
     tryIt:
-      "Under: legg selv fliser slik at hver delt kant stemmer, og se så et backtracking-søk fylle en flate med et demosett i ånden til rekordene fra Culik og Jeandel-Rao.",
+      "Under: Legg selv fliser slik at hver delt kant stemmer, og se så et backtracking-søk fylle en flate med et demosett i ånden til rekordene fra Culik og Jeandel-Rao.",
   },
   sections: [
     {
       pretitle: "Avsnitt 01 · Wangs spørsmål",
       title: "Kan man avgjøre om et sett dekker planet?",
-      body: "I 1961 stilte logikeren Hao Wang et bedragersk konkret spørsmål: gitt et endelig sett kvadratiske fliser med fargede kanter, finnes det en algoritme som avgjør om kopier av dem (uten rotasjoner, uten speilinger) kan settes sammen til en dekking av hele det uendelige planet? Wangs egen formodning sa ja — og sterkere: ethvert sett som dekker planet må tillate en periodisk dekking, et mønster som gjentar seg ved translasjon. Var det sant, ville en endelig sjekk avgjøre Dominoproblemet for godt. Planet ville falle for en endelig regning.",
+      body: "I 1961 stilte logikeren Hao Wang et bedragersk konkret spørsmål: Gitt et endelig sett kvadratiske fliser med fargede kanter, finnes det en algoritme som avgjør om kopier av dem (uten rotasjoner, uten speilinger) kan settes sammen til en dekking av hele det uendelige planet? Wangs egen formodning sa ja, og sterkere: Ethvert sett som dekker planet må tillate en periodisk dekking, et mønster som gjentar seg ved translasjon. Var det sant, ville en endelig sjekk avgjøre Dominoproblemet for godt. Planet ville falle for en endelig regning.",
     },
     {
       pretitle: "Avsnitt 02 · Bergers teorem",
       title: "Uavgjørbart. Og aperiodiske sett finnes.",
-      body: "I 1966 raserte Wangs elev Robert Berger begge halvdeler av formodningen på én gang. Han konstruerte et sett på 20 426 Wang-fliser som faktisk dekker planet — men bare aperiodisk. Ingen translasjon av en dekking med det settet avbilder den på seg selv. Og han beviste at Dominoproblemet er uavgjørbart: ingen algoritme, ingen smart endelig sjekk, vil generelt si om et sett dekker planet i det hele tatt. En endelig liste fargede kvadrater kan være Turing-fullstendig i forkledning.",
+      body: "I 1966 raserte Wangs elev Robert Berger begge halvdeler av formodningen på én gang. Han konstruerte et sett på 20 426 Wang-fliser som faktisk dekker planet, men bare aperiodisk. Ingen translasjon av en dekking med det settet avbilder den på seg selv. Og han beviste at Dominoproblemet er uavgjørbart: Ingen algoritme, ingen smart endelig sjekk, vil generelt si om et sett dekker planet i det hele tatt. En endelig liste fargede kvadrater kan være Turing-fullstendig i forkledning.",
     },
     {
       pretitle: "Avsnitt 03 · Beregning i mønsteret",
       title: "Turingmaskiner malt på kantene",
-      body: "Bergers konstruksjon er en oversettelse: ta en hvilken som helst Turingmaskin og produser et Wang-flisesett som dekker det øvre halvplanet hvis og bare hvis maskinen aldri stopper på tom inndata. Hver rad fliser staver ut en hel maskinkonfigurasjon — båndinnholdet og hodeposisjonen — og hver overgang fra rad til rad tvinges av kantfargene til å være nøyaktig ett maskinsteg. Den uendelige dekkingen, om den finnes, er den uendelige beregningen. « Dekker dette settet? » blir « går denne maskinen for alltid? » — og det er stoppproblemet.",
+      body: "Bergers konstruksjon er en oversettelse: Ta en hvilken som helst Turingmaskin og produser et Wang-flisesett som dekker det øvre halvplanet hvis og bare hvis maskinen aldri stopper på tom inndata. Hver rad fliser staver ut en hel maskinkonfigurasjon (båndinnholdet og hodeposisjonen) og hver overgang fra rad til rad tvinges av kantfargene til å være nøyaktig ett maskinsteg. Den uendelige dekkingen, om den finnes, er den uendelige beregningen. « Dekker dette settet? » blir « går denne maskinen for alltid? », og det er stoppproblemet.",
     },
     {
       pretitle: "Avsnitt 04 · Fra 20 426 til 11",
-      title: "Robinson, Culik, Jeandel–Rao",
-      body: "Bergers 20 426 fliser var et bevis, ikke en skulptur. Tiårene som fulgte var en jakt på det minste aperiodiske Wang-settet. Raphael Robinson presset det ned til 56 i 1971 med en renere hierarkisk konstruksjon. I 1996 publiserte Jarkko Kari 14; Karel Culik II bygde direkte på Karis ideer og fant 13 samme år — en rekord som holdt i nesten to tiår. I 2015 beviste Emmanuel Jeandel og Michaël Rao ved uttømmende datasøk at 11 er det sanne minimum: det finnes et aperiodisk sett på 11 Wang-fliser, og intet sett på 10 eller færre kan være aperiodisk. Historien har et endelig svar, og det er 11.",
+      title: "Robinson, Culik, Jeandel-Rao",
+      body: "Bergers 20 426 fliser var et bevis, ikke en skulptur. Tiårene som fulgte var en jakt på det minste aperiodiske Wang-settet. Raphael Robinson presset det ned til 56 i 1971 med en renere hierarkisk konstruksjon. I 1996 publiserte Jarkko Kari 14; Karel Culik II bygde direkte på Karis ideer og fant 13 samme år, en rekord som holdt i nesten to tiår. I 2015 beviste Emmanuel Jeandel og Michaël Rao ved uttømmende datasøk at 11 er det sanne minimum: Det finnes et aperiodisk sett på 11 Wang-fliser, og intet sett på 10 eller færre kan være aperiodisk. Historien har et endelig svar, og det er 11.",
     },
     {
       pretitle: "Avsnitt 05 · Kvasikrystaller",
@@ -824,8 +824,8 @@ const no: RichStory = {
     },
     {
       pretitle: "Avsnitt 06 · Den aperiodiske monoflisen",
-      title: "2023 — én flis er nok",
-      body: "I over et halvt århundre var det åpne spørsmålet om én enkelt flis kan tvinge fram aperiodisitet — en « einstein », en stein. I mars 2023 kunngjorde David Smith, Joseph Myers, Craig Kaplan og Chaim Goodman-Strauss « hatten »: en 13-kantet polygon som dekker planet bare aperiodisk, med speilinger. To måneder senere leverte samme team « spøkelset », en aperiodisk monoflis som klarer seg uten speilinger. Kjeden Wangs formodning åpnet i 1961 — gjennom Bergers 20 426, Robinsons 56, Culiks 13, Jeandel–Raos 11 — ender, seks tiår senere, i 1.",
+      title: "2023: Én flis er nok",
+      body: "I over et halvt århundre var det åpne spørsmålet om én enkelt flis kan tvinge fram aperiodisitet: en « einstein », en stein. I mars 2023 kunngjorde David Smith, Joseph Myers, Craig Kaplan og Chaim Goodman-Strauss « hatten »: en 13-kantet polygon som dekker planet bare aperiodisk, med speilinger. To måneder senere leverte samme team « spøkelset », en aperiodisk monoflis som klarer seg uten speilinger. Kjeden Wangs formodning åpnet i 1961 (gjennom Bergers 20 426, Robinsons 56, Culiks 13, Jeandel-Raos 11) ender, seks tiår senere, i 1.",
     },
   ],
   closingTitle: "Legg en flis. Planet bestemmer.",
@@ -835,7 +835,7 @@ const no: RichStory = {
   tilingCaption: "Interaktivt · legg fliser, kantene må matche",
   tilingPalette: "Palett · 8 fliser",
   tilingHint:
-    "Klikk en celle for å gå gjennom åtte fliser; et klikk forbi den siste tømmer den. En rød ring merker en flis hvis kant ikke stemmer med naboen. Prøv å fylle 3×3-en så hver delt kant matcher — noen konfigurasjoner har mange løsninger, andre ingen.",
+    "Klikk en celle for å gå gjennom åtte fliser; et klikk forbi den siste tømmer den. En rød ring merker en flis hvis kant ikke stemmer med naboen. Prøv å fylle 3×3-en så hver delt kant matcher: Noen konfigurasjoner har mange løsninger, andre ingen.",
   tilingOk: "Alle kanter matcher.",
   tilingBad: "Noen kanter matcher ikke.",
   tilingClear: "Tøm",
@@ -974,7 +974,7 @@ export default function WangStory() {
         </Reveal>
       </section>
 
-      {/* ── Section 01 — Wang's question ────────────────────────────────── */}
+      {/* ── Section 01: Wang's question ────────────────────────────────── */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec0!.pretitle}
@@ -984,7 +984,7 @@ export default function WangStory() {
         />
       </section>
 
-      {/* ── Section 02 — Berger's theorem ───────────────────────────────── */}
+      {/* ── Section 02: Berger's theorem ───────────────────────────────── */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec1!.pretitle}
@@ -1007,7 +1007,7 @@ export default function WangStory() {
         </Reveal>
       </section>
 
-      {/* ── INTERACTIVE 1 — Tile-matching playground ────────────────────── */}
+      {/* ── INTERACTIVE 1: Tile-matching playground ────────────────────── */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <Reveal delay={120}>
           <WangTileGrid
@@ -1022,7 +1022,7 @@ export default function WangStory() {
         </Reveal>
       </section>
 
-      {/* ── Section 03 — Encoding Turing machines ───────────────────────── */}
+      {/* ── Section 03: Encoding Turing machines ───────────────────────── */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec2!.pretitle}
@@ -1032,7 +1032,7 @@ export default function WangStory() {
         />
       </section>
 
-      {/* ── Section 04 — Shrinking the record ───────────────────────────── */}
+      {/* ── Section 04: Shrinking the record ───────────────────────────── */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec3!.pretitle}
@@ -1080,7 +1080,7 @@ export default function WangStory() {
         </Reveal>
       </section>
 
-      {/* ── INTERACTIVE 2 — Aperiodic tiler ─────────────────────────────── */}
+      {/* ── INTERACTIVE 2: Aperiodic tiler ─────────────────────────────── */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <Reveal delay={120}>
           <WangAperiodicTiler
@@ -1092,7 +1092,7 @@ export default function WangStory() {
         </Reveal>
       </section>
 
-      {/* ── Section 05 — Quasicrystals ──────────────────────────────────── */}
+      {/* ── Section 05: Quasicrystals ──────────────────────────────────── */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec4!.pretitle}
@@ -1102,7 +1102,7 @@ export default function WangStory() {
         />
       </section>
 
-      {/* ── Section 06 — The aperiodic monotile ─────────────────────────── */}
+      {/* ── Section 06: The aperiodic monotile ─────────────────────────── */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec5!.pretitle}
@@ -1125,7 +1125,7 @@ export default function WangStory() {
         </Reveal>
       </section>
 
-      {/* ── Closing CTA — unified pattern ───────────────────────────────── */}
+      {/* ── Closing CTA: unified pattern ───────────────────────────────── */}
       <Reveal>
         <section className="glass hairline mx-auto mb-16 max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
           <div className={`font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>

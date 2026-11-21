@@ -5,7 +5,7 @@ import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
 // Small inline Galton board: balls cascade through a triangle of pegs,
-// filling a histogram below. Two sliders — rows N and spawn rate. Tuned
+// filling a histogram below. Two sliders: rows N and spawn rate. Tuned
 // to live inside a story page (≈300×400) without dominating the layout.
 
 interface Ball {
@@ -102,7 +102,7 @@ export function GaltonInlineSim({
       setLanded(sum);
     }
     // Sub-frame-rate fall: at 60fps a one-row-per-frame ball clears N=22 rows in
-    // ~0.37s — too fast to follow a single path. Stepping every 4th frame slows
+    // ~0.37s, too fast to follow a single path. Stepping every 4th frame slows
     // each ball to 25% speed without touching spawn rate or visual style.
     // Do NOT "optimise" this gate away; the integer grid renders identically.
     const STEP_EVERY = 4;
@@ -125,7 +125,7 @@ export function GaltonInlineSim({
       ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
-      // pegs — cyan
+      // pegs: cyan
       ctx.fillStyle = "rgba(125, 243, 255, 0.5)";
       for (let r = 0; r < rows; r++) {
         const y = top + (r + 1) * dx;
@@ -150,7 +150,7 @@ export function GaltonInlineSim({
         ctx.stroke();
       }
 
-      // spawn + step balls — physics gated to every 4th frame (see STEP_EVERY).
+      // spawn + step balls, physics gated to every 4th frame (see STEP_EVERY).
       // Skipped entirely under reduced motion: the pre-filled histogram stands in.
       frame++;
       if (!reduced && frame % STEP_EVERY === 0) {
@@ -176,7 +176,7 @@ export function GaltonInlineSim({
         }
       }
 
-      // draw active balls — amber
+      // draw active balls: amber
       ctx.fillStyle = "rgba(255, 209, 102, 0.9)";
       for (const b of balls) {
         if (b.done) continue;
@@ -189,7 +189,7 @@ export function GaltonInlineSim({
 
       balls = balls.filter((b) => !b.done);
 
-      // histogram — cyan bars
+      // histogram: cyan bars
       const max = Math.max(1, ...histRef.current);
       for (let i = 0; i <= rows; i++) {
         const x = binsStart + i * binW;

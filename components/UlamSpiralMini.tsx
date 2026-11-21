@@ -85,7 +85,7 @@ export function UlamSpiralMini({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
   // Odd grid side so 1 stays centred. 51 is a comfortable default for a
-  // small inline canvas — diagonals are already very visible.
+  // small inline canvas: diagonals are already very visible.
   const [side, setSide] = useState(51);
   const [quadraticId, setQuadraticId] = useState(quadratics[0]?.id ?? "none");
 

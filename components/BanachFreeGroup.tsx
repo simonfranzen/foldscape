@@ -6,9 +6,9 @@ import { palette } from "@/lib/visual/palette";
 // Inline Cayley-graph walker for the free group F₂ = <a, b>.
 // The user clicks one of four buttons (a, a⁻¹, b, b⁻¹) and walks the
 // infinite 4-regular tree of reduced words. Each visited word is a unique
-// vertex — the walker never lands on the same node twice unless it
+// vertex: the walker never lands on the same node twice unless it
 // retraces an inverse step. This is the algebraic skeleton that powers
-// Banach–Tarski's paradoxical decomposition.
+// Banach-Tarski's paradoxical decomposition.
 
 // Generators: 0 = a, 1 = a⁻¹, 2 = b, 3 = b⁻¹. inv[i] is the inverse index.
 const GEN_LABEL = ["a", "a⁻¹", "b", "b⁻¹"] as const;
@@ -50,7 +50,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel, len
   const [path, setPath] = useState<Vertex[]>([{ x: 0, y: 0, word: "ε", parent: -1 }]);
 
   // Pre-compute the visible tree skeleton up to a fixed depth. The skeleton
-  // is decorative — only the walker path is interactive — but it shows the
+  // is decorative (only the walker path is interactive) but it shows the
   // self-similar 4-regular structure.
   const skeleton = useMemo(() => buildSkeleton(4, ROOT_LEN), []);
 
@@ -72,7 +72,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel, len
     const angle = childAngle(last.parent, gen, depth);
     const dx = Math.cos(angle);
     const dy = Math.sin(angle);
-    // Same snap rationale as buildSkeleton — keep walker coords ulp-stable
+    // Same snap rationale as buildSkeleton: keep walker coords ulp-stable
     // across SSR/CSR so the next render doesn't trip a hydration mismatch.
     const nx = Math.round((last.x + dx * len) * 1000) / 1000;
     const ny = Math.round((last.y + dy * len) * 1000) / 1000;
@@ -132,7 +132,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel, len
               />
             ))}
 
-            {/* Walker path — drawn brightly on top */}
+            {/* Walker path, drawn brightly on top */}
             {path.slice(1).map((v, i) => {
               const prev = path[i];
               return (
@@ -213,7 +213,7 @@ export function BanachFreeGroup({ caption, resetLabel, hintLabel, wordLabel, len
 // helpers
 
 // Compose a new reduced word. If the previous word ends in g⁻¹ and we are
-// applying g (or vice versa), the new word would not be reduced — but our
+// applying g (or vice versa), the new word would not be reduced, but our
 // `step` already routes that case to a retraction, so we never reach here
 // in that situation. Still, we render cleanly: drop "ε" from the prefix.
 function composeWord(prev: string, gen: string): string {
@@ -252,7 +252,7 @@ type SkelNode = { x: number; y: number; depth: number };
 
 // Snap to 3 decimal places so SSR (Node V8) and CSR (browser V8) emit
 // identical SVG coordinate strings. Without this Math.cos/sin chains drift
-// by 1 ulp between platforms — visually invisible but enough to trip Next's
+// by 1 ulp between platforms, visually invisible but enough to trip Next's
 // hydration mismatch detector. Same fix as TopicConstellation.snap.
 const snap = (n: number) => Math.round(n * 1000) / 1000;
 

@@ -1,8 +1,8 @@
 // Shared OpenGraph image generator for Foldscape.
 //
 // Two entry points:
-//   renderRootOG()   — landing-page card (wordmark + tagline)
-//   renderTopicOG(id) — per-topic card (title + tagline + formula)
+//   renderRootOG()  : landing-page card (wordmark + tagline)
+//   renderTopicOG(id): per-topic card (title + tagline + formula)
 //
 // Both produce 1200x630 PNGs via next/og's ImageResponse. Edge runtime, no
 // external assets, system fonts only. JSX uses inline styles since Tailwind
@@ -201,7 +201,7 @@ export function renderRootOG(): ImageResponse {
           color: TEXT_MUTED,
         }}
       >
-        From almost nothing — everything.
+        From almost nothing, everything.
       </div>
 
       {/* Bottom strap */}
@@ -304,7 +304,7 @@ export function renderTopicOG(id: TopicId): ImageResponse {
         </div>
       </div>
 
-      {/* Title block — vertically centred */}
+      {/* Title block, vertically centred */}
       <div
         style={{
           display: "flex",

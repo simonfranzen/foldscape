@@ -6,7 +6,7 @@ import { palette } from "@/lib/visual/palette";
 
 // Inline demo for the cardioid story page. Renders the Mandelbrot set at low
 // resolution with the main cardioid overlaid, and a slider that traces a dot
-// around the cardioid boundary using the Douady–Hubbard parameterisation
+// around the cardioid boundary using the Douady-Hubbard parameterisation
 // c(t) = (1/2) e^{it} − (1/4) e^{2it}.
 
 interface Props {
@@ -91,7 +91,7 @@ export function CardioidMandelbrotBridge({ caption, paramLabel, hint }: Props) {
       const cx = W / 2;
       const cy = H / 2;
 
-      // Overlay the Douady–Hubbard cardioid.
+      // Overlay the Douady-Hubbard cardioid.
       ctx.strokeStyle = palette.signal.amber;
       ctx.lineWidth = 2 * dpr;
       ctx.beginPath();

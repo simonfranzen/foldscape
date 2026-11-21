@@ -12,7 +12,7 @@ const ACCENT = "text-signal-teal";
 // rendered inline so they don't drag in any image assets, and the chosen
 // palette echoes the four sidebar swatches in the Explorer. Each colour is
 // also paired with a unique hatch pattern so the maps still parse under
-// protanopia / deuteranopia — the visual constraint is colour-encoded AND
+// protanopia / deuteranopia: the visual constraint is colour-encoded AND
 // texture-encoded.
 const SWATCHES = [palette.signal.cyan, palette.signal.amber, "#b18cff", palette.signal.rose];
 const PATTERNS = ["fc-h", "fc-v", "fc-d1", "fc-d2"]; // horizontal, vertical, diag-up, diag-down
@@ -104,7 +104,7 @@ export default function FourColorStoryPage() {
               Three little maps · three forced colourings
             </div>
             <h2 className="math-italic text-2xl leading-tight md:text-3xl">
-              From two colours to four — the lower-bound examples
+              From two colours to four: the lower-bound examples
             </h2>
             <p className="max-w-2xl text-sm leading-relaxed text-ink-200">
               The chromatic number χ of a map is the smallest number of colours that suffice. Two
@@ -263,7 +263,7 @@ export default function FourColorStoryPage() {
                 svg={
                   <svg viewBox="0 0 200 200" className="block h-full w-full">
                     <rect width="200" height="200" fill={palette.canvas.bg} />
-                    {/* One central region D surrounded by three petals A, B, C — each pair touches */}
+                    {/* One central region D surrounded by three petals A, B, C; each pair touches */}
                     <path
                       d="M 100 100 L 100 20 A 80 80 0 0 1 169 140 Z"
                       fill={SWATCHES[0]}
@@ -355,7 +355,7 @@ export default function FourColorStoryPage() {
               />
             </div>
             <figcaption className="text-sm leading-relaxed text-ink-200">
-              The third map is the complete graph K₄ drawn in the plane — every pair of regions
+              The third map is the complete graph K₄ drawn in the plane: every pair of regions
               shares a boundary, so every pair needs a different colour. Add a fifth region that
               touches all four and you cannot draw the result without one of the borders crossing
               another. That non-crossing constraint is the entire content of planarity, and it is

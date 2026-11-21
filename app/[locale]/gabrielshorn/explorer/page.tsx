@@ -650,7 +650,7 @@ export default function GabrielsHornExplorer() {
       }
       ctx.stroke();
 
-      // Cap at the cutoff x = xMax (radius 1/xMax) — cyan to match 2D mode.
+      // Cap at the cutoff x = xMax (radius 1/xMax), cyan to match 2D mode.
       const rEnd = 1 / xMax;
       ctx.strokeStyle = "rgba(125, 243, 255, 0.9)";
       ctx.lineWidth = 1.4 * dpr;

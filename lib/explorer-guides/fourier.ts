@@ -28,6 +28,9 @@ function partialSum(harms, t) {
   return s;
 }`;
 
+// The same in every locale.
+const PARTIAL_SUM_FORMULA = "f(t) \\approx \\sum_{k=1}^{N} a_k \\sin(2\\pi k t)";
+
 export const FOURIER_GUIDE: ExplorerGuide = {
   en: {
     metaDescription:
@@ -42,7 +45,7 @@ export const FOURIER_GUIDE: ExplorerGuide = {
           "Joseph Fourier claimed in his work on heat, published as a book in 1822, that a periodic function can be written as a sum of sines and cosines whose frequencies are whole multiples of a base frequency. The k-th term is called the k-th harmonic, and its amplitude a_k measures how much of that frequency the shape contains. For the three waves here, chosen so that they are odd around their midpoint, only sine terms are needed and the formula below is the whole story.",
           "The coefficients follow a pattern you can read off the bar chart. The square wave uses only odd harmonics, with amplitude 4/(πk). The sawtooth uses every harmonic, with amplitude 2/(πk) and alternating sign. The triangle uses only odd harmonics again, but they shrink like 1/k², with alternating sign. How fast the coefficients fall off tells you how smooth the shape is: a jump means 1/k, a corner without a jump means 1/k².",
         ],
-        formula: "f(t) \\approx \\sum_{k=1}^{N} a_k \\sin(2\\pi k t)",
+        formula: PARTIAL_SUM_FORMULA,
       },
       {
         heading: "What the controls do",
@@ -99,7 +102,7 @@ export const FOURIER_GUIDE: ExplorerGuide = {
           "Joseph Fourier behauptete in seiner Arbeit über die Wärmeleitung, 1822 als Buch erschienen, dass sich eine periodische Funktion als Summe von Sinus- und Kosinuswellen schreiben lässt, deren Frequenzen ganzzahlige Vielfache einer Grundfrequenz sind. Das k-te Glied heißt k-te Harmonische, und ihre Amplitude a_k misst, wie viel von dieser Frequenz in der Form steckt. Die drei Wellen hier sind so gewählt, dass sie um ihren Mittelpunkt ungerade sind. Deshalb genügen Sinusglieder, und die Formel unten erzählt schon die ganze Geschichte.",
           "Die Koeffizienten folgen einem Muster, das du am Balkendiagramm ablesen kannst. Die Rechteckwelle nutzt nur ungerade Harmonische mit Amplitude 4/(πk). Der Sägezahn nutzt jede Harmonische mit Amplitude 2/(πk) und wechselndem Vorzeichen. Das Dreieck nutzt wieder nur ungerade Harmonische, die aber wie 1/k² schrumpfen, ebenfalls mit wechselndem Vorzeichen. Wie schnell die Koeffizienten abfallen, verrät, wie glatt die Form ist: Ein Sprung bedeutet 1/k, eine Ecke ohne Sprung 1/k².",
         ],
-        formula: "f(t) \\approx \\sum_{k=1}^{N} a_k \\sin(2\\pi k t)",
+        formula: PARTIAL_SUM_FORMULA,
       },
       {
         heading: "Was die Regler bewirken",
@@ -140,6 +143,348 @@ export const FOURIER_GUIDE: ExplorerGuide = {
       {
         title: "Die Vorzeichen lesen",
         text: "Nimm den Sägezahn mit 8 Harmonischen und schalte die einzelnen Harmonischen ein. Vergleiche die Balken mit den cyanfarbenen Kurven: Jeder rosa Balken gehört zu einem Sinus, der nach unten startet, und genau das biegt die Summe zu einer Rampe.",
+      },
+    ],
+  },
+  es: {
+    metaDescription:
+      "Construye una onda cuadrada, de sierra o triangular con hasta 48 armónicos, compara la serie de Fourier con el objetivo y observa el fenómeno de Gibbs.",
+    heading: "Cómo funciona este explorador",
+    intro:
+      "La curva ámbar brillante es una suma de ondas senoidales. La curva blanca tenue es la forma en la que intenta convertirse: una onda cuadrada, un diente de sierra o una triangular. Las finas curvas cian que hay detrás son las ondas senoidales individuales que se van sumando, y el gráfico de barras de abajo muestra el tamaño de cada una. Arrastra el deslizador de armónicos y verás cómo un vaivén suave se convierte, término a término, en una forma con esquinas afiladas y saltos bruscos.",
+    sections: [
+      {
+        heading: "Toda forma periódica es una suma de senos",
+        paragraphs: [
+          "Joseph Fourier afirmó en su trabajo sobre el calor, publicado como libro en 1822, que una función periódica se puede escribir como suma de senos y cosenos cuyas frecuencias son múltiplos enteros de una frecuencia base. El término k-ésimo se llama armónico k-ésimo, y su amplitud a_k mide cuánto de esa frecuencia contiene la forma. Para las tres ondas de aquí, elegidas de modo que sean impares respecto a su punto medio, bastan los términos en seno y la fórmula de abajo lo cuenta todo.",
+          "Los coeficientes siguen un patrón que puedes leer en el gráfico de barras. La onda cuadrada usa solo armónicos impares, con amplitud 4/(πk). El diente de sierra usa todos los armónicos, con amplitud 2/(πk) y signo alterno. La triangular vuelve a usar solo armónicos impares, pero se encogen como 1/k², con signo alterno. La rapidez con que decaen los coeficientes te dice lo suave que es la forma: un salto significa 1/k, una esquina sin salto significa 1/k².",
+        ],
+        formula: PARTIAL_SUM_FORMULA,
+      },
+      {
+        heading: "Qué hacen los controles",
+        paragraphs: [
+          "«Onda objetivo» cambia entre «Onda cuadrada» (la opción por defecto), «Diente de sierra» y «Triangular». «Armónicos» fija N, el armónico más alto incluido, de 1 a 48, por defecto 8; los botones 1, 3, 8 y 24 saltan a valores útiles. N cuenta armónicos, no términos distintos de cero: para la onda cuadrada con N = 8 solo contribuyen k = 1, 3, 5 y 7, y las barras pares del espectro se quedan vacías.",
+          "En «Capas», «Objetivo (blanco)» muestra u oculta la forma ideal, y «Armónicos individuales (cian)» muestra u oculta las curvas senoidales por separado. El espectro que hay bajo el lienzo principal dibuja una barra por armónico, escalada respecto a la mayor. Las barras cian tienen coeficientes positivos y las rosas negativos, y por eso el diente de sierra y la triangular muestran colores alternos.",
+        ],
+      },
+      {
+        heading: "Cómo está construido",
+        paragraphs: [
+          "Aquí nada se calcula numéricamente a partir del objetivo. Los coeficientes son los valores exactos en forma cerrada de las series estándar, generados por la función de abajo, y la suma parcial se evalúa directamente en cada píxel horizontal del lienzo. La curva objetivo se dibuja aparte a partir de su definición a trozos, así que el hueco que ves entre el blanco y el ámbar es el error real de la aproximación, no un artefacto del dibujo.",
+          "Los dos lienzos se redibujan cada vez que cambian la onda, N, un interruptor de capa o el tamaño del lienzo, y se dimensionan según la densidad de píxeles del dispositivo. No hay bucle de animación, así que la página permanece estática mientras no cambies nada y se comporta igual con movimiento reducido. El eje vertical abarca de −1,5 a 1,5, lo que deja sitio para ver las sumas parciales que sobrepasan el objetivo.",
+        ],
+        code: SERIES_EXCERPT,
+      },
+      {
+        heading: "El sobreimpulso que nunca desaparece",
+        paragraphs: [
+          "Junto a cada salto de la onda cuadrada y del diente de sierra, la suma parcial se pasa de largo, oscila un momento y luego se asienta. Añadir más armónicos aprieta el rizado contra el salto, pero su altura no disminuye: se queda en torno al 9 por ciento del salto. Para la onda cuadrada, cuyo salto es 2, el pico se sitúa cerca de 1,18 por muy grande que sea N. Es el fenómeno de Gibbs, que lleva el nombre de Josiah Willard Gibbs. No contradice la convergencia: en cualquier punto fijo alejado del salto el error sigue tendiendo a cero, y el bulto simplemente se va acercando a la discontinuidad. La triangular no tiene saltos, así que no muestra ningún sobreimpulso de Gibbs.",
+        ],
+      },
+    ],
+    experimentsHeading: "Prueba esto",
+    experiments: [
+      {
+        title: "Un solo seno es más alto que la cuadrada",
+        text: "Elige la onda cuadrada y pulsa 1. El único seno tiene amplitud 4/π ≈ 1,27, así que su máximo queda por encima de la altura 1 de la cuadrada. El mejor seno único para aproximar una cuadrada tiene que pasarse en el centro para compensar las esquinas a las que no llega.",
+      },
+      {
+        title: "Persigue el bulto de Gibbs",
+        text: "Sigue con la onda cuadrada y recorre con el deslizador 8, 24 y luego 48 armónicos. El rizado junto a cada salto se estrecha cada vez, pero su pico se queda más o menos a la misma altura.",
+      },
+      {
+        title: "La suavidad gana",
+        text: "Cambia a la triangular y pulsa 3. Con solo dos términos distintos de cero la curva ámbar ya se ciñe a la blanca, porque el tercer armónico mide apenas 1/9 del primero.",
+      },
+      {
+        title: "Lee los signos",
+        text: "Elige el diente de sierra con 8 armónicos y activa los armónicos individuales. Compara las barras con las curvas cian: cada barra rosa corresponde a un seno que empieza bajando, y eso es lo que dobla la suma hasta formar una rampa.",
+      },
+    ],
+  },
+  fr: {
+    metaDescription:
+      "Construis une onde carrée, en dents de scie ou triangulaire avec jusqu'à 48 harmoniques, compare la série de Fourier à la cible et vois le phénomène de Gibbs.",
+    heading: "Comment fonctionne cet explorateur",
+    intro:
+      "La courbe ambre lumineuse est une somme d'ondes sinusoïdales. La courbe blanche, plus pâle, est la forme qu'elle cherche à devenir : une onde carrée, une dent de scie ou un triangle. Les fines courbes cyan à l'arrière-plan sont les sinusoïdes individuelles que l'on additionne, et le diagramme en barres du dessous montre la taille de chacune. Fais glisser le curseur des harmoniques et tu vois une ondulation lisse se changer, terme après terme, en une forme aux angles vifs et aux sauts brusques.",
+    sections: [
+      {
+        heading: "Toute forme périodique est une somme de sinus",
+        paragraphs: [
+          "Joseph Fourier a affirmé dans ses travaux sur la chaleur, publiés en volume en 1822, qu'une fonction périodique peut s'écrire comme une somme de sinus et de cosinus dont les fréquences sont des multiples entiers d'une fréquence de base. Le k-ième terme s'appelle la k-ième harmonique, et son amplitude a_k mesure la part de cette fréquence que contient la forme. Pour les trois ondes proposées ici, choisies de façon à être impaires par rapport à leur milieu, les termes en sinus suffisent et la formule ci-dessous dit tout.",
+          "Les coefficients suivent un motif que tu peux lire sur le diagramme en barres. L'onde carrée n'utilise que les harmoniques impaires, d'amplitude 4/(πk). La dent de scie utilise toutes les harmoniques, d'amplitude 2/(πk) et de signe alterné. Le triangle n'utilise à nouveau que les harmoniques impaires, mais elles décroissent en 1/k², avec un signe alterné. La vitesse à laquelle les coefficients décroissent te dit à quel point la forme est lisse : un saut signifie 1/k, un angle sans saut signifie 1/k².",
+        ],
+        formula: PARTIAL_SUM_FORMULA,
+      },
+      {
+        heading: "À quoi servent les commandes",
+        paragraphs: [
+          "« Onde cible » bascule entre « Onde carrée » (le choix par défaut), « Dent de scie » et « Triangle ». « Harmoniques » fixe N, la plus haute harmonique incluse, de 1 à 48, 8 par défaut ; les boutons 1, 3, 8 et 24 sautent à des valeurs utiles. N compte les harmoniques, pas les termes non nuls : pour l'onde carrée à N = 8, seuls k = 1, 3, 5 et 7 contribuent, et les barres paires du spectre restent vides.",
+          "Sous « Couches », « Cible (blanc) » affiche ou masque la forme idéale, et « Harmoniques individuelles (cyan) » affiche ou masque les sinusoïdes séparées. Le spectre placé sous le canevas principal trace une barre par harmonique, à l'échelle de la plus grande. Les barres cyan ont des coefficients positifs et les barres roses des coefficients négatifs, ce qui explique les couleurs alternées de la dent de scie et du triangle.",
+        ],
+      },
+      {
+        heading: "Comment c'est construit",
+        paragraphs: [
+          "Rien ici n'est calculé numériquement à partir de la cible. Les coefficients sont les valeurs exactes, sous forme close, des séries classiques, produites par la fonction ci-dessous, et la somme partielle est évaluée directement en chaque pixel horizontal du canevas. La courbe cible est tracée à part, d'après sa définition par morceaux, donc l'écart que tu vois entre le blanc et l'ambre est la véritable erreur d'approximation, pas un artefact de tracé.",
+          "Les deux canevas sont redessinés chaque fois que l'onde, N, un interrupteur de couche ou la taille du canevas change, et sont dimensionnés selon la densité de pixels de l'appareil. Il n'y a pas de boucle d'animation : la page reste donc statique tant que tu ne changes rien et se comporte de la même façon avec la réduction des animations. L'axe vertical couvre −1,5 à 1,5, ce qui laisse la place de voir les sommes partielles qui dépassent la cible.",
+        ],
+        code: SERIES_EXCERPT,
+      },
+      {
+        heading: "Le dépassement qui ne disparaît jamais",
+        paragraphs: [
+          "À côté de chaque saut de l'onde carrée et de la dent de scie, la somme partielle dépasse, oscille un instant puis se stabilise. Ajouter des harmoniques resserre l'ondulation contre le saut, mais sa hauteur ne diminue pas : elle reste à environ 9 pour cent du saut. Pour l'onde carrée, dont le saut vaut 2, le pic se situe près de 1,18 quelle que soit la taille de N. C'est le phénomène de Gibbs, du nom de Josiah Willard Gibbs. Il ne contredit pas la convergence : en tout point fixe éloigné du saut, l'erreur tend bien vers zéro, la bosse ne fait que se rapprocher de la discontinuité. Le triangle n'a pas de saut, il ne présente donc aucun dépassement de Gibbs.",
+        ],
+      },
+    ],
+    experimentsHeading: "À essayer",
+    experiments: [
+      {
+        title: "Un seul sinus dépasse le carré",
+        text: "Choisis l'onde carrée et appuie sur 1. Le sinus unique a pour amplitude 4/π ≈ 1,27, donc son maximum dépasse la hauteur 1 du carré. Le meilleur sinus unique pour approcher un carré doit dépasser au milieu pour compenser les coins qu'il ne peut pas atteindre.",
+      },
+      {
+        title: "Traque la bosse de Gibbs",
+        text: "Reste sur l'onde carrée et passe successivement à 8, 24 puis 48 harmoniques avec le curseur. L'ondulation à côté de chaque saut se rétrécit à chaque fois, mais son pic reste à peu près à la même hauteur.",
+      },
+      {
+        title: "La régularité l'emporte",
+        text: "Passe au triangle et appuie sur 3. Avec seulement deux termes non nuls, la courbe ambre épouse déjà de près la blanche, parce que la troisième harmonique ne vaut que 1/9 de la première.",
+      },
+      {
+        title: "Lis les signes",
+        text: "Prends la dent de scie à 8 harmoniques et active les harmoniques individuelles. Compare les barres aux courbes cyan : chaque barre rose correspond à un sinus qui commence par descendre, et c'est ce qui courbe la somme en rampe.",
+      },
+    ],
+  },
+  it: {
+    metaDescription:
+      "Costruisci un'onda quadra, a dente di sega o triangolare con fino a 48 armoniche, confronta la serie di Fourier con il bersaglio e osserva il fenomeno di Gibbs.",
+    heading: "Come funziona questo esploratore",
+    intro:
+      "La curva ambra brillante è una somma di onde sinusoidali. La curva bianca tenue è la forma che sta cercando di diventare: un'onda quadra, un dente di sega o una triangolare. Le sottili curve ciano sullo sfondo sono le singole sinusoidi che vengono sommate, e il grafico a barre in basso mostra quanto è grande ciascuna. Trascina il cursore delle armoniche e vedrai un'ondulazione morbida trasformarsi, termine dopo termine, in una forma con spigoli vivi e salti improvvisi.",
+    sections: [
+      {
+        heading: "Ogni forma periodica è una somma di seni",
+        paragraphs: [
+          "Joseph Fourier sostenne nel suo lavoro sul calore, pubblicato in volume nel 1822, che una funzione periodica si può scrivere come somma di seni e coseni le cui frequenze sono multipli interi di una frequenza di base. Il k-esimo termine si chiama k-esima armonica, e la sua ampiezza a_k misura quanto di quella frequenza è contenuto nella forma. Per le tre onde presenti qui, scelte in modo da essere dispari rispetto al loro punto medio, bastano i termini in seno e la formula qui sotto dice tutto.",
+          "I coefficienti seguono uno schema che puoi leggere sul grafico a barre. L'onda quadra usa solo armoniche dispari, con ampiezza 4/(πk). Il dente di sega usa tutte le armoniche, con ampiezza 2/(πk) e segno alterno. La triangolare usa di nuovo solo armoniche dispari, ma si riducono come 1/k², con segno alterno. La rapidità con cui i coefficienti calano ti dice quanto è liscia la forma: un salto significa 1/k, uno spigolo senza salto significa 1/k².",
+        ],
+        formula: PARTIAL_SUM_FORMULA,
+      },
+      {
+        heading: "Che cosa fanno i controlli",
+        paragraphs: [
+          "«Onda bersaglio» passa tra «Onda quadra» (la scelta predefinita), «Dente di sega» e «Triangolare». «Armoniche» imposta N, l'armonica più alta inclusa, da 1 a 48, predefinito 8; i pulsanti 1, 3, 8 e 24 saltano a valori utili. N conta le armoniche, non i termini diversi da zero: per l'onda quadra con N = 8 contribuiscono solo k = 1, 3, 5 e 7, e le barre pari dello spettro restano vuote.",
+          "Sotto «Livelli», «Bersaglio (bianco)» mostra o nasconde la forma ideale, e «Armoniche individuali (ciano)» mostra o nasconde le singole sinusoidi. Lo spettro sotto il canvas principale disegna una barra per armonica, scalata rispetto alla più grande. Le barre ciano hanno coefficienti positivi e quelle rosa negativi, ed è per questo che il dente di sega e la triangolare mostrano colori alternati.",
+        ],
+      },
+      {
+        heading: "Com'è costruito",
+        paragraphs: [
+          "Qui nulla viene calcolato numericamente a partire dal bersaglio. I coefficienti sono i valori esatti in forma chiusa delle serie standard, generati dalla funzione qui sotto, e la somma parziale viene valutata direttamente in ogni pixel orizzontale del canvas. La curva bersaglio è disegnata a parte dalla sua definizione a tratti, quindi lo scarto che vedi tra bianco e ambra è il vero errore di approssimazione, non un artefatto del disegno.",
+          "Entrambi i canvas vengono ridisegnati ogni volta che cambiano l'onda, N, un interruttore dei livelli o la dimensione del canvas, e sono dimensionati in base alla densità di pixel del dispositivo. Non c'è alcun ciclo di animazione, quindi la pagina resta statica finché non cambi qualcosa e si comporta allo stesso modo con il movimento ridotto. L'asse verticale va da −1,5 a 1,5, il che lascia spazio per vedere le somme parziali che superano il bersaglio.",
+        ],
+        code: SERIES_EXCERPT,
+      },
+      {
+        heading: "La sovraelongazione che non se ne va mai",
+        paragraphs: [
+          "Accanto a ogni salto dell'onda quadra e del dente di sega la somma parziale va oltre, oscilla per un momento e poi si assesta. Aggiungere armoniche stringe l'increspatura contro il salto, ma la sua altezza non si riduce: resta a circa il 9 per cento del salto. Per l'onda quadra, il cui salto vale 2, il picco sta vicino a 1,18 per quanto grande diventi N. È il fenomeno di Gibbs, che prende il nome da Josiah Willard Gibbs. Non contraddice la convergenza: in qualsiasi punto fisso lontano dal salto l'errore tende comunque a zero, la gobba continua soltanto a spostarsi verso la discontinuità. La triangolare non ha salti, quindi non mostra alcuna sovraelongazione di Gibbs.",
+        ],
+      },
+    ],
+    experimentsHeading: "Prova così",
+    experiments: [
+      {
+        title: "Un solo seno è più alto dell'onda quadra",
+        text: "Scegli l'onda quadra e premi 1. L'unico seno ha ampiezza 4/π ≈ 1,27, quindi il suo massimo supera l'altezza 1 dell'onda quadra. Il miglior seno singolo per approssimare un'onda quadra deve eccedere al centro per compensare gli spigoli che non riesce a raggiungere.",
+      },
+      {
+        title: "Insegui la gobba di Gibbs",
+        text: "Resta sull'onda quadra e passa con il cursore a 8, 24 e poi 48 armoniche. L'increspatura accanto a ogni salto si restringe ogni volta, ma il suo picco resta più o meno alla stessa altezza.",
+      },
+      {
+        title: "Vince la regolarità",
+        text: "Passa alla triangolare e premi 3. Con appena due termini diversi da zero la curva ambra aderisce già da vicino a quella bianca, perché la terza armonica è grande solo 1/9 della prima.",
+      },
+      {
+        title: "Leggi i segni",
+        text: "Scegli il dente di sega con 8 armoniche e attiva le armoniche individuali. Confronta le barre con le curve ciano: ogni barra rosa appartiene a un seno che parte scendendo, ed è questo a piegare la somma in una rampa.",
+      },
+    ],
+  },
+  pt: {
+    metaDescription:
+      "Constrói uma onda quadrada, dente de serra ou triangular com até 48 harmónicos, compara a série de Fourier com o alvo e vê o fenómeno de Gibbs resistir.",
+    heading: "Como funciona este explorador",
+    intro:
+      "A curva âmbar brilhante é uma soma de ondas sinusoidais. A curva branca ténue é a forma em que ela se está a tentar tornar: uma onda quadrada, um dente de serra ou uma triangular. As finas curvas ciano por trás são as ondas sinusoidais individuais que vão sendo somadas, e o gráfico de barras em baixo mostra o tamanho de cada uma. Arrasta o cursor dos harmónicos e vês uma ondulação suave transformar-se, termo a termo, numa forma com cantos vivos e saltos bruscos.",
+    sections: [
+      {
+        heading: "Toda a forma periódica é uma soma de senos",
+        paragraphs: [
+          "Joseph Fourier afirmou no seu trabalho sobre o calor, publicado em livro em 1822, que uma função periódica pode ser escrita como uma soma de senos e cossenos cujas frequências são múltiplos inteiros de uma frequência base. O k-ésimo termo chama-se k-ésimo harmónico, e a sua amplitude a_k mede quanto dessa frequência a forma contém. Para as três ondas aqui presentes, escolhidas de modo a serem ímpares em relação ao seu ponto médio, bastam os termos em seno e a fórmula abaixo diz tudo.",
+          "Os coeficientes seguem um padrão que podes ler no gráfico de barras. A onda quadrada usa só harmónicos ímpares, com amplitude 4/(πk). O dente de serra usa todos os harmónicos, com amplitude 2/(πk) e sinal alternado. A triangular volta a usar só harmónicos ímpares, mas estes encolhem como 1/k², com sinal alternado. A rapidez com que os coeficientes decaem diz-te quão suave é a forma: um salto significa 1/k, um canto sem salto significa 1/k².",
+        ],
+        formula: PARTIAL_SUM_FORMULA,
+      },
+      {
+        heading: "O que fazem os controlos",
+        paragraphs: [
+          "«Onda alvo» alterna entre «Onda quadrada» (a opção por omissão), «Dente de serra» e «Triangular». «Harmónicos» define N, o harmónico mais alto incluído, de 1 a 48, 8 por omissão; os botões 1, 3, 8 e 24 saltam para valores úteis. N conta harmónicos, não termos diferentes de zero: para a onda quadrada com N = 8 só contribuem k = 1, 3, 5 e 7, e as barras pares do espetro ficam vazias.",
+          "Em «Camadas», «Alvo (branco)» mostra ou esconde a forma ideal, e «Harmónicos individuais (ciano)» mostra ou esconde as curvas sinusoidais separadas. O espetro por baixo do canvas principal desenha uma barra por harmónico, à escala da maior. As barras ciano têm coeficientes positivos e as cor-de-rosa negativos, e é por isso que o dente de serra e a triangular mostram cores alternadas.",
+        ],
+      },
+      {
+        heading: "Como está construído",
+        paragraphs: [
+          "Aqui nada é calculado numericamente a partir do alvo. Os coeficientes são os valores exatos em forma fechada das séries habituais, gerados pela função abaixo, e a soma parcial é avaliada diretamente em cada píxel horizontal do canvas. A curva alvo é desenhada à parte a partir da sua definição por ramos, pelo que a folga que vês entre o branco e o âmbar é o verdadeiro erro de aproximação, não um artefacto do desenho.",
+          "Os dois canvas são redesenhados sempre que muda a onda, N, um interruptor de camada ou o tamanho do canvas, e são dimensionados pela densidade de píxeis do dispositivo. Não há ciclo de animação, pelo que a página fica estática enquanto não mudares nada e se comporta da mesma maneira com movimento reduzido. O eixo vertical vai de −1,5 a 1,5, o que deixa espaço para ver as somas parciais que ultrapassam o alvo.",
+        ],
+        code: SERIES_EXCERPT,
+      },
+      {
+        heading: "A ultrapassagem que nunca desaparece",
+        paragraphs: [
+          "Junto a cada salto da onda quadrada e do dente de serra, a soma parcial passa do alvo, oscila por um momento e depois assenta. Acrescentar mais harmónicos aperta a ondulação contra o salto, mas a sua altura não diminui: fica em cerca de 9 por cento do salto. Para a onda quadrada, cujo salto é 2, o pico fica perto de 1,18 por maior que seja N. É o fenómeno de Gibbs, assim chamado em honra de Josiah Willard Gibbs. Não contradiz a convergência: em qualquer ponto fixo afastado do salto o erro continua a tender para zero, a bossa apenas se vai aproximando da descontinuidade. A triangular não tem saltos, por isso não mostra qualquer ultrapassagem de Gibbs.",
+        ],
+      },
+    ],
+    experimentsHeading: "Experimenta isto",
+    experiments: [
+      {
+        title: "Um único seno é mais alto do que a quadrada",
+        text: "Escolhe a onda quadrada e carrega em 1. O único seno tem amplitude 4/π ≈ 1,27, por isso o seu máximo fica acima da altura 1 da quadrada. O melhor seno único para aproximar uma quadrada tem de ultrapassar no meio para compensar os cantos a que não consegue chegar.",
+      },
+      {
+        title: "Persegue a bossa de Gibbs",
+        text: "Fica na onda quadrada e percorre com o cursor 8, 24 e depois 48 harmónicos. A ondulação junto a cada salto fica mais estreita de cada vez, mas o seu pico mantém-se mais ou menos à mesma altura.",
+      },
+      {
+        title: "A suavidade ganha",
+        text: "Muda para a triangular e carrega em 3. Com apenas dois termos diferentes de zero, a curva âmbar já se cola à branca, porque o terceiro harmónico tem só 1/9 do tamanho do primeiro.",
+      },
+      {
+        title: "Lê os sinais",
+        text: "Escolhe o dente de serra com 8 harmónicos e liga os harmónicos individuais. Compara as barras com as curvas ciano: cada barra cor-de-rosa pertence a um seno que começa a descer, e é isso que dobra a soma até formar uma rampa.",
+      },
+    ],
+  },
+  sv: {
+    metaDescription:
+      "Bygg en fyrkantsvåg, sågtand eller triangel av upp till 48 sinusövertoner, jämför Fourierserien med målet och se hur Gibbs fenomen vägrar att försvinna.",
+    heading: "Så fungerar den här utforskaren",
+    intro:
+      "Den lysande bärnstensfärgade kurvan är en summa av sinusvågor. Den svaga vita kurvan är formen den försöker bli: en fyrkantsvåg, en sågtand eller en triangel. De tunna cyanfärgade kurvorna bakom dem är de enskilda sinusvågorna som läggs ihop, och stapeldiagrammet under visar hur stor var och en är. Dra i reglaget för övertoner, så ser du en mjuk vågrörelse förvandlas, term för term, till en form med skarpa hörn och tvära hopp.",
+    sections: [
+      {
+        heading: "Varje periodisk form är en summa av sinusvågor",
+        paragraphs: [
+          "Joseph Fourier hävdade i sitt arbete om värme, utgivet som bok 1822, att en periodisk funktion kan skrivas som en summa av sinus- och cosinustermer vars frekvenser är hela multipler av en basfrekvens. Den k:te termen kallas den k:te övertonen, och dess amplitud a_k mäter hur mycket av den frekvensen formen innehåller. För de tre vågorna här, valda så att de är udda kring sin mittpunkt, behövs bara sinustermer, och formeln nedan säger allt.",
+          "Koefficienterna följer ett mönster som du kan läsa av i stapeldiagrammet. Fyrkantsvågen använder bara udda övertoner, med amplituden 4/(πk). Sågtanden använder alla övertoner, med amplituden 2/(πk) och växlande tecken. Triangeln använder återigen bara udda övertoner, men de krymper som 1/k², med växlande tecken. Hur snabbt koefficienterna avtar säger hur slät formen är: ett hopp betyder 1/k, ett hörn utan hopp betyder 1/k².",
+        ],
+        formula: PARTIAL_SUM_FORMULA,
+      },
+      {
+        heading: "Vad reglagen gör",
+        paragraphs: [
+          "”Målvåg” växlar mellan ”Fyrkantsvåg” (standard), ”Sågtand” och ”Triangel”. ”Övertoner” anger N, den högsta övertonen som tas med, från 1 till 48, standard 8. Knapparna 1, 3, 8 och 24 hoppar till användbara värden. N räknar övertoner, inte termer som är skilda från noll: för fyrkantsvågen vid N = 8 bidrar bara k = 1, 3, 5 och 7, och de jämna staplarna i spektrumet förblir tomma.",
+          "Under ”Lager” visar eller döljer ”Mål (vitt)” den ideala formen, och ”Enskilda övertoner (cyan)” visar eller döljer de separata sinuskurvorna. Spektrumet under huvudytan ritar en stapel per överton, skalad efter den största. Cyanfärgade staplar har positiva koefficienter och rosa har negativa, och därför visar sågtanden och triangeln växlande färger.",
+        ],
+      },
+      {
+        heading: "Hur den är byggd",
+        paragraphs: [
+          "Ingenting här beräknas numeriskt utifrån målet. Koefficienterna är de exakta värdena på sluten form från standardserierna, genererade av funktionen nedan, och partialsumman beräknas direkt i varje vågrät pixel på ytan. Målkurvan ritas separat utifrån sin styckvisa definition, så glappet du ser mellan vitt och bärnsten är det verkliga approximationsfelet, inte en ritartefakt.",
+          "Båda ytorna ritas om varje gång vågen, N, en lageromkopplare eller ytans storlek ändras, och de anpassas efter enhetens pixeltäthet. Det finns ingen animationsslinga, så sidan är statisk tills du ändrar något och beter sig likadant med minskad rörelse. Den lodräta axeln sträcker sig från −1,5 till 1,5, vilket ger plats att se partialsummor som skjuter över målet.",
+        ],
+        code: SERIES_EXCERPT,
+      },
+      {
+        heading: "Överslängen som aldrig försvinner",
+        paragraphs: [
+          "Intill varje hopp i fyrkantsvågen och sågtanden skjuter partialsumman över, svänger en stund och lägger sig sedan till ro. Fler övertoner pressar krusningen närmare hoppet, men dess höjd krymper inte: den ligger kvar på ungefär 9 procent av hoppet. För fyrkantsvågen, vars hopp är 2, ligger toppen nära 1,18 hur stort N än blir. Detta är Gibbs fenomen, uppkallat efter Josiah Willard Gibbs. Det motsäger inte konvergensen: i varje fix punkt på avstånd från hoppet går felet fortfarande mot noll, bulan flyttar sig bara allt närmare diskontinuiteten. Triangeln har inga hopp, så den visar ingen Gibbs-översläng alls.",
+        ],
+      },
+    ],
+    experimentsHeading: "Prova det här",
+    experiments: [
+      {
+        title: "En enda sinus är högre än fyrkanten",
+        text: "Välj fyrkantsvågen och tryck på 1. Den ensamma sinusvågen har amplituden 4/π ≈ 1,27, så den når högre än fyrkantens höjd 1. Den bästa enskilda sinusvågen för att approximera en fyrkant måste skjuta över i mitten för att väga upp hörnen den inte når.",
+      },
+      {
+        title: "Jaga Gibbs-bulan",
+        text: "Stanna på fyrkantsvågen och stega med reglaget genom 8, 24 och sedan 48 övertoner. Krusningen intill varje hopp blir smalare varje gång, men toppen ligger kvar på ungefär samma höjd.",
+      },
+      {
+        title: "Släthet vinner",
+        text: "Byt till triangeln och tryck på 3. Med bara två termer skilda från noll följer den bärnstensfärgade kurvan redan den vita tätt, eftersom den tredje övertonen bara är 1/9 så stor som den första.",
+      },
+      {
+        title: "Läs av tecknen",
+        text: "Välj sågtanden med 8 övertoner och slå på de enskilda övertonerna. Jämför staplarna med de cyanfärgade kurvorna: varje rosa stapel hör till en sinusvåg som börjar med att gå nedåt, och det är det som böjer summan till en ramp.",
+      },
+    ],
+  },
+  no: {
+    metaDescription:
+      "Bygg en firkantbølge, sagtann eller trekant av opptil 48 sinusovertoner, sammenlign Fourier-rekken med målet og se Gibbs' fenomen nekte å forsvinne.",
+    heading: "Slik fungerer denne utforskeren",
+    intro:
+      "Den lysende ravfargede kurven er en sum av sinusbølger. Den svake hvite kurven er formen den prøver å bli: en firkantbølge, en sagtann eller en trekant. De tynne cyanfargede kurvene bak dem er de enkelte sinusbølgene som legges sammen, og stolpediagrammet under viser hvor stor hver av dem er. Dra i glidebryteren for overtoner, og du ser en myk bølgebevegelse bli, ledd for ledd, til en form med skarpe hjørner og brå hopp.",
+    sections: [
+      {
+        heading: "Enhver periodisk form er en sum av sinusbølger",
+        paragraphs: [
+          "Joseph Fourier hevdet i arbeidet sitt om varme, utgitt som bok i 1822, at en periodisk funksjon kan skrives som en sum av sinus- og cosinusledd med frekvenser som er hele multipler av en grunnfrekvens. Det k-te leddet kalles den k-te overtonen, og amplituden a_k måler hvor mye av den frekvensen formen inneholder. For de tre bølgene her, valgt slik at de er odde om midtpunktet sitt, trengs bare sinusledd, og formelen nedenfor forteller hele historien.",
+          "Koeffisientene følger et mønster du kan lese av stolpediagrammet. Firkantbølgen bruker bare odde overtoner, med amplitude 4/(πk). Sagtannen bruker alle overtonene, med amplitude 2/(πk) og vekslende fortegn. Trekanten bruker igjen bare odde overtoner, men de krymper som 1/k², med vekslende fortegn. Hvor raskt koeffisientene avtar, forteller hvor glatt formen er: Et hopp betyr 1/k, et hjørne uten hopp betyr 1/k².",
+        ],
+        formula: PARTIAL_SUM_FORMULA,
+      },
+      {
+        heading: "Hva kontrollene gjør",
+        paragraphs: [
+          "«Målbølge» veksler mellom «Firkantbølge» (standard), «Sagtann» og «Trekant». «Overtoner» setter N, den høyeste overtonen som tas med, fra 1 til 48, standard 8. Knappene 1, 3, 8 og 24 hopper til nyttige verdier. N teller overtoner, ikke ledd som er forskjellige fra null: For firkantbølgen ved N = 8 bidrar bare k = 1, 3, 5 og 7, og de jevne stolpene i spekteret forblir tomme.",
+          "Under «Lag» viser eller skjuler «Mål (hvitt)» den ideelle formen, og «Enkelte overtoner (cyan)» viser eller skjuler de separate sinuskurvene. Spekteret under hovedlerretet tegner én stolpe per overtone, skalert etter den største. Cyanfargede stolper har positive koeffisienter og rosa har negative, og derfor viser sagtannen og trekanten vekslende farger.",
+        ],
+      },
+      {
+        heading: "Slik er den bygget",
+        paragraphs: [
+          "Ingenting her regnes ut numerisk fra målet. Koeffisientene er de eksakte verdiene på lukket form fra standardrekkene, generert av funksjonen nedenfor, og delsummen regnes ut direkte i hver vannrette piksel på lerretet. Målkurven tegnes for seg ut fra den stykkevise definisjonen, så gapet du ser mellom hvitt og rav, er den virkelige tilnærmingsfeilen, ikke en tegneartefakt.",
+          "Begge lerretene tegnes på nytt hver gang bølgen, N, en lagbryter eller lerretsstørrelsen endres, og de tilpasses pikseltettheten til enheten. Det finnes ingen animasjonsløkke, så siden er statisk til du endrer noe, og oppfører seg likt med redusert bevegelse. Den loddrette aksen går fra −1,5 til 1,5, noe som gir plass til å se delsummer som skyter over målet.",
+        ],
+        code: SERIES_EXCERPT,
+      },
+      {
+        heading: "Oversvinget som aldri forsvinner",
+        paragraphs: [
+          "Ved siden av hvert hopp i firkantbølgen og sagtannen skyter delsummen over, svinger et øyeblikk og faller så til ro. Flere overtoner presser krusningen tettere inn mot hoppet, men høyden krymper ikke: Den blir liggende på omtrent 9 prosent av hoppet. For firkantbølgen, der hoppet er 2, ligger toppen nær 1,18 uansett hvor stor N blir. Dette er Gibbs' fenomen, oppkalt etter Josiah Willard Gibbs. Det motsier ikke konvergensen: I ethvert fast punkt unna hoppet går feilen fortsatt mot null, kulen flytter seg bare stadig nærmere diskontinuiteten. Trekanten har ingen hopp, så den viser ikke noe Gibbs-oversving i det hele tatt.",
+        ],
+      },
+    ],
+    experimentsHeading: "Prøv dette",
+    experiments: [
+      {
+        title: "Én sinus er høyere enn firkanten",
+        text: "Velg firkantbølgen og trykk 1. Den ene sinusbølgen har amplitude 4/π ≈ 1,27, så toppen ligger over firkantens høyde på 1. Den beste enkeltsinusen for å tilnærme en firkant må skyte over på midten for å veie opp for hjørnene den ikke når.",
+      },
+      {
+        title: "Jag Gibbs-kulen",
+        text: "Bli på firkantbølgen og gå med glidebryteren gjennom 8, 24 og så 48 overtoner. Krusningen ved hvert hopp blir smalere hver gang, men toppen blir liggende på omtrent samme høyde.",
+      },
+      {
+        title: "Glatthet vinner",
+        text: "Bytt til trekanten og trykk 3. Med bare to ledd som er forskjellige fra null, følger den ravfargede kurven allerede den hvite tett, fordi den tredje overtonen bare er 1/9 så stor som den første.",
+      },
+      {
+        title: "Les fortegnene",
+        text: "Velg sagtannen med 8 overtoner og slå på de enkelte overtonene. Sammenlign stolpene med de cyanfargede kurvene: Hver rosa stolpe hører til en sinusbølge som starter med å gå nedover, og det er det som bøyer summen til en rampe.",
       },
     ],
   },

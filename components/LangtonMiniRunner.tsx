@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
-// LangtonMiniRunner — a compact, story-page-friendly demo of Langton's Ant.
+// LangtonMiniRunner: a compact, story-page-friendly demo of Langton's Ant.
 // Renders to a small canvas (~340×280), with Play/Pause, Step, Reset and a
 // steps-per-frame slider. Shows step counter and current heading.
 

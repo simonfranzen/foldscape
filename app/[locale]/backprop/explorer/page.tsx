@@ -10,13 +10,13 @@ import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerG
 import { BACKPROP_GUIDE } from "@/lib/explorer-guides/backprop";
 
 // --------------------------------------------------------------------------
-// Backprop Explorer — hand-rolled multilayer perceptron trainer in the
+// Backprop Explorer: hand-rolled multilayer perceptron trainer in the
 // browser. Tanh-hidden, sigmoid output, MSE loss. No tensorflow.js. Three
 // toy tasks (XOR, two moons, circle vs square), three topologies
-// (2-3-1, 2-4-4-1, 3-8-8-1 — though we always use 2D inputs; the 3-8-8-1
+// (2-3-1, 2-4-4-1, 3-8-8-1, though we always use 2D inputs; the 3-8-8-1
 // option just gives you a bigger first layer with three-feature inputs:
 // x, y, x*y). Live decision-boundary heatmap + loss curve, hyperparameter
-// sliders. The whole training loop is ~80 lines of plain JS — exactly what
+// sliders. The whole training loop is ~80 lines of plain JS, exactly what
 // the story page promises.
 // --------------------------------------------------------------------------
 
@@ -284,7 +284,7 @@ const E: Record<Locale, RichExplorer> = {
     whatYouSeeInit:
       "Pesos aleatórios. A superfície de decisão é um gradiente suave e quase sem sentido: a rede ainda não sabe qual é a tarefa. Carrega em ir e observa a backprop remodelar a superfície até aos dados.",
     whatYouSeeTraining:
-      "Cada época percorre uma vez o conjunto de treino. A regra da cadeia, percorrida para trás por cada camada, dá a cada peso a sua quota de culpa pela perda atual; o optimizador empurra então cada peso a descer. A fronteira visível é o conjunto de nível ŷ = 0,5 da saída.",
+      "Cada época percorre uma vez o conjunto de treino. A regra da cadeia, percorrida para trás por cada camada, dá a cada peso a sua quota de culpa pela perda atual; o otimizador empurra então cada peso a descer. A fronteira visível é o conjunto de nível ŷ = 0,5 da saída.",
     whatYouSeeConverged:
       "A perda atingiu um planalto. A fronteira traça agora a estrutura da tarefa: cantos para XOR, um S entrelaçado para as duas luas, um círculo para o corte radial. A rede memorizou uma função suave que se ajusta aos pontos de treino e generaliza para os vizinhos.",
   },
@@ -360,7 +360,7 @@ const E: Record<Locale, RichExplorer> = {
       "Rav = nettet sier klasse 1, cyan = klasse 0. Se hvordan områdene forvrenges mens tapet faller.",
     whatYouSeeLabel: "Det du ser",
     whatYouSeeInit:
-      "Tilfeldige vekter. Beslutningsoverflaten er en myk, nesten meningsløs gradient: nettet vet ikke ennå hva oppgaven er. Trykk start og se backprop omforme overflaten mot dataene.",
+      "Tilfeldige vekter. Beslutningsoverflaten er en myk, nesten meningsløs gradient: Nettet vet ikke ennå hva oppgaven er. Trykk start og se backprop omforme overflaten mot dataene.",
     whatYouSeeTraining:
       "Hver epoke går gjennom hele treningsdatasettet én gang. Kjerneregelen, gått baklengs gjennom hvert lag, gir hver vekt sin andel av skylda for det nåværende tapet; optimaliseringen skyver så hver vekt nedover. Den synlige beslutningsgrensen er nivåmengden ŷ = 0,5 av utgangen.",
     whatYouSeeConverged:
@@ -659,7 +659,7 @@ export default function BackpropExplorer() {
     setUpdates((n) => n + 1);
     if (end === ds.length) setEpoch((e) => e + 1);
 
-    // Accuracy across the whole dataset (cheap — ≤ 160 forward passes).
+    // Accuracy across the whole dataset (cheap: ≤ 160 forward passes).
     let correct = 0;
     for (const { x: xi, y: yi } of ds) {
       const yh = forward(net, xi);
@@ -735,7 +735,7 @@ export default function BackpropExplorer() {
     }
 
     // Decision boundary line at ŷ = 0.5: re-sample at fine grid, draw
-    // contour by squared marker. Cheap version — colour cells where the
+    // contour by squared marker. Cheap version: colour cells where the
     // boundary crosses by checking sign changes vs neighbours.
     ctx.strokeStyle = "rgba(20, 23, 36, 0.55)";
     ctx.lineWidth = 1.2;

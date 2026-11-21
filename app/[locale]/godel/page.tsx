@@ -44,7 +44,7 @@ const GODEL_SYMBOL_TABLE: Array<{ symbol: string; meaningKey: MeaningKey; code: 
 // --------------------------------------------------------------------------
 
 type RichFigures = {
-  // figure 1 — symbol-code table
+  // figure 1: symbol-code table
   numberingBadge: string;
   numberingIntro: string; // body up to the 2^s1·3^s2·5^s3·… formula
   numberingOutro: string; // tail after the formula (closing the sentence)
@@ -55,7 +55,7 @@ type RichFigures = {
   // caption line under the table
   exampleHead: string; // "Example: the tiny formula"
   exampleMid: string; // "(symbols 0, =, 0 → codes 6, 5, 6) becomes the Gödel number"
-  // figure 2 — self-reference loop
+  // figure 2: self-reference loop
   loopBadge: string;
   loopIntro: string;
   loopSentence: string; // "sentence"
@@ -74,7 +74,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     numberingBadge: "Gödel numbering · a sample of symbol codes",
     numberingIntro:
       "Each symbol of the formal language gets its own natural number. A full formula s₁s₂s₃… is then encoded as the single integer ",
-    numberingOutro: " — unique because every integer has a unique prime factorisation.",
+    numberingOutro: ", unique because every integer has a unique prime factorisation.",
     thSymbol: "symbol",
     thMeaning: "meaning",
     thGodel: "Gödel #",
@@ -93,7 +93,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     exampleMid: "(symbols 0, =, 0 → codes 6, 5, 6) becomes the Gödel number",
     loopBadge: "The self-reference loop",
     loopIntro:
-      "G's content and G's Gödel number are wired together. G asserts that the formula numbered ⌜G⌝ has no proof — and the formula numbered ⌜G⌝ is G itself. The loop closes on the diagonal.",
+      "G's content and G's Gödel number are wired together. G asserts that the formula numbered ⌜G⌝ has no proof, and the formula numbered ⌜G⌝ is G itself. The loop closes on the diagonal.",
     loopSentence: "sentence",
     loopSentenceCaption: "«I am not provable in S»",
     loopArithEquiv: "arithmetic equivalence",
@@ -101,16 +101,16 @@ const FIGURES: Record<Locale, RichFigures> = {
     loopGoedelCaption: "the natural number that encodes G itself",
     branchProvableHead: "if G is provable",
     branchProvableBody:
-      "S proves a sentence that says «I have no proof» — the system is inconsistent.",
+      "S proves a sentence that says «I have no proof»: the system is inconsistent.",
     branchUnprovableHead: "if G is not provable",
-    branchUnprovableBody: "Then what G claims is exactly true — true, yet unprovable in S.",
+    branchUnprovableBody: "Then what G claims is exactly true: true, yet unprovable in S.",
   },
   de: {
     numberingBadge: "Gödel-Nummerierung · eine Auswahl von Symbol-Codes",
     numberingIntro:
       "Jedes Symbol der formalen Sprache bekommt seine eigene natürliche Zahl. Eine vollständige Formel s₁s₂s₃… wird dann als die einzelne Zahl ",
     numberingOutro:
-      " kodiert — eindeutig, weil jede ganze Zahl eine eindeutige Primfaktorzerlegung hat.",
+      " kodiert: eindeutig, weil jede ganze Zahl eine eindeutige Primfaktorzerlegung hat.",
     thSymbol: "Symbol",
     thMeaning: "Bedeutung",
     thGodel: "Gödel-Nr.",
@@ -129,7 +129,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     exampleMid: "(Symbole 0, =, 0 → Codes 6, 5, 6) wird zur Gödel-Zahl",
     loopBadge: "Die Selbstbezugsschleife",
     loopIntro:
-      "Inhalt und Gödel-Zahl von G sind miteinander verdrahtet. G behauptet, dass die Formel mit der Nummer ⌜G⌝ keinen Beweis hat — und die Formel mit der Nummer ⌜G⌝ ist G selbst. Die Schleife schließt sich auf der Diagonale.",
+      "Inhalt und Gödel-Zahl von G sind miteinander verdrahtet. G behauptet, dass die Formel mit der Nummer ⌜G⌝ keinen Beweis hat, und die Formel mit der Nummer ⌜G⌝ ist G selbst. Die Schleife schließt sich auf der Diagonale.",
     loopSentence: "Satz",
     loopSentenceCaption: "«Ich bin in S nicht beweisbar»",
     loopArithEquiv: "arithmetische Äquivalenz",
@@ -137,16 +137,15 @@ const FIGURES: Record<Locale, RichFigures> = {
     loopGoedelCaption: "die natürliche Zahl, die G selbst kodiert",
     branchProvableHead: "wenn G beweisbar ist",
     branchProvableBody:
-      "S beweist einen Satz, der sagt «Ich habe keinen Beweis» — das System ist inkonsistent.",
+      "S beweist einen Satz, der sagt «Ich habe keinen Beweis»: Das System ist inkonsistent.",
     branchUnprovableHead: "wenn G nicht beweisbar ist",
-    branchUnprovableBody:
-      "Dann ist genau das, was G behauptet, wahr — wahr, aber in S unbeweisbar.",
+    branchUnprovableBody: "Dann ist genau das, was G behauptet, wahr: wahr, aber in S unbeweisbar.",
   },
   es: {
     numberingBadge: "Numeración de Gödel · una muestra de códigos de símbolos",
     numberingIntro:
       "Cada símbolo del lenguaje formal recibe su propio número natural. Una fórmula completa s₁s₂s₃… se codifica entonces como el único entero ",
-    numberingOutro: " — único porque todo entero tiene una factorización en primos única.",
+    numberingOutro: ", único porque todo entero tiene una factorización en primos única.",
     thSymbol: "símbolo",
     thMeaning: "significado",
     thGodel: "Nº Gödel",
@@ -165,7 +164,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     exampleMid: "(símbolos 0, =, 0 → códigos 6, 5, 6) se convierte en el número de Gödel",
     loopBadge: "El bucle de autorreferencia",
     loopIntro:
-      "El contenido de G y el número de Gödel de G están conectados. G afirma que la fórmula con número ⌜G⌝ no tiene demostración — y la fórmula con número ⌜G⌝ es G misma. El bucle se cierra en la diagonal.",
+      "El contenido de G y el número de Gödel de G están conectados. G afirma que la fórmula con número ⌜G⌝ no tiene demostración, y la fórmula con número ⌜G⌝ es G misma. El bucle se cierra en la diagonal.",
     loopSentence: "sentencia",
     loopSentenceCaption: "«No soy demostrable en S»",
     loopArithEquiv: "equivalencia aritmética",
@@ -173,17 +172,17 @@ const FIGURES: Record<Locale, RichFigures> = {
     loopGoedelCaption: "el número natural que codifica a G misma",
     branchProvableHead: "si G es demostrable",
     branchProvableBody:
-      "S demuestra una sentencia que dice «no tengo demostración» — el sistema es inconsistente.",
+      "S demuestra una sentencia que dice «no tengo demostración»: el sistema es inconsistente.",
     branchUnprovableHead: "si G no es demostrable",
     branchUnprovableBody:
-      "Entonces lo que G afirma es exactamente verdadero — verdadero, pero indemostrable en S.",
+      "Entonces lo que G afirma es exactamente verdadero: verdadero, pero indemostrable en S.",
   },
   fr: {
     numberingBadge: "Numérotation de Gödel · un échantillon de codes de symboles",
     numberingIntro:
       "Chaque symbole du langage formel reçoit son propre nombre entier. Une formule complète s₁s₂s₃… est alors codée par l'unique entier ",
     numberingOutro:
-      " — unique parce que tout entier admet une factorisation en nombres premiers unique.",
+      ", unique parce que tout entier admet une factorisation en nombres premiers unique.",
     thSymbol: "symbole",
     thMeaning: "signification",
     thGodel: "n° Gödel",
@@ -202,24 +201,24 @@ const FIGURES: Record<Locale, RichFigures> = {
     exampleMid: "(symboles 0, =, 0 → codes 6, 5, 6) devient le nombre de Gödel",
     loopBadge: "La boucle d'autoréférence",
     loopIntro:
-      "Le contenu de G et le nombre de Gödel de G sont câblés ensemble. G affirme que la formule numérotée ⌜G⌝ n'a pas de preuve — et la formule numérotée ⌜G⌝ est G elle-même. La boucle se referme sur la diagonale.",
+      "Le contenu de G et le nombre de Gödel de G sont câblés ensemble. G affirme que la formule numérotée ⌜G⌝ n'a pas de preuve, et la formule numérotée ⌜G⌝ est G elle-même. La boucle se referme sur la diagonale.",
     loopSentence: "énoncé",
-    loopSentenceCaption: "«Je ne suis pas prouvable dans S»",
+    loopSentenceCaption: "« Je ne suis pas prouvable dans S »",
     loopArithEquiv: "équivalence arithmétique",
     loopGoedelNumber: "nombre de Gödel",
     loopGoedelCaption: "le nombre entier qui code G elle-même",
     branchProvableHead: "si G est prouvable",
     branchProvableBody:
-      "S prouve un énoncé qui dit «je n'ai pas de preuve» — le système est inconsistant.",
+      "S prouve un énoncé qui dit « je n'ai pas de preuve » : le système est inconsistant.",
     branchUnprovableHead: "si G n'est pas prouvable",
     branchUnprovableBody:
-      "Alors ce que G affirme est exactement vrai — vrai, mais non prouvable dans S.",
+      "Alors ce que G affirme est exactement vrai : vrai, mais non prouvable dans S.",
   },
   it: {
     numberingBadge: "Numerazione di Gödel · un campione di codici di simboli",
     numberingIntro:
       "Ogni simbolo del linguaggio formale riceve il proprio numero naturale. Una formula completa s₁s₂s₃… viene poi codificata come l'unico intero ",
-    numberingOutro: " — unico perché ogni intero ha una fattorizzazione in primi unica.",
+    numberingOutro: ", unico perché ogni intero ha una fattorizzazione in primi unica.",
     thSymbol: "simbolo",
     thMeaning: "significato",
     thGodel: "n. Gödel",
@@ -238,7 +237,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     exampleMid: "(simboli 0, =, 0 → codici 6, 5, 6) diventa il numero di Gödel",
     loopBadge: "Il ciclo di autoreferenza",
     loopIntro:
-      "Il contenuto di G e il numero di Gödel di G sono cablati insieme. G afferma che la formula numerata ⌜G⌝ non ha dimostrazione — e la formula numerata ⌜G⌝ è G stessa. Il ciclo si chiude sulla diagonale.",
+      "Il contenuto di G e il numero di Gödel di G sono cablati insieme. G afferma che la formula numerata ⌜G⌝ non ha dimostrazione, e la formula numerata ⌜G⌝ è G stessa. Il ciclo si chiude sulla diagonale.",
     loopSentence: "enunciato",
     loopSentenceCaption: "«Non sono dimostrabile in S»",
     loopArithEquiv: "equivalenza aritmetica",
@@ -246,16 +245,16 @@ const FIGURES: Record<Locale, RichFigures> = {
     loopGoedelCaption: "il numero naturale che codifica G stessa",
     branchProvableHead: "se G è dimostrabile",
     branchProvableBody:
-      "S dimostra un enunciato che dice «non ho dimostrazione» — il sistema è inconsistente.",
+      "S dimostra un enunciato che dice «non ho dimostrazione»: il sistema è inconsistente.",
     branchUnprovableHead: "se G non è dimostrabile",
     branchUnprovableBody:
-      "Allora ciò che G afferma è esattamente vero — vero, ma indimostrabile in S.",
+      "Allora ciò che G afferma è esattamente vero: vero, ma indimostrabile in S.",
   },
   pt: {
     numberingBadge: "Numeração de Gödel · uma amostra de códigos de símbolos",
     numberingIntro:
       "Cada símbolo da linguagem formal recebe o seu próprio número natural. Uma fórmula completa s₁s₂s₃… é então codificada como o único inteiro ",
-    numberingOutro: " — único porque todo inteiro tem uma fatoração em primos única.",
+    numberingOutro: ", único porque todo inteiro tem uma fatoração em primos única.",
     thSymbol: "símbolo",
     thMeaning: "significado",
     thGodel: "nº Gödel",
@@ -274,7 +273,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     exampleMid: "(símbolos 0, =, 0 → códigos 6, 5, 6) torna-se o número de Gödel",
     loopBadge: "O ciclo de autorreferência",
     loopIntro:
-      "O conteúdo de G e o número de Gödel de G estão interligados. G afirma que a fórmula numerada ⌜G⌝ não tem prova — e a fórmula numerada ⌜G⌝ é a própria G. O ciclo fecha-se na diagonal.",
+      "O conteúdo de G e o número de Gödel de G estão interligados. G afirma que a fórmula numerada ⌜G⌝ não tem prova, e a fórmula numerada ⌜G⌝ é a própria G. O ciclo fecha-se na diagonal.",
     loopSentence: "frase",
     loopSentenceCaption: "«Não sou demonstrável em S»",
     loopArithEquiv: "equivalência aritmética",
@@ -282,16 +281,16 @@ const FIGURES: Record<Locale, RichFigures> = {
     loopGoedelCaption: "o número natural que codifica a própria G",
     branchProvableHead: "se G for demonstrável",
     branchProvableBody:
-      "S demonstra uma frase que diz «não tenho prova» — o sistema é inconsistente.",
+      "S demonstra uma frase que diz «não tenho prova»: o sistema é inconsistente.",
     branchUnprovableHead: "se G não for demonstrável",
     branchUnprovableBody:
-      "Então o que G afirma é exatamente verdadeiro — verdadeiro, mas indemonstrável em S.",
+      "Então o que G afirma é exatamente verdadeiro: verdadeiro, mas indemonstrável em S.",
   },
   sv: {
     numberingBadge: "Gödelnumrering · ett urval av symbolkoder",
     numberingIntro:
       "Varje symbol i det formella språket får sitt eget naturliga tal. En fullständig formel s₁s₂s₃… kodas sedan som det enda heltalet ",
-    numberingOutro: " — unikt eftersom varje heltal har en unik primtalsfaktorisering.",
+    numberingOutro: ", unikt eftersom varje heltal har en unik primtalsfaktorisering.",
     thSymbol: "symbol",
     thMeaning: "betydelse",
     thGodel: "Gödel-nr",
@@ -310,7 +309,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     exampleMid: "(symboler 0, =, 0 → koder 6, 5, 6) blir Gödel-talet",
     loopBadge: "Självreferensens slinga",
     loopIntro:
-      "Innehållet i G och Gödel-talet för G är sammankopplade. G påstår att formeln med nummer ⌜G⌝ saknar bevis — och formeln med nummer ⌜G⌝ är G självt. Slingan sluts på diagonalen.",
+      "Innehållet i G och Gödel-talet för G är sammankopplade. G påstår att formeln med nummer ⌜G⌝ saknar bevis, och formeln med nummer ⌜G⌝ är G självt. Slingan sluts på diagonalen.",
     loopSentence: "sats",
     loopSentenceCaption: "«Jag är inte bevisbar i S»",
     loopArithEquiv: "aritmetisk ekvivalens",
@@ -318,15 +317,15 @@ const FIGURES: Record<Locale, RichFigures> = {
     loopGoedelCaption: "det naturliga tal som kodar G självt",
     branchProvableHead: "om G är bevisbar",
     branchProvableBody:
-      "S bevisar en sats som säger «jag har inget bevis» — systemet är inkonsistent.",
+      "S bevisar en sats som säger «jag har inget bevis»: systemet är inkonsistent.",
     branchUnprovableHead: "om G inte är bevisbar",
-    branchUnprovableBody: "Då är det som G påstår precis sant — sant, men obevisbart i S.",
+    branchUnprovableBody: "Då är det som G påstår precis sant: sant, men obevisbart i S.",
   },
   no: {
     numberingBadge: "Gödelnummerering · et utvalg av symbolkoder",
     numberingIntro:
       "Hvert symbol i det formelle språket får sitt eget naturlige tall. En fullstendig formel s₁s₂s₃… kodes så som det ene heltallet ",
-    numberingOutro: " — unikt fordi hvert heltall har en unik primtallsfaktorisering.",
+    numberingOutro: ", unikt fordi hvert heltall har en unik primtallsfaktorisering.",
     thSymbol: "symbol",
     thMeaning: "betydning",
     thGodel: "Gödel-nr",
@@ -345,7 +344,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     exampleMid: "(symboler 0, =, 0 → koder 6, 5, 6) blir Gödel-tallet",
     loopBadge: "Selvreferansens løkke",
     loopIntro:
-      "Innholdet i G og Gödel-tallet til G er koblet sammen. G hevder at formelen med nummer ⌜G⌝ ikke har noe bevis — og formelen med nummer ⌜G⌝ er G selv. Løkken lukker seg på diagonalen.",
+      "Innholdet i G og Gödel-tallet til G er koblet sammen. G hevder at formelen med nummer ⌜G⌝ ikke har noe bevis, og formelen med nummer ⌜G⌝ er G selv. Løkken lukker seg på diagonalen.",
     loopSentence: "setning",
     loopSentenceCaption: "«Jeg er ikke bevisbar i S»",
     loopArithEquiv: "aritmetisk ekvivalens",
@@ -353,9 +352,9 @@ const FIGURES: Record<Locale, RichFigures> = {
     loopGoedelCaption: "det naturlige tallet som koder G selv",
     branchProvableHead: "hvis G er bevisbar",
     branchProvableBody:
-      "S beviser en setning som sier «jeg har ikke noe bevis» — systemet er inkonsistent.",
+      "S beviser en setning som sier «jeg har ikke noe bevis»: Systemet er inkonsistent.",
     branchUnprovableHead: "hvis G ikke er bevisbar",
-    branchUnprovableBody: "Da er det G hevder akkurat sant — sant, men ubevisbart i S.",
+    branchUnprovableBody: "Da er det G hevder akkurat sant: sant, men ubevisbart i S.",
   },
 };
 
@@ -380,10 +379,10 @@ export default function GodelStoryPage() {
       signature={<GodelLoopHero />}
     >
       <section className="mx-auto max-w-3xl space-y-10">
-        {/* Section 1 — Hilbert's dream */}
+        {/* Section 1: Hilbert's dream */}
         <StoryCard pretitle={sec0.pretitle} title={sec0.title} body={sec0.body} accent={ACCENT} />
 
-        {/* Section 2 — Gödel numbering, with a visual table of symbol codes */}
+        {/* Section 2: Gödel numbering, with a visual table of symbol codes */}
         <StoryCard pretitle={sec1.pretitle} title={sec1.title} body={sec1.body} accent={ACCENT} />
 
         <Reveal>
@@ -428,7 +427,7 @@ export default function GodelStoryPage() {
           </div>
         </Reveal>
 
-        {/* Section 3 — The diagonal trick, with a self-reference loop diagram */}
+        {/* Section 3: The diagonal trick, with a self-reference loop diagram */}
         <StoryCard pretitle={sec2.pretitle} title={sec2.title} body={sec2.body} accent={ACCENT} />
 
         <Reveal>
@@ -482,7 +481,7 @@ export default function GodelStoryPage() {
           </div>
         </Reveal>
 
-        {/* Section 4 — Where it spread */}
+        {/* Section 4: Where it spread */}
         <StoryCard pretitle={sec3.pretitle} title={sec3.title} body={sec3.body} accent={ACCENT} />
       </section>
     </StoryPageShell>

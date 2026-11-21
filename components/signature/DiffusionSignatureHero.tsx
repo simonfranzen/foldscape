@@ -55,7 +55,7 @@ function buildTrack(
     const rj = rng();
     // x along the track
     const x = rx * W;
-    // "structure parameter" — how close we are to the structured end.
+    // "structure parameter": how close we are to the structured end.
     // direction=+1: structure builds toward the right;
     // direction=-1: structure decays toward the right.
     const s = direction === 1 ? x / W : 1 - x / W;
@@ -167,7 +167,7 @@ export function DiffusionSignatureHero() {
           <path d={`M 80 233 L 30 233 M 42 227 L 30 233 L 42 239`} />
         </g>
 
-        {/* Top track — noise dissolving into a silhouette on the right */}
+        {/* Top track: noise dissolving into a silhouette on the right */}
         {topTrack.map((d, i) => (
           <circle
             key={`t-${i}`}
@@ -179,7 +179,7 @@ export function DiffusionSignatureHero() {
           />
         ))}
 
-        {/* Bottom track — silhouette on the left dissolving into noise on the right */}
+        {/* Bottom track: silhouette on the left dissolving into noise on the right */}
         {bottomTrack.map((d, i) => (
           <circle
             key={`b-${i}`}

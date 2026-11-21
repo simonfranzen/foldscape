@@ -53,7 +53,7 @@ const PRESETS: Preset[] = [
 //     reflection law, derived from solving for the centre of the small circle
 //     given the curvatures and centres of three mutually tangent circles.
 //
-// For robustness we use the Lagarias–Mallows–Wilks "complex Descartes" form:
+// For robustness we use the Lagarias-Mallows-Wilks "complex Descartes" form:
 //   k4·z4 = k1·z1 + k2·z2 + k3·z3 ± 2·√(k1 k2 z1 z2 + k2 k3 z2 z3 + k3 k1 z3 z1)
 // where z = x + iy. We unfold complex arithmetic into (x, y) pairs.
 
@@ -189,7 +189,7 @@ function placeSeed(seeds: [number, number, number, number]): Circle[] {
 //   kE · zE = 2(kA zA + kB zB + kC zC) − kD · zD
 //
 // After inserting E, three new curved-triangular gaps appear, each bounded
-// by (A, B, E), (B, C, E) and (A, C, E) — with the "old" circle being C, A,
+// by (A, B, E), (B, C, E) and (A, C, E), with the "old" circle being C, A,
 // B respectively. We recurse on each.
 
 function reflectThrough(a: Circle, b: Circle, c: Circle, d: Circle): Circle {
@@ -436,7 +436,7 @@ export default function ApollonianExplorer() {
       ctx.fillStyle = palette.canvas.bg;
       ctx.fillRect(0, 0, W, H);
 
-      // Determine viewport — we always centre on the outer disc at (0, 0).
+      // Determine viewport: we always centre on the outer disc at (0, 0).
       // The outer disc has radius 1/|k_outer| in unit coordinates, so we divide
       // the pixel scale by that radius to make the enclosing circle fill the
       // frame for every preset (otherwise the −6 packing would render at a
@@ -490,7 +490,7 @@ export default function ApollonianExplorer() {
 
         let stroke = withAlpha(palette.ink[100], 0.85);
         if (c.k < 0) {
-          // Outer enclosing circle — distinctive rose.
+          // Outer enclosing circle: distinctive rose.
           stroke = withAlpha(palette.signal.rose, 0.95);
         } else if (colourByCurvature) {
           const t = Math.min(1, Math.log10(Math.max(1, c.k)) / maxLog);

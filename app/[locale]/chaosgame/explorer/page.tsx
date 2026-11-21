@@ -240,17 +240,17 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
   },
   pt: {
     chaosGame: "Jogo do caos",
-    barnsleyFern: "Samambaia de Barnsley · IFS de 4 mapas",
+    barnsleyFern: "Feto de Barnsley · IFS de 4 mapas",
     presetLabels: {
       triangle: "Triângulo",
       square: "Quadrado (sem repetir)",
       pentagon: "Pentágono",
-      fern: "Samambaia de Barnsley",
+      fern: "Feto de Barnsley",
     },
     fernNote: "IFS · 4 mapas afins",
     presets: "Predefinições",
     verticesN: "Vértices n",
-    fern: "samambaia",
+    fern: "feto",
     jumpRatio: "Razão de salto r",
     autoMagic: "Razão mágica automática",
     restriction: "Restrição",
@@ -260,12 +260,12 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       noneighbour: "Sem vizinho",
       noopposite: "Sem oposto",
     },
-    speed: "Velocidade · pontos/quadro",
+    speed: "Velocidade · pontos/fotograma",
     dotColour: "Cor do ponto",
     colours: { cyan: "ciano", violet: "violeta", amber: "âmbar", rose: "rosa" },
     clear: "Limpar",
     points: "pontos",
-    canvasLabel: "Tela do jogo do caos que desenha o atrator fractal",
+    canvasLabel: "Canvas do jogo do caos que desenha o atrator fractal",
   },
   sv: {
     chaosGame: "Kaosspelet",
@@ -310,7 +310,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     verticesN: "Hjørner n",
     fern: "bregne",
     jumpRatio: "Hoppforhold r",
-    autoMagic: "Magisk kvot automatisk",
+    autoMagic: "Magisk forhold automatisk",
     restriction: "Begrensning",
     restrictions: {
       none: "Ingen",
@@ -539,7 +539,7 @@ export default function ChaosGameExplorer() {
         setTotalPoints(countRef.current);
       }
       if (countRef.current >= BUDGET) {
-        setTotalPoints(countRef.current); // settled — flush the final count
+        setTotalPoints(countRef.current); // settled: flush the final count
         return;
       }
       raf = requestAnimationFrame(tick);

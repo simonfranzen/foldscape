@@ -34,7 +34,7 @@ export function CosmosScene() {
   const cosmos = COSMOS[locale];
 
   // Per-category scroll progress (0..1) reported by each ConstellationScene.
-  // The orchestrator picks the strongest as the active category — which in
+  // The orchestrator picks the strongest as the active category, which in
   // turn drives the sky-tint CSS variable and the HUD compass highlight.
   const progressRef = useRef<Record<TopicCategory, number>>({
     paradox: 0,
@@ -54,7 +54,7 @@ export function CosmosScene() {
   // page from its back-forward cache, in which case the React component
   // does NOT remount and useEffect wouldn't run again).
   //
-  // The scroll is instant — smooth would feel like the page is moving
+  // The scroll is instant; smooth would feel like the page is moving
   // *away* from the user instead of *picking up where they left off*.
   // We also disable native scroll restoration here so that Next.js /
   // the browser don't snap us back to 0 a frame after our restore.
@@ -85,7 +85,7 @@ export function CosmosScene() {
         /* noop */
       }
       // Triple-step: scroll once synchronously, once on the next rAF,
-      // once after a tick — and dispatch a synthetic scroll event after
+      // once after a tick, and dispatch a synthetic scroll event after
       // each so every useScrollProgress hook recomputes against the new
       // position. The reason for the redundancy: late-firing native
       // restoration can otherwise snap us back to 0 after our scroll,
@@ -104,7 +104,7 @@ export function CosmosScene() {
     tryRestore();
 
     const onPageShow = (e: PageTransitionEvent) => {
-      // bfcache restore — fires without a fresh mount. Re-run the same
+      // bfcache restore: fires without a fresh mount. Re-run the same
       // logic so the user lands back where they were.
       if (e.persisted) tryRestore();
     };
@@ -142,7 +142,7 @@ export function CosmosScene() {
     if (!active) return undefined;
     const rgb = CATEGORY_RGB[active];
     // A whisper, not a wash. v1 ran the tint to 18% and the whole page read
-    // as a saturated category colour — "Christmas" per the user. 3.5% is
+    // as a saturated category colour, "Christmas" per the user. 3.5% is
     // the threshold where the eye can still tell paradox from chaos but
     // never thinks of the sky as anything other than black.
     const alpha = (tintIntensity * 0.035).toFixed(3);
@@ -165,14 +165,14 @@ export function CosmosScene() {
       <NebulaLayer />
       <StarField />
       <FloatingFormulas />
-      {/* Sky-tint overlay — driven by the active scene's CSS custom prop. */}
+      {/* Sky-tint overlay, driven by the active scene's CSS custom prop. */}
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-0 transition-colors duration-500"
         style={{ background: "var(--sky-tint, transparent)" }}
       />
 
-      {/* HUD — sits above everything */}
+      {/* HUD, sits above everything */}
       <CosmosHUD activeCategory={active} />
 
       <main className="relative z-10">
@@ -187,7 +187,7 @@ export function CosmosScene() {
           <Reveal delay={140}>
             <p className="math-italic mt-6 text-5xl leading-[0.95] tracking-tight md:text-8xl">
               {a.landing.title1}
-              <span className="mx-2 text-ink-300 md:mx-4">—</span>
+              <span className="text-ink-300">,</span>{" "}
               <span className="shimmer-text">{a.landing.title2}</span>
             </p>
           </Reveal>
@@ -201,7 +201,7 @@ export function CosmosScene() {
               {a.landing.hook}
             </p>
           </Reveal>
-          {/* Primary CTA — without this visitors landed on the hero and
+          {/* Primary CTA: without this visitors landed on the hero and
               didn't know what to do (user feedback: "man ist schon lost
               bevor man angefangen hat"). Jumps past the prose straight
               to the first constellation so the visitor's first scroll
@@ -234,7 +234,7 @@ export function CosmosScene() {
         </section>
         <ScrollHint targetId="whom-why" label={cosmos.scrollHint} />
 
-        {/* 2. Whom + Why — the two glass cards from v3 that explain what the
+        {/* 2. Whom + Why: the two glass cards from v3 that explain what the
             atlas is for. Kept because the user noted these words "mattered
             at the start". They sit between the hero and the approach line
             so the visitor's first scroll is text, not constellation. */}
@@ -259,7 +259,7 @@ export function CosmosScene() {
           </div>
         </section>
 
-        {/* 3. Long-form intro paragraphs — also from v3. They prime the
+        {/* 3. Long-form intro paragraphs, also from v3. They prime the
             visitor for the cosmos below; without them the leap from the
             hero straight into a six-cluster sky felt abrupt. */}
         <section id="intro" className="relative z-10 px-6 pb-12">
@@ -274,7 +274,7 @@ export function CosmosScene() {
         </section>
         <ScrollHint targetId="approach" label={cosmos.scrollHint} />
 
-        {/* 4. Approach — the one-line invitation just before the first
+        {/* 4. Approach: the one-line invitation just before the first
             constellation scene. */}
         <section
           id="approach"
@@ -288,7 +288,7 @@ export function CosmosScene() {
         </section>
         <ScrollHint targetId={`scene-${SCENES[0].category}`} label={cosmos.scrollHint} />
 
-        {/* 3..8 — six constellations */}
+        {/* 3..8: six constellations */}
         {SCENES.map((s) => (
           <ConstellationScene
             key={s.category}
@@ -298,7 +298,7 @@ export function CosmosScene() {
           />
         ))}
 
-        {/* 9. Atlas overview — title + the full flat topic index (the
+        {/* 9. Atlas overview: title + the full flat topic index (the
             "every star, in one place" view). v4 had a row of six headline
             chips above this table, which the user found duplicated:
             "erstmal so ein paar links zu einträgen und darunter dann

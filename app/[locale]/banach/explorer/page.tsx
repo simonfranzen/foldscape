@@ -10,7 +10,7 @@ import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerG
 import { BANACH_GUIDE } from "@/lib/explorer-guides/banach";
 
 // Generator indices: 0 = a, 1 = a⁻¹, 2 = b, 3 = b⁻¹.
-// Inverse pairing — index i and INV[i] cancel one another, so a node never
+// Inverse pairing: index i and INV[i] cancel one another, so a node never
 // branches back along the direction it just came from (otherwise we'd have a
 // non-reduced word).
 const INV = [1, 0, 3, 2] as const;
@@ -197,7 +197,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP1:
       "A árvore infinita é o grafo de Cayley do grupo livre F₂ gerado por duas rotações a e b. Cada palavra reduzida em a, a⁻¹, b, b⁻¹ é um nó distinto; a raiz é a rotação identidade. Cada nó não-raiz tem três filhos (não pode voltar pelo inverso do passo que o produziu).",
     whatYouSeeP2:
-      "Pinta cada nó pela primeira letra da sua palavra e divides F₂ em quatro peças disjuntas W(a), W(a⁻¹), W(b), W(b⁻¹). O paradoxo é puramente combinatório: multiplicar W(a⁻¹) à esquerda por a (o seu inverso) cobre toda palavra que não começa por a, isto é, as outras três peças mais a identidade. Uma peça, deslocada, são três peças mais um ponto. Sobe isto do grupo para a esfera via Hausdorff (1914), depois para a bola, e uma bola torna-se duas.",
+      "Pinta cada nó pela primeira letra da sua palavra e divides F₂ em quatro peças disjuntas W(a), W(a⁻¹), W(b), W(b⁻¹). O paradoxo é puramente combinatório: multiplicar W(a⁻¹) à esquerda por a (o seu inverso) cobre toda a palavra que não começa por a, isto é, as outras três peças mais a identidade. Uma peça, deslocada, são três peças mais um ponto. Sobe isto do grupo para a esfera via Hausdorff (1914), depois para a bola, e uma bola torna-se duas.",
     overlayMsg: (h, inv) => `W(${h}) deslocada por ${inv} cobre F₂ ∖ W(${inv})`,
     overlaySubMsg:
       "esta peça, deslocada pelo seu gerador inverso, cobre-se a si mesma, outras duas peças e a identidade",
@@ -241,18 +241,18 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP1:
       "Det uendelige treet er Cayley-grafen til den frie gruppen F₂ generert av to rotasjoner a og b. Hvert reduserte ord i a, a⁻¹, b, b⁻¹ er en egen node; roten er identitetsrotasjonen. Hver ikke-rot-node har tre barn (den kan ikke gå tilbake via inversen av skrittet som produserte den).",
     whatYouSeeP2:
-      "Fargelegg hver node etter første bokstav i dens ord, og du splitter F₂ i fire disjunkte biter W(a), W(a⁻¹), W(b), W(b⁻¹). Paradokset er rent kombinatorisk: å multiplisere W(a⁻¹) fra venstre med a (dens invers) dekker hvert ord som ikke begynner med a, altså de tre andre bitene pluss identiteten. Én bit, forskjøvet, er tre biter pluss et punkt. Løft dette fra gruppen til sfæren via Hausdorff (1914), så til kulen, og én kule blir til to.",
+      "Fargelegg hver node etter første bokstav i dens ord, og du splitter F₂ i fire disjunkte biter W(a), W(a⁻¹), W(b), W(b⁻¹). Paradokset er rent kombinatorisk: Å multiplisere W(a⁻¹) fra venstre med a (dens invers) dekker hvert ord som ikke begynner med a, altså de tre andre bitene pluss identiteten. Én bit, forskjøvet, er tre biter pluss et punkt. Løft dette fra gruppen til sfæren via Hausdorff (1914), så til kulen, og én kule blir til to.",
     overlayMsg: (h, inv) => `W(${h}) forskjøvet med ${inv} dekker F₂ ∖ W(${inv})`,
     overlaySubMsg:
       "denne biten, forskjøvet med sin inverse generator, dekker seg selv, to andre biter og identiteten",
     trickNote:
-      "Når biten glir, vokser den også til dobbel størrelse. Det skyldes bare tegningen: grenene tegnes halvparten så lange på hvert nivå for at treet skal få plass på skjermen. I selve gruppen er alle steg like, og ingenting skaleres.",
+      "Når biten glir, vokser den også til dobbel størrelse. Det skyldes bare tegningen: Grenene tegnes halvparten så lange på hvert nivå for at treet skal få plass på skjermen. I selve gruppen er alle steg like, og ingenting skaleres.",
   },
 };
 
 export default function BanachExplorer() {
   const { a, u, locale } = useI18n();
-  // banach is registered in atlas — pull the localised topic copy.
+  // banach is registered in atlas: pull the localised topic copy.
   const topic = a.topics.banach;
   const x = EXPLORER[locale];
 

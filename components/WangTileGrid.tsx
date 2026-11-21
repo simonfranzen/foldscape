@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { palette } from "@/lib/visual/palette";
 
 // ─── Palette ─────────────────────────────────────────────────────────────────
-// Cyan, violet, amber, rose — matches the Explorer.
+// Cyan, violet, amber, rose, matches the Explorer.
 const COLOURS = [
   palette.signal.cyan,
   palette.signal.violet,
@@ -126,7 +126,7 @@ export function WangTileGrid({
   }
 
   // For each edge between two filled cells: does it match?
-  // We store the result as a boolean array of [valid?] per cell — a cell is
+  // We store the result as a boolean array of [valid?] per cell: a cell is
   // valid iff *every* edge it shares with a filled neighbour matches.
   const { cellOk, placed, validCount } = useMemo(() => {
     const ok: boolean[][] = Array.from({ length: ROWS }, () =>

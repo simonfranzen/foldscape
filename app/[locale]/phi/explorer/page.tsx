@@ -587,7 +587,7 @@ export default function PhiExplorer() {
 }
 
 // ----------------------------------------------------------------------------
-// Spiral panel — nested Fibonacci squares + quarter-arc spiral
+// Spiral panel: nested Fibonacci squares + quarter-arc spiral
 // ----------------------------------------------------------------------------
 
 // Build the canonical Fibonacci-squares spiral. Returns square boxes plus
@@ -831,7 +831,7 @@ function SpiralPanel({ depth, ariaLabel }: { depth: number; ariaLabel: string })
 }
 
 // ----------------------------------------------------------------------------
-// Ratios panel — line chart of F_{n+1}/F_n approaching φ
+// Ratios panel: line chart of F_{n+1}/F_n approaching φ
 // ----------------------------------------------------------------------------
 
 function RatiosPanel({ n, ariaLabel }: { n: number; ariaLabel: string }) {
@@ -958,7 +958,7 @@ function RatiosPanel({ n, ariaLabel }: { n: number; ariaLabel: string }) {
 }
 
 // ----------------------------------------------------------------------------
-// Sunflower panel — Vogel phyllotaxis
+// Sunflower panel: Vogel phyllotaxis
 // ----------------------------------------------------------------------------
 
 function SunflowerPanel({

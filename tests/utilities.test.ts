@@ -63,7 +63,7 @@ describe("topic hubs derivation", () => {
   });
 
   it("derivation is deterministic across calls (frozen set)", () => {
-    // Capture once, compare to a fresh snapshot — TOPIC_HUBS is computed once
+    // Capture once, compare to a fresh snapshot: TOPIC_HUBS is computed once
     // at module load, so repeated reads must agree.
     const snap1 = Array.from(TOPIC_HUBS).sort();
     const snap2 = Array.from(TOPIC_HUBS).sort();
