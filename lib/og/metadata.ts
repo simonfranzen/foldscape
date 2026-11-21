@@ -5,7 +5,11 @@
 import type { Metadata } from "next";
 import { getTopic, type TopicId } from "@/lib/topics";
 import { EN_PLACEHOLDERS } from "@/lib/i18n/placeholders";
-import { DEFAULT_LOCALE, LOCALES } from "@/lib/i18n/types";
+import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/lib/i18n/types";
+import { localePath } from "@/lib/i18n/paths";
+import { ATLAS } from "@/lib/i18n/atlas";
+import type { ExplorerGuide } from "@/lib/explorer-guides/types";
+import { TOPIC_SEO } from "@/lib/seo/descriptions";
 
 export const SITE_URL = "https://foldscape.zauberware.com";
 
@@ -39,18 +43,38 @@ export function getTopicCopy(id: TopicId): { title: string; tagline: string } {
   return { title: id, tagline: "" };
 }
 
-// The locale lives in the ?lang= query parameter, so every translated
-// variant of a path is the same path plus that parameter. The default locale
-// is the bare path and doubles as x-default. Google accepts query-parameter
-// hreflang as long as each URL serves that language, which the client-side
-// locale switch guarantees after hydration.
-export function languageAlternates(path: string): Record<string, string> {
+// Each translated variant of a path lives under its locale prefix
+// (/de/lorenz); the default locale is the bare path and doubles as
+// x-default. `locales` narrows the set for pages that are not translated
+// into every language, so hreflang never points at a page in the wrong one.
+export function languageAlternates(
+  path: string,
+  locales: readonly Locale[] = LOCALES,
+): Record<string, string> {
   const out: Record<string, string> = {};
-  for (const l of LOCALES) {
-    out[l] = l === DEFAULT_LOCALE ? path : `${path}?lang=${l}`;
-  }
+  for (const l of locales) out[l] = localePath(l, path);
   out["x-default"] = path;
   return out;
+}
+
+export const TITLE_SUFFIX = " · Foldscape";
+
+const OG_LOCALE: Record<Locale, string> = {
+  en: "en_US",
+  de: "de_DE",
+  es: "es_ES",
+  fr: "fr_FR",
+  it: "it_IT",
+  pt: "pt_PT",
+  sv: "sv_SE",
+  no: "nb_NO",
+};
+
+interface PageMetaOptions {
+  type?: "website" | "article";
+  locale?: Locale;
+  /** Locales this page really exists in; defaults to all of them. */
+  locales?: readonly Locale[];
 }
 
 // Titles carry the site suffix explicitly via `absolute`: the root title
@@ -60,41 +84,97 @@ export function pageMetadata(
   path: string,
   title: string,
   description: string,
-  type: "website" | "article" = "website",
+  { type = "website", locale = DEFAULT_LOCALE, locales = LOCALES }: PageMetaOptions = {},
 ): Metadata {
+  const url = localePath(locale, path);
+  // A locale outside `locales` still renders (its UI chrome is translated)
+  // but the main text is English, so it stays out of the index. It keeps a
+  // self-referencing canonical: noindex combined with a canonical to another
+  // URL sends search engines two contradicting instructions.
+  const translated = locales.includes(locale);
   return {
-    title: { absolute: `${title} — Foldscape` },
+    title: { absolute: `${title}${TITLE_SUFFIX}` },
     description,
     openGraph: {
-      title: `${title} — Foldscape`,
+      title: `${title}${TITLE_SUFFIX}`,
       description,
-      url: path,
+      url,
       siteName: "Foldscape",
       type,
+      locale: OG_LOCALE[locale],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} — Foldscape`,
+      title: `${title}${TITLE_SUFFIX}`,
       description,
     },
-    alternates: { canonical: path, languages: languageAlternates(path) },
+    alternates: {
+      canonical: url,
+      languages: languageAlternates(path, locales),
+    },
+    ...(translated ? {} : { robots: { index: false, follow: true } }),
   };
 }
 
-export function topicMetadata(id: TopicId): Metadata {
-  const topic = getTopic(id);
+// Cut at a word boundary so a description never ends mid-word.
+function clip(text: string, max = 158): string {
+  const t = text.replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:.]$/, "")}…`;
+}
+
+// Search-facing title and description for a story page. The title falls back
+// to the atlas card title; the description falls back to the tagline only
+// if a topic was added without an entry in TOPIC_SEO.
+export function topicSeoCopy(
+  id: TopicId,
+  locale: Locale = DEFAULT_LOCALE,
+): { title: string; description: string } {
+  // The hand-written search copy exists in English only; other locales use
+  // their translated atlas card (title, then tagline and body as description).
+  if (locale !== DEFAULT_LOCALE) {
+    const card = ATLAS[locale].topics[id];
+    if (card?.title) {
+      const lead = /[.!?…]$/.test(card.tagline) ? card.tagline : `${card.tagline}.`;
+      return { title: card.title, description: clip(`${lead} ${card.body}`) };
+    }
+  }
   const { title, tagline } = getTopicCopy(id);
-  const description =
-    tagline || `${title}, an idea in the Foldscape atlas of mathematical curiosities.`;
-  return pageMetadata(topic.href, title, description, "article");
+  const seo = TOPIC_SEO[id];
+  return {
+    title: seo?.title ?? title,
+    description:
+      seo?.description ||
+      tagline ||
+      `${title}, an idea in the Foldscape atlas of mathematical curiosities.`,
+  };
+}
+
+export function topicMetadata(id: TopicId, locale: Locale = DEFAULT_LOCALE): Metadata {
+  const topic = getTopic(id);
+  const { title, description } = topicSeoCopy(id, locale);
+  return pageMetadata(topic.href, title, description, { type: "article", locale });
 }
 
 // Interactive sub-rooms (explorer, sandbox, simulator, builder, reducer,
 // sound) share the topic's copy but need their own canonical, otherwise they
-// would inherit the story page's canonical from the topic layout.
-export function topicSubpageMetadata(id: TopicId, sub: string, label: string): Metadata {
+// would inherit the story page's canonical from the topic layout. Their long
+// text is the guide, so a room counts as translated exactly for the locales
+// its guide covers.
+export function topicSubpageMetadata(
+  id: TopicId,
+  sub: string,
+  label: string,
+  guide: ExplorerGuide,
+  locale: Locale = DEFAULT_LOCALE,
+): Metadata {
   const topic = getTopic(id);
-  const { title } = getTopicCopy(id);
-  const description = `${label} for ${title}: play with the parameters yourself, in the browser, no sign-up.`;
-  return pageMetadata(`${topic.href}/${sub}`, `${title}: ${label}`, description);
+  const locales = LOCALES.filter((l) => guide[l]);
+  const { title } = topicSeoCopy(id, locales.includes(locale) ? locale : DEFAULT_LOCALE);
+  const description = (guide[locale] ?? guide.en).metaDescription;
+  return pageMetadata(`${topic.href}/${sub}`, `${title}: ${label}`, description, {
+    locale,
+    locales,
+  });
 }

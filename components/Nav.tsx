@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useI18n } from "@/lib/i18n/context";
+import Link from "@/components/LocaleLink";
+import { useBarePathname, useI18n } from "@/lib/i18n/context";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { GITHUB_URL } from "./Footer";
 import { TOPICS } from "@/lib/topics";
@@ -13,7 +12,7 @@ import { TOPICS } from "@/lib/topics";
 // away.
 
 export function Nav() {
-  const pathname = usePathname();
+  const pathname = useBarePathname();
   const { a, s } = useI18n();
 
   const topic = TOPICS.find((t) => pathname === t.href || pathname.startsWith(t.href + "/"));

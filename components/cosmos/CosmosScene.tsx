@@ -14,7 +14,7 @@
 // highest non-zero progress) so the HUD compass and the global sky-tint
 // CSS variable both line up to that category.
 
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { TOPICS, type TopicCategory } from "@/lib/topics";
@@ -176,17 +176,20 @@ export function CosmosScene() {
       <CosmosHUD activeCategory={active} />
 
       <main className="relative z-10">
-        {/* 1. Hero */}
-        <section className="relative flex min-h-[100vh] flex-col items-center justify-center px-6 text-center">
+        {/* 1. Hero. The top padding on phones keeps the h1 pill clear of the
+            fixed search/list HUD, which overlays the top of the viewport. */}
+        <section className="relative flex min-h-[100vh] flex-col items-center justify-center px-6 pb-10 pt-36 text-center md:py-0">
           <Reveal>
-            <div className="tag-pill">{a.landing.pretitle}</div>
+            {/* The descriptive line is the h1: it names what the site is, while
+                the display line below is a slogan without any search term. */}
+            <h1 className="tag-pill justify-center text-balance">{a.landing.pretitle}</h1>
           </Reveal>
           <Reveal delay={140}>
-            <h1 className="math-italic mt-6 text-5xl leading-[0.95] tracking-tight md:text-8xl">
+            <p className="math-italic mt-6 text-5xl leading-[0.95] tracking-tight md:text-8xl">
               {a.landing.title1}
               <span className="mx-2 text-ink-300 md:mx-4">—</span>
               <span className="shimmer-text">{a.landing.title2}</span>
-            </h1>
+            </p>
           </Reveal>
           <Reveal delay={260}>
             <p className="math-italic mx-auto mt-6 max-w-2xl text-lg leading-snug text-ink-200 md:text-2xl">
