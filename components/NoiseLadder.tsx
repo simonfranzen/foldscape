@@ -9,7 +9,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 //     x_t = √(ᾱ_t) · x_0  +  √(1 − ᾱ_t) · ε,    ε ~ N(0, I)
 //
 // where ᾱ_t = ∏_{s≤t} (1 − β_s). The slider scrubs t between 0 and T.
-// Auto-play (the default) walks t forward to T then reverses back —
+// Auto-play (the default) walks t forward to T then reverses back:
 // the same Markov chain visited from both ends.
 //
 // We also paint a big "hero" tile at the current step so the BEFORE→AFTER
@@ -38,7 +38,7 @@ const BETA_END = 0.55;
 // chunky and instantly recognisable even when half-eaten by noise.
 function buildBaseImage(): Float32Array {
   const buf = new Float32Array(SIDE * SIDE * 3);
-  // Vivid palette — picked so the silhouette survives a lot of additive
+  // Vivid palette, picked so the silhouette survives a lot of additive
   // noise before becoming unreadable.
   const bg = [0.04, 0.05, 0.12]; // deep navy
   const ink = [1.0, 0.38, 0.62]; // signal-rose
@@ -232,7 +232,7 @@ export function NoiseLadder({
     const tick = (now: number) => {
       const dt = (now - last) / 1000;
       if (dt > 0.55) {
-        // ~1.8 fps walk — slow enough to read each frame.
+        // ~1.8 fps walk, slow enough to read each frame.
         last = now;
         setT((prev) => {
           let next = prev + dir;
@@ -272,7 +272,7 @@ export function NoiseLadder({
         </div>
       </figcaption>
 
-      {/* Hero tile — large enough that the BEFORE/AFTER difference is
+      {/* Hero tile, large enough that the BEFORE/AFTER difference is
           unmissable. Sits above the tile strip. */}
       <div className="flex flex-col items-center gap-2">
         <canvas

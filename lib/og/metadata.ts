@@ -157,6 +157,69 @@ export function topicMetadata(id: TopicId, locale: Locale = DEFAULT_LOCALE): Met
   return pageMetadata(topic.href, title, description, { type: "article", locale });
 }
 
+// Room names for titles and breadcrumbs, matching the wording of the guide
+// headings in each language. English comes from the layout's own label.
+const ROOM_LABELS: Record<string, Partial<Record<Locale, string>>> = {
+  explorer: {
+    de: "Explorer",
+    es: "Explorador",
+    fr: "Explorateur",
+    it: "Esploratore",
+    pt: "Explorador",
+    sv: "Utforskare",
+    no: "Utforsker",
+  },
+  sound: {
+    de: "Klanglabor",
+    es: "Laboratorio de sonido",
+    fr: "Laboratoire sonore",
+    it: "Laboratorio sonoro",
+    pt: "Laboratório de som",
+    sv: "Ljudlabb",
+    no: "Lydlab",
+  },
+  reducer: {
+    de: "Reduzierer",
+    es: "Reductor",
+    fr: "Réducteur",
+    it: "Riduttore",
+    pt: "Redutor",
+    sv: "Reducerare",
+    no: "Reduserer",
+  },
+  sandbox: {
+    de: "Sandbox",
+    es: "Sandbox",
+    fr: "Bac à sable",
+    it: "Sandbox",
+    pt: "Sandbox",
+    sv: "Sandlåda",
+    no: "Sandkasse",
+  },
+  builder: {
+    de: "Baukasten",
+    es: "Constructor",
+    fr: "Constructeur",
+    it: "Costruttore",
+    pt: "Construtor",
+    sv: "Byggare",
+    no: "Bygger",
+  },
+  simulator: {
+    de: "Simulator",
+    es: "Simulador",
+    fr: "Simulateur",
+    it: "Simulatore",
+    pt: "Simulador",
+    sv: "Simulator",
+    no: "Simulator",
+  },
+};
+
+export function roomLabel(sub: string, fallback: string, locale: Locale): string {
+  return ROOM_LABELS[sub]?.[locale] ?? fallback;
+}
+
 // Interactive sub-rooms (explorer, sandbox, simulator, builder, reducer,
 // sound) share the topic's copy but need their own canonical, otherwise they
 // would inherit the story page's canonical from the topic layout. Their long
@@ -173,7 +236,10 @@ export function topicSubpageMetadata(
   const locales = LOCALES.filter((l) => guide[l]);
   const { title } = topicSeoCopy(id, locales.includes(locale) ? locale : DEFAULT_LOCALE);
   const description = (guide[locale] ?? guide.en).metaDescription;
-  return pageMetadata(`${topic.href}/${sub}`, `${title}: ${label}`, description, {
+  // French sets a space before a colon.
+  const sep = locale === "fr" ? " : " : ": ";
+  const room = locales.includes(locale) ? roomLabel(sub, label, locale) : label;
+  return pageMetadata(`${topic.href}/${sub}`, `${title}${sep}${room}`, description, {
     locale,
     locales,
   });

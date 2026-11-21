@@ -1,4 +1,4 @@
-// Hub topics — the bright stars of the constellation. Hand-curated, not
+// Hub topics: the bright stars of the constellation. Hand-curated, not
 // auto-derived by edge degree. Each entry is the "everyone knows this"
 // landmark of its category: the math problem most likely to ring a bell with
 // a smart non-mathematician. Tweak with care; these decisions shape the

@@ -232,7 +232,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     cellColour: "Cor da célula",
     restart: "Reiniciar",
     depth: "Profundidade",
-    pointsPerFrame: "Pontos / frame",
+    pointsPerFrame: "Pontos / fotograma",
     rows: "Linhas",
     generations: "Gerações",
     depthHint: "3^profundidade triângulos no limite · centro sempre removido.",

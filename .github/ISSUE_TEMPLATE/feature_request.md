@@ -13,7 +13,7 @@ a UX upgrade?
 ## Why
 
 Why does this fit Foldscape? What's the "small rule unfolds into a
-universe" angle? Who is it for — laypeople, students, researchers?
+universe" angle? Who is it for: laypeople, students, researchers?
 
 ## Sketch (optional)
 

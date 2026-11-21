@@ -56,7 +56,7 @@ export function PenroseGoldenRatio({ caption, levelsLabel, ratioLabel, hint }: P
       const seq = fib.slice();
       const x = 0;
       const y = 0;
-      // dir: 0=right, 1=up, 2=left, 3=down — direction the next square is placed
+      // dir: 0=right, 1=up, 2=left, 3=down; direction the next square is placed
       let dir = 0;
 
       for (let i = 0; i < seq.length; i++) {

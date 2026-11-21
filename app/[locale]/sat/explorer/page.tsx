@@ -9,8 +9,8 @@ import { SAT_GUIDE } from "@/lib/explorer-guides/sat";
 
 // ── DPLL solver, stepped and visualised ────────────────────────────────────
 // A literal is a variable index plus a sign. A clause is a disjunction of
-// literals. Each call to step() performs exactly one DPLL action — unit
-// propagation, a conflict-driven backtrack, a decision, or termination — so
+// literals. Each call to step() performs exactly one DPLL action (unit
+// propagation, a conflict-driven backtrack, a decision, or termination) so
 // the reader watches the search tree grow and collapse one move at a time.
 // Backtracking is chronological (plain DPLL), which is what makes the
 // exponential worst case legible without conflict-driven clause learning.
@@ -36,7 +36,7 @@ const PRESETS: Preset[] = [
     vars: ["a", "b", "c", "d"],
     clauses: [
       [N(0), P(1)], // ¬a ∨ b
-      [N(0), N(1)], // ¬a ∨ ¬b   (a ⇒ b and a ⇒ ¬b — so a must be false)
+      [N(0), N(1)], // ¬a ∨ ¬b   (a ⇒ b and a ⇒ ¬b, so a must be false)
       [P(0), P(2)], // a ∨ c
       [N(2), P(3)], // ¬c ∨ d
       [P(2), N(3)], // c ∨ ¬d
@@ -389,7 +389,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     legendUnit: "unitaria: un literal forzado",
     legendConflict: "conflicto: todos falsos",
     legendOpen: "abierta: indecisa",
-    legendDecision: "▼ decisión · ⤺ volteada",
+    legendDecision: "▼ decisión · ⤺ invertida",
     legendPropagation: "propagación unitaria",
     tipSatisfied: "satisfecha",
     tipConflict: "conflicto: todos los literales falsos",
@@ -406,7 +406,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     narrateUnit: (clause, v, value) =>
       `Propagación unitaria: a la cláusula ${clause} le queda un literal, forzando ${v} = ${value ? "verdadero" : "falso"}.`,
     narrateBacktrack: (clause, v, value) =>
-      `Conflicto en la cláusula ${clause}: todos los literales son falsos. Retrocede y voltea la última decisión abierta: ${v} = ${value ? "verdadero" : "falso"}.`,
+      `Conflicto en la cláusula ${clause}: todos los literales son falsos. Retrocede e invierte la última decisión abierta: ${v} = ${value ? "verdadero" : "falso"}.`,
     narrateSat:
       "Cada variable está asignada y cada cláusula satisfecha: la fórmula es SATISFACIBLE. La asignación es un certificado que cualquiera comprueba en una pasada.",
     narrateUnsat:
@@ -521,7 +521,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
   pt: {
     presets: {
       sat: "Satisfazível: força um retrocesso",
-      unsat: "Insatisfazível: toda atribuição descartada",
+      unsat: "Insatisfazível: todas as atribuições descartadas",
       big: "Satisfazível: cinco variáveis",
     },
     vars: "vars",
@@ -626,8 +626,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
   },
   no: {
     presets: {
-      sat: "Oppfyllbar: tvinger fram en backtrack",
-      unsat: "Uoppfyllbar: hver tildeling utelukket",
+      sat: "Oppfyllbar: tvinger fram en tilbakesporing",
+      unsat: "Uoppfyllbar: hver tilordning utelukket",
       big: "Oppfyllbar: fem variabler",
     },
     vars: "var",
@@ -637,8 +637,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     statusSat: "⊨ OPPFYLLBAR",
     statusUnsat: "⊭ UOPPFYLLBAR",
     statusSolving: "løser…",
-    assignment: "Tildeling",
-    formulaUnderAssignment: "Formel · hver klausul under den gjeldende tildelingen",
+    assignment: "Tilordning",
+    formulaUnderAssignment: "Formel · hver klausul under den gjeldende tilordningen",
     formula: "Formel",
     controls: "Kontroller",
     speed: "Hastighet",
@@ -667,15 +667,15 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     narrateStart:
       "Velg en formel og trykk Steg. Løseren beslutter en variabel, propagerer de tvungne følgene og går tilbake fra hver motsigelse.",
     narrateDecide: (v, level) =>
-      `Beslutning: ingen klausul tvinger noe, så gjett ${v} = sann og åpne beslutningsnivå ${level}.`,
+      `Beslutning: Ingen klausul tvinger noe, så gjett ${v} = sann og åpne beslutningsnivå ${level}.`,
     narrateUnit: (clause, v, value) =>
-      `Enhetspropagering: klausul ${clause} har én literal igjen, som tvinger ${v} = ${value ? "sann" : "usann"}.`,
+      `Enhetspropagering: Klausul ${clause} har én literal igjen, som tvinger ${v} = ${value ? "sann" : "usann"}.`,
     narrateBacktrack: (clause, v, value) =>
-      `Konflikt i klausul ${clause}: hver literal er usann. Gå tilbake og vend den siste åpne beslutningen: ${v} = ${value ? "sann" : "usann"}.`,
+      `Konflikt i klausul ${clause}: Hver literal er usann. Gå tilbake og vend den siste åpne beslutningen: ${v} = ${value ? "sann" : "usann"}.`,
     narrateSat:
-      "Hver variabel er tildelt og hver klausul oppfylt: formelen er OPPFYLLBAR. Tildelingen er et sertifikat som hvem som helst kan sjekke i ett gjennomløp.",
+      "Hver variabel er tilordnet og hver klausul oppfylt: Formelen er OPPFYLLBAR. Tilordningen er et sertifikat som hvem som helst kan sjekke i ett gjennomløp.",
     narrateUnsat:
-      "Backtrackingen gikk forbi roten: hver gren ender i konflikt. Formelen er UOPPFYLLBAR, og søket beviste det nettopp, den vanskelige retningen.",
+      "Tilbakesporingen gikk forbi roten: Hver gren ender i konflikt. Formelen er UOPPFYLLBAR, og søket beviste det nettopp, den vanskelige retningen.",
   },
 };
 
@@ -700,7 +700,7 @@ export default function SatExplorer() {
     setPlaying(false);
   }
 
-  // Play loop — recreated each step so the closure sees fresh state.
+  // Play loop: recreated each step so the closure sees fresh state.
   useEffect(() => {
     if (!playing) return;
     if (state.status !== "running") {

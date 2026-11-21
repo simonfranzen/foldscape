@@ -5,7 +5,7 @@ import { palette } from "@/lib/visual/palette";
 
 // Signature artefact for the Möbius page. A 2D parametric projection of a
 // Möbius band, rendered as a chain of small ribbons coloured along the
-// surface — a single continuous strip that ends up on the "other" side.
+// surface: a single continuous strip that ends up on the "other" side.
 // An ant walks the strip continuously to show one-sidedness.
 
 const W = 800;
@@ -134,7 +134,7 @@ export function MobiusStripHero() {
       aria-label="A Möbius band: a single twisted ribbon. A walker tracing its surface returns from the other side."
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" aria-hidden="true">
-        {/* Band segments — paint back-to-front using the screen Y of the centre */}
+        {/* Band segments: paint back-to-front using the screen Y of the centre */}
         {segs
           .map((s, i) => {
             const midY = (s.ay + s.by + s.cy + s.dy) / 4;
@@ -155,7 +155,7 @@ export function MobiusStripHero() {
             );
           })}
 
-        {/* Ant marker — a tiny luminous dot tracing the surface */}
+        {/* Ant marker: a tiny luminous dot tracing the surface */}
         <circle cx={ax} cy={ay} r="3.5" fill={palette.ink[100]} />
         <circle cx={ax} cy={ay} r="9" fill={palette.ink[100]} opacity="0.18" />
 

@@ -7,7 +7,7 @@ import { palette } from "@/lib/visual/palette";
 // genuinely infinite row with a "…" marker) and animate two famous moves:
 // add one guest by shifting everyone +1, or double the guests by sending
 // each guest n → 2n, which frees every odd-numbered room. The "more from
-// the infinite" intuition is exactly what powers Banach–Tarski.
+// the infinite" intuition is exactly what powers Banach-Tarski.
 
 interface Props {
   caption: string;

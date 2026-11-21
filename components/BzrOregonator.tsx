@@ -103,8 +103,8 @@ export function BzrOregonator({
     // legible at the per-frame step counts we run with.
     const f = 1.0;
     const dt = 0.0008;
-    // Was 60 — gave ~4 oscillations/second, fast enough that the colour
-    // bars flickered. 20 gives ~1.3 osc/sec — clearly visible cycle, no strobe.
+    // Was 60: gave ~4 oscillations/second, fast enough that the colour
+    // bars flickered. 20 gives ~1.3 osc/sec: clearly visible cycle, no strobe.
     const STEPS_PER_FRAME = 20;
     // Take one history sample every N steps so we see ~10 oscillations on
     // screen.

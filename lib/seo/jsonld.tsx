@@ -3,7 +3,7 @@
 // the markup must exist before hydration for crawlers that never run JS.
 
 import { getTopic, type TopicId } from "@/lib/topics";
-import { SITE_URL, topicSeoCopy } from "@/lib/og/metadata";
+import { SITE_URL, roomLabel, topicSeoCopy } from "@/lib/og/metadata";
 import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/lib/i18n/types";
 import { localePath } from "@/lib/i18n/paths";
 
@@ -115,7 +115,7 @@ export function topicSubpageJsonLd(
     breadcrumb([
       { name: SITE_NAME, url: `${SITE_URL}${localePath(locale, "/")}` },
       { name: title, url: topicUrl },
-      { name: label, url: `${topicUrl}/${sub}` },
+      { name: roomLabel(sub, label, locale), url: `${topicUrl}/${sub}` },
     ]),
   ];
 }

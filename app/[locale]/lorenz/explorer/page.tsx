@@ -90,7 +90,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     projectionLabel: "Projeção",
     classicPreset: "⟳ Caos clássico · 10 / 28 / 8⁄3",
     pauseLabel: "❚❚ Pausa",
-    playLabel: "▶ Tocar",
+    playLabel: "▶ Reproduzir",
     canvasLabel: "Atrator de Lorenz ao vivo, integrado em tempo real",
   },
   sv: {

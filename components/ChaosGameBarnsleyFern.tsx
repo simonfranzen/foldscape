@@ -123,7 +123,7 @@ export function ChaosGameBarnsleyFern({
   }, [resetTick]);
 
   // Canvas sizing. A resize reassigns canvas.width, which erases the picture,
-  // so the point counter must reset too — otherwise the label keeps a stale
+  // so the point counter must reset too; otherwise the label keeps a stale
   // total over a blank canvas. When the loop is not running (paused, or
   // reduced-motion) we repaint a static fern so it does not vanish.
   useEffect(() => {

@@ -21,7 +21,7 @@ const PRESETS: Preset[] = [
     label: "Algae · A→AB, B→A",
     axiom: "A",
     rules: { A: "AB", B: "A" },
-    note: "Lengths: 1, 2, 3, 5, 8, 13… — the Fibonacci sequence.",
+    note: "Lengths: 1, 2, 3, 5, 8, 13… (the Fibonacci sequence).",
   },
   {
     id: "sierpinski",

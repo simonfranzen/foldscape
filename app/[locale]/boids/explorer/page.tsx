@@ -10,7 +10,7 @@ import { BOIDS_GUIDE } from "@/lib/explorer-guides/boids";
 
 type ColorKey = "cyan" | "violet" | "amber" | "rose";
 
-// "r, g, b" triplet from a palette hex, for the canvas rgba() fills — keeps the
+// "r, g, b" triplet from a palette hex, for the canvas rgba() fills; keeps the
 // swatch colours in sync with the palette tokens instead of re-encoding them.
 const rgbTriplet = (hex: string) => {
   const h = hex.replace("#", "");
@@ -78,7 +78,7 @@ export default function BoidsExplorer() {
   const [useAli, setUseAli] = useState(true);
   const [useCoh, setUseCoh] = useState(true);
 
-  // Simulation state — Float32Array of [x, y, vx, vy] per boid.
+  // Simulation state: Float32Array of [x, y, vx, vy] per boid.
   const boidsRef = useRef<Float32Array>(new Float32Array(0));
   const sizeRef = useRef({ w: 0, h: 0, dpr: 1 });
 
@@ -140,7 +140,7 @@ export default function BoidsExplorer() {
     return arr;
   };
 
-  // Resize population when the count slider changes — preserve existing boids when growing.
+  // Resize population when the count slider changes; preserve existing boids when growing.
   useEffect(() => {
     const { w, h, dpr } = sizeRef.current;
     if (w === 0 || h === 0) return;
@@ -239,7 +239,7 @@ export default function BoidsExplorer() {
 
       // While running: fade-trail background so old triangles soften out.
       // While paused: solid clear so the frozen frame stays crisp instead of
-      // fading to black — the static frame reduced-motion users see by default.
+      // fading to black, the static frame reduced-motion users see by default.
       ctx.fillStyle = p.running ? rgba(palette.ink[950], 0.2) : palette.ink[950];
       ctx.fillRect(0, 0, w, h);
 
@@ -275,7 +275,7 @@ export default function BoidsExplorer() {
             let dx = boids[j * 4] - ix;
             let dy = boids[j * 4 + 1] - iy;
             if (p.wrap) {
-              // Shortest vector on the torus — otherwise a boid and its
+              // Shortest vector on the torus; otherwise a boid and its
               // flockmate straddling a seam look ~w apart and stop interacting,
               // so flocks fragment every time they cross an edge.
               if (dx > halfW) dx -= w;

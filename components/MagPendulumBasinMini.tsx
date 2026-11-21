@@ -5,7 +5,7 @@ import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
 // Three magnets at the vertices of an equilateral triangle of radius 1.
-// Colours: cyan, violet, amber — the palette mandated for the rose-accented
+// Colours: cyan, violet, amber, the palette mandated for the rose-accented
 // magnetic-pendulum story page.
 const MAGNETS = [
   { x: 0, y: -1, rgb: [125, 243, 255] }, // cyan
@@ -94,11 +94,11 @@ export function MagPendulumBasinMini({
   const [progress, setProgress] = useState(1);
   const [computing, setComputing] = useState(false);
 
-  // Fixed for the inline mini — keeps the UI tight.
+  // Fixed for the inline mini, keeps the UI tight.
   const omega2 = 0.5;
   const h = 0.18;
   const span = 2.0;
-  const R = 80; // ~6400 trajectories — runs in ~0.5–1s
+  const R = 80; // ~6400 trajectories, runs in ~0.5 to 1 s
   const maxSteps = 1500;
 
   useEffect(() => {

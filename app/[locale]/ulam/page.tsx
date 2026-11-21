@@ -55,7 +55,7 @@ const en: RichStory = {
     title: "The Ulam Spiral",
     tagline: "Primes lining up on diagonals nobody can fully explain.",
     intro:
-      "Stanisław Ulam, bored in a 1963 lecture, doodled the integers in a square spiral and circled the primes. The primes did not scatter. They crowded along visible diagonals. Why primes prefer certain quadratic forms over others is one of the deepest unsolved problems in number theory — Ulam saw it on a napkin.",
+      "Stanisław Ulam, bored in a 1963 lecture, doodled the integers in a square spiral and circled the primes. The primes did not scatter. They crowded along visible diagonals. Why primes prefer certain quadratic forms over others is one of the deepest unsolved problems in number theory. Ulam saw it on a napkin.",
     ctaInteractive: "→ Open the Explorer",
   },
   encounter: {
@@ -65,7 +65,7 @@ const en: RichStory = {
       {
         label: "01",
         title: "The big idea",
-        body: "Write 1 at the centre, then walk the integers around it in a square spiral — right, up, left, left, down, down, right, right, right. Now fill only the cells whose number is prime. A pattern should not be there. One is.",
+        body: "Write 1 at the centre, then walk the integers around it in a square spiral: right, up, left, left, down, down, right, right, right. Now fill only the cells whose number is prime. A pattern should not be there. One is.",
       },
       {
         label: "02",
@@ -75,7 +75,7 @@ const en: RichStory = {
       {
         label: "03",
         title: "Why it matters",
-        body: "Each diagonal is a quadratic 4n² + bn + c. That so many of them are prime-rich is a window onto Bunyakovsky's 1857 conjecture and the Hardy–Littlewood prime-tuple program — open problems that still surprise us today.",
+        body: "Each diagonal is a quadratic 4n² + bn + c. That so many of them are prime-rich is a window onto Bunyakovsky's 1857 conjecture and the Hardy-Littlewood prime-tuple program, open problems that still surprise us today.",
       },
     ],
     tryIt: "Below: draw the spiral yourself, then test any quadratic you like for primes.",
@@ -84,7 +84,7 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · The construction",
       title: "Start at 1, spiral out",
-      body: "Write 1 in the middle of squared paper. Step right for 2, up for 3, left for 4 and 5, down for 6 and 7, right for 8, 9, 10, then up for 11, 12, 13. Keep walking outward in a square spiral — every integer lands in exactly one cell.",
+      body: "Write 1 in the middle of squared paper. Step right for 2, up for 3, left for 4 and 5, down for 6 and 7, right for 8, 9, 10, then up for 11, 12, 13. Keep walking outward in a square spiral: every integer lands in exactly one cell.",
     },
     {
       pretitle: "Section 02 · The diagonals",
@@ -98,18 +98,18 @@ const en: RichStory = {
     },
     {
       pretitle: "Section 04 · Bunyakovsky's conjecture",
-      title: "Infinitely many primes — unproven for every single one",
-      body: "Viktor Bunyakovsky conjectured in 1857 that any irreducible polynomial in ℤ[x] with no fixed prime divisor and positive leading coefficient produces infinitely many primes. For n² + 1, for n² − n + 41, for almost every specific quadratic the spiral makes visible — we still cannot prove it.",
+      title: "Infinitely many primes, unproven for every single one",
+      body: "Viktor Bunyakovsky conjectured in 1857 that any irreducible polynomial in ℤ[x] with no fixed prime divisor and positive leading coefficient produces infinitely many primes. For n² + 1, for n² − n + 41, for almost every specific quadratic the spiral makes visible, we still cannot prove it.",
     },
     {
-      pretitle: "Section 05 · Hardy–Littlewood densities",
+      pretitle: "Section 05 · Hardy-Littlewood densities",
       title: "The match between conjecture and picture is uncanny",
-      body: "Hardy and Littlewood's 1923 conjecture F predicts, for each quadratic, the exact asymptotic density of primes along its diagonal. The conjectures are unproven, yet the numerical match with Ulam's spiral is near-perfect — the picture confirms the arithmetic, and the arithmetic explains the picture.",
+      body: "Hardy and Littlewood's 1923 conjecture F predicts, for each quadratic, the exact asymptotic density of primes along its diagonal. The conjectures are unproven, yet the numerical match with Ulam's spiral is near-perfect: the picture confirms the arithmetic, and the arithmetic explains the picture.",
     },
     {
       pretitle: "Section 06 · The deeper mystery",
-      title: "Quadratic forms, Sato–Tate, modular shadows",
-      body: "Behind the diagonals lives the analytic number theory of quadratic forms, the Sato–Tate distribution of trace data, and modular forms. Ulam's napkin doodle is a window onto one of the most stubborn corners of modern mathematics — accidentally drawn by anyone with squared paper.",
+      title: "Quadratic forms, Sato-Tate, modular shadows",
+      body: "Behind the diagonals lives the analytic number theory of quadratic forms, the Sato-Tate distribution of trace data, and modular forms. Ulam's napkin doodle is a window onto one of the most stubborn corners of modern mathematics, accidentally drawn by anyone with squared paper.",
     },
   ],
   spiralCaption: "Interactive · the spiral live",
@@ -145,7 +145,7 @@ const en: RichStory = {
   closingPretitle: "Take it further",
   closingTitle: "Open the Explorer.",
   closingBody:
-    "The Explorer pushes the grid up to 501 × 501 — a quarter-million integers — and lets you sweep through quadratics to find your own prime-rich diagonals.",
+    "The Explorer pushes the grid up to 501 × 501 (a quarter-million integers) and lets you sweep through quadratics to find your own prime-rich diagonals.",
   ctaLabel: "→ Open the Explorer",
 };
 
@@ -156,7 +156,7 @@ const de: RichStory = {
     title: "Die Ulam-Spirale",
     tagline: "Primzahlen reihen sich auf Diagonalen, die niemand erklären kann.",
     intro:
-      "Stanisław Ulam kritzelte 1963 aus Langeweile bei einem Vortrag die ganzen Zahlen in eine quadratische Spirale und kreiste die Primzahlen ein. Die Primzahlen verteilten sich nicht — sie drängten sich auf sichtbaren Diagonalen. Warum Primzahlen bestimmte quadratische Formen anderen vorziehen, gehört zum tiefsten ungelösten Bereich der Zahlentheorie — Ulam sah es auf einer Serviette.",
+      "Stanisław Ulam kritzelte 1963 aus Langeweile bei einem Vortrag die ganzen Zahlen in eine quadratische Spirale und kreiste die Primzahlen ein. Die Primzahlen verteilten sich nicht, sie drängten sich auf sichtbaren Diagonalen. Warum Primzahlen bestimmte quadratische Formen anderen vorziehen, gehört zum tiefsten ungelösten Bereich der Zahlentheorie. Ulam sah es auf einer Serviette.",
     ctaInteractive: "→ Explorer öffnen",
   },
   encounter: {
@@ -166,7 +166,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Schreib 1 in die Mitte, dann lauf die ganzen Zahlen drumherum in einer quadratischen Spirale — rechts, hoch, links, links, runter, runter, rechts, rechts, rechts. Markier nur die Felder, deren Zahl prim ist. Da sollte kein Muster sein. Da ist eins.",
+        body: "Schreib 1 in die Mitte, dann lauf die ganzen Zahlen drumherum in einer quadratischen Spirale: rechts, hoch, links, links, runter, runter, rechts, rechts, rechts. Markier nur die Felder, deren Zahl prim ist. Da sollte kein Muster sein. Da ist eins.",
       },
       {
         label: "02",
@@ -176,17 +176,17 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Jede Diagonale ist ein Polynom 4n² + bn + c. Dass so viele davon primzahlenreich sind, ist ein Fenster zu Bunjakowskis Vermutung von 1857 und dem Hardy–Littlewood-Programm — offene Probleme, die uns bis heute überraschen.",
+        body: "Jede Diagonale ist ein Polynom 4n² + bn + c. Dass so viele davon primzahlenreich sind, ist ein Fenster zu Bunjakowskis Vermutung von 1857 und dem Hardy-Littlewood-Programm, offene Probleme, die uns bis heute überraschen.",
       },
     ],
     tryIt:
-      "Unten: zeichne die Spirale selbst, dann teste jedes Polynom deiner Wahl auf Primzahlen.",
+      "Unten: Zeichne die Spirale selbst, dann teste jedes Polynom deiner Wahl auf Primzahlen.",
   },
   sections: [
     {
       pretitle: "Abschnitt 01 · Die Konstruktion",
       title: "Starte bei 1, spiral nach außen",
-      body: "Schreib 1 in die Mitte von kariertem Papier. Schritt rechts für 2, hoch für 3, links für 4 und 5, runter für 6 und 7, rechts für 8, 9, 10, dann hoch für 11, 12, 13. Lauf in einer quadratischen Spirale nach außen — jede ganze Zahl landet in genau einem Feld.",
+      body: "Schreib 1 in die Mitte von kariertem Papier. Schritt rechts für 2, hoch für 3, links für 4 und 5, runter für 6 und 7, rechts für 8, 9, 10, dann hoch für 11, 12, 13. Lauf in einer quadratischen Spirale nach außen: Jede ganze Zahl landet in genau einem Feld.",
     },
     {
       pretitle: "Abschnitt 02 · Die Diagonalen",
@@ -200,18 +200,18 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 04 · Bunjakowskis Vermutung",
-      title: "Unendlich viele Primzahlen — für jede einzelne unbewiesen",
-      body: "Wiktor Bunjakowski vermutete 1857, dass jedes irreduzible Polynom in ℤ[x] ohne festen Primteiler und mit positivem Leitkoeffizient unendlich viele Primzahlen liefert. Für n² + 1, für n² − n + 41, für fast jede konkrete Quadratik auf der Spirale — wir können es immer noch nicht beweisen.",
+      title: "Unendlich viele Primzahlen, für jede einzelne unbewiesen",
+      body: "Wiktor Bunjakowski vermutete 1857, dass jedes irreduzible Polynom in ℤ[x] ohne festen Primteiler und mit positivem Leitkoeffizient unendlich viele Primzahlen liefert. Für n² + 1, für n² − n + 41, für fast jede konkrete Quadratik auf der Spirale: Wir können es immer noch nicht beweisen.",
     },
     {
-      pretitle: "Abschnitt 05 · Hardy–Littlewood-Dichten",
+      pretitle: "Abschnitt 05 · Hardy-Littlewood-Dichten",
       title: "Der Abgleich zwischen Vermutung und Bild ist unheimlich",
-      body: "Hardy und Littlewood sagten 1923 in ihrer Vermutung F die exakte asymptotische Dichte der Primzahlen entlang jeder Diagonale voraus. Die Vermutungen sind unbewiesen, der numerische Abgleich mit Ulams Spirale aber nahezu perfekt — das Bild bestätigt die Arithmetik, die Arithmetik erklärt das Bild.",
+      body: "Hardy und Littlewood sagten 1923 in ihrer Vermutung F die exakte asymptotische Dichte der Primzahlen entlang jeder Diagonale voraus. Die Vermutungen sind unbewiesen, der numerische Abgleich mit Ulams Spirale aber nahezu perfekt: Das Bild bestätigt die Arithmetik, die Arithmetik erklärt das Bild.",
     },
     {
       pretitle: "Abschnitt 06 · Das tiefere Geheimnis",
-      title: "Quadratische Formen, Sato–Tate, Schatten der Modulformen",
-      body: "Hinter den Diagonalen lebt die analytische Zahlentheorie quadratischer Formen, die Sato–Tate-Verteilung von Spurdaten und die Modulformen. Ulams Servietten-Skizze ist ein Fenster in eine der hartnäckigsten Ecken der modernen Mathematik — versehentlich gezeichnet von jedem mit kariertem Papier.",
+      title: "Quadratische Formen, Sato-Tate, Schatten der Modulformen",
+      body: "Hinter den Diagonalen lebt die analytische Zahlentheorie quadratischer Formen, die Sato-Tate-Verteilung von Spurdaten und die Modulformen. Ulams Servietten-Skizze ist ein Fenster in eine der hartnäckigsten Ecken der modernen Mathematik, versehentlich gezeichnet von jedem mit kariertem Papier.",
     },
   ],
   spiralCaption: "Interaktiv · die Spirale live",
@@ -247,7 +247,7 @@ const de: RichStory = {
   closingPretitle: "Geh weiter",
   closingTitle: "Öffne den Explorer.",
   closingBody:
-    "Der Explorer treibt das Gitter auf 501 × 501 — eine Viertelmillion ganzer Zahlen — und lässt dich durch Polynome streifen, um deine eigenen primzahlreichen Diagonalen zu finden.",
+    "Der Explorer treibt das Gitter auf 501 × 501 (eine Viertelmillion ganzer Zahlen) und lässt dich durch Polynome streifen, um deine eigenen primzahlreichen Diagonalen zu finden.",
   ctaLabel: "→ Explorer öffnen",
 };
 
@@ -258,7 +258,7 @@ const es: RichStory = {
     title: "La espiral de Ulam",
     tagline: "Primos alineándose en diagonales que nadie explica del todo.",
     intro:
-      "Stanisław Ulam, aburrido en una conferencia de 1963, garabateó los enteros en una espiral cuadrada y rodeó los primos. Los primos no se dispersaron. Se apiñaron en diagonales visibles. Por qué los primos prefieren ciertas formas cuadráticas es uno de los problemas abiertos más profundos de la teoría de números — Ulam lo vio en una servilleta.",
+      "Stanisław Ulam, aburrido en una conferencia de 1963, garabateó los enteros en una espiral cuadrada y rodeó los primos. Los primos no se dispersaron. Se apiñaron en diagonales visibles. Por qué los primos prefieren ciertas formas cuadráticas es uno de los problemas abiertos más profundos de la teoría de números. Ulam lo vio en una servilleta.",
     ctaInteractive: "→ Abrir el Explorador",
   },
   encounter: {
@@ -268,7 +268,7 @@ const es: RichStory = {
       {
         label: "01",
         title: "La gran idea",
-        body: "Escribe 1 en el centro y luego camina los enteros a su alrededor en espiral cuadrada — derecha, arriba, izquierda, izquierda, abajo, abajo, derecha, derecha, derecha. Pinta solo las casillas cuyo número es primo. No debería haber un patrón. Lo hay.",
+        body: "Escribe 1 en el centro y luego camina los enteros a su alrededor en espiral cuadrada: derecha, arriba, izquierda, izquierda, abajo, abajo, derecha, derecha, derecha. Pinta solo las casillas cuyo número es primo. No debería haber un patrón. Lo hay.",
       },
       {
         label: "02",
@@ -278,7 +278,7 @@ const es: RichStory = {
       {
         label: "03",
         title: "Por qué importa",
-        body: "Cada diagonal es un polinomio 4n² + bn + c. Que tantas sean ricas en primos es una ventana a la conjetura de Bunyakovsky de 1857 y al programa de Hardy–Littlewood — problemas abiertos que todavía nos sorprenden.",
+        body: "Cada diagonal es un polinomio 4n² + bn + c. Que tantas sean ricas en primos es una ventana a la conjetura de Bunyakovsky de 1857 y al programa de Hardy-Littlewood, problemas abiertos que todavía nos sorprenden.",
       },
     ],
     tryIt:
@@ -288,7 +288,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · La construcción",
       title: "Empieza en 1, sal en espiral",
-      body: "Escribe 1 en el centro del papel cuadriculado. Paso a la derecha para el 2, arriba para el 3, izquierda para 4 y 5, abajo para 6 y 7, derecha para 8, 9, 10, luego arriba para 11, 12, 13. Sigue caminando en espiral cuadrada hacia fuera — cada entero ocupa exactamente una casilla.",
+      body: "Escribe 1 en el centro del papel cuadriculado. Paso a la derecha para el 2, arriba para el 3, izquierda para 4 y 5, abajo para 6 y 7, derecha para 8, 9, 10, luego arriba para 11, 12, 13. Sigue caminando en espiral cuadrada hacia fuera: cada entero ocupa exactamente una casilla.",
     },
     {
       pretitle: "Sección 02 · Las diagonales",
@@ -302,18 +302,18 @@ const es: RichStory = {
     },
     {
       pretitle: "Sección 04 · La conjetura de Bunyakovsky",
-      title: "Infinitos primos — sin demostrar para ninguna",
-      body: "Víktor Bunyakovsky conjeturó en 1857 que todo polinomio irreducible de ℤ[x] sin divisor primo fijo y con coeficiente principal positivo produce infinitos primos. Para n² + 1, para n² − n + 41, para casi cualquier cuadrática concreta que la espiral muestra — todavía no sabemos demostrarlo.",
+      title: "Infinitos primos, sin demostrar para ninguna",
+      body: "Víktor Bunyakovsky conjeturó en 1857 que todo polinomio irreducible de ℤ[x] sin divisor primo fijo y con coeficiente principal positivo produce infinitos primos. Para n² + 1, para n² − n + 41, para casi cualquier cuadrática concreta que la espiral muestra, todavía no sabemos demostrarlo.",
     },
     {
-      pretitle: "Sección 05 · Densidades de Hardy–Littlewood",
+      pretitle: "Sección 05 · Densidades de Hardy-Littlewood",
       title: "El ajuste entre conjetura e imagen es asombroso",
-      body: "La conjetura F de Hardy y Littlewood de 1923 predice, para cada cuadrática, la densidad asintótica exacta de primos a lo largo de su diagonal. Las conjeturas siguen sin demostrar, pero el ajuste numérico con la espiral de Ulam es casi perfecto — la imagen confirma la aritmética y la aritmética explica la imagen.",
+      body: "La conjetura F de Hardy y Littlewood de 1923 predice, para cada cuadrática, la densidad asintótica exacta de primos a lo largo de su diagonal. Las conjeturas siguen sin demostrar, pero el ajuste numérico con la espiral de Ulam es casi perfecto: la imagen confirma la aritmética y la aritmética explica la imagen.",
     },
     {
       pretitle: "Sección 06 · El misterio más hondo",
-      title: "Formas cuadráticas, Sato–Tate, sombras modulares",
-      body: "Detrás de las diagonales vive la teoría analítica de los números de las formas cuadráticas, la distribución de Sato–Tate de las trazas y las formas modulares. La servilleta de Ulam es una ventana a uno de los rincones más tercos de la matemática moderna — dibujado sin querer por cualquiera con papel cuadriculado.",
+      title: "Formas cuadráticas, Sato-Tate, sombras modulares",
+      body: "Detrás de las diagonales vive la teoría analítica de los números de las formas cuadráticas, la distribución de Sato-Tate de las trazas y las formas modulares. La servilleta de Ulam es una ventana a uno de los rincones más tercos de la matemática moderna, dibujado sin querer por cualquiera con papel cuadriculado.",
     },
   ],
   spiralCaption: "Interactivo · la espiral en vivo",
@@ -349,7 +349,7 @@ const es: RichStory = {
   closingPretitle: "Ve más lejos",
   closingTitle: "Abre el Explorador.",
   closingBody:
-    "El Explorador lleva el retículo hasta 501 × 501 — un cuarto de millón de enteros — y te deja recorrer cuadráticas para encontrar tus propias diagonales ricas en primos.",
+    "El Explorador lleva el retículo hasta 501 × 501 (un cuarto de millón de enteros) y te deja recorrer cuadráticas para encontrar tus propias diagonales ricas en primos.",
   ctaLabel: "→ Abrir el Explorador",
 };
 
@@ -360,7 +360,7 @@ const fr: RichStory = {
     title: "La spirale d'Ulam",
     tagline: "Des nombres premiers alignés sur des diagonales que personne n'explique vraiment.",
     intro:
-      "Stanisław Ulam, ennuyé pendant une conférence en 1963, a griffonné les entiers en spirale carrée et entouré les nombres premiers. Les premiers ne se sont pas dispersés. Ils se sont serrés le long de diagonales visibles. Pourquoi les premiers préfèrent certaines formes quadratiques est l'un des problèmes ouverts les plus profonds de la théorie des nombres — Ulam l'a vu sur une serviette.",
+      "Stanisław Ulam, ennuyé pendant une conférence en 1963, a griffonné les entiers en spirale carrée et entouré les nombres premiers. Les premiers ne se sont pas dispersés. Ils se sont serrés le long de diagonales visibles. Pourquoi les premiers préfèrent certaines formes quadratiques est l'un des problèmes ouverts les plus profonds de la théorie des nombres. Ulam l'a vu sur une serviette.",
     ctaInteractive: "→ Ouvrir l'Explorateur",
   },
   encounter: {
@@ -370,7 +370,7 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Écris 1 au centre, puis fais marcher les entiers autour en spirale carrée — droite, haut, gauche, gauche, bas, bas, droite, droite, droite. Ne remplis que les cases dont le nombre est premier. Il ne devrait pas y avoir de motif. Il y en a un.",
+        body: "Écris 1 au centre, puis fais marcher les entiers autour en spirale carrée : droite, haut, gauche, gauche, bas, bas, droite, droite, droite. Ne remplis que les cases dont le nombre est premier. Il ne devrait pas y avoir de motif. Il y en a un.",
       },
       {
         label: "02",
@@ -380,7 +380,7 @@ const fr: RichStory = {
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "Chaque diagonale est un polynôme 4n² + bn + c. Que tant d'entre elles soient riches en premiers est une fenêtre sur la conjecture de Bouniakovski de 1857 et le programme de Hardy–Littlewood — des problèmes ouverts qui nous surprennent encore.",
+        body: "Chaque diagonale est un polynôme 4n² + bn + c. Que tant d'entre elles soient riches en premiers est une fenêtre sur la conjecture de Bouniakovski de 1857 et le programme de Hardy-Littlewood, des problèmes ouverts qui nous surprennent encore.",
       },
     ],
     tryIt:
@@ -390,7 +390,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · La construction",
       title: "Pars de 1, spirale vers l'extérieur",
-      body: "Écris 1 au milieu d'une feuille quadrillée. Un pas à droite pour 2, en haut pour 3, à gauche pour 4 et 5, en bas pour 6 et 7, à droite pour 8, 9, 10, puis en haut pour 11, 12, 13. Continue en spirale carrée vers l'extérieur — chaque entier occupe exactement une case.",
+      body: "Écris 1 au milieu d'une feuille quadrillée. Un pas à droite pour 2, en haut pour 3, à gauche pour 4 et 5, en bas pour 6 et 7, à droite pour 8, 9, 10, puis en haut pour 11, 12, 13. Continue en spirale carrée vers l'extérieur : chaque entier occupe exactement une case.",
     },
     {
       pretitle: "Section 02 · Les diagonales",
@@ -404,18 +404,18 @@ const fr: RichStory = {
     },
     {
       pretitle: "Section 04 · La conjecture de Bouniakovski",
-      title: "Une infinité de premiers — non démontré pour aucune",
-      body: "Viktor Bouniakovski a conjecturé en 1857 que tout polynôme irréductible de ℤ[x] sans diviseur premier fixe et à coefficient dominant positif produit une infinité de premiers. Pour n² + 1, pour n² − n + 41, pour presque toute quadratique concrète qu'on voit sur la spirale — on ne sait toujours pas le démontrer.",
+      title: "Une infinité de premiers, non démontré pour aucune",
+      body: "Viktor Bouniakovski a conjecturé en 1857 que tout polynôme irréductible de ℤ[x] sans diviseur premier fixe et à coefficient dominant positif produit une infinité de premiers. Pour n² + 1, pour n² − n + 41, pour presque toute quadratique concrète qu'on voit sur la spirale, on ne sait toujours pas le démontrer.",
     },
     {
-      pretitle: "Section 05 · Densités de Hardy–Littlewood",
+      pretitle: "Section 05 · Densités de Hardy-Littlewood",
       title: "L'accord entre conjecture et image est troublant",
-      body: "La conjecture F de Hardy et Littlewood, 1923, prédit pour chaque quadratique la densité asymptotique exacte des premiers le long de sa diagonale. Les conjectures restent non démontrées, mais l'accord numérique avec la spirale d'Ulam est presque parfait — l'image confirme l'arithmétique et l'arithmétique explique l'image.",
+      body: "La conjecture F de Hardy et Littlewood, 1923, prédit pour chaque quadratique la densité asymptotique exacte des premiers le long de sa diagonale. Les conjectures restent non démontrées, mais l'accord numérique avec la spirale d'Ulam est presque parfait : l'image confirme l'arithmétique et l'arithmétique explique l'image.",
     },
     {
       pretitle: "Section 06 · Le mystère plus profond",
-      title: "Formes quadratiques, Sato–Tate, ombres modulaires",
-      body: "Derrière les diagonales vit la théorie analytique des formes quadratiques, la distribution de Sato–Tate des traces et les formes modulaires. La serviette d'Ulam est une fenêtre sur l'un des coins les plus têtus des mathématiques modernes — dessinée par accident par quiconque possède du papier quadrillé.",
+      title: "Formes quadratiques, Sato-Tate, ombres modulaires",
+      body: "Derrière les diagonales vit la théorie analytique des formes quadratiques, la distribution de Sato-Tate des traces et les formes modulaires. La serviette d'Ulam est une fenêtre sur l'un des coins les plus têtus des mathématiques modernes, dessinée par accident par quiconque possède du papier quadrillé.",
     },
   ],
   spiralCaption: "Interactif · la spirale en direct",
@@ -451,7 +451,7 @@ const fr: RichStory = {
   closingPretitle: "Aller plus loin",
   closingTitle: "Ouvre l'Explorateur.",
   closingBody:
-    "L'Explorateur pousse la grille à 501 × 501 — un quart de million d'entiers — et te laisse balayer des quadratiques pour trouver tes propres diagonales riches en premiers.",
+    "L'Explorateur pousse la grille à 501 × 501 (un quart de million d'entiers) et te laisse balayer des quadratiques pour trouver tes propres diagonales riches en premiers.",
   ctaLabel: "→ Ouvrir l'Explorateur",
 };
 
@@ -462,7 +462,7 @@ const it: RichStory = {
     title: "La spirale di Ulam",
     tagline: "Numeri primi che si allineano su diagonali che nessuno spiega del tutto.",
     intro:
-      "Stanisław Ulam, annoiato in una conferenza nel 1963, scarabocchiò gli interi in una spirale quadrata e cerchiò i primi. I primi non si sparpagliarono. Si addensarono lungo diagonali visibili. Perché i primi preferiscano certe forme quadratiche è uno dei problemi aperti più profondi della teoria dei numeri — Ulam lo vide su un tovagliolo.",
+      "Stanisław Ulam, annoiato in una conferenza nel 1963, scarabocchiò gli interi in una spirale quadrata e cerchiò i primi. I primi non si sparpagliarono. Si addensarono lungo diagonali visibili. Perché i primi preferiscano certe forme quadratiche è uno dei problemi aperti più profondi della teoria dei numeri. Ulam lo vide su un tovagliolo.",
     ctaInteractive: "→ Apri l'Esploratore",
   },
   encounter: {
@@ -472,7 +472,7 @@ const it: RichStory = {
       {
         label: "01",
         title: "L'idea centrale",
-        body: "Scrivi 1 al centro, poi cammina con gli interi attorno in una spirale quadrata — destra, su, sinistra, sinistra, giù, giù, destra, destra, destra. Riempi solo le caselle il cui numero è primo. Non dovrebbe esserci uno schema. C'è.",
+        body: "Scrivi 1 al centro, poi cammina con gli interi attorno in una spirale quadrata: destra, su, sinistra, sinistra, giù, giù, destra, destra, destra. Riempi solo le caselle il cui numero è primo. Non dovrebbe esserci uno schema. C'è.",
       },
       {
         label: "02",
@@ -482,7 +482,7 @@ const it: RichStory = {
       {
         label: "03",
         title: "Perché conta",
-        body: "Ogni diagonale è un polinomio 4n² + bn + c. Che tante siano ricche di primi è una finestra sulla congettura di Bunjakovskij del 1857 e sul programma di Hardy–Littlewood — problemi aperti che ancora ci sorprendono.",
+        body: "Ogni diagonale è un polinomio 4n² + bn + c. Che tante siano ricche di primi è una finestra sulla congettura di Bunjakovskij del 1857 e sul programma di Hardy-Littlewood, problemi aperti che ancora ci sorprendono.",
       },
     ],
     tryIt:
@@ -492,7 +492,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · La costruzione",
       title: "Parti da 1, vai a spirale verso l'esterno",
-      body: "Scrivi 1 al centro di un foglio a quadretti. Un passo a destra per il 2, su per il 3, a sinistra per 4 e 5, giù per 6 e 7, a destra per 8, 9, 10, poi su per 11, 12, 13. Continua a camminare in spirale quadrata verso l'esterno — ogni intero finisce in esattamente una casella.",
+      body: "Scrivi 1 al centro di un foglio a quadretti. Un passo a destra per il 2, su per il 3, a sinistra per 4 e 5, giù per 6 e 7, a destra per 8, 9, 10, poi su per 11, 12, 13. Continua a camminare in spirale quadrata verso l'esterno: ogni intero finisce in esattamente una casella.",
     },
     {
       pretitle: "Sezione 02 · Le diagonali",
@@ -506,18 +506,18 @@ const it: RichStory = {
     },
     {
       pretitle: "Sezione 04 · La congettura di Bunjakovskij",
-      title: "Infiniti primi — indimostrata per ognuna",
-      body: "Viktor Bunjakovskij congetturò nel 1857 che ogni polinomio irriducibile in ℤ[x] senza divisore primo fisso e con coefficiente direttivo positivo produca infiniti primi. Per n² + 1, per n² − n + 41, per quasi ogni quadratica concreta che la spirale mostra — ancora non sappiamo dimostrarlo.",
+      title: "Infiniti primi, indimostrata per ognuna",
+      body: "Viktor Bunjakovskij congetturò nel 1857 che ogni polinomio irriducibile in ℤ[x] senza divisore primo fisso e con coefficiente direttivo positivo produca infiniti primi. Per n² + 1, per n² − n + 41, per quasi ogni quadratica concreta che la spirale mostra, ancora non sappiamo dimostrarlo.",
     },
     {
-      pretitle: "Sezione 05 · Densità di Hardy–Littlewood",
+      pretitle: "Sezione 05 · Densità di Hardy-Littlewood",
       title: "L'accordo tra congettura e immagine è inquietante",
-      body: "La congettura F di Hardy e Littlewood del 1923 prevede, per ogni quadratica, la densità asintotica esatta dei primi lungo la sua diagonale. Le congetture restano indimostrate, ma l'accordo numerico con la spirale di Ulam è quasi perfetto — l'immagine conferma l'aritmetica e l'aritmetica spiega l'immagine.",
+      body: "La congettura F di Hardy e Littlewood del 1923 prevede, per ogni quadratica, la densità asintotica esatta dei primi lungo la sua diagonale. Le congetture restano indimostrate, ma l'accordo numerico con la spirale di Ulam è quasi perfetto: l'immagine conferma l'aritmetica e l'aritmetica spiega l'immagine.",
     },
     {
       pretitle: "Sezione 06 · Il mistero più profondo",
-      title: "Forme quadratiche, Sato–Tate, ombre modulari",
-      body: "Dietro le diagonali vive la teoria analitica dei numeri delle forme quadratiche, la distribuzione di Sato–Tate delle tracce e le forme modulari. Il tovagliolo di Ulam è una finestra su uno degli angoli più ostinati della matematica moderna — disegnato per caso da chiunque abbia un foglio a quadretti.",
+      title: "Forme quadratiche, Sato-Tate, ombre modulari",
+      body: "Dietro le diagonali vive la teoria analitica dei numeri delle forme quadratiche, la distribuzione di Sato-Tate delle tracce e le forme modulari. Il tovagliolo di Ulam è una finestra su uno degli angoli più ostinati della matematica moderna, disegnato per caso da chiunque abbia un foglio a quadretti.",
     },
   ],
   spiralCaption: "Interattivo · la spirale dal vivo",
@@ -553,7 +553,7 @@ const it: RichStory = {
   closingPretitle: "Vai oltre",
   closingTitle: "Apri l'Esploratore.",
   closingBody:
-    "L'Esploratore spinge la griglia fino a 501 × 501 — un quarto di milione di interi — e ti lascia scorrere fra le quadratiche per trovare le tue diagonali ricche di primi.",
+    "L'Esploratore spinge la griglia fino a 501 × 501 (un quarto di milione di interi) e ti lascia scorrere fra le quadratiche per trovare le tue diagonali ricche di primi.",
   ctaLabel: "→ Apri l'Esploratore",
 };
 
@@ -564,7 +564,7 @@ const pt: RichStory = {
     title: "A espiral de Ulam",
     tagline: "Primos alinhados em diagonais que ninguém explica de todo.",
     intro:
-      "Stanisław Ulam, entediado numa conferência em 1963, rabiscou os inteiros em espiral quadrada e circundou os primos. Os primos não se dispersaram. Apinharam-se em diagonais visíveis. Porque é que os primos preferem certas formas quadráticas é um dos problemas em aberto mais profundos da teoria dos números — Ulam viu-o num guardanapo.",
+      "Stanisław Ulam, entediado numa conferência em 1963, rabiscou os inteiros em espiral quadrada e circundou os primos. Os primos não se dispersaram. Apinharam-se em diagonais visíveis. Porque é que os primos preferem certas formas quadráticas é um dos problemas em aberto mais profundos da teoria dos números. Ulam viu-o num guardanapo.",
     ctaInteractive: "→ Abrir o Explorador",
   },
   encounter: {
@@ -574,7 +574,7 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A ideia central",
-        body: "Escreve 1 no meio, depois caminha com os inteiros à volta numa espiral quadrada — direita, cima, esquerda, esquerda, baixo, baixo, direita, direita, direita. Preenche só as células cujo número é primo. Não devia haver um padrão. Há.",
+        body: "Escreve 1 no meio, depois caminha com os inteiros à volta numa espiral quadrada: direita, cima, esquerda, esquerda, baixo, baixo, direita, direita, direita. Preenche só as células cujo número é primo. Não devia haver um padrão. Há.",
       },
       {
         label: "02",
@@ -584,7 +584,7 @@ const pt: RichStory = {
       {
         label: "03",
         title: "Porque importa",
-        body: "Cada diagonal é um polinómio 4n² + bn + c. Que tantas sejam ricas em primos é uma janela para a conjetura de Buniakovski de 1857 e para o programa de Hardy–Littlewood — problemas em aberto que ainda nos surpreendem.",
+        body: "Cada diagonal é um polinómio 4n² + bn + c. Que tantas sejam ricas em primos é uma janela para a conjetura de Buniakovski de 1857 e para o programa de Hardy-Littlewood, problemas em aberto que ainda nos surpreendem.",
       },
     ],
     tryIt:
@@ -594,7 +594,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · A construção",
       title: "Começa em 1, sai em espiral",
-      body: "Escreve 1 no centro de papel quadriculado. Um passo à direita para o 2, cima para o 3, esquerda para 4 e 5, baixo para 6 e 7, direita para 8, 9, 10, depois cima para 11, 12, 13. Continua a caminhar em espiral quadrada para fora — cada inteiro ocupa exatamente uma casa.",
+      body: "Escreve 1 no centro de papel quadriculado. Um passo à direita para o 2, cima para o 3, esquerda para 4 e 5, baixo para 6 e 7, direita para 8, 9, 10, depois cima para 11, 12, 13. Continua a caminhar em espiral quadrada para fora: cada inteiro ocupa exatamente uma casa.",
     },
     {
       pretitle: "Secção 02 · As diagonais",
@@ -608,18 +608,18 @@ const pt: RichStory = {
     },
     {
       pretitle: "Secção 04 · A conjetura de Buniakovski",
-      title: "Infinitos primos — não provada para nenhuma",
-      body: "Viktor Buniakovski conjeturou em 1857 que todo o polinómio irredutível em ℤ[x] sem divisor primo fixo e com coeficiente diretor positivo produz infinitos primos. Para n² + 1, para n² − n + 41, para quase toda a quadrática concreta que a espiral mostra — ainda não a conseguimos provar.",
+      title: "Infinitos primos, não provada para nenhuma",
+      body: "Viktor Buniakovski conjeturou em 1857 que todo o polinómio irredutível em ℤ[x] sem divisor primo fixo e com coeficiente diretor positivo produz infinitos primos. Para n² + 1, para n² − n + 41, para quase toda a quadrática concreta que a espiral mostra, ainda não a conseguimos provar.",
     },
     {
-      pretitle: "Secção 05 · Densidades de Hardy–Littlewood",
+      pretitle: "Secção 05 · Densidades de Hardy-Littlewood",
       title: "A correspondência entre conjetura e imagem é arrepiante",
-      body: "A conjetura F de Hardy e Littlewood de 1923 prediz, para cada quadrática, a densidade assintótica exata dos primos ao longo da sua diagonal. As conjeturas continuam por provar, mas a correspondência numérica com a espiral de Ulam é quase perfeita — a imagem confirma a aritmética e a aritmética explica a imagem.",
+      body: "A conjetura F de Hardy e Littlewood de 1923 prediz, para cada quadrática, a densidade assintótica exata dos primos ao longo da sua diagonal. As conjeturas continuam por provar, mas a correspondência numérica com a espiral de Ulam é quase perfeita: a imagem confirma a aritmética e a aritmética explica a imagem.",
     },
     {
       pretitle: "Secção 06 · O mistério mais fundo",
-      title: "Formas quadráticas, Sato–Tate, sombras modulares",
-      body: "Por trás das diagonais vive a teoria analítica dos números das formas quadráticas, a distribuição de Sato–Tate dos traços e as formas modulares. O guardanapo de Ulam é uma janela para um dos cantos mais teimosos da matemática moderna — desenhado por acaso por qualquer pessoa com papel quadriculado.",
+      title: "Formas quadráticas, Sato-Tate, sombras modulares",
+      body: "Por trás das diagonais vive a teoria analítica dos números das formas quadráticas, a distribuição de Sato-Tate dos traços e as formas modulares. O guardanapo de Ulam é uma janela para um dos cantos mais teimosos da matemática moderna, desenhado por acaso por qualquer pessoa com papel quadriculado.",
     },
   ],
   spiralCaption: "Interativo · a espiral em direto",
@@ -655,7 +655,7 @@ const pt: RichStory = {
   closingPretitle: "Vai mais longe",
   closingTitle: "Abre o Explorador.",
   closingBody:
-    "O Explorador leva a grelha até 501 × 501 — um quarto de milhão de inteiros — e deixa-te varrer quadráticas para encontrar as tuas próprias diagonais ricas em primos.",
+    "O Explorador leva a grelha até 501 × 501 (um quarto de milhão de inteiros) e deixa-te varrer quadráticas para encontrar as tuas próprias diagonais ricas em primos.",
   ctaLabel: "→ Abrir o Explorador",
 };
 
@@ -666,7 +666,7 @@ const sv: RichStory = {
     title: "Ulam-spiralen",
     tagline: "Primtal som ställer upp sig på diagonaler som ingen riktigt förklarar.",
     intro:
-      "Stanisław Ulam, uttråkad under en föreläsning 1963, klottrade ner heltalen i en kvadratisk spiral och ringade in primtalen. Primtalen spreds inte. De trängdes längs synliga diagonaler. Varför primtal föredrar vissa kvadratiska former framför andra är ett av de djupaste olösta problemen i talteorin — Ulam såg det på en servett.",
+      "Stanisław Ulam, uttråkad under en föreläsning 1963, klottrade ner heltalen i en kvadratisk spiral och ringade in primtalen. Primtalen spreds inte. De trängdes längs synliga diagonaler. Varför primtal föredrar vissa kvadratiska former framför andra är ett av de djupaste olösta problemen i talteorin. Ulam såg det på en servett.",
     ctaInteractive: "→ Öppna Utforskaren",
   },
   encounter: {
@@ -676,7 +676,7 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "Skriv 1 i mitten, gå sedan med heltalen runt det i en kvadratisk spiral — höger, upp, vänster, vänster, ner, ner, höger, höger, höger. Fyll bara cellerna vars tal är primtal. Det borde inte finnas något mönster. Det gör det.",
+        body: "Skriv 1 i mitten, gå sedan med heltalen runt det i en kvadratisk spiral: höger, upp, vänster, vänster, ner, ner, höger, höger, höger. Fyll bara cellerna vars tal är primtal. Det borde inte finnas något mönster. Det gör det.",
       },
       {
         label: "02",
@@ -686,7 +686,7 @@ const sv: RichStory = {
       {
         label: "03",
         title: "Varför det spelar roll",
-        body: "Varje diagonal är ett polynom 4n² + bn + c. Att så många är primtalsrika är ett fönster mot Bunjakovskijs förmodan från 1857 och Hardy–Littlewood-programmet — öppna problem som ännu överraskar oss.",
+        body: "Varje diagonal är ett polynom 4n² + bn + c. Att så många är primtalsrika är ett fönster mot Bunjakovskijs förmodan från 1857 och Hardy-Littlewood-programmet, öppna problem som ännu överraskar oss.",
       },
     ],
     tryIt:
@@ -696,32 +696,32 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Konstruktionen",
       title: "Börja på 1, spirala utåt",
-      body: "Skriv 1 mitt på rutigt papper. Steg höger för 2, upp för 3, vänster för 4 och 5, ner för 6 och 7, höger för 8, 9, 10, sedan upp för 11, 12, 13. Fortsätt gå utåt i en kvadratisk spiral — varje heltal hamnar i exakt en cell.",
+      body: "Skriv 1 mitt på rutigt papper. Steg höger för 2, upp för 3, vänster för 4 och 5, ner för 6 och 7, höger för 8, 9, 10, sedan upp för 11, 12, 13. Fortsätt gå utåt i en kvadratisk spiral: varje heltal hamnar i exakt en cell.",
     },
     {
       pretitle: "Avsnitt 02 · Diagonalerna",
-      title: "Primtal föredrar vissa kvadrater 4n² + bn + c",
-      body: "Talen längs varje rak diagonal lyder en kvadrat på formen 4n² + bn + c. De synliga primtalsstråken är just de diagonaler vars polynom råkar vara ovanligt primtalsrika. Geometrin är bara bokföring; aritmetiken är överraskningen.",
+      title: "Primtal föredrar vissa andragradspolynom 4n² + bn + c",
+      body: "Talen längs varje rak diagonal lyder ett andragradspolynom på formen 4n² + bn + c. De synliga primtalsstråken är just de diagonaler vars polynom råkar vara ovanligt primtalsrika. Geometrin är bara bokföring; aritmetiken är överraskningen.",
     },
     {
-      pretitle: "Avsnitt 03 · Berömda kvadrater",
+      pretitle: "Avsnitt 03 · Berömda andragradspolynom",
       title: "Eulers n² − n + 41",
-      body: "År 1772 noterade Euler att n² − n + 41 är primtal för varje heltal n från 0 till 40: fyrtioett på varandra följande primvärden från ett enda polynom, och missar först vid n = 41 (som hamnar på 41²). På spiralen är det ett enda obrutet diagonalstreck. Ingen annan enkel kvadrat har slagit den än.",
+      body: "År 1772 noterade Euler att n² − n + 41 är primtal för varje heltal n från 0 till 40: fyrtioett på varandra följande primvärden från ett enda polynom, och missar först vid n = 41 (som hamnar på 41²). På spiralen är det ett enda obrutet diagonalstreck. Inget annat enkelt andragradspolynom har slagit det än.",
     },
     {
       pretitle: "Avsnitt 04 · Bunjakovskijs förmodan",
-      title: "Oändligt många primtal — obevisat för var och en",
-      body: "Viktor Bunjakovskij förmodade 1857 att varje irreducibelt polynom i ℤ[x] utan fast primdelare och med positiv ledande koefficient ger oändligt många primtal. För n² + 1, för n² − n + 41, för nästan varje konkret kvadrat som spiralen visar — vi kan fortfarande inte bevisa det.",
+      title: "Oändligt många primtal, obevisat för var och en",
+      body: "Viktor Bunjakovskij förmodade 1857 att varje irreducibelt polynom i ℤ[x] utan fast primdelare och med positiv ledande koefficient ger oändligt många primtal. För n² + 1, för n² − n + 41, för nästan varje konkret andragradspolynom som spiralen visar: vi kan fortfarande inte bevisa det.",
     },
     {
-      pretitle: "Avsnitt 05 · Hardy–Littlewood-täthet",
+      pretitle: "Avsnitt 05 · Hardy-Littlewood-täthet",
       title: "Överensstämmelsen mellan förmodan och bild är kuslig",
-      body: "Hardy och Littlewoods förmodan F från 1923 förutsäger för varje kvadrat den exakta asymptotiska tätheten av primtal längs dess diagonal. Förmodandena är obevisade, men den numeriska överensstämmelsen med Ulam-spiralen är nästan perfekt — bilden bekräftar aritmetiken och aritmetiken förklarar bilden.",
+      body: "Hardy och Littlewoods förmodan F från 1923 förutsäger för varje andragradspolynom den exakta asymptotiska tätheten av primtal längs dess diagonal. Förmodandena är obevisade, men den numeriska överensstämmelsen med Ulam-spiralen är nästan perfekt: bilden bekräftar aritmetiken och aritmetiken förklarar bilden.",
     },
     {
       pretitle: "Avsnitt 06 · Det djupare mysteriet",
-      title: "Kvadratiska former, Sato–Tate, modulära skuggor",
-      body: "Bakom diagonalerna lever den analytiska talteorin för kvadratiska former, Sato–Tate-fördelningen av spårdata och de modulära formerna. Ulams servettklotter är ett fönster mot ett av den moderna matematikens mest envisa hörn — råkat ritat av vem som helst med rutigt papper.",
+      title: "Kvadratiska former, Sato-Tate, modulära skuggor",
+      body: "Bakom diagonalerna lever den analytiska talteorin för kvadratiska former, Sato-Tate-fördelningen av spårdata och de modulära formerna. Ulams servettklotter är ett fönster mot ett av den moderna matematikens mest envisa hörn, råkat ritat av vem som helst med rutigt papper.",
     },
   ],
   spiralCaption: "Interaktivt · spiralen i realtid",
@@ -730,7 +730,7 @@ const sv: RichStory = {
   spiralPrimes: (n) => `${n.toLocaleString("sv-SE")} primtal`,
   spiralNumbers: (n) => `${n.toLocaleString("sv-SE")} tal`,
   spiralHint:
-    "Bärnsten = primtal. Rosa = diagonalen som den valda kvadraten skär ut. Cyankontur markerar 1 i mitten.",
+    "Bärnsten = primtal. Rosa = diagonalen som det valda andragradspolynomet skär ut. Cyankontur markerar 1 i mitten.",
   spiralQuadratics: [
     { id: "none", label: "Av", a: 0, b: 0, c: 0 },
     { id: "euler", label: "Euler · n² − n + 41", a: 1, b: -1, c: 41 },
@@ -738,14 +738,14 @@ const sv: RichStory = {
     { id: "n2n11", label: "n² + n + 11", a: 1, b: 1, c: 11 },
     { id: "4n2_2n41", label: "4n² − 2n + 41", a: 4, b: -2, c: 41 },
   ],
-  quadraticCaption: "Interaktivt · testa en kvadrat",
+  quadraticCaption: "Interaktivt · testa ett andragradspolynom",
   quadraticCoefficientsLabel: "Koefficienter i an² + bn + c",
   quadraticPresetsLabel: "Berömda förinställningar",
   quadraticRangeLabel: "n = 0 … 40",
-  quadraticFormulaLabel: "kvadraten",
+  quadraticFormulaLabel: "polynomet",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} primtal · ${pct}`,
   quadraticNote:
-    "Varje cell visar n överst och a·n² + b·n + c under. Bärnstensfärgade celler är primtal. Eulers kvadrat klarar alla 41 / 41, där 41 dyker upp vid både n = 0 och n = 1. Pröva din egen.",
+    "Varje cell visar n överst och a·n² + b·n + c under. Bärnstensfärgade celler är primtal. Eulers polynom klarar alla 41 / 41, där 41 dyker upp vid både n = 0 och n = 1. Pröva ditt eget.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -757,7 +757,7 @@ const sv: RichStory = {
   closingPretitle: "Gå vidare",
   closingTitle: "Öppna Utforskaren.",
   closingBody:
-    "Utforskaren skjuter rutnätet upp till 501 × 501 — en kvarts miljon heltal — och låter dig svepa genom kvadrater för att hitta dina egna primtalsrika diagonaler.",
+    "Utforskaren skjuter rutnätet upp till 501 × 501 (en kvarts miljon heltal) och låter dig svepa genom andragradspolynom för att hitta dina egna primtalsrika diagonaler.",
   ctaLabel: "→ Öppna Utforskaren",
 };
 
@@ -768,7 +768,7 @@ const no: RichStory = {
     title: "Ulam-spiralen",
     tagline: "Primtall som stiller seg opp på diagonaler ingen helt forklarer.",
     intro:
-      "Stanisław Ulam, lei på en forelesning i 1963, krotet ned heltallene i en kvadratisk spiral og ringet inn primtallene. Primtallene ble ikke spredd. De trengte seg langs synlige diagonaler. Hvorfor primtall foretrekker visse kvadratiske former framfor andre er ett av de dypeste uløste problemene i tallteorien — Ulam så det på en serviett.",
+      "Stanisław Ulam, lei på en forelesning i 1963, krotet ned heltallene i en kvadratisk spiral og ringet inn primtallene. Primtallene ble ikke spredd. De trengte seg langs synlige diagonaler. Hvorfor primtall foretrekker visse kvadratiske former framfor andre er ett av de dypeste uløste problemene i tallteorien. Ulam så det på en serviett.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -778,7 +778,7 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Skriv 1 i midten, gå så heltallene rundt det i en kvadratisk spiral — høyre, opp, venstre, venstre, ned, ned, høyre, høyre, høyre. Fyll bare cellene hvis tall er primtall. Det burde ikke være noe mønster. Det er det.",
+        body: "Skriv 1 i midten, gå så heltallene rundt det i en kvadratisk spiral: høyre, opp, venstre, venstre, ned, ned, høyre, høyre, høyre. Fyll bare cellene hvis tall er primtall. Det burde ikke være noe mønster. Det er det.",
       },
       {
         label: "02",
@@ -788,42 +788,42 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Hver diagonal er et polynom 4n² + bn + c. At så mange er rike på primtall, er et vindu inn til Bunjakovskijs formodning fra 1857 og Hardy–Littlewood-programmet — åpne problemer som fortsatt overrasker oss.",
+        body: "Hver diagonal er et polynom 4n² + bn + c. At så mange er rike på primtall, er et vindu inn til Bunjakovskijs formodning fra 1857 og Hardy-Littlewood-programmet, åpne problemer som fortsatt overrasker oss.",
       },
     ],
     tryIt:
-      "Under: tegn spiralen selv, og test så et hvilket som helst polynom for å se hvor mange primtall det gir.",
+      "Under: Tegn spiralen selv, og test så et hvilket som helst polynom for å se hvor mange primtall det gir.",
   },
   sections: [
     {
       pretitle: "Avsnitt 01 · Konstruksjonen",
       title: "Start på 1, spiral utover",
-      body: "Skriv 1 midt på rutete papir. Steg høyre for 2, opp for 3, venstre for 4 og 5, ned for 6 og 7, høyre for 8, 9, 10, så opp for 11, 12, 13. Fortsett å gå utover i en kvadratisk spiral — hvert heltall havner i nøyaktig én rute.",
+      body: "Skriv 1 midt på rutete papir. Steg høyre for 2, opp for 3, venstre for 4 og 5, ned for 6 og 7, høyre for 8, 9, 10, så opp for 11, 12, 13. Fortsett å gå utover i en kvadratisk spiral: Hvert heltall havner i nøyaktig én rute.",
     },
     {
       pretitle: "Avsnitt 02 · Diagonalene",
-      title: "Primtall foretrekker visse kvadrater 4n² + bn + c",
-      body: "Tall langs en hvilken som helst rett diagonal lyder en kvadrat på formen 4n² + bn + c. De synlige primtallsstripene er nettopp de diagonalene hvis polynom tilfeldigvis er uvanlig rikt på primtall. Geometrien er bare bokføring; overraskelsen er aritmetisk.",
+      title: "Primtall foretrekker visse andregradspolynomer 4n² + bn + c",
+      body: "Tall langs en hvilken som helst rett diagonal lyder et andregradspolynom på formen 4n² + bn + c. De synlige primtallsstripene er nettopp de diagonalene hvis polynom tilfeldigvis er uvanlig rikt på primtall. Geometrien er bare bokføring; overraskelsen er aritmetisk.",
     },
     {
-      pretitle: "Avsnitt 03 · Berømte kvadrater",
+      pretitle: "Avsnitt 03 · Berømte andregradspolynomer",
       title: "Eulers n² − n + 41",
-      body: "I 1772 la Euler merke til at n² − n + 41 er primtall for hvert heltall n fra 0 til 40: førtién etterfølgende primverdier fra et eneste polynom, og bommer først ved n = 41 (som havner på 41²). På spiralen er det én ubrutt diagonal stripe. Ingen annen enkel kvadrat har slått den ennå.",
+      body: "I 1772 la Euler merke til at n² − n + 41 er primtall for hvert heltall n fra 0 til 40: førtién etterfølgende primverdier fra et eneste polynom, og bommer først ved n = 41 (som havner på 41²). På spiralen er det én ubrutt diagonal stripe. Ikke noe annet enkelt andregradspolynom har slått det ennå.",
     },
     {
       pretitle: "Avsnitt 04 · Bunjakovskijs formodning",
-      title: "Uendelig mange primtall — ubevist for hver eneste",
-      body: "Viktor Bunjakovskij formodet i 1857 at ethvert irredusibelt polynom i ℤ[x] uten fast primdivisor og med positiv ledende koeffisient gir uendelig mange primtall. For n² + 1, for n² − n + 41, for nesten enhver konkret kvadrat spiralen viser — vi klarer fortsatt ikke å bevise det.",
+      title: "Uendelig mange primtall, ubevist for hver eneste",
+      body: "Viktor Bunjakovskij formodet i 1857 at ethvert irredusibelt polynom i ℤ[x] uten fast primdivisor og med positiv ledende koeffisient gir uendelig mange primtall. For n² + 1, for n² − n + 41, for nesten ethvert konkret andregradspolynom spiralen viser: Vi klarer fortsatt ikke å bevise det.",
     },
     {
-      pretitle: "Avsnitt 05 · Hardy–Littlewood-tettheter",
+      pretitle: "Avsnitt 05 · Hardy-Littlewood-tettheter",
       title: "Samsvaret mellom formodning og bilde er nifst",
-      body: "Hardy og Littlewoods formodning F fra 1923 forutsier for hver kvadrat den nøyaktige asymptotiske tettheten av primtall langs diagonalen. Formodningene er ubeviste, men det numeriske samsvaret med Ulam-spiralen er nesten perfekt — bildet bekrefter aritmetikken og aritmetikken forklarer bildet.",
+      body: "Hardy og Littlewoods formodning F fra 1923 forutsier for hvert andregradspolynom den nøyaktige asymptotiske tettheten av primtall langs diagonalen. Formodningene er ubeviste, men det numeriske samsvaret med Ulam-spiralen er nesten perfekt: Bildet bekrefter aritmetikken og aritmetikken forklarer bildet.",
     },
     {
       pretitle: "Avsnitt 06 · Den dypere gåten",
-      title: "Kvadratiske former, Sato–Tate, modulære skygger",
-      body: "Bak diagonalene lever den analytiske tallteorien for kvadratiske former, Sato–Tate-fordelingen av spordata og de modulære formene. Ulams serviett-skisse er et vindu inn i en av den moderne matematikkens mest sta avkroker — uforvarende tegnet av hvem som helst med rutete papir.",
+      title: "Kvadratiske former, Sato-Tate, modulære skygger",
+      body: "Bak diagonalene lever den analytiske tallteorien for kvadratiske former, Sato-Tate-fordelingen av spordata og de modulære formene. Ulams serviett-skisse er et vindu inn i en av den moderne matematikkens mest sta avkroker, uforvarende tegnet av hvem som helst med rutete papir.",
     },
   ],
   spiralCaption: "Interaktivt · spiralen i sanntid",
@@ -832,7 +832,7 @@ const no: RichStory = {
   spiralPrimes: (n) => `${n.toLocaleString("nb-NO")} primtall`,
   spiralNumbers: (n) => `${n.toLocaleString("nb-NO")} tall`,
   spiralHint:
-    "Rav = primtall. Rosa = diagonalen den valgte kvadraten skjærer ut. Cyan-kontur markerer 1 i midten.",
+    "Rav = primtall. Rosa = diagonalen det valgte andregradspolynomet skjærer ut. Cyan-kontur markerer 1 i midten.",
   spiralQuadratics: [
     { id: "none", label: "Av", a: 0, b: 0, c: 0 },
     { id: "euler", label: "Euler · n² − n + 41", a: 1, b: -1, c: 41 },
@@ -840,14 +840,14 @@ const no: RichStory = {
     { id: "n2n11", label: "n² + n + 11", a: 1, b: 1, c: 11 },
     { id: "4n2_2n41", label: "4n² − 2n + 41", a: 4, b: -2, c: 41 },
   ],
-  quadraticCaption: "Interaktivt · test en kvadrat",
+  quadraticCaption: "Interaktivt · test et andregradspolynom",
   quadraticCoefficientsLabel: "Koeffisienter i an² + bn + c",
   quadraticPresetsLabel: "Berømte forhåndsinnstillinger",
   quadraticRangeLabel: "n = 0 … 40",
-  quadraticFormulaLabel: "kvadraten",
+  quadraticFormulaLabel: "polynomet",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} primtall · ${pct}`,
   quadraticNote:
-    "Hver celle viser n øverst og a·n² + b·n + c under. Ravfargede celler er primtall. Eulers kvadrat klarer alle 41 / 41, der 41 dukker opp ved både n = 0 og n = 1. Prøv din egen.",
+    "Hver celle viser n øverst og a·n² + b·n + c under. Ravfargede celler er primtall. Eulers polynom klarer alle 41 / 41, der 41 dukker opp ved både n = 0 og n = 1. Prøv ditt eget.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -859,7 +859,7 @@ const no: RichStory = {
   closingPretitle: "Gå videre",
   closingTitle: "Åpne Utforskeren.",
   closingBody:
-    "Utforskeren skyver rutenettet opp til 501 × 501 — en kvart million heltall — og lar deg sveipe gjennom kvadrater for å finne dine egne primtallsrike diagonaler.",
+    "Utforskeren skyver rutenettet opp til 501 × 501 (en kvart million heltall) og lar deg sveipe gjennom andregradspolynomer for å finne dine egne primtallsrike diagonaler.",
   ctaLabel: "→ Åpne Utforskeren",
 };
 
@@ -896,7 +896,7 @@ export default function UlamStory() {
       formulaLatex={"\\mathrm{spiral}(n) \\in \\mathbb{P}\\,?"}
       finalLabel={story.closingTitle}
     >
-      {/* Encounter — three approachable cards */}
+      {/* Encounter: three approachable cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -922,7 +922,7 @@ export default function UlamStory() {
         </Reveal>
       </section>
 
-      {/* Section 01 — the construction */}
+      {/* Section 01: the construction */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec0!.pretitle}
@@ -932,7 +932,7 @@ export default function UlamStory() {
         />
       </section>
 
-      {/* Section 02 — the diagonals */}
+      {/* Section 02: the diagonals */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec1!.pretitle}
@@ -958,7 +958,7 @@ export default function UlamStory() {
         </Reveal>
       </section>
 
-      {/* Section 03 — famous quadratics: Euler */}
+      {/* Section 03: famous quadratics (Euler) */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec2!.pretitle}
@@ -995,7 +995,7 @@ export default function UlamStory() {
         </Reveal>
       </section>
 
-      {/* Section 04 — Bunyakovsky */}
+      {/* Section 04: Bunyakovsky */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec3!.pretitle}
@@ -1005,7 +1005,7 @@ export default function UlamStory() {
         />
       </section>
 
-      {/* Section 05 — Hardy–Littlewood */}
+      {/* Section 05: Hardy-Littlewood */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec4!.pretitle}
@@ -1015,7 +1015,7 @@ export default function UlamStory() {
         />
       </section>
 
-      {/* Section 06 — the deeper mystery */}
+      {/* Section 06: the deeper mystery */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec5!.pretitle}

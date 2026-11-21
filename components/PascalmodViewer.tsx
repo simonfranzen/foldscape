@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 
-// PascalmodViewer — compact, story-page-friendly canvas (~340×340) that
+// PascalmodViewer: compact, story-page-friendly canvas (~340×340) that
 // renders Pascal's triangle modulo p, with sliders for p and the number of
 // rows N. Each residue gets its own colour from a small palette.
 //

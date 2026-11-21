@@ -22,7 +22,7 @@ interface Props {
   formulaBadge: string; // Plain-text fallback when formulaLatex is omitted
   formulaLatex?: string; // KaTeX source for the hero formula
   // Override default hero formula sizing. Default = "lg" (text-3xl md:text-5xl).
-  // Use "sm" for long formulae that would otherwise overflow the badge box —
+  // Use "sm" for long formulae that would otherwise overflow the badge box,
   // e.g. Pascalmod's `binom(n,k) ≢ 0 mod p ⇔ no carry in base-p`.
   formulaSize?: "sm" | "md" | "lg";
   finalLabel: string;
@@ -60,7 +60,7 @@ export function StoryPageShell({
     ? (TOPIC_APPLICATIONS[locale]?.[inferredTopicId] ?? TOPIC_APPLICATIONS.en[inferredTopicId])
     : undefined;
   // Auto-detect a sound sub-route from topics.ts and offer it as a third
-  // CTA — so visitors don't miss it when they land on the story page.
+  // CTA, so visitors don't miss it when they land on the story page.
   const topicEntry = TOPICS.find((t) => t.id === inferredTopicId);
   const soundSection = topicEntry?.sections?.find((s) => s.key === "sound");
 
@@ -96,7 +96,7 @@ export function StoryPageShell({
           </Reveal>
         )}
         {/* Hero CTAs. The primary button "Discover the story" scrolls the
-            visitor down into the long-form prose — that's the action we
+            visitor down into the long-form prose: that's the action we
             want them to take first. Explorer is the secondary outline
             (also reachable from the Nav tabs above). Sound, if present,
             is a third quiet outline. "Back to atlas" lives in the Nav
@@ -156,7 +156,7 @@ export function StoryPageShell({
         </Reveal>
       </section>
 
-      {/* Anchor target for the hero's "Discover the story" CTA — sits
+      {/* Anchor target for the hero's "Discover the story" CTA. Sits
           just before the topic-specific long-form prose. The global
           html { scroll-padding-top: 88px } in globals.css handles the
           fixed Nav offset. */}
@@ -184,7 +184,7 @@ export function StoryPageShell({
                   {inferredTopicId && (
                     /* Per-topic, per-application filigree icons under
                        public/icons/<topic>/<index>.svg. Rendered via CSS
-                       mask-image — NOT <img> — because the icons use
+                       mask-image (NOT <img>) because the icons use
                        `stroke="currentColor"` to inherit the page accent,
                        and <img> would render that as black on black. With
                        a mask, the box's background colour shows through
@@ -294,7 +294,7 @@ export function StoryCard({
   );
 }
 
-// Small interactive "explain the formula" card — break down a formula into
+// Small interactive "explain the formula" card: break down a formula into
 // parts the user can hover to see what each symbol means.
 interface FormulaPart {
   latex: string;

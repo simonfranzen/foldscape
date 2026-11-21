@@ -2,9 +2,9 @@
 
 // Single clickable star inside a constellation scene. Hubs are *always*
 // labelled (the "twelve named stars every math-curious person knows"
-// principle — user feedback). Satellites reveal their label on hover/focus.
+// principle, user feedback). Satellites reveal their label on hover/focus.
 //
-// SVG-native <a href> (not next/link) — next/link wrapping a <g> inside
+// SVG-native <a href> (not next/link): next/link wrapping a <g> inside
 // SVG ended up swallowing pointer events in some browsers, so neither
 // hover nor click registered. SVG <a> is rock-solid for hit testing.
 //
@@ -12,7 +12,7 @@
 // and then hands off to the router. Next.js' experimental viewTransition
 // flag (next.config.mjs) gives us a clean browser-native crossfade for
 // free. An earlier version of this file ran a 620 ms zoom-warp animation
-// on top of that — the user found it competing with the crossfade and
+// on top of that; the user found it competing with the crossfade and
 // asked to remove it.
 
 import { useRouter } from "next/navigation";
@@ -37,7 +37,7 @@ export function TopicStar({ topic, x, y, isHub, title, tagline, category }: Prop
   const { href } = useI18n();
   const [hover, setHover] = useState(false);
   const color = CATEGORY_COLOR[category];
-  // Bigger, brighter stars — the v2 felt like distant lights; v3 makes
+  // Bigger, brighter stars: the v2 felt like distant lights; v3 makes
   // each hub feel like a real "planet" you can land on. Satellites
   // doubled in size so they're visible without crowding hubs.
   const r = isHub ? 9 : 4.5;
@@ -65,7 +65,7 @@ export function TopicStar({ topic, x, y, isHub, title, tagline, category }: Prop
     <a
       href={href(topic.href)}
       onClick={onClick}
-      aria-label={`${title} — ${tagline}`}
+      aria-label={`${title}: ${tagline}`}
       className="cosmos-star outline-none"
       style={{ cursor: "pointer" }}
     >
@@ -80,7 +80,7 @@ export function TopicStar({ topic, x, y, isHub, title, tagline, category }: Prop
         {/* Generous hit-area first so the cursor doesn't have to be on the
             tiny circle to register a hover. Drawn under the visible star. */}
         <circle r={Math.max(haloR + 4, 18)} fill="rgba(0,0,0,0.001)" />
-        {/* Halos — hubs breathe slowly (see .cosmos-halo-breathe); the
+        {/* Halos: hubs breathe slowly (see .cosmos-halo-breathe); the
             per-star negative delay desynchronises neighbours. */}
         <g
           className={isHub ? "cosmos-halo-breathe" : undefined}

@@ -137,7 +137,7 @@ export function GabrielsHornRenderer({
         return [ox + xr * scale * k, oy - yr * scale * k, zr2];
       };
 
-      // Draw circular cross-sections (rings) — gives a sense of the
+      // Draw circular cross-sections (rings). Gives a sense of the
       // shrinking radius.
       const ringStep = Math.max(2, Math.floor(Nx / 18));
       for (let i = 0; i <= Nx; i += ringStep) {

@@ -2,7 +2,7 @@
 // without throwing. We mock next/navigation hooks (jsdom has no router) and
 // stub the canvas-heavy cosmos visuals (StarField, NebulaLayer) whose
 // 2d context / matchMedia / IntersectionObserver dependencies jsdom can't
-// fully satisfy. KaTeX is left intact — its DOM mutations don't crash in
+// fully satisfy. KaTeX is left intact: its DOM mutations don't crash in
 // jsdom.
 
 import { describe, it, expect, vi, beforeAll } from "vitest";
@@ -25,7 +25,7 @@ vi.mock("next/navigation", () => ({
 // StarField + NebulaLayer draw into a 2d canvas / lean on
 // window.matchMedia for reduced-motion + IntersectionObserver for scroll
 // progress; jsdom only partially satisfies these. Replace both with inert
-// placeholders for the smoke test — we are testing that the cosmos page
+// placeholders for the smoke test: we are testing that the cosmos page
 // MOUNTS, not that the parallax animates.
 vi.mock("@/components/cosmos/StarField", () => ({
   StarField: () => null,
@@ -34,7 +34,7 @@ vi.mock("@/components/cosmos/NebulaLayer", () => ({
   NebulaLayer: () => null,
 }));
 
-// Reveal is an IntersectionObserver-driven fade — stub to children-only so
+// Reveal is an IntersectionObserver-driven fade; stub to children-only so
 // the test doesn't depend on jsdom's IO behaviour.
 vi.mock("@/components/Reveal", () => ({
   Reveal: ({ children }: { children: React.ReactNode }) => <>{children}</>,

@@ -40,7 +40,7 @@ export type TopicId =
   | "cardioid"
   | "galton"
   | "magpendulum"
-  // Fourth wave — foundations & graphs
+  // Fourth wave: foundations & graphs
   | "godel"
   | "halting"
   | "pvsnp"
@@ -50,11 +50,11 @@ export type TopicId =
   | "konigsberg"
   | "fourcolor"
   | "smallworld"
-  // Fifth wave — open problems + the AI math
+  // Fifth wave: open problems + the AI math
   | "backprop"
   | "diffusion"
   | "riemann"
-  // Sixth wave — logic & satisfiability
+  // Sixth wave: logic & satisfiability
   | "sat";
 
 export type TopicStatus = "interactive" | "stub";
@@ -512,7 +512,7 @@ export const TOPICS: Topic[] = [
       { key: "explorer", href: "/magpendulum/explorer" },
     ],
   },
-  // Fourth wave — foundations & graph theory
+  // Fourth wave: foundations & graph theory
   {
     id: "godel",
     href: "/godel",
@@ -621,7 +621,7 @@ export const TOPICS: Topic[] = [
       { key: "explorer", href: "/smallworld/explorer" },
     ],
   },
-  // Fifth wave — open problems + the AI math
+  // Fifth wave: open problems + the AI math
   {
     id: "backprop",
     href: "/backprop",

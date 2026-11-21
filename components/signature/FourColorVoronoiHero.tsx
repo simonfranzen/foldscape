@@ -8,7 +8,7 @@ import { palette } from "@/lib/visual/palette";
 // neighbouring cells share a colour. Every few seconds, the colouring is
 // recomputed via a greedy pass to expose the constraint visually. Each cell
 // is also subtly hatched in one of four directions so the constraint reads
-// without colour alone — passes protanopia/deuteranopia by design.
+// without colour alone. Passes protanopia/deuteranopia by design.
 
 interface Site {
   x: number;
@@ -136,7 +136,7 @@ function fourColour(adj: Set<number>[]): number[] {
         break;
       }
     }
-    if (col[i] < 0) col[i] = 0; // fallback — shouldn't happen for planar
+    if (col[i] < 0) col[i] = 0; // fallback, shouldn't happen for planar
   }
   return col;
 }
@@ -180,7 +180,7 @@ export function FourColorVoronoiHero() {
   return (
     <figure
       className="hairline glass relative overflow-hidden rounded-2xl border"
-      aria-label="A live-recoloured Voronoi map — four colours, no two adjacent regions share a colour."
+      aria-label="A live-recoloured Voronoi map: four colours, no two adjacent regions share a colour."
     >
       <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" aria-hidden="true">
         <defs>
@@ -263,7 +263,7 @@ export function FourColorVoronoiHero() {
           letterSpacing="3.2"
           fill="rgba(234,236,243,0.55)"
         >
-          χ ≤ 4 — RECOLOURED EVERY 4 SECONDS
+          χ ≤ 4 · RECOLOURED EVERY 4 SECONDS
         </text>
       </svg>
     </figure>

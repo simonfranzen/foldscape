@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { useDpr } from "@/lib/hooks/useDpr";
 
 // V(X) and A(X) as a function of X, plotted on a small canvas. V converges
-// to π; A grows like 2π ln X, unbounded. Static plot — no controls. Used as
+// to π; A grows like 2π ln X, unbounded. Static plot, no controls. Used as
 // a companion to the GabrielsHornRenderer.
 
 interface Props {
@@ -19,7 +19,7 @@ function volumeUpTo(X: number): number {
   return Math.PI * (1 - 1 / X);
 }
 
-// Surface lower bound — 2π ln X — already diverges, so we just plot that
+// Surface lower bound (2π ln X) already diverges, so we just plot that
 // as the canonical "A grows" curve (the true A is larger but indistinguishable
 // at this resolution).
 function surfaceLowerBound(X: number): number {
@@ -106,7 +106,7 @@ export function GabrielsHornGrowGraph({
       ctx.fillText("X = 1", padL, H - 4 * dpr);
       ctx.fillText(`X = ${xMax}`, W - padR, H - 4 * dpr);
 
-      // Plot A(X) — diverges (rose)
+      // Plot A(X): diverges (rose)
       ctx.strokeStyle = "rgba(255,122,182,0.95)";
       ctx.lineWidth = 1.5 * dpr;
       ctx.beginPath();
@@ -121,7 +121,7 @@ export function GabrielsHornGrowGraph({
       }
       ctx.stroke();
 
-      // Plot V(X) — converges (cyan)
+      // Plot V(X): converges (cyan)
       ctx.strokeStyle = "rgba(125,243,255,0.95)";
       ctx.lineWidth = 1.6 * dpr;
       ctx.beginPath();

@@ -289,7 +289,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     flipWord: "byt",
     contradictionTitle: "Motsägelsen",
     contradictionBody:
-      " skiljer sig från varje rad i listan i minst en siffra, därför står det inte på listan. Men s ∈ [0, 1] är ett reellt tal. Hovra eller fokusera en rad för att se var s avviker från den. Listan var ofullständig: ",
+      " skiljer sig från varje rad i listan i minst en siffra, därför står det inte på listan. Men s ∈ [0, 1] är ett reellt tal. Håll pekaren över eller fokusera en rad för att se var s avviker från den. Listan var ofullständig: ",
     transportLabel: "Kontroll",
     stepLabel: "Steg",
     playLabel: "Spela",
@@ -310,7 +310,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     binaryNote:
       "Binärläget ignorerar regeln ovan: bitar växlar 0 ↔ 1. Raderna läses som oändliga 0/1-följder, inte som tal, eftersom två följder kan beteckna samma tal (0,0111… = 0,1000…).",
     contradictionBodyBinary:
-      " skiljer sig från varje rad i listan på minst en plats, därför står den här 0/1-följden inte på listan. Hovra eller fokusera en rad för att se var s avviker från den. Listan var ofullständig, det finns fler 0/1-följder än naturliga tal: ",
+      " skiljer sig från varje rad i listan på minst en plats, därför står den här 0/1-följden inte på listan. Håll pekaren över eller fokusera en rad för att se var s avviker från den. Listan var ofullständig, det finns fler 0/1-följder än naturliga tal: ",
     legendLabel: "Teckenförklaring",
     legend1: "diagonalcell · använd detta steg",
     legend2: "diagonalcell · redan använd",
@@ -346,7 +346,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     plusOneLabel: "+1 mod 10",
     plusOneHint: "hopp over 0, 9 for å unngå 0,999…-tvetydighet",
     binaryNote:
-      "Binærmodus ignorerer regelen over: biter veksler 0 ↔ 1. Radene leses som uendelige 0/1-følger, ikke som tall, fordi to følger kan betegne samme tall (0,0111… = 0,1000…).",
+      "Binærmodus ignorerer regelen over: Biter veksler 0 ↔ 1. Radene leses som uendelige 0/1-følger, ikke som tall, fordi to følger kan betegne samme tall (0,0111… = 0,1000…).",
     contradictionBodyBinary:
       " skiller seg fra hver rad i listen på minst én plass, derfor står denne 0/1-følgen ikke på listen. Hold over eller fokuser en rad for å se hvor s avviker fra den. Listen var ufullstendig, det finnes flere 0/1-følger enn naturlige tall: ",
     legendLabel: "Tegnforklaring",

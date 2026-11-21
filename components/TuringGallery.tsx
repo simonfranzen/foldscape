@@ -134,7 +134,7 @@ function MiniCell({
     const image = ctx.createImageData(W, H);
     const data = image.data;
     // Pearson 1993 canonical constants: Da=0.16, Db=0.08 (Laplace amplifier
-    // 4·Da·dt = 0.64 ≪ CFL = 1). The previous 1.0/0.5/1.0 was unstable —
+    // 4·Da·dt = 0.64 ≪ CFL = 1). The previous 1.0/0.5/1.0 was unstable:
     // hard-clamp masked the explosion but no real pattern emerged.
     const Da = 0.16;
     const Db = 0.08;

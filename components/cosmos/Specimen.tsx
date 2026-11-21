@@ -2,14 +2,14 @@
 
 // Per-scene "level art": a category-specific drawing behind the
 // constellation. v5 builds itself with the scene's scroll progress
-// (0..1 across the section) instead of looping CSS keyframes — strokes
+// (0..1 across the section) instead of looping CSS keyframes: strokes
 // draw via stroke-dashoffset, elements fade in time-staggered windows
 // (user feedback: "die visual effect linien im hintergrund könnten sich
 // aber noch besser aufbauen mit langsamenen speed, etwas zeitversetzt /
 // oder nach scroll position").
 //
 // Each piece exposes one or two progress windows it cares about and
-// computes its own opacity / dashoffset locally — no global animation
+// computes its own opacity / dashoffset locally, no global animation
 // timing, no rAF, just SVG attributes driven by the parent's progress.
 
 import type { TopicCategory } from "@/lib/topics";
@@ -24,13 +24,13 @@ interface Props {
   progress: number;
 }
 
-// Window helper — returns 0..1 over a progress sub-range, clamped.
+// Window helper: returns 0..1 over a progress sub-range, clamped.
 function window01(progress: number, start: number, end: number): number {
   if (end <= start) return progress >= end ? 1 : 0;
   return Math.max(0, Math.min(1, (progress - start) / (end - start)));
 }
 
-// Dash-offset helper — converts a 0..1 reveal value to a stroke-dashoffset
+// Dash-offset helper: converts a 0..1 reveal value to a stroke-dashoffset
 // for a path of approximate length `len`. dashoffset goes from len → 0.
 function dashoffset(reveal: number, len: number): number {
   return len * (1 - reveal);
@@ -40,7 +40,7 @@ export function Specimen({ category, progress }: Props) {
   // Specimen art is rendered with a soft category-colour drop-shadow so
   // the strokes read as a glowing neon line rather than a flat tracing.
   // The glow intensifies with scroll progress so the "ignition" of the
-  // level art is visible — by the time the user is in the middle of the
+  // level art is visible; by the time the user is in the middle of the
   // scene the bloom is at full strength. Reduced-motion users still get
   // the static drawing; the filter is a CSS value, not an animation.
   const color = CATEGORY_COLOR[category];
@@ -67,7 +67,7 @@ export function Specimen({ category, progress }: Props) {
   );
 }
 
-// ── PARADOX — concentric rings draw outward, then ℵ fades in.
+// ── PARADOX: concentric rings draw outward, then ℵ fades in.
 function ParadoxSpecimen({ progress }: { progress: number }) {
   const ring1 = window01(progress, 0.05, 0.25);
   const ring2 = window01(progress, 0.1, 0.3);
@@ -112,7 +112,7 @@ function ParadoxSpecimen({ progress }: { progress: number }) {
   );
 }
 
-// ── LOGIC — wires draw in, then gate body, then output dot.
+// ── LOGIC: wires draw in, then gate body, then output dot.
 function LogicSpecimen({ progress }: { progress: number }) {
   const wireA = window01(progress, 0.05, 0.2);
   const wireB = window01(progress, 0.1, 0.25);
@@ -136,10 +136,10 @@ function LogicSpecimen({ progress }: { progress: number }) {
   );
 }
 
-// ── COMPUTATION — lattice cells boot up cell-by-cell across the whole
+// ── COMPUTATION: lattice cells boot up cell-by-cell across the whole
 // scroll-in window. Earlier we packed the stagger into 0..0.35 of
 // progress, which meant the lattice was "fully on" before the cluster
-// had even settled — the user couldn't actually watch cells appearing.
+// had even settled; the user couldn't actually watch cells appearing.
 // v5 spreads the stagger from 0..0.6, with each cell scaling from 0
 // to its final size in addition to fading in. The cells appear in a
 // loose diagonal wave (seed by i+j with a small per-cell jitter so the
@@ -208,12 +208,12 @@ function ComputationSpecimen({ progress }: { progress: number }) {
   );
 }
 
-// ── CHAOS — both lobes of the Lorenz attractor trace themselves.
+// ── CHAOS: both lobes of the Lorenz attractor trace themselves.
 function ChaosSpecimen({ progress }: { progress: number }) {
   const lobeA = window01(progress, 0.05, 0.4);
   const lobeB = window01(progress, 0.2, 0.55);
   const eyes = window01(progress, 0.45, 0.6);
-  // Approximate path lengths — measured by hand from the bezier curves.
+  // Approximate path lengths, measured by hand from the bezier curves.
   const lenA = 1600;
   const lenB = 1600;
   return (
@@ -252,8 +252,8 @@ function ChaosSpecimen({ progress }: { progress: number }) {
   );
 }
 
-// ── GEOMETRY — framing rectangle softly fades in, then the spiral arc
-// draws itself stroke-by-stroke. Minimal — most of the room belongs to
+// ── GEOMETRY: framing rectangle softly fades in, then the spiral arc
+// draws itself stroke-by-stroke. Minimal: most of the room belongs to
 // the stars (user explicitly asked to dial this one back).
 function GeometrySpecimen({ progress }: { progress: number }) {
   const frame = window01(progress, 0.1, 0.3);
@@ -284,7 +284,7 @@ function GeometrySpecimen({ progress }: { progress: number }) {
   );
 }
 
-// ── ANALYSIS — three harmonic sine waves draw themselves in sequence.
+// ── ANALYSIS: three harmonic sine waves draw themselves in sequence.
 function AnalysisSpecimen({ progress }: { progress: number }) {
   const make = (freq: number, amp: number, phase: number, yShift: number) => {
     let d = "M 0 " + (300 + yShift);

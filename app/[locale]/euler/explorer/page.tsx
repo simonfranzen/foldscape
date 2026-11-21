@@ -174,7 +174,7 @@ export default function EulerExplorer() {
   const [theta, setTheta] = useState(0);
   const [running, setRunning] = useState(false);
   const [speed, setSpeed] = useState(0.6); // radians per second
-  // Tick — incremented when Reset is pressed, used to clear the trail
+  // Tick: incremented when Reset is pressed, used to clear the trail
   const [resetTick, setResetTick] = useState(0);
 
   const thetaRef = useRef(theta);
@@ -209,7 +209,7 @@ export default function EulerExplorer() {
     const render = () => {
       const W = canvas.clientWidth;
       const H = canvas.clientHeight;
-      // Only resize the backing store when it actually changed — reassigning
+      // Only resize the backing store when it actually changed: reassigning
       // canvas.width/height every frame would reallocate the bitmap needlessly.
       const bw = Math.floor(W * dpr);
       const bh = Math.floor(H * dpr);
@@ -274,7 +274,7 @@ export default function EulerExplorer() {
       ctx.arc(cx, cy, R, 0, TAU);
       ctx.stroke();
 
-      // Trail — the swept arc from 0 → θ
+      // Trail: the swept arc from 0 → θ
       const t = thetaRef.current;
       ctx.strokeStyle = "rgba(255, 209, 102, 0.85)";
       ctx.lineWidth = 2.2;
@@ -306,7 +306,7 @@ export default function EulerExplorer() {
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // The moving point — extra glow when at θ = π (the identity moment)
+      // The moving point: extra glow when at θ = π (the identity moment)
       const distFromPi = Math.abs(((t - Math.PI + Math.PI * 3) % TAU) - Math.PI);
       const atPi = distFromPi < 0.02;
       const glowR = atPi ? 16 : 8;
@@ -368,7 +368,7 @@ export default function EulerExplorer() {
     };
   }, [theta, resetTick, dpr]);
 
-  // Strip canvas — cos θ and sin θ over [0, 2π]
+  // Strip canvas: cos θ and sin θ over [0, 2π]
   useEffect(() => {
     const canvas = stripRef.current;
     if (!canvas) return;
@@ -444,9 +444,9 @@ export default function EulerExplorer() {
         }
         ctx.stroke();
       };
-      // cos θ — amber
+      // cos θ: amber
       plot(Math.cos, "rgba(255, 209, 102, 0.9)");
-      // sin θ — cyan
+      // sin θ: cyan
       plot(Math.sin, "rgba(125, 243, 255, 0.9)");
 
       // Cursor at current θ

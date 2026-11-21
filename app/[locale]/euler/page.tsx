@@ -70,7 +70,7 @@ const en: RichStory = {
     title: "Euler's Identity",
     tagline: "Five numbers, one line.",
     intro:
-      "e^(iπ) + 1 = 0 — five constants from five different corners of mathematics, locked into a single equality. The Explorer next door lets you watch e^(iθ) sweep around the unit circle in real time, so you can see, with your own eyes, the moment at θ = π when the identity actually happens.",
+      "e^(iπ) + 1 = 0: five constants from five different corners of mathematics, locked into a single equality. The Explorer next door lets you watch e^(iθ) sweep around the unit circle in real time, so you can see, with your own eyes, the moment at θ = π when the identity actually happens.",
     ctaInteractive: "→ Open the Explorer",
   },
   encounter: {
@@ -80,12 +80,12 @@ const en: RichStory = {
       {
         label: "01",
         title: "The big idea",
-        body: "Five of mathematics' most important numbers — e, i, π, 0, 1 — never run into each other in everyday life. Yet one equation, e^(iπ) + 1 = 0, ties all five together with only addition, multiplication, and exponentiation. Nothing else. No constants left over, no decoration. That is the whole identity.",
+        body: "Five of mathematics' most important numbers (e, i, π, 0, 1) never run into each other in everyday life. Yet one equation, e^(iπ) + 1 = 0, ties all five together with only addition, multiplication, and exponentiation. Nothing else. No constants left over, no decoration. That is the whole identity.",
       },
       {
         label: "02",
         title: "A concrete example",
-        body: "Imagine walking around a circle of radius 1, centred at the origin of a flat plane. Start at the point 1 on the right. Multiplying by e^(iθ) means: walk θ radians around the circle. So walk π radians — half the way round — and you arrive at the point −1. Add 1 and you are back at 0.",
+        body: "Imagine walking around a circle of radius 1, centred at the origin of a flat plane. Start at the point 1 on the right. Multiplying by e^(iθ) means: walk θ radians around the circle. So walk π radians, half the way round, and you arrive at the point −1. Add 1 and you are back at 0.",
       },
       {
         label: "03",
@@ -100,32 +100,32 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · Five characters",
       title: "Who is in this equation",
-      body: "Each of the five numbers arrives from a different country of mathematics. 0 is the additive identity — adding it changes nothing. 1 is the multiplicative identity — multiplying by it changes nothing. e ≈ 2.71828 is the natural base, the number whose own derivative is itself, born in calculus from compound interest and continuous growth. i is the imaginary unit, defined by i² = −1, born in algebra when Cardano needed a square root of a negative to solve cubic equations. π ≈ 3.14159 is the half-turn of the circle, the ratio of circumference to diameter, born in geometry. They normally never share a room. The identity is the room.",
+      body: "Each of the five numbers arrives from a different country of mathematics. 0 is the additive identity: adding it changes nothing. 1 is the multiplicative identity: multiplying by it changes nothing. e ≈ 2.71828 is the natural base, the number whose own derivative is itself, born in calculus from compound interest and continuous growth. i is the imaginary unit, defined by i² = −1, born in algebra when Cardano needed a square root of a negative to solve cubic equations. π ≈ 3.14159 is the half-turn of the circle, the ratio of circumference to diameter, born in geometry. They normally never share a room. The identity is the room.",
     },
     {
       pretitle: "Section 02 · Complex multiplication",
       title: "Why i is a quarter-turn",
-      body: 'Forget that i is "imaginary" for a moment and look at what multiplying by i does. Start at 1 on the real axis. Multiply by i and you land at i — a quarter-turn up. Multiply by i again and you land at i² = −1 — another quarter-turn, exactly opposite where you started. Two quarter-turns make a half-turn, which is exactly what i² = −1 means geometrically. Complex multiplication is rotation (by the argument) times scaling (by the magnitude). The numbers on the unit circle, where the magnitude is 1, are pure rotation. They are the engine of the identity.',
+      body: 'Forget that i is "imaginary" for a moment and look at what multiplying by i does. Start at 1 on the real axis. Multiply by i and you land at i, a quarter-turn up. Multiply by i again and you land at i² = −1, another quarter-turn, exactly opposite where you started. Two quarter-turns make a half-turn, which is exactly what i² = −1 means geometrically. Complex multiplication is rotation (by the argument) times scaling (by the magnitude). The numbers on the unit circle, where the magnitude is 1, are pure rotation. They are the engine of the identity.',
     },
     {
       pretitle: "Section 03 · Euler's formula",
       title: "e^(iθ) = cos θ + i sin θ",
-      body: "Euler published this formula in his 1748 Introductio in analysin infinitorum, and it is the larger truth of which the identity is a single value. The left-hand side, e^(iθ), is an exponential with an imaginary exponent — a kind of growth nobody had ever pictured before. The right-hand side, cos θ + i sin θ, is the point on the unit circle at angle θ. Euler's claim is that those two completely different-looking things are equal. Set θ = π and the right-hand side collapses to −1 + 0i, so e^(iπ) = −1, and adding 1 gives the identity. The identity is Euler's formula at θ = π.",
+      body: "Euler published this formula in his 1748 Introductio in analysin infinitorum, and it is the larger truth of which the identity is a single value. The left-hand side, e^(iθ), is an exponential with an imaginary exponent, a kind of growth nobody had ever pictured before. The right-hand side, cos θ + i sin θ, is the point on the unit circle at angle θ. Euler's claim is that those two completely different-looking things are equal. Set θ = π and the right-hand side collapses to −1 + 0i, so e^(iπ) = −1, and adding 1 gives the identity. The identity is Euler's formula at θ = π.",
     },
     {
       pretitle: "Section 04 · Why it's true",
       title: "Taylor series, substituted",
-      body: "The cleanest proof goes through power series. Each of the three functions has a Taylor expansion that converges on the entire real line: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Now formally substitute x = iθ into the series for e^x. Because i^k cycles through 1, i, −1, −i, the real terms of the resulting series are exactly the Taylor series for cos θ, and the imaginary terms (without the i) are exactly the Taylor series for sin θ. So e^(iθ) = cos θ + i sin θ — not by definition, but as a theorem about converging series. Set θ = π and the algebra finishes the proof.",
+      body: "The cleanest proof goes through power series. Each of the three functions has a Taylor expansion that converges on the entire real line: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Now formally substitute x = iθ into the series for e^x. Because i^k cycles through 1, i, −1, −i, the real terms of the resulting series are exactly the Taylor series for cos θ, and the imaginary terms (without the i) are exactly the Taylor series for sin θ. So e^(iθ) = cos θ + i sin θ, not by definition, but as a theorem about converging series. Set θ = π and the algebra finishes the proof.",
     },
     {
       pretitle: "Section 05 · Connection everywhere",
       title: "Where the identity lives in the wild",
-      body: "Once you have e^(iθ), it stops being a curiosity and becomes an indispensable tool. Electrical engineers write the impedance of a circuit as a complex number Z = R + iX, so that voltages and currents become rotating phasors V·e^(iωt) and Kirchhoff's laws turn into linear algebra. Quantum mechanics writes the time-evolution of a state as ψ(t) = e^(−iHt/ℏ) ψ(0) — the Schrödinger equation, with e^(iθ) doing every bit of the rotation in Hilbert space. Fourier analysis decomposes any reasonable signal into a sum (or integral) of e^(iωt) modes, and every JPEG, MP3, MRI scanner and Wi-Fi handshake on the planet is built on top of that decomposition. The identity is the boundary stone where all four roads — arithmetic, algebra, geometry, analysis — meet.",
+      body: "Once you have e^(iθ), it stops being a curiosity and becomes an indispensable tool. Electrical engineers write the impedance of a circuit as a complex number Z = R + iX, so that voltages and currents become rotating phasors V·e^(iωt) and Kirchhoff's laws turn into linear algebra. Quantum mechanics writes the time-evolution of a state as ψ(t) = e^(−iHt/ℏ) ψ(0), the Schrödinger equation, with e^(iθ) doing every bit of the rotation in Hilbert space. Fourier analysis decomposes any reasonable signal into a sum (or integral) of e^(iωt) modes, and every JPEG, MP3, MRI scanner and Wi-Fi handshake on the planet is built on top of that decomposition. The identity is the boundary stone where all four roads (arithmetic, algebra, geometry, analysis) meet.",
     },
     {
       pretitle: "Section 06 · Where it sits",
       title: "A short progression",
-      body: "Step back and see the chain. Real-line arithmetic gives you +, ×, and the constants 0 and 1. Calculus turns growth into a number and names it e. Algebra solves cubics, runs out of real square roots, invents i, and discovers the complex plane. Geometry parameterises the unit circle by angle and meets π. Euler's formula then notices, with two pages of power series, that growth in the imaginary direction is rotation in the plane — that e and i secretly do the same thing. Set the angle to a half-turn and the five constants finally meet, with nothing in between. The identity is not a coincidence; it is the destination.",
+      body: "Step back and see the chain. Real-line arithmetic gives you +, ×, and the constants 0 and 1. Calculus turns growth into a number and names it e. Algebra solves cubics, runs out of real square roots, invents i, and discovers the complex plane. Geometry parameterises the unit circle by angle and meets π. Euler's formula then notices, with two pages of power series, that growth in the imaginary direction is rotation in the plane, that e and i secretly do the same thing. Set the angle to a half-turn and the five constants finally meet, with nothing in between. The identity is not a coincidence; it is the destination.",
     },
   ],
   unitCircleCaption: "Drag θ · e^(iθ) on the unit circle",
@@ -144,11 +144,11 @@ const en: RichStory = {
   interactivePretitle1: "Interactive · slider",
   interactiveTitle1: "Walk θ around the circle",
   interactiveBody1:
-    "Drag the slider from 0 to 2π. The yellow dot is e^(iθ); the cyan and violet markers are its real and imaginary projections — the cos θ and sin θ components. When θ ≈ π you land on −1, and the identity glows.",
+    "Drag the slider from 0 to 2π. The yellow dot is e^(iθ); the cyan and violet markers are its real and imaginary projections, the cos θ and sin θ components. When θ ≈ π you land on −1, and the identity glows.",
   interactivePretitle2: "Interactive · slider",
   interactiveTitle2: "Build the proof, term by term",
   interactiveBody2:
-    "Each curve is a partial Taylor sum — the first N+1 terms only. Slide N up and the partial sums close in on the true exp, cos and sin curves. Watch the small panel underneath: the complex partial sum of (iπ)^k / k! drifts toward −1 as N grows.",
+    "Each curve is a partial Taylor sum: the first N+1 terms only. Slide N up and the partial sums close in on the true exp, cos and sin curves. Watch the small panel underneath: the complex partial sum of (iπ)^k / k! drifts toward −1 as N grows.",
   charactersLabel: "The five constants",
   charactersRows: [
     { sym: "0", role: "Additive identity", home: "Arithmetic" },
@@ -172,7 +172,7 @@ const en: RichStory = {
     },
     {
       field: "Fourier analysis",
-      body: "Every signal decomposes into e^(iωt) modes — the basis of MP3, JPEG, MRI, Wi-Fi.",
+      body: "Every signal decomposes into e^(iωt) modes, the basis of MP3, JPEG, MRI, Wi-Fi.",
     },
     {
       field: "Number theory",
@@ -201,7 +201,7 @@ const de: RichStory = {
     title: "Eulers Identität",
     tagline: "Fünf Zahlen, eine Zeile.",
     intro:
-      "e^(iπ) + 1 = 0 — fünf Konstanten aus fünf verschiedenen Ecken der Mathematik, festgezurrt in einer einzigen Gleichung. Im Explorer nebenan kannst du e^(iθ) live um den Einheitskreis ziehen sehen und mit eigenen Augen den Moment bei θ = π erleben, in dem die Identität tatsächlich passiert.",
+      "e^(iπ) + 1 = 0: fünf Konstanten aus fünf verschiedenen Ecken der Mathematik, festgezurrt in einer einzigen Gleichung. Im Explorer nebenan kannst du e^(iθ) live um den Einheitskreis ziehen sehen und mit eigenen Augen den Moment bei θ = π erleben, in dem die Identität tatsächlich passiert.",
     ctaInteractive: "→ Zum Explorer",
   },
   encounter: {
@@ -211,12 +211,12 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Fünf der wichtigsten Zahlen der Mathematik — e, i, π, 0, 1 — laufen sich im Alltag nie über den Weg. Und doch bindet eine einzige Gleichung, e^(iπ) + 1 = 0, alle fünf zusammen, mit nur Addition, Multiplikation und Potenzieren. Sonst nichts. Keine Konstante bleibt übrig, keine Verzierung. Das ist die ganze Identität.",
+        body: "Fünf der wichtigsten Zahlen der Mathematik (e, i, π, 0, 1) laufen sich im Alltag nie über den Weg. Und doch bindet eine einzige Gleichung, e^(iπ) + 1 = 0, alle fünf zusammen, mit nur Addition, Multiplikation und Potenzieren. Sonst nichts. Keine Konstante bleibt übrig, keine Verzierung. Das ist die ganze Identität.",
       },
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Stell dir vor, du läufst um einen Kreis mit Radius 1 um den Ursprung einer Ebene. Starte bei der 1 rechts. Multiplizieren mit e^(iθ) heißt: laufe θ Bogenmaß um den Kreis. Lauf also π Bogenmaß — den halben Weg — und du kommst beim Punkt −1 an. Addiere 1 und du bist wieder bei 0.",
+        body: "Stell dir vor, du läufst um einen Kreis mit Radius 1 um den Ursprung einer Ebene. Starte bei der 1 rechts. Multiplizieren mit e^(iθ) heißt: Laufe θ Bogenmaß um den Kreis. Lauf also π Bogenmaß, den halben Weg, und du kommst beim Punkt −1 an. Addiere 1 und du bist wieder bei 0.",
       },
       {
         label: "03",
@@ -225,38 +225,38 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: schieb θ selbst um den Kreis und sieh, wie die Taylor-Reihe sie Term für Term aufbaut.",
+      "Unten: Schieb θ selbst um den Kreis und sieh, wie die Taylor-Reihe sie Term für Term aufbaut.",
   },
   sections: [
     {
       pretitle: "Abschnitt 01 · Fünf Charaktere",
       title: "Wer in dieser Gleichung steht",
-      body: "Jede der fünf Zahlen kommt aus einem anderen Land der Mathematik. 0 ist die additive Identität — sie zu addieren ändert nichts. 1 ist die multiplikative Identität — mit ihr zu multiplizieren ändert nichts. e ≈ 2,71828 ist die natürliche Basis, die Zahl, deren eigene Ableitung sie selbst ist, geboren in der Analysis aus Zinseszins und stetigem Wachstum. i ist die imaginäre Einheit, definiert durch i² = −1, geboren in der Algebra, als Cardano eine Wurzel aus einer negativen Zahl brauchte, um kubische Gleichungen zu lösen. π ≈ 3,14159 ist die Halbdrehung des Kreises, das Verhältnis von Umfang zu Durchmesser, geboren in der Geometrie. Normalerweise teilen sie keinen Raum. Die Identität ist der Raum.",
+      body: "Jede der fünf Zahlen kommt aus einem anderen Land der Mathematik. 0 ist die additive Identität: Sie zu addieren ändert nichts. 1 ist die multiplikative Identität: Mit ihr zu multiplizieren ändert nichts. e ≈ 2,71828 ist die natürliche Basis, die Zahl, deren eigene Ableitung sie selbst ist, geboren in der Analysis aus Zinseszins und stetigem Wachstum. i ist die imaginäre Einheit, definiert durch i² = −1, geboren in der Algebra, als Cardano eine Wurzel aus einer negativen Zahl brauchte, um kubische Gleichungen zu lösen. π ≈ 3,14159 ist die Halbdrehung des Kreises, das Verhältnis von Umfang zu Durchmesser, geboren in der Geometrie. Normalerweise teilen sie keinen Raum. Die Identität ist der Raum.",
     },
     {
       pretitle: "Abschnitt 02 · Komplexe Multiplikation",
       title: "Warum i eine Vierteldrehung ist",
-      body: "Vergiss kurz, dass i „imaginär“ sein soll, und sieh, was Multiplikation mit i wirklich tut. Starte bei 1 auf der reellen Achse. Multipliziere mit i und du landest bei i — eine Vierteldrehung nach oben. Noch einmal mit i, und du landest bei i² = −1 — eine weitere Vierteldrehung, genau gegenüber vom Start. Zwei Vierteldrehungen ergeben eine Halbdrehung, und genau das ist die geometrische Bedeutung von i² = −1. Komplexe Multiplikation ist Drehung (um das Argument) mal Streckung (um den Betrag). Die Zahlen auf dem Einheitskreis, wo der Betrag 1 ist, sind reine Drehung. Sie sind der Motor der Identität.",
+      body: "Vergiss kurz, dass i „imaginär“ sein soll, und sieh, was Multiplikation mit i wirklich tut. Starte bei 1 auf der reellen Achse. Multipliziere mit i und du landest bei i, eine Vierteldrehung nach oben. Noch einmal mit i, und du landest bei i² = −1, eine weitere Vierteldrehung, genau gegenüber vom Start. Zwei Vierteldrehungen ergeben eine Halbdrehung, und genau das ist die geometrische Bedeutung von i² = −1. Komplexe Multiplikation ist Drehung (um das Argument) mal Streckung (um den Betrag). Die Zahlen auf dem Einheitskreis, wo der Betrag 1 ist, sind reine Drehung. Sie sind der Motor der Identität.",
     },
     {
       pretitle: "Abschnitt 03 · Eulers Formel",
       title: "e^(iθ) = cos θ + i sin θ",
-      body: "Euler veröffentlichte diese Formel 1748 in seiner Introductio in analysin infinitorum, und sie ist die größere Wahrheit, von der die Identität nur ein einzelner Wert ist. Die linke Seite, e^(iθ), ist eine Exponentialfunktion mit imaginärem Exponenten — eine Art Wachstum, die sich vorher niemand vorgestellt hatte. Die rechte Seite, cos θ + i sin θ, ist der Punkt auf dem Einheitskreis bei Winkel θ. Eulers Behauptung: diese beiden völlig verschieden aussehenden Dinge sind gleich. Setzt man θ = π, kollabiert die rechte Seite zu −1 + 0i, also e^(iπ) = −1, und 1 addiert ergibt die Identität. Die Identität ist Eulers Formel bei θ = π.",
+      body: "Euler veröffentlichte diese Formel 1748 in seiner Introductio in analysin infinitorum, und sie ist die größere Wahrheit, von der die Identität nur ein einzelner Wert ist. Die linke Seite, e^(iθ), ist eine Exponentialfunktion mit imaginärem Exponenten, eine Art Wachstum, die sich vorher niemand vorgestellt hatte. Die rechte Seite, cos θ + i sin θ, ist der Punkt auf dem Einheitskreis bei Winkel θ. Eulers Behauptung: Diese beiden völlig verschieden aussehenden Dinge sind gleich. Setzt man θ = π, kollabiert die rechte Seite zu −1 + 0i, also e^(iπ) = −1, und 1 addiert ergibt die Identität. Die Identität ist Eulers Formel bei θ = π.",
     },
     {
       pretitle: "Abschnitt 04 · Warum sie wahr ist",
       title: "Taylor-Reihen, eingesetzt",
-      body: "Der sauberste Beweis läuft über Potenzreihen. Jede der drei Funktionen hat eine Taylor-Entwicklung, die auf der ganzen reellen Achse konvergiert: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Setze nun formal x = iθ in die Reihe für e^x ein. Weil i^k die Werte 1, i, −1, −i durchläuft, sind die reellen Terme der entstehenden Reihe genau die Taylor-Reihe für cos θ, und die imaginären Terme (ohne das i) genau die Taylor-Reihe für sin θ. Also gilt e^(iθ) = cos θ + i sin θ — nicht per Definition, sondern als Satz über konvergente Reihen. Setze θ = π, und die Algebra schließt den Beweis ab.",
+      body: "Der sauberste Beweis läuft über Potenzreihen. Jede der drei Funktionen hat eine Taylor-Entwicklung, die auf der ganzen reellen Achse konvergiert: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Setze nun formal x = iθ in die Reihe für e^x ein. Weil i^k die Werte 1, i, −1, −i durchläuft, sind die reellen Terme der entstehenden Reihe genau die Taylor-Reihe für cos θ, und die imaginären Terme (ohne das i) genau die Taylor-Reihe für sin θ. Also gilt e^(iθ) = cos θ + i sin θ, nicht per Definition, sondern als Satz über konvergente Reihen. Setze θ = π, und die Algebra schließt den Beweis ab.",
     },
     {
       pretitle: "Abschnitt 05 · Verbindungen überall",
       title: "Wo die Identität in der Welt vorkommt",
-      body: "Sobald du e^(iθ) hast, ist es keine Kuriosität mehr, sondern unverzichtbares Werkzeug. Elektrotechniker:innen schreiben die Impedanz einer Schaltung als komplexe Zahl Z = R + iX, sodass Spannungen und Ströme zu rotierenden Phasoren V·e^(iωt) werden und Kirchhoffs Regeln zu linearer Algebra. Die Quantenmechanik schreibt die Zeitentwicklung eines Zustands als ψ(t) = e^(−iHt/ℏ) ψ(0) — die Schrödinger-Gleichung, mit e^(iθ) als alleinigem Rotator im Hilbertraum. Die Fourier-Analyse zerlegt jedes vernünftige Signal in eine Summe (oder ein Integral) von e^(iωt)-Moden, und jedes JPEG, jedes MP3, jeder MRT-Scanner und jeder WLAN-Handschlag des Planeten baut darauf auf. Die Identität ist der Grenzstein, an dem alle vier Straßen — Arithmetik, Algebra, Geometrie, Analysis — zusammenlaufen.",
+      body: "Sobald du e^(iθ) hast, ist es keine Kuriosität mehr, sondern unverzichtbares Werkzeug. Elektrotechniker:innen schreiben die Impedanz einer Schaltung als komplexe Zahl Z = R + iX, sodass Spannungen und Ströme zu rotierenden Phasoren V·e^(iωt) werden und Kirchhoffs Regeln zu linearer Algebra. Die Quantenmechanik schreibt die Zeitentwicklung eines Zustands als ψ(t) = e^(−iHt/ℏ) ψ(0), die Schrödinger-Gleichung, mit e^(iθ) als alleinigem Rotator im Hilbertraum. Die Fourier-Analyse zerlegt jedes vernünftige Signal in eine Summe (oder ein Integral) von e^(iωt)-Moden, und jedes JPEG, jedes MP3, jeder MRT-Scanner und jeder WLAN-Handschlag des Planeten baut darauf auf. Die Identität ist der Grenzstein, an dem alle vier Straßen (Arithmetik, Algebra, Geometrie, Analysis) zusammenlaufen.",
     },
     {
       pretitle: "Abschnitt 06 · Wo sie steht",
       title: "Eine kurze Progression",
-      body: "Tritt einen Schritt zurück und sieh die Kette. Arithmetik auf der reellen Achse gibt dir +, × und die Konstanten 0 und 1. Die Analysis macht aus stetigem Wachstum eine Zahl und nennt sie e. Die Algebra löst Kubiken, geht der reellen Quadratwurzel aus, erfindet i und entdeckt die komplexe Ebene. Die Geometrie parametrisiert den Einheitskreis durch Winkel und begegnet π. Eulers Formel bemerkt dann, mit zwei Seiten Potenzreihe, dass Wachstum in imaginärer Richtung Drehung in der Ebene ist — dass e und i heimlich dasselbe tun. Setze den Winkel auf eine Halbdrehung, und die fünf Konstanten treffen sich schließlich, ohne irgendetwas dazwischen. Die Identität ist kein Zufall; sie ist das Ziel.",
+      body: "Tritt einen Schritt zurück und sieh die Kette. Arithmetik auf der reellen Achse gibt dir +, × und die Konstanten 0 und 1. Die Analysis macht aus stetigem Wachstum eine Zahl und nennt sie e. Die Algebra löst Kubiken, geht der reellen Quadratwurzel aus, erfindet i und entdeckt die komplexe Ebene. Die Geometrie parametrisiert den Einheitskreis durch Winkel und begegnet π. Eulers Formel bemerkt dann, mit zwei Seiten Potenzreihe, dass Wachstum in imaginärer Richtung Drehung in der Ebene ist, dass e und i heimlich dasselbe tun. Setze den Winkel auf eine Halbdrehung, und die fünf Konstanten treffen sich schließlich, ohne irgendetwas dazwischen. Die Identität ist kein Zufall; sie ist das Ziel.",
     },
   ],
   unitCircleCaption: "Zieh θ · e^(iθ) auf dem Einheitskreis",
@@ -275,11 +275,11 @@ const de: RichStory = {
   interactivePretitle1: "Interaktiv · Schieberegler",
   interactiveTitle1: "Lauf θ um den Kreis",
   interactiveBody1:
-    "Zieh den Regler von 0 bis 2π. Der gelbe Punkt ist e^(iθ); die cyan- und violettfarbenen Marker sind die reelle und imaginäre Projektion — die Komponenten cos θ und sin θ. Bei θ ≈ π landest du auf −1, und die Identität leuchtet auf.",
+    "Zieh den Regler von 0 bis 2π. Der gelbe Punkt ist e^(iθ); die cyan- und violettfarbenen Marker sind die reelle und imaginäre Projektion, die Komponenten cos θ und sin θ. Bei θ ≈ π landest du auf −1, und die Identität leuchtet auf.",
   interactivePretitle2: "Interaktiv · Schieberegler",
   interactiveTitle2: "Bau den Beweis, Term für Term",
   interactiveBody2:
-    "Jede Kurve ist eine Taylor-Teilsumme — nur die ersten N+1 Glieder. Schieb N hoch, und die Teilsummen schmiegen sich an die echten exp-, cos- und sin-Kurven an. Sieh das kleine Panel darunter: die komplexe Teilsumme von (iπ)^k / k! driftet gegen −1, wenn N wächst.",
+    "Jede Kurve ist eine Taylor-Teilsumme: nur die ersten N+1 Glieder. Schieb N hoch, und die Teilsummen schmiegen sich an die echten exp-, cos- und sin-Kurven an. Sieh das kleine Panel darunter: Die komplexe Teilsumme von (iπ)^k / k! driftet gegen −1, wenn N wächst.",
   charactersLabel: "Die fünf Konstanten",
   charactersRows: [
     { sym: "0", role: "Additive Identität", home: "Arithmetik" },
@@ -303,7 +303,7 @@ const de: RichStory = {
     },
     {
       field: "Fourier-Analyse",
-      body: "Jedes Signal zerfällt in e^(iωt)-Moden — die Basis von MP3, JPEG, MRT, WLAN.",
+      body: "Jedes Signal zerfällt in e^(iωt)-Moden, die Basis von MP3, JPEG, MRT, WLAN.",
     },
     {
       field: "Zahlentheorie",
@@ -332,7 +332,7 @@ const es: RichStory = {
     title: "La identidad de Euler",
     tagline: "Cinco números, una línea.",
     intro:
-      "e^(iπ) + 1 = 0 — cinco constantes de cinco rincones distintos de las matemáticas, encerradas en una sola igualdad. El Explorer de al lado te deja ver e^(iθ) barriendo el círculo unidad en tiempo real, para que puedas presenciar con tus propios ojos el instante en θ = π en el que la identidad realmente ocurre.",
+      "e^(iπ) + 1 = 0: cinco constantes de cinco rincones distintos de las matemáticas, encerradas en una sola igualdad. El Explorer de al lado te deja ver e^(iθ) barriendo el círculo unidad en tiempo real, para que puedas presenciar con tus propios ojos el instante en θ = π en el que la identidad realmente ocurre.",
     ctaInteractive: "→ Abrir el Explorer",
   },
   encounter: {
@@ -342,12 +342,12 @@ const es: RichStory = {
       {
         label: "01",
         title: "La gran idea",
-        body: "Cinco de los números más importantes de la matemática — e, i, π, 0, 1 — nunca se cruzan en la vida cotidiana. Y sin embargo una sola ecuación, e^(iπ) + 1 = 0, ata a los cinco con sólo suma, producto y potencia. Nada más. Ninguna constante sobrante, ningún adorno. Esa es toda la identidad.",
+        body: "Cinco de los números más importantes de la matemática (e, i, π, 0, 1) nunca se cruzan en la vida cotidiana. Y sin embargo una sola ecuación, e^(iπ) + 1 = 0, ata a los cinco con sólo suma, producto y potencia. Nada más. Ninguna constante sobrante, ningún adorno. Esa es toda la identidad.",
       },
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: "Imagina caminar alrededor de un círculo de radio 1 centrado en el origen de un plano. Empieza en el punto 1 a la derecha. Multiplicar por e^(iθ) significa: camina θ radianes por el círculo. Camina pues π radianes — la mitad del trayecto — y llegas al punto −1. Suma 1 y vuelves a 0.",
+        body: "Imagina caminar alrededor de un círculo de radio 1 centrado en el origen de un plano. Empieza en el punto 1 a la derecha. Multiplicar por e^(iθ) significa: camina θ radianes por el círculo. Camina pues π radianes, la mitad del trayecto, y llegas al punto −1. Suma 1 y vuelves a 0.",
       },
       {
         label: "03",
@@ -362,32 +362,32 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · Cinco personajes",
       title: "Quién aparece en esta ecuación",
-      body: "Cada uno de los cinco números llega de un país distinto de la matemática. 0 es la identidad aditiva — sumarlo no cambia nada. 1 es la identidad multiplicativa — multiplicar por él no cambia nada. e ≈ 2,71828 es la base natural, el número cuya derivada es él mismo, nacido en el cálculo a partir del interés compuesto y el crecimiento continuo. i es la unidad imaginaria, definida por i² = −1, nacida en el álgebra cuando Cardano necesitaba una raíz de un negativo para resolver cúbicas. π ≈ 3,14159 es la media vuelta del círculo, la razón entre la circunferencia y el diámetro, nacida en la geometría. Normalmente no comparten habitación. La identidad es la habitación.",
+      body: "Cada uno de los cinco números llega de un país distinto de la matemática. 0 es la identidad aditiva: sumarlo no cambia nada. 1 es la identidad multiplicativa: multiplicar por él no cambia nada. e ≈ 2,71828 es la base natural, el número cuya derivada es él mismo, nacido en el cálculo a partir del interés compuesto y el crecimiento continuo. i es la unidad imaginaria, definida por i² = −1, nacida en el álgebra cuando Cardano necesitaba una raíz de un negativo para resolver cúbicas. π ≈ 3,14159 es la media vuelta del círculo, la razón entre la circunferencia y el diámetro, nacida en la geometría. Normalmente no comparten habitación. La identidad es la habitación.",
     },
     {
       pretitle: "Sección 02 · Multiplicación compleja",
       title: "Por qué i es un cuarto de vuelta",
-      body: "Olvida por un instante que i es «imaginaria» y mira lo que hace multiplicar por i. Empieza en 1 sobre el eje real. Multiplica por i y aterrizas en i — un cuarto de vuelta hacia arriba. Multiplica de nuevo por i y aterrizas en i² = −1 — otro cuarto de vuelta, justo enfrente del punto de partida. Dos cuartos de vuelta hacen media vuelta, que es exactamente lo que significa geométricamente i² = −1. La multiplicación compleja es rotación (por el argumento) por escalado (por el módulo). Los números del círculo unitario, donde el módulo vale 1, son rotación pura. Son el motor de la identidad.",
+      body: "Olvida por un instante que i es «imaginaria» y mira lo que hace multiplicar por i. Empieza en 1 sobre el eje real. Multiplica por i y aterrizas en i, un cuarto de vuelta hacia arriba. Multiplica de nuevo por i y aterrizas en i² = −1, otro cuarto de vuelta, justo enfrente del punto de partida. Dos cuartos de vuelta hacen media vuelta, que es exactamente lo que significa geométricamente i² = −1. La multiplicación compleja es rotación (por el argumento) por escalado (por el módulo). Los números del círculo unitario, donde el módulo vale 1, son rotación pura. Son el motor de la identidad.",
     },
     {
       pretitle: "Sección 03 · La fórmula de Euler",
       title: "e^(iθ) = cos θ + i sin θ",
-      body: "Euler publicó esta fórmula en 1748 en su Introductio in analysin infinitorum, y es la verdad mayor de la que la identidad es un único valor. El lado izquierdo, e^(iθ), es una exponencial con exponente imaginario — un tipo de crecimiento que nadie había imaginado antes. El lado derecho, cos θ + i sin θ, es el punto del círculo unitario en el ángulo θ. La afirmación de Euler es que esas dos cosas tan distintas son iguales. Pon θ = π y el lado derecho colapsa a −1 + 0i, así que e^(iπ) = −1, y sumar 1 da la identidad. La identidad es la fórmula de Euler en θ = π.",
+      body: "Euler publicó esta fórmula en 1748 en su Introductio in analysin infinitorum, y es la verdad mayor de la que la identidad es un único valor. El lado izquierdo, e^(iθ), es una exponencial con exponente imaginario, un tipo de crecimiento que nadie había imaginado antes. El lado derecho, cos θ + i sin θ, es el punto del círculo unitario en el ángulo θ. La afirmación de Euler es que esas dos cosas tan distintas son iguales. Pon θ = π y el lado derecho colapsa a −1 + 0i, así que e^(iπ) = −1, y sumar 1 da la identidad. La identidad es la fórmula de Euler en θ = π.",
     },
     {
       pretitle: "Sección 04 · Por qué es verdad",
       title: "Series de Taylor, sustituidas",
-      body: "La demostración más limpia va por series de potencias. Cada una de las tres funciones tiene un desarrollo de Taylor que converge en toda la recta real: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Ahora sustituye formalmente x = iθ en la serie de e^x. Como i^k recorre 1, i, −1, −i, los términos reales de la serie resultante son exactamente la serie de Taylor de cos θ, y los términos imaginarios (sin la i) son exactamente la serie de Taylor de sin θ. Así e^(iθ) = cos θ + i sin θ — no por definición, sino como teorema sobre series convergentes. Pon θ = π y el álgebra cierra la demostración.",
+      body: "La demostración más limpia va por series de potencias. Cada una de las tres funciones tiene un desarrollo de Taylor que converge en toda la recta real: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Ahora sustituye formalmente x = iθ en la serie de e^x. Como i^k recorre 1, i, −1, −i, los términos reales de la serie resultante son exactamente la serie de Taylor de cos θ, y los términos imaginarios (sin la i) son exactamente la serie de Taylor de sin θ. Así e^(iθ) = cos θ + i sin θ, no por definición, sino como teorema sobre series convergentes. Pon θ = π y el álgebra cierra la demostración.",
     },
     {
       pretitle: "Sección 05 · Conexiones por doquier",
       title: "Dónde vive la identidad en lo real",
-      body: "Una vez que tienes e^(iθ), deja de ser curiosidad y se vuelve herramienta imprescindible. Los ingenieros eléctricos escriben la impedancia como Z = R + iX, de modo que voltajes y corrientes se vuelven fasores rotatorios V·e^(iωt) y las leyes de Kirchhoff se convierten en álgebra lineal. La mecánica cuántica escribe la evolución temporal de un estado como ψ(t) = e^(−iHt/ℏ) ψ(0) — la ecuación de Schrödinger, con e^(iθ) haciendo toda la rotación en el espacio de Hilbert. El análisis de Fourier descompone cualquier señal razonable en una suma (o integral) de modos e^(iωt), y todo JPEG, MP3, escáner de RMN y apretón de manos Wi-Fi del planeta se asienta sobre esa descomposición. La identidad es el mojón donde se cruzan las cuatro vías: aritmética, álgebra, geometría, análisis.",
+      body: "Una vez que tienes e^(iθ), deja de ser curiosidad y se vuelve herramienta imprescindible. Los ingenieros eléctricos escriben la impedancia como Z = R + iX, de modo que voltajes y corrientes se vuelven fasores rotatorios V·e^(iωt) y las leyes de Kirchhoff se convierten en álgebra lineal. La mecánica cuántica escribe la evolución temporal de un estado como ψ(t) = e^(−iHt/ℏ) ψ(0), la ecuación de Schrödinger, con e^(iθ) haciendo toda la rotación en el espacio de Hilbert. El análisis de Fourier descompone cualquier señal razonable en una suma (o integral) de modos e^(iωt), y todo JPEG, MP3, escáner de RMN y apretón de manos Wi-Fi del planeta se asienta sobre esa descomposición. La identidad es el mojón donde se cruzan las cuatro vías: aritmética, álgebra, geometría, análisis.",
     },
     {
       pretitle: "Sección 06 · Dónde encaja",
       title: "Una progresión breve",
-      body: "Da un paso atrás y ve la cadena. La aritmética en la recta real te da +, × y las constantes 0 y 1. El cálculo convierte el crecimiento continuo en un número y lo llama e. El álgebra resuelve cúbicas, se queda sin raíces cuadradas reales, inventa i y descubre el plano complejo. La geometría parametriza el círculo unitario por ángulo y se encuentra con π. La fórmula de Euler observa entonces, con dos páginas de series de potencias, que crecer en la dirección imaginaria es rotar en el plano — que e e i hacen secretamente lo mismo. Pon el ángulo a media vuelta y las cinco constantes se encuentran al fin, sin nada en medio. La identidad no es coincidencia; es el destino.",
+      body: "Da un paso atrás y ve la cadena. La aritmética en la recta real te da +, × y las constantes 0 y 1. El cálculo convierte el crecimiento continuo en un número y lo llama e. El álgebra resuelve cúbicas, se queda sin raíces cuadradas reales, inventa i y descubre el plano complejo. La geometría parametriza el círculo unitario por ángulo y se encuentra con π. La fórmula de Euler observa entonces, con dos páginas de series de potencias, que crecer en la dirección imaginaria es rotar en el plano, que e e i hacen secretamente lo mismo. Pon el ángulo a media vuelta y las cinco constantes se encuentran al fin, sin nada en medio. La identidad no es coincidencia; es el destino.",
     },
   ],
   unitCircleCaption: "Arrastra θ · e^(iθ) en el círculo unitario",
@@ -406,11 +406,11 @@ const es: RichStory = {
   interactivePretitle1: "Interactivo · deslizador",
   interactiveTitle1: "Camina θ alrededor del círculo",
   interactiveBody1:
-    "Arrastra el deslizador de 0 a 2π. El punto amarillo es e^(iθ); los marcadores cian y violeta son sus proyecciones real e imaginaria — las componentes cos θ y sin θ. Cuando θ ≈ π aterrizas en −1 y la identidad se enciende.",
+    "Arrastra el deslizador de 0 a 2π. El punto amarillo es e^(iθ); los marcadores cian y violeta son sus proyecciones real e imaginaria, las componentes cos θ y sin θ. Cuando θ ≈ π aterrizas en −1 y la identidad se enciende.",
   interactivePretitle2: "Interactivo · deslizador",
   interactiveTitle2: "Construye la demostración, término a término",
   interactiveBody2:
-    "Cada curva es una suma parcial de Taylor — sólo los primeros N+1 términos. Sube N y las sumas se ciñen a las verdaderas exp, cos y sin. Mira el panel inferior: la suma parcial compleja de (iπ)^k / k! deriva hacia −1 al crecer N.",
+    "Cada curva es una suma parcial de Taylor: sólo los primeros N+1 términos. Sube N y las sumas se ciñen a las verdaderas exp, cos y sin. Mira el panel inferior: la suma parcial compleja de (iπ)^k / k! deriva hacia −1 al crecer N.",
   charactersLabel: "Las cinco constantes",
   charactersRows: [
     { sym: "0", role: "Identidad aditiva", home: "Aritmética" },
@@ -434,7 +434,7 @@ const es: RichStory = {
     },
     {
       field: "Análisis de Fourier",
-      body: "Toda señal se descompone en modos e^(iωt) — la base de MP3, JPEG, RMN, Wi-Fi.",
+      body: "Toda señal se descompone en modos e^(iωt), la base de MP3, JPEG, RMN, Wi-Fi.",
     },
     {
       field: "Teoría de números",
@@ -463,7 +463,7 @@ const fr: RichStory = {
     title: "L'identité d'Euler",
     tagline: "Cinq nombres, une ligne.",
     intro:
-      "e^(iπ) + 1 = 0 — cinq constantes venues de cinq coins différents des mathématiques, verrouillées dans une seule égalité. L'Explorer voisin te laisse voir e^(iθ) balayer le cercle unité en temps réel, pour que tu puisses observer, de tes propres yeux, l'instant en θ = π où l'identité se produit vraiment.",
+      "e^(iπ) + 1 = 0 : cinq constantes venues de cinq coins différents des mathématiques, verrouillées dans une seule égalité. L'Explorer voisin te laisse voir e^(iθ) balayer le cercle unité en temps réel, pour que tu puisses observer, de tes propres yeux, l'instant en θ = π où l'identité se produit vraiment.",
     ctaInteractive: "→ Ouvrir l'Explorer",
   },
   encounter: {
@@ -473,12 +473,12 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "Cinq des nombres les plus importants des mathématiques — e, i, π, 0, 1 — ne se croisent jamais dans la vie courante. Pourtant une seule équation, e^(iπ) + 1 = 0, les noue tous les cinq avec la seule addition, multiplication et exponentiation. Rien d'autre. Pas de constante en reste, pas de décoration. C'est toute l'identité.",
+        body: "Cinq des nombres les plus importants des mathématiques (e, i, π, 0, 1) ne se croisent jamais dans la vie courante. Pourtant une seule équation, e^(iπ) + 1 = 0, les noue tous les cinq avec la seule addition, multiplication et exponentiation. Rien d'autre. Pas de constante en reste, pas de décoration. C'est toute l'identité.",
       },
       {
         label: "02",
         title: "Un exemple concret",
-        body: "Imagine marcher autour d'un cercle de rayon 1 centré à l'origine d'un plan. Pars du point 1 à droite. Multiplier par e^(iθ) signifie : avance de θ radians sur le cercle. Avance donc de π radians — la moitié du tour — et tu arrives au point −1. Ajoute 1 et tu reviens à 0.",
+        body: "Imagine marcher autour d'un cercle de rayon 1 centré à l'origine d'un plan. Pars du point 1 à droite. Multiplier par e^(iθ) signifie : avance de θ radians sur le cercle. Avance donc de π radians, la moitié du tour, et tu arrives au point −1. Ajoute 1 et tu reviens à 0.",
       },
       {
         label: "03",
@@ -493,32 +493,32 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · Cinq personnages",
       title: "Qui apparaît dans cette équation",
-      body: "Chacun des cinq nombres vient d'un pays différent des mathématiques. 0 est l'identité additive — l'ajouter ne change rien. 1 est l'identité multiplicative — multiplier par lui ne change rien. e ≈ 2,71828 est la base naturelle, le nombre dont la dérivée est elle-même, né dans le calcul à partir des intérêts composés et de la croissance continue. i est l'unité imaginaire, définie par i² = −1, née de l'algèbre quand Cardan avait besoin d'une racine d'un négatif pour résoudre les cubiques. π ≈ 3,14159 est le demi-tour du cercle, le rapport entre la circonférence et le diamètre, né de la géométrie. Normalement ils ne partagent jamais la même pièce. L'identité est cette pièce.",
+      body: "Chacun des cinq nombres vient d'un pays différent des mathématiques. 0 est l'identité additive : l'ajouter ne change rien. 1 est l'identité multiplicative : multiplier par lui ne change rien. e ≈ 2,71828 est la base naturelle, le nombre dont la dérivée est elle-même, né dans le calcul à partir des intérêts composés et de la croissance continue. i est l'unité imaginaire, définie par i² = −1, née de l'algèbre quand Cardan avait besoin d'une racine d'un négatif pour résoudre les cubiques. π ≈ 3,14159 est le demi-tour du cercle, le rapport entre la circonférence et le diamètre, né de la géométrie. Normalement ils ne partagent jamais la même pièce. L'identité est cette pièce.",
     },
     {
       pretitle: "Section 02 · Multiplication complexe",
       title: "Pourquoi i est un quart de tour",
-      body: "Oublie un instant que i est « imaginaire » et regarde ce que fait la multiplication par i. Pars de 1 sur l'axe réel. Multiplie par i et tu atterris en i — un quart de tour vers le haut. Multiplie encore par i et tu atterris en i² = −1 — un autre quart de tour, exactement à l'opposé du départ. Deux quarts de tour font un demi-tour, ce que i² = −1 signifie géométriquement. La multiplication complexe est rotation (par l'argument) fois mise à l'échelle (par le module). Les nombres du cercle unité, où le module vaut 1, sont la rotation pure. Ils sont le moteur de l'identité.",
+      body: "Oublie un instant que i est « imaginaire » et regarde ce que fait la multiplication par i. Pars de 1 sur l'axe réel. Multiplie par i et tu atterris en i, un quart de tour vers le haut. Multiplie encore par i et tu atterris en i² = −1, un autre quart de tour, exactement à l'opposé du départ. Deux quarts de tour font un demi-tour, ce que i² = −1 signifie géométriquement. La multiplication complexe est rotation (par l'argument) fois mise à l'échelle (par le module). Les nombres du cercle unité, où le module vaut 1, sont la rotation pure. Ils sont le moteur de l'identité.",
     },
     {
       pretitle: "Section 03 · La formule d'Euler",
       title: "e^(iθ) = cos θ + i sin θ",
-      body: "Euler publia cette formule en 1748 dans son Introductio in analysin infinitorum, et c'est la vérité plus large dont l'identité n'est qu'une valeur unique. Le côté gauche, e^(iθ), est une exponentielle à exposant imaginaire — un type de croissance que personne n'avait imaginé. Le côté droit, cos θ + i sin θ, est le point du cercle unité d'angle θ. L'affirmation d'Euler est que ces deux choses d'apparence très différente sont égales. Pose θ = π et le côté droit s'effondre en −1 + 0i, donc e^(iπ) = −1, et ajouter 1 donne l'identité. L'identité est la formule d'Euler à θ = π.",
+      body: "Euler publia cette formule en 1748 dans son Introductio in analysin infinitorum, et c'est la vérité plus large dont l'identité n'est qu'une valeur unique. Le côté gauche, e^(iθ), est une exponentielle à exposant imaginaire, un type de croissance que personne n'avait imaginé. Le côté droit, cos θ + i sin θ, est le point du cercle unité d'angle θ. L'affirmation d'Euler est que ces deux choses d'apparence très différente sont égales. Pose θ = π et le côté droit s'effondre en −1 + 0i, donc e^(iπ) = −1, et ajouter 1 donne l'identité. L'identité est la formule d'Euler à θ = π.",
     },
     {
       pretitle: "Section 04 · Pourquoi c'est vrai",
       title: "Séries de Taylor, substituées",
-      body: "La preuve la plus nette passe par les séries entières. Chacune des trois fonctions a un développement de Taylor convergeant sur toute la droite réelle : e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Substitue maintenant formellement x = iθ dans la série de e^x. Comme i^k parcourt 1, i, −1, −i, les termes réels de la série obtenue sont exactement la série de Taylor de cos θ, et les termes imaginaires (sans le i) sont exactement la série de Taylor de sin θ. Donc e^(iθ) = cos θ + i sin θ — non par définition, mais comme théorème sur les séries convergentes. Pose θ = π et l'algèbre clôt la preuve.",
+      body: "La preuve la plus nette passe par les séries entières. Chacune des trois fonctions a un développement de Taylor convergeant sur toute la droite réelle : e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Substitue maintenant formellement x = iθ dans la série de e^x. Comme i^k parcourt 1, i, −1, −i, les termes réels de la série obtenue sont exactement la série de Taylor de cos θ, et les termes imaginaires (sans le i) sont exactement la série de Taylor de sin θ. Donc e^(iθ) = cos θ + i sin θ, non par définition, mais comme théorème sur les séries convergentes. Pose θ = π et l'algèbre clôt la preuve.",
     },
     {
       pretitle: "Section 05 · Des connexions partout",
       title: "Où l'identité vit dans le réel",
-      body: "Dès que tu as e^(iθ), il cesse d'être une curiosité et devient un outil indispensable. Les ingénieurs en électricité écrivent l'impédance d'un circuit comme un nombre complexe Z = R + iX, si bien que tensions et courants deviennent des phaseurs tournants V·e^(iωt) et les lois de Kirchhoff se ramènent à de l'algèbre linéaire. La mécanique quantique écrit l'évolution temporelle d'un état comme ψ(t) = e^(−iHt/ℏ) ψ(0) — l'équation de Schrödinger, où e^(iθ) accomplit toute la rotation dans l'espace de Hilbert. L'analyse de Fourier décompose tout signal raisonnable en somme (ou intégrale) de modes e^(iωt), et chaque JPEG, MP3, IRM et poignée de main Wi-Fi de la planète repose sur cette décomposition. L'identité est la borne où se rejoignent les quatre routes : arithmétique, algèbre, géométrie, analyse.",
+      body: "Dès que tu as e^(iθ), il cesse d'être une curiosité et devient un outil indispensable. Les ingénieurs en électricité écrivent l'impédance d'un circuit comme un nombre complexe Z = R + iX, si bien que tensions et courants deviennent des phaseurs tournants V·e^(iωt) et les lois de Kirchhoff se ramènent à de l'algèbre linéaire. La mécanique quantique écrit l'évolution temporelle d'un état comme ψ(t) = e^(−iHt/ℏ) ψ(0), l'équation de Schrödinger, où e^(iθ) accomplit toute la rotation dans l'espace de Hilbert. L'analyse de Fourier décompose tout signal raisonnable en somme (ou intégrale) de modes e^(iωt), et chaque JPEG, MP3, IRM et poignée de main Wi-Fi de la planète repose sur cette décomposition. L'identité est la borne où se rejoignent les quatre routes : arithmétique, algèbre, géométrie, analyse.",
     },
     {
       pretitle: "Section 06 · Où elle se place",
       title: "Une brève progression",
-      body: "Recule d'un pas et vois la chaîne. L'arithmétique sur la droite réelle te donne +, × et les constantes 0 et 1. Le calcul transforme la croissance continue en un nombre nommé e. L'algèbre résout les cubiques, manque de racines carrées réelles, invente i et découvre le plan complexe. La géométrie paramètre le cercle unité par l'angle et rencontre π. La formule d'Euler remarque alors, en deux pages de séries entières, que croître dans la direction imaginaire, c'est tourner dans le plan — que e et i font en secret la même chose. Pose l'angle à un demi-tour et les cinq constantes se rencontrent enfin, sans rien entre elles. L'identité n'est pas un hasard ; elle est la destination.",
+      body: "Recule d'un pas et vois la chaîne. L'arithmétique sur la droite réelle te donne +, × et les constantes 0 et 1. Le calcul transforme la croissance continue en un nombre nommé e. L'algèbre résout les cubiques, manque de racines carrées réelles, invente i et découvre le plan complexe. La géométrie paramètre le cercle unité par l'angle et rencontre π. La formule d'Euler remarque alors, en deux pages de séries entières, que croître dans la direction imaginaire, c'est tourner dans le plan, que e et i font en secret la même chose. Pose l'angle à un demi-tour et les cinq constantes se rencontrent enfin, sans rien entre elles. L'identité n'est pas un hasard ; elle est la destination.",
     },
   ],
   unitCircleCaption: "Glisse θ · e^(iθ) sur le cercle unité",
@@ -537,11 +537,11 @@ const fr: RichStory = {
   interactivePretitle1: "Interactif · curseur",
   interactiveTitle1: "Promène θ autour du cercle",
   interactiveBody1:
-    "Glisse le curseur de 0 à 2π. Le point jaune est e^(iθ) ; les repères cyan et violet sont ses projections réelle et imaginaire — les composantes cos θ et sin θ. Quand θ ≈ π tu atterris en −1, et l'identité s'allume.",
+    "Glisse le curseur de 0 à 2π. Le point jaune est e^(iθ) ; les repères cyan et violet sont ses projections réelle et imaginaire, les composantes cos θ et sin θ. Quand θ ≈ π tu atterris en −1, et l'identité s'allume.",
   interactivePretitle2: "Interactif · curseur",
   interactiveTitle2: "Construis la preuve, terme par terme",
   interactiveBody2:
-    "Chaque courbe est une somme partielle de Taylor — seuls les N+1 premiers termes. Pousse N et les sommes partielles épousent les vraies courbes exp, cos et sin. Regarde le petit panneau dessous : la somme partielle complexe de (iπ)^k / k! glisse vers −1 quand N grandit.",
+    "Chaque courbe est une somme partielle de Taylor : seuls les N+1 premiers termes. Pousse N et les sommes partielles épousent les vraies courbes exp, cos et sin. Regarde le petit panneau dessous : la somme partielle complexe de (iπ)^k / k! glisse vers −1 quand N grandit.",
   charactersLabel: "Les cinq constantes",
   charactersRows: [
     { sym: "0", role: "Identité additive", home: "Arithmétique" },
@@ -565,7 +565,7 @@ const fr: RichStory = {
     },
     {
       field: "Analyse de Fourier",
-      body: "Tout signal se décompose en modes e^(iωt) — fondement du MP3, JPEG, IRM, Wi-Fi.",
+      body: "Tout signal se décompose en modes e^(iωt), fondement du MP3, JPEG, IRM, Wi-Fi.",
     },
     {
       field: "Théorie des nombres",
@@ -594,7 +594,7 @@ const it: RichStory = {
     title: "L'identità di Eulero",
     tagline: "Cinque numeri, una riga.",
     intro:
-      "e^(iπ) + 1 = 0 — cinque costanti da cinque angoli diversi della matematica, racchiuse in un'unica uguaglianza. L'Explorer qui accanto ti lascia vedere e^(iθ) percorrere il cerchio unitario in tempo reale, così puoi cogliere con i tuoi occhi l'istante in θ = π in cui l'identità accade davvero.",
+      "e^(iπ) + 1 = 0: cinque costanti da cinque angoli diversi della matematica, racchiuse in un'unica uguaglianza. L'Explorer qui accanto ti lascia vedere e^(iθ) percorrere il cerchio unitario in tempo reale, così puoi cogliere con i tuoi occhi l'istante in θ = π in cui l'identità accade davvero.",
     ctaInteractive: "→ Apri l'Explorer",
   },
   encounter: {
@@ -604,12 +604,12 @@ const it: RichStory = {
       {
         label: "01",
         title: "L'idea centrale",
-        body: "Cinque dei numeri più importanti della matematica — e, i, π, 0, 1 — non si incrociano mai nella vita quotidiana. Eppure una sola equazione, e^(iπ) + 1 = 0, lega tutti e cinque con sola somma, prodotto ed esponenziazione. Nient'altro. Nessuna costante in più, nessun ornamento. È tutta l'identità.",
+        body: "Cinque dei numeri più importanti della matematica (e, i, π, 0, 1) non si incrociano mai nella vita quotidiana. Eppure una sola equazione, e^(iπ) + 1 = 0, lega tutti e cinque con sola somma, prodotto ed esponenziazione. Nient'altro. Nessuna costante in più, nessun ornamento. È tutta l'identità.",
       },
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "Immagina di camminare attorno a un cerchio di raggio 1 centrato nell'origine di un piano. Parti dal punto 1 a destra. Moltiplicare per e^(iθ) significa: cammina θ radianti lungo il cerchio. Cammina dunque π radianti — metà del giro — e arrivi al punto −1. Aggiungi 1 e torni a 0.",
+        body: "Immagina di camminare attorno a un cerchio di raggio 1 centrato nell'origine di un piano. Parti dal punto 1 a destra. Moltiplicare per e^(iθ) significa: cammina θ radianti lungo il cerchio. Cammina dunque π radianti, metà del giro, e arrivi al punto −1. Aggiungi 1 e torni a 0.",
       },
       {
         label: "03",
@@ -624,32 +624,32 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · Cinque personaggi",
       title: "Chi compare in questa equazione",
-      body: "Ciascuno dei cinque numeri arriva da un paese diverso della matematica. 0 è l'identità additiva — sommarlo non cambia nulla. 1 è l'identità moltiplicativa — moltiplicare per esso non cambia nulla. e ≈ 2,71828 è la base naturale, il numero la cui derivata è sé stesso, nato nell'analisi dall'interesse composto e dalla crescita continua. i è l'unità immaginaria, definita da i² = −1, nata nell'algebra quando a Cardano servì una radice di un numero negativo per risolvere le cubiche. π ≈ 3,14159 è il mezzo giro del cerchio, il rapporto tra circonferenza e diametro, nato nella geometria. Normalmente non condividono mai una stanza. L'identità è quella stanza.",
+      body: "Ciascuno dei cinque numeri arriva da un paese diverso della matematica. 0 è l'identità additiva: sommarlo non cambia nulla. 1 è l'identità moltiplicativa: moltiplicare per esso non cambia nulla. e ≈ 2,71828 è la base naturale, il numero la cui derivata è sé stesso, nato nell'analisi dall'interesse composto e dalla crescita continua. i è l'unità immaginaria, definita da i² = −1, nata nell'algebra quando a Cardano servì una radice di un numero negativo per risolvere le cubiche. π ≈ 3,14159 è il mezzo giro del cerchio, il rapporto tra circonferenza e diametro, nato nella geometria. Normalmente non condividono mai una stanza. L'identità è quella stanza.",
     },
     {
       pretitle: "Sezione 02 · Moltiplicazione complessa",
       title: "Perché i è un quarto di giro",
-      body: "Dimentica per un momento che i sia «immaginaria» e guarda cosa fa moltiplicare per i. Parti da 1 sull'asse reale. Moltiplica per i e atterri in i — un quarto di giro verso l'alto. Moltiplica di nuovo per i e atterri in i² = −1 — un altro quarto di giro, esattamente di fronte al punto di partenza. Due quarti di giro fanno un mezzo giro, che è proprio ciò che i² = −1 significa geometricamente. La moltiplicazione complessa è rotazione (per l'argomento) per scalatura (per il modulo). I numeri sul cerchio unitario, dove il modulo vale 1, sono pura rotazione. Sono il motore dell'identità.",
+      body: "Dimentica per un momento che i sia «immaginaria» e guarda cosa fa moltiplicare per i. Parti da 1 sull'asse reale. Moltiplica per i e atterri in i, un quarto di giro verso l'alto. Moltiplica di nuovo per i e atterri in i² = −1, un altro quarto di giro, esattamente di fronte al punto di partenza. Due quarti di giro fanno un mezzo giro, che è proprio ciò che i² = −1 significa geometricamente. La moltiplicazione complessa è rotazione (per l'argomento) per scalatura (per il modulo). I numeri sul cerchio unitario, dove il modulo vale 1, sono pura rotazione. Sono il motore dell'identità.",
     },
     {
       pretitle: "Sezione 03 · La formula di Eulero",
       title: "e^(iθ) = cos θ + i sin θ",
-      body: "Eulero pubblicò questa formula nel 1748 nella sua Introductio in analysin infinitorum, ed è la verità più ampia di cui l'identità è un singolo valore. Il lato sinistro, e^(iθ), è un'esponenziale con esponente immaginario — un tipo di crescita che nessuno aveva immaginato. Il lato destro, cos θ + i sin θ, è il punto del cerchio unitario all'angolo θ. L'affermazione di Eulero è che quelle due cose così diverse sono uguali. Poni θ = π e il lato destro collassa in −1 + 0i, quindi e^(iπ) = −1, e sommando 1 ottieni l'identità. L'identità è la formula di Eulero a θ = π.",
+      body: "Eulero pubblicò questa formula nel 1748 nella sua Introductio in analysin infinitorum, ed è la verità più ampia di cui l'identità è un singolo valore. Il lato sinistro, e^(iθ), è un'esponenziale con esponente immaginario, un tipo di crescita che nessuno aveva immaginato. Il lato destro, cos θ + i sin θ, è il punto del cerchio unitario all'angolo θ. L'affermazione di Eulero è che quelle due cose così diverse sono uguali. Poni θ = π e il lato destro collassa in −1 + 0i, quindi e^(iπ) = −1, e sommando 1 ottieni l'identità. L'identità è la formula di Eulero a θ = π.",
     },
     {
       pretitle: "Sezione 04 · Perché è vera",
       title: "Serie di Taylor, sostituite",
-      body: "La dimostrazione più pulita passa per le serie di potenze. Ciascuna delle tre funzioni ha uno sviluppo di Taylor che converge su tutta la retta reale: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Sostituisci ora formalmente x = iθ nella serie di e^x. Poiché i^k attraversa 1, i, −1, −i, i termini reali della serie risultante sono esattamente la serie di Taylor di cos θ, e i termini immaginari (senza la i) sono esattamente la serie di Taylor di sin θ. Quindi e^(iθ) = cos θ + i sin θ — non per definizione, ma come teorema su serie convergenti. Poni θ = π e l'algebra chiude la dimostrazione.",
+      body: "La dimostrazione più pulita passa per le serie di potenze. Ciascuna delle tre funzioni ha uno sviluppo di Taylor che converge su tutta la retta reale: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Sostituisci ora formalmente x = iθ nella serie di e^x. Poiché i^k attraversa 1, i, −1, −i, i termini reali della serie risultante sono esattamente la serie di Taylor di cos θ, e i termini immaginari (senza la i) sono esattamente la serie di Taylor di sin θ. Quindi e^(iθ) = cos θ + i sin θ, non per definizione, ma come teorema su serie convergenti. Poni θ = π e l'algebra chiude la dimostrazione.",
     },
     {
       pretitle: "Sezione 05 · Connessioni ovunque",
       title: "Dove vive l'identità nel reale",
-      body: "Una volta che hai e^(iθ), smette di essere una curiosità e diventa strumento indispensabile. Gli ingegneri elettrici scrivono l'impedenza come Z = R + iX, così che tensioni e correnti diventino fasori rotanti V·e^(iωt) e le leggi di Kirchhoff si riducano ad algebra lineare. La meccanica quantistica scrive l'evoluzione temporale di uno stato come ψ(t) = e^(−iHt/ℏ) ψ(0) — l'equazione di Schrödinger, con e^(iθ) a compiere ogni rotazione nello spazio di Hilbert. L'analisi di Fourier decompone ogni segnale ragionevole in somma (o integrale) di modi e^(iωt), e ogni JPEG, MP3, scanner RM e handshake Wi-Fi del pianeta poggia su quella decomposizione. L'identità è la pietra di confine dove si incontrano le quattro strade: aritmetica, algebra, geometria, analisi.",
+      body: "Una volta che hai e^(iθ), smette di essere una curiosità e diventa strumento indispensabile. Gli ingegneri elettrici scrivono l'impedenza come Z = R + iX, così che tensioni e correnti diventino fasori rotanti V·e^(iωt) e le leggi di Kirchhoff si riducano ad algebra lineare. La meccanica quantistica scrive l'evoluzione temporale di uno stato come ψ(t) = e^(−iHt/ℏ) ψ(0), l'equazione di Schrödinger, con e^(iθ) a compiere ogni rotazione nello spazio di Hilbert. L'analisi di Fourier decompone ogni segnale ragionevole in somma (o integrale) di modi e^(iωt), e ogni JPEG, MP3, scanner RM e handshake Wi-Fi del pianeta poggia su quella decomposizione. L'identità è la pietra di confine dove si incontrano le quattro strade: aritmetica, algebra, geometria, analisi.",
     },
     {
       pretitle: "Sezione 06 · Dove si colloca",
       title: "Una breve progressione",
-      body: "Fai un passo indietro e guarda la catena. L'aritmetica sulla retta reale ti dà +, × e le costanti 0 e 1. L'analisi rende la crescita continua un numero e lo chiama e. L'algebra risolve cubiche, esaurisce le radici reali, inventa i e scopre il piano complesso. La geometria parametrizza il cerchio unitario tramite l'angolo e incontra π. La formula di Eulero osserva poi, con due pagine di serie di potenze, che crescere nella direzione immaginaria è ruotare nel piano — che e ed i fanno di nascosto la stessa cosa. Poni l'angolo a un mezzo giro e le cinque costanti si incontrano, senza nulla in mezzo. L'identità non è una coincidenza; è la destinazione.",
+      body: "Fai un passo indietro e guarda la catena. L'aritmetica sulla retta reale ti dà +, × e le costanti 0 e 1. L'analisi rende la crescita continua un numero e lo chiama e. L'algebra risolve cubiche, esaurisce le radici reali, inventa i e scopre il piano complesso. La geometria parametrizza il cerchio unitario tramite l'angolo e incontra π. La formula di Eulero osserva poi, con due pagine di serie di potenze, che crescere nella direzione immaginaria è ruotare nel piano, cioè che e ed i fanno di nascosto la stessa cosa. Poni l'angolo a un mezzo giro e le cinque costanti si incontrano, senza nulla in mezzo. L'identità non è una coincidenza; è la destinazione.",
     },
   ],
   unitCircleCaption: "Trascina θ · e^(iθ) sul cerchio unitario",
@@ -668,11 +668,11 @@ const it: RichStory = {
   interactivePretitle1: "Interattivo · cursore",
   interactiveTitle1: "Cammina θ attorno al cerchio",
   interactiveBody1:
-    "Trascina il cursore da 0 a 2π. Il punto giallo è e^(iθ); i marcatori ciano e viola sono le sue proiezioni reale e immaginaria — le componenti cos θ e sin θ. Quando θ ≈ π atterri in −1 e l'identità si accende.",
+    "Trascina il cursore da 0 a 2π. Il punto giallo è e^(iθ); i marcatori ciano e viola sono le sue proiezioni reale e immaginaria, le componenti cos θ e sin θ. Quando θ ≈ π atterri in −1 e l'identità si accende.",
   interactivePretitle2: "Interattivo · cursore",
   interactiveTitle2: "Costruisci la dimostrazione, termine per termine",
   interactiveBody2:
-    "Ogni curva è una somma parziale di Taylor — solo i primi N+1 termini. Aumenta N e le somme parziali si stringono attorno alle vere curve exp, cos e sin. Guarda il piccolo pannello sotto: la somma parziale complessa di (iπ)^k / k! deriva verso −1 al crescere di N.",
+    "Ogni curva è una somma parziale di Taylor: solo i primi N+1 termini. Aumenta N e le somme parziali si stringono attorno alle vere curve exp, cos e sin. Guarda il piccolo pannello sotto: la somma parziale complessa di (iπ)^k / k! deriva verso −1 al crescere di N.",
   charactersLabel: "Le cinque costanti",
   charactersRows: [
     { sym: "0", role: "Identità additiva", home: "Aritmetica" },
@@ -696,7 +696,7 @@ const it: RichStory = {
     },
     {
       field: "Analisi di Fourier",
-      body: "Ogni segnale si decompone in modi e^(iωt) — la base di MP3, JPEG, RM, Wi-Fi.",
+      body: "Ogni segnale si decompone in modi e^(iωt), la base di MP3, JPEG, RM, Wi-Fi.",
     },
     {
       field: "Teoria dei numeri",
@@ -725,7 +725,7 @@ const pt: RichStory = {
     title: "A identidade de Euler",
     tagline: "Cinco números, uma linha.",
     intro:
-      "e^(iπ) + 1 = 0 — cinco constantes vindas de cinco cantos diferentes da matemática, presas numa única igualdade. O Explorer ao lado deixa-te ver e^(iθ) a percorrer o círculo unitário em tempo real, para que possas testemunhar com os teus próprios olhos o instante em θ = π em que a identidade realmente acontece.",
+      "e^(iπ) + 1 = 0: cinco constantes vindas de cinco cantos diferentes da matemática, presas numa única igualdade. O Explorer ao lado deixa-te ver e^(iθ) a percorrer o círculo unitário em tempo real, para que possas testemunhar com os teus próprios olhos o instante em θ = π em que a identidade realmente acontece.",
     ctaInteractive: "→ Abrir o Explorer",
   },
   encounter: {
@@ -735,12 +735,12 @@ const pt: RichStory = {
       {
         label: "01",
         title: "A ideia central",
-        body: "Cinco dos números mais importantes da matemática — e, i, π, 0, 1 — nunca se cruzam no dia a dia. Mas uma única equação, e^(iπ) + 1 = 0, amarra os cinco juntos com apenas soma, produto e potência. Nada mais. Nenhuma constante a sobrar, nenhum enfeite. É toda a identidade.",
+        body: "Cinco dos números mais importantes da matemática (e, i, π, 0, 1) nunca se cruzam no dia a dia. Mas uma única equação, e^(iπ) + 1 = 0, amarra os cinco juntos com apenas soma, produto e potência. Nada mais. Nenhuma constante a sobrar, nenhum enfeite. É toda a identidade.",
       },
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: "Imagina caminhar à volta de um círculo de raio 1 centrado na origem de um plano. Começa no ponto 1 à direita. Multiplicar por e^(iθ) significa: caminha θ radianos pelo círculo. Caminha então π radianos — metade do percurso — e chegas ao ponto −1. Soma 1 e voltas a 0.",
+        body: "Imagina caminhar à volta de um círculo de raio 1 centrado na origem de um plano. Começa no ponto 1 à direita. Multiplicar por e^(iθ) significa: caminha θ radianos pelo círculo. Caminha então π radianos, metade do percurso, e chegas ao ponto −1. Soma 1 e voltas a 0.",
       },
       {
         label: "03",
@@ -755,32 +755,32 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · Cinco personagens",
       title: "Quem aparece nesta equação",
-      body: "Cada um dos cinco números chega de um país diferente da matemática. 0 é a identidade aditiva — somá-lo não muda nada. 1 é a identidade multiplicativa — multiplicar por ele não muda nada. e ≈ 2,71828 é a base natural, o número cuja derivada é ele próprio, nascido no cálculo a partir do juro composto e do crescimento contínuo. i é a unidade imaginária, definida por i² = −1, nascida na álgebra quando Cardano precisou de uma raiz de um negativo para resolver cúbicas. π ≈ 3,14159 é a meia-volta do círculo, a razão entre perímetro e diâmetro, nascida na geometria. Normalmente nunca partilham a mesma sala. A identidade é essa sala.",
+      body: "Cada um dos cinco números chega de um país diferente da matemática. 0 é a identidade aditiva: somá-lo não muda nada. 1 é a identidade multiplicativa: multiplicar por ele não muda nada. e ≈ 2,71828 é a base natural, o número cuja derivada é ele próprio, nascido no cálculo a partir do juro composto e do crescimento contínuo. i é a unidade imaginária, definida por i² = −1, nascida na álgebra quando Cardano precisou de uma raiz de um negativo para resolver cúbicas. π ≈ 3,14159 é a meia-volta do círculo, a razão entre perímetro e diâmetro, nascida na geometria. Normalmente nunca partilham a mesma sala. A identidade é essa sala.",
     },
     {
       pretitle: "Secção 02 · Multiplicação complexa",
       title: "Porque i é um quarto de volta",
-      body: "Esquece por um instante que i é «imaginário» e vê o que multiplicar por i faz. Começa em 1 no eixo real. Multiplica por i e aterras em i — um quarto de volta para cima. Multiplica de novo por i e aterras em i² = −1 — outro quarto de volta, exatamente em frente ao ponto inicial. Dois quartos de volta fazem meia-volta, que é precisamente o que i² = −1 significa geometricamente. A multiplicação complexa é rotação (pelo argumento) vezes escala (pelo módulo). Os números do círculo unitário, onde o módulo é 1, são rotação pura. São o motor da identidade.",
+      body: "Esquece por um instante que i é «imaginário» e vê o que multiplicar por i faz. Começa em 1 no eixo real. Multiplica por i e aterras em i, um quarto de volta para cima. Multiplica de novo por i e aterras em i² = −1, outro quarto de volta, exatamente em frente ao ponto inicial. Dois quartos de volta fazem meia-volta, que é precisamente o que i² = −1 significa geometricamente. A multiplicação complexa é rotação (pelo argumento) vezes escala (pelo módulo). Os números do círculo unitário, onde o módulo é 1, são rotação pura. São o motor da identidade.",
     },
     {
       pretitle: "Secção 03 · A fórmula de Euler",
       title: "e^(iθ) = cos θ + i sin θ",
-      body: "Euler publicou esta fórmula em 1748 na sua Introductio in analysin infinitorum, e é a verdade mais ampla da qual a identidade é apenas um único valor. O lado esquerdo, e^(iθ), é uma exponencial com expoente imaginário — um tipo de crescimento que ninguém havia imaginado. O lado direito, cos θ + i sin θ, é o ponto do círculo unitário no ângulo θ. A afirmação de Euler é que essas duas coisas tão diferentes são iguais. Põe θ = π e o lado direito colapsa para −1 + 0i, logo e^(iπ) = −1, e somar 1 dá a identidade. A identidade é a fórmula de Euler em θ = π.",
+      body: "Euler publicou esta fórmula em 1748 na sua Introductio in analysin infinitorum, e é a verdade mais ampla da qual a identidade é apenas um único valor. O lado esquerdo, e^(iθ), é uma exponencial com expoente imaginário, um tipo de crescimento que ninguém havia imaginado. O lado direito, cos θ + i sin θ, é o ponto do círculo unitário no ângulo θ. A afirmação de Euler é que essas duas coisas tão diferentes são iguais. Põe θ = π e o lado direito colapsa para −1 + 0i, logo e^(iπ) = −1, e somar 1 dá a identidade. A identidade é a fórmula de Euler em θ = π.",
     },
     {
       pretitle: "Secção 04 · Porque é verdade",
       title: "Séries de Taylor, substituídas",
-      body: "A demonstração mais limpa passa por séries de potências. Cada uma das três funções tem um desenvolvimento de Taylor que converge em toda a reta real: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Substitui agora formalmente x = iθ na série de e^x. Como i^k percorre 1, i, −1, −i, os termos reais da série resultante são exatamente a série de Taylor de cos θ, e os termos imaginários (sem o i) são exatamente a série de Taylor de sin θ. Logo e^(iθ) = cos θ + i sin θ — não por definição, mas como teorema sobre séries convergentes. Põe θ = π e a álgebra fecha a demonstração.",
+      body: "A demonstração mais limpa passa por séries de potências. Cada uma das três funções tem um desenvolvimento de Taylor que converge em toda a reta real: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Substitui agora formalmente x = iθ na série de e^x. Como i^k percorre 1, i, −1, −i, os termos reais da série resultante são exatamente a série de Taylor de cos θ, e os termos imaginários (sem o i) são exatamente a série de Taylor de sin θ. Logo e^(iθ) = cos θ + i sin θ, não por definição, mas como teorema sobre séries convergentes. Põe θ = π e a álgebra fecha a demonstração.",
     },
     {
       pretitle: "Secção 05 · Conexões por toda a parte",
       title: "Onde a identidade vive na realidade",
-      body: "Assim que tens e^(iθ), deixa de ser curiosidade e torna-se ferramenta indispensável. Os engenheiros eletrotécnicos escrevem a impedância como Z = R + iX, de modo que tensões e correntes se tornam fasores rotativos V·e^(iωt) e as leis de Kirchhoff viram álgebra linear. A mecânica quântica escreve a evolução temporal de um estado como ψ(t) = e^(−iHt/ℏ) ψ(0) — a equação de Schrödinger, com e^(iθ) a fazer toda a rotação no espaço de Hilbert. A análise de Fourier decompõe qualquer sinal razoável numa soma (ou integral) de modos e^(iωt), e todo JPEG, MP3, scanner de RMN e handshake Wi-Fi do planeta assenta sobre essa decomposição. A identidade é o marco onde se cruzam as quatro estradas: aritmética, álgebra, geometria, análise.",
+      body: "Assim que tens e^(iθ), deixa de ser curiosidade e torna-se ferramenta indispensável. Os engenheiros eletrotécnicos escrevem a impedância como Z = R + iX, de modo que tensões e correntes se tornam fasores rotativos V·e^(iωt) e as leis de Kirchhoff viram álgebra linear. A mecânica quântica escreve a evolução temporal de um estado como ψ(t) = e^(−iHt/ℏ) ψ(0), a equação de Schrödinger, com e^(iθ) a fazer toda a rotação no espaço de Hilbert. A análise de Fourier decompõe qualquer sinal razoável numa soma (ou integral) de modos e^(iωt), e todo JPEG, MP3, scanner de RMN e handshake Wi-Fi do planeta assenta sobre essa decomposição. A identidade é o marco onde se cruzam as quatro estradas: aritmética, álgebra, geometria, análise.",
     },
     {
       pretitle: "Secção 06 · Onde se situa",
       title: "Uma progressão curta",
-      body: "Dá um passo atrás e vê a cadeia. A aritmética na reta real dá-te +, × e as constantes 0 e 1. O cálculo transforma o crescimento contínuo num número e chama-lhe e. A álgebra resolve cúbicas, fica sem raízes reais, inventa i e descobre o plano complexo. A geometria parametriza o círculo unitário pelo ângulo e encontra π. A fórmula de Euler nota então, com duas páginas de séries de potências, que crescer na direção imaginária é rodar no plano — que e e i fazem em segredo a mesma coisa. Põe o ângulo numa meia-volta e as cinco constantes encontram-se enfim, sem nada no meio. A identidade não é coincidência; é o destino.",
+      body: "Dá um passo atrás e vê a cadeia. A aritmética na reta real dá-te +, × e as constantes 0 e 1. O cálculo transforma o crescimento contínuo num número e chama-lhe e. A álgebra resolve cúbicas, fica sem raízes reais, inventa i e descobre o plano complexo. A geometria parametriza o círculo unitário pelo ângulo e encontra π. A fórmula de Euler nota então, com duas páginas de séries de potências, que crescer na direção imaginária é rodar no plano, isto é, que e e i fazem em segredo a mesma coisa. Põe o ângulo numa meia-volta e as cinco constantes encontram-se enfim, sem nada no meio. A identidade não é coincidência; é o destino.",
     },
   ],
   unitCircleCaption: "Arrasta θ · e^(iθ) no círculo unitário",
@@ -799,11 +799,11 @@ const pt: RichStory = {
   interactivePretitle1: "Interativo · cursor",
   interactiveTitle1: "Caminha θ à volta do círculo",
   interactiveBody1:
-    "Arrasta o cursor de 0 a 2π. O ponto amarelo é e^(iθ); os marcadores ciano e violeta são as suas projeções real e imaginária — as componentes cos θ e sin θ. Quando θ ≈ π aterras em −1 e a identidade acende-se.",
+    "Arrasta o cursor de 0 a 2π. O ponto amarelo é e^(iθ); os marcadores ciano e violeta são as suas projeções real e imaginária, as componentes cos θ e sin θ. Quando θ ≈ π aterras em −1 e a identidade acende-se.",
   interactivePretitle2: "Interativo · cursor",
   interactiveTitle2: "Constrói a demonstração, termo a termo",
   interactiveBody2:
-    "Cada curva é uma soma parcial de Taylor — apenas os primeiros N+1 termos. Sobe N e as somas parciais ajustam-se às verdadeiras curvas exp, cos e sin. Olha para o pequeno painel em baixo: a soma parcial complexa de (iπ)^k / k! deriva para −1 à medida que N cresce.",
+    "Cada curva é uma soma parcial de Taylor: apenas os primeiros N+1 termos. Sobe N e as somas parciais ajustam-se às verdadeiras curvas exp, cos e sin. Olha para o pequeno painel em baixo: a soma parcial complexa de (iπ)^k / k! deriva para −1 à medida que N cresce.",
   charactersLabel: "As cinco constantes",
   charactersRows: [
     { sym: "0", role: "Identidade aditiva", home: "Aritmética" },
@@ -827,7 +827,7 @@ const pt: RichStory = {
     },
     {
       field: "Análise de Fourier",
-      body: "Todo sinal se decompõe em modos e^(iωt) — base de MP3, JPEG, RMN, Wi-Fi.",
+      body: "Todo sinal se decompõe em modos e^(iωt), base de MP3, JPEG, RMN, Wi-Fi.",
     },
     {
       field: "Teoria dos números",
@@ -856,7 +856,7 @@ const sv: RichStory = {
     title: "Eulers identitet",
     tagline: "Fem tal, en rad.",
     intro:
-      "e^(iπ) + 1 = 0 — fem konstanter från fem olika hörn av matematiken, inlåsta i en enda likhet. Explorern bredvid låter dig se e^(iθ) svepa runt enhetscirkeln i realtid, så att du med egna ögon kan bevittna ögonblicket vid θ = π när identiteten faktiskt inträffar.",
+      "e^(iπ) + 1 = 0: fem konstanter från fem olika hörn av matematiken, inlåsta i en enda likhet. Explorern bredvid låter dig se e^(iθ) svepa runt enhetscirkeln i realtid, så att du med egna ögon kan bevittna ögonblicket vid θ = π när identiteten faktiskt inträffar.",
     ctaInteractive: "→ Öppna Explorern",
   },
   encounter: {
@@ -866,12 +866,12 @@ const sv: RichStory = {
       {
         label: "01",
         title: "Den stora idén",
-        body: "Fem av matematikens viktigaste tal — e, i, π, 0, 1 — möts aldrig i vardagen. Ändå knyter en enda ekvation, e^(iπ) + 1 = 0, samman alla fem med bara addition, multiplikation och exponentiering. Inget annat. Ingen extra konstant, ingen utsmyckning. Det är hela identiteten.",
+        body: "Fem av matematikens viktigaste tal (e, i, π, 0, 1) möts aldrig i vardagen. Ändå knyter en enda ekvation, e^(iπ) + 1 = 0, samman alla fem med bara addition, multiplikation och exponentiering. Inget annat. Ingen extra konstant, ingen utsmyckning. Det är hela identiteten.",
       },
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "Tänk dig att gå runt en cirkel med radie 1 centrerad i origo i ett plan. Börja vid punkten 1 till höger. Att multiplicera med e^(iθ) betyder: gå θ radianer runt cirkeln. Gå alltså π radianer — halva varvet — och du landar vid punkten −1. Lägg till 1 och du är tillbaka vid 0.",
+        body: "Tänk dig att gå runt en cirkel med radie 1 centrerad i origo i ett plan. Börja vid punkten 1 till höger. Att multiplicera med e^(iθ) betyder: gå θ radianer runt cirkeln. Gå alltså π radianer, halva varvet, och du landar vid punkten −1. Lägg till 1 och du är tillbaka vid 0.",
       },
       {
         label: "03",
@@ -885,32 +885,32 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Fem rollfigurer",
       title: "Vem som står i ekvationen",
-      body: "Vart och ett av de fem talen kommer från ett eget land i matematiken. 0 är den additiva identiteten — att addera det ändrar inget. 1 är den multiplikativa identiteten — att multiplicera med det ändrar inget. e ≈ 2,71828 är den naturliga basen, talet vars derivata är sig självt, fött ur analysen genom ränta på ränta och kontinuerlig tillväxt. i är imaginära enheten, definierad av i² = −1, född i algebran när Cardano behövde en rot ur ett negativt tal för att lösa kubiska ekvationer. π ≈ 3,14159 är cirkelns halvvarv, förhållandet mellan omkrets och diameter, fött ur geometrin. Vanligen delar de aldrig rum. Identiteten är rummet.",
+      body: "Vart och ett av de fem talen kommer från ett eget land i matematiken. 0 är den additiva identiteten: att addera det ändrar inget. 1 är den multiplikativa identiteten: att multiplicera med det ändrar inget. e ≈ 2,71828 är den naturliga basen, talet vars derivata är sig självt, fött ur analysen genom ränta på ränta och kontinuerlig tillväxt. i är imaginära enheten, definierad av i² = −1, född i algebran när Cardano behövde en rot ur ett negativt tal för att lösa kubiska ekvationer. π ≈ 3,14159 är cirkelns halvvarv, förhållandet mellan omkrets och diameter, fött ur geometrin. Vanligen delar de aldrig rum. Identiteten är rummet.",
     },
     {
       pretitle: "Avsnitt 02 · Komplex multiplikation",
       title: "Varför i är ett kvartsvarv",
-      body: "Glöm för ett ögonblick att i är ”imaginär” och se vad multiplikation med i faktiskt gör. Börja vid 1 på reella axeln. Multiplicera med i och du landar vid i — ett kvartsvarv upp. Multiplicera igen med i och du landar vid i² = −1 — ett kvartsvarv till, precis mittemot startpunkten. Två kvartsvarv är ett halvvarv, och det är precis vad i² = −1 betyder geometriskt. Komplex multiplikation är rotation (med argumentet) gånger skalning (med beloppet). Talen på enhetscirkeln, där beloppet är 1, är ren rotation. De är identitetens motor.",
+      body: "Glöm för ett ögonblick att i är ”imaginär” och se vad multiplikation med i faktiskt gör. Börja vid 1 på reella axeln. Multiplicera med i och du landar vid i, ett kvartsvarv upp. Multiplicera igen med i och du landar vid i² = −1, ett kvartsvarv till, precis mittemot startpunkten. Två kvartsvarv är ett halvvarv, och det är precis vad i² = −1 betyder geometriskt. Komplex multiplikation är rotation (med argumentet) gånger skalning (med beloppet). Talen på enhetscirkeln, där beloppet är 1, är ren rotation. De är identitetens motor.",
     },
     {
       pretitle: "Avsnitt 03 · Eulers formel",
       title: "e^(iθ) = cos θ + i sin θ",
-      body: "Euler publicerade denna formel 1748 i sin Introductio in analysin infinitorum, och den är den större sanning av vilken identiteten bara är ett enstaka värde. Vänstersidan, e^(iθ), är en exponentialfunktion med imaginär exponent — en sorts tillväxt ingen tidigare hade föreställt sig. Högersidan, cos θ + i sin θ, är punkten på enhetscirkeln vid vinkeln θ. Eulers påstående är att dessa två så olika ting är lika. Sätt θ = π och högersidan kollapsar till −1 + 0i, alltså e^(iπ) = −1, och att lägga till 1 ger identiteten. Identiteten är Eulers formel vid θ = π.",
+      body: "Euler publicerade denna formel 1748 i sin Introductio in analysin infinitorum, och den är den större sanning av vilken identiteten bara är ett enstaka värde. Vänstersidan, e^(iθ), är en exponentialfunktion med imaginär exponent, en sorts tillväxt ingen tidigare hade föreställt sig. Högersidan, cos θ + i sin θ, är punkten på enhetscirkeln vid vinkeln θ. Eulers påstående är att dessa två så olika ting är lika. Sätt θ = π och högersidan kollapsar till −1 + 0i, alltså e^(iπ) = −1, och att lägga till 1 ger identiteten. Identiteten är Eulers formel vid θ = π.",
     },
     {
       pretitle: "Avsnitt 04 · Varför den är sann",
       title: "Taylorserier, insatta",
-      body: "Det renaste beviset går genom potensserier. Var och en av de tre funktionerna har en Taylorutveckling som konvergerar på hela reella axeln: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Sätt nu formellt in x = iθ i serien för e^x. Eftersom i^k cyklar genom 1, i, −1, −i blir de reella termerna i den resulterande serien exakt Taylorserien för cos θ, och de imaginära termerna (utan i) exakt Taylorserien för sin θ. Alltså är e^(iθ) = cos θ + i sin θ — inte per definition, utan som sats om konvergenta serier. Sätt θ = π och algebran slutför beviset.",
+      body: "Det renaste beviset går genom potensserier. Var och en av de tre funktionerna har en Taylorutveckling som konvergerar på hela reella axeln: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Sätt nu formellt in x = iθ i serien för e^x. Eftersom i^k cyklar genom 1, i, −1, −i blir de reella termerna i den resulterande serien exakt Taylorserien för cos θ, och de imaginära termerna (utan i) exakt Taylorserien för sin θ. Alltså är e^(iθ) = cos θ + i sin θ, inte per definition, utan som sats om konvergenta serier. Sätt θ = π och algebran slutför beviset.",
     },
     {
       pretitle: "Avsnitt 05 · Kopplingar överallt",
       title: "Var identiteten bor i verkligheten",
-      body: "Så snart du har e^(iθ) upphör den att vara en kuriositet och blir ett oumbärligt verktyg. Elingenjörer skriver impedansen som Z = R + iX, så att spänningar och strömmar blir roterande fasorer V·e^(iωt) och Kirchhoffs lagar reduceras till linjär algebra. Kvantmekaniken skriver tidsutvecklingen av ett tillstånd som ψ(t) = e^(−iHt/ℏ) ψ(0) — Schrödingerekvationen, med e^(iθ) som utför all rotation i Hilbertrummet. Fourieranalysen sönderdelar varje rimlig signal i en summa (eller integral) av e^(iωt)-moder, och varje JPEG, MP3, MR-skanner och Wi-Fi-handshake på planeten vilar på den sönderdelningen. Identiteten är gränsstenen där de fyra vägarna — aritmetik, algebra, geometri, analys — möts.",
+      body: "Så snart du har e^(iθ) upphör den att vara en kuriositet och blir ett oumbärligt verktyg. Elingenjörer skriver impedansen som Z = R + iX, så att spänningar och strömmar blir roterande fasorer V·e^(iωt) och Kirchhoffs lagar reduceras till linjär algebra. Kvantmekaniken skriver tidsutvecklingen av ett tillstånd som ψ(t) = e^(−iHt/ℏ) ψ(0), Schrödingerekvationen, med e^(iθ) som utför all rotation i Hilbertrummet. Fourieranalysen sönderdelar varje rimlig signal i en summa (eller integral) av e^(iωt)-moder, och varje JPEG, MP3, MR-skanner och Wi-Fi-handshake på planeten vilar på den sönderdelningen. Identiteten är gränsstenen där de fyra vägarna (aritmetik, algebra, geometri, analys) möts.",
     },
     {
       pretitle: "Avsnitt 06 · Var den passar in",
       title: "En kort progression",
-      body: "Ta ett steg tillbaka och se kedjan. Aritmetik på reella axeln ger dig +, × och konstanterna 0 och 1. Analysen gör kontinuerlig tillväxt till ett tal och kallar det e. Algebran löser kubiska ekvationer, tar slut på reella kvadratrötter, uppfinner i och upptäcker det komplexa planet. Geometrin parametriserar enhetscirkeln med vinkel och möter π. Eulers formel märker sedan, med två sidor potensserier, att tillväxt i imaginär riktning är rotation i planet — att e och i i hemlighet gör samma sak. Sätt vinkeln till ett halvvarv och de fem konstanterna möts till sist, utan något emellan. Identiteten är ingen tillfällighet; den är destinationen.",
+      body: "Ta ett steg tillbaka och se kedjan. Aritmetik på reella axeln ger dig +, × och konstanterna 0 och 1. Analysen gör kontinuerlig tillväxt till ett tal och kallar det e. Algebran löser kubiska ekvationer, tar slut på reella kvadratrötter, uppfinner i och upptäcker det komplexa planet. Geometrin parametriserar enhetscirkeln med vinkel och möter π. Eulers formel märker sedan, med två sidor potensserier, att tillväxt i imaginär riktning är rotation i planet, att e och i i hemlighet gör samma sak. Sätt vinkeln till ett halvvarv och de fem konstanterna möts till sist, utan något emellan. Identiteten är ingen tillfällighet; den är destinationen.",
     },
   ],
   unitCircleCaption: "Dra θ · e^(iθ) på enhetscirkeln",
@@ -929,11 +929,11 @@ const sv: RichStory = {
   interactivePretitle1: "Interaktivt · reglage",
   interactiveTitle1: "Promenera θ runt cirkeln",
   interactiveBody1:
-    "Dra reglaget från 0 till 2π. Den gula punkten är e^(iθ); de cyan och violetta markörerna är dess reella och imaginära projektioner — komponenterna cos θ och sin θ. När θ ≈ π landar du på −1 och identiteten tänds.",
+    "Dra reglaget från 0 till 2π. Den gula punkten är e^(iθ); de cyan och violetta markörerna är dess reella och imaginära projektioner, komponenterna cos θ och sin θ. När θ ≈ π landar du på −1 och identiteten tänds.",
   interactivePretitle2: "Interaktivt · reglage",
   interactiveTitle2: "Bygg beviset, term för term",
   interactiveBody2:
-    "Varje kurva är en Taylor-delsumma — bara de första N+1 termerna. Dra upp N och delsummorna sluter sig mot de verkliga exp-, cos- och sin-kurvorna. Titta på den lilla panelen under: den komplexa delsumman av (iπ)^k / k! driver mot −1 när N växer.",
+    "Varje kurva är en Taylor-delsumma: bara de första N+1 termerna. Dra upp N och delsummorna sluter sig mot de verkliga exp-, cos- och sin-kurvorna. Titta på den lilla panelen under: den komplexa delsumman av (iπ)^k / k! driver mot −1 när N växer.",
   charactersLabel: "De fem konstanterna",
   charactersRows: [
     { sym: "0", role: "Additiv identitet", home: "Aritmetik" },
@@ -957,7 +957,7 @@ const sv: RichStory = {
     },
     {
       field: "Fourieranalys",
-      body: "Varje signal bryts ner i e^(iωt)-moder — grund för MP3, JPEG, MR, Wi-Fi.",
+      body: "Varje signal bryts ner i e^(iωt)-moder, grund för MP3, JPEG, MR, Wi-Fi.",
     },
     {
       field: "Talteori",
@@ -986,7 +986,7 @@ const no: RichStory = {
     title: "Eulers identitet",
     tagline: "Fem tall, én linje.",
     intro:
-      "e^(iπ) + 1 = 0 — fem konstanter fra fem ulike hjørner av matematikken, låst sammen i én eneste likhet. Utforskeren ved siden av lar deg se e^(iθ) feie rundt enhetssirkelen i sanntid, så du med egne øyne kan oppleve øyeblikket ved θ = π når identiteten virkelig inntreffer.",
+      "e^(iπ) + 1 = 0: fem konstanter fra fem ulike hjørner av matematikken, låst sammen i én eneste likhet. Utforskeren ved siden av lar deg se e^(iθ) feie rundt enhetssirkelen i sanntid, så du med egne øyne kan oppleve øyeblikket ved θ = π når identiteten virkelig inntreffer.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -996,51 +996,51 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Fem av matematikkens viktigste tall — e, i, π, 0, 1 — møtes aldri i hverdagen. Likevel binder én eneste ligning, e^(iπ) + 1 = 0, alle fem sammen med bare addisjon, multiplikasjon og eksponensiering. Ingenting mer. Ingen konstant til overs, ingen pynt. Det er hele identiteten.",
+        body: "Fem av matematikkens viktigste tall (e, i, π, 0, 1) møtes aldri i hverdagen. Likevel binder én eneste ligning, e^(iπ) + 1 = 0, alle fem sammen med bare addisjon, multiplikasjon og eksponensiering. Ingenting mer. Ingen konstant til overs, ingen pynt. Det er hele identiteten.",
       },
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Forestill deg å gå rundt en sirkel med radius 1 sentrert i origo i et plan. Start ved punktet 1 til høyre. Å multiplisere med e^(iθ) betyr: gå θ radianer rundt sirkelen. Gå altså π radianer — halve runden — og du lander ved punktet −1. Legg til 1 og du er tilbake ved 0.",
+        body: "Forestill deg å gå rundt en sirkel med radius 1 sentrert i origo i et plan. Start ved punktet 1 til høyre. Å multiplisere med e^(iθ) betyr: Gå θ radianer rundt sirkelen. Gå altså π radianer, halve runden, og du lander ved punktet −1. Legg til 1 og du er tilbake ved 0.",
       },
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Feynman kalte formelen e^(iθ) = cos θ + i sin θ, der denne identiteten er spesialtilfellet θ = π, «matematikkens mest bemerkelsesverdige formel», «vår juvel». En undersøkelse i Mathematical Intelligencer i 1990 blant yrkesmatematikere kåret denne identiteten til det vakreste teoremet som noen gang er bevist. Den er en bro: algebraen skriver symbolene, geometrien går rundt sirkelen, analysen leverer den uendelige rekken som får alt til å klikke på plass.",
+        body: "Feynman kalte formelen e^(iθ) = cos θ + i sin θ, der denne identiteten er spesialtilfellet θ = π, «matematikkens mest bemerkelsesverdige formel», «vår juvel». En undersøkelse i Mathematical Intelligencer i 1990 blant yrkesmatematikere kåret denne identiteten til det vakreste teoremet som noen gang er bevist. Den er en bro: Algebraen skriver symbolene, geometrien går rundt sirkelen, analysen leverer den uendelige rekken som får alt til å klikke på plass.",
       },
     ],
-    tryIt: "Under: dra θ rundt sirkelen selv, og se Taylor-rekken bygge den ledd for ledd.",
+    tryIt: "Under: Dra θ rundt sirkelen selv, og se Taylor-rekken bygge den ledd for ledd.",
   },
   sections: [
     {
       pretitle: "Avsnitt 01 · Fem skikkelser",
       title: "Hvem som står i ligningen",
-      body: "Hvert av de fem tallene kommer fra sitt eget land i matematikken. 0 er den additive identiteten — å legge den til endrer ingenting. 1 er den multiplikative identiteten — å multiplisere med den endrer ingenting. e ≈ 2,71828 er den naturlige basen, tallet hvis derivert er seg selv, født i analysen ut av rentes rente og kontinuerlig vekst. i er den imaginære enheten, definert ved i² = −1, født i algebraen da Cardano trengte en kvadratrot av et negativt tall for å løse kubiske ligninger. π ≈ 3,14159 er sirkelens halvomdreining, forholdet mellom omkrets og diameter, født i geometrien. Vanligvis deler de aldri rom. Identiteten er rommet.",
+      body: "Hvert av de fem tallene kommer fra sitt eget land i matematikken. 0 er den additive identiteten: Å legge den til endrer ingenting. 1 er den multiplikative identiteten: Å multiplisere med den endrer ingenting. e ≈ 2,71828 er den naturlige basen, tallet hvis derivert er seg selv, født i analysen ut av rentes rente og kontinuerlig vekst. i er den imaginære enheten, definert ved i² = −1, født i algebraen da Cardano trengte en kvadratrot av et negativt tall for å løse kubiske ligninger. π ≈ 3,14159 er sirkelens halvomdreining, forholdet mellom omkrets og diameter, født i geometrien. Vanligvis deler de aldri rom. Identiteten er rommet.",
     },
     {
       pretitle: "Avsnitt 02 · Kompleks multiplikasjon",
       title: "Hvorfor i er en kvart omdreining",
-      body: "Glem et øyeblikk at i er «imaginær» og se hva det å multiplisere med i faktisk gjør. Start ved 1 på den reelle aksen. Multipliser med i og du lander ved i — en kvart omdreining oppover. Multipliser igjen med i og du lander ved i² = −1 — en kvart omdreining til, rett overfor startpunktet. To kvarte omdreininger blir en halv omdreining, som er nøyaktig hva i² = −1 betyr geometrisk. Kompleks multiplikasjon er rotasjon (med argumentet) ganget med skalering (med absoluttverdien). Tallene på enhetssirkelen, der absoluttverdien er 1, er ren rotasjon. De er identitetens motor.",
+      body: "Glem et øyeblikk at i er «imaginær» og se hva det å multiplisere med i faktisk gjør. Start ved 1 på den reelle aksen. Multipliser med i og du lander ved i, en kvart omdreining oppover. Multipliser igjen med i og du lander ved i² = −1, en kvart omdreining til, rett overfor startpunktet. To kvarte omdreininger blir en halv omdreining, som er nøyaktig hva i² = −1 betyr geometrisk. Kompleks multiplikasjon er rotasjon (med argumentet) ganget med skalering (med absoluttverdien). Tallene på enhetssirkelen, der absoluttverdien er 1, er ren rotasjon. De er identitetens motor.",
     },
     {
       pretitle: "Avsnitt 03 · Eulers formel",
       title: "e^(iθ) = cos θ + i sin θ",
-      body: "Euler publiserte denne formelen i 1748 i sin Introductio in analysin infinitorum, og den er den større sannheten som identiteten bare er én enkelt verdi av. Venstresiden, e^(iθ), er en eksponentialfunksjon med imaginær eksponent — en slags vekst ingen tidligere hadde forestilt seg. Høyresiden, cos θ + i sin θ, er punktet på enhetssirkelen ved vinkel θ. Eulers påstand er at disse to vidt forskjellige tingene er like. Sett θ = π og høyresiden kollapser til −1 + 0i, altså e^(iπ) = −1, og å legge til 1 gir identiteten. Identiteten er Eulers formel ved θ = π.",
+      body: "Euler publiserte denne formelen i 1748 i sin Introductio in analysin infinitorum, og den er den større sannheten som identiteten bare er én enkelt verdi av. Venstresiden, e^(iθ), er en eksponentialfunksjon med imaginær eksponent, en slags vekst ingen tidligere hadde forestilt seg. Høyresiden, cos θ + i sin θ, er punktet på enhetssirkelen ved vinkel θ. Eulers påstand er at disse to vidt forskjellige tingene er like. Sett θ = π og høyresiden kollapser til −1 + 0i, altså e^(iπ) = −1, og å legge til 1 gir identiteten. Identiteten er Eulers formel ved θ = π.",
     },
     {
       pretitle: "Avsnitt 04 · Hvorfor den er sann",
       title: "Taylor-rekker, satt inn",
-      body: "Det reneste beviset går gjennom potensrekker. Hver av de tre funksjonene har en Taylor-utvikling som konvergerer på hele den reelle linjen: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Sett nå formelt x = iθ inn i rekken for e^x. Siden i^k gjentar mønsteret 1, i, −1, −i, blir de reelle leddene i den resulterende rekken nøyaktig Taylor-rekken for cos θ, og de imaginære leddene (uten i) nøyaktig Taylor-rekken for sin θ. Altså er e^(iθ) = cos θ + i sin θ — ikke per definisjon, men som teorem om konvergente rekker. Sett θ = π og algebraen avslutter beviset.",
+      body: "Det reneste beviset går gjennom potensrekker. Hver av de tre funksjonene har en Taylor-utvikling som konvergerer på hele den reelle linjen: e^x = Σ x^k / k!, cos x = Σ (−1)^k x^(2k) / (2k)!, sin x = Σ (−1)^k x^(2k+1) / (2k+1)!. Sett nå formelt x = iθ inn i rekken for e^x. Siden i^k gjentar mønsteret 1, i, −1, −i, blir de reelle leddene i den resulterende rekken nøyaktig Taylor-rekken for cos θ, og de imaginære leddene (uten i) nøyaktig Taylor-rekken for sin θ. Altså er e^(iθ) = cos θ + i sin θ, ikke per definisjon, men som teorem om konvergente rekker. Sett θ = π og algebraen avslutter beviset.",
     },
     {
       pretitle: "Avsnitt 05 · Forbindelser overalt",
       title: "Hvor identiteten bor i virkeligheten",
-      body: "Så snart du har e^(iθ) slutter den å være en kuriositet og blir et uunnværlig verktøy. Elektroingeniører skriver impedansen som Z = R + iX, slik at spenninger og strømmer blir roterende fasorer V·e^(iωt) og Kirchhoffs lover reduseres til lineær algebra. Kvantemekanikken skriver tidsutviklingen til en tilstand som ψ(t) = e^(−iHt/ℏ) ψ(0) — Schrödinger-ligningen, der e^(iθ) utfører all rotasjon i Hilbert-rommet. Fourier-analysen dekomponerer ethvert rimelig signal i en sum (eller integral) av e^(iωt)-moder, og hver JPEG, MP3, MR-skanner og Wi-Fi-håndtrykk på planeten hviler på den dekomposisjonen. Identiteten er grensesteinen der de fire veiene — aritmetikk, algebra, geometri, analyse — møtes.",
+      body: "Så snart du har e^(iθ) slutter den å være en kuriositet og blir et uunnværlig verktøy. Elektroingeniører skriver impedansen som Z = R + iX, slik at spenninger og strømmer blir roterende fasorer V·e^(iωt) og Kirchhoffs lover reduseres til lineær algebra. Kvantemekanikken skriver tidsutviklingen til en tilstand som ψ(t) = e^(−iHt/ℏ) ψ(0), Schrödinger-ligningen, der e^(iθ) utfører all rotasjon i Hilbert-rommet. Fourier-analysen dekomponerer ethvert rimelig signal i en sum (eller integral) av e^(iωt)-moder, og hver JPEG, MP3, MR-skanner og Wi-Fi-håndtrykk på planeten hviler på den dekomposisjonen. Identiteten er grensesteinen der de fire veiene (aritmetikk, algebra, geometri, analyse) møtes.",
     },
     {
       pretitle: "Avsnitt 06 · Hvor den hører hjemme",
       title: "En kort progresjon",
-      body: "Ta et skritt tilbake og se kjeden. Aritmetikk på den reelle linjen gir deg +, × og konstantene 0 og 1. Analysen gjør kontinuerlig vekst til et tall og kaller det e. Algebraen løser kubiske ligninger, går tom for reelle kvadratrøtter, oppfinner i og oppdager det komplekse planet. Geometrien parametriserer enhetssirkelen ved vinkel og møter π. Eulers formel merker så, med to sider potensrekker, at å vokse i imaginær retning er å rotere i planet — at e og i i hemmelighet gjør det samme. Sett vinkelen til en halv omdreining og de fem konstantene møtes til slutt, uten noe imellom. Identiteten er ingen tilfeldighet; den er målet.",
+      body: "Ta et skritt tilbake og se kjeden. Aritmetikk på den reelle linjen gir deg +, × og konstantene 0 og 1. Analysen gjør kontinuerlig vekst til et tall og kaller det e. Algebraen løser kubiske ligninger, går tom for reelle kvadratrøtter, oppfinner i og oppdager det komplekse planet. Geometrien parametriserer enhetssirkelen ved vinkel og møter π. Eulers formel merker så, med to sider potensrekker, at å vokse i imaginær retning er å rotere i planet, at e og i i hemmelighet gjør det samme. Sett vinkelen til en halv omdreining og de fem konstantene møtes til slutt, uten noe imellom. Identiteten er ingen tilfeldighet; den er målet.",
     },
   ],
   unitCircleCaption: "Dra θ · e^(iθ) på enhetssirkelen",
@@ -1059,11 +1059,11 @@ const no: RichStory = {
   interactivePretitle1: "Interaktivt · glidebryter",
   interactiveTitle1: "Spasere θ rundt sirkelen",
   interactiveBody1:
-    "Dra bryteren fra 0 til 2π. Det gule punktet er e^(iθ); de cyan og fiolette markørene er dets reelle og imaginære projeksjoner — komponentene cos θ og sin θ. Når θ ≈ π lander du på −1 og identiteten lyser opp.",
+    "Dra bryteren fra 0 til 2π. Det gule punktet er e^(iθ); de cyan og fiolette markørene er dets reelle og imaginære projeksjoner, komponentene cos θ og sin θ. Når θ ≈ π lander du på −1 og identiteten lyser opp.",
   interactivePretitle2: "Interaktivt · glidebryter",
   interactiveTitle2: "Bygg beviset, ledd for ledd",
   interactiveBody2:
-    "Hver kurve er en Taylor-delsum — bare de første N+1 leddene. Skru opp N og delsummene legger seg mot de ekte exp-, cos- og sin-kurvene. Se på det lille panelet under: den komplekse delsummen av (iπ)^k / k! glir mot −1 etter hvert som N vokser.",
+    "Hver kurve er en Taylor-delsum: bare de første N+1 leddene. Skru opp N og delsummene legger seg mot de ekte exp-, cos- og sin-kurvene. Se på det lille panelet under: Den komplekse delsummen av (iπ)^k / k! glir mot −1 etter hvert som N vokser.",
   charactersLabel: "De fem konstantene",
   charactersRows: [
     { sym: "0", role: "Additiv identitet", home: "Aritmetikk" },
@@ -1086,7 +1086,7 @@ const no: RichStory = {
     },
     {
       field: "Fourier-analyse",
-      body: "Hvert signal dekomponeres i e^(iωt)-moder — grunnlaget for MP3, JPEG, MR, Wi-Fi.",
+      body: "Hvert signal dekomponeres i e^(iωt)-moder, grunnlaget for MP3, JPEG, MR, Wi-Fi.",
     },
     {
       field: "Tallteori",
@@ -1124,7 +1124,7 @@ export default function EulerStory() {
       <div className="grid-bg pointer-events-none fixed inset-0 -z-10 opacity-30" />
       <div className="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-signal-teal/10 via-transparent to-ink-950" />
 
-      {/* Hero — canonical pretitle / title / tagline / intro / 2 buttons / formula badge */}
+      {/* Hero: canonical pretitle / title / tagline / intro / 2 buttons / formula badge */}
       <section className="mx-auto mb-32 max-w-5xl space-y-7 text-center">
         <Reveal>
           <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
@@ -1167,7 +1167,7 @@ export default function EulerStory() {
         </Reveal>
       </section>
 
-      {/* Encounter — three approachable cards */}
+      {/* Encounter: three approachable cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -1215,7 +1215,7 @@ export default function EulerStory() {
         </Reveal>
       </section>
 
-      {/* Section 01 — five characters */}
+      {/* Section 01: five characters */}
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <StoryCard
           pretitle={sec0.pretitle}
@@ -1245,7 +1245,7 @@ export default function EulerStory() {
         </Reveal>
       </section>
 
-      {/* Section 02 — complex multiplication = rotation */}
+      {/* Section 02: complex multiplication = rotation */}
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <StoryCard
           pretitle={sec1.pretitle}
@@ -1276,7 +1276,7 @@ export default function EulerStory() {
         </Reveal>
       </section>
 
-      {/* INTERACTIVE 1 — Unit-circle slider */}
+      {/* INTERACTIVE 1: Unit-circle slider */}
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <Reveal>
           <div className="space-y-2 text-center">
@@ -1299,7 +1299,7 @@ export default function EulerStory() {
         </Reveal>
       </section>
 
-      {/* Section 03 — Euler's formula */}
+      {/* Section 03: Euler's formula */}
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <StoryCard
           pretitle={sec2.pretitle}
@@ -1334,7 +1334,7 @@ export default function EulerStory() {
         </Reveal>
       </section>
 
-      {/* Section 04 — Taylor proof */}
+      {/* Section 04: Taylor proof */}
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <StoryCard
           pretitle={sec3.pretitle}
@@ -1364,7 +1364,7 @@ imaginary part = Σ (−1)ʲ θ²ʲ⁺¹ / (2j+1)! = sin θ`}
         </Reveal>
       </section>
 
-      {/* INTERACTIVE 2 — Taylor series builder */}
+      {/* INTERACTIVE 2: Taylor series builder */}
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <Reveal>
           <div className="space-y-2 text-center">
@@ -1391,7 +1391,7 @@ imaginary part = Σ (−1)ʲ θ²ʲ⁺¹ / (2j+1)! = sin θ`}
         </Reveal>
       </section>
 
-      {/* Section 05 — connections everywhere */}
+      {/* Section 05: connections everywhere */}
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <StoryCard
           pretitle={sec4.pretitle}
@@ -1421,7 +1421,7 @@ imaginary part = Σ (−1)ʲ θ²ʲ⁺¹ / (2j+1)! = sin θ`}
         </Reveal>
       </section>
 
-      {/* Section 06 — where it sits, progression */}
+      {/* Section 06: where it sits, progression */}
       <section className="mx-auto mb-32 max-w-4xl space-y-6">
         <StoryCard
           pretitle={sec5.pretitle}
@@ -1446,7 +1446,7 @@ imaginary part = Σ (−1)ʲ θ²ʲ⁺¹ / (2j+1)! = sin θ`}
         </Reveal>
       </section>
 
-      {/* Closing CTA — apollonian-style */}
+      {/* Closing CTA: apollonian-style */}
       <Reveal>
         <section className="glass hairline mx-auto max-w-3xl space-y-6 rounded-3xl border p-10 text-center">
           <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">

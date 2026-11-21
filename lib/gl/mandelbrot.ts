@@ -91,7 +91,7 @@ void main(){
 
   vec3 col;
   if (iter >= uMaxIter) {
-    // inside the set — deep ink with a faint internal glow keyed to position
+    // inside the set: deep ink with a faint internal glow keyed to position
     float interior = 0.05 + 0.05 * cos(c.x * 6.0 + c.y * 4.0 + uTime * 0.4);
     col = vec3(0.02, 0.02, 0.05) + vec3(0.06, 0.04, 0.10) * interior;
   } else {

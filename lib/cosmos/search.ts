@@ -1,9 +1,9 @@
 // Forgiving topic search. The earlier landing only matched exact substrings,
-// so a visitor typing "gameoflife" — no spaces, casual — found nothing.
+// so a visitor typing "gameoflife" (no spaces, casual) found nothing.
 // This module normalises both sides (lowercase, strip non-alphanumeric,
 // collapse accents) and adds a tiny alias table for the topics whose
 // "common name" differs from their id (Game of Life, P=NP, Möbius, …).
-// It's deliberately small — no Levenshtein, no Trie. The expensive bits
+// It's deliberately small: no Levenshtein, no Trie. The expensive bits
 // would burn far more than they earn for 49 items.
 
 import type { TopicId } from "@/lib/topics";
@@ -67,7 +67,7 @@ export interface SearchableTopic {
 }
 
 // Build the haystack for one topic by joining everything we'd want to
-// match against, then normalising once. Cached by caller — the dict
+// match against, then normalising once. Cached by caller: the dict
 // changes only when the locale changes.
 export function buildHaystack(t: SearchableTopic): string {
   const aliases = TOPIC_ALIASES[t.id] ?? [];

@@ -12,7 +12,7 @@ const withAlpha = (hex: string, a: number) => {
 // Inline Apollonian gasket renderer for the story page. A scaled-down sibling
 // of the full explorer canvas: we share the geometry logic but limit depth and
 // expose only seed + depth as controls. The maths is exactly the same as
-// /apollonian/explorer — placed inline here so the story page is self-contained.
+// /apollonian/explorer, placed inline here so the story page is self-contained.
 
 interface Preset {
   label: string;

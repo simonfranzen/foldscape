@@ -178,7 +178,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       {
         label: "Goldbach-Suche",
         description:
-          "Für n = 4, 6, 8, … : halte an, wenn n nicht die Summe zweier Primzahlen ist. Soweit geprüft (bis 4·10¹⁸) gilt Goldbach, also läuft diese Schleife weiter.",
+          "Für n = 4, 6, 8, … : Halte an, wenn n nicht die Summe zweier Primzahlen ist. Soweit geprüft (bis 4·10¹⁸) gilt Goldbach, also läuft diese Schleife weiter.",
         truth: "Hält genau dann an, wenn Goldbachs Vermutung falsch ist. Unbekannt.",
       },
       {
@@ -412,7 +412,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     stepLimitAria: "Limite de passos",
     speedAria: "Velocidade em passos por segundo",
     capExplainer:
-      "Qualquer analisador tem de desistir mais cedo ou mais tarde. O limite é o seu analisador: quando dispara, não pode dizer se o programa acabaria por parar.",
+      "Qualquer analisador tem de desistir mais cedo ou mais tarde. O limite é o teu analisador: quando dispara, não pode dizer se o programa acabaria por parar.",
     statusHalted: (s) => `parou no passo ${s}`,
     statusCap: (s) => `ainda em execução após ${s} passos, não podemos dizer se alguma vez para`,
     statusRunning: (s, cap) => `em execução · passo ${s} / limite ${cap}`,
@@ -425,31 +425,31 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       },
       {
         label: "Contar até 100",
-        description: "Defina a célula 0 como 100, depois [-] decrementa-a até zero e sai do laço.",
+        description: "Define a célula 0 como 100, depois [-] decrementa-a até zero e sai do laço.",
         truth: "Para após exatamente 301 passos de instrução.",
       },
       {
         label: "Busca de Goldbach",
         description:
-          "Para n = 4, 6, 8, … : pare se n não for a soma de dois primos. Até onde procurámos (até 4·10¹⁸), Goldbach mantém-se, por isso este laço continua.",
+          "Para n = 4, 6, 8, … : para se n não for a soma de dois primos. Até onde procurámos (até 4·10¹⁸), Goldbach mantém-se, por isso este laço continua.",
         truth: "Para se e só se a conjetura de Goldbach for falsa. Desconhecido.",
       },
       {
         label: "Collatz de 27",
-        description: "Itere n ↦ n/2 (par) ou 3n+1 (ímpar), começando em 27. Volta mesmo a 1.",
+        description: "Itera n ↦ n/2 (par) ou 3n+1 (ímpar), começando em 27. Volta mesmo a 1.",
         truth: "Para após 111 passos de Collatz (contados em k), 446 passos de máquina.",
       },
       {
         label: "Collatz de uma entrada",
         description:
-          "O mesmo mapa, n inicial arbitrário. A órbita de todo n ≤ 2⁶⁸ foi verificada por computador e chega sempre a 1, mas não há prova geral.",
+          "O mesmo mapa, n inicial arbitrário. A órbita de todo o n ≤ 2⁶⁸ foi verificada por computador e chega sempre a 1, mas não há prova geral.",
         truth: "Desconhecido em geral. Em aberto desde 1937.",
         inputLabel: "Valor inicial n",
       },
       {
         label: "D autorreferencial",
         description:
-          "A diagonal de Turing: D(P) calcula halts(P, P) e faz o contrário. Um halts verdadeiro não pode ser escrito, por isso aqui fornece a sua suposta resposta a halts(D, D) como entrada h. Seja qual for a resposta escolhida, D faz o contrário e desmente-a.",
+          "A diagonal de Turing: D(P) calcula halts(P, P) e faz o contrário. Um halts verdadeiro não pode ser escrito, por isso aqui forneces a tua suposta resposta a halts(D, D) como entrada h. Seja qual for a resposta escolhida, D faz o contrário e desmente-a.",
         truth:
           "Apenas uma ilustração: um halts correto não pode existir. É a prova da indecidibilidade.",
         inputLabel: "Resposta suposta h de halts(D, D): 1 = para, 0 = corre para sempre",
@@ -537,7 +537,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     stepLimitAria: "Steggrense",
     speedAria: "Hastighet i steg per sekund",
     capExplainer:
-      "Enhver analysator må gi opp før eller siden. Grensen er analysatoren din: når den slår inn, kan du ikke si om programmet noen gang stopper.",
+      "Enhver analysator må gi opp før eller siden. Grensen er analysatoren din: Når den slår inn, kan du ikke si om programmet noen gang stopper.",
     statusHalted: (s) => `stoppet ved steg ${s}`,
     statusCap: (s) => `kjører fortsatt etter ${s} steg, vi kan ikke si om det noen gang stopper`,
     statusRunning: (s, cap) => `kjører · steg ${s} / grense ${cap}`,
@@ -545,7 +545,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       {
         label: "Tell opp for alltid",
         description:
-          "+[>+<] : celle 0 settes til 1, deretter kjører løkken for alltid og teller opp celle 1 for hver runde.",
+          "+[>+<] : Celle 0 settes til 1, deretter kjører løkken for alltid og teller opp celle 1 for hver runde.",
         truth: "Stopper trivielt aldri.",
       },
       {
@@ -557,7 +557,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       {
         label: "Goldbach-søk",
         description:
-          "For n = 4, 6, 8, … : stopp hvis n ikke er summen av to primtall. Så langt vi har søkt (opp til 4·10¹⁸), holder Goldbach, så denne løkken fortsetter.",
+          "For n = 4, 6, 8, … : Stopp hvis n ikke er summen av to primtall. Så langt vi har søkt (opp til 4·10¹⁸), holder Goldbach, så denne løkken fortsetter.",
         truth: "Stopper hvis og bare hvis Goldbachs formodning er usann. Ukjent.",
       },
       {
@@ -578,7 +578,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
         description:
           "Turings diagonal: D(P) beregner halts(P, P) og gjør det motsatte. Et ekte halts kan ikke skrives, så her oppgir du selv det påståtte svaret på halts(D, D) som inndata h. Uansett hvilket svar du velger, gjør D det motsatte og motbeviser det.",
         truth:
-          "Bare en illustrasjon: et korrekt halts kan ikke finnes. Det er beviset for uavgjørbarhet.",
+          "Bare en illustrasjon: Et korrekt halts kan ikke finnes. Det er beviset for uavgjørbarhet.",
         inputLabel: "Påstått svar h på halts(D, D): 1 = stopper, 0 = kjører for alltid",
       },
     ],

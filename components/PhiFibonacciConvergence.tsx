@@ -112,7 +112,7 @@ function buildFibonacciSpiral(n: number) {
 
   // For square 0 we pick the corner of sq0 on the shared edge with sq1 that is
   // NOT the connecting endpoint. For the unit-unit case (sq0 and sq1 both 1x1)
-  // this collapses to the same point as centres[1] - the classical half-circle.
+  // this collapses to the same point as centres[1], the classical half-circle.
   const sq0 = squares[0]!;
   const corners0: Array<[number, number]> = [
     [sq0.x, sq0.y],
@@ -167,7 +167,7 @@ function buildFibonacciSpiral(n: number) {
     }
   }
 
-  // Single SVG path: one `M`, then a chain of `A` commands - no `M` between
+  // Single SVG path: one `M`, then a chain of `A` commands, no `M` between
   // arcs, no straight `L` segments. Sweep flag = 1 (clockwise on screen).
   let d = "";
   if (arcs.length > 0) {
@@ -299,7 +299,7 @@ export function PhiFibonacciConvergence({
                     <td className="px-2 py-1.5 text-ink-300">{n}</td>
                     <td className="px-2 py-1.5 text-right text-signal-amber">{fn}</td>
                     <td className="px-2 py-1.5 text-right text-ink-100">
-                      {ratio === null ? "—" : ratio.toFixed(8)}
+                      {ratio === null ? "…" : ratio.toFixed(8)}
                     </td>
                     <td
                       className={`px-2 py-1.5 text-right ${
@@ -312,7 +312,7 @@ export function PhiFibonacciConvergence({
                               : "text-signal-rose"
                       }`}
                     >
-                      {diff === null ? "—" : (diff >= 0 ? "+" : "") + diff.toExponential(2)}
+                      {diff === null ? "…" : (diff >= 0 ? "+" : "") + diff.toExponential(2)}
                     </td>
                   </tr>
                 );

@@ -1,14 +1,18 @@
 import type { MetadataRoute } from "next";
-import { TOPICS } from "@/lib/topics";
+import { TOPICS, type TopicId } from "@/lib/topics";
 import { STATIC_PAGES, TOPIC_SUBROUTES } from "@/lib/seo/routes";
 import { SITE_URL, languageAlternates } from "@/lib/og/metadata";
-import { LOCALES, type Locale } from "@/lib/i18n/types";
+import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/lib/i18n/types";
+import { EXPLORER_GUIDES } from "@/lib/explorer-guides";
 import { localePath } from "@/lib/i18n/paths";
 
-// Sub-rooms carry their long text in a guide that exists in these locales
-// only; the other locale variants are noindex and stay out of the sitemap.
-// Keep in sync with the locales filled in lib/explorer-guides/*.
-const GUIDE_LOCALES: readonly Locale[] = ["en", "de"];
+// Sub-rooms carry their long text in a guide. A room is listed in the
+// locales its guide covers, mirroring topicSubpageMetadata, so the sitemap
+// never advertises a variant that is marked noindex.
+function guideLocales(id: TopicId, sub: string): readonly Locale[] {
+  const guide = EXPLORER_GUIDES[`${id}/${sub}`];
+  return guide ? LOCALES.filter((l) => guide[l]) : [DEFAULT_LOCALE];
+}
 
 // One <url> per language variant, each listing all its siblings, which is
 // the form Google asks for when hreflang lives in the sitemap.
@@ -27,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const topic of TOPICS) {
     out.push(...entries(topic.href));
     for (const sub of TOPIC_SUBROUTES[topic.id] ?? []) {
-      out.push(...entries(`${topic.href}/${sub}`, GUIDE_LOCALES));
+      out.push(...entries(`${topic.href}/${sub}`, guideLocales(topic.id, sub)));
     }
   }
   for (const p of STATIC_PAGES) out.push(...entries(p));

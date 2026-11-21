@@ -12,7 +12,7 @@ import type { StoryPage } from "@/lib/i18n/stories";
 const ACCENT = "text-signal-rose";
 
 // --------------------------------------------------------------------------
-// Cantor's Diagonal Argument — long-form story page. Canonical hero
+// Cantor's Diagonal Argument: long-form story page. Canonical hero
 // (pretitle/title/tagline/intro/cta) lives in RICH_STORY[locale].page so the
 // whole 8-locale bundle is editable from this single file. Six body
 // sections, three encounter cards, and the captions for the two inline
@@ -67,7 +67,7 @@ const en: RichStory = {
     title: "Cantor's Diagonal",
     tagline: "Infinity comes in sizes.",
     intro:
-      "Georg Cantor's 1891 diagonal argument is the cleanest proof in mathematics that some infinities are strictly larger than others. List the reals between 0 and 1 however you like; then read straight down the diagonal and build a number nobody listed. Cantor 1874, 1891 — the moment set theory left the nursery.",
+      "Georg Cantor's 1891 diagonal argument is the cleanest proof in mathematics that some infinities are strictly larger than others. List the reals between 0 and 1 however you like; then read straight down the diagonal and build a number nobody listed. Cantor 1874, 1891: the moment set theory left the nursery.",
     ctaInteractive: "→ Open the Explorer",
   },
   encounter: {
@@ -82,7 +82,7 @@ const en: RichStory = {
       {
         label: "02",
         title: "A concrete example",
-        body: "Suppose you list reals in [0,1] as r₁ = 0.1415…, r₂ = 0.2718…, r₃ = 0.5772…, and so on. Walk down the diagonal — pick a different digit at each step — and you have a real that disagrees with every row by construction.",
+        body: "Suppose you list reals in [0,1] as r₁ = 0.1415…, r₂ = 0.2718…, r₃ = 0.5772…, and so on. Walk down the diagonal (pick a different digit at each step) and you have a real that disagrees with every row by construction.",
       },
       {
         label: "03",
@@ -96,17 +96,17 @@ const en: RichStory = {
     {
       pretitle: "Section 01 · Counting ℕ",
       title: "ℵ₀, the size of 1, 2, 3, …",
-      body: "The naturals are the smallest infinite set. Their size is named ℵ₀ — aleph-null — and any set you can label with naturals (the integers, the rationals, all finite strings) has the same size. Countable means «small enough to enumerate».",
+      body: "The naturals are the smallest infinite set. Their size is named ℵ₀ (aleph-null), and any set you can label with naturals (the integers, the rationals, all finite strings) has the same size. Countable means «small enough to enumerate».",
     },
     {
       pretitle: "Section 02 · Suppose you could list all reals",
-      title: "Any ordering at all — Cantor doesn't mind",
+      title: "Any ordering at all: Cantor doesn't mind",
       body: "Assume, for contradiction, the reals in [0,1] are countable: a sequence r₁, r₂, r₃, … containing every real exactly once. The order is yours to choose. Write each row as a decimal expansion 0.d_{n,1} d_{n,2} d_{n,3} … and lay them down as an infinite table.",
     },
     {
       pretitle: "Section 03 · Diagonalise",
       title: "Differ from every row by one digit",
-      body: "Read straight down the diagonal: d_{1,1}, d_{2,2}, d_{3,3}, …. Build a new real s whose n-th digit s_n differs from d_{n,n} for every n. A safe recipe swaps each digit for one that isn't 0 or 9 (avoiding the 0.999… = 1.000… ambiguity). By construction s ≠ r_n at the n-th decimal, for every n — yet s is a perfectly good real in [0,1].",
+      body: "Read straight down the diagonal: d_{1,1}, d_{2,2}, d_{3,3}, …. Build a new real s whose n-th digit s_n differs from d_{n,n} for every n. A safe recipe swaps each digit for one that isn't 0 or 9 (avoiding the 0.999… = 1.000… ambiguity). By construction s ≠ r_n at the n-th decimal, for every n, yet s is a perfectly good real in [0,1].",
     },
     {
       pretitle: "Section 04 · The reals are uncountable",
@@ -116,12 +116,12 @@ const en: RichStory = {
     {
       pretitle: "Section 05 · The continuum hypothesis",
       title: "Is there a size between ℵ₀ and c?",
-      body: "Cantor (1878) asked whether any cardinality lives strictly between ℵ₀ and c. Gödel (1940) showed CH cannot be disproved from ZFC; Cohen (1963, Fields medal 1966) showed CH cannot be proved from ZFC. The question is independent of the axioms — formally undecidable, and yet the question remains.",
+      body: "Cantor (1878) asked whether any cardinality lives strictly between ℵ₀ and c. Gödel (1940) showed CH cannot be disproved from ZFC; Cohen (1963, Fields medal 1966) showed CH cannot be proved from ZFC. The question is independent of the axioms: formally undecidable, and yet the question remains.",
     },
     {
       pretitle: "Section 06 · The hierarchy",
       title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ forever",
-      body: "Cantor's theorem says |𝒫(X)| > |X| for every set X — the power set is always strictly larger. Iterating gives an unending ladder of ever-larger infinities: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … There is no biggest one.",
+      body: "Cantor's theorem says |𝒫(X)| > |X| for every set X: the power set is always strictly larger. Iterating gives an unending ladder of ever-larger infinities: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … There is no biggest one.",
     },
   ],
   closingPretitle: "Take it further",
@@ -134,7 +134,7 @@ const en: RichStory = {
   diagonalRandomise: "Randomise list",
   diagonalConstructed: "Constructed real",
   diagonalHint:
-    "The amber cells are the digits Cantor reads down the diagonal. The rose row beneath is the new real s — each digit chosen so s differs from row n at the n-th place. No matter which list you tried, s is not in it.",
+    "The amber cells are the digits Cantor reads down the diagonal. The rose row beneath is the new real s, each digit chosen so s differs from row n at the n-th place. No matter which list you tried, s is not in it.",
   diagonalRule: "Rule:",
   diagonalRowLabel: "r",
   diagonalDiagonalLabel: "diagonal digits",
@@ -147,7 +147,7 @@ const en: RichStory = {
   towerRungs: [
     {
       pretty: "the naturals · ℕ",
-      note: "Aleph-null. The smallest infinity — the size of every countable set.",
+      note: "Aleph-null. The smallest infinity: the size of every countable set.",
     },
     {
       pretty: "the reals · ℝ",
@@ -155,7 +155,7 @@ const en: RichStory = {
     },
     {
       pretty: "𝒫(ℝ)",
-      note: "Functions ℝ → {0,1}. The power set of the reals — strictly larger again.",
+      note: "Functions ℝ → {0,1}. The power set of the reals, strictly larger again.",
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "And so on. Each level dwarfs the one below." },
     {
@@ -204,7 +204,7 @@ const de: RichStory = {
     title: "Cantors Diagonale",
     tagline: "Unendlichkeit gibt es in Größen.",
     intro:
-      "Georg Cantors Diagonalargument von 1891 ist der sauberste Beweis der Mathematik, dass manche Unendlichkeiten strikt größer sind als andere. Liste die reellen Zahlen zwischen 0 und 1 wie du willst — entlang der Diagonale baust du eine Zahl, die niemand gelistet hat. Cantor 1874, 1891 — der Moment, in dem die Mengenlehre die Kinderstube verließ.",
+      "Georg Cantors Diagonalargument von 1891 ist der sauberste Beweis der Mathematik, dass manche Unendlichkeiten strikt größer sind als andere. Liste die reellen Zahlen zwischen 0 und 1 wie du willst: Entlang der Diagonale baust du eine Zahl, die niemand gelistet hat. Cantor 1874, 1891: der Moment, in dem die Mengenlehre die Kinderstube verließ.",
     ctaInteractive: "→ Zum Explorer",
   },
   encounter: {
@@ -219,7 +219,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Liste die reellen Zahlen in [0,1] etwa als r₁ = 0,1415…, r₂ = 0,2718…, r₃ = 0,5772…, und so weiter. Wander die Diagonale entlang und wähl jedes Mal eine andere Ziffer — und du hast eine reelle Zahl, die sich von jeder Zeile per Konstruktion unterscheidet.",
+        body: "Liste die reellen Zahlen in [0,1] etwa als r₁ = 0,1415…, r₂ = 0,2718…, r₃ = 0,5772…, und so weiter. Wander die Diagonale entlang und wähl jedes Mal eine andere Ziffer, und du hast eine reelle Zahl, die sich von jeder Zeile per Konstruktion unterscheidet.",
       },
       {
         label: "03",
@@ -228,13 +228,13 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: bau die fehlende Zahl selbst, dann steig die Leiter immer größerer Unendlichkeiten hinauf.",
+      "Unten: Bau die fehlende Zahl selbst, dann steig die Leiter immer größerer Unendlichkeiten hinauf.",
   },
   sections: [
     {
       pretitle: "Abschnitt 01 · ℕ zählen",
       title: "ℵ₀, die Größe von 1, 2, 3, …",
-      body: "Die natürlichen Zahlen sind die kleinste unendliche Menge. Ihre Größe heißt ℵ₀ — aleph-null — und jede Menge, die du mit den Natürlichen abzählen kannst (die Ganzen, die Rationalen, alle endlichen Wörter), hat dieselbe Größe. Abzählbar heißt: klein genug zum Aufzählen.",
+      body: "Die natürlichen Zahlen sind die kleinste unendliche Menge. Ihre Größe heißt ℵ₀ (aleph-null), und jede Menge, die du mit den Natürlichen abzählen kannst (die Ganzen, die Rationalen, alle endlichen Wörter), hat dieselbe Größe. Abzählbar heißt: klein genug zum Aufzählen.",
     },
     {
       pretitle: "Abschnitt 02 · Nimm an, du listest alle reellen Zahlen",
@@ -244,22 +244,22 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Diagonalisieren",
       title: "Unterschied zu jeder Zeile in einer Stelle",
-      body: "Lies entlang der Diagonale: d_{1,1}, d_{2,2}, d_{3,3}, …. Bau eine neue reelle Zahl s, deren n-te Ziffer s_n sich von d_{n,n} unterscheidet — für jedes n. Ein sicherer Trick: tausch jede Ziffer gegen eine, die nicht 0 oder 9 ist (um die Mehrdeutigkeit 0,999… = 1,000… zu vermeiden). Per Konstruktion gilt s ≠ r_n an der n-ten Stelle — und doch ist s eine vollkommen reguläre reelle Zahl in [0,1].",
+      body: "Lies entlang der Diagonale: d_{1,1}, d_{2,2}, d_{3,3}, …. Bau eine neue reelle Zahl s, deren n-te Ziffer s_n sich von d_{n,n} unterscheidet, für jedes n. Ein sicherer Trick: Tausch jede Ziffer gegen eine, die nicht 0 oder 9 ist (um die Mehrdeutigkeit 0,999… = 1,000… zu vermeiden). Per Konstruktion gilt s ≠ r_n an der n-ten Stelle, und doch ist s eine vollkommen reguläre reelle Zahl in [0,1].",
     },
     {
       pretitle: "Abschnitt 04 · Die Reellen sind überabzählbar",
       title: "|ℝ| = 2^ℵ₀ = c > ℵ₀",
-      body: "Die Liste sollte jede reelle Zahl enthalten, und wir haben gerade eine gebaut, die ihr entging. Die Annahme bricht zusammen: keine Aufzählung der reellen Zahlen kann vollständig sein. Die Reellen haben Mächtigkeit c = 2^ℵ₀, strikt größer als ℵ₀. Eine neue Art von Unendlichkeit, frisch ausgeliefert.",
+      body: "Die Liste sollte jede reelle Zahl enthalten, und wir haben gerade eine gebaut, die ihr entging. Die Annahme bricht zusammen: Keine Aufzählung der reellen Zahlen kann vollständig sein. Die Reellen haben Mächtigkeit c = 2^ℵ₀, strikt größer als ℵ₀. Eine neue Art von Unendlichkeit, frisch ausgeliefert.",
     },
     {
       pretitle: "Abschnitt 05 · Die Kontinuumshypothese",
       title: "Gibt es eine Größe zwischen ℵ₀ und c?",
-      body: "Cantor fragte (1878), ob irgendeine Mächtigkeit strikt zwischen ℵ₀ und c liegt. Gödel (1940) zeigte: CH lässt sich aus ZFC nicht widerlegen; Cohen (1963, Fields-Medaille 1966) zeigte: CH lässt sich aus ZFC nicht beweisen. Die Frage ist unabhängig von den Axiomen — formell unentscheidbar, und doch bleibt sie stehen.",
+      body: "Cantor fragte (1878), ob irgendeine Mächtigkeit strikt zwischen ℵ₀ und c liegt. Gödel (1940) zeigte: CH lässt sich aus ZFC nicht widerlegen; Cohen (1963, Fields-Medaille 1966) zeigte: CH lässt sich aus ZFC nicht beweisen. Die Frage ist unabhängig von den Axiomen: formell unentscheidbar, und doch bleibt sie stehen.",
     },
     {
       pretitle: "Abschnitt 06 · Die Hierarchie",
       title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ für immer",
-      body: "Cantors Satz sagt: |𝒫(X)| > |X| für jede Menge X — die Potenzmenge ist immer strikt größer. Iterieren liefert eine endlose Leiter immer größerer Unendlichkeiten: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Es gibt keine größte.",
+      body: "Cantors Satz sagt: |𝒫(X)| > |X| für jede Menge X; die Potenzmenge ist immer strikt größer. Iterieren liefert eine endlose Leiter immer größerer Unendlichkeiten: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Es gibt keine größte.",
     },
   ],
   closingPretitle: "Geh weiter",
@@ -272,20 +272,20 @@ const de: RichStory = {
   diagonalRandomise: "Liste mischen",
   diagonalConstructed: "Konstruierte reelle Zahl",
   diagonalHint:
-    "Die bernsteinfarbenen Felder sind die Ziffern, die Cantor entlang der Diagonale liest. Die rosa Zeile darunter ist die neue reelle Zahl s — jede Ziffer so gewählt, dass s sich von Zeile n an der n-ten Stelle unterscheidet. Egal welche Liste du probierst, s ist nicht darin.",
+    "Die bernsteinfarbenen Felder sind die Ziffern, die Cantor entlang der Diagonale liest. Die rosa Zeile darunter ist die neue reelle Zahl s, jede Ziffer so gewählt, dass s sich von Zeile n an der n-ten Stelle unterscheidet. Egal welche Liste du probierst, s ist nicht darin.",
   diagonalRule: "Regel:",
   diagonalRowLabel: "r",
   diagonalDiagonalLabel: "Diagonalziffern",
   towerCaption: "Interaktiv · der Turm der Unendlichkeiten",
   towerHint:
-    "Cantors Satz: jede Menge ist strikt kleiner als ihre Potenzmenge. Iterieren liefert eine endlose Leiter. Klick eine Sprosse, um zu lesen, was sie ist.",
+    "Cantors Satz: Jede Menge ist strikt kleiner als ihre Potenzmenge. Iterieren liefert eine endlose Leiter. Klick eine Sprosse, um zu lesen, was sie ist.",
   towerExpandHint: "Klick eine Sprosse, um sie auszuklappen.",
   towerOf: "= Potenzmenge von",
   towerHierarchy: "Hierarchie:",
   towerRungs: [
     {
       pretty: "die Natürlichen · ℕ",
-      note: "Aleph-null. Die kleinste Unendlichkeit — die Größe jeder abzählbaren Menge.",
+      note: "Aleph-null. Die kleinste Unendlichkeit: die Größe jeder abzählbaren Menge.",
     },
     {
       pretty: "die Reellen · ℝ",
@@ -307,7 +307,7 @@ const de: RichStory = {
     },
     {
       pretty: "⋯ für immer",
-      note: "Cantors Satz garantiert: egal wie hoch du steigst, |𝒫(X)| > |X|.",
+      note: "Cantors Satz garantiert: Egal wie hoch du steigst, |𝒫(X)| > |X|.",
     },
   ],
   continuumTitle: "Mächtigkeit des Kontinuums",
@@ -332,7 +332,7 @@ const de: RichStory = {
     },
   ],
   chFootnote:
-    "Die Kontinuumshypothese ist unabhängig von ZFC: die Axiome entscheiden sie schlicht nicht.",
+    "Die Kontinuumshypothese ist unabhängig von ZFC: Die Axiome entscheiden sie schlicht nicht.",
 };
 
 // ---------------- Español ----------------
@@ -342,7 +342,7 @@ const es: RichStory = {
     title: "La diagonal de Cantor",
     tagline: "El infinito viene en tamaños.",
     intro:
-      "El argumento diagonal de 1891 de Georg Cantor es la prueba más limpia en matemáticas de que algunos infinitos son estrictamente mayores que otros. Lista los reales entre 0 y 1 como quieras; baja por la diagonal y construye un número que nadie listó. Cantor 1874, 1891 — el momento en que la teoría de conjuntos salió de la cuna.",
+      "El argumento diagonal de 1891 de Georg Cantor es la prueba más limpia en matemáticas de que algunos infinitos son estrictamente mayores que otros. Lista los reales entre 0 y 1 como quieras; baja por la diagonal y construye un número que nadie listó. Cantor 1874, 1891: el momento en que la teoría de conjuntos salió de la cuna.",
     ctaInteractive: "→ Abrir el Explorador",
   },
   encounter: {
@@ -372,7 +372,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 01 · Contar ℕ",
       title: "ℵ₀, el tamaño de 1, 2, 3, …",
-      body: "Los naturales son el conjunto infinito más pequeño. Su tamaño se llama ℵ₀ — aleph cero — y todo conjunto que puedas etiquetar con naturales (los enteros, los racionales, las cadenas finitas) tiene el mismo tamaño. Numerable significa «lo bastante pequeño para enumerarse».",
+      body: "Los naturales son el conjunto infinito más pequeño. Su tamaño se llama ℵ₀ (aleph cero), y todo conjunto que puedas etiquetar con naturales (los enteros, los racionales, las cadenas finitas) tiene el mismo tamaño. Numerable significa «lo bastante pequeño para enumerarse».",
     },
     {
       pretitle: "Sección 02 · Supón que pudieras listar todos los reales",
@@ -382,7 +382,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 03 · Diagonalizar",
       title: "Diferir de cada fila en un dígito",
-      body: "Baja por la diagonal: d_{1,1}, d_{2,2}, d_{3,3}, …. Construye un nuevo real s cuyo n-ésimo dígito s_n sea distinto de d_{n,n} para todo n. Una receta segura: cambia cada dígito por otro que no sea 0 ni 9 (para esquivar la ambigüedad 0,999… = 1,000…). Por construcción s ≠ r_n en el n-ésimo decimal, para todo n — y aun así s es un real perfectamente bueno en [0,1].",
+      body: "Baja por la diagonal: d_{1,1}, d_{2,2}, d_{3,3}, …. Construye un nuevo real s cuyo n-ésimo dígito s_n sea distinto de d_{n,n} para todo n. Una receta segura: cambia cada dígito por otro que no sea 0 ni 9 (para esquivar la ambigüedad 0,999… = 1,000…). Por construcción s ≠ r_n en el n-ésimo decimal, para todo n, y aun así s es un real perfectamente bueno en [0,1].",
     },
     {
       pretitle: "Sección 04 · Los reales son no numerables",
@@ -392,12 +392,12 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · La hipótesis del continuo",
       title: "¿Hay un tamaño entre ℵ₀ y c?",
-      body: "Cantor (1878) preguntó si alguna cardinalidad vive estrictamente entre ℵ₀ y c. Gödel (1940) mostró que CH no se puede refutar desde ZFC; Cohen (1963, medalla Fields 1966) mostró que CH no se puede probar desde ZFC. La pregunta es independiente de los axiomas — formalmente indecidible — y, aun así, sigue ahí.",
+      body: "Cantor (1878) preguntó si alguna cardinalidad vive estrictamente entre ℵ₀ y c. Gödel (1940) mostró que CH no se puede refutar desde ZFC; Cohen (1963, medalla Fields 1966) mostró que CH no se puede probar desde ZFC. La pregunta es independiente de los axiomas (formalmente indecidible) y, aun así, sigue ahí.",
     },
     {
       pretitle: "Sección 06 · La jerarquía",
       title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ para siempre",
-      body: "El teorema de Cantor dice |𝒫(X)| > |X| para todo conjunto X — el conjunto de partes es siempre estrictamente mayor. Iterando se obtiene una escalera sin fin de infinitos cada vez mayores: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … No hay un máximo.",
+      body: "El teorema de Cantor dice |𝒫(X)| > |X| para todo conjunto X: el conjunto de partes es siempre estrictamente mayor. Iterando se obtiene una escalera sin fin de infinitos cada vez mayores: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … No hay un máximo.",
     },
   ],
   closingPretitle: "Ve más lejos",
@@ -410,7 +410,7 @@ const es: RichStory = {
   diagonalRandomise: "Mezclar lista",
   diagonalConstructed: "Real construido",
   diagonalHint:
-    "Las casillas ámbar son los dígitos que Cantor lee bajando por la diagonal. La fila rosa de abajo es el nuevo real s — cada dígito elegido para que s difiera de la fila n en la n-ésima posición. No importa qué lista probaras, s no está en ella.",
+    "Las casillas ámbar son los dígitos que Cantor lee bajando por la diagonal. La fila rosa de abajo es el nuevo real s, cada dígito elegido para que s difiera de la fila n en la n-ésima posición. No importa qué lista probaras, s no está en ella.",
   diagonalRule: "Regla:",
   diagonalRowLabel: "r",
   diagonalDiagonalLabel: "dígitos diagonales",
@@ -423,12 +423,12 @@ const es: RichStory = {
   towerRungs: [
     {
       pretty: "los naturales · ℕ",
-      note: "Aleph cero. El infinito más pequeño — el tamaño de todo conjunto numerable.",
+      note: "Aleph cero. El infinito más pequeño: el tamaño de todo conjunto numerable.",
     },
     { pretty: "los reales · ℝ", note: "El continuo c. Cantor 1891: estrictamente mayor que ℵ₀." },
     {
       pretty: "𝒫(ℝ)",
-      note: "Funciones ℝ → {0,1}. El conjunto de partes de los reales — otra vez estrictamente mayor.",
+      note: "Funciones ℝ → {0,1}. El conjunto de partes de los reales, otra vez estrictamente mayor.",
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "Y así sucesivamente. Cada nivel empequeñece al anterior." },
     {
@@ -481,7 +481,7 @@ const fr: RichStory = {
     title: "La diagonale de Cantor",
     tagline: "L'infini a des tailles.",
     intro:
-      "L'argument diagonal de 1891 de Georg Cantor est la preuve la plus nette en mathématiques que certaines infinités sont strictement plus grandes que d'autres. Énumère les réels entre 0 et 1 comme tu veux ; descends la diagonale et construis un nombre que personne n'a listé. Cantor 1874, 1891 — le moment où la théorie des ensembles a quitté l'enfance.",
+      "L'argument diagonal de 1891 de Georg Cantor est la preuve la plus nette en mathématiques que certaines infinités sont strictement plus grandes que d'autres. Énumère les réels entre 0 et 1 comme tu veux ; descends la diagonale et construis un nombre que personne n'a listé. Cantor 1874, 1891 : le moment où la théorie des ensembles a quitté l'enfance.",
     ctaInteractive: "→ Ouvrir l'Explorateur",
   },
   encounter: {
@@ -491,7 +491,7 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "L'infini n'est pas une seule chose. ℵ₀ compte les naturels 1, 2, 3, … ; la droite réelle porte une infinité strictement plus grande. Cantor a transformé l'intuition «la droite est plus dense que les entiers» en démonstration.",
+        body: "L'infini n'est pas une seule chose. ℵ₀ compte les naturels 1, 2, 3, … ; la droite réelle porte une infinité strictement plus grande. Cantor a transformé l'intuition « la droite est plus dense que les entiers » en démonstration.",
       },
       {
         label: "02",
@@ -511,7 +511,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · Compter ℕ",
       title: "ℵ₀, la taille de 1, 2, 3, …",
-      body: "Les naturels sont le plus petit ensemble infini. Leur taille s'appelle ℵ₀ — aleph-zéro — et tout ensemble que tu peux étiqueter avec les naturels (les entiers, les rationnels, les chaînes finies) a la même taille. Dénombrable veut dire «assez petit pour être énuméré».",
+      body: "Les naturels sont le plus petit ensemble infini. Leur taille s'appelle ℵ₀ (aleph-zéro), et tout ensemble que tu peux étiqueter avec les naturels (les entiers, les rationnels, les chaînes finies) a la même taille. Dénombrable veut dire « assez petit pour être énuméré ».",
     },
     {
       pretitle: "Section 02 · Suppose que tu listes tous les réels",
@@ -521,7 +521,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · Diagonaliser",
       title: "Différer de chaque ligne d'un chiffre",
-      body: "Lis le long de la diagonale : d_{1,1}, d_{2,2}, d_{3,3}, …. Construis un nouveau réel s dont le n-ième chiffre s_n diffère de d_{n,n} pour tout n. Une recette sûre : remplace chaque chiffre par un autre qui n'est ni 0 ni 9 (pour éviter l'ambiguïté 0,999… = 1,000…). Par construction s ≠ r_n au n-ième décimal, pour tout n — et pourtant s est un réel parfaitement valable de [0,1].",
+      body: "Lis le long de la diagonale : d_{1,1}, d_{2,2}, d_{3,3}, …. Construis un nouveau réel s dont le n-ième chiffre s_n diffère de d_{n,n} pour tout n. Une recette sûre : remplace chaque chiffre par un autre qui n'est ni 0 ni 9 (pour éviter l'ambiguïté 0,999… = 1,000…). Par construction s ≠ r_n au n-ième décimal, pour tout n, et pourtant s est un réel parfaitement valable de [0,1].",
     },
     {
       pretitle: "Section 04 · Les réels sont indénombrables",
@@ -531,12 +531,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · L'hypothèse du continu",
       title: "Existe-t-il une taille entre ℵ₀ et c ?",
-      body: "Cantor (1878) demanda si une cardinalité vit strictement entre ℵ₀ et c. Gödel (1940) montra que CH ne peut être réfutée depuis ZFC ; Cohen (1963, médaille Fields 1966) montra que CH ne peut être démontrée depuis ZFC. La question est indépendante des axiomes — formellement indécidable, et pourtant la question demeure.",
+      body: "Cantor (1878) demanda si une cardinalité vit strictement entre ℵ₀ et c. Gödel (1940) montra que CH ne peut être réfutée depuis ZFC ; Cohen (1963, médaille Fields 1966) montra que CH ne peut être démontrée depuis ZFC. La question est indépendante des axiomes : formellement indécidable, et pourtant la question demeure.",
     },
     {
       pretitle: "Section 06 · La hiérarchie",
       title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ pour toujours",
-      body: "Le théorème de Cantor dit |𝒫(X)| > |X| pour tout ensemble X — l'ensemble des parties est toujours strictement plus grand. En itérant, on obtient une échelle sans fin d'infinités toujours plus grandes : ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Il n'y a pas de plus grande.",
+      body: "Le théorème de Cantor dit |𝒫(X)| > |X| pour tout ensemble X : l'ensemble des parties est toujours strictement plus grand. En itérant, on obtient une échelle sans fin d'infinités toujours plus grandes : ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Il n'y a pas de plus grande.",
     },
   ],
   closingPretitle: "Aller plus loin",
@@ -549,7 +549,7 @@ const fr: RichStory = {
   diagonalRandomise: "Mélanger la liste",
   diagonalConstructed: "Réel construit",
   diagonalHint:
-    "Les cases ambre sont les chiffres que Cantor lit le long de la diagonale. La ligne rose en dessous est le nouveau réel s — chaque chiffre choisi pour que s diffère de la ligne n à la n-ième position. Quelle que soit la liste essayée, s n'y est pas.",
+    "Les cases ambre sont les chiffres que Cantor lit le long de la diagonale. La ligne rose en dessous est le nouveau réel s, chaque chiffre choisi pour que s diffère de la ligne n à la n-ième position. Quelle que soit la liste essayée, s n'y est pas.",
   diagonalRule: "Règle :",
   diagonalRowLabel: "r",
   diagonalDiagonalLabel: "chiffres diagonaux",
@@ -562,12 +562,12 @@ const fr: RichStory = {
   towerRungs: [
     {
       pretty: "les naturels · ℕ",
-      note: "Aleph-zéro. La plus petite infinité — la taille de tout ensemble dénombrable.",
+      note: "Aleph-zéro. La plus petite infinité : la taille de tout ensemble dénombrable.",
     },
     { pretty: "les réels · ℝ", note: "Le continu c. Cantor 1891 : strictement plus grand que ℵ₀." },
     {
       pretty: "𝒫(ℝ)",
-      note: "Fonctions ℝ → {0,1}. L'ensemble des parties des réels — encore strictement plus grand.",
+      note: "Fonctions ℝ → {0,1}. L'ensemble des parties des réels, encore strictement plus grand.",
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "Et ainsi de suite. Chaque niveau écrase celui d'en dessous." },
     {
@@ -616,7 +616,7 @@ const it: RichStory = {
     title: "La diagonale di Cantor",
     tagline: "L'infinito ha taglie diverse.",
     intro:
-      "L'argomento diagonale del 1891 di Georg Cantor è la dimostrazione più pulita in matematica del fatto che alcuni infiniti sono strettamente più grandi di altri. Elenca i reali tra 0 e 1 come vuoi; scendi lungo la diagonale e costruisci un numero che nessuno ha elencato. Cantor 1874, 1891 — il momento in cui la teoria degli insiemi è uscita dalla nursery.",
+      "L'argomento diagonale del 1891 di Georg Cantor è la dimostrazione più pulita in matematica del fatto che alcuni infiniti sono strettamente più grandi di altri. Elenca i reali tra 0 e 1 come vuoi; scendi lungo la diagonale e costruisci un numero che nessuno ha elencato. Cantor 1874, 1891: il momento in cui la teoria degli insiemi è uscita dalla nursery.",
     ctaInteractive: "→ Apri l'Esploratore",
   },
   encounter: {
@@ -646,7 +646,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 01 · Contare ℕ",
       title: "ℵ₀, la taglia di 1, 2, 3, …",
-      body: "I naturali sono il più piccolo insieme infinito. La loro taglia si chiama ℵ₀ — aleph-zero — e ogni insieme etichettabile con i naturali (gli interi, i razionali, le stringhe finite) ha la stessa taglia. Numerabile vuol dire «abbastanza piccolo da essere elencato».",
+      body: "I naturali sono il più piccolo insieme infinito. La loro taglia si chiama ℵ₀ (aleph-zero), e ogni insieme etichettabile con i naturali (gli interi, i razionali, le stringhe finite) ha la stessa taglia. Numerabile vuol dire «abbastanza piccolo da essere elencato».",
     },
     {
       pretitle: "Sezione 02 · Supponi di elencare tutti i reali",
@@ -656,7 +656,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 03 · Diagonalizzare",
       title: "Differire da ogni riga in una cifra",
-      body: "Leggi lungo la diagonale: d_{1,1}, d_{2,2}, d_{3,3}, …. Costruisci un nuovo reale s la cui n-esima cifra s_n differisca da d_{n,n} per ogni n. Una ricetta sicura: sostituisci ogni cifra con un'altra che non sia 0 né 9 (per evitare l'ambiguità 0,999… = 1,000…). Per costruzione s ≠ r_n alla n-esima cifra, per ogni n — eppure s è un reale del tutto regolare in [0,1].",
+      body: "Leggi lungo la diagonale: d_{1,1}, d_{2,2}, d_{3,3}, …. Costruisci un nuovo reale s la cui n-esima cifra s_n differisca da d_{n,n} per ogni n. Una ricetta sicura: sostituisci ogni cifra con un'altra che non sia 0 né 9 (per evitare l'ambiguità 0,999… = 1,000…). Per costruzione s ≠ r_n alla n-esima cifra, per ogni n, eppure s è un reale del tutto regolare in [0,1].",
     },
     {
       pretitle: "Sezione 04 · I reali sono non numerabili",
@@ -666,12 +666,12 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · L'ipotesi del continuo",
       title: "Esiste una taglia tra ℵ₀ e c?",
-      body: "Cantor (1878) chiese se una cardinalità vivesse strettamente tra ℵ₀ e c. Gödel (1940) mostrò che CH non può essere confutata in ZFC; Cohen (1963, medaglia Fields 1966) mostrò che CH non può essere dimostrata in ZFC. La domanda è indipendente dagli assiomi — formalmente indecidibile — e nonostante questo resta lì.",
+      body: "Cantor (1878) chiese se una cardinalità vivesse strettamente tra ℵ₀ e c. Gödel (1940) mostrò che CH non può essere confutata in ZFC; Cohen (1963, medaglia Fields 1966) mostrò che CH non può essere dimostrata in ZFC. La domanda è indipendente dagli assiomi (formalmente indecidibile) e nonostante questo resta lì.",
     },
     {
       pretitle: "Sezione 06 · La gerarchia",
       title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ per sempre",
-      body: "Il teorema di Cantor dice |𝒫(X)| > |X| per ogni insieme X — l'insieme delle parti è sempre strettamente più grande. Iterando si ottiene una scala senza fine di infiniti sempre più grandi: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Non c'è un massimo.",
+      body: "Il teorema di Cantor dice |𝒫(X)| > |X| per ogni insieme X: l'insieme delle parti è sempre strettamente più grande. Iterando si ottiene una scala senza fine di infiniti sempre più grandi: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Non c'è un massimo.",
     },
   ],
   closingPretitle: "Vai oltre",
@@ -684,7 +684,7 @@ const it: RichStory = {
   diagonalRandomise: "Mescola lista",
   diagonalConstructed: "Reale costruito",
   diagonalHint:
-    "Le caselle ambra sono le cifre che Cantor legge scendendo lungo la diagonale. La riga rosa sotto è il nuovo reale s — ogni cifra scelta perché s differisca dalla riga n alla n-esima posizione. Qualunque elenco tu provi, s non c'è.",
+    "Le caselle ambra sono le cifre che Cantor legge scendendo lungo la diagonale. La riga rosa sotto è il nuovo reale s, ogni cifra scelta perché s differisca dalla riga n alla n-esima posizione. Qualunque elenco tu provi, s non c'è.",
   diagonalRule: "Regola:",
   diagonalRowLabel: "r",
   diagonalDiagonalLabel: "cifre diagonali",
@@ -697,12 +697,12 @@ const it: RichStory = {
   towerRungs: [
     {
       pretty: "i naturali · ℕ",
-      note: "Aleph-zero. L'infinito più piccolo — la taglia di ogni insieme numerabile.",
+      note: "Aleph-zero. L'infinito più piccolo: la taglia di ogni insieme numerabile.",
     },
     { pretty: "i reali · ℝ", note: "Il continuo c. Cantor 1891: strettamente più grande di ℵ₀." },
     {
       pretty: "𝒫(ℝ)",
-      note: "Funzioni ℝ → {0,1}. L'insieme delle parti dei reali — di nuovo strettamente più grande.",
+      note: "Funzioni ℝ → {0,1}. L'insieme delle parti dei reali, di nuovo strettamente più grande.",
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "E così via. Ogni livello fa impallidire il precedente." },
     {
@@ -751,7 +751,7 @@ const pt: RichStory = {
     title: "A diagonal de Cantor",
     tagline: "O infinito tem tamanhos.",
     intro:
-      "O argumento diagonal de 1891 de Georg Cantor é a prova mais limpa em matemática de que alguns infinitos são estritamente maiores que outros. Lista os reais entre 0 e 1 como quiseres; desce pela diagonal e constrói um número que ninguém listou. Cantor 1874, 1891 — o momento em que a teoria dos conjuntos saiu do berço.",
+      "O argumento diagonal de 1891 de Georg Cantor é a prova mais limpa em matemática de que alguns infinitos são estritamente maiores que outros. Lista os reais entre 0 e 1 como quiseres; desce pela diagonal e constrói um número que ninguém listou. Cantor 1874, 1891: o momento em que a teoria dos conjuntos saiu do berço.",
     ctaInteractive: "→ Abrir o Explorador",
   },
   encounter: {
@@ -781,7 +781,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 01 · Contar ℕ",
       title: "ℵ₀, o tamanho de 1, 2, 3, …",
-      body: "Os naturais são o menor conjunto infinito. O seu tamanho chama-se ℵ₀ — aleph-zero — e qualquer conjunto etiquetável com naturais (os inteiros, os racionais, as cadeias finitas) tem o mesmo tamanho. Numerável quer dizer «pequeno o suficiente para se enumerar».",
+      body: "Os naturais são o menor conjunto infinito. O seu tamanho chama-se ℵ₀ (aleph-zero), e qualquer conjunto etiquetável com naturais (os inteiros, os racionais, as cadeias finitas) tem o mesmo tamanho. Numerável quer dizer «pequeno o suficiente para se enumerar».",
     },
     {
       pretitle: "Secção 02 · Supõe que pudesses listar todos os reais",
@@ -791,7 +791,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 03 · Diagonalizar",
       title: "Diferir de cada linha num dígito",
-      body: "Lê pela diagonal: d_{1,1}, d_{2,2}, d_{3,3}, …. Constrói um novo real s cujo n-ésimo dígito s_n difira de d_{n,n} para todo n. Receita segura: troca cada dígito por outro que não seja 0 nem 9 (para evitar a ambiguidade 0,999… = 1,000…). Por construção s ≠ r_n na n-ésima casa decimal, para todo n — mas s é um real perfeitamente bem comportado em [0,1].",
+      body: "Lê pela diagonal: d_{1,1}, d_{2,2}, d_{3,3}, …. Constrói um novo real s cujo n-ésimo dígito s_n difira de d_{n,n} para todo n. Receita segura: troca cada dígito por outro que não seja 0 nem 9 (para evitar a ambiguidade 0,999… = 1,000…). Por construção s ≠ r_n na n-ésima casa decimal, para todo n, mas s é um real perfeitamente bem comportado em [0,1].",
     },
     {
       pretitle: "Secção 04 · Os reais são não-numeráveis",
@@ -801,12 +801,12 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · A hipótese do contínuo",
       title: "Existe um tamanho entre ℵ₀ e c?",
-      body: "Cantor (1878) perguntou se alguma cardinalidade vive estritamente entre ℵ₀ e c. Gödel (1940) mostrou que CH não pode ser refutada em ZFC; Cohen (1963, medalha Fields 1966) mostrou que CH não pode ser provada em ZFC. A pergunta é independente dos axiomas — formalmente indecidível — e ainda assim continua aberta.",
+      body: "Cantor (1878) perguntou se alguma cardinalidade vive estritamente entre ℵ₀ e c. Gödel (1940) mostrou que CH não pode ser refutada em ZFC; Cohen (1963, medalha Fields 1966) mostrou que CH não pode ser provada em ZFC. A pergunta é independente dos axiomas (formalmente indecidível) e ainda assim continua aberta.",
     },
     {
       pretitle: "Secção 06 · A hierarquia",
       title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ para sempre",
-      body: "O teorema de Cantor diz |𝒫(X)| > |X| para todo conjunto X — o conjunto das partes é sempre estritamente maior. Iterando obtém-se uma escada sem fim de infinitos cada vez maiores: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Não há um maior.",
+      body: "O teorema de Cantor diz |𝒫(X)| > |X| para todo conjunto X: o conjunto das partes é sempre estritamente maior. Iterando obtém-se uma escada sem fim de infinitos cada vez maiores: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Não há um maior.",
     },
   ],
   closingPretitle: "Vai mais longe",
@@ -819,7 +819,7 @@ const pt: RichStory = {
   diagonalRandomise: "Baralhar lista",
   diagonalConstructed: "Real construído",
   diagonalHint:
-    "As células âmbar são os dígitos que Cantor lê descendo pela diagonal. A linha rosa por baixo é o novo real s — cada dígito escolhido para que s difira da linha n na n-ésima posição. Qualquer que seja a lista experimentada, s não está nela.",
+    "As células âmbar são os dígitos que Cantor lê descendo pela diagonal. A linha rosa por baixo é o novo real s, cada dígito escolhido para que s difira da linha n na n-ésima posição. Qualquer que seja a lista experimentada, s não está nela.",
   diagonalRule: "Regra:",
   diagonalRowLabel: "r",
   diagonalDiagonalLabel: "dígitos diagonais",
@@ -832,12 +832,12 @@ const pt: RichStory = {
   towerRungs: [
     {
       pretty: "os naturais · ℕ",
-      note: "Aleph-zero. O infinito mais pequeno — o tamanho de todo conjunto numerável.",
+      note: "Aleph-zero. O infinito mais pequeno: o tamanho de todo conjunto numerável.",
     },
     { pretty: "os reais · ℝ", note: "O contínuo c. Cantor 1891: estritamente maior que ℵ₀." },
     {
       pretty: "𝒫(ℝ)",
-      note: "Funções ℝ → {0,1}. O conjunto das partes dos reais — de novo estritamente maior.",
+      note: "Funções ℝ → {0,1}. O conjunto das partes dos reais, de novo estritamente maior.",
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "E assim por diante. Cada nível faz o anterior parecer pequeno." },
     {
@@ -890,7 +890,7 @@ const sv: RichStory = {
     title: "Cantors diagonal",
     tagline: "Oändligheten finns i storlekar.",
     intro:
-      "Georg Cantors diagonalargument från 1891 är det renaste beviset i matematiken på att vissa oändligheter är strikt större än andra. Räkna upp de reella talen mellan 0 och 1 hur du vill — gå längs diagonalen och bygg ett tal ingen räknade upp. Cantor 1874, 1891 — ögonblicket då mängdläran lämnade barnkammaren.",
+      "Georg Cantors diagonalargument från 1891 är det renaste beviset i matematiken på att vissa oändligheter är strikt större än andra. Räkna upp de reella talen mellan 0 och 1 hur du vill: gå längs diagonalen och bygg ett tal ingen räknade upp. Cantor 1874, 1891: ögonblicket då mängdläran lämnade barnkammaren.",
     ctaInteractive: "→ Öppna Utforskaren",
   },
   encounter: {
@@ -905,7 +905,7 @@ const sv: RichStory = {
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "Anta att du räknar upp de reella i [0,1] som r₁ = 0,1415…, r₂ = 0,2718…, r₃ = 0,5772…, och så vidare. Gå längs diagonalen och välj en annan siffra i varje steg — du har ett reellt tal som per konstruktion skiljer sig från varje rad.",
+        body: "Anta att du räknar upp de reella i [0,1] som r₁ = 0,1415…, r₂ = 0,2718…, r₃ = 0,5772…, och så vidare. Gå längs diagonalen och välj en annan siffra i varje steg: du har ett reellt tal som per konstruktion skiljer sig från varje rad.",
       },
       {
         label: "03",
@@ -920,7 +920,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 01 · Räkna ℕ",
       title: "ℵ₀, storleken på 1, 2, 3, …",
-      body: "De naturliga talen är den minsta oändliga mängden. Storleken heter ℵ₀ — alef-noll — och varje mängd som kan namnges med naturliga tal (heltal, rationella, ändliga strängar) har samma storlek. Uppräknelig betyder «liten nog att räkna upp».",
+      body: "De naturliga talen är den minsta oändliga mängden. Storleken heter ℵ₀ (alef-noll), och varje mängd som kan namnges med naturliga tal (heltal, rationella, ändliga strängar) har samma storlek. Uppräknelig betyder «liten nog att räkna upp».",
     },
     {
       pretitle: "Avsnitt 02 · Anta att du kunde räkna upp alla reella",
@@ -930,7 +930,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 03 · Diagonalisera",
       title: "Skilj dig från varje rad i en siffra",
-      body: "Läs längs diagonalen: d_{1,1}, d_{2,2}, d_{3,3}, …. Bygg ett nytt reellt tal s vars n-te siffra s_n skiljer sig från d_{n,n} för varje n. Säkert recept: byt varje siffra mot en som inte är 0 eller 9 (för att undvika tvetydigheten 0,999… = 1,000…). Per konstruktion gäller s ≠ r_n vid n-te decimalen, för varje n — och ändå är s ett alldeles vanligt reellt tal i [0,1].",
+      body: "Läs längs diagonalen: d_{1,1}, d_{2,2}, d_{3,3}, …. Bygg ett nytt reellt tal s vars n-te siffra s_n skiljer sig från d_{n,n} för varje n. Säkert recept: byt varje siffra mot en som inte är 0 eller 9 (för att undvika tvetydigheten 0,999… = 1,000…). Per konstruktion gäller s ≠ r_n vid n-te decimalen, för varje n, och ändå är s ett alldeles vanligt reellt tal i [0,1].",
     },
     {
       pretitle: "Avsnitt 04 · De reella är överuppräkneliga",
@@ -940,12 +940,12 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Kontinuumhypotesen",
       title: "Finns en storlek mellan ℵ₀ och c?",
-      body: "Cantor (1878) frågade om någon kardinalitet bor strikt mellan ℵ₀ och c. Gödel (1940) visade att CH inte kan motbevisas i ZFC; Cohen (1963, Fieldsmedaljen 1966) visade att CH inte kan bevisas i ZFC. Frågan är oberoende av axiomen — formellt oavgörbar, och ändå står frågan kvar.",
+      body: "Cantor (1878) frågade om någon kardinalitet bor strikt mellan ℵ₀ och c. Gödel (1940) visade att CH inte kan motbevisas i ZFC; Cohen (1963, Fieldsmedaljen 1966) visade att CH inte kan bevisas i ZFC. Frågan är oberoende av axiomen: formellt oavgörbar, och ändå står frågan kvar.",
     },
     {
       pretitle: "Avsnitt 06 · Hierarkin",
       title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ för alltid",
-      body: "Cantors sats säger |𝒫(X)| > |X| för varje mängd X — potensmängden är alltid strikt större. Iterera och du får en oändlig stege av allt större oändligheter: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Det finns ingen största.",
+      body: "Cantors sats säger |𝒫(X)| > |X| för varje mängd X: potensmängden är alltid strikt större. Iterera och du får en oändlig stege av allt större oändligheter: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Det finns ingen största.",
     },
   ],
   closingPretitle: "Gå vidare",
@@ -958,7 +958,7 @@ const sv: RichStory = {
   diagonalRandomise: "Blanda listan",
   diagonalConstructed: "Konstruerat reellt",
   diagonalHint:
-    "De bärnstensfärgade cellerna är siffrorna Cantor läser längs diagonalen. Den rosa raden under är det nya reella talet s — varje siffra vald så att s skiljer sig från rad n vid n-te platsen. Vilken lista du än prövade — s står inte i den.",
+    "De bärnstensfärgade cellerna är siffrorna Cantor läser längs diagonalen. Den rosa raden under är det nya reella talet s, varje siffra vald så att s skiljer sig från rad n vid n-te platsen. Vilken lista du än prövade, s står inte i den.",
   diagonalRule: "Regel:",
   diagonalRowLabel: "r",
   diagonalDiagonalLabel: "diagonalsiffror",
@@ -971,12 +971,12 @@ const sv: RichStory = {
   towerRungs: [
     {
       pretty: "de naturliga · ℕ",
-      note: "Alef-noll. Den minsta oändligheten — storleken på varje uppräknelig mängd.",
+      note: "Alef-noll. Den minsta oändligheten: storleken på varje uppräknelig mängd.",
     },
     { pretty: "de reella · ℝ", note: "Kontinuum c. Cantor 1891: strikt större än ℵ₀." },
     {
       pretty: "𝒫(ℝ)",
-      note: "Funktioner ℝ → {0,1}. Potensmängden av de reella — åter strikt större.",
+      note: "Funktioner ℝ → {0,1}. Potensmängden av de reella, åter strikt större.",
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "Och så vidare. Varje nivå får den under att se liten ut." },
     {
@@ -1021,7 +1021,7 @@ const no: RichStory = {
     title: "Cantors diagonal",
     tagline: "Uendeligheten finnes i størrelser.",
     intro:
-      "Georg Cantors diagonalargument fra 1891 er det reneste beviset i matematikken på at noen uendeligheter er strengt større enn andre. Tell opp de reelle tallene mellom 0 og 1 som du vil — gå langs diagonalen og bygg et tall ingen telte. Cantor 1874, 1891 — øyeblikket mengdelæren forlot barnekammeret.",
+      "Georg Cantors diagonalargument fra 1891 er det reneste beviset i matematikken på at noen uendeligheter er strengt større enn andre. Tell opp de reelle tallene mellom 0 og 1 som du vil: Gå langs diagonalen og bygg et tall ingen telte. Cantor 1874, 1891: øyeblikket mengdelæren forlot barnekammeret.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -1036,7 +1036,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Anta at du teller opp de reelle i [0,1] som r₁ = 0,1415…, r₂ = 0,2718…, r₃ = 0,5772…, og så videre. Gå langs diagonalen og velg et annet siffer i hvert steg — så har du et reelt tall som ved konstruksjon avviker fra hver rad.",
+        body: "Anta at du teller opp de reelle i [0,1] som r₁ = 0,1415…, r₂ = 0,2718…, r₃ = 0,5772…, og så videre. Gå langs diagonalen og velg et annet siffer i hvert steg, så har du et reelt tall som ved konstruksjon avviker fra hver rad.",
       },
       {
         label: "03",
@@ -1045,13 +1045,13 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Under: bygg det manglende reelle tallet for hånd, så klatre tårnet av stadig større uendeligheter.",
+      "Under: Bygg det manglende reelle tallet for hånd, så klatre tårnet av stadig større uendeligheter.",
   },
   sections: [
     {
       pretitle: "Avsnitt 01 · Telle ℕ",
       title: "ℵ₀, størrelsen til 1, 2, 3, …",
-      body: "De naturlige tallene er den minste uendelige mengden. Størrelsen heter ℵ₀ — alef-null — og enhver mengde du kan merke med naturlige tall (heltallene, de rasjonelle, alle endelige strenger) har samme størrelse. Tellbar betyr «liten nok til å telles opp».",
+      body: "De naturlige tallene er den minste uendelige mengden. Størrelsen heter ℵ₀ (alef-null), og enhver mengde du kan merke med naturlige tall (heltallene, de rasjonelle, alle endelige strenger) har samme størrelse. Tellbar betyr «liten nok til å telles opp».",
     },
     {
       pretitle: "Avsnitt 02 · Anta at du kunne telle alle reelle",
@@ -1061,22 +1061,22 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Diagonalisere",
       title: "Skill deg fra hver rad i ett siffer",
-      body: "Les langs diagonalen: d_{1,1}, d_{2,2}, d_{3,3}, …. Bygg et nytt reelt tall s der n-te siffer s_n avviker fra d_{n,n} for hver n. Sikker oppskrift: bytt hvert siffer mot et som ikke er 0 eller 9 (for å unngå tvetydigheten 0,999… = 1,000…). Ved konstruksjon gjelder s ≠ r_n ved n-te desimal, for hver n — likevel er s et helt vanlig reelt tall i [0,1].",
+      body: "Les langs diagonalen: d_{1,1}, d_{2,2}, d_{3,3}, …. Bygg et nytt reelt tall s der n-te siffer s_n avviker fra d_{n,n} for hver n. Sikker oppskrift: Bytt hvert siffer mot et som ikke er 0 eller 9 (for å unngå tvetydigheten 0,999… = 1,000…). Ved konstruksjon gjelder s ≠ r_n ved n-te desimal, for hver n; likevel er s et helt vanlig reelt tall i [0,1].",
     },
     {
       pretitle: "Avsnitt 04 · De reelle er overtellbare",
       title: "|ℝ| = 2^ℵ₀ = c > ℵ₀",
-      body: "Listen skulle inneholde hvert reelt tall, og vi bygde nettopp ett den gikk glipp av. Antakelsen brister: ingen opptelling av de reelle kan være fullstendig. De reelle har kardinalitet c = 2^ℵ₀, strengt større enn ℵ₀. En ny slags uendelighet, levert på døra.",
+      body: "Listen skulle inneholde hvert reelt tall, og vi bygde nettopp ett den gikk glipp av. Antakelsen brister: Ingen opptelling av de reelle kan være fullstendig. De reelle har kardinalitet c = 2^ℵ₀, strengt større enn ℵ₀. En ny slags uendelighet, levert på døra.",
     },
     {
       pretitle: "Avsnitt 05 · Kontinuumshypotesen",
       title: "Finnes en størrelse mellom ℵ₀ og c?",
-      body: "Cantor (1878) spurte om noen kardinalitet bor strengt mellom ℵ₀ og c. Gödel (1940) viste at CH ikke kan motbevises i ZFC; Cohen (1963, Fields-medaljen 1966) viste at CH ikke kan bevises i ZFC. Spørsmålet er uavhengig av aksiomene — formelt uavgjørbart, og likevel står spørsmålet.",
+      body: "Cantor (1878) spurte om noen kardinalitet bor strengt mellom ℵ₀ og c. Gödel (1940) viste at CH ikke kan motbevises i ZFC; Cohen (1963, Fields-medaljen 1966) viste at CH ikke kan bevises i ZFC. Spørsmålet er uavhengig av aksiomene: formelt uavgjørbart, og likevel står spørsmålet.",
     },
     {
       pretitle: "Avsnitt 06 · Hierarkiet",
       title: "ℵ₀ < 2^ℵ₀ < 2^(2^ℵ₀) < ⋯ for alltid",
-      body: "Cantors teorem sier |𝒫(X)| > |X| for hver mengde X — potensmengden er alltid strengt større. Iterer, og du får en uendelig stige av stadig større uendeligheter: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Det finnes ingen største.",
+      body: "Cantors teorem sier |𝒫(X)| > |X| for hver mengde X: Potensmengden er alltid strengt større. Iterer, og du får en uendelig stige av stadig større uendeligheter: ℵ₀, 2^ℵ₀, 2^(2^ℵ₀), … Det finnes ingen største.",
     },
   ],
   closingPretitle: "Gå videre",
@@ -1089,25 +1089,25 @@ const no: RichStory = {
   diagonalRandomise: "Stokk listen",
   diagonalConstructed: "Konstruert reelt",
   diagonalHint:
-    "De ravgule cellene er sifrene Cantor leser langs diagonalen. Den rosa raden under er det nye reelle tallet s — hvert siffer valgt så s avviker fra rad n i n-te posisjon. Uansett hvilken liste du prøvde, s er ikke i den.",
+    "De ravgule cellene er sifrene Cantor leser langs diagonalen. Den rosa raden under er det nye reelle tallet s, hvert siffer valgt så s avviker fra rad n i n-te posisjon. Uansett hvilken liste du prøvde, s er ikke i den.",
   diagonalRule: "Regel:",
   diagonalRowLabel: "r",
   diagonalDiagonalLabel: "diagonalsifre",
   towerCaption: "Interaktivt · tårnet av uendeligheter",
   towerHint:
-    "Cantors teorem: enhver mengde er strengt mindre enn sin potensmengde. Iterer, og du får en uendelig stige. Klikk et trinn for å lese hva det er.",
+    "Cantors teorem: Enhver mengde er strengt mindre enn sin potensmengde. Iterer, og du får en uendelig stige. Klikk et trinn for å lese hva det er.",
   towerExpandHint: "Klikk hvilket som helst trinn for å åpne det.",
   towerOf: "= potensmengde av",
   towerHierarchy: "Hierarki:",
   towerRungs: [
     {
       pretty: "de naturlige · ℕ",
-      note: "Alef-null. Den minste uendeligheten — størrelsen til hver tellbar mengde.",
+      note: "Alef-null. Den minste uendeligheten: størrelsen til hver tellbar mengde.",
     },
     { pretty: "de reelle · ℝ", note: "Kontinuumet c. Cantor 1891: strengt større enn ℵ₀." },
     {
       pretty: "𝒫(ℝ)",
-      note: "Funksjoner ℝ → {0,1}. Potensmengden av de reelle — igjen strengt større.",
+      note: "Funksjoner ℝ → {0,1}. Potensmengden av de reelle, igjen strengt større.",
     },
     { pretty: "𝒫(𝒫(ℝ))", note: "Og slik videre. Hvert nivå dverger det under." },
     {
@@ -1121,7 +1121,7 @@ const no: RichStory = {
     { pretty: "𝒫⁵(ℝ)", note: "Kardinaltallene utover ℵ₀ utgjør selv et overtellbart hierarki." },
     {
       pretty: "⋯ for alltid",
-      note: "Cantors teorem garanterer: uansett hvor høyt du klatrer, |𝒫(X)| > |X|.",
+      note: "Cantors teorem garanterer: Uansett hvor høyt du klatrer, |𝒫(X)| > |X|.",
     },
   ],
   continuumTitle: "Kontinuumets kardinalitet",
@@ -1145,7 +1145,7 @@ const no: RichStory = {
       result: "CH kan ikke bevises i ZFC (forcing). Fields-medaljen 1966.",
     },
   ],
-  chFootnote: "Kontinuumshypotesen er uavhengig av ZFC: aksiomene avgjør den ganske enkelt ikke.",
+  chFootnote: "Kontinuumshypotesen er uavhengig av ZFC: Aksiomene avgjør den ganske enkelt ikke.",
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };
@@ -1174,7 +1174,7 @@ export default function CantorStory() {
       formulaLatex={"|\\mathbb{R}| \\;=\\; 2^{\\aleph_0} \\;>\\; \\aleph_0"}
       finalLabel={story.closingTitle}
     >
-      {/* Encounter — three approachable cards */}
+      {/* Encounter: three approachable cards */}
       <section className="mx-auto mb-32 max-w-5xl space-y-10">
         <div className="space-y-3 text-center">
           <Reveal>
@@ -1206,7 +1206,7 @@ export default function CantorStory() {
         </Reveal>
       </section>
 
-      {/* Section 01 — Counting ℕ */}
+      {/* Section 01: Counting ℕ */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec0!.pretitle}
@@ -1216,7 +1216,7 @@ export default function CantorStory() {
         />
       </section>
 
-      {/* Section 02 — Suppose you could list */}
+      {/* Section 02: Suppose you could list */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec1!.pretitle}
@@ -1226,7 +1226,7 @@ export default function CantorStory() {
         />
       </section>
 
-      {/* Section 03 — Diagonalise + INTERACTIVE 1 */}
+      {/* Section 03: Diagonalise + INTERACTIVE 1 */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec2!.pretitle}
@@ -1248,7 +1248,7 @@ export default function CantorStory() {
         </Reveal>
       </section>
 
-      {/* Section 04 — Reals are uncountable */}
+      {/* Section 04: Reals are uncountable */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec3!.pretitle}
@@ -1269,7 +1269,7 @@ export default function CantorStory() {
         </Reveal>
       </section>
 
-      {/* Section 05 — Continuum hypothesis */}
+      {/* Section 05: Continuum hypothesis */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec4!.pretitle}
@@ -1311,7 +1311,7 @@ export default function CantorStory() {
         </Reveal>
       </section>
 
-      {/* Section 06 — The hierarchy + INTERACTIVE 2 */}
+      {/* Section 06: The hierarchy + INTERACTIVE 2 */}
       <section className="mx-auto mb-32 max-w-5xl space-y-6">
         <StoryCard
           pretitle={sec5!.pretitle}

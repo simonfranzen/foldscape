@@ -1,6 +1,6 @@
 "use client";
 
-// Full-screen card list overlay — restores the v3 "list view" the user
+// Full-screen card list overlay. Restores the v3 "list view" the user
 // liked, now as an option rather than a default. Opens from the HUD
 // "List" button. Card carries formula + category accent + hover reveal of
 // "Enter →". No status chip: every topic is interactive, so the badge only
@@ -12,7 +12,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { TOPICS, type Topic, type TopicCategory } from "@/lib/topics";
 import { buildHaystack, normaliseQuery, scoreTopic } from "@/lib/cosmos/search";
 
-// Each category owns one signal hue — coral and teal added so chaos and
+// Each category owns one signal hue; coral and teal added so chaos and
 // analysis no longer share with paradox / geometry.
 const CATEGORY_ACCENT: Record<TopicCategory, string> = {
   logic: "text-signal-violet border-signal-violet/40",
@@ -50,7 +50,7 @@ export function TopicListOverlay({ open, onClose }: Props) {
   const [filter, setFilter] = useState<TopicCategory | "all">("all");
   const [query, setQuery] = useState("");
 
-  // Esc closes the overlay — matches CommandPalette behaviour so the two
+  // Esc closes the overlay, matches CommandPalette behaviour so the two
   // dismissal paths feel the same.
   useEffect(() => {
     if (!open) return;
@@ -96,7 +96,7 @@ export function TopicListOverlay({ open, onClose }: Props) {
       aria-label="Topic list"
       // z-[70] sits above both the global Nav header (z-50) and the cosmos
       // HUD search/list buttons (z-[55]) so the overlay reads as a clean
-      // modal — not a card grid with floating widgets pasted over it
+      // modal, not a card grid with floating widgets pasted over it
       // (user feedback: "chaos oben unter dem header").
       className="fixed inset-0 z-[70] overflow-y-auto bg-ink-950/95 backdrop-blur-md"
     >

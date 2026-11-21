@@ -26,7 +26,7 @@ const BLINKER: Cells = [
   [2, 0],
 ];
 
-// Gosper's glider gun — 36×9. Fits in the 40×28 grid.
+// Gosper's glider gun, 36×9. Fits in the 40×28 grid.
 const GOSPER_GUN: Cells = [
   [24, 0],
   [22, 1],

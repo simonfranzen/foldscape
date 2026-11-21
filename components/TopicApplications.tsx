@@ -5,7 +5,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { TOPIC_APPLICATIONS } from "@/lib/topicApplications";
 import type { TopicId } from "@/lib/topics";
 
-// "Where you meet it" panel — shared between StoryPageShell and the
+// "Where you meet it" panel, shared between StoryPageShell and the
 // custom-layout page (life) that bypasses it. Extracted so the inline icons
 // + locale-fallback logic live in exactly one place.
 
@@ -37,7 +37,7 @@ export function TopicApplications({ topicId, accent }: Props) {
               key={i}
               className="hairline flex gap-4 rounded-md border bg-ink-950/40 p-4 transition-colors hover:border-ink-300/40"
             >
-              {/* Filigree per-application icon via CSS mask — see the same
+              {/* Filigree per-application icon via CSS mask; see the same
                   rationale in StoryPageShell.tsx. */}
               <span
                 aria-hidden="true"

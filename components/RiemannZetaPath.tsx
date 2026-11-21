@@ -7,7 +7,7 @@ import { palette } from "@/lib/visual/palette";
 // Inline interactive for the Riemann story. Plots the image of ζ along the
 // critical line s = 1/2 + it for t ∈ [0, t_max], parameterised by a single
 // slider for the upper bound. The trace is the curve in the complex plane
-// — each loop through the origin marks a non-trivial zero. A small zero
+// and each loop through the origin marks a non-trivial zero. A small zero
 // counter ticks up as the user advances t.
 //
 // We compute ζ with the alternating-series (Dirichlet eta) representation
@@ -62,7 +62,7 @@ export function RiemannZetaPath({ caption, tLabel, zerosFoundLabel, hintLabel }:
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const dpr = useDpr();
 
-  // Compute the full trace once per render — cached per tMax value so
+  // Compute the full trace once per render, cached per tMax value so
   // dragging the slider stays smooth even at N=200, ~3500 samples.
   const trace = useMemo(() => {
     const steps = Math.max(400, Math.floor(tMax * 80));
@@ -75,7 +75,7 @@ export function RiemannZetaPath({ caption, tLabel, zerosFoundLabel, hintLabel }:
   }, [tMax]);
 
   // Count zeros: a zero is registered each time the trace passes near the
-  // origin — operationally, each minimum of |ζ| below a small threshold.
+  // origin; operationally, each minimum of |ζ| below a small threshold.
   const zerosFound = useMemo(() => {
     let count = 0;
     let prev = Infinity;
@@ -146,7 +146,7 @@ export function RiemannZetaPath({ caption, tLabel, zerosFoundLabel, hintLabel }:
       ctx.lineTo(ox.x, H);
       ctx.stroke();
 
-      // Trace — colour by parameter t so the curve has a sense of time.
+      // Trace: colour by parameter t so the curve has a sense of time.
       ctx.lineWidth = 1.4;
       for (let i = 1; i < trace.length; i++) {
         const p0 = toPx(trace[i - 1]);
@@ -160,7 +160,7 @@ export function RiemannZetaPath({ caption, tLabel, zerosFoundLabel, hintLabel }:
         ctx.stroke();
       }
 
-      // Origin dot — ivory to stand out against the amber trace.
+      // Origin dot: ivory to stand out against the amber trace.
       ctx.fillStyle = palette.canvas.ivory;
       ctx.beginPath();
       ctx.arc(ox.x, ox.y, 3, 0, Math.PI * 2);

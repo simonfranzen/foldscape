@@ -32,7 +32,7 @@ export function MandelMini({
       const targetW = Math.floor(canvas.clientWidth * dpr);
       const targetH = Math.floor(canvas.clientHeight * dpr);
       if (targetW < 4 || targetH < 4) {
-        // Layout not ready yet — wait a frame
+        // Layout not ready yet: wait a frame
         raf = requestAnimationFrame(render);
         return;
       }

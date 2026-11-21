@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDpr } from "@/lib/hooks/useDpr";
 
 // Live Aizawa attractor with drag-to-rotate and a slider for parameter `b`
-// (the most visually expressive dial — drives the basket-handled torus
+// (the most visually expressive dial: drives the basket-handled torus
 // shape). Small enough to sit inline in the story page.
 
 type Vec3 = [number, number, number];

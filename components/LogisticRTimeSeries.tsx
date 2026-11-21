@@ -6,7 +6,7 @@ import { palette } from "@/lib/visual/palette";
 
 // Inline live demo: a small r-slider that drives two synchronized canvases.
 // Left canvas: time series xₙ (last ~120 iterations after a burn-in). Right
-// canvas: cobweb plot — the parabola y = r·x·(1−x) with the staircase
+// canvas: cobweb plot: the parabola y = r·x·(1−x) with the staircase
 // y=x, drawn live as r moves. The animation auto-runs (rAF) so the user
 // sees the orbit evolve even without touching the slider. Under
 // prefers-reduced-motion the loop is skipped and a single static frame of
@@ -124,7 +124,7 @@ export function LogisticRTimeSeries({
 
     let raf = 0;
     let lastT = 0;
-    const STEP_MS = 60; // one iteration every 60 ms — slow enough to read
+    const STEP_MS = 60; // one iteration every 60 ms, slow enough to read
 
     const draw = (t: number) => {
       if (t - lastT > STEP_MS) {

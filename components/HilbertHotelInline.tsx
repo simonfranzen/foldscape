@@ -7,7 +7,7 @@ import { palette } from "@/lib/visual/palette";
 // Renders 12 visible rooms with a "…" tail and animates the four canonical
 // scenarios: one new guest (n → n+1), k new guests (n → n+k), ℵ₀ new
 // guests (n → 2n, odd rooms freed), and ℵ₀ buses × ℵ₀ guests (existing
-// guest n → 2ⁿ, bus k passenger m → pₖᵐ — the k-th odd prime raised to m).
+// guest n → 2ⁿ, bus k passenger m → pₖᵐ, the k-th odd prime raised to m).
 // The animation is purely visual: after a short staged delay the rooms
 // reflect the new mapping.
 
@@ -25,7 +25,7 @@ interface Props {
   newGuestLabel: string;
   existingGuestLabel: string;
   busGuestLabel: string;
-  // Shown only in the buses scenario — explains why some rooms stay empty.
+  // Shown only in the buses scenario. Explains why some rooms stay empty.
   gapNoteLabel: string;
 }
 
@@ -263,7 +263,7 @@ export function HilbertHotelInline({
                     ? "border-signal-rose/60 bg-signal-rose/10"
                     : g
                       ? "border-ink-300/30 bg-ink-900/80"
-                      : "border-ink-700/40 bg-ink-900/30"; // empty room — neutral grey, not a colour that means something
+                      : "border-ink-700/40 bg-ink-900/30"; // empty room: neutral grey, not a colour that means something
             const title = g
               ? g.kind === "existing"
                 ? `${existingGuestLabel} #${g.origin}`
@@ -368,7 +368,7 @@ export function HilbertHotelInline({
         <p className="text-[11px] leading-relaxed text-ink-400">{gapNoteLabel}</p>
       )}
 
-      {/* Legend — scenario-aware. The buses case colour-codes per bus and has
+      {/* Legend, scenario-aware. The buses case colour-codes per bus and has
           no "new" guests; the other scenarios have new guests and no buses.
           Showing all swatches at once would always mislabel half the tiles. */}
       <div className="flex flex-wrap items-center gap-4 font-mono text-[10px] text-ink-300">

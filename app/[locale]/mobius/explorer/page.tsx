@@ -141,7 +141,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     hudCut: (val, revealed) => `Corte en v = ±${val}${revealed ? "  ·  hueco abierto" : ""}`,
     hudCentreCut: "Corte por la línea central",
     dragHint: (autoSpin, mode) =>
-      `arrastra para rotar · auto-rotación ${autoSpin ? "activa" : "inactiva"} · ${mode}`,
+      `arrastra para rotar · autorrotación ${autoSpin ? "activa" : "inactiva"} · ${mode}`,
     on: "act.",
     off: "inact.",
     surface: "Superficie",
@@ -149,8 +149,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     kleinBottle: "Botella de Klein",
     surfaceNoteMobius: "Möbius y Listing, 1858. χ = 0, una cara, un borde.",
     surfaceNoteKlein:
-      "Felix Klein, 1882. En 4D es suave y cerrada; en 3D debe atravesarse a sí misma. La auto-rotación revela la autointersección.",
-    autoSpin: "Auto-rotación",
+      "Felix Klein, 1882. En 4D es suave y cerrada; en 3D debe atravesarse a sí misma. La autorrotación revela la autointersección.",
+    autoSpin: "Autorrotación",
     speed: "Velocidad",
     speedUnit: "rad/s",
     width: "Anchura w",
@@ -279,7 +279,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     hudCut: (val, revealed) => `Corte em v = ±${val}${revealed ? "  ·  fenda aberta" : ""}`,
     hudCentreCut: "Corte ao longo da linha central",
     dragHint: (autoSpin, mode) =>
-      `arraste para girar · rotação auto ${autoSpin ? "on" : "off"} · ${mode}`,
+      `arrasta para rodar · rotação auto ${autoSpin ? "on" : "off"} · ${mode}`,
     on: "on",
     off: "off",
     surface: "Superfície",
@@ -287,7 +287,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     kleinBottle: "Garrafa de Klein",
     surfaceNoteMobius: "Möbius e Listing, 1858. χ = 0, um lado, uma aresta.",
     surfaceNoteKlein:
-      "Felix Klein, 1882. Em 4D é lisa e fechada; em 3D precisa atravessar-se a si mesma. A rotação auto revela a autointerseção.",
+      "Felix Klein, 1882. Em 4D é lisa e fechada; em 3D precisa de se atravessar a si mesma. A rotação auto revela a autointerseção.",
     autoSpin: "Rotação auto",
     speed: "Velocidade",
     speedUnit: "rad/s",
@@ -437,7 +437,7 @@ interface ProjectedTri {
   // nothing about one-sidedness.
   hue: number; // 0 = red end, 1 = blue end
   // Whether the camera looks at the "front" of the surface normal or the
-  // back. We keep both — that's the whole point of a one-sided surface.
+  // back. We keep both: that's the whole point of a one-sided surface.
   facingFront: boolean;
   // Cut group: 0 = uncut (or the single piece left by the centre-line cut),
   // 1 = inner band, 2 = outer band. Only used for colouring.
@@ -527,7 +527,7 @@ function mobiusPoint(u: number, v: number, k: number, R: number): Vec3 {
   return [x, y, z];
 }
 
-// Klein bottle — Lawson / "figure-8" style 3-D immersion. Uses the standard
+// Klein bottle: Lawson / "figure-8" style 3-D immersion. Uses the standard
 // parametrisation that Wikipedia lists as the "3-D pinched torus" form:
 //   x = (a + cos(u/2) sin v − sin(u/2) sin 2v) cos u
 //   y = (a + cos(u/2) sin v − sin(u/2) sin 2v) sin u
@@ -730,7 +730,7 @@ export default function MobiusExplorer() {
         }
       }
 
-      // Painter's algorithm — far first.
+      // Painter's algorithm: far first.
       tris.sort((p, q) => q.z - p.z);
 
       // Set canvas-space transform once.
@@ -763,7 +763,7 @@ export default function MobiusExplorer() {
         ctx.stroke();
       }
 
-      // HUD overlay — title-like badge so the visitor knows what they look
+      // HUD overlay: title-like badge so the visitor knows what they look
       // at (Möbius vs Klein).
       ctx.fillStyle = "rgba(167,139,250,0.85)";
       ctx.font = `${12}px ui-monospace, monospace`;

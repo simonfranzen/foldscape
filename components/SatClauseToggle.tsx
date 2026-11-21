@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 // Inline interactive for the SAT story page. A fixed little 3-variable formula
 // in conjunctive normal form; the reader toggles each variable true/false and
 // watches the clauses turn green. The verdict line reports satisfaction live.
-// Four of the eight assignments satisfy it — findable by hand, the whole point
+// Four of the eight assignments satisfy it: findable by hand, the whole point
 // of "easy to verify".
 
 type Lit = { v: number; neg: boolean };

@@ -8,7 +8,7 @@ import { TOPICS } from "@/lib/topics";
 
 // The nav resolves the current topic from the URL prefix (e.g. /mandelbrot/...).
 // If that topic has declared sub-sections, they render as a sub-tab strip and
-// stay visible at the top — interactive views are never more than one click
+// stay visible at the top: interactive views are never more than one click
 // away.
 
 export function Nav() {
@@ -24,7 +24,7 @@ export function Nav() {
         <Link
           href="/"
           className="group flex min-w-0 shrink-0 items-center"
-          aria-label="Foldscape — home"
+          aria-label="Foldscape: home"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -40,7 +40,7 @@ export function Nav() {
         {sections.length > 0 ? (
           <nav className="hidden items-center gap-2 md:flex">
             {/* Back-to-atlas link sits *before* the section tabs on every
-                topic page so the back path is always visible — the body
+                topic page so the back path is always visible; the body
                 of the story used to carry a "Back to atlas" button which
                 made the hero feel cluttered (user feedback). */}
             <Link

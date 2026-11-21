@@ -1,6 +1,6 @@
 // Where each curiosity actually lives in the world: industry uses, natural
 // phenomena, everyday-life appearances, current research. Three to five
-// concrete entries per topic — accurate, no marketing claims.
+// concrete entries per topic: accurate, no marketing claims.
 
 import type { TopicId } from "./topics";
 import type { Locale } from "./i18n/types";
@@ -30,7 +30,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Natural analogues",
       description:
-        "Coastlines, mountain ridges, fern leaves and broccoli florets exhibit the same self-similar boundary structure — fractal geometry was Mandelbrot's whole point.",
+        "Coastlines, mountain ridges, fern leaves and broccoli florets exhibit the same self-similar boundary structure: fractal geometry was Mandelbrot's whole point.",
     },
   ],
   life: [
@@ -69,7 +69,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Hardware courses",
       description:
-        "The nand2tetris course builds a complete computer starting from a single NAND chip — used at >100 universities.",
+        "The nand2tetris course builds a complete computer starting from a single NAND chip, used at >100 universities.",
     },
     {
       domain: "Embedded logic",
@@ -81,7 +81,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Combinator interpreters",
       description:
-        "Functional-programming compilers (e.g. Lazy K) compile lambda-calculus programs into pure combinator expressions — Iota-style — as part of code generation.",
+        "Functional-programming compilers (e.g. Lazy K) compile lambda-calculus programs into pure combinator expressions (Iota-style) as part of code generation.",
     },
     {
       domain: "Esoteric languages",
@@ -103,7 +103,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Education in formal computing",
       description:
-        "Cited in every modern intro to cellular automata as the simplest known universal system — a tweet-sized Turing machine.",
+        "Cited in every modern intro to cellular automata as the simplest known universal system: a tweet-sized Turing machine.",
     },
     {
       domain: "Procedural texture noise",
@@ -120,7 +120,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Epidemiology",
       description:
-        "Bounded epidemic growth (with carrying capacity = susceptible pool) follows logistic curves — the COVID-19 cumulative-case curves were a textbook example.",
+        "Bounded epidemic growth (with carrying capacity = susceptible pool) follows logistic curves; the COVID-19 cumulative-case curves were a textbook example.",
     },
     {
       domain: "Machine learning",
@@ -142,7 +142,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Weather forecasting",
       description:
-        "Operational forecasters use ensemble methods because the atmosphere shares Lorenz's sensitivity to initial conditions — predictability collapses after about 14 days.",
+        "Operational forecasters use ensemble methods because the atmosphere shares Lorenz's sensitivity to initial conditions: predictability collapses after about 14 days.",
     },
     {
       domain: "Climate modelling",
@@ -157,7 +157,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Secure communication",
       description:
-        "Chaos-based encryption schemes have used Lorenz-style synchronisation to hide signals — niche but real (Cuomo & Oppenheim, 1993).",
+        "Chaos-based encryption schemes have used Lorenz-style synchronisation to hide signals: niche but real (Cuomo & Oppenheim, 1993).",
     },
   ],
   fourier: [
@@ -169,7 +169,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "JPEG and HEIC",
       description:
-        "Each 8×8 pixel block of every JPEG image is stored as discrete cosine transform coefficients — that's why JPEG ringing has horizontal/vertical patterns.",
+        "Each 8×8 pixel block of every JPEG image is stored as discrete cosine transform coefficients; that's why JPEG ringing has horizontal/vertical patterns.",
     },
     {
       domain: "MRI scanners",
@@ -179,7 +179,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Wi-Fi, 5G, DSL",
       description:
-        "Modern wireless and wired transmission uses OFDM, which packs data onto thousands of carefully spaced sine carriers — pure Fourier engineering.",
+        "Modern wireless and wired transmission uses OFDM, which packs data onto thousands of carefully spaced sine carriers: pure Fourier engineering.",
     },
     {
       domain: "Speech & ML",
@@ -201,19 +201,19 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "AC circuit analysis",
       description:
-        "Electrical engineers model AC voltages/currents as complex exponentials — impedance arithmetic via phasors is direct application of Euler's formula.",
+        "Electrical engineers model AC voltages/currents as complex exponentials; impedance arithmetic via phasors is direct application of Euler's formula.",
     },
     {
       domain: "Control theory",
       description:
-        "Stability of feedback systems is read from the location of poles in the complex plane — Euler's formula is the bridge between time and frequency.",
+        "Stability of feedback systems is read from the location of poles in the complex plane; Euler's formula is the bridge between time and frequency.",
     },
   ],
   banach: [
     {
       domain: "Set theory teaching",
       description:
-        "Banach–Tarski is the textbook example of why the Axiom of Choice is controversial — used in every graduate-level real analysis course.",
+        "Banach-Tarski is the textbook example of why the Axiom of Choice is controversial, used in every graduate-level real analysis course.",
     },
     {
       domain: "Foundations of mathematics",
@@ -252,7 +252,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Real-time graphics",
       description:
-        "Wang tilesets are used to pack non-repeating textures (grass, brick, sand) into tiny texture atlases — important on memory-constrained devices like mobile GPUs.",
+        "Wang tilesets are used to pack non-repeating textures (grass, brick, sand) into tiny texture atlases, important on memory-constrained devices like mobile GPUs.",
     },
     {
       domain: "Procedural level design",
@@ -262,7 +262,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Materials & quasicrystals",
       description:
-        "Wang tile theory partially overlaps with quasicrystal mathematics — both produce aperiodic infinite arrangements.",
+        "Wang tile theory partially overlaps with quasicrystal mathematics: both produce aperiodic infinite arrangements.",
     },
   ],
   collatz: [
@@ -308,7 +308,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Cardiac arrhythmias",
       description:
-        "Spiral wave patterns very similar to BZR spirals are observed on the heart's surface during fibrillation — central to defibrillator design and research.",
+        "Spiral wave patterns very similar to BZR spirals are observed on the heart's surface during fibrillation, central to defibrillator design and research.",
     },
     {
       domain: "Neuroscience",
@@ -318,7 +318,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Chemistry education",
       description:
-        "BZR is the most striking 'living chemistry' demo a high-school chemistry teacher can show — visible oscillation in a flask.",
+        "BZR is the most striking 'living chemistry' demo a high-school chemistry teacher can show: visible oscillation in a flask.",
     },
     {
       domain: "Nobel-winning theory",
@@ -335,7 +335,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Plant phyllotaxis",
       description:
-        "Spiral arrangements of sunflower seeds, pinecones and pineapple scales emerge from reaction-diffusion + golden-angle phyllotaxis — Turing chemistry on a growing surface.",
+        "Spiral arrangements of sunflower seeds, pinecones and pineapple scales emerge from reaction-diffusion + golden-angle phyllotaxis: Turing chemistry on a growing surface.",
     },
     {
       domain: "Generative art & graphics",
@@ -352,7 +352,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Fractal antennas",
       description:
-        "Sierpiński gasket antennas are commercial products — cell phones, Wi-Fi routers and GPS devices use multi-band fractal patches that resonate at many frequencies in a small footprint.",
+        "Sierpiński gasket antennas are commercial products: cell phones, Wi-Fi routers and GPS devices use multi-band fractal patches that resonate at many frequencies in a small footprint.",
     },
     {
       domain: "Heat exchangers",
@@ -362,7 +362,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Compression & graphics",
       description:
-        "Iterated Function Systems (Sierpiński-style IFS) underlie fractal image compression algorithms — still used in niche aerial-imagery encoders.",
+        "Iterated Function Systems (Sierpiński-style IFS) underlie fractal image compression algorithms, still used in niche aerial-imagery encoders.",
     },
     {
       domain: "Networking",
@@ -374,7 +374,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Bioinformatics",
       description:
-        "Chaos Game Representation (CGR) is a standard way to visualise DNA sequences — each nucleotide steers a point toward one of four corners of a square; species cluster into recognisable fractal signatures.",
+        "Chaos Game Representation (CGR) is a standard way to visualise DNA sequences: each nucleotide steers a point toward one of four corners of a square; species cluster into recognisable fractal signatures.",
     },
     {
       domain: "Fractal compression",
@@ -391,7 +391,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Quasicrystals",
       description:
-        "Dan Shechtman's 1982 discovery of metallic quasicrystals (Nobel 2011) was understood through Penrose tilings — the same five-fold mathematics governs both.",
+        "Dan Shechtman's 1982 discovery of metallic quasicrystals (Nobel 2011) was understood through Penrose tilings: the same five-fold mathematics governs both.",
     },
     {
       domain: "Architecture",
@@ -413,12 +413,12 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Granular packing",
       description:
-        "How sand, gravel and pharmaceutical powders fill containers is modelled with Apollonian-style sphere packings — important in concrete, drug tablets and powder metallurgy.",
+        "How sand, gravel and pharmaceutical powders fill containers is modelled with Apollonian-style sphere packings, important in concrete, drug tablets and powder metallurgy.",
     },
     {
       domain: "Number theory",
       description:
-        "Integer Apollonian packings are studied by analytic number theorists — papers by Sarnak, Bourgain & Kontorovich produced new results on prime curvatures.",
+        "Integer Apollonian packings are studied by analytic number theorists: papers by Sarnak, Bourgain & Kontorovich produced new results on prime curvatures.",
     },
     {
       domain: "Foam & emulsion physics",
@@ -435,12 +435,12 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Plant phyllotaxis",
       description:
-        "Sunflower seed spirals, pinecone scales and the leaf arrangements of most plants converge to the golden angle — verified across thousands of species.",
+        "Sunflower seed spirals, pinecone scales and the leaf arrangements of most plants converge to the golden angle, verified across thousands of species.",
     },
     {
       domain: "Continued fractions",
       description:
-        "φ has the simplest continued fraction expansion [1;1,1,…], making it the 'most irrational' number — a key concept for KAM theory in classical mechanics.",
+        "φ has the simplest continued fraction expansion [1;1,1,…], making it the 'most irrational' number, a key concept for KAM theory in classical mechanics.",
     },
     {
       domain: "Quasicrystals & Penrose",
@@ -455,14 +455,14 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Honest skepticism",
       description:
-        "Claims that φ appears in the Parthenon, Mona Lisa, the nautilus shell or human body proportions are largely myths — debunked by George Markowsky (1992) and others.",
+        "Claims that φ appears in the Parthenon, Mona Lisa, the nautilus shell or human body proportions are largely myths, debunked by George Markowsky (1992) and others.",
     },
   ],
   buffon: [
     {
       domain: "Monte Carlo integration",
       description:
-        "Buffon's needle is the historical seed of Monte Carlo methods — now used everywhere from financial pricing (Black–Scholes) to particle-physics simulation (Geant4) and rendering (path tracing).",
+        "Buffon's needle is the historical seed of Monte Carlo methods, now used everywhere from financial pricing (Black-Scholes) to particle-physics simulation (Geant4) and rendering (path tracing).",
     },
     {
       domain: "Physics simulation",
@@ -494,7 +494,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Popular science communication",
       description:
-        "TED-Ed video, Vsauce, PBS Infinite Series — the most widely shared modern explanation of infinity.",
+        "TED-Ed video, Vsauce, PBS Infinite Series: the most widely shared modern explanation of infinity.",
     },
   ],
   gabrielshorn: [
@@ -506,7 +506,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Philosophy of mathematics",
       description:
-        "Cited in debates over the meaning of geometric paradoxes and the limits of physical intuition — a foundational thought experiment.",
+        "Cited in debates over the meaning of geometric paradoxes and the limits of physical intuition, a foundational thought experiment.",
     },
     {
       domain: "Microfluidics",
@@ -518,7 +518,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Computability theory",
       description:
-        "Cantor's diagonal directly produces Turing's halting-problem proof and Gödel's incompleteness theorems — the cornerstones of theoretical computer science.",
+        "Cantor's diagonal directly produces Turing's halting-problem proof and Gödel's incompleteness theorems, the cornerstones of theoretical computer science.",
     },
     {
       domain: "Programming language theory",
@@ -528,7 +528,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Cryptography & complexity",
       description:
-        "Diagonalisation arguments underlie modern complexity-theory results — separations between P, NP, EXP.",
+        "Diagonalisation arguments underlie modern complexity-theory results: separations between P, NP, EXP.",
     },
     {
       domain: "Philosophy of mathematics",
@@ -540,7 +540,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Visual effects in films",
       description:
-        "Batman Returns (1992 bat swarm), The Lion King (1994 wildebeest stampede), and countless modern films use Boids — usually via Massive or Houdini.",
+        "Batman Returns (1992 bat swarm), The Lion King (1994 wildebeest stampede), and countless modern films use Boids, usually via Massive or Houdini.",
     },
     {
       domain: "Drone swarms",
@@ -550,7 +550,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Crowd simulation",
       description:
-        "Architecture firms simulate stadium evacuations and shopping-mall flow with Boids-style agents — used in stadium planning since the 2000s.",
+        "Architecture firms simulate stadium evacuations and shopping-mall flow with Boids-style agents, used in stadium planning since the 2000s.",
     },
     {
       domain: "Robotics swarms",
@@ -584,12 +584,12 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Electrochemistry",
       description:
-        "Zinc, copper and other metal deposits grown in electrolytic cells form DLA-type dendrites — directly relevant to plating, battery design (lithium dendrite formation) and corrosion.",
+        "Zinc, copper and other metal deposits grown in electrolytic cells form DLA-type dendrites, directly relevant to plating, battery design (lithium dendrite formation) and corrosion.",
     },
     {
       domain: "Crystal growth",
       description:
-        "Snowflake formation, frost on windows, mineral dendrites in rock — all exhibit DLA scaling laws.",
+        "Snowflake formation, frost on windows, mineral dendrites in rock: all exhibit DLA scaling laws.",
     },
     {
       domain: "Biology",
@@ -616,53 +616,53 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Education",
       description:
-        "A favourite introductory example for cellular automata courses — the 'highway' phase is the most accessible emergent phenomenon in computer science.",
+        "A favourite introductory example for cellular automata courses: the 'highway' phase is the most accessible emergent phenomenon in computer science.",
     },
   ],
   pascalmod: [
     {
       domain: "Number theory",
       description:
-        "Lucas's theorem (1878) directly powers efficient algorithms for binomial coefficients modulo prime — used in cryptography, combinatorics on words, and competitive programming.",
+        "Lucas's theorem (1878) directly powers efficient algorithms for binomial coefficients modulo prime, used in cryptography, combinatorics on words, and competitive programming.",
     },
     {
       domain: "Coding theory",
       description:
-        "Reed–Muller and BCH error-correcting codes rely on binomial-coefficient-mod-p machinery — they're in QR codes, deep-space probes (Mariner 9, Voyager) and DVB-T digital TV.",
+        "Reed-Muller and BCH error-correcting codes rely on binomial-coefficient-mod-p machinery; they're in QR codes, deep-space probes (Mariner 9, Voyager) and DVB-T digital TV.",
     },
     {
       domain: "Visual art",
       description:
-        "Pascal mod 2 is the algebraic origin of the Sierpiński triangle — sold as posters, woven into rugs, used as gallery installations.",
+        "Pascal mod 2 is the algebraic origin of the Sierpiński triangle, sold as posters, woven into rugs, used as gallery installations.",
     },
   ],
   sternbrocot: [
     {
       domain: "Computer music & tuning",
       description:
-        "Microtonal composers use Stern–Brocot to find equal-tempered approximations to just-intonation ratios — central to xenharmonic music.",
+        "Microtonal composers use Stern-Brocot to find equal-tempered approximations to just-intonation ratios, central to xenharmonic music.",
     },
     {
       domain: "Robotics gear design",
       description:
-        "Best-rational-approximation searches for gear ratios traverse the Stern–Brocot tree to find efficient mechanical reductions.",
+        "Best-rational-approximation searches for gear ratios traverse the Stern-Brocot tree to find efficient mechanical reductions.",
     },
     {
       domain: "Calendar systems",
       description:
-        "Continued-fraction-based leap-year rules (Persian calendar, proposed Gregorian fixes) are derived from Stern–Brocot mediants.",
+        "Continued-fraction-based leap-year rules (Persian calendar, proposed Gregorian fixes) are derived from Stern-Brocot mediants.",
     },
     {
       domain: "Image rendering",
       description:
-        "Sub-pixel sampling and modern font rasterisation use Stern–Brocot-style mediants to choose pixel coverage ratios.",
+        "Sub-pixel sampling and modern font rasterisation use Stern-Brocot-style mediants to choose pixel coverage ratios.",
     },
   ],
   ulam: [
     {
       domain: "Pure number theory",
       description:
-        "Visualising primes via Ulam-style spirals continues to inspire new conjectures about polynomial prime densities (Hardy–Littlewood, Sato–Tate).",
+        "Visualising primes via Ulam-style spirals continues to inspire new conjectures about polynomial prime densities (Hardy-Littlewood, Sato-Tate).",
     },
     {
       domain: "Education",
@@ -679,7 +679,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Audio engineering",
       description:
-        "Cardioid microphones (the kind every podcaster and broadcaster uses) get their name from the cardioid pickup pattern — they're sensitive in front and dead behind.",
+        "Cardioid microphones (the kind every podcaster and broadcaster uses) get their name from the cardioid pickup pattern: they're sensitive in front and dead behind.",
     },
     {
       domain: "Antenna design",
@@ -701,7 +701,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Statistics teaching",
       description:
-        "The Galton board is the canonical demonstration of the central limit theorem — present in nearly every science museum (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
+        "The Galton board is the canonical demonstration of the central limit theorem, present in nearly every science museum (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
     },
     {
       domain: "Quincunx in genetics",
@@ -723,7 +723,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Chaos demonstrations",
       description:
-        "The 'three magnet pendulum' desk toy is the most popular physical demonstration of fractal basin boundaries — sold by ThinkGeek, Nikola Labs and many science gift shops.",
+        "The 'three magnet pendulum' desk toy is the most popular physical demonstration of fractal basin boundaries, sold by ThinkGeek, Nikola Labs and many science gift shops.",
     },
     {
       domain: "Magnetic levitation research",
@@ -745,12 +745,12 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Computer science",
       description:
-        "Tarski's undefinability of truth, Turing's halting problem and Rice's theorem are all direct descendants — used in every undergraduate logic and computability course.",
+        "Tarski's undefinability of truth, Turing's halting problem and Rice's theorem are all direct descendants, used in every undergraduate logic and computability course.",
     },
     {
       domain: "Philosophy of mind",
       description:
-        "Penrose's argument that human minds are not purely algorithmic (The Emperor's New Mind, 1989) leans heavily on Gödel — controversial but influential.",
+        "Penrose's argument that human minds are not purely algorithmic (The Emperor's New Mind, 1989) leans heavily on Gödel (controversial but influential).",
     },
     {
       domain: "Verified software",
@@ -762,7 +762,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Compilers & static analysis",
       description:
-        "Modern static analysers (Coverity, Infer, Rust's borrow checker) have to give up perfect precision because non-trivial program properties are undecidable — direct halting-problem consequence (Rice's theorem).",
+        "Modern static analysers (Coverity, Infer, Rust's borrow checker) have to give up perfect precision because non-trivial program properties are undecidable: direct halting-problem consequence (Rice's theorem).",
     },
     {
       domain: "Antivirus",
@@ -772,7 +772,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Compute clouds",
       description:
-        "Cloud autoscalers can never guarantee 'this user job will halt' — they enforce timeouts because deciding halting is impossible.",
+        "Cloud autoscalers can never guarantee 'this user job will halt'; they enforce timeouts because deciding halting is impossible.",
     },
     {
       domain: "Education",
@@ -784,7 +784,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Cryptography",
       description:
-        "If P = NP, RSA, AES, all blockchain and TLS-protected traffic would be broken overnight — every modern digital secret depends on P ≠ NP being effectively true.",
+        "If P = NP, RSA, AES, all blockchain and TLS-protected traffic would be broken overnight: every modern digital secret depends on P ≠ NP being effectively true.",
     },
     {
       domain: "Optimisation",
@@ -799,7 +799,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Bioinformatics",
       description:
-        "Protein folding, genome assembly and phylogenetic tree reconstruction are all NP-hard — driving the field to invent approximation algorithms and AI methods (AlphaFold).",
+        "Protein folding, genome assembly and phylogenetic tree reconstruction are all NP-hard, driving the field to invent approximation algorithms and AI methods (AlphaFold).",
     },
     {
       domain: "Open prize",
@@ -811,7 +811,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "TLS / HTTPS",
       description:
-        "Every padlock icon in your browser involves either RSA or its elliptic-curve cousin (ECDSA) for the initial handshake — billions of times every second.",
+        "Every padlock icon in your browser involves either RSA or its elliptic-curve cousin (ECDSA) for the initial handshake, billions of times every second.",
     },
     {
       domain: "Digital signatures",
@@ -838,7 +838,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Industrial conveyor belts",
       description:
-        "Möbius-strip drive belts wear evenly on both 'sides' (there is only one!) — used in old printing presses, modern recording tape and some VHS tape systems.",
+        "Möbius-strip drive belts wear evenly on both 'sides' (there is only one!), used in old printing presses, modern recording tape and some VHS tape systems.",
     },
     {
       domain: "Mechanical engineering",
@@ -848,7 +848,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Topology research",
       description:
-        "The Möbius strip is the simplest non-orientable surface — entry point to a vast field that classifies all surfaces, used in cosmology and string theory.",
+        "The Möbius strip is the simplest non-orientable surface, entry point to a vast field that classifies all surfaces, used in cosmology and string theory.",
     },
     {
       domain: "Art & architecture",
@@ -870,7 +870,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Topology of data",
       description:
-        "Persistent homology pipelines use Euler characteristics to summarise the shape of high-dimensional point clouds — applied to genomics, sensor networks and cosmology.",
+        "Persistent homology pipelines use Euler characteristics to summarise the shape of high-dimensional point clouds, applied to genomics, sensor networks and cosmology.",
     },
     {
       domain: "Architecture",
@@ -892,7 +892,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Birth of graph theory",
       description:
-        "Königsberg launched the entire field — graph theory now underlies Google's PageRank, social-network analysis, chip layout and route planning.",
+        "Königsberg launched the entire field: graph theory now underlies Google's PageRank, social-network analysis, chip layout and route planning.",
     },
     {
       domain: "DNA sequencing",
@@ -902,7 +902,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Route optimisation",
       description:
-        "Postal workers, garbage trucks and snowploughs solve the Chinese Postman Problem — a direct descendant of the Königsberg bridges.",
+        "Postal workers, garbage trucks and snowploughs solve the Chinese Postman Problem, a direct descendant of the Königsberg bridges.",
     },
     {
       domain: "Tourism",
@@ -919,7 +919,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Mobile networks",
       description:
-        "Frequency allocation between cell towers maps to graph colouring — the four-colour theorem is the limit case for some planar layouts.",
+        "Frequency allocation between cell towers maps to graph colouring; the four-colour theorem is the limit case for some planar layouts.",
     },
     {
       domain: "Scheduling",
@@ -929,7 +929,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Computer-verified mathematics",
       description:
-        "Together with the Kepler conjecture, the four-colour theorem was a milestone in computer-assisted proof — proof-assistant culture (Coq, Lean) trace their legitimacy back to it.",
+        "Together with the Kepler conjecture, the four-colour theorem was a milestone in computer-assisted proof: proof-assistant culture (Coq, Lean) trace their legitimacy back to it.",
     },
   ],
   smallworld: [
@@ -946,7 +946,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Brain research",
       description:
-        "fMRI studies show that the human connectome is a small-world network — small-world coefficient is now a standard biomarker in Alzheimer's and schizophrenia research.",
+        "fMRI studies show that the human connectome is a small-world network; small-world coefficient is now a standard biomarker in Alzheimer's and schizophrenia research.",
     },
     {
       domain: "Internet routing",
@@ -963,7 +963,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Deep learning",
       description:
-        "Every modern neural network — image classifier, language model, recommender — is trained by backpropagation. PyTorch and JAX implement it as their differentiation core (autograd).",
+        "Every modern neural network (image classifier, language model, recommender) is trained by backpropagation. PyTorch and JAX implement it as their differentiation core (autograd).",
     },
     {
       domain: "Computer vision",
@@ -983,7 +983,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Inverse problems in science",
       description:
-        "Physicists invert experiments by setting up the forward model in PyTorch/JAX and backpropagating through it — used in protein design (AlphaFold), differentiable rendering, and gradient-based experimental design.",
+        "Physicists invert experiments by setting up the forward model in PyTorch/JAX and backpropagating through it, used in protein design (AlphaFold), differentiable rendering, and gradient-based experimental design.",
     },
   ],
   diffusion: [
@@ -1000,7 +1000,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Drug & protein design",
       description:
-        "RFdiffusion (Baker lab) and Chroma generate novel protein backbones by denoising 3D coordinates instead of pixels — published candidates have been synthesised and shown to fold.",
+        "RFdiffusion (Baker lab) and Chroma generate novel protein backbones by denoising 3D coordinates instead of pixels; published candidates have been synthesised and shown to fold.",
     },
     {
       domain: "Audio & speech",
@@ -1010,7 +1010,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Physics & thermodynamics",
       description:
-        "The forward process is literally Langevin dynamics — the noise schedule mirrors a system relaxing toward thermal equilibrium. Sohl-Dickstein's original 2015 paper was framed as non-equilibrium thermodynamics.",
+        "The forward process is literally Langevin dynamics: the noise schedule mirrors a system relaxing toward thermal equilibrium. Sohl-Dickstein's original 2015 paper was framed as non-equilibrium thermodynamics.",
     },
   ],
   riemann: [
@@ -1027,7 +1027,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Quantum chaos",
       description:
-        "The statistics of zeta-zero spacings match the eigenvalue statistics of random Hermitian matrices — the same matrices that model heavy-nucleus energy levels. The Montgomery-Dyson conjecture (1972) is one of the most surprising links in mathematics.",
+        "The statistics of zeta-zero spacings match the eigenvalue statistics of random Hermitian matrices, the same matrices that model heavy-nucleus energy levels. The Montgomery-Dyson conjecture (1972) is one of the most surprising links in mathematics.",
     },
     {
       domain: "Computer-verified numerics",
@@ -1037,7 +1037,7 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Pop science & open-problem prestige",
       description:
-        "Riemann is the most famous unsolved problem outside Fermat — a Clay Millennium Prize ($1M), recurring fictional appearances (A Beautiful Mind, The Music of the Primes), and a steady stream of disproofs that don't survive peer review.",
+        "Riemann is the most famous unsolved problem outside Fermat: a Clay Millennium Prize ($1M), recurring fictional appearances (A Beautiful Mind, The Music of the Primes), and a steady stream of disproofs that don't survive peer review.",
     },
   ],
   sat: [
@@ -1049,12 +1049,12 @@ const en: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Software verification & program analysis",
       description:
-        "Microsoft's Z3 — an SMT solver built on a SAT core — verifies device drivers, finds security bugs, and checks that compiler optimisations preserve meaning. SAT/SMT underpins symbolic execution and much of modern static analysis.",
+        "Microsoft's Z3 (an SMT solver built on a SAT core) verifies device drivers, finds security bugs, and checks that compiler optimisations preserve meaning. SAT/SMT underpins symbolic execution and much of modern static analysis.",
     },
     {
       domain: "Planning, scheduling & configuration",
       description:
-        "AI planners, timetabling, and product configurators (which car options are mutually compatible?) encode their constraints as Boolean clauses and hand them to a SAT solver — often faster than a bespoke algorithm.",
+        "AI planners, timetabling, and product configurators (which car options are mutually compatible?) encode their constraints as Boolean clauses and hand them to a SAT solver, often faster than a bespoke algorithm.",
     },
     {
       domain: "Cryptanalysis",
@@ -1084,7 +1084,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Vorbilder in der Natur",
       description:
-        "Küstenlinien, Bergkämme, Farnblätter und Brokkoli-Röschen zeigen dieselbe selbstähnliche Randstruktur — genau darum ging es Mandelbrot bei der fraktalen Geometrie.",
+        "Küstenlinien, Bergkämme, Farnblätter und Brokkoli-Röschen zeigen dieselbe selbstähnliche Randstruktur. Genau darum ging es Mandelbrot bei der fraktalen Geometrie.",
     },
   ],
   life: [
@@ -1123,7 +1123,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Hardware-Kurse",
       description:
-        "Der Kurs nand2tetris baut einen kompletten Computer ausgehend von einem einzigen NAND-Chip — eingesetzt an über 100 Universitäten.",
+        "Der Kurs nand2tetris baut einen kompletten Computer ausgehend von einem einzigen NAND-Chip, eingesetzt an über 100 Universitäten.",
     },
     {
       domain: "Embedded-Logik",
@@ -1135,7 +1135,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Kombinator-Interpreter",
       description:
-        "Compiler funktionaler Programmiersprachen (z.B. Lazy K) übersetzen Lambda-Kalkül-Programme bei der Codegenerierung in reine Kombinator-Ausdrücke — im Iota-Stil.",
+        "Compiler funktionaler Programmiersprachen (z.B. Lazy K) übersetzen Lambda-Kalkül-Programme bei der Codegenerierung in reine Kombinator-Ausdrücke im Iota-Stil.",
     },
     {
       domain: "Esoterische Sprachen",
@@ -1145,7 +1145,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Lambda-Kalkül-Lehre",
       description:
-        "Universitäten nutzen Iota, um zu zeigen, dass ein einziger Kombinator genügt — und trennen so Syntax von Berechnungsmächtigkeit.",
+        "Universitäten nutzen Iota, um zu zeigen, dass ein einziger Kombinator genügt, und trennen so Syntax von Berechnungsmächtigkeit.",
     },
   ],
   rule110: [
@@ -1157,7 +1157,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Lehre der formalen Berechenbarkeit",
       description:
-        "In jeder modernen Einführung zu zellulären Automaten als einfachstes bekanntes universelles System zitiert — eine Turing-Maschine in Tweet-Länge.",
+        "In jeder modernen Einführung zu zellulären Automaten als einfachstes bekanntes universelles System zitiert: eine Turing-Maschine in Tweet-Länge.",
     },
     {
       domain: "Prozedurales Texturrauschen",
@@ -1174,7 +1174,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Epidemiologie",
       description:
-        "Begrenztes epidemisches Wachstum (mit Kapazitätsgrenze = anfälliger Bevölkerungspool) folgt logistischen Kurven — die kumulierten COVID-19-Fallzahlen waren ein Lehrbuchbeispiel.",
+        "Begrenztes epidemisches Wachstum (mit Kapazitätsgrenze = anfälliger Bevölkerungspool) folgt logistischen Kurven; die kumulierten COVID-19-Fallzahlen waren ein Lehrbuchbeispiel.",
     },
     {
       domain: "Maschinelles Lernen",
@@ -1196,7 +1196,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Wettervorhersage",
       description:
-        "Operative Vorhersagedienste nutzen Ensemble-Methoden, weil die Atmosphäre Lorenz' Empfindlichkeit gegenüber Anfangsbedingungen teilt — nach etwa 14 Tagen bricht die Vorhersagbarkeit zusammen.",
+        "Operative Vorhersagedienste nutzen Ensemble-Methoden, weil die Atmosphäre Lorenz' Empfindlichkeit gegenüber Anfangsbedingungen teilt. Nach etwa 14 Tagen bricht die Vorhersagbarkeit zusammen.",
     },
     {
       domain: "Klimamodellierung",
@@ -1211,7 +1211,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Sichere Kommunikation",
       description:
-        "Chaosbasierte Verschlüsselungsverfahren haben Lorenz-artige Synchronisation genutzt, um Signale zu verbergen — Nische, aber real (Cuomo & Oppenheim, 1993).",
+        "Chaosbasierte Verschlüsselungsverfahren haben Lorenz-artige Synchronisation genutzt, um Signale zu verbergen: Nische, aber real (Cuomo & Oppenheim, 1993).",
     },
   ],
   fourier: [
@@ -1223,7 +1223,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "JPEG und HEIC",
       description:
-        "Jeder 8×8-Pixelblock eines JPEG wird als Koeffizienten der diskreten Kosinustransformation gespeichert — daher die typischen horizontalen/vertikalen Ringing-Artefakte.",
+        "Jeder 8×8-Pixelblock eines JPEG wird als Koeffizienten der diskreten Kosinustransformation gespeichert, daher die typischen horizontalen/vertikalen Ringing-Artefakte.",
     },
     {
       domain: "MRT-Scanner",
@@ -1233,7 +1233,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "WLAN, 5G, DSL",
       description:
-        "Moderne drahtlose und drahtgebundene Übertragung nutzt OFDM, das Daten auf tausende sorgfältig beabstandete Sinus-Träger verteilt — reines Fourier-Engineering.",
+        "Moderne drahtlose und drahtgebundene Übertragung nutzt OFDM, das Daten auf tausende sorgfältig beabstandete Sinus-Träger verteilt: reines Fourier-Engineering.",
     },
     {
       domain: "Sprache & ML",
@@ -1255,19 +1255,19 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Wechselstromanalyse",
       description:
-        "Elektrotechniker:innen modellieren Wechselspannungen und -ströme als komplexe Exponentialfunktionen — Impedanzrechnung mit Zeigern ist direkte Anwendung von Eulers Formel.",
+        "Elektrotechniker:innen modellieren Wechselspannungen und -ströme als komplexe Exponentialfunktionen; Impedanzrechnung mit Zeigern ist direkte Anwendung von Eulers Formel.",
     },
     {
       domain: "Regelungstechnik",
       description:
-        "Die Stabilität von Regelkreisen liest man an der Lage der Pole in der komplexen Ebene ab — Eulers Formel ist die Brücke zwischen Zeit- und Frequenzbereich.",
+        "Die Stabilität von Regelkreisen liest man an der Lage der Pole in der komplexen Ebene ab; Eulers Formel ist die Brücke zwischen Zeit- und Frequenzbereich.",
     },
   ],
   banach: [
     {
       domain: "Mengenlehre-Lehre",
       description:
-        "Banach–Tarski ist das Lehrbuchbeispiel, warum das Auswahlaxiom umstritten ist — eingesetzt in jeder fortgeschrittenen Vorlesung über reelle Analysis.",
+        "Banach-Tarski ist das Lehrbuchbeispiel, warum das Auswahlaxiom umstritten ist, eingesetzt in jeder fortgeschrittenen Vorlesung über reelle Analysis.",
     },
     {
       domain: "Grundlagen der Mathematik",
@@ -1306,7 +1306,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Echtzeit-Grafik",
       description:
-        "Wang-Tilesets verpacken sich nicht wiederholende Texturen (Gras, Ziegel, Sand) in winzige Texturatlanten — wichtig auf speicherbeschränkten Geräten wie mobilen GPUs.",
+        "Wang-Tilesets verpacken sich nicht wiederholende Texturen (Gras, Ziegel, Sand) in winzige Texturatlanten, wichtig auf speicherbeschränkten Geräten wie mobilen GPUs.",
     },
     {
       domain: "Prozedurales Leveldesign",
@@ -1316,7 +1316,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Materialien & Quasikristalle",
       description:
-        "Die Theorie der Wang-Kacheln überschneidet sich teilweise mit der Quasikristall-Mathematik — beide erzeugen aperiodische unendliche Anordnungen.",
+        "Die Theorie der Wang-Kacheln überschneidet sich teilweise mit der Quasikristall-Mathematik; beide erzeugen aperiodische unendliche Anordnungen.",
     },
   ],
   collatz: [
@@ -1345,7 +1345,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Biomechanik",
       description:
-        "Menschliche Gliedmaßen werden beim Gehen, Werfen und in turnerischen Bewegungen als Mehrfachpendel-Systeme modelliert — wichtig für Rehabilitations- und Prothesenforschung.",
+        "Menschliche Gliedmaßen werden beim Gehen, Werfen und in turnerischen Bewegungen als Mehrfachpendel-Systeme modelliert, wichtig für Rehabilitations- und Prothesenforschung.",
     },
     {
       domain: "Wissenschaftsmuseen",
@@ -1362,7 +1362,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Herzrhythmusstörungen",
       description:
-        "Spiralwellenmuster, die BZR-Spiralen sehr ähnlich sind, treten auf der Herzoberfläche während Kammerflimmern auf — zentral für Defibrillator-Entwicklung und -Forschung.",
+        "Spiralwellenmuster, die BZR-Spiralen sehr ähnlich sind, treten auf der Herzoberfläche während Kammerflimmern auf, zentral für Defibrillator-Entwicklung und -Forschung.",
     },
     {
       domain: "Neurowissenschaft",
@@ -1372,7 +1372,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Chemielehre",
       description:
-        'BZR ist die eindrucksvollste „lebendige Chemie"-Demo, die Lehrer:innen im Schulunterricht zeigen können — sichtbare Oszillation im Kolben.',
+        'BZR ist die eindrucksvollste „lebendige Chemie"-Demo, die Lehrer:innen im Schulunterricht zeigen können: sichtbare Oszillation im Kolben.',
     },
     {
       domain: "Nobelpreis-würdige Theorie",
@@ -1389,7 +1389,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Pflanzliche Phyllotaxis",
       description:
-        "Die spiraligen Anordnungen von Sonnenblumenkernen, Zapfenschuppen und Ananasschalen entstehen aus Reaktions-Diffusions-Dynamik plus Goldwinkel — Turing-Chemie auf wachsender Oberfläche.",
+        "Die spiraligen Anordnungen von Sonnenblumenkernen, Zapfenschuppen und Ananasschalen entstehen aus Reaktions-Diffusions-Dynamik plus Goldwinkel: Turing-Chemie auf wachsender Oberfläche.",
     },
     {
       domain: "Generative Kunst & Grafik",
@@ -1406,17 +1406,17 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Fraktale Antennen",
       description:
-        "Sierpiński-Antennen sind kommerzielle Produkte — Mobiltelefone, WLAN-Router und GPS-Geräte nutzen Multiband-Fraktal-Patches, die auf engem Raum bei vielen Frequenzen resonieren.",
+        "Sierpiński-Antennen sind kommerzielle Produkte: Mobiltelefone, WLAN-Router und GPS-Geräte nutzen Multiband-Fraktal-Patches, die auf engem Raum bei vielen Frequenzen resonieren.",
     },
     {
       domain: "Wärmetauscher",
       description:
-        "Verzweigte Kanäle im Sierpiński-Stil finden sich in gedruckten Kühlplatten für Hochleistungs-LEDs und Chip-Kühlung — sie maximieren die Oberfläche.",
+        "Verzweigte Kanäle im Sierpiński-Stil finden sich in gedruckten Kühlplatten für Hochleistungs-LEDs und Chip-Kühlung; sie maximieren die Oberfläche.",
     },
     {
       domain: "Kompression & Grafik",
       description:
-        "Iterierte Funktionensysteme (Sierpiński-artige IFS) bilden die Basis fraktaler Bildkompressionsalgorithmen — bis heute in Nischen-Encodern für Luftbildaufnahmen.",
+        "Iterierte Funktionensysteme (Sierpiński-artige IFS) bilden die Basis fraktaler Bildkompressionsalgorithmen, bis heute in Nischen-Encodern für Luftbildaufnahmen.",
     },
     {
       domain: "Netzwerke",
@@ -1428,7 +1428,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Bioinformatik",
       description:
-        "Chaos Game Representation (CGR) ist ein Standardverfahren zur Visualisierung von DNA-Sequenzen — jedes Nukleotid lenkt einen Punkt zu einer von vier Ecken eines Quadrats; Arten bilden charakteristische fraktale Signaturen.",
+        "Chaos Game Representation (CGR) ist ein Standardverfahren zur Visualisierung von DNA-Sequenzen. Jedes Nukleotid lenkt einen Punkt zu einer von vier Ecken eines Quadrats; Arten bilden charakteristische fraktale Signaturen.",
     },
     {
       domain: "Fraktale Kompression",
@@ -1445,7 +1445,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Quasikristalle",
       description:
-        "Dan Shechtmans Entdeckung metallischer Quasikristalle 1982 (Nobelpreis 2011) wurde über Penrose-Parkettierungen verstanden — beide werden von derselben fünfzähligen Mathematik regiert.",
+        "Dan Shechtmans Entdeckung metallischer Quasikristalle 1982 (Nobelpreis 2011) wurde über Penrose-Parkettierungen verstanden; beide werden von derselben fünfzähligen Mathematik regiert.",
     },
     {
       domain: "Architektur",
@@ -1467,12 +1467,12 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Granulare Packung",
       description:
-        "Wie Sand, Kies und pharmazeutische Pulver Behälter füllen, wird mit apollonischen Kugelpackungen modelliert — wichtig für Beton, Tabletten und Pulvermetallurgie.",
+        "Wie Sand, Kies und pharmazeutische Pulver Behälter füllen, wird mit apollonischen Kugelpackungen modelliert, wichtig für Beton, Tabletten und Pulvermetallurgie.",
     },
     {
       domain: "Zahlentheorie",
       description:
-        "Ganzzahlige apollonische Packungen werden von analytischen Zahlentheoretiker:innen untersucht — Arbeiten von Sarnak, Bourgain und Kontorovich lieferten neue Resultate zu Primzahl-Krümmungen.",
+        "Ganzzahlige apollonische Packungen werden von analytischen Zahlentheoretiker:innen untersucht: Arbeiten von Sarnak, Bourgain und Kontorovich lieferten neue Resultate zu Primzahl-Krümmungen.",
     },
     {
       domain: "Schaum- & Emulsionsphysik",
@@ -1489,12 +1489,12 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Pflanzliche Phyllotaxis",
       description:
-        "Sonnenblumen-Samenspiralen, Zapfenschuppen und Blattstellungen der meisten Pflanzen konvergieren zum Goldenen Winkel — bei tausenden Arten verifiziert.",
+        "Sonnenblumen-Samenspiralen, Zapfenschuppen und Blattstellungen der meisten Pflanzen konvergieren zum Goldenen Winkel, bei tausenden Arten verifiziert.",
     },
     {
       domain: "Kettenbrüche",
       description:
-        'φ hat die einfachste Kettenbruchentwicklung [1;1,1,…] und ist damit die „irrationalste" Zahl — ein Schlüsselkonzept der KAM-Theorie in der klassischen Mechanik.',
+        'φ hat die einfachste Kettenbruchentwicklung [1;1,1,…] und ist damit die „irrationalste" Zahl, ein Schlüsselkonzept der KAM-Theorie in der klassischen Mechanik.',
     },
     {
       domain: "Quasikristalle & Penrose",
@@ -1509,14 +1509,14 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Ehrliche Skepsis",
       description:
-        "Behauptungen, φ trete im Parthenon, der Mona Lisa, der Nautilusmuschel oder in menschlichen Körperproportionen auf, sind weitgehend Mythen — entkräftet u.a. von George Markowsky (1992).",
+        "Behauptungen, φ trete im Parthenon, der Mona Lisa, der Nautilusmuschel oder in menschlichen Körperproportionen auf, sind weitgehend Mythen, entkräftet u.a. von George Markowsky (1992).",
     },
   ],
   buffon: [
     {
       domain: "Monte-Carlo-Integration",
       description:
-        "Buffons Nadel ist die historische Keimzelle der Monte-Carlo-Methoden — heute überall im Einsatz, von Finanzbewertung (Black–Scholes) über Teilchenphysik-Simulation (Geant4) bis zum Rendering (Path Tracing).",
+        "Buffons Nadel ist die historische Keimzelle der Monte-Carlo-Methoden, heute überall im Einsatz, von Finanzbewertung (Black-Scholes) über Teilchenphysik-Simulation (Geant4) bis zum Rendering (Path Tracing).",
     },
     {
       domain: "Physiksimulation",
@@ -1548,7 +1548,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Wissenschaftskommunikation",
       description:
-        "TED-Ed-Video, Vsauce, PBS Infinite Series — die am weitesten verbreitete moderne Erklärung der Unendlichkeit.",
+        "TED-Ed-Video, Vsauce, PBS Infinite Series: die am weitesten verbreitete moderne Erklärung der Unendlichkeit.",
     },
   ],
   gabrielshorn: [
@@ -1560,7 +1560,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Philosophie der Mathematik",
       description:
-        "Zitiert in Debatten über geometrische Paradoxien und die Grenzen physikalischer Intuition — ein grundlegendes Gedankenexperiment.",
+        "Zitiert in Debatten über geometrische Paradoxien und die Grenzen physikalischer Intuition, ein grundlegendes Gedankenexperiment.",
     },
     {
       domain: "Mikrofluidik",
@@ -1572,7 +1572,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Berechenbarkeitstheorie",
       description:
-        "Cantors Diagonalargument liefert direkt Turings Halteproblem-Beweis und Gödels Unvollständigkeitssätze — die Eckpfeiler der theoretischen Informatik.",
+        "Cantors Diagonalargument liefert direkt Turings Halteproblem-Beweis und Gödels Unvollständigkeitssätze, die Eckpfeiler der theoretischen Informatik.",
     },
     {
       domain: "Programmiersprachen-Theorie",
@@ -1582,7 +1582,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Kryptografie & Komplexität",
       description:
-        "Diagonalisierungs-Argumente liegen modernen Resultaten der Komplexitätstheorie zugrunde — Trennungen zwischen P, NP, EXP.",
+        "Diagonalisierungs-Argumente liegen modernen Resultaten der Komplexitätstheorie zugrunde: Trennungen zwischen P, NP, EXP.",
     },
     {
       domain: "Philosophie der Mathematik",
@@ -1594,7 +1594,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Visuelle Effekte im Film",
       description:
-        "Batmans Rückkehr (Fledermausschwarm 1992), Der König der Löwen (Gnu-Stampede 1994) und unzählige moderne Filme nutzen Boids — meist über Massive oder Houdini.",
+        "Batmans Rückkehr (Fledermausschwarm 1992), Der König der Löwen (Gnu-Stampede 1994) und unzählige moderne Filme nutzen Boids, meist über Massive oder Houdini.",
     },
     {
       domain: "Drohnenschwärme",
@@ -1604,7 +1604,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Crowd-Simulation",
       description:
-        "Architekturbüros simulieren Stadionräumungen und Einkaufszentrum-Ströme mit Boids-artigen Agenten — seit den 2000er Jahren in der Stadionplanung im Einsatz.",
+        "Architekturbüros simulieren Stadionräumungen und Einkaufszentrum-Ströme mit Boids-artigen Agenten, seit den 2000er Jahren in der Stadionplanung im Einsatz.",
     },
     {
       domain: "Roboterschwärme",
@@ -1626,7 +1626,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Mathematische Kunst",
       description:
-        "Generative Künstler:innen rendern Aizawa-, Thomas- und Halvorsen-Attraktoren als Plots, Drucke und Animationen — verkauft auf Etsy und Kunstmessen.",
+        "Generative Künstler:innen rendern Aizawa-, Thomas- und Halvorsen-Attraktoren als Plots, Drucke und Animationen, verkauft auf Etsy und Kunstmessen.",
     },
     {
       domain: "Lehre",
@@ -1638,12 +1638,12 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Elektrochemie",
       description:
-        "In Elektrolysezellen abgeschiedene Metalle wie Zink und Kupfer bilden DLA-artige Dendriten — direkt relevant für Galvanik, Batteriedesign (Lithium-Dendriten) und Korrosion.",
+        "In Elektrolysezellen abgeschiedene Metalle wie Zink und Kupfer bilden DLA-artige Dendriten, direkt relevant für Galvanik, Batteriedesign (Lithium-Dendriten) und Korrosion.",
     },
     {
       domain: "Kristallwachstum",
       description:
-        "Schneeflocken-Bildung, Frost an Fensterscheiben, mineralische Dendriten in Gestein — sie alle gehorchen DLA-Skalengesetzen.",
+        "Schneeflocken-Bildung, Frost an Fensterscheiben, mineralische Dendriten in Gestein: Sie alle gehorchen DLA-Skalengesetzen.",
     },
     {
       domain: "Biologie",
@@ -1670,53 +1670,53 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Lehre",
       description:
-        'Ein Lieblingsbeispiel in Vorlesungen zu zellulären Automaten — die „Autobahn"-Phase ist eines der zugänglichsten emergenten Phänomene der Informatik.',
+        'Ein Lieblingsbeispiel in Vorlesungen zu zellulären Automaten; die „Autobahn"-Phase ist eines der zugänglichsten emergenten Phänomene der Informatik.',
     },
   ],
   pascalmod: [
     {
       domain: "Zahlentheorie",
       description:
-        "Der Satz von Lucas (1878) treibt effiziente Algorithmen für Binomialkoeffizienten modulo Primzahl an — eingesetzt in Kryptografie, Wortkombinatorik und im Wettbewerbsprogrammieren.",
+        "Der Satz von Lucas (1878) treibt effiziente Algorithmen für Binomialkoeffizienten modulo Primzahl an, eingesetzt in Kryptografie, Wortkombinatorik und im Wettbewerbsprogrammieren.",
     },
     {
       domain: "Kodierungstheorie",
       description:
-        "Reed–Muller- und BCH-Fehlerkorrekturcodes beruhen auf Binomialkoeffizienten-mod-p-Mechanik — sie stecken in QR-Codes, Tiefraumsonden (Mariner 9, Voyager) und im DVB-T-Digitalfernsehen.",
+        "Reed-Muller- und BCH-Fehlerkorrekturcodes beruhen auf Binomialkoeffizienten-mod-p-Mechanik; sie stecken in QR-Codes, Tiefraumsonden (Mariner 9, Voyager) und im DVB-T-Digitalfernsehen.",
     },
     {
       domain: "Bildende Kunst",
       description:
-        "Pascal mod 2 ist der algebraische Ursprung des Sierpiński-Dreiecks — als Poster verkauft, in Teppiche gewoben, als Galerie-Installation gezeigt.",
+        "Pascal mod 2 ist der algebraische Ursprung des Sierpiński-Dreiecks, als Poster verkauft, in Teppiche gewoben, als Galerie-Installation gezeigt.",
     },
   ],
   sternbrocot: [
     {
       domain: "Computermusik & Stimmung",
       description:
-        "Mikrotonale Komponist:innen nutzen Stern–Brocot, um gleichstufige Näherungen reiner Intervalle zu finden — zentral für xenharmonische Musik.",
+        "Mikrotonale Komponist:innen nutzen Stern-Brocot, um gleichstufige Näherungen reiner Intervalle zu finden, zentral für xenharmonische Musik.",
     },
     {
       domain: "Robotik & Getriebedesign",
       description:
-        "Die Suche nach besten rationalen Näherungen für Übersetzungsverhältnisse durchläuft den Stern–Brocot-Baum, um effiziente mechanische Übersetzungen zu finden.",
+        "Die Suche nach besten rationalen Näherungen für Übersetzungsverhältnisse durchläuft den Stern-Brocot-Baum, um effiziente mechanische Übersetzungen zu finden.",
     },
     {
       domain: "Kalendersysteme",
       description:
-        "Schaltjahr-Regeln auf Kettenbruchbasis (persischer Kalender, vorgeschlagene gregorianische Korrekturen) leiten sich aus Stern–Brocot-Medianten ab.",
+        "Schaltjahr-Regeln auf Kettenbruchbasis (persischer Kalender, vorgeschlagene gregorianische Korrekturen) leiten sich aus Stern-Brocot-Medianten ab.",
     },
     {
       domain: "Bilddarstellung",
       description:
-        "Subpixel-Sampling und moderne Schriften-Rasterisierung nutzen Stern–Brocot-artige Medianten, um Pixel-Abdeckungsverhältnisse zu wählen.",
+        "Subpixel-Sampling und moderne Schriften-Rasterisierung nutzen Stern-Brocot-artige Medianten, um Pixel-Abdeckungsverhältnisse zu wählen.",
     },
   ],
   ulam: [
     {
       domain: "Reine Zahlentheorie",
       description:
-        "Die Visualisierung von Primzahlen über Ulam-Spiralen inspiriert bis heute neue Vermutungen zu polynomialen Primzahldichten (Hardy–Littlewood, Sato–Tate).",
+        "Die Visualisierung von Primzahlen über Ulam-Spiralen inspiriert bis heute neue Vermutungen zu polynomialen Primzahldichten (Hardy-Littlewood, Sato-Tate).",
     },
     {
       domain: "Lehre",
@@ -1733,7 +1733,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Tontechnik",
       description:
-        "Niermikrofone (die jede:r Podcaster:in und Rundfunktechniker:in nutzt) verdanken ihren Namen der kardioidischen Aufnahmecharakteristik — sie nehmen vorne empfindlich auf und hinten gar nicht.",
+        "Niermikrofone (die jede:r Podcaster:in und Rundfunktechniker:in nutzt) verdanken ihren Namen der kardioidischen Aufnahmecharakteristik; sie nehmen vorne empfindlich auf und hinten gar nicht.",
     },
     {
       domain: "Antennenentwurf",
@@ -1755,7 +1755,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Statistik-Lehre",
       description:
-        "Das Galton-Brett ist die kanonische Demonstration des zentralen Grenzwertsatzes — in fast jedem Wissenschaftsmuseum vorhanden (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
+        "Das Galton-Brett ist die kanonische Demonstration des zentralen Grenzwertsatzes, in fast jedem Wissenschaftsmuseum vorhanden (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
     },
     {
       domain: "Quincunx in der Genetik",
@@ -1765,7 +1765,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Plinko / Spieldesign",
       description:
-        "Galton-Bretter inspirierten das Plinko-TV-Spiel und moderne mobile Pachinko-/Slot-Spiele — physisch wie digital.",
+        "Galton-Bretter inspirierten das Plinko-TV-Spiel und moderne mobile Pachinko-/Slot-Spiele, physisch wie digital.",
     },
     {
       domain: "Toleranzanalyse in der Fertigung",
@@ -1777,7 +1777,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Chaos-Demonstrationen",
       description:
-        'Das Schreibtisch-Spielzeug „Drei-Magnet-Pendel" ist die populärste physische Demonstration fraktaler Einzugsgebiete — verkauft u.a. von ThinkGeek, Nikola Labs und vielen Science-Geschenkläden.',
+        'Das Schreibtisch-Spielzeug „Drei-Magnet-Pendel" ist die populärste physische Demonstration fraktaler Einzugsgebiete, verkauft u.a. von ThinkGeek, Nikola Labs und vielen Science-Geschenkläden.',
     },
     {
       domain: "Forschung zur Magnetschwebetechnik",
@@ -1799,12 +1799,12 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Informatik",
       description:
-        "Tarskis Undefinierbarkeit der Wahrheit, Turings Halteproblem und der Satz von Rice sind direkte Nachfahren — in jeder Bachelor-Vorlesung zu Logik und Berechenbarkeit präsent.",
+        "Tarskis Undefinierbarkeit der Wahrheit, Turings Halteproblem und der Satz von Rice sind direkte Nachfahren, in jeder Bachelor-Vorlesung zu Logik und Berechenbarkeit präsent.",
     },
     {
       domain: "Philosophie des Geistes",
       description:
-        "Penroses Argument, menschliches Denken sei nicht rein algorithmisch (Computerdenken, 1989), stützt sich stark auf Gödel — umstritten, aber einflussreich.",
+        "Penroses Argument, menschliches Denken sei nicht rein algorithmisch (Computerdenken, 1989), stützt sich stark auf Gödel (umstritten, aber einflussreich).",
     },
     {
       domain: "Verifizierte Software",
@@ -1816,17 +1816,17 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Compiler & statische Analyse",
       description:
-        "Moderne statische Analysewerkzeuge (Coverity, Infer, Rusts Borrow Checker) müssen auf perfekte Präzision verzichten, weil nichttriviale Programmeigenschaften unentscheidbar sind — direkte Folge des Halteproblems (Satz von Rice).",
+        "Moderne statische Analysewerkzeuge (Coverity, Infer, Rusts Borrow Checker) müssen auf perfekte Präzision verzichten, weil nichttriviale Programmeigenschaften unentscheidbar sind: direkte Folge des Halteproblems (Satz von Rice).",
     },
     {
       domain: "Antivirensoftware",
       description:
-        "Warum kein Virenscanner jede Schadsoftware erkennt: feindliche Programme perfekt zu erkennen, würde eine Variante des Halteproblems lösen.",
+        "Warum kein Virenscanner jede Schadsoftware erkennt: Feindliche Programme perfekt zu erkennen, würde eine Variante des Halteproblems lösen.",
     },
     {
       domain: "Compute-Clouds",
       description:
-        'Cloud-Autoscaler können nie garantieren, „dieser Nutzerjob hält an" — sie erzwingen Timeouts, weil das Entscheiden des Haltens unmöglich ist.',
+        'Cloud-Autoscaler können nie garantieren, „dieser Nutzerjob hält an"; sie erzwingen Timeouts, weil das Entscheiden des Haltens unmöglich ist.',
     },
     {
       domain: "Lehre",
@@ -1838,7 +1838,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Kryptografie",
       description:
-        "Wäre P = NP, wären RSA, AES, jeder Blockchain- und TLS-geschützte Verkehr über Nacht gebrochen — jedes moderne digitale Geheimnis hängt daran, dass P ≠ NP effektiv gilt.",
+        "Wäre P = NP, wären RSA, AES, jeder Blockchain- und TLS-geschützte Verkehr über Nacht gebrochen. Jedes moderne digitale Geheimnis hängt daran, dass P ≠ NP effektiv gilt.",
     },
     {
       domain: "Optimierung",
@@ -1848,12 +1848,12 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "KI / SAT-Solver",
       description:
-        "Moderne SAT/SMT-Solver (Z3, MiniSat) lösen routinemäßig NP-schwere Instanzen mit Millionen Variablen dank cleverer Heuristiken — auch wenn die Worst-Case-Komplexität exponentiell ist.",
+        "Moderne SAT/SMT-Solver (Z3, MiniSat) lösen routinemäßig NP-schwere Instanzen mit Millionen Variablen dank cleverer Heuristiken, auch wenn die Worst-Case-Komplexität exponentiell ist.",
     },
     {
       domain: "Bioinformatik",
       description:
-        "Proteinfaltung, Genom-Assemblierung und Rekonstruktion phylogenetischer Bäume sind NP-schwer — das treibt das Feld zu Näherungsalgorithmen und KI-Methoden (AlphaFold).",
+        "Proteinfaltung, Genom-Assemblierung und Rekonstruktion phylogenetischer Bäume sind NP-schwer; das treibt das Feld zu Näherungsalgorithmen und KI-Methoden (AlphaFold).",
     },
     {
       domain: "Offenes Preisgeld",
@@ -1865,7 +1865,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "TLS / HTTPS",
       description:
-        "Jedes Schloss-Symbol im Browser nutzt für den initialen Handshake entweder RSA oder seinen Verwandten auf elliptischen Kurven (ECDSA) — milliardenfach pro Sekunde.",
+        "Jedes Schloss-Symbol im Browser nutzt für den initialen Handshake entweder RSA oder seinen Verwandten auf elliptischen Kurven (ECDSA), milliardenfach pro Sekunde.",
     },
     {
       domain: "Digitale Signaturen",
@@ -1892,7 +1892,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Industrielle Förderbänder",
       description:
-        'Antriebsbänder als Möbiusband nutzen sich auf beiden „Seiten" (es gibt nur eine!) gleichmäßig ab — eingesetzt in alten Druckpressen, modernen Tonbändern und einigen VHS-Bandsystemen.',
+        'Antriebsbänder als Möbiusband nutzen sich auf beiden „Seiten" (es gibt nur eine!) gleichmäßig ab, eingesetzt in alten Druckpressen, modernen Tonbändern und einigen VHS-Bandsystemen.',
     },
     {
       domain: "Maschinenbau",
@@ -1902,7 +1902,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Topologieforschung",
       description:
-        "Das Möbiusband ist die einfachste nicht orientierbare Fläche — Einstiegspunkt in ein weites Feld, das alle Flächen klassifiziert und in Kosmologie und Stringtheorie genutzt wird.",
+        "Das Möbiusband ist die einfachste nicht orientierbare Fläche, Einstiegspunkt in ein weites Feld, das alle Flächen klassifiziert und in Kosmologie und Stringtheorie genutzt wird.",
     },
     {
       domain: "Kunst & Architektur",
@@ -1924,7 +1924,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Topologie von Daten",
       description:
-        "Pipelines der persistenten Homologie fassen die Form hochdimensionaler Punktwolken mit Euler-Charakteristiken zusammen — angewendet in Genomik, Sensornetzen und Kosmologie.",
+        "Pipelines der persistenten Homologie fassen die Form hochdimensionaler Punktwolken mit Euler-Charakteristiken zusammen, angewendet in Genomik, Sensornetzen und Kosmologie.",
     },
     {
       domain: "Architektur",
@@ -1946,7 +1946,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Geburt der Graphentheorie",
       description:
-        "Königsberg begründete das ganze Feld — die Graphentheorie liegt heute Googles PageRank, Analysen sozialer Netze, Chip-Layout und Routenplanung zugrunde.",
+        "Königsberg begründete das ganze Feld. Die Graphentheorie liegt heute Googles PageRank, Analysen sozialer Netze, Chip-Layout und Routenplanung zugrunde.",
     },
     {
       domain: "DNA-Sequenzierung",
@@ -1956,7 +1956,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Routenoptimierung",
       description:
-        "Postzusteller:innen, Müllabfuhren und Schneepflüge lösen das Briefträgerproblem — ein direkter Nachkomme der Königsberger Brücken.",
+        "Postzusteller:innen, Müllabfuhren und Schneepflüge lösen das Briefträgerproblem, ein direkter Nachkomme der Königsberger Brücken.",
     },
     {
       domain: "Tourismus",
@@ -1973,7 +1973,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Mobilfunknetze",
       description:
-        "Frequenzzuteilung zwischen Mobilfunkmasten lässt sich als Graphenfärbung formulieren — der Vierfarbensatz markiert die Grenze für manche planaren Layouts.",
+        "Frequenzzuteilung zwischen Mobilfunkmasten lässt sich als Graphenfärbung formulieren; der Vierfarbensatz markiert die Grenze für manche planaren Layouts.",
     },
     {
       domain: "Stundenplanung",
@@ -1983,7 +1983,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Computerverifizierte Mathematik",
       description:
-        "Zusammen mit der Kepler-Vermutung war der Vierfarbensatz ein Meilenstein computergestützten Beweisens — die Kultur der Beweisassistenten (Coq, Lean) führt ihre Legitimität darauf zurück.",
+        "Zusammen mit der Kepler-Vermutung war der Vierfarbensatz ein Meilenstein computergestützten Beweisens. Die Kultur der Beweisassistenten (Coq, Lean) führt ihre Legitimität darauf zurück.",
     },
   ],
   smallworld: [
@@ -2000,7 +2000,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Hirnforschung",
       description:
-        "fMRT-Studien zeigen, dass das menschliche Konnektom ein Small-World-Netzwerk ist — der Small-World-Koeffizient ist heute ein etablierter Biomarker in der Alzheimer- und Schizophrenie-Forschung.",
+        "fMRT-Studien zeigen, dass das menschliche Konnektom ein Small-World-Netzwerk ist; der Small-World-Koeffizient ist heute ein etablierter Biomarker in der Alzheimer- und Schizophrenie-Forschung.",
     },
     {
       domain: "Internet-Routing",
@@ -2027,7 +2027,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Wirkstoff- & Proteindesign",
       description:
-        "RFdiffusion (Baker-Labor) und Chroma erzeugen neue Protein-Backbones, indem sie 3D-Koordinaten statt Pixel entrauschen — veröffentlichte Kandidaten wurden synthetisiert und falten sich korrekt.",
+        "RFdiffusion (Baker-Labor) und Chroma erzeugen neue Protein-Backbones, indem sie 3D-Koordinaten statt Pixel entrauschen; veröffentlichte Kandidaten wurden synthetisiert und falten sich korrekt.",
     },
     {
       domain: "Audio & Sprache",
@@ -2037,7 +2037,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Physik & Thermodynamik",
       description:
-        "Der Vorwärtsprozess ist buchstäblich Langevin-Dynamik — der Rauschplan spiegelt ein System wider, das ins thermische Gleichgewicht relaxiert. Sohl-Dicksteins Originalarbeit von 2015 war als Nichtgleichgewichts-Thermodynamik formuliert.",
+        "Der Vorwärtsprozess ist buchstäblich Langevin-Dynamik. Der Rauschplan spiegelt ein System wider, das ins thermische Gleichgewicht relaxiert. Sohl-Dicksteins Originalarbeit von 2015 war als Nichtgleichgewichts-Thermodynamik formuliert.",
     },
   ],
   riemann: [
@@ -2054,7 +2054,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Quantenchaos",
       description:
-        "Die Statistik der Abstände zwischen Zeta-Nullstellen stimmt mit den Eigenwertstatistiken zufälliger hermitescher Matrizen überein — derselben, die schwere Atomkern-Energieniveaus modellieren. Die Montgomery-Dyson-Vermutung (1972) ist eine der überraschendsten Brücken der Mathematik.",
+        "Die Statistik der Abstände zwischen Zeta-Nullstellen stimmt mit den Eigenwertstatistiken zufälliger hermitescher Matrizen überein, derselben, die schwere Atomkern-Energieniveaus modellieren. Die Montgomery-Dyson-Vermutung (1972) ist eine der überraschendsten Brücken der Mathematik.",
     },
     {
       domain: "Computerverifizierte Numerik",
@@ -2064,14 +2064,14 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Popkultur & Prestige offener Probleme",
       description:
-        "Riemann ist außerhalb von Fermat das berühmteste ungelöste Problem — ein Clay Millennium Prize (1 Mio. $), wiederkehrende Auftritte in Fiktion (A Beautiful Mind, The Music of the Primes) und ein steter Strom von «Beweisen», die das Peer-Review nicht überleben.",
+        "Riemann ist außerhalb von Fermat das berühmteste ungelöste Problem: ein Clay Millennium Prize (1 Mio. $), wiederkehrende Auftritte in Fiktion (A Beautiful Mind, The Music of the Primes) und ein steter Strom von «Beweisen», die das Peer-Review nicht überleben.",
     },
   ],
   backprop: [
     {
       domain: "Deep Learning",
       description:
-        "Jedes moderne neuronale Netz — Bildklassifikator, Sprachmodell, Empfehler — wird durch Backpropagation trainiert. PyTorch und JAX implementieren sie als ihren Differentiationskern (Autograd).",
+        "Jedes moderne neuronale Netz (Bildklassifikator, Sprachmodell, Empfehler) wird durch Backpropagation trainiert. PyTorch und JAX implementieren sie als ihren Differentiationskern (Autograd).",
     },
     {
       domain: "Computer Vision",
@@ -2091,24 +2091,24 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Inverse Probleme in der Wissenschaft",
       description:
-        "Physiker:innen invertieren Experimente, indem sie das Vorwärtsmodell in PyTorch/JAX aufbauen und durch es hindurch zurückpropagieren — eingesetzt im Protein-Design (AlphaFold), in differenzierbarem Rendering und im gradientbasierten Experimententwurf.",
+        "Physiker:innen invertieren Experimente, indem sie das Vorwärtsmodell in PyTorch/JAX aufbauen und durch es hindurch zurückpropagieren, eingesetzt im Protein-Design (AlphaFold), in differenzierbarem Rendering und im gradientbasierten Experimententwurf.",
     },
   ],
   sat: [
     {
       domain: "Hardware- & Chip-Verifikation",
       description:
-        "Vor der Fertigung werden Äquivalenz- und Eigenschaftsprüfungen in SAT/SMT-Instanzen übersetzt; Intel, AMD und Apple lösen sie millionenfach pro Tag. Ein übersehener Fehler auf einer mehrere Millionen Dollar teuren Maske ist katastrophal — Bounded Model Checking per SAT ist heute EDA-Standard.",
+        "Vor der Fertigung werden Äquivalenz- und Eigenschaftsprüfungen in SAT/SMT-Instanzen übersetzt; Intel, AMD und Apple lösen sie millionenfach pro Tag. Ein übersehener Fehler auf einer mehrere Millionen Dollar teuren Maske ist katastrophal; Bounded Model Checking per SAT ist heute EDA-Standard.",
     },
     {
       domain: "Software-Verifikation & Programmanalyse",
       description:
-        "Microsofts Z3 — ein SMT-Solver mit SAT-Kern — verifiziert Treiber, findet Sicherheitslücken und prüft, ob Compiler-Optimierungen die Bedeutung erhalten. SAT/SMT trägt symbolische Ausführung und große Teile der modernen statischen Analyse.",
+        "Microsofts Z3 (ein SMT-Solver mit SAT-Kern) verifiziert Treiber, findet Sicherheitslücken und prüft, ob Compiler-Optimierungen die Bedeutung erhalten. SAT/SMT trägt symbolische Ausführung und große Teile der modernen statischen Analyse.",
     },
     {
       domain: "Planung, Scheduling & Konfiguration",
       description:
-        "KI-Planer, Stundenpläne und Produktkonfiguratoren (welche Auto-Optionen sind miteinander kompatibel?) kodieren ihre Bedingungen als boolesche Klauseln und übergeben sie einem SAT-Solver — oft schneller als ein maßgeschneiderter Algorithmus.",
+        "KI-Planer, Stundenpläne und Produktkonfiguratoren (welche Auto-Optionen sind miteinander kompatibel?) kodieren ihre Bedingungen als boolesche Klauseln und übergeben sie einem SAT-Solver, oft schneller als ein maßgeschneiderter Algorithmus.",
     },
     {
       domain: "Kryptoanalyse",
@@ -2131,7 +2131,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Verificación de software y análisis de programas",
         description:
-          "Z3 de Microsoft —un solver SMT construido sobre un núcleo SAT— verifica controladores, encuentra fallos de seguridad y comprueba que las optimizaciones del compilador preservan el significado. SAT/SMT sustenta la ejecución simbólica y buena parte del análisis estático moderno.",
+          "Z3 de Microsoft (un solver SMT construido sobre un núcleo SAT) verifica controladores, encuentra fallos de seguridad y comprueba que las optimizaciones del compilador preservan el significado. SAT/SMT sustenta la ejecución simbólica y buena parte del análisis estático moderno.",
       },
       {
         domain: "Planificación, horarios y configuración",
@@ -2346,7 +2346,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Docencia en teoría de conjuntos",
         description:
-          "Banach–Tarski es el ejemplo de manual de por qué el Axioma de Elección resulta controvertido: aparece en todo curso de posgrado en análisis real.",
+          "Banach-Tarski es el ejemplo de manual de por qué el Axioma de Elección resulta controvertido: aparece en todo curso de posgrado en análisis real.",
       },
       {
         domain: "Fundamentos de la matemática",
@@ -2595,7 +2595,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Integración de Monte Carlo",
         description:
-          "La aguja de Buffon es la semilla histórica de los métodos de Monte Carlo: hoy se usan por todas partes, desde la valoración financiera (Black–Scholes) hasta la simulación de física de partículas (Geant4) y el rendering (path tracing).",
+          "La aguja de Buffon es la semilla histórica de los métodos de Monte Carlo: hoy se usan por todas partes, desde la valoración financiera (Black-Scholes) hasta la simulación de física de partículas (Geant4) y el rendering (path tracing).",
       },
       {
         domain: "Simulación física",
@@ -2761,7 +2761,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Teoría de códigos",
         description:
-          "Los códigos correctores Reed–Muller y BCH se apoyan en la maquinaria de coeficientes binomiales módulo p: están en los códigos QR, en sondas al espacio profundo (Mariner 9, Voyager) y en la TV digital DVB-T.",
+          "Los códigos correctores Reed-Muller y BCH se apoyan en la maquinaria de coeficientes binomiales módulo p: están en los códigos QR, en sondas al espacio profundo (Mariner 9, Voyager) y en la TV digital DVB-T.",
       },
       {
         domain: "Arte visual",
@@ -2773,29 +2773,29 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Música por ordenador y afinación",
         description:
-          "Quienes componen música microtonal usan Stern–Brocot para hallar aproximaciones temperadas a razones de entonación justa: clave para la música xenarmónica.",
+          "Quienes componen música microtonal usan Stern-Brocot para hallar aproximaciones temperadas a razones de entonación justa: clave para la música xenarmónica.",
       },
       {
         domain: "Diseño de engranajes en robótica",
         description:
-          "Las búsquedas de la mejor aproximación racional para relaciones de transmisión recorren el árbol de Stern–Brocot para encontrar reducciones mecánicas eficientes.",
+          "Las búsquedas de la mejor aproximación racional para relaciones de transmisión recorren el árbol de Stern-Brocot para encontrar reducciones mecánicas eficientes.",
       },
       {
         domain: "Sistemas de calendario",
         description:
-          "Las reglas de año bisiesto basadas en fracciones continuas (calendario persa, correcciones gregorianas propuestas) se derivan de las medianas de Stern–Brocot.",
+          "Las reglas de año bisiesto basadas en fracciones continuas (calendario persa, correcciones gregorianas propuestas) se derivan de las medianas de Stern-Brocot.",
       },
       {
         domain: "Renderizado de imagen",
         description:
-          "El muestreo subpíxel y la rasterización moderna de fuentes usan medianas al estilo Stern–Brocot para elegir razones de cobertura de píxel.",
+          "El muestreo subpíxel y la rasterización moderna de fuentes usan medianas al estilo Stern-Brocot para elegir razones de cobertura de píxel.",
       },
     ],
     ulam: [
       {
         domain: "Teoría pura de números",
         description:
-          "Visualizar los primos mediante espirales al estilo de Ulam sigue inspirando nuevas conjeturas sobre densidades de primos polinómicos (Hardy–Littlewood, Sato–Tate).",
+          "Visualizar los primos mediante espirales al estilo de Ulam sigue inspirando nuevas conjeturas sobre densidades de primos polinómicos (Hardy-Littlewood, Sato-Tate).",
       },
       {
         domain: "Docencia",
@@ -3106,7 +3106,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Diseño de fármacos y proteínas",
         description:
-          "RFdiffusion (laboratorio Baker) y Chroma generan nuevos esqueletos proteicos eliminando ruido sobre coordenadas 3D en vez de píxeles — candidatos publicados han sido sintetizados y se pliegan correctamente.",
+          "RFdiffusion (laboratorio Baker) y Chroma generan nuevos esqueletos proteicos eliminando ruido sobre coordenadas 3D en vez de píxeles; candidatos publicados han sido sintetizados y se pliegan correctamente.",
       },
       {
         domain: "Audio y habla",
@@ -3116,7 +3116,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Física y termodinámica",
         description:
-          "El proceso directo es literalmente dinámica de Langevin — el calendario de ruido refleja un sistema relajándose hacia el equilibrio térmico. El artículo original de Sohl-Dickstein (2015) se planteó como termodinámica de no equilibrio.",
+          "El proceso directo es literalmente dinámica de Langevin: el calendario de ruido refleja un sistema relajándose hacia el equilibrio térmico. El artículo original de Sohl-Dickstein (2015) se planteó como termodinámica de no equilibrio.",
       },
     ],
     riemann: [
@@ -3133,7 +3133,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Caos cuántico",
         description:
-          "La estadística de los espaciados entre ceros de zeta coincide con la estadística de los autovalores de matrices hermíticas aleatorias — las mismas con que se modelan los niveles de energía de núcleos pesados. La conjetura de Montgomery-Dyson (1972) es una de las pasarelas más sorprendentes de la matemática.",
+          "La estadística de los espaciados entre ceros de zeta coincide con la estadística de los autovalores de matrices hermíticas aleatorias, las mismas con que se modelan los niveles de energía de núcleos pesados. La conjetura de Montgomery-Dyson (1972) es una de las pasarelas más sorprendentes de la matemática.",
       },
       {
         domain: "Numéricos verificados por ordenador",
@@ -3143,14 +3143,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Divulgación y prestigio de problemas abiertos",
         description:
-          "Riemann es el problema sin resolver más famoso fuera de Fermat — un Premio Clay del Milenio (1 M$), apariciones recurrentes en la ficción (A Beautiful Mind, La música de los primos) y un goteo constante de «pruebas» que no sobreviven al peer review.",
+          "Riemann es el problema sin resolver más famoso fuera de Fermat: un Premio Clay del Milenio (1 M$), apariciones recurrentes en la ficción (A Beautiful Mind, La música de los primos) y un goteo constante de «pruebas» que no sobreviven al peer review.",
       },
     ],
     backprop: [
       {
         domain: "Aprendizaje profundo",
         description:
-          "Toda red neuronal moderna —clasificadores de imágenes, modelos de lenguaje, recomendadores— se entrena por retropropagación. PyTorch y JAX la implementan como su núcleo de diferenciación (autograd).",
+          "Toda red neuronal moderna (clasificadores de imágenes, modelos de lenguaje, recomendadores) se entrena por retropropagación. PyTorch y JAX la implementan como su núcleo de diferenciación (autograd).",
       },
       {
         domain: "Visión por computador",
@@ -3170,7 +3170,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Problemas inversos en ciencia",
         description:
-          "Los físicos invierten experimentos montando el modelo directo en PyTorch/JAX y retropropagando a través de él — empleado en diseño de proteínas (AlphaFold), renderizado diferenciable y diseño experimental basado en gradientes.",
+          "Los físicos invierten experimentos montando el modelo directo en PyTorch/JAX y retropropagando a través de él, empleado en diseño de proteínas (AlphaFold), renderizado diferenciable y diseño experimental basado en gradientes.",
       },
     ],
   },
@@ -3184,7 +3184,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Vérification logicielle et analyse de programmes",
         description:
-          "Z3 de Microsoft — un solveur SMT bâti sur un cœur SAT — vérifie des pilotes, trouve des failles de sécurité et contrôle que les optimisations du compilateur préservent le sens. SAT/SMT sous-tend l'exécution symbolique et une grande part de l'analyse statique moderne.",
+          "Z3 de Microsoft (un solveur SMT bâti sur un cœur SAT) vérifie des pilotes, trouve des failles de sécurité et contrôle que les optimisations du compilateur préservent le sens. SAT/SMT sous-tend l'exécution symbolique et une grande part de l'analyse statique moderne.",
       },
       {
         domain: "Planification, ordonnancement et configuration",
@@ -3216,7 +3216,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Analogues naturels",
         description:
-          "Côtes, crêtes montagneuses, frondes de fougère et fleurettes de brocoli présentent la même structure de bord autosimilaire — c'était précisément le propos de Mandelbrot sur la géométrie fractale.",
+          "Côtes, crêtes montagneuses, frondes de fougère et fleurettes de brocoli présentent la même structure de bord autosimilaire : c'était précisément le propos de Mandelbrot sur la géométrie fractale.",
       },
     ],
     life: [
@@ -3238,7 +3238,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bricolage matériel",
         description:
-          "Les projets FPGA et microcontrôleurs affichent souvent Life sur des matrices LED comme «hello world» du matériel cellulaire parallèle.",
+          "Les projets FPGA et microcontrôleurs affichent souvent Life sur des matrices LED comme « hello world » du matériel cellulaire parallèle.",
       },
     ],
     nand: [
@@ -3255,7 +3255,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Cours de matériel",
         description:
-          "Le cours nand2tetris construit un ordinateur complet en partant d'une seule puce NAND — utilisé dans plus de 100 universités.",
+          "Le cours nand2tetris construit un ordinateur complet en partant d'une seule puce NAND, utilisé dans plus de 100 universités.",
       },
       {
         domain: "Logique embarquée",
@@ -3267,7 +3267,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Interpréteurs de combinateurs",
         description:
-          "Les compilateurs de langages fonctionnels (par exemple Lazy K) traduisent les programmes du lambda-calcul en expressions pures de combinateurs — façon Iota — lors de la génération de code.",
+          "Les compilateurs de langages fonctionnels (par exemple Lazy K) traduisent les programmes du lambda-calcul en expressions pures de combinateurs (façon Iota) lors de la génération de code.",
       },
       {
         domain: "Langages ésotériques",
@@ -3289,7 +3289,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Enseignement du calcul formel",
         description:
-          "Citée dans toute introduction moderne aux automates cellulaires comme le plus simple système universel connu — une machine de Turing en un tweet.",
+          "Citée dans toute introduction moderne aux automates cellulaires comme le plus simple système universel connu : une machine de Turing en un tweet.",
       },
       {
         domain: "Bruit procédural de texture",
@@ -3306,7 +3306,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Épidémiologie",
         description:
-          "La croissance épidémique bornée (avec capacité de charge = pool des susceptibles) suit des courbes logistiques — les courbes cumulées de cas de COVID-19 en sont un exemple manuel.",
+          "La croissance épidémique bornée (avec capacité de charge = pool des susceptibles) suit des courbes logistiques ; les courbes cumulées de cas de COVID-19 en sont un exemple manuel.",
       },
       {
         domain: "Apprentissage automatique",
@@ -3328,7 +3328,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Prévision météorologique",
         description:
-          "Les services opérationnels recourent aux méthodes d'ensemble parce que l'atmosphère partage la sensibilité de Lorenz aux conditions initiales — la prévisibilité s'effondre au bout d'environ 14 jours.",
+          "Les services opérationnels recourent aux méthodes d'ensemble parce que l'atmosphère partage la sensibilité de Lorenz aux conditions initiales : la prévisibilité s'effondre au bout d'environ 14 jours.",
       },
       {
         domain: "Modélisation climatique",
@@ -3343,7 +3343,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Communication sécurisée",
         description:
-          "Des schémas de chiffrement chaotique ont utilisé la synchronisation à la Lorenz pour masquer des signaux — niche, mais réel (Cuomo et Oppenheim, 1993).",
+          "Des schémas de chiffrement chaotique ont utilisé la synchronisation à la Lorenz pour masquer des signaux : niche, mais réel (Cuomo et Oppenheim, 1993).",
       },
     ],
     fourier: [
@@ -3355,7 +3355,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "JPEG et HEIC",
         description:
-          "Chaque bloc de 8×8 pixels d'une image JPEG est stocké sous forme de coefficients de la transformée en cosinus discrète — d'où les motifs horizontaux/verticaux du ringing JPEG.",
+          "Chaque bloc de 8×8 pixels d'une image JPEG est stocké sous forme de coefficients de la transformée en cosinus discrète, d'où les motifs horizontaux/verticaux du ringing JPEG.",
       },
       {
         domain: "IRM",
@@ -3365,7 +3365,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Wi-Fi, 5G, ADSL",
         description:
-          "Les transmissions sans fil et filaires modernes utilisent l'OFDM, qui répartit les données sur des milliers de porteuses sinusoïdales soigneusement espacées — de l'ingénierie de Fourier pure.",
+          "Les transmissions sans fil et filaires modernes utilisent l'OFDM, qui répartit les données sur des milliers de porteuses sinusoïdales soigneusement espacées : de l'ingénierie de Fourier pure.",
       },
       {
         domain: "Parole et ML",
@@ -3387,19 +3387,19 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Analyse des circuits en courant alternatif",
         description:
-          "Les ingénieurs en électricité modélisent tensions et courants alternatifs comme des exponentielles complexes — l'arithmétique d'impédance via phaseurs est une application directe de la formule d'Euler.",
+          "Les ingénieurs en électricité modélisent tensions et courants alternatifs comme des exponentielles complexes ; l'arithmétique d'impédance via phaseurs est une application directe de la formule d'Euler.",
       },
       {
         domain: "Théorie du contrôle",
         description:
-          "La stabilité des systèmes asservis se lit à la position des pôles dans le plan complexe — la formule d'Euler est le pont entre temps et fréquence.",
+          "La stabilité des systèmes asservis se lit à la position des pôles dans le plan complexe ; la formule d'Euler est le pont entre temps et fréquence.",
       },
     ],
     banach: [
       {
         domain: "Enseignement de la théorie des ensembles",
         description:
-          "Banach–Tarski est l'exemple manuel de pourquoi l'axiome du choix prête à controverse — utilisé dans tout cours de master en analyse réelle.",
+          "Banach-Tarski est l'exemple manuel de pourquoi l'axiome du choix prête à controverse, utilisé dans tout cours de master en analyse réelle.",
       },
       {
         domain: "Fondements des mathématiques",
@@ -3409,7 +3409,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Philosophie des mathématiques",
         description:
-          "Fréquemment invoqué dans les discussions sur le réalisme mathématique, le sens de l'«infini» et les limites de l'intuition.",
+          "Fréquemment invoqué dans les discussions sur le réalisme mathématique, le sens de l'« infini » et les limites de l'intuition.",
       },
     ],
     lsystem: [
@@ -3438,7 +3438,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Graphisme temps réel",
         description:
-          "Les jeux de tuiles de Wang servent à empaqueter des textures non répétitives (herbe, brique, sable) dans de minuscules atlas — important sur les appareils à mémoire limitée comme les GPU mobiles.",
+          "Les jeux de tuiles de Wang servent à empaqueter des textures non répétitives (herbe, brique, sable) dans de minuscules atlas, important sur les appareils à mémoire limitée comme les GPU mobiles.",
       },
       {
         domain: "Conception procédurale de niveaux",
@@ -3448,7 +3448,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Matériaux et quasi-cristaux",
         description:
-          "La théorie des tuiles de Wang recoupe en partie les mathématiques des quasi-cristaux — toutes deux produisent des arrangements infinis apériodiques.",
+          "La théorie des tuiles de Wang recoupe en partie les mathématiques des quasi-cristaux : toutes deux produisent des arrangements infinis apériodiques.",
       },
     ],
     collatz: [
@@ -3465,7 +3465,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Pédagogie",
         description:
-          "Utilisé dans les démonstrations de «tours de nombres» au collège et dans les projets de recherche de licence sur les suites entières.",
+          "Utilisé dans les démonstrations de « tours de nombres » au collège et dans les projets de recherche de licence sur les suites entières.",
       },
     ],
     doublependulum: [
@@ -3494,7 +3494,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Arythmies cardiaques",
         description:
-          "Des motifs d'ondes spirales très semblables aux spirales BZR sont observés à la surface du cœur lors de la fibrillation — centraux pour la conception et la recherche sur les défibrillateurs.",
+          "Des motifs d'ondes spirales très semblables aux spirales BZR sont observés à la surface du cœur lors de la fibrillation, centraux pour la conception et la recherche sur les défibrillateurs.",
       },
       {
         domain: "Neurosciences",
@@ -3504,7 +3504,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Enseignement de la chimie",
         description:
-          "BZR est la plus spectaculaire démo de «chimie vivante» qu'un enseignant de lycée puisse montrer — oscillation visible dans un ballon.",
+          "BZR est la plus spectaculaire démo de « chimie vivante » qu'un enseignant de lycée puisse montrer : oscillation visible dans un ballon.",
       },
       {
         domain: "Théorie primée par le Nobel",
@@ -3521,7 +3521,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Phyllotaxie",
         description:
-          "Les spirales de graines de tournesol, les écailles de pomme de pin et les écailles d'ananas émergent de réaction-diffusion plus angle d'or — chimie de Turing sur surface en croissance.",
+          "Les spirales de graines de tournesol, les écailles de pomme de pin et les écailles d'ananas émergent de réaction-diffusion plus angle d'or : chimie de Turing sur surface en croissance.",
       },
       {
         domain: "Art génératif et graphisme",
@@ -3538,7 +3538,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Antennes fractales",
         description:
-          "Les antennes en triangle de Sierpiński sont des produits commerciaux — téléphones, routeurs Wi-Fi et récepteurs GPS utilisent des patchs fractals multibandes qui résonnent à de nombreuses fréquences dans un faible encombrement.",
+          "Les antennes en triangle de Sierpiński sont des produits commerciaux : téléphones, routeurs Wi-Fi et récepteurs GPS utilisent des patchs fractals multibandes qui résonnent à de nombreuses fréquences dans un faible encombrement.",
       },
       {
         domain: "Échangeurs de chaleur",
@@ -3548,7 +3548,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Compression et graphisme",
         description:
-          "Les systèmes de fonctions itérées (IFS façon Sierpiński) fondent les algorithmes de compression fractale d'images — encore utilisés dans des encodeurs de niche pour l'imagerie aérienne.",
+          "Les systèmes de fonctions itérées (IFS façon Sierpiński) fondent les algorithmes de compression fractale d'images, encore utilisés dans des encodeurs de niche pour l'imagerie aérienne.",
       },
       {
         domain: "Réseaux",
@@ -3560,7 +3560,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bio-informatique",
         description:
-          "La Chaos Game Representation (CGR) est un mode standard de visualisation des séquences d'ADN — chaque nucléotide pousse un point vers l'un des quatre coins d'un carré ; les espèces se regroupent en signatures fractales reconnaissables.",
+          "La Chaos Game Representation (CGR) est un mode standard de visualisation des séquences d'ADN : chaque nucléotide pousse un point vers l'un des quatre coins d'un carré ; les espèces se regroupent en signatures fractales reconnaissables.",
       },
       {
         domain: "Compression fractale",
@@ -3577,7 +3577,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Quasi-cristaux",
         description:
-          "La découverte par Dan Shechtman en 1982 des quasi-cristaux métalliques (Nobel 2011) a été comprise grâce aux pavages de Penrose — la même mathématique de symétrie d'ordre cinq gouverne les deux.",
+          "La découverte par Dan Shechtman en 1982 des quasi-cristaux métalliques (Nobel 2011) a été comprise grâce aux pavages de Penrose : la même mathématique de symétrie d'ordre cinq gouverne les deux.",
       },
       {
         domain: "Architecture",
@@ -3599,12 +3599,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Empilement granulaire",
         description:
-          "La manière dont sable, graviers et poudres pharmaceutiques remplissent les contenants se modélise par des empilements de sphères apolloniens — important pour le béton, les comprimés et la métallurgie des poudres.",
+          "La manière dont sable, graviers et poudres pharmaceutiques remplissent les contenants se modélise par des empilements de sphères apolloniens, important pour le béton, les comprimés et la métallurgie des poudres.",
       },
       {
         domain: "Théorie des nombres",
         description:
-          "Les empilements apolloniens entiers sont étudiés par les théoriciens analytiques des nombres — des travaux de Sarnak, Bourgain et Kontorovich ont fourni de nouveaux résultats sur les courbures premières.",
+          "Les empilements apolloniens entiers sont étudiés par les théoriciens analytiques des nombres : des travaux de Sarnak, Bourgain et Kontorovich ont fourni de nouveaux résultats sur les courbures premières.",
       },
       {
         domain: "Physique des mousses et des émulsions",
@@ -3621,12 +3621,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Phyllotaxie végétale",
         description:
-          "Les spirales de graines de tournesol, les écailles de pommes de pin et les arrangements foliaires de la plupart des plantes convergent vers l'angle d'or — vérifié sur des milliers d'espèces.",
+          "Les spirales de graines de tournesol, les écailles de pommes de pin et les arrangements foliaires de la plupart des plantes convergent vers l'angle d'or, vérifié sur des milliers d'espèces.",
       },
       {
         domain: "Fractions continues",
         description:
-          "φ possède le développement en fraction continue le plus simple [1;1,1,…], ce qui en fait le nombre «le plus irrationnel» — concept clé de la théorie KAM en mécanique classique.",
+          "φ possède le développement en fraction continue le plus simple [1;1,1,…], ce qui en fait le nombre « le plus irrationnel », concept clé de la théorie KAM en mécanique classique.",
       },
       {
         domain: "Quasi-cristaux et Penrose",
@@ -3641,14 +3641,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Scepticisme honnête",
         description:
-          "Les affirmations selon lesquelles φ apparaîtrait dans le Parthénon, La Joconde, la coquille de nautile ou les proportions humaines sont en grande partie des mythes — démystifiés notamment par George Markowsky (1992).",
+          "Les affirmations selon lesquelles φ apparaîtrait dans le Parthénon, La Joconde, la coquille de nautile ou les proportions humaines sont en grande partie des mythes, démystifiés notamment par George Markowsky (1992).",
       },
     ],
     buffon: [
       {
         domain: "Intégration de Monte-Carlo",
         description:
-          "L'aiguille de Buffon est la graine historique des méthodes de Monte-Carlo — aujourd'hui utilisées partout, de la valorisation financière (Black–Scholes) à la simulation de physique des particules (Geant4) et au rendu (path tracing).",
+          "L'aiguille de Buffon est la graine historique des méthodes de Monte-Carlo, aujourd'hui utilisées partout, de la valorisation financière (Black-Scholes) à la simulation de physique des particules (Geant4) et au rendu (path tracing).",
       },
       {
         domain: "Simulation physique",
@@ -3680,7 +3680,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Vulgarisation scientifique",
         description:
-          "Vidéo TED-Ed, Vsauce, PBS Infinite Series — l'explication moderne de l'infini la plus partagée.",
+          "Vidéo TED-Ed, Vsauce, PBS Infinite Series : l'explication moderne de l'infini la plus partagée.",
       },
     ],
     gabrielshorn: [
@@ -3692,7 +3692,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Philosophie des mathématiques",
         description:
-          "Cité dans les débats sur le sens des paradoxes géométriques et les limites de l'intuition physique — expérience de pensée fondatrice.",
+          "Cité dans les débats sur le sens des paradoxes géométriques et les limites de l'intuition physique, expérience de pensée fondatrice.",
       },
       {
         domain: "Microfluidique",
@@ -3704,17 +3704,17 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Théorie de la calculabilité",
         description:
-          "La diagonale de Cantor produit directement la preuve du problème de l'arrêt de Turing et les théorèmes d'incomplétude de Gödel — pierres angulaires de l'informatique théorique.",
+          "La diagonale de Cantor produit directement la preuve du problème de l'arrêt de Turing et les théorèmes d'incomplétude de Gödel, pierres angulaires de l'informatique théorique.",
       },
       {
         domain: "Théorie des langages de programmation",
         description:
-          "Utilisée pour prouver qu'il n'existe aucun système de types «universel» qui décide le typage pour tous les programmes (théorème de Rice).",
+          "Utilisée pour prouver qu'il n'existe aucun système de types « universel » qui décide le typage pour tous les programmes (théorème de Rice).",
       },
       {
         domain: "Cryptographie et complexité",
         description:
-          "Les arguments de diagonalisation sous-tendent les résultats modernes de théorie de la complexité — séparations entre P, NP, EXP.",
+          "Les arguments de diagonalisation sous-tendent les résultats modernes de théorie de la complexité : séparations entre P, NP, EXP.",
       },
       {
         domain: "Philosophie des mathématiques",
@@ -3726,7 +3726,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Effets visuels au cinéma",
         description:
-          "Batman, le défi (essaim de chauves-souris de 1992), Le Roi Lion (ruée de gnous de 1994) et d'innombrables films modernes utilisent les Boids — généralement via Massive ou Houdini.",
+          "Batman, le défi (essaim de chauves-souris de 1992), Le Roi Lion (ruée de gnous de 1994) et d'innombrables films modernes utilisent les Boids, généralement via Massive ou Houdini.",
       },
       {
         domain: "Essaims de drones",
@@ -3736,7 +3736,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Simulation de foules",
         description:
-          "Les agences d'architecture simulent l'évacuation de stades et les flux en centres commerciaux avec des agents façon Boids — employés en planification de stades depuis les années 2000.",
+          "Les agences d'architecture simulent l'évacuation de stades et les flux en centres commerciaux avec des agents façon Boids, employés en planification de stades depuis les années 2000.",
       },
       {
         domain: "Essaims de robots",
@@ -3770,12 +3770,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Électrochimie",
         description:
-          "Les dépôts de zinc, de cuivre et d'autres métaux obtenus en cellule électrolytique forment des dendrites de type DLA — directement pertinents pour la galvanoplastie, la conception de batteries (dendrites de lithium) et la corrosion.",
+          "Les dépôts de zinc, de cuivre et d'autres métaux obtenus en cellule électrolytique forment des dendrites de type DLA, directement pertinents pour la galvanoplastie, la conception de batteries (dendrites de lithium) et la corrosion.",
       },
       {
         domain: "Croissance cristalline",
         description:
-          "La formation des flocons de neige, le givre sur les fenêtres, les dendrites minérales dans la roche — tous présentent des lois d'échelle DLA.",
+          "La formation des flocons de neige, le givre sur les fenêtres, les dendrites minérales dans la roche : tous présentent des lois d'échelle DLA.",
       },
       {
         domain: "Biologie",
@@ -3802,53 +3802,53 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Enseignement",
         description:
-          "Exemple introductif favori des cours sur les automates cellulaires — la phase «autoroute» est l'un des phénomènes émergents les plus accessibles de l'informatique.",
+          "Exemple introductif favori des cours sur les automates cellulaires : la phase « autoroute » est l'un des phénomènes émergents les plus accessibles de l'informatique.",
       },
     ],
     pascalmod: [
       {
         domain: "Théorie des nombres",
         description:
-          "Le théorème de Lucas (1878) anime directement des algorithmes efficaces pour les coefficients binomiaux modulo un nombre premier — utilisés en cryptographie, combinatoire des mots et programmation compétitive.",
+          "Le théorème de Lucas (1878) anime directement des algorithmes efficaces pour les coefficients binomiaux modulo un nombre premier, utilisés en cryptographie, combinatoire des mots et programmation compétitive.",
       },
       {
         domain: "Théorie des codes",
         description:
-          "Les codes correcteurs de Reed–Muller et BCH s'appuient sur la machinerie des coefficients binomiaux modulo p — ils sont dans les codes QR, les sondes spatiales lointaines (Mariner 9, Voyager) et la TNT DVB-T.",
+          "Les codes correcteurs de Reed-Muller et BCH s'appuient sur la machinerie des coefficients binomiaux modulo p ; ils sont dans les codes QR, les sondes spatiales lointaines (Mariner 9, Voyager) et la TNT DVB-T.",
       },
       {
         domain: "Arts visuels",
         description:
-          "Pascal mod 2 est l'origine algébrique du triangle de Sierpiński — vendu en poster, tissé dans des tapis, utilisé dans des installations de galerie.",
+          "Pascal mod 2 est l'origine algébrique du triangle de Sierpiński, vendu en poster, tissé dans des tapis, utilisé dans des installations de galerie.",
       },
     ],
     sternbrocot: [
       {
         domain: "Musique par ordinateur et accord",
         description:
-          "Les compositeurs de musique microtonale utilisent Stern–Brocot pour trouver des approximations tempérées des rapports d'intonation juste — central pour la musique xénharmonique.",
+          "Les compositeurs de musique microtonale utilisent Stern-Brocot pour trouver des approximations tempérées des rapports d'intonation juste, central pour la musique xénharmonique.",
       },
       {
         domain: "Conception d'engrenages en robotique",
         description:
-          "La recherche des meilleures approximations rationnelles de rapports d'engrenages parcourt l'arbre de Stern–Brocot pour trouver des réductions mécaniques efficaces.",
+          "La recherche des meilleures approximations rationnelles de rapports d'engrenages parcourt l'arbre de Stern-Brocot pour trouver des réductions mécaniques efficaces.",
       },
       {
         domain: "Calendriers",
         description:
-          "Les règles d'année bissextile fondées sur des fractions continues (calendrier persan, corrections grégoriennes proposées) se déduisent des médiantes de Stern–Brocot.",
+          "Les règles d'année bissextile fondées sur des fractions continues (calendrier persan, corrections grégoriennes proposées) se déduisent des médiantes de Stern-Brocot.",
       },
       {
         domain: "Rendu d'image",
         description:
-          "L'échantillonnage sous-pixel et la rastérisation moderne des polices utilisent des médiantes façon Stern–Brocot pour choisir les rapports de couverture de pixel.",
+          "L'échantillonnage sous-pixel et la rastérisation moderne des polices utilisent des médiantes façon Stern-Brocot pour choisir les rapports de couverture de pixel.",
       },
     ],
     ulam: [
       {
         domain: "Théorie des nombres pure",
         description:
-          "Visualiser les nombres premiers via les spirales façon Ulam continue d'inspirer de nouvelles conjectures sur les densités de premiers polynomiaux (Hardy–Littlewood, Sato–Tate).",
+          "Visualiser les nombres premiers via les spirales façon Ulam continue d'inspirer de nouvelles conjectures sur les densités de premiers polynomiaux (Hardy-Littlewood, Sato-Tate).",
       },
       {
         domain: "Enseignement",
@@ -3865,7 +3865,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ingénierie audio",
         description:
-          "Les microphones cardioïdes (utilisés par tout podcasteur et professionnel du broadcast) doivent leur nom au diagramme de captation cardioïde — sensibles à l'avant et sourds à l'arrière.",
+          "Les microphones cardioïdes (utilisés par tout podcasteur et professionnel du broadcast) doivent leur nom au diagramme de captation cardioïde : sensibles à l'avant et sourds à l'arrière.",
       },
       {
         domain: "Conception d'antennes",
@@ -3887,7 +3887,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Enseignement des statistiques",
         description:
-          "La planche de Galton est la démonstration canonique du théorème central limite — présente dans presque tous les musées de sciences (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
+          "La planche de Galton est la démonstration canonique du théorème central limite, présente dans presque tous les musées de sciences (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
       },
       {
         domain: "Quinconce en génétique",
@@ -3909,7 +3909,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Démonstrations de chaos",
         description:
-          "Le jouet de bureau «pendule à trois aimants» est la démonstration physique la plus populaire des bassins d'attraction fractals — vendu par ThinkGeek, Nikola Labs et de nombreuses boutiques de cadeaux scientifiques.",
+          "Le jouet de bureau « pendule à trois aimants » est la démonstration physique la plus populaire des bassins d'attraction fractals, vendu par ThinkGeek, Nikola Labs et de nombreuses boutiques de cadeaux scientifiques.",
       },
       {
         domain: "Recherche en lévitation magnétique",
@@ -3931,12 +3931,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Informatique",
         description:
-          "L'indéfinissabilité de la vérité de Tarski, le problème de l'arrêt de Turing et le théorème de Rice en sont des descendants directs — présents dans tout cours de licence de logique et calculabilité.",
+          "L'indéfinissabilité de la vérité de Tarski, le problème de l'arrêt de Turing et le théorème de Rice en sont des descendants directs, présents dans tout cours de licence de logique et calculabilité.",
       },
       {
         domain: "Philosophie de l'esprit",
         description:
-          "L'argument de Penrose selon lequel l'esprit humain n'est pas purement algorithmique (L'esprit, l'ordinateur et les lois de la physique, 1989) s'appuie fortement sur Gödel — controversé mais influent.",
+          "L'argument de Penrose selon lequel l'esprit humain n'est pas purement algorithmique (L'esprit, l'ordinateur et les lois de la physique, 1989) s'appuie fortement sur Gödel (controversé mais influent).",
       },
       {
         domain: "Logiciel vérifié",
@@ -3948,7 +3948,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Compilateurs et analyse statique",
         description:
-          "Les analyseurs statiques modernes (Coverity, Infer, le borrow checker de Rust) doivent renoncer à une précision parfaite parce que les propriétés non triviales de programmes sont indécidables — conséquence directe du problème de l'arrêt (théorème de Rice).",
+          "Les analyseurs statiques modernes (Coverity, Infer, le borrow checker de Rust) doivent renoncer à une précision parfaite parce que les propriétés non triviales de programmes sont indécidables : conséquence directe du problème de l'arrêt (théorème de Rice).",
       },
       {
         domain: "Antivirus",
@@ -3958,7 +3958,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Nuages de calcul",
         description:
-          "Les autoscalers cloud ne peuvent jamais garantir que «cette tâche utilisateur se terminera» — ils imposent des délais parce que décider de l'arrêt est impossible.",
+          "Les autoscalers cloud ne peuvent jamais garantir que « cette tâche utilisateur se terminera » ; ils imposent des délais parce que décider de l'arrêt est impossible.",
       },
       {
         domain: "Enseignement",
@@ -3970,7 +3970,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Cryptographie",
         description:
-          "Si P = NP, RSA, AES, toute la blockchain et le trafic protégé par TLS seraient cassés du jour au lendemain — tout secret numérique moderne dépend du fait que P ≠ NP en pratique.",
+          "Si P = NP, RSA, AES, toute la blockchain et le trafic protégé par TLS seraient cassés du jour au lendemain : tout secret numérique moderne dépend du fait que P ≠ NP en pratique.",
       },
       {
         domain: "Optimisation",
@@ -3985,7 +3985,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bio-informatique",
         description:
-          "Le repliement des protéines, l'assemblage de génomes et la reconstruction d'arbres phylogénétiques sont tous NP-difficiles — ce qui pousse le domaine à inventer des algorithmes d'approximation et des méthodes d'IA (AlphaFold).",
+          "Le repliement des protéines, l'assemblage de génomes et la reconstruction d'arbres phylogénétiques sont tous NP-difficiles, ce qui pousse le domaine à inventer des algorithmes d'approximation et des méthodes d'IA (AlphaFold).",
       },
       {
         domain: "Prix ouvert",
@@ -3997,7 +3997,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "TLS / HTTPS",
         description:
-          "Chaque cadenas dans votre navigateur fait intervenir, lors du handshake initial, RSA ou son cousin sur courbes elliptiques (ECDSA) — des milliards de fois par seconde.",
+          "Chaque cadenas dans votre navigateur fait intervenir, lors du handshake initial, RSA ou son cousin sur courbes elliptiques (ECDSA), des milliards de fois par seconde.",
       },
       {
         domain: "Signatures numériques",
@@ -4024,7 +4024,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bandes transporteuses industrielles",
         description:
-          "Les courroies d'entraînement en bande de Möbius s'usent uniformément sur les deux «côtés» (il n'y en a qu'un !) — utilisées dans les vieilles presses d'imprimerie, les bandes modernes d'enregistrement et certains systèmes VHS.",
+          "Les courroies d'entraînement en bande de Möbius s'usent uniformément sur les deux « côtés » (il n'y en a qu'un !), utilisées dans les vieilles presses d'imprimerie, les bandes modernes d'enregistrement et certains systèmes VHS.",
       },
       {
         domain: "Génie mécanique",
@@ -4034,7 +4034,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Recherche en topologie",
         description:
-          "La bande de Möbius est la surface non orientable la plus simple — porte d'entrée vers un vaste domaine qui classifie toutes les surfaces, utilisé en cosmologie et en théorie des cordes.",
+          "La bande de Möbius est la surface non orientable la plus simple, porte d'entrée vers un vaste domaine qui classifie toutes les surfaces, utilisé en cosmologie et en théorie des cordes.",
       },
       {
         domain: "Art et architecture",
@@ -4056,7 +4056,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Topologie des données",
         description:
-          "Les pipelines d'homologie persistante utilisent des caractéristiques d'Euler pour résumer la forme de nuages de points en grande dimension — appliqué en génomique, réseaux de capteurs et cosmologie.",
+          "Les pipelines d'homologie persistante utilisent des caractéristiques d'Euler pour résumer la forme de nuages de points en grande dimension, appliqué en génomique, réseaux de capteurs et cosmologie.",
       },
       {
         domain: "Architecture",
@@ -4078,7 +4078,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Naissance de la théorie des graphes",
         description:
-          "Königsberg a lancé tout le champ — la théorie des graphes sous-tend aujourd'hui le PageRank de Google, l'analyse des réseaux sociaux, le placement de puces et la planification d'itinéraires.",
+          "Königsberg a lancé tout le champ : la théorie des graphes sous-tend aujourd'hui le PageRank de Google, l'analyse des réseaux sociaux, le placement de puces et la planification d'itinéraires.",
       },
       {
         domain: "Séquençage de l'ADN",
@@ -4088,7 +4088,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Optimisation d'itinéraires",
         description:
-          "Postiers, bennes à ordures et chasse-neige résolvent le problème du postier chinois — descendant direct des ponts de Königsberg.",
+          "Postiers, bennes à ordures et chasse-neige résolvent le problème du postier chinois, descendant direct des ponts de Königsberg.",
       },
       {
         domain: "Tourisme",
@@ -4105,7 +4105,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Réseaux mobiles",
         description:
-          "L'allocation de fréquences entre antennes-relais se ramène à une coloration de graphes — le théorème des quatre couleurs est le cas limite pour certains agencements planaires.",
+          "L'allocation de fréquences entre antennes-relais se ramène à une coloration de graphes ; le théorème des quatre couleurs est le cas limite pour certains agencements planaires.",
       },
       {
         domain: "Ordonnancement",
@@ -4115,14 +4115,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Mathématiques vérifiées par ordinateur",
         description:
-          "Avec la conjecture de Kepler, le théorème des quatre couleurs a été un jalon de la preuve assistée par ordinateur — la culture des assistants de preuve (Coq, Lean) en tire sa légitimité.",
+          "Avec la conjecture de Kepler, le théorème des quatre couleurs a été un jalon de la preuve assistée par ordinateur : la culture des assistants de preuve (Coq, Lean) en tire sa légitimité.",
       },
     ],
     smallworld: [
       {
         domain: "Réseaux sociaux",
         description:
-          "La fonctionnalité «contacts du 2ᵉ degré» de LinkedIn, les cascades de retweets de Twitter et le «vous connaissez peut-être» de Facebook exploitent la structure en petit monde pour la pertinence.",
+          "La fonctionnalité « contacts du 2ᵉ degré » de LinkedIn, les cascades de retweets de Twitter et le « vous connaissez peut-être » de Facebook exploitent la structure en petit monde pour la pertinence.",
       },
       {
         domain: "Modèles épidémiques",
@@ -4132,7 +4132,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Recherche cérébrale",
         description:
-          "Les études d'IRMf montrent que le connectome humain est un réseau en petit monde — le coefficient de petit monde est désormais un biomarqueur standard dans la recherche sur la maladie d'Alzheimer et la schizophrénie.",
+          "Les études d'IRMf montrent que le connectome humain est un réseau en petit monde ; le coefficient de petit monde est désormais un biomarqueur standard dans la recherche sur la maladie d'Alzheimer et la schizophrénie.",
       },
       {
         domain: "Routage Internet",
@@ -4159,7 +4159,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Conception de médicaments et de protéines",
         description:
-          "RFdiffusion (laboratoire Baker) et Chroma génèrent de nouveaux squelettes protéiques en débruitant des coordonnées 3D plutôt que des pixels — des candidats publiés ont été synthétisés et se replient correctement.",
+          "RFdiffusion (laboratoire Baker) et Chroma génèrent de nouveaux squelettes protéiques en débruitant des coordonnées 3D plutôt que des pixels ; des candidats publiés ont été synthétisés et se replient correctement.",
       },
       {
         domain: "Audio et voix",
@@ -4169,7 +4169,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Physique et thermodynamique",
         description:
-          "Le processus direct est littéralement de la dynamique de Langevin — le calendrier de bruit reflète un système qui se relaxe vers l'équilibre thermique. L'article original de Sohl-Dickstein (2015) était formulé comme de la thermodynamique hors équilibre.",
+          "Le processus direct est littéralement de la dynamique de Langevin : le calendrier de bruit reflète un système qui se relaxe vers l'équilibre thermique. L'article original de Sohl-Dickstein (2015) était formulé comme de la thermodynamique hors équilibre.",
       },
     ],
     riemann: [
@@ -4186,7 +4186,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Chaos quantique",
         description:
-          "La statistique des écarts entre zéros de zêta coïncide avec la statistique des valeurs propres de matrices hermitiennes aléatoires — les mêmes qui modélisent les niveaux d'énergie des noyaux lourds. La conjecture de Montgomery-Dyson (1972) est l'un des ponts les plus surprenants de la mathématique.",
+          "La statistique des écarts entre zéros de zêta coïncide avec la statistique des valeurs propres de matrices hermitiennes aléatoires, les mêmes qui modélisent les niveaux d'énergie des noyaux lourds. La conjecture de Montgomery-Dyson (1972) est l'un des ponts les plus surprenants de la mathématique.",
       },
       {
         domain: "Vérifications numériques par ordinateur",
@@ -4196,14 +4196,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Vulgarisation et prestige des problèmes ouverts",
         description:
-          "Riemann est le problème ouvert le plus célèbre en dehors de Fermat — un prix du millénaire de Clay (1 M$), des apparitions récurrentes dans la fiction (Un homme d'exception, La musique des nombres premiers) et un flot continu de « preuves » qui ne survivent pas à la relecture par les pairs.",
+          "Riemann est le problème ouvert le plus célèbre en dehors de Fermat : un prix du millénaire de Clay (1 M$), des apparitions récurrentes dans la fiction (Un homme d'exception, La musique des nombres premiers) et un flot continu de « preuves » qui ne survivent pas à la relecture par les pairs.",
       },
     ],
     backprop: [
       {
         domain: "Apprentissage profond",
         description:
-          "Tout réseau de neurones moderne — classifieur d'images, modèle de langage, recommandeur — est entraîné par rétropropagation. PyTorch et JAX l'implémentent comme cœur de différentiation (autograd).",
+          "Tout réseau de neurones moderne (classifieur d'images, modèle de langage, recommandeur) est entraîné par rétropropagation. PyTorch et JAX l'implémentent comme cœur de différentiation (autograd).",
       },
       {
         domain: "Vision par ordinateur",
@@ -4223,7 +4223,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Problèmes inverses en science",
         description:
-          "Les physiciens inversent des expériences en montant le modèle direct dans PyTorch/JAX puis en rétropropageant à travers — utilisé en conception de protéines (AlphaFold), rendu différentiable et conception expérimentale par gradient.",
+          "Les physiciens inversent des expériences en montant le modèle direct dans PyTorch/JAX puis en rétropropageant à travers, utilisé en conception de protéines (AlphaFold), rendu différentiable et conception expérimentale par gradient.",
       },
     ],
   },
@@ -4237,7 +4237,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Verifica del software e analisi dei programmi",
         description:
-          "Z3 di Microsoft — un solver SMT costruito su un nucleo SAT — verifica driver, trova bug di sicurezza e controlla che le ottimizzazioni del compilatore preservino il significato. SAT/SMT sostiene l'esecuzione simbolica e gran parte dell'analisi statica moderna.",
+          "Z3 di Microsoft (un solver SMT costruito su un nucleo SAT) verifica driver, trova bug di sicurezza e controlla che le ottimizzazioni del compilatore preservino il significato. SAT/SMT sostiene l'esecuzione simbolica e gran parte dell'analisi statica moderna.",
       },
       {
         domain: "Pianificazione, scheduling e configurazione",
@@ -4269,7 +4269,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Analoghi naturali",
         description:
-          "Coste, creste montuose, fronde di felce e cimette di broccolo mostrano la stessa struttura di bordo autosimile — era esattamente il punto di Mandelbrot sulla geometria frattale.",
+          "Coste, creste montuose, fronde di felce e cimette di broccolo mostrano la stessa struttura di bordo autosimile: era esattamente il punto di Mandelbrot sulla geometria frattale.",
       },
     ],
     life: [
@@ -4308,7 +4308,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Corsi di hardware",
         description:
-          "Il corso nand2tetris costruisce un computer completo partendo da un singolo chip NAND — usato in oltre 100 università.",
+          "Il corso nand2tetris costruisce un computer completo partendo da un singolo chip NAND, usato in oltre 100 università.",
       },
       {
         domain: "Logica embedded",
@@ -4320,7 +4320,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Interpreti di combinatori",
         description:
-          "I compilatori di linguaggi funzionali (per esempio Lazy K) traducono programmi in lambda-calcolo in espressioni di soli combinatori — in stile Iota — durante la generazione di codice.",
+          "I compilatori di linguaggi funzionali (per esempio Lazy K) traducono programmi in lambda-calcolo in espressioni di soli combinatori (in stile Iota) durante la generazione di codice.",
       },
       {
         domain: "Linguaggi esoterici",
@@ -4342,7 +4342,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Didattica del calcolo formale",
         description:
-          "Citata in ogni introduzione moderna agli automi cellulari come il più semplice sistema universale noto — una macchina di Turing in formato tweet.",
+          "Citata in ogni introduzione moderna agli automi cellulari come il più semplice sistema universale noto: una macchina di Turing in formato tweet.",
       },
       {
         domain: "Rumore procedurale per texture",
@@ -4359,7 +4359,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Epidemiologia",
         description:
-          "La crescita epidemica limitata (con capacità portante = pool dei suscettibili) segue curve logistiche — le curve cumulate dei casi di COVID-19 ne sono un esempio da manuale.",
+          "La crescita epidemica limitata (con capacità portante = pool dei suscettibili) segue curve logistiche; le curve cumulate dei casi di COVID-19 ne sono un esempio da manuale.",
       },
       {
         domain: "Apprendimento automatico",
@@ -4381,7 +4381,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Previsioni meteorologiche",
         description:
-          "I servizi operativi di previsione usano metodi d'ensemble perché l'atmosfera condivide la sensibilità di Lorenz alle condizioni iniziali — la prevedibilità crolla dopo circa 14 giorni.",
+          "I servizi operativi di previsione usano metodi d'ensemble perché l'atmosfera condivide la sensibilità di Lorenz alle condizioni iniziali: la prevedibilità crolla dopo circa 14 giorni.",
       },
       {
         domain: "Modellistica climatica",
@@ -4396,7 +4396,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Comunicazione sicura",
         description:
-          "Alcuni schemi di cifratura basati sul caos hanno usato la sincronizzazione alla Lorenz per mascherare segnali — nicchia, ma reale (Cuomo e Oppenheim, 1993).",
+          "Alcuni schemi di cifratura basati sul caos hanno usato la sincronizzazione alla Lorenz per mascherare segnali: nicchia, ma reale (Cuomo e Oppenheim, 1993).",
       },
     ],
     fourier: [
@@ -4408,7 +4408,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "JPEG e HEIC",
         description:
-          "Ogni blocco 8×8 pixel di un JPEG è memorizzato come coefficienti della trasformata discreta del coseno — per questo il ringing JPEG mostra pattern orizzontali e verticali.",
+          "Ogni blocco 8×8 pixel di un JPEG è memorizzato come coefficienti della trasformata discreta del coseno; per questo il ringing JPEG mostra pattern orizzontali e verticali.",
       },
       {
         domain: "Risonanza magnetica",
@@ -4418,7 +4418,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Wi-Fi, 5G, DSL",
         description:
-          "Le moderne trasmissioni senza filo e via cavo usano OFDM, che dispone i dati su migliaia di portanti sinusoidali accuratamente spaziate — ingegneria di Fourier allo stato puro.",
+          "Le moderne trasmissioni senza filo e via cavo usano OFDM, che dispone i dati su migliaia di portanti sinusoidali accuratamente spaziate: ingegneria di Fourier allo stato puro.",
       },
       {
         domain: "Parlato e ML",
@@ -4440,19 +4440,19 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Analisi dei circuiti in corrente alternata",
         description:
-          "Le ingegnerie elettriche modellano tensioni e correnti alternate come esponenziali complesse — l'aritmetica delle impedenze tramite fasori è applicazione diretta della formula di Eulero.",
+          "Le ingegnerie elettriche modellano tensioni e correnti alternate come esponenziali complesse; l'aritmetica delle impedenze tramite fasori è applicazione diretta della formula di Eulero.",
       },
       {
         domain: "Teoria del controllo",
         description:
-          "La stabilità dei sistemi a controreazione si legge dalla posizione dei poli nel piano complesso — la formula di Eulero è il ponte fra tempo e frequenza.",
+          "La stabilità dei sistemi a controreazione si legge dalla posizione dei poli nel piano complesso; la formula di Eulero è il ponte fra tempo e frequenza.",
       },
     ],
     banach: [
       {
         domain: "Didattica della teoria degli insiemi",
         description:
-          "Banach–Tarski è l'esempio da manuale del perché l'Assioma della Scelta sia controverso — presente in ogni corso di analisi reale di livello magistrale.",
+          "Banach-Tarski è l'esempio da manuale del perché l'Assioma della Scelta sia controverso, presente in ogni corso di analisi reale di livello magistrale.",
       },
       {
         domain: "Fondamenti della matematica",
@@ -4491,7 +4491,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Grafica in tempo reale",
         description:
-          "I tileset di Wang permettono di impacchettare texture non ripetitive (erba, mattoni, sabbia) in atlanti molto piccoli — importante su dispositivi a memoria limitata come le GPU mobili.",
+          "I tileset di Wang permettono di impacchettare texture non ripetitive (erba, mattoni, sabbia) in atlanti molto piccoli, importante su dispositivi a memoria limitata come le GPU mobili.",
       },
       {
         domain: "Level design procedurale",
@@ -4501,7 +4501,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Materiali e quasicristalli",
         description:
-          "La teoria delle tessere di Wang si sovrappone in parte alla matematica dei quasicristalli — entrambe producono disposizioni infinite aperiodiche.",
+          "La teoria delle tessere di Wang si sovrappone in parte alla matematica dei quasicristalli: entrambe producono disposizioni infinite aperiodiche.",
       },
     ],
     collatz: [
@@ -4547,7 +4547,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Aritmie cardiache",
         description:
-          "Pattern di onde a spirale molto simili alle spirali BZR sono osservati sulla superficie del cuore durante la fibrillazione — centrali per la progettazione e la ricerca sui defibrillatori.",
+          "Pattern di onde a spirale molto simili alle spirali BZR sono osservati sulla superficie del cuore durante la fibrillazione, centrali per la progettazione e la ricerca sui defibrillatori.",
       },
       {
         domain: "Neuroscienze",
@@ -4557,7 +4557,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Didattica della chimica",
         description:
-          "BZR è la più suggestiva dimostrazione di «chimica viva» che un insegnante di chimica del liceo possa mostrare — oscillazione visibile in una beuta.",
+          "BZR è la più suggestiva dimostrazione di «chimica viva» che un insegnante di chimica del liceo possa mostrare: oscillazione visibile in una beuta.",
       },
       {
         domain: "Teoria da Nobel",
@@ -4574,7 +4574,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Fillotassi vegetale",
         description:
-          "Le disposizioni a spirale dei semi di girasole, delle squame delle pigne e degli ananas emergono da reazione-diffusione più angolo aureo — chimica di Turing su una superficie in crescita.",
+          "Le disposizioni a spirale dei semi di girasole, delle squame delle pigne e degli ananas emergono da reazione-diffusione più angolo aureo: chimica di Turing su una superficie in crescita.",
       },
       {
         domain: "Arte generativa e grafica",
@@ -4591,7 +4591,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Antenne frattali",
         description:
-          "Le antenne con triangolo di Sierpiński sono prodotti commerciali — cellulari, router Wi-Fi e dispositivi GPS usano patch frattali multibanda che risuonano a molte frequenze su un'area ridotta.",
+          "Le antenne con triangolo di Sierpiński sono prodotti commerciali: cellulari, router Wi-Fi e dispositivi GPS usano patch frattali multibanda che risuonano a molte frequenze su un'area ridotta.",
       },
       {
         domain: "Scambiatori di calore",
@@ -4601,7 +4601,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Compressione e grafica",
         description:
-          "I sistemi di funzioni iterate (IFS in stile Sierpiński) sono alla base degli algoritmi di compressione frattale delle immagini — ancora usati in codificatori di nicchia per immagini aeree.",
+          "I sistemi di funzioni iterate (IFS in stile Sierpiński) sono alla base degli algoritmi di compressione frattale delle immagini, ancora usati in codificatori di nicchia per immagini aeree.",
       },
       {
         domain: "Reti",
@@ -4613,7 +4613,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bioinformatica",
         description:
-          "La Chaos Game Representation (CGR) è un modo standard di visualizzare sequenze di DNA — ogni nucleotide spinge un punto verso uno dei quattro angoli di un quadrato; le specie si raggruppano in firme frattali riconoscibili.",
+          "La Chaos Game Representation (CGR) è un modo standard di visualizzare sequenze di DNA: ogni nucleotide spinge un punto verso uno dei quattro angoli di un quadrato; le specie si raggruppano in firme frattali riconoscibili.",
       },
       {
         domain: "Compressione frattale",
@@ -4630,7 +4630,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Quasicristalli",
         description:
-          "La scoperta di Dan Shechtman nel 1982 dei quasicristalli metallici (Nobel 2011) è stata compresa grazie alle tassellature di Penrose — la stessa matematica a simmetria quintupla governa entrambi.",
+          "La scoperta di Dan Shechtman nel 1982 dei quasicristalli metallici (Nobel 2011) è stata compresa grazie alle tassellature di Penrose: la stessa matematica a simmetria quintupla governa entrambi.",
       },
       {
         domain: "Architettura",
@@ -4652,12 +4652,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Impacchettamento granulare",
         description:
-          "Il modo in cui sabbia, ghiaia e polveri farmaceutiche riempiono i contenitori è modellato con impacchettamenti di sfere in stile apolloniano — importante per calcestruzzo, compresse e metallurgia delle polveri.",
+          "Il modo in cui sabbia, ghiaia e polveri farmaceutiche riempiono i contenitori è modellato con impacchettamenti di sfere in stile apolloniano, importante per calcestruzzo, compresse e metallurgia delle polveri.",
       },
       {
         domain: "Teoria dei numeri",
         description:
-          "Gli impacchettamenti apolloniani interi sono studiati dalla teoria analitica dei numeri — lavori di Sarnak, Bourgain e Kontorovich hanno fornito nuovi risultati sulle curvature prime.",
+          "Gli impacchettamenti apolloniani interi sono studiati dalla teoria analitica dei numeri: lavori di Sarnak, Bourgain e Kontorovich hanno fornito nuovi risultati sulle curvature prime.",
       },
       {
         domain: "Fisica di schiume ed emulsioni",
@@ -4674,12 +4674,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Fillotassi vegetale",
         description:
-          "Le spirali dei semi di girasole, le squame delle pigne e la disposizione delle foglie nella maggior parte delle piante convergono all'angolo aureo — verificato su migliaia di specie.",
+          "Le spirali dei semi di girasole, le squame delle pigne e la disposizione delle foglie nella maggior parte delle piante convergono all'angolo aureo, verificato su migliaia di specie.",
       },
       {
         domain: "Frazioni continue",
         description:
-          "φ ha lo sviluppo in frazione continua più semplice [1;1,1,…], il che lo rende il numero «più irrazionale» — concetto chiave per la teoria KAM in meccanica classica.",
+          "φ ha lo sviluppo in frazione continua più semplice [1;1,1,…], il che lo rende il numero «più irrazionale», concetto chiave per la teoria KAM in meccanica classica.",
       },
       {
         domain: "Quasicristalli e Penrose",
@@ -4694,14 +4694,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Scetticismo onesto",
         description:
-          "Le affermazioni che φ comparirebbe nel Partenone, nella Gioconda, nella conchiglia del nautilus o nelle proporzioni del corpo umano sono in larga parte miti — smentiti fra gli altri da George Markowsky (1992).",
+          "Le affermazioni che φ comparirebbe nel Partenone, nella Gioconda, nella conchiglia del nautilus o nelle proporzioni del corpo umano sono in larga parte miti, smentiti fra gli altri da George Markowsky (1992).",
       },
     ],
     buffon: [
       {
         domain: "Integrazione Monte Carlo",
         description:
-          "L'ago di Buffon è il seme storico dei metodi Monte Carlo — oggi usati ovunque, dalla valutazione finanziaria (Black–Scholes) alla simulazione di fisica delle particelle (Geant4), fino al rendering (path tracing).",
+          "L'ago di Buffon è il seme storico dei metodi Monte Carlo, oggi usati ovunque, dalla valutazione finanziaria (Black-Scholes) alla simulazione di fisica delle particelle (Geant4), fino al rendering (path tracing).",
       },
       {
         domain: "Simulazione fisica",
@@ -4733,7 +4733,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Divulgazione scientifica",
         description:
-          "Video di TED-Ed, Vsauce, PBS Infinite Series — la spiegazione moderna dell'infinito più condivisa.",
+          "Video di TED-Ed, Vsauce, PBS Infinite Series: la spiegazione moderna dell'infinito più condivisa.",
       },
     ],
     gabrielshorn: [
@@ -4745,7 +4745,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Filosofia della matematica",
         description:
-          "Citato nei dibattiti sul significato dei paradossi geometrici e sui limiti dell'intuizione fisica — esperimento mentale fondante.",
+          "Citato nei dibattiti sul significato dei paradossi geometrici e sui limiti dell'intuizione fisica, esperimento mentale fondante.",
       },
       {
         domain: "Microfluidica",
@@ -4757,7 +4757,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Teoria della calcolabilità",
         description:
-          "La diagonale di Cantor produce direttamente la prova del problema della fermata di Turing e i teoremi di incompletezza di Gödel — pietre angolari dell'informatica teorica.",
+          "La diagonale di Cantor produce direttamente la prova del problema della fermata di Turing e i teoremi di incompletezza di Gödel, pietre angolari dell'informatica teorica.",
       },
       {
         domain: "Teoria dei linguaggi di programmazione",
@@ -4767,7 +4767,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Crittografia e complessità",
         description:
-          "Gli argomenti di diagonalizzazione sono alla base dei risultati moderni di teoria della complessità — separazioni fra P, NP, EXP.",
+          "Gli argomenti di diagonalizzazione sono alla base dei risultati moderni di teoria della complessità: separazioni fra P, NP, EXP.",
       },
       {
         domain: "Filosofia della matematica",
@@ -4779,7 +4779,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Effetti visivi al cinema",
         description:
-          "Batman - Il ritorno (sciame di pipistrelli del 1992), Il Re Leone (stampede di gnu del 1994) e innumerevoli film moderni usano i Boids — di solito tramite Massive o Houdini.",
+          "Batman: Il ritorno (sciame di pipistrelli del 1992), Il Re Leone (stampede di gnu del 1994) e innumerevoli film moderni usano i Boids, di solito tramite Massive o Houdini.",
       },
       {
         domain: "Sciami di droni",
@@ -4789,7 +4789,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Simulazione di folle",
         description:
-          "Gli studi di architettura simulano evacuazioni di stadi e flussi nei centri commerciali con agenti in stile Boids — usati nella progettazione degli stadi dagli anni 2000.",
+          "Gli studi di architettura simulano evacuazioni di stadi e flussi nei centri commerciali con agenti in stile Boids, usati nella progettazione degli stadi dagli anni 2000.",
       },
       {
         domain: "Sciami robotici",
@@ -4823,12 +4823,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Elettrochimica",
         description:
-          "Depositi di zinco, rame e altri metalli ottenuti in celle elettrolitiche formano dendriti di tipo DLA — direttamente rilevanti per galvanica, progettazione delle batterie (dendriti di litio) e corrosione.",
+          "Depositi di zinco, rame e altri metalli ottenuti in celle elettrolitiche formano dendriti di tipo DLA, direttamente rilevanti per galvanica, progettazione delle batterie (dendriti di litio) e corrosione.",
       },
       {
         domain: "Crescita dei cristalli",
         description:
-          "La formazione dei fiocchi di neve, la brina sulle finestre, le dendriti minerali nelle rocce — tutte esibiscono leggi di scaling DLA.",
+          "La formazione dei fiocchi di neve, la brina sulle finestre, le dendriti minerali nelle rocce: tutte esibiscono leggi di scaling DLA.",
       },
       {
         domain: "Biologia",
@@ -4855,53 +4855,53 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Didattica",
         description:
-          "Esempio introduttivo prediletto nei corsi sugli automi cellulari — la fase «autostrada» è uno dei fenomeni emergenti più accessibili dell'informatica.",
+          "Esempio introduttivo prediletto nei corsi sugli automi cellulari: la fase «autostrada» è uno dei fenomeni emergenti più accessibili dell'informatica.",
       },
     ],
     pascalmod: [
       {
         domain: "Teoria dei numeri",
         description:
-          "Il teorema di Lucas (1878) alimenta direttamente algoritmi efficienti per coefficienti binomiali modulo primo — usati in crittografia, combinatoria sulle parole e programmazione competitiva.",
+          "Il teorema di Lucas (1878) alimenta direttamente algoritmi efficienti per coefficienti binomiali modulo primo, usati in crittografia, combinatoria sulle parole e programmazione competitiva.",
       },
       {
         domain: "Teoria dei codici",
         description:
-          "I codici a correzione di errore Reed–Muller e BCH si basano sulla macchineria dei coefficienti binomiali modulo p — sono nei codici QR, nelle sonde di spazio profondo (Mariner 9, Voyager) e nella TV digitale DVB-T.",
+          "I codici a correzione di errore Reed-Muller e BCH si basano sulla macchineria dei coefficienti binomiali modulo p; sono nei codici QR, nelle sonde di spazio profondo (Mariner 9, Voyager) e nella TV digitale DVB-T.",
       },
       {
         domain: "Arti visive",
         description:
-          "Pascal mod 2 è l'origine algebrica del triangolo di Sierpiński — venduto come poster, tessuto in tappeti, usato in installazioni in galleria.",
+          "Pascal mod 2 è l'origine algebrica del triangolo di Sierpiński, venduto come poster, tessuto in tappeti, usato in installazioni in galleria.",
       },
     ],
     sternbrocot: [
       {
         domain: "Musica al computer e accordature",
         description:
-          "I compositori microtonali usano Stern–Brocot per trovare approssimazioni temperate ai rapporti dell'intonazione naturale — centrale per la musica xenarmonica.",
+          "I compositori microtonali usano Stern-Brocot per trovare approssimazioni temperate ai rapporti dell'intonazione naturale, centrale per la musica xenarmonica.",
       },
       {
         domain: "Progettazione di ingranaggi in robotica",
         description:
-          "Le ricerche della migliore approssimazione razionale per rapporti di trasmissione attraversano l'albero di Stern–Brocot per trovare riduzioni meccaniche efficienti.",
+          "Le ricerche della migliore approssimazione razionale per rapporti di trasmissione attraversano l'albero di Stern-Brocot per trovare riduzioni meccaniche efficienti.",
       },
       {
         domain: "Calendari",
         description:
-          "Le regole degli anni bisestili basate su frazioni continue (calendario persiano, correzioni gregoriane proposte) derivano dalle mediane di Stern–Brocot.",
+          "Le regole degli anni bisestili basate su frazioni continue (calendario persiano, correzioni gregoriane proposte) derivano dalle mediane di Stern-Brocot.",
       },
       {
         domain: "Rendering di immagini",
         description:
-          "Il campionamento subpixel e la moderna rasterizzazione dei caratteri usano mediane in stile Stern–Brocot per scegliere i rapporti di copertura del pixel.",
+          "Il campionamento subpixel e la moderna rasterizzazione dei caratteri usano mediane in stile Stern-Brocot per scegliere i rapporti di copertura del pixel.",
       },
     ],
     ulam: [
       {
         domain: "Teoria dei numeri pura",
         description:
-          "Visualizzare i numeri primi tramite spirali in stile Ulam continua a ispirare nuove congetture sulle densità di primi polinomiali (Hardy–Littlewood, Sato–Tate).",
+          "Visualizzare i numeri primi tramite spirali in stile Ulam continua a ispirare nuove congetture sulle densità di primi polinomiali (Hardy-Littlewood, Sato-Tate).",
       },
       {
         domain: "Didattica",
@@ -4918,7 +4918,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ingegneria audio",
         description:
-          "I microfoni cardioidi (quelli usati da ogni podcaster e da chi lavora nel broadcasting) devono il nome al diagramma di ripresa cardioide — sensibili davanti e sordi dietro.",
+          "I microfoni cardioidi (quelli usati da ogni podcaster e da chi lavora nel broadcasting) devono il nome al diagramma di ripresa cardioide: sensibili davanti e sordi dietro.",
       },
       {
         domain: "Progettazione di antenne",
@@ -4940,7 +4940,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Didattica della statistica",
         description:
-          "La macchina di Galton è la dimostrazione canonica del teorema del limite centrale — presente in quasi ogni museo della scienza (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
+          "La macchina di Galton è la dimostrazione canonica del teorema del limite centrale, presente in quasi ogni museo della scienza (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
       },
       {
         domain: "Quinconce in genetica",
@@ -4962,7 +4962,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Dimostrazioni di caos",
         description:
-          "Il gioco da scrivania «pendolo a tre magneti» è la più popolare dimostrazione fisica dei bacini d'attrazione frattali — venduto da ThinkGeek, Nikola Labs e da molti negozi di regali scientifici.",
+          "Il gioco da scrivania «pendolo a tre magneti» è la più popolare dimostrazione fisica dei bacini d'attrazione frattali, venduto da ThinkGeek, Nikola Labs e da molti negozi di regali scientifici.",
       },
       {
         domain: "Ricerca sulla levitazione magnetica",
@@ -4984,12 +4984,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Informatica",
         description:
-          "L'indefinibilità della verità di Tarski, il problema della fermata di Turing e il teorema di Rice ne sono discendenti diretti — presenti in ogni corso di logica e calcolabilità della laurea triennale.",
+          "L'indefinibilità della verità di Tarski, il problema della fermata di Turing e il teorema di Rice ne sono discendenti diretti, presenti in ogni corso di logica e calcolabilità della laurea triennale.",
       },
       {
         domain: "Filosofia della mente",
         description:
-          "L'argomento di Penrose secondo cui la mente umana non è puramente algoritmica (La mente nuova dell'imperatore, 1989) si appoggia molto a Gödel — controverso ma influente.",
+          "L'argomento di Penrose secondo cui la mente umana non è puramente algoritmica (La mente nuova dell'imperatore, 1989) si appoggia molto a Gödel (controverso ma influente).",
       },
       {
         domain: "Software verificato",
@@ -5001,7 +5001,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Compilatori e analisi statica",
         description:
-          "I moderni analizzatori statici (Coverity, Infer, il borrow checker di Rust) devono rinunciare a una precisione perfetta perché le proprietà non triviali dei programmi sono indecidibili — conseguenza diretta del problema della fermata (teorema di Rice).",
+          "I moderni analizzatori statici (Coverity, Infer, il borrow checker di Rust) devono rinunciare a una precisione perfetta perché le proprietà non triviali dei programmi sono indecidibili: conseguenza diretta del problema della fermata (teorema di Rice).",
       },
       {
         domain: "Antivirus",
@@ -5011,7 +5011,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Cloud di calcolo",
         description:
-          "Gli autoscaler in cloud non possono mai garantire che «questo job utente terminerà» — impongono timeout perché decidere la fermata è impossibile.",
+          "Gli autoscaler in cloud non possono mai garantire che «questo job utente terminerà»; impongono timeout perché decidere la fermata è impossibile.",
       },
       {
         domain: "Didattica",
@@ -5023,7 +5023,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Crittografia",
         description:
-          "Se P = NP, RSA, AES, ogni blockchain e tutto il traffico protetto da TLS sarebbero rotti dall'oggi al domani — ogni segreto digitale moderno dipende dal fatto che P ≠ NP valga effettivamente.",
+          "Se P = NP, RSA, AES, ogni blockchain e tutto il traffico protetto da TLS sarebbero rotti dall'oggi al domani: ogni segreto digitale moderno dipende dal fatto che P ≠ NP valga effettivamente.",
       },
       {
         domain: "Ottimizzazione",
@@ -5038,7 +5038,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bioinformatica",
         description:
-          "Folding proteico, assemblaggio di genomi e ricostruzione di alberi filogenetici sono tutti NP-difficili — questo spinge il campo a inventare algoritmi di approssimazione e metodi di IA (AlphaFold).",
+          "Folding proteico, assemblaggio di genomi e ricostruzione di alberi filogenetici sono tutti NP-difficili; questo spinge il campo a inventare algoritmi di approssimazione e metodi di IA (AlphaFold).",
       },
       {
         domain: "Premio aperto",
@@ -5050,7 +5050,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "TLS / HTTPS",
         description:
-          "Ogni icona a lucchetto nel browser coinvolge, nell'handshake iniziale, RSA o il suo cugino su curve ellittiche (ECDSA) — miliardi di volte al secondo.",
+          "Ogni icona a lucchetto nel browser coinvolge, nell'handshake iniziale, RSA o il suo cugino su curve ellittiche (ECDSA), miliardi di volte al secondo.",
       },
       {
         domain: "Firme digitali",
@@ -5077,7 +5077,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Nastri trasportatori industriali",
         description:
-          "Le cinghie di trasmissione a nastro di Möbius si usurano in modo uniforme su entrambi i «lati» (ce n'è uno solo!) — usate nelle vecchie macchine da stampa, nei moderni nastri di registrazione e in alcuni sistemi di nastri VHS.",
+          "Le cinghie di trasmissione a nastro di Möbius si usurano in modo uniforme su entrambi i «lati» (ce n'è uno solo!), usate nelle vecchie macchine da stampa, nei moderni nastri di registrazione e in alcuni sistemi di nastri VHS.",
       },
       {
         domain: "Ingegneria meccanica",
@@ -5087,7 +5087,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ricerca topologica",
         description:
-          "Il nastro di Möbius è la più semplice superficie non orientabile — porta d'ingresso a un vasto campo che classifica tutte le superfici, usato in cosmologia e teoria delle stringhe.",
+          "Il nastro di Möbius è la più semplice superficie non orientabile, porta d'ingresso a un vasto campo che classifica tutte le superfici, usato in cosmologia e teoria delle stringhe.",
       },
       {
         domain: "Arte e architettura",
@@ -5109,7 +5109,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Topologia dei dati",
         description:
-          "Le pipeline di omologia persistente usano le caratteristiche di Eulero per sintetizzare la forma di nuvole di punti ad alta dimensionalità — applicata in genomica, reti di sensori e cosmologia.",
+          "Le pipeline di omologia persistente usano le caratteristiche di Eulero per sintetizzare la forma di nuvole di punti ad alta dimensionalità, applicata in genomica, reti di sensori e cosmologia.",
       },
       {
         domain: "Architettura",
@@ -5131,7 +5131,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Nascita della teoria dei grafi",
         description:
-          "Königsberg ha dato il via all'intero campo — oggi la teoria dei grafi è alla base del PageRank di Google, dell'analisi delle reti sociali, del layout dei chip e della pianificazione delle rotte.",
+          "Königsberg ha dato il via all'intero campo: oggi la teoria dei grafi è alla base del PageRank di Google, dell'analisi delle reti sociali, del layout dei chip e della pianificazione delle rotte.",
       },
       {
         domain: "Sequenziamento del DNA",
@@ -5141,7 +5141,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ottimizzazione di percorsi",
         description:
-          "Postini, camion della spazzatura e spazzaneve risolvono il problema del postino cinese — discendente diretto dei ponti di Königsberg.",
+          "Postini, camion della spazzatura e spazzaneve risolvono il problema del postino cinese, discendente diretto dei ponti di Königsberg.",
       },
       {
         domain: "Turismo",
@@ -5158,7 +5158,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Reti mobili",
         description:
-          "L'assegnazione di frequenze fra antenne cellulari si riconduce a una colorazione di grafi — il teorema dei quattro colori è il caso limite per alcuni layout planari.",
+          "L'assegnazione di frequenze fra antenne cellulari si riconduce a una colorazione di grafi; il teorema dei quattro colori è il caso limite per alcuni layout planari.",
       },
       {
         domain: "Pianificazione",
@@ -5168,7 +5168,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Matematica verificata al computer",
         description:
-          "Insieme alla congettura di Keplero, il teorema dei quattro colori è stato una pietra miliare della dimostrazione assistita al computer — la cultura degli assistenti di prova (Coq, Lean) trae da qui la propria legittimità.",
+          "Insieme alla congettura di Keplero, il teorema dei quattro colori è stato una pietra miliare della dimostrazione assistita al computer: la cultura degli assistenti di prova (Coq, Lean) trae da qui la propria legittimità.",
       },
     ],
     smallworld: [
@@ -5185,7 +5185,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ricerca sul cervello",
         description:
-          "Studi di risonanza magnetica funzionale mostrano che il connettoma umano è una rete a piccolo mondo — il coefficiente di piccolo mondo è oggi un biomarcatore standard nella ricerca su Alzheimer e schizofrenia.",
+          "Studi di risonanza magnetica funzionale mostrano che il connettoma umano è una rete a piccolo mondo; il coefficiente di piccolo mondo è oggi un biomarcatore standard nella ricerca su Alzheimer e schizofrenia.",
       },
       {
         domain: "Routing su Internet",
@@ -5212,7 +5212,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Progettazione di farmaci e proteine",
         description:
-          "RFdiffusion (laboratorio Baker) e Chroma generano nuovi scheletri proteici denoising di coordinate 3D al posto dei pixel — candidati pubblicati sono stati sintetizzati e si ripiegano correttamente.",
+          "RFdiffusion (laboratorio Baker) e Chroma generano nuovi scheletri proteici denoising di coordinate 3D al posto dei pixel; candidati pubblicati sono stati sintetizzati e si ripiegano correttamente.",
       },
       {
         domain: "Audio e parlato",
@@ -5222,7 +5222,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Fisica e termodinamica",
         description:
-          "Il processo diretto è letteralmente dinamica di Langevin — il calendario di rumore rispecchia un sistema che rilassa verso l'equilibrio termico. L'articolo originale di Sohl-Dickstein (2015) era formulato come termodinamica fuori equilibrio.",
+          "Il processo diretto è letteralmente dinamica di Langevin: il calendario di rumore rispecchia un sistema che rilassa verso l'equilibrio termico. L'articolo originale di Sohl-Dickstein (2015) era formulato come termodinamica fuori equilibrio.",
       },
     ],
     riemann: [
@@ -5239,7 +5239,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Caos quantistico",
         description:
-          "La statistica delle distanze tra zeri di zeta coincide con quella degli autovalori di grandi matrici hermitiane casuali — le stesse usate per modellare i livelli di energia dei nuclei pesanti. La congettura di Montgomery-Dyson (1972) è uno dei ponti più sorprendenti della matematica.",
+          "La statistica delle distanze tra zeri di zeta coincide con quella degli autovalori di grandi matrici hermitiane casuali, le stesse usate per modellare i livelli di energia dei nuclei pesanti. La congettura di Montgomery-Dyson (1972) è uno dei ponti più sorprendenti della matematica.",
       },
       {
         domain: "Numerica verificata al computer",
@@ -5249,14 +5249,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Divulgazione e prestigio dei problemi aperti",
         description:
-          "Riemann è il problema irrisolto più famoso al di fuori di Fermat — un Clay Millennium Prize (1 M$), apparizioni ricorrenti nella narrativa (A Beautiful Mind, La musica dei numeri primi) e un flusso costante di «dimostrazioni» che non sopravvivono al peer review.",
+          "Riemann è il problema irrisolto più famoso al di fuori di Fermat: un Clay Millennium Prize (1 M$), apparizioni ricorrenti nella narrativa (A Beautiful Mind, La musica dei numeri primi) e un flusso costante di «dimostrazioni» che non sopravvivono al peer review.",
       },
     ],
     backprop: [
       {
         domain: "Deep learning",
         description:
-          "Ogni rete neurale moderna — classificatori di immagini, modelli di linguaggio, raccomandatori — è allenata con la retropropagazione. PyTorch e JAX la implementano come nucleo di differenziazione (autograd).",
+          "Ogni rete neurale moderna (classificatori di immagini, modelli di linguaggio, raccomandatori) è allenata con la retropropagazione. PyTorch e JAX la implementano come nucleo di differenziazione (autograd).",
       },
       {
         domain: "Visione artificiale",
@@ -5276,7 +5276,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Problemi inversi nelle scienze",
         description:
-          "I fisici invertono esperimenti costruendo il modello in avanti in PyTorch/JAX e retropropagando attraverso di esso — usato nel design di proteine (AlphaFold), nel rendering differenziabile e nel design sperimentale gradient-based.",
+          "I fisici invertono esperimenti costruendo il modello in avanti in PyTorch/JAX e retropropagando attraverso di esso, usato nel design di proteine (AlphaFold), nel rendering differenziabile e nel design sperimentale gradient-based.",
       },
     ],
   },
@@ -5290,7 +5290,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Verificação de software e análise de programas",
         description:
-          "O Z3 da Microsoft — um solver SMT construído sobre um núcleo SAT — verifica controladores, encontra falhas de segurança e confirma que as otimizações do compilador preservam o significado. SAT/SMT sustenta a execução simbólica e grande parte da análise estática moderna.",
+          "O Z3 da Microsoft (um solver SMT construído sobre um núcleo SAT) verifica controladores, encontra falhas de segurança e confirma que as otimizações do compilador preservam o significado. SAT/SMT sustenta a execução simbólica e grande parte da análise estática moderna.",
       },
       {
         domain: "Planeamento, escalonamento e configuração",
@@ -5322,7 +5322,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Análogos naturais",
         description:
-          "Linhas de costa, cumeadas montanhosas, folhas de feto e floretes de brócolos mostram a mesma estrutura de bordo autossemelhante — era exactamente o ponto de Mandelbrot acerca da geometria fractal.",
+          "Linhas de costa, cumeadas montanhosas, folhas de feto e floretes de brócolos mostram a mesma estrutura de bordo autossemelhante: era exactamente o ponto de Mandelbrot acerca da geometria fractal.",
       },
     ],
     life: [
@@ -5361,7 +5361,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Cursos de hardware",
         description:
-          "O curso nand2tetris constrói um computador completo a partir de um único chip NAND — utilizado em mais de 100 universidades.",
+          "O curso nand2tetris constrói um computador completo a partir de um único chip NAND, utilizado em mais de 100 universidades.",
       },
       {
         domain: "Lógica embebida",
@@ -5373,7 +5373,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Interpretadores de combinadores",
         description:
-          "Os compiladores de linguagens funcionais (por exemplo o Lazy K) compilam programas em cálculo lambda para expressões puras de combinadores — ao estilo Iota — durante a geração de código.",
+          "Os compiladores de linguagens funcionais (por exemplo o Lazy K) compilam programas em cálculo lambda para expressões puras de combinadores (ao estilo Iota) durante a geração de código.",
       },
       {
         domain: "Linguagens esotéricas",
@@ -5395,7 +5395,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ensino da computação formal",
         description:
-          "Citada em qualquer introdução moderna aos autómatos celulares como o mais simples sistema universal conhecido — uma máquina de Turing em formato de tweet.",
+          "Citada em qualquer introdução moderna aos autómatos celulares como o mais simples sistema universal conhecido: uma máquina de Turing em formato de tweet.",
       },
       {
         domain: "Ruído procedural de texturas",
@@ -5412,7 +5412,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Epidemiologia",
         description:
-          "O crescimento epidémico limitado (com capacidade de suporte = pool de susceptíveis) segue curvas logísticas — as curvas acumuladas de casos de COVID-19 foram um exemplo de manual.",
+          "O crescimento epidémico limitado (com capacidade de suporte = pool de susceptíveis) segue curvas logísticas; as curvas acumuladas de casos de COVID-19 foram um exemplo de manual.",
       },
       {
         domain: "Aprendizagem automática",
@@ -5434,7 +5434,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Previsão meteorológica",
         description:
-          "Os serviços operacionais de previsão recorrem a métodos de ensemble porque a atmosfera partilha a sensibilidade de Lorenz às condições iniciais — a previsibilidade colapsa ao fim de cerca de 14 dias.",
+          "Os serviços operacionais de previsão recorrem a métodos de ensemble porque a atmosfera partilha a sensibilidade de Lorenz às condições iniciais: a previsibilidade colapsa ao fim de cerca de 14 dias.",
       },
       {
         domain: "Modelação climática",
@@ -5449,7 +5449,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Comunicação segura",
         description:
-          "Esquemas de cifragem baseados em caos usaram sincronização ao estilo Lorenz para ocultar sinais — nicho, mas real (Cuomo e Oppenheim, 1993).",
+          "Esquemas de cifragem baseados em caos usaram sincronização ao estilo Lorenz para ocultar sinais: nicho, mas real (Cuomo e Oppenheim, 1993).",
       },
     ],
     fourier: [
@@ -5461,7 +5461,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "JPEG e HEIC",
         description:
-          "Cada bloco de 8×8 pixels de um JPEG é guardado como coeficientes da transformada discreta do cosseno — daí os padrões horizontais e verticais do ringing JPEG.",
+          "Cada bloco de 8×8 pixels de um JPEG é guardado como coeficientes da transformada discreta do cosseno, daí os padrões horizontais e verticais do ringing JPEG.",
       },
       {
         domain: "Ressonância magnética",
@@ -5471,7 +5471,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Wi-Fi, 5G, DSL",
         description:
-          "As transmissões sem fios e por cabo modernas usam OFDM, que distribui os dados por milhares de portadoras sinusoidais cuidadosamente espaçadas — engenharia de Fourier no estado puro.",
+          "As transmissões sem fios e por cabo modernas usam OFDM, que distribui os dados por milhares de portadoras sinusoidais cuidadosamente espaçadas: engenharia de Fourier no estado puro.",
       },
       {
         domain: "Voz e ML",
@@ -5493,19 +5493,19 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Análise de circuitos em corrente alternada",
         description:
-          "As engenharias eléctricas modelam tensões e correntes alternadas como exponenciais complexas — a aritmética de impedâncias com fasores é aplicação directa da fórmula de Euler.",
+          "As engenharias eléctricas modelam tensões e correntes alternadas como exponenciais complexas; a aritmética de impedâncias com fasores é aplicação directa da fórmula de Euler.",
       },
       {
         domain: "Teoria do controlo",
         description:
-          "A estabilidade dos sistemas com realimentação lê-se na posição dos pólos no plano complexo — a fórmula de Euler é a ponte entre tempo e frequência.",
+          "A estabilidade dos sistemas com realimentação lê-se na posição dos pólos no plano complexo; a fórmula de Euler é a ponte entre tempo e frequência.",
       },
     ],
     banach: [
       {
         domain: "Ensino da teoria de conjuntos",
         description:
-          "Banach–Tarski é o exemplo de manual de por que o Axioma da Escolha é controverso — usado em todos os cursos de mestrado em análise real.",
+          "Banach-Tarski é o exemplo de manual de por que o Axioma da Escolha é controverso, usado em todos os cursos de mestrado em análise real.",
       },
       {
         domain: "Fundamentos da matemática",
@@ -5544,7 +5544,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Gráficos em tempo real",
         description:
-          "Os conjuntos de mosaicos de Wang permitem empacotar texturas não repetitivas (relva, tijolo, areia) em atlas muito pequenos — importante em dispositivos com pouca memória, como GPU móveis.",
+          "Os conjuntos de mosaicos de Wang permitem empacotar texturas não repetitivas (relva, tijolo, areia) em atlas muito pequenos, importante em dispositivos com pouca memória, como GPU móveis.",
       },
       {
         domain: "Design procedural de níveis",
@@ -5554,7 +5554,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Materiais e quasicristais",
         description:
-          "A teoria dos mosaicos de Wang sobrepõe-se em parte à matemática dos quasicristais — ambas produzem arranjos infinitos aperiódicos.",
+          "A teoria dos mosaicos de Wang sobrepõe-se em parte à matemática dos quasicristais: ambas produzem arranjos infinitos aperiódicos.",
       },
     ],
     collatz: [
@@ -5600,7 +5600,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Arritmias cardíacas",
         description:
-          "Padrões de ondas em espiral muito semelhantes às espirais BZR observam-se à superfície do coração durante a fibrilhação — centrais para a investigação e o projecto de desfibrilhadores.",
+          "Padrões de ondas em espiral muito semelhantes às espirais BZR observam-se à superfície do coração durante a fibrilhação, centrais para a investigação e o projecto de desfibrilhadores.",
       },
       {
         domain: "Neurociência",
@@ -5610,7 +5610,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ensino da química",
         description:
-          "A BZR é a mais impressionante demonstração de «química viva» que um professor de química do secundário pode mostrar — oscilação visível dentro de um balão.",
+          "A BZR é a mais impressionante demonstração de «química viva» que um professor de química do secundário pode mostrar: oscilação visível dentro de um balão.",
       },
       {
         domain: "Teoria com Nobel",
@@ -5627,7 +5627,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Filotaxia vegetal",
         description:
-          "As disposições em espiral das sementes do girassol, das escamas das pinhas e dos ananases emergem de reacção-difusão mais ângulo dourado — química de Turing numa superfície em crescimento.",
+          "As disposições em espiral das sementes do girassol, das escamas das pinhas e dos ananases emergem de reacção-difusão mais ângulo dourado: química de Turing numa superfície em crescimento.",
       },
       {
         domain: "Arte generativa e gráficos",
@@ -5644,7 +5644,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Antenas fractais",
         description:
-          "As antenas com triângulo de Sierpiński são produtos comerciais — telemóveis, routers Wi-Fi e receptores GPS usam patches fractais multibanda que ressoam em muitas frequências num espaço reduzido.",
+          "As antenas com triângulo de Sierpiński são produtos comerciais: telemóveis, routers Wi-Fi e receptores GPS usam patches fractais multibanda que ressoam em muitas frequências num espaço reduzido.",
       },
       {
         domain: "Permutadores de calor",
@@ -5654,7 +5654,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Compressão e gráficos",
         description:
-          "Os sistemas de funções iteradas (IFS ao estilo Sierpiński) estão na base dos algoritmos de compressão fractal de imagem — ainda em uso em codificadores de nicho para imagens aéreas.",
+          "Os sistemas de funções iteradas (IFS ao estilo Sierpiński) estão na base dos algoritmos de compressão fractal de imagem, ainda em uso em codificadores de nicho para imagens aéreas.",
       },
       {
         domain: "Redes",
@@ -5666,7 +5666,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bioinformática",
         description:
-          "A Chaos Game Representation (CGR) é uma forma padrão de visualizar sequências de ADN — cada nucleótido empurra um ponto para um dos quatro cantos de um quadrado; as espécies agrupam-se em assinaturas fractais reconhecíveis.",
+          "A Chaos Game Representation (CGR) é uma forma padrão de visualizar sequências de ADN: cada nucleótido empurra um ponto para um dos quatro cantos de um quadrado; as espécies agrupam-se em assinaturas fractais reconhecíveis.",
       },
       {
         domain: "Compressão fractal",
@@ -5683,7 +5683,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Quasicristais",
         description:
-          "A descoberta por Dan Shechtman em 1982 dos quasicristais metálicos (Nobel 2011) foi compreendida graças aos pavimentos de Penrose — a mesma matemática de simetria quíntupla governa ambos.",
+          "A descoberta por Dan Shechtman em 1982 dos quasicristais metálicos (Nobel 2011) foi compreendida graças aos pavimentos de Penrose: a mesma matemática de simetria quíntupla governa ambos.",
       },
       {
         domain: "Arquitectura",
@@ -5705,12 +5705,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Empacotamento granular",
         description:
-          "A forma como areia, gravilha e pós farmacêuticos enchem os recipientes é modelada com empacotamentos esféricos ao estilo apoloniano — chave em betão, comprimidos e metalurgia dos pós.",
+          "A forma como areia, gravilha e pós farmacêuticos enchem os recipientes é modelada com empacotamentos esféricos ao estilo apoloniano, chave em betão, comprimidos e metalurgia dos pós.",
       },
       {
         domain: "Teoria dos números",
         description:
-          "Os empacotamentos apolonianos inteiros são estudados pela teoria analítica dos números — trabalhos de Sarnak, Bourgain e Kontorovich produziram novos resultados sobre curvaturas primas.",
+          "Os empacotamentos apolonianos inteiros são estudados pela teoria analítica dos números: trabalhos de Sarnak, Bourgain e Kontorovich produziram novos resultados sobre curvaturas primas.",
       },
       {
         domain: "Física de espumas e emulsões",
@@ -5727,12 +5727,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Filotaxia vegetal",
         description:
-          "As espirais das sementes do girassol, as escamas das pinhas e a disposição das folhas na maioria das plantas convergem para o ângulo dourado — verificado em milhares de espécies.",
+          "As espirais das sementes do girassol, as escamas das pinhas e a disposição das folhas na maioria das plantas convergem para o ângulo dourado, verificado em milhares de espécies.",
       },
       {
         domain: "Fracções contínuas",
         description:
-          "φ tem o desenvolvimento em fracção contínua mais simples [1;1,1,…], o que o torna o número «mais irracional» — conceito-chave para a teoria KAM em mecânica clássica.",
+          "φ tem o desenvolvimento em fracção contínua mais simples [1;1,1,…], o que o torna o número «mais irracional», conceito-chave para a teoria KAM em mecânica clássica.",
       },
       {
         domain: "Quasicristais e Penrose",
@@ -5747,14 +5747,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Cepticismo honesto",
         description:
-          "As afirmações de que φ aparece no Parténon, na Mona Lisa, na concha do náutilo ou nas proporções do corpo humano são em grande parte mitos — desmontados, entre outros, por George Markowsky (1992).",
+          "As afirmações de que φ aparece no Parténon, na Mona Lisa, na concha do náutilo ou nas proporções do corpo humano são em grande parte mitos, desmontados, entre outros, por George Markowsky (1992).",
       },
     ],
     buffon: [
       {
         domain: "Integração Monte Carlo",
         description:
-          "A agulha de Buffon é a semente histórica dos métodos de Monte Carlo — hoje usados em todo o lado, desde a avaliação financeira (Black–Scholes) até à simulação em física de partículas (Geant4) e ao rendering (path tracing).",
+          "A agulha de Buffon é a semente histórica dos métodos de Monte Carlo, hoje usados em todo o lado, desde a avaliação financeira (Black-Scholes) até à simulação em física de partículas (Geant4) e ao rendering (path tracing).",
       },
       {
         domain: "Simulação física",
@@ -5786,7 +5786,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Divulgação científica",
         description:
-          "Vídeo da TED-Ed, Vsauce, PBS Infinite Series — a explicação moderna do infinito mais partilhada.",
+          "Vídeo da TED-Ed, Vsauce, PBS Infinite Series: a explicação moderna do infinito mais partilhada.",
       },
     ],
     gabrielshorn: [
@@ -5798,7 +5798,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Filosofia da matemática",
         description:
-          "Citado em debates sobre o significado dos paradoxos geométricos e os limites da intuição física — experiência mental fundadora.",
+          "Citado em debates sobre o significado dos paradoxos geométricos e os limites da intuição física, experiência mental fundadora.",
       },
       {
         domain: "Microfluídica",
@@ -5810,7 +5810,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Teoria da computabilidade",
         description:
-          "A diagonal de Cantor produz directamente a prova do problema da paragem de Turing e os teoremas de incompletude de Gödel — pedras angulares da informática teórica.",
+          "A diagonal de Cantor produz directamente a prova do problema da paragem de Turing e os teoremas de incompletude de Gödel, pedras angulares da informática teórica.",
       },
       {
         domain: "Teoria das linguagens de programação",
@@ -5820,7 +5820,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Criptografia e complexidade",
         description:
-          "Os argumentos de diagonalização estão na base dos resultados modernos da teoria da complexidade — separações entre P, NP, EXP.",
+          "Os argumentos de diagonalização estão na base dos resultados modernos da teoria da complexidade: separações entre P, NP, EXP.",
       },
       {
         domain: "Filosofia da matemática",
@@ -5832,7 +5832,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Efeitos visuais no cinema",
         description:
-          "Batman Returns (enxame de morcegos de 1992), O Rei Leão (debandada de gnus de 1994) e inúmeros filmes modernos usam Boids — normalmente via Massive ou Houdini.",
+          "Batman Returns (enxame de morcegos de 1992), O Rei Leão (debandada de gnus de 1994) e inúmeros filmes modernos usam Boids, normalmente via Massive ou Houdini.",
       },
       {
         domain: "Enxames de drones",
@@ -5842,7 +5842,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Simulação de multidões",
         description:
-          "Os ateliers de arquitectura simulam evacuações de estádios e fluxos em centros comerciais com agentes ao estilo Boids — em uso no planeamento de estádios desde os anos 2000.",
+          "Os ateliers de arquitectura simulam evacuações de estádios e fluxos em centros comerciais com agentes ao estilo Boids, em uso no planeamento de estádios desde os anos 2000.",
       },
       {
         domain: "Enxames robóticos",
@@ -5876,12 +5876,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Electroquímica",
         description:
-          "Os depósitos de zinco, cobre e outros metais obtidos em células electrolíticas formam dendrites do tipo DLA — directamente relevantes para galvanização, projecto de baterias (dendrites de lítio) e corrosão.",
+          "Os depósitos de zinco, cobre e outros metais obtidos em células electrolíticas formam dendrites do tipo DLA, directamente relevantes para galvanização, projecto de baterias (dendrites de lítio) e corrosão.",
       },
       {
         domain: "Crescimento cristalino",
         description:
-          "A formação de flocos de neve, o gelo nas janelas e as dendrites minerais nas rochas — todas exibem leis de escala DLA.",
+          "A formação de flocos de neve, o gelo nas janelas e as dendrites minerais nas rochas: todas exibem leis de escala DLA.",
       },
       {
         domain: "Biologia",
@@ -5908,53 +5908,53 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ensino",
         description:
-          "Exemplo introdutório favorito nos cursos de autómatos celulares — a fase «auto-estrada» é um dos fenómenos emergentes mais acessíveis da informática.",
+          "Exemplo introdutório favorito nos cursos de autómatos celulares: a fase «auto-estrada» é um dos fenómenos emergentes mais acessíveis da informática.",
       },
     ],
     pascalmod: [
       {
         domain: "Teoria dos números",
         description:
-          "O teorema de Lucas (1878) alimenta directamente algoritmos eficientes para coeficientes binomiais módulo primo — usados em criptografia, combinatória de palavras e programação competitiva.",
+          "O teorema de Lucas (1878) alimenta directamente algoritmos eficientes para coeficientes binomiais módulo primo, usados em criptografia, combinatória de palavras e programação competitiva.",
       },
       {
         domain: "Teoria de códigos",
         description:
-          "Os códigos correctores Reed–Muller e BCH apoiam-se na maquinaria dos coeficientes binomiais módulo p — estão nos códigos QR, nas sondas de espaço profundo (Mariner 9, Voyager) e na TV digital DVB-T.",
+          "Os códigos correctores Reed-Muller e BCH apoiam-se na maquinaria dos coeficientes binomiais módulo p; estão nos códigos QR, nas sondas de espaço profundo (Mariner 9, Voyager) e na TV digital DVB-T.",
       },
       {
         domain: "Artes visuais",
         description:
-          "Pascal mod 2 é a origem algébrica do triângulo de Sierpiński — vendido em poster, tecido em tapetes e usado em instalações de galeria.",
+          "Pascal mod 2 é a origem algébrica do triângulo de Sierpiński, vendido em poster, tecido em tapetes e usado em instalações de galeria.",
       },
     ],
     sternbrocot: [
       {
         domain: "Música por computador e afinação",
         description:
-          "Quem compõe música microtonal usa Stern–Brocot para encontrar aproximações temperadas das razões da entoação justa — central para a música xenarmónica.",
+          "Quem compõe música microtonal usa Stern-Brocot para encontrar aproximações temperadas das razões da entoação justa, central para a música xenarmónica.",
       },
       {
         domain: "Projecto de engrenagens em robótica",
         description:
-          "A procura das melhores aproximações racionais para razões de transmissão percorre a árvore de Stern–Brocot para encontrar reduções mecânicas eficientes.",
+          "A procura das melhores aproximações racionais para razões de transmissão percorre a árvore de Stern-Brocot para encontrar reduções mecânicas eficientes.",
       },
       {
         domain: "Sistemas de calendário",
         description:
-          "As regras de ano bissexto baseadas em fracções contínuas (calendário persa, correcções gregorianas propostas) derivam das medianas de Stern–Brocot.",
+          "As regras de ano bissexto baseadas em fracções contínuas (calendário persa, correcções gregorianas propostas) derivam das medianas de Stern-Brocot.",
       },
       {
         domain: "Renderização de imagem",
         description:
-          "A amostragem subpixel e a moderna rasterização de tipos de letra usam medianas ao estilo Stern–Brocot para escolher as razões de cobertura de pixel.",
+          "A amostragem subpixel e a moderna rasterização de tipos de letra usam medianas ao estilo Stern-Brocot para escolher as razões de cobertura de pixel.",
       },
     ],
     ulam: [
       {
         domain: "Teoria dos números pura",
         description:
-          "Visualizar os primos através de espirais ao estilo de Ulam continua a inspirar novas conjecturas sobre densidades de primos polinomiais (Hardy–Littlewood, Sato–Tate).",
+          "Visualizar os primos através de espirais ao estilo de Ulam continua a inspirar novas conjecturas sobre densidades de primos polinomiais (Hardy-Littlewood, Sato-Tate).",
       },
       {
         domain: "Ensino",
@@ -5971,7 +5971,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Engenharia de áudio",
         description:
-          "Os microfones cardióides (os usados por qualquer podcaster ou profissional de broadcasting) devem o nome ao padrão de captação cardióide — sensíveis à frente e surdos atrás.",
+          "Os microfones cardióides (os usados por qualquer podcaster ou profissional de broadcasting) devem o nome ao padrão de captação cardióide: sensíveis à frente e surdos atrás.",
       },
       {
         domain: "Projecto de antenas",
@@ -5993,7 +5993,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ensino da estatística",
         description:
-          "A tábua de Galton é a demonstração canónica do teorema do limite central — presente em quase todos os museus de ciência (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
+          "A tábua de Galton é a demonstração canónica do teorema do limite central, presente em quase todos os museus de ciência (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
       },
       {
         domain: "Quincunce em genética",
@@ -6015,7 +6015,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Demonstrações de caos",
         description:
-          "O brinquedo de secretária «pêndulo de três ímanes» é a mais popular demonstração física das bacias de atracção fractais — vendido pela ThinkGeek, Nikola Labs e por muitas lojas de presentes científicos.",
+          "O brinquedo de secretária «pêndulo de três ímanes» é a mais popular demonstração física das bacias de atracção fractais, vendido pela ThinkGeek, Nikola Labs e por muitas lojas de presentes científicos.",
       },
       {
         domain: "Investigação em levitação magnética",
@@ -6037,12 +6037,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Informática",
         description:
-          "A indefinibilidade da verdade de Tarski, o problema da paragem de Turing e o teorema de Rice são descendentes directos — presentes em qualquer cadeira de licenciatura em lógica e computabilidade.",
+          "A indefinibilidade da verdade de Tarski, o problema da paragem de Turing e o teorema de Rice são descendentes directos, presentes em qualquer cadeira de licenciatura em lógica e computabilidade.",
       },
       {
         domain: "Filosofia da mente",
         description:
-          "O argumento de Penrose de que a mente humana não é puramente algorítmica (A Nova Mente do Imperador, 1989) apoia-se fortemente em Gödel — controverso mas influente.",
+          "O argumento de Penrose de que a mente humana não é puramente algorítmica (A Nova Mente do Imperador, 1989) apoia-se fortemente em Gödel (controverso mas influente).",
       },
       {
         domain: "Software verificado",
@@ -6054,7 +6054,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Compiladores e análise estática",
         description:
-          "Os analisadores estáticos modernos (Coverity, Infer, o borrow checker do Rust) têm de renunciar a uma precisão perfeita porque as propriedades não triviais dos programas são indecidíveis — consequência directa do problema da paragem (teorema de Rice).",
+          "Os analisadores estáticos modernos (Coverity, Infer, o borrow checker do Rust) têm de renunciar a uma precisão perfeita porque as propriedades não triviais dos programas são indecidíveis: consequência directa do problema da paragem (teorema de Rice).",
       },
       {
         domain: "Antivírus",
@@ -6064,7 +6064,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Nuvens de computação",
         description:
-          "Os autoscalers de nuvem nunca podem garantir que «este trabalho do utilizador termina» — impõem timeouts porque decidir a paragem é impossível.",
+          "Os autoscalers de nuvem nunca podem garantir que «este trabalho do utilizador termina»; impõem timeouts porque decidir a paragem é impossível.",
       },
       {
         domain: "Ensino",
@@ -6076,7 +6076,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Criptografia",
         description:
-          "Se P = NP, o RSA, o AES, toda a blockchain e o tráfego protegido por TLS seriam quebrados de um dia para o outro — qualquer segredo digital moderno depende de P ≠ NP ser efectivamente verdade.",
+          "Se P = NP, o RSA, o AES, toda a blockchain e o tráfego protegido por TLS seriam quebrados de um dia para o outro: qualquer segredo digital moderno depende de P ≠ NP ser efectivamente verdade.",
       },
       {
         domain: "Optimização",
@@ -6091,7 +6091,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bioinformática",
         description:
-          "Enovelamento de proteínas, montagem de genomas e reconstrução de árvores filogenéticas são todos NP-difíceis — o que empurra o campo a inventar algoritmos de aproximação e métodos de IA (AlphaFold).",
+          "Enovelamento de proteínas, montagem de genomas e reconstrução de árvores filogenéticas são todos NP-difíceis, o que empurra o campo a inventar algoritmos de aproximação e métodos de IA (AlphaFold).",
       },
       {
         domain: "Prémio em aberto",
@@ -6103,7 +6103,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "TLS / HTTPS",
         description:
-          "Cada ícone de cadeado no browser envolve, no handshake inicial, RSA ou o seu primo em curvas elípticas (ECDSA) — milhares de milhões de vezes por segundo.",
+          "Cada ícone de cadeado no browser envolve, no handshake inicial, RSA ou o seu primo em curvas elípticas (ECDSA), milhares de milhões de vezes por segundo.",
       },
       {
         domain: "Assinaturas digitais",
@@ -6130,7 +6130,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Tapetes industriais",
         description:
-          "As correias de transmissão em fita de Möbius desgastam-se uniformemente em ambos os «lados» (só há um!) — usadas em velhas tipografias, em fitas modernas de gravação e em alguns sistemas VHS.",
+          "As correias de transmissão em fita de Möbius desgastam-se uniformemente em ambos os «lados» (só há um!), usadas em velhas tipografias, em fitas modernas de gravação e em alguns sistemas VHS.",
       },
       {
         domain: "Engenharia mecânica",
@@ -6140,7 +6140,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Investigação em topologia",
         description:
-          "A fita de Möbius é a mais simples superfície não orientável — porta de entrada para um vasto campo que classifica todas as superfícies, usado em cosmologia e teoria de cordas.",
+          "A fita de Möbius é a mais simples superfície não orientável, porta de entrada para um vasto campo que classifica todas as superfícies, usado em cosmologia e teoria de cordas.",
       },
       {
         domain: "Arte e arquitectura",
@@ -6162,7 +6162,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Topologia dos dados",
         description:
-          "As pipelines de homologia persistente usam características de Euler para sintetizar a forma de nuvens de pontos em alta dimensão — aplicado em genómica, redes de sensores e cosmologia.",
+          "As pipelines de homologia persistente usam características de Euler para sintetizar a forma de nuvens de pontos em alta dimensão, aplicado em genómica, redes de sensores e cosmologia.",
       },
       {
         domain: "Arquitectura",
@@ -6184,7 +6184,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Nascimento da teoria de grafos",
         description:
-          "Königsberg deu o pontapé de saída a todo o campo — a teoria de grafos está hoje na base do PageRank do Google, da análise de redes sociais, do layout de chips e do planeamento de rotas.",
+          "Königsberg deu o pontapé de saída a todo o campo: a teoria de grafos está hoje na base do PageRank do Google, da análise de redes sociais, do layout de chips e do planeamento de rotas.",
       },
       {
         domain: "Sequenciação de ADN",
@@ -6194,7 +6194,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Optimização de rotas",
         description:
-          "Carteiros, camiões do lixo e limpa-neves resolvem o problema do carteiro chinês — descendente directo das pontes de Königsberg.",
+          "Carteiros, camiões do lixo e limpa-neves resolvem o problema do carteiro chinês, descendente directo das pontes de Königsberg.",
       },
       {
         domain: "Turismo",
@@ -6211,7 +6211,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Redes móveis",
         description:
-          "A atribuição de frequências entre torres de telemóvel reduz-se a uma coloração de grafos — o teorema das quatro cores marca o caso limite para certos arranjos planares.",
+          "A atribuição de frequências entre torres de telemóvel reduz-se a uma coloração de grafos; o teorema das quatro cores marca o caso limite para certos arranjos planares.",
       },
       {
         domain: "Escalonamento",
@@ -6221,7 +6221,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Matemática verificada por computador",
         description:
-          "Em conjunto com a conjectura de Kepler, o teorema das quatro cores foi um marco da prova assistida por computador — a cultura dos assistentes de prova (Coq, Lean) busca aqui a sua legitimidade.",
+          "Em conjunto com a conjectura de Kepler, o teorema das quatro cores foi um marco da prova assistida por computador: a cultura dos assistentes de prova (Coq, Lean) busca aqui a sua legitimidade.",
       },
     ],
     smallworld: [
@@ -6238,7 +6238,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Investigação cerebral",
         description:
-          "Estudos de ressonância magnética funcional mostram que o conectoma humano é uma rede de mundo pequeno — o coeficiente de mundo pequeno é hoje um biomarcador padrão na investigação sobre Alzheimer e esquizofrenia.",
+          "Estudos de ressonância magnética funcional mostram que o conectoma humano é uma rede de mundo pequeno; o coeficiente de mundo pequeno é hoje um biomarcador padrão na investigação sobre Alzheimer e esquizofrenia.",
       },
       {
         domain: "Encaminhamento da Internet",
@@ -6265,7 +6265,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Conceção de fármacos e proteínas",
         description:
-          "O RFdiffusion (laboratório Baker) e o Chroma geram novos esqueletos proteicos a remover ruído sobre coordenadas 3D em vez de píxeis — candidatos publicados foram sintetizados e dobram corretamente.",
+          "O RFdiffusion (laboratório Baker) e o Chroma geram novos esqueletos proteicos a remover ruído sobre coordenadas 3D em vez de píxeis; candidatos publicados foram sintetizados e dobram corretamente.",
       },
       {
         domain: "Áudio e voz",
@@ -6275,7 +6275,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Física e termodinâmica",
         description:
-          "O processo direto é literalmente dinâmica de Langevin — o calendário de ruído reflete um sistema a relaxar para o equilíbrio térmico. O artigo original de Sohl-Dickstein (2015) foi formulado como termodinâmica fora do equilíbrio.",
+          "O processo direto é literalmente dinâmica de Langevin: o calendário de ruído reflete um sistema a relaxar para o equilíbrio térmico. O artigo original de Sohl-Dickstein (2015) foi formulado como termodinâmica fora do equilíbrio.",
       },
     ],
     riemann: [
@@ -6292,7 +6292,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Caos quântico",
         description:
-          "A estatística dos espaçamentos entre zeros de zeta coincide com a dos valores próprios de grandes matrizes hermíticas aleatórias — as mesmas usadas para modelar os níveis de energia de núcleos pesados. A conjectura de Montgomery-Dyson (1972) é uma das pontes mais surpreendentes da matemática.",
+          "A estatística dos espaçamentos entre zeros de zeta coincide com a dos valores próprios de grandes matrizes hermíticas aleatórias, as mesmas usadas para modelar os níveis de energia de núcleos pesados. A conjectura de Montgomery-Dyson (1972) é uma das pontes mais surpreendentes da matemática.",
       },
       {
         domain: "Numérica verificada por computador",
@@ -6302,14 +6302,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Divulgação e prestígio dos problemas em aberto",
         description:
-          "Riemann é o problema em aberto mais famoso fora de Fermat — um Clay Millennium Prize (1 M$), aparições recorrentes na ficção (Uma Mente Brilhante, A música dos primos) e um fluxo constante de «provas» que não sobrevivem à revisão por pares.",
+          "Riemann é o problema em aberto mais famoso fora de Fermat: um Clay Millennium Prize (1 M$), aparições recorrentes na ficção (Uma Mente Brilhante, A música dos primos) e um fluxo constante de «provas» que não sobrevivem à revisão por pares.",
       },
     ],
     backprop: [
       {
         domain: "Aprendizagem profunda",
         description:
-          "Toda rede neuronal moderna — classificadores de imagens, modelos de linguagem, recomendadores — é treinada por retropropagação. PyTorch e JAX implementam-na como o núcleo de diferenciação (autograd).",
+          "Toda rede neuronal moderna (classificadores de imagens, modelos de linguagem, recomendadores) é treinada por retropropagação. PyTorch e JAX implementam-na como o núcleo de diferenciação (autograd).",
       },
       {
         domain: "Visão computacional",
@@ -6329,7 +6329,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Problemas inversos na ciência",
         description:
-          "Os físicos invertem experiências montando o modelo directo em PyTorch/JAX e retropropagando através dele — usado em design de proteínas (AlphaFold), renderização diferenciável e design experimental baseado em gradientes.",
+          "Os físicos invertem experiências montando o modelo directo em PyTorch/JAX e retropropagando através dele, usado em design de proteínas (AlphaFold), renderização diferenciável e design experimental baseado em gradientes.",
       },
     ],
   },
@@ -6343,12 +6343,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Mjukvaruverifiering och programanalys",
         description:
-          "Microsofts Z3 — en SMT-lösare byggd på en SAT-kärna — verifierar drivrutiner, hittar säkerhetsbuggar och kontrollerar att kompilatoroptimeringar bevarar betydelsen. SAT/SMT bär symbolisk exekvering och stora delar av modern statisk analys.",
+          "Microsofts Z3 (en SMT-lösare byggd på en SAT-kärna) verifierar drivrutiner, hittar säkerhetsbuggar och kontrollerar att kompilatoroptimeringar bevarar betydelsen. SAT/SMT bär symbolisk exekvering och stora delar av modern statisk analys.",
       },
       {
         domain: "Planering, schemaläggning och konfiguration",
         description:
-          "AI-planerare, schemaläggning och produktkonfiguratorer (vilka biltillval är förenliga med varandra?) kodar sina villkor som booleska klausuler och lämnar dem till en SAT-lösare — ofta snabbare än en skräddarsydd algoritm.",
+          "AI-planerare, schemaläggning och produktkonfiguratorer (vilka biltillval är förenliga med varandra?) kodar sina villkor som booleska klausuler och lämnar dem till en SAT-lösare, ofta snabbare än en skräddarsydd algoritm.",
       },
       {
         domain: "Kryptoanalys",
@@ -6375,7 +6375,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Naturanaloger",
         description:
-          "Kustlinjer, bergskammar, ormbunksblad och broccolibuketter uppvisar samma självlika gränsstruktur – det var precis Mandelbrots poäng med den fraktala geometrin.",
+          "Kustlinjer, bergskammar, ormbunksblad och broccolibuketter uppvisar samma självlika gränsstruktur: det var precis Mandelbrots poäng med den fraktala geometrin.",
       },
     ],
     life: [
@@ -6414,7 +6414,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Hårdvarukurser",
         description:
-          "Kursen nand2tetris bygger en komplett dator utgående från ett enda NAND-chip – används vid över 100 universitet.",
+          "Kursen nand2tetris bygger en komplett dator utgående från ett enda NAND-chip och används vid över 100 universitet.",
       },
       {
         domain: "Inbäddad logik",
@@ -6426,7 +6426,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kombinator-tolkar",
         description:
-          "Kompilatorer för funktionella språk (till exempel Lazy K) översätter lambdakalkylprogram till rena kombinatoruttryck – i Iota-stil – som en del av kodgenereringen.",
+          "Kompilatorer för funktionella språk (till exempel Lazy K) översätter lambdakalkylprogram till rena kombinatoruttryck (i Iota-stil) som en del av kodgenereringen.",
       },
       {
         domain: "Esoteriska språk",
@@ -6448,7 +6448,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Undervisning i formell beräkning",
         description:
-          "Citeras i varje modern introduktion till cellulära automater som det enklaste kända universella systemet – en Turing-maskin i tweet-format.",
+          "Citeras i varje modern introduktion till cellulära automater som det enklaste kända universella systemet: en Turing-maskin i tweet-format.",
       },
       {
         domain: "Procedurellt texturbrus",
@@ -6465,7 +6465,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Epidemiologi",
         description:
-          "Begränsad epidemisk tillväxt (med bärförmåga = mottaglig population) följer logistiska kurvor – de kumulativa COVID-19-kurvorna var ett läroboksexempel.",
+          "Begränsad epidemisk tillväxt (med bärförmåga = mottaglig population) följer logistiska kurvor; de kumulativa COVID-19-kurvorna var ett läroboksexempel.",
       },
       {
         domain: "Maskininlärning",
@@ -6487,7 +6487,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Väderprognos",
         description:
-          "Operativa prognosmakare använder ensemble-metoder eftersom atmosfären delar Lorenz känslighet för begynnelsevillkor – förutsägbarheten kollapsar efter ungefär 14 dagar.",
+          "Operativa prognosmakare använder ensemble-metoder eftersom atmosfären delar Lorenz känslighet för begynnelsevillkor: förutsägbarheten kollapsar efter ungefär 14 dagar.",
       },
       {
         domain: "Klimatmodellering",
@@ -6502,7 +6502,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Säker kommunikation",
         description:
-          "Kaosbaserade krypteringsmetoder har använt synkronisering i Lorenz-stil för att dölja signaler – nisch men verklig (Cuomo och Oppenheim, 1993).",
+          "Kaosbaserade krypteringsmetoder har använt synkronisering i Lorenz-stil för att dölja signaler: nisch men verklig (Cuomo och Oppenheim, 1993).",
       },
     ],
     fourier: [
@@ -6514,7 +6514,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "JPEG och HEIC",
         description:
-          "Varje 8×8 pixlars block i en JPEG lagras som koefficienter för den diskreta cosinustransformen – därför har JPEG-ringning horisontella och vertikala mönster.",
+          "Varje 8×8 pixlars block i en JPEG lagras som koefficienter för den diskreta cosinustransformen; därför har JPEG-ringning horisontella och vertikala mönster.",
       },
       {
         domain: "MRI-skannrar",
@@ -6524,7 +6524,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Wi-Fi, 5G, DSL",
         description:
-          "Modern trådlös och trådbunden överföring använder OFDM, som lägger data på tusentals noggrant placerade sinusbärare – ren Fourier-ingenjörskonst.",
+          "Modern trådlös och trådbunden överföring använder OFDM, som lägger data på tusentals noggrant placerade sinusbärare: ren Fourier-ingenjörskonst.",
       },
       {
         domain: "Tal och ML",
@@ -6546,19 +6546,19 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Växelströmsanalys",
         description:
-          "Elektroingenjörer modellerar växelspänningar och -strömmar som komplexa exponentialfunktioner – impedansräkning med fasorer är en direkt tillämpning av Eulers formel.",
+          "Elektroingenjörer modellerar växelspänningar och -strömmar som komplexa exponentialfunktioner; impedansräkning med fasorer är en direkt tillämpning av Eulers formel.",
       },
       {
         domain: "Reglerteknik",
         description:
-          "Stabiliteten hos återkopplade system avläses i polernas läge i det komplexa planet – Eulers formel är bron mellan tid och frekvens.",
+          "Stabiliteten hos återkopplade system avläses i polernas läge i det komplexa planet; Eulers formel är bron mellan tid och frekvens.",
       },
     ],
     banach: [
       {
         domain: "Mängdteoretisk undervisning",
         description:
-          "Banach–Tarski är läroboksexemplet på varför urvalsaxiomet är kontroversiellt – det dyker upp i varje fördjupningskurs i reell analys.",
+          "Banach-Tarski är läroboksexemplet på varför urvalsaxiomet är kontroversiellt; det dyker upp i varje fördjupningskurs i reell analys.",
       },
       {
         domain: "Matematikens grundvalar",
@@ -6597,7 +6597,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Realtidsgrafik",
         description:
-          "Wang-tile-uppsättningar används för att packa icke-repeterande texturer (gräs, tegel, sand) i mycket små texturatlas – viktigt på minnesbegränsade enheter som mobil-GPU:er.",
+          "Wang-tile-uppsättningar används för att packa icke-repeterande texturer (gräs, tegel, sand) i mycket små texturatlas, viktigt på minnesbegränsade enheter som mobil-GPU:er.",
       },
       {
         domain: "Procedurell leveldesign",
@@ -6607,7 +6607,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Material och kvasikristaller",
         description:
-          "Teorin om Wang-plattor överlappar delvis med kvasikristallernas matematik – båda producerar aperiodiska oändliga arrangemang.",
+          "Teorin om Wang-plattor överlappar delvis med kvasikristallernas matematik: båda producerar aperiodiska oändliga arrangemang.",
       },
     ],
     collatz: [
@@ -6653,7 +6653,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Hjärtrytmrubbningar",
         description:
-          "Spiralvågmönster mycket lika BZR-spiralerna observeras på hjärtats yta vid flimmer – centralt för forskning kring och design av defibrillatorer.",
+          "Spiralvågmönster mycket lika BZR-spiralerna observeras på hjärtats yta vid flimmer, centralt för forskning kring och design av defibrillatorer.",
       },
       {
         domain: "Neurovetenskap",
@@ -6663,7 +6663,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kemiundervisning",
         description:
-          "BZR är den mest slående demonstrationen av «levande kemi» en kemilärare på gymnasiet kan visa – synlig oscillation i en kolv.",
+          "BZR är den mest slående demonstrationen av «levande kemi» en kemilärare på gymnasiet kan visa: synlig oscillation i en kolv.",
       },
       {
         domain: "Nobelprisbelönt teori",
@@ -6680,7 +6680,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Växtfyllotaxi",
         description:
-          "Spiralarrangemangen av solrosfrön, kottefjäll och ananasfjäll uppstår ur reaktion-diffusion plus den gyllene vinkeln – Turing-kemi på en växande yta.",
+          "Spiralarrangemangen av solrosfrön, kottefjäll och ananasfjäll uppstår ur reaktion-diffusion plus den gyllene vinkeln: Turing-kemi på en växande yta.",
       },
       {
         domain: "Generativ konst och grafik",
@@ -6697,7 +6697,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Fraktala antenner",
         description:
-          "Sierpiński-triangelantenner är kommersiella produkter – mobiltelefoner, Wi-Fi-routrar och GPS-enheter använder multibands fraktal-patchar som resonerar vid många frekvenser på liten yta.",
+          "Sierpiński-triangelantenner är kommersiella produkter: mobiltelefoner, Wi-Fi-routrar och GPS-enheter använder multibands fraktal-patchar som resonerar vid många frekvenser på liten yta.",
       },
       {
         domain: "Värmeväxlare",
@@ -6707,7 +6707,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kompression och grafik",
         description:
-          "Iterated Function Systems (IFS i Sierpiński-stil) ligger bakom fraktal bildkompressionsalgoritmer – fortfarande i bruk i nischade kodare för flygbilder.",
+          "Iterated Function Systems (IFS i Sierpiński-stil) ligger bakom fraktal bildkompressionsalgoritmer, fortfarande i bruk i nischade kodare för flygbilder.",
       },
       {
         domain: "Nätverk",
@@ -6719,7 +6719,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bioinformatik",
         description:
-          "Chaos Game Representation (CGR) är ett standardsätt att visualisera DNA-sekvenser – varje nukleotid styr en punkt mot ett av fyra hörn i en kvadrat, och arter klustrar i igenkännbara fraktala signaturer.",
+          "Chaos Game Representation (CGR) är ett standardsätt att visualisera DNA-sekvenser: varje nukleotid styr en punkt mot ett av fyra hörn i en kvadrat, och arter klustrar i igenkännbara fraktala signaturer.",
       },
       {
         domain: "Fraktal kompression",
@@ -6736,7 +6736,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kvasikristaller",
         description:
-          "Dan Shechtmans upptäckt 1982 av metalliska kvasikristaller (Nobelpriset 2011) förstods via Penrose-mosaiker – samma femfaldiga matematik styr båda.",
+          "Dan Shechtmans upptäckt 1982 av metalliska kvasikristaller (Nobelpriset 2011) förstods via Penrose-mosaiker: samma femfaldiga matematik styr båda.",
       },
       {
         domain: "Arkitektur",
@@ -6758,12 +6758,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Granulär packning",
         description:
-          "Hur sand, grus och farmaceutiska pulver fyller kärl modelleras med apolloniska sfärpackningar – viktigt för betong, tabletter och pulvermetallurgi.",
+          "Hur sand, grus och farmaceutiska pulver fyller kärl modelleras med apolloniska sfärpackningar, viktigt för betong, tabletter och pulvermetallurgi.",
       },
       {
         domain: "Talteori",
         description:
-          "Heltalsmässiga apolloniska packningar studeras av analytisk talteori – arbeten av Sarnak, Bourgain och Kontorovich gav nya resultat om primtalskrökningar.",
+          "Heltalsmässiga apolloniska packningar studeras av analytisk talteori: arbeten av Sarnak, Bourgain och Kontorovich gav nya resultat om primtalskrökningar.",
       },
       {
         domain: "Skum- och emulsionsfysik",
@@ -6780,12 +6780,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Växtfyllotaxi",
         description:
-          "Solrosens frönspiraler, kottefjäll och bladplaceringen hos de flesta växter konvergerar mot den gyllene vinkeln – verifierat hos tusentals arter.",
+          "Solrosens frönspiraler, kottefjäll och bladplaceringen hos de flesta växter konvergerar mot den gyllene vinkeln, verifierat hos tusentals arter.",
       },
       {
         domain: "Kedjebråk",
         description:
-          "φ har den enklaste kedjebråksutvecklingen [1;1,1,…], vilket gör den till det «mest irrationella» talet – ett nyckelbegrepp för KAM-teorin i klassisk mekanik.",
+          "φ har den enklaste kedjebråksutvecklingen [1;1,1,…], vilket gör den till det «mest irrationella» talet, ett nyckelbegrepp för KAM-teorin i klassisk mekanik.",
       },
       {
         domain: "Kvasikristaller och Penrose",
@@ -6800,14 +6800,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ärlig skepsis",
         description:
-          "Påståenden om att φ skulle finnas i Parthenon, Mona Lisa, nautilusskalet eller människans kroppsproportioner är till stor del myter – avlivade bland annat av George Markowsky (1992).",
+          "Påståenden om att φ skulle finnas i Parthenon, Mona Lisa, nautilusskalet eller människans kroppsproportioner är till stor del myter, avlivade bland annat av George Markowsky (1992).",
       },
     ],
     buffon: [
       {
         domain: "Monte Carlo-integration",
         description:
-          "Buffons nål är det historiska fröet till Monte Carlo-metoderna – idag i bruk överallt, från finansiell prissättning (Black–Scholes) till partikelfysiksimulering (Geant4) och rendering (path tracing).",
+          "Buffons nål är det historiska fröet till Monte Carlo-metoderna, idag i bruk överallt, från finansiell prissättning (Black-Scholes) till partikelfysiksimulering (Geant4) och rendering (path tracing).",
       },
       {
         domain: "Fysiksimulering",
@@ -6839,7 +6839,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Populärvetenskaplig kommunikation",
         description:
-          "TED-Ed-video, Vsauce, PBS Infinite Series – den modernaste och mest spridda förklaringen av oändlighet.",
+          "TED-Ed-video, Vsauce, PBS Infinite Series: den modernaste och mest spridda förklaringen av oändlighet.",
       },
     ],
     gabrielshorn: [
@@ -6851,7 +6851,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Matematikens filosofi",
         description:
-          "Citeras i debatter om innebörden av geometriska paradoxer och fysisk intuitions gränser – ett grundläggande tankeexperiment.",
+          "Citeras i debatter om innebörden av geometriska paradoxer och fysisk intuitions gränser, ett grundläggande tankeexperiment.",
       },
       {
         domain: "Mikrofluidik",
@@ -6863,7 +6863,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Beräkningsbarhetsteori",
         description:
-          "Cantors diagonal ger direkt Turings bevis för stopproblemet och Gödels ofullständighetssatser – grundpelarna i teoretisk datavetenskap.",
+          "Cantors diagonal ger direkt Turings bevis för stopproblemet och Gödels ofullständighetssatser, grundpelarna i teoretisk datavetenskap.",
       },
       {
         domain: "Programspråksteori",
@@ -6873,7 +6873,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kryptografi och komplexitet",
         description:
-          "Diagonaliseringsargument ligger bakom moderna resultat i komplexitetsteori – separationer mellan P, NP, EXP.",
+          "Diagonaliseringsargument ligger bakom moderna resultat i komplexitetsteori: separationer mellan P, NP, EXP.",
       },
       {
         domain: "Matematikens filosofi",
@@ -6885,7 +6885,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Visuella effekter på film",
         description:
-          "Batman – återkomsten (fladdermussvärmen 1992), Lejonkungen (gnu-stampedjen 1994) och otaliga moderna filmer använder Boids – oftast via Massive eller Houdini.",
+          "Batman: återkomsten (fladdermussvärmen 1992), Lejonkungen (gnu-stampedjen 1994) och otaliga moderna filmer använder Boids, oftast via Massive eller Houdini.",
       },
       {
         domain: "Drönarsvärmar",
@@ -6895,7 +6895,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Folkmassesimulering",
         description:
-          "Arkitektkontor simulerar arenautrymningar och flöden i köpcentrum med Boids-liknande agenter – i bruk i arenaplanering sedan 2000-talet.",
+          "Arkitektkontor simulerar arenautrymningar och flöden i köpcentrum med Boids-liknande agenter, i bruk i arenaplanering sedan 2000-talet.",
       },
       {
         domain: "Robotsvärmar",
@@ -6929,12 +6929,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Elektrokemi",
         description:
-          "Zink-, koppar- och andra metallavlagringar i elektrolysceller bildar DLA-typ-dendriter – direkt relevant för plätering, batteridesign (litiumdendriter) och korrosion.",
+          "Zink-, koppar- och andra metallavlagringar i elektrolysceller bildar DLA-typ-dendriter, direkt relevant för plätering, batteridesign (litiumdendriter) och korrosion.",
       },
       {
         domain: "Kristalltillväxt",
         description:
-          "Snöflingebildning, frost på fönster, mineraliska dendriter i berg – alla uppvisar DLA-skalningslagar.",
+          "Snöflingebildning, frost på fönster, mineraliska dendriter i berg: alla uppvisar DLA-skalningslagar.",
       },
       {
         domain: "Biologi",
@@ -6961,53 +6961,53 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Undervisning",
         description:
-          "Favoritintroduktion i kurser om cellulära automater – «motorvägs»-fasen är ett av de mest tillgängliga emergenta fenomenen i datavetenskapen.",
+          "Favoritintroduktion i kurser om cellulära automater: «motorvägs»-fasen är ett av de mest tillgängliga emergenta fenomenen i datavetenskapen.",
       },
     ],
     pascalmod: [
       {
         domain: "Talteori",
         description:
-          "Lucas sats (1878) driver direkt effektiva algoritmer för binomialkoefficienter modulo primtal – används i kryptografi, ordkombinatorik och tävlingsprogrammering.",
+          "Lucas sats (1878) driver direkt effektiva algoritmer för binomialkoefficienter modulo primtal, som används i kryptografi, ordkombinatorik och tävlingsprogrammering.",
       },
       {
         domain: "Kodteori",
         description:
-          "Reed–Muller- och BCH-felrättande koder bygger på maskineri kring binomialkoefficienter modulo p – de sitter i QR-koder, djupgrymdsondsändningar (Mariner 9, Voyager) och DVB-T digital-tv.",
+          "Reed-Muller- och BCH-felrättande koder bygger på maskineri kring binomialkoefficienter modulo p; de sitter i QR-koder, sändningar från rymdsonder i yttre rymden (Mariner 9, Voyager) och DVB-T digital-tv.",
       },
       {
         domain: "Bildkonst",
         description:
-          "Pascal mod 2 är den algebraiska källan till Sierpiński-triangeln – säljs som affisch, vävs in i mattor och visas i galleriinstallationer.",
+          "Pascal mod 2 är den algebraiska källan till Sierpiński-triangeln, som säljs som affisch, vävs in i mattor och visas i galleriinstallationer.",
       },
     ],
     sternbrocot: [
       {
         domain: "Datormusik och stämning",
         description:
-          "Mikrotonala kompositörer använder Stern–Brocot för att hitta liksvävande approximationer till rena intervall – centralt för xenharmonisk musik.",
+          "Mikrotonala kompositörer använder Stern-Brocot för att hitta liksvävande approximationer till rena intervall, centralt för xenharmonisk musik.",
       },
       {
         domain: "Robotik och kugghjulsdesign",
         description:
-          "Sökandet efter bästa rationella approximationer för utväxlingsförhållanden vandrar genom Stern–Brocot-trädet för att hitta effektiva mekaniska reduktioner.",
+          "Sökandet efter bästa rationella approximationer för utväxlingsförhållanden vandrar genom Stern-Brocot-trädet för att hitta effektiva mekaniska reduktioner.",
       },
       {
         domain: "Kalendersystem",
         description:
-          "Skottårsregler baserade på kedjebråk (persisk kalender, föreslagna gregorianska justeringar) härleds från Stern–Brocot-medianter.",
+          "Skottårsregler baserade på kedjebråk (persisk kalender, föreslagna gregorianska justeringar) härleds från Stern-Brocot-medianter.",
       },
       {
         domain: "Bildrendering",
         description:
-          "Subpixelsampling och modern typsnittsrastrering använder medianter i Stern–Brocot-stil för att välja täckningsförhållanden per pixel.",
+          "Subpixelsampling och modern typsnittsrastrering använder medianter i Stern-Brocot-stil för att välja täckningsförhållanden per pixel.",
       },
     ],
     ulam: [
       {
         domain: "Ren talteori",
         description:
-          "Att visualisera primtal via spiraler i Ulam-stil fortsätter att inspirera nya förmodanden om polynomiala primtalstätheter (Hardy–Littlewood, Sato–Tate).",
+          "Att visualisera primtal via spiraler i Ulam-stil fortsätter att inspirera nya förmodanden om polynomiala primtalstätheter (Hardy-Littlewood, Sato-Tate).",
       },
       {
         domain: "Undervisning",
@@ -7024,7 +7024,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ljudteknik",
         description:
-          "Njurmikrofoner (de som varje podcastare och radioarbetare använder) har fått sitt namn från det njurformade upptagningsmönstret – känsliga framåt, döva bakåt.",
+          "Njurmikrofoner (de som varje podcastare och radioarbetare använder) har fått sitt namn från det njurformade upptagningsmönstret: känsliga framåt, döva bakåt.",
       },
       {
         domain: "Antenndesign",
@@ -7046,7 +7046,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Statistikundervisning",
         description:
-          "Galtonbrädan är den kanoniska demonstrationen av centrala gränsvärdessatsen – närvarande på nästan alla vetenskapsmuseer (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
+          "Galtonbrädan är den kanoniska demonstrationen av centrala gränsvärdessatsen, närvarande på nästan alla vetenskapsmuseer (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
       },
       {
         domain: "Quincunx inom genetik",
@@ -7068,7 +7068,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kaosdemonstrationer",
         description:
-          "Skrivbordsleksaken «trekassemagnetpendeln» är den populäraste fysiska demonstrationen av fraktala attraktionsbassänger – säljs av ThinkGeek, Nikola Labs och många science-gift-shoppar.",
+          "Skrivbordsleksaken «trekassemagnetpendeln» är den populäraste fysiska demonstrationen av fraktala attraktionsbassänger och säljs av ThinkGeek, Nikola Labs och många science-gift-shoppar.",
       },
       {
         domain: "Forskning om magnetisk levitation",
@@ -7090,12 +7090,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Datavetenskap",
         description:
-          "Tarskis odefinierbarhet av sanning, Turings stopproblem och Rices sats är direkta avkomlingar – närvarande i varje grundkurs i logik och beräkningsbarhet.",
+          "Tarskis odefinierbarhet av sanning, Turings stopproblem och Rices sats är direkta avkomlingar, närvarande i varje grundkurs i logik och beräkningsbarhet.",
       },
       {
         domain: "Sinnesfilosofi",
         description:
-          "Penroses argument att människans sinne inte är rent algoritmiskt (The Emperor's New Mind, 1989) lutar sig tungt mot Gödel – kontroversiellt men inflytelserikt.",
+          "Penroses argument att människans sinne inte är rent algoritmiskt (The Emperor's New Mind, 1989) lutar sig tungt mot Gödel (kontroversiellt men inflytelserikt).",
       },
       {
         domain: "Verifierad mjukvara",
@@ -7107,7 +7107,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kompilatorer och statisk analys",
         description:
-          "Moderna statiska analysverktyg (Coverity, Infer, Rusts borrow checker) måste avstå från perfekt precision eftersom icke-triviala programegenskaper är oavgörbara – en direkt följd av stopproblemet (Rices sats).",
+          "Moderna statiska analysverktyg (Coverity, Infer, Rusts borrow checker) måste avstå från perfekt precision eftersom icke-triviala programegenskaper är oavgörbara: en direkt följd av stopproblemet (Rices sats).",
       },
       {
         domain: "Antivirus",
@@ -7117,7 +7117,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Datormoln",
         description:
-          "Molnens autoskalrar kan aldrig garantera att «det här användarjobbet kommer att stoppa» – de tvingar fram timeouts eftersom att avgöra stopp är omöjligt.",
+          "Molnens autoskalrar kan aldrig garantera att «det här användarjobbet kommer att stoppa»; de tvingar fram timeouts eftersom att avgöra stopp är omöjligt.",
       },
       {
         domain: "Undervisning",
@@ -7129,7 +7129,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kryptografi",
         description:
-          "Om P = NP skulle RSA, AES, all blockkedje- och TLS-skyddad trafik vara knäckta över en natt – varje modern digital hemlighet hänger på att P ≠ NP gäller i praktiken.",
+          "Om P = NP skulle RSA, AES, all blockkedje- och TLS-skyddad trafik vara knäckta över en natt: varje modern digital hemlighet hänger på att P ≠ NP gäller i praktiken.",
       },
       {
         domain: "Optimering",
@@ -7144,7 +7144,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bioinformatik",
         description:
-          "Proteinveckning, genommontering och fylogenetisk träduppbyggnad är alla NP-svåra – vilket driver fältet att uppfinna approximationsalgoritmer och AI-metoder (AlphaFold).",
+          "Proteinveckning, genommontering och fylogenetisk träduppbyggnad är alla NP-svåra, vilket driver fältet att uppfinna approximationsalgoritmer och AI-metoder (AlphaFold).",
       },
       {
         domain: "Öppet pris",
@@ -7156,7 +7156,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "TLS / HTTPS",
         description:
-          "Varje hänglåsikon i webbläsaren använder i den inledande handskakningen antingen RSA eller dess släkting på elliptiska kurvor (ECDSA) – miljarder gånger per sekund.",
+          "Varje hänglåsikon i webbläsaren använder i den inledande handskakningen antingen RSA eller dess släkting på elliptiska kurvor (ECDSA), miljarder gånger per sekund.",
       },
       {
         domain: "Digitala signaturer",
@@ -7183,7 +7183,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Industriella transportband",
         description:
-          "Drivremmar i form av en Möbius-band slits jämnt på båda «sidorna» (det finns ju bara en!) – används i gamla tryckpressar, moderna inspelningsband och vissa VHS-bandsystem.",
+          "Drivremmar i form av en Möbius-band slits jämnt på båda «sidorna» (det finns ju bara en!) och används i gamla tryckpressar, moderna inspelningsband och vissa VHS-bandsystem.",
       },
       {
         domain: "Maskinteknik",
@@ -7193,7 +7193,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Topologiforskning",
         description:
-          "Möbius-bandet är den enklaste icke-orienterbara ytan – ingången till ett vidsträckt fält som klassificerar alla ytor och som används inom kosmologi och strängteori.",
+          "Möbius-bandet är den enklaste icke-orienterbara ytan, ingången till ett vidsträckt fält som klassificerar alla ytor och som används inom kosmologi och strängteori.",
       },
       {
         domain: "Konst och arkitektur",
@@ -7215,7 +7215,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Datatopologi",
         description:
-          "Pipelines för persistent homologi använder Euler-karakteristik för att sammanfatta formen hos högdimensionella punktmoln – tillämpat inom genomik, sensornätverk och kosmologi.",
+          "Pipelines för persistent homologi använder Euler-karakteristik för att sammanfatta formen hos högdimensionella punktmoln, tillämpat inom genomik, sensornätverk och kosmologi.",
       },
       {
         domain: "Arkitektur",
@@ -7230,14 +7230,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Partikelfysik",
         description:
-          "Atiyah–Singers indexsats, grundläggande för modern gaugeteori, generaliserar Eulers formel och knyter samman topologi och differentialekvationer.",
+          "Atiyah-Singers indexsats, grundläggande för modern gaugeteori, generaliserar Eulers formel och knyter samman topologi och differentialekvationer.",
       },
     ],
     konigsberg: [
       {
         domain: "Grafteorins födelse",
         description:
-          "Königsberg startade hela fältet – grafteori ligger idag bakom Googles PageRank, sociala nätverksanalys, chip-layout och ruttplanering.",
+          "Königsberg startade hela fältet: grafteori ligger idag bakom Googles PageRank, sociala nätverksanalys, chip-layout och ruttplanering.",
       },
       {
         domain: "DNA-sekvensering",
@@ -7247,7 +7247,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ruttoptimering",
         description:
-          "Brevbärare, sopbilar och snöplogar löser det kinesiska brevbärarproblemet – en direkt ättling till Königsbergs broar.",
+          "Brevbärare, sopbilar och snöplogar löser det kinesiska brevbärarproblemet, en direkt ättling till Königsbergs broar.",
       },
       {
         domain: "Turism",
@@ -7264,7 +7264,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Mobilnät",
         description:
-          "Frekvenstilldelning mellan mobilmaster avbildas på grafkoloering – fyrfärgsatsen är gränsfallet för vissa plana layouter.",
+          "Frekvenstilldelning mellan mobilmaster avbildas på grafkoloering; fyrfärgsatsen är gränsfallet för vissa plana layouter.",
       },
       {
         domain: "Schemaläggning",
@@ -7274,7 +7274,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Datorverifierad matematik",
         description:
-          "Tillsammans med Keplerförmodan var fyrfärgsatsen en milstolpe inom datorassisterad bevisföring – bevisassistentkulturen (Coq, Lean) spårar sin legitimitet hit.",
+          "Tillsammans med Keplerförmodan var fyrfärgsatsen en milstolpe inom datorassisterad bevisföring: bevisassistentkulturen (Coq, Lean) spårar sin legitimitet hit.",
       },
     ],
     smallworld: [
@@ -7291,7 +7291,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Hjärnforskning",
         description:
-          "fMRI-studier visar att människans konnektom är ett small-world-nätverk – small-world-koefficienten är idag en standardbiomarkör i forskning om Alzheimers och schizofreni.",
+          "fMRI-studier visar att människans konnektom är ett small-world-nätverk; small-world-koefficienten är idag en standardbiomarkör i forskning om Alzheimers och schizofreni.",
       },
       {
         domain: "Internetdirigering",
@@ -7318,7 +7318,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Läkemedels- och proteindesign",
         description:
-          "RFdiffusion (Baker-laboratoriet) och Chroma genererar nya proteinryggar genom att brusrensa 3D-koordinater i stället för pixlar — publicerade kandidater har syntetiserats och visat sig vecka sig korrekt.",
+          "RFdiffusion (Baker-laboratoriet) och Chroma genererar nya proteinryggar genom att brusrensa 3D-koordinater i stället för pixlar; publicerade kandidater har syntetiserats och visat sig vecka sig korrekt.",
       },
       {
         domain: "Ljud och tal",
@@ -7328,7 +7328,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Fysik och termodynamik",
         description:
-          "Framåtprocessen är bokstavligen Langevin-dynamik — brusschemat speglar ett system som relaxerar mot termisk jämvikt. Sohl-Dicksteins originalartikel från 2015 formulerades som icke-jämviktstermodynamik.",
+          "Framåtprocessen är bokstavligen Langevin-dynamik: brusschemat speglar ett system som relaxerar mot termisk jämvikt. Sohl-Dicksteins originalartikel från 2015 formulerades som icke-jämviktstermodynamik.",
       },
     ],
     riemann: [
@@ -7345,7 +7345,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kvantkaos",
         description:
-          "Statistiken över avstånden mellan zeta-nollställen sammanfaller med egenvärdesstatistiken hos stora slumpmässiga hermitiska matriser — samma matriser som modellerar energinivåer i tunga atomkärnor. Montgomery–Dyson-förmodan (1972) är en av matematikens mest överraskande broar.",
+          "Statistiken över avstånden mellan zeta-nollställen sammanfaller med egenvärdesstatistiken hos stora slumpmässiga hermitiska matriser, samma matriser som modellerar energinivåer i tunga atomkärnor. Montgomery-Dyson-förmodan (1972) är en av matematikens mest överraskande broar.",
       },
       {
         domain: "Datorverifierad numerik",
@@ -7355,14 +7355,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Populärvetenskap och öppen-problem-prestige",
         description:
-          "Riemann är det mest kända olösta problemet utanför Fermat — ett Clay Millennium-pris (1 M$), återkommande gestaltningar i fiktion (A Beautiful Mind, The Music of the Primes) och en stadig ström av «bevis» som inte överlever peer review.",
+          "Riemann är det mest kända olösta problemet utanför Fermat: ett Clay Millennium-pris (1 M$), återkommande gestaltningar i fiktion (A Beautiful Mind, The Music of the Primes) och en stadig ström av «bevis» som inte överlever peer review.",
       },
     ],
     backprop: [
       {
         domain: "Djupinlärning",
         description:
-          "Varje modernt neuralt nätverk — bildklassificerare, språkmodell, rekommenderare — tränas med backpropagation. PyTorch och JAX implementerar den som sin differentieringskärna (autograd).",
+          "Varje modernt neuralt nätverk (bildklassificerare, språkmodell, rekommenderare) tränas med backpropagation. PyTorch och JAX implementerar den som sin differentieringskärna (autograd).",
       },
       {
         domain: "Datorseende",
@@ -7382,7 +7382,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Inversa problem i naturvetenskap",
         description:
-          "Fysiker inverterar experiment genom att bygga den framåtriktade modellen i PyTorch/JAX och backpropagera igenom — används i proteindesign (AlphaFold), differentierbar rendering och gradientbaserad experimentdesign.",
+          "Fysiker inverterar experiment genom att bygga den framåtriktade modellen i PyTorch/JAX och backpropagera igenom, något som används i proteindesign (AlphaFold), differentierbar rendering och gradientbaserad experimentdesign.",
       },
     ],
   },
@@ -7396,12 +7396,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Programvareverifisering og programanalyse",
         description:
-          "Microsofts Z3 — en SMT-løser bygd på en SAT-kjerne — verifiserer drivere, finner sikkerhetsfeil og sjekker at kompilatoroptimaliseringer bevarer betydningen. SAT/SMT bærer symbolsk kjøring og store deler av moderne statisk analyse.",
+          "Microsofts Z3 (en SMT-løser bygd på en SAT-kjerne) verifiserer drivere, finner sikkerhetsfeil og sjekker at kompilatoroptimaliseringer bevarer betydningen. SAT/SMT bærer symbolsk kjøring og store deler av moderne statisk analyse.",
       },
       {
         domain: "Planlegging, tidsplanlegging og konfigurasjon",
         description:
-          "KI-planleggere, timeplanlegging og produktkonfiguratorer (hvilke biltilvalg er kompatible med hverandre?) koder vilkårene sine som boolske klausuler og gir dem til en SAT-løser — ofte raskere enn en skreddersydd algoritme.",
+          "KI-planleggere, timeplanlegging og produktkonfiguratorer (hvilke biltilvalg er kompatible med hverandre?) koder vilkårene sine som boolske klausuler og gir dem til en SAT-løser, ofte raskere enn en skreddersydd algoritme.",
       },
       {
         domain: "Kryptoanalyse",
@@ -7428,7 +7428,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Analoger i naturen",
         description:
-          "Kystlinjer, fjellrygger, bregneblad og brokkolibuketter viser den samme selvlike kantstrukturen – det var akkurat Mandelbrots poeng med fraktal geometri.",
+          "Kystlinjer, fjellrygger, bregneblad og brokkolibuketter viser den samme selvlike kantstrukturen: Det var akkurat Mandelbrots poeng med fraktal geometri.",
       },
     ],
     life: [
@@ -7445,7 +7445,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Diskret biologisk modellering",
         description:
-          "Demografi, byttedyr–rovdyrdynamikk og epidemispredning prototypes av og til på Life-lignende rutenett før man går videre til rikere agentbaserte modeller.",
+          "Demografi, byttedyr-rovdyrdynamikk og epidemispredning prototypes av og til på Life-lignende rutenett før man går videre til rikere agentbaserte modeller.",
       },
       {
         domain: "Maskinvarefikling",
@@ -7467,7 +7467,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Maskinvarekurs",
         description:
-          "Kurset nand2tetris bygger en komplett datamaskin med utgangspunkt i én eneste NAND-brikke – brukes ved over 100 universiteter.",
+          "Kurset nand2tetris bygger en komplett datamaskin med utgangspunkt i én eneste NAND-brikke og brukes ved over 100 universiteter.",
       },
       {
         domain: "Innebygd logikk",
@@ -7479,7 +7479,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kombinatortolker",
         description:
-          "Kompilatorer for funksjonelle språk (for eksempel Lazy K) oversetter lambdakalkylprogrammer til rene kombinatoruttrykk – i Iota-stil – under kodegenereringen.",
+          "Kompilatorer for funksjonelle språk (for eksempel Lazy K) oversetter lambdakalkylprogrammer til rene kombinatoruttrykk (i Iota-stil) under kodegenereringen.",
       },
       {
         domain: "Esoteriske språk",
@@ -7501,7 +7501,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Undervisning i formell beregning",
         description:
-          "Sitert i enhver moderne innføring i cellulære automater som det enkleste kjente universelle systemet – en Turing-maskin i tweet-format.",
+          "Sitert i enhver moderne innføring i cellulære automater som det enkleste kjente universelle systemet: en Turing-maskin i tweet-format.",
       },
       {
         domain: "Prosedural teksturstøy",
@@ -7518,7 +7518,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Epidemiologi",
         description:
-          "Begrenset epidemivekst (med bæreevne = pool av mottakelige) følger logistiske kurver – de kumulative COVID-19-kurvene var et lærebokeksempel.",
+          "Begrenset epidemivekst (med bæreevne = pool av mottakelige) følger logistiske kurver; de kumulative COVID-19-kurvene var et lærebokeksempel.",
       },
       {
         domain: "Maskinlæring",
@@ -7540,7 +7540,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Værvarsling",
         description:
-          "Operative værmeldere bruker ensemble-metoder fordi atmosfæren deler Lorenz' sensitivitet for startbetingelser – forutsigbarheten kollapser etter omtrent 14 dager.",
+          "Operative værmeldere bruker ensemble-metoder fordi atmosfæren deler Lorenz' sensitivitet for startbetingelser: Forutsigbarheten kollapser etter omtrent 14 dager.",
       },
       {
         domain: "Klimamodellering",
@@ -7555,7 +7555,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Sikker kommunikasjon",
         description:
-          "Kaosbaserte krypteringsmetoder har brukt synkronisering i Lorenz-stil for å skjule signaler – nisje, men reell (Cuomo og Oppenheim, 1993).",
+          "Kaosbaserte krypteringsmetoder har brukt synkronisering i Lorenz-stil for å skjule signaler: nisje, men reell (Cuomo og Oppenheim, 1993).",
       },
     ],
     fourier: [
@@ -7567,7 +7567,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "JPEG og HEIC",
         description:
-          "Hver 8×8-piksels blokk i et JPEG-bilde lagres som koeffisienter til den diskrete cosinustransformen – derfor har JPEG-ringing horisontale og vertikale mønstre.",
+          "Hver 8×8-piksels blokk i et JPEG-bilde lagres som koeffisienter til den diskrete cosinustransformen; derfor har JPEG-ringing horisontale og vertikale mønstre.",
       },
       {
         domain: "MR-skannere",
@@ -7577,7 +7577,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Wi-Fi, 5G, DSL",
         description:
-          "Moderne trådløs og kabelbasert overføring bruker OFDM, som legger data på tusenvis av nøye plasserte sinusbærere – ren Fourier-ingeniørkunst.",
+          "Moderne trådløs og kabelbasert overføring bruker OFDM, som legger data på tusenvis av nøye plasserte sinusbærere: ren Fourier-ingeniørkunst.",
       },
       {
         domain: "Tale og ML",
@@ -7599,19 +7599,19 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Vekselstrømsanalyse",
         description:
-          "Elektroingeniører modellerer vekselspenninger og -strømmer som komplekse eksponensialer – impedansregning med fasorer er direkte anvendelse av Eulers formel.",
+          "Elektroingeniører modellerer vekselspenninger og -strømmer som komplekse eksponensialer; impedansregning med fasorer er direkte anvendelse av Eulers formel.",
       },
       {
         domain: "Reguleringsteknikk",
         description:
-          "Stabiliteten til tilbakekoblede systemer leses ut fra polenes plassering i det komplekse planet – Eulers formel er broen mellom tid og frekvens.",
+          "Stabiliteten til tilbakekoblede systemer leses ut fra polenes plassering i det komplekse planet; Eulers formel er broen mellom tid og frekvens.",
       },
     ],
     banach: [
       {
         domain: "Undervisning i mengdeteori",
         description:
-          "Banach–Tarski er lærebokeksemplet på hvorfor utvalgsaksiomet er kontroversielt – brukt i ethvert masterkurs i reell analyse.",
+          "Banach-Tarski er lærebokeksemplet på hvorfor utvalgsaksiomet er kontroversielt, brukt i ethvert masterkurs i reell analyse.",
       },
       {
         domain: "Matematikkens grunnlag",
@@ -7650,7 +7650,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Sanntidsgrafikk",
         description:
-          "Wang-tile-sett brukes til å pakke ikke-repeterende teksturer (gress, murstein, sand) i svært små teksturatlas – viktig på enheter med begrenset minne, som mobil-GPU-er.",
+          "Wang-tile-sett brukes til å pakke ikke-repeterende teksturer (gress, murstein, sand) i svært små teksturatlas, viktig på enheter med begrenset minne, som mobil-GPU-er.",
       },
       {
         domain: "Prosedural leveldesign",
@@ -7660,7 +7660,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Materialer og kvasikrystaller",
         description:
-          "Teorien om Wang-fliser overlapper delvis med kvasikrystallenes matematikk – begge produserer aperiodiske, uendelige arrangementer.",
+          "Teorien om Wang-fliser overlapper delvis med kvasikrystallenes matematikk: Begge produserer aperiodiske, uendelige arrangementer.",
       },
     ],
     collatz: [
@@ -7706,7 +7706,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Hjerterytmeforstyrrelser",
         description:
-          "Spiralbølgemønstre svært like BZR-spiralene observeres på hjertets overflate ved flimmer – sentralt for forskning på og design av defibrillatorer.",
+          "Spiralbølgemønstre svært like BZR-spiralene observeres på hjertets overflate ved flimmer, sentralt for forskning på og design av defibrillatorer.",
       },
       {
         domain: "Nevrovitenskap",
@@ -7716,7 +7716,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kjemiundervisning",
         description:
-          "BZR er den mest slående demonstrasjonen av «levende kjemi» en kjemilærer på videregående kan vise – synlig oscillasjon i en kolbe.",
+          "BZR er den mest slående demonstrasjonen av «levende kjemi» en kjemilærer på videregående kan vise: synlig oscillasjon i en kolbe.",
       },
       {
         domain: "Nobelprisbelønt teori",
@@ -7733,7 +7733,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Plantefyllotaksi",
         description:
-          "Spiralarrangementene i solsikkefrø, kongleskjell og ananasskjell oppstår fra reaksjon-diffusjon pluss den gylne vinkel – Turing-kjemi på en voksende flate.",
+          "Spiralarrangementene i solsikkefrø, kongleskjell og ananasskjell oppstår fra reaksjon-diffusjon pluss den gylne vinkel: Turing-kjemi på en voksende flate.",
       },
       {
         domain: "Generativ kunst og grafikk",
@@ -7750,7 +7750,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Fraktalantenner",
         description:
-          "Antenner med Sierpiński-trekant er kommersielle produkter – mobiltelefoner, Wi-Fi-rutere og GPS-enheter bruker multibånds fraktal-patcher som resonnerer på mange frekvenser på liten plass.",
+          "Antenner med Sierpiński-trekant er kommersielle produkter: Mobiltelefoner, Wi-Fi-rutere og GPS-enheter bruker multibånds fraktal-patcher som resonnerer på mange frekvenser på liten plass.",
       },
       {
         domain: "Varmevekslere",
@@ -7760,7 +7760,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kompresjon og grafikk",
         description:
-          "Iterated Function Systems (IFS i Sierpiński-stil) ligger bak fraktal bildekompresjonsalgoritmer – fremdeles i bruk i nisjekodere for luftbilder.",
+          "Iterated Function Systems (IFS i Sierpiński-stil) ligger bak fraktal bildekompresjonsalgoritmer, fremdeles i bruk i nisjekodere for luftbilder.",
       },
       {
         domain: "Nettverk",
@@ -7772,7 +7772,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bioinformatikk",
         description:
-          "Chaos Game Representation (CGR) er en standardmåte å visualisere DNA-sekvenser på – hvert nukleotid styrer et punkt mot ett av fire hjørner i et kvadrat, og artene klumper seg i gjenkjennelige fraktale signaturer.",
+          "Chaos Game Representation (CGR) er en standardmåte å visualisere DNA-sekvenser på: Hvert nukleotid styrer et punkt mot ett av fire hjørner i et kvadrat, og artene klumper seg i gjenkjennelige fraktale signaturer.",
       },
       {
         domain: "Fraktal kompresjon",
@@ -7789,7 +7789,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kvasikrystaller",
         description:
-          "Dan Shechtmans oppdagelse av metalliske kvasikrystaller i 1982 (Nobelpris 2011) ble forstått gjennom Penrose-mosaikker – den samme femfoldige matematikken styrer begge.",
+          "Dan Shechtmans oppdagelse av metalliske kvasikrystaller i 1982 (Nobelpris 2011) ble forstått gjennom Penrose-mosaikker: Den samme femfoldige matematikken styrer begge.",
       },
       {
         domain: "Arkitektur",
@@ -7811,12 +7811,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Granulær pakking",
         description:
-          "Hvordan sand, grus og farmasøytiske pulvere fyller beholdere modelleres med apolloniske kulepakninger – viktig for betong, tabletter og pulvermetallurgi.",
+          "Hvordan sand, grus og farmasøytiske pulvere fyller beholdere modelleres med apolloniske kulepakninger, viktig for betong, tabletter og pulvermetallurgi.",
       },
       {
         domain: "Tallteori",
         description:
-          "Heltallige apolloniske pakninger studeres av analytisk tallteori – arbeider av Sarnak, Bourgain og Kontorovich har gitt nye resultater om primtallskrumninger.",
+          "Heltallige apolloniske pakninger studeres av analytisk tallteori: Arbeider av Sarnak, Bourgain og Kontorovich har gitt nye resultater om primtallskrumninger.",
       },
       {
         domain: "Skum- og emulsjonsfysikk",
@@ -7833,12 +7833,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Plantefyllotaksi",
         description:
-          "Solsikkens frøspiraler, kongleskjell og bladplasseringen hos de fleste planter konvergerer mot den gylne vinkel – verifisert hos tusenvis av arter.",
+          "Solsikkens frøspiraler, kongleskjell og bladplasseringen hos de fleste planter konvergerer mot den gylne vinkel, verifisert hos tusenvis av arter.",
       },
       {
         domain: "Kjedebrøker",
         description:
-          "φ har den enkleste kjedebrøksutviklingen [1;1,1,…], noe som gjør det til det «mest irrasjonale» tallet – et nøkkelbegrep for KAM-teorien i klassisk mekanikk.",
+          "φ har den enkleste kjedebrøksutviklingen [1;1,1,…], noe som gjør det til det «mest irrasjonale» tallet, et nøkkelbegrep for KAM-teorien i klassisk mekanikk.",
       },
       {
         domain: "Kvasikrystaller og Penrose",
@@ -7853,14 +7853,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ærlig skepsis",
         description:
-          "Påstander om at φ skulle finnes i Parthenon, Mona Lisa, nautilusskallet eller menneskekroppens proporsjoner er stort sett myter – avlivet blant andre av George Markowsky (1992).",
+          "Påstander om at φ skulle finnes i Parthenon, Mona Lisa, nautilusskallet eller menneskekroppens proporsjoner er stort sett myter, avlivet blant andre av George Markowsky (1992).",
       },
     ],
     buffon: [
       {
         domain: "Monte Carlo-integrasjon",
         description:
-          "Buffons nål er det historiske frøet til Monte Carlo-metodene – i dag i bruk overalt, fra finansiell prising (Black–Scholes) til partikkelfysisksimulering (Geant4) og rendering (path tracing).",
+          "Buffons nål er det historiske frøet til Monte Carlo-metodene, i dag i bruk overalt, fra finansiell prising (Black-Scholes) til partikkelfysisksimulering (Geant4) og rendering (path tracing).",
       },
       {
         domain: "Fysikksimulering",
@@ -7892,7 +7892,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Populærvitenskapelig formidling",
         description:
-          "TED-Ed-video, Vsauce, PBS Infinite Series – den mest delte moderne forklaringen på uendelighet.",
+          "TED-Ed-video, Vsauce, PBS Infinite Series: den mest delte moderne forklaringen på uendelighet.",
       },
     ],
     gabrielshorn: [
@@ -7904,7 +7904,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Matematikkens filosofi",
         description:
-          "Sitert i debatter om betydningen av geometriske paradokser og fysisk intuisjons grenser – et grunnleggende tankeeksperiment.",
+          "Sitert i debatter om betydningen av geometriske paradokser og fysisk intuisjons grenser, et grunnleggende tankeeksperiment.",
       },
       {
         domain: "Mikrofluidikk",
@@ -7916,7 +7916,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Beregnbarhetsteori",
         description:
-          "Cantors diagonal gir direkte Turings bevis for stoppeproblemet og Gödels ufullstendighetsteoremer – bærebjelker i teoretisk informatikk.",
+          "Cantors diagonal gir direkte Turings bevis for stoppeproblemet og Gödels ufullstendighetsteoremer, bærebjelker i teoretisk informatikk.",
       },
       {
         domain: "Teori for programmeringsspråk",
@@ -7926,7 +7926,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kryptografi og kompleksitet",
         description:
-          "Diagonaliseringsargumenter ligger bak moderne resultater i kompleksitetsteori – separasjoner mellom P, NP, EXP.",
+          "Diagonaliseringsargumenter ligger bak moderne resultater i kompleksitetsteori: separasjoner mellom P, NP, EXP.",
       },
       {
         domain: "Matematikkens filosofi",
@@ -7938,7 +7938,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Visuelle effekter på film",
         description:
-          "Batmans Tilbakekomst (flaggermussvermen i 1992), Løvenes konge (gnu-stampeden i 1994) og utallige moderne filmer bruker Boids – som regel via Massive eller Houdini.",
+          "Batmans Tilbakekomst (flaggermussvermen i 1992), Løvenes konge (gnu-stampeden i 1994) og utallige moderne filmer bruker Boids, som regel via Massive eller Houdini.",
       },
       {
         domain: "Dronesvermer",
@@ -7948,7 +7948,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Folkemengdesimulering",
         description:
-          "Arkitektkontorer simulerer arena-evakueringer og kjøpesenter-strømninger med Boids-lignende agenter – i bruk i arenaplanlegging siden 2000-tallet.",
+          "Arkitektkontorer simulerer arena-evakueringer og kjøpesenter-strømninger med Boids-lignende agenter, i bruk i arenaplanlegging siden 2000-tallet.",
       },
       {
         domain: "Robotsvermer",
@@ -7982,12 +7982,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Elektrokjemi",
         description:
-          "Avsetninger av sink, kobber og andre metaller dyrket i elektrolyseceller danner dendritter av DLA-typen – direkte relevant for galvanisering, batteridesign (litiumdendritter) og korrosjon.",
+          "Avsetninger av sink, kobber og andre metaller dyrket i elektrolyseceller danner dendritter av DLA-typen, direkte relevant for galvanisering, batteridesign (litiumdendritter) og korrosjon.",
       },
       {
         domain: "Krystallvekst",
         description:
-          "Dannelsen av snøfnugg, frost på vinduer og mineraldendritter i fjell – alle viser DLA-skaleringslover.",
+          "Dannelsen av snøfnugg, frost på vinduer og mineraldendritter i fjell: Alle viser DLA-skaleringslover.",
       },
       {
         domain: "Biologi",
@@ -8014,53 +8014,53 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Undervisning",
         description:
-          "Et yndet introduksjonseksempel i kurs om cellulære automater – «motorvei»-fasen er et av de mest tilgjengelige emergente fenomenene i informatikken.",
+          "Et yndet introduksjonseksempel i kurs om cellulære automater: «Motorvei»-fasen er et av de mest tilgjengelige emergente fenomenene i informatikken.",
       },
     ],
     pascalmod: [
       {
         domain: "Tallteori",
         description:
-          "Lucas' teorem (1878) driver direkte effektive algoritmer for binomialkoeffisienter modulo primtall – brukt i kryptografi, ordkombinatorikk og konkurranseprogrammering.",
+          "Lucas' teorem (1878) driver direkte effektive algoritmer for binomialkoeffisienter modulo primtall, brukt i kryptografi, ordkombinatorikk og konkurranseprogrammering.",
       },
       {
         domain: "Kodingsteori",
         description:
-          "Reed–Muller- og BCH-feilrettende koder hviler på maskineriet rundt binomialkoeffisienter modulo p – de finnes i QR-koder, dypromsondesendinger (Mariner 9, Voyager) og digital-TV DVB-T.",
+          "Reed-Muller- og BCH-feilrettende koder hviler på maskineriet rundt binomialkoeffisienter modulo p; de finnes i QR-koder, dypromsondesendinger (Mariner 9, Voyager) og digital-TV DVB-T.",
       },
       {
         domain: "Billedkunst",
         description:
-          "Pascal mod 2 er den algebraiske kilden til Sierpiński-trekanten – selges som plakat, veves inn i tepper og vises i galleriinstallasjoner.",
+          "Pascal mod 2 er den algebraiske kilden til Sierpiński-trekanten, som selges som plakat, veves inn i tepper og vises i galleriinstallasjoner.",
       },
     ],
     sternbrocot: [
       {
         domain: "Datamusikk og stemming",
         description:
-          "Mikrotonale komponister bruker Stern–Brocot for å finne liksvevende tilnærminger til rene intervaller – sentralt for xenharmonisk musikk.",
+          "Mikrotonale komponister bruker Stern-Brocot for å finne liksvevende tilnærminger til rene intervaller, sentralt for xenharmonisk musikk.",
       },
       {
         domain: "Tannhjulsdesign i robotikk",
         description:
-          "Søk etter beste rasjonale tilnærminger for utvekslingsforhold vandrer gjennom Stern–Brocot-treet for å finne effektive mekaniske reduksjoner.",
+          "Søk etter beste rasjonale tilnærminger for utvekslingsforhold vandrer gjennom Stern-Brocot-treet for å finne effektive mekaniske reduksjoner.",
       },
       {
         domain: "Kalendersystemer",
         description:
-          "Skuddårsregler basert på kjedebrøker (persisk kalender, foreslåtte gregorianske justeringer) utledes fra Stern–Brocot-medianer.",
+          "Skuddårsregler basert på kjedebrøker (persisk kalender, foreslåtte gregorianske justeringer) utledes fra Stern-Brocot-medianer.",
       },
       {
         domain: "Bilderendering",
         description:
-          "Subpiksel-sampling og moderne fontrasterisering bruker medianer i Stern–Brocot-stil for å velge pikseldekningsforhold.",
+          "Subpiksel-sampling og moderne fontrasterisering bruker medianer i Stern-Brocot-stil for å velge pikseldekningsforhold.",
       },
     ],
     ulam: [
       {
         domain: "Ren tallteori",
         description:
-          "Å visualisere primtall via spiraler i Ulam-stil fortsetter å inspirere nye formodninger om polynomiske primtallstettheter (Hardy–Littlewood, Sato–Tate).",
+          "Å visualisere primtall via spiraler i Ulam-stil fortsetter å inspirere nye formodninger om polynomiske primtallstettheter (Hardy-Littlewood, Sato-Tate).",
       },
       {
         domain: "Undervisning",
@@ -8077,7 +8077,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Lydteknikk",
         description:
-          "Nyremikrofoner (de som enhver podkaster og kringkaster bruker) har fått navnet sitt fra det nyreformede opptaksmønsteret – følsomme foran og døve bak.",
+          "Nyremikrofoner (de som enhver podkaster og kringkaster bruker) har fått navnet sitt fra det nyreformede opptaksmønsteret: følsomme foran og døve bak.",
       },
       {
         domain: "Antennedesign",
@@ -8099,7 +8099,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Statistikkundervisning",
         description:
-          "Galton-brettet er den kanoniske demonstrasjonen av den sentrale grensesetningen – til stede på nesten alle vitenskapsmuseer (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
+          "Galton-brettet er den kanoniske demonstrasjonen av den sentrale grensesetningen, til stede på nesten alle vitenskapsmuseer (Deutsches Museum, Boston Museum of Science, MOSS Toronto).",
       },
       {
         domain: "Quincunx i genetikk",
@@ -8121,7 +8121,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kaosdemonstrasjoner",
         description:
-          "Skrivebordsleken «tremagnetpendel» er den mest populære fysiske demonstrasjonen av fraktale tiltrekningsbasseng – selges av ThinkGeek, Nikola Labs og en mengde gavebutikker for vitenskap.",
+          "Skrivebordsleken «tremagnetpendel» er den mest populære fysiske demonstrasjonen av fraktale tiltrekningsbasseng og selges av ThinkGeek, Nikola Labs og en mengde gavebutikker for vitenskap.",
       },
       {
         domain: "Forskning på magnetisk levitasjon",
@@ -8143,12 +8143,12 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Informatikk",
         description:
-          "Tarskis udefinerbarhet av sannhet, Turings stoppeproblem og Rices teorem er direkte etterkommere – til stede i ethvert bachelorkurs i logikk og beregnbarhet.",
+          "Tarskis udefinerbarhet av sannhet, Turings stoppeproblem og Rices teorem er direkte etterkommere, til stede i ethvert bachelorkurs i logikk og beregnbarhet.",
       },
       {
         domain: "Bevissthetsfilosofi",
         description:
-          "Penroses argument om at menneskesinnet ikke er rent algoritmisk (The Emperor's New Mind, 1989) hviler sterkt på Gödel – kontroversielt, men innflytelsesrikt.",
+          "Penroses argument om at menneskesinnet ikke er rent algoritmisk (The Emperor's New Mind, 1989) hviler sterkt på Gödel (kontroversielt, men innflytelsesrikt).",
       },
       {
         domain: "Verifisert programvare",
@@ -8160,17 +8160,17 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kompilatorer og statisk analyse",
         description:
-          "Moderne statiske analyseverktøy (Coverity, Infer, Rusts borrow checker) må gi avkall på perfekt presisjon fordi ikke-trivielle programegenskaper er uavgjørbare – en direkte følge av stoppeproblemet (Rices teorem).",
+          "Moderne statiske analyseverktøy (Coverity, Infer, Rusts borrow checker) må gi avkall på perfekt presisjon fordi ikke-trivielle programegenskaper er uavgjørbare: en direkte følge av stoppeproblemet (Rices teorem).",
       },
       {
         domain: "Antivirus",
         description:
-          "Hvorfor ingen antivirus fanger all skadelig kode: å oppdage fiendtlige programmer perfekt ville løse en variant av stoppeproblemet.",
+          "Hvorfor ingen antivirus fanger all skadelig kode: Å oppdage fiendtlige programmer perfekt ville løse en variant av stoppeproblemet.",
       },
       {
         domain: "Skytjenester for beregning",
         description:
-          "Skyens autoskalerere kan aldri garantere at «denne brukerjobben stopper» – de tvinger gjennom tidsavbrudd fordi det å avgjøre stopp er umulig.",
+          "Skyens autoskalerere kan aldri garantere at «denne brukerjobben stopper»; de tvinger gjennom tidsavbrudd fordi det å avgjøre stopp er umulig.",
       },
       {
         domain: "Undervisning",
@@ -8182,7 +8182,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kryptografi",
         description:
-          "Hvis P = NP, ville RSA, AES, all blokkjede- og TLS-beskyttet trafikk være knekt over natten – enhver moderne digital hemmelighet hviler på at P ≠ NP i praksis.",
+          "Hvis P = NP, ville RSA, AES, all blokkjede- og TLS-beskyttet trafikk være knekt over natten: Enhver moderne digital hemmelighet hviler på at P ≠ NP i praksis.",
       },
       {
         domain: "Optimering",
@@ -8197,7 +8197,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bioinformatikk",
         description:
-          "Proteinfolding, genommontering og rekonstruksjon av fylogenetiske trær er alle NP-vanskelige – noe som driver feltet til å oppfinne approksimasjonsalgoritmer og KI-metoder (AlphaFold).",
+          "Proteinfolding, genommontering og rekonstruksjon av fylogenetiske trær er alle NP-vanskelige, noe som driver feltet til å oppfinne approksimasjonsalgoritmer og KI-metoder (AlphaFold).",
       },
       {
         domain: "Åpen premie",
@@ -8209,7 +8209,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "TLS / HTTPS",
         description:
-          "Hvert hengelåsikon i nettleseren bruker i den innledende håndtrykksfasen enten RSA eller dens fetter på elliptiske kurver (ECDSA) – milliarder av ganger per sekund.",
+          "Hvert hengelåsikon i nettleseren bruker i den innledende håndtrykksfasen enten RSA eller dens fetter på elliptiske kurver (ECDSA), milliarder av ganger per sekund.",
       },
       {
         domain: "Digitale signaturer",
@@ -8236,7 +8236,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Industrielle transportbånd",
         description:
-          "Drivremmer formet som et Möbius-bånd slites jevnt på begge «sidene» (det er bare én!) – brukt i gamle trykkpresser, moderne opptaksbånd og enkelte VHS-bånsystemer.",
+          "Drivremmer formet som et Möbius-bånd slites jevnt på begge «sidene» (det er bare én!), brukt i gamle trykkpresser, moderne opptaksbånd og enkelte VHS-bånsystemer.",
       },
       {
         domain: "Maskinteknikk",
@@ -8246,7 +8246,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Topologiforskning",
         description:
-          "Möbius-båndet er den enkleste ikke-orienterbare flaten – inngangen til et vidstrakt felt som klassifiserer alle flater og som brukes i kosmologi og strengteori.",
+          "Möbius-båndet er den enkleste ikke-orienterbare flaten, inngangen til et vidstrakt felt som klassifiserer alle flater og som brukes i kosmologi og strengteori.",
       },
       {
         domain: "Kunst og arkitektur",
@@ -8268,7 +8268,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Datatopologi",
         description:
-          "Pipelinene for persistent homologi bruker Euler-karakteristikker for å oppsummere formen til høydimensjonale punktskyer – brukt i genomikk, sensornettverk og kosmologi.",
+          "Pipelinene for persistent homologi bruker Euler-karakteristikker for å oppsummere formen til høydimensjonale punktskyer, brukt i genomikk, sensornettverk og kosmologi.",
       },
       {
         domain: "Arkitektur",
@@ -8283,14 +8283,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Partikkelfysikk",
         description:
-          "Atiyah–Singers indeksteorem, grunnleggende for moderne gaugeteori, generaliserer Eulers formel og knytter topologi til differensiallikninger.",
+          "Atiyah-Singers indeksteorem, grunnleggende for moderne gaugeteori, generaliserer Eulers formel og knytter topologi til differensiallikninger.",
       },
     ],
     konigsberg: [
       {
         domain: "Grafteoriens fødsel",
         description:
-          "Königsberg satte hele feltet i gang – grafteori ligger i dag bak Googles PageRank, sosial nettverksanalyse, brikkelayout og ruteplanlegging.",
+          "Königsberg satte hele feltet i gang: Grafteori ligger i dag bak Googles PageRank, sosial nettverksanalyse, brikkelayout og ruteplanlegging.",
       },
       {
         domain: "DNA-sekvensering",
@@ -8300,7 +8300,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Ruteoptimering",
         description:
-          "Postbud, søppelbiler og brøytebiler løser det kinesiske postbudproblemet – en direkte etterkommer av broene i Königsberg.",
+          "Postbud, søppelbiler og brøytebiler løser det kinesiske postbudproblemet, en direkte etterkommer av broene i Königsberg.",
       },
       {
         domain: "Turisme",
@@ -8317,7 +8317,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Mobilnett",
         description:
-          "Frekvenstildeling mellom mobilmaster reduseres til grafkoloring – firefarge-teoremet er grensetilfellet for visse plane oppsett.",
+          "Frekvenstildeling mellom mobilmaster reduseres til grafkoloring; firefarge-teoremet er grensetilfellet for visse plane oppsett.",
       },
       {
         domain: "Planlegging",
@@ -8327,7 +8327,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Datamaskinverifisert matematikk",
         description:
-          "Sammen med Keplers formodning var firefarge-teoremet en milepæl innen datamaskinassistert bevisførsel – bevisassistentmiljøet (Coq, Lean) sporer sin legitimitet hit.",
+          "Sammen med Keplers formodning var firefarge-teoremet en milepæl innen datamaskinassistert bevisførsel: Bevisassistentmiljøet (Coq, Lean) sporer sin legitimitet hit.",
       },
     ],
     smallworld: [
@@ -8344,7 +8344,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Hjerneforskning",
         description:
-          "fMRI-studier viser at det menneskelige konnektomet er et small-world-nettverk – small-world-koeffisienten er i dag en standard biomarkør i forskning på Alzheimers og schizofreni.",
+          "fMRI-studier viser at det menneskelige konnektomet er et small-world-nettverk; small-world-koeffisienten er i dag en standard biomarkør i forskning på Alzheimers og schizofreni.",
       },
       {
         domain: "Internett-ruting",
@@ -8371,7 +8371,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Legemiddel- og proteindesign",
         description:
-          "RFdiffusion (Baker-laboratoriet) og Chroma genererer nye proteinrygger ved å støyfjerne 3D-koordinater i stedet for piksler — publiserte kandidater har blitt syntetisert og folder seg korrekt.",
+          "RFdiffusion (Baker-laboratoriet) og Chroma genererer nye proteinrygger ved å støyfjerne 3D-koordinater i stedet for piksler; publiserte kandidater har blitt syntetisert og folder seg korrekt.",
       },
       {
         domain: "Lyd og tale",
@@ -8381,7 +8381,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Fysikk og termodynamikk",
         description:
-          "Fremoverprosessen er bokstavelig talt Langevin-dynamikk — støyplanen speiler et system som relakserer mot termisk likevekt. Sohl-Dicksteins originalartikkel fra 2015 var formulert som ikke-likevektstermodynamikk.",
+          "Fremoverprosessen er bokstavelig talt Langevin-dynamikk: Støyplanen speiler et system som relakserer mot termisk likevekt. Sohl-Dicksteins originalartikkel fra 2015 var formulert som ikke-likevektstermodynamikk.",
       },
     ],
     riemann: [
@@ -8398,7 +8398,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kvantekaos",
         description:
-          "Statistikken over avstandene mellom zeta-nullpunkter faller sammen med egenverdistatistikken til store tilfeldige hermitiske matriser — de samme matrisene som modellerer energinivåer i tunge atomkjerner. Montgomery–Dyson-formodningen (1972) er en av matematikkens mest overraskende broer.",
+          "Statistikken over avstandene mellom zeta-nullpunkter faller sammen med egenverdistatistikken til store tilfeldige hermitiske matriser, de samme matrisene som modellerer energinivåer i tunge atomkjerner. Montgomery-Dyson-formodningen (1972) er en av matematikkens mest overraskende broer.",
       },
       {
         domain: "Datamaskinverifisert numerikk",
@@ -8408,14 +8408,14 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Populærvitenskap og åpen-problem-prestisje",
         description:
-          "Riemann er det mest kjente uløste problemet utenfor Fermat — en Clay Millennium-pris (1 M$), gjentatte opptredener i fiksjon (A Beautiful Mind, The Music of the Primes) og en jevn strøm av «bevis» som ikke overlever fagfellevurdering.",
+          "Riemann er det mest kjente uløste problemet utenfor Fermat: en Clay Millennium-pris (1 M$), gjentatte opptredener i fiksjon (A Beautiful Mind, The Music of the Primes) og en jevn strøm av «bevis» som ikke overlever fagfellevurdering.",
       },
     ],
     backprop: [
       {
         domain: "Dyp læring",
         description:
-          "Hvert moderne nevrale nettverk — bildeklassifikator, språkmodell, anbefaler — trenes med backpropagation. PyTorch og JAX implementerer den som sin differensieringskjerne (autograd).",
+          "Hvert moderne nevrale nettverk (bildeklassifikator, språkmodell, anbefaler) trenes med backpropagation. PyTorch og JAX implementerer den som sin differensieringskjerne (autograd).",
       },
       {
         domain: "Datamaskinsyn",
@@ -8435,7 +8435,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Inverse problemer i vitenskap",
         description:
-          "Fysikere inverterer eksperimenter ved å bygge foroverbevegelses-modellen i PyTorch/JAX og backpropagere gjennom — brukt i proteindesign (AlphaFold), differensierbar rendering og gradientbasert eksperimentdesign.",
+          "Fysikere inverterer eksperimenter ved å bygge foroverbevegelses-modellen i PyTorch/JAX og backpropagere gjennom, brukt i proteindesign (AlphaFold), differensierbar rendering og gradientbasert eksperimentdesign.",
       },
     ],
   },

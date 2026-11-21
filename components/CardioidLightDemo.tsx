@@ -7,7 +7,7 @@ import { palette } from "@/lib/visual/palette";
 // Inline demo for the cardioid story page. Shows a circular cup wall lit by
 // a point light source sitting on the rim (the classical setup whose
 // catacaustic is a true cardioid). As the slider raises the ray count, the
-// envelope of reflected rays — the cardioid — emerges live on the surface.
+// envelope of reflected rays, the cardioid, emerges live on the surface.
 //
 // The math: with the source at angle 0 on the unit circle, each ray to a
 // boundary point at angle α reflects to a chord whose family envelopes the
@@ -67,7 +67,7 @@ export function CardioidLightDemo({ caption, rayCountLabel, envelopeLabel, hint 
       // Rays: from source to a boundary point at angle α, then reflected
       // chord. For a circle, the reflected ray hits the boundary again at
       // angle 2α − π (measured from the source). We draw the chord between
-      // those two boundary points — that family envelopes the cardioid.
+      // those two boundary points; that family envelopes the cardioid.
       ctx.strokeStyle = RAY;
       ctx.lineWidth = 0.7 * dpr;
       for (let i = 1; i < rays; i++) {
@@ -111,7 +111,7 @@ export function CardioidLightDemo({ caption, rayCountLabel, envelopeLabel, hint 
       // source (t = 0 → (cx + R, cy)); its cusp sits inside the cup at
       // (cx − R/3, cy), a third of a radius past the centre, pointing away
       // from the light. The whole curve spans only 4R/3, never reaching the
-      // opposite wall — and it is tangent to every reflected chord above.
+      // opposite wall, and it is tangent to every reflected chord above.
       if (showEnvelope) {
         ctx.strokeStyle = palette.signal.amber;
         ctx.lineWidth = 2.2 * dpr;

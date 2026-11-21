@@ -36,7 +36,7 @@ export function CosmosHUD({ activeCategory }: Props) {
   // When any overlay is open, mute the rest of the HUD so it doesn't peek
   // through the modal's backdrop. The dialog z-index keeps it above
   // everything, but the user still spotted ghost buttons through the
-  // semi-transparent layer — hiding the HUD entirely is the clean answer.
+  // semi-transparent layer: hiding the HUD entirely is the clean answer.
   const overlayOpen = paletteOpen || listOpen;
 
   // Keyboard: "/" opens search, Cmd/Ctrl-K opens search, Esc closes,
@@ -78,7 +78,7 @@ export function CosmosHUD({ activeCategory }: Props) {
 
   // Forgiving search: normalise both sides so "gameoflife" finds the
   // "Game of Life" topic. The per-topic haystack is recomputed only when
-  // the locale-specific topics dict changes — cheap, but skip the work on
+  // the locale-specific topics dict changes: cheap, but skip the work on
   // every keystroke.
   const haystacks = useMemo(() => {
     const m = new Map<string, string>();
@@ -105,9 +105,9 @@ export function CosmosHUD({ activeCategory }: Props) {
 
   return (
     <>
-      {/* DESKTOP — right-edge compass. Dots are flush-right; labels grow
+      {/* DESKTOP: right-edge compass. Dots are flush-right; labels grow
           LEFT toward the viewport centre. Hidden on mobile (replaced by a
-          bottom strip — see below). Whole HUD layer is conditionally
+          bottom strip, see below). Whole HUD layer is conditionally
           rendered out when an overlay is open so it never bleeds through. */}
       {!overlayOpen && (
         <>
@@ -164,7 +164,7 @@ export function CosmosHUD({ activeCategory }: Props) {
           </nav>
 
           {/* Top-centre search + list-view triggers. The global Nav header
-          (layout.tsx) sits at z-50 with height 56 px — so HUD top-4 was
+          (layout.tsx) sits at z-50 with height 56 px, so HUD top-4 was
           hidden behind it (user feedback: "wo ist eigentlich der Link zur
           Listenansicht hin?"). top-[72px] tucks the cluster just *below*
           the header where it reads as part of the chrome but stays
@@ -203,7 +203,7 @@ export function CosmosHUD({ activeCategory }: Props) {
             </button>
           </div>
 
-          {/* MOBILE — horizontal bottom strip. Replaces the desktop right-edge
+          {/* MOBILE: horizontal bottom strip. Replaces the desktop right-edge
           compass on small screens (touch targets up, eyes-on-thumb position).
           Each chip is a category jump; the active one highlights. The bar
           floats with a glass background so the constellation stays visible
@@ -260,7 +260,7 @@ export function CosmosHUD({ activeCategory }: Props) {
 
       <TopicListOverlay open={listOpen} onClose={() => setListOpen(false)} />
 
-      {/* Command palette overlay — z-[70] sits above the global Nav header
+      {/* Command palette overlay: z-[70] sits above the global Nav header
           (z-50) and the cosmos HUD buttons (z-[55]) so the modal owns the
           screen while it's open. */}
       {paletteOpen && (

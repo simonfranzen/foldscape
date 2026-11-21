@@ -94,8 +94,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     burnIn: "Calentamiento",
     show: "Mostrar",
     iterUnit: "iter",
-    ariaBifCanvas: "Diagrama de bifurcación de la aplicación logística, r de 2,5 a 4",
-    ariaTimeSeriesCanvas: "Serie temporal de la órbita de la aplicación logística",
+    ariaBifCanvas: "Diagrama de bifurcación del mapa logístico, r de 2,5 a 4",
+    ariaTimeSeriesCanvas: "Serie temporal de la órbita del mapa logístico",
   },
   fr: {
     famous: [
