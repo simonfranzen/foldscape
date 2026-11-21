@@ -102,7 +102,7 @@ lib/
   og/metadata.ts           # Canonical, title and hreflang helpers
   i18n/
     types.ts               # Locale union and detection
-    context.tsx            # Provider, reads ?lang= and localStorage
+    context.tsx            # Provider, locale comes from the URL segment
     atlas.ts               # Landing copy and topic cards (8 languages)
     messages.ts            # Nav, footer, hero, section labels (8 languages)
     stories.ts             # Shared long-form stories
@@ -112,10 +112,10 @@ tests/                     # Data invariants, pure utilities, render smoke
 
 ## How the languages work
 
-The locale lives in a `?lang=<locale>` query parameter, for example
-`/lorenz?lang=de`. It overrides browser detection and is mirrored into the URL
-when someone picks a language, so links stay shareable. English is the default
-and the bare path.
+The locale is the first path segment, for example `/de/lorenz`. English is the
+default and has no prefix (`/lorenz`). Every page is prerendered once per
+language, and the language switcher navigates to the same page under the other
+prefix. Older `?lang=de` links redirect to the path form.
 
 Longer per-topic prose sits inline in the topic page as a
 `RICH_STORY: Record<Locale, RichStory>` constant, shorter blurbs live in the
@@ -134,13 +134,13 @@ _Studenten_, _Mathematiker:innen_ rather than _Mathematiker_.
    place in the constellation.
 3. Add a short blurb to `lib/i18n/placeholders.ts` (the English fallback) and a
    localised version in each locale block of `lib/i18n/atlas.ts`.
-4. Create `app/<topic>/page.tsx`, starting from `app/apollonian/page.tsx` for a
-   simple room or `app/banach/page.tsx` for the full inline `RICH_STORY`
+4. Create `app/[locale]/<topic>/page.tsx`, starting from `app/[locale]/apollonian/page.tsx` for a
+   simple room or `app/[locale]/banach/page.tsx` for the full inline `RICH_STORY`
    pattern, wrapped in `StoryPageShell`.
-5. Create `app/<topic>/layout.tsx` with `topicMetadata("<topic>")` and
-   `app/<topic>/explorer/layout.tsx` with `topicSubpageMetadata(...)`, then
+5. Create `app/[locale]/<topic>/layout.tsx` with `topicMetadata("<topic>")` and
+   `app/[locale]/<topic>/explorer/layout.tsx` with `topicSubpageMetadata(...)`, then
    register the sub-room in `lib/seo/routes.ts` so it reaches the sitemap.
-6. Create `app/<topic>/explorer/page.tsx` and put custom demo components under
+6. Create `app/[locale]/<topic>/explorer/page.tsx` and put custom demo components under
    `components/`.
 7. Run `npm run typecheck` and `npm test`. The data-invariant test will tell you
    if a locale, an atlas card or a story page is missing.
@@ -148,7 +148,7 @@ _Studenten_, _Mathematiker:innen_ rather than _Mathematiker_.
 ## Improving a translation
 
 - Hero and section copy: the relevant locale inside the topic page's
-  `RICH_STORY` in `app/<topic>/page.tsx`.
+  `RICH_STORY` in `app/[locale]/<topic>/page.tsx`.
 - Atlas card title, tagline and blurb: the topic's entry in the locale block of
   `lib/i18n/atlas.ts`.
 - Navigation, footer and shared labels: `lib/i18n/messages.ts` and

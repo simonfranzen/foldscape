@@ -4,7 +4,7 @@
 // (Ctrl/⌘-K or "/" opens), and a thin reading-progress bar. Stays fixed at
 // the viewport edges so the cosmos remains navigable from anywhere.
 
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { TOPICS } from "@/lib/topics";

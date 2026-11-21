@@ -27,8 +27,8 @@ Typecheck, tests, and lint are the gates. Prettier is the formatter — run `npm
 Every "room" in the atlas is three things tied together by a `TopicId`:
 
 1. **Entry in `lib/topics.ts`** — `TOPICS: Topic[]` with `id`, `href`, `status`, `category`, `glyph`, `formula`, `sections`. Category is one of `logic | computation | chaos | geometry | analysis | paradox` and drives accent colour + constellation cluster placement.
-2. **Story page** at `app/<topic>/page.tsx` — long-form prose wrapped in `<StoryPageShell>`. Often carries its own inline `RICH_STORY: Record<Locale, RichStory>` constant (8 entries), but smaller pages pull from the shared `s.pages.<topic>` via `useI18n()`. **Both patterns coexist by design** — use the inline `RICH_STORY` pattern when a page has lots of locale-specific prose; keep small pages on shared stories.
-3. **Explorer** at `app/<topic>/explorer/page.tsx` — the interactive playground. Same i18n choices apply.
+2. **Story page** at `app/[locale]/<topic>/page.tsx` — long-form prose wrapped in `<StoryPageShell>`. Often carries its own inline `RICH_STORY: Record<Locale, RichStory>` constant (8 entries), but smaller pages pull from the shared `s.pages.<topic>` via `useI18n()`. **Both patterns coexist by design** — use the inline `RICH_STORY` pattern when a page has lots of locale-specific prose; keep small pages on shared stories.
+3. **Explorer** at `app/[locale]/<topic>/explorer/page.tsx` — the interactive playground. Same i18n choices apply.
 
 `lib/topicEdges.ts` (curated affinities) + `lib/topicHubs.ts` (auto-derived hub-of-its-category by graph degree) feed the Atlas constellation on the landing page.
 
@@ -44,11 +44,18 @@ Every "room" in the atlas is three things tied together by a `TopicId`:
 | `t` | `lib/i18n/messages.ts`                          | Nav/footer/hero/section labels.                              |
 | `b` | `lib/i18n/bodies.ts`                            | Body copy bundle.                                            |
 
-For topic-specific prose, the **inline `RICH_STORY: Record<Locale, RichStory>` pattern** (see `app/banach/page.tsx`, `app/lorenz/page.tsx`) is preferred over fattening the shared stories bundle. Same pattern extends to explorers — they declare a local `RICH_EXPLORER` keyed by `Locale` if they need a lot of UI strings.
+For topic-specific prose, the **inline `RICH_STORY: Record<Locale, RichStory>` pattern** (see `app/[locale]/banach/page.tsx`, `app/[locale]/lorenz/page.tsx`) is preferred over fattening the shared stories bundle. Same pattern extends to explorers — they declare a local `RICH_EXPLORER` keyed by `Locale` if they need a lot of UI strings.
 
 `AtlasDict` allows optional fields so newer keys only need EN+DE filled in; other locales fall through via `??`. Don't break this — make new i18n fields optional on the interface unless you fill all 8.
 
-A `?lang=<locale>` query parameter overrides browser/localStorage detection (short `de` and IETF `de-DE` both resolve via `parseLangParam` in `lib/i18n/types.ts`); invalid values fall back to detection. When the user picks a locale in `LocaleSwitcher`, `I18nProvider.setLocale` mirrors it into the URL via `router.replace(..., { scroll: false })` so links stay shareable. `I18nProvider` reads `useSearchParams()` and therefore sits under a `<Suspense>` boundary in `app/layout.tsx`.
+**The locale is a path segment.** Every route lives under `app/[locale]/`; `/de/lorenz` is German, the bare `/lorenz` is English (a rewrite in `next.config.mjs` maps unprefixed paths onto the internal `/en/...` routes, and `/en/...` redirects to the bare path). `app/[locale]/layout.tsx` passes the segment to `I18nProvider`, so every locale is prerendered in its own language with its own `<html lang>`, canonical and hreflang. The provider never detects a language from the browser: a URL must show the same language to readers and crawlers. Consequences:
+
+- Internal links use `components/LocaleLink.tsx` (default export, drop-in for `next/link`) or `useI18n().href(path)` for `router.push`. A plain `next/link` to `/x` would drop a German reader back into English.
+- Compare paths with `useBarePathname()` (locale stripped), not `usePathname()`.
+- Route `layout.tsx` files export `generateMetadata` and pass the resolved locale to `topicMetadata` / `topicSubpageMetadata` / `pageMetadata` (`lib/og/metadata.ts`).
+- Old `?lang=de` links redirect permanently to `/de/...`.
+
+**Explorer guides** (`lib/explorer-guides/<topic>.ts`, rendered by `components/ExplorerGuide.tsx`) are the long server-rendered text of each sub-room and exist in EN and DE. A sub-room is indexable exactly in the locales its guide covers; the others render with a translated UI but carry `noindex` and stay out of the sitemap (`GUIDE_LOCALES` in `app/sitemap.ts`). A guide describes the real implementation, so update it when you change an explorer's behaviour, controls or presets.
 
 ### Visual identity layers
 
@@ -64,11 +71,11 @@ A `?lang=<locale>` query parameter overrides browser/localStorage detection (sho
 - `aria-label` set to a best-effort speakable form of the LaTeX (overrideable via prop).
 - Empty `span[role="math"]` gets a `min-height` CLS guard from `globals.css`.
 
-KaTeX fonts are loaded from `public/fonts/` (the four hot variants are copied locally) with `font-display: swap` overrides + `<link rel="preload">` in `app/layout.tsx`. This kills the FOIT that the upstream `font-display: block` produces. **Don't revert this** — it's the fix for "formulas look weird for half a second".
+KaTeX fonts are loaded from `public/fonts/` (the four hot variants are copied locally) with `font-display: swap` overrides + `<link rel="preload">` in `app/[locale]/layout.tsx`. This kills the FOIT that the upstream `font-display: block` produces. **Don't revert this** — it's the fix for "formulas look weird for half a second".
 
 ### Accessibility + motion
 
-- Skip-link in `app/layout.tsx` → `#main`.
+- Skip-link in `app/[locale]/layout.tsx` → `#main`.
 - Global focus-visible ring in `globals.css` (violet accent).
 - `@media (prefers-reduced-motion: reduce)` rule in `globals.css` kills `.reveal`, `.shimmer-text`, `.float-gentle`, `.pulse-glow`, plus a blanket `*` rule shortening transition/animation durations. Per-component canvases also check the media query and freeze.
 - Browser-native view transitions are enabled via `experimental.viewTransition: true` in `next.config.mjs` + the `@view-transition { navigation: auto }` rule.
@@ -86,7 +93,7 @@ KaTeX fonts are loaded from `public/fonts/` (the four hot variants are copied lo
 1. Add `TopicId` and a `TOPICS` entry in `lib/topics.ts`.
 2. Optionally add affinity edges in `lib/topicEdges.ts`.
 3. Atlas-card copy → either fill in `lib/i18n/atlas.ts` per locale, or rely on the EN fallback in `lib/i18n/placeholders.ts`.
-4. `app/<topic>/page.tsx` — start from `app/apollonian/page.tsx` (simple) or `app/banach/page.tsx` (full inline `RICH_STORY` pattern). Use `<StoryPageShell>` for the hero; pass a `signature` if the topic has a hero artefact.
-5. `app/<topic>/explorer/page.tsx` for the interactive room.
+4. `app/[locale]/<topic>/page.tsx` — start from `app/[locale]/apollonian/page.tsx` (simple) or `app/[locale]/banach/page.tsx` (full inline `RICH_STORY` pattern). Use `<StoryPageShell>` for the hero; pass a `signature` if the topic has a hero artefact.
+5. `app/[locale]/<topic>/explorer/page.tsx` for the interactive room, plus `lib/explorer-guides/<topic>.ts` (EN + DE) wired in via `ExplorerGuideSection` / `ExplorerHelpButton`, and `layout.tsx` files with `generateMetadata` (copy `app/[locale]/lorenz/`). Register the sub-room in `lib/seo/routes.ts`.
 6. Demo components under `components/<Topic>...tsx`.
 7. `npm run typecheck`.

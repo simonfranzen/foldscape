@@ -65,10 +65,10 @@ describe("topic registry", () => {
   });
 
   it("there is a story page on disk for every topic", () => {
-    const missing = TOPICS.filter((t) => !existsSync(join(REPO_ROOT, "app", t.id, "page.tsx"))).map(
-      (t) => t.id,
-    );
-    expect(missing, `missing app/<id>/page.tsx for: ${missing.join(", ")}`).toEqual([]);
+    const missing = TOPICS.filter(
+      (t) => !existsSync(join(REPO_ROOT, "app", "[locale]", t.id, "page.tsx")),
+    ).map((t) => t.id);
+    expect(missing, `missing app/[locale]/<id>/page.tsx for: ${missing.join(", ")}`).toEqual([]);
   });
 });
 

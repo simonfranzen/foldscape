@@ -6,7 +6,7 @@
 // "Enter →". No status chip: every topic is interactive, so the badge only
 // ever said the same thing.
 
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { TOPICS, type Topic, type TopicCategory } from "@/lib/topics";

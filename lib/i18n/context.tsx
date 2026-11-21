@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { DEFAULT_LOCALE, LOCALES, type Locale, detectLocale, parseLangParam } from "./types";
+import { DEFAULT_LOCALE, LOCALES, type Locale } from "./types";
+import { localePath, splitLocale } from "./paths";
 import { MESSAGES, type Dict } from "./messages";
 import { ATLAS, type AtlasDict } from "./atlas";
 import { STORIES, type StoriesDict } from "./stories";
@@ -11,6 +12,8 @@ import { UI, type UiDict } from "./ui";
 interface I18nCtx {
   locale: Locale;
   setLocale: (l: Locale) => void;
+  /** Public URL for an internal path in the active locale. */
+  href: (path: string) => string;
   t: Dict;
   a: AtlasDict;
   s: StoriesDict;
@@ -20,137 +23,62 @@ interface I18nCtx {
 const Ctx = createContext<I18nCtx>({
   locale: DEFAULT_LOCALE,
   setLocale: () => {},
+  href: (path) => path,
   t: MESSAGES[DEFAULT_LOCALE],
   a: ATLAS[DEFAULT_LOCALE],
   s: STORIES[DEFAULT_LOCALE],
   u: UI[DEFAULT_LOCALE],
 });
 
-// Read ?lang= from window.location instead of useSearchParams(). The hook
-// forces Next to bail out of static prerendering for the whole subtree, and
-// because the provider wraps every page that left the prerendered HTML empty
-// (no story text for crawlers). Reading the URL in an effect keeps the
-// English default fully server-rendered; the client switches after hydration.
-function readLangParam(): string | null {
-  if (typeof window === "undefined") return null;
-  try {
-    return new URLSearchParams(window.location.search).get("lang");
-  } catch {
-    return null;
-  }
-}
-
-function useLangParam(pathname: string | null): string | null {
-  const [raw, setRaw] = useState<string | null>(null);
-  useEffect(() => {
-    const read = () => setRaw(readLangParam());
-    read();
-    window.addEventListener("popstate", read);
-    return () => window.removeEventListener("popstate", read);
-  }, [pathname]);
-  return raw;
-}
-
-export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
+// The locale comes from the URL segment (/de/...) and is passed in by the
+// root layout, so the server renders every page in its own language. The
+// provider never guesses from the browser: a URL must always show the same
+// language to a reader and to a crawler, otherwise search engines index the
+// wrong text under it.
+export function I18nProvider({
+  locale = DEFAULT_LOCALE,
+  children,
+}: {
+  locale?: Locale;
+  children: React.ReactNode;
+}) {
   const router = useRouter();
   const pathname = usePathname();
-  const langParam = useLangParam(pathname);
 
-  // The `?lang=` query parameter — when present and valid — overrides both
-  // localStorage and browser-language detection. We track the last value we
-  // observed so that the effect below stays idempotent (URL write-back from
-  // setLocale would otherwise re-trigger this on the next render).
-  const lastSeenLangParam = useRef<string | null>(null);
-  // Guard against the initial detection effect clobbering a URL-supplied
-  // locale that the URL effect already applied.
-  const initialised = useRef(false);
-
-  // 1. Initial detection from localStorage / navigator. Only runs once and
-  //    only if the URL didn't already provide a locale on first paint.
-  useEffect(() => {
-    if (initialised.current) return;
-    initialised.current = true;
-    const fromUrl = parseLangParam(readLangParam());
-    if (fromUrl) {
-      // The URL effect below will pick this up; nothing to do here.
-      return;
-    }
-    // Intentionally runs on first mount only; the URL effect below owns
-    // every later change.
-    setLocaleState(detectLocale());
-  }, []);
-
-  // 2. React to ?lang= changes (initial load with the param, or any future
-  //    in-place navigation that swaps it). Idempotent via lastSeenLangParam.
-  useEffect(() => {
-    const raw = langParam;
-    if (raw === lastSeenLangParam.current) return;
-    lastSeenLangParam.current = raw;
-    const parsed = parseLangParam(raw);
-    if (parsed && parsed !== locale) {
-      setLocaleState(parsed);
-      try {
-        localStorage.setItem("foldscape.locale", parsed);
-      } catch {
-        // storage may be unavailable; ignore
-      }
-      if (typeof document !== "undefined") {
-        document.documentElement.lang = parsed;
-      }
-    }
-  }, [langParam, locale]);
-
+  // Switching language is a navigation to the same page under the other
+  // prefix; the query string and hash travel along.
   const setLocale = useCallback(
     (l: Locale) => {
-      setLocaleState(l);
-      try {
-        localStorage.setItem("foldscape.locale", l);
-      } catch {
-        // storage may be unavailable; ignore
-      }
-      if (typeof document !== "undefined") {
-        document.documentElement.lang = l;
-      }
-      // Sync the URL so links stay shareable. Use router.replace with
-      // scroll:false so the route doesn't jump. We mark this value as
-      // "already seen" so the URL effect above doesn't re-fire.
-      lastSeenLangParam.current = l;
-      try {
-        const next = new URLSearchParams(
-          typeof window !== "undefined" ? window.location.search : "",
-        );
-        next.set("lang", l);
-        const qs = next.toString();
-        const url = `${pathname || "/"}${qs ? `?${qs}` : ""}`;
-        router.replace(url, { scroll: false });
-      } catch {
-        // router may not be available in some test environments; ignore
-      }
+      if (l === locale) return;
+      const { path } = splitLocale(pathname);
+      const suffix =
+        typeof window !== "undefined" ? window.location.search + window.location.hash : "";
+      router.push(`${localePath(l, path)}${suffix}`, { scroll: false });
     },
-    [pathname, router],
+    [locale, pathname, router],
   );
 
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      document.documentElement.lang = locale;
-    }
-  }, [locale]);
+  const href = useCallback((path: string) => localePath(locale, path), [locale]);
 
-  return (
-    <Ctx.Provider
-      value={{
-        locale,
-        setLocale,
-        t: MESSAGES[locale],
-        a: ATLAS[locale],
-        s: STORIES[locale],
-        u: UI[locale],
-      }}
-    >
-      {children}
-    </Ctx.Provider>
+  const value = useMemo(
+    () => ({
+      locale,
+      setLocale,
+      href,
+      t: MESSAGES[locale],
+      a: ATLAS[locale],
+      s: STORIES[locale],
+      u: UI[locale],
+    }),
+    [locale, setLocale, href],
   );
+
+  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
+}
+
+// Pathname without the locale prefix, for comparing against internal hrefs.
+export function useBarePathname(): string {
+  return splitLocale(usePathname()).path;
 }
 
 export function useI18n() {

@@ -3,7 +3,7 @@ import type { ExplorerGuide } from "./types";
 // Numbers quoted here (200 × 200 grid, D_a = 0.16 and D_b = 0.08, slider
 // ranges, the seven presets and their 1500-step ramp, 20 seed blotches of
 // radius 3 to 5, the radius-5 centred seed, gain 3.5, 6000 reduced-motion
-// steps) match app/turingpattern/explorer/page.tsx; update both together.
+// steps) match app/[locale]/turingpattern/explorer/page.tsx; update both together.
 const EULER_EXCERPT = `// 5-point Laplacian with toroidal wrap, then one explicit Euler step (dt = 1)
 const lapA = aCur[row + xL] + aCur[row + xR] + aCur[rowU + x] + aCur[rowD + x] - 4 * aC;
 const lapB = bCur[row + xL] + bCur[row + xR] + bCur[rowU + x] + bCur[rowD + x] - 4 * bC;

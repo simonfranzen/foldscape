@@ -91,10 +91,10 @@ Then open <http://localhost:3000>.
 
 The bulk of localised content lives in **two** places per topic:
 
-| Where                                         | What                                                                                                                      |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `lib/i18n/atlas.ts` (each locale block)       | The short title + tagline and 2 to 4 sentence body shown on the landing-page topic card.                                  |
-| `app/<topic>/page.tsx` → `RICH_STORY[locale]` | Long-form hero (`page.intro`), `encounter` cards, the six `sections`, the inline demo captions, and the closing CTA copy. |
+| Where                                                  | What                                                                                                                      |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| `lib/i18n/atlas.ts` (each locale block)                | The short title + tagline and 2 to 4 sentence body shown on the landing-page topic card.                                  |
+| `app/[locale]/<topic>/page.tsx` → `RICH_STORY[locale]` | Long-form hero (`page.intro`), `encounter` cards, the six `sections`, the inline demo captions, and the closing CTA copy. |
 
 For a smaller targeted improvement, edit one locale's body inside the
 relevant `RICH_STORY` entry, run `npm run typecheck`, and open a PR.

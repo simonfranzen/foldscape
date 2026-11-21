@@ -1,15 +1,18 @@
 import type { ExplorerGuide } from "./types";
 
 // Paths, step numbers and continued fractions quoted here were produced by
-// walk() and pathToCF() from app/sternbrocot/explorer/page.tsx with the preset
-// values and default depth 20 (range 4 to 60); update both together.
-const WALK_EXCERPT = `let lo_n = 0, lo_d = 1;   // 0/1
-let hi_n = 1, hi_d = 0;   // 1/0, standing in for infinity
-let med_n = 1, med_d = 1;
+// walk() and pathToCF() from app/[locale]/sternbrocot/explorer/page.tsx with
+// the preset inputs and default depth 20 (range 4 to 60); update both together.
+const WALK_EXCERPT = `// Sign of target − n/d; a typed fraction is compared in whole numbers.
+const compare = (n: number, d: number): number => {
+  if (target.ratio) return target.ratio.num * d - n * target.ratio.den;
+  const val = n / d;
+  return Math.abs(val - target.value) < 1e-15 ? 0 : target.value - val;
+};
 for (let i = 0; i < maxDepth; i++) {
-  const val = med_n / med_d;
-  if (Math.abs(val - target) < 1e-15) break;
-  if (target < val) {
+  const c = compare(med_n, med_d);
+  if (c === 0) break;
+  if (c < 0) {
     hi_n = med_n; hi_d = med_d;
     out[out.length - 1].side = "L";
   } else {
@@ -41,14 +44,14 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
       {
         heading: "What the controls do",
         paragraphs: [
-          "Type any positive number into the target field. The page opens with the golden ratio φ, rounded to 1.61803399. The buttons below fill in φ, π, e, √2, 1/3, 2/3 or 22/7, each written with 12 decimal places.",
-          "The depth slider, from 4 to 60 (default 20), caps the number of moves. The status line shows the target and how many fractions the walk visited; the path line shows the moves, ending with a dot. The table lists the visited fractions with their decimal value, their error and the move taken from them, but only the last 32 rows, so for long walks the early steps scroll out of the table.",
+          "Type any positive number into the target field, as a decimal or as a fraction such as 22/7. The page opens with the golden ratio φ, rounded to 1.61803399. The buttons below fill in φ, π, e and √2 with 12 decimal places, and 1/3, 2/3 and 22/7 as exact fractions.",
+          "The depth slider, from 4 to 60 (default 20), caps the number of moves. The status line shows the target and how many fractions the walk visited; the path line shows the moves, ending with a dot. The table lists every visited fraction with its decimal value, its error and the move taken from it, so at depth 60 it has up to 61 rows.",
         ],
       },
       {
         heading: "How it is built",
         paragraphs: [
-          "The walk keeps a lower bound and an upper bound, starting at 0/1 and 1/0, and the current fraction is always their mediant. If the target is smaller, the current fraction becomes the new upper bound and the move is L; otherwise it becomes the lower bound and the move is R. It stops when the fraction equals the target to within 10⁻¹⁵, when the denominator would exceed 10¹⁵, or when the depth limit is reached. Plain JavaScript numbers represent integers exactly up to about 9 · 10¹⁵, so the cap keeps every printed fraction exact.",
+          "The walk keeps a lower bound and an upper bound, starting at 0/1 and 1/0, and the current fraction is always their mediant. If the target is smaller, the current fraction becomes the new upper bound and the move is L; otherwise it becomes the lower bound and the move is R. It stops when the fraction equals the target, when the denominator would exceed 10¹⁵, or when the depth limit is reached. For a target typed as a fraction p/q the comparison uses whole numbers only (it cross-multiplies), so it is exact; for a decimal, equal means within 10⁻¹⁵. Plain JavaScript numbers represent integers exactly up to about 9 · 10¹⁵, so the cap keeps every printed fraction exact.",
           "The continued fraction comes from run lengths: the moves always arrive in blocks such as RRR, then LLLLLLL, and the block lengths are the terms. A walk that begins with L belongs to a number below 1, so a leading 0 is added. When the walk lands exactly on the target, the last block is one move short of the final term, and the page adds that one back. Everything is recomputed from the input during rendering; nothing is animated.",
         ],
         code: WALK_EXCERPT,
@@ -58,7 +61,7 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
         paragraphs: [
           "φ = [1; 1, 1, 1, …] has the path RLRLRL…, and the fractions it visits are ratios of consecutive Fibonacci numbers: 2/1, 3/2, 5/3, 8/5, up to 17711/10946 at depth 20. Because every block has length one, the walk changes direction as often as possible and closes in as slowly as possible. In a precise sense, made exact by Hurwitz's theorem, no irrational number is harder to approximate by fractions than φ.",
           "π is the opposite. Its path starts RRR, then seven L, fifteen R, one L, and then a very long run of R. That last run reflects the large term 292 in π = [3; 7, 15, 1, 292, …]: the next good fraction after 355/113 is far away, which is exactly why 355/113 is such an outstanding approximation. With 12 decimals and at most 60 moves, the page can only show the first 34 moves of that run.",
-          "Finite decimals are honest rationals. The 1/3 button enters 0.333333333333, which is slightly less than 1/3, so the walk passes 1/3 at step 3, turns, and keeps going; at depth 60 the continued fraction reads [0; 3, 57].",
+          "Fractions end their walk. The 1/3 button gives the path LL, stops at step 3 and prints [0; 3], and 22/7 stops at step 10 with [3; 7]. A finite decimal is an honest rational too, but a different one: type 0.333333333333, which is slightly less than 1/3, and the walk passes 1/3 at step 3, turns, and keeps going; at depth 60 the continued fraction reads [0; 3, 57].",
         ],
       },
     ],
@@ -70,7 +73,7 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
       },
       {
         title: "Find 355/113",
-        text: "Choose π and set the depth to 30, so the whole path fits into the table. 22/7 appears at step 10 with an error of about 1.3 · 10⁻³, and 355/113 at step 26 with an error of about 2.7 · 10⁻⁷.",
+        text: "Choose π and set the depth to 30, so the walk gets far enough. 22/7 appears at step 10 with an error of about 1.3 · 10⁻³, and 355/113 at step 26 with an error of about 2.7 · 10⁻⁷.",
       },
       {
         title: "Watch a walk end",
@@ -100,14 +103,14 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
       {
         heading: "Was die Regler bewirken",
         paragraphs: [
-          "Tipp eine beliebige positive Zahl ins Zielfeld. Die Seite startet mit dem goldenen Schnitt φ, gerundet auf 1.61803399 (das Eingabefeld nutzt den Dezimalpunkt). Die Knöpfe darunter setzen φ, π, e, √2, 1/3, 2/3 oder 22/7 ein, jeweils mit 12 Nachkommastellen.",
-          "Der Tiefenregler von 4 bis 60 (voreingestellt 20) begrenzt die Zahl der Schritte. Die Statuszeile zeigt das Ziel und wie viele Brüche der Weg besucht hat; die Pfadzeile zeigt die Schritte und endet mit einem Punkt. Die Tabelle listet die besuchten Brüche mit Dezimalwert, Fehler und dem Schritt, der von ihnen aus folgte, allerdings nur die letzten 32 Zeilen. Bei langen Wegen fallen die frühen Schritte also aus der Tabelle.",
+          "Tipp eine beliebige positive Zahl ins Zielfeld, als Dezimalzahl oder als Bruch wie 22/7. Die Seite startet mit dem goldenen Schnitt φ, gerundet auf 1.61803399 (das Eingabefeld versteht Punkt und Komma). Die Knöpfe darunter setzen φ, π, e und √2 mit 12 Nachkommastellen ein, 1/3, 2/3 und 22/7 als exakte Brüche.",
+          "Der Tiefenregler von 4 bis 60 (voreingestellt 20) begrenzt die Zahl der Schritte. Die Statuszeile zeigt das Ziel und wie viele Brüche der Weg besucht hat; die Pfadzeile zeigt die Schritte und endet mit einem Punkt. Die Tabelle listet jeden besuchten Bruch mit Dezimalwert, Fehler und dem Schritt, der von ihm aus folgte, bei Tiefe 60 hat sie also bis zu 61 Zeilen.",
         ],
       },
       {
         heading: "Wie es gebaut ist",
         paragraphs: [
-          "Der Weg merkt sich eine untere und eine obere Schranke, anfangs 0/1 und 1/0, und der aktuelle Bruch ist immer ihre Mediante. Ist das Ziel kleiner, wird der aktuelle Bruch zur neuen oberen Schranke und der Schritt heißt L; sonst wird er zur unteren Schranke und der Schritt heißt R. Der Weg endet, wenn der Bruch bis auf 10⁻¹⁵ mit dem Ziel übereinstimmt, wenn der Nenner 10¹⁵ überschreiten würde oder wenn die Tiefengrenze erreicht ist. Gewöhnliche JavaScript-Zahlen stellen ganze Zahlen bis etwa 9 · 10¹⁵ exakt dar, die Grenze hält also jeden angezeigten Bruch exakt.",
+          "Der Weg merkt sich eine untere und eine obere Schranke, anfangs 0/1 und 1/0, und der aktuelle Bruch ist immer ihre Mediante. Ist das Ziel kleiner, wird der aktuelle Bruch zur neuen oberen Schranke und der Schritt heißt L; sonst wird er zur unteren Schranke und der Schritt heißt R. Der Weg endet, wenn der Bruch dem Ziel gleicht, wenn der Nenner 10¹⁵ überschreiten würde oder wenn die Tiefengrenze erreicht ist. Bei einem Ziel, das als Bruch p/q eingegeben wurde, rechnet der Vergleich nur mit ganzen Zahlen (er multipliziert über Kreuz) und ist damit exakt; bei einer Dezimalzahl heißt gleich: bis auf 10⁻¹⁵. Gewöhnliche JavaScript-Zahlen stellen ganze Zahlen bis etwa 9 · 10¹⁵ exakt dar, die Grenze hält also jeden angezeigten Bruch exakt.",
           "Der Kettenbruch ergibt sich aus Lauflängen: Die Schritte kommen immer in Blöcken wie RRR, dann LLLLLLL, und die Blocklängen sind die Glieder. Ein Weg, der mit L beginnt, gehört zu einer Zahl unter 1, deshalb wird eine 0 vorangestellt. Landet der Weg genau auf dem Ziel, ist der letzte Block einen Schritt kürzer als das letzte Glied, und die Seite zählt diesen Schritt dazu. Alles wird beim Rendern aus der Eingabe neu berechnet; nichts ist animiert.",
         ],
         code: WALK_EXCERPT,
@@ -117,7 +120,7 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
         paragraphs: [
           "φ = [1; 1, 1, 1, …] hat den Pfad RLRLRL…, und die besuchten Brüche sind Quotienten aufeinanderfolgender Fibonacci-Zahlen: 2/1, 3/2, 5/3, 8/5, bis 17711/10946 bei Tiefe 20. Weil jeder Block die Länge eins hat, wechselt der Weg so oft wie möglich die Richtung und nähert sich so langsam wie möglich. In einem präzisen Sinn, den der Satz von Hurwitz exakt macht, lässt sich keine irrationale Zahl schlechter durch Brüche annähern als φ.",
           "π ist das Gegenteil. Sein Pfad beginnt mit RRR, dann sieben L, fünfzehn R, ein L und dann ein sehr langer Lauf aus R. Dieser letzte Lauf spiegelt das große Glied 292 in π = [3; 7, 15, 1, 292, …]: Der nächste gute Bruch nach 355/113 ist weit entfernt, und genau deshalb ist 355/113 eine so herausragende Näherung. Mit 12 Nachkommastellen und höchstens 60 Schritten zeigt die Seite nur die ersten 34 Schritte dieses Laufs.",
-          "Endliche Dezimalzahlen sind ehrliche rationale Zahlen. Der Knopf 1/3 setzt 0.333333333333 ein, und das ist etwas kleiner als 1/3. Der Weg passiert 1/3 also in Schritt 3, biegt ab und läuft weiter; bei Tiefe 60 lautet der Kettenbruch [0; 3, 57].",
+          "Brüche beenden ihren Weg. Der Knopf 1/3 ergibt den Pfad LL, hält in Schritt 3 und zeigt [0; 3], und 22/7 hält in Schritt 10 mit [3; 7]. Auch eine endliche Dezimalzahl ist eine ehrliche rationale Zahl, nur eine andere: Tipp 0.333333333333 ein, das ist etwas kleiner als 1/3, und der Weg passiert 1/3 in Schritt 3, biegt ab und läuft weiter; bei Tiefe 60 lautet der Kettenbruch [0; 3, 57].",
         ],
       },
     ],
@@ -129,7 +132,7 @@ export const STERNBROCOT_GUIDE: ExplorerGuide = {
       },
       {
         title: "355/113 finden",
-        text: "Wähle π und stell die Tiefe auf 30, damit der ganze Pfad in die Tabelle passt. 22/7 erscheint in Schritt 10 mit einem Fehler von etwa 1,3 · 10⁻³, 355/113 in Schritt 26 mit einem Fehler von etwa 2,7 · 10⁻⁷.",
+        text: "Wähle π und stell die Tiefe auf 30, damit der Weg weit genug kommt. 22/7 erscheint in Schritt 10 mit einem Fehler von etwa 1,3 · 10⁻³, 355/113 in Schritt 26 mit einem Fehler von etwa 2,7 · 10⁻⁷.",
       },
       {
         title: "Einen Weg enden sehen",

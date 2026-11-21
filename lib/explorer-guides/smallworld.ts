@@ -2,7 +2,7 @@ import type { ExplorerGuide } from "./types";
 
 // Numbers quoted here (N 20 to 200 default 80, k 2 to 10 default 4, p in steps
 // of 0.01 default 0.1, the eleven curve samples, L and C for N = 80, k = 4)
-// match app/smallworld/explorer/page.tsx; L and C values were measured with
+// match app/[locale]/smallworld/explorer/page.tsx; L and C values were measured with
 // its own functions over seeds 1 to 5. Update both together.
 const REWIRE_EXCERPT = `// Watts-Strogatz rewiring: for each "forward" edge (i, (i+j)%N), with
 // probability p replace its far endpoint with a random node.
@@ -104,15 +104,15 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
       {
         heading: "Was die Regler bewirken",
         paragraphs: [
-          "N legt die Zahl der Knoten fest, von 20 bis 200 (voreingestellt 80). k ist die Zahl der Nachbarn pro Seite, von 2 bis 10 (voreingestellt 4), jeder Knoten startet also mit Grad 2k. p ist die Umverdrahtungswahrscheinlichkeit, von 0 bis 1 in Schritten von 0,01 (voreingestellt 0,1); die Knöpfe darunter springen auf 0, 0,01, 0,1 und 1. «Generate (new seed)» würfelt mit denselben Einstellungen einen neuen Graphen.",
-          "Klick auf einen Knoten und dann auf einen zweiten, und eine Breitensuche hebt einen kürzesten Weg zwischen ihnen in Bernstein hervor; ein dritter Klick beginnt eine neue Auswahl, «Clear path» entfernt sie. Das Statistikfeld zeigt L, C, beide im Verhältnis zum nicht umverdrahteten Ring (L/L₀ und C/C₀), und den größten Knotengrad, der wächst, weil das Umverdrahten manchen Knoten zusätzliche Verbindungen aufbürdet.",
+          "N legt die Zahl der Knoten fest, von 20 bis 200 (voreingestellt 80). k ist die Zahl der Nachbarn pro Seite, von 2 bis 10 (voreingestellt 4), jeder Knoten startet also mit Grad 2k. p ist die Umverdrahtungswahrscheinlichkeit, von 0 bis 1 in Schritten von 0,01 (voreingestellt 0,1); die Knöpfe darunter springen auf 0, 0,01, 0,1 und 1. «Neu erzeugen (neuer Startwert)» würfelt mit denselben Einstellungen einen neuen Graphen.",
+          "Klick auf einen Knoten und dann auf einen zweiten, und eine Breitensuche hebt einen kürzesten Weg zwischen ihnen in Bernstein hervor; ein dritter Klick beginnt eine neue Auswahl, «Pfad löschen» entfernt sie. Das Statistikfeld zeigt L, C, beide im Verhältnis zum nicht umverdrahteten Ring (L/L₀ und C/C₀), und den größten Knotengrad, der wächst, weil das Umverdrahten manchen Knoten zusätzliche Verbindungen aufbürdet.",
           "Das untere Diagramm ist das berühmte Watts-Strogatz-Bild für dein N und k. Es zeigt L/L₀ in Cyan und C/C₀ in Rosa für elf Werte von p zwischen 0 und 1 auf logarithmischer Achse; die gestrichelte bernsteinfarbene Linie markiert dein aktuelles p.",
         ],
       },
       {
         heading: "Wie es gebaut ist",
         paragraphs: [
-          "Der Graph ist ein Array von Mengen: adj[i] enthält die Nachbarn von Knoten i, so lässt sich «sind die beiden verbunden?» in konstanter Zeit beantworten. Der Aufbau erzeugt zuerst das Ringgitter, geht dann die k Vorwärtsverbindungen jedes Knotens durch und verlegt mit Wahrscheinlichkeit p das ferne Ende auf einen zufälligen Knoten. Schleifen und doppelte Verbindungen werden übersprungen (nach 50 Fehlversuchen gibt er auf). Die Zufallszahlen stammen aus einem kleinen Generator mit Startwert, mulberry32: Derselbe Startwert ergibt immer denselben Graphen, und «Generate» erhöht einfach den Startwert.",
+          "Der Graph ist ein Array von Mengen: adj[i] enthält die Nachbarn von Knoten i, so lässt sich «sind die beiden verbunden?» in konstanter Zeit beantworten. Der Aufbau erzeugt zuerst das Ringgitter, geht dann die k Vorwärtsverbindungen jedes Knotens durch und verlegt mit Wahrscheinlichkeit p das ferne Ende auf einen zufälligen Knoten. Schleifen und doppelte Verbindungen werden übersprungen (nach 50 Fehlversuchen gibt er auf). Die Zufallszahlen stammen aus einem kleinen Generator mit Startwert, mulberry32: Derselbe Startwert ergibt immer denselben Graphen, und «Neu erzeugen» erhöht einfach den Startwert.",
           "L wird exakt berechnet, mit einer Breitensuche von jedem Knoten aus; Paare, die sich nicht erreichen, werden ausgelassen. C zählt für jeden Knoten, wie viele Paare seiner Nachbarn benachbart sind. Die Kurve darunter wiederholt beide Rechnungen für elf eigens erzeugte Graphen, sobald sich N, k oder der Startwert ändert. Selbst bei N = 200 und k = 10 sind das nur einige tausend Suchen über einige tausend Kanten.",
           "Beide Canvas-Flächen werden bei jeder Änderung und Größenänderung einmal gezeichnet. Die Knoten sitzen auf einem Kreis, eine Verbindung wird grau gezeichnet, wenn ihre Enden höchstens k Plätze auseinanderliegen, sonst cyan. Nichts ist animiert, es gibt also keine Bewegung, die sich reduzieren ließe.",
         ],
@@ -133,7 +133,7 @@ export const SMALLWORLD_GUIDE: ExplorerGuide = {
       },
       {
         title: "Drei Abkürzungen",
-        text: "Drück den Knopf 0,01. Bei N · k = 320 Verbindungen werden im Schnitt etwa drei umverdrahtet, und trotzdem fällt L meist von 5,44 auf einen Wert zwischen 3,5 und 4,5, während C über 0,6 bleibt. Drück ein paarmal «Generate», um zu sehen, wie viel davon abhängt, wo diese wenigen Abkürzungen landen.",
+        text: "Drück den Knopf 0,01. Bei N · k = 320 Verbindungen werden im Schnitt etwa drei umverdrahtet, und trotzdem fällt L meist von 5,44 auf einen Wert zwischen 3,5 und 4,5, während C über 0,6 bleibt. Drück ein paarmal «Neu erzeugen», um zu sehen, wie viel davon abhängt, wo diese wenigen Abkürzungen landen.",
       },
       {
         title: "Ein langer dünner Ring",

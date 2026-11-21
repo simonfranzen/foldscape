@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/lib/i18n/context";
 import { TOPICS, type TopicId } from "@/lib/topics";
