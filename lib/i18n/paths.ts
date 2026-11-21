@@ -21,7 +21,10 @@ export function splitLocale(pathname: string | null | undefined): {
 } {
   const p = pathname || "/";
   const seg = p.split("/")[1];
-  if (isLocale(seg) && seg !== DEFAULT_LOCALE) {
+  // The default locale is stripped as well: during prerendering the
+  // pathname is the internal /en/... route, while the browser sees the bare
+  // path. Treating both alike keeps server and client markup identical.
+  if (isLocale(seg)) {
     const rest = p.slice(seg.length + 1);
     return { locale: seg, path: rest === "" ? "/" : rest };
   }

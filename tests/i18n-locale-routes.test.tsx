@@ -60,6 +60,9 @@ describe("locale paths", () => {
     // A topic whose id merely starts like a locale must not be split.
     expect(splitLocale("/dla/explorer")).toEqual({ locale: "en", path: "/dla/explorer" });
     expect(splitLocale(null)).toEqual({ locale: "en", path: "/" });
+    // The internal English route must resolve like the public bare path.
+    expect(splitLocale("/en/lorenz")).toEqual({ locale: "en", path: "/lorenz" });
+    expect(splitLocale("/en")).toEqual({ locale: "en", path: "/" });
   });
 
   it("round-trips for every locale", () => {
