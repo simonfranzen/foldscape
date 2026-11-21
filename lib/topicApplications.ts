@@ -6973,7 +6973,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kodteori",
         description:
-          "Reed-Muller- och BCH-felrättande koder bygger på maskineri kring binomialkoefficienter modulo p; de sitter i QR-koder, djupgrymdsondsändningar (Mariner 9, Voyager) och DVB-T digital-tv.",
+          "Reed-Muller- och BCH-felrättande koder bygger på maskineri kring binomialkoefficienter modulo p; de sitter i QR-koder, sändningar från rymdsonder i yttre rymden (Mariner 9, Voyager) och DVB-T digital-tv.",
       },
       {
         domain: "Bildkonst",

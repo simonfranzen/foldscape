@@ -542,7 +542,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Andre former fra andre regler",
           title: "Firkanter, restriksjoner, og Barnsleys bregne",
-          body: "På en firkant med r = 1/2 svikter regelen: Prikkene fyller interiøret jevnt og ingen fraktal dukker opp. Fiksen er en restriksjonsregel (for eksempel, forby samme hjørne to ganger på rad, eller forby hjørnet ett skritt rundt fra det forrige) og en delikat fraktal kommer tilbake. Skyv ideen videre og hjørnene forsvinner helt: Barnsleys bregne er kaosspillet med fire affine transformasjoner valgt av vektede terninger (sannsynligheter 0,01, 0,85, 0,07, 0,07), og ut av den tilfeldigheten vokser et botanisk overbevisende blad.",
+          body: "På en firkant med r = 1/2 svikter regelen: Prikkene fyller interiøret jevnt og ingen fraktal dukker opp. Fiksen er en restriksjonsregel (for eksempel, forby samme hjørne to ganger på rad, eller forby hjørnet ett skritt rundt fra det forrige) og en delikat fraktal kommer tilbake. Skyv ideen videre og hjørnene forsvinner helt: Barnsleys bregne er kaosspillet med fire affine transformasjoner valgt av vektede terninger (sannsynligheter 0,01; 0,85; 0,07; 0,07), og ut av den tilfeldigheten vokser et botanisk overbevisende blad.",
         },
         {
           pretitle: "Trinn fire · Hvorfor det virker",

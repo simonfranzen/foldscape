@@ -158,7 +158,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Teile jedes durch das vorherige: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Die Verhältnisse springen über und unter φ und ziehen sich geometrisch um φ zusammen.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Teile jedes durch das vorherige: 1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619. Die Verhältnisse springen über und unter φ und ziehen sich geometrisch um φ zusammen.",
       },
       {
         label: "03",
@@ -246,7 +246,7 @@ const es: RichStory = {
       {
         label: "02",
         title: "Un ejemplo concreto",
-        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Divide cada uno por el anterior: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Las razones rebotan por encima y debajo de φ y se ajustan a él geométricamente.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Divide cada uno por el anterior: 1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619. Las razones rebotan por encima y debajo de φ y se ajustan a él geométricamente.",
       },
       {
         label: "03",
@@ -334,7 +334,7 @@ const fr: RichStory = {
       {
         label: "02",
         title: "Un exemple concret",
-        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Divise chacun par le précédent : 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Les rapports rebondissent au-dessus et en dessous de φ et se resserrent géométriquement autour.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Divise chacun par le précédent : 1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619. Les rapports rebondissent au-dessus et en dessous de φ et se resserrent géométriquement autour.",
       },
       {
         label: "03",
@@ -422,7 +422,7 @@ const it: RichStory = {
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Dividi ciascuno per il precedente: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. I rapporti rimbalzano sopra e sotto φ e si stringono geometricamente attorno a esso.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Dividi ciascuno per il precedente: 1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619. I rapporti rimbalzano sopra e sotto φ e si stringono geometricamente attorno a esso.",
       },
       {
         label: "03",
@@ -510,7 +510,7 @@ const pt: RichStory = {
       {
         label: "02",
         title: "Um exemplo concreto",
-        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Divide cada um pelo anterior: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. As razões saltam acima e abaixo de φ e apertam-se geometricamente em torno dele.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Divide cada um pelo anterior: 1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619. As razões saltam acima e abaixo de φ e apertam-se geometricamente em torno dele.",
       },
       {
         label: "03",
@@ -598,7 +598,7 @@ const sv: RichStory = {
       {
         label: "02",
         title: "Ett konkret exempel",
-        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Dela vart och ett med det föregående: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Kvoterna studsar över och under φ och drar ihop sig geometriskt runt det.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Dela vart och ett med det föregående: 1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619. Kvoterna studsar över och under φ och drar ihop sig geometriskt runt det.",
       },
       {
         label: "03",
@@ -686,7 +686,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Del hvert på det forrige: 1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619. Forholdene spretter over og under φ og strammer seg geometrisk rundt det.",
+        body: "1, 1, 2, 3, 5, 8, 13, 21, 34. Del hvert på det forrige: 1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619. Forholdene spretter over og under φ og strammer seg geometrisk rundt det.",
       },
       {
         label: "03",

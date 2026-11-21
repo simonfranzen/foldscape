@@ -542,7 +542,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo três · Outras formas a partir de outras regras",
           title: "Quadrados, restrições e o feto de Barnsley",
-          body: "Num quadrado com r = 1/2 a regra falha: os pontos enchem o interior uniformemente e não aparece nenhum fractal. A solução é uma regra de restrição (por exemplo, proibir o mesmo vértice duas vezes seguidas, ou proibir o vértice imediatamente a seguir ao anterior) e um fractal delicado regressa. Empurra a ideia mais longe e os vértices desaparecem por completo: o feto de Barnsley é o jogo do caos com quatro transformações afins escolhidas por dados enviesados (probabilidades 0,01, 0,85, 0,07, 0,07), e dessa aleatoriedade cresce uma folha botanicamente convincente.",
+          body: "Num quadrado com r = 1/2 a regra falha: os pontos enchem o interior uniformemente e não aparece nenhum fractal. A solução é uma regra de restrição (por exemplo, proibir o mesmo vértice duas vezes seguidas, ou proibir o vértice imediatamente a seguir ao anterior) e um fractal delicado regressa. Empurra a ideia mais longe e os vértices desaparecem por completo: o feto de Barnsley é o jogo do caos com quatro transformações afins escolhidas por dados enviesados (probabilidades 0,01; 0,85; 0,07; 0,07), e dessa aleatoriedade cresce uma folha botanicamente convincente.",
         },
         {
           pretitle: "Passo quatro · Porque funciona",
@@ -627,7 +627,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo dois · Fibonacci",
           title: "Soma os dois últimos, para sempre",
-          body: "Começa com F₀ = 0, F₁ = 1, depois itera Fₙ₊₁ = Fₙ + Fₙ₋₁: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … . Toma a razão de termos consecutivos (1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619) e aproxima-se de φ. A forma fechada de Binet torna esse limite exato: Fₙ = (φⁿ − ψⁿ)/√5. Como |ψ| < 1, o termo ψⁿ decai e Fₙ acaba por estar à distância de arredondamento de φⁿ/√5 para todo n.",
+          body: "Começa com F₀ = 0, F₁ = 1, depois itera Fₙ₊₁ = Fₙ + Fₙ₋₁: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … . Toma a razão de termos consecutivos (1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619) e aproxima-se de φ. A forma fechada de Binet torna esse limite exato: Fₙ = (φⁿ − ψⁿ)/√5. Como |ψ| < 1, o termo ψⁿ decai e Fₙ acaba por estar à distância de arredondamento de φⁿ/√5 para todo n.",
         },
         {
           pretitle: "Passo três · O ângulo dourado e os girassóis",

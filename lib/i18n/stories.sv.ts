@@ -1057,7 +1057,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg fyra · Varför detta spelar roll",
           title: "Kaos har en färg",
-          body: "Den magnetiska pendeln är den renaste visualiseringen av känsligt beroende av begynnelsevillkoren i något klassiskt mekaniskt system. Samma sorts fraktala avrinningsområde dyker upp i lösare av Newtons metod (zooma in på randen av Newton-bassängerna för en kubik och du får samma bild), i modeller av det långsiktiga solsystemet, i kaotiska biljarder, i Lorenz-attraktorns stabila-fixpunkts-regimer. Varhelst konkurrerande attraktorer samexisterar tenderar deras avrinningsområdesränder att vara fraktala. Världen är full av dessa gömda gränser; den magnetiska pendeln låter dig bara se en.",
+          body: "Den magnetiska pendeln är den renaste visualiseringen av känsligt beroende av begynnelsevillkoren i något klassiskt mekaniskt system. Samma sorts fraktala attraktionsbassänger dyker upp i lösare av Newtons metod (zooma in på randen av Newton-bassängerna för en kubik och du får samma bild), i modeller av det långsiktiga solsystemet, i kaotiska biljarder, i Lorenz-attraktorns stabila-fixpunkts-regimer. Varhelst konkurrerande attraktorer samexisterar tenderar deras avrinningsområdesränder att vara fraktala. Världen är full av dessa gömda gränser; den magnetiska pendeln låter dig bara se en.",
         },
       ],
     },

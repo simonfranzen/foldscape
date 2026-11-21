@@ -542,7 +542,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso tres · Otras formas con otras reglas",
           title: "Cuadrados, restricciones y el helecho de Barnsley",
-          body: "En un cuadrado con r = 1/2 la regla falla: los puntos rellenan el interior uniformemente y no aparece fractal. El arreglo es una regla de restricción (por ejemplo, prohibir el mismo vértice dos veces seguidas, o prohibir el vértice contiguo al anterior) y vuelve un fractal delicado. Empuja más la idea y los vértices desaparecen por completo: el helecho de Barnsley es el juego del caos con cuatro transformaciones afines elegidas con dados sesgados (probabilidades 0,01, 0,85, 0,07, 0,07), y de esa aleatoriedad crece una hoja botánicamente convincente.",
+          body: "En un cuadrado con r = 1/2 la regla falla: los puntos rellenan el interior uniformemente y no aparece fractal. El arreglo es una regla de restricción (por ejemplo, prohibir el mismo vértice dos veces seguidas, o prohibir el vértice contiguo al anterior) y vuelve un fractal delicado. Empuja más la idea y los vértices desaparecen por completo: el helecho de Barnsley es el juego del caos con cuatro transformaciones afines elegidas con dados sesgados (probabilidades 0,01; 0,85; 0,07; 0,07), y de esa aleatoriedad crece una hoja botánicamente convincente.",
         },
         {
           pretitle: "Paso cuatro · Por qué funciona",
@@ -627,7 +627,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso dos · Fibonacci",
           title: "Suma los dos últimos, para siempre",
-          body: "Empieza con F₀ = 0, F₁ = 1, y luego itera Fₙ₊₁ = Fₙ + Fₙ₋₁: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … . Toma el cociente de términos consecutivos (1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619) y se aproxima a φ. La fórmula cerrada de Binet hace ese límite exacto: Fₙ = (φⁿ − ψⁿ)/√5. Como |ψ| < 1, el término ψⁿ se desvanece y Fₙ acaba quedando, por redondeo, muy cerca de φⁿ/√5 para todo n.",
+          body: "Empieza con F₀ = 0, F₁ = 1, y luego itera Fₙ₊₁ = Fₙ + Fₙ₋₁: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … . Toma el cociente de términos consecutivos (1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619) y se aproxima a φ. La fórmula cerrada de Binet hace ese límite exacto: Fₙ = (φⁿ − ψⁿ)/√5. Como |ψ| < 1, el término ψⁿ se desvanece y Fₙ acaba quedando, por redondeo, muy cerca de φⁿ/√5 para todo n.",
         },
         {
           pretitle: "Paso tres · El ángulo áureo y los girasoles",

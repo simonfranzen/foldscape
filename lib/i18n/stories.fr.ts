@@ -542,7 +542,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape trois · D'autres formes pour d'autres règles",
           title: "Carrés, restrictions, et la fougère de Barnsley",
-          body: "Sur un carré avec r = 1/2, la règle échoue : les points remplissent uniformément l'intérieur et aucune fractale n'apparaît. La solution est une règle de restriction (par exemple, interdire le même sommet deux fois de suite, ou interdire le sommet situé un cran après le précédent) et une fractale délicate revient. Pousse l'idée plus loin et les sommets s'évanouissent : la fougère de Barnsley est le jeu du chaos avec quatre transformations affines choisies par des dés pondérés (probabilités 0,01, 0,85, 0,07, 0,07), et de ce hasard pousse une feuille botaniquement convaincante.",
+          body: "Sur un carré avec r = 1/2, la règle échoue : les points remplissent uniformément l'intérieur et aucune fractale n'apparaît. La solution est une règle de restriction (par exemple, interdire le même sommet deux fois de suite, ou interdire le sommet situé un cran après le précédent) et une fractale délicate revient. Pousse l'idée plus loin et les sommets s'évanouissent : la fougère de Barnsley est le jeu du chaos avec quatre transformations affines choisies par des dés pondérés (probabilités 0,01; 0,85; 0,07; 0,07), et de ce hasard pousse une feuille botaniquement convaincante.",
         },
         {
           pretitle: "Étape quatre · Pourquoi ça marche",
@@ -627,7 +627,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape deux · Fibonacci",
           title: "Ajoute les deux derniers, pour toujours",
-          body: "Pars de F₀ = 0, F₁ = 1, puis itère Fₙ₊₁ = Fₙ + Fₙ₋₁ : 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … . Prends le rapport de termes consécutifs (1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619) et il se referme sur φ. La formule fermée de Binet rend cette limite exacte : Fₙ = (φⁿ − ψⁿ)/√5. Comme |ψ| < 1, le terme en ψⁿ s'évanouit et Fₙ finit par arrondir-coller à φⁿ/√5 pour tout n.",
+          body: "Pars de F₀ = 0, F₁ = 1, puis itère Fₙ₊₁ = Fₙ + Fₙ₋₁ : 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … . Prends le rapport de termes consécutifs (1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619) et il se referme sur φ. La formule fermée de Binet rend cette limite exacte : Fₙ = (φⁿ − ψⁿ)/√5. Comme |ψ| < 1, le terme en ψⁿ s'évanouit et Fₙ finit par arrondir-coller à φⁿ/√5 pour tout n.",
         },
         {
           pretitle: "Étape trois · L'angle d'or et les tournesols",

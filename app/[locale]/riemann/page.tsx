@@ -186,7 +186,7 @@ const de: RichStory = {
     },
   ],
   figureCaption:
-    "Der kritische Streifen 0 < Re(s) < 1. Die gestrichelten Senkrechten markieren seine Ränder; die warme Linie in der Mitte ist Re(s) = ½. Jede Perle ist eine der ersten acht nichttrivialen Nullstellenhöhen: 14,13, 21,02, 25,01, 30,42, 32,93, 37,59, 40,92, 43,33.",
+    "Der kritische Streifen 0 < Re(s) < 1. Die gestrichelten Senkrechten markieren seine Ränder; die warme Linie in der Mitte ist Re(s) = ½. Jede Perle ist eine der ersten acht nichttrivialen Nullstellenhöhen: 14,13; 21,02; 25,01; 30,42; 32,93; 37,59; 40,92; 43,33.",
   zetaPathCaption: "ζ(½ + it) in der komplexen Ebene gezeichnet",
   zetaPathTLabel: "t_max",
   zetaPathZerosFound: "Nullstellen passiert",
@@ -265,7 +265,7 @@ const es: RichStory = {
     },
   ],
   figureCaption:
-    "La banda crítica 0 < Re(s) < 1. Las verticales discontinuas marcan sus bordes; la línea cálida del medio es Re(s) = ½. Cada cuenta es una de las primeras ocho alturas de ceros no triviales: 14,13, 21,02, 25,01, 30,42, 32,93, 37,59, 40,92, 43,33.",
+    "La banda crítica 0 < Re(s) < 1. Las verticales discontinuas marcan sus bordes; la línea cálida del medio es Re(s) = ½. Cada cuenta es una de las primeras ocho alturas de ceros no triviales: 14,13; 21,02; 25,01; 30,42; 32,93; 37,59; 40,92; 43,33.",
   zetaPathCaption: "ζ(½ + it) trazada en el plano complejo",
   zetaPathTLabel: "t_max",
   zetaPathZerosFound: "ceros cruzados",
@@ -344,7 +344,7 @@ const fr: RichStory = {
     },
   ],
   figureCaption:
-    "La bande critique 0 < Re(s) < 1. Les verticales en pointillés en marquent les bords ; la ligne chaude au milieu est Re(s) = ½. Chaque perle est l'une des huit premières hauteurs de zéros non triviaux : 14,13, 21,02, 25,01, 30,42, 32,93, 37,59, 40,92, 43,33.",
+    "La bande critique 0 < Re(s) < 1. Les verticales en pointillés en marquent les bords ; la ligne chaude au milieu est Re(s) = ½. Chaque perle est l'une des huit premières hauteurs de zéros non triviaux : 14,13; 21,02; 25,01; 30,42; 32,93; 37,59; 40,92; 43,33.",
   zetaPathCaption: "ζ(½ + it) tracée dans le plan complexe",
   zetaPathTLabel: "t_max",
   zetaPathZerosFound: "zéros traversés",
@@ -423,7 +423,7 @@ const it: RichStory = {
     },
   ],
   figureCaption:
-    "La striscia critica 0 < Re(s) < 1. Le verticali tratteggiate ne marcano i bordi; la linea calda al centro è Re(s) = ½. Ogni perla è una delle prime otto altezze di zeri non banali: 14,13, 21,02, 25,01, 30,42, 32,93, 37,59, 40,92, 43,33.",
+    "La striscia critica 0 < Re(s) < 1. Le verticali tratteggiate ne marcano i bordi; la linea calda al centro è Re(s) = ½. Ogni perla è una delle prime otto altezze di zeri non banali: 14,13; 21,02; 25,01; 30,42; 32,93; 37,59; 40,92; 43,33.",
   zetaPathCaption: "ζ(½ + it) tracciata nel piano complesso",
   zetaPathTLabel: "t_max",
   zetaPathZerosFound: "zeri attraversati",
@@ -502,7 +502,7 @@ const pt: RichStory = {
     },
   ],
   figureCaption:
-    "A banda crítica 0 < Re(s) < 1. As verticais tracejadas marcam as suas bordas; a linha quente no meio é Re(s) = ½. Cada conta é uma das primeiras oito alturas de zeros não triviais: 14,13, 21,02, 25,01, 30,42, 32,93, 37,59, 40,92, 43,33.",
+    "A banda crítica 0 < Re(s) < 1. As verticais tracejadas marcam as suas bordas; a linha quente no meio é Re(s) = ½. Cada conta é uma das primeiras oito alturas de zeros não triviais: 14,13; 21,02; 25,01; 30,42; 32,93; 37,59; 40,92; 43,33.",
   zetaPathCaption: "ζ(½ + it) traçada no plano complexo",
   zetaPathTLabel: "t_max",
   zetaPathZerosFound: "zeros atravessados",

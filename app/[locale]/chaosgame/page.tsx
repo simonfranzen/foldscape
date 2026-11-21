@@ -284,7 +284,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Barnsleys Farn",
       title: "Vier affine Abbildungen. Eine Fotografie eines Farns.",
-      body: "Lass die Ecken ganz weg. Wähl vier affine Transformationen der Ebene f₁ … f₄ und vier Wahrscheinlichkeiten (0,01, 0,85, 0,07, 0,07). In jedem Schritt: Wähl eine der vier Abbildungen mit diesen Wahrscheinlichkeiten und wende sie auf den aktuellen Punkt an. f₁ (das seltene 1 %) kollabiert alles auf den Stamm; f₂ (die dominanten 85 %) kopiert den Farn auf sich selbst, gedreht und geschrumpft; f₃ und f₄ schälen die linken und rechten Blättchen ab. Nach hunderttausend Iterationen ist die Punktwolke ununterscheidbar von der Fotografie eines echten Farns. Die Zahlen sind nicht magisch: Änder einen Koeffizienten und der Farn biegt sich; änder eine Wahrscheinlichkeit und die Blättchen werden dichter. Das Rezept ist editierbar.",
+      body: "Lass die Ecken ganz weg. Wähl vier affine Transformationen der Ebene f₁ … f₄ und vier Wahrscheinlichkeiten (0,01; 0,85; 0,07; 0,07). In jedem Schritt: Wähl eine der vier Abbildungen mit diesen Wahrscheinlichkeiten und wende sie auf den aktuellen Punkt an. f₁ (das seltene 1 %) kollabiert alles auf den Stamm; f₂ (die dominanten 85 %) kopiert den Farn auf sich selbst, gedreht und geschrumpft; f₃ und f₄ schälen die linken und rechten Blättchen ab. Nach hunderttausend Iterationen ist die Punktwolke ununterscheidbar von der Fotografie eines echten Farns. Die Zahlen sind nicht magisch: Änder einen Koeffizienten und der Farn biegt sich; änder eine Wahrscheinlichkeit und die Blättchen werden dichter. Das Rezept ist editierbar.",
     },
     {
       pretitle: "Abschnitt 06 · Tiefer",
@@ -385,7 +385,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · El helecho de Barnsley",
       title: "Cuatro aplicaciones afines. Una fotografía de un helecho.",
-      body: "Quita los vértices del todo. Elige cuatro transformaciones afines del plano f₁ … f₄ y cuatro probabilidades (0,01, 0,85, 0,07, 0,07). En cada paso, escoge una de las cuatro aplicaciones con esas probabilidades y aplícala a tu punto actual. f₁ (el raro 1 %) colapsa todo sobre el tallo; f₂ (el dominante 85 %) copia el helecho sobre sí mismo, girado y reducido; f₃ y f₄ pelan los foliolos izquierdo y derecho. Tras cien mil iteraciones la nube de puntos es indistinguible de la fotografía de un helecho real. Los números no son mágicos: cambia un coeficiente y el helecho se curva; cambia una probabilidad y los foliolos engordan. La receta es editable.",
+      body: "Quita los vértices del todo. Elige cuatro transformaciones afines del plano f₁ … f₄ y cuatro probabilidades (0,01; 0,85; 0,07; 0,07). En cada paso, escoge una de las cuatro aplicaciones con esas probabilidades y aplícala a tu punto actual. f₁ (el raro 1 %) colapsa todo sobre el tallo; f₂ (el dominante 85 %) copia el helecho sobre sí mismo, girado y reducido; f₃ y f₄ pelan los foliolos izquierdo y derecho. Tras cien mil iteraciones la nube de puntos es indistinguible de la fotografía de un helecho real. Los números no son mágicos: cambia un coeficiente y el helecho se curva; cambia una probabilidad y los foliolos engordan. La receta es editable.",
     },
     {
       pretitle: "Sección 06 · Más hondo",
@@ -486,7 +486,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · La fougère de Barnsley",
       title: "Quatre applications affines. Une photographie de fougère.",
-      body: "Laisse complètement tomber les sommets. Choisis quatre transformations affines du plan f₁ … f₄ et quatre probabilités (0,01, 0,85, 0,07, 0,07). À chaque pas, choisis l'une des quatre applications avec ces probabilités et applique-la à ton point courant. f₁ (le rare 1 %) écrase tout sur la tige ; f₂ (les 85 % dominants) copie la fougère sur elle-même, tournée et rétrécie ; f₃ et f₄ détachent les folioles gauche et droite. Après cent mille itérations le nuage de points est indiscernable d'une photographie de fougère réelle. Les nombres ne sont pas magiques : change un coefficient et la fougère se courbe ; change une probabilité et les folioles s'épaississent. La recette est modifiable.",
+      body: "Laisse complètement tomber les sommets. Choisis quatre transformations affines du plan f₁ … f₄ et quatre probabilités (0,01; 0,85; 0,07; 0,07). À chaque pas, choisis l'une des quatre applications avec ces probabilités et applique-la à ton point courant. f₁ (le rare 1 %) écrase tout sur la tige ; f₂ (les 85 % dominants) copie la fougère sur elle-même, tournée et rétrécie ; f₃ et f₄ détachent les folioles gauche et droite. Après cent mille itérations le nuage de points est indiscernable d'une photographie de fougère réelle. Les nombres ne sont pas magiques : change un coefficient et la fougère se courbe ; change une probabilité et les folioles s'épaississent. La recette est modifiable.",
     },
     {
       pretitle: "Section 06 · Plus profond",
@@ -587,7 +587,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · La felce di Barnsley",
       title: "Quattro mappe affini. Una fotografia di felce.",
-      body: "Togli del tutto i vertici. Scegli quattro trasformazioni affini del piano f₁ … f₄ e quattro probabilità (0,01, 0,85, 0,07, 0,07). A ogni passo, scegli una delle quattro mappe con quelle probabilità e applicala al tuo punto corrente. f₁ (l'1 % raro) collassa tutto sul fusto; f₂ (l'85 % dominante) copia la felce su sé stessa, ruotata e rimpicciolita; f₃ e f₄ staccano le pinnule sinistra e destra. Dopo centomila iterazioni la nuvola di punti è indistinguibile dalla fotografia di una felce vera. I numeri non sono magici: cambia un coefficiente e la felce si curva; cambia una probabilità e le pinnule si ispessiscono. La ricetta è modificabile.",
+      body: "Togli del tutto i vertici. Scegli quattro trasformazioni affini del piano f₁ … f₄ e quattro probabilità (0,01; 0,85; 0,07; 0,07). A ogni passo, scegli una delle quattro mappe con quelle probabilità e applicala al tuo punto corrente. f₁ (l'1 % raro) collassa tutto sul fusto; f₂ (l'85 % dominante) copia la felce su sé stessa, ruotata e rimpicciolita; f₃ e f₄ staccano le pinnule sinistra e destra. Dopo centomila iterazioni la nuvola di punti è indistinguibile dalla fotografia di una felce vera. I numeri non sono magici: cambia un coefficiente e la felce si curva; cambia una probabilità e le pinnule si ispessiscono. La ricetta è modificabile.",
     },
     {
       pretitle: "Sezione 06 · Più a fondo",
@@ -688,7 +688,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · O feto de Barnsley",
       title: "Quatro aplicações afins. Uma fotografia de feto.",
-      body: "Tira os vértices todos. Escolhe quatro transformações afins do plano f₁ … f₄ e quatro probabilidades (0,01, 0,85, 0,07, 0,07). A cada passo, escolhe uma das quatro aplicações com essas probabilidades e aplica-a ao teu ponto atual. f₁ (o raro 1 %) colapsa tudo sobre o caule; f₂ (os dominantes 85 %) copia o feto sobre si mesmo, rodado e encolhido; f₃ e f₄ descascam os folíolos esquerdo e direito. Após cem mil iterações a nuvem de pontos é indistinguível de uma fotografia de um feto real. Os números não são mágicos: muda um coeficiente e o feto curva-se; muda uma probabilidade e os folíolos engrossam. A receita é editável.",
+      body: "Tira os vértices todos. Escolhe quatro transformações afins do plano f₁ … f₄ e quatro probabilidades (0,01; 0,85; 0,07; 0,07). A cada passo, escolhe uma das quatro aplicações com essas probabilidades e aplica-a ao teu ponto atual. f₁ (o raro 1 %) colapsa tudo sobre o caule; f₂ (os dominantes 85 %) copia o feto sobre si mesmo, rodado e encolhido; f₃ e f₄ descascam os folíolos esquerdo e direito. Após cem mil iterações a nuvem de pontos é indistinguível de uma fotografia de um feto real. Os números não são mágicos: muda um coeficiente e o feto curva-se; muda uma probabilidade e os folíolos engrossam. A receita é editável.",
     },
     {
       pretitle: "Secção 06 · Mais fundo",
@@ -789,7 +789,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 05 · Barnsleys ormbunke",
       title: "Fyra affina avbildningar. Ett fotografi av en ormbunke.",
-      body: "Släpp hörnen helt. Välj fyra affina transformationer av planet f₁ … f₄ och fyra sannolikheter (0,01, 0,85, 0,07, 0,07). Vid varje steg, välj en av de fyra avbildningarna med de sannolikheterna och applicera den på din nuvarande punkt. f₁ (den sällsynta 1 %) kollapsar allt på stammen; f₂ (de dominerande 85 %) kopierar ormbunken på sig själv, roterad och krympt; f₃ och f₄ skalar av vänster och höger småblad. Efter hundratusen iterationer är punktmolnet omöjligt att skilja från ett fotografi av en riktig ormbunke. Talen är inte magiska: ändra en koefficient och ormbunken böjs; ändra en sannolikhet och småbladen blir tjockare. Receptet är redigerbart.",
+      body: "Släpp hörnen helt. Välj fyra affina transformationer av planet f₁ … f₄ och fyra sannolikheter (0,01; 0,85; 0,07; 0,07). Vid varje steg, välj en av de fyra avbildningarna med de sannolikheterna och applicera den på din nuvarande punkt. f₁ (den sällsynta 1 %) kollapsar allt på stammen; f₂ (de dominerande 85 %) kopierar ormbunken på sig själv, roterad och krympt; f₃ och f₄ skalar av vänster och höger småblad. Efter hundratusen iterationer är punktmolnet omöjligt att skilja från ett fotografi av en riktig ormbunke. Talen är inte magiska: ändra en koefficient och ormbunken böjs; ändra en sannolikhet och småbladen blir tjockare. Receptet är redigerbart.",
     },
     {
       pretitle: "Avsnitt 06 · Djupare",
@@ -890,7 +890,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Barnsleys bregne",
       title: "Fire affine avbildninger. Et fotografi av en bregne.",
-      body: "Slipp hjørnene helt. Velg fire affine transformasjoner av planet f₁ … f₄ og fire sannsynligheter (0,01, 0,85, 0,07, 0,07). Ved hvert skritt, velg én av de fire avbildningene med de sannsynlighetene og bruk den på ditt nåværende punkt. f₁ (de sjeldne 1 %) kollapser alt på stilken; f₂ (de dominerende 85 %) kopierer bregnen på seg selv, rotert og krympet; f₃ og f₄ skreller av venstre og høyre småblad. Etter hundre tusen iterasjoner er punktskyen umulig å skille fra et fotografi av en ekte bregne. Tallene er ikke magiske: Endre en koeffisient og bregnen bøyer seg; endre en sannsynlighet og småbladene blir tykkere. Oppskriften er redigerbar.",
+      body: "Slipp hjørnene helt. Velg fire affine transformasjoner av planet f₁ … f₄ og fire sannsynligheter (0,01; 0,85; 0,07; 0,07). Ved hvert skritt, velg én av de fire avbildningene med de sannsynlighetene og bruk den på ditt nåværende punkt. f₁ (de sjeldne 1 %) kollapser alt på stilken; f₂ (de dominerende 85 %) kopierer bregnen på seg selv, rotert og krympet; f₃ og f₄ skreller av venstre og høyre småblad. Etter hundre tusen iterasjoner er punktskyen umulig å skille fra et fotografi av en ekte bregne. Tallene er ikke magiske: Endre en koeffisient og bregnen bøyer seg; endre en sannsynlighet og småbladene blir tykkere. Oppskriften er redigerbar.",
     },
     {
       pretitle: "Avsnitt 06 · Dypere",
