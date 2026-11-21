@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { DLA_GUIDE } from "@/lib/explorer-guides/dla";
 
 type SeedKind = "point" | "line" | "ring";
 
@@ -524,10 +526,13 @@ export default function DlaExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               DLA · {copy.statusSeed} = {copy.seedLabels[seed]} · {copy.statusCell} {cell}px
             </div>
-            <div
-              className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${c.tw}`}
-            >
-              {stuck.toLocaleString()} {copy.statusStuck} · {walkers} {copy.statusWalkers}
+            <div className="flex items-center gap-2">
+              <div
+                className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${c.tw}`}
+              >
+                {stuck.toLocaleString()} {copy.statusStuck} · {walkers} {copy.statusWalkers}
+              </div>
+              <ExplorerHelpButton guide={DLA_GUIDE} />
             </div>
           </div>
         </div>
@@ -670,6 +675,7 @@ export default function DlaExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={DLA_GUIDE} storyHref="/dla" />
     </main>
   );
 }

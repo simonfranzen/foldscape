@@ -7,6 +7,8 @@ import { PATTERNS } from "@/lib/life/patterns";
 import { Info } from "@/components/Info";
 import { getDpr } from "@/lib/hooks/useDpr";
 import { palette as colorPalette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { LIFE_SANDBOX_GUIDE } from "@/lib/explorer-guides/life-sandbox";
 
 const COLS = 120;
 const ROWS = 70;
@@ -274,8 +276,11 @@ export default function LifePage() {
               </span>
               <span className="text-ink-400">({populationPct}%)</span>
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              {u.life.ruleSummary} {COLS}×{ROWS}
+            <div className="flex items-start gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                {u.life.ruleSummary} {COLS}×{ROWS}
+              </div>
+              <ExplorerHelpButton guide={LIFE_SANDBOX_GUIDE} />
             </div>
           </div>
           <div className="glass hairline pointer-events-none absolute bottom-4 left-4 rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
@@ -407,6 +412,7 @@ export default function LifePage() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={LIFE_SANDBOX_GUIDE} storyHref="/life" />
     </main>
   );
 }

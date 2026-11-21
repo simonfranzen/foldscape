@@ -1,220 +1,61 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { HALTING_GUIDE } from "@/lib/explorer-guides/halting";
+import {
+  PROGRAM_DEFS,
+  TAPE_SIZE,
+  buildJumpTable,
+  freshState,
+  runProgram,
+  stepProgram,
+  type VMState,
+} from "@/lib/halting/machine";
 
 // --------------------------------------------------------------------------
 // Toy-program halting simulator. The user picks one of six canned programs;
-// the VM runs it step-by-step on a small tape. After N steps either the
-// program has halted (we know: "halted at step k") or we cap it and report
-// "still running after N steps, we cannot say if it ever halts." That cap
-// is the point: any finite analyser eventually gives up, illustrating why
-// the halting problem is undecidable.
+// the VM runs it step-by-step. After N steps either the program has halted
+// (we know: "halted at step k") or we cap it and report "still running after
+// N steps, we cannot say if it ever halts." That cap is the point: any
+// finite analyser eventually gives up, illustrating why the halting problem
+// is undecidable.
 //
-// We use a tiny Brainfuck-style instruction set:
-//   +  increment the cell under the pointer (wrap mod 256)
-//   -  decrement the cell under the pointer (wrap mod 256)
-//   >  move pointer right (wrap around tape)
-//   <  move pointer left  (wrap around tape)
-//   [  if cell == 0, jump past matching ]
-//   ]  if cell != 0, jump back past matching [
-// Anything else is ignored (comments are allowed).
-//
-// This is enough to write loops that obviously halt (count down a cell),
-// loops that obviously don't (+++ in [ … ]), and a self-referential "do the
-// opposite of what H says about me" toy that we wire up by hand below.
+// The machines themselves (a Brainfuck-style tape machine and a small
+// register machine for the number-theoretic presets) live in
+// lib/halting/machine.ts. Every preset really runs what its name says. The
+// one exception is flagged in its copy: Turing's D cannot call a real
+// halts, so the visitor supplies the claimed answer as an input.
 // --------------------------------------------------------------------------
 
-const TAPE_SIZE = 32;
-const MAX_STEPS_HARD_CAP = 100_000;
-const STEP_CAP_SLIDER_MAX = 10_000; // keep the slider range manageable without hiding the hard cap
+const STEP_CAP_SLIDER_MAX = 10_000;
 const DEFAULT_STEP_CAP = 2000;
 const DEFAULT_SPEED = 40; // steps/sec
 const MAX_STEPS_PER_FRAME = 500;
-
-type HaltStatus = "running" | "halted" | "cap";
-
-interface VMState {
-  tape: Uint8Array;
-  pointer: number;
-  pc: number;
-  step: number;
-  status: HaltStatus;
-}
-
-// Language-independent program: id + source. All human-readable copy
-// (label, description, truth) lives per-locale in RICH_EXPLORER below.
-interface ProgramDef {
-  id: string;
-  code: string;
-}
-
-// Build a jump table once per program so [/] are O(1).
-function buildJumpTable(code: string): Map<number, number> {
-  const stack: number[] = [];
-  const map = new Map<number, number>();
-  for (let i = 0; i < code.length; i++) {
-    if (code[i] === "[") stack.push(i);
-    else if (code[i] === "]") {
-      const open = stack.pop();
-      if (open === undefined) continue; // unbalanced, treated as nop
-      map.set(open, i);
-      map.set(i, open);
-    }
-  }
-  return map;
-}
-
-function freshState(): VMState {
-  return {
-    tape: new Uint8Array(TAPE_SIZE),
-    pointer: 0,
-    pc: 0,
-    step: 0,
-    status: "running",
-  };
-}
-
-function stepVM(
-  state: VMState,
-  code: string,
-  jumps: Map<number, number>,
-  stepCap: number,
-): VMState {
-  if (state.status !== "running") return state;
-  if (state.step >= stepCap) {
-    return { ...state, status: "cap" };
-  }
-  if (state.pc >= code.length) {
-    return { ...state, status: "halted" };
-  }
-  const instr = code[state.pc];
-  // Copy the tape before touching it. stepVM runs inside setState updaters,
-  // and React StrictMode invokes those twice in dev; mutating the previous
-  // state's Uint8Array in place would apply every +/- twice. A per-call copy
-  // (32 bytes) keeps the updater pure.
-  const tape = state.tape.slice();
-  let pointer = state.pointer;
-  let pc = state.pc;
-  switch (instr) {
-    case "+":
-      tape[pointer] = (tape[pointer] + 1) & 0xff;
-      pc++;
-      break;
-    case "-":
-      tape[pointer] = (tape[pointer] - 1) & 0xff;
-      pc++;
-      break;
-    case ">":
-      pointer = (pointer + 1) % TAPE_SIZE;
-      pc++;
-      break;
-    case "<":
-      pointer = (pointer - 1 + TAPE_SIZE) % TAPE_SIZE;
-      pc++;
-      break;
-    case "[": {
-      if (tape[pointer] === 0) {
-        const j = jumps.get(pc);
-        pc = j !== undefined ? j + 1 : pc + 1;
-      } else {
-        pc++;
-      }
-      break;
-    }
-    case "]": {
-      if (tape[pointer] !== 0) {
-        const j = jumps.get(pc);
-        pc = j !== undefined ? j + 1 : pc + 1;
-      } else {
-        pc++;
-      }
-      break;
-    }
-    default:
-      pc++;
-      break;
-  }
-  const nextStep = state.step + 1;
-  let status: HaltStatus = "running";
-  if (pc >= code.length) status = "halted";
-  return {
-    tape,
-    pointer,
-    pc,
-    step: nextStep,
-    status,
-  };
-}
-
-// Programs ----------------------------------------------------------------
-
-// Increment forever: cell 0 is set to 1 to enter the loop, then we just keep
-// incrementing cell 1 inside an unconditional loop on cell 0. Never halts.
-const INCREMENT_FOREVER = "+[>+<]";
-
-// Count to 100: cell 0 = 100, then decrement until zero. 100 iterations × a
-// few inner steps. Halts.
-const COUNT_TO_100 = "+".repeat(100) + "[-]";
-
-// Collatz on 27 written in a "we cheat and just unroll" style would be
-// huge, so instead we model the abstract Collatz dynamics in the renderer
-// rather than the BF source. To keep the simulator honest, we provide a
-// straight BF program that simply counts down from 111 (the number of
-// real Collatz steps from 27 to 1) and halts. The description in the
-// sidebar tells the truth: Collatz on 27 takes 111 steps.
-const COLLATZ_27 = "+".repeat(111) + "[-]";
-
-// Goldbach search: we don't actually compute Goldbach inside the VM (the
-// number of primes you'd need to test makes it impossible in a few
-// thousand steps). We instead model the *shape*: an outer loop that
-// increments a counter forever, with a guard that would halt if the
-// conjecture ever failed. Concretely we just loop forever, because as
-// far as anyone has checked (up to 4 × 10^18), Goldbach holds. The
-// status the user sees is identical to what real life gives us: still
-// running, we don't know.
-const GOLDBACH_SEARCH = "+[>+<]";
-
-// Collatz on input: a generic search you'd never finish, same shape.
-const COLLATZ_GENERIC = "+[>+<]";
-
-// Self-referential diagonal. The trick in Turing's proof is that D(P)
-// computes halts(P, P) and does the opposite. We can't write halts inside
-// the VM (it doesn't exist!) so the program below simulates the *shape*:
-// it sets cell 0 to a non-zero "halts says ⊤" value, enters a loop, and
-// then never leaves. The point in the UI is to read the description and
-// see why no inner content could ever make D consistent.
-const DIAGONAL_D = "+[>+<]";
-
-// Fixed order. The per-locale `programs` arrays in RICH_EXPLORER are
-// index-matched to this list, so both stay in lockstep.
-const PROGRAM_DEFS: ProgramDef[] = [
-  { id: "increment-forever", code: INCREMENT_FOREVER },
-  { id: "count-to-100", code: COUNT_TO_100 },
-  { id: "goldbach", code: GOLDBACH_SEARCH },
-  { id: "collatz-27", code: COLLATZ_27 },
-  { id: "collatz-input", code: COLLATZ_GENERIC },
-  { id: "diagonal-d", code: DIAGONAL_D },
-];
 
 // --------------------------------------------------------------------------
 // Per-locale UI strings for the halting explorer. Kept inline (like the
 // sibling explorers) so the translations live next to the controls they
 // label instead of fattening the shared i18n bundles. Math notation
 // (+[>+<], halts(P, x), n ↦ 3n+1, ⊤/⊥, powers of ten) is universal and
-// stays untranslated inside the strings.
+// stays untranslated inside the strings, and so do the register-machine
+// listings (if, goto, halt), which are code.
 // --------------------------------------------------------------------------
 
 interface ProgramCopy {
   label: string;
   description: string;
   truth: string; // what we actually know about its halting behaviour
+  inputLabel?: string; // required exactly for the presets that define an input
 }
 
 interface RichExplorer {
   vmBadge: (cells: number) => string;
+  vmBadgeRegisters: string;
+  registers: string;
   program: string; // section + source header, the word "Program"
   groundTruth: string;
   tape: string;
@@ -238,6 +79,8 @@ interface RichExplorer {
 const RICH_EXPLORER: Record<Locale, RichExplorer> = {
   en: {
     vmBadge: (c) => `Toy VM · tape of ${c} cells · 8-bit values`,
+    vmBadgeRegisters: "Toy VM · register machine · integer registers",
+    registers: "Registers",
     program: "Program",
     groundTruth: "Ground truth",
     tape: "Tape",
@@ -278,24 +121,29 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
         label: "Collatz on 27",
         description:
           "Iterate n ↦ n/2 (even) or 3n+1 (odd), starting at 27. It really does come back to 1.",
-        truth: "Halts after 111 real Collatz steps.",
+        truth: "Halts after 111 Collatz steps (counted in k), 446 machine steps.",
       },
       {
         label: "Collatz on input",
         description:
           "Same map, arbitrary starting n. The orbit of every n ≤ 2⁶⁸ has been checked by computer and always reaches 1, but no proof in general.",
         truth: "Unknown in general. Open since 1937.",
+        inputLabel: "Start value n",
       },
       {
         label: "Self-referential D",
         description:
-          "Turing's diagonal: D(P) computes halts(P, P) and does the opposite. Feed D to itself and either answer of halts(D, D) contradicts the definition.",
-        truth: "Cannot exist consistently. The proof of undecidability.",
+          "Turing's diagonal: D(P) computes halts(P, P) and does the opposite. A real halts cannot be written, so here you supply its claimed answer for halts(D, D) as input h. Whichever answer you choose, D does the opposite and proves it wrong.",
+        truth:
+          "Illustration only: a correct halts cannot exist. That is the proof of undecidability.",
+        inputLabel: "Claimed answer h for halts(D, D): 1 = halts, 0 = runs forever",
       },
     ],
   },
   de: {
     vmBadge: (c) => `Mini-VM · Band mit ${c} Zellen · 8-Bit-Werte`,
+    vmBadgeRegisters: "Mini-VM · Registermaschine · ganzzahlige Register",
+    registers: "Register",
     program: "Programm",
     groundTruth: "Was wir wissen",
     tape: "Band",
@@ -337,24 +185,29 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
         label: "Collatz für 27",
         description:
           "Iteriere n ↦ n/2 (gerade) oder 3n+1 (ungerade), Start bei 27. Es kehrt tatsächlich zu 1 zurück.",
-        truth: "Hält nach 111 echten Collatz-Schritten an.",
+        truth: "Hält nach 111 Collatz-Schritten (gezählt in k), das sind 446 Maschinenschritte.",
       },
       {
         label: "Collatz für Eingabe",
         description:
           "Dieselbe Abbildung, beliebiger Startwert n. Die Bahn jedes n ≤ 2⁶⁸ wurde per Computer geprüft und erreicht stets 1, aber es gibt keinen allgemeinen Beweis.",
         truth: "Allgemein unbekannt. Offen seit 1937.",
+        inputLabel: "Startwert n",
       },
       {
         label: "Selbstbezügliches D",
         description:
-          "Turings Diagonale: D(P) berechnet halts(P, P) und tut das Gegenteil. Füttere D mit sich selbst, und jede Antwort von halts(D, D) widerspricht der Definition.",
-        truth: "Kann nicht widerspruchsfrei existieren. Der Beweis der Unentscheidbarkeit.",
+          "Turings Diagonale: D(P) berechnet halts(P, P) und tut das Gegenteil. Ein echtes halts lässt sich nicht schreiben, deshalb gibst du hier seine behauptete Antwort auf halts(D, D) als Eingabe h vor. Egal welche Antwort du wählst: D tut das Gegenteil und widerlegt sie.",
+        truth:
+          "Nur eine Illustration: Ein korrektes halts kann es nicht geben. Das ist der Beweis der Unentscheidbarkeit.",
+        inputLabel: "Behauptete Antwort h auf halts(D, D): 1 = hält, 0 = läuft endlos",
       },
     ],
   },
   es: {
     vmBadge: (c) => `VM de juguete · cinta de ${c} celdas · valores de 8 bits`,
+    vmBadgeRegisters: "VM de juguete · máquina de registros · registros enteros",
+    registers: "Registros",
     program: "Programa",
     groundTruth: "Lo que sabemos",
     tape: "Cinta",
@@ -395,24 +248,29 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       {
         label: "Collatz de 27",
         description: "Itera n ↦ n/2 (par) o 3n+1 (impar), empezando en 27. Realmente vuelve a 1.",
-        truth: "Se detiene tras 111 pasos reales de Collatz.",
+        truth: "Se detiene tras 111 pasos de Collatz (contados en k), 446 pasos de máquina.",
       },
       {
         label: "Collatz de una entrada",
         description:
           "El mismo mapa, n inicial arbitrario. La órbita de todo n ≤ 2⁶⁸ se ha verificado por ordenador y siempre llega a 1, pero no hay prueba general.",
         truth: "Desconocido en general. Abierto desde 1937.",
+        inputLabel: "Valor inicial n",
       },
       {
         label: "D autorreferencial",
         description:
-          "La diagonal de Turing: D(P) calcula halts(P, P) y hace lo contrario. Dale D a sí mismo y cualquiera de las respuestas de halts(D, D) contradice la definición.",
-        truth: "No puede existir de forma consistente. La prueba de la indecidibilidad.",
+          "La diagonal de Turing: D(P) calcula halts(P, P) y hace lo contrario. Un halts real no se puede escribir, así que aquí das tú su supuesta respuesta a halts(D, D) como entrada h. Elijas la que elijas, D hace lo contrario y la desmiente.",
+        truth:
+          "Solo una ilustración: un halts correcto no puede existir. Esa es la prueba de la indecidibilidad.",
+        inputLabel: "Respuesta supuesta h de halts(D, D): 1 = se detiene, 0 = no termina nunca",
       },
     ],
   },
   fr: {
     vmBadge: (c) => `VM jouet · ruban de ${c} cellules · valeurs sur 8 bits`,
+    vmBadgeRegisters: "VM jouet · machine à registres · registres entiers",
+    registers: "Registres",
     program: "Programme",
     groundTruth: "Ce que l'on sait",
     tape: "Ruban",
@@ -454,24 +312,29 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
         label: "Collatz sur 27",
         description:
           "Itérez n ↦ n/2 (pair) ou 3n+1 (impair), en partant de 27. Cela revient bel et bien à 1.",
-        truth: "S'arrête après 111 vrais pas de Collatz.",
+        truth: "S'arrête après 111 pas de Collatz (comptés dans k), soit 446 pas de machine.",
       },
       {
         label: "Collatz sur une entrée",
         description:
           "La même application, n initial quelconque. L'orbite de tout n ≤ 2⁶⁸ a été vérifiée par ordinateur et atteint toujours 1, mais aucune preuve générale.",
         truth: "Inconnu en général. Ouvert depuis 1937.",
+        inputLabel: "Valeur de départ n",
       },
       {
         label: "D autoréférentiel",
         description:
-          "La diagonale de Turing : D(P) calcule halts(P, P) et fait l'inverse. Donnez D à lui-même et chacune des réponses de halts(D, D) contredit la définition.",
-        truth: "Ne peut exister de façon cohérente. La preuve de l'indécidabilité.",
+          "La diagonale de Turing : D(P) calcule halts(P, P) et fait l'inverse. Un vrai halts ne peut pas être écrit ; ici, vous fournissez donc sa réponse supposée à halts(D, D) comme entrée h. Quelle que soit la réponse choisie, D fait l'inverse et la réfute.",
+        truth:
+          "Simple illustration : un halts correct ne peut pas exister. C'est la preuve de l'indécidabilité.",
+        inputLabel: "Réponse supposée h de halts(D, D) : 1 = s'arrête, 0 = tourne sans fin",
       },
     ],
   },
   it: {
     vmBadge: (c) => `VM giocattolo · nastro di ${c} celle · valori a 8 bit`,
+    vmBadgeRegisters: "VM giocattolo · macchina a registri · registri interi",
+    registers: "Registri",
     program: "Programma",
     groundTruth: "Ciò che sappiamo",
     tape: "Nastro",
@@ -512,24 +375,29 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       {
         label: "Collatz su 27",
         description: "Itera n ↦ n/2 (pari) o 3n+1 (dispari), partendo da 27. Torna davvero a 1.",
-        truth: "Si ferma dopo 111 veri passi di Collatz.",
+        truth: "Si ferma dopo 111 passi di Collatz (contati in k), 446 passi di macchina.",
       },
       {
         label: "Collatz su input",
         description:
           "La stessa mappa, n iniziale arbitrario. L'orbita di ogni n ≤ 2⁶⁸ è stata verificata al computer e raggiunge sempre 1, ma nessuna prova in generale.",
         truth: "Sconosciuto in generale. Aperto dal 1937.",
+        inputLabel: "Valore iniziale n",
       },
       {
         label: "D autoreferenziale",
         description:
-          "La diagonale di Turing: D(P) calcola halts(P, P) e fa il contrario. Dai D a sé stesso e qualunque risposta di halts(D, D) contraddice la definizione.",
-        truth: "Non può esistere in modo coerente. La prova dell'indecidibilità.",
+          "La diagonale di Turing: D(P) calcola halts(P, P) e fa il contrario. Un vero halts non si può scrivere, quindi qui fornisci tu la sua presunta risposta a halts(D, D) come input h. Qualunque risposta tu scelga, D fa il contrario e la smentisce.",
+        truth:
+          "Solo un'illustrazione: un halts corretto non può esistere. È la prova dell'indecidibilità.",
+        inputLabel: "Risposta presunta h di halts(D, D): 1 = si ferma, 0 = gira all'infinito",
       },
     ],
   },
   pt: {
     vmBadge: (c) => `VM de brinquedo · fita de ${c} células · valores de 8 bits`,
+    vmBadgeRegisters: "VM de brinquedo · máquina de registos · registos inteiros",
+    registers: "Registos",
     program: "Programa",
     groundTruth: "O que sabemos",
     tape: "Fita",
@@ -569,24 +437,29 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       {
         label: "Collatz de 27",
         description: "Itere n ↦ n/2 (par) ou 3n+1 (ímpar), começando em 27. Volta mesmo a 1.",
-        truth: "Para após 111 passos reais de Collatz.",
+        truth: "Para após 111 passos de Collatz (contados em k), 446 passos de máquina.",
       },
       {
         label: "Collatz de uma entrada",
         description:
           "O mesmo mapa, n inicial arbitrário. A órbita de todo n ≤ 2⁶⁸ foi verificada por computador e chega sempre a 1, mas não há prova geral.",
         truth: "Desconhecido em geral. Em aberto desde 1937.",
+        inputLabel: "Valor inicial n",
       },
       {
         label: "D autorreferencial",
         description:
-          "A diagonal de Turing: D(P) calcula halts(P, P) e faz o contrário. Dê D a si mesmo e qualquer resposta de halts(D, D) contradiz a definição.",
-        truth: "Não pode existir de forma consistente. A prova da indecidibilidade.",
+          "A diagonal de Turing: D(P) calcula halts(P, P) e faz o contrário. Um halts verdadeiro não pode ser escrito, por isso aqui fornece a sua suposta resposta a halts(D, D) como entrada h. Seja qual for a resposta escolhida, D faz o contrário e desmente-a.",
+        truth:
+          "Apenas uma ilustração: um halts correto não pode existir. É a prova da indecidibilidade.",
+        inputLabel: "Resposta suposta h de halts(D, D): 1 = para, 0 = corre para sempre",
       },
     ],
   },
   sv: {
     vmBadge: (c) => `Leksaks-VM · band med ${c} celler · 8-bitarsvärden`,
+    vmBadgeRegisters: "Leksaks-VM · registermaskin · heltalsregister",
+    registers: "Register",
     program: "Program",
     groundTruth: "Vad vi vet",
     tape: "Band",
@@ -627,24 +500,29 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
         label: "Collatz på 27",
         description:
           "Iterera n ↦ n/2 (jämnt) eller 3n+1 (udda), med start på 27. Det återvänder faktiskt till 1.",
-        truth: "Stannar efter 111 verkliga Collatz-steg.",
+        truth: "Stannar efter 111 Collatz-steg (räknade i k), 446 maskinsteg.",
       },
       {
         label: "Collatz på indata",
         description:
           "Samma avbildning, godtyckligt start-n. Banan för varje n ≤ 2⁶⁸ har kontrollerats av dator och når alltid 1, men inget bevis i allmänhet.",
         truth: "Okänt i allmänhet. Öppet sedan 1937.",
+        inputLabel: "Startvärde n",
       },
       {
         label: "Självrefererande D",
         description:
-          "Turings diagonal: D(P) beräknar halts(P, P) och gör tvärtom. Mata D med sig själv, och vilket svar halts(D, D) än ger motsäger det definitionen.",
-        truth: "Kan inte existera konsekvent. Beviset för oavgörbarhet.",
+          "Turings diagonal: D(P) beräknar halts(P, P) och gör tvärtom. Ett riktigt halts går inte att skriva, så här anger du själv dess påstådda svar på halts(D, D) som indata h. Vilket svar du än väljer gör D tvärtom och motbevisar det.",
+        truth:
+          "Bara en illustration: ett korrekt halts kan inte finnas. Det är beviset för oavgörbarhet.",
+        inputLabel: "Påstått svar h på halts(D, D): 1 = stannar, 0 = kör för evigt",
       },
     ],
   },
   no: {
     vmBadge: (c) => `Leke-VM · bånd med ${c} celler · 8-bits verdier`,
+    vmBadgeRegisters: "Leke-VM · registermaskin · heltallsregistre",
+    registers: "Registre",
     program: "Program",
     groundTruth: "Hva vi vet",
     tape: "Bånd",
@@ -686,23 +564,31 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
         label: "Collatz på 27",
         description:
           "Iterer n ↦ n/2 (partall) eller 3n+1 (oddetall), med start på 27. Det vender faktisk tilbake til 1.",
-        truth: "Stopper etter 111 virkelige Collatz-steg.",
+        truth: "Stopper etter 111 Collatz-steg (telt i k), 446 maskinsteg.",
       },
       {
         label: "Collatz på inndata",
         description:
           "Samme avbildning, vilkårlig start-n. Banen til hver n ≤ 2⁶⁸ er sjekket med datamaskin og når alltid 1, men uten generelt bevis.",
         truth: "Ukjent generelt. Åpent siden 1937.",
+        inputLabel: "Startverdi n",
       },
       {
         label: "Selvrefererende D",
         description:
-          "Turings diagonal: D(P) beregner halts(P, P) og gjør det motsatte. Gi D til seg selv, og uansett hva halts(D, D) svarer, motsier det definisjonen.",
-        truth: "Kan ikke eksistere konsistent. Beviset for uavgjørbarhet.",
+          "Turings diagonal: D(P) beregner halts(P, P) og gjør det motsatte. Et ekte halts kan ikke skrives, så her oppgir du selv det påståtte svaret på halts(D, D) som inndata h. Uansett hvilket svar du velger, gjør D det motsatte og motbeviser det.",
+        truth:
+          "Bare en illustrasjon: et korrekt halts kan ikke finnes. Det er beviset for uavgjørbarhet.",
+        inputLabel: "Påstått svar h på halts(D, D): 1 = stopper, 0 = kjører for alltid",
       },
     ],
   },
 };
+
+function clampInput(value: number, min: number, max: number): number {
+  if (!Number.isFinite(value)) return min;
+  return Math.min(max, Math.max(min, Math.trunc(value)));
+}
 
 export default function HaltingExplorer() {
   const { a, u, locale } = useI18n();
@@ -716,34 +602,90 @@ export default function HaltingExplorer() {
   }, [programId]);
   const program = PROGRAM_DEFS[programIndex];
   const programCopy = rx.programs[programIndex];
-  const jumps = useMemo(() => buildJumpTable(program.code), [program.code]);
+  const jumps = useMemo(
+    () => (program.kind === "tape" ? buildJumpTable(program.code) : new Map<number, number>()),
+    [program],
+  );
+  const inputSpec = program.kind === "registers" ? program.input : undefined;
 
   const [stepCap, setStepCap] = useState(DEFAULT_STEP_CAP);
   const [speed, setSpeed] = useState(DEFAULT_SPEED);
   const [running, setRunning] = useState(false);
+  const [reduced, setReduced] = useState(false);
+  // Remembered per program so switching presets keeps each one's input.
+  const [inputs, setInputs] = useState<Record<string, number>>({});
+  const input = inputs[program.id] ?? inputSpec?.initial ?? 0;
+  // Raw text of the input field while it is being edited. Kept apart from
+  // the committed number so the field may be empty or out of range mid-edit;
+  // the value is clamped and committed on blur, Enter, Step or Run.
+  const [draft, setDraft] = useState<string | null>(null);
 
-  const [state, setState] = useState<VMState>(() => freshState());
-  const stateRef = useRef(state);
-  stateRef.current = state;
+  const [state, setState] = useState<VMState>(() => freshState(PROGRAM_DEFS[0]));
+
+  // Track prefers-reduced-motion. With it set, Run no longer plays the
+  // program back at N steps per second (a flickering tape and a racing
+  // highlight); it computes the verdict in one go instead.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => {
+      setReduced(m.matches);
+      if (m.matches) setRunning(false);
+    };
+    on();
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
 
   const reset = useCallback(() => {
     setRunning(false);
-    setState(freshState());
+    setState(freshState(program));
+  }, [program]);
+
+  // A new program or a new input starts from a fresh machine.
+  const selectProgram = useCallback((id: string) => {
+    const next = PROGRAM_DEFS.find((p) => p.id === id);
+    if (!next) return;
+    setProgramId(id);
+    setDraft(null);
+    setRunning(false);
+    setState(freshState(next));
   }, []);
 
-  // Reset when the user changes program: fresh tape, fresh PC.
-  useEffect(() => {
-    reset();
-  }, [program.id, reset]);
+  // Returns the value the machine should run with. The reset it queues runs
+  // before any updater the caller queues afterwards, so Step and Run can
+  // simply continue from `prev`.
+  const commitInput = useCallback((): number => {
+    if (draft === null || !inputSpec) return input;
+    const value = clampInput(parseInt(draft, 10), inputSpec.min, inputSpec.max);
+    setDraft(null);
+    if (value !== input) {
+      setInputs((prev) => ({ ...prev, [program.id]: value }));
+      setRunning(false);
+      setState(freshState(program));
+    }
+    return value;
+  }, [draft, inputSpec, input, program]);
 
   const stepOnce = useCallback(() => {
-    setState((prev) => stepVM(prev, program.code, jumps, stepCap));
-  }, [program.code, jumps, stepCap]);
+    const value = commitInput();
+    setState((prev) => stepProgram(prev, program, jumps, value, stepCap));
+  }, [commitInput, program, jumps, stepCap]);
+
+  const toggleRun = useCallback(() => {
+    const value = commitInput();
+    if (reduced) {
+      setState((prev) => runProgram(program, value, stepCap, prev));
+      return;
+    }
+    // A changed input has just stopped and reset the machine: start it.
+    setRunning((r) => (value !== input ? true : !r));
+  }, [commitInput, reduced, program, input, stepCap]);
 
   // Auto-run loop. We batch multiple VM steps per animation frame so that
   // the slider's upper end (200 steps/sec on a slow tape) still feels fast.
   useEffect(() => {
-    if (!running) return;
+    if (!running || reduced) return;
     let cancelled = false;
     let acc = 0;
     let last = performance.now();
@@ -760,7 +702,7 @@ export default function HaltingExplorer() {
           let s = prev;
           for (let i = 0; i < steps; i++) {
             if (s.status !== "running") break;
-            s = stepVM(s, program.code, jumps, stepCap);
+            s = stepProgram(s, program, jumps, input, stepCap);
           }
           if (s.status !== "running") {
             // Stop driving the loop once we know the answer (or hit the cap).
@@ -776,7 +718,7 @@ export default function HaltingExplorer() {
       cancelled = true;
       cancelAnimationFrame(raf);
     };
-  }, [running, speed, program.code, jumps, stepCap]);
+  }, [running, reduced, speed, program, jumps, input, stepCap]);
 
   const statusLine = (() => {
     if (state.status === "halted") {
@@ -805,10 +747,13 @@ export default function HaltingExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {rx.vmBadge(TAPE_SIZE)}
+              {program.kind === "tape" ? rx.vmBadge(TAPE_SIZE) : rx.vmBadgeRegisters}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              halts(P, x) ∈ {"{⊤, ⊥}"}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                halts(P, x) ∈ {"{⊤, ⊥}"}
+              </div>
+              <ExplorerHelpButton guide={HALTING_GUIDE} />
             </div>
           </div>
 
@@ -817,20 +762,40 @@ export default function HaltingExplorer() {
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {rx.program} · {programCopy.label}
             </div>
-            <pre className="whitespace-pre-wrap break-all font-mono text-xs leading-relaxed text-ink-100 md:text-sm">
-              {program.code.split("").map((ch, i) => (
-                <span
-                  key={i}
-                  className={
-                    i === state.pc && state.status === "running"
-                      ? "rounded bg-signal-cyan/30 px-[2px] text-signal-cyan"
-                      : ""
-                  }
-                >
-                  {ch}
-                </span>
-              ))}
-            </pre>
+            {program.kind === "tape" ? (
+              <pre className="whitespace-pre-wrap break-all font-mono text-xs leading-relaxed text-ink-100 md:text-sm">
+                {program.code.split("").map((ch, i) => (
+                  <span
+                    key={i}
+                    className={
+                      i === state.pc && state.status === "running"
+                        ? "rounded bg-signal-cyan/30 px-[2px] text-signal-cyan"
+                        : ""
+                    }
+                  >
+                    {ch}
+                  </span>
+                ))}
+              </pre>
+            ) : (
+              <ol className="font-mono text-xs leading-relaxed text-ink-100 md:text-sm">
+                {program.lines.map((line, i) => (
+                  <li
+                    key={i}
+                    className={`flex gap-3 rounded px-1 ${
+                      i === state.pc && state.status !== "cap"
+                        ? state.status === "halted"
+                          ? "bg-signal-amber/20 text-signal-amber"
+                          : "bg-signal-cyan/30 text-signal-cyan"
+                        : ""
+                    }`}
+                  >
+                    <span className="w-4 shrink-0 text-right text-ink-500">{i}</span>
+                    <span>{line.text}</span>
+                  </li>
+                ))}
+              </ol>
+            )}
             <div className="text-xs leading-relaxed text-ink-300">{programCopy.description}</div>
             <div className="font-mono text-[11px] text-ink-400">
               {rx.groundTruth}: {programCopy.truth}
@@ -840,30 +805,51 @@ export default function HaltingExplorer() {
           {/* Tape view */}
           <div className="hairline flex-1 space-y-3 rounded-2xl border bg-ink-950 p-4">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              {rx.tape}
+              {program.kind === "tape" ? rx.tape : rx.registers}
             </div>
-            <div className="md:grid-cols-16 grid grid-cols-8 gap-1">
-              {Array.from(state.tape).map((cell, i) => {
-                const isHead = i === state.pointer;
-                return (
-                  <div
-                    key={i}
-                    className={`rounded border py-2 text-center font-mono text-xs transition-colors ${
-                      isHead
-                        ? "border-signal-cyan/70 bg-signal-cyan/20 text-signal-cyan"
-                        : cell === 0
+            {program.kind === "tape" ? (
+              <div className="md:grid-cols-16 grid grid-cols-8 gap-1">
+                {Array.from(state.tape).map((cell, i) => {
+                  const isHead = i === state.pointer;
+                  return (
+                    <div
+                      key={i}
+                      className={`rounded border py-2 text-center font-mono text-xs transition-colors ${
+                        isHead
+                          ? "border-signal-cyan/70 bg-signal-cyan/20 text-signal-cyan"
+                          : cell === 0
+                            ? "border-ink-700/40 bg-ink-900/40 text-ink-500"
+                            : "border-signal-amber/40 bg-signal-amber/10 text-signal-amber"
+                      }`}
+                    >
+                      <div className="text-[9px] text-ink-500">{i}</div>
+                      <div>{cell}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-1 md:grid-cols-4">
+                {program.registers.map((name) => {
+                  const value = state.regs[name] ?? 0;
+                  return (
+                    <div
+                      key={name}
+                      className={`rounded border py-2 text-center font-mono text-xs transition-colors ${
+                        value === 0
                           ? "border-ink-700/40 bg-ink-900/40 text-ink-500"
                           : "border-signal-amber/40 bg-signal-amber/10 text-signal-amber"
-                    }`}
-                  >
-                    <div className="text-[9px] text-ink-500">{i}</div>
-                    <div>{cell}</div>
-                  </div>
-                );
-              })}
-            </div>
+                      }`}
+                    >
+                      <div className="text-[9px] text-ink-500">{name}</div>
+                      <div>{value}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
             <div className="flex items-center justify-between pt-2 font-mono text-[11px] text-ink-300">
-              <span>ptr = {state.pointer}</span>
+              {program.kind === "tape" && <span>ptr = {state.pointer}</span>}
               <span>pc = {state.pc}</span>
               <span className={statusAccent}>{statusLine}</span>
             </div>
@@ -889,7 +875,7 @@ export default function HaltingExplorer() {
                 return (
                   <button
                     key={p.id}
-                    onClick={() => setProgramId(p.id)}
+                    onClick={() => selectProgram(p.id)}
                     className={`rounded-md border px-3 py-2 text-left transition-colors ${
                       p.id === program.id
                         ? "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan"
@@ -906,6 +892,32 @@ export default function HaltingExplorer() {
             </div>
           </div>
 
+          {inputSpec && programCopy.inputLabel && (
+            <div className="hairline space-y-3 border-b p-5">
+              <label
+                htmlFor="halting-input"
+                className="block font-mono text-[10px] uppercase leading-relaxed tracking-widest2 text-ink-300"
+              >
+                {programCopy.inputLabel}
+              </label>
+              <input
+                id="halting-input"
+                type="number"
+                inputMode="numeric"
+                value={draft ?? String(input)}
+                min={inputSpec.min}
+                max={inputSpec.max}
+                step={1}
+                onChange={(e) => setDraft(e.target.value)}
+                onBlur={commitInput}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") commitInput();
+                }}
+                className="hairline w-full rounded-md border bg-ink-950 px-3 py-2 font-mono text-sm text-ink-100"
+              />
+            </div>
+          )}
+
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               {rx.controls}
@@ -919,7 +931,7 @@ export default function HaltingExplorer() {
                 {rx.step}
               </button>
               <button
-                onClick={() => setRunning((r) => !r)}
+                onClick={toggleRun}
                 disabled={state.status !== "running"}
                 className={`rounded-md border px-3 py-2 font-mono text-[11px] uppercase tracking-widest2 transition-colors disabled:opacity-40 ${
                   running
@@ -947,7 +959,7 @@ export default function HaltingExplorer() {
               aria-label={rx.stepLimitAria}
               value={stepCap}
               min={10}
-              max={Math.min(MAX_STEPS_HARD_CAP, STEP_CAP_SLIDER_MAX)}
+              max={STEP_CAP_SLIDER_MAX}
               step={10}
               onChange={(e) => setStepCap(parseInt(e.target.value))}
               className="w-full accent-signal-cyan"
@@ -981,6 +993,7 @@ export default function HaltingExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={HALTING_GUIDE} storyHref="/halting" />
     </main>
   );
 }

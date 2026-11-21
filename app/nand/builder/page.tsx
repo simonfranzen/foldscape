@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { NAND_BUILDER_GUIDE } from "@/lib/explorer-guides/nand-builder";
 
 // All gates expressed in terms of NAND.
 const GATES: Record<
@@ -265,8 +267,11 @@ export default function NandBuilder() {
               gate · <span className={G.accent}>{G.label}</span> · {nandCount} NAND
               {nandCount > 1 ? "s" : ""}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
-              {G.formula}
+            <div className="flex items-start gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
+                {G.formula}
+              </div>
+              <ExplorerHelpButton guide={NAND_BUILDER_GUIDE} />
             </div>
           </div>
 
@@ -418,6 +423,7 @@ export default function NandBuilder() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={NAND_BUILDER_GUIDE} storyHref="/nand" />
     </main>
   );
 }

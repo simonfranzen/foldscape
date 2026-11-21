@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { CHAOSGAME_GUIDE } from "@/lib/explorer-guides/chaosgame";
 
 type Restriction = "none" | "norepeat" | "noneighbour" | "noopposite";
 
@@ -583,8 +585,11 @@ export default function ChaosGameExplorer() {
                 ? tx.barnsleyFern
                 : `${tx.chaosGame} · n = ${n} · r = ${ratio.toFixed(4)} · ${tx.restrictions[restriction]}`}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              p ← p + r · (vᵢ − p)
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                p ← p + r · (vᵢ − p)
+              </div>
+              <ExplorerHelpButton guide={CHAOSGAME_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
@@ -781,6 +786,7 @@ export default function ChaosGameExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={CHAOSGAME_GUIDE} storyHref="/chaosgame" />
     </main>
   );
 }

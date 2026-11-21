@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { PASCALMOD_GUIDE } from "@/lib/explorer-guides/pascalmod";
 
 const PALETTE = [
   palette.canvas.bg, // residue 0 = empty
@@ -45,7 +47,7 @@ type ExplorerCopy = {
 const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
   en: {
     modulusLabel: "Modulus p",
-    modulusHint: "Primes give clean gaskets (Kummer's theorem).",
+    modulusHint: "Primes give clean gaskets (Lucas's theorem).",
     rowsLabel: "Rows",
     rowsHint: "More rows = finer fractal detail.",
     rowsUnit: "rows",
@@ -54,7 +56,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
   },
   de: {
     modulusLabel: "Modulus p",
-    modulusHint: "Primzahlen geben saubere Siebe (Satz von Kummer).",
+    modulusHint: "Primzahlen geben saubere Siebe (Satz von Lucas).",
     rowsLabel: "Zeilen",
     rowsHint: "Mehr Zeilen = feinere Fraktaldetails.",
     rowsUnit: "Zeilen",
@@ -63,7 +65,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
   },
   es: {
     modulusLabel: "Módulo p",
-    modulusHint: "Los primos dan tamices limpios (teorema de Kummer).",
+    modulusHint: "Los primos dan tamices limpios (teorema de Lucas).",
     rowsLabel: "Filas",
     rowsHint: "Más filas = detalle fractal más fino.",
     rowsUnit: "filas",
@@ -72,7 +74,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
   },
   fr: {
     modulusLabel: "Module p",
-    modulusHint: "Les premiers donnent des tamis nets (théorème de Kummer).",
+    modulusHint: "Les premiers donnent des tamis nets (théorème de Lucas).",
     rowsLabel: "Lignes",
     rowsHint: "Plus de lignes = détail fractal plus fin.",
     rowsUnit: "lignes",
@@ -81,7 +83,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
   },
   it: {
     modulusLabel: "Modulo p",
-    modulusHint: "I primi danno setacci netti (teorema di Kummer).",
+    modulusHint: "I primi danno setacci netti (teorema di Lucas).",
     rowsLabel: "Righe",
     rowsHint: "Più righe = dettaglio frattale più fine.",
     rowsUnit: "righe",
@@ -90,7 +92,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
   },
   pt: {
     modulusLabel: "Módulo p",
-    modulusHint: "Os primos dão peneiros limpos (teorema de Kummer).",
+    modulusHint: "Os primos dão peneiros limpos (teorema de Lucas).",
     rowsLabel: "Linhas",
     rowsHint: "Mais linhas = detalhe fractal mais fino.",
     rowsUnit: "linhas",
@@ -99,7 +101,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
   },
   sv: {
     modulusLabel: "Modul p",
-    modulusHint: "Primtal ger rena silar (Kummers sats).",
+    modulusHint: "Primtal ger rena silar (Lucas sats).",
     rowsLabel: "Rader",
     rowsHint: "Fler rader = finare fraktaldetalj.",
     rowsUnit: "rader",
@@ -108,7 +110,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
   },
   no: {
     modulusLabel: "Modulus p",
-    modulusHint: "Primtall gir rene siler (Kummers teorem).",
+    modulusHint: "Primtall gir rene siler (Lucas' teorem).",
     rowsLabel: "Rader",
     rowsHint: "Flere rader = finere fraktaldetalj.",
     rowsUnit: "rader",
@@ -194,8 +196,11 @@ export default function PascalmodExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               C(n, k) mod {modulus} · {rows} {ex.rowsUnit}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              {modulus === 2 ? "Sierpiński" : `${modulus}-gasket`}
+            <div className="flex items-start gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                {modulus === 2 ? "Sierpiński" : `${modulus}-gasket`}
+              </div>
+              <ExplorerHelpButton guide={PASCALMOD_GUIDE} />
             </div>
           </div>
         </div>
@@ -279,6 +284,7 @@ export default function PascalmodExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={PASCALMOD_GUIDE} storyHref="/pascalmod" />
     </main>
   );
 }

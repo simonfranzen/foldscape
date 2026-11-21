@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { BUFFON_GUIDE } from "@/lib/explorer-guides/buffon";
 
 const ACCENT = "text-signal-amber";
 const TRUE_PI = Math.PI;
@@ -300,7 +302,27 @@ export default function BuffonExplorer() {
   // Bumping this counter forces the drawing effects to re-run after manual drops.
   const [tick, setTick] = useState(0);
 
-  const drop = (n: number) => {
+  // Copies the ref-held counts into React state and repaints both canvases.
+  const publish = () => {
+    setTotal(totalRef.current);
+    setCrossings(crossRef.current);
+    setTick((t) => t + 1);
+  };
+
+  // prefers-reduced-motion, kept in a ref because only the rAF loop reads it.
+  const reducedRef = useRef(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => {
+      reducedRef.current = m.matches;
+    };
+    on();
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
+
+  const drop = (n: number, show = true) => {
     const canvas = dropCanvasRef.current;
     if (!canvas) return;
     const W = canvas.clientWidth;
@@ -347,9 +369,7 @@ export default function BuffonExplorer() {
         }
       }
     }
-    setTotal(totalRef.current);
-    setCrossings(crossRef.current);
-    setTick((t) => t + 1);
+    if (show) publish();
     return newCross;
   };
 
@@ -376,9 +396,21 @@ export default function BuffonExplorer() {
   // Auto-drop loop via requestAnimationFrame.
   useEffect(() => {
     let raf = 0;
-    const step = () => {
+    let lastShown = 0;
+    let unshown = false;
+    const step = (now: number) => {
       if (autoRef.current) {
-        drop(rateRef.current);
+        // Reduced motion: the experiment keeps sampling at full rate, but
+        // needles, plot and numbers refresh only twice a second instead of
+        // swapping dozens of needles on every frame.
+        const show = !reducedRef.current || now - lastShown >= 500;
+        drop(rateRef.current, show);
+        if (show) lastShown = now;
+        unshown = !show;
+      } else if (unshown) {
+        // Auto drop was switched off between two refreshes: show the rest.
+        publish();
+        unshown = false;
       }
       raf = requestAnimationFrame(step);
     };
@@ -543,13 +575,16 @@ export default function BuffonExplorer() {
               π ≈ 2ℓn / (d·k)
             </div>
           </div>
-          <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
+          <div className="hairline relative flex-1 overflow-hidden rounded-2xl border bg-ink-950">
             <canvas
               ref={dropCanvasRef}
               role="img"
               aria-label={ex.dropAria}
               className="block h-full w-full"
             />
+            <div className="pointer-events-none absolute bottom-3 right-3">
+              <ExplorerHelpButton guide={BUFFON_GUIDE} />
+            </div>
           </div>
           <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
             {ex.convergence}
@@ -584,11 +619,11 @@ export default function BuffonExplorer() {
               <dd className="text-right text-ink-100">{crossings.toLocaleString()}</dd>
               <dt className="text-ink-300">{ex.piEstimate}</dt>
               <dd className={`text-right ${ACCENT}`}>
-                {Number.isFinite(piEst) ? piEst.toFixed(6) : "—"}
+                {Number.isFinite(piEst) ? piEst.toFixed(6) : "…"}
               </dd>
               <dt className="text-ink-300">{ex.error}</dt>
               <dd className="text-right text-ink-100">
-                {Number.isFinite(errPct) ? `${errPct.toFixed(3)} %` : "—"}
+                {Number.isFinite(errPct) ? `${errPct.toFixed(3)} %` : "…"}
               </dd>
             </dl>
             {lenRatio > 1 ? (
@@ -700,6 +735,7 @@ export default function BuffonExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={BUFFON_GUIDE} storyHref="/buffon" />
     </main>
   );
 }

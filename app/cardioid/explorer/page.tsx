@@ -5,25 +5,120 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { CARDIOID_GUIDE } from "@/lib/explorer-guides/cardioid";
 
 type Mode = "cup" | "mandelbrot" | "rolling";
 
+// Per-locale UI strings, kept next to the controls they label. Only EN and DE
+// are filled in; the other locales fall back to EN at the call site.
+type RichExplorer = {
+  aria: Record<Mode, string>;
+  badge: Record<Mode, string>;
+  view: string;
+  modes: Record<Mode, { label: string; note: string }>;
+  rays: string;
+  raysAria: string;
+  showRays: string;
+  showEnvelope: string;
+  cupNote: string;
+  pause: string;
+  roll: string;
+  rollingNote: string;
+  nephroidLabel: string;
+};
+
+const RICH_EXPLORER: { en: RichExplorer } & Partial<Record<Locale, RichExplorer>> = {
+  en: {
+    aria: {
+      cup: "Coffee cup optics: parallel rays reflecting off the far wall to a nephroid envelope",
+      rolling: "A point on a rolling circle tracing a cardioid",
+      mandelbrot: "The Mandelbrot set with its main cardioid bulb outlined",
+    },
+    badge: {
+      cup: "Optics · parallel rays in a cup",
+      rolling: "Rolling circle · cardioid trace",
+      mandelbrot: "Mandelbrot · main cardioid",
+    },
+    view: "View",
+    modes: {
+      cup: { label: "Coffee cup", note: "rays + envelope" },
+      rolling: { label: "Rolling circle", note: "cardioid traced" },
+      mandelbrot: { label: "Mandelbrot bulb", note: "the heart of M" },
+    },
+    rays: "Rays",
+    raysAria: "Number of rays",
+    showRays: "Show rays",
+    showEnvelope: "Show envelope (nephroid for parallel rays)",
+    cupNote:
+      "Parallel rays give a nephroid (two cusps). A point source on the rim gives a cardioid.",
+    pause: "❚❚ Pause",
+    roll: "▶ Roll",
+    rollingNote: "The dot is fixed on the outer rolling circle. Its trace is the cardioid.",
+    nephroidLabel: "nephroid (parallel rays)",
+  },
+  de: {
+    aria: {
+      cup: "Optik in der Kaffeetasse: Parallele Strahlen werden an der hinteren Wand reflektiert und hüllen eine Nephroide ein",
+      rolling: "Ein Punkt auf einem abrollenden Kreis zeichnet eine Kardioide",
+      mandelbrot: "Die Mandelbrot-Menge mit hervorgehobener Hauptkardioide",
+    },
+    badge: {
+      cup: "Optik · parallele Strahlen in der Tasse",
+      rolling: "Rollender Kreis · Spur der Kardioide",
+      mandelbrot: "Mandelbrot · Hauptkardioide",
+    },
+    view: "Ansicht",
+    modes: {
+      cup: { label: "Kaffeetasse", note: "Strahlen + Hüllkurve" },
+      rolling: { label: "Rollender Kreis", note: "zeichnet die Kardioide" },
+      mandelbrot: { label: "Mandelbrot-Knospe", note: "das Herz von M" },
+    },
+    rays: "Strahlen",
+    raysAria: "Anzahl der Strahlen",
+    showRays: "Strahlen zeigen",
+    showEnvelope: "Hüllkurve zeigen (Nephroide bei parallelen Strahlen)",
+    cupNote:
+      "Parallele Strahlen ergeben eine Nephroide (zwei Spitzen). Eine Punktquelle auf dem Rand ergibt eine Kardioide.",
+    pause: "❚❚ Pause",
+    roll: "▶ Rollen",
+    rollingNote:
+      "Der Punkt sitzt fest auf dem äußeren, abrollenden Kreis. Seine Spur ist die Kardioide.",
+    nephroidLabel: "Nephroide (parallele Strahlen)",
+  },
+};
+
+const MODE_ORDER: ReadonlyArray<Mode> = ["cup", "rolling", "mandelbrot"];
+
 export default function CardioidExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.cardioid;
+  const tx = RICH_EXPLORER[locale] ?? RICH_EXPLORER.en;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [mode, setMode] = useState<Mode>("cup");
   const [rayCount, setRayCount] = useState(120);
   const [showRays, setShowRays] = useState(true);
-  const [showCardioid, setShowCardioid] = useState(true);
+  const [showEnvelope, setShowEnvelope] = useState(true);
   const [rolling, _setRolling] = useState(true);
   const [running, setRunning] = useState(true);
   const dpr = useDpr();
 
   const tRef = useRef(0);
-  const cfgRef = useRef({ mode, rayCount, showRays, showCardioid, rolling, running });
-  cfgRef.current = { mode, rayCount, showRays, showCardioid, rolling, running };
+  // The canvas label travels through the same ref as the other settings, so
+  // a locale switch repaints the static cup view without rebuilding the loop.
+  const nephroidLabel = tx.nephroidLabel;
+  const cfgRef = useRef({
+    mode,
+    rayCount,
+    showRays,
+    showEnvelope,
+    rolling,
+    running,
+    nephroidLabel,
+  });
+  cfgRef.current = { mode, rayCount, showRays, showEnvelope, rolling, running, nephroidLabel };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -109,29 +204,30 @@ export default function CardioidExplorer() {
         }
       }
 
-      // The envelope: catacaustic = cardioid with cusp at (cx + R, cy), size R/2.
-      if (cfg.showCardioid) {
+      // The envelope of the reflected rays. For parallel light the caustic of
+      // a circle is a nephroid (two cusps), not a cardioid: the cardioid only
+      // appears when the light source sits on the rim itself.
+      if (cfg.showEnvelope) {
         ctx.strokeStyle = palette.signal.amber;
         ctx.lineWidth = 2 * dpr;
         ctx.beginPath();
-        // Parametric cardioid: take the parent circle of radius a = R/2 centred at cx, cy
-        // rolling on circle of radius a. Trace cardioid with cusp at (cx + R, cy).
-        // r(θ) = 2a (1 + cos θ), centred at (cx + R - 0, cy)? Use standard nephroid? Actually catacaustic of a circle for parallel rays is a nephroid (two cusps), NOT a cardioid.
-        // For coffee cup the well-known curve from a point source on the rim is a cardioid.
-        // For parallel rays it is a nephroid. Let's show both modes correctly.
-        const a0 = R / 2;
+        // Nephroid x = 3a cos t − a cos 3t, y = 3a sin t − a sin 3t with
+        // a = R/4: a circle of radius R/4 rolling on one of radius R/2. Its two
+        // cusps sit at (±R/2, 0) on the light axis and it touches the cup wall
+        // at the top and bottom. Only the left half is the caustic of the rays
+        // drawn here; the right half belongs to light coming from the left.
+        const a0 = R / 4;
         for (let i = 0; i <= 256; i++) {
           const t = (i / 256) * Math.PI * 2;
-          // Nephroid: x = 3a cos t - a cos 3t, y = 3a sin t - a sin 3t (centred at origin)
-          const px = cx + 3 * (a0 / 2) * Math.cos(t) - (a0 / 2) * Math.cos(3 * t);
-          const py = cy + 3 * (a0 / 2) * Math.sin(t) - (a0 / 2) * Math.sin(3 * t);
+          const px = cx + 3 * a0 * Math.cos(t) - a0 * Math.cos(3 * t);
+          const py = cy + 3 * a0 * Math.sin(t) - a0 * Math.sin(3 * t);
           if (i === 0) ctx.moveTo(px, py);
           else ctx.lineTo(px, py);
         }
         ctx.stroke();
         ctx.fillStyle = "rgba(255, 122, 182, 0.9)";
         ctx.font = `${10 * dpr}px ui-monospace, monospace`;
-        ctx.fillText("nephroid (parallel rays)", 10 * dpr, H - 10 * dpr);
+        ctx.fillText(cfg.nephroidLabel, 10 * dpr, H - 10 * dpr);
       }
     };
 
@@ -279,7 +375,7 @@ export default function CardioidExplorer() {
           }
         }
       } else if (cfg.mode === "cup") {
-        const sig = `cup|${W}x${H}|${cfg.rayCount}|${cfg.showRays}|${cfg.showCardioid}`;
+        const sig = `cup|${W}x${H}|${cfg.rayCount}|${cfg.showRays}|${cfg.showEnvelope}|${cfg.nephroidLabel}`;
         if (dirty || sig !== lastSig) {
           drawCup();
           lastSig = sig;
@@ -310,24 +406,17 @@ export default function CardioidExplorer() {
           <canvas
             ref={canvasRef}
             className="absolute inset-0 block h-full w-full"
-            aria-label={
-              mode === "cup"
-                ? "Coffee cup optics: parallel rays reflecting off the far wall to a nephroid envelope"
-                : mode === "rolling"
-                  ? "A point on a rolling circle tracing a cardioid"
-                  : "The Mandelbrot set with its main cardioid bulb outlined"
-            }
+            aria-label={tx.aria[mode]}
           />
           <div className="pointer-events-none absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {mode === "cup"
-                ? "Optics · parallel rays in a cup"
-                : mode === "rolling"
-                  ? "Rolling circle · cardioid trace"
-                  : "Mandelbrot · main cardioid"}
+              {tx.badge[mode]}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              r = 2a (1 − cos θ)
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                r = 2a (1 − cos θ)
+              </div>
+              <ExplorerHelpButton guide={CARDIOID_GUIDE} />
             </div>
           </div>
         </div>
@@ -343,16 +432,10 @@ export default function CardioidExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              View
+              {tx.view}
             </div>
             <div className="grid grid-cols-1 gap-2">
-              {(
-                [
-                  { id: "cup", label: "Coffee cup", note: "rays + envelope" },
-                  { id: "rolling", label: "Rolling circle", note: "cardioid traced" },
-                  { id: "mandelbrot", label: "Mandelbrot bulb", note: "the heart of M" },
-                ] as const
-              ).map((m) => (
+              {MODE_ORDER.map((id) => ({ id, ...tx.modes[id] })).map((m) => (
                 <button
                   key={m.id}
                   onClick={() => setMode(m.id)}
@@ -374,7 +457,7 @@ export default function CardioidExplorer() {
               <div className="space-y-1">
                 <div className="flex items-baseline justify-between">
                   <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                    Rays
+                    {tx.rays}
                   </div>
                   <div className="font-mono text-[10px] text-ink-400">{rayCount}</div>
                 </div>
@@ -385,7 +468,7 @@ export default function CardioidExplorer() {
                   max={300}
                   step={2}
                   onChange={(e) => setRayCount(parseInt(e.target.value))}
-                  aria-label="Number of rays"
+                  aria-label={tx.raysAria}
                   className="w-full accent-signal-amber"
                 />
               </div>
@@ -396,21 +479,18 @@ export default function CardioidExplorer() {
                   onChange={(e) => setShowRays(e.target.checked)}
                   className="accent-signal-amber"
                 />
-                <span>Show rays</span>
+                <span>{tx.showRays}</span>
               </label>
               <label className="flex cursor-pointer items-center gap-2 font-mono text-[11px] text-ink-300">
                 <input
                   type="checkbox"
-                  checked={showCardioid}
-                  onChange={(e) => setShowCardioid(e.target.checked)}
+                  checked={showEnvelope}
+                  onChange={(e) => setShowEnvelope(e.target.checked)}
                   className="accent-signal-amber"
                 />
-                <span>Show envelope (nephroid for parallel rays)</span>
+                <span>{tx.showEnvelope}</span>
               </label>
-              <p className="font-mono text-[10px] leading-relaxed text-ink-400">
-                Parallel rays give a nephroid (two cusps). A point source on the rim gives a
-                cardioid.
-              </p>
+              <p className="font-mono text-[10px] leading-relaxed text-ink-400">{tx.cupNote}</p>
             </div>
           )}
 
@@ -424,11 +504,9 @@ export default function CardioidExplorer() {
                     : "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
                 }`}
               >
-                {running ? "❚❚ Pause" : "▶ Roll"}
+                {running ? tx.pause : tx.roll}
               </button>
-              <p className="font-mono text-[10px] leading-relaxed text-ink-400">
-                The dot is fixed on the outer rolling circle. Its trace is the cardioid.
-              </p>
+              <p className="font-mono text-[10px] leading-relaxed text-ink-400">{tx.rollingNote}</p>
             </div>
           )}
 
@@ -442,6 +520,7 @@ export default function CardioidExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={CARDIOID_GUIDE} storyHref="/cardioid" />
     </main>
   );
 }

@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { getDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { MOBIUS_GUIDE } from "@/lib/explorer-guides/mobius";
 
 // --------------------------------------------------------------------------
 // Per-locale UI strings for the Möbius / Klein explorer. Kept inline so the
@@ -21,7 +23,7 @@ type RichExplorer = {
   hudMobius: (n: number) => string;
   hudKlein: string;
   hudCut: (val: string, revealed: boolean) => string;
-  hudCutRevealedSuffix: string;
+  hudCentreCut: string;
   dragHint: (autoSpin: boolean, mode: string) => string;
   on: string;
   off: string;
@@ -37,8 +39,8 @@ type RichExplorer = {
   halfTwists: string;
   halfTwistsHint: string;
   cutRatio: string;
-  revealCuts: string;
-  resealing: string;
+  openCut: string;
+  closeCut: string;
   story: string;
   cutPresets: ReadonlyArray<CutPresetCopy>;
   hudModeMobius: (n: number) => string;
@@ -51,8 +53,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     badgeKlein: "Klein bottle · 3-D immersion",
     hudMobius: (n) => `Möbius strip · ${n} half-twist${n === 1 ? "" : "s"}`,
     hudKlein: "Klein bottle · 3-D immersion (self-intersects)",
-    hudCut: (val, revealed) => `Cut at v = ±${val}${revealed ? "  ·  pulled apart" : ""}`,
-    hudCutRevealedSuffix: "pulled apart",
+    hudCut: (val, revealed) => `Cut at v = ±${val}${revealed ? "  ·  gap opened" : ""}`,
+    hudCentreCut: "Cut along the centre line",
     dragHint: (autoSpin, mode) => `drag to rotate · auto-spin ${autoSpin ? "on" : "off"} · ${mode}`,
     on: "on",
     off: "off",
@@ -70,13 +72,16 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     halfTwistsHint:
       "1 = classical Möbius (one-sided). 2 = ordinary two-sided cylinder. 3, 5 are non-orientable like 1; 4 is orientable like 2.",
     cutRatio: "Cut ratio (from centre)",
-    revealCuts: "Reveal cuts",
-    resealing: "Resealing…",
+    openCut: "Open the cut",
+    closeCut: "Close the cut",
     story: "← Story",
     cutPresets: [
-      { label: "middle  ·  1/2", result: "one longer two-sided strip with two full twists" },
-      { label: "third  ·  1/3", result: "a Möbius + a longer linked Möbius, interlocked" },
-      { label: "quarter  ·  1/4", result: "same family — narrower interlocked pair" },
+      { label: "centre line", result: "one two-sided band, twice as long, two full twists" },
+      { label: "third  ·  1/3", result: "a Möbius strip and a band twice as long, linked" },
+      {
+        label: "quarter  ·  1/4",
+        result: "same result, the Möbius strip in the middle is narrower",
+      },
       { label: "no cut", result: "the intact Möbius strip" },
     ],
     hudModeMobius: (n) => `${n} half-twist${n === 1 ? "" : "s"}`,
@@ -87,9 +92,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     badgeKlein: "Klein-Flasche · 3D-Immersion",
     hudMobius: (n) => `Möbius-Band · ${n} Halbdrehung${n === 1 ? "" : "en"}`,
     hudKlein: "Klein-Flasche · 3D-Immersion (selbstschneidend)",
-    hudCut: (val, revealed) =>
-      `Schnitt bei v = ±${val}${revealed ? "  ·  auseinandergezogen" : ""}`,
-    hudCutRevealedSuffix: "auseinandergezogen",
+    hudCut: (val, revealed) => `Schnitt bei v = ±${val}${revealed ? "  ·  Spalt geöffnet" : ""}`,
+    hudCentreCut: "Schnitt entlang der Mittellinie",
     dragHint: (autoSpin, mode) =>
       `ziehen zum Drehen · Auto-Rotation ${autoSpin ? "an" : "aus"} · ${mode}`,
     on: "an",
@@ -108,19 +112,22 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     halfTwistsHint:
       "1 = klassisches Möbius-Band (einseitig). 2 = gewöhnlicher zweiseitiger Zylinder. 3, 5 sind nicht-orientierbar wie 1; 4 ist orientierbar wie 2.",
     cutRatio: "Schnittverhältnis (vom Zentrum)",
-    revealCuts: "Schnitte zeigen",
-    resealing: "Wird verschlossen…",
+    openCut: "Schnitt öffnen",
+    closeCut: "Schnitt schließen",
     story: "← Geschichte",
     cutPresets: [
       {
-        label: "Mitte  ·  1/2",
-        result: "ein längerer, zweiseitiger Streifen mit zwei vollen Drehungen",
+        label: "Mittellinie",
+        result: "ein zweiseitiges Band, doppelt so lang, zwei volle Drehungen",
       },
       {
         label: "Drittel  ·  1/3",
-        result: "ein Möbius + ein längeres verschlungenes Möbius, ineinandergehakt",
+        result: "ein Möbius-Band und ein doppelt so langes Band, verkettet",
       },
-      { label: "Viertel  ·  1/4", result: "gleiche Familie — schmaleres verschlungenes Paar" },
+      {
+        label: "Viertel  ·  1/4",
+        result: "gleiches Ergebnis, das Möbius-Band in der Mitte ist schmaler",
+      },
       { label: "kein Schnitt", result: "das unversehrte Möbius-Band" },
     ],
     hudModeMobius: (n) => `${n} Halbdrehung${n === 1 ? "" : "en"}`,
@@ -131,8 +138,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     badgeKlein: "Botella de Klein · inmersión 3D",
     hudMobius: (n) => `Banda de Möbius · ${n} media vuelta${n === 1 ? "" : "s"}`,
     hudKlein: "Botella de Klein · inmersión 3D (se autointerseca)",
-    hudCut: (val, revealed) => `Corte en v = ±${val}${revealed ? "  ·  separados" : ""}`,
-    hudCutRevealedSuffix: "separados",
+    hudCut: (val, revealed) => `Corte en v = ±${val}${revealed ? "  ·  hueco abierto" : ""}`,
+    hudCentreCut: "Corte por la línea central",
     dragHint: (autoSpin, mode) =>
       `arrastra para rotar · auto-rotación ${autoSpin ? "activa" : "inactiva"} · ${mode}`,
     on: "act.",
@@ -151,16 +158,22 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     halfTwistsHint:
       "1 = Möbius clásica (una cara). 2 = cilindro ordinario de dos caras. 3, 5 son no orientables como 1; 4 es orientable como 2.",
     cutRatio: "Razón de corte (desde el centro)",
-    revealCuts: "Mostrar cortes",
-    resealing: "Volviendo a sellar…",
+    openCut: "Abrir el corte",
+    closeCut: "Cerrar el corte",
     story: "← Historia",
     cutPresets: [
       {
-        label: "centro  ·  1/2",
-        result: "una banda más larga de dos caras con dos vueltas completas",
+        label: "línea central",
+        result: "una banda de dos caras, el doble de larga, con dos vueltas completas",
       },
-      { label: "tercio  ·  1/3", result: "una Möbius + una Möbius más larga enlazadas" },
-      { label: "cuarto  ·  1/4", result: "misma familia — par enlazado más estrecho" },
+      {
+        label: "tercio  ·  1/3",
+        result: "una banda de Möbius y una banda el doble de larga, enlazadas",
+      },
+      {
+        label: "cuarto  ·  1/4",
+        result: "mismo resultado, la banda de Möbius central es más estrecha",
+      },
       { label: "sin corte", result: "la banda de Möbius intacta" },
     ],
     hudModeMobius: (n) => `${n} media vuelta${n === 1 ? "" : "s"}`,
@@ -171,8 +184,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     badgeKlein: "Bouteille de Klein · immersion 3D",
     hudMobius: (n) => `Ruban de Möbius · ${n} demi-tour${n === 1 ? "" : "s"}`,
     hudKlein: "Bouteille de Klein · immersion 3D (auto-intersection)",
-    hudCut: (val, revealed) => `Coupe à v = ±${val}${revealed ? "  ·  écartés" : ""}`,
-    hudCutRevealedSuffix: "écartés",
+    hudCut: (val, revealed) => `Coupe à v = ±${val}${revealed ? "  ·  fente ouverte" : ""}`,
+    hudCentreCut: "Coupe le long de la ligne médiane",
     dragHint: (autoSpin, mode) =>
       `glisser pour tourner · rotation auto ${autoSpin ? "on" : "off"} · ${mode}`,
     on: "on",
@@ -191,16 +204,22 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     halfTwistsHint:
       "1 = Möbius classique (une face). 2 = cylindre ordinaire à deux faces. 3, 5 sont non orientables comme 1 ; 4 est orientable comme 2.",
     cutRatio: "Ratio de coupe (depuis le centre)",
-    revealCuts: "Afficher les coupes",
-    resealing: "Refermeture…",
+    openCut: "Ouvrir la coupe",
+    closeCut: "Refermer la coupe",
     story: "← Histoire",
     cutPresets: [
       {
-        label: "milieu  ·  1/2",
-        result: "une bande plus longue à deux faces avec deux tours complets",
+        label: "ligne médiane",
+        result: "une bande à deux faces, deux fois plus longue, avec deux tours complets",
       },
-      { label: "tiers  ·  1/3", result: "un Möbius + un Möbius plus long, entrelacés" },
-      { label: "quart  ·  1/4", result: "même famille — paire entrelacée plus étroite" },
+      {
+        label: "tiers  ·  1/3",
+        result: "un ruban de Möbius et une bande deux fois plus longue, entrelacés",
+      },
+      {
+        label: "quart  ·  1/4",
+        result: "même résultat, le ruban de Möbius central est plus étroit",
+      },
       { label: "pas de coupe", result: "le ruban de Möbius intact" },
     ],
     hudModeMobius: (n) => `${n} demi-tour${n === 1 ? "" : "s"}`,
@@ -211,8 +230,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     badgeKlein: "Bottiglia di Klein · immersione 3D",
     hudMobius: (n) => `Nastro di Möbius · ${n} mezzo giro${n === 1 ? "" : " (mezzi giri)"}`,
     hudKlein: "Bottiglia di Klein · immersione 3D (si autointerseca)",
-    hudCut: (val, revealed) => `Taglio in v = ±${val}${revealed ? "  ·  separati" : ""}`,
-    hudCutRevealedSuffix: "separati",
+    hudCut: (val, revealed) => `Taglio in v = ±${val}${revealed ? "  ·  fessura aperta" : ""}`,
+    hudCentreCut: "Taglio lungo la linea centrale",
     dragHint: (autoSpin, mode) =>
       `trascina per ruotare · rotazione auto ${autoSpin ? "on" : "off"} · ${mode}`,
     on: "on",
@@ -231,13 +250,22 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     halfTwistsHint:
       "1 = Möbius classico (una faccia). 2 = cilindro ordinario a due facce. 3, 5 sono non orientabili come 1; 4 è orientabile come 2.",
     cutRatio: "Rapporto di taglio (dal centro)",
-    revealCuts: "Mostra tagli",
-    resealing: "Risigillatura…",
+    openCut: "Apri il taglio",
+    closeCut: "Chiudi il taglio",
     story: "← Storia",
     cutPresets: [
-      { label: "centro  ·  1/2", result: "un nastro più lungo a due facce con due giri completi" },
-      { label: "terzo  ·  1/3", result: "un Möbius + un Möbius più lungo, intrecciati" },
-      { label: "quarto  ·  1/4", result: "stessa famiglia — coppia intrecciata più stretta" },
+      {
+        label: "linea centrale",
+        result: "un nastro a due facce, lungo il doppio, con due giri completi",
+      },
+      {
+        label: "terzo  ·  1/3",
+        result: "un nastro di Möbius e un nastro lungo il doppio, concatenati",
+      },
+      {
+        label: "quarto  ·  1/4",
+        result: "stesso risultato, il nastro di Möbius centrale è più stretto",
+      },
       { label: "nessun taglio", result: "il nastro di Möbius intatto" },
     ],
     hudModeMobius: (n) => `${n} mezzo giro${n === 1 ? "" : " (mezzi giri)"}`,
@@ -248,8 +276,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     badgeKlein: "Garrafa de Klein · imersão 3D",
     hudMobius: (n) => `Faixa de Möbius · ${n} meia-volta${n === 1 ? "" : "s"}`,
     hudKlein: "Garrafa de Klein · imersão 3D (autointerseta-se)",
-    hudCut: (val, revealed) => `Corte em v = ±${val}${revealed ? "  ·  afastados" : ""}`,
-    hudCutRevealedSuffix: "afastados",
+    hudCut: (val, revealed) => `Corte em v = ±${val}${revealed ? "  ·  fenda aberta" : ""}`,
+    hudCentreCut: "Corte ao longo da linha central",
     dragHint: (autoSpin, mode) =>
       `arraste para girar · rotação auto ${autoSpin ? "on" : "off"} · ${mode}`,
     on: "on",
@@ -268,16 +296,22 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     halfTwistsHint:
       "1 = Möbius clássica (um lado). 2 = cilindro comum de dois lados. 3, 5 são não orientáveis como 1; 4 é orientável como 2.",
     cutRatio: "Razão de corte (do centro)",
-    revealCuts: "Mostrar cortes",
-    resealing: "A re-selar…",
+    openCut: "Abrir o corte",
+    closeCut: "Fechar o corte",
     story: "← História",
     cutPresets: [
       {
-        label: "meio  ·  1/2",
-        result: "uma faixa mais longa de dois lados com duas voltas completas",
+        label: "linha central",
+        result: "uma faixa de dois lados, com o dobro do comprimento e duas voltas completas",
       },
-      { label: "terço  ·  1/3", result: "uma Möbius + uma Möbius mais longa, entrelaçadas" },
-      { label: "quarto  ·  1/4", result: "mesma família — par entrelaçado mais estreito" },
+      {
+        label: "terço  ·  1/3",
+        result: "uma faixa de Möbius e uma faixa com o dobro do comprimento, entrelaçadas",
+      },
+      {
+        label: "quarto  ·  1/4",
+        result: "mesmo resultado, a faixa de Möbius central é mais estreita",
+      },
       { label: "sem corte", result: "a faixa de Möbius intacta" },
     ],
     hudModeMobius: (n) => `${n} meia-volta${n === 1 ? "" : "s"}`,
@@ -288,8 +322,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     badgeKlein: "Kleinflaska · 3D-immersion",
     hudMobius: (n) => `Möbius-band · ${n} halvvarv`,
     hudKlein: "Kleinflaska · 3D-immersion (självskärande)",
-    hudCut: (val, revealed) => `Snitt vid v = ±${val}${revealed ? "  ·  isärdraget" : ""}`,
-    hudCutRevealedSuffix: "isärdraget",
+    hudCut: (val, revealed) => `Snitt vid v = ±${val}${revealed ? "  ·  springa öppnad" : ""}`,
+    hudCentreCut: "Snitt längs mittlinjen",
     dragHint: (autoSpin, mode) =>
       `dra för att rotera · auto-rotation ${autoSpin ? "på" : "av"} · ${mode}`,
     on: "på",
@@ -308,13 +342,16 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     halfTwistsHint:
       "1 = klassisk Möbius (ensidig). 2 = vanlig tvåsidig cylinder. 3, 5 är icke-orienterbara som 1; 4 är orienterbar som 2.",
     cutRatio: "Skärförhållande (från centrum)",
-    revealCuts: "Visa snitt",
-    resealing: "Försluter…",
+    openCut: "Öppna snittet",
+    closeCut: "Stäng snittet",
     story: "← Berättelse",
     cutPresets: [
-      { label: "mitten  ·  1/2", result: "ett längre tvåsidigt band med två hela varv" },
-      { label: "tredjedel  ·  1/3", result: "ett Möbius + ett längre länkat Möbius, hopflätade" },
-      { label: "fjärdedel  ·  1/4", result: "samma familj — smalare hopflätat par" },
+      { label: "mittlinjen", result: "ett tvåsidigt band, dubbelt så långt, med två hela varv" },
+      {
+        label: "tredjedel  ·  1/3",
+        result: "ett Möbiusband och ett dubbelt så långt band, sammanlänkade",
+      },
+      { label: "fjärdedel  ·  1/4", result: "samma resultat, Möbiusbandet i mitten är smalare" },
       { label: "inget snitt", result: "det intakta Möbius-bandet" },
     ],
     hudModeMobius: (n) => `${n} halvvarv`,
@@ -325,9 +362,8 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     badgeKlein: "Kleinflaske · 3D-immersjon",
     hudMobius: (n) => `Möbius-bånd · ${n} halvomdreining${n === 1 ? "" : "er"}`,
     hudKlein: "Kleinflaske · 3D-immersjon (selvskjærende)",
-    hudCut: (val, revealed) =>
-      `Kutt ved v = ±${val}${revealed ? "  ·  trukket fra hverandre" : ""}`,
-    hudCutRevealedSuffix: "trukket fra hverandre",
+    hudCut: (val, revealed) => `Kutt ved v = ±${val}${revealed ? "  ·  spalte åpnet" : ""}`,
+    hudCentreCut: "Kutt langs midtlinjen",
     dragHint: (autoSpin, mode) =>
       `dra for å rotere · auto-rotasjon ${autoSpin ? "på" : "av"} · ${mode}`,
     on: "på",
@@ -346,13 +382,19 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     halfTwistsHint:
       "1 = klassisk Möbius (énsidig). 2 = vanlig tosidig sylinder. 3, 5 er ikke-orienterbare som 1; 4 er orienterbar som 2.",
     cutRatio: "Kuttforhold (fra senter)",
-    revealCuts: "Vis kutt",
-    resealing: "Forsegler…",
+    openCut: "Åpne kuttet",
+    closeCut: "Lukk kuttet",
     story: "← Historie",
     cutPresets: [
-      { label: "midten  ·  1/2", result: "ett lengre tosidig bånd med to hele omdreininger" },
-      { label: "tredjedel  ·  1/3", result: "én Möbius + én lengre lenket Möbius, sammenflettet" },
-      { label: "fjerdedel  ·  1/4", result: "samme familie — smalere sammenflettet par" },
+      {
+        label: "midtlinjen",
+        result: "ett tosidig bånd, dobbelt så langt, med to hele omdreininger",
+      },
+      {
+        label: "tredjedel  ·  1/3",
+        result: "ett Möbiusbånd og ett dobbelt så langt bånd, lenket sammen",
+      },
+      { label: "fjerdedel  ·  1/4", result: "samme resultat, Möbiusbåndet i midten er smalere" },
       { label: "ingen kutt", result: "det intakte Möbius-båndet" },
     ],
     hudModeMobius: (n) => `${n} halvomdreining${n === 1 ? "" : "er"}`,
@@ -389,15 +431,52 @@ interface ProjectedTri {
   z: number;
   // Lambertian shade in [0, 1].
   shade: number;
-  // Which side of the strip this triangle belongs to (used to colour the
-  // gradient that demonstrates one-sidedness — red→blue along the length).
+  // Position along the length (u), mapped red→blue. It only tells the eye
+  // where on the loop a triangle sits. The hard colour change at u = 0 is the
+  // seam of the parametrisation, not a property of the surface, and it says
+  // nothing about one-sidedness.
   hue: number; // 0 = red end, 1 = blue end
   // Whether the camera looks at the "front" of the surface normal or the
   // back. We keep both — that's the whole point of a one-sided surface.
   facingFront: boolean;
-  // Cut group: 0 = uncut, 1 = inner band, 2 = outer band. Used to colour
-  // the cut and to offset the two halves when "Reveal cuts" is on.
+  // Cut group: 0 = uncut (or the single piece left by the centre-line cut),
+  // 1 = inner band, 2 = outer band. Only used for colouring.
   cutGroup: 0 | 1 | 2;
+}
+
+interface Band {
+  v0: number;
+  v1: number;
+  group: 0 | 1 | 2;
+  // Quads across this interval; the three cases below all add up to 16.
+  n: number;
+}
+
+// Half-width of a drawn slit as a fraction of w. A mathematical cut has no
+// width, so this is purely a drawing aid to make the cut visible.
+const SLIT = 0.06;
+
+// The v-intervals to tessellate. The mesh follows the cut lines exactly
+// instead of classifying fixed quads, so the amber band is as wide as stated.
+// Pieces are never moved: a slit is opened in place, because sliding linked
+// pieces apart would draw them passing through each other and unlinked.
+function mobiusBands(w: number, cutAbs: number, centreCut: boolean, open: boolean): Band[] {
+  if (centreCut) {
+    // One cut along v = 0. Both halves stay group 0: for odd k they are the
+    // same piece, joined where u wraps around and v turns into −v.
+    const s = SLIT * w;
+    return [
+      { v0: -w, v1: -s, group: 0, n: 8 },
+      { v0: s, v1: w, group: 0, n: 8 },
+    ];
+  }
+  if (cutAbs <= 0.0005) return [{ v0: -w, v1: w, group: 0, n: 16 }];
+  const s = open ? Math.min(SLIT * w, 0.4 * cutAbs, 0.4 * (w - cutAbs)) : 0;
+  return [
+    { v0: -w, v1: -(cutAbs + s), group: 2, n: 5 },
+    { v0: -(cutAbs - s), v1: cutAbs - s, group: 1, n: 6 },
+    { v0: cutAbs + s, v1: w, group: 2, n: 5 },
+  ];
 }
 
 const TAU = Math.PI * 2;
@@ -477,11 +556,17 @@ export default function MobiusExplorer() {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
+  // On by default, but switched off below when the system asks for reduced
+  // motion. Turning it back on by hand is an explicit choice and is respected.
   const [autoSpin, setAutoSpin] = useState(true);
   const [spinSpeed, setSpinSpeed] = useState(0.45);
   const [width, setWidth] = useState(0.32);
   const [halfTwists, setHalfTwists] = useState(1);
   const [cutRatio, setCutRatio] = useState(0.0);
+  // The centre-line cut is a different experiment from the offset cuts (one
+  // cut curve that closes after a single lap), so it gets its own flag
+  // instead of being the cutRatio → 0 end of the slider.
+  const [centreCut, setCentreCut] = useState(false);
   const [reveal, setReveal] = useState(false);
   const [kleinMode, setKleinMode] = useState(false);
 
@@ -493,12 +578,28 @@ export default function MobiusExplorer() {
   // Pointer drag → manual rotation.
   const dragRef = useRef<{ active: boolean; x: number; y: number }>({ active: false, x: 0, y: 0 });
 
+  // Reduced motion: stop the auto-spin (also when the system setting changes
+  // while the page is open). Dragging still rotates the model.
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => {
+      if (m.matches) setAutoSpin(false);
+    };
+    on();
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     let raf = 0;
     let stopped = false;
+    // Without this, the pause since the last frame would be applied as one
+    // big rotation jump when auto-spin is switched back on.
+    lastT.current = 0;
 
     const render = (now: number) => {
       if (stopped) return;
@@ -553,99 +654,78 @@ export default function MobiusExplorer() {
       // Collect every triangle, project, sort by depth, draw.
       const tris: ProjectedTri[] = [];
 
-      // Cut threshold — for k=1 the strip lives in v ∈ [-w, w] and we cut at
-      // v = ±cutRatio·w (symmetric so the cut traverses around twice and only
-      // closes after two laps). For Klein mode we don't cut.
-      const cutAbs = cutRatio * w;
-      // The "reveal" mode separates the two cut groups by sliding them apart
-      // perpendicular to the cut. We use a small offset along the local
-      // ribbon-frame y-axis (≈ world z direction after rotation) so the user
-      // can read the resulting linked rings.
-      const revealShift = reveal && cutRatio > 0.001 ? 0.35 : 0;
+      // For k = 1 the strip lives in v ∈ [-w, w] and an offset cut runs along
+      // v = ±cutRatio·w: one curve that only closes after two laps. The Klein
+      // bottle is never cut.
+      const bands: Band[] = kleinMode
+        ? [{ v0: 0, v1: TAU, group: 0, n: Nv }]
+        : mobiusBands(w, cutRatio * w, centreCut, reveal);
 
       for (let i = 0; i < Nu; i++) {
-        for (let j = 0; j < Nv; j++) {
-          const u0 = (i / Nu) * TAU;
-          const u1 = ((i + 1) / Nu) * TAU;
+        const u0 = (i / Nu) * TAU;
+        const u1 = ((i + 1) / Nu) * TAU;
+        for (const band of bands) {
+          for (let j = 0; j < band.n; j++) {
+            const v0 = band.v0 + (j / band.n) * (band.v1 - band.v0);
+            const v1 = band.v0 + ((j + 1) / band.n) * (band.v1 - band.v0);
+            const group = band.group;
 
-          // Domain in v depends on mode.
-          const vMin = kleinMode ? 0 : -w;
-          const vMax = kleinMode ? TAU : w;
-          const v0 = vMin + (j / Nv) * (vMax - vMin);
-          const v1 = vMin + ((j + 1) / Nv) * (vMax - vMin);
+            // Sample the four corners.
+            const pA: Vec3 = kleinMode ? kleinPoint(u0, v0, aKlein) : mobiusPoint(u0, v0, k, R);
+            const pB: Vec3 = kleinMode ? kleinPoint(u1, v0, aKlein) : mobiusPoint(u1, v0, k, R);
+            const pC: Vec3 = kleinMode ? kleinPoint(u1, v1, aKlein) : mobiusPoint(u1, v1, k, R);
+            const pD: Vec3 = kleinMode ? kleinPoint(u0, v1, aKlein) : mobiusPoint(u0, v1, k, R);
 
-          // Cut grouping for the Möbius strip.
-          let group: 0 | 1 | 2 = 0;
-          if (!kleinMode && cutAbs > 0.0005) {
-            const vc = (v0 + v1) / 2;
-            group = Math.abs(vc) < cutAbs ? 1 : 2;
-          }
+            // Two triangles per quad.
+            const tA = [pA, pB, pC] as const;
+            const tB = [pA, pC, pD] as const;
 
-          // Sample the four corners.
-          const pA: Vec3 = kleinMode ? kleinPoint(u0, v0, aKlein) : mobiusPoint(u0, v0, k, R);
-          const pB: Vec3 = kleinMode ? kleinPoint(u1, v0, aKlein) : mobiusPoint(u1, v0, k, R);
-          const pC: Vec3 = kleinMode ? kleinPoint(u1, v1, aKlein) : mobiusPoint(u1, v1, k, R);
-          const pD: Vec3 = kleinMode ? kleinPoint(u0, v1, aKlein) : mobiusPoint(u0, v1, k, R);
+            for (const tri of [tA, tB]) {
+              const [p0, p1, p2] = tri;
 
-          // Reveal-cut shift: slide groups apart along world z.
-          const shift = revealShift * (group === 1 ? 1 : group === 2 ? -1 : 0);
-          const shifted = (p: Vec3): Vec3 => [p[0], p[1], p[2] + shift];
+              // Rotate into camera space.
+              const r0 = rotate(p0, rx, ry, rz);
+              const r1 = rotate(p1, rx, ry, rz);
+              const r2 = rotate(p2, rx, ry, rz);
 
-          const qA = shifted(pA);
-          const qB = shifted(pB);
-          const qC = shifted(pC);
-          const qD = shifted(pD);
+              // Camera-space face normal.
+              const n = norm(cross(sub(r1, r0), sub(r2, r0)));
+              // Light dot normal, signed; we render both sides, so use |·|.
+              const ldot = dot(n, light);
+              const shade = 0.18 + 0.82 * Math.max(0, Math.abs(ldot));
 
-          // Two triangles per quad.
-          const tA = [qA, qB, qC] as const;
-          const tB = [qA, qC, qD] as const;
+              // Project.
+              const z0c = r0[2] + camZ;
+              const z1c = r1[2] + camZ;
+              const z2c = r2[2] + camZ;
+              if (z0c <= 0.05 || z1c <= 0.05 || z2c <= 0.05) continue;
+              const ax = cx + (r0[0] * focal) / z0c;
+              const ay = cyScr - (r0[1] * focal) / z0c;
+              const bx = cx + (r1[0] * focal) / z1c;
+              const by = cyScr - (r1[1] * focal) / z1c;
+              const cxs = cx + (r2[0] * focal) / z2c;
+              const cys = cyScr - (r2[1] * focal) / z2c;
 
-          for (const tri of [tA, tB]) {
-            const [p0, p1, p2] = tri;
+              const zAvg = (z0c + z1c + z2c) / 3;
 
-            // Rotate into camera space.
-            const r0 = rotate(p0, rx, ry, rz);
-            const r1 = rotate(p1, rx, ry, rz);
-            const r2 = rotate(p2, rx, ry, rz);
+              // Hue along the length: 0 → 1 going around u. A plain position
+              // marker; the jump where u wraps is the parametrisation seam.
+              const hue = (i + 0.5) / Nu;
 
-            // Camera-space face normal.
-            const n = norm(cross(sub(r1, r0), sub(r2, r0)));
-            // Light dot normal — signed; we render both sides, so use |·|.
-            const ldot = dot(n, light);
-            const shade = 0.18 + 0.82 * Math.max(0, Math.abs(ldot));
-
-            // Project.
-            const z0c = r0[2] + camZ;
-            const z1c = r1[2] + camZ;
-            const z2c = r2[2] + camZ;
-            if (z0c <= 0.05 || z1c <= 0.05 || z2c <= 0.05) continue;
-            const ax = cx + (r0[0] * focal) / z0c;
-            const ay = cyScr - (r0[1] * focal) / z0c;
-            const bx = cx + (r1[0] * focal) / z1c;
-            const by = cyScr - (r1[1] * focal) / z1c;
-            const cxs = cx + (r2[0] * focal) / z2c;
-            const cys = cyScr - (r2[1] * focal) / z2c;
-
-            const zAvg = (z0c + z1c + z2c) / 3;
-
-            // Hue along the length: 0 → 1 going around u. For the Möbius
-            // strip this is the point — walk the surface once and the colour
-            // hits the opposite end without ever leaving the surface.
-            const hue = (i + 0.5) / Nu;
-
-            tris.push({
-              ax,
-              ay,
-              bx,
-              by,
-              cx: cxs,
-              cy: cys,
-              z: zAvg,
-              shade,
-              hue,
-              facingFront: ldot >= 0,
-              cutGroup: group,
-            });
+              tris.push({
+                ax,
+                ay,
+                bx,
+                by,
+                cx: cxs,
+                cy: cys,
+                z: zAvg,
+                shade,
+                hue,
+                facingFront: ldot >= 0,
+                cutGroup: group,
+              });
+            }
           }
         }
       }
@@ -688,15 +768,28 @@ export default function MobiusExplorer() {
       ctx.fillStyle = "rgba(167,139,250,0.85)";
       ctx.font = `${12}px ui-monospace, monospace`;
       ctx.fillText(kleinMode ? t.hudKlein : t.hudMobius(halfTwists), 14, 22);
-      if (!kleinMode && cutRatio > 0.001) {
+      if (!kleinMode && centreCut) {
+        ctx.fillStyle = "rgba(255,209,102,0.85)";
+        ctx.fillText(t.hudCentreCut, 14, 40);
+      } else if (!kleinMode && cutRatio > 0.001) {
         ctx.fillStyle = "rgba(255,209,102,0.85)";
         ctx.fillText(t.hudCut((cutRatio * width).toFixed(3), reveal), 14, 40);
       }
 
-      raf = requestAnimationFrame(render);
+      // Only keep a frame loop alive while something moves on its own.
+      if (autoSpin) raf = requestAnimationFrame(render);
     };
 
+    // With auto-spin off the canvas is static: draw one frame now and again
+    // whenever a drag or a resize changes what should be visible.
+    const redraw = () => {
+      if (autoSpin || stopped) return;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(render);
+    };
     raf = requestAnimationFrame(render);
+    const ro = new ResizeObserver(redraw);
+    ro.observe(canvas);
 
     const onDown = (e: PointerEvent) => {
       dragRef.current = { active: true, x: e.clientX, y: e.clientY };
@@ -713,6 +806,7 @@ export default function MobiusExplorer() {
         y: rotRef.current.y + dxp * 0.005,
         z: rotRef.current.z,
       };
+      redraw();
     };
     const onUp = (e: PointerEvent) => {
       dragRef.current = { active: false, x: 0, y: 0 };
@@ -730,20 +824,27 @@ export default function MobiusExplorer() {
     return () => {
       stopped = true;
       cancelAnimationFrame(raf);
+      ro.disconnect();
       canvas.removeEventListener("pointerdown", onDown);
       canvas.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerup", onUp);
       canvas.removeEventListener("pointercancel", onUp);
     };
-  }, [autoSpin, spinSpeed, width, halfTwists, cutRatio, reveal, kleinMode, t]);
+  }, [autoSpin, spinSpeed, width, halfTwists, cutRatio, centreCut, reveal, kleinMode, t]);
 
-  // Preset cuts. 0.5 → middle (the famous "still one piece" cut); 1/3 →
-  // interlocked pair; 1/4 → similar interlocked pair, just thinner. Labels &
-  // result strings come from the per-locale `t.cutPresets` table, paired by
-  // index with these ratios.
-  const CUT_RATIOS: ReadonlyArray<number> = [0.5, 0.333, 0.25, 0.0];
-  const CUT_PRESETS = CUT_RATIOS.map((ratio, i) => ({
-    ratio,
+  // Preset cuts, paired by index with the per-locale `t.cutPresets` table.
+  // Centre line: one piece (a two-sided band, twice as long, two full twists).
+  // Ratio 1/3 and 1/4: the cut runs at v = ±ratio·w, so the amber middle piece
+  // is a Möbius strip a third (a quarter) of the full width, linked with one
+  // band twice as long. These results hold for one half-twist only, which is
+  // why the result line is hidden for other k.
+  const CUT_PRESETS = [
+    { ratio: 0, centre: true },
+    { ratio: 1 / 3, centre: false },
+    { ratio: 0.25, centre: false },
+    { ratio: 0, centre: false },
+  ].map((preset, i) => ({
+    ...preset,
     label: t.cutPresets[i].label,
     result: t.cutPresets[i].result,
   }));
@@ -756,10 +857,13 @@ export default function MobiusExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {kleinMode ? t.badgeKlein : t.badgeMobius}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              {kleinMode
-                ? "(a + cos u/2 sin v − sin u/2 sin 2v) · (cos u, sin u)"
-                : "(R + v cos(ku/2)) (cos u, sin u),  v sin(ku/2)"}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                {kleinMode
+                  ? "(a + cos u/2 sin v − sin u/2 sin 2v) · (cos u, sin u)"
+                  : "(R + v cos(ku/2)) (cos u, sin u),  v sin(ku/2)"}
+              </div>
+              <ExplorerHelpButton guide={MOBIUS_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 touch-none overflow-hidden rounded-2xl border bg-ink-950">
@@ -914,27 +1018,35 @@ export default function MobiusExplorer() {
               min={0}
               max={0.5}
               step={0.005}
-              onChange={(e) => setCutRatio(parseFloat(e.target.value))}
+              onChange={(e) => {
+                setCentreCut(false);
+                setCutRatio(parseFloat(e.target.value));
+              }}
               className="w-full accent-signal-amber"
             />
             <div className="text-right font-mono text-[10px] text-ink-400">
-              v = ±{cutRatio.toFixed(3)} · w
+              {centreCut ? "v = 0" : `v = ±${cutRatio.toFixed(3)} · w`}
             </div>
             <div className="grid grid-cols-2 gap-2">
               {CUT_PRESETS.map((p) => (
                 <button
                   key={p.label}
-                  onClick={() => setCutRatio(p.ratio)}
+                  onClick={() => {
+                    setCentreCut(p.centre);
+                    setCutRatio(p.ratio);
+                  }}
                   className={`rounded-md border px-3 py-2 text-left transition-colors ${
-                    Math.abs(cutRatio - p.ratio) < 0.01
+                    centreCut === p.centre && Math.abs(cutRatio - p.ratio) < 0.01
                       ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
                       : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100"
                   }`}
                 >
                   <div className="font-mono text-xs">{p.label}</div>
-                  <div className="mt-0.5 font-mono text-[10px] leading-snug text-ink-400">
-                    {p.result}
-                  </div>
+                  {halfTwists === 1 && (
+                    <div className="mt-0.5 font-mono text-[10px] leading-snug text-ink-400">
+                      {p.result}
+                    </div>
+                  )}
                 </button>
               ))}
             </div>
@@ -947,7 +1059,7 @@ export default function MobiusExplorer() {
                   : "hairline text-ink-200 hover:border-signal-amber/40 hover:text-ink-100 disabled:opacity-40 disabled:hover:border-ink-700/40 disabled:hover:text-ink-200"
               }`}
             >
-              {reveal ? t.resealing : t.revealCuts}
+              {reveal ? t.closeCut : t.openCut}
             </button>
           </div>
 
@@ -968,6 +1080,7 @@ export default function MobiusExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={MOBIUS_GUIDE} storyHref="/mobius" />
     </main>
   );
 }

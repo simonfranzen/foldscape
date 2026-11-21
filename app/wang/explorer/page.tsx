@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { WANG_GUIDE } from "@/lib/explorer-guides/wang";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -717,13 +719,16 @@ export default function WangExplorer() {
               {ex.matchLabel}
             </div>
           </div>
-          <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
+          <div className="hairline relative flex-1 overflow-hidden rounded-2xl border bg-ink-950">
             <canvas
               ref={canvasRef}
               className="block h-full w-full"
               role="img"
               aria-label={ex.canvasAria}
             />
+            <div className="pointer-events-none absolute right-3 top-3">
+              <ExplorerHelpButton guide={WANG_GUIDE} />
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             <Stat
@@ -871,6 +876,7 @@ export default function WangExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={WANG_GUIDE} storyHref="/wang" />
     </main>
   );
 }

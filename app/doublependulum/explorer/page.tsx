@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { DOUBLE_PENDULUM_GUIDE } from "@/lib/explorer-guides/doublependulum";
 
 interface PendulumState {
   th1: number;
@@ -638,9 +640,12 @@ export default function DoublePendulumExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               θ₁ = {readout.th1deg.toFixed(1)}° · θ₂ = {readout.th2deg.toFixed(1)}°
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-              E = {readout.energyVal.toFixed(2)}
-              {showGhost ? ` · Δ = ${readout.divergence.toFixed(2)} px` : ""}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
+                E = {readout.energyVal.toFixed(2)}
+                {showGhost ? ` · Δ = ${readout.divergence.toFixed(2)} px` : ""}
+              </div>
+              <ExplorerHelpButton guide={DOUBLE_PENDULUM_GUIDE} />
             </div>
           </div>
           {blowupHint && (
@@ -871,6 +876,7 @@ export default function DoublePendulumExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={DOUBLE_PENDULUM_GUIDE} storyHref="/doublependulum" />
     </main>
   );
 }

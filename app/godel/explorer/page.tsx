@@ -5,22 +5,24 @@ import { useMemo, useState } from "react";
 import { Formula } from "@/components/Formula";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { GODEL_GUIDE } from "@/lib/explorer-guides/godel";
 
 // ---------------------------------------------------------------------------
-// Gödel Explorer — a four-step walk through Gödel numbering and the
+// Gödel Explorer: a four-step walk through Gödel numbering and the
 // construction of the self-referential sentence G. The sidebar mirrors the
 // app/logistic/explorer layout: a topic header from a.topics.godel, a small
 // set of controls, and a back link. The main view animates between four
 // steps; each step is a self-contained panel.
 //
 // All visible prose lives in the inline EXPLORER: Record<Locale, RichExplorer>
-// dict below — same pattern used by app/banach/explorer/page.tsx.
+// dict below: same pattern used by app/banach/explorer/page.tsx.
 // ---------------------------------------------------------------------------
 
 const ACCENT = "text-signal-rose";
 
 // Compact alphabet for the demo. Real Gödel numberings vary across sources;
-// this one is illustrative — consistent enough to give honest numbers, small
+// this one is illustrative: consistent enough to give honest numbers, small
 // enough that a browser BigInt can hold the results of "0=0" and friends.
 // `meaningKey` is used to look up the per-locale label in RichExplorer.
 type MeaningKey =
@@ -59,7 +61,7 @@ const ALPHABET: Symbol[] = [
   { glyph: "x", meaningKey: "variable", code: 11 },
 ];
 
-// The first ten primes — enough for the longest formula on offer.
+// The first ten primes: enough for the longest formula on offer.
 const PRIMES = [2n, 3n, 5n, 7n, 11n, 13n, 17n, 19n, 23n, 29n];
 
 // Small set of formulae the user can encode. Each carries:
@@ -94,7 +96,7 @@ function lookupCode(glyph: string): number {
 }
 
 // Compute the Gödel number of a token sequence as ∏ pᵢ^codeᵢ. Use BigInt
-// because the values blow up quickly — even "0=S0" pushes past 10¹⁰.
+// because the values blow up quickly: even "0=S0" pushes past 10¹⁰.
 function godelNumber(tokens: string[]): bigint {
   let n = 1n;
   for (let i = 0; i < tokens.length; i++) {
@@ -122,7 +124,7 @@ type RichExplorer = {
   stepTitles: [string, string, string, string];
   stepProgress: (n: number) => string;
   meanings: Record<MeaningKey, string>;
-  formulaLabels: Record<FormulaLabelKey, string>; // e.g. "0 = 0  (true)" — the trailing tag translates
+  formulaLabels: Record<FormulaLabelKey, string>; // e.g. "0 = 0  (true)": the trailing tag translates
   // sidebar
   sidebarWalkLabel: string;
   sidebarStepBtn: string;
@@ -150,7 +152,7 @@ type RichExplorer = {
   step2Prime: string; // "prime"
   step2ProductLabel: string;
   step2GoedelLabel: string;
-  step2FooterAbout: string; // body in the box; we wire it as: "Every formula now has a number. Crucially, statements <about> formulas — like «x is a proof of y» — also become arithmetic predicates. The system can talk about itself."
+  step2FooterAbout: string; // body in the box; we wire it as: "Every formula now has a number. Crucially, statements <about> formulas: like «x is a proof of y»: also become arithmetic predicates. The system can talk about itself."
   step2FooterPre: string;
   step2FooterAboutWord: string; // the highlighted "about"
   step2FooterPost: string;
@@ -167,29 +169,36 @@ type RichExplorer = {
   step3SentenceLabel: string;
   step3InPlain: string; // "In plain language:"
   step3PlainQuote: string; // "«no natural number y is a proof of the formula with Gödel number ⌜G⌝»"
-  step3PlainTail: string; // " — and the formula with Gödel number ⌜G⌝ is G itself."
+  step3PlainTail: string; // ": and the formula with Gödel number ⌜G⌝ is G itself."
   step3LoopSentence: string;
   step3LoopSentenceCaption: string; // "«I am not provable»"
   step3DiagLemma: string;
   step3GoedelHash: string; // "Gödel #"
-  step3EncodesTo1: string; // "(the chosen formula here encodes to"
-  step3EncodesTo2: string; // ")"
-  step3FooterBody: string; // "G refers to itself through the Gödel number — there is no hidden magic, only arithmetic. Now ask: is G provable?"
+  // The box is headed ⌜G⌝ but the number in it is ⌜φ⌝ of the formula picked
+  // in step 2 (G itself is not expressible in the demo alphabet). These two
+  // strings must say so; a bare number under ⌜G⌝ reads as the code of G.
+  step3EncodesTo1: string; // "… For comparison, your formula from step 2 has ⌜φ⌝ = "
+  step3EncodesTo2: string; // "."
+  step3FooterBody: string; // "G refers to itself through the Gödel number: there is no hidden magic, only arithmetic. Now ask: is G provable?"
   // step 4
   step4Pretitle: string;
   step4Title: string;
   step4BranchA: string; // "Branch A · S ⊢ G"
   step4BranchAHead: string; // "If G is provable…"
-  step4BranchABodyPre: string; // "Then S proves a sentence that says «I have no proof». The proof we just produced is a counter-witness. S has proved a false statement: "
+  // Branch A must end in "S proves a sentence and its negation". Proving a
+  // false sentence alone would only make S unsound, not inconsistent.
+  step4BranchABodyPre: string; // "Then that proof has a Gödel number n … S proves a sentence and its negation: "
   step4BranchAHighlight: string; // "S is inconsistent"
   step4BranchABodyPost: string; // "."
-  step4BranchAArrow: string; // "⇒ contradiction."
+  step4BranchAArrow: string; // "⇒ a consistent S cannot prove G."
   step4BranchB: string; // "Branch B · S ⊬ G"
   step4BranchBHead: string; // "If G is not provable…"
   step4BranchBBodyPre: string; // "Then what G claims is exactly true. G is a "
   step4BranchBHighlight: string; // "true statement of arithmetic"
-  step4BranchBBodyPost: string; // " that S cannot prove — the First Incompleteness Theorem."
-  step4BranchBArrow: string; // "⇒ S is incomplete."
+  // Unprovability of G alone is not incompleteness: S must not prove ¬G
+  // either, which takes ω-consistency (Gödel 1931) or Rosser's sentence.
+  step4BranchBBodyPost: string; // " that S cannot prove. For incompleteness, S must not prove ¬G either. …"
+  step4BranchBArrow: string; // "⇒ S proves neither G nor ¬G: S is incomplete."
   step4SecondLabel: string;
   step4SecondBody: string;
   step4Footer: string;
@@ -236,7 +245,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "The alphabet of arithmetic",
     step1Title: "Give every symbol a number.",
     step1Body:
-      "Pick any reasonable convention. Here are eleven symbols of a simple arithmetic language, each assigned a natural number. Once symbols are numbers, sequences of symbols (i.e. formulae) are sequences of numbers — and any sequence of numbers can be packed into a single natural number.",
+      "Pick any reasonable convention. Here are eleven symbols of a simple arithmetic language, each assigned a natural number. Once symbols are numbers, sequences of symbols (i.e. formulae) are sequences of numbers, and any sequence of numbers can be packed into a single natural number.",
     step1Code: "code",
     step1Footer1: "Next: pick a small formula like ",
     step1Footer2: " or ",
@@ -253,11 +262,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2FooterPre: "Every formula now has a number. Crucially, statements ",
     step2FooterAboutWord: "about",
     step2FooterPost:
-      " formulas — like «x is a proof of y» — also become arithmetic predicates. The system can talk about itself.",
+      " formulas (like «x is a proof of y») also become arithmetic predicates. The system can talk about itself.",
     step3Pretitle: "The diagonal construction",
     step3Title: "Build a sentence that talks about its own number.",
     step3BodyPre:
-      "Gödel's diagonal lemma — a descendant of Cantor's 1891 diagonal argument — produces, for any predicate ",
+      "Gödel's diagonal lemma (a descendant of Cantor's 1891 diagonal argument) produces, for any predicate ",
     step3BodyP: "P(x)",
     step3BodyMid: ", a sentence ",
     step3BodyG: "G",
@@ -267,35 +276,37 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3SentenceLabel: "The sentence",
     step3InPlain: "In plain language: ",
     step3PlainQuote: "«no natural number y is a proof of the formula with Gödel number ⌜G⌝»",
-    step3PlainTail: " — and the formula with Gödel number ⌜G⌝ is G itself.",
+    step3PlainTail: ", and the formula with Gödel number ⌜G⌝ is G itself.",
     step3LoopSentence: "sentence",
     step3LoopSentenceCaption: "«I am not provable»",
     step3DiagLemma: "diagonal lemma",
     step3GoedelHash: "Gödel #",
-    step3EncodesTo1: "(the chosen formula here encodes to ",
-    step3EncodesTo2: ")",
+    step3EncodesTo1:
+      "A definite number, but not computed here: G written out in full is far too long. For comparison, your formula from step 2 has ⌜φ⌝ = ",
+    step3EncodesTo2: ".",
     step3FooterBody:
-      "G refers to itself through the Gödel number — there is no hidden magic, only arithmetic. Now ask: is G provable?",
+      "G refers to itself through the Gödel number: there is no hidden magic, only arithmetic. Now ask: is G provable?",
     step4Pretitle: "Both branches lead out of Hilbert's dream",
-    step4Title: "Provable, or unprovable — either way, incompleteness.",
+    step4Title: "Inconsistent or incomplete: there is no third option.",
     step4BranchA: "Branch A · S ⊢ G",
     step4BranchAHead: "If G is provable…",
     step4BranchABodyPre:
-      "Then S proves a sentence that says «I have no proof». The proof we just produced is a counter-witness. S has proved a false statement: ",
+      "Then that proof has a Gödel number n, and S can check it: S proves Prov(n, ⌜G⌝), so S proves ∃y Prov(y, ⌜G⌝). But G is equivalent in S to the negation of exactly that. S proves a sentence and its negation: ",
     step4BranchAHighlight: "S is inconsistent",
     step4BranchABodyPost: ".",
-    step4BranchAArrow: "⇒ contradiction.",
+    step4BranchAArrow: "⇒ a consistent S cannot prove G.",
     step4BranchB: "Branch B · S ⊬ G",
     step4BranchBHead: "If G is not provable…",
     step4BranchBBodyPre: "Then what G claims is exactly true. G is a ",
     step4BranchBHighlight: "true statement of arithmetic",
-    step4BranchBBodyPost: " that S cannot prove — the First Incompleteness Theorem.",
-    step4BranchBArrow: "⇒ S is incomplete.",
+    step4BranchBBodyPost:
+      " that S cannot prove. For incompleteness, S must not prove ¬G either. Gödel's 1931 proof gets this from ω-consistency, a stronger assumption; Rosser's variant of G (1936) needs only consistency.",
+    step4BranchBArrow: "⇒ S proves neither G nor ¬G: S is incomplete.",
     step4SecondLabel: "Second Incompleteness Theorem",
     step4SecondBody:
-      "Let Con(S) be the arithmetic sentence «S is consistent». If S could prove Con(S), then — by formalising the argument above inside S — S could also prove G. So no consistent S that is rich enough for arithmetic can prove its own consistency.",
+      "Let Con(S) be the arithmetic sentence «S is consistent». If S could prove Con(S), then (by formalising the argument above inside S) S could also prove G. So no consistent S that is rich enough for arithmetic can prove its own consistency.",
     step4Footer:
-      "Same diagonal trick reappears in Tarski's undefinability of truth (1933), Turing's halting problem (1936), and Church's undecidability of first-order logic (1936). Modern proof assistants — Coq, Lean, Isabelle — all operate under Gödel's bounds.",
+      "Same diagonal trick reappears in Tarski's undefinability of truth (1933), Turing's halting problem (1936), and Church's undecidability of first-order logic (1936). Modern proof assistants (Coq, Lean, Isabelle) all operate under Gödel's bounds.",
   },
   de: {
     stepTitles: [
@@ -337,7 +348,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "Das Alphabet der Arithmetik",
     step1Title: "Gib jedem Symbol eine Zahl.",
     step1Body:
-      "Wähle eine beliebige sinnvolle Konvention. Hier sind elf Symbole einer einfachen Arithmetik-Sprache, jedem ist eine natürliche Zahl zugeordnet. Sobald Symbole Zahlen sind, sind Folgen von Symbolen (also Formeln) Folgen von Zahlen — und jede Zahlenfolge lässt sich zu einer einzigen natürlichen Zahl zusammenpacken.",
+      "Wähle eine beliebige sinnvolle Konvention. Hier sind elf Symbole einer einfachen Arithmetik-Sprache, jedem ist eine natürliche Zahl zugeordnet. Sobald Symbole Zahlen sind, sind Folgen von Symbolen (also Formeln) Folgen von Zahlen, und jede Zahlenfolge lässt sich zu einer einzigen natürlichen Zahl zusammenpacken.",
     step1Code: "Code",
     step1Footer1: "Als Nächstes: Wähle eine kleine Formel wie ",
     step1Footer2: " oder ",
@@ -346,7 +357,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2TitleSuffix: " wird zu einer einzigen Zahl.",
     step2Body1:
       "Nimm die Symbol-Codes c₁, c₂, …, cₖ und potenziere die aufeinanderfolgenden Primzahlen damit: ",
-    step2Body2: " Die Primfaktorzerlegung ist eindeutig — die Kodierung ist also umkehrbar.",
+    step2Body2: " Die Primfaktorzerlegung ist eindeutig, die Kodierung ist also umkehrbar.",
     step2Code: "Code",
     step2Prime: "Primzahl",
     step2ProductLabel: "Produkt von Primzahlpotenzen",
@@ -355,11 +366,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2FooterPre: "Jede Formel hat jetzt eine Zahl. Entscheidend: auch Aussagen ",
     step2FooterAboutWord: "über",
     step2FooterPost:
-      " Formeln — etwa «x ist ein Beweis von y» — werden zu arithmetischen Prädikaten. Das System kann über sich selbst sprechen.",
+      " Formeln (etwa «x ist ein Beweis von y») werden zu arithmetischen Prädikaten. Das System kann über sich selbst sprechen.",
     step3Pretitle: "Die diagonale Konstruktion",
     step3Title: "Baue einen Satz, der über seine eigene Zahl spricht.",
     step3BodyPre:
-      "Gödels Diagonal-Lemma — ein Nachfahre von Cantors Diagonal-Argument von 1891 — liefert für jedes Prädikat ",
+      "Gödels Diagonal-Lemma (ein Nachfahre von Cantors Diagonal-Argument von 1891) liefert für jedes Prädikat ",
     step3BodyP: "P(x)",
     step3BodyMid: " einen Satz ",
     step3BodyG: "G",
@@ -369,35 +380,37 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3SentenceLabel: "Der Satz",
     step3InPlain: "Im Klartext: ",
     step3PlainQuote: "«keine natürliche Zahl y ist ein Beweis der Formel mit Gödel-Zahl ⌜G⌝»",
-    step3PlainTail: " — und die Formel mit Gödel-Zahl ⌜G⌝ ist G selbst.",
+    step3PlainTail: ", und die Formel mit Gödel-Zahl ⌜G⌝ ist G selbst.",
     step3LoopSentence: "Satz",
     step3LoopSentenceCaption: "«Ich bin nicht beweisbar»",
     step3DiagLemma: "Diagonal-Lemma",
     step3GoedelHash: "Gödel-Nr.",
-    step3EncodesTo1: "(die hier gewählte Formel kodiert sich zu ",
-    step3EncodesTo2: ")",
+    step3EncodesTo1:
+      "Eine bestimmte Zahl, die hier aber nicht berechnet wird: G ist ausgeschrieben viel zu lang. Zum Vergleich: Deine Formel aus Schritt 2 hat ⌜φ⌝ = ",
+    step3EncodesTo2: ".",
     step3FooterBody:
-      "G verweist über die Gödel-Zahl auf sich selbst — keine verborgene Magie, nur Arithmetik. Jetzt die Frage: Ist G beweisbar?",
+      "G verweist über die Gödel-Zahl auf sich selbst: keine verborgene Magie, nur Arithmetik. Jetzt die Frage: Ist G beweisbar?",
     step4Pretitle: "Beide Zweige führen aus Hilberts Traum heraus",
-    step4Title: "Beweisbar oder unbeweisbar — so oder so: Unvollständigkeit.",
+    step4Title: "Inkonsistent oder unvollständig: Eine dritte Möglichkeit gibt es nicht.",
     step4BranchA: "Zweig A · S ⊢ G",
     step4BranchAHead: "Wenn G beweisbar ist…",
     step4BranchABodyPre:
-      "Dann beweist S einen Satz, der sagt «Ich habe keinen Beweis». Der eben gefundene Beweis ist ein Gegenzeuge. S hat eine falsche Aussage bewiesen: ",
+      "Dann hat dieser Beweis eine Gödel-Zahl n, und S kann ihn nachprüfen: S beweist Prov(n, ⌜G⌝), also auch ∃y Prov(y, ⌜G⌝). G ist in S aber äquivalent zur Verneinung genau davon. S beweist einen Satz und seine Verneinung: ",
     step4BranchAHighlight: "S ist inkonsistent",
     step4BranchABodyPost: ".",
-    step4BranchAArrow: "⇒ Widerspruch.",
+    step4BranchAArrow: "⇒ ein konsistentes S kann G nicht beweisen.",
     step4BranchB: "Zweig B · S ⊬ G",
     step4BranchBHead: "Wenn G nicht beweisbar ist…",
     step4BranchBBodyPre: "Dann ist genau das, was G behauptet, wahr. G ist eine ",
     step4BranchBHighlight: "wahre arithmetische Aussage",
-    step4BranchBBodyPost: ", die S nicht beweisen kann — der Erste Unvollständigkeitssatz.",
-    step4BranchBArrow: "⇒ S ist unvollständig.",
+    step4BranchBBodyPost:
+      ", die S nicht beweisen kann. Für die Unvollständigkeit darf S auch ¬G nicht beweisen. Gödels Beweis von 1931 folgert das aus der ω-Konsistenz, einer stärkeren Annahme; Rossers Variante von G (1936) kommt mit bloßer Konsistenz aus.",
+    step4BranchBArrow: "⇒ S beweist weder G noch ¬G: S ist unvollständig.",
     step4SecondLabel: "Zweiter Unvollständigkeitssatz",
     step4SecondBody:
-      "Sei Con(S) der arithmetische Satz «S ist konsistent». Könnte S Con(S) beweisen, dann — durch Formalisierung des obigen Arguments innerhalb von S — könnte S auch G beweisen. Also kann kein konsistentes S, das reich genug für die Arithmetik ist, seine eigene Konsistenz beweisen.",
+      "Sei Con(S) der arithmetische Satz «S ist konsistent». Könnte S Con(S) beweisen, dann (durch Formalisierung des obigen Arguments innerhalb von S) könnte S auch G beweisen. Also kann kein konsistentes S, das reich genug für die Arithmetik ist, seine eigene Konsistenz beweisen.",
     step4Footer:
-      "Derselbe Diagonaltrick taucht wieder auf in Tarskis Undefinierbarkeit der Wahrheit (1933), Turings Halteproblem (1936) und Churchs Unentscheidbarkeit der Prädikatenlogik (1936). Moderne Beweisassistenten — Coq, Lean, Isabelle — arbeiten alle innerhalb von Gödels Schranken.",
+      "Derselbe Diagonaltrick taucht wieder auf in Tarskis Undefinierbarkeit der Wahrheit (1933), Turings Halteproblem (1936) und Churchs Unentscheidbarkeit der Prädikatenlogik (1936). Moderne Beweisassistenten (Coq, Lean, Isabelle) arbeiten alle innerhalb von Gödels Schranken.",
   },
   es: {
     stepTitles: [
@@ -439,7 +452,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "El alfabeto de la aritmética",
     step1Title: "Dale un número a cada símbolo.",
     step1Body:
-      "Elige cualquier convención razonable. Aquí tienes once símbolos de un lenguaje aritmético simple, cada uno con un número natural asignado. Una vez que los símbolos son números, las secuencias de símbolos (las fórmulas) son secuencias de números — y toda secuencia de números puede empaquetarse en un único número natural.",
+      "Elige cualquier convención razonable. Aquí tienes once símbolos de un lenguaje aritmético simple, cada uno con un número natural asignado. Una vez que los símbolos son números, las secuencias de símbolos (las fórmulas) son secuencias de números, y toda secuencia de números puede empaquetarse en un único número natural.",
     step1Code: "código",
     step1Footer1: "A continuación: elige una pequeña fórmula como ",
     step1Footer2: " o ",
@@ -448,7 +461,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2TitleSuffix: " se convierte en un único número.",
     step2Body1:
       "Toma los códigos de los símbolos c₁, c₂, …, cₖ y eleva primos consecutivos a ellos: ",
-    step2Body2: " La factorización en primos es única — así que la codificación es reversible.",
+    step2Body2: " La factorización en primos es única, así que la codificación es reversible.",
     step2Code: "código",
     step2Prime: "primo",
     step2ProductLabel: "Producto de potencias de primos",
@@ -457,11 +470,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2FooterPre: "Ahora toda fórmula tiene un número. Lo crucial: las afirmaciones ",
     step2FooterAboutWord: "sobre",
     step2FooterPost:
-      " fórmulas — como «x es una demostración de y» — también se vuelven predicados aritméticos. El sistema puede hablar de sí mismo.",
+      " fórmulas (como «x es una demostración de y») también se vuelven predicados aritméticos. El sistema puede hablar de sí mismo.",
     step3Pretitle: "La construcción diagonal",
     step3Title: "Construye una sentencia que habla de su propio número.",
     step3BodyPre:
-      "El lema diagonal de Gödel — descendiente del argumento diagonal de Cantor de 1891 — produce, para cualquier predicado ",
+      "El lema diagonal de Gödel (descendiente del argumento diagonal de Cantor de 1891) produce, para cualquier predicado ",
     step3BodyP: "P(x)",
     step3BodyMid: ", una sentencia ",
     step3BodyG: "G",
@@ -472,35 +485,37 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3InPlain: "En lenguaje llano: ",
     step3PlainQuote:
       "«ningún número natural y es una demostración de la fórmula con número de Gödel ⌜G⌝»",
-    step3PlainTail: " — y la fórmula con número de Gödel ⌜G⌝ es G misma.",
+    step3PlainTail: ", y la fórmula con número de Gödel ⌜G⌝ es G misma.",
     step3LoopSentence: "sentencia",
     step3LoopSentenceCaption: "«No soy demostrable»",
     step3DiagLemma: "lema diagonal",
     step3GoedelHash: "Nº Gödel",
-    step3EncodesTo1: "(la fórmula elegida aquí se codifica como ",
-    step3EncodesTo2: ")",
+    step3EncodesTo1:
+      "Un número concreto, pero aquí no se calcula: G escrita por completo es demasiado larga. Para comparar: tu fórmula del paso 2 tiene ⌜φ⌝ = ",
+    step3EncodesTo2: ".",
     step3FooterBody:
-      "G se refiere a sí misma a través del número de Gödel — no hay magia oculta, solo aritmética. Ahora pregunta: ¿es G demostrable?",
+      "G se refiere a sí misma a través del número de Gödel: no hay magia oculta, solo aritmética. Ahora pregunta: ¿es G demostrable?",
     step4Pretitle: "Ambas ramas salen del sueño de Hilbert",
-    step4Title: "Demostrable o indemostrable — de un modo u otro, incompletud.",
+    step4Title: "Inconsistente o incompleto: no hay tercera opción.",
     step4BranchA: "Rama A · S ⊢ G",
     step4BranchAHead: "Si G es demostrable…",
     step4BranchABodyPre:
-      "Entonces S demuestra una sentencia que dice «no tengo demostración». La demostración que acabamos de producir es un contratestigo. S ha demostrado una afirmación falsa: ",
+      "Entonces esa demostración tiene un número de Gödel n, y S puede comprobarla: S demuestra Prov(n, ⌜G⌝) y, por tanto, ∃y Prov(y, ⌜G⌝). Pero G equivale en S a la negación de exactamente eso. S demuestra una sentencia y su negación: ",
     step4BranchAHighlight: "S es inconsistente",
     step4BranchABodyPost: ".",
-    step4BranchAArrow: "⇒ contradicción.",
+    step4BranchAArrow: "⇒ un S consistente no puede demostrar G.",
     step4BranchB: "Rama B · S ⊬ G",
     step4BranchBHead: "Si G no es demostrable…",
     step4BranchBBodyPre: "Entonces lo que G afirma es exactamente verdadero. G es una ",
     step4BranchBHighlight: "afirmación aritmética verdadera",
-    step4BranchBBodyPost: " que S no puede demostrar — el Primer Teorema de Incompletud.",
-    step4BranchBArrow: "⇒ S es incompleto.",
+    step4BranchBBodyPost:
+      " que S no puede demostrar. Para la incompletud, S tampoco debe demostrar ¬G. La demostración de Gödel de 1931 lo obtiene de la ω-consistencia, una hipótesis más fuerte; la variante de G de Rosser (1936) solo necesita la consistencia.",
+    step4BranchBArrow: "⇒ S no demuestra ni G ni ¬G: S es incompleto.",
     step4SecondLabel: "Segundo Teorema de Incompletud",
     step4SecondBody:
-      "Sea Con(S) la sentencia aritmética «S es consistente». Si S pudiera demostrar Con(S), entonces — formalizando el argumento anterior dentro de S — S también podría demostrar G. Así que ningún S consistente lo bastante rico para la aritmética puede demostrar su propia consistencia.",
+      "Sea Con(S) la sentencia aritmética «S es consistente». Si S pudiera demostrar Con(S), entonces (formalizando el argumento anterior dentro de S) S también podría demostrar G. Así que ningún S consistente lo bastante rico para la aritmética puede demostrar su propia consistencia.",
     step4Footer:
-      "El mismo truco diagonal reaparece en la indefinibilidad de la verdad de Tarski (1933), el problema de la parada de Turing (1936) y la indecidibilidad de la lógica de primer orden de Church (1936). Los modernos asistentes de demostración — Coq, Lean, Isabelle — operan todos dentro de los límites de Gödel.",
+      "El mismo truco diagonal reaparece en la indefinibilidad de la verdad de Tarski (1933), el problema de la parada de Turing (1936) y la indecidibilidad de la lógica de primer orden de Church (1936). Los modernos asistentes de demostración (Coq, Lean, Isabelle) operan todos dentro de los límites de Gödel.",
   },
   fr: {
     stepTitles: [
@@ -542,7 +557,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "L'alphabet de l'arithmétique",
     step1Title: "Donne un nombre à chaque symbole.",
     step1Body:
-      "Choisis une convention raisonnable. Voici onze symboles d'un langage arithmétique simple, chacun associé à un nombre entier. Une fois que les symboles sont des nombres, les suites de symboles (c'est-à-dire les formules) sont des suites de nombres — et toute suite de nombres peut être empaquetée en un seul nombre entier.",
+      "Choisis une convention raisonnable. Voici onze symboles d'un langage arithmétique simple, chacun associé à un nombre entier. Une fois que les symboles sont des nombres, les suites de symboles (c'est-à-dire les formules) sont des suites de nombres, et toute suite de nombres peut être empaquetée en un seul nombre entier.",
     step1Code: "code",
     step1Footer1: "Ensuite : choisis une petite formule comme ",
     step1Footer2: " ou ",
@@ -551,7 +566,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2TitleSuffix: " devient un seul nombre.",
     step2Body1:
       "Prends les codes des symboles c₁, c₂, …, cₖ et élève les nombres premiers consécutifs à ces puissances : ",
-    step2Body2: " La factorisation en nombres premiers est unique — le codage est donc réversible.",
+    step2Body2: " La factorisation en nombres premiers est unique, le codage est donc réversible.",
     step2Code: "code",
     step2Prime: "premier",
     step2ProductLabel: "Produit de puissances de premiers",
@@ -560,11 +575,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2FooterPre: "Chaque formule a maintenant un nombre. Crucial : les énoncés ",
     step2FooterAboutWord: "sur",
     step2FooterPost:
-      " les formules — comme «x est une preuve de y» — deviennent eux aussi des prédicats arithmétiques. Le système peut parler de lui-même.",
+      " les formules (comme «x est une preuve de y») deviennent eux aussi des prédicats arithmétiques. Le système peut parler de lui-même.",
     step3Pretitle: "La construction diagonale",
     step3Title: "Construire un énoncé qui parle de son propre nombre.",
     step3BodyPre:
-      "Le lemme de diagonalisation de Gödel — descendant de l'argument diagonal de Cantor de 1891 — produit, pour tout prédicat ",
+      "Le lemme de diagonalisation de Gödel (descendant de l'argument diagonal de Cantor de 1891) produit, pour tout prédicat ",
     step3BodyP: "P(x)",
     step3BodyMid: ", un énoncé ",
     step3BodyG: "G",
@@ -575,35 +590,37 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3InPlain: "En langage clair : ",
     step3PlainQuote:
       "«aucun nombre entier y n'est une preuve de la formule de nombre de Gödel ⌜G⌝»",
-    step3PlainTail: " — et la formule de nombre de Gödel ⌜G⌝ est G elle-même.",
+    step3PlainTail: ", et la formule de nombre de Gödel ⌜G⌝ est G elle-même.",
     step3LoopSentence: "énoncé",
     step3LoopSentenceCaption: "«Je ne suis pas prouvable»",
     step3DiagLemma: "lemme diagonal",
     step3GoedelHash: "n° Gödel",
-    step3EncodesTo1: "(la formule choisie ici se code en ",
-    step3EncodesTo2: ")",
+    step3EncodesTo1:
+      "Un nombre bien défini, mais non calculé ici : G écrite en entier est bien trop longue. À titre de comparaison, ta formule de l'étape 2 a ⌜φ⌝ = ",
+    step3EncodesTo2: ".",
     step3FooterBody:
-      "G se réfère à elle-même via le nombre de Gödel — pas de magie cachée, juste de l'arithmétique. Maintenant la question : G est-elle prouvable ?",
+      "G se réfère à elle-même via le nombre de Gödel : pas de magie cachée, juste de l'arithmétique. Maintenant la question : G est-elle prouvable ?",
     step4Pretitle: "Les deux branches sortent du rêve de Hilbert",
-    step4Title: "Prouvable ou non prouvable — quoi qu'il arrive, incomplétude.",
+    step4Title: "Inconsistant ou incomplet : il n'y a pas de troisième option.",
     step4BranchA: "Branche A · S ⊢ G",
     step4BranchAHead: "Si G est prouvable…",
     step4BranchABodyPre:
-      "Alors S prouve un énoncé qui dit «je n'ai pas de preuve». La preuve qu'on vient de produire est un contre-témoin. S a prouvé une affirmation fausse : ",
+      "Alors cette preuve a un nombre de Gödel n, et S peut la vérifier : S prouve Prov(n, ⌜G⌝), donc ∃y Prov(y, ⌜G⌝). Or G équivaut dans S à la négation de cela, exactement. S prouve un énoncé et sa négation : ",
     step4BranchAHighlight: "S est inconsistant",
     step4BranchABodyPost: ".",
-    step4BranchAArrow: "⇒ contradiction.",
+    step4BranchAArrow: "⇒ un S consistant ne peut pas prouver G.",
     step4BranchB: "Branche B · S ⊬ G",
     step4BranchBHead: "Si G n'est pas prouvable…",
     step4BranchBBodyPre: "Alors ce que G affirme est exactement vrai. G est un ",
     step4BranchBHighlight: "énoncé arithmétique vrai",
-    step4BranchBBodyPost: " que S ne peut pas prouver — le Premier Théorème d'incomplétude.",
-    step4BranchBArrow: "⇒ S est incomplet.",
+    step4BranchBBodyPost:
+      " que S ne peut pas prouver. Pour l'incomplétude, S ne doit pas non plus prouver ¬G. La preuve de Gödel de 1931 l'obtient de l'ω-consistance, une hypothèse plus forte ; la variante de G due à Rosser (1936) ne demande que la consistance.",
+    step4BranchBArrow: "⇒ S ne prouve ni G ni ¬G : S est incomplet.",
     step4SecondLabel: "Second Théorème d'incomplétude",
     step4SecondBody:
-      "Soit Con(S) l'énoncé arithmétique «S est consistant». Si S pouvait prouver Con(S), alors — en formalisant l'argument précédent à l'intérieur de S — S pourrait aussi prouver G. Donc aucun S consistant assez riche pour l'arithmétique ne peut prouver sa propre consistance.",
+      "Soit Con(S) l'énoncé arithmétique «S est consistant». Si S pouvait prouver Con(S), alors (en formalisant l'argument précédent à l'intérieur de S) S pourrait aussi prouver G. Donc aucun S consistant assez riche pour l'arithmétique ne peut prouver sa propre consistance.",
     step4Footer:
-      "Le même tour diagonal réapparaît dans l'indéfinissabilité de la vérité de Tarski (1933), le problème de l'arrêt de Turing (1936) et l'indécidabilité de la logique du premier ordre de Church (1936). Les assistants de preuve modernes — Coq, Lean, Isabelle — opèrent tous dans les bornes de Gödel.",
+      "Le même tour diagonal réapparaît dans l'indéfinissabilité de la vérité de Tarski (1933), le problème de l'arrêt de Turing (1936) et l'indécidabilité de la logique du premier ordre de Church (1936). Les assistants de preuve modernes (Coq, Lean, Isabelle) opèrent tous dans les bornes de Gödel.",
   },
   it: {
     stepTitles: [
@@ -645,7 +662,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "L'alfabeto dell'aritmetica",
     step1Title: "Dài un numero a ogni simbolo.",
     step1Body:
-      "Scegli una convenzione qualsiasi. Ecco undici simboli di un semplice linguaggio aritmetico, a ciascuno è assegnato un numero naturale. Una volta che i simboli sono numeri, le sequenze di simboli (cioè le formule) sono sequenze di numeri — e ogni sequenza di numeri può essere impacchettata in un unico numero naturale.",
+      "Scegli una convenzione qualsiasi. Ecco undici simboli di un semplice linguaggio aritmetico, a ciascuno è assegnato un numero naturale. Una volta che i simboli sono numeri, le sequenze di simboli (cioè le formule) sono sequenze di numeri, e ogni sequenza di numeri può essere impacchettata in un unico numero naturale.",
     step1Code: "codice",
     step1Footer1: "Prossimo passo: scegli una piccola formula come ",
     step1Footer2: " o ",
@@ -654,7 +671,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2TitleSuffix: " diventa un singolo numero.",
     step2Body1:
       "Prendi i codici dei simboli c₁, c₂, …, cₖ ed eleva i primi consecutivi a quelle potenze: ",
-    step2Body2: " La fattorizzazione in primi è unica — la codifica è quindi reversibile.",
+    step2Body2: " La fattorizzazione in primi è unica, la codifica è quindi reversibile.",
     step2Code: "codice",
     step2Prime: "primo",
     step2ProductLabel: "Prodotto di potenze di primi",
@@ -663,11 +680,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2FooterPre: "Ora ogni formula ha un numero. Soprattutto, gli enunciati ",
     step2FooterAboutWord: "sulle",
     step2FooterPost:
-      " formule — come «x è una dimostrazione di y» — diventano anch'essi predicati aritmetici. Il sistema può parlare di sé stesso.",
+      " formule (come «x è una dimostrazione di y») diventano anch'essi predicati aritmetici. Il sistema può parlare di sé stesso.",
     step3Pretitle: "La costruzione diagonale",
     step3Title: "Costruisci un enunciato che parla del proprio numero.",
     step3BodyPre:
-      "Il lemma diagonale di Gödel — discendente dell'argomento diagonale di Cantor del 1891 — produce, per ogni predicato ",
+      "Il lemma diagonale di Gödel (discendente dell'argomento diagonale di Cantor del 1891) produce, per ogni predicato ",
     step3BodyP: "P(x)",
     step3BodyMid: ", un enunciato ",
     step3BodyG: "G",
@@ -678,35 +695,37 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3InPlain: "In parole semplici: ",
     step3PlainQuote:
       "«nessun numero naturale y è una dimostrazione della formula con numero di Gödel ⌜G⌝»",
-    step3PlainTail: " — e la formula con numero di Gödel ⌜G⌝ è G stessa.",
+    step3PlainTail: ", e la formula con numero di Gödel ⌜G⌝ è G stessa.",
     step3LoopSentence: "enunciato",
     step3LoopSentenceCaption: "«Non sono dimostrabile»",
     step3DiagLemma: "lemma diagonale",
     step3GoedelHash: "n. Gödel",
-    step3EncodesTo1: "(la formula scelta qui si codifica come ",
-    step3EncodesTo2: ")",
+    step3EncodesTo1:
+      "Un numero ben preciso, ma qui non viene calcolato: G scritta per esteso è troppo lunga. Per confronto: la tua formula del passo 2 ha ⌜φ⌝ = ",
+    step3EncodesTo2: ".",
     step3FooterBody:
-      "G si riferisce a sé stessa attraverso il numero di Gödel — niente magia nascosta, solo aritmetica. Ora la domanda: G è dimostrabile?",
+      "G si riferisce a sé stessa attraverso il numero di Gödel: niente magia nascosta, solo aritmetica. Ora la domanda: G è dimostrabile?",
     step4Pretitle: "Entrambi i rami escono dal sogno di Hilbert",
-    step4Title: "Dimostrabile o indimostrabile — in entrambi i casi, incompletezza.",
+    step4Title: "Inconsistente o incompleto: non c'è una terza possibilità.",
     step4BranchA: "Ramo A · S ⊢ G",
     step4BranchAHead: "Se G è dimostrabile…",
     step4BranchABodyPre:
-      "Allora S dimostra un enunciato che dice «non ho dimostrazione». La dimostrazione appena prodotta è un contro-testimone. S ha dimostrato un'affermazione falsa: ",
+      "Allora quella dimostrazione ha un numero di Gödel n, e S può verificarla: S dimostra Prov(n, ⌜G⌝) e quindi ∃y Prov(y, ⌜G⌝). Ma G equivale in S proprio alla negazione di questo. S dimostra un enunciato e la sua negazione: ",
     step4BranchAHighlight: "S è inconsistente",
     step4BranchABodyPost: ".",
-    step4BranchAArrow: "⇒ contraddizione.",
+    step4BranchAArrow: "⇒ un S consistente non può dimostrare G.",
     step4BranchB: "Ramo B · S ⊬ G",
     step4BranchBHead: "Se G non è dimostrabile…",
     step4BranchBBodyPre: "Allora ciò che G afferma è esattamente vero. G è un ",
     step4BranchBHighlight: "enunciato aritmetico vero",
-    step4BranchBBodyPost: " che S non può dimostrare — il Primo Teorema di Incompletezza.",
-    step4BranchBArrow: "⇒ S è incompleto.",
+    step4BranchBBodyPost:
+      " che S non può dimostrare. Per l'incompletezza, S non deve dimostrare nemmeno ¬G. La dimostrazione di Gödel del 1931 lo ricava dalla ω-consistenza, un'ipotesi più forte; la variante di G dovuta a Rosser (1936) richiede solo la consistenza.",
+    step4BranchBArrow: "⇒ S non dimostra né G né ¬G: S è incompleto.",
     step4SecondLabel: "Secondo Teorema di Incompletezza",
     step4SecondBody:
-      "Sia Con(S) l'enunciato aritmetico «S è consistente». Se S potesse dimostrare Con(S), allora — formalizzando l'argomento precedente dentro S — S potrebbe anche dimostrare G. Quindi nessun S consistente abbastanza ricco per l'aritmetica può dimostrare la propria consistenza.",
+      "Sia Con(S) l'enunciato aritmetico «S è consistente». Se S potesse dimostrare Con(S), allora (formalizzando l'argomento precedente dentro S) S potrebbe anche dimostrare G. Quindi nessun S consistente abbastanza ricco per l'aritmetica può dimostrare la propria consistenza.",
     step4Footer:
-      "Lo stesso trucco diagonale riappare nell'indefinibilità della verità di Tarski (1933), nel problema dell'arresto di Turing (1936) e nell'indecidibilità della logica del primo ordine di Church (1936). I moderni assistenti di dimostrazione — Coq, Lean, Isabelle — operano tutti entro i limiti di Gödel.",
+      "Lo stesso trucco diagonale riappare nell'indefinibilità della verità di Tarski (1933), nel problema dell'arresto di Turing (1936) e nell'indecidibilità della logica del primo ordine di Church (1936). I moderni assistenti di dimostrazione (Coq, Lean, Isabelle) operano tutti entro i limiti di Gödel.",
   },
   pt: {
     stepTitles: [
@@ -748,7 +767,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "O alfabeto da aritmética",
     step1Title: "Dá um número a cada símbolo.",
     step1Body:
-      "Escolhe uma convenção razoável. Aqui estão onze símbolos de uma linguagem aritmética simples, cada um com um número natural atribuído. Quando os símbolos são números, as sequências de símbolos (isto é, as fórmulas) são sequências de números — e toda sequência de números pode ser empacotada num único número natural.",
+      "Escolhe uma convenção razoável. Aqui estão onze símbolos de uma linguagem aritmética simples, cada um com um número natural atribuído. Quando os símbolos são números, as sequências de símbolos (isto é, as fórmulas) são sequências de números, e toda sequência de números pode ser empacotada num único número natural.",
     step1Code: "código",
     step1Footer1: "A seguir: escolhe uma pequena fórmula como ",
     step1Footer2: " ou ",
@@ -757,7 +776,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2TitleSuffix: " torna-se um único número.",
     step2Body1:
       "Toma os códigos dos símbolos c₁, c₂, …, cₖ e eleva primos consecutivos a essas potências: ",
-    step2Body2: " A fatoração em primos é única — a codificação é, portanto, reversível.",
+    step2Body2: " A fatoração em primos é única, a codificação é, portanto, reversível.",
     step2Code: "código",
     step2Prime: "primo",
     step2ProductLabel: "Produto de potências de primos",
@@ -766,11 +785,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2FooterPre: "Agora toda fórmula tem um número. O crucial: as afirmações ",
     step2FooterAboutWord: "sobre",
     step2FooterPost:
-      " fórmulas — como «x é uma prova de y» — também se tornam predicados aritméticos. O sistema pode falar de si próprio.",
+      " fórmulas (como «x é uma prova de y») também se tornam predicados aritméticos. O sistema pode falar de si próprio.",
     step3Pretitle: "A construção diagonal",
     step3Title: "Constrói uma frase que fala do seu próprio número.",
     step3BodyPre:
-      "O lema diagonal de Gödel — descendente do argumento diagonal de Cantor de 1891 — produz, para qualquer predicado ",
+      "O lema diagonal de Gödel (descendente do argumento diagonal de Cantor de 1891) produz, para qualquer predicado ",
     step3BodyP: "P(x)",
     step3BodyMid: ", uma frase ",
     step3BodyG: "G",
@@ -780,35 +799,37 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3SentenceLabel: "A frase",
     step3InPlain: "Em linguagem simples: ",
     step3PlainQuote: "«nenhum número natural y é uma prova da fórmula com número de Gödel ⌜G⌝»",
-    step3PlainTail: " — e a fórmula com número de Gödel ⌜G⌝ é a própria G.",
+    step3PlainTail: ", e a fórmula com número de Gödel ⌜G⌝ é a própria G.",
     step3LoopSentence: "frase",
     step3LoopSentenceCaption: "«Não sou demonstrável»",
     step3DiagLemma: "lema diagonal",
     step3GoedelHash: "nº Gödel",
-    step3EncodesTo1: "(a fórmula escolhida aqui codifica-se em ",
-    step3EncodesTo2: ")",
+    step3EncodesTo1:
+      "Um número bem definido, mas que aqui não é calculado: G escrita por extenso é demasiado longa. Para comparação: a tua fórmula do passo 2 tem ⌜φ⌝ = ",
+    step3EncodesTo2: ".",
     step3FooterBody:
-      "G refere-se a si própria através do número de Gödel — não há magia escondida, apenas aritmética. Agora a pergunta: será G demonstrável?",
+      "G refere-se a si própria através do número de Gödel: não há magia escondida, apenas aritmética. Agora a pergunta: será G demonstrável?",
     step4Pretitle: "Ambos os ramos saem do sonho de Hilbert",
-    step4Title: "Demonstrável ou indemonstrável — de qualquer modo, incompletude.",
+    step4Title: "Inconsistente ou incompleto: não há terceira opção.",
     step4BranchA: "Ramo A · S ⊢ G",
     step4BranchAHead: "Se G for demonstrável…",
     step4BranchABodyPre:
-      "Então S demonstra uma frase que diz «não tenho prova». A prova que acabámos de produzir é uma contra-testemunha. S demonstrou uma afirmação falsa: ",
+      "Então essa prova tem um número de Gödel n, e S consegue verificá-la: S demonstra Prov(n, ⌜G⌝) e, portanto, ∃y Prov(y, ⌜G⌝). Mas G equivale em S exatamente à negação disso. S demonstra uma frase e a sua negação: ",
     step4BranchAHighlight: "S é inconsistente",
     step4BranchABodyPost: ".",
-    step4BranchAArrow: "⇒ contradição.",
+    step4BranchAArrow: "⇒ um S consistente não pode demonstrar G.",
     step4BranchB: "Ramo B · S ⊬ G",
     step4BranchBHead: "Se G não for demonstrável…",
     step4BranchBBodyPre: "Então o que G afirma é exatamente verdadeiro. G é uma ",
     step4BranchBHighlight: "afirmação aritmética verdadeira",
-    step4BranchBBodyPost: " que S não consegue demonstrar — o Primeiro Teorema da Incompletude.",
-    step4BranchBArrow: "⇒ S é incompleto.",
+    step4BranchBBodyPost:
+      " que S não consegue demonstrar. Para a incompletude, S também não pode demonstrar ¬G. A prova de Gödel de 1931 obtém isso da ω-consistência, uma hipótese mais forte; a variante de G devida a Rosser (1936) só precisa da consistência.",
+    step4BranchBArrow: "⇒ S não demonstra nem G nem ¬G: S é incompleto.",
     step4SecondLabel: "Segundo Teorema da Incompletude",
     step4SecondBody:
-      "Seja Con(S) a frase aritmética «S é consistente». Se S pudesse demonstrar Con(S), então — formalizando o argumento anterior dentro de S — S também poderia demonstrar G. Logo, nenhum S consistente suficientemente rico para a aritmética pode demonstrar a sua própria consistência.",
+      "Seja Con(S) a frase aritmética «S é consistente». Se S pudesse demonstrar Con(S), então (formalizando o argumento anterior dentro de S) S também poderia demonstrar G. Logo, nenhum S consistente suficientemente rico para a aritmética pode demonstrar a sua própria consistência.",
     step4Footer:
-      "O mesmo truque diagonal reaparece na indefinibilidade da verdade de Tarski (1933), no problema da paragem de Turing (1936) e na indecidibilidade da lógica de primeira ordem de Church (1936). Os modernos assistentes de prova — Coq, Lean, Isabelle — operam todos dentro dos limites de Gödel.",
+      "O mesmo truque diagonal reaparece na indefinibilidade da verdade de Tarski (1933), no problema da paragem de Turing (1936) e na indecidibilidade da lógica de primeira ordem de Church (1936). Os modernos assistentes de prova (Coq, Lean, Isabelle) operam todos dentro dos limites de Gödel.",
   },
   sv: {
     stepTitles: [
@@ -850,7 +871,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "Aritmetikens alfabet",
     step1Title: "Ge varje symbol ett tal.",
     step1Body:
-      "Välj vilken rimlig konvention som helst. Här är elva symboler från ett enkelt aritmetiskt språk, var och en tilldelad ett naturligt tal. När symboler är tal är följder av symboler (dvs. formler) följder av tal — och varje följd av tal kan packas till ett enda naturligt tal.",
+      "Välj vilken rimlig konvention som helst. Här är elva symboler från ett enkelt aritmetiskt språk, var och en tilldelad ett naturligt tal. När symboler är tal är följder av symboler (dvs. formler) följder av tal, och varje följd av tal kan packas till ett enda naturligt tal.",
     step1Code: "kod",
     step1Footer1: "Härnäst: välj en liten formel som ",
     step1Footer2: " eller ",
@@ -858,7 +879,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2Pretitle: "Koda formeln",
     step2TitleSuffix: " blir ett enda tal.",
     step2Body1: "Ta symbolkoderna c₁, c₂, …, cₖ och upphöj efterföljande primtal till dem: ",
-    step2Body2: " Primfaktoriseringen är unik — så kodningen är reversibel.",
+    step2Body2: " Primfaktoriseringen är unik, så kodningen är reversibel.",
     step2Code: "kod",
     step2Prime: "primtal",
     step2ProductLabel: "Produkt av primpotenser",
@@ -867,11 +888,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2FooterPre: "Varje formel har nu ett tal. Avgörande: påståenden ",
     step2FooterAboutWord: "om",
     step2FooterPost:
-      " formler — som «x är ett bevis av y» — blir också aritmetiska predikat. Systemet kan tala om sig självt.",
+      " formler (som «x är ett bevis av y») blir också aritmetiska predikat. Systemet kan tala om sig självt.",
     step3Pretitle: "Den diagonala konstruktionen",
     step3Title: "Bygg en sats som talar om sitt eget tal.",
     step3BodyPre:
-      "Gödels diagonallemma — en ättling till Cantors diagonalargument från 1891 — producerar, för varje predikat ",
+      "Gödels diagonallemma (en ättling till Cantors diagonalargument från 1891) producerar, för varje predikat ",
     step3BodyP: "P(x)",
     step3BodyMid: ", en sats ",
     step3BodyG: "G",
@@ -881,35 +902,37 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3SentenceLabel: "Satsen",
     step3InPlain: "På vanligt språk: ",
     step3PlainQuote: "«inget naturligt tal y är ett bevis av formeln med Gödel-tal ⌜G⌝»",
-    step3PlainTail: " — och formeln med Gödel-tal ⌜G⌝ är G självt.",
+    step3PlainTail: ", och formeln med Gödel-tal ⌜G⌝ är G självt.",
     step3LoopSentence: "sats",
     step3LoopSentenceCaption: "«Jag är inte bevisbar»",
     step3DiagLemma: "diagonallemma",
     step3GoedelHash: "Gödel-nr",
-    step3EncodesTo1: "(den valda formeln kodas här till ",
-    step3EncodesTo2: ")",
+    step3EncodesTo1:
+      "Ett bestämt tal, men det beräknas inte här: G utskriven i sin helhet är alldeles för lång. Som jämförelse: din formel från steg 2 har ⌜φ⌝ = ",
+    step3EncodesTo2: ".",
     step3FooterBody:
-      "G refererar till sig själv via Gödel-talet — ingen dold magi, bara aritmetik. Nu frågan: är G bevisbar?",
+      "G refererar till sig själv via Gödel-talet: ingen dold magi, bara aritmetik. Nu frågan: är G bevisbar?",
     step4Pretitle: "Båda grenarna leder ut ur Hilberts dröm",
-    step4Title: "Bevisbar eller obevisbar — hur som helst: ofullständighet.",
+    step4Title: "Inkonsistent eller ofullständigt: det finns inget tredje alternativ.",
     step4BranchA: "Gren A · S ⊢ G",
     step4BranchAHead: "Om G är bevisbar…",
     step4BranchABodyPre:
-      "Då bevisar S en sats som säger «jag har inget bevis». Beviset vi just producerade är ett motvittne. S har bevisat en falsk sats: ",
+      "Då har det beviset ett Gödel-tal n, och S kan kontrollera det: S bevisar Prov(n, ⌜G⌝) och därmed ∃y Prov(y, ⌜G⌝). Men G är i S ekvivalent med negationen av just detta. S bevisar en sats och dess negation: ",
     step4BranchAHighlight: "S är inkonsistent",
     step4BranchABodyPost: ".",
-    step4BranchAArrow: "⇒ motsägelse.",
+    step4BranchAArrow: "⇒ ett konsistent S kan inte bevisa G.",
     step4BranchB: "Gren B · S ⊬ G",
     step4BranchBHead: "Om G inte är bevisbar…",
     step4BranchBBodyPre: "Då är det G påstår precis sant. G är en ",
     step4BranchBHighlight: "sann aritmetisk sats",
-    step4BranchBBodyPost: " som S inte kan bevisa — det Första ofullständighetsteoremet.",
-    step4BranchBArrow: "⇒ S är ofullständigt.",
+    step4BranchBBodyPost:
+      " som S inte kan bevisa. För ofullständighet får S inte heller bevisa ¬G. Gödels bevis från 1931 får detta ur ω-konsistens, ett starkare antagande; Rossers variant av G (1936) kräver bara konsistens.",
+    step4BranchBArrow: "⇒ S bevisar varken G eller ¬G: S är ofullständigt.",
     step4SecondLabel: "Andra ofullständighetsteoremet",
     step4SecondBody:
-      "Låt Con(S) vara den aritmetiska satsen «S är konsistent». Om S kunde bevisa Con(S), då — genom att formalisera argumentet ovan inom S — kunde S också bevisa G. Alltså kan inget konsistent S som är rikt nog för aritmetik bevisa sin egen konsistens.",
+      "Låt Con(S) vara den aritmetiska satsen «S är konsistent». Om S kunde bevisa Con(S), då (genom att formalisera argumentet ovan inom S) kunde S också bevisa G. Alltså kan inget konsistent S som är rikt nog för aritmetik bevisa sin egen konsistens.",
     step4Footer:
-      "Samma diagonala trick återkommer i Tarskis odefinierbarhet av sanning (1933), Turings haltproblem (1936) och Churchs oavgörbarhet hos första ordningens logik (1936). Moderna bevisassistenter — Coq, Lean, Isabelle — arbetar alla inom Gödels gränser.",
+      "Samma diagonala trick återkommer i Tarskis odefinierbarhet av sanning (1933), Turings haltproblem (1936) och Churchs oavgörbarhet hos första ordningens logik (1936). Moderna bevisassistenter (Coq, Lean, Isabelle) arbetar alla inom Gödels gränser.",
   },
   no: {
     stepTitles: [
@@ -951,7 +974,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step1Pretitle: "Aritmetikkens alfabet",
     step1Title: "Gi hvert symbol et tall.",
     step1Body:
-      "Velg en hvilken som helst fornuftig konvensjon. Her er elleve symboler i et enkelt aritmetisk språk, hvert tilordnet et naturlig tall. Når symboler er tall, er følger av symboler (dvs. formler) følger av tall — og hver tallrekke kan pakkes inn i ett enkelt naturlig tall.",
+      "Velg en hvilken som helst fornuftig konvensjon. Her er elleve symboler i et enkelt aritmetisk språk, hvert tilordnet et naturlig tall. Når symboler er tall, er følger av symboler (dvs. formler) følger av tall, og hver tallrekke kan pakkes inn i ett enkelt naturlig tall.",
     step1Code: "kode",
     step1Footer1: "Neste: velg en liten formel som ",
     step1Footer2: " eller ",
@@ -959,7 +982,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2Pretitle: "Kod formelen",
     step2TitleSuffix: " blir et enkelt tall.",
     step2Body1: "Ta symbolkodene c₁, c₂, …, cₖ og opphøy etterfølgende primtall til disse: ",
-    step2Body2: " Primtallsfaktoriseringen er unik — så kodingen er reversibel.",
+    step2Body2: " Primtallsfaktoriseringen er unik, så kodingen er reversibel.",
     step2Code: "kode",
     step2Prime: "primtall",
     step2ProductLabel: "Produkt av primtallpotenser",
@@ -968,11 +991,11 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step2FooterPre: "Hver formel har nå et tall. Avgjørende: påstander ",
     step2FooterAboutWord: "om",
     step2FooterPost:
-      " formler — som «x er et bevis av y» — blir også aritmetiske predikater. Systemet kan snakke om seg selv.",
+      " formler (som «x er et bevis av y») blir også aritmetiske predikater. Systemet kan snakke om seg selv.",
     step3Pretitle: "Den diagonale konstruksjonen",
     step3Title: "Bygg en setning som snakker om sitt eget tall.",
     step3BodyPre:
-      "Gödels diagonallemma — en etterkommer av Cantors diagonalargument fra 1891 — produserer, for ethvert predikat ",
+      "Gödels diagonallemma (en etterkommer av Cantors diagonalargument fra 1891) produserer, for ethvert predikat ",
     step3BodyP: "P(x)",
     step3BodyMid: ", en setning ",
     step3BodyG: "G",
@@ -982,35 +1005,37 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     step3SentenceLabel: "Setningen",
     step3InPlain: "På klart språk: ",
     step3PlainQuote: "«ingen naturlige tall y er et bevis av formelen med Gödel-tall ⌜G⌝»",
-    step3PlainTail: " — og formelen med Gödel-tall ⌜G⌝ er G selv.",
+    step3PlainTail: ", og formelen med Gödel-tall ⌜G⌝ er G selv.",
     step3LoopSentence: "setning",
     step3LoopSentenceCaption: "«Jeg er ikke bevisbar»",
     step3DiagLemma: "diagonallemma",
     step3GoedelHash: "Gödel-nr",
-    step3EncodesTo1: "(den valgte formelen kodes her til ",
-    step3EncodesTo2: ")",
+    step3EncodesTo1:
+      "Et bestemt tall, men det beregnes ikke her: G skrevet helt ut er altfor lang. Til sammenligning: formelen din fra steg 2 har ⌜φ⌝ = ",
+    step3EncodesTo2: ".",
     step3FooterBody:
-      "G refererer til seg selv gjennom Gödel-tallet — ingen skjult magi, bare aritmetikk. Nå spørsmålet: er G bevisbar?",
+      "G refererer til seg selv gjennom Gödel-tallet: ingen skjult magi, bare aritmetikk. Nå spørsmålet: er G bevisbar?",
     step4Pretitle: "Begge grenene fører ut av Hilberts drøm",
-    step4Title: "Bevisbar eller ubevisbar — uansett: ufullstendighet.",
+    step4Title: "Inkonsistent eller ufullstendig: det finnes ikke noe tredje alternativ.",
     step4BranchA: "Gren A · S ⊢ G",
     step4BranchAHead: "Hvis G er bevisbar…",
     step4BranchABodyPre:
-      "Da beviser S en setning som sier «jeg har ikke noe bevis». Beviset vi nettopp produserte er et motvitne. S har bevist en falsk påstand: ",
+      "Da har det beviset et Gödel-tall n, og S kan kontrollere det: S beviser Prov(n, ⌜G⌝) og dermed ∃y Prov(y, ⌜G⌝). Men G er i S ekvivalent med negasjonen av nettopp dette. S beviser en setning og dens negasjon: ",
     step4BranchAHighlight: "S er inkonsistent",
     step4BranchABodyPost: ".",
-    step4BranchAArrow: "⇒ motsigelse.",
+    step4BranchAArrow: "⇒ et konsistent S kan ikke bevise G.",
     step4BranchB: "Gren B · S ⊬ G",
     step4BranchBHead: "Hvis G ikke er bevisbar…",
     step4BranchBBodyPre: "Da er det G hevder akkurat sant. G er en ",
     step4BranchBHighlight: "sann aritmetisk påstand",
-    step4BranchBBodyPost: " som S ikke kan bevise — det Første ufullstendighetsteoremet.",
-    step4BranchBArrow: "⇒ S er ufullstendig.",
+    step4BranchBBodyPost:
+      " som S ikke kan bevise. For ufullstendighet må S heller ikke bevise ¬G. Gödels bevis fra 1931 får dette fra ω-konsistens, en sterkere antakelse; Rossers variant av G (1936) krever bare konsistens.",
+    step4BranchBArrow: "⇒ S beviser verken G eller ¬G: S er ufullstendig.",
     step4SecondLabel: "Andre ufullstendighetsteorem",
     step4SecondBody:
-      "La Con(S) være den aritmetiske setningen «S er konsistent». Hvis S kunne bevise Con(S), så — ved å formalisere argumentet over inne i S — kunne S også bevise G. Så ingen konsistent S som er rik nok for aritmetikk kan bevise sin egen konsistens.",
+      "La Con(S) være den aritmetiske setningen «S er konsistent». Hvis S kunne bevise Con(S), så (ved å formalisere argumentet over inne i S) kunne S også bevise G. Så ingen konsistent S som er rik nok for aritmetikk kan bevise sin egen konsistens.",
     step4Footer:
-      "Det samme diagonale trikset dukker opp igjen i Tarskis udefinerbarhet av sannhet (1933), Turings stoppeproblem (1936) og Churchs uavgjørbarhet for førsteordens logikk (1936). Moderne bevisassistenter — Coq, Lean, Isabelle — opererer alle innenfor Gödels grenser.",
+      "Det samme diagonale trikset dukker opp igjen i Tarskis udefinerbarhet av sannhet (1933), Turings stoppeproblem (1936) og Churchs uavgjørbarhet for førsteordens logikk (1936). Moderne bevisassistenter (Coq, Lean, Isabelle) opererer alle innenfor Gödels grenser.",
   },
 };
 
@@ -1041,10 +1066,13 @@ export default function GodelExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {x.stepTitles[step - 1]}
             </div>
-            <div
-              className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}
-            >
-              G ⇔ ¬Prov(⌜G⌝)
+            <div className="flex items-center gap-2">
+              <div
+                className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}
+              >
+                G ⇔ ¬Prov(⌜G⌝)
+              </div>
+              <ExplorerHelpButton guide={GODEL_GUIDE} />
             </div>
           </div>
 
@@ -1151,12 +1179,13 @@ export default function GodelExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={GODEL_GUIDE} storyHref="/godel" />
     </main>
   );
 }
 
 // ---------------------------------------------------------------------------
-// Step 1 — the alphabet. Show the symbol-to-number table.
+// Step 1: the alphabet. Show the symbol-to-number table.
 // ---------------------------------------------------------------------------
 function StepAlphabet({ x }: { x: RichExplorer }) {
   return (
@@ -1199,7 +1228,7 @@ function StepAlphabet({ x }: { x: RichExplorer }) {
 }
 
 // ---------------------------------------------------------------------------
-// Step 2 — encode a chosen formula.
+// Step 2: encode a chosen formula.
 // ---------------------------------------------------------------------------
 function StepEncode({
   formula,
@@ -1289,7 +1318,7 @@ function StepEncode({
 }
 
 // ---------------------------------------------------------------------------
-// Step 3 — construct the self-referential G.
+// Step 3: construct the self-referential G.
 // ---------------------------------------------------------------------------
 function StepBuildG({ godel, x }: { godel: bigint; x: RichExplorer }) {
   return (
@@ -1369,7 +1398,7 @@ function StepBuildG({ godel, x }: { godel: bigint; x: RichExplorer }) {
 }
 
 // ---------------------------------------------------------------------------
-// Step 4 — the two-branch contradiction tree.
+// Step 4: the two-branch contradiction tree.
 // ---------------------------------------------------------------------------
 function StepBranches({ x }: { x: RichExplorer }) {
   return (

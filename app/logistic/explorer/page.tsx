@@ -5,11 +5,16 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { LOGISTIC_GUIDE } from "@/lib/explorer-guides/logistic";
 import type { Locale } from "@/lib/i18n/types";
 
 // Fixed r values for the preset buttons. The human-readable labels live in
-// RICH_EXPLORER (per-locale, index-aligned with this array).
-const FAMOUS_R = [2.5, 3.0, 3.45, 3.56995, 3.7, 3.8284, 3.9, 4.0];
+// RICH_EXPLORER (per-locale, index-aligned with this array). Each value has to
+// show what its label promises, so the period-3 preset sits inside the window
+// (3.83), not at its rounded threshold: 3.8284 is just below 1 + √8 =
+// 3.828427… and gives intermittent chaos, not a 3-cycle.
+const FAMOUS_R = [2.5, 3.0, 3.45, 3.56995, 3.7, 3.83, 3.9, 4.0];
 
 // Locale-aware room copy. The story page explicitly points visitors at this
 // side panel, so its labels must not be hardcoded English.
@@ -368,8 +373,11 @@ export default function LogisticExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {ex.bifurcationDiagram} · r ∈ [{BIFURCATION_R_MIN}, {BIFURCATION_R_MAX}]
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-              xₙ₊₁ = r · xₙ (1 − xₙ)
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
+                xₙ₊₁ = r · xₙ (1 − xₙ)
+              </div>
+              <ExplorerHelpButton guide={LOGISTIC_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
@@ -501,6 +509,7 @@ export default function LogisticExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={LOGISTIC_GUIDE} storyHref="/logistic" />
     </main>
   );
 }

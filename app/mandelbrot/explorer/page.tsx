@@ -2,9 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { MandelRenderer, BOOKMARKS, defaultMandel, suggestedIter } from "@/lib/gl/mandelbrot";
+import {
+  MandelRenderer,
+  BOOKMARKS,
+  HOME_CENTER,
+  HOME_SCALE,
+  defaultMandel,
+  suggestedIter,
+  zoomDecades,
+} from "@/lib/gl/mandelbrot";
 import { useI18n } from "@/lib/i18n/context";
 import { Info } from "@/components/Info";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { MANDELBROT_GUIDE } from "@/lib/explorer-guides/mandelbrot";
 
 const PALETTE_LABELS = ["Aurora", "Twilight", "Inferno", "Patina", "Ink"];
 
@@ -20,8 +30,8 @@ export default function MandelbrotExplorer() {
     null,
   );
 
-  const [center, setCenter] = useState<[number, number]>([-0.6, 0]);
-  const [scale, setScale] = useState(1.4);
+  const [center, setCenter] = useState<[number, number]>(HOME_CENTER);
+  const [scale, setScale] = useState(HOME_SCALE);
   const [maxIter, setMaxIter] = useState(300);
   const [autoIter, setAutoIter] = useState(true);
   const [palette, setPalette] = useState(0);
@@ -86,8 +96,10 @@ export default function MandelbrotExplorer() {
   const zoomAt = (clientX: number, clientY: number, factor: number) => {
     const rect = stageRef.current?.getBoundingClientRect();
     if (!rect) return;
-    const px = (clientX - rect.left - rect.width / 2) / rect.height;
-    const py = -(clientY - rect.top - rect.height / 2) / rect.height;
+    // scale spans the shorter side of the stage, as in the shader.
+    const side = Math.min(rect.width, rect.height);
+    const px = (clientX - rect.left - rect.width / 2) / side;
+    const py = -(clientY - rect.top - rect.height / 2) / side;
     const worldX = center[0] + px * scale;
     const worldY = center[1] + py * scale;
     const newScale = Math.min(SCALE_MAX, Math.max(SCALE_MIN, scale * factor));
@@ -126,7 +138,9 @@ export default function MandelbrotExplorer() {
     const dy = e.clientY - dragRef.current.y;
     if (Math.hypot(dx, dy) > 3) dragRef.current.moved = true;
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-    const per = scale / (rect.height / 2);
+    // scale spans the shorter side, so one CSS pixel is scale / side. The
+    // image has to stay glued to the pointer, as it does in zoomAt.
+    const per = scale / Math.min(rect.width, rect.height);
     setCenter([dragRef.current.cx - dx * per, dragRef.current.cy + dy * per]);
   };
   const onUp = () => {
@@ -149,12 +163,12 @@ export default function MandelbrotExplorer() {
   };
 
   const resetView = () => {
-    setCenter([-0.6, 0]);
-    setScale(1.4);
-    if (autoIter) setMaxIter(suggestedIter(1.4));
+    setCenter(HOME_CENTER);
+    setScale(HOME_SCALE);
+    if (autoIter) setMaxIter(suggestedIter(HOME_SCALE));
   };
 
-  const zoom = scale > 0 ? Math.log10(2.8 / scale) : 0;
+  const zoom = scale > 0 ? zoomDecades(scale) : 0;
   const zoomFmt = zoom.toFixed(2);
 
   return (
@@ -186,8 +200,11 @@ export default function MandelbrotExplorer() {
                 {u.mandel.zoomLevel} 10^{zoomFmt}
               </span>
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-              z → z² + c
+            <div className="flex items-start gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
+                z → z² + c
+              </div>
+              <ExplorerHelpButton guide={MANDELBROT_GUIDE} />
             </div>
           </div>
 
@@ -254,7 +271,7 @@ export default function MandelbrotExplorer() {
                     {u.mandel[b.labelKey as keyof typeof u.mandel] as string}
                   </div>
                   <div className="mt-0.5 font-mono text-[10px] text-ink-400">
-                    10^{Math.log10(2.8 / b.scale).toFixed(1)} · {b.maxIter} iter
+                    10^{zoomDecades(b.scale).toFixed(1)} · {b.maxIter} iter
                   </div>
                 </button>
               ))}
@@ -352,6 +369,7 @@ export default function MandelbrotExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={MANDELBROT_GUIDE} storyHref="/mandelbrot" />
     </main>
   );
 }

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { STERNBROCOT_GUIDE } from "@/lib/explorer-guides/sternbrocot";
 
 interface PathStep {
   num: number;
@@ -259,10 +261,13 @@ export default function SternbrocotExplorer() {
       <div className="grid flex-1 grid-cols-1 gap-0 lg:grid-cols-[1fr_420px]">
         <div className="scrollbar-thin relative min-h-[60vh] overflow-y-auto bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="mx-auto max-w-3xl space-y-6">
-            <div className="glass hairline rounded-md border px-4 py-3 font-mono text-xs text-ink-200">
-              {rx.targetStatus}: <span className="text-signal-teal">{target.toFixed(12)}</span>
-              <span className="mx-3 text-ink-500">·</span>
-              {rx.depthStatus}: <span className="text-signal-teal">{path.length}</span>
+            <div className="flex items-center justify-between gap-3">
+              <div className="glass hairline rounded-md border px-4 py-3 font-mono text-xs text-ink-200">
+                {rx.targetStatus}: <span className="text-signal-teal">{target.toFixed(12)}</span>
+                <span className="mx-3 text-ink-500">·</span>
+                {rx.depthStatus}: <span className="text-signal-teal">{path.length}</span>
+              </div>
+              <ExplorerHelpButton guide={STERNBROCOT_GUIDE} />
             </div>
 
             <div className="hairline space-y-3 rounded-2xl border bg-ink-950/40 p-5">
@@ -406,6 +411,7 @@ export default function SternbrocotExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={STERNBROCOT_GUIDE} storyHref="/sternbrocot" />
     </main>
   );
 }

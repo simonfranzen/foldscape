@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { SIERPINSKI_GUIDE } from "@/lib/explorer-guides/sierpinski";
 
 type Mode = "subdivision" | "chaos" | "pascal" | "rule90";
 
@@ -656,13 +658,16 @@ export default function SierpinskiExplorer() {
             </div>
           </div>
 
-          <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
+          <div className="hairline relative flex-1 overflow-hidden rounded-2xl border bg-ink-950">
             <canvas
               ref={canvasRef}
               className="block h-full w-full"
               role="img"
               aria-label={`${ex.construction}: ${activeMode.label}`}
             />
+            <div className="pointer-events-none absolute right-3 top-3">
+              <ExplorerHelpButton guide={SIERPINSKI_GUIDE} />
+            </div>
           </div>
 
           <div className="flex items-center justify-between gap-3">
@@ -841,6 +846,7 @@ export default function SierpinskiExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={SIERPINSKI_GUIDE} storyHref="/sierpinski" />
     </main>
   );
 }

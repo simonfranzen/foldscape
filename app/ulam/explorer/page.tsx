@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { ULAM_GUIDE } from "@/lib/explorer-guides/ulam";
 
 // Highlightable quadratics — diagonals on the spiral. The "Off" label is
 // localized at render time via RICH_EXPLORER; the polynomial labels are
@@ -257,8 +259,11 @@ export default function UlamExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {dict.spiralWord} · {side} × {side} · {dict.numbers(total)}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
-              {dict.primes(primesCount)}
+            <div className="flex items-start gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
+                {dict.primes(primesCount)}
+              </div>
+              <ExplorerHelpButton guide={ULAM_GUIDE} />
             </div>
           </div>
         </div>
@@ -324,6 +329,7 @@ export default function UlamExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={ULAM_GUIDE} storyHref="/ulam" />
     </main>
   );
 }

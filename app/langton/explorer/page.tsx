@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { LANGTON_GUIDE } from "@/lib/explorer-guides/langton";
 
 // Preset rule strings, each character (R=right, L=left) is the turn taken on
 // one colour. Classic Langton's ant is "RL". Labels and notes follow the
@@ -392,8 +394,11 @@ export default function LangtonExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               rule = {ruleId} · {ruleId.length} {ux.colours}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              {ux.stepLabel} {stepCount.toLocaleString()}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                {ux.stepLabel} {stepCount.toLocaleString()}
+              </div>
+              <ExplorerHelpButton guide={LANGTON_GUIDE} />
             </div>
           </div>
         </div>
@@ -490,6 +495,7 @@ export default function LangtonExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={LANGTON_GUIDE} storyHref="/langton" />
     </main>
   );
 }

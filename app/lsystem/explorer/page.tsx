@@ -5,6 +5,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { LSYSTEM_GUIDE } from "@/lib/explorer-guides/lsystem";
 
 interface Preset {
   id: string;
@@ -13,7 +15,10 @@ interface Preset {
   rules: Record<string, string>;
   angle: number;
   iterations: number;
-  startAngle: number; // degrees, 0 = pointing right (along +x)
+  // Degrees in canvas coordinates (y grows downward): 0 points right and
+  // negative values tilt upward. Only the initial value of the heading
+  // control; the turtle reads the control, not the preset.
+  startAngle: number;
 }
 
 const PRESETS: Preset[] = [
@@ -167,6 +172,9 @@ export default function LsystemExplorer() {
   const [angle, setAngle] = useState<number>(preset.angle);
   const [axiom, setAxiom] = useState<string>(preset.axiom);
   const [rulesText, setRulesText] = useState<string>(formatRules(preset.rules));
+  // The heading is its own editable state: a hand-written system would
+  // otherwise silently inherit the heading of whichever preset was loaded last.
+  const [startAngle, setStartAngle] = useState<number>(preset.startAngle);
   const [colorId, setColorId] = useState<string>("cyan");
 
   // When preset changes, sync all editable fields.
@@ -175,6 +183,7 @@ export default function LsystemExplorer() {
     setAngle(preset.angle);
     setAxiom(preset.axiom);
     setRulesText(formatRules(preset.rules));
+    setStartAngle(preset.startAngle);
   }, [preset]);
 
   const rules = useMemo(() => parseRules(rulesText), [rulesText]);
@@ -229,7 +238,7 @@ export default function LsystemExplorer() {
 
       if (!generated.length) return;
 
-      const ang0 = (preset.startAngle * Math.PI) / 180;
+      const ang0 = (startAngle * Math.PI) / 180;
       const da = (angle * Math.PI) / 180;
 
       // Pass 1: bounds
@@ -323,7 +332,7 @@ export default function LsystemExplorer() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [generated, angle, stroke, preset.startAngle, dpr]);
+  }, [generated, angle, stroke, startAngle, dpr]);
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
@@ -333,8 +342,11 @@ export default function LsystemExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {preset.label} · {iterations} iter · {angle}°
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              axiom → rewrite → turtle
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                axiom → rewrite → turtle
+              </div>
+              <ExplorerHelpButton guide={LSYSTEM_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
@@ -441,6 +453,28 @@ export default function LsystemExplorer() {
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
+            <div className="flex items-center justify-between">
+              <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+                Start heading
+              </div>
+              <div className="font-mono text-sm text-signal-cyan">{startAngle}°</div>
+            </div>
+            <input
+              type="range"
+              aria-label="Start heading"
+              value={startAngle}
+              min={-180}
+              max={180}
+              step={5}
+              onChange={(e) => setStartAngle(parseInt(e.target.value, 10))}
+              className="w-full accent-signal-cyan"
+            />
+            <div className="font-mono text-[10px] text-ink-400">
+              0° points right · −90° points straight up
+            </div>
+          </div>
+
+          <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
               Axiom
             </div>
@@ -501,6 +535,7 @@ export default function LsystemExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={LSYSTEM_GUIDE} storyHref="/lsystem" />
     </main>
   );
 }

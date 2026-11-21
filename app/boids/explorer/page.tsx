@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { getDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { BOIDS_GUIDE } from "@/lib/explorer-guides/boids";
 
 type ColorKey = "cyan" | "violet" | "amber" | "rose";
 
@@ -438,6 +440,9 @@ export default function BoidsExplorer() {
               {wrap ? "torus" : "bounded"} · r = {perception}
             </div>
           </div>
+          <div className="pointer-events-none absolute bottom-4 right-4">
+            <ExplorerHelpButton guide={BOIDS_GUIDE} />
+          </div>
         </div>
 
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
@@ -627,6 +632,7 @@ export default function BoidsExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={BOIDS_GUIDE} storyHref="/boids" />
     </main>
   );
 }

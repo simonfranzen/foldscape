@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { AIZAWA_GUIDE } from "@/lib/explorer-guides/aizawa";
 
 // Build an rgba() string from a palette hex token so canvas colours stay in
 // sync with the shared palette instead of duplicating literal channel values.
@@ -31,10 +33,36 @@ interface Attractor {
   dtMax: number;
   scale: number;
   trailFade: number;
-  step1: (x: number, y: number, z: number, p: number[], dt: number) => [number, number, number];
+  // Right-hand side of the ODE: the velocity at (x, y, z) for parameters p.
+  deriv: (x: number, y: number, z: number, p: number[]) => Vec3;
 }
 
-// Each attractor takes a parameter vector and integrates one Euler step.
+type Vec3 = [number, number, number];
+
+// One classical Runge-Kutta (RK4) step. Forward Euler was not good enough
+// inside the offered dt ranges: at dt = 0.02 the Aizawa orbit collapsed onto a
+// fixed point on the z axis, and Halvorsen blew up even at its default step.
+function rk4Step(
+  f: Attractor["deriv"],
+  x: number,
+  y: number,
+  z: number,
+  p: number[],
+  dt: number,
+): Vec3 {
+  const h = 0.5 * dt;
+  const k1 = f(x, y, z, p);
+  const k2 = f(x + h * k1[0], y + h * k1[1], z + h * k1[2], p);
+  const k3 = f(x + h * k2[0], y + h * k2[1], z + h * k2[2], p);
+  const k4 = f(x + dt * k3[0], y + dt * k3[1], z + dt * k3[2], p);
+  const w = dt / 6;
+  return [
+    x + w * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]),
+    y + w * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]),
+    z + w * (k1[2] + 2 * k2[2] + 2 * k3[2] + k4[2]),
+  ];
+}
+
 const ATTRACTORS: Record<string, Attractor> = {
   aizawa: {
     id: "aizawa",
@@ -53,12 +81,12 @@ const ATTRACTORS: Record<string, Attractor> = {
     dtMax: 0.02,
     scale: 180,
     trailFade: 0.04,
-    step1: (x, y, z, p, dt) => {
+    deriv: (x, y, z, p) => {
       const [a, b, c, d, e, f] = p;
       const dx = (z - b) * x - d * y;
       const dy = d * x + (z - b) * y;
       const dz = c + a * z - (z * z * z) / 3 - (x * x + y * y) * (1 + e * z) + f * z * x * x * x;
-      return [x + dx * dt, y + dy * dt, z + dz * dt];
+      return [dx, dy, dz];
     },
   },
   rossler: {
@@ -75,12 +103,12 @@ const ATTRACTORS: Record<string, Attractor> = {
     dtMax: 0.05,
     scale: 18,
     trailFade: 0.04,
-    step1: (x, y, z, p, dt) => {
+    deriv: (x, y, z, p) => {
       const [a, b, c] = p;
       const dx = -y - z;
       const dy = x + a * y;
       const dz = b + z * (x - c);
-      return [x + dx * dt, y + dy * dt, z + dz * dt];
+      return [dx, dy, dz];
     },
   },
   thomas: {
@@ -93,12 +121,12 @@ const ATTRACTORS: Record<string, Attractor> = {
     dtMax: 0.1,
     scale: 80,
     trailFade: 0.05,
-    step1: (x, y, z, p, dt) => {
+    deriv: (x, y, z, p) => {
       const [b] = p;
       const dx = Math.sin(y) - b * x;
       const dy = Math.sin(z) - b * y;
       const dz = Math.sin(x) - b * z;
-      return [x + dx * dt, y + dy * dt, z + dz * dt];
+      return [dx, dy, dz];
     },
   },
   halvorsen: {
@@ -108,17 +136,18 @@ const ATTRACTORS: Record<string, Attractor> = {
     paramSpecs: [{ label: "a", min: 0.5, max: 3.0, step: 0.01 }],
     step: 0.005,
     dtMin: 0.002,
-    // Forward Euler on Halvorsen diverges well before 0.02 even at the default
-    // a=1.4; cap dt at a stable range so the default no longer blows up to NaN.
+    // The narrow range dates from the forward Euler integrator, which diverged
+    // here. RK4 stays bounded at a = 1.4 well beyond it (checked up to 0.02);
+    // the range is kept so the slider behaves as before.
     dtMax: 0.008,
     scale: 28,
     trailFade: 0.06,
-    step1: (x, y, z, p, dt) => {
+    deriv: (x, y, z, p) => {
       const [a] = p;
       const dx = -a * x - 4 * y - 4 * z - y * y;
       const dy = -a * y - 4 * z - 4 * x - z * z;
       const dz = -a * z - 4 * x - 4 * y - x * x;
-      return [x + dx * dt, y + dy * dt, z + dz * dt];
+      return [dx, dy, dz];
     },
   },
 };
@@ -311,9 +340,10 @@ export default function AizawaExplorer() {
     canvas.addEventListener("pointerup", onUp);
     canvas.addEventListener("pointercancel", onUp);
 
-    // Re-seed the orbit whenever Euler diverges past the finite range so the
-    // canvas recovers instead of silently blanking on a NaN cascade (a known
-    // failure at aggressive dt/params, e.g. Halvorsen). Mirrors the clamping
+    // Re-seed the orbit whenever it leaves the finite range so the canvas
+    // recovers instead of silently blanking on a NaN cascade. With RK4 the
+    // defaults no longer trigger this, but some slider combinations have
+    // orbits that genuinely escape to infinity. Mirrors the clamping
     // convention in TuringGrayScott.
     const guard = () => {
       if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(z)) {
@@ -343,7 +373,7 @@ export default function AizawaExplorer() {
       const dotSize = 1.4 * dpr;
 
       for (let i = 0; i < stepsPerFrame; i++) {
-        [x, y, z] = attractor.step1(x, y, z, params, dt);
+        [x, y, z] = rk4Step(attractor.deriv, x, y, z, params, dt);
         guard();
         // 3D → 2D: rotate around Y then around X
         const rx = x * cosY - y * sinY;
@@ -381,7 +411,7 @@ export default function AizawaExplorer() {
         sz2 = 0;
       const total = 24000;
       for (let i = 0; i < total; i++) {
-        [sx2, sy2, sz2] = attractor.step1(sx2, sy2, sz2, params, dt);
+        [sx2, sy2, sz2] = rk4Step(attractor.deriv, sx2, sy2, sz2, params, dt);
         if (!Number.isFinite(sx2) || !Number.isFinite(sy2) || !Number.isFinite(sz2)) {
           sx2 = 0.1;
           sy2 = 0;
@@ -447,8 +477,11 @@ export default function AizawaExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {attractor.label} · {tx.dragToRotate}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-              {stepsPerFrame.toLocaleString()} {tx.stepsFrame}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
+                {stepsPerFrame.toLocaleString()} {tx.stepsFrame}
+              </div>
+              <ExplorerHelpButton guide={AIZAWA_GUIDE} />
             </div>
           </div>
         </div>
@@ -567,6 +600,7 @@ export default function AizawaExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={AIZAWA_GUIDE} storyHref="/aizawa" />
     </main>
   );
 }

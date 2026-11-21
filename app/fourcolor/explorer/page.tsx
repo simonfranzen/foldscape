@@ -3,8 +3,20 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette as colorPalette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { FOURCOLOR_GUIDE } from "@/lib/explorer-guides/fourcolor";
+import {
+  PRESETS,
+  buildMap,
+  solveFourColouring,
+  type ColouringStep,
+  type MapData,
+  type Preset,
+  type PresetId,
+} from "@/lib/fourcolor/map";
 
 // --------------------------------------------------------------------------
 // The Four Colour Theorem · Explorer
@@ -12,29 +24,120 @@ import { palette as colorPalette } from "@/lib/visual/palette";
 // A planar map is generated as a Voronoi tessellation of N random seed
 // points inside the canvas (with optional Lloyd relaxation for nicer cells).
 // Adjacency is detected by sweeping the per-pixel seed labels: two cells are
-// adjacent iff they share a boundary pixel pair. A backtracking 4-colourer
-// then assigns each region the smallest valid colour, picking the most
-// constrained region at every step (MRV heuristic). The animation paints
-// each region as the algorithm decides it — including any backtracks, so
-// you can actually see the search tree being explored.
+// adjacent iff they share a stretch of border (a corner contact does not
+// count). A backtracking 4-colourer then assigns each region the smallest
+// valid colour, picking the most constrained region at every step (MRV
+// heuristic). The animation paints each region as the algorithm decides it,
+// including any backtracks, so you can actually see the search tree being
+// explored. The map and solver code lives in lib/fourcolor/map.ts.
 // --------------------------------------------------------------------------
 
-type Preset =
-  | { id: "voronoi30"; label: "Random Voronoi (30 cells)"; n: 30; relax: 2 }
-  | { id: "voronoi60"; label: "Random Voronoi (60 cells)"; n: 60; relax: 2 }
-  | { id: "usa"; label: "USA states (lower 48 — simplified)"; n: 48; relax: 3 }
-  | { id: "germany"; label: "Germany states (Bundesländer)"; n: 16; relax: 4 }
-  | { id: "africa"; label: "Africa countries"; n: 54; relax: 3 }
-  | { id: "stress"; label: "Stress test (mutually-adjacent regions)"; n: 12; relax: 0 };
+// --------------------------------------------------------------------------
+// Per-locale UI strings. EN and DE are filled in; the other locales fall back
+// to EN at the call site until they are translated.
+// --------------------------------------------------------------------------
 
-const PRESETS: Preset[] = [
-  { id: "voronoi30", label: "Random Voronoi (30 cells)", n: 30, relax: 2 },
-  { id: "voronoi60", label: "Random Voronoi (60 cells)", n: 60, relax: 2 },
-  { id: "usa", label: "USA states (lower 48 — simplified)", n: 48, relax: 3 },
-  { id: "germany", label: "Germany states (Bundesländer)", n: 16, relax: 4 },
-  { id: "africa", label: "Africa countries", n: 54, relax: 3 },
-  { id: "stress", label: "Stress test (mutually-adjacent regions)", n: 12, relax: 0 },
-];
+type RichExplorer = {
+  presets: Record<PresetId, string>;
+  seed: string;
+  regions: string;
+  edges: string;
+  maxDeg: string;
+  stepCounter: string;
+  presetMap: string;
+  generate: string;
+  numRegions: string;
+  palette: string;
+  colourNames: readonly [string, string, string, string];
+  resetPalette: string;
+  autoColourer: string;
+  step: string;
+  run: string;
+  pause: string;
+  auto: string;
+  resetColouring: string;
+  speed: string;
+  msPerStep: string;
+  coloured: string;
+  backtracks: string;
+  solved: string;
+  yes: string;
+  stepLimit: string;
+  stepsTotal: string;
+};
+
+const RICH_EXPLORER: { en: RichExplorer } & Partial<Record<Locale, RichExplorer>> = {
+  en: {
+    presets: {
+      voronoi30: "Random Voronoi (30 cells)",
+      voronoi60: "Random Voronoi (60 cells)",
+      count48: "48 regions (as many as contiguous US states)",
+      count16: "16 regions (as many as German states)",
+      count54: "54 regions (as many as UN member states in Africa)",
+      stress: "Stress test (12 regions, dense cluster)",
+    },
+    seed: "seed",
+    regions: "regions",
+    edges: "edges",
+    maxDeg: "max deg",
+    stepCounter: "step",
+    presetMap: "Preset map",
+    generate: "Generate random",
+    numRegions: "Number of regions",
+    palette: "Colour palette",
+    colourNames: ["cyan", "amber", "violet", "rose"],
+    resetPalette: "Reset palette",
+    autoColourer: "Auto-colourer",
+    step: "Step",
+    run: "Run",
+    pause: "Pause",
+    auto: "Auto",
+    resetColouring: "Reset colouring",
+    speed: "Speed",
+    msPerStep: "ms / step",
+    coloured: "coloured",
+    backtracks: "backtracks",
+    solved: "solved",
+    yes: "yes",
+    stepLimit: "step limit reached",
+    stepsTotal: "steps total",
+  },
+  de: {
+    presets: {
+      voronoi30: "Zufälliges Voronoi (30 Zellen)",
+      voronoi60: "Zufälliges Voronoi (60 Zellen)",
+      count48: "48 Regionen (so viele wie US-Staaten ohne Alaska und Hawaii)",
+      count16: "16 Regionen (so viele wie deutsche Bundesländer)",
+      count54: "54 Regionen (so viele wie UN-Mitgliedstaaten in Afrika)",
+      stress: "Stresstest (12 Regionen, dichtes Knäuel)",
+    },
+    seed: "Seed",
+    regions: "Regionen",
+    edges: "Kanten",
+    maxDeg: "max. Grad",
+    stepCounter: "Schritt",
+    presetMap: "Kartenvorlage",
+    generate: "Neue Zufallskarte",
+    numRegions: "Anzahl Regionen",
+    palette: "Farbpalette",
+    colourNames: ["Cyan", "Bernstein", "Violett", "Rosa"],
+    resetPalette: "Palette zurücksetzen",
+    autoColourer: "Auto-Färber",
+    step: "Schritt",
+    run: "Start",
+    pause: "Pause",
+    auto: "Auto",
+    resetColouring: "Färbung zurücksetzen",
+    speed: "Tempo",
+    msPerStep: "ms / Schritt",
+    coloured: "gefärbt",
+    backtracks: "Rücknahmen",
+    solved: "gelöst",
+    yes: "ja",
+    stepLimit: "Schrittlimit erreicht",
+    stepsTotal: "Schritte gesamt",
+  },
+};
 
 const DEFAULT_PALETTE = [
   colorPalette.signal.cyan,
@@ -42,255 +145,6 @@ const DEFAULT_PALETTE = [
   "#b18cff",
   colorPalette.signal.rose,
 ] as const;
-const COLOUR_NAMES = ["cyan", "amber", "violet", "rose"] as const;
-
-interface MapData {
-  width: number;
-  height: number;
-  n: number;
-  seeds: Array<{ x: number; y: number }>;
-  // Per-pixel cell index, length = width * height
-  labels: Int16Array;
-  // adjacency[i] = sorted list of cell indices adjacent to i
-  adjacency: number[][];
-  edges: number;
-  maxDegree: number;
-}
-
-interface ColouringStep {
-  cell: number;
-  colour: number; // -1 = uncolour (backtrack), 0..3 = assign
-}
-
-// Deterministic PRNG so a given seed reproduces the same map.
-function mulberry32(seed: number): () => number {
-  let s = seed >>> 0;
-  return () => {
-    s = (s + 0x6d2b79f5) >>> 0;
-    let t = s;
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-function pickSeedsRandom(n: number, w: number, h: number, rand: () => number) {
-  const pts: Array<{ x: number; y: number }> = [];
-  for (let i = 0; i < n; i++) {
-    pts.push({ x: rand() * w, y: rand() * h });
-  }
-  return pts;
-}
-
-// For the "stress test" preset: place N seeds in a tight cluster of small
-// regions surrounded by a few large outer regions, so the adjacency graph
-// is genuinely dense and the backtracker has to work.
-function pickSeedsStress(n: number, w: number, h: number, rand: () => number) {
-  const pts: Array<{ x: number; y: number }> = [];
-  const cx = w / 2;
-  const cy = h / 2;
-  // 6 inner cells very close together (will share many borders)
-  for (let i = 0; i < Math.min(6, n); i++) {
-    const a = (i / 6) * Math.PI * 2;
-    pts.push({ x: cx + Math.cos(a) * 40, y: cy + Math.sin(a) * 40 });
-  }
-  // Surrounding cells
-  for (let i = pts.length; i < n; i++) {
-    const a = rand() * Math.PI * 2;
-    const r = Math.min(w, h) * (0.32 + rand() * 0.18);
-    pts.push({ x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r });
-  }
-  return pts;
-}
-
-// Assign every pixel to its nearest seed.
-function rasteriseVoronoi(
-  seeds: Array<{ x: number; y: number }>,
-  w: number,
-  h: number,
-  stride: number,
-): Int16Array {
-  const labels = new Int16Array(w * h);
-  for (let y = 0; y < h; y += stride) {
-    for (let x = 0; x < w; x += stride) {
-      let best = 0;
-      let bestD = Infinity;
-      for (let i = 0; i < seeds.length; i++) {
-        const dx = x - seeds[i].x;
-        const dy = y - seeds[i].y;
-        const d = dx * dx + dy * dy;
-        if (d < bestD) {
-          bestD = d;
-          best = i;
-        }
-      }
-      // Fill the stride block to keep the per-pixel pass below cheap.
-      for (let yy = y; yy < Math.min(y + stride, h); yy++) {
-        for (let xx = x; xx < Math.min(x + stride, w); xx++) {
-          labels[yy * w + xx] = best;
-        }
-      }
-    }
-  }
-  return labels;
-}
-
-// One Lloyd-relaxation step: move each seed to the centroid of its cell.
-function relaxSeeds(
-  seeds: Array<{ x: number; y: number }>,
-  labels: Int16Array,
-  w: number,
-  h: number,
-) {
-  const n = seeds.length;
-  const sx = new Float64Array(n);
-  const sy = new Float64Array(n);
-  const ct = new Uint32Array(n);
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const i = labels[y * w + x];
-      sx[i] += x;
-      sy[i] += y;
-      ct[i]++;
-    }
-  }
-  const next: Array<{ x: number; y: number }> = [];
-  for (let i = 0; i < n; i++) {
-    if (ct[i] === 0) {
-      next.push(seeds[i]);
-    } else {
-      next.push({ x: sx[i] / ct[i], y: sy[i] / ct[i] });
-    }
-  }
-  return next;
-}
-
-function buildAdjacency(labels: Int16Array, w: number, h: number, n: number) {
-  const sets: Set<number>[] = Array.from({ length: n }, () => new Set<number>());
-  // Scan horizontally and vertically; record pairs across any pixel boundary
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w - 1; x++) {
-      const a = labels[y * w + x];
-      const b = labels[y * w + x + 1];
-      if (a !== b) {
-        sets[a].add(b);
-        sets[b].add(a);
-      }
-    }
-  }
-  for (let x = 0; x < w; x++) {
-    for (let y = 0; y < h - 1; y++) {
-      const a = labels[y * w + x];
-      const b = labels[(y + 1) * w + x];
-      if (a !== b) {
-        sets[a].add(b);
-        sets[b].add(a);
-      }
-    }
-  }
-  const adjacency = sets.map((s) => Array.from(s).sort((a, b) => a - b));
-  let edges = 0;
-  let maxDegree = 0;
-  for (const list of adjacency) {
-    edges += list.length;
-    if (list.length > maxDegree) maxDegree = list.length;
-  }
-  edges = edges / 2;
-  return { adjacency, edges, maxDegree };
-}
-
-function buildMap(preset: Preset, seed: number, width: number, height: number): MapData {
-  const rand = mulberry32(seed);
-  let seeds =
-    preset.id === "stress"
-      ? pickSeedsStress(preset.n, width, height, rand)
-      : pickSeedsRandom(preset.n, width, height, rand);
-  // Coarse rasterise for relaxation (fast), then a fine pass at the end.
-  let labels = rasteriseVoronoi(seeds, width, height, 4);
-  for (let r = 0; r < preset.relax; r++) {
-    seeds = relaxSeeds(seeds, labels, width, height);
-    labels = rasteriseVoronoi(seeds, width, height, 4);
-  }
-  labels = rasteriseVoronoi(seeds, width, height, 1);
-  const { adjacency, edges, maxDegree } = buildAdjacency(labels, width, height, seeds.length);
-  return {
-    width,
-    height,
-    n: seeds.length,
-    seeds,
-    labels,
-    adjacency,
-    edges,
-    maxDegree,
-  };
-}
-
-// Backtracking 4-colourer with most-constrained-variable heuristic.
-// Returns the sequence of assign/unassign steps so the UI can animate.
-function solveFourColouring(adj: number[][]): {
-  steps: ColouringStep[];
-  solution: number[] | null;
-  backtracks: number;
-} {
-  const n = adj.length;
-  const colours = new Int8Array(n).fill(-1);
-  const steps: ColouringStep[] = [];
-  let backtracks = 0;
-  // Hard cap to keep the UI safe on adversarial graphs (shouldn't trigger
-  // for any planar graph but we guard anyway).
-  const STEP_CAP = 200000;
-
-  function pickNext(): number {
-    let best = -1;
-    let bestRemaining = 5;
-    let bestDegree = -1;
-    for (let i = 0; i < n; i++) {
-      if (colours[i] !== -1) continue;
-      const used = new Set<number>();
-      for (const j of adj[i]) {
-        if (colours[j] !== -1) used.add(colours[j]);
-      }
-      const remaining = 4 - used.size;
-      if (
-        remaining < bestRemaining ||
-        (remaining === bestRemaining && adj[i].length > bestDegree)
-      ) {
-        bestRemaining = remaining;
-        bestDegree = adj[i].length;
-        best = i;
-      }
-    }
-    return best;
-  }
-
-  function recurse(): boolean {
-    if (steps.length > STEP_CAP) return false;
-    const i = pickNext();
-    if (i === -1) return true;
-    const used = new Set<number>();
-    for (const j of adj[i]) {
-      if (colours[j] !== -1) used.add(colours[j]);
-    }
-    for (let c = 0; c < 4; c++) {
-      if (used.has(c)) continue;
-      colours[i] = c;
-      steps.push({ cell: i, colour: c });
-      if (recurse()) return true;
-      // backtrack
-      colours[i] = -1;
-      steps.push({ cell: i, colour: -1 });
-      backtracks++;
-    }
-    return false;
-  }
-
-  const ok = recurse();
-  return {
-    steps,
-    solution: ok ? Array.from(colours) : null,
-    backtracks,
-  };
-}
 
 // Paint the map: each region filled with its current colour or "uncoloured".
 function drawMap(
@@ -382,13 +236,14 @@ function drawMap(
 }
 
 export default function FourColorExplorer() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
+  const tx = RICH_EXPLORER[locale] ?? RICH_EXPLORER.en;
   const topic = a.topics.fourcolor;
   const dpr = useDpr();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animRef = useRef<number | null>(null);
 
-  const [presetId, setPresetId] = useState<Preset["id"]>("voronoi30");
+  const [presetId, setPresetId] = useState<PresetId>("voronoi30");
   const [n, setN] = useState(30);
   const [seed, setSeed] = useState(1);
   const [palette, setPalette] = useState<readonly string[]>(DEFAULT_PALETTE);
@@ -415,9 +270,7 @@ export default function FourColorExplorer() {
     (nextSeed?: number) => {
       const preset = PRESETS.find((p) => p.id === presetId) ?? PRESETS[0];
       const effectivePreset: Preset =
-        preset.id === "voronoi30" || preset.id === "voronoi60"
-          ? ({ ...preset, n } as Preset)
-          : preset;
+        preset.id === "voronoi30" || preset.id === "voronoi60" ? { ...preset, n } : preset;
       const s = nextSeed ?? seed;
       const m = buildMap(effectivePreset, s, canvasSize.w, canvasSize.h);
       setMap(m);
@@ -507,8 +360,8 @@ export default function FourColorExplorer() {
   }, [currentColours]);
 
   const stepRow = solution
-    ? `step ${Math.min(animIdx, solution.steps.length)} / ${solution.steps.length}`
-    : "step 0 / 0";
+    ? `${tx.stepCounter} ${Math.min(animIdx, solution.steps.length)} / ${solution.steps.length}`
+    : `${tx.stepCounter} 0 / 0`;
 
   return (
     <main className="flex min-h-screen flex-col pt-14">
@@ -516,10 +369,13 @@ export default function FourColorExplorer() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {PRESETS.find((p) => p.id === presetId)?.label} · seed {seed}
+              {tx.presets[presetId]} · {tx.seed} {seed}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
-              χ(planar) ≤ 4
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
+                χ(planar) ≤ 4
+              </div>
+              <ExplorerHelpButton guide={FOURCOLOR_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
@@ -527,13 +383,13 @@ export default function FourColorExplorer() {
           </div>
           <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              regions · {map?.n ?? 0}
+              {tx.regions} · {map?.n ?? 0}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              edges · {map?.edges ?? 0}
+              {tx.edges} · {map?.edges ?? 0}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              max deg · {map?.maxDegree ?? 0}
+              {tx.maxDeg} · {map?.maxDegree ?? 0}
             </div>
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
               {stepRow}
@@ -552,7 +408,7 @@ export default function FourColorExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Preset map
+              {tx.presetMap}
             </div>
             <div className="grid grid-cols-1 gap-2">
               {PRESETS.map((p) => (
@@ -570,7 +426,7 @@ export default function FourColorExplorer() {
                       : "hairline text-ink-200 hover:border-signal-teal/40 hover:text-ink-100"
                   }`}
                 >
-                  <div className="font-mono text-xs">{p.label}</div>
+                  <div className="font-mono text-xs">{tx.presets[p.id]}</div>
                 </button>
               ))}
             </div>
@@ -581,13 +437,13 @@ export default function FourColorExplorer() {
               }}
               className="w-full rounded-md border border-signal-teal/60 bg-signal-teal/10 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal transition-colors hover:bg-signal-teal/20"
             >
-              Generate random
+              {tx.generate}
             </button>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Number of regions
+              {tx.numRegions}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-teal">{n}</span>
@@ -614,14 +470,14 @@ export default function FourColorExplorer() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Colour palette
+              {tx.palette}
             </div>
             <div className="grid grid-cols-4 gap-2">
               {palette.map((c, i) => (
                 <label
                   key={i}
                   className="flex cursor-pointer flex-col items-center gap-1"
-                  title={COLOUR_NAMES[i]}
+                  title={tx.colourNames[i]}
                 >
                   <span
                     className="hairline inline-block h-9 w-full rounded-md border"
@@ -631,10 +487,11 @@ export default function FourColorExplorer() {
                     type="color"
                     value={c}
                     onChange={(e) => updateSwatch(i, e.target.value)}
+                    aria-label={tx.colourNames[i]}
                     className="sr-only"
                   />
                   <span className="font-mono text-[9px] uppercase tracking-widest2 text-ink-400">
-                    {COLOUR_NAMES[i]}
+                    {tx.colourNames[i]}
                   </span>
                 </label>
               ))}
@@ -643,13 +500,13 @@ export default function FourColorExplorer() {
               onClick={() => setPalette(DEFAULT_PALETTE)}
               className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:text-ink-100"
             >
-              Reset palette
+              {tx.resetPalette}
             </button>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Auto-colourer
+              {tx.autoColourer}
             </div>
             <div className="grid grid-cols-3 gap-2">
               <button
@@ -662,7 +519,7 @@ export default function FourColorExplorer() {
                 }}
                 className="hairline rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
               >
-                Step
+                {tx.step}
               </button>
               <button
                 onClick={() => setRunning((r) => !r)}
@@ -672,7 +529,7 @@ export default function FourColorExplorer() {
                     : "border-signal-teal/60 bg-signal-teal/10 text-signal-teal hover:bg-signal-teal/20"
                 }`}
               >
-                {running ? "Pause" : "Run"}
+                {running ? tx.pause : tx.run}
               </button>
               <button
                 onClick={() => {
@@ -681,7 +538,7 @@ export default function FourColorExplorer() {
                 }}
                 className="hairline rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200 transition-colors hover:border-signal-teal/40 hover:text-signal-teal"
               >
-                Auto
+                {tx.auto}
               </button>
             </div>
             <button
@@ -691,10 +548,10 @@ export default function FourColorExplorer() {
               }}
               className="hairline w-full rounded-md border py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:text-ink-100"
             >
-              Reset colouring
+              {tx.resetColouring}
             </button>
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Speed · {speedMs} ms / step
+              {tx.speed} · {speedMs} {tx.msPerStep}
             </div>
             <input
               type="range"
@@ -709,23 +566,23 @@ export default function FourColorExplorer() {
 
           <div className="hairline space-y-2 border-b p-5 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
             <div className="flex justify-between">
-              <span>coloured</span>
+              <span>{tx.coloured}</span>
               <span className="text-ink-100">
                 {colouredCount} / {map?.n ?? 0}
               </span>
             </div>
             <div className="flex justify-between">
-              <span>backtracks</span>
+              <span>{tx.backtracks}</span>
               <span className="text-ink-100">{solution?.backtracks ?? 0}</span>
             </div>
             <div className="flex justify-between">
-              <span>solved</span>
+              <span>{tx.solved}</span>
               <span className={solution?.final ? "text-signal-teal" : "text-ink-400"}>
-                {solution?.final ? "yes" : "in progress"}
+                {solution?.final ? tx.yes : solution ? tx.stepLimit : "…"}
               </span>
             </div>
             <div className="flex justify-between">
-              <span>steps total</span>
+              <span>{tx.stepsTotal}</span>
               <span className="text-ink-100">{solution?.steps.length ?? 0}</span>
             </div>
           </div>
@@ -740,6 +597,7 @@ export default function FourColorExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={FOURCOLOR_GUIDE} storyHref="/fourcolor" />
     </main>
   );
 }

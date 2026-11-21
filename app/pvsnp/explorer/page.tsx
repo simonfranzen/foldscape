@@ -5,6 +5,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { PVSNP_GUIDE } from "@/lib/explorer-guides/pvsnp";
 
 // ---------------------------------------------------------------------------
 // P vs NP Explorer — a small DPLL-style 3-SAT solver, animated.
@@ -1495,8 +1497,11 @@ export default function PvsNPExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {mode === "verify" ? dict.headerModeVerify : dict.headerModeSolve}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              n = {activeVars} · m = {formulaToShow.length}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                n = {activeVars} · m = {formulaToShow.length}
+              </div>
+              <ExplorerHelpButton guide={PVSNP_GUIDE} />
             </div>
           </div>
 
@@ -1864,6 +1869,7 @@ export default function PvsNPExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={PVSNP_GUIDE} storyHref="/pvsnp" />
     </main>
   );
 }

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { CANTOR_GUIDE } from "@/lib/explorer-guides/cantor";
 
 const ACCENT = "text-signal-violet";
 const N = 16; // 16 rows × 16 digit columns
@@ -40,6 +42,7 @@ type ExplorerDict = {
   plusOneLabel: string;
   plusOneHint: string;
   binaryNote: string;
+  contradictionBodyBinary: string;
   legendLabel: string;
   legend1: string;
   legend2: string;
@@ -76,7 +79,10 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     swap56Hint: "safe; never 0 or 9",
     plusOneLabel: "+1 mod 10",
     plusOneHint: "skip 0, 9 to avoid 0.999… ambiguity",
-    binaryNote: "Binary mode ignores the rule above, digits flip 0 ↔ 1 automatically.",
+    binaryNote:
+      "Binary mode ignores the rule above: bits flip 0 ↔ 1. The rows are read as infinite 0/1 sequences, not as numbers, because two sequences can name the same number (0.0111… = 0.1000…).",
+    contradictionBodyBinary:
+      " differs from every row of the listing in at least one position, therefore this 0/1 sequence is not on the list. Hover or focus any row to see where s disagrees with it. The listing was incomplete, there are more 0/1 sequences than natural numbers: ",
     legendLabel: "Legend",
     legend1: "diagonal cell · used this step",
     legend2: "diagonal cell · already used",
@@ -111,7 +117,10 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     swap56Hint: "sicher; nie 0 oder 9",
     plusOneLabel: "+1 mod 10",
     plusOneHint: "0, 9 überspringen, gegen 0,999…-Mehrdeutigkeit",
-    binaryNote: "Der Binärmodus ignoriert die Regel oben, Ziffern kippen automatisch 0 ↔ 1.",
+    binaryNote:
+      "Der Binärmodus ignoriert die Regel oben: Bits kippen 0 ↔ 1. Die Zeilen gelten hier als unendliche 0/1-Folgen, nicht als Zahlen, denn zwei Folgen können dieselbe Zahl bezeichnen (0,0111… = 0,1000…).",
+    contradictionBodyBinary:
+      " unterscheidet sich von jeder Zeile der Liste an mindestens einer Stelle, also steht diese 0/1-Folge nicht auf der Liste. Fahr über eine Zeile oder fokussiere sie, um zu sehen, wo s ihr widerspricht. Die Liste war unvollständig, es gibt mehr 0/1-Folgen als natürliche Zahlen: ",
     legendLabel: "Legende",
     legend1: "Diagonalzelle · in diesem Schritt genutzt",
     legend2: "Diagonalzelle · bereits genutzt",
@@ -147,7 +156,9 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     plusOneLabel: "+1 mod 10",
     plusOneHint: "salta 0, 9 para evitar la ambigüedad 0,999…",
     binaryNote:
-      "El modo binario ignora la regla de arriba, los dígitos alternan 0 ↔ 1 automáticamente.",
+      "El modo binario ignora la regla de arriba: los bits alternan 0 ↔ 1. Las filas se leen como sucesiones infinitas de 0 y 1, no como números, porque dos sucesiones pueden nombrar el mismo número (0,0111… = 0,1000…).",
+    contradictionBodyBinary:
+      " difiere de cada fila de la lista en al menos una posición, por tanto esta sucesión de 0 y 1 no está en la lista. Pasa el ratón o enfoca cualquier fila para ver dónde s no concuerda con ella. La lista estaba incompleta, hay más sucesiones de 0 y 1 que números naturales: ",
     legendLabel: "Leyenda",
     legend1: "casilla diagonal · usada en este paso",
     legend2: "casilla diagonal · ya usada",
@@ -183,7 +194,9 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     plusOneLabel: "+1 mod 10",
     plusOneHint: "saute 0, 9 pour éviter l'ambiguïté 0,999…",
     binaryNote:
-      "Le mode binaire ignore la règle ci-dessus, les chiffres basculent 0 ↔ 1 automatiquement.",
+      "Le mode binaire ignore la règle ci-dessus : les bits basculent 0 ↔ 1. Les lignes sont lues comme des suites infinies de 0 et de 1, pas comme des nombres, car deux suites peuvent désigner le même nombre (0,0111… = 0,1000…).",
+    contradictionBodyBinary:
+      " diffère de chaque ligne de la liste en au moins une position, donc cette suite de 0 et de 1 n'est pas dans la liste. Survole ou cible une ligne pour voir où s la contredit. La liste était incomplète, il y a plus de suites de 0 et de 1 que d'entiers naturels : ",
     legendLabel: "Légende",
     legend1: "case diagonale · utilisée à ce pas",
     legend2: "case diagonale · déjà utilisée",
@@ -219,7 +232,9 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     plusOneLabel: "+1 mod 10",
     plusOneHint: "salta 0, 9 per evitare l'ambiguità 0,999…",
     binaryNote:
-      "La modalità binaria ignora la regola sopra, le cifre passano 0 ↔ 1 automaticamente.",
+      "La modalità binaria ignora la regola sopra: i bit passano 0 ↔ 1. Le righe sono lette come successioni infinite di 0 e 1, non come numeri, perché due successioni possono indicare lo stesso numero (0,0111… = 0,1000…).",
+    contradictionBodyBinary:
+      " differisce da ogni riga della lista in almeno una posizione, quindi questa successione di 0 e 1 non è nella lista. Passa il mouse o metti a fuoco una riga per vedere dove s la contraddice. La lista era incompleta, ci sono più successioni di 0 e 1 che numeri naturali: ",
     legendLabel: "Legenda",
     legend1: "cella diagonale · usata in questo passo",
     legend2: "cella diagonale · già usata",
@@ -254,7 +269,10 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     swap56Hint: "seguro; nunca 0 nem 9",
     plusOneLabel: "+1 mod 10",
     plusOneHint: "salta 0, 9 para evitar a ambiguidade 0,999…",
-    binaryNote: "O modo binário ignora a regra acima, os dígitos alternam 0 ↔ 1 automaticamente.",
+    binaryNote:
+      "O modo binário ignora a regra acima: os bits alternam 0 ↔ 1. As linhas são lidas como sucessões infinitas de 0 e 1, não como números, porque duas sucessões podem designar o mesmo número (0,0111… = 0,1000…).",
+    contradictionBodyBinary:
+      " difere de cada linha da lista em pelo menos uma posição, portanto esta sucessão de 0 e 1 não está na lista. Passa o rato ou foca uma linha para ver onde s a contradiz. A lista estava incompleta, há mais sucessões de 0 e 1 do que números naturais: ",
     legendLabel: "Legenda",
     legend1: "célula diagonal · usada neste passo",
     legend2: "célula diagonal · já usada",
@@ -289,7 +307,10 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     swap56Hint: "säkert; aldrig 0 eller 9",
     plusOneLabel: "+1 mod 10",
     plusOneHint: "hoppa över 0, 9 för att undvika 0,999…-tvetydighet",
-    binaryNote: "Binärläget ignorerar regeln ovan, siffror växlar 0 ↔ 1 automatiskt.",
+    binaryNote:
+      "Binärläget ignorerar regeln ovan: bitar växlar 0 ↔ 1. Raderna läses som oändliga 0/1-följder, inte som tal, eftersom två följder kan beteckna samma tal (0,0111… = 0,1000…).",
+    contradictionBodyBinary:
+      " skiljer sig från varje rad i listan på minst en plats, därför står den här 0/1-följden inte på listan. Hovra eller fokusera en rad för att se var s avviker från den. Listan var ofullständig, det finns fler 0/1-följder än naturliga tal: ",
     legendLabel: "Teckenförklaring",
     legend1: "diagonalcell · använd detta steg",
     legend2: "diagonalcell · redan använd",
@@ -324,7 +345,10 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     swap56Hint: "trygt; aldri 0 eller 9",
     plusOneLabel: "+1 mod 10",
     plusOneHint: "hopp over 0, 9 for å unngå 0,999…-tvetydighet",
-    binaryNote: "Binærmodus ignorerer regelen over, sifre veksler 0 ↔ 1 automatisk.",
+    binaryNote:
+      "Binærmodus ignorerer regelen over: biter veksler 0 ↔ 1. Radene leses som uendelige 0/1-følger, ikke som tall, fordi to følger kan betegne samme tall (0,0111… = 0,1000…).",
+    contradictionBodyBinary:
+      " skiller seg fra hver rad i listen på minst én plass, derfor står denne 0/1-følgen ikke på listen. Hold over eller fokuser en rad for å se hvor s avviker fra den. Listen var ufullstendig, det finnes flere 0/1-følger enn naturlige tall: ",
     legendLabel: "Tegnforklaring",
     legend1: "diagonalcelle · brukt dette steget",
     legend2: "diagonalcelle · allerede brukt",
@@ -462,6 +486,14 @@ export default function CantorExplorer() {
   );
   const [seed, setSeed] = useState(1);
 
+  // In binary mode the rows are 0/1 sequences, not numbers: flipping bits
+  // gives no way to avoid a tail of all 0s or all 1s, and 0.0111… = 0.1000…
+  // are the same real number. The diagonal argument on sequences needs no
+  // such care, so binary rows are shown without the "0." prefix and the
+  // conclusion is stated for sequences.
+  const isBinary = source === "binary";
+  const lead = isBinary ? "" : "0.";
+
   const [step, setStep] = useState(0); // 0..N
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(700); // ms per step
@@ -539,10 +571,14 @@ export default function CantorExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {ex.diagonalLabel} · {N} {ex.rowsWord} × {N} {ex.digitsWord}
             </div>
-            <div
-              className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}
-            >
-              s = 0.{sDigits.join("") || "…"}
+            <div className="flex items-center gap-2">
+              <div
+                className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}
+              >
+                s = {lead}
+                {sDigits.join("") || "…"}
+              </div>
+              <ExplorerHelpButton guide={CANTOR_GUIDE} />
             </div>
           </div>
 
@@ -588,7 +624,7 @@ export default function CantorExplorer() {
                       onBlur={() => revealed && setHighlightRow(-1)}
                     >
                       <td className="px-2 py-0.5 text-[10px] text-ink-500">{i + 1}</td>
-                      <td className="px-2 py-0.5 text-[10px] text-ink-400">0.</td>
+                      <td className="px-2 py-0.5 text-[10px] text-ink-400">{lead}</td>
                       {row.map((d, j) => {
                         const onDiagonal = i === j;
                         let cls = "text-center px-1 py-0.5 w-7 transition-colors";
@@ -618,7 +654,7 @@ export default function CantorExplorer() {
                             {ex.flipWord} d{i + 1},{i + 1}
                           </span>
                         ) : (
-                          <span className="text-ink-600">—</span>
+                          <span className="text-ink-600">…</span>
                         )}
                       </td>
                     </tr>
@@ -634,7 +670,7 @@ export default function CantorExplorer() {
               {ex.buildingLabel} {step} / {N}
             </div>
             <div className="break-all font-mono text-xl text-ink-100">
-              <span className="text-ink-400">s = 0.</span>
+              <span className="text-ink-400">s = {lead}</span>
               {sDigits.map((d, i) => (
                 <span
                   key={i}
@@ -665,8 +701,18 @@ export default function CantorExplorer() {
                 <div className={`mb-2 font-mono text-[10px] uppercase tracking-widest2 ${ACCENT}`}>
                   {ex.contradictionTitle}
                 </div>
-                s = 0.<span className={ACCENT}>{sDigits.join("")}</span>
-                {ex.contradictionBody}|ℝ| {">"} |ℕ|.
+                s = {lead}
+                <span className={ACCENT}>{sDigits.join("")}</span>
+                {isBinary ? (
+                  <>
+                    {ex.contradictionBodyBinary}|{"{0, 1}"}
+                    <sup>ℕ</sup>| {">"} |ℕ|.
+                  </>
+                ) : (
+                  <>
+                    {ex.contradictionBody}|ℝ| {">"} |ℕ|.
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -849,6 +895,7 @@ export default function CantorExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={CANTOR_GUIDE} storyHref="/cantor" />
     </main>
   );
 }

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { RSA_GUIDE } from "@/lib/explorer-guides/rsa";
 
 const TEXT_INPUT_MAX_LENGTH = 32;
 
@@ -271,8 +273,11 @@ export default function RsaExplorer() {
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
                 Key generation
               </div>
-              <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                public (n, e) · private (n, d)
+              <div className="flex items-center gap-2">
+                <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
+                  public (n, e) · private (n, d)
+                </div>
+                <ExplorerHelpButton guide={RSA_GUIDE} />
               </div>
             </div>
 
@@ -638,6 +643,7 @@ export default function RsaExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={RSA_GUIDE} storyHref="/rsa" />
     </main>
   );
 }

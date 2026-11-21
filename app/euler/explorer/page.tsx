@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { EULER_GUIDE } from "@/lib/explorer-guides/euler";
 
 const TAU = Math.PI * 2;
 
@@ -495,8 +497,11 @@ export default function EulerExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {rx.planeCaption}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
-              e^(iθ) = cos θ + i sin θ
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
+                e^(iθ) = cos θ + i sin θ
+              </div>
+              <ExplorerHelpButton guide={EULER_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
@@ -625,6 +630,7 @@ export default function EulerExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={EULER_GUIDE} storyHref="/euler" />
     </main>
   );
 }

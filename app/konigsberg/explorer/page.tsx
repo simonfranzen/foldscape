@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { KONIGSBERG_GUIDE } from "@/lib/explorer-guides/konigsberg";
 
 // --------------------------------------------------------------------------
 // Königsberg Bridges Explorer
@@ -21,25 +23,28 @@ import { palette } from "@/lib/visual/palette";
 //
 // The sidebar:
 //   - Start picker
-//   - Toggle bridges (7 original + 3 hypothetical extras)
+//   - Toggle bridges (7 historical + 3 hypothetical extras)
 //   - Live degree counter for each vertex
 //   - Eulerian indicator (path / circuit / neither)
 //   - Reset walk
 //   - Auto-solve: Hierholzer animation when the current graph is Eulerian
 //
 // All maths is recomputed in real time as bridges are toggled. No external
-// state — pure React.
+// state: pure React.
 // --------------------------------------------------------------------------
 
 type VertexId = "A" | "B" | "C" | "D";
 
 interface VertexDef {
   id: VertexId;
-  // Canvas coords (logical, in 800x500 space — we map to actual pixels).
+  // Canvas coords (logical, in 800x500 space: we map to actual pixels).
   x: number;
   y: number;
   // Rough shape: rectangle (banks) or rounded blob (islands)
   shape: "bank-top" | "bank-bottom" | "island";
+  // Where the caption sits relative to the disc: the one side of each land
+  // mass that no bridge curve crosses.
+  label: "above" | "below" | "left" | "right";
   // Sublabel kind so locale dict can supply the right translation per vertex.
   sublabel: "north-bank" | "south-bank" | "kneiphof" | "lomse";
 }
@@ -53,42 +58,42 @@ interface BridgeDef {
   cy1: number;
   cx2: number;
   cy2: number;
-  // Whether part of the original seven (just for labelling).
+  // True for the seven bridges of 1736. The rest never existed: they are
+  // labelled and drawn differently so nobody mistakes them for history.
   original: boolean;
 }
 
 const VERTICES: VertexDef[] = [
-  { id: "A", x: 400, y: 70, shape: "bank-top", sublabel: "north-bank" },
-  { id: "B", x: 270, y: 250, shape: "island", sublabel: "kneiphof" },
-  { id: "C", x: 530, y: 250, shape: "island", sublabel: "lomse" },
-  { id: "D", x: 400, y: 430, shape: "bank-bottom", sublabel: "south-bank" },
+  { id: "A", x: 400, y: 70, shape: "bank-top", label: "above", sublabel: "north-bank" },
+  { id: "B", x: 270, y: 250, shape: "island", label: "left", sublabel: "kneiphof" },
+  { id: "C", x: 530, y: 250, shape: "island", label: "right", sublabel: "lomse" },
+  { id: "D", x: 400, y: 430, shape: "bank-bottom", label: "below", sublabel: "south-bank" },
 ];
 
-// The seven historical bridges, with the canonical multiplicities (A-B: 2,
-// A-C: 2, A-D: 1, B-D: 1, C-D: 1). Plus a B-C bridge (the "Honey Bridge")
-// and a couple of hypothetical extras the user can toggle on.
+// The seven bridges Euler analysed in 1736. The Kneiphof island (B) carries
+// five: two to the north bank, two to the south bank, one to Lomse (C).
+// Lomse has one bridge to each bank. Degrees: B 5, A/C/D 3. There was no
+// direct bank-to-bank bridge, so both A-D entries are hypothetical extras.
 const BRIDGES: BridgeDef[] = [
-  // A-B: 2 bridges
   { id: "AB1", a: "A", b: "B", cx1: 320, cy1: 110, cx2: 240, cy2: 190, original: true },
   { id: "AB2", a: "A", b: "B", cx1: 380, cy1: 150, cx2: 310, cy2: 200, original: true },
-  // A-C: 2 bridges
-  { id: "AC1", a: "A", b: "C", cx1: 480, cy1: 110, cx2: 560, cy2: 190, original: true },
-  { id: "AC2", a: "A", b: "C", cx1: 420, cy1: 150, cx2: 490, cy2: 200, original: true },
-  // A-D: 1 bridge (the long one, drawn around the right side)
-  { id: "AD", a: "A", b: "D", cx1: 720, cy1: 130, cx2: 720, cy2: 370, original: true },
-  // B-D: 1 bridge
-  { id: "BD", a: "B", b: "D", cx1: 240, cy1: 310, cx2: 320, cy2: 390, original: true },
-  // C-D: 1 bridge
+  // Mirror images of AB1/AB2 across the river axis (y = 250).
+  { id: "BD1", a: "B", b: "D", cx1: 240, cy1: 310, cx2: 320, cy2: 390, original: true },
+  { id: "BD2", a: "B", b: "D", cx1: 310, cy1: 300, cx2: 380, cy2: 350, original: true },
+  { id: "BC", a: "B", b: "C", cx1: 350, cy1: 250, cx2: 450, cy2: 250, original: true },
+  { id: "AC", a: "A", b: "C", cx1: 480, cy1: 110, cx2: 560, cy2: 190, original: true },
   { id: "CD", a: "C", b: "D", cx1: 560, cy1: 310, cx2: 480, cy2: 390, original: true },
-  // Extras (off by default)
-  { id: "BC", a: "B", b: "C", cx1: 350, cy1: 250, cx2: 450, cy2: 250, original: false },
-  { id: "AD2", a: "A", b: "D", cx1: 80, cy1: 130, cx2: 80, cy2: 370, original: false },
-  { id: "BC2", a: "B", b: "C", cx1: 350, cy1: 290, cx2: 450, cy2: 290, original: false },
+  // Hypothetical extras (off by default). The A-D curves swing wide around
+  // the islands and their captions; BC2 bows well below BC so the two stay
+  // apart.
+  { id: "AD", a: "A", b: "D", cx1: 770, cy1: 130, cx2: 770, cy2: 370, original: false },
+  { id: "AD2", a: "A", b: "D", cx1: 30, cy1: 130, cx2: 30, cy2: 370, original: false },
+  { id: "BC2", a: "B", b: "C", cx1: 360, cy1: 315, cx2: 440, cy2: 315, original: false },
 ];
 
 const ORIGINAL_IDS = BRIDGES.filter((b) => b.original).map((b) => b.id);
 
-// Logical canvas size — we'll map to device pixels in the render.
+// Logical canvas size: we'll map to device pixels in the render.
 const CANVAS_W = 800;
 const CANVAS_H = 500;
 
@@ -120,28 +125,28 @@ type RichExplorer = {
   stuckHead: (v: string) => string;
   stuckReasonNone: (oddCount: number) => string;
   stuckReasonOther: string;
-  // Sidebar — start picker
+  // Sidebar: start picker
   startAt: string;
   currentlyAtPrefix: string; // shown as "<prefix> <vertex letter>"
-  // Sidebar — degrees
+  // Sidebar: degrees
   vertexDegrees: string;
   odd: string;
   even: string;
   degreeFootnote: string;
-  // Sidebar — bridges
+  // Sidebar: bridges
   bridges: string;
   originalOn: string;
   originalOff: string;
   extraOn: string;
   extraOff: string;
   bridgesFootnote: string;
-  // Sidebar — actions
+  // Sidebar: actions
   resetWalk: string;
   autoEulerian: string;
   autoNotEulerian: string;
   autoHintEulerian: string;
   autoHintNotEulerian: string;
-  // Sidebar — footer
+  // Sidebar: footer
   storyBack: string;
   // Canvas-drawn labels
   vertexNorthBank: string;
@@ -159,19 +164,18 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusPath: "Eulerian path",
     walkLabel: "Walk",
     walkProgress: (v, t) => `${v} / ${t} bridges crossed`,
-    walkComplete: "Complete walk — every bridge used exactly once.",
+    walkComplete: "Complete walk: every bridge used exactly once.",
     parityLabel: "Parity",
     paritySubDisconnected: "Graph is disconnected",
     paritySubOdd: (n) => `${n} odd-degree vertices`,
-    paritySubZero: "0 odd vertices — closed walk possible",
+    paritySubZero: "0 odd vertices, closed walk possible",
     paritySubEnds: (a, b) => `start at ${a}, end at ${b}`,
     legendLabel: "Legend",
-    legendHint:
-      "Click an amber bridge from your current vertex. Greyed dashed bridges are inactive.",
+    legendHint: "Click an amber bridge from your current vertex. Greyed bridges are inactive.",
     stuckLabel: "Stuck!",
     stuckHead: (v) => `No unvisited bridge leaves ${v}. The walk cannot continue.`,
     stuckReasonNone: (n) =>
-      `This graph has ${n} odd-degree vertices — Euler proved no Eulerian path can exist.`,
+      `This graph has ${n} odd-degree vertices: Euler proved no Eulerian path can exist.`,
     stuckReasonOther: "Try a different starting vertex or change the bridge set.",
     startAt: "Start at",
     currentlyAtPrefix: "Currently at:",
@@ -183,16 +187,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     bridges: "Bridges",
     originalOn: "original ✓",
     originalOff: "original ✗",
-    extraOn: "extra ✓",
-    extraOff: "extra ✗",
+    extraOn: "hypothetical ✓",
+    extraOff: "hypothetical ✗",
     bridgesFootnote:
-      "The seven historical bridges are on by default. Toggle them to see how the parity argument shifts. The Honey Bridge (BC) was built later — adding it changes everything.",
+      "The seven historical bridges are on by default. Kneiphof (B) carries five of them, including the one to Lomse (BC). The three bridges marked hypothetical (AD, AD2, BC2) never existed and are drawn dashed: switch one on to see how the parity argument shifts.",
     resetWalk: "Reset walk",
     autoEulerian: "Auto-walk (Hierholzer)",
-    autoNotEulerian: "Try a walk — show me where it fails",
+    autoNotEulerian: "Try a walk: show me where it fails",
     autoHintEulerian: "Animates Hierholzer's algorithm crossing every bridge exactly once.",
     autoHintNotEulerian:
-      "Königsberg's seven bridges have no Eulerian path. Click to watch a greedy walk from the start and see it get stuck — that's the whole point of Euler's argument.",
+      "Königsberg's seven bridges have no Eulerian path. Click to watch a greedy walk from the start and see it get stuck. That's the whole point of Euler's argument.",
     storyBack: "← Story",
     vertexNorthBank: "north bank",
     vertexSouthBank: "south bank",
@@ -207,19 +211,19 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusPath: "Eulerscher Weg",
     walkLabel: "Lauf",
     walkProgress: (v, t) => `${v} / ${t} Brücken überquert`,
-    walkComplete: "Vollständiger Lauf — jede Brücke genau einmal benutzt.",
+    walkComplete: "Vollständiger Lauf: jede Brücke genau einmal benutzt.",
     parityLabel: "Parität",
     paritySubDisconnected: "Graph ist unzusammenhängend",
     paritySubOdd: (n) => `${n} Knoten mit ungeradem Grad`,
-    paritySubZero: "0 ungerade Knoten — geschlossener Lauf möglich",
+    paritySubZero: "0 ungerade Knoten, geschlossener Lauf möglich",
     paritySubEnds: (a, b) => `Start bei ${a}, Ende bei ${b}`,
     legendLabel: "Legende",
     legendHint:
-      "Klicke eine bernsteinfarbene Brücke vom aktuellen Knoten aus an. Grau gestrichelte Brücken sind inaktiv.",
+      "Klicke eine bernsteinfarbene Brücke vom aktuellen Knoten aus an. Graue Brücken sind inaktiv.",
     stuckLabel: "Festgefahren!",
     stuckHead: (v) => `Von ${v} aus führt keine unbenutzte Brücke weiter. Der Lauf endet hier.`,
     stuckReasonNone: (n) =>
-      `Dieser Graph hat ${n} Knoten mit ungeradem Grad — Euler hat bewiesen, dass es keinen Eulerschen Weg geben kann.`,
+      `Dieser Graph hat ${n} Knoten mit ungeradem Grad: Euler hat bewiesen, dass es keinen Eulerschen Weg geben kann.`,
     stuckReasonOther: "Probiere einen anderen Startknoten oder ändere die Brückenauswahl.",
     startAt: "Start bei",
     currentlyAtPrefix: "Aktuell bei:",
@@ -231,17 +235,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     bridges: "Brücken",
     originalOn: "original ✓",
     originalOff: "original ✗",
-    extraOn: "zusätzlich ✓",
-    extraOff: "zusätzlich ✗",
+    extraOn: "hypothetisch ✓",
+    extraOff: "hypothetisch ✗",
     bridgesFootnote:
-      "Die sieben historischen Brücken sind standardmäßig aktiv. Schalte sie um und beobachte, wie sich das Paritätsargument verschiebt. Die Honigbrücke (BC) wurde später gebaut — sie verändert alles.",
+      "Die sieben historischen Brücken sind standardmäßig aktiv. Der Kneiphof (B) trägt fünf davon, darunter die Brücke zur Lomse (BC). Die drei als hypothetisch markierten Brücken (AD, AD2, BC2) gab es nie, sie sind gestrichelt gezeichnet: Schalte eine ein und beobachte, wie sich das Paritätsargument verschiebt.",
     resetWalk: "Lauf zurücksetzen",
     autoEulerian: "Auto-Lauf (Hierholzer)",
-    autoNotEulerian: "Lauf versuchen — zeig mir, wo es scheitert",
+    autoNotEulerian: "Lauf versuchen: zeig mir, wo es scheitert",
     autoHintEulerian:
       "Animiert den Hierholzer-Algorithmus, der jede Brücke genau einmal überquert.",
     autoHintNotEulerian:
-      "Die sieben Königsberger Brücken haben keinen Eulerschen Weg. Klicke, um einen gierigen Lauf vom Start zu sehen, der hängen bleibt — genau das ist Eulers Argument.",
+      "Die sieben Königsberger Brücken haben keinen Eulerschen Weg. Klicke, um einen gierigen Lauf vom Start zu sehen, der hängen bleibt. Genau das ist Eulers Argument.",
     storyBack: "← Story",
     vertexNorthBank: "Nordufer",
     vertexSouthBank: "Südufer",
@@ -256,19 +260,19 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusPath: "Camino euleriano",
     walkLabel: "Recorrido",
     walkProgress: (v, t) => `${v} / ${t} puentes cruzados`,
-    walkComplete: "Recorrido completo — cada puente usado exactamente una vez.",
+    walkComplete: "Recorrido completo: cada puente usado exactamente una vez.",
     parityLabel: "Paridad",
     paritySubDisconnected: "El grafo está desconectado",
     paritySubOdd: (n) => `${n} vértices de grado impar`,
-    paritySubZero: "0 vértices impares — recorrido cerrado posible",
+    paritySubZero: "0 vértices impares, recorrido cerrado posible",
     paritySubEnds: (a, b) => `empieza en ${a}, termina en ${b}`,
     legendLabel: "Leyenda",
     legendHint:
-      "Haz clic en un puente ámbar desde tu vértice actual. Los puentes grises a trazos están inactivos.",
+      "Haz clic en un puente ámbar desde tu vértice actual. Los puentes grises están inactivos.",
     stuckLabel: "¡Atascado!",
     stuckHead: (v) => `Ningún puente sin usar sale de ${v}. El recorrido no puede continuar.`,
     stuckReasonNone: (n) =>
-      `Este grafo tiene ${n} vértices de grado impar — Euler demostró que no puede existir un camino euleriano.`,
+      `Este grafo tiene ${n} vértices de grado impar: Euler demostró que no puede existir un camino euleriano.`,
     stuckReasonOther: "Prueba con otro vértice de inicio o cambia el conjunto de puentes.",
     startAt: "Empezar en",
     currentlyAtPrefix: "Actualmente en:",
@@ -280,16 +284,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     bridges: "Puentes",
     originalOn: "original ✓",
     originalOff: "original ✗",
-    extraOn: "extra ✓",
-    extraOff: "extra ✗",
+    extraOn: "hipotético ✓",
+    extraOff: "hipotético ✗",
     bridgesFootnote:
-      "Los siete puentes históricos están activos por defecto. Actívalos y desactívalos para ver cómo cambia el argumento de paridad. El Puente de la Miel (BC) se construyó después — añadirlo lo cambia todo.",
+      "Los siete puentes históricos están activos por defecto. Kneiphof (B) tiene cinco de ellos, incluido el que lleva a Lomse (BC). Los tres puentes marcados como hipotéticos (AD, AD2, BC2) nunca existieron y se dibujan a trazos: activa uno para ver cómo cambia el argumento de paridad.",
     resetWalk: "Reiniciar recorrido",
     autoEulerian: "Auto-recorrido (Hierholzer)",
-    autoNotEulerian: "Intentar el recorrido — muéstrame dónde falla",
+    autoNotEulerian: "Intentar el recorrido: muéstrame dónde falla",
     autoHintEulerian: "Anima el algoritmo de Hierholzer cruzando cada puente exactamente una vez.",
     autoHintNotEulerian:
-      "Los siete puentes de Königsberg no tienen camino euleriano. Haz clic para ver un recorrido voraz desde el inicio que se queda atascado — esa es la esencia del argumento de Euler.",
+      "Los siete puentes de Königsberg no tienen camino euleriano. Haz clic para ver un recorrido voraz desde el inicio que se queda atascado. Esa es la esencia del argumento de Euler.",
     storyBack: "← Historia",
     vertexNorthBank: "orilla norte",
     vertexSouthBank: "orilla sur",
@@ -304,19 +308,18 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusPath: "Chemin eulérien",
     walkLabel: "Parcours",
     walkProgress: (v, t) => `${v} / ${t} ponts franchis`,
-    walkComplete: "Parcours complet — chaque pont emprunté exactement une fois.",
+    walkComplete: "Parcours complet : chaque pont emprunté exactement une fois.",
     parityLabel: "Parité",
     paritySubDisconnected: "Le graphe n'est pas connexe",
     paritySubOdd: (n) => `${n} sommets de degré impair`,
-    paritySubZero: "0 sommet impair — parcours fermé possible",
+    paritySubZero: "0 sommet impair, parcours fermé possible",
     paritySubEnds: (a, b) => `départ en ${a}, arrivée en ${b}`,
     legendLabel: "Légende",
-    legendHint:
-      "Clique sur un pont ambré depuis ton sommet courant. Les ponts gris en pointillés sont inactifs.",
+    legendHint: "Clique sur un pont ambré depuis ton sommet courant. Les ponts gris sont inactifs.",
     stuckLabel: "Bloqué !",
     stuckHead: (v) => `Aucun pont non visité ne part de ${v}. Le parcours ne peut continuer.`,
     stuckReasonNone: (n) =>
-      `Ce graphe a ${n} sommets de degré impair — Euler a prouvé qu'aucun chemin eulérien ne peut exister.`,
+      `Ce graphe a ${n} sommets de degré impair : Euler a prouvé qu'aucun chemin eulérien ne peut exister.`,
     stuckReasonOther: "Essaie un autre sommet de départ ou change l'ensemble des ponts.",
     startAt: "Départ en",
     currentlyAtPrefix: "Actuellement en :",
@@ -328,17 +331,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     bridges: "Ponts",
     originalOn: "original ✓",
     originalOff: "original ✗",
-    extraOn: "extra ✓",
-    extraOff: "extra ✗",
+    extraOn: "hypothétique ✓",
+    extraOff: "hypothétique ✗",
     bridgesFootnote:
-      "Les sept ponts historiques sont actifs par défaut. Active-les et désactive-les pour voir comment l'argument de parité bascule. Le Pont du Miel (BC) a été construit plus tard — l'ajouter change tout.",
+      "Les sept ponts historiques sont actifs par défaut. Kneiphof (B) en porte cinq, dont celui qui mène à Lomse (BC). Les trois ponts marqués hypothétiques (AD, AD2, BC2) n'ont jamais existé et sont dessinés en tirets : actives-en un pour voir comment l'argument de parité bascule.",
     resetWalk: "Réinitialiser le parcours",
     autoEulerian: "Auto-parcours (Hierholzer)",
-    autoNotEulerian: "Tenter un parcours — montre-moi où ça échoue",
+    autoNotEulerian: "Tenter un parcours : montre-moi où ça échoue",
     autoHintEulerian:
       "Anime l'algorithme de Hierholzer qui traverse chaque pont exactement une fois.",
     autoHintNotEulerian:
-      "Les sept ponts de Königsberg n'ont pas de chemin eulérien. Clique pour voir un parcours glouton depuis le départ qui finit bloqué — c'est tout l'argument d'Euler.",
+      "Les sept ponts de Königsberg n'ont pas de chemin eulérien. Clique pour voir un parcours glouton depuis le départ qui finit bloqué. C'est tout l'argument d'Euler.",
     storyBack: "← Récit",
     vertexNorthBank: "rive nord",
     vertexSouthBank: "rive sud",
@@ -353,19 +356,18 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusPath: "Cammino euleriano",
     walkLabel: "Percorso",
     walkProgress: (v, t) => `${v} / ${t} ponti attraversati`,
-    walkComplete: "Percorso completo — ogni ponte usato esattamente una volta.",
+    walkComplete: "Percorso completo: ogni ponte usato esattamente una volta.",
     parityLabel: "Parità",
     paritySubDisconnected: "Il grafo è sconnesso",
     paritySubOdd: (n) => `${n} vertici di grado dispari`,
-    paritySubZero: "0 vertici dispari — percorso chiuso possibile",
+    paritySubZero: "0 vertici dispari, percorso chiuso possibile",
     paritySubEnds: (a, b) => `parti da ${a}, arrivi a ${b}`,
     legendLabel: "Legenda",
-    legendHint:
-      "Clicca un ponte ambra dal tuo vertice corrente. I ponti grigi tratteggiati sono inattivi.",
+    legendHint: "Clicca un ponte ambra dal tuo vertice corrente. I ponti grigi sono inattivi.",
     stuckLabel: "Bloccato!",
     stuckHead: (v) => `Nessun ponte non visitato esce da ${v}. Il percorso non può continuare.`,
     stuckReasonNone: (n) =>
-      `Questo grafo ha ${n} vertici di grado dispari — Euler ha dimostrato che non può esistere un cammino euleriano.`,
+      `Questo grafo ha ${n} vertici di grado dispari: Euler ha dimostrato che non può esistere un cammino euleriano.`,
     stuckReasonOther: "Prova un altro vertice di partenza o modifica l'insieme dei ponti.",
     startAt: "Parti da",
     currentlyAtPrefix: "Attualmente in:",
@@ -377,17 +379,17 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     bridges: "Ponti",
     originalOn: "originale ✓",
     originalOff: "originale ✗",
-    extraOn: "extra ✓",
-    extraOff: "extra ✗",
+    extraOn: "ipotetico ✓",
+    extraOff: "ipotetico ✗",
     bridgesFootnote:
-      "I sette ponti storici sono attivi di default. Attivali e disattivali per vedere come cambia l'argomento di parità. Il Ponte del Miele (BC) è stato costruito dopo — aggiungerlo cambia tutto.",
+      "I sette ponti storici sono attivi di default. Kneiphof (B) ne ha cinque, compreso quello verso Lomse (BC). I tre ponti indicati come ipotetici (AD, AD2, BC2) non sono mai esistiti e sono disegnati tratteggiati: attivane uno per vedere come cambia l'argomento di parità.",
     resetWalk: "Reimposta percorso",
     autoEulerian: "Auto-percorso (Hierholzer)",
-    autoNotEulerian: "Prova un percorso — mostrami dove fallisce",
+    autoNotEulerian: "Prova un percorso: mostrami dove fallisce",
     autoHintEulerian:
       "Anima l'algoritmo di Hierholzer che attraversa ogni ponte esattamente una volta.",
     autoHintNotEulerian:
-      "I sette ponti di Königsberg non ammettono un cammino euleriano. Clicca per vedere un percorso goloso dal punto di partenza che si blocca — è esattamente l'argomento di Euler.",
+      "I sette ponti di Königsberg non ammettono un cammino euleriano. Clicca per vedere un percorso goloso dal punto di partenza che si blocca. È esattamente l'argomento di Euler.",
     storyBack: "← Storia",
     vertexNorthBank: "riva nord",
     vertexSouthBank: "riva sud",
@@ -402,19 +404,19 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusPath: "Caminho euleriano",
     walkLabel: "Percurso",
     walkProgress: (v, t) => `${v} / ${t} pontes atravessadas`,
-    walkComplete: "Percurso completo — cada ponte usada exatamente uma vez.",
+    walkComplete: "Percurso completo: cada ponte usada exatamente uma vez.",
     parityLabel: "Paridade",
     paritySubDisconnected: "O grafo está desconectado",
     paritySubOdd: (n) => `${n} vértices de grau ímpar`,
-    paritySubZero: "0 vértices ímpares — percurso fechado possível",
+    paritySubZero: "0 vértices ímpares, percurso fechado possível",
     paritySubEnds: (a, b) => `comece em ${a}, termine em ${b}`,
     legendLabel: "Legenda",
     legendHint:
-      "Clica numa ponte âmbar a partir do teu vértice atual. Pontes cinzentas tracejadas estão inativas.",
+      "Clica numa ponte âmbar a partir do teu vértice atual. Pontes cinzentas estão inativas.",
     stuckLabel: "Encalhado!",
     stuckHead: (v) => `Nenhuma ponte não visitada sai de ${v}. O percurso não pode continuar.`,
     stuckReasonNone: (n) =>
-      `Este grafo tem ${n} vértices de grau ímpar — Euler provou que não pode existir caminho euleriano.`,
+      `Este grafo tem ${n} vértices de grau ímpar: Euler provou que não pode existir caminho euleriano.`,
     stuckReasonOther: "Tenta outro vértice de partida ou altera o conjunto de pontes.",
     startAt: "Começar em",
     currentlyAtPrefix: "Atualmente em:",
@@ -426,16 +428,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     bridges: "Pontes",
     originalOn: "original ✓",
     originalOff: "original ✗",
-    extraOn: "extra ✓",
-    extraOff: "extra ✗",
+    extraOn: "hipotética ✓",
+    extraOff: "hipotética ✗",
     bridgesFootnote:
-      "As sete pontes históricas estão ativas por defeito. Alterna-as para ver como o argumento de paridade muda. A Ponte do Mel (BC) foi construída mais tarde — adicioná-la muda tudo.",
+      "As sete pontes históricas estão ativas por defeito. Kneiphof (B) tem cinco delas, incluindo a que leva a Lomse (BC). As três pontes marcadas como hipotéticas (AD, AD2, BC2) nunca existiram e são desenhadas a tracejado: ativa uma para ver como o argumento de paridade muda.",
     resetWalk: "Reiniciar percurso",
     autoEulerian: "Auto-percurso (Hierholzer)",
-    autoNotEulerian: "Tentar um percurso — mostra-me onde falha",
+    autoNotEulerian: "Tentar um percurso: mostra-me onde falha",
     autoHintEulerian: "Anima o algoritmo de Hierholzer a atravessar cada ponte exatamente uma vez.",
     autoHintNotEulerian:
-      "As sete pontes de Königsberg não têm caminho euleriano. Clica para ver um percurso ganancioso desde o início que fica encalhado — é o cerne do argumento de Euler.",
+      "As sete pontes de Königsberg não têm caminho euleriano. Clica para ver um percurso ganancioso desde o início que fica encalhado. É o cerne do argumento de Euler.",
     storyBack: "← História",
     vertexNorthBank: "margem norte",
     vertexSouthBank: "margem sul",
@@ -450,19 +452,19 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusPath: "Eulerväg",
     walkLabel: "Vandring",
     walkProgress: (v, t) => `${v} / ${t} broar korsade`,
-    walkComplete: "Fullständig vandring — varje bro använd exakt en gång.",
+    walkComplete: "Fullständig vandring: varje bro använd exakt en gång.",
     parityLabel: "Paritet",
     paritySubDisconnected: "Grafen är osammanhängande",
     paritySubOdd: (n) => `${n} hörn med udda grad`,
-    paritySubZero: "0 udda hörn — sluten vandring möjlig",
+    paritySubZero: "0 udda hörn, sluten vandring möjlig",
     paritySubEnds: (a, b) => `börja vid ${a}, sluta vid ${b}`,
     legendLabel: "Teckenförklaring",
     legendHint:
-      "Klicka på en bärnstensfärgad bro från ditt nuvarande hörn. Gråa streckade broar är inaktiva.",
+      "Klicka på en bärnstensfärgad bro från ditt nuvarande hörn. Gråa broar är inaktiva.",
     stuckLabel: "Fast!",
     stuckHead: (v) => `Ingen oanvänd bro lämnar ${v}. Vandringen kan inte fortsätta.`,
     stuckReasonNone: (n) =>
-      `Den här grafen har ${n} hörn med udda grad — Euler bevisade att ingen Eulerväg kan finnas.`,
+      `Den här grafen har ${n} hörn med udda grad: Euler bevisade att ingen Eulerväg kan finnas.`,
     stuckReasonOther: "Prova ett annat starthörn eller ändra broarna.",
     startAt: "Börja vid",
     currentlyAtPrefix: "Just nu vid:",
@@ -473,16 +475,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     bridges: "Broar",
     originalOn: "original ✓",
     originalOff: "original ✗",
-    extraOn: "extra ✓",
-    extraOff: "extra ✗",
+    extraOn: "hypotetisk ✓",
+    extraOff: "hypotetisk ✗",
     bridgesFootnote:
-      "De sju historiska broarna är på som standard. Slå av och på dem för att se hur paritetsargumentet förskjuts. Honungsbron (BC) byggdes senare — att lägga till den ändrar allt.",
+      "De sju historiska broarna är på som standard. Kneiphof (B) har fem av dem, bland annat bron till Lomse (BC). De tre broar som är märkta som hypotetiska (AD, AD2, BC2) har aldrig funnits och ritas streckade: slå på en för att se hur paritetsargumentet förskjuts.",
     resetWalk: "Återställ vandring",
     autoEulerian: "Auto-vandring (Hierholzer)",
-    autoNotEulerian: "Försök en vandring — visa var det går fel",
+    autoNotEulerian: "Försök en vandring: visa var det går fel",
     autoHintEulerian: "Animerar Hierholzers algoritm som korsar varje bro exakt en gång.",
     autoHintNotEulerian:
-      "Königsbergs sju broar har ingen Eulerväg. Klicka för att se en girig vandring från starten som fastnar — det är hela poängen med Eulers argument.",
+      "Königsbergs sju broar har ingen Eulerväg. Klicka för att se en girig vandring från starten som fastnar. Det är hela poängen med Eulers argument.",
     storyBack: "← Berättelse",
     vertexNorthBank: "norra stranden",
     vertexSouthBank: "södra stranden",
@@ -497,18 +499,18 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusPath: "Eulervei",
     walkLabel: "Vandring",
     walkProgress: (v, t) => `${v} / ${t} broer krysset`,
-    walkComplete: "Fullført vandring — hver bro brukt nøyaktig én gang.",
+    walkComplete: "Fullført vandring: hver bro brukt nøyaktig én gang.",
     parityLabel: "Paritet",
     paritySubDisconnected: "Grafen er usammenhengende",
     paritySubOdd: (n) => `${n} hjørner med odde grad`,
-    paritySubZero: "0 odde hjørner — lukket vandring mulig",
+    paritySubZero: "0 odde hjørner, lukket vandring mulig",
     paritySubEnds: (a, b) => `start ved ${a}, slutt ved ${b}`,
     legendLabel: "Tegnforklaring",
-    legendHint: "Klikk en ravfarget bro fra hjørnet du står ved. Grå stiplede broer er inaktive.",
+    legendHint: "Klikk en ravfarget bro fra hjørnet du står ved. Grå broer er inaktive.",
     stuckLabel: "Fastlåst!",
     stuckHead: (v) => `Ingen ubrukt bro går ut fra ${v}. Vandringen kan ikke fortsette.`,
     stuckReasonNone: (n) =>
-      `Denne grafen har ${n} hjørner med odde grad — Euler beviste at ingen Eulervei kan finnes.`,
+      `Denne grafen har ${n} hjørner med odde grad: Euler beviste at ingen Eulervei kan finnes.`,
     stuckReasonOther: "Prøv et annet starthjørne eller endre brosettet.",
     startAt: "Start ved",
     currentlyAtPrefix: "Nå ved:",
@@ -519,16 +521,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     bridges: "Broer",
     originalOn: "original ✓",
     originalOff: "original ✗",
-    extraOn: "ekstra ✓",
-    extraOff: "ekstra ✗",
+    extraOn: "hypotetisk ✓",
+    extraOff: "hypotetisk ✗",
     bridgesFootnote:
-      "De sju historiske broene er på som standard. Slå dem av og på for å se hvordan paritetsargumentet skifter. Honningbroen (BC) ble bygget senere — å legge den til endrer alt.",
+      "De sju historiske broene er på som standard. Kneiphof (B) har fem av dem, blant annet broen til Lomse (BC). De tre broene som er merket som hypotetiske (AD, AD2, BC2), har aldri eksistert og tegnes stiplet: slå på én for å se hvordan paritetsargumentet skifter.",
     resetWalk: "Tilbakestill vandring",
     autoEulerian: "Auto-vandring (Hierholzer)",
-    autoNotEulerian: "Prøv en vandring — vis meg hvor den feiler",
+    autoNotEulerian: "Prøv en vandring: vis meg hvor den feiler",
     autoHintEulerian: "Animerer Hierholzers algoritme som krysser hver bro nøyaktig én gang.",
     autoHintNotEulerian:
-      "Königsbergs sju broer har ingen Eulervei. Klikk for å se en grådig vandring fra starten som setter seg fast — det er hele poenget med Eulers argument.",
+      "Königsbergs sju broer har ingen Eulervei. Klikk for å se en grådig vandring fra starten som setter seg fast. Det er hele poenget med Eulers argument.",
     storyBack: "← Fortelling",
     vertexNorthBank: "nordbredden",
     vertexSouthBank: "sørbredden",
@@ -538,16 +540,16 @@ const EXPLORER: Record<Locale, RichExplorer> = {
   },
 };
 
-function vertexSublabel(v: VertexDef, dict: RichExplorer): string {
+function vertexName(v: VertexDef, dict: RichExplorer): string {
   switch (v.sublabel) {
     case "north-bank":
-      return `${v.id} — ${dict.vertexNorthBank}`;
+      return dict.vertexNorthBank;
     case "south-bank":
-      return `${v.id} — ${dict.vertexSouthBank}`;
+      return dict.vertexSouthBank;
     case "kneiphof":
-      return `${v.id} — ${dict.vertexKneiphof}`;
+      return dict.vertexKneiphof;
     case "lomse":
-      return `${v.id} — ${dict.vertexLomse}`;
+      return dict.vertexLomse;
   }
 }
 
@@ -633,9 +635,18 @@ function classifyGraph(activeIds: Set<string>): EulerStatus {
   return { kind: "none", oddCount: odd.length };
 }
 
-// Hierholzer's algorithm. Returns an ordered list of bridge ids forming an
-// Eulerian path/circuit, or null if none exists.
-function hierholzer(activeIds: Set<string>, status: EulerStatus): string[] | null {
+// Hierholzer's algorithm. Returns the start vertex and an ordered list of
+// bridge ids forming an Eulerian path/circuit, or null if none exists. The
+// trail honours `preferred` whenever that is a legal start (an odd vertex
+// for a path, any vertex with a bridge for a circuit), so the animation
+// never has to move the user's pick without need. The start is returned
+// because the caller must place the walker on the same vertex the trail
+// was computed from: a mismatch makes the animation walk nonsense.
+function hierholzer(
+  activeIds: Set<string>,
+  status: EulerStatus,
+  preferred: VertexId,
+): { start: VertexId; trail: string[] } | null {
   if (status.kind !== "circuit" && status.kind !== "path") return null;
   // Adjacency list of (neighbour, bridgeId).
   const adj: Record<VertexId, Array<{ to: VertexId; id: string }>> = { A: [], B: [], C: [], D: [] };
@@ -644,13 +655,16 @@ function hierholzer(activeIds: Set<string>, status: EulerStatus): string[] | nul
     adj[br.a].push({ to: br.b, id: br.id });
     adj[br.b].push({ to: br.a, id: br.id });
   }
-  const start: VertexId =
-    status.kind === "path"
-      ? status.ends[0]
-      : ((["A", "B", "C", "D"] as VertexId[]).find((v) => adj[v].length > 0) ?? "A");
+  let start: VertexId;
+  if (status.kind === "path") {
+    start = status.ends.includes(preferred) ? preferred : status.ends[0];
+  } else if (adj[preferred].length > 0) {
+    start = preferred;
+  } else {
+    start = (["A", "B", "C", "D"] as VertexId[]).find((v) => adj[v].length > 0) ?? preferred;
+  }
   const used = new Set<string>();
   const stack: VertexId[] = [start];
-  const trail: VertexId[] = [];
   const trailEdges: string[] = [];
   // We'll record an edge each time we backtrack from a vertex; classic
   // Hierholzer trick.
@@ -664,13 +678,13 @@ function hierholzer(activeIds: Set<string>, status: EulerStatus): string[] | nul
       stack.push(next.to);
       edgeStack.push(next.id);
     } else {
-      trail.push(stack.pop()!);
+      stack.pop();
       const e = edgeStack.pop();
       if (e !== undefined) trailEdges.push(e);
     }
   }
   trailEdges.reverse();
-  return trailEdges;
+  return { start, trail: trailEdges };
 }
 
 export default function KonigsbergExplorer() {
@@ -703,17 +717,19 @@ export default function KonigsbergExplorer() {
   const degrees = useMemo(() => computeDegrees(activeIds), [activeIds]);
   const status = useMemo(() => classifyGraph(activeIds), [activeIds]);
 
-  // Reset the walk when the active graph or the start vertex changes.
-  const resetWalk = useCallback(() => {
+  // Put the walker on `v` with a clean slate. Called from the event
+  // handlers directly rather than from an effect keyed on startVertex: such
+  // an effect also fired when auto-solve had to move the start, and its
+  // setAuto(null) cancelled the animation that had just been started.
+  const beginAt = useCallback((v: VertexId) => {
+    setStartVertex(v);
     setWalk([]);
     setStuck(false);
-    setCurrentVertex(startVertex);
+    setCurrentVertex(v);
     setAuto(null);
-  }, [startVertex]);
+  }, []);
 
-  useEffect(() => {
-    resetWalk();
-  }, [activeIds, startVertex, resetWalk]);
+  const resetWalk = useCallback(() => beginAt(startVertex), [beginAt, startVertex]);
 
   // Determine if the walker is stuck (no legal moves from current vertex
   // among unvisited active bridges).
@@ -738,7 +754,7 @@ export default function KonigsbergExplorer() {
   }, [walk, currentVertex, activeIds, auto, stuck]);
 
   // Auto-walk animation tick. When the trail is exhausted we release `auto`
-  // so the stuck-detection effect can run — important for the greedy-walk
+  // so the stuck-detection effect can run: important for the greedy-walk
   // mode where the walk ends prematurely and we want the "Stuck!" message
   // to appear automatically.
   useEffect(() => {
@@ -759,7 +775,7 @@ export default function KonigsbergExplorer() {
   }, [auto]);
 
   // Greedy random walk used when the graph is NOT Eulerian. This is the
-  // whole point of the Königsberg page — show the user that they get stuck,
+  // whole point of the Königsberg page: show the user that they get stuck,
   // not just disable the button. From the start vertex we pick any unused
   // incident bridge until none remain; the trail length will be < total
   // active bridges and the UI will display "stuck" after the animation.
@@ -793,33 +809,32 @@ export default function KonigsbergExplorer() {
   );
 
   const startAutoSolve = useCallback(() => {
-    const eulerianTrail = hierholzer(activeIds, status);
-    if (eulerianTrail !== null) {
-      const startV: VertexId = status.kind === "path" ? status.ends[0] : startVertex;
-      setStartVertex(startV);
-      setWalk([]);
-      setStuck(false);
-      setCurrentVertex(startV);
-      setAuto({ trail: eulerianTrail, idx: 0 });
+    const solved = hierholzer(activeIds, status, startVertex);
+    if (solved !== null) {
+      beginAt(solved.start);
+      setAuto({ trail: solved.trail, idx: 0 });
       return;
     }
-    // Not Eulerian — show why by walking greedily until stuck.
+    // Not Eulerian: show why by walking greedily until stuck.
     const trail = greedyWalk(startVertex);
     if (trail.length === 0) return;
-    setWalk([]);
-    setStuck(false);
-    setCurrentVertex(startVertex);
+    beginAt(startVertex);
     setAuto({ trail, idx: 0 });
-  }, [activeIds, status, startVertex, greedyWalk]);
+  }, [activeIds, status, startVertex, greedyWalk, beginAt]);
 
-  const toggleBridge = useCallback((id: string) => {
-    setActiveIds((s) => {
-      const next = new Set(s);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  }, []);
+  const toggleBridge = useCallback(
+    (id: string) => {
+      setActiveIds((s) => {
+        const next = new Set(s);
+        if (next.has(id)) next.delete(id);
+        else next.add(id);
+        return next;
+      });
+      // A half-finished walk is meaningless on a different graph.
+      beginAt(startVertex);
+    },
+    [beginAt, startVertex],
+  );
 
   // --- Canvas drawing ----------------------------------------------------
   useEffect(() => {
@@ -840,7 +855,7 @@ export default function KonigsbergExplorer() {
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, W, H);
 
-      // Background — schematic river and banks.
+      // Background: schematic river and banks.
       const sx = W / CANVAS_W;
       const sy = H / CANVAS_H;
       ctx.fillStyle = palette.canvas.bg;
@@ -864,8 +879,6 @@ export default function KonigsbergExplorer() {
       for (const v of VERTICES) {
         const cx = v.x * sx;
         const cy = v.y * sy;
-        const isCurrent = currentVertex === v.id;
-        const isStart = startVertex === v.id;
         if (v.shape === "bank-top") {
           ctx.fillStyle = "rgba(138,144,164,0.16)";
           roundRect(ctx, 40 * sx, 10 * sy, 720 * sx, 120 * sy, 36 * sx);
@@ -875,12 +888,55 @@ export default function KonigsbergExplorer() {
           roundRect(ctx, 40 * sx, 370 * sy, 720 * sx, 120 * sy, 36 * sx);
           ctx.fill();
         } else {
-          // Island — rounded blob around vertex.
+          // Island: rounded blob around vertex.
           ctx.fillStyle = "rgba(138,144,164,0.20)";
           ctx.beginPath();
           ctx.ellipse(cx, cy, 90 * sx, 55 * sy, 0, 0, Math.PI * 2);
           ctx.fill();
         }
+      }
+
+      // Bridges
+      const visited = new Set(walk);
+      for (const br of BRIDGES) {
+        const active = activeIds.has(br.id);
+        const hit = visited.has(br.id);
+        const isHover = hoverId === br.id;
+        const va = vertsById[br.a];
+        const vb = vertsById[br.b];
+
+        ctx.beginPath();
+        ctx.moveTo(va.x * sx, va.y * sy);
+        ctx.bezierCurveTo(br.cx1 * sx, br.cy1 * sy, br.cx2 * sx, br.cy2 * sy, vb.x * sx, vb.y * sy);
+        // Dashes mean "never existed", grey means "switched off". Keeping
+        // the two cues independent lets a removed historical bridge and an
+        // unbuilt hypothetical one look different.
+        ctx.setLineDash(br.original ? [] : [9 * dpr, 6 * dpr]);
+        if (!active) {
+          ctx.strokeStyle = br.original ? "rgba(138,144,164,0.28)" : "rgba(138,144,164,0.18)";
+          ctx.lineWidth = 1.6 * dpr;
+        } else if (hit) {
+          ctx.strokeStyle = "rgba(255,209,102,0.35)";
+          ctx.lineWidth = 2.4 * dpr;
+        } else if (isHover) {
+          ctx.strokeStyle = palette.signal.amber;
+          ctx.lineWidth = 4 * dpr;
+        } else {
+          ctx.strokeStyle = "rgba(255,209,102,0.85)";
+          ctx.lineWidth = 2.4 * dpr;
+        }
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      // Discs and captions go on top of the bridges: every curve ends in a
+      // vertex centre, and drawn the other way round the lines would strike
+      // through the letters.
+      for (const v of VERTICES) {
+        const cx = v.x * sx;
+        const cy = v.y * sy;
+        const isCurrent = currentVertex === v.id;
+        const isStart = startVertex === v.id;
 
         // Vertex disc
         ctx.beginPath();
@@ -901,56 +957,52 @@ export default function KonigsbergExplorer() {
         ctx.textBaseline = "middle";
         ctx.fillText(v.id, cx, cy);
 
+        // Captions shrink with the canvas down to a legibility floor. Below
+        // that floor the font no longer shrinks, so the caption itself gets
+        // shorter instead (no vertex letter, banks on one line) and the line
+        // spacing follows the font rather than the map scale.
+        const unit = Math.min(sx, sy);
+        const fontPx = Math.max(7.5 * dpr, Math.min(11 * dpr, 9.5 * unit));
+        const compact = 9.5 * unit < 7.5 * dpr;
+        const name = vertexName(v, dict);
+        const degText = `${dict.deg} ${degrees[v.id]}`;
+        const gap = Math.max(16 * unit, 1.25 * fontPx);
         ctx.fillStyle = palette.canvas.muted;
-        ctx.font = `${11 * dpr}px ui-monospace, monospace`;
-        ctx.fillText(vertexSublabel(v, dict), cx, cy + 50 * Math.min(sx, sy));
-        ctx.fillText(`${dict.deg} ${degrees[v.id]}`, cx, cy + 66 * Math.min(sx, sy));
-      }
-
-      // Bridges
-      const visited = new Set(walk);
-      for (const br of BRIDGES) {
-        const active = activeIds.has(br.id);
-        const hit = visited.has(br.id);
-        const isHover = hoverId === br.id;
-        const va = vertsById[br.a];
-        const vb = vertsById[br.b];
-
-        ctx.beginPath();
-        ctx.moveTo(va.x * sx, va.y * sy);
-        ctx.bezierCurveTo(br.cx1 * sx, br.cy1 * sy, br.cx2 * sx, br.cy2 * sy, vb.x * sx, vb.y * sy);
-        if (!active) {
-          ctx.strokeStyle = "rgba(138,144,164,0.18)";
-          ctx.setLineDash([6, 8]);
-          ctx.lineWidth = 1.6 * dpr;
-        } else if (hit) {
-          ctx.strokeStyle = "rgba(255,209,102,0.35)";
-          ctx.setLineDash([]);
-          ctx.lineWidth = 2.4 * dpr;
-        } else if (isHover) {
-          ctx.strokeStyle = palette.signal.amber;
-          ctx.setLineDash([]);
-          ctx.lineWidth = 4 * dpr;
+        ctx.font = `${fontPx}px ui-monospace, monospace`;
+        if (v.label === "above" || v.label === "below") {
+          const dir = v.label === "above" ? -1 : 1;
+          if (compact) {
+            ctx.fillText(`${name} · ${degText}`, cx, cy + dir * (26 * unit + 0.9 * fontPx));
+          } else {
+            const near = cy + dir * (v.label === "above" ? 38 : 50) * unit;
+            const lines = [`${v.id} · ${name}`, degText];
+            // Reading order stays top to bottom on both banks.
+            ctx.fillText(lines[dir === -1 ? 1 : 0], cx, near);
+            ctx.fillText(lines[dir === -1 ? 0 : 1], cx, near + dir * gap);
+          }
         } else {
-          ctx.strokeStyle = "rgba(255,209,102,0.85)";
-          ctx.setLineDash([]);
-          ctx.lineWidth = 2.4 * dpr;
+          const dir = v.label === "left" ? -1 : 1;
+          ctx.textAlign = v.label === "left" ? "right" : "left";
+          ctx.fillText(compact ? name : `${v.id} · ${name}`, cx + dir * 36 * unit, cy - gap / 2);
+          ctx.fillText(degText, cx + dir * 36 * unit, cy + gap / 2);
         }
-        ctx.stroke();
-        ctx.setLineDash([]);
       }
 
-      // Walk overlay — small numbered markers showing the order.
+      // Walk overlay: small numbered markers showing the order.
       for (let i = 0; i < walk.length; i++) {
         const br = BRIDGES.find((b) => b.id === walk[i]);
         if (!br) continue;
         const m = curvePoint(br, 0.5, vertsById);
+        // Same idea as the captions: markers follow the map scale within a
+        // readable range, so neighbouring bridges keep separate markers on
+        // a phone-sized canvas.
+        const r = Math.max(6.5 * dpr, Math.min(12 * dpr, 13 * Math.min(sx, sy)));
         ctx.beginPath();
-        ctx.arc(m.x * sx, m.y * sy, 12 * dpr, 0, Math.PI * 2);
+        ctx.arc(m.x * sx, m.y * sy, r, 0, Math.PI * 2);
         ctx.fillStyle = palette.signal.amber;
         ctx.fill();
         ctx.fillStyle = palette.canvas.bgAlt;
-        ctx.font = `bold ${11 * dpr}px ui-monospace, monospace`;
+        ctx.font = `bold ${0.92 * r}px ui-monospace, monospace`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(String(i + 1), m.x * sx, m.y * sy);
@@ -1059,8 +1111,11 @@ export default function KonigsbergExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {dict.bridgeWalkPrefix} <span className="text-signal-teal">{currentVertex}</span>
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
-              {statusLabel}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
+                {statusLabel}
+              </div>
+              <ExplorerHelpButton guide={KONIGSBERG_GUIDE} />
             </div>
           </div>
 
@@ -1127,7 +1182,7 @@ export default function KonigsbergExplorer() {
               {VERTICES.map((v) => (
                 <button
                   key={v.id}
-                  onClick={() => setStartVertex(v.id)}
+                  onClick={() => beginAt(v.id)}
                   className={`rounded-md border py-2 font-mono text-sm transition-colors ${
                     startVertex === v.id
                       ? "border-signal-teal/60 bg-signal-teal/10 text-signal-teal"
@@ -1189,7 +1244,7 @@ export default function KonigsbergExplorer() {
                     }`}
                   >
                     <span>
-                      {br.a} — {br.b} <span className="text-ink-500">· {br.id}</span>
+                      {br.a} ↔ {br.b} <span className="text-ink-500">· {br.id}</span>
                     </span>
                     <span className="text-[10px] uppercase tracking-widest2">
                       {br.original
@@ -1247,6 +1302,7 @@ export default function KonigsbergExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={KONIGSBERG_GUIDE} storyHref="/konigsberg" />
     </main>
   );
 }

@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { PHI_GUIDE } from "@/lib/explorer-guides/phi";
 
 type Panel = "spiral" | "ratios" | "sunflower";
 
@@ -375,8 +377,11 @@ export default function PhiExplorer() {
                 </button>
               ))}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              φ = (1 + √5) / 2 ≈ {PHI_STR}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                φ = (1 + √5) / 2 ≈ {PHI_STR}
+              </div>
+              <ExplorerHelpButton guide={PHI_GUIDE} />
             </div>
           </div>
 
@@ -576,6 +581,7 @@ export default function PhiExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={PHI_GUIDE} storyHref="/phi" />
     </main>
   );
 }

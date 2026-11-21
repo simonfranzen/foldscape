@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { parse, reduceTrace, PRESETS } from "@/lib/iota/reduce";
 import { Info } from "@/components/Info";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { IOTA_REDUCER_GUIDE } from "@/lib/explorer-guides/iota-reducer";
 
 const INITIAL_MAX_STEPS = 40;
 const STEP_LIMIT_MIN = 5;
@@ -177,15 +179,18 @@ export default function IotaReducer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               SKI · Iota reducer
             </div>
-            {result.ok && (
-              <div
-                className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${
-                  result.normal ? "text-signal-cyan" : "text-signal-amber"
-                }`}
-              >
-                {result.normal ? `✓ ${chrome.normalForm}` : `↺ ${chrome.ranOut}`}
-              </div>
-            )}
+            <div className="flex items-center gap-2">
+              {result.ok && (
+                <div
+                  className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${
+                    result.normal ? "text-signal-cyan" : "text-signal-amber"
+                  }`}
+                >
+                  {result.normal ? `✓ ${chrome.normalForm}` : `↺ ${chrome.ranOut}`}
+                </div>
+              )}
+              <ExplorerHelpButton guide={IOTA_REDUCER_GUIDE} />
+            </div>
           </div>
 
           {/* Input */}
@@ -313,6 +318,7 @@ export default function IotaReducer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={IOTA_REDUCER_GUIDE} storyHref="/iota" />
     </main>
   );
 }

@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { APOLLONIAN_GUIDE } from "@/lib/explorer-guides/apollonian";
 
 const withAlpha = (hex: string, a: number) => {
   const n = parseInt(hex.slice(1), 16);
@@ -540,13 +542,16 @@ export default function ApollonianExplorer() {
               (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)
             </div>
           </div>
-          <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
+          <div className="hairline relative flex-1 overflow-hidden rounded-2xl border bg-ink-950">
             <canvas
               ref={canvasRef}
               className="block h-full w-full"
               role="img"
               aria-label={RE.canvasLabel(PRESETS[presetIdx]!.label, circles.length)}
             />
+            <div className="pointer-events-none absolute right-3 top-3">
+              <ExplorerHelpButton guide={APOLLONIAN_GUIDE} />
+            </div>
           </div>
         </div>
 
@@ -700,6 +705,7 @@ export default function ApollonianExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={APOLLONIAN_GUIDE} storyHref="/apollonian" />
     </main>
   );
 }

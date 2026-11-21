@@ -5,20 +5,26 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { LOGISTIC_SOUND_GUIDE } from "@/lib/explorer-guides/logistic-sound";
+import type { Locale } from "@/lib/i18n/types";
 
 const R_MIN = 2.5;
 const R_MAX = 4.0;
 
-const R_MARKERS: { r: number; label: string }[] = [
-  { r: 3.0, label: "2-cycle" },
-  { r: 3.449, label: "4-cycle" },
-  { r: 3.544, label: "8-cycle" },
-  { r: 3.56995, label: "chaos" },
-  { r: 3.8284, label: "period-3" },
-  { r: 4.0, label: "full chaos" },
-];
+// Axis markers sit on the thresholds where each regime begins. Their labels
+// live in RICH_EXPLORER (per-locale, index-aligned with this array).
+const R_MARKERS: number[] = [3.0, 1 + Math.sqrt(6), 3.544, 3.56995, 1 + Math.sqrt(8), 4.0];
 
-const SNAP_R: number[] = [3.0, 3.449, 3.56995, 3.8284, 3.9];
+// Snap buttons must land where the regime is audible, not on its threshold:
+// the rounded thresholds 3.449 and 3.8284 lie just below 1 + √6 and 1 + √8,
+// where the orbit is still a 2-cycle or intermittent chaos. 3.5 is a clean
+// 4-cycle and 3.83 a clean 3-cycle.
+const SNAP_R: number[] = [3.0, 3.5, 3.56995, 3.83, 3.9];
+
+// Under reduced motion the chart is a still frame; while auto-sweep changes r
+// on its own, refresh it at most this often.
+const STILL_SWEEP_INTERVAL_MS = 1000;
 
 type PitchRange = { label: string; min: number; max: number };
 const PITCH_RANGES: PitchRange[] = [
@@ -60,6 +66,97 @@ function snapToScale(freq: number): number {
   return best;
 }
 
+// Locale-aware room copy. Only EN and DE are filled in; the other locales fall
+// back to EN at the call site.
+type RichExplorer = {
+  stripLabel: (n: number) => string;
+  stripLabelStill: (n: number) => string;
+  rAxisLabel: (lo: number, hi: number, r: string) => string;
+  intro: string;
+  startAudio: string;
+  stopAudio: string;
+  masterGain: string;
+  growthRate: string;
+  autoSweep: string;
+  sweepDuration: string;
+  iterRate: string;
+  pitchRange: string;
+  quantize: string;
+  quantizeHint: string;
+  soundSource: string;
+  waves: string[]; // index-aligned with WAVES
+  markers: string[]; // index-aligned with R_MARKERS
+  reducedNote: string;
+  ariaStrip: string;
+  ariaAxis: string;
+};
+
+const RICH_EXPLORER: { en: RichExplorer } & Partial<Record<Locale, RichExplorer>> = {
+  en: {
+    stripLabel: (n) => `Listening to the cascade · last ${n} iterates`,
+    stripLabelStill: (n) => `Still frame · ${n} iterates after settling`,
+    rAxisLabel: (lo, hi, r) => `r-axis · r ∈ [${lo}, ${hi}] · current r = ${r}`,
+    intro:
+      "Each new iterate xₙ becomes a tone. At low r you hear one steady note (a fixed point). Past r = 3 the note splits in two and you hear a 2-note oscillation, then 4, then 8: a period-doubling cascade. Past r ≈ 3.5699 the pitches scatter into noise.",
+    startAudio: "○ start audio",
+    stopAudio: "● stop audio",
+    masterGain: "Master gain",
+    growthRate: "Growth rate r",
+    autoSweep: "Auto-sweep r",
+    sweepDuration: "Sweep duration",
+    iterRate: "Iteration rate",
+    pitchRange: "Pitch range",
+    quantize: "Quantize to major scale",
+    quantizeHint:
+      "Off: continuous pitch. On: snap each tone to the nearest note of A major (root A2).",
+    soundSource: "Sound source",
+    waves: ["sine", "triangle", "sawtooth", "square"],
+    markers: ["2-cycle", "4-cycle", "8-cycle", "chaos", "period-3", "full chaos"],
+    reducedNote:
+      "Reduced motion is on: the chart shows a still frame for the current r and does not scroll. The sound is unaffected.",
+    ariaStrip: "Chart of the most recent iterates of the logistic map",
+    ariaAxis: "Position of r between the landmarks of the bifurcation cascade",
+  },
+  de: {
+    stripLabel: (n) => `Der Kaskade zuhören · letzte ${n} Iterationen`,
+    stripLabelStill: (n) => `Standbild · ${n} Iterationen nach dem Einschwingen`,
+    rAxisLabel: (lo, hi, r) => `r-Achse · r ∈ [${lo}, ${hi}] · aktuelles r = ${r}`,
+    intro:
+      "Jede neue Iteration xₙ wird zu einem Ton. Bei kleinem r hörst du einen gleichbleibenden Ton (einen Fixpunkt). Hinter r = 3 teilt sich der Ton, und du hörst ein Pendeln zwischen 2 Tönen, dann 4, dann 8: eine Kaskade von Periodenverdopplungen. Hinter r ≈ 3,5699 zerstreuen sich die Tonhöhen zu Rauschen.",
+    startAudio: "○ Ton starten",
+    stopAudio: "● Ton stoppen",
+    masterGain: "Gesamtlautstärke",
+    growthRate: "Wachstumsrate r",
+    autoSweep: "r automatisch durchfahren",
+    sweepDuration: "Dauer eines Durchlaufs",
+    iterRate: "Iterationsrate",
+    pitchRange: "Tonumfang",
+    quantize: "Auf Dur-Tonleiter einrasten",
+    quantizeHint:
+      "Aus: stufenlose Tonhöhe. An: Jeder Ton rastet auf den nächsten Ton von A-Dur ein (Grundton A2).",
+    soundSource: "Klangquelle",
+    waves: ["Sinus", "Dreieck", "Sägezahn", "Rechteck"],
+    markers: ["2-Zyklus", "4-Zyklus", "8-Zyklus", "Chaos", "Periode 3", "volles Chaos"],
+    reducedNote:
+      "Reduzierte Bewegung ist aktiv: Das Diagramm zeigt ein Standbild für das aktuelle r und scrollt nicht. Der Klang bleibt unverändert.",
+    ariaStrip: "Diagramm der letzten Iterationen der logistischen Abbildung",
+    ariaAxis: "Lage von r zwischen den Wegmarken der Bifurkationskaskade",
+  },
+};
+
+// What the orbit settles on for a given r: the still frame shown under
+// reduced motion in place of the scrolling history.
+function settledOrbit(r: number, n: number): number[] {
+  let x = 0.5;
+  for (let i = 0; i < 300; i++) x = r * x * (1 - x);
+  const out: number[] = [];
+  for (let i = 0; i < n; i++) {
+    x = r * x * (1 - x);
+    out.push(x);
+  }
+  return out;
+}
+
 interface AudioRefs {
   ctx: AudioContext;
   master: GainNode;
@@ -68,11 +165,29 @@ interface AudioRefs {
 }
 
 export default function LogisticSound() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.logistic;
+  const tx = RICH_EXPLORER[locale] ?? RICH_EXPLORER.en;
+  const txRef = useRef(tx);
+  txRef.current = tx;
   const dpr = useDpr();
   const dprRef = useRef(dpr);
   dprRef.current = dpr;
+
+  // Track prefers-reduced-motion and re-subscribe so a system-setting change
+  // swaps between the scrolling chart and a still frame. The rAF loop itself
+  // keeps running either way because it is also the clock for the audio.
+  const [reduced, setReduced] = useState(false);
+  const reducedRef = useRef(reduced);
+  reducedRef.current = reduced;
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduced(m.matches);
+    on();
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
 
   // Audio state
   const audioRef = useRef<AudioRefs | null>(null);
@@ -147,7 +262,13 @@ export default function LogisticSound() {
     let lastIterTime = performance.now();
     let lastSweepTime = performance.now();
 
-    const draw = () => {
+    // Signature of the last still frame, so reduced motion repaints only when
+    // something the picture depends on has changed.
+    let stillR = NaN;
+    let stillLayout = "";
+    let stillTime = 0;
+
+    const draw = (hist: number[], fadeIn: boolean) => {
       // Strip chart
       const canvas = stripRef.current;
       if (canvas) {
@@ -176,13 +297,12 @@ export default function LogisticSound() {
           }
 
           // Iterates as scrolling dots; newest on the right.
-          const hist = historyRef.current;
           const n = hist.length;
           ctx.fillStyle = palette.signal.rose;
           for (let i = 0; i < n; i++) {
             const px = (i / (HISTORY_MAX - 1)) * W;
             const py = (1 - hist[i]) * H;
-            const radius = 1.4 + (i / Math.max(1, n - 1)) * 1.6;
+            const radius = fadeIn ? 1.4 + (i / Math.max(1, n - 1)) * 1.6 : 2.2;
             ctx.beginPath();
             ctx.arc(px, py, radius, 0, Math.PI * 2);
             ctx.fill();
@@ -218,8 +338,10 @@ export default function LogisticSound() {
 
           // Markers
           ctx.font = "10px ui-monospace, monospace";
-          for (const m of R_MARKERS) {
-            const x = ((m.r - R_MIN) / (R_MAX - R_MIN)) * W;
+          const markerLabels = txRef.current.markers;
+          for (let mi = 0; mi < R_MARKERS.length; mi++) {
+            const mr = R_MARKERS[mi];
+            const x = ((mr - R_MIN) / (R_MAX - R_MIN)) * W;
             ctx.strokeStyle = "rgba(125, 243, 255, 0.45)";
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -227,9 +349,9 @@ export default function LogisticSound() {
             ctx.lineTo(x, H / 2 + 8);
             ctx.stroke();
             ctx.fillStyle = "rgba(125, 243, 255, 0.7)";
-            ctx.fillText(m.r.toFixed(3), x + 4, H / 2 - 6);
+            ctx.fillText(mr.toFixed(3), x + 4, H / 2 - 6);
             ctx.fillStyle = "rgba(138,144,164,0.7)";
-            ctx.fillText(m.label, x + 4, H - 4);
+            ctx.fillText(markerLabels[mi], x + 4, H - 4);
           }
 
           // Current r cursor
@@ -298,7 +420,31 @@ export default function LogisticSound() {
         }
       }
 
-      draw();
+      if (!reducedRef.current) {
+        stillLayout = "";
+        draw(historyRef.current, true);
+      } else {
+        const strip = stripRef.current;
+        const axis = rAxisRef.current;
+        const layout = [
+          strip?.clientWidth,
+          strip?.clientHeight,
+          axis?.clientWidth,
+          axis?.clientHeight,
+          dprRef.current,
+          txRef.current.markers.join("|"),
+        ].join(",");
+        const layoutChanged = layout !== stillLayout;
+        // A change made by hand repaints at once; the sweep moves r by itself,
+        // so its repaints are spaced out.
+        const due = !autoSweepRef.current || now - stillTime >= STILL_SWEEP_INTERVAL_MS;
+        if (layoutChanged || (rRef.current !== stillR && due)) {
+          stillR = rRef.current;
+          stillLayout = layout;
+          stillTime = now;
+          draw(settledOrbit(stillR, HISTORY_MAX), false);
+        }
+      }
       raf = requestAnimationFrame(tick);
     };
 
@@ -363,20 +509,33 @@ export default function LogisticSound() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              Listening to the cascade · last {HISTORY_MAX} iterates
+              {reduced ? tx.stripLabelStill(HISTORY_MAX) : tx.stripLabel(HISTORY_MAX)}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-              xₙ₊₁ = r · xₙ (1 − xₙ)
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
+                xₙ₊₁ = r · xₙ (1 − xₙ)
+              </div>
+              <ExplorerHelpButton guide={LOGISTIC_SOUND_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={stripRef} className="block h-full w-full" />
+            <canvas
+              ref={stripRef}
+              role="img"
+              aria-label={tx.ariaStrip}
+              className="block h-full w-full"
+            />
           </div>
           <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-            r-axis · r ∈ [{R_MIN}, {R_MAX}] · current r = {r.toFixed(4)}
+            {tx.rAxisLabel(R_MIN, R_MAX, r.toFixed(4))}
           </div>
           <div className="hairline h-20 overflow-hidden rounded-2xl border bg-ink-950">
-            <canvas ref={rAxisRef} className="block h-full w-full" />
+            <canvas
+              ref={rAxisRef}
+              role="img"
+              aria-label={tx.ariaAxis}
+              className="block h-full w-full"
+            />
           </div>
         </div>
 
@@ -386,11 +545,10 @@ export default function LogisticSound() {
               {topic.title}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
-            <p className="text-sm leading-relaxed text-ink-200">
-              Each new iterate xₙ becomes a tone. At low r you hear one steady note (a fixed point).
-              Past r = 3 the note splits in two and you hear a 2-note oscillation, then 4, then 8 —
-              a period-doubling cascade. Past r ≈ 3.5699 the pitches scatter into noise.
-            </p>
+            <p className="text-sm leading-relaxed text-ink-200">{tx.intro}</p>
+            {reduced && (
+              <p className="font-mono text-[10px] leading-relaxed text-ink-400">{tx.reducedNote}</p>
+            )}
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
@@ -402,12 +560,12 @@ export default function LogisticSound() {
                   : "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan hover:bg-signal-cyan/20"
               }`}
             >
-              {audioOn ? "● stop audio" : "○ start audio"}
+              {audioOn ? tx.stopAudio : tx.startAudio}
             </button>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                  Master gain
+                  {tx.masterGain}
                 </span>
                 <span className="font-mono text-[10px] text-signal-coral">
                   {masterGain.toFixed(2)}
@@ -415,6 +573,7 @@ export default function LogisticSound() {
               </div>
               <input
                 type="range"
+                aria-label={tx.masterGain}
                 value={masterGain}
                 min={0}
                 max={0.4}
@@ -427,13 +586,14 @@ export default function LogisticSound() {
 
           <div className="hairline space-y-4 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Growth rate r
+              {tx.growthRate}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-coral">{r.toFixed(4)}</span>
             </div>
             <input
               type="range"
+              aria-label={tx.growthRate}
               value={r}
               min={R_MIN}
               max={R_MAX}
@@ -461,7 +621,7 @@ export default function LogisticSound() {
           <div className="hairline space-y-3 border-b p-5">
             <label className="flex cursor-pointer items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Auto-sweep r
+                {tx.autoSweep}
               </span>
               <input
                 type="checkbox"
@@ -473,12 +633,13 @@ export default function LogisticSound() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                  Sweep duration
+                  {tx.sweepDuration}
                 </span>
                 <span className="font-mono text-[10px] text-signal-coral">{sweepSeconds}s</span>
               </div>
               <input
                 type="range"
+                aria-label={tx.sweepDuration}
                 value={sweepSeconds}
                 min={30}
                 max={240}
@@ -494,12 +655,13 @@ export default function LogisticSound() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                  Iteration rate
+                  {tx.iterRate}
                 </span>
                 <span className="font-mono text-[10px] text-signal-coral">{iterRate} / s</span>
               </div>
               <input
                 type="range"
+                aria-label={tx.iterRate}
                 value={iterRate}
                 min={2}
                 max={40}
@@ -512,7 +674,7 @@ export default function LogisticSound() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Pitch range
+              {tx.pitchRange}
             </div>
             <div className="grid grid-cols-2 gap-1">
               {PITCH_RANGES.map((pr, i) => (
@@ -534,7 +696,7 @@ export default function LogisticSound() {
           <div className="hairline space-y-3 border-b p-5">
             <label className="flex cursor-pointer items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Quantize to major scale
+                {tx.quantize}
               </span>
               <input
                 type="checkbox"
@@ -543,14 +705,12 @@ export default function LogisticSound() {
                 className="h-4 w-4 accent-signal-coral"
               />
             </label>
-            <p className="font-mono text-[10px] leading-relaxed text-ink-400">
-              Off: continuous pitch. On: snap each tone to the nearest note of A major (root A2).
-            </p>
+            <p className="font-mono text-[10px] leading-relaxed text-ink-400">{tx.quantizeHint}</p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Sound source
+              {tx.soundSource}
             </div>
             <div className="grid grid-cols-4 gap-1">
               {WAVES.map((w, i) => (
@@ -563,7 +723,7 @@ export default function LogisticSound() {
                       : "hairline text-ink-200 hover:border-signal-coral/40 hover:text-ink-100"
                   }`}
                 >
-                  {w}
+                  {tx.waves[i]}
                 </button>
               ))}
             </div>
@@ -579,6 +739,7 @@ export default function LogisticSound() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={LOGISTIC_SOUND_GUIDE} storyHref="/logistic" />
     </main>
   );
 }

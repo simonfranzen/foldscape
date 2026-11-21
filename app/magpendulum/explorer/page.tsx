@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { MAGPENDULUM_GUIDE } from "@/lib/explorer-guides/magpendulum";
 
 // Magnet colours — three distinct hues.
 const MAGNET_COLORS = [
@@ -395,8 +397,11 @@ export default function MagpendulumExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {ex.basinMap} · {resolution} × {resolution}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-              {computing ? `${ex.computing} ${(progress * 100).toFixed(0)}%` : ex.ready}
+            <div className="flex items-start gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
+                {computing ? `${ex.computing} ${(progress * 100).toFixed(0)}%` : ex.ready}
+              </div>
+              <ExplorerHelpButton guide={MAGPENDULUM_GUIDE} />
             </div>
           </div>
         </div>
@@ -515,6 +520,7 @@ export default function MagpendulumExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={MAGPENDULUM_GUIDE} storyHref="/magpendulum" />
     </main>
   );
 }

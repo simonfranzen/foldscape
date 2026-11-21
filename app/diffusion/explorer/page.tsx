@@ -6,9 +6,11 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { getDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { DIFFUSION_GUIDE } from "@/lib/explorer-guides/diffusion";
 
 // --------------------------------------------------------------------------
-// Diffusion Explorer — a 2D denoising trainer + sampler that runs the
+// Diffusion Explorer: a 2D denoising trainer + sampler that runs the
 // moment the page loads. The visitor walks into a scene already in
 // motion: a small score MLP ε_θ : R² × [0,1] → R² is being trained, a
 // learned score field is painted as a heatmap behind the data, and a
@@ -18,7 +20,7 @@ import { palette } from "@/lib/visual/palette";
 //
 //   L = E_{x₀,t,ε}  ‖ ε  −  ε_θ( √ᾱ_t · x₀ + √(1−ᾱ_t) · ε,  t ) ‖²
 //
-// Everything lives in plain JS — no TensorFlow.js, no library.
+// Everything lives in plain JS: no TensorFlow.js, no library.
 // --------------------------------------------------------------------------
 
 type DatasetKind = "moons" | "blobs" | "spiral";
@@ -53,7 +55,7 @@ type RichExplorer = {
   legendSamples: string;
   legendTrails: string;
   legendField: string;
-  // Live status — three independent counters joined into one line.
+  // Live status: three independent counters joined into one line.
   statusFmt: (epoch: number, loss: number, sStep: number, sTotal: number) => string;
   // Tiny phase labels under the canvas that update as sampling progresses.
   whatNowLabel: string;
@@ -71,7 +73,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     topicTitle: "Topic · Diffusion",
     topicTagline: "A score network learns the data field, walkers walk back from noise.",
     topicBody:
-      "Training and sampling start the moment the page loads. A small MLP keeps improving its noise prediction in the background; rose walkers continuously denoise themselves from a Gaussian cloud onto the data manifold, restart, and do it again. Switch dataset, schedule or T at any moment — the chain reorganises live.",
+      "Training and sampling start the moment the page loads. A small MLP keeps improving its noise prediction in the background; rose walkers continuously denoise themselves from a Gaussian cloud onto the data manifold, restart, and do it again. Switch dataset, schedule or T at any moment: the chain reorganises live.",
     scatterBadge: "2D toy diffusion · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Dataset",
@@ -95,21 +97,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusFmt: (e, l, s, S) => `epoch ${e} · loss ${l.toFixed(3)} · sampling step ${s}/${S}`,
     whatNowLabel: "What you should see right now",
     whatNowTrainingEarly:
-      "the denoiser is still learning the field — walkers wander before snapping",
+      "the denoiser is still learning the field, walkers wander before snapping",
     whatNowNoise: "the walkers are still pure noise from N(0, I)",
     whatNowMoving: "the walkers are starting to clump along the data",
     whatNowConverged: "the walkers have collapsed onto the data manifold",
     whatYouSeeLabel: "Reading the canvas",
     whatYouSeeP1:
-      "Cyan dots: the toy data distribution. The denoiser sees only noised copies of these during training — it never memorises positions; it learns the local 'which way is in?' field.",
+      "Cyan dots: the toy data distribution. The denoiser sees only noised copies of these during training: it never memorises positions; it learns the local 'which way is in?' field.",
     whatYouSeeP2:
-      "Rose dots: walkers drawn from pure 2D Gaussian noise and pushed T steps backward through the learned reverse chain, leaving fading trails behind them. Faint blue under-glow: the magnitude of −ε_θ at mid-noise — the score field the walkers ride down.",
+      "Rose dots: walkers drawn from pure 2D Gaussian noise and pushed T steps backward through the learned reverse chain, leaving fading trails behind them. Faint blue under-glow: the magnitude of −ε_θ at mid-noise, the score field the walkers ride down.",
   },
   de: {
     topicTitle: "Thema · Diffusion",
     topicTagline: "Ein Score-Netz lernt das Datenfeld, Wanderer laufen aus Rauschen zurück.",
     topicBody:
-      "Training und Sampling starten, sobald die Seite lädt. Ein kleiner MLP verbessert im Hintergrund laufend seine Rauschvorhersage; rosa Wanderer entrauschen sich kontinuierlich aus einer Gauß-Wolke auf die Datenmannigfaltigkeit, starten neu und tun es wieder. Wechsle Datensatz, Schedule oder T jederzeit — die Kette ordnet sich live neu.",
+      "Training und Sampling starten, sobald die Seite lädt. Ein kleiner MLP verbessert im Hintergrund laufend seine Rauschvorhersage; rosa Wanderer entrauschen sich kontinuierlich aus einer Gauß-Wolke auf die Datenmannigfaltigkeit, starten neu und tun es wieder. Wechsle Datensatz, Schedule oder T jederzeit: die Kette ordnet sich live neu.",
     scatterBadge: "2D-Spielzeug-Diffusion · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Datensatz",
@@ -133,21 +135,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusFmt: (e, l, s, S) => `Epoche ${e} · Verlust ${l.toFixed(3)} · Sampling-Schritt ${s}/${S}`,
     whatNowLabel: "Was du gerade sehen solltest",
     whatNowTrainingEarly:
-      "der Entrauscher lernt das Feld noch — die Wanderer irren, bevor sie einrasten",
+      "der Entrauscher lernt das Feld noch, die Wanderer irren, bevor sie einrasten",
     whatNowNoise: "die Wanderer sind noch reines Rauschen aus N(0, I)",
     whatNowMoving: "die Wanderer beginnen, sich an den Daten zu sammeln",
     whatNowConverged: "die Wanderer sind auf der Datenmannigfaltigkeit gelandet",
     whatYouSeeLabel: "Die Leinwand lesen",
     whatYouSeeP1:
-      'Cyan-Punkte: die Spielzeug-Datenverteilung. Der Entrauscher sieht nur verrauschte Kopien davon im Training — er merkt sich keine Positionen, sondern lernt das lokale „wo ist innen?"-Feld.',
+      "Cyan-Punkte: die Spielzeug-Datenverteilung. Der Entrauscher sieht nur verrauschte Kopien davon im Training: er merkt sich keine Positionen, sondern lernt das lokale «wo ist innen?»-Feld.",
     whatYouSeeP2:
-      "Rosa-Punkte: Wanderer aus reinem 2D-Gauß-Rauschen, T Schritte rückwärts durch die gelernte Kette geschoben, mit verblassenden Pfaden. Schwacher blauer Schein: die Stärke von −ε_θ bei mittlerem Rauschen — das Score-Feld, an dem die Wanderer hinabrutschen.",
+      "Rosa-Punkte: Wanderer aus reinem 2D-Gauß-Rauschen, T Schritte rückwärts durch die gelernte Kette geschoben, mit verblassenden Pfaden. Schwacher blauer Schein: die Stärke von −ε_θ bei mittlerem Rauschen, das Score-Feld, an dem die Wanderer hinabrutschen.",
   },
   es: {
     topicTitle: "Tema · Difusión",
     topicTagline: "Una red de score aprende el campo, los caminantes regresan desde el ruido.",
     topicBody:
-      "Entrenamiento y muestreo arrancan en cuanto carga la página. Un MLP pequeño mejora sin parar su predicción de ruido en segundo plano; caminantes rosa se desruidan continuamente desde una nube gaussiana hasta la variedad de datos, reinician y vuelven a hacerlo. Cambia conjunto, calendario o T en cualquier momento — la cadena se reorganiza en vivo.",
+      "Entrenamiento y muestreo arrancan en cuanto carga la página. Un MLP pequeño mejora sin parar su predicción de ruido en segundo plano; caminantes rosa se desruidan continuamente desde una nube gaussiana hasta la variedad de datos, reinician y vuelven a hacerlo. Cambia conjunto, calendario o T en cualquier momento: la cadena se reorganiza en vivo.",
     scatterBadge: "difusión 2D · en vivo",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Conjunto de datos",
@@ -171,21 +173,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusFmt: (e, l, s, S) => `época ${e} · pérdida ${l.toFixed(3)} · paso de muestreo ${s}/${S}`,
     whatNowLabel: "Lo que deberías ver ahora mismo",
     whatNowTrainingEarly:
-      "el denoiser aún está aprendiendo el campo — los caminantes vagan antes de fijarse",
+      "el denoiser aún está aprendiendo el campo, los caminantes vagan antes de fijarse",
     whatNowNoise: "los caminantes son aún ruido puro de N(0, I)",
     whatNowMoving: "los caminantes empiezan a aglutinarse cerca de los datos",
     whatNowConverged: "los caminantes han colapsado sobre la variedad de datos",
     whatYouSeeLabel: "Leer el lienzo",
     whatYouSeeP1:
-      "Puntos cian: la distribución de datos. El denoiser sólo ve copias ruidosas durante el entrenamiento — no memoriza posiciones; aprende el campo local de «¿hacia dónde está el interior?».",
+      "Puntos cian: la distribución de datos. El denoiser sólo ve copias ruidosas durante el entrenamiento: no memoriza posiciones; aprende el campo local de «¿hacia dónde está el interior?».",
     whatYouSeeP2:
-      "Puntos rosa: caminantes tomados de ruido gaussiano 2D puro y empujados T pasos hacia atrás por la cadena aprendida, dejando estelas que se desvanecen. Resplandor azul tenue: la magnitud de −ε_θ a ruido medio — el campo de score por el que descienden.",
+      "Puntos rosa: caminantes tomados de ruido gaussiano 2D puro y empujados T pasos hacia atrás por la cadena aprendida, dejando estelas que se desvanecen. Resplandor azul tenue: la magnitud de −ε_θ a ruido medio, el campo de score por el que descienden.",
   },
   fr: {
     topicTitle: "Sujet · Diffusion",
     topicTagline: "Un réseau de score apprend le champ, des marcheurs reviennent du bruit.",
     topicBody:
-      "Entraînement et échantillonnage démarrent dès le chargement. Un petit MLP affine sans cesse sa prédiction de bruit en arrière-plan ; des marcheurs roses se débruitent en continu depuis un nuage gaussien jusqu'à la variété des données, redémarrent et recommencent. Change de jeu, de calendrier ou de T à tout moment — la chaîne se réorganise en direct.",
+      "Entraînement et échantillonnage démarrent dès le chargement. Un petit MLP affine sans cesse sa prédiction de bruit en arrière-plan ; des marcheurs roses se débruitent en continu depuis un nuage gaussien jusqu'à la variété des données, redémarrent et recommencent. Change de jeu, de calendrier ou de T à tout moment : la chaîne se réorganise en direct.",
     scatterBadge: "diffusion 2D · en direct",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Jeu de données",
@@ -210,21 +212,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
       `époque ${e} · perte ${l.toFixed(3)} · pas d'échantillonnage ${s}/${S}`,
     whatNowLabel: "Ce que tu devrais voir maintenant",
     whatNowTrainingEarly:
-      "le débruiteur apprend encore le champ — les marcheurs errent avant de s'accrocher",
+      "le débruiteur apprend encore le champ, les marcheurs errent avant de s'accrocher",
     whatNowNoise: "les marcheurs sont encore du bruit pur de N(0, I)",
     whatNowMoving: "les marcheurs commencent à se regrouper près des données",
     whatNowConverged: "les marcheurs ont collapsé sur la variété des données",
     whatYouSeeLabel: "Lire le canevas",
     whatYouSeeP1:
-      "Points cyan : la distribution des données jouet. Le débruiteur ne les voit (bruités) que pendant l'entraînement — il ne mémorise pas les positions ; il apprend le champ local du « par où est l'intérieur ? ».",
+      "Points cyan : la distribution des données jouet. Le débruiteur ne les voit (bruités) que pendant l'entraînement : il ne mémorise pas les positions ; il apprend le champ local du « par où est l'intérieur ? ».",
     whatYouSeeP2:
-      "Points roses : marcheurs tirés de bruit gaussien 2D pur, poussés T pas à l'envers par la chaîne apprise, laissant des traînées qui s'estompent. Halo bleu pâle : la magnitude de −ε_θ à bruit moyen — le champ de score qu'ils dévalent.",
+      "Points roses : marcheurs tirés de bruit gaussien 2D pur, poussés T pas à l'envers par la chaîne apprise, laissant des traînées qui s'estompent. Halo bleu pâle : la magnitude de −ε_θ à bruit moyen, le champ de score qu'ils dévalent.",
   },
   it: {
     topicTitle: "Tema · Diffusione",
     topicTagline: "Una rete di score impara il campo, dei camminatori tornano dal rumore.",
     topicBody:
-      "Addestramento e campionamento partono appena la pagina carica. Un piccolo MLP continua a migliorare la sua predizione del rumore in background; camminatori rosa si denoisificano di continuo da una nube gaussiana fino alla varietà dei dati, ripartono e lo rifanno. Cambia dataset, calendario o T quando vuoi — la catena si riorganizza dal vivo.",
+      "Addestramento e campionamento partono appena la pagina carica. Un piccolo MLP continua a migliorare la sua predizione del rumore in background; camminatori rosa si denoisificano di continuo da una nube gaussiana fino alla varietà dei dati, ripartono e lo rifanno. Cambia dataset, calendario o T quando vuoi: la catena si riorganizza dal vivo.",
     scatterBadge: "diffusione 2D · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Dataset",
@@ -248,21 +250,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusFmt: (e, l, s, S) => `epoca ${e} · perdita ${l.toFixed(3)} · passo di sampling ${s}/${S}`,
     whatNowLabel: "Cosa dovresti vedere ora",
     whatNowTrainingEarly:
-      "il denoiser sta ancora imparando il campo — i camminatori vagano prima di agganciarsi",
+      "il denoiser sta ancora imparando il campo, i camminatori vagano prima di agganciarsi",
     whatNowNoise: "i camminatori sono ancora rumore puro da N(0, I)",
     whatNowMoving: "i camminatori cominciano ad addensarsi vicino ai dati",
     whatNowConverged: "i camminatori sono collassati sulla varietà dei dati",
     whatYouSeeLabel: "Leggere la tela",
     whatYouSeeP1:
-      "Punti ciano: la distribuzione giocattolo. Il denoiser li vede solo (rumorosi) durante l'addestramento — non memorizza posizioni; impara il campo locale del «da che parte sta dentro?».",
+      "Punti ciano: la distribuzione giocattolo. Il denoiser li vede solo (rumorosi) durante l'addestramento: non memorizza posizioni; impara il campo locale del «da che parte sta dentro?».",
     whatYouSeeP2:
-      "Punti rosa: camminatori presi da rumore gaussiano 2D puro e spinti T passi indietro lungo la catena appresa, lasciando scie sbiadite. Bagliore blu tenue: la magnitudine di −ε_θ a rumore medio — il campo di score lungo cui scivolano.",
+      "Punti rosa: camminatori presi da rumore gaussiano 2D puro e spinti T passi indietro lungo la catena appresa, lasciando scie sbiadite. Bagliore blu tenue: la magnitudine di −ε_θ a rumore medio, il campo di score lungo cui scivolano.",
   },
   pt: {
     topicTitle: "Tema · Difusão",
     topicTagline: "Uma rede de score aprende o campo, caminhantes voltam do ruído.",
     topicBody:
-      "Treino e amostragem arrancam assim que a página carrega. Um pequeno MLP continua a melhorar a sua previsão de ruído em segundo plano; caminhantes rosa removem ruído sem parar a partir de uma nuvem gaussiana até à variedade dos dados, reiniciam e voltam a fazê-lo. Troca de conjunto, calendário ou T a qualquer momento — a cadeia reorganiza-se em direto.",
+      "Treino e amostragem arrancam assim que a página carrega. Um pequeno MLP continua a melhorar a sua previsão de ruído em segundo plano; caminhantes rosa removem ruído sem parar a partir de uma nuvem gaussiana até à variedade dos dados, reiniciam e voltam a fazê-lo. Troca de conjunto, calendário ou T a qualquer momento: a cadeia reorganiza-se em direto.",
     scatterBadge: "difusão 2D · em direto",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Conjunto de dados",
@@ -286,21 +288,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusFmt: (e, l, s, S) => `época ${e} · perda ${l.toFixed(3)} · passo de amostragem ${s}/${S}`,
     whatNowLabel: "O que deves estar a ver agora",
     whatNowTrainingEarly:
-      "o denoiser ainda está a aprender o campo — os caminhantes vagueiam antes de prender",
+      "o denoiser ainda está a aprender o campo, os caminhantes vagueiam antes de prender",
     whatNowNoise: "os caminhantes ainda são ruído puro de N(0, I)",
     whatNowMoving: "os caminhantes começam a aglomerar-se junto aos dados",
     whatNowConverged: "os caminhantes colapsaram sobre a variedade dos dados",
     whatYouSeeLabel: "Ler a tela",
     whatYouSeeP1:
-      "Pontos ciano: a distribuição de dados de brincadeira. O denoiser só os vê (ruidosos) durante o treino — não memoriza posições; aprende o campo local de «para que lado fica dentro?».",
+      "Pontos ciano: a distribuição de dados de brincadeira. O denoiser só os vê (ruidosos) durante o treino: não memoriza posições; aprende o campo local de «para que lado fica dentro?».",
     whatYouSeeP2:
-      "Pontos rosa: caminhantes tirados de ruído gaussiano 2D puro e empurrados T passos para trás pela cadeia aprendida, deixando rastos que se esbatem. Brilho azul ténue: a magnitude de −ε_θ a ruído médio — o campo de score por onde descem.",
+      "Pontos rosa: caminhantes tirados de ruído gaussiano 2D puro e empurrados T passos para trás pela cadeia aprendida, deixando rastos que se esbatem. Brilho azul ténue: a magnitude de −ε_θ a ruído médio, o campo de score por onde descem.",
   },
   sv: {
     topicTitle: "Ämne · Diffusion",
     topicTagline: "Ett score-nät lär fältet, vandrare går tillbaka från brus.",
     topicBody:
-      "Träning och sampling startar i samma stund som sidan laddas. Ett litet MLP fortsätter förbättra sin brusprediktion i bakgrunden; rosa vandrare brusrensar sig oavbrutet från ett gaussiskt moln in på datamångfalden, startar om och gör det igen. Byt dataset, schema eller T när som helst — kedjan organiserar om sig i realtid.",
+      "Träning och sampling startar i samma stund som sidan laddas. Ett litet MLP fortsätter förbättra sin brusprediktion i bakgrunden; rosa vandrare brusrensar sig oavbrutet från ett gaussiskt moln in på datamångfalden, startar om och gör det igen. Byt dataset, schema eller T när som helst: kedjan organiserar om sig i realtid.",
     scatterBadge: "2D-diffusion · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Dataset",
@@ -324,21 +326,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     statusFmt: (e, l, s, S) => `epok ${e} · förlust ${l.toFixed(3)} · samplingssteg ${s}/${S}`,
     whatNowLabel: "Det du borde se just nu",
     whatNowTrainingEarly:
-      "brusborttagaren lär sig fortfarande fältet — vandrarna ströar innan de fastnar",
+      "brusborttagaren lär sig fortfarande fältet, vandrarna ströar innan de fastnar",
     whatNowNoise: "vandrarna är fortfarande rent brus från N(0, I)",
     whatNowMoving: "vandrarna börjar klumpa sig kring datan",
     whatNowConverged: "vandrarna har kollapsat på datamångfalden",
     whatYouSeeLabel: "Läsa duken",
     whatYouSeeP1:
-      "Cyanprickar: leksaksdatafördelningen. Brusborttagaren ser dem bara (brusiga) under träning — den memorerar inte positioner; den lär sig det lokala 'åt vilket håll är inåt?'-fältet.",
+      "Cyanprickar: leksaksdatafördelningen. Brusborttagaren ser dem bara (brusiga) under träning: den memorerar inte positioner; den lär sig det lokala 'åt vilket håll är inåt?'-fältet.",
     whatYouSeeP2:
-      "Rosa prickar: vandrare dragna från rent 2D-gaussiskt brus och puttade T steg bakåt genom den lärda kedjan, med tonande spår. Svagt blått sken: magnituden av −ε_θ vid medelbrus — score-fältet de glider ned för.",
+      "Rosa prickar: vandrare dragna från rent 2D-gaussiskt brus och puttade T steg bakåt genom den lärda kedjan, med tonande spår. Svagt blått sken: magnituden av −ε_θ vid medelbrus, score-fältet de glider ned för.",
   },
   no: {
     topicTitle: "Tema · Diffusjon",
     topicTagline: "Et score-nett lærer feltet, vandrere går tilbake fra støy.",
     topicBody:
-      "Trening og sampling starter i det siden lastes. Et lite MLP fortsetter å forbedre støyprediksjonen i bakgrunnen; rosa vandrere fjerner støy uavbrutt fra en gaussisk sky inn på datamangfoldigheten, starter på nytt og gjør det igjen. Bytt datasett, plan eller T når du vil — kjeden omorganiserer seg live.",
+      "Trening og sampling starter i det siden lastes. Et lite MLP fortsetter å forbedre støyprediksjonen i bakgrunnen; rosa vandrere fjerner støy uavbrutt fra en gaussisk sky inn på datamangfoldigheten, starter på nytt og gjør det igjen. Bytt datasett, plan eller T når du vil: kjeden omorganiserer seg live.",
     scatterBadge: "2D-diffusjon · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Datasett",
@@ -361,22 +363,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     legendField: "lært score-felt",
     statusFmt: (e, l, s, S) => `epoke ${e} · tap ${l.toFixed(3)} · samplingssteg ${s}/${S}`,
     whatNowLabel: "Det du burde se nå",
-    whatNowTrainingEarly:
-      "støyfjerneren lærer fortsatt feltet — vandrerne driver før de fester seg",
+    whatNowTrainingEarly: "støyfjerneren lærer fortsatt feltet, vandrerne driver før de fester seg",
     whatNowNoise: "vandrerne er fortsatt ren støy fra N(0, I)",
     whatNowMoving: "vandrerne begynner å klumpe seg nær dataene",
     whatNowConverged: "vandrerne har kollapset på datamangfoldigheten",
     whatYouSeeLabel: "Lese lerretet",
     whatYouSeeP1:
-      "Cyan-prikker: leketøys-datafordelingen. Støyfjerneren ser dem kun (støyete) under trening — den memorerer ikke posisjoner; den lærer det lokale 'hvilken vei er innover?'-feltet.",
+      "Cyan-prikker: leketøys-datafordelingen. Støyfjerneren ser dem kun (støyete) under trening: den memorerer ikke posisjoner; den lærer det lokale 'hvilken vei er innover?'-feltet.",
     whatYouSeeP2:
-      "Rosa prikker: vandrere trukket fra ren 2D-gaussisk støy og dyttet T steg bakover gjennom den lærte kjeden, med falmende spor. Svakt blått skjær: størrelsen av −ε_θ ved middels støy — score-feltet de glir nedover.",
+      "Rosa prikker: vandrere trukket fra ren 2D-gaussisk støy og dyttet T steg bakover gjennom den lærte kjeden, med falmende spor. Svakt blått skjær: størrelsen av −ε_θ ved middels støy, score-feltet de glir nedover.",
   },
 };
 
 // --------------------------------------------------------------------------
 // Tiny MLP score network ε_θ(x, t) with 2 hidden layers, GELU activations,
-// and Adam optimiser. Input is (x, y, sin(t·π), cos(t·π)) — 4 features.
+// and Adam optimiser. Input is (x, y, sin(t·π), cos(t·π)), 4 features.
 // Output is the 2D noise estimate.
 // --------------------------------------------------------------------------
 
@@ -393,7 +394,7 @@ interface MLP {
   b3: Float32Array; // OUT_DIM
 }
 
-// Adam moments — first (m) and second (v) for every parameter array.
+// Adam moments: first (m) and second (v) for every parameter array.
 interface AdamState {
   mW1: Float32Array;
   vW1: Float32Array;
@@ -577,7 +578,7 @@ function adamStep(
 }
 
 // --------------------------------------------------------------------------
-// Noise schedules — return arrays of α_t and ᾱ_t for t = 1..T (index 0 = t=1).
+// Noise schedules: return arrays of α_t and ᾱ_t for t = 1..T (index 0 = t=1).
 // --------------------------------------------------------------------------
 
 function buildSchedule(
@@ -620,7 +621,7 @@ function buildSchedule(
 }
 
 // --------------------------------------------------------------------------
-// Toy 2D datasets — sampled in screen-ish coordinates centred at (0,0),
+// Toy 2D datasets: sampled in screen-ish coordinates centred at (0,0),
 // roughly in [-2, 2]² so they sit cleanly inside the canvas window.
 // --------------------------------------------------------------------------
 
@@ -669,7 +670,7 @@ function sampleDataset(kind: DatasetKind, n: number, rng: () => number): Float32
 }
 
 // --------------------------------------------------------------------------
-// Score-field heatmap — sample −ε_θ(x, t_mid) on a coarse grid. Magnitude
+// Score-field heatmap: sample −ε_θ(x, t_mid) on a coarse grid. Magnitude
 // is mapped to alpha and painted as a cyan glow behind everything so the
 // visitor can SEE the field the model has carved out.
 // --------------------------------------------------------------------------
@@ -678,7 +679,7 @@ const FIELD_GRID = 28; // 28×28 cells = 784 forward passes per refresh (cheap)
 
 function buildField(net: MLP, schedule: { alphaBar: Float32Array }, T: number): Float32Array {
   const out = new Float32Array(FIELD_GRID * FIELD_GRID);
-  // mid-noise level — where the field is most informative.
+  // mid-noise level, where the field is most informative.
   const tMid = Math.floor(T / 2);
   const tn = (tMid + 1) / T;
   const sinT = Math.sin(Math.PI * tn);
@@ -713,6 +714,11 @@ function buildField(net: MLP, schedule: { alphaBar: Float32Array }, T: number): 
 
 const DATA_N = 256;
 const TRAIL_LEN = 8;
+// Reduced motion trains without animating. 1800 mini-batches equal about five
+// seconds of the live loop (6 per frame), enough for the cloud to land on the
+// data; they run in slices so the main thread never blocks for long.
+const STATIC_BATCHES = 1800;
+const STATIC_SLICE = 60;
 
 export default function DiffusionExplorer() {
   const { u, locale } = useI18n();
@@ -724,7 +730,7 @@ export default function DiffusionExplorer() {
   const [numSamples, setNumSamples] = useState(160);
   const [paused, setPaused] = useState(false);
 
-  // Live status numbers — these are React state because they drive the
+  // Live status numbers: these are React state because they drive the
   // visible counter strip; updated on every animation tick (rAF).
   const [epoch, setEpoch] = useState(0);
   const [loss, setLoss] = useState(0);
@@ -742,7 +748,7 @@ export default function DiffusionExplorer() {
   const fieldRef = useRef<Float32Array | null>(null);
   const fieldFrameRef = useRef(0); // how many redraws since last field refresh
   const rngRef = useRef(makeRng(0xc0ffee));
-  // sampling cursor — counts down from steps-1 to 0, then resets to steps-1
+  // sampling cursor, counts down from steps-1 to 0, then resets to steps-1
   // with a fresh noise cloud (the loop the visitor watches).
   const sampCursorRef = useRef<number>(0);
   // Latest epoch counters for the rAF loop (kept in refs to avoid stale closures).
@@ -754,10 +760,13 @@ export default function DiffusionExplorer() {
     pausedRef.current = paused;
   }, [paused]);
 
-  // Reduced motion — when set, freeze the rAF loop on a single static frame
-  // (training still runs a tiny bit so the heatmap forms, but no continuous
-  // animation).
+  // Reduced motion: the rAF loop never starts. The net is trained off screen
+  // for STATIC_BATCHES mini-batches, the reverse process runs once from noise
+  // to t = 0, and only that finished state is painted, so the still frame
+  // shows a trained result instead of an untrained noise cloud.
   const [reduced, setReduced] = useState(false);
+  // Bumped by "Reset model" so the reduced-motion run starts again.
+  const [resetNonce, setResetNonce] = useState(0);
   useEffect(() => {
     if (typeof window === "undefined") return;
     const m = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -947,19 +956,51 @@ export default function DiffusionExplorer() {
       drawAll();
       rafRef.current = requestAnimationFrame(tick);
     };
+    let timer: number | null = null;
     if (!reduced) {
       rafRef.current = requestAnimationFrame(tick);
     } else {
-      // Reduced motion — paint once with the initial random net so the
-      // visitor still sees the data and a noise cloud (no animation).
+      // Show the setup (data plus noise cloud) right away, then replace it
+      // with the trained result in one go. Pause is ignored here: there is no
+      // running animation to pause.
       drawAll();
+      const slice = () => {
+        if (cancelled) return;
+        const adam = adamRef.current;
+        if (!adam) return;
+        // adam.step counts mini-batches since the last reset, so moving only
+        // the walker slider does not retrain an already trained net.
+        const todo = Math.min(STATIC_SLICE, STATIC_BATCHES - adam.step);
+        for (let b = 0; b < todo; b++) {
+          const l = trainMiniBatch(48);
+          lossRef.current = lossRef.current === 0 ? l : 0.9 * lossRef.current + 0.1 * l;
+        }
+        if (adam.step < STATIC_BATCHES) {
+          timer = window.setTimeout(slice, 0);
+          return;
+        }
+        // A cursor below zero makes the first step draw fresh noise, so
+        // exactly `steps` calls take the cloud from t = T − 1 down to t = 0.
+        sampCursorRef.current = -1;
+        for (let k = 0; k < steps; k++) sampleOneStep();
+        if (netRef.current && schedRef.current) {
+          fieldRef.current = buildField(netRef.current, schedRef.current, steps);
+        }
+        epochRef.current = adam.step / 30;
+        setEpoch(Math.floor(epochRef.current));
+        setLoss(lossRef.current);
+        setSampStep(0);
+        drawAll();
+      };
+      timer = window.setTimeout(slice, 0);
     }
     return () => {
       cancelled = true;
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      if (timer !== null) window.clearTimeout(timer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reduced, steps, schedule]);
+  }, [reduced, steps, schedule, dataset, numSamples, resetNonce]);
 
   // -------- drawing --------
   const drawAll = () => {
@@ -1035,7 +1076,7 @@ export default function DiffusionExplorer() {
       }
     }
 
-    // Sample trails — render as thin fading lines so the user sees the
+    // Sample trails: render as thin fading lines so the user sees the
     // walker collapse from noise onto the manifold as a streak, not a dot.
     const trails = trailsRef.current;
     if (trails) {
@@ -1070,7 +1111,7 @@ export default function DiffusionExplorer() {
     }
   };
 
-  // Resize observer — keeps the canvas painted at the right DPR.
+  // Resize observer: keeps the canvas painted at the right DPR.
   useEffect(() => {
     const ro = new ResizeObserver(() => drawAll());
     if (canvasRef.current) ro.observe(canvasRef.current);
@@ -1083,7 +1124,9 @@ export default function DiffusionExplorer() {
   // narrate itself.
   let phaseCaption = x.whatNowNoise;
   const sCursor = sampCursorRef.current;
-  const sPct = sCursor < 0 ? 0 : 1 - sCursor / Math.max(1, steps - 1); // 0=just noise, 1=converged
+  // The cursor is below zero right after the t = 0 step, when the cohort has
+  // fully arrived (and stays there on the reduced-motion still frame).
+  const sPct = sCursor < 0 ? 1 : 1 - sCursor / Math.max(1, steps - 1); // 0=just noise, 1=converged
   if (epoch < 4) {
     phaseCaption = x.whatNowTrainingEarly;
   } else if (sPct < 0.2) {
@@ -1103,12 +1146,15 @@ export default function DiffusionExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {x.scatterBadge}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-              {x.formulaBadge}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
+                {x.formulaBadge}
+              </div>
+              <ExplorerHelpButton guide={DIFFUSION_GUIDE} />
             </div>
           </div>
 
-          {/* Live status — the strip that visibly ticks. */}
+          {/* Live status: the strip that visibly ticks. */}
           <div className="hairline flex flex-wrap items-center justify-between gap-3 rounded-md border bg-ink-950/60 px-4 py-2 font-mono text-[11px] text-ink-200">
             <span className="text-signal-coral">{x.statusFmt(epoch, loss, sampStep, steps)}</span>
             <span className="text-[10px] uppercase tracking-widest2 text-ink-400">
@@ -1262,11 +1308,12 @@ export default function DiffusionExplorer() {
             />
           </div>
 
-          {/* Pause + reset buttons (no train/sample buttons — both run live) */}
+          {/* Pause + reset buttons (no train/sample buttons, both run live) */}
           <div className="hairline space-y-3 border-b p-5">
             <button
               onClick={() => setPaused((p) => !p)}
-              className={`w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
+              disabled={reduced}
+              className={`w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 transition-colors disabled:opacity-50 ${
                 paused
                   ? "border-signal-coral/60 bg-signal-coral/10 text-signal-coral hover:bg-signal-coral/20"
                   : "border-signal-cyan/60 bg-signal-cyan/10 text-signal-cyan hover:bg-signal-cyan/20"
@@ -1275,7 +1322,10 @@ export default function DiffusionExplorer() {
               {paused ? x.resumeButton : x.pauseButton}
             </button>
             <button
-              onClick={initEverything}
+              onClick={() => {
+                initEverything();
+                setResetNonce((k) => k + 1);
+              }}
               className="hairline w-full rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300 transition-colors hover:border-signal-coral/40 hover:text-signal-coral"
             >
               {x.resetModelButton}
@@ -1300,6 +1350,7 @@ export default function DiffusionExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={DIFFUSION_GUIDE} storyHref="/diffusion" />
     </main>
   );
 }

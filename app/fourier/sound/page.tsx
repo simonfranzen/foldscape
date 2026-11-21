@@ -3,36 +3,116 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/types";
 import { Info } from "@/components/Info";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { FOURIER_SOUND_GUIDE } from "@/lib/explorer-guides/fourier-sound";
+import {
+  CUSTOM_BANK_SIZE,
+  MAX_HARMONICS,
+  canonicalCoefficient,
+  partialAmplitude,
+  partialGains,
+  partialSum,
+  usesCosine,
+  type WaveType,
+} from "@/lib/fourier/soundRecipes";
 
-type WaveType = "square" | "sawtooth" | "triangle" | "pulse";
+// --------------------------------------------------------------------------
+// Per-locale UI strings. EN and DE are filled in; the other locales fall back
+// to EN at the call site until they are translated.
+// --------------------------------------------------------------------------
 
-const WAVE_LABELS: Record<WaveType, string> = {
-  square: "Square",
-  sawtooth: "Sawtooth",
-  triangle: "Triangle",
-  pulse: "Pulse",
+type RichExplorer = {
+  waves: Record<WaveType, string>;
+  harmonicsCount: (n: number) => string;
+  sweeping: string;
+  liveScope: string;
+  staticScope: string;
+  spectrum: string;
+  custom: string;
+  auto: string;
+  soundSuffix: string;
+  intro: string;
+  startAudio: string;
+  stopAudio: string;
+  masterGain: string;
+  baseFreq: string;
+  targetWave: string;
+  targetInfo: string;
+  harmonics: string;
+  max: string;
+  partialAmps: string;
+  partialNote: string;
+  sweep: string;
+  sweepNote: string;
+  audioOff: string;
 };
 
-const MAX_HARMONICS = 32;
-const CUSTOM_BANK_SIZE = 8;
+const RICH_EXPLORER: { en: RichExplorer } & Partial<Record<Locale, RichExplorer>> = {
+  en: {
+    waves: { square: "Square", sawtooth: "Sawtooth", triangle: "Triangle", pulse: "Pulse 25%" },
+    harmonicsCount: (n) => `${n} harmonic${n === 1 ? "" : "s"}`,
+    sweeping: "sweeping",
+    liveScope: "live oscilloscope",
+    staticScope: "waveform (static)",
+    spectrum: "Spectrum · amplitude per harmonic",
+    custom: "custom",
+    auto: "auto",
+    soundSuffix: "Sound",
+    intro:
+      "You are hearing the same partial Fourier sum the visual explorer draws: each harmonic is a real oscillator running through WebAudio. Add harmonics, swap targets, or drag individual amplitudes to sculpt the timbre in real time.",
+    startAudio: "○ start audio",
+    stopAudio: "● stop audio",
+    masterGain: "Master gain",
+    baseFreq: "Base frequency (Hz)",
+    targetWave: "Target wave",
+    targetInfo:
+      "Each wave has a known recipe of harmonic partials. In Auto mode the harmonics follow that recipe; in Custom mode the first eight are yours to shape.",
+    harmonics: "Harmonics",
+    max: "max",
+    partialAmps: "Partial amplitudes",
+    partialNote:
+      "In Auto, partials k > 8 follow the target wave's recipe. In Custom, partials k > 8 are silenced: you are sculpting the first eight.",
+    sweep: "Sweep frequency",
+    sweepNote:
+      "Slowly modulates the fundamental between 110 and 660 Hz at 0.2 Hz. The harmonic spacing stretches with it.",
+    audioOff: "audio off, press start",
+  },
+  de: {
+    waves: { square: "Rechteck", sawtooth: "Sägezahn", triangle: "Dreieck", pulse: "Puls 25 %" },
+    harmonicsCount: (n) => `${n} Harmonische`,
+    sweeping: "Sweep läuft",
+    liveScope: "Live-Oszilloskop",
+    staticScope: "Wellenform (statisch)",
+    spectrum: "Spektrum · Amplitude je Harmonische",
+    custom: "eigene",
+    auto: "auto",
+    soundSuffix: "Klang",
+    intro:
+      "Du hörst dieselbe Fourier-Teilsumme, die der visuelle Explorer zeichnet: Jede Harmonische ist ein echter Oszillator, der über WebAudio läuft. Füge Harmonische hinzu, wechsle das Ziel oder zieh einzelne Amplituden, um die Klangfarbe in Echtzeit zu formen.",
+    startAudio: "○ Audio starten",
+    stopAudio: "● Audio stoppen",
+    masterGain: "Gesamtlautstärke",
+    baseFreq: "Grundfrequenz (Hz)",
+    targetWave: "Zielwelle",
+    targetInfo:
+      "Jede Welle hat ein bekanntes Rezept aus harmonischen Teiltönen. Im Modus «auto» folgen die Harmonischen diesem Rezept, im Modus «eigene» formst du die ersten acht selbst.",
+    harmonics: "Harmonische",
+    max: "max.",
+    partialAmps: "Teiltonamplituden",
+    partialNote:
+      "In «auto» folgen die Teiltöne k > 8 dem Rezept der Zielwelle. In «eigene» sind die Teiltöne k > 8 stumm: Du formst die ersten acht.",
+    sweep: "Frequenz-Sweep",
+    sweepNote:
+      "Verschiebt den Grundton langsam zwischen 110 und 660 Hz, mit 0,2 Hz. Der Abstand der Harmonischen dehnt sich mit.",
+    audioOff: "Audio aus, drück Start",
+  },
+};
 
-function canonicalCoefficient(wave: WaveType, k: number): number {
-  if (wave === "square") {
-    return k % 2 === 1 ? 4 / (Math.PI * k) : 0;
-  }
-  if (wave === "sawtooth") {
-    return ((2 / Math.PI) * (k % 2 === 0 ? -1 : 1)) / k;
-  }
-  if (wave === "triangle") {
-    if (k % 2 === 0) return 0;
-    return (8 / (Math.PI * Math.PI) / (k * k)) * Math.sin((k * Math.PI) / 2);
-  }
-  // pulse
-  return 0.4 / k;
-}
+const WAVES: WaveType[] = ["square", "sawtooth", "triangle", "pulse"];
 
 function makeAudioContext(): AudioContext {
   type WindowWithWebkit = Window & {
@@ -44,14 +124,20 @@ function makeAudioContext(): AudioContext {
   return new Ctor();
 }
 
+// One harmonic. Both phases run all the time and only the gains move, so
+// switching between sine-based and cosine-based recipes is a smooth crossfade
+// instead of a phase jump (which would click).
 interface Voice {
-  osc: OscillatorNode;
-  gain: GainNode;
+  sin: OscillatorNode;
+  cos: OscillatorNode;
+  sinGain: GainNode;
+  cosGain: GainNode;
 }
 
 export default function FourierSoundPage() {
-  const { a, u } = useI18n();
+  const { a, u, locale } = useI18n();
   const topic = a.topics.fourier;
+  const tx = RICH_EXPLORER[locale] ?? RICH_EXPLORER.en;
   const dpr = useDpr();
 
   // Audio state
@@ -72,6 +158,7 @@ export default function FourierSoundPage() {
     Array.from({ length: CUSTOM_BANK_SIZE }, (_, i) => canonicalCoefficient("square", i + 1)),
   );
   const [sweep, setSweep] = useState(false);
+  const [reduced, setReduced] = useState(false);
 
   // Latest values for audio loop, kept in refs to avoid teardown on every change
   const masterGainRef = useRef(masterGain);
@@ -105,14 +192,16 @@ export default function FourierSoundPage() {
     sweepRef.current = sweep;
   }, [sweep]);
 
-  // Resolve current amplitude for harmonic k (1-based)
-  const ampFor = useCallback(
-    (w: WaveType, k: number, custom: boolean, customs: number[]): number => {
-      if (custom && k <= customs.length) return customs[k - 1];
-      return canonicalCoefficient(w, k);
-    },
-    [],
-  );
+  // Track prefers-reduced-motion and re-subscribe so a system-setting change
+  // swaps between the live trace and a still picture.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduced(m.matches);
+    on();
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
 
   // Compute effective base frequency (with optional sweep)
   const effectiveBase = useCallback((): number => {
@@ -139,30 +228,19 @@ export default function FourierSoundPage() {
     const custom = customModeRef.current;
     const customs = customAmpsRef.current;
 
-    const coeffs: number[] = [];
-    let maxAbs = 0;
-    for (let k = 1; k <= MAX_HARMONICS; k++) {
-      const a = k <= N ? ampFor(w, k, custom, customs) : 0;
-      coeffs.push(a);
-      if (Math.abs(a) > maxAbs) maxAbs = Math.abs(a);
-    }
-    // Normalise so the loudest partial sits at ~1/N(active) — keeps overall level stable
-    const norm = maxAbs > 0 ? 1 / maxAbs : 1;
-
+    const gains = partialGains(w, N, custom, customs);
+    const cosine = usesCosine(w);
     for (let i = 0; i < voicesRef.current.length; i++) {
       const v = voicesRef.current[i];
       const k = i + 1;
       const freq = base * k;
-      v.osc.frequency.setTargetAtTime(freq, now, tc);
-      // Per-harmonic gain: divide by k-ish via the canonical coefficients themselves;
-      // they already encode roll-off. We multiply by 1/sqrt(active) so dense stacks
-      // don't clip — sin partials with random phases sum incoherently.
-      const activeCount = Math.min(N, MAX_HARMONICS);
-      const headroom = 1 / Math.sqrt(Math.max(1, activeCount));
-      const target = coeffs[i] * norm * headroom;
-      v.gain.gain.setTargetAtTime(target, now, tc);
+      v.sin.frequency.setTargetAtTime(freq, now, tc);
+      v.cos.frequency.setTargetAtTime(freq, now, tc);
+      const target = gains[i];
+      v.sinGain.gain.setTargetAtTime(cosine ? 0 : target, now, tc);
+      v.cosGain.gain.setTargetAtTime(cosine ? target : 0, now, tc);
     }
-  }, [ampFor, effectiveBase]);
+  }, [effectiveBase]);
 
   // Start / stop audio
   const startAudio = useCallback(async () => {
@@ -183,16 +261,29 @@ export default function FourierSoundPage() {
     analyserRef.current = analyser;
     analyserBufferRef.current = new Float32Array(new ArrayBuffer(analyser.fftSize * 4));
 
+    // A one-term periodic wave with only a real (cosine) coefficient: the
+    // built-in "sine" type has no phase parameter.
+    const cosWave = ctx.createPeriodicWave(new Float32Array([0, 1]), new Float32Array([0, 0]));
+    // One shared start time keeps all partials phase-locked; without it each
+    // oscillator would start wherever the audio clock happens to be.
+    const t0 = ctx.currentTime + 0.02;
     const voices: Voice[] = [];
     for (let k = 1; k <= MAX_HARMONICS; k++) {
-      const osc = ctx.createOscillator();
-      osc.type = "sine";
-      osc.frequency.value = baseFreqRef.current * k;
-      const gain = ctx.createGain();
-      gain.gain.value = 0;
-      osc.connect(gain).connect(master);
-      osc.start();
-      voices.push({ osc, gain });
+      const sin = ctx.createOscillator();
+      sin.type = "sine";
+      const cos = ctx.createOscillator();
+      cos.setPeriodicWave(cosWave);
+      sin.frequency.value = baseFreqRef.current * k;
+      cos.frequency.value = baseFreqRef.current * k;
+      const sinGain = ctx.createGain();
+      const cosGain = ctx.createGain();
+      sinGain.gain.value = 0;
+      cosGain.gain.value = 0;
+      sin.connect(sinGain).connect(master);
+      cos.connect(cosGain).connect(master);
+      sin.start(t0);
+      cos.start(t0);
+      voices.push({ sin, cos, sinGain, cosGain });
     }
     voicesRef.current = voices;
     updateAudio();
@@ -218,7 +309,8 @@ export default function FourierSoundPage() {
     window.setTimeout(() => {
       for (const v of voicesAtStop) {
         try {
-          v.osc.stop();
+          v.sin.stop();
+          v.cos.stop();
         } catch {
           // ignore
         }
@@ -236,7 +328,8 @@ export default function FourierSoundPage() {
       if (ctx) {
         for (const v of voicesRef.current) {
           try {
-            v.osc.stop();
+            v.sin.stop();
+            v.cos.stop();
           } catch {
             // ignore
           }
@@ -257,6 +350,17 @@ export default function FourierSoundPage() {
   const scopeRef = useRef<HTMLCanvasElement | null>(null);
   const spectrumRef = useRef<HTMLCanvasElement | null>(null);
 
+  // Under reduced motion the canvases are only repainted when something
+  // changed. The flag starts true so the first frame is always painted.
+  const dirtyRef = useRef(true);
+  // The draw loop reads the canvas caption from a ref so a locale switch does
+  // not tear the loop down.
+  const audioOffRef = useRef(tx.audioOff);
+  useEffect(() => {
+    audioOffRef.current = tx.audioOff;
+    dirtyRef.current = true;
+  }, [wave, numHarmonics, customMode, customAmps, audioOn, reduced, tx.audioOff]);
+
   useEffect(() => {
     const scope = scopeRef.current;
     const spectrum = spectrumRef.current;
@@ -274,6 +378,8 @@ export default function FourierSoundPage() {
       canvas.height = Math.floor(H * dpr);
       const c = canvas.getContext("2d");
       if (c) c.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // Resizing clears the canvas.
+      dirtyRef.current = true;
     };
     const ro = new ResizeObserver(() => {
       resize(scope);
@@ -294,6 +400,19 @@ export default function FourierSoundPage() {
         if (audioOn) updateAudio();
       }
 
+      // The loop keeps running under reduced motion because the sweep drives
+      // the audio from here, but it must not repaint an unchanged picture.
+      if (reduced && !dirtyRef.current) {
+        raf = requestAnimationFrame(draw);
+        return;
+      }
+      dirtyRef.current = false;
+
+      const N = numHarmonicsRef.current;
+      const w = waveRef.current;
+      const custom = customModeRef.current;
+      const customs = customAmpsRef.current;
+
       // Oscilloscope
       const sW = scope.clientWidth;
       const sH = scope.clientHeight;
@@ -308,7 +427,28 @@ export default function FourierSoundPage() {
 
       const analyser = analyserRef.current;
       const buf = analyserBufferRef.current;
-      if (analyser && buf) {
+      if (reduced) {
+        // A live trace drifts across the screen, so reduced motion gets the
+        // partial sum computed from the recipe instead: same shape, no drift.
+        const samples = Math.max(2, Math.floor(sW));
+        const ys: number[] = [];
+        let peak = 0;
+        for (let i = 0; i < samples; i++) {
+          const y = partialSum(w, N, custom, customs, (i / (samples - 1)) * 2.5 * 2 * Math.PI);
+          ys.push(y);
+          if (Math.abs(y) > peak) peak = Math.abs(y);
+        }
+        sctx.strokeStyle = palette.signal.cyan;
+        sctx.lineWidth = 1.6;
+        sctx.beginPath();
+        for (let i = 0; i < samples; i++) {
+          const x = (i / (samples - 1)) * sW;
+          const y = sH / 2 - (peak > 0 ? ys[i] / peak : 0) * (sH / 2 - 8);
+          if (i === 0) sctx.moveTo(x, y);
+          else sctx.lineTo(x, y);
+        }
+        sctx.stroke();
+      } else if (analyser && buf) {
         analyser.getFloatTimeDomainData(buf);
         sctx.strokeStyle = palette.signal.cyan;
         sctx.shadowColor = palette.signal.cyan;
@@ -332,7 +472,7 @@ export default function FourierSoundPage() {
       } else {
         sctx.fillStyle = "rgba(168,175,191,0.4)";
         sctx.font = "12px ui-monospace, monospace";
-        sctx.fillText("audio off — press start", 16, sH / 2 - 6);
+        sctx.fillText(audioOffRef.current, 16, sH / 2 - 6);
       }
 
       // Spectrum
@@ -341,14 +481,10 @@ export default function FourierSoundPage() {
       pctx.fillStyle = palette.canvas.bg;
       pctx.fillRect(0, 0, pW, pH);
 
-      const N = numHarmonicsRef.current;
-      const w = waveRef.current;
-      const custom = customModeRef.current;
-      const customs = customAmpsRef.current;
       let maxAbs = 0;
       const amps: number[] = [];
       for (let k = 1; k <= N; k++) {
-        const aVal = custom && k <= customs.length ? customs[k - 1] : canonicalCoefficient(w, k);
+        const aVal = partialAmplitude(w, k, custom, customs);
         amps.push(aVal);
         if (Math.abs(aVal) > maxAbs) maxAbs = Math.abs(aVal);
       }
@@ -376,7 +512,7 @@ export default function FourierSoundPage() {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [audioOn, effectiveBase, updateAudio, dpr]);
+  }, [audioOn, effectiveBase, updateAudio, dpr, reduced]);
 
   // When the target waveform changes (and we're not in custom mode),
   // seed the custom bank to the canonical values for the new wave so toggling
@@ -399,19 +535,21 @@ export default function FourierSoundPage() {
         <div className="relative flex min-h-[60vh] flex-col gap-4 bg-ink-950 p-4 lg:min-h-[calc(100vh-3.5rem)] lg:p-6">
           <div className="flex items-center justify-between gap-3">
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-              {WAVE_LABELS[wave]} · {numHarmonics} harmonic{numHarmonics === 1 ? "" : "s"} ·{" "}
-              {Math.round(baseFreq)} Hz
-              {sweep && <span className="text-signal-cyan"> · sweeping</span>}
+              {tx.waves[wave]} · {tx.harmonicsCount(numHarmonics)} · {Math.round(baseFreq)} Hz
+              {sweep && <span className="text-signal-cyan"> · {tx.sweeping}</span>}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              live oscilloscope
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                {reduced ? tx.staticScope : tx.liveScope}
+              </div>
+              <ExplorerHelpButton guide={FOURIER_SOUND_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
             <canvas ref={scopeRef} className="block h-full w-full" />
           </div>
           <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
-            Spectrum · amplitude per harmonic ({customMode ? "custom" : "auto"})
+            {tx.spectrum} ({customMode ? tx.custom : tx.auto})
           </div>
           <div className="hairline h-32 overflow-hidden rounded-2xl border bg-ink-950">
             <canvas ref={spectrumRef} className="block h-full w-full" />
@@ -421,14 +559,10 @@ export default function FourierSoundPage() {
         <aside className="hairline scrollbar-thin flex flex-col overflow-y-auto border-l bg-ink-900/40">
           <div className="hairline space-y-3 border-b p-6">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              {topic.title} · Sound
+              {topic.title} · {tx.soundSuffix}
             </div>
             <h1 className="math-italic text-3xl leading-tight text-ink-100">{topic.tagline}</h1>
-            <p className="text-sm leading-relaxed text-ink-200">
-              You are hearing the same partial Fourier sum the visual explorer draws — each harmonic
-              is a real sine oscillator running through WebAudio. Add harmonics, swap targets, or
-              drag individual amplitudes to sculpt the timbre in real time.
-            </p>
+            <p className="text-sm leading-relaxed text-ink-200">{tx.intro}</p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
@@ -440,10 +574,10 @@ export default function FourierSoundPage() {
                   : "border-signal-cyan/70 bg-signal-cyan/10 text-signal-cyan hover:bg-signal-cyan/20"
               }`}
             >
-              {audioOn ? "● stop audio" : "○ start audio"}
+              {audioOn ? tx.stopAudio : tx.startAudio}
             </button>
             <Slider
-              label="Master gain"
+              label={tx.masterGain}
               value={masterGain}
               min={0}
               max={0.4}
@@ -452,7 +586,7 @@ export default function FourierSoundPage() {
               onChange={setMasterGain}
             />
             <Slider
-              label="Base frequency (Hz)"
+              label={tx.baseFreq}
               value={baseFreq}
               min={55}
               max={880}
@@ -465,14 +599,11 @@ export default function FourierSoundPage() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Target wave
-              <Info side="bottom">
-                Each wave has a known recipe of sine partials. In Auto mode the harmonics follow
-                that recipe; in Custom mode the first eight are yours to shape.
-              </Info>
+              {tx.targetWave}
+              <Info side="bottom">{tx.targetInfo}</Info>
             </div>
             <div className="grid grid-cols-2 gap-2">
-              {(Object.keys(WAVE_LABELS) as WaveType[]).map((w) => (
+              {WAVES.map((w) => (
                 <button
                   key={w}
                   onClick={() => setWave(w)}
@@ -482,7 +613,7 @@ export default function FourierSoundPage() {
                       : "hairline text-ink-300 hover:text-ink-100"
                   }`}
                 >
-                  {WAVE_LABELS[w]}
+                  {tx.waves[w]}
                 </button>
               ))}
             </div>
@@ -490,11 +621,13 @@ export default function FourierSoundPage() {
 
           <div className="hairline space-y-3 border-b p-5">
             <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-              Harmonics
+              {tx.harmonics}
             </div>
             <div className="flex items-center justify-between font-mono text-sm">
               <span className="text-signal-cyan">{numHarmonics}</span>
-              <span className="text-[10px] text-ink-400">max {MAX_HARMONICS}</span>
+              <span className="text-[10px] text-ink-400">
+                {tx.max} {MAX_HARMONICS}
+              </span>
             </div>
             <input
               type="range"
@@ -525,7 +658,7 @@ export default function FourierSoundPage() {
           <div className="hairline space-y-3 border-b p-5">
             <div className="flex items-center justify-between">
               <div className="font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
-                Partial amplitudes
+                {tx.partialAmps}
               </div>
               <button
                 onClick={() => setCustomMode((v) => !v)}
@@ -535,7 +668,7 @@ export default function FourierSoundPage() {
                     : "hairline text-ink-300 hover:text-ink-100"
                 }`}
               >
-                {customMode ? "custom" : "auto"}
+                {customMode ? tx.custom : tx.auto}
               </button>
             </div>
             <div className="space-y-2 pt-1">
@@ -564,18 +697,12 @@ export default function FourierSoundPage() {
                 </label>
               ))}
             </div>
-            <p className="pt-1 text-[11px] text-ink-400">
-              In Auto, partials k &gt; 8 follow the target wave&apos;s recipe. In Custom, partials k
-              &gt; 8 are silenced — you are sculpting the first eight.
-            </p>
+            <p className="pt-1 text-[11px] text-ink-400">{tx.partialNote}</p>
           </div>
 
           <div className="hairline space-y-3 border-b p-5">
-            <Toggle label="Sweep frequency" on={sweep} onChange={setSweep} />
-            <p className="text-[11px] text-ink-400">
-              Slowly modulates the fundamental between 110 and 660 Hz at 0.2 Hz. The harmonic
-              spacing stretches with it.
-            </p>
+            <Toggle label={tx.sweep} on={sweep} onChange={setSweep} />
+            <p className="text-[11px] text-ink-400">{tx.sweepNote}</p>
           </div>
 
           <div className="p-5">
@@ -588,6 +715,7 @@ export default function FourierSoundPage() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={FOURIER_SOUND_GUIDE} storyHref="/fourier" />
     </main>
   );
 }

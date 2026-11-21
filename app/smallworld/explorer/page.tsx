@@ -5,6 +5,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { SMALLWORLD_GUIDE } from "@/lib/explorer-guides/smallworld";
 
 // --------------------------------------------------------------------------
 // Watts-Strogatz explorer. The user tunes N, k, p; we (a) lay the N nodes
@@ -529,12 +531,15 @@ export default function SmallWorldExplorer() {
               L = {stats.L.toFixed(2)} · C = {stats.C.toFixed(3)} · maxDeg = {stats.D}
             </div>
           </div>
-          <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
+          <div className="hairline relative flex-1 overflow-hidden rounded-2xl border bg-ink-950">
             <canvas
               ref={graphCanvasRef}
               className="block h-full w-full cursor-crosshair"
               onClick={handleGraphClick}
             />
+            <div className="pointer-events-none absolute right-3 top-3">
+              <ExplorerHelpButton guide={SMALLWORLD_GUIDE} />
+            </div>
           </div>
           <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
             L / L₀ and C / C₀ as p sweeps from 0 to 1 (logarithmic x-axis)
@@ -716,6 +721,7 @@ export default function SmallWorldExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={SMALLWORLD_GUIDE} storyHref="/smallworld" />
     </main>
   );
 }

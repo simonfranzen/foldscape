@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { BACKPROP_GUIDE } from "@/lib/explorer-guides/backprop";
 
 // --------------------------------------------------------------------------
 // Backprop Explorer — hand-rolled multilayer perceptron trainer in the
@@ -30,7 +32,7 @@ type RichExplorer = {
   taskOptions: Record<Task, string>;
   learningRate: string;
   batchSize: string;
-  epochs: string;
+  updatesPerSecond: string;
   trainingBadge: string;
   pausedBadge: string;
   convergedBadge: string;
@@ -41,6 +43,7 @@ type RichExplorer = {
   reset: string;
   lossLabel: string;
   epochLabel: string;
+  updateLabel: string;
   accuracyLabel: string;
   decisionLabel: string;
   decisionHint: string;
@@ -60,13 +63,13 @@ const E: Record<Locale, RichExplorer> = {
     },
     taskLabel: "Toy task",
     taskOptions: {
-      xor: "XOR — four corners",
-      moons: "Two moons — interlocked crescents",
-      circle: "Circle vs square — radial split",
+      xor: "XOR: four corners",
+      moons: "Two moons: interlocked crescents",
+      circle: "Circle vs square: radial split",
     },
     learningRate: "Learning rate η",
     batchSize: "Batch size",
-    epochs: "Epochs / second",
+    updatesPerSecond: "Updates / second",
     trainingBadge: "Training",
     pausedBadge: "Paused",
     convergedBadge: "Converged",
@@ -77,17 +80,18 @@ const E: Record<Locale, RichExplorer> = {
     reset: "↺ reset",
     lossLabel: "Loss",
     epochLabel: "Epoch",
+    updateLabel: "update",
     accuracyLabel: "Accuracy",
     decisionLabel: "Decision boundary",
     decisionHint:
       "Amber = net says class 1, cyan = class 0. Watch the regions warp as the loss falls.",
     whatYouSeeLabel: "What you are seeing",
     whatYouSeeInit:
-      "Random weights. The decision surface is a smooth, almost meaningless gradient — the network has no idea what the task is yet. Click play and watch backprop reshape the surface to match the data.",
+      "Random weights. The decision surface is a smooth, almost meaningless gradient: the network has no idea what the task is yet. Click play and watch backprop reshape the surface to match the data.",
     whatYouSeeTraining:
       "Each epoch processes the whole training set once. The chain rule, run backward through every layer, gives each weight its share of the blame for the current loss; the optimiser then nudges each weight downhill. The visible decision boundary is the level set ŷ = 0.5 of the network's output.",
     whatYouSeeConverged:
-      "Loss has plateaued. The decision boundary now traces the structure of the task — corners for XOR, an interlocking S for two moons, a circle for the radial split. The network has memorised a smooth function that fits the training points and generalises to nearby ones.",
+      "Loss has plateaued. The decision boundary now traces the structure of the task: corners for XOR, an interlocking S for two moons, a circle for the radial split. The network has memorised a smooth function that fits the training points and generalises to nearby ones.",
   },
   de: {
     topologyLabel: "Netz-Topologie",
@@ -98,13 +102,13 @@ const E: Record<Locale, RichExplorer> = {
     },
     taskLabel: "Spielaufgabe",
     taskOptions: {
-      xor: "XOR — vier Ecken",
-      moons: "Zwei Monde — verschränkte Sicheln",
-      circle: "Kreis gegen Quadrat — radialer Schnitt",
+      xor: "XOR: vier Ecken",
+      moons: "Zwei Monde: verschränkte Sicheln",
+      circle: "Kreis gegen Quadrat: radialer Schnitt",
     },
     learningRate: "Lernrate η",
     batchSize: "Batchgröße",
-    epochs: "Epochen / Sekunde",
+    updatesPerSecond: "Updates / Sekunde",
     trainingBadge: "Trainiert",
     pausedBadge: "Pausiert",
     convergedBadge: "Konvergiert",
@@ -115,17 +119,18 @@ const E: Record<Locale, RichExplorer> = {
     reset: "↺ zurücksetzen",
     lossLabel: "Verlust",
     epochLabel: "Epoche",
+    updateLabel: "Update",
     accuracyLabel: "Genauigkeit",
     decisionLabel: "Entscheidungsgrenze",
     decisionHint:
       "Bernstein = Netz sagt Klasse 1, Zyan = Klasse 0. Schau zu, wie sich die Bereiche verformen, während der Verlust fällt.",
     whatYouSeeLabel: "Was du siehst",
     whatYouSeeInit:
-      "Zufällige Gewichte. Die Entscheidungsoberfläche ist ein weicher, fast bedeutungsloser Verlauf — das Netz weiß noch nicht, worum es geht. Drücke „los« und sieh zu, wie Backprop die Oberfläche an die Daten anpasst.",
+      "Zufällige Gewichte. Die Entscheidungsoberfläche ist ein weicher, fast bedeutungsloser Verlauf: Das Netz weiß noch nicht, worum es geht. Drücke «los» und sieh zu, wie Backprop die Oberfläche an die Daten anpasst.",
     whatYouSeeTraining:
       "Jede Epoche verarbeitet einmal den ganzen Trainingsdatensatz. Die Kettenregel, rückwärts durch jede Schicht gelaufen, gibt jedem Gewicht seinen Anteil am aktuellen Verlust; der Optimierer schiebt jedes Gewicht dann bergab. Die sichtbare Entscheidungsgrenze ist die Niveaumenge ŷ = 0,5 der Netzausgabe.",
     whatYouSeeConverged:
-      "Der Verlust hat ein Plateau erreicht. Die Entscheidungsgrenze zeichnet jetzt die Struktur der Aufgabe nach — Ecken bei XOR, ein verschränktes S bei den zwei Monden, ein Kreis beim radialen Schnitt. Das Netz hat eine glatte Funktion gelernt, die zu den Trainingspunkten passt und auf benachbarte verallgemeinert.",
+      "Der Verlust hat ein Plateau erreicht. Die Entscheidungsgrenze zeichnet jetzt die Struktur der Aufgabe nach: Ecken bei XOR, ein verschränktes S bei den zwei Monden, ein Kreis beim radialen Schnitt. Das Netz hat eine glatte Funktion gelernt, die zu den Trainingspunkten passt und auf benachbarte verallgemeinert.",
   },
   es: {
     topologyLabel: "Topología de la red",
@@ -136,13 +141,13 @@ const E: Record<Locale, RichExplorer> = {
     },
     taskLabel: "Tarea de juguete",
     taskOptions: {
-      xor: "XOR — cuatro esquinas",
-      moons: "Dos lunas — crecientes entrelazados",
-      circle: "Círculo vs cuadrado — corte radial",
+      xor: "XOR: cuatro esquinas",
+      moons: "Dos lunas: crecientes entrelazados",
+      circle: "Círculo vs cuadrado: corte radial",
     },
     learningRate: "Tasa de aprendizaje η",
     batchSize: "Tamaño de lote",
-    epochs: "Épocas / segundo",
+    updatesPerSecond: "Actualizaciones / segundo",
     trainingBadge: "Entrenando",
     pausedBadge: "En pausa",
     convergedBadge: "Convergida",
@@ -153,17 +158,18 @@ const E: Record<Locale, RichExplorer> = {
     reset: "↺ reiniciar",
     lossLabel: "Pérdida",
     epochLabel: "Época",
+    updateLabel: "actualización",
     accuracyLabel: "Precisión",
     decisionLabel: "Frontera de decisión",
     decisionHint:
       "Ámbar = la red dice clase 1, cian = clase 0. Mira las regiones deformarse mientras cae la pérdida.",
     whatYouSeeLabel: "Lo que estás viendo",
     whatYouSeeInit:
-      "Pesos aleatorios. La superficie de decisión es un degradado suave y casi sin sentido — la red aún no sabe cuál es la tarea. Pulsa ir y mira a backprop remodelar la superficie hacia los datos.",
+      "Pesos aleatorios. La superficie de decisión es un degradado suave y casi sin sentido: la red aún no sabe cuál es la tarea. Pulsa ir y mira a backprop remodelar la superficie hacia los datos.",
     whatYouSeeTraining:
       "Cada época procesa el conjunto de entrenamiento una vez. La regla de la cadena, recorrida hacia atrás por cada capa, le da a cada peso su parte de culpa por la pérdida actual; el optimizador empuja cada peso cuesta abajo. La frontera visible es el conjunto de nivel ŷ = 0,5 de la salida.",
     whatYouSeeConverged:
-      "La pérdida se ha estabilizado. La frontera traza ahora la estructura de la tarea — esquinas para XOR, una S entrelazada para las dos lunas, un círculo para el corte radial. La red ha memorizado una función suave que ajusta los puntos de entrenamiento y generaliza a los vecinos.",
+      "La pérdida se ha estabilizado. La frontera traza ahora la estructura de la tarea: esquinas para XOR, una S entrelazada para las dos lunas, un círculo para el corte radial. La red ha memorizado una función suave que ajusta los puntos de entrenamiento y generaliza a los vecinos.",
   },
   fr: {
     topologyLabel: "Topologie du réseau",
@@ -174,13 +180,13 @@ const E: Record<Locale, RichExplorer> = {
     },
     taskLabel: "Tâche jouet",
     taskOptions: {
-      xor: "XOR — quatre coins",
-      moons: "Deux lunes — croissants entrelacés",
-      circle: "Cercle vs carré — coupe radiale",
+      xor: "XOR : quatre coins",
+      moons: "Deux lunes : croissants entrelacés",
+      circle: "Cercle vs carré : coupe radiale",
     },
     learningRate: "Taux d'apprentissage η",
     batchSize: "Taille du lot",
-    epochs: "Époques / seconde",
+    updatesPerSecond: "Mises à jour / seconde",
     trainingBadge: "Entraînement",
     pausedBadge: "En pause",
     convergedBadge: "Convergé",
@@ -191,17 +197,18 @@ const E: Record<Locale, RichExplorer> = {
     reset: "↺ réinitialiser",
     lossLabel: "Perte",
     epochLabel: "Époque",
+    updateLabel: "mise à jour",
     accuracyLabel: "Précision",
     decisionLabel: "Frontière de décision",
     decisionHint:
       "Ambre = le réseau dit classe 1, cyan = classe 0. Regarde les régions se déformer pendant que la perte baisse.",
     whatYouSeeLabel: "Ce que tu vois",
     whatYouSeeInit:
-      "Poids aléatoires. La surface de décision est un dégradé doux et presque dénué de sens — le réseau ne sait pas encore de quoi il s'agit. Clique sur go et regarde la rétropropagation remodeler la surface vers les données.",
+      "Poids aléatoires. La surface de décision est un dégradé doux et presque dénué de sens : le réseau ne sait pas encore de quoi il s'agit. Clique sur go et regarde la rétropropagation remodeler la surface vers les données.",
     whatYouSeeTraining:
       "Chaque époque parcourt l'ensemble d'entraînement une fois. La règle de la chaîne, remontée à l'envers par chaque couche, donne à chaque poids sa part de blâme pour la perte courante ; l'optimiseur pousse alors chaque poids vers le bas. La frontière visible est l'ensemble de niveau ŷ = 0,5 de la sortie.",
     whatYouSeeConverged:
-      "La perte a atteint un plateau. La frontière trace maintenant la structure de la tâche — des coins pour XOR, un S entrelacé pour les deux lunes, un cercle pour la coupe radiale. Le réseau a mémorisé une fonction lisse qui ajuste les points d'entraînement et généralise aux voisins.",
+      "La perte a atteint un plateau. La frontière trace maintenant la structure de la tâche : des coins pour XOR, un S entrelacé pour les deux lunes, un cercle pour la coupe radiale. Le réseau a mémorisé une fonction lisse qui ajuste les points d'entraînement et généralise aux voisins.",
   },
   it: {
     topologyLabel: "Topologia della rete",
@@ -212,13 +219,13 @@ const E: Record<Locale, RichExplorer> = {
     },
     taskLabel: "Compito giocattolo",
     taskOptions: {
-      xor: "XOR — quattro angoli",
-      moons: "Due lune — falci intrecciate",
-      circle: "Cerchio vs quadrato — taglio radiale",
+      xor: "XOR: quattro angoli",
+      moons: "Due lune: falci intrecciate",
+      circle: "Cerchio vs quadrato: taglio radiale",
     },
     learningRate: "Tasso di apprendimento η",
     batchSize: "Dimensione del batch",
-    epochs: "Epoche / secondo",
+    updatesPerSecond: "Aggiornamenti / secondo",
     trainingBadge: "In allenamento",
     pausedBadge: "In pausa",
     convergedBadge: "Convergita",
@@ -229,17 +236,18 @@ const E: Record<Locale, RichExplorer> = {
     reset: "↺ azzera",
     lossLabel: "Perdita",
     epochLabel: "Epoca",
+    updateLabel: "aggiornamento",
     accuracyLabel: "Accuratezza",
     decisionLabel: "Frontiera decisionale",
     decisionHint:
       "Ambra = la rete dice classe 1, ciano = classe 0. Guarda le regioni deformarsi mentre la perdita cala.",
     whatYouSeeLabel: "Ciò che stai vedendo",
     whatYouSeeInit:
-      "Pesi casuali. La superficie decisionale è un gradiente morbido e quasi privo di senso — la rete non sa ancora qual è il compito. Premi via e guarda la backprop rimodellare la superficie verso i dati.",
+      "Pesi casuali. La superficie decisionale è un gradiente morbido e quasi privo di senso: la rete non sa ancora qual è il compito. Premi via e guarda la backprop rimodellare la superficie verso i dati.",
     whatYouSeeTraining:
       "Ogni epoca attraversa una volta l'intero set di allenamento. La regola della catena, percorsa all'indietro in ogni strato, dà a ciascun peso la sua quota di colpa per la perdita attuale; l'ottimizzatore spinge poi ciascun peso in discesa. La frontiera visibile è l'insieme di livello ŷ = 0,5 dell'uscita.",
     whatYouSeeConverged:
-      "La perdita ha raggiunto un plateau. La frontiera traccia ora la struttura del compito — angoli per XOR, una S intrecciata per le due lune, un cerchio per il taglio radiale. La rete ha memorizzato una funzione liscia che si adatta ai punti di allenamento e generalizza ai vicini.",
+      "La perdita ha raggiunto un plateau. La frontiera traccia ora la struttura del compito: angoli per XOR, una S intrecciata per le due lune, un cerchio per il taglio radiale. La rete ha memorizzato una funzione liscia che si adatta ai punti di allenamento e generalizza ai vicini.",
   },
   pt: {
     topologyLabel: "Topologia da rede",
@@ -250,13 +258,13 @@ const E: Record<Locale, RichExplorer> = {
     },
     taskLabel: "Tarefa de brincadeira",
     taskOptions: {
-      xor: "XOR — quatro cantos",
-      moons: "Duas luas — crescentes entrelaçados",
-      circle: "Círculo vs quadrado — corte radial",
+      xor: "XOR: quatro cantos",
+      moons: "Duas luas: crescentes entrelaçados",
+      circle: "Círculo vs quadrado: corte radial",
     },
     learningRate: "Taxa de aprendizagem η",
     batchSize: "Tamanho do lote",
-    epochs: "Épocas / segundo",
+    updatesPerSecond: "Atualizações / segundo",
     trainingBadge: "A treinar",
     pausedBadge: "Em pausa",
     convergedBadge: "Convergiu",
@@ -267,17 +275,18 @@ const E: Record<Locale, RichExplorer> = {
     reset: "↺ reiniciar",
     lossLabel: "Perda",
     epochLabel: "Época",
+    updateLabel: "atualização",
     accuracyLabel: "Precisão",
     decisionLabel: "Fronteira de decisão",
     decisionHint:
       "Âmbar = a rede diz classe 1, ciano = classe 0. Olha para as regiões deformarem-se enquanto a perda cai.",
     whatYouSeeLabel: "O que estás a ver",
     whatYouSeeInit:
-      "Pesos aleatórios. A superfície de decisão é um gradiente suave e quase sem sentido — a rede ainda não sabe qual é a tarefa. Carrega em ir e observa a backprop remodelar a superfície até aos dados.",
+      "Pesos aleatórios. A superfície de decisão é um gradiente suave e quase sem sentido: a rede ainda não sabe qual é a tarefa. Carrega em ir e observa a backprop remodelar a superfície até aos dados.",
     whatYouSeeTraining:
       "Cada época percorre uma vez o conjunto de treino. A regra da cadeia, percorrida para trás por cada camada, dá a cada peso a sua quota de culpa pela perda atual; o optimizador empurra então cada peso a descer. A fronteira visível é o conjunto de nível ŷ = 0,5 da saída.",
     whatYouSeeConverged:
-      "A perda atingiu um planalto. A fronteira traça agora a estrutura da tarefa — cantos para XOR, um S entrelaçado para as duas luas, um círculo para o corte radial. A rede memorizou uma função suave que se ajusta aos pontos de treino e generaliza para os vizinhos.",
+      "A perda atingiu um planalto. A fronteira traça agora a estrutura da tarefa: cantos para XOR, um S entrelaçado para as duas luas, um círculo para o corte radial. A rede memorizou uma função suave que se ajusta aos pontos de treino e generaliza para os vizinhos.",
   },
   sv: {
     topologyLabel: "Nätverkstopologi",
@@ -288,13 +297,13 @@ const E: Record<Locale, RichExplorer> = {
     },
     taskLabel: "Leksaksuppgift",
     taskOptions: {
-      xor: "XOR — fyra hörn",
-      moons: "Två månar — hopflätade halvmånar",
-      circle: "Cirkel vs kvadrat — radiell delning",
+      xor: "XOR: fyra hörn",
+      moons: "Två månar: hopflätade halvmånar",
+      circle: "Cirkel vs kvadrat: radiell delning",
     },
     learningRate: "Inlärningshastighet η",
     batchSize: "Batchstorlek",
-    epochs: "Epoker / sekund",
+    updatesPerSecond: "Uppdateringar / sekund",
     trainingBadge: "Tränar",
     pausedBadge: "Pausad",
     convergedBadge: "Konvergerat",
@@ -305,17 +314,18 @@ const E: Record<Locale, RichExplorer> = {
     reset: "↺ återställ",
     lossLabel: "Förlust",
     epochLabel: "Epok",
+    updateLabel: "uppdatering",
     accuracyLabel: "Träffsäkerhet",
     decisionLabel: "Beslutsgräns",
     decisionHint:
       "Bärnsten = nätet säger klass 1, cyan = klass 0. Se hur områdena förvrids medan förlusten faller.",
     whatYouSeeLabel: "Det du ser",
     whatYouSeeInit:
-      "Slumpvis valda vikter. Beslutsytan är en mjuk, nästan meningslös gradient — nätet vet inte vad uppgiften går ut på än. Tryck kör och se backprop omforma ytan mot datan.",
+      "Slumpvis valda vikter. Beslutsytan är en mjuk, nästan meningslös gradient: nätet vet inte vad uppgiften går ut på än. Tryck kör och se backprop omforma ytan mot datan.",
     whatYouSeeTraining:
       "Varje epok går igenom hela träningsmängden en gång. Kedjeregeln, gången baklänges genom varje lager, ger varje vikt sin andel av skulden för det aktuella tapet; optimeraren knuffar sedan varje vikt nedåt. Den synliga beslutsgränsen är nivåmängden ŷ = 0,5 av utgången.",
     whatYouSeeConverged:
-      "Förlusten har planat ut. Beslutsgränsen följer nu uppgiftens struktur — hörn för XOR, ett hopflätat S för de två månarna, en cirkel för den radiella delningen. Nätet har lärt sig en slät funktion som passar träningspunkterna och generaliserar till närliggande.",
+      "Förlusten har planat ut. Beslutsgränsen följer nu uppgiftens struktur: hörn för XOR, ett hopflätat S för de två månarna, en cirkel för den radiella delningen. Nätet har lärt sig en slät funktion som passar träningspunkterna och generaliserar till närliggande.",
   },
   no: {
     topologyLabel: "Nettverkstopologi",
@@ -326,13 +336,13 @@ const E: Record<Locale, RichExplorer> = {
     },
     taskLabel: "Leketøysoppgave",
     taskOptions: {
-      xor: "XOR — fire hjørner",
-      moons: "To måner — sammenflettede halvmåner",
-      circle: "Sirkel vs firkant — radiell deling",
+      xor: "XOR: fire hjørner",
+      moons: "To måner: sammenflettede halvmåner",
+      circle: "Sirkel vs firkant: radiell deling",
     },
     learningRate: "Læringsrate η",
     batchSize: "Batchstørrelse",
-    epochs: "Epoker / sekund",
+    updatesPerSecond: "Oppdateringer / sekund",
     trainingBadge: "Trener",
     pausedBadge: "Pauset",
     convergedBadge: "Konvergert",
@@ -343,17 +353,18 @@ const E: Record<Locale, RichExplorer> = {
     reset: "↺ tilbakestill",
     lossLabel: "Tap",
     epochLabel: "Epoke",
+    updateLabel: "oppdatering",
     accuracyLabel: "Treffsikkerhet",
     decisionLabel: "Beslutningsgrense",
     decisionHint:
       "Rav = nettet sier klasse 1, cyan = klasse 0. Se hvordan områdene forvrenges mens tapet faller.",
     whatYouSeeLabel: "Det du ser",
     whatYouSeeInit:
-      "Tilfeldige vekter. Beslutningsoverflaten er en myk, nesten meningsløs gradient — nettet vet ikke ennå hva oppgaven er. Trykk start og se backprop omforme overflaten mot dataene.",
+      "Tilfeldige vekter. Beslutningsoverflaten er en myk, nesten meningsløs gradient: nettet vet ikke ennå hva oppgaven er. Trykk start og se backprop omforme overflaten mot dataene.",
     whatYouSeeTraining:
       "Hver epoke går gjennom hele treningsdatasettet én gang. Kjerneregelen, gått baklengs gjennom hvert lag, gir hver vekt sin andel av skylda for det nåværende tapet; optimaliseringen skyver så hver vekt nedover. Den synlige beslutningsgrensen er nivåmengden ŷ = 0,5 av utgangen.",
     whatYouSeeConverged:
-      "Tapet har nådd et platå. Beslutningsgrensen tegner nå oppgavens struktur — hjørner for XOR, en sammenflettet S for de to månene, en sirkel for den radielle delingen. Nettet har lært en glatt funksjon som passer treningspunktene og generaliserer til naboene.",
+      "Tapet har nådd et platå. Beslutningsgrensen tegner nå oppgavens struktur: hjørner for XOR, en sammenflettet S for de to månene, en sirkel for den radielle delingen. Nettet har lært en glatt funksjon som passer treningspunktene og generaliserer til naboene.",
   },
 };
 
@@ -585,7 +596,17 @@ export default function BackpropExplorer() {
   const datasetRef = useRef(makeDataset(task, topology));
   const [tick, setTick] = useState(0);
   const [losses, setLosses] = useState<number[]>([]);
+  // An epoch is one full pass over the data; an update is one mini-batch
+  // gradient step. Both are shown because they differ by a factor of
+  // ceil(160 / batch size).
   const [epoch, setEpoch] = useState(0);
+  const [updates, setUpdates] = useState(0);
+  // Shuffled visiting order of the current pass and the read position in it.
+  const orderRef = useRef<number[]>([]);
+  const cursorRef = useRef(0);
+  // Fractional updates owed by elapsed time, carried from frame to frame so
+  // that rates below the display refresh rate really are slow.
+  const owedRef = useRef(0);
   const [accuracy, setAccuracy] = useState(0);
   const lastFrameRef = useRef<number>(0);
   const rafRef = useRef<number | null>(null);
@@ -598,6 +619,9 @@ export default function BackpropExplorer() {
     datasetRef.current = makeDataset(task, topology, 160, 7);
     setLosses([]);
     setEpoch(0);
+    setUpdates(0);
+    orderRef.current = [];
+    cursorRef.current = 0;
     setAccuracy(0);
     setTick((t) => t + 1);
   }, [topology, task]);
@@ -611,18 +635,29 @@ export default function BackpropExplorer() {
   const stepOnce = useCallback(() => {
     const ds = datasetRef.current;
     const net = netRef.current;
-    // Sample a random mini-batch with replacement.
-    const batch: Array<{ x: number[]; y: number }> = [];
-    for (let i = 0; i < batchSize; i++) {
-      batch.push(ds[Math.floor(Math.random() * ds.length)]);
+    // Mini-batches are cut from a freshly shuffled order without replacement,
+    // so an epoch is exactly one pass over the data. The last batch of a pass
+    // is shorter when the batch size does not divide the set size.
+    if (orderRef.current.length !== ds.length || cursorRef.current >= ds.length) {
+      const order = ds.map((_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+      orderRef.current = order;
+      cursorRef.current = 0;
     }
+    const end = Math.min(cursorRef.current + batchSize, ds.length);
+    const batch = orderRef.current.slice(cursorRef.current, end).map((i) => ds[i]);
+    cursorRef.current = end;
     const loss = trainBatch(net, batch, lr);
 
     setLosses((ls) => {
       const merged = [...ls, loss];
       return merged.length > 320 ? merged.slice(-320) : merged;
     });
-    setEpoch((e) => e + 1);
+    setUpdates((n) => n + 1);
+    if (end === ds.length) setEpoch((e) => e + 1);
 
     // Accuracy across the whole dataset (cheap — ≤ 160 forward passes).
     let correct = 0;
@@ -642,10 +677,13 @@ export default function BackpropExplorer() {
       if (!alive) return;
       const last = lastFrameRef.current || now;
       const dt = (now - last) / 1000;
-      // How many epochs we should run this frame to hit epsPerSec.
-      let need = Math.max(1, Math.round(dt * epsPerSec));
-      // Cap so a long-paused tab doesn't pile up.
-      need = Math.min(need, 12);
+      // Accumulate the updates owed by elapsed time and run only the whole
+      // ones. At 5 per second on a 60 Hz display most frames run none.
+      owedRef.current += dt * epsPerSec;
+      // Cap so a long-paused tab doesn't pile up, and drop the backlog
+      // instead of working it off over the following frames.
+      const need = Math.min(Math.floor(owedRef.current), 12);
+      owedRef.current = Math.min(owedRef.current - need, 1);
       for (let i = 0; i < need; i++) stepOnce();
       lastFrameRef.current = now;
       rafRef.current = requestAnimationFrame(tickFn);
@@ -750,7 +788,7 @@ export default function BackpropExplorer() {
   // Status indicator.
   const minRecentLoss = losses.length > 4 ? Math.min(...losses.slice(-12)) : 1;
   const status: "init" | "training" | "converged" | "paused" =
-    epoch === 0
+    updates === 0
       ? "init"
       : !running
         ? "paused"
@@ -789,12 +827,15 @@ export default function BackpropExplorer() {
             <div
               className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${statusColor}`}
             >
-              {statusBadge} · {x.epochLabel} {epoch} · {x.accuracyLabel}{" "}
+              {statusBadge} · {x.epochLabel} {epoch} · {x.updateLabel} {updates} · {x.accuracyLabel}{" "}
               {(accuracy * 100).toFixed(0)}%
             </div>
           </div>
           <div className="hairline relative flex-1 overflow-hidden rounded-2xl border bg-ink-950">
             <canvas ref={canvasRef} className="block h-full w-full" />
+            <div className="pointer-events-none absolute right-3 top-3">
+              <ExplorerHelpButton guide={BACKPROP_GUIDE} />
+            </div>
           </div>
           <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
             {x.decisionHint}
@@ -807,7 +848,7 @@ export default function BackpropExplorer() {
                 {x.lossLabel}
               </div>
               <div className="font-mono text-[10px] text-ink-400">
-                {losses.length > 0 ? losses[losses.length - 1].toFixed(4) : "—"}
+                {losses.length > 0 ? losses[losses.length - 1].toFixed(4) : "…"}
               </div>
             </div>
             <svg
@@ -905,7 +946,7 @@ export default function BackpropExplorer() {
               onChange={(v) => setBatchSize(Math.round(v))}
             />
             <SliderRow
-              label={x.epochs}
+              label={x.updatesPerSecond}
               value={epsPerSec}
               display={`${epsPerSec}`}
               min={5}
@@ -955,6 +996,7 @@ export default function BackpropExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={BACKPROP_GUIDE} storyHref="/backprop" />
     </main>
   );
 }

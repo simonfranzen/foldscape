@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { FOURIER_GUIDE } from "@/lib/explorer-guides/fourier";
 
 // Only pure-sine (odd-about-t=0.5) targets: every one converges under the
 // sine-only partial sum below. A Gaussian pulse is even about t=0.5 and needs
@@ -329,8 +331,11 @@ export default function FourierExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {ex.waveLabels[wave]} · {ex.harmonicsCount(N)}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              Σₖ aₖ sin(2πk t)
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                Σₖ aₖ sin(2πk t)
+              </div>
+              <ExplorerHelpButton guide={FOURIER_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
@@ -447,6 +452,7 @@ export default function FourierExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={FOURIER_GUIDE} storyHref="/fourier" />
     </main>
   );
 }

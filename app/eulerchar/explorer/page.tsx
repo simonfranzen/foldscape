@@ -6,6 +6,9 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { EULERCHAR_GUIDE } from "@/lib/explorer-guides/eulerchar";
+import { PRESETS, type Polyhedron, type Vec3 } from "@/lib/eulerchar/meshes";
 
 // --------------------------------------------------------------------------
 // Per-locale UI strings for the Euler-characteristic explorer. Stays inline
@@ -43,7 +46,7 @@ type RichExplorer = {
 };
 
 // Helper to build the per-id polyhedron labels for each locale. The id keys
-// must match the `id` strings produced by the build functions above (e.g.
+// must match the `id` strings produced by the builders in lib/eulerchar/meshes.ts (e.g.
 // "icosphere-2", "torus-18x10", "double-torus-14x8").
 function buildPolyMap(locale: Locale): Record<string, LocalizedPoly> {
   const dict: Record<Locale, Record<string, LocalizedPoly>> = {
@@ -197,7 +200,7 @@ const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
     sphereLike: "· sphere-like",
     oneHandle: "· one handle",
     twoHandles: "· two handles",
-    notSphereLike: "χ ≠ 2 — this surface is not sphere-like.",
+    notSphereLike: "χ ≠ 2: this surface is not sphere-like.",
     torusNote: "A surface with one handle: χ drops to 0.",
     doubleTorusNote: "Two handles: χ = 2 − 2·2 = −2.",
     stageIdle: "Pick a stage →",
@@ -223,7 +226,7 @@ const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
     sphereLike: "· kugelartig",
     oneHandle: "· ein Henkel",
     twoHandles: "· zwei Henkel",
-    notSphereLike: "χ ≠ 2 — diese Fläche ist nicht kugelartig.",
+    notSphereLike: "χ ≠ 2: diese Fläche ist nicht kugelartig.",
     torusNote: "Eine Fläche mit einem Henkel: χ fällt auf 0.",
     doubleTorusNote: "Zwei Henkel: χ = 2 − 2·2 = −2.",
     stageIdle: "Wähle einen Schritt →",
@@ -249,7 +252,7 @@ const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
     sphereLike: "· tipo esfera",
     oneHandle: "· un asa",
     twoHandles: "· dos asas",
-    notSphereLike: "χ ≠ 2 — esta superficie no es tipo esfera.",
+    notSphereLike: "χ ≠ 2: esta superficie no es tipo esfera.",
     torusNote: "Una superficie con un asa: χ cae a 0.",
     doubleTorusNote: "Dos asas: χ = 2 − 2·2 = −2.",
     stageIdle: "Elige una etapa →",
@@ -275,7 +278,7 @@ const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
     sphereLike: "· type sphère",
     oneHandle: "· une anse",
     twoHandles: "· deux anses",
-    notSphereLike: "χ ≠ 2 — cette surface n'est pas de type sphère.",
+    notSphereLike: "χ ≠ 2 : cette surface n'est pas de type sphère.",
     torusNote: "Une surface avec une anse : χ tombe à 0.",
     doubleTorusNote: "Deux anses : χ = 2 − 2·2 = −2.",
     stageIdle: "Choisis une étape →",
@@ -301,7 +304,7 @@ const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
     sphereLike: "· tipo sfera",
     oneHandle: "· un manico",
     twoHandles: "· due manici",
-    notSphereLike: "χ ≠ 2 — questa superficie non è di tipo sfera.",
+    notSphereLike: "χ ≠ 2: questa superficie non è di tipo sfera.",
     torusNote: "Una superficie con un manico: χ scende a 0.",
     doubleTorusNote: "Due manici: χ = 2 − 2·2 = −2.",
     stageIdle: "Scegli una tappa →",
@@ -327,7 +330,7 @@ const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
     sphereLike: "· tipo esfera",
     oneHandle: "· uma asa",
     twoHandles: "· duas asas",
-    notSphereLike: "χ ≠ 2 — esta superfície não é do tipo esfera.",
+    notSphereLike: "χ ≠ 2: esta superfície não é do tipo esfera.",
     torusNote: "Uma superfície com uma asa: χ cai para 0.",
     doubleTorusNote: "Duas asas: χ = 2 − 2·2 = −2.",
     stageIdle: "Escolha uma etapa →",
@@ -353,7 +356,7 @@ const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
     sphereLike: "· sfärlik",
     oneHandle: "· ett handtag",
     twoHandles: "· två handtag",
-    notSphereLike: "χ ≠ 2 — denna yta är inte sfärlik.",
+    notSphereLike: "χ ≠ 2: denna yta är inte sfärlik.",
     torusNote: "En yta med ett handtag: χ faller till 0.",
     doubleTorusNote: "Två handtag: χ = 2 − 2·2 = −2.",
     stageIdle: "Välj ett steg →",
@@ -379,7 +382,7 @@ const RICH_EXPLORER: Record<Locale, Omit<RichExplorer, "polyById">> = {
     sphereLike: "· kulelignende",
     oneHandle: "· ett håndtak",
     twoHandles: "· to håndtak",
-    notSphereLike: "χ ≠ 2 — denne flaten er ikke kulelignende.",
+    notSphereLike: "χ ≠ 2: denne flaten er ikke kulelignende.",
     torusNote: "En flate med ett håndtak: χ faller til 0.",
     doubleTorusNote: "To håndtak: χ = 2 − 2·2 = −2.",
     stageIdle: "Velg et steg →",
@@ -405,650 +408,12 @@ function localizationKey(id: string): string {
 // A tiny canvas-based 3D pipeline (no three.js): rotation matrices, perspective
 // projection, painter's algorithm for face ordering, Lambertian shading. The
 // user picks a polyhedron from the sidebar, watches it spin, and clicks through
-// "Count vertices" → "Count edges" → "Count faces" — each stage highlights the
+// "Count vertices" → "Count edges" → "Count faces", each stage highlights the
 // elements one by one and updates a running tally. The final equation
 // V − E + F = χ is shown beside the shape.
 // ---------------------------------------------------------------------------
 
-type Vec3 = readonly [number, number, number];
-
-interface Polyhedron {
-  readonly id: string;
-  readonly label: string;
-  readonly V: number;
-  readonly E: number;
-  readonly F: number;
-  readonly chi: number;
-  readonly note: string;
-  readonly vertices: ReadonlyArray<Vec3>;
-  readonly edges: ReadonlyArray<readonly [number, number]>;
-  readonly faces: ReadonlyArray<ReadonlyArray<number>>;
-}
-
 type Stage = "idle" | "vertices" | "edges" | "faces" | "done";
-
-// ---- Polyhedron data ------------------------------------------------------
-
-const PHI = (1 + Math.sqrt(5)) / 2; // golden ratio
-const INV_PHI = 1 / PHI;
-
-// Normalise a list of vertices so the model fits roughly in a unit sphere.
-function normaliseVerts(verts: ReadonlyArray<Vec3>): ReadonlyArray<Vec3> {
-  let maxR = 0;
-  for (const v of verts) {
-    const r = Math.hypot(v[0], v[1], v[2]);
-    if (r > maxR) maxR = r;
-  }
-  if (maxR === 0) return verts;
-  return verts.map((v): Vec3 => [v[0] / maxR, v[1] / maxR, v[2] / maxR]);
-}
-
-// Derive an edge list from a face list: every adjacent pair of vertices in a
-// face is an edge, deduplicated so that {a, b} == {b, a}.
-function edgesFromFaces(
-  faces: ReadonlyArray<ReadonlyArray<number>>,
-): ReadonlyArray<readonly [number, number]> {
-  const seen = new Set<string>();
-  const out: Array<readonly [number, number]> = [];
-  for (const face of faces) {
-    for (let i = 0; i < face.length; i++) {
-      const a = face[i];
-      const b = face[(i + 1) % face.length];
-      const key = a < b ? `${a}-${b}` : `${b}-${a}`;
-      if (!seen.has(key)) {
-        seen.add(key);
-        out.push(a < b ? [a, b] : [b, a]);
-      }
-    }
-  }
-  return out;
-}
-
-// Tetrahedron — 4 vertices, 6 edges, 4 faces.
-function buildTetrahedron(): Polyhedron {
-  const verts: ReadonlyArray<Vec3> = normaliseVerts([
-    [1, 1, 1],
-    [1, -1, -1],
-    [-1, 1, -1],
-    [-1, -1, 1],
-  ]);
-  const faces: ReadonlyArray<ReadonlyArray<number>> = [
-    [0, 2, 1],
-    [0, 1, 3],
-    [0, 3, 2],
-    [1, 2, 3],
-  ];
-  return {
-    id: "tetrahedron",
-    label: "Tetrahedron",
-    V: 4,
-    E: 6,
-    F: 4,
-    chi: 2,
-    note: "4 triangles · χ = 2",
-    vertices: verts,
-    edges: edgesFromFaces(faces),
-    faces,
-  };
-}
-
-// Cube — 8 vertices, 12 edges, 6 faces.
-function buildCube(): Polyhedron {
-  const verts: ReadonlyArray<Vec3> = normaliseVerts([
-    [-1, -1, -1],
-    [1, -1, -1],
-    [1, 1, -1],
-    [-1, 1, -1],
-    [-1, -1, 1],
-    [1, -1, 1],
-    [1, 1, 1],
-    [-1, 1, 1],
-  ]);
-  const faces: ReadonlyArray<ReadonlyArray<number>> = [
-    [0, 3, 2, 1], // back
-    [4, 5, 6, 7], // front
-    [0, 1, 5, 4], // bottom
-    [2, 3, 7, 6], // top
-    [1, 2, 6, 5], // right
-    [0, 4, 7, 3], // left
-  ];
-  return {
-    id: "cube",
-    label: "Cube",
-    V: 8,
-    E: 12,
-    F: 6,
-    chi: 2,
-    note: "6 squares · χ = 2",
-    vertices: verts,
-    edges: edgesFromFaces(faces),
-    faces,
-  };
-}
-
-// Octahedron — 6 vertices, 12 edges, 8 faces.
-function buildOctahedron(): Polyhedron {
-  const verts: ReadonlyArray<Vec3> = normaliseVerts([
-    [1, 0, 0],
-    [-1, 0, 0],
-    [0, 1, 0],
-    [0, -1, 0],
-    [0, 0, 1],
-    [0, 0, -1],
-  ]);
-  const faces: ReadonlyArray<ReadonlyArray<number>> = [
-    [0, 2, 4],
-    [2, 1, 4],
-    [1, 3, 4],
-    [3, 0, 4],
-    [2, 0, 5],
-    [1, 2, 5],
-    [3, 1, 5],
-    [0, 3, 5],
-  ];
-  return {
-    id: "octahedron",
-    label: "Octahedron",
-    V: 6,
-    E: 12,
-    F: 8,
-    chi: 2,
-    note: "8 triangles · χ = 2",
-    vertices: verts,
-    edges: edgesFromFaces(faces),
-    faces,
-  };
-}
-
-// Icosahedron — 12 vertices, 30 edges, 20 faces.
-function buildIcosahedron(): Polyhedron {
-  // Vertices on three mutually perpendicular golden rectangles.
-  const a = 1;
-  const b = PHI;
-  const v: ReadonlyArray<Vec3> = normaliseVerts([
-    [-a, b, 0],
-    [a, b, 0],
-    [-a, -b, 0],
-    [a, -b, 0],
-    [0, -a, b],
-    [0, a, b],
-    [0, -a, -b],
-    [0, a, -b],
-    [b, 0, -a],
-    [b, 0, a],
-    [-b, 0, -a],
-    [-b, 0, a],
-  ]);
-  const faces: ReadonlyArray<ReadonlyArray<number>> = [
-    [0, 11, 5],
-    [0, 5, 1],
-    [0, 1, 7],
-    [0, 7, 10],
-    [0, 10, 11],
-    [1, 5, 9],
-    [5, 11, 4],
-    [11, 10, 2],
-    [10, 7, 6],
-    [7, 1, 8],
-    [3, 9, 4],
-    [3, 4, 2],
-    [3, 2, 6],
-    [3, 6, 8],
-    [3, 8, 9],
-    [4, 9, 5],
-    [2, 4, 11],
-    [6, 2, 10],
-    [8, 6, 7],
-    [9, 8, 1],
-  ];
-  return {
-    id: "icosahedron",
-    label: "Icosahedron",
-    V: 12,
-    E: 30,
-    F: 20,
-    chi: 2,
-    note: "20 triangles · χ = 2",
-    vertices: v,
-    edges: edgesFromFaces(faces),
-    faces,
-  };
-}
-
-// Dodecahedron — 20 vertices, 30 edges, 12 faces. Built as the dual of the
-// icosahedron (face-centres of the icosahedron, in pentagonal cycles).
-function buildDodecahedron(): Polyhedron {
-  const p = PHI;
-  const q = INV_PHI;
-  const v: ReadonlyArray<Vec3> = normaliseVerts([
-    [1, 1, 1], // 0
-    [1, 1, -1], // 1
-    [1, -1, 1], // 2
-    [1, -1, -1], // 3
-    [-1, 1, 1], // 4
-    [-1, 1, -1], // 5
-    [-1, -1, 1], // 6
-    [-1, -1, -1], // 7
-    [0, q, p], // 8
-    [0, q, -p], // 9
-    [0, -q, p], // 10
-    [0, -q, -p], // 11
-    [q, p, 0], // 12
-    [q, -p, 0], // 13
-    [-q, p, 0], // 14
-    [-q, -p, 0], // 15
-    [p, 0, q], // 16
-    [p, 0, -q], // 17
-    [-p, 0, q], // 18
-    [-p, 0, -q], // 19
-  ]);
-  // 12 pentagonal faces, vertex order chosen so the cross product of two
-  // adjacent edges points outwards (used for back-face culling / shading).
-  const faces: ReadonlyArray<ReadonlyArray<number>> = [
-    [0, 8, 4, 14, 12],
-    [0, 12, 1, 17, 16],
-    [0, 16, 2, 10, 8],
-    [1, 9, 5, 14, 12],
-    [1, 17, 3, 11, 9],
-    [2, 16, 17, 3, 13],
-    [2, 13, 15, 6, 10],
-    [3, 11, 7, 15, 13],
-    [4, 8, 10, 6, 18],
-    [4, 18, 19, 5, 14],
-    [5, 19, 7, 11, 9],
-    [6, 15, 7, 19, 18],
-  ];
-  return {
-    id: "dodecahedron",
-    label: "Dodecahedron",
-    V: 20,
-    E: 30,
-    F: 12,
-    chi: 2,
-    note: "12 pentagons · χ = 2",
-    vertices: v,
-    edges: edgesFromFaces(faces),
-    faces,
-  };
-}
-
-// Truncated tetrahedron — chop each vertex of the tetrahedron at 1/3.
-// 12 vertices, 18 edges, 8 faces (4 hexagons + 4 triangles).
-function buildTruncatedTetrahedron(): Polyhedron {
-  // Standard coordinates: all permutations of (0, ±1, ±3) with an even number
-  // of minus signs (12 points).
-  const raw: Vec3[] = [];
-  const signs = [
-    [1, 1],
-    [-1, -1],
-    [1, -1],
-    [-1, 1],
-  ];
-  // Even sign count for (0, ±1, ±3) means signs match the pattern... we
-  // instead enumerate explicitly to avoid mistakes: standard truncated-tetra
-  // vertices (Wikipedia): (+3,+1,+1),(+1,+3,+1),(+1,+1,+3) and even perms +
-  // sign flips that give an even parity.
-  const base: Vec3[] = [
-    [3, 1, 1],
-    [1, 3, 1],
-    [1, 1, 3],
-    [-3, -1, 1],
-    [-1, -3, 1],
-    [-1, -1, 3],
-    [-3, 1, -1],
-    [-1, 3, -1],
-    [-1, 1, -3],
-    [3, -1, -1],
-    [1, -3, -1],
-    [1, -1, -3],
-  ];
-  for (const b of base) raw.push(b);
-  // (signs is unused — kept above only as a parity reference)
-  void signs;
-  const v = normaliseVerts(raw);
-  // Faces (4 triangles + 4 hexagons), each indexed into the `base` array
-  // above, ordered so the outward normal is consistent.
-  const faces: ReadonlyArray<ReadonlyArray<number>> = [
-    // 4 triangles — one per original tetra vertex (the truncation cap)
-    [0, 1, 2], // near +x+y+z corner
-    [3, 5, 4], // near -x-y+z corner
-    [6, 7, 8], // near -x+y-z corner
-    [9, 11, 10], // near +x-y-z corner
-    // 4 hexagons — one per original tetra face
-    [0, 2, 5, 4, 10, 9], // bottom (y minimal side mixed)
-    [0, 9, 11, 8, 7, 1], // back
-    [1, 7, 6, 3, 5, 2], // left/top
-    [3, 6, 8, 11, 10, 4], // bottom-back
-  ];
-  return {
-    id: "trunctetra",
-    label: "Truncated tetrahedron",
-    V: 12,
-    E: 18,
-    F: 8,
-    chi: 2,
-    note: "4 hex + 4 tri · χ = 2",
-    vertices: v,
-    edges: edgesFromFaces(faces),
-    faces,
-  };
-}
-
-// Cuboctahedron — 12 vertices, 24 edges, 14 faces (8 triangles + 6 squares).
-// Vertices: all permutations of (±1, ±1, 0).
-function buildCuboctahedron(): Polyhedron {
-  const v: ReadonlyArray<Vec3> = normaliseVerts([
-    [1, 1, 0], // 0
-    [1, -1, 0], // 1
-    [-1, 1, 0], // 2
-    [-1, -1, 0], // 3
-    [1, 0, 1], // 4
-    [1, 0, -1], // 5
-    [-1, 0, 1], // 6
-    [-1, 0, -1], // 7
-    [0, 1, 1], // 8
-    [0, 1, -1], // 9
-    [0, -1, 1], // 10
-    [0, -1, -1], // 11
-  ]);
-  // 8 triangular faces (one per cube corner direction) + 6 square faces
-  // (one per cube face direction).
-  const faces: ReadonlyArray<ReadonlyArray<number>> = [
-    // Triangles, oriented outward
-    [0, 8, 4], // +x +y +z
-    [0, 5, 9], // +x +y -z
-    [1, 4, 10], // +x -y +z
-    [1, 11, 5], // +x -y -z
-    [2, 6, 8], // -x +y +z
-    [2, 9, 7], // -x +y -z
-    [3, 10, 6], // -x -y +z
-    [3, 7, 11], // -x -y -z
-    // Squares (one per cube face)
-    [0, 4, 1, 5], // +x
-    [2, 7, 3, 6], // -x
-    [0, 9, 2, 8], // +y
-    [1, 10, 3, 11], // -y
-    [4, 8, 6, 10], // +z
-    [5, 11, 7, 9], // -z
-  ];
-  return {
-    id: "cuboctahedron",
-    label: "Cuboctahedron",
-    V: 12,
-    E: 24,
-    F: 14,
-    chi: 2,
-    note: "8 tri + 6 sq · χ = 2",
-    vertices: v,
-    edges: edgesFromFaces(faces),
-    faces,
-  };
-}
-
-// Truncated icosahedron — the soccer ball. 60 vertices, 90 edges, 32 faces
-// (12 pentagons + 20 hexagons). Built by truncating each vertex of an
-// icosahedron at 1/3 of the way along each incident edge.
-function buildTruncatedIcosahedron(): Polyhedron {
-  const ico = buildIcosahedron();
-  // For each original edge (a, b) of the icosahedron, place two new vertices,
-  // one at 1/3 from a to b and one at 1/3 from b to a. Each original vertex
-  // is replaced by a pentagon of these new points; each original face becomes
-  // a hexagon.
-  const newVerts: Vec3[] = [];
-  // Index: for an edge (a, b) with a < b, store the index of the truncation
-  // point closer to a in cutAt[a][b], and the one closer to b in cutAt[b][a].
-  const cutAt: Map<number, Map<number, number>> = new Map();
-  const getCut = (from: number, to: number): number => {
-    const inner = cutAt.get(from);
-    if (!inner) return -1;
-    return inner.get(to) ?? -1;
-  };
-  const addCut = (from: number, to: number, idx: number): void => {
-    let inner = cutAt.get(from);
-    if (!inner) {
-      inner = new Map();
-      cutAt.set(from, inner);
-    }
-    inner.set(to, idx);
-  };
-
-  for (const [a, b] of ico.edges) {
-    const va = ico.vertices[a];
-    const vb = ico.vertices[b];
-    const pA: Vec3 = [
-      va[0] + (vb[0] - va[0]) / 3,
-      va[1] + (vb[1] - va[1]) / 3,
-      va[2] + (vb[2] - va[2]) / 3,
-    ];
-    const pB: Vec3 = [
-      vb[0] + (va[0] - vb[0]) / 3,
-      vb[1] + (va[1] - vb[1]) / 3,
-      vb[2] + (va[2] - vb[2]) / 3,
-    ];
-    addCut(a, b, newVerts.length);
-    newVerts.push(pA);
-    addCut(b, a, newVerts.length);
-    newVerts.push(pB);
-  }
-
-  // Hexagonal faces: each icosahedron triangle [a, b, c] becomes a hexagon
-  // [cut(a→b), cut(b→a), cut(b→c), cut(c→b), cut(c→a), cut(a→c)].
-  const hexFaces: number[][] = [];
-  for (const face of ico.faces) {
-    const [a, b, c] = face;
-    hexFaces.push([
-      getCut(a, b),
-      getCut(b, a),
-      getCut(b, c),
-      getCut(c, b),
-      getCut(c, a),
-      getCut(a, c),
-    ]);
-  }
-
-  // Pentagonal faces: each icosahedron vertex contributes one pentagon made
-  // of the five truncation points closest to that vertex. We collect, then
-  // sort them by their angular position around the vertex normal.
-  const pentFaces: number[][] = [];
-  for (let vIdx = 0; vIdx < ico.vertices.length; vIdx++) {
-    const cuts: number[] = [];
-    const inner = cutAt.get(vIdx);
-    if (inner) {
-      for (const [, cutIndex] of inner) cuts.push(cutIndex);
-    }
-    if (cuts.length === 0) continue;
-    const centre = ico.vertices[vIdx];
-    // Build a local 2D frame in the plane perpendicular to `centre`.
-    const ref: Vec3 = Math.abs(centre[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0];
-    const u: Vec3 = [
-      centre[1] * ref[2] - centre[2] * ref[1],
-      centre[2] * ref[0] - centre[0] * ref[2],
-      centre[0] * ref[1] - centre[1] * ref[0],
-    ];
-    const uLen = Math.hypot(u[0], u[1], u[2]);
-    const ux: Vec3 = [u[0] / uLen, u[1] / uLen, u[2] / uLen];
-    const wx: Vec3 = [
-      centre[1] * ux[2] - centre[2] * ux[1],
-      centre[2] * ux[0] - centre[0] * ux[2],
-      centre[0] * ux[1] - centre[1] * ux[0],
-    ];
-    cuts.sort((i, j) => {
-      const pi = newVerts[i];
-      const pj = newVerts[j];
-      const ai = Math.atan2(
-        pi[0] * wx[0] + pi[1] * wx[1] + pi[2] * wx[2],
-        pi[0] * ux[0] + pi[1] * ux[1] + pi[2] * ux[2],
-      );
-      const aj = Math.atan2(
-        pj[0] * wx[0] + pj[1] * wx[1] + pj[2] * wx[2],
-        pj[0] * ux[0] + pj[1] * ux[1] + pj[2] * ux[2],
-      );
-      return ai - aj;
-    });
-    pentFaces.push(cuts);
-  }
-
-  const allFaces: ReadonlyArray<ReadonlyArray<number>> = [...pentFaces, ...hexFaces];
-  return {
-    id: "truncico",
-    label: "Truncated icosahedron",
-    V: 60,
-    E: 90,
-    F: 32,
-    chi: 2,
-    note: "12 pent + 20 hex · χ = 2 · the soccer ball",
-    vertices: normaliseVerts(newVerts),
-    edges: edgesFromFaces(allFaces),
-    faces: allFaces,
-  };
-}
-
-// Subdivided icosphere (a sphere approximation) — used to illustrate that no
-// matter how fine the triangulation, χ stays 2.
-function buildIcosphere(subdivisions: number): Polyhedron {
-  let verts: Vec3[] = buildIcosahedron().vertices.map((v) => [v[0], v[1], v[2]]);
-  let faces: number[][] = buildIcosahedron().faces.map((f) => [...f]);
-  for (let s = 0; s < subdivisions; s++) {
-    const midCache = new Map<string, number>();
-    const midpoint = (i: number, j: number): number => {
-      const key = i < j ? `${i}-${j}` : `${j}-${i}`;
-      const existing = midCache.get(key);
-      if (existing !== undefined) return existing;
-      const a = verts[i];
-      const b = verts[j];
-      const m: Vec3 = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2];
-      const len = Math.hypot(m[0], m[1], m[2]);
-      const mNorm: Vec3 = [m[0] / len, m[1] / len, m[2] / len];
-      const idx = verts.length;
-      verts.push(mNorm);
-      midCache.set(key, idx);
-      return idx;
-    };
-    const newFaces: number[][] = [];
-    for (const [a, b, c] of faces) {
-      const ab = midpoint(a, b);
-      const bc = midpoint(b, c);
-      const ca = midpoint(c, a);
-      newFaces.push([a, ab, ca]);
-      newFaces.push([b, bc, ab]);
-      newFaces.push([c, ca, bc]);
-      newFaces.push([ab, bc, ca]);
-    }
-    faces = newFaces;
-  }
-  // Normalise to unit sphere
-  verts = verts.map((v) => {
-    const r = Math.hypot(v[0], v[1], v[2]);
-    return [v[0] / r, v[1] / r, v[2] / r];
-  });
-  const facesRO: ReadonlyArray<ReadonlyArray<number>> = faces;
-  const edges = edgesFromFaces(facesRO);
-  const V = verts.length;
-  const E = edges.length;
-  const F = facesRO.length;
-  return {
-    id: `icosphere-${subdivisions}`,
-    label: `Icosphere (${subdivisions}×)`,
-    V,
-    E,
-    F,
-    chi: V - E + F,
-    note: `${V} − ${E} + ${F} = ${V - E + F} · χ stays 2`,
-    vertices: verts,
-    edges,
-    faces: facesRO,
-  };
-}
-
-// Torus — V − E + F = 0. Built as a U × V grid (M longitudes × N latitudes)
-// of quads. With M·N vertices, 2·M·N edges and M·N quad faces, the rule
-// V − E + F = M·N − 2·M·N + M·N = 0 holds exactly.
-function buildTorus(M: number, N: number, R: number, r: number): Polyhedron {
-  const verts: Vec3[] = [];
-  for (let i = 0; i < M; i++) {
-    const u = (i / M) * Math.PI * 2;
-    for (let j = 0; j < N; j++) {
-      const v = (j / N) * Math.PI * 2;
-      const cx = (R + r * Math.cos(v)) * Math.cos(u);
-      const cy = (R + r * Math.cos(v)) * Math.sin(u);
-      const cz = r * Math.sin(v);
-      verts.push([cx, cy, cz]);
-    }
-  }
-  const idx = (i: number, j: number) => (((i % M) + M) % M) * N + (((j % N) + N) % N);
-  const faces: number[][] = [];
-  for (let i = 0; i < M; i++) {
-    for (let j = 0; j < N; j++) {
-      faces.push([idx(i, j), idx(i + 1, j), idx(i + 1, j + 1), idx(i, j + 1)]);
-    }
-  }
-  const facesRO: ReadonlyArray<ReadonlyArray<number>> = faces;
-  const edges = edgesFromFaces(facesRO);
-  const V = verts.length;
-  const E = edges.length;
-  const F = facesRO.length;
-  return {
-    id: `torus-${M}x${N}`,
-    label: "Torus",
-    V,
-    E,
-    F,
-    chi: V - E + F,
-    note: `${V} − ${E} + ${F} = ${V - E + F} · χ = 0 (one hole)`,
-    vertices: normaliseVerts(verts),
-    edges,
-    faces: facesRO,
-  };
-}
-
-// Double torus — built as the union of two displaced tori. The mesh is two
-// separate components but the user sees the topological point: χ = −4 (two
-// disjoint tori) or, drawn as a glued surface, χ = −2. We label the genus-2
-// surface χ = −2 since that is the textbook value the user is looking for.
-function buildDoubleTorus(M: number, N: number, R: number, r: number): Polyhedron {
-  // We build two disjoint tori. The displayed χ = -2 corresponds to the
-  // single-surface genus-2 case, which is the intended takeaway.
-  const t1 = buildTorus(M, N, R, r);
-  const t2 = buildTorus(M, N, R, r);
-  const offset = t1.vertices.length;
-  const shift = 1.6;
-  const verts: Vec3[] = [];
-  for (const v of t1.vertices) verts.push([v[0] - shift, v[1], v[2]]);
-  for (const v of t2.vertices) verts.push([v[0] + shift, v[1], v[2]]);
-  const faces: number[][] = [];
-  for (const f of t1.faces) faces.push([...f]);
-  for (const f of t2.faces) faces.push(f.map((i) => i + offset));
-  const facesRO: ReadonlyArray<ReadonlyArray<number>> = faces;
-  const edges = edgesFromFaces(facesRO);
-  return {
-    id: `double-torus-${M}x${N}`,
-    label: "Double torus",
-    V: verts.length,
-    E: edges.length,
-    F: facesRO.length,
-    chi: -2,
-    note: "two handles · χ = −2 (genus 2)",
-    vertices: normaliseVerts(verts),
-    edges,
-    faces: facesRO,
-  };
-}
-
-// ---- Preset list ----------------------------------------------------------
-
-const PRESETS: ReadonlyArray<Polyhedron> = [
-  buildTetrahedron(),
-  buildCube(),
-  buildOctahedron(),
-  buildDodecahedron(),
-  buildIcosahedron(),
-  buildTruncatedTetrahedron(),
-  buildCuboctahedron(),
-  buildTruncatedIcosahedron(),
-  buildIcosphere(2),
-  buildTorus(18, 10, 1.0, 0.4),
-  buildDoubleTorus(14, 8, 0.9, 0.34),
-];
 
 // ---- Component ------------------------------------------------------------
 
@@ -1059,7 +424,7 @@ export default function EulerCharExplorer() {
   const polyMap = buildPolyMap(locale);
   // Look up a polyhedron's localized display strings; the icosphere keeps
   // its subdivision suffix from `note` ("60 − 120 + 80 = 20 …") so we don't
-  // overwrite it — we only translate `label` and the non-numeric portion.
+  // overwrite it, we only translate `label` and the non-numeric portion.
   const localizedLabel = (p: Polyhedron): string =>
     polyMap[localizationKey(p.id)]?.label ?? p.label;
   const localizedNote = (p: Polyhedron): string => {
@@ -1078,6 +443,7 @@ export default function EulerCharExplorer() {
 
   const [presetIdx, setPresetIdx] = useState(1); // start on cube
   const [autoSpin, setAutoSpin] = useState(true);
+  const [reduced, setReduced] = useState(false);
   const [spinSpeed, setSpinSpeed] = useState(0.6);
   const [stage, setStage] = useState<Stage>("idle");
   const [progress, setProgress] = useState(0); // how many V/E/F revealed
@@ -1089,7 +455,18 @@ export default function EulerCharExplorer() {
   // React re-renders.
   const rotRef = useRef({ rx: 0.3, ry: 0.4 });
 
-  // Cap on highlight reveal — for huge meshes (icosphere, torus) we cap the
+  // Track prefers-reduced-motion and re-subscribe so a system-setting change
+  // swaps between the spinning loop and static frames.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduced(m.matches);
+    on();
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
+
+  // Cap on highlight reveal: for huge meshes (icosphere, torus) we cap the
   // animation count so the user can still see the parts light up without
   // clicking 962 times.
   const revealCap = useMemo(() => {
@@ -1155,20 +532,12 @@ export default function EulerCharExplorer() {
     if (!ctx) return;
     let raf = 0;
 
-    const resize = () => {
-      canvas.width = Math.floor(canvas.clientWidth * dpr);
-      canvas.height = Math.floor(canvas.clientHeight * dpr);
-    };
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
-
     let lastTs = performance.now();
 
     const draw = (ts: number) => {
       const dt = (ts - lastTs) / 1000;
       lastTs = ts;
-      if (autoSpin) {
+      if (autoSpin && !reduced) {
         rotRef.current.ry += dt * spinSpeed;
         rotRef.current.rx += dt * spinSpeed * 0.4;
       }
@@ -1378,15 +747,28 @@ export default function EulerCharExplorer() {
         }
       }
 
-      raf = requestAnimationFrame(draw);
+      // Reduced motion: no rAF loop. The effect re-runs on every state change
+      // (preset, stage, progress), so each run paints exactly one still frame.
+      if (!reduced) raf = requestAnimationFrame(draw);
     };
 
-    raf = requestAnimationFrame(draw);
+    const resize = () => {
+      canvas.width = Math.floor(canvas.clientWidth * dpr);
+      canvas.height = Math.floor(canvas.clientHeight * dpr);
+      // Setting width/height clears the canvas, and without a loop nothing
+      // would repaint it.
+      if (reduced) draw(performance.now());
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
+
+    if (!reduced) raf = requestAnimationFrame(draw);
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, [polyhedron, stage, progress, revealCap, autoSpin, spinSpeed, dpr]);
+  }, [polyhedron, stage, progress, revealCap, autoSpin, spinSpeed, dpr, reduced]);
 
   // --- Step handlers -----------------------------------------------------
   const startStage = (next: Stage) => {
@@ -1402,6 +784,9 @@ export default function EulerCharExplorer() {
 
   const sum = tally.V - tally.E + tally.F;
   const finalSum = polyhedron.V - polyhedron.E + polyhedron.F;
+  // Every preset is a closed, connected, orientable surface (the mesh tests
+  // check this), so the number of handles follows from χ = 2 − 2g.
+  const genus = (2 - finalSum) / 2;
   const stageLabel: Record<Stage, string> = {
     idle: tr.stageIdle,
     vertices: tr.stageVertices,
@@ -1418,8 +803,11 @@ export default function EulerCharExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {localizedLabel(polyhedron)} · {localizedNote(polyhedron)}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              V − E + F = {finalSum}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                V − E + F = {finalSum}
+              </div>
+              <ExplorerHelpButton guide={EULERCHAR_GUIDE} />
             </div>
           </div>
           <div className="hairline relative flex-1 overflow-hidden rounded-2xl border bg-ink-950">
@@ -1447,11 +835,11 @@ export default function EulerCharExplorer() {
               {stage === "done" && (
                 <div className="pt-1 text-[10px] leading-relaxed text-ink-300">
                   χ = <span className="text-signal-amber">{finalSum}</span>{" "}
-                  {finalSum === 2
+                  {genus === 0
                     ? tr.sphereLike
-                    : finalSum === 0
+                    : genus === 1
                       ? tr.oneHandle
-                      : finalSum === -2
+                      : genus === 2
                         ? tr.twoHandles
                         : ""}
                 </div>
@@ -1502,13 +890,15 @@ export default function EulerCharExplorer() {
               </div>
               <button
                 onClick={() => setAutoSpin((s) => !s)}
-                className={`rounded-md border px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 transition-colors ${
-                  autoSpin
+                disabled={reduced}
+                aria-pressed={autoSpin && !reduced}
+                className={`rounded-md border px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 transition-colors disabled:opacity-50 ${
+                  autoSpin && !reduced
                     ? "border-signal-amber/60 bg-signal-amber/10 text-signal-amber"
                     : "hairline text-ink-300 hover:text-ink-100"
                 }`}
               >
-                {autoSpin ? tr.on : tr.off}
+                {autoSpin && !reduced ? tr.on : tr.off}
               </button>
             </div>
             <input
@@ -1519,7 +909,7 @@ export default function EulerCharExplorer() {
               step={0.05}
               onChange={(e) => setSpinSpeed(parseFloat(e.target.value))}
               className="w-full accent-signal-amber"
-              disabled={!autoSpin}
+              disabled={!autoSpin || reduced}
             />
             <div className="text-right font-mono text-[10px] text-ink-400">
               {tr.speed} {spinSpeed.toFixed(2)}
@@ -1603,11 +993,7 @@ export default function EulerCharExplorer() {
             </div>
             {finalSum !== 2 && (
               <div className="pt-1 font-mono text-[10px] leading-relaxed text-signal-amber">
-                {localizationKey(polyhedron.id) === "torus"
-                  ? tr.torusNote
-                  : localizationKey(polyhedron.id) === "doubleTorus"
-                    ? tr.doubleTorusNote
-                    : tr.notSphereLike}
+                {genus === 1 ? tr.torusNote : genus === 2 ? tr.doubleTorusNote : tr.notSphereLike}
               </div>
             )}
           </div>
@@ -1622,6 +1008,7 @@ export default function EulerCharExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={EULERCHAR_GUIDE} storyHref="/eulerchar" />
     </main>
   );
 }

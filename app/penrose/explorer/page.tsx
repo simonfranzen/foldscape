@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { PENROSE_GUIDE } from "@/lib/explorer-guides/penrose";
 
 // ---------------------------------------------------------------------------
 // P3 (rhombi) Penrose tiling via inflation of Robinson half-rhombi.
@@ -52,8 +54,9 @@ const _cRot = (x: Complex, theta: number): Complex => {
   return { re: x.re * c - x.im * s, im: x.re * s + x.im * c };
 };
 
-// Seed: ten thick half-rhombi around the origin, alternating chirality,
-// arranged to form a regular decagon — gives perfect 5-fold symmetry.
+// Seed: ten thin half-rhombi (type 0) around the origin, alternating
+// chirality. Each has its 36° apex at the centre (10 × 36° = 360°), so
+// together they form a regular decagon with 5-fold symmetry.
 function seedSun(rotation: number): Tri[] {
   const tris: Tri[] = [];
   const origin: Complex = { re: 0, im: 0 };
@@ -114,17 +117,11 @@ function buildHalfTriangles(depth: number, rotation: number): Tri[] {
 }
 
 // Group mirrored half-rhombi back into full rhombi for clean rendering.
-// Each rhombus has 4 vertices: A, B, A', C (where A' is reflection of A across BC).
-// For a half-triangle (A, B, C), the missing vertex is A' = B + C − A only if BC is
-// the axis of symmetry — which it IS for our Robinson triangles (both legs have
-// equal length |AB| = |AC| for type 0 and |BA| = |BC| for type 1... wait).
-//
-// Actually: type 0 (thick half-rhombus) has the apex A at 36°; its two equal
-// edges are A→B and A→C (the rhombus sides). The base B–C is the rhombus's
-// short diagonal. The mirror partner shares B–C; the full rhombus has vertices
-// A, B, A', C with A' = B + C − A. ✓
-// type 1 (thin half-rhombus) has the apex A at 108°; the equal edges are again
-// A→B and A→C, so the same construction works.
+// Both Robinson triangles are isosceles with apex A (|AB| = |AC|, the two
+// rhombus sides), so the base BC is the mirror axis of the full rhombus and
+// the missing vertex is A' = B + C − A. The rhombus is A, B, A', C.
+//   type 0 (thin half, 36° at A): BC is the thin rhombus's short diagonal.
+//   type 1 (thick half, 108° at A): BC is the thick rhombus's long diagonal.
 interface Rhomb {
   t: 0 | 1;
   pts: [Complex, Complex, Complex, Complex];
@@ -212,7 +209,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     colors: "Show colors",
     arrows: "Matching markers",
     arrowsNote:
-      "Single marker = thick-rhombus edge · double = thin. Conway-style hint: markers must agree across a shared edge.",
+      "Amber on thick rhombi, cyan on thin: one single and one double arrowhead on two opposite sides. A simplified sketch of edge decorations, not the complete matching rules.",
     center: "Centre · reset rotation",
     thick: "thick",
     thin: "thin",
@@ -240,7 +237,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     colors: "Farben zeigen",
     arrows: "Anlegemarken",
     arrowsNote:
-      "Einfache Marke = Kante des dicken Rhombus · doppelte = dünn. Conway-artiger Hinweis: die Marken müssen über eine geteilte Kante zusammenpassen.",
+      "Bernstein auf dicken Rhomben, Cyan auf dünnen: je eine einfache und eine doppelte Pfeilspitze auf zwei gegenüberliegenden Seiten. Eine vereinfachte Skizze der Kantenmarkierung, keine vollständigen Anlegeregeln.",
     center: "Zentrieren · Drehung zurücksetzen",
     thick: "dick",
     thin: "dünn",
@@ -268,7 +265,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     colors: "Mostrar colores",
     arrows: "Marcas de encaje",
     arrowsNote:
-      "Marca simple = arista del rombo grueso · doble = fino. Pista al estilo Conway: las marcas deben coincidir a través de una arista compartida.",
+      "Ámbar en los rombos gruesos, cian en los finos: una punta de flecha simple y una doble en dos lados opuestos. Un esbozo simplificado de las marcas de arista, no las reglas de encaje completas.",
     center: "Centrar · restablecer rotación",
     thick: "grueso",
     thin: "fino",
@@ -296,7 +293,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     colors: "Afficher les couleurs",
     arrows: "Marques d'accord",
     arrowsNote:
-      "Marque simple = arête du losange épais · double = fin. Indice façon Conway : les marques doivent concorder de part et d'autre d'une arête partagée.",
+      "Ambre sur les losanges épais, cyan sur les fins : une pointe de flèche simple et une double sur deux côtés opposés. Une esquisse simplifiée des marques d'arête, pas les règles d'accord complètes.",
     center: "Centrer · réinitialiser la rotation",
     thick: "épais",
     thin: "fin",
@@ -324,7 +321,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     colors: "Mostra colori",
     arrows: "Marche di incastro",
     arrowsNote:
-      "Marca singola = lato del rombo spesso · doppia = sottile. Suggerimento alla Conway: le marche devono combaciare su un lato condiviso.",
+      "Ambra sui rombi spessi, ciano su quelli sottili: una punta di freccia singola e una doppia su due lati opposti. Uno schizzo semplificato delle marche sui lati, non le regole di incastro complete.",
     center: "Centra · azzera rotazione",
     thick: "spesso",
     thin: "sottile",
@@ -352,7 +349,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     colors: "Mostrar cores",
     arrows: "Marcas de encaixe",
     arrowsNote:
-      "Marca simples = aresta do losango espesso · dupla = fino. Dica ao estilo Conway: as marcas têm de coincidir através de uma aresta partilhada.",
+      "Âmbar nos losangos espessos, ciano nos finos: uma ponta de seta simples e uma dupla em dois lados opostos. Um esboço simplificado das marcas de aresta, não as regras de encaixe completas.",
     center: "Centrar · repor rotação",
     thick: "espesso",
     thin: "fino",
@@ -379,7 +376,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     colors: "Visa färger",
     arrows: "Matchmarkeringar",
     arrowsNote:
-      "Enkel markering = kant på den tjocka romben · dubbel = tunn. Conway-liknande ledtråd: markeringarna måste stämma över en delad kant.",
+      "Bärnsten på tjocka romber, cyan på tunna: en enkel och en dubbel pilspets på två motstående sidor. En förenklad skiss av kantmarkeringar, inte de fullständiga matchningsreglerna.",
     center: "Centrera · nollställ rotation",
     thick: "tjock",
     thin: "tunn",
@@ -406,7 +403,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerCopy> = {
     colors: "Vis farger",
     arrows: "Matchmarkeringer",
     arrowsNote:
-      "Enkel markering = kant på den tykke romben · dobbel = tynn. Conway-aktig hint: markeringene må stemme over en delt kant.",
+      "Rav på tykke romber, cyan på tynne: én enkel og én dobbel pilspiss på to motstående sider. En forenklet skisse av kantmarkeringer, ikke de fullstendige matchingsreglene.",
     center: "Sentrer · nullstill rotasjon",
     thick: "tykk",
     thin: "tynn",
@@ -556,12 +553,11 @@ export default function PenroseExplorer() {
         }
       }
 
-      // Conway's matching arrows: every edge carries a single or double arrow.
-      // For P3 rhombi, the standard convention places one arrow on the "short"
-      // type-of-edge and a double arrow on the "long" type. We use the rhombus
-      // sides only (the inflation does not give us the diagonals here), and
-      // draw arrows from vertex 0 → 1 and from vertex 2 → 3, single for thick,
-      // double for thin (an iconic-but-simplified rendering).
+      // Simplified nod to edge decorations, NOT the real matching rules: only
+      // two opposite sides (vertex 0 → 1 and 2 → 3) of each rhombus are marked,
+      // one with a single and one with a double head. Thick and thin differ in
+      // colour and in which of the two sides gets the double head. The sidebar
+      // note must stay equally modest.
       if (showArrows) {
         const drawArrow = (p: Complex, q: Complex, colour: string, double: boolean): void => {
           const x1 = px(p);
@@ -596,7 +592,7 @@ export default function PenroseExplorer() {
           }
         };
         for (const r of rhombi) {
-          const single = r.t === 1; // thick (fat) → single arrows
+          const single = r.t === 1; // thick: single head on side 0 → 1, double on 2 → 3
           const colour = single ? ARROW_SINGLE : ARROW_DOUBLE;
           drawArrow(r.pts[0], r.pts[1], colour, !single);
           drawArrow(r.pts[2], r.pts[3], colour, single);
@@ -640,8 +636,11 @@ export default function PenroseExplorer() {
                 ? `Penrose P3 · ${copy.depth} ${depth} · ${tileCount} ${copy.rhombiWord}`
                 : `Penrose P3 · ${copy.depth} ${depth} · ${halfCount} ${copy.halvesWord}`}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
-              φ = (1 + √5) / 2
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-violet">
+                φ = (1 + √5) / 2
+              </div>
+              <ExplorerHelpButton guide={PENROSE_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
@@ -823,6 +822,7 @@ export default function PenroseExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={PENROSE_GUIDE} storyHref="/penrose" />
     </main>
   );
 }

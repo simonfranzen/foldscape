@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { RIEMANN_GUIDE } from "@/lib/explorer-guides/riemann";
 
 // ---------------------------------------------------------------------------
 // Riemann explorer.
@@ -72,38 +74,48 @@ function zeta(s: Cx, N: number): Cx {
   return cDiv(eta, denom);
 }
 
-// Riemann's R(x): the smoother main approximation to π(x) coming from the
-// explicit formula. The explicit formula expresses ψ(x) (the Chebyshev
-// function) as x − Σ_ρ x^ρ/ρ − …; we use the corresponding form for π(x)
-// via the standard truncated reconstruction
-//   π_hat(x) = R(x) − Σ_ρ R(x^ρ)
-// where R(x) = Σ_{k≥1} μ(k)/k · li(x^{1/k}). For this explorer we use the
-// simpler — and visually equivalent — staircase reconstruction
-//   π_smooth(x) ≈ li(x) − Σ_{γ} 2 · Re( li(x^{½+iγ}) ) / |½ + iγ|
-// which already captures how each zero rings a damped oscillation into the
-// approximation. li(x) is the logarithmic integral (we use a series for
-// x ≤ 100; piecewise asymptotics beyond).
+// The warm curve is a truncated form of Riemann's explicit formula
+//   π(x) ≈ R(x) − Σ_ρ R(x^ρ),   R(x) = Σ_{n≥1} μ(n)/n · li(x^{1/n}),
+// keeping R(x) in full and, for each zero ρ = ½ + iγ, only the leading term
+//   R(x^ρ) ≈ li(x^ρ) ≈ x^ρ / (ρ · ln x).
+// The main term has to be R, not li: li alone ignores the prime powers
+// (mainly ½·li(√x)) and sits about 4 above π(x) on [2, 200], an offset that
+// no number of zeros can remove.
 
-function li(x: number): number {
+// ζ(k + 1) for the Gram series. A short direct sum plus Euler-Maclaurin tail
+// is accurate to about 1e-9 even for ζ(2), far below what the plot resolves.
+const ZETA_AT_K_PLUS_1: ReadonlyArray<number> = (() => {
+  const M = 30;
+  const out: number[] = [];
+  for (let k = 1; k <= 80; k++) {
+    const n = k + 1;
+    let sum = 0;
+    for (let m = 1; m < M; m++) sum += Math.pow(m, -n);
+    sum += Math.pow(M, 1 - n) / (n - 1) + Math.pow(M, -n) / 2 + (n * Math.pow(M, -n - 1)) / 12;
+    out.push(sum);
+  }
+  return out;
+})();
+
+// Gram series: R(x) = 1 + Σ_{k≥1} (ln x)^k / (k · k! · ζ(k+1)). It converges
+// for every x > 0, so no Möbius sum over li(x^{1/n}) is needed.
+function riemannR(x: number): number {
   if (x <= 1) return 0;
-  // li(x) = γ + ln ln x + Σ (ln x)^k / (k · k!), valid for x > 1.
-  const EULER = 0.5772156649015329;
   const logx = Math.log(x);
-  let sum = EULER + Math.log(logx);
+  let sum = 1;
   let term = 1;
-  for (let k = 1; k < 80; k++) {
+  for (let k = 1; k <= ZETA_AT_K_PLUS_1.length; k++) {
     term *= logx / k;
-    sum += term / k;
-    if (Math.abs(term / k) < 1e-12 && k > 10) break;
+    const add = term / (k * ZETA_AT_K_PLUS_1[k - 1]);
+    sum += add;
+    if (Math.abs(add) < 1e-12 && k > 10) break;
   }
   return sum;
 }
 
-// li(x^{ρ}) for ρ = ½ + iγ. We use Ei(ρ log x) with the same series — but
-// here Ei takes a complex argument. For visualisation purposes we use the
-// approximation x^ρ / (ρ · log x), the leading term of the asymptotic
-// expansion of li for large arguments. This is exactly the term the
-// classical reconstruction uses inside π_hat for moderate x.
+// li(x^ρ) for ρ = ½ + iγ would need Ei with a complex argument. We keep only
+// x^ρ / (ρ · ln x), the leading term of its asymptotic expansion: |ρ · ln x|
+// is at least about 10 on the plotted range, so the neglected part is small.
 function liComplexLead(x: number, gamma: number): { re: number; im: number } {
   if (x <= 1) return { re: 0, im: 0 };
   const logx = Math.log(x);
@@ -119,7 +131,7 @@ function liComplexLead(x: number, gamma: number): { re: number; im: number } {
 
 function piApprox(x: number, nZeros: number): number {
   if (x < 2) return 0;
-  let val = li(x);
+  let val = riemannR(x);
   // Subtract the contribution from the first nZeros pairs of zeros. Each
   // zero ρ contributes li(x^ρ); its conjugate adds the same with imaginary
   // part flipped, so 2·Re(li(x^ρ)) covers the pair.
@@ -174,21 +186,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     formulaBadge: "ζ(s) = 0 ⇒ Re(s) = ½",
     tMaxLabel: "t_max — how far up the critical line",
     tMaxHint:
-      "The vertical reach of the ζ trace. Each loop through the origin marks one non-trivial zero. ~14 reveals the first; 60 reveals about 15.",
+      "The vertical reach of the ζ trace. Each loop through the origin marks one non-trivial zero. ~14 reveals the first; 60 reveals 13.",
     nDirichletLabel: "N — Dirichlet series terms",
     nDirichletHint:
       "ζ is computed as Σ_{n=1..N} (−1)^{n+1}/n^s scaled by 1/(1−2^{1−s}). 200 terms is more than enough for t ≤ 60.",
     nZerosLabel: "N_zeros — zeros used in π reconstruction",
     nZerosHint:
-      "Number of non-trivial zeros plugged into Riemann's explicit-formula correction. 0 = the bare logarithmic integral Li(x). More zeros = the smooth curve climbs onto the staircase.",
+      "Number of non-trivial zeros plugged into Riemann's explicit-formula correction. 0 = Riemann's smooth R(x) alone. More zeros = the smooth curve climbs onto the staircase.",
     detectedHeadline: "Zero heights crossed",
     detectedEmpty: "Raise t_max past 14.13 to register the first zero.",
     legendPiTrue: "π(x) — exact staircase",
-    legendRApprox: "Li(x) − Σ corrections — Riemann's approximation",
+    legendRApprox: "R(x) − Σ corrections · Riemann's approximation",
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "What you are seeing",
     whatYouSeeP1:
-      "Top plot: the staircase π(x) jumps by 1 at every prime, and the warm curve is the Riemann approximation reconstructed from the first N_zeros non-trivial zeros. With zero zeros, the curve is Li(x), the leading-order smooth estimate. As N_zeros grows the corrections ring the curve into the staircase — that is, literally, how the zeros encode the primes.",
+      "Top plot: the staircase π(x) jumps by 1 at every prime, and the warm curve is the Riemann approximation reconstructed from the first N_zeros non-trivial zeros. With zero zeros, the curve is Riemann's R(x), a smooth estimate that already runs through the middle of the steps. As N_zeros grows the corrections ring the curve into the staircase: that is, literally, how the zeros encode the primes.",
     whatYouSeeP2:
       "Bottom plot: the image of ζ along the critical line s = ½ + it, traced in the complex plane. Every loop through the origin is one zero. The hypothesis says this picture stays exactly the same picture forever — there is no t at which the orbit drifts off and avoids the origin while the real part of s sits anywhere else than ½.",
     errorLabel: "max |π(x) − R(x)| over the visible range",
@@ -200,21 +212,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     formulaBadge: "ζ(s) = 0 ⇒ Re(s) = ½",
     tMaxLabel: "t_max — wie weit hinauf entlang der kritischen Linie",
     tMaxHint:
-      "Die vertikale Reichweite der ζ-Spur. Jede Schleife durch den Ursprung markiert eine nichttriviale Nullstelle. ~14 zeigt die erste; 60 zeigt etwa 15.",
+      "Die vertikale Reichweite der ζ-Spur. Jede Schleife durch den Ursprung markiert eine nichttriviale Nullstelle. ~14 zeigt die erste; 60 zeigt 13.",
     nDirichletLabel: "N — Glieder der Dirichlet-Reihe",
     nDirichletHint:
       "ζ wird als Σ_{n=1..N} (−1)^{n+1}/n^s berechnet, skaliert mit 1/(1−2^{1−s}). 200 Glieder reichen mehr als aus für t ≤ 60.",
     nZerosLabel: "N_zeros — Nullstellen in der π-Rekonstruktion",
     nZerosHint:
-      "Anzahl der nichttrivialen Nullstellen, die in Riemanns explizite-Formel-Korrektur eingehen. 0 = der nackte Integrallogarithmus Li(x). Mehr Nullstellen = die glatte Kurve klettert auf die Treppe.",
+      "Anzahl der nichttrivialen Nullstellen, die in Riemanns explizite-Formel-Korrektur eingehen. 0 = Riemanns glattes R(x) allein. Mehr Nullstellen = die glatte Kurve klettert auf die Treppe.",
     detectedHeadline: "Passierte Nullstellenhöhen",
     detectedEmpty: "Erhöhe t_max über 14,13, um die erste Nullstelle zu registrieren.",
     legendPiTrue: "π(x) — exakte Treppe",
-    legendRApprox: "Li(x) − Σ Korrekturen — Riemanns Approximation",
+    legendRApprox: "R(x) − Σ Korrekturen · Riemanns Approximation",
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "Was du siehst",
     whatYouSeeP1:
-      "Oberes Bild: die Treppe π(x) springt bei jeder Primzahl um 1, die warme Kurve ist die aus den ersten N_zeros nichttrivialen Nullstellen rekonstruierte Riemann-Approximation. Bei null Nullstellen ist die Kurve Li(x), die führende glatte Schätzung. Mit wachsendem N_zeros schmiegen die Korrekturen die Kurve an die Treppe — genau so kodieren die Nullstellen die Primzahlen.",
+      "Oberes Bild: die Treppe π(x) springt bei jeder Primzahl um 1, die warme Kurve ist die aus den ersten N_zeros nichttrivialen Nullstellen rekonstruierte Riemann-Approximation. Bei null Nullstellen ist die Kurve Riemanns R(x), eine glatte Schätzung, die schon mitten durch die Stufen läuft. Mit wachsendem N_zeros schmiegen die Korrekturen die Kurve an die Treppe: genau so kodieren die Nullstellen die Primzahlen.",
     whatYouSeeP2:
       "Unteres Bild: das Bild von ζ entlang der kritischen Linie s = ½ + it, gezeichnet in der komplexen Ebene. Jede Schleife durch den Ursprung ist eine Nullstelle. Die Hypothese sagt, dass dieses Bild für immer dasselbe bleibt — es gibt kein t, bei dem die Bahn abdriftet und den Ursprung verfehlt, während der Realteil von s irgendwo anders als bei ½ sitzt.",
     errorLabel: "max |π(x) − R(x)| über den sichtbaren Bereich",
@@ -226,21 +238,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     formulaBadge: "ζ(s) = 0 ⇒ Re(s) = ½",
     tMaxLabel: "t_max — cuánto sube por la línea crítica",
     tMaxHint:
-      "El alcance vertical del trazo de ζ. Cada lazo por el origen marca un cero no trivial. ~14 revela el primero; 60 revela unos 15.",
+      "El alcance vertical del trazo de ζ. Cada lazo por el origen marca un cero no trivial. ~14 revela el primero; 60 revela 13.",
     nDirichletLabel: "N — términos de la serie de Dirichlet",
     nDirichletHint:
       "ζ se calcula como Σ_{n=1..N} (−1)^{n+1}/n^s escalado por 1/(1−2^{1−s}). 200 términos sobran para t ≤ 60.",
     nZerosLabel: "N_zeros — ceros usados en la reconstrucción de π",
     nZerosHint:
-      "Número de ceros no triviales enchufados en la corrección de la fórmula explícita de Riemann. 0 = la integral logarítmica Li(x) sola. Más ceros = la curva suave trepa sobre la escalera.",
+      "Número de ceros no triviales enchufados en la corrección de la fórmula explícita de Riemann. 0 = solo la función suave R(x) de Riemann. Más ceros = la curva suave trepa sobre la escalera.",
     detectedHeadline: "Alturas de ceros cruzadas",
     detectedEmpty: "Sube t_max por encima de 14,13 para registrar el primer cero.",
     legendPiTrue: "π(x) — escalera exacta",
-    legendRApprox: "Li(x) − Σ correcciones — aproximación de Riemann",
+    legendRApprox: "R(x) − Σ correcciones · aproximación de Riemann",
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "Lo que estás viendo",
     whatYouSeeP1:
-      "Gráfico superior: la escalera π(x) salta 1 en cada primo, y la curva cálida es la aproximación de Riemann reconstruida a partir de los primeros N_zeros ceros no triviales. Con cero ceros, la curva es Li(x), la estimación suave de orden principal. Al aumentar N_zeros las correcciones encajan la curva en la escalera — así, literalmente, los ceros codifican los primos.",
+      "Gráfico superior: la escalera π(x) salta 1 en cada primo, y la curva cálida es la aproximación de Riemann reconstruida a partir de los primeros N_zeros ceros no triviales. Con cero ceros, la curva es la R(x) de Riemann, una estimación suave que ya pasa por el medio de los escalones. Al aumentar N_zeros las correcciones encajan la curva en la escalera: así, literalmente, los ceros codifican los primos.",
     whatYouSeeP2:
       "Gráfico inferior: la imagen de ζ a lo largo de la línea crítica s = ½ + it, trazada en el plano complejo. Cada lazo por el origen es un cero. La hipótesis dice que esta figura se mantiene exactamente igual para siempre — no hay ningún t en el que la órbita se desvíe y eluda el origen mientras la parte real de s esté en cualquier otro sitio que no sea ½.",
     errorLabel: "max |π(x) − R(x)| en el rango visible",
@@ -252,21 +264,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     formulaBadge: "ζ(s) = 0 ⇒ Re(s) = ½",
     tMaxLabel: "t_max — jusqu'où monter sur la droite critique",
     tMaxHint:
-      "L'amplitude verticale de la trace de ζ. Chaque boucle par l'origine marque un zéro non trivial. ~14 révèle le premier ; 60 en révèle une quinzaine.",
+      "L'amplitude verticale de la trace de ζ. Chaque boucle par l'origine marque un zéro non trivial. ~14 révèle le premier ; 60 en révèle 13.",
     nDirichletLabel: "N — termes de la série de Dirichlet",
     nDirichletHint:
       "ζ est calculée par Σ_{n=1..N} (−1)^{n+1}/n^s mise à l'échelle par 1/(1−2^{1−s}). 200 termes suffisent largement pour t ≤ 60.",
     nZerosLabel: "N_zeros — zéros utilisés dans la reconstruction de π",
     nZerosHint:
-      "Nombre de zéros non triviaux injectés dans la correction de la formule explicite de Riemann. 0 = le logarithme intégral Li(x) seul. Plus de zéros = la courbe lisse monte sur l'escalier.",
+      "Nombre de zéros non triviaux injectés dans la correction de la formule explicite de Riemann. 0 = la seule fonction lisse R(x) de Riemann. Plus de zéros = la courbe lisse monte sur l'escalier.",
     detectedHeadline: "Hauteurs de zéros traversées",
     detectedEmpty: "Pousse t_max au-delà de 14,13 pour enregistrer le premier zéro.",
     legendPiTrue: "π(x) — escalier exact",
-    legendRApprox: "Li(x) − Σ corrections — approximation de Riemann",
+    legendRApprox: "R(x) − Σ corrections · approximation de Riemann",
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "Ce que tu vois",
     whatYouSeeP1:
-      "Graphique du haut : l'escalier π(x) saute de 1 à chaque premier, et la courbe chaude est l'approximation de Riemann reconstruite à partir des N_zeros premiers zéros non triviaux. Avec zéro zéros, la courbe est Li(x), l'estimation lisse de premier ordre. Quand N_zeros grandit, les corrections viennent coller la courbe à l'escalier — c'est littéralement ainsi que les zéros encodent les premiers.",
+      "Graphique du haut : l'escalier π(x) saute de 1 à chaque premier, et la courbe chaude est l'approximation de Riemann reconstruite à partir des N_zeros premiers zéros non triviaux. Avec zéro zéros, la courbe est la fonction R(x) de Riemann, une estimation lisse qui passe déjà au milieu des marches. Quand N_zeros grandit, les corrections viennent coller la courbe à l'escalier : c'est littéralement ainsi que les zéros encodent les premiers.",
     whatYouSeeP2:
       "Graphique du bas : l'image de ζ le long de la droite critique s = ½ + it, tracée dans le plan complexe. Chaque boucle autour de l'origine est un zéro. L'hypothèse affirme que cette figure reste exactement la même pour toujours — il n'existe aucun t où l'orbite dévie et évite l'origine alors que la partie réelle de s serait ailleurs qu'à ½.",
     errorLabel: "max |π(x) − R(x)| sur l'intervalle visible",
@@ -278,21 +290,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     formulaBadge: "ζ(s) = 0 ⇒ Re(s) = ½",
     tMaxLabel: "t_max — quanto salire lungo la retta critica",
     tMaxHint:
-      "L'estensione verticale della traccia di ζ. Ogni cappio attraverso l'origine marca uno zero non banale. ~14 rivela il primo; 60 ne rivela circa 15.",
+      "L'estensione verticale della traccia di ζ. Ogni cappio attraverso l'origine marca uno zero non banale. ~14 rivela il primo; 60 ne rivela 13.",
     nDirichletLabel: "N — termini della serie di Dirichlet",
     nDirichletHint:
       "ζ è calcolata come Σ_{n=1..N} (−1)^{n+1}/n^s scalata per 1/(1−2^{1−s}). 200 termini bastano e avanzano per t ≤ 60.",
     nZerosLabel: "N_zeros — zeri usati nella ricostruzione di π",
     nZerosHint:
-      "Numero di zeri non banali inseriti nella correzione della formula esplicita di Riemann. 0 = il solo integrale logaritmico Li(x). Più zeri = la curva liscia si arrampica sulla scala.",
+      "Numero di zeri non banali inseriti nella correzione della formula esplicita di Riemann. 0 = la sola funzione liscia R(x) di Riemann. Più zeri = la curva liscia si arrampica sulla scala.",
     detectedHeadline: "Altezze di zeri attraversate",
     detectedEmpty: "Alza t_max oltre 14,13 per registrare il primo zero.",
     legendPiTrue: "π(x) — scala esatta",
-    legendRApprox: "Li(x) − Σ correzioni — approssimazione di Riemann",
+    legendRApprox: "R(x) − Σ correzioni · approssimazione di Riemann",
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "Ciò che stai vedendo",
     whatYouSeeP1:
-      "Grafico in alto: la scala π(x) salta di 1 a ogni primo, e la curva calda è l'approssimazione di Riemann ricostruita dai primi N_zeros zeri non banali. Con zero zeri, la curva è Li(x), la stima liscia all'ordine principale. Al crescere di N_zeros le correzioni accostano la curva alla scala — è esattamente così che gli zeri codificano i primi.",
+      "Grafico in alto: la scala π(x) salta di 1 a ogni primo, e la curva calda è l'approssimazione di Riemann ricostruita dai primi N_zeros zeri non banali. Con zero zeri, la curva è la R(x) di Riemann, una stima liscia che passa già in mezzo ai gradini. Al crescere di N_zeros le correzioni accostano la curva alla scala: è esattamente così che gli zeri codificano i primi.",
     whatYouSeeP2:
       "Grafico in basso: l'immagine di ζ lungo la retta critica s = ½ + it, tracciata nel piano complesso. Ogni cappio per l'origine è uno zero. L'ipotesi dice che questa figura resta esattamente la stessa per sempre — non esiste alcun t in cui l'orbita devia ed evita l'origine mentre la parte reale di s sta altrove che ½.",
     errorLabel: "max |π(x) − R(x)| nell'intervallo visibile",
@@ -304,21 +316,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     formulaBadge: "ζ(s) = 0 ⇒ Re(s) = ½",
     tMaxLabel: "t_max — quanto subir pela recta crítica",
     tMaxHint:
-      "O alcance vertical do traço de ζ. Cada laço pela origem marca um zero não trivial. ~14 revela o primeiro; 60 revela cerca de 15.",
+      "O alcance vertical do traço de ζ. Cada laço pela origem marca um zero não trivial. ~14 revela o primeiro; 60 revela 13.",
     nDirichletLabel: "N — termos da série de Dirichlet",
     nDirichletHint:
       "ζ é calculada como Σ_{n=1..N} (−1)^{n+1}/n^s escalada por 1/(1−2^{1−s}). 200 termos chegam e sobram para t ≤ 60.",
     nZerosLabel: "N_zeros — zeros usados na reconstrução de π",
     nZerosHint:
-      "Número de zeros não triviais introduzidos na correcção da fórmula explícita de Riemann. 0 = apenas o integral logarítmico Li(x). Mais zeros = a curva suave trepa sobre a escada.",
+      "Número de zeros não triviais introduzidos na correcção da fórmula explícita de Riemann. 0 = apenas a função suave R(x) de Riemann. Mais zeros = a curva suave trepa sobre a escada.",
     detectedHeadline: "Alturas de zeros atravessadas",
     detectedEmpty: "Sobe t_max para além de 14,13 para registar o primeiro zero.",
     legendPiTrue: "π(x) — escada exacta",
-    legendRApprox: "Li(x) − Σ correcções — aproximação de Riemann",
+    legendRApprox: "R(x) − Σ correcções · aproximação de Riemann",
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "O que estás a ver",
     whatYouSeeP1:
-      "Gráfico superior: a escada π(x) salta 1 em cada primo, e a curva quente é a aproximação de Riemann reconstruída a partir dos primeiros N_zeros zeros não triviais. Com zero zeros, a curva é Li(x), a estimativa suave de ordem principal. À medida que N_zeros cresce, as correcções encostam a curva à escada — é literalmente assim que os zeros codificam os primos.",
+      "Gráfico superior: a escada π(x) salta 1 em cada primo, e a curva quente é a aproximação de Riemann reconstruída a partir dos primeiros N_zeros zeros não triviais. Com zero zeros, a curva é a R(x) de Riemann, uma estimativa suave que já passa pelo meio dos degraus. À medida que N_zeros cresce, as correcções encostam a curva à escada: é literalmente assim que os zeros codificam os primos.",
     whatYouSeeP2:
       "Gráfico inferior: a imagem de ζ ao longo da recta crítica s = ½ + it, traçada no plano complexo. Cada laço pela origem é um zero. A hipótese diz que esta figura permanece exactamente igual para sempre — não há nenhum t em que a órbita derive e evite a origem enquanto a parte real de s estiver noutro sítio que não ½.",
     errorLabel: "max |π(x) − R(x)| no intervalo visível",
@@ -330,21 +342,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     formulaBadge: "ζ(s) = 0 ⇒ Re(s) = ½",
     tMaxLabel: "t_max — hur långt upp på den kritiska linjen",
     tMaxHint:
-      "Den lodräta räckvidden för ζ-spåret. Varje ögla genom origo markerar ett icke-trivialt nollställe. ~14 visar det första; 60 visar ungefär 15.",
+      "Den lodräta räckvidden för ζ-spåret. Varje ögla genom origo markerar ett icke-trivialt nollställe. ~14 visar det första; 60 visar 13.",
     nDirichletLabel: "N — termer i Dirichlet-serien",
     nDirichletHint:
       "ζ beräknas som Σ_{n=1..N} (−1)^{n+1}/n^s skalad med 1/(1−2^{1−s}). 200 termer räcker mer än väl för t ≤ 60.",
     nZerosLabel: "N_zeros — nollställen i π-rekonstruktionen",
     nZerosHint:
-      "Antal icke-triviala nollställen som stoppas in i Riemanns explicit-formel-korrektion. 0 = enbart den logaritmiska integralen Li(x). Fler nollställen = den släta kurvan klättrar upp på trappan.",
+      "Antal icke-triviala nollställen som stoppas in i Riemanns explicit-formel-korrektion. 0 = enbart Riemanns släta funktion R(x). Fler nollställen = den släta kurvan klättrar upp på trappan.",
     detectedHeadline: "Passerade nollställeshöjder",
     detectedEmpty: "Höj t_max över 14,13 för att registrera första nollstället.",
     legendPiTrue: "π(x) — exakt trappa",
-    legendRApprox: "Li(x) − Σ korrektioner — Riemanns approximation",
+    legendRApprox: "R(x) − Σ korrektioner · Riemanns approximation",
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "Det du ser",
     whatYouSeeP1:
-      "Övre plotten: trappan π(x) hoppar 1 vid varje primtal, och den varma kurvan är Riemanns approximation rekonstruerad från de första N_zeros icke-triviala nollställena. Med noll nollställen är kurvan Li(x), den ledande släta uppskattningen. När N_zeros växer pressar korrektionerna kurvan upp mot trappan — det är bokstavligen så nollställena kodar primtalen.",
+      "Övre plotten: trappan π(x) hoppar 1 vid varje primtal, och den varma kurvan är Riemanns approximation rekonstruerad från de första N_zeros icke-triviala nollställena. Med noll nollställen är kurvan Riemanns R(x), en slät uppskattning som redan går mitt genom trappstegen. När N_zeros växer pressar korrektionerna kurvan upp mot trappan: det är bokstavligen så nollställena kodar primtalen.",
     whatYouSeeP2:
       "Nedre plotten: bilden av ζ längs den kritiska linjen s = ½ + it, ritad i komplexa planet. Varje ögla genom origo är ett nollställe. Hypotesen säger att den här bilden förblir exakt samma bild för alltid — det finns inget t där omloppsbanan driver bort och undviker origo medan realdelen av s sitter någon annanstans än ½.",
     errorLabel: "max |π(x) − R(x)| över synligt intervall",
@@ -356,21 +368,21 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     formulaBadge: "ζ(s) = 0 ⇒ Re(s) = ½",
     tMaxLabel: "t_max — hvor langt opp den kritiske linjen",
     tMaxHint:
-      "Den loddrette rekkevidden til ζ-sporet. Hver løkke gjennom origo markerer ett ikke-trivielt nullpunkt. ~14 viser det første; 60 viser omtrent 15.",
+      "Den loddrette rekkevidden til ζ-sporet. Hver løkke gjennom origo markerer ett ikke-trivielt nullpunkt. ~14 viser det første; 60 viser 13.",
     nDirichletLabel: "N — ledd i Dirichlet-rekken",
     nDirichletHint:
       "ζ beregnes som Σ_{n=1..N} (−1)^{n+1}/n^s skalert med 1/(1−2^{1−s}). 200 ledd er mer enn nok for t ≤ 60.",
     nZerosLabel: "N_zeros — nullpunkter i π-rekonstruksjonen",
     nZerosHint:
-      "Antall ikke-trivielle nullpunkter som puttes inn i Riemanns eksplisitt-formel-korreksjon. 0 = bare den logaritmiske integralen Li(x). Flere nullpunkter = den glatte kurven klatrer opp på trappen.",
+      "Antall ikke-trivielle nullpunkter som puttes inn i Riemanns eksplisitt-formel-korreksjon. 0 = bare Riemanns glatte funksjon R(x). Flere nullpunkter = den glatte kurven klatrer opp på trappen.",
     detectedHeadline: "Krysset nullpunkts-høyder",
     detectedEmpty: "Hev t_max forbi 14,13 for å registrere det første nullpunktet.",
     legendPiTrue: "π(x) — eksakt trapp",
-    legendRApprox: "Li(x) − Σ korreksjoner — Riemanns approksimasjon",
+    legendRApprox: "R(x) − Σ korreksjoner · Riemanns approksimasjon",
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "Det du ser",
     whatYouSeeP1:
-      "Øverste plot: trappen π(x) hopper 1 ved hvert primtall, og den varme kurven er Riemanns approksimasjon rekonstruert fra de første N_zeros ikke-trivielle nullpunktene. Med null nullpunkter er kurven Li(x), den ledende glatte estimaten. Når N_zeros vokser presser korreksjonene kurven inntil trappen — det er bokstavelig talt slik nullpunktene koder primtallene.",
+      "Øverste plot: trappen π(x) hopper 1 ved hvert primtall, og den varme kurven er Riemanns approksimasjon rekonstruert fra de første N_zeros ikke-trivielle nullpunktene. Med null nullpunkter er kurven Riemanns R(x), et glatt estimat som allerede går midt gjennom trinnene. Når N_zeros vokser presser korreksjonene kurven inntil trappen: det er bokstavelig talt slik nullpunktene koder primtallene.",
     whatYouSeeP2:
       "Nederste plot: bildet av ζ langs den kritiske linjen s = ½ + it, tegnet i det komplekse planet. Hver løkke gjennom origo er ett nullpunkt. Hypotesen sier at dette bildet forblir nøyaktig samme bilde for alltid — det finnes ingen t der banen driver av og unngår origo mens realdelen av s sitter et annet sted enn ½.",
     errorLabel: "max |π(x) − R(x)| over synlig område",
@@ -610,8 +622,11 @@ export default function RiemannExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {x.primeStaircaseBadge}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
-              {x.formulaBadge}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-teal">
+                {x.formulaBadge}
+              </div>
+              <ExplorerHelpButton guide={RIEMANN_GUIDE} />
             </div>
           </div>
 
@@ -750,6 +765,7 @@ export default function RiemannExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={RIEMANN_GUIDE} storyHref="/riemann" />
     </main>
   );
 }

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { BZR_GUIDE } from "@/lib/explorer-guides/bzr";
 
 const GRID = 200;
 const STATES = 100; // n — number of cell states (0 = healthy, STATES-1 = ill)
@@ -17,11 +19,15 @@ interface Preset {
   g: number;
 }
 
+// Each name was checked against the rule below from random starts with
+// several seeds (1000 iterations): spirals, smaller and more tightly wound
+// spirals, concentric rings around many centres, and a restless fine-grained
+// field. Re-check the names when the rule or these numbers change.
 const PRESETS: Preset[] = [
   { label: "Classic spirals", k1: 3, k2: 3, g: 28 },
-  { label: "Tight scrolls", k1: 2, k2: 3, g: 22 },
-  { label: "Slow targets", k1: 3, k2: 3, g: 12 },
-  { label: "Turbulent", k1: 2, k2: 2, g: 40 },
+  { label: "Tight scrolls", k1: 3, k2: 2, g: 36 },
+  { label: "Target rings", k1: 2, k2: 2, g: 40 },
+  { label: "Turbulent", k1: 3, k2: 3, g: 40 },
 ];
 
 // Build a 256-entry RGBA lookup table for a given colour map, mapping
@@ -101,10 +107,13 @@ function randomGrid(): Uint8Array {
   return g;
 }
 
-function spiralSeed(): Uint8Array {
-  // A clean spiral seed: a horizontal half-line of ill cells with an
-  // adjacent row of healthy cells creates a phase discontinuity that
-  // rolls into a spiral once the rule runs.
+function brokenWaveSeed(): Uint8Array {
+  // A horizontal half-line of ill cells flanked by rows at states 60 and 20:
+  // a phase discontinuity that sends out waves. Because the line is mirror
+  // symmetric about its midpoint and the grid wraps around, the result is a
+  // mirror-symmetric field of many spirals, not a single rotor. Other
+  // seeds tried here (shorter lines, an angular phase ramp) broke up into
+  // many spirals as well, so the button is named after what it plants.
   const g = new Uint8Array(GRID * GRID);
   const mid = Math.floor(GRID / 2);
   for (let x = mid; x < GRID; x++) {
@@ -136,10 +145,12 @@ function step(cur: Uint8Array, next: Uint8Array, k1: number, k2: number, g: numb
         continue;
       }
 
-      // Gather Moore-neighbourhood stats
-      let a = 0; // count of ill neighbours
-      let b = 0; // count of infected neighbours (1..ILL-1)
-      let sum = 0; // sum of infected neighbour states + own state
+      // Moore-neighbourhood stats, named as in Gerhardt and Schuster's
+      // hodgepodge machine: a infected neighbours, b ill neighbours, and the
+      // sum of all neighbour states (healthy ones contribute 0).
+      let a = 0;
+      let b = 0;
+      let sum = 0;
 
       const n = [
         cur[ym * N + xm],
@@ -153,22 +164,19 @@ function step(cur: Uint8Array, next: Uint8Array, k1: number, k2: number, g: numb
       ];
       for (let i = 0; i < 8; i++) {
         const v = n[i];
-        if (v === ILL) a++;
-        else if (v > 0) {
-          b++;
-          sum += v;
-        }
+        sum += v;
+        if (v === ILL) b++;
+        else if (v > 0) a++;
       }
 
       if (s === 0) {
-        // Healthy: count ill + infected neighbours, divide by k1/k2
-        const v = Math.floor(a / k2) + Math.floor(b / k1);
+        const v = Math.floor(a / k1) + Math.floor(b / k2);
         next[idx] = v >= ILL ? ILL : v;
       } else {
-        // Infected: average infected (incl. self) + g
-        const count = b + 1;
-        const total = sum + s;
-        const v = Math.floor(total / count) + g;
+        // Ill neighbours count towards the average too. Leaving them out (as
+        // an earlier version did) is not the published rule: they are what
+        // pulls a cell next to a wave crest up to the crest's level.
+        const v = Math.floor((sum + s) / (a + b + 1)) + g;
         next[idx] = v >= ILL ? ILL : v;
       }
     }
@@ -221,8 +229,8 @@ export default function BzrExplorer() {
     setStaticTick((t) => t + 1);
   }, []);
 
-  const seedSpiral = useCallback(() => {
-    bufRef.current = spiralSeed();
+  const seedBrokenWave = useCallback(() => {
+    bufRef.current = brokenWaveSeed();
     iterRef.current = 0;
     setIter(0);
     setStaticTick((t) => t + 1);
@@ -298,8 +306,11 @@ export default function BzrExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               Hodgepodge automaton · {GRID} × {GRID} · {STATES} states
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
-              k₁ = {k1} · k₂ = {k2} · g = {g}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral">
+                k₁ = {k1} · k₂ = {k2} · g = {g}
+              </div>
+              <ExplorerHelpButton guide={BZR_GUIDE} />
             </div>
           </div>
           <div className="hairline flex flex-1 items-center justify-center overflow-hidden rounded-2xl border bg-ink-950">
@@ -339,10 +350,10 @@ export default function BzrExplorer() {
                 Restart · random
               </button>
               <button
-                onClick={seedSpiral}
+                onClick={seedBrokenWave}
                 className="rounded-md border border-signal-coral/60 bg-signal-coral/10 px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-coral transition-colors hover:bg-signal-coral/20"
               >
-                Seed spiral
+                Seed broken wave
               </button>
               <button
                 onClick={() => setRunning((r) => !r)}
@@ -500,6 +511,7 @@ export default function BzrExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={BZR_GUIDE} storyHref="/bzr" />
     </main>
   );
 }

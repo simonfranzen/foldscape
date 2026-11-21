@@ -5,6 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { palette } from "@/lib/visual/palette";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { HILBERTHOTEL_GUIDE } from "@/lib/explorer-guides/hilberthotel";
 
 type Scenario = "one" | "k" | "infinite" | "buses";
 
@@ -698,8 +700,11 @@ export default function HilbertHotelExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {x.header.replace("{n}", String(VISIBLE_ROOMS))}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              {scenarioFormula[scenario]}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                {scenarioFormula[scenario]}
+              </div>
+              <ExplorerHelpButton guide={HILBERTHOTEL_GUIDE} />
             </div>
           </div>
 
@@ -994,6 +999,7 @@ export default function HilbertHotelExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={HILBERTHOTEL_GUIDE} storyHref="/hilberthotel" />
     </main>
   );
 }

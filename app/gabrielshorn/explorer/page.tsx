@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { GABRIELS_HORN_GUIDE } from "@/lib/explorer-guides/gabrielshorn";
 
 const X_MIN = 1;
 const LOG_X_MAX_MIN = Math.log10(1.5);
@@ -723,8 +725,11 @@ export default function GabrielsHornExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {view === "3d" ? tr.badge3d : tr.badge2d}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              {tr.convergence}
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                {tr.convergence}
+              </div>
+              <ExplorerHelpButton guide={GABRIELS_HORN_GUIDE} />
             </div>
           </div>
           <div className="hairline flex-1 overflow-hidden rounded-2xl border bg-ink-950">
@@ -892,6 +897,7 @@ export default function GabrielsHornExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={GABRIELS_HORN_GUIDE} storyHref="/gabrielshorn" />
     </main>
   );
 }

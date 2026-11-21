@@ -5,6 +5,8 @@ import { useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
 import { palette } from "@/lib/visual/palette";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { COLLATZ_GUIDE } from "@/lib/explorer-guides/collatz";
 
 const FAMOUS_SEEDS = [27, 97, 871, 6171];
 
@@ -436,8 +438,11 @@ export default function CollatzExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               {t.hudTrajectory(seed)}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              n → n/2 or 3n + 1
+            <div className="flex items-center gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                n → n/2 or 3n + 1
+              </div>
+              <ExplorerHelpButton guide={COLLATZ_GUIDE} />
             </div>
           </div>
 
@@ -719,6 +724,7 @@ export default function CollatzExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={COLLATZ_GUIDE} storyHref="/collatz" />
     </main>
   );
 }

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { SAT_GUIDE } from "@/lib/explorer-guides/sat";
 
 // ── DPLL solver, stepped and visualised ────────────────────────────────────
 // A literal is a variable index plus a sign. A clause is a disjunction of
@@ -730,20 +732,23 @@ export default function SatExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               CNF · {preset.vars.length} {tr.vars} · {preset.clauses.length} {tr.clauses}
             </div>
-            <div
-              className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${
-                state.status === "sat"
-                  ? "text-signal-teal"
+            <div className="flex items-center gap-2">
+              <div
+                className={`glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 ${
+                  state.status === "sat"
+                    ? "text-signal-teal"
+                    : state.status === "unsat"
+                      ? "text-signal-rose"
+                      : "text-signal-violet"
+                }`}
+              >
+                {state.status === "sat"
+                  ? tr.statusSat
                   : state.status === "unsat"
-                    ? "text-signal-rose"
-                    : "text-signal-violet"
-              }`}
-            >
-              {state.status === "sat"
-                ? tr.statusSat
-                : state.status === "unsat"
-                  ? tr.statusUnsat
-                  : tr.statusSolving}
+                    ? tr.statusUnsat
+                    : tr.statusSolving}
+              </div>
+              <ExplorerHelpButton guide={SAT_GUIDE} />
             </div>
           </div>
 
@@ -1000,6 +1005,7 @@ export default function SatExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={SAT_GUIDE} storyHref="/sat" />
     </main>
   );
 }

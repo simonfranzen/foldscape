@@ -7,6 +7,8 @@ import { Info } from "@/components/Info";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { RULE110_SIMULATOR_GUIDE } from "@/lib/explorer-guides/rule110-simulator";
 
 const WIDTH = 240;
 const HEIGHT = 360;
@@ -428,8 +430,11 @@ export default function Rule110Simulator() {
               <span className="text-ink-400">·</span>
               <span>gen {generation}</span>
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
-              {ex.hudAutomaton} · {WIDTH} {ex.cellsLabel}
+            <div className="flex items-start gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-cyan">
+                {ex.hudAutomaton} · {WIDTH} {ex.cellsLabel}
+              </div>
+              <ExplorerHelpButton guide={RULE110_SIMULATOR_GUIDE} />
             </div>
           </div>
           <div className="glass hairline pointer-events-none absolute bottom-4 left-4 rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-300">
@@ -603,6 +608,7 @@ export default function Rule110Simulator() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={RULE110_SIMULATOR_GUIDE} storyHref="/rule110" />
     </main>
   );
 }
