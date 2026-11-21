@@ -6,6 +6,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { useDpr } from "@/lib/hooks/useDpr";
 import { palette } from "@/lib/visual/palette";
 import type { Locale } from "@/lib/i18n/types";
+import { ExplorerGuideSection, ExplorerHelpButton } from "@/components/ExplorerGuide";
+import { LORENZ_GUIDE } from "@/lib/explorer-guides/lorenz";
 
 type Projection = "xz" | "xy" | "yz";
 
@@ -294,8 +296,11 @@ export default function LorenzExplorer() {
             <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-ink-200">
               σ = {sigma.toFixed(1)} · ρ = {rho.toFixed(1)} · β = {beta.toFixed(3)}
             </div>
-            <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
-              {tx.projectionLabel} · {projection.toUpperCase()}
+            <div className="flex items-start gap-2">
+              <div className="glass hairline rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest2 text-signal-amber">
+                {tx.projectionLabel} · {projection.toUpperCase()}
+              </div>
+              <ExplorerHelpButton guide={LORENZ_GUIDE} />
             </div>
           </div>
         </div>
@@ -435,6 +440,7 @@ export default function LorenzExplorer() {
           </div>
         </aside>
       </div>
+      <ExplorerGuideSection guide={LORENZ_GUIDE} storyHref="/lorenz" />
     </main>
   );
 }

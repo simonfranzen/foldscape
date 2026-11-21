@@ -92,9 +92,18 @@ export function topicMetadata(id: TopicId): Metadata {
 // Interactive sub-rooms (explorer, sandbox, simulator, builder, reducer,
 // sound) share the topic's copy but need their own canonical, otherwise they
 // would inherit the story page's canonical from the topic layout.
-export function topicSubpageMetadata(id: TopicId, sub: string, label: string): Metadata {
+export function topicSubpageMetadata(
+  id: TopicId,
+  sub: string,
+  label: string,
+  customDescription?: string,
+): Metadata {
   const topic = getTopic(id);
   const { title } = getTopicCopy(id);
-  const description = `${label} for ${title}: play with the parameters yourself, in the browser, no sign-up.`;
+  // A templated description repeated across ~50 routes reads as boilerplate
+  // to search engines; explorers with a guide pass their own.
+  const description =
+    customDescription ??
+    `${label} for ${title}: play with the parameters yourself, in the browser, no sign-up.`;
   return pageMetadata(`${topic.href}/${sub}`, `${title}: ${label}`, description);
 }
