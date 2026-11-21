@@ -1,6 +1,6 @@
 // Tiny SKI + Iota reducer. The AST is binary: every node is either a single
 // symbol (S, K, I, ι) or an Application(f, x). Reduction walks the tree
-// once per step, performing the leftmost-outermost redex it finds — exactly
+// once per step, performing the leftmost-outermost redex it finds: exactly
 // the strategy the textbooks use to demonstrate normal-order evaluation.
 
 const DEFAULT_MAX_STEPS = 80;
@@ -10,7 +10,7 @@ export type Term = { kind: "sym"; name: string } | { kind: "app"; f: Term; x: Te
 export const sym = (name: string): Term => ({ kind: "sym", name });
 export const app = (f: Term, x: Term): Term => ({ kind: "app", f, x });
 
-// Parser — accepts:
+// Parser, accepts:
 //   S, K, I, i, ι
 //   parentheses for grouping
 //   whitespace ignored
@@ -117,6 +117,9 @@ export function reduceTrace(t: Term, maxSteps = DEFAULT_MAX_STEPS): ReduceTrace 
     cur = next;
     steps.push(show(cur));
   }
+  // The budget counts rewrites, not checks: a term that reaches its normal
+  // form on exactly the last allowed step has finished, not run out.
+  if (!reduceOnce(cur)) return { steps, normal: true, hitLimit: false };
   return { steps, normal: false, hitLimit: true };
 }
 
@@ -125,6 +128,6 @@ export const PRESETS = [
   { id: "k-recover", label: "Recover K from ι", src: "ι (ι (ι ι))" },
   { id: "s-recover", label: "Recover S from ι", src: "ι (ι (ι (ι ι)))" },
   { id: "i-eq", label: "S K K x = I x", src: "S K K I" },
-  { id: "skk", label: "S K K x — identity in disguise", src: "S K K (S K K)" },
+  { id: "skk", label: "S K K x: identity in disguise", src: "S K K (S K K)" },
   { id: "mockingbird", label: "Self-application M x = x x", src: "S I I (S K)" },
 ];

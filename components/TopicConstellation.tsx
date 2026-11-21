@@ -17,7 +17,7 @@
 // Camera tween for category open/close stays — it's what makes the cluster
 // open gesture feel like a camera settling rather than a state swap.
 
-import Link from "next/link";
+import Link from "@/components/LocaleLink";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
@@ -293,7 +293,7 @@ function viewBoxEq(a: ViewBox, b: ViewBox): boolean {
 }
 
 export function TopicConstellation({ filter, setFilter }: Props) {
-  const { a } = useI18n();
+  const { a, href } = useI18n();
   const searchId = useId();
   const [hovered, setHovered] = useState<TopicId | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<TopicCategory | null>(null);
@@ -456,7 +456,7 @@ export function TopicConstellation({ filter, setFilter }: Props) {
     e.preventDefault();
     if (!q) return;
     const first = TOPICS.find((t) => searchMatches.has(t.id));
-    if (first) router.push(first.href);
+    if (first) router.push(href(first.href));
   };
 
   // Click-outside the SVG (but not on the search input) closes the cluster.

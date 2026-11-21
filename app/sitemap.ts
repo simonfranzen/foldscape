@@ -2,34 +2,34 @@ import type { MetadataRoute } from "next";
 import { TOPICS } from "@/lib/topics";
 import { STATIC_PAGES, TOPIC_SUBROUTES } from "@/lib/seo/routes";
 import { SITE_URL, languageAlternates } from "@/lib/og/metadata";
+import { LOCALES, type Locale } from "@/lib/i18n/types";
+import { localePath } from "@/lib/i18n/paths";
 
-// Every URL lists its eight language variants as alternates so search
-// engines can pair them; the bare path is English and x-default.
-function entry(
-  path: string,
-  priority: number,
-  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"],
-): MetadataRoute.Sitemap[number] {
+// Sub-rooms carry their long text in a guide that exists in these locales
+// only; the other locale variants are noindex and stay out of the sitemap.
+// Keep in sync with the locales filled in lib/explorer-guides/*.
+const GUIDE_LOCALES: readonly Locale[] = ["en", "de"];
+
+// One <url> per language variant, each listing all its siblings, which is
+// the form Google asks for when hreflang lives in the sitemap.
+function entries(path: string, locales: readonly Locale[] = LOCALES): MetadataRoute.Sitemap {
   const languages = Object.fromEntries(
-    Object.entries(languageAlternates(path)).map(([l, p]) => [l, `${SITE_URL}${p}`]),
+    Object.entries(languageAlternates(path, locales)).map(([l, p]) => [l, `${SITE_URL}${p}`]),
   );
-  return {
-    url: `${SITE_URL}${path}`,
-    lastModified: new Date(),
-    changeFrequency,
-    priority,
+  return locales.map((l) => ({
+    url: `${SITE_URL}${localePath(l, path)}`,
     alternates: { languages },
-  };
+  }));
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const out: MetadataRoute.Sitemap = [entry("/", 1, "weekly")];
+  const out: MetadataRoute.Sitemap = [...entries("/")];
   for (const topic of TOPICS) {
-    out.push(entry(topic.href, 0.8, "monthly"));
+    out.push(...entries(topic.href));
     for (const sub of TOPIC_SUBROUTES[topic.id] ?? []) {
-      out.push(entry(`${topic.href}/${sub}`, 0.6, "monthly"));
+      out.push(...entries(`${topic.href}/${sub}`, GUIDE_LOCALES));
     }
   }
-  for (const p of STATIC_PAGES) out.push(entry(p, 0.3, "yearly"));
+  for (const p of STATIC_PAGES) out.push(...entries(p));
   return out;
 }

@@ -5,9 +5,18 @@
 
 import { getDpr } from "@/lib/hooks/useDpr";
 
+// Home view. The set spans about [-2, 0.47] × [-1.12, 1.12]; a 2.6 square
+// centred here holds all of it, and because scale measures the shorter canvas
+// side, that square is visible on portrait and landscape canvases alike.
+export const HOME_CENTER: [number, number] = [-0.75, 0];
+export const HOME_SCALE = 2.6;
+
 export interface MandelState {
   center: [number, number];
-  scale: number; // half-height of view in complex units
+  // Extent of the SHORTER canvas side in complex units (the shader divides
+  // pixel offsets by min(width, height)). Everything that converts pixels to
+  // c, here and in the explorer page, has to use the same convention.
+  scale: number;
   maxIter: number; // up to ~1500 for deep zooms
   palette: number; // 0..4
   hueShift: number; // 0..1
@@ -16,8 +25,8 @@ export interface MandelState {
 }
 
 export const defaultMandel = (): MandelState => ({
-  center: [-0.6, 0],
-  scale: 1.4,
+  center: HOME_CENTER,
+  scale: HOME_SCALE,
   maxIter: 400,
   palette: 0,
   hueShift: 0,
@@ -60,7 +69,7 @@ vec3 palette(float t){
 }
 
 void main(){
-  vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution) / uResolution.y;
+  vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution) / min(uResolution.x, uResolution.y);
   vec2 c = uCenter + uv * uScale;
 
   vec2 z = vec2(0.0);
@@ -232,15 +241,20 @@ function compile(gl: WebGL2RenderingContext, type: number, src: string) {
   return sh;
 }
 
-// Bookmarks reach progressively deeper into the boundary. Each one knows how
-// many iterations it needs; the explorer also auto-bumps iterations with
-// continuous zoom.
+// Bookmarks reach into the boundary. Each one knows how many iterations it
+// needs; the explorer also auto-bumps iterations with continuous zoom.
+//
+// Depth limit: the shader computes c in float32, whose spacing is 2^-23 ≈
+// 1.2e-7 for 1 ≤ |Re c| < 2 and half that for 0.5 ≤ |Re c| < 1. A bookmark
+// must keep scale well above (shorter side in device px) × that spacing, or
+// neighbouring pixel columns collapse onto the same c. All entries leave at
+// least a factor of 4 on a 2000 px canvas.
 export const BOOKMARKS = [
   {
     id: "overview",
     labelKey: "bookmarkOverview",
-    center: [-0.6, 0] as [number, number],
-    scale: 1.4,
+    center: HOME_CENTER,
+    scale: HOME_SCALE,
     maxIter: 300,
   },
   {
@@ -260,8 +274,11 @@ export const BOOKMARKS = [
   {
     id: "mini",
     labelKey: "bookmarkMini",
-    center: [-1.7686, 0] as [number, number],
-    scale: 0.01,
+    // Frames the whole period-3 copy on the needle: its cardioid and disc span
+    // about -1.777 to -1.75 on the real axis and its bulbs reach about ±0.02i.
+    // The wide margin keeps the body in view on portrait screens too.
+    center: [-1.765, 0] as [number, number],
+    scale: 0.06,
     maxIter: 900,
   },
   {
@@ -281,9 +298,11 @@ export const BOOKMARKS = [
   {
     id: "lightning",
     labelKey: "bookmarkLightning",
-    center: [-1.7497219, 0] as [number, number],
-    scale: 0.00012,
-    maxIter: 2000,
+    // A baby copy on the filament above the period-3 mini, with branching
+    // filaments radiating from it.
+    center: [-1.7588, 0.019] as [number, number],
+    scale: 0.002,
+    maxIter: 1200,
   },
   {
     id: "selfsim",
@@ -295,15 +314,23 @@ export const BOOKMARKS = [
   {
     id: "antenna",
     labelKey: "bookmarkAntenna",
-    center: [-1.99996, 0] as [number, number],
-    scale: 0.00006,
-    maxIter: 2500,
+    // The tip at c = -2 is self-similar under scaling by 4, so this shallower
+    // frame shows the same picture a deeper one would. The tip sits left of
+    // centre by less than scale / 2, which keeps it in view on any canvas.
+    center: [-1.9997, 0] as [number, number],
+    scale: 0.00096,
+    maxIter: 1500,
   },
 ];
 
+// Decades of zoom relative to the home view, so the readout shows 10^0 there.
+export function zoomDecades(scale: number): number {
+  return Math.log10(HOME_SCALE / Math.max(scale, 1e-15));
+}
+
 // Helpful: given a continuous zoom factor, suggest a sensible iteration count.
 export function suggestedIter(scale: number): number {
-  // baseline 200, +60 per decade of zoom past 1
-  const zoom = Math.max(0, Math.log10(2.8 / Math.max(scale, 1e-15)));
+  // Baseline 200 at the home view, +80 per decade of zoom.
+  const zoom = Math.max(0, zoomDecades(scale));
   return Math.min(3000, Math.max(200, Math.round(200 + zoom * 80)));
 }

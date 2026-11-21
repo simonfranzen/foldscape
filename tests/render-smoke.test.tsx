@@ -80,8 +80,8 @@ beforeAll(() => {
 });
 
 import { I18nProvider } from "@/lib/i18n/context";
-import Landing from "@/app/page";
-import BanachStory from "@/app/banach/page";
+import Landing from "@/app/[locale]/page";
+import BanachStory from "@/app/[locale]/banach/page";
 import { TopicConstellation } from "@/components/TopicConstellation";
 
 function withProviders(node: React.ReactNode) {
@@ -96,29 +96,18 @@ describe("render smoke", () => {
   });
 
   it("banach story page mounts in EN", () => {
-    // I18nProvider defaults to EN before the locale-detection effect kicks in
-    // under jsdom; that's exactly the locale we want to render here.
     const { container } = render(withProviders(<BanachStory />));
     expect(container.textContent ?? "").not.toBe("");
     cleanup();
   });
 
-  it("banach story page mounts after switching to DE", () => {
-    // Drive the locale through localStorage — detectLocale reads it on
-    // first effect. Falls back gracefully if jsdom hasn't surfaced
-    // localStorage on the window in this configuration.
-    try {
-      window.localStorage?.setItem("foldscape.locale", "de");
-    } catch {
-      // ignore — we still want the smoke test to run
-    }
-    const { container } = render(withProviders(<BanachStory />));
+  it("banach story page mounts in DE", () => {
+    const { container } = render(
+      <I18nProvider locale="de">
+        <BanachStory />
+      </I18nProvider>,
+    );
     expect(container.textContent ?? "").not.toBe("");
-    try {
-      window.localStorage?.removeItem("foldscape.locale");
-    } catch {
-      /* noop */
-    }
     cleanup();
   });
 

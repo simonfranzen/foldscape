@@ -17,6 +17,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
 import type { Topic, TopicCategory } from "@/lib/topics";
 import { CATEGORY_COLOR } from "@/lib/cosmos/layout";
 import { palette } from "@/lib/visual/palette";
@@ -33,6 +34,7 @@ interface Props {
 
 export function TopicStar({ topic, x, y, isHub, title, tagline, category }: Props) {
   const router = useRouter();
+  const { href } = useI18n();
   const [hover, setHover] = useState(false);
   const color = CATEGORY_COLOR[category];
   // Bigger, brighter stars — the v2 felt like distant lights; v3 makes
@@ -56,12 +58,12 @@ export function TopicStar({ topic, x, y, isHub, title, tagline, category }: Prop
     } catch {
       // Storage may be unavailable (private mode); ignore.
     }
-    router.push(topic.href);
+    router.push(href(topic.href));
   };
 
   return (
     <a
-      href={topic.href}
+      href={href(topic.href)}
       onClick={onClick}
       aria-label={`${title} — ${tagline}`}
       className="cosmos-star outline-none"
