@@ -288,7 +288,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Drei Regeln, mehr nicht",
-        body: "Jeder Boid sieht nur die paar Nachbarn innerhalb seines Wahrnehmungsradius. Trennung: weiche jedem aus, der zu nah ist. Ausrichtung: dreh in die mittlere Flugrichtung der Gruppe. Zusammenhalt: steuere auf das lokale Zentrum zu.",
+        body: "Jeder Boid sieht nur die paar Nachbarn innerhalb seines Wahrnehmungsradius. Trennung: Weiche jedem aus, der zu nah ist. Ausrichtung: Dreh in die mittlere Flugrichtung der Gruppe. Zusammenhalt: Steuere auf das lokale Zentrum zu.",
       },
       {
         label: "03",
@@ -827,7 +827,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Tre regler, ikke mer",
-        body: "Hver boid ser bare den håndfullen naboer innenfor sin persepsjonsradius. Separasjon: hold deg unna dem som er for nære. Retning: drei mot gruppens gjennomsnittlige kurs. Samhold: driv mot det lokale massesenteret.",
+        body: "Hver boid ser bare den håndfullen naboer innenfor sin persepsjonsradius. Separasjon: Hold deg unna dem som er for nære. Retning: Drei mot gruppens gjennomsnittlige kurs. Samhold: Driv mot det lokale massesenteret.",
       },
       {
         label: "03",

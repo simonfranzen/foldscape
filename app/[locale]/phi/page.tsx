@@ -167,7 +167,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: reite die Verhältnisse in φ hinein, dann verstelle den goldenen Winkel und sieh, was die Sonnenblume tut.",
+      "Unten: Reite die Verhältnisse in φ hinein, dann verstelle den goldenen Winkel und sieh, was die Sonnenblume tut.",
   },
   sections: [
     {
@@ -178,7 +178,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Warum die Verhältnisse konvergieren",
       title: "Löse x² = x + 1 und der Grenzwert fällt heraus",
-      body: "Angenommen, das Verhältnis Fₙ₊₁/Fₙ stabilisiert sich auf einen Wert x. Teil die Rekursion durch Fₙ: das erzwingt x = 1 + 1/x, also x² = x + 1. Die positive Lösung ist φ = (1 + √5)/2 ≈ 1,618, die negative ψ = (1 − √5)/2 ≈ −0,618 klingt ab. Binets Formel Fₙ = (φⁿ − ψⁿ)/√5 bestätigt es exakt.",
+      body: "Angenommen, das Verhältnis Fₙ₊₁/Fₙ stabilisiert sich auf einen Wert x. Teil die Rekursion durch Fₙ: Das erzwingt x = 1 + 1/x, also x² = x + 1. Die positive Lösung ist φ = (1 + √5)/2 ≈ 1,618, die negative ψ = (1 − √5)/2 ≈ −0,618 klingt ab. Binets Formel Fₙ = (φⁿ − ψⁿ)/√5 bestätigt es exakt.",
     },
     {
       pretitle: "Abschnitt 03 · Die irrationalste Zahl",
@@ -695,7 +695,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Under: ri forholdene inn i φ, vipp så en solsikke for å kjenne den gylne vinkelen i arbeid.",
+      "Under: Ri forholdene inn i φ, vipp så en solsikke for å kjenne den gylne vinkelen i arbeid.",
   },
   sections: [
     {
@@ -706,7 +706,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Hvorfor forholdene konvergerer",
       title: "Løs x² = x + 1 og grensen faller ut",
-      body: "Anta at forholdet Fₙ₊₁/Fₙ legger seg på et x. Del rekursjonen på Fₙ: det tvinger x = 1 + 1/x, det vil si x² = x + 1. Den positive roten er φ = (1 + √5)/2 ≈ 1,618, den negative ψ = (1 − √5)/2 ≈ −0,618 dør ut. Binets formel Fₙ = (φⁿ − ψⁿ)/√5 bekrefter det eksakt.",
+      body: "Anta at forholdet Fₙ₊₁/Fₙ legger seg på et x. Del rekursjonen på Fₙ: Det tvinger x = 1 + 1/x, det vil si x² = x + 1. Den positive roten er φ = (1 + √5)/2 ≈ 1,618, den negative ψ = (1 − √5)/2 ≈ −0,618 dør ut. Binets formel Fₙ = (φⁿ − ψⁿ)/√5 bekrefter det eksakt.",
     },
     {
       pretitle: "Avsnitt 03 · Det mest irrasjonale tallet",

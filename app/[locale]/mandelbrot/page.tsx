@@ -232,7 +232,7 @@ const de: RichStory = {
         body: "Die Grenze zwischen Ja und Nein ist das meistfotografierte mathematische Objekt der Welt. Zoome irgendwo hinein, und neue Formen tauchen auf, ohne sich je zu wiederholen, ohne je einfacher zu werden, alles aus einer einzigen Zeile Arithmetik, die ein Kind verstehen kann.",
       },
     ],
-    tryIt: "Unten: sieh der Regel beim Laufen zu, zieh den Punkt, dreh selbst am Knopf.",
+    tryIt: "Unten: Sieh der Regel beim Laufen zu, zieh den Punkt, dreh selbst am Knopf.",
   },
   sections: [
     {
@@ -321,7 +321,7 @@ const de: RichStory = {
   loopLabel: "die Schleife · in Pseudocode",
   loopBody1Prefix: "|z| > 2",
   loopBody1Suffix:
-    " ist das Sicherheitsnetz: sobald der laufende Wert den Radius 2 überschreitet, kommt er nachweislich nie zurück. Das liefert uns den billigen Ja/Nein-Test.",
+    " ist das Sicherheitsnetz: Sobald der laufende Wert den Radius 2 überschreitet, kommt er nachweislich nie zurück. Das liefert uns den billigen Ja/Nein-Test.",
   loopBody2:
     "Die Zahl der Schritte bis zur Flucht wird zur Farbe. Schwarz bedeutet, dass uns die Schritte ausgegangen sind, ohne dass die Bahn geflohen wäre.",
   fullSetLabel: "die ganze Menge",
@@ -1014,7 +1014,7 @@ const no: RichStory = {
         body: "Grensen mellom ja og nei er det mest fotograferte matematiske objektet på planeten. Zoom inn hvor som helst og nye former dukker opp, aldri gjentatt, aldri forenklet, alt fra én linje aritmetikk et barn ville forstå.",
       },
     ],
-    tryIt: "Under: se regelen kjøre, dra i punktet, vri selv på rattet.",
+    tryIt: "Under: Se regelen kjøre, dra i punktet, vri selv på rattet.",
   },
   sections: [
     {
@@ -1107,7 +1107,7 @@ const no: RichStory = {
   loopLabel: "løkka · i pseudokode",
   loopBody1Prefix: "|z| > 2",
   loopBody1Suffix:
-    " er sikkerhetsnettet: så snart den løpende verdien krysser radius 2, er det bevist at den aldri kommer tilbake. Det gir oss den billige ja/nei-testen.",
+    " er sikkerhetsnettet: Så snart den løpende verdien krysser radius 2, er det bevist at den aldri kommer tilbake. Det gir oss den billige ja/nei-testen.",
   loopBody2:
     "Antall steg før flukt blir til fargen. Svart betyr at vi gikk tom for steg uten at den flyktet.",
   fullSetLabel: "hele mengden",

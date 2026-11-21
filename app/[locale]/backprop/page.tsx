@@ -623,12 +623,12 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Et nevralt nettverk er en kjempestor deriverbar funksjon fra inngang til utgang, med millioner av rattskruer (vektene) inni. Ta en hvilken som helst utgangsfeil: kjerneregelen sier nøyaktig hvilke rattskruer du skal vri, i hvilken retning, hvor mye. Backpropagation er den beregningen, implementert som én effektiv passering fra utgang tilbake til inngang. Hver vekt lærer fra hvert eksempel, samtidig.",
+        body: "Et nevralt nettverk er en kjempestor deriverbar funksjon fra inngang til utgang, med millioner av rattskruer (vektene) inni. Ta en hvilken som helst utgangsfeil: Kjerneregelen sier nøyaktig hvilke rattskruer du skal vri, i hvilken retning, hvor mye. Backpropagation er den beregningen, implementert som én effektiv passering fra utgang tilbake til inngang. Hver vekt lærer fra hvert eksempel, samtidig.",
       },
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Du vil ha et nett som gir 1 for XOR av to bit og 0 ellers. Start med tilfeldige vekter: Nettet returnerer søppel. Sammenlign gjetning med sannhet, regn ut tapet. Backprop sier til hver vekt: «senk deg med 0,03», «øk deg med 0,11», og så videre. Etter noen hundre slike minikorreksjoner gir samme nett 0,98 i stedet for 0,4 og 0,02 i stedet for 0,6. Det har lært en regel ingen enkelt nevron kunne kodet alene.",
+        body: "Du vil ha et nett som gir 1 for XOR av to bit og 0 ellers. Start med tilfeldige vekter: Nettet returnerer søppel. Sammenlign gjetning med sannhet, regn ut tapet. Backprop sier til hver vekt: «Senk deg med 0,03», «øk deg med 0,11», og så videre. Etter noen hundre slike minikorreksjoner gir samme nett 0,98 i stedet for 0,4 og 0,02 i stedet for 0,6. Det har lært en regel ingen enkelt nevron kunne kodet alene.",
       },
       {
         label: "03",

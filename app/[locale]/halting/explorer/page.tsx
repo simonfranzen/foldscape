@@ -178,7 +178,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       {
         label: "Goldbach-Suche",
         description:
-          "Für n = 4, 6, 8, … : halte an, wenn n nicht die Summe zweier Primzahlen ist. Soweit geprüft (bis 4·10¹⁸) gilt Goldbach, also läuft diese Schleife weiter.",
+          "Für n = 4, 6, 8, … : Halte an, wenn n nicht die Summe zweier Primzahlen ist. Soweit geprüft (bis 4·10¹⁸) gilt Goldbach, also läuft diese Schleife weiter.",
         truth: "Hält genau dann an, wenn Goldbachs Vermutung falsch ist. Unbekannt.",
       },
       {
@@ -537,7 +537,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     stepLimitAria: "Steggrense",
     speedAria: "Hastighet i steg per sekund",
     capExplainer:
-      "Enhver analysator må gi opp før eller siden. Grensen er analysatoren din: når den slår inn, kan du ikke si om programmet noen gang stopper.",
+      "Enhver analysator må gi opp før eller siden. Grensen er analysatoren din: Når den slår inn, kan du ikke si om programmet noen gang stopper.",
     statusHalted: (s) => `stoppet ved steg ${s}`,
     statusCap: (s) => `kjører fortsatt etter ${s} steg, vi kan ikke si om det noen gang stopper`,
     statusRunning: (s, cap) => `kjører · steg ${s} / grense ${cap}`,
@@ -545,7 +545,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       {
         label: "Tell opp for alltid",
         description:
-          "+[>+<] : celle 0 settes til 1, deretter kjører løkken for alltid og teller opp celle 1 for hver runde.",
+          "+[>+<] : Celle 0 settes til 1, deretter kjører løkken for alltid og teller opp celle 1 for hver runde.",
         truth: "Stopper trivielt aldri.",
       },
       {
@@ -557,7 +557,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
       {
         label: "Goldbach-søk",
         description:
-          "For n = 4, 6, 8, … : stopp hvis n ikke er summen av to primtall. Så langt vi har søkt (opp til 4·10¹⁸), holder Goldbach, så denne løkken fortsetter.",
+          "For n = 4, 6, 8, … : Stopp hvis n ikke er summen av to primtall. Så langt vi har søkt (opp til 4·10¹⁸), holder Goldbach, så denne løkken fortsetter.",
         truth: "Stopper hvis og bare hvis Goldbachs formodning er usann. Ukjent.",
       },
       {
@@ -578,7 +578,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
         description:
           "Turings diagonal: D(P) beregner halts(P, P) og gjør det motsatte. Et ekte halts kan ikke skrives, så her oppgir du selv det påståtte svaret på halts(D, D) som inndata h. Uansett hvilket svar du velger, gjør D det motsatte og motbeviser det.",
         truth:
-          "Bare en illustrasjon: et korrekt halts kan ikke finnes. Det er beviset for uavgjørbarhet.",
+          "Bare en illustrasjon: Et korrekt halts kan ikke finnes. Det er beviset for uavgjørbarhet.",
         inputLabel: "Påstått svar h på halts(D, D): 1 = stopper, 0 = kjører for alltid",
       },
     ],

@@ -178,7 +178,7 @@ const de: RichStory = {
         body: "Der Baum versteckt die besten rationalen Näherungen jeder reellen Zahl, und Brocot baute ihn 1861, um Zahnräder für Uhren zu wählen. Zahlentheorie, Typografie und der digitale Sekundenzeiger treffen sich im selben Diagramm.",
       },
     ],
-    tryIt: "Unten: dreh am Tiefen-Regler, dann laufe den Baum zu π oder φ entlang.",
+    tryIt: "Unten: Dreh am Tiefen-Regler, dann laufe den Baum zu π oder φ entlang.",
   },
   sections: [
     {
@@ -198,12 +198,12 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 04 · Beste rationale Näherungen",
-      title: "Am Ende eines Laufs anhalten: du stehst auf einer Konvergente",
-      body: "Halte am Ende eines L/R-Laufs an, kurz bevor die Richtung kippt, und der Bruch unter dir ist eine Konvergente: eine beste rationale Näherung des Ziels, kein Bruch mit kleinerem Nenner kommt näher. Hältst du mitten in einem Lauf an, landest du stattdessen auf einer Semikonvergente, nah dran, aber nicht garantiert besser als jeder kleinere Nenner. Hurwitz' Satz (1891) besagt: jede irrationale Zahl hat unendlich viele Konvergenten p/q mit |x − p/q| < 1/(√5 q²), und die Konstante √5 ist scharf, erreicht von φ.",
+      title: "Am Ende eines Laufs anhalten: Du stehst auf einer Konvergente",
+      body: "Halte am Ende eines L/R-Laufs an, kurz bevor die Richtung kippt, und der Bruch unter dir ist eine Konvergente: eine beste rationale Näherung des Ziels, kein Bruch mit kleinerem Nenner kommt näher. Hältst du mitten in einem Lauf an, landest du stattdessen auf einer Semikonvergente, nah dran, aber nicht garantiert besser als jeder kleinere Nenner. Hurwitz' Satz (1891) besagt: Jede irrationale Zahl hat unendlich viele Konvergenten p/q mit |x − p/q| < 1/(√5 q²), und die Konstante √5 ist scharf, erreicht von φ.",
     },
     {
       pretitle: "Abschnitt 05 · Der Farey-Cousin",
-      title: "Filtere den Baum nach Nenner: du bekommst die Farey-Folge",
+      title: "Filtere den Baum nach Nenner: Du bekommst die Farey-Folge",
       body: "Sammle jeden Bruch im ganzen Baum mit Nenner höchstens n, der in [0, 1] liegt, und nimm den Randpunkt 0/1 dazu. Von links nach rechts gelesen ist diese Liste die Farey-Folge Fₙ, die sortierten gekürzten Brüche in [0, 1] mit beschränktem Nenner. Eine einzelne Ebene reicht nie, denn ein Bruch mit Nenner q taucht schon bis Tiefe q auf: 1/2 sitzt auf Tiefe 1, also musst du den ganzen Teilbaum bis Tiefe n durchgehen. Beide Strukturen sind verschiedene Sichten auf dasselbe arithmetische Skelett.",
     },
     {
@@ -731,7 +731,7 @@ const no: RichStory = {
         body: "Treet skjuler de beste rasjonale tilnærmingene til hvert reelt tall, og Brocot bygde det i 1861 for å velge tannhjul til klokker. Tallteori, typografi og den digitale sekundviseren møtes i samme diagram.",
       },
     ],
-    tryIt: "Under: vri på dybde-knappen, vandre så i treet mot π eller φ.",
+    tryIt: "Under: Vri på dybde-knappen, vandre så i treet mot π eller φ.",
   },
   sections: [
     {
@@ -751,12 +751,12 @@ const no: RichStory = {
     },
     {
       pretitle: "Avsnitt 04 · Beste rasjonale tilnærminger",
-      title: "Stopp ved en kjørings slutt: du står på en konvergent",
+      title: "Stopp ved en kjørings slutt: Du står på en konvergent",
       body: "Stopp ved slutten av en L/R-kjøring, like før retningen snur, og brøken du står på er en konvergent: en beste rasjonal tilnærming til målet, ingen brøk med mindre nevner kommer nærmere. Stopper du midt i en kjøring, havner du i stedet på en semikonvergent, nær men uten garanti for å slå enhver mindre nevner. Hurwitz' teorem (1891) sier at hvert irrasjonalt tall har uendelig mange konvergenter p/q med |x − p/q| < 1/(√5 q²), og konstanten √5 er skarp, oppnådd av φ.",
     },
     {
       pretitle: "Avsnitt 05 · Farey-fetteren",
-      title: "Filtrer treet etter nevner: du får Farey-følgen",
+      title: "Filtrer treet etter nevner: Du får Farey-følgen",
       body: "Samle hver brøk hvor som helst i treet med nevner høyst n som ligger i [0, 1], og legg til endepunktet 0/1. Lest fra venstre til høyre er listen Farey-følgen Fₙ, de sorterte forkortede brøkene i [0, 1] med begrenset nevner. Ett enkelt nivå holder aldri, for en brøk med nevner q dukker allerede opp innen dybde q: 1/2 sitter på dybde 1, så du må gå gjennom hele deltreet ned til dybde n. To utsikter til samme aritmetiske skjelett.",
     },
     {

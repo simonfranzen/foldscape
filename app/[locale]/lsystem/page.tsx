@@ -170,7 +170,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: schalt die Umschreibung selbst weiter, dann lass die Schildkröte das Ergebnis zeichnen.",
+      "Unten: Schalt die Umschreibung selbst weiter, dann lass die Schildkröte das Ergebnis zeichnen.",
   },
   sections: [
     {
@@ -695,7 +695,7 @@ const no: RichStory = {
         body: "Aristid Lindenmayer var en ungarsk biolog i Utrecht som ville ha et formelt språk for hvordan planter vokser. I 1968 publiserte han formalismen for å modellere algers cellevise utvikling. Samme idé får i dag trærne i favorittspillet ditt til å vokse, bregnene i animasjonsfilm og de prosedurale byene i demoscenen. En grammatikk for celler ble en grammatikk for verdener.",
       },
     ],
-    tryIt: "Under: gå omskrivingen for hånd, la så en skilpadde tegne resultatet.",
+    tryIt: "Under: Gå omskrivingen for hånd, la så en skilpadde tegne resultatet.",
   },
   sections: [
     {

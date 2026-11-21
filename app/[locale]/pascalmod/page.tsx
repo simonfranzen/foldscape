@@ -189,7 +189,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: schieb Modulus und Zeilenzahl, dann lass eine einzige Spalte Additionen jede Farbe entscheiden.",
+      "Unten: Schieb Modulus und Zeilenzahl, dann lass eine einzige Spalte Additionen jede Farbe entscheiden.",
   },
   sections: [
     {
@@ -219,7 +219,7 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 06 · Zusammengesetzte Moduln",
-      title: "Zusammengesetztes n: das Fraktal bleibt, verwischt",
+      title: "Zusammengesetztes n: Das Fraktal bleibt, verwischt",
       body: "Reduziere mod 6 und Kummers saubere Übertragszahl bricht: Die Primzahlpotenz-Struktur verheddert sich. Das Bild bleibt insgesamt selbstähnlich (der Chinesische Restsatz stapelt mod 2 und mod 3 übereinander), aber lokale Symmetrie franst aus. Stephen Wolfram katalogisierte solche Bilder in NKS als nächste Zellulär-Automaten-Verwandte von Pascal mod p.",
     },
   ],
@@ -783,7 +783,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Under: dra modulen og radantallet, og la én enkelt kolonne av addisjoner avgjøre hver farge.",
+      "Under: Dra modulen og radantallet, og la én enkelt kolonne av addisjoner avgjøre hver farge.",
   },
   sections: [
     {
@@ -813,7 +813,7 @@ const no: RichStory = {
     },
     {
       pretitle: "Avsnitt 06 · Ikke-prime moduler",
-      title: "Sammensatt n: fraktalen er der ennå, men uskarp",
+      title: "Sammensatt n: Fraktalen er der ennå, men uskarp",
       body: "Reduser mod 6 og Kummers rene mentetelling brister: Primpotensstrukturen vikler seg. Bildet forblir selvlikt i stort (kinesisk restteorem stabler mønstrene mod 2 og mod 3), men lokal symmetri rakner. Stephen Wolfram katalogiserte disse i NKS som de cellulære automatene nærmest Pascal mod p.",
     },
   ],

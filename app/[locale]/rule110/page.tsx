@@ -165,7 +165,7 @@ const de: RichStory = {
         body: "In den späten 1990er-Jahren bewies Matthew Cook bei Wolfram Research, dass Regel 110 Turing-vollständig ist; das Paper erschien nach langem Publikationsstreit erst 2004 in Complex Systems. Mit dem richtigen Anfangsmuster simuliert sie jeden Computer, jeden Algorithmus, alles, was berechenbar ist. Aus acht Bit. Der einfachste bekannte universelle Zellularautomat, und wohl der einfachste je entdeckte universelle Computer.",
       },
     ],
-    tryIt: "Unten: kipp die acht Ausgabebits selbst und sieh die Regel live laufen.",
+    tryIt: "Unten: Kipp die acht Ausgabebits selbst und sieh die Regel live laufen.",
   },
   sections: [
     {
@@ -712,7 +712,7 @@ const no: RichStory = {
         body: "På slutten av 1990-tallet beviste Matthew Cook ved Wolfram Research at Regel 110 er Turing-komplett; arbeidet ble først publisert i 2004 i Complex Systems etter en lang publiseringsstrid. Med riktig startmønster simulerer den hvilken som helst datamaskin, hvilken som helst algoritme, alt som er beregnbart. Fra åtte biter. Den enkleste kjente universelle cellulære automaten, og trolig den enkleste universelle datamaskinen som noensinne er oppdaget.",
       },
     ],
-    tryIt: "Under: vri selv på de åtte utgangsbitene og se regelen kjøre live.",
+    tryIt: "Under: Vri selv på de åtte utgangsbitene og se regelen kjøre live.",
   },
   sections: [
     {
@@ -743,7 +743,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Universalitet overalt",
       title: "Kompleksitet fra enkelhet er et dypt tema",
-      body: "Regel 110 er én oppføring i en lengre bok. Conways Game of Life er Turing-komplett; det samme er Wang-flissystemet; det samme er biljardkuler, såpehinner og visse stabler med dominobrikker. Wolframs prinsipp om beregnings­ekvivalens antar at, utover en lav kompleksitetstroskel, praktisk talt ethvert system som ikke åpenbart er enkelt er beregningsmessig universelt. Enten antakelsen står seg eller ikke, er det empiriske mønsteret umiskjennelig: universalitet er billig. Naturen trengte ikke vente på transistorer. En rad celler og en byte regel har alltid vært nok.",
+      body: "Regel 110 er én oppføring i en lengre bok. Conways Game of Life er Turing-komplett; det samme er Wang-flissystemet; det samme er biljardkuler, såpehinner og visse stabler med dominobrikker. Wolframs prinsipp om beregnings­ekvivalens antar at, utover en lav kompleksitetstroskel, praktisk talt ethvert system som ikke åpenbart er enkelt er beregningsmessig universelt. Enten antakelsen står seg eller ikke, er det empiriske mønsteret umiskjennelig: Universalitet er billig. Naturen trengte ikke vente på transistorer. En rad celler og en byte regel har alltid vært nok.",
     },
   ],
   classesCaption: "De fire Wolfram-klassene · encellet frø",

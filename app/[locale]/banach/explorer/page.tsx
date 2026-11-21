@@ -241,12 +241,12 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP1:
       "Det uendelige treet er Cayley-grafen til den frie gruppen F₂ generert av to rotasjoner a og b. Hvert reduserte ord i a, a⁻¹, b, b⁻¹ er en egen node; roten er identitetsrotasjonen. Hver ikke-rot-node har tre barn (den kan ikke gå tilbake via inversen av skrittet som produserte den).",
     whatYouSeeP2:
-      "Fargelegg hver node etter første bokstav i dens ord, og du splitter F₂ i fire disjunkte biter W(a), W(a⁻¹), W(b), W(b⁻¹). Paradokset er rent kombinatorisk: å multiplisere W(a⁻¹) fra venstre med a (dens invers) dekker hvert ord som ikke begynner med a, altså de tre andre bitene pluss identiteten. Én bit, forskjøvet, er tre biter pluss et punkt. Løft dette fra gruppen til sfæren via Hausdorff (1914), så til kulen, og én kule blir til to.",
+      "Fargelegg hver node etter første bokstav i dens ord, og du splitter F₂ i fire disjunkte biter W(a), W(a⁻¹), W(b), W(b⁻¹). Paradokset er rent kombinatorisk: Å multiplisere W(a⁻¹) fra venstre med a (dens invers) dekker hvert ord som ikke begynner med a, altså de tre andre bitene pluss identiteten. Én bit, forskjøvet, er tre biter pluss et punkt. Løft dette fra gruppen til sfæren via Hausdorff (1914), så til kulen, og én kule blir til to.",
     overlayMsg: (h, inv) => `W(${h}) forskjøvet med ${inv} dekker F₂ ∖ W(${inv})`,
     overlaySubMsg:
       "denne biten, forskjøvet med sin inverse generator, dekker seg selv, to andre biter og identiteten",
     trickNote:
-      "Når biten glir, vokser den også til dobbel størrelse. Det skyldes bare tegningen: grenene tegnes halvparten så lange på hvert nivå for at treet skal få plass på skjermen. I selve gruppen er alle steg like, og ingenting skaleres.",
+      "Når biten glir, vokser den også til dobbel størrelse. Det skyldes bare tegningen: Grenene tegnes halvparten så lange på hvert nivå for at treet skal få plass på skjermen. I selve gruppen er alle steg like, og ingenting skaleres.",
   },
 };
 

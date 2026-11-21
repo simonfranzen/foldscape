@@ -86,7 +86,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     showTree: "Inversen Baum zeigen",
     treeDepth: "Baumtiefe",
     treeExplain:
-      "Rückwärts von 1: jedes v hat Elter 2v (immer) und (v−1)/3, falls v ≡ 4 mod 6 und das Ergebnis ungerade > 1 ist. Bei 280 Knoten gekappt; die Bahn des aktuellen Keims leuchtet cyan, sobald sie den Baum trifft.",
+      "Rückwärts von 1: Jedes v hat Elter 2v (immer) und (v−1)/3, falls v ≡ 4 mod 6 und das Ergebnis ungerade > 1 ist. Bei 280 Knoten gekappt; die Bahn des aktuellen Keims leuchtet cyan, sobald sie den Baum trifft.",
     axisStep: (s) => `Schrittindex (0 … ${s})`,
     peakMarker: (p, s) => `Gipfel ${p} @ Schritt ${s}`,
     famousSeeds: ["111 Schritte · Gipfel 9232", "118 Schritte", "178 Schritte", "261 Schritte"],
@@ -230,7 +230,7 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     showTree: "Vis omvendt tre",
     treeDepth: "Tredybde",
     treeExplain:
-      "Baklengs fra 1: hver v har forelder 2v (alltid) og (v−1)/3 hvis v ≡ 4 mod 6 og resultatet er oddetall > 1. Begrenset til 280 noder; banen til det gjeldende frøet lyser cyan når den treffer treet.",
+      "Baklengs fra 1: Hver v har forelder 2v (alltid) og (v−1)/3 hvis v ≡ 4 mod 6 og resultatet er oddetall > 1. Begrenset til 280 noder; banen til det gjeldende frøet lyser cyan når den treffer treet.",
     axisStep: (s) => `trinnindeks (0 … ${s})`,
     peakMarker: (p, s) => `topp ${p} @ trinn ${s}`,
     famousSeeds: ["111 trinn · topp 9232", "118 trinn", "178 trinn", "261 trinn"],

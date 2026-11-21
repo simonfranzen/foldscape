@@ -213,7 +213,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Eine Ameise auf unendlichem Gitter, zwei Regeln pro Feld. Nach zehntausend Schritten Chaos rastet sie in einen periodischen Streifen ein und läuft ins Unendliche davon. Das Wunder: niemand hat es ihr einprogrammiert.",
+        body: "Eine Ameise auf unendlichem Gitter, zwei Regeln pro Feld. Nach zehntausend Schritten Chaos rastet sie in einen periodischen Streifen ein und läuft ins Unendliche davon. Das Wunder: Niemand hat es ihr einprogrammiert.",
       },
       {
         label: "02",
@@ -227,7 +227,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: sieh der Regel beim Laufen zu, schrittweise selbst weiter, dann ab in den Explorer.",
+      "Unten: Sieh der Regel beim Laufen zu, schrittweise selbst weiter, dann ab in den Explorer.",
   },
   sections: [
     {
@@ -843,7 +843,7 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Én maur på et uendelig rutenett, to regler per rute. Etter ti tusen steg med kaos klikker hun inn i en periodisk stripe og marsjerer av mot uendelig. Mirakelet: ingen programmerte henne til det.",
+        body: "Én maur på et uendelig rutenett, to regler per rute. Etter ti tusen steg med kaos klikker hun inn i en periodisk stripe og marsjerer av mot uendelig. Mirakelet: Ingen programmerte henne til det.",
       },
       {
         label: "02",
@@ -856,13 +856,13 @@ const no: RichStory = {
         body: "To linjer kode på en serviett rommer i hemmelighet universell beregning. Gajardo, Moreira og Goles beviste at selve den klassiske mauren med to regler beregner enhver boolsk krets som kodes inn i startrutenettet, så den enkle RL-mauren er allerede beregningsuniversell. Emergens i sin reneste form, uten parametre.",
       },
     ],
-    tryIt: "Under: se regelen kjøre, ta et steg selv, hopp så til Utforskeren.",
+    tryIt: "Under: Se regelen kjøre, ta et steg selv, hopp så til Utforskeren.",
   },
   sections: [
     {
       pretitle: "Avsnitt 01 · Reglene",
       title: "To linjer er hele programmet",
-      body: "På hvit rute: sving til høyre, mal ruten svart, gå én rute frem. På svart rute: sving til venstre, mal ruten hvit, gå én rute frem. Det er hele spesifikasjonen Christopher Langton skrev ned i 1986. Ingen tilfeldighet, ingen naboer, ingen parametre.",
+      body: "På hvit rute: Sving til høyre, mal ruten svart, gå én rute frem. På svart rute: Sving til venstre, mal ruten hvit, gå én rute frem. Det er hele spesifikasjonen Christopher Langton skrev ned i 1986. Ingen tilfeldighet, ingen naboer, ingen parametre.",
     },
     {
       pretitle: "Avsnitt 02 · Tre regimer",

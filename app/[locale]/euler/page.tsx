@@ -225,7 +225,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: schieb θ selbst um den Kreis und sieh, wie die Taylor-Reihe sie Term für Term aufbaut.",
+      "Unten: Schieb θ selbst um den Kreis und sieh, wie die Taylor-Reihe sie Term für Term aufbaut.",
   },
   sections: [
     {
@@ -1006,10 +1006,10 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Feynman kalte formelen e^(iθ) = cos θ + i sin θ, der denne identiteten er spesialtilfellet θ = π, «matematikkens mest bemerkelsesverdige formel», «vår juvel». En undersøkelse i Mathematical Intelligencer i 1990 blant yrkesmatematikere kåret denne identiteten til det vakreste teoremet som noen gang er bevist. Den er en bro: algebraen skriver symbolene, geometrien går rundt sirkelen, analysen leverer den uendelige rekken som får alt til å klikke på plass.",
+        body: "Feynman kalte formelen e^(iθ) = cos θ + i sin θ, der denne identiteten er spesialtilfellet θ = π, «matematikkens mest bemerkelsesverdige formel», «vår juvel». En undersøkelse i Mathematical Intelligencer i 1990 blant yrkesmatematikere kåret denne identiteten til det vakreste teoremet som noen gang er bevist. Den er en bro: Algebraen skriver symbolene, geometrien går rundt sirkelen, analysen leverer den uendelige rekken som får alt til å klikke på plass.",
       },
     ],
-    tryIt: "Under: dra θ rundt sirkelen selv, og se Taylor-rekken bygge den ledd for ledd.",
+    tryIt: "Under: Dra θ rundt sirkelen selv, og se Taylor-rekken bygge den ledd for ledd.",
   },
   sections: [
     {

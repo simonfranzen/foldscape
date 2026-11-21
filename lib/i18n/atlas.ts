@@ -359,7 +359,7 @@ const de: AtlasDict = {
     collatz: {
       title: "Die Collatz-Vermutung",
       tagline: "Halbiere bei gerade, mal drei plus eins bei ungerade",
-      body: "Starte mit einer beliebigen positiven ganzen Zahl. Ist sie gerade, halbiere sie; ist sie ungerade, mal drei plus eins. Die Vermutung: egal womit du beginnst, die Folge erreicht irgendwann die 1. Mit dem Computer für jede Zahl bis 2⁶⁸ bestätigt, nie bewiesen. Rückwärts von 1 aufgespannt, formt die Kette aller ganzen Zahlen einen korallenartigen Baum.",
+      body: "Starte mit einer beliebigen positiven ganzen Zahl. Ist sie gerade, halbiere sie; ist sie ungerade, mal drei plus eins. Die Vermutung: Egal womit du beginnst, die Folge erreicht irgendwann die 1. Mit dem Computer für jede Zahl bis 2⁶⁸ bestätigt, nie bewiesen. Rückwärts von 1 aufgespannt, formt die Kette aller ganzen Zahlen einen korallenartigen Baum.",
     },
     doublependulum: {
       title: "Das Doppelpendel",
@@ -424,7 +424,7 @@ const de: AtlasDict = {
     godel: {
       title: "Gödels Unvollständigkeit",
       tagline: "Es gibt wahre Aussagen, die kein System beweisen kann",
-      body: "Kurt Gödel, 1931. In jedem widerspruchsfreien formalen System, das reich genug ist, um Arithmetik auszudrücken, existiert eine wahre Aussage, die das System selbst nicht beweisen kann. Der Kniff: baue einen Satz, der in der Sprache des Systems sagt „Ich bin nicht beweisbar.“ Könntest du ihn beweisen, wäre er falsch; kannst du es nicht, ist er genau das, was er behauptet. Mathematik wird nie vollständig sein, wie Hilbert es erhoffte.",
+      body: "Kurt Gödel, 1931. In jedem widerspruchsfreien formalen System, das reich genug ist, um Arithmetik auszudrücken, existiert eine wahre Aussage, die das System selbst nicht beweisen kann. Der Kniff: Baue einen Satz, der in der Sprache des Systems sagt „Ich bin nicht beweisbar.“ Könntest du ihn beweisen, wäre er falsch; kannst du es nicht, ist er genau das, was er behauptet. Mathematik wird nie vollständig sein, wie Hilbert es erhoffte.",
     },
     halting: {
       title: "Das Halteproblem",
@@ -454,7 +454,7 @@ const de: AtlasDict = {
     konigsberg: {
       title: "Die Königsberger Brücken",
       tagline: "Sieben Brücken, ein unmöglicher Spaziergang",
-      body: "1736 bewies Leonhard Euler, dass es keinen Weg gibt, alle sieben Brücken Königsbergs genau einmal zu überqueren. Der Beweis: reduziere die Karte auf einen Graphen; ein Eulerweg existiert nur, wenn höchstens zwei Landmassen eine ungerade Anzahl Brücken haben. Königsberg hatte vier mit ungeradem Grad. Mit diesem Argument erfand Euler die Graphentheorie.",
+      body: "1736 bewies Leonhard Euler, dass es keinen Weg gibt, alle sieben Brücken Königsbergs genau einmal zu überqueren. Der Beweis: Reduziere die Karte auf einen Graphen; ein Eulerweg existiert nur, wenn höchstens zwei Landmassen eine ungerade Anzahl Brücken haben. Königsberg hatte vier mit ungeradem Grad. Mit diesem Argument erfand Euler die Graphentheorie.",
     },
     fourcolor: {
       title: "Der Vierfarbensatz",
@@ -1769,12 +1769,12 @@ const no: AtlasDict = {
     collatz: {
       title: "Collatz-formodningen",
       tagline: "Halver hvis partall, tre ganger pluss én hvis oddetall",
-      body: "Start med et hvilket som helst positivt heltall. Er det partall, halver det; er det oddetall, gang med tre og legg til én. Formodningen: uansett start når følgen til slutt 1. Verifisert av datamaskin for hvert tall opp til 2⁶⁸, aldri bevist. Tegnet baklengs fra 1 danner kjeden av alle heltall et koralllignende tre.",
+      body: "Start med et hvilket som helst positivt heltall. Er det partall, halver det; er det oddetall, gang med tre og legg til én. Formodningen: Uansett start når følgen til slutt 1. Verifisert av datamaskin for hvert tall opp til 2⁶⁸, aldri bevist. Tegnet baklengs fra 1 danner kjeden av alle heltall et koralllignende tre.",
     },
     doublependulum: {
       title: "Dobbeltpendelen",
       tagline: "To pendler i kjede, totalt kaos",
-      body: "Heng en andre pendel i loddet på en første. Systemet har bare to vinkler og to hastigheter, og likevel er bevegelsen berømt kaotisk: tilsynelatende identiske starter driver fra hverandre på sekunder. Banene i faserommet tegner noen av de vakreste kurvene i hele den dynamiske systemverdenen.",
+      body: "Heng en andre pendel i loddet på en første. Systemet har bare to vinkler og to hastigheter, og likevel er bevegelsen berømt kaotisk: Tilsynelatende identiske starter driver fra hverandre på sekunder. Banene i faserommet tegner noen av de vakreste kurvene i hele den dynamiske systemverdenen.",
     },
     bzr: {
       title: "Belousov-Zjabotinskij-reaksjonen",
@@ -1834,7 +1834,7 @@ const no: AtlasDict = {
     godel: {
       title: "Gödels ufullstendighet",
       tagline: "Det finnes sanne utsagn ingen system kan bevise",
-      body: "Kurt Gödel, 1931. I ethvert konsistent formelt system rikt nok til å uttrykke aritmetikk finnes et sant utsagn som systemet selv ikke kan bevise. Trikset: bygg en setning som på systemets eget språk sier « jeg er ikke bevisbar ». Kunne du bevise den, ville den være falsk; kan du det ikke, er den nøyaktig det den hevder. Matematikken blir aldri komplett slik Hilbert håpet.",
+      body: "Kurt Gödel, 1931. I ethvert konsistent formelt system rikt nok til å uttrykke aritmetikk finnes et sant utsagn som systemet selv ikke kan bevise. Trikset: Bygg en setning som på systemets eget språk sier « jeg er ikke bevisbar ». Kunne du bevise den, ville den være falsk; kan du det ikke, er den nøyaktig det den hevder. Matematikken blir aldri komplett slik Hilbert håpet.",
     },
     halting: {
       title: "Stoppe-problemet",
@@ -1864,7 +1864,7 @@ const no: AtlasDict = {
     konigsberg: {
       title: "Königsberg-broene",
       tagline: "Sju broer, en umulig spasertur",
-      body: "I 1736 beviste Leonhard Euler at det ikke går an å krysse alle de sju broene i Königsberg nøyaktig én gang hver. Beviset: reduser kartet til en graf; en Euler-vei finnes bare hvis høyst to landmasser har et oddetall antall broer. Königsberg hadde fire med oddetallsgrad. Med det argumentet fant Euler opp grafteorien.",
+      body: "I 1736 beviste Leonhard Euler at det ikke går an å krysse alle de sju broene i Königsberg nøyaktig én gang hver. Beviset: Reduser kartet til en graf; en Euler-vei finnes bare hvis høyst to landmasser har et oddetall antall broer. Königsberg hadde fire med oddetallsgrad. Med det argumentet fant Euler opp grafteorien.",
     },
     fourcolor: {
       title: "Firefargesatsen",

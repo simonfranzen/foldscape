@@ -180,7 +180,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: zeichne die Spirale selbst, dann teste jedes Polynom deiner Wahl auf Primzahlen.",
+      "Unten: Zeichne die Spirale selbst, dann teste jedes Polynom deiner Wahl auf Primzahlen.",
   },
   sections: [
     {
@@ -792,7 +792,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Under: tegn spiralen selv, og test så et hvilket som helst polynom for å se hvor mange primtall det gir.",
+      "Under: Tegn spiralen selv, og test så et hvilket som helst polynom for å se hvor mange primtall det gir.",
   },
   sections: [
     {

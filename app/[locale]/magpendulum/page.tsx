@@ -226,7 +226,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die Physik",
       title: "Newton, Magnete, ein wenig Reibung",
-      body: "Ein kleines Eisenpendel hängt über einer Platte, frei beweglich in der Ebene. Jeder der drei Magnete zieht es mit einer Kraft k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2) an, sodass der horizontale Betrag k·r/(r² + h²)^(3/2) ist, wobei r der horizontale Abstand zum Magneten ist: im Fernfeld (r viel größer als die Höhe h über der Platte) fällt er wie 1/r² ab (invers-quadratisch), während der h²-Term die Anziehung im Nahfeld abmildert. Eine schwache Feder holt es zur Mitte zurück; Luftreibung entzieht ihm Energie. Die Bewegungsgleichungen sind sauber und deterministisch, nur der Startpunkt bleibt frei.",
+      body: "Ein kleines Eisenpendel hängt über einer Platte, frei beweglich in der Ebene. Jeder der drei Magnete zieht es mit einer Kraft k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2) an, sodass der horizontale Betrag k·r/(r² + h²)^(3/2) ist, wobei r der horizontale Abstand zum Magneten ist: Im Fernfeld (r viel größer als die Höhe h über der Platte) fällt er wie 1/r² ab (invers-quadratisch), während der h²-Term die Anziehung im Nahfeld abmildert. Eine schwache Feder holt es zur Mitte zurück; Luftreibung entzieht ihm Energie. Die Bewegungsgleichungen sind sauber und deterministisch, nur der Startpunkt bleibt frei.",
     },
     {
       pretitle: "Abschnitt 02 · Deterministisches Chaos",
@@ -725,7 +725,7 @@ const no: RichStory = {
     {
       pretitle: "Del 01 · Fysikken",
       title: "Newton, magneter, litt friksjon",
-      body: "Et lite jernlodd henger over en plate, fritt til å svinge i planet. Hver av de tre magnetene trekker i det med en kraft k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2), slik at den horisontale størrelsen er k·r/(r² + h²)^(3/2), der r er den horisontale avstanden til magneten: i fjernfeltet (r mye større enn høyden h over platen) avtar den som 1/r² (invers kvadratisk), mens h²-leddet demper tiltrekningen i nærfeltet. En svak fjær drar det tilbake til midten; luft tapper energien. Bevegelsesligningene er rene og deterministiske, bare startpunktet er fritt.",
+      body: "Et lite jernlodd henger over en plate, fritt til å svinge i planet. Hver av de tre magnetene trekker i det med en kraft k(p − mᵢ)/((p − mᵢ)² + h²)^(3/2), slik at den horisontale størrelsen er k·r/(r² + h²)^(3/2), der r er den horisontale avstanden til magneten: I fjernfeltet (r mye større enn høyden h over platen) avtar den som 1/r² (invers kvadratisk), mens h²-leddet demper tiltrekningen i nærfeltet. En svak fjær drar det tilbake til midten; luft tapper energien. Bevegelsesligningene er rene og deterministiske, bare startpunktet er fritt.",
     },
     {
       pretitle: "Del 02 · Deterministisk kaos",

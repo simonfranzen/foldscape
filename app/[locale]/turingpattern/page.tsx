@@ -214,7 +214,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: lass einen kleinen Gray-Scott-Simulator laufen und tour durch vier der Regime, die Pearson 1993 katalogisierte.",
+      "Unten: Lass einen kleinen Gray-Scott-Simulator laufen und tour durch vier der Regime, die Pearson 1993 katalogisierte.",
   },
   sections: [
     {
@@ -260,7 +260,7 @@ const de: RichStory = {
     note: "Winziges 120×100-Gitter, toroidaler Rand, 30 Teilschritte pro Frame. Wähl ein Pearson-Preset oder zieh an den F- und k-Reglern. Tipp: Kleine Schritte zählen. Der größte Teil der (F, k)-Ebene gibt leere Felder; der interessante Streifen ist messerschmal.",
     pretitle: "Interaktiv · dreh an den zwei Reglern",
     title: "Lass das Modell im Browser laufen",
-    body: "Sieh Gray-Scott-Reaktion-Diffusion live auf einem kleinen Gitter. Die vier Presets entsprechen den kanonischen Regimen, die Pearson 1993 benannte; mit den Reglern gleitest du dazwischen. Die Dynamik ist heikel: eine Änderung um 0,001 in F oder k kann dich von Leopardenflecken in ein Streifenlabyrinth tragen.",
+    body: "Sieh Gray-Scott-Reaktion-Diffusion live auf einem kleinen Gitter. Die vier Presets entsprechen den kanonischen Regimen, die Pearson 1993 benannte; mit den Reglern gleitest du dazwischen. Die Dynamik ist heikel: Eine Änderung um 0,001 in F oder k kann dich von Leopardenflecken in ein Streifenlabyrinth tragen.",
   },
   gallery: {
     caption: "Interaktiv · der Pearson-Zoo",
@@ -295,7 +295,7 @@ const de: RichStory = {
         label: "Mitose",
         F: 0.0367,
         k: 0.0649,
-        body: "Sich selbst replizierende Punkte: jeder Fleck wächst, teilt sich, und die Töchter driften auseinander, bevor sie sich erneut teilen. Dieselben Gleichungen, die einen Leoparden bemalen, modellieren auch eine Kachel sich ausbreitender Zellen.",
+        body: "Sich selbst replizierende Punkte: Jeder Fleck wächst, teilt sich, und die Töchter driften auseinander, bevor sie sich erneut teilen. Dieselben Gleichungen, die einen Leoparden bemalen, modellieren auch eine Kachel sich ausbreitender Zellen.",
       },
     ],
   },
@@ -959,7 +959,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Under: kjør en liten Gray-Scott-simulator og turne gjennom fire av regimene Pearson katalogiserte i 1993.",
+      "Under: Kjør en liten Gray-Scott-simulator og turne gjennom fire av regimene Pearson katalogiserte i 1993.",
   },
   sections: [
     {
@@ -1005,7 +1005,7 @@ const no: RichStory = {
     note: "Liten 120×100-rutenett, toroidal omslag, 30 deltrinn per ramme. Velg en Pearson-forhåndsvalg eller skyv F og k. Tips: Små skritt teller. Mesteparten av (F, k)-planet gir tomme felter; den interessante stripen er knivskarpt smal.",
     pretitle: "Interaktivt · vri på de to rattene",
     title: "Kjør modellen i nettleseren",
-    body: "Se Gray-Scott reaksjon-diffusjon i sanntid på et lite rutenett. De fire forhåndsvalgene tilsvarer de kanoniske regimene Pearson navnga i 1993; skyvebryterne lar deg gli mellom dem. Dynamikken er følsom: en endring på 0,001 i F eller k kan ta deg fra leopardflekker til en labyrint av striper.",
+    body: "Se Gray-Scott reaksjon-diffusjon i sanntid på et lite rutenett. De fire forhåndsvalgene tilsvarer de kanoniske regimene Pearson navnga i 1993; skyvebryterne lar deg gli mellom dem. Dynamikken er følsom: En endring på 0,001 i F eller k kan ta deg fra leopardflekker til en labyrint av striper.",
   },
   gallery: {
     caption: "Interaktivt · Pearsons zoo",
@@ -1040,7 +1040,7 @@ const no: RichStory = {
         label: "Mitose",
         F: 0.0367,
         k: 0.0649,
-        body: "Selvreplikerende prikker: hver flekk vokser, deler seg, og døtrene driver fra hverandre før de deler seg igjen. De samme ligningene som maler en leopard modellerer også et flis av spredende celler.",
+        body: "Selvreplikerende prikker: Hver flekk vokser, deler seg, og døtrene driver fra hverandre før de deler seg igjen. De samme ligningene som maler en leopard modellerer også et flis av spredende celler.",
       },
     ],
   },

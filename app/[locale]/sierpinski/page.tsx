@@ -248,7 +248,7 @@ const deStory: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Dieselbe Form entsteht aus (1) rekursiver Unterteilung, (2) Pascals Dreieck, in dem die geraden Zellen ausgelöscht werden, und (3) dem zufälligen Chaosspiel, bei dem du immer halb auf eine von drei Ecken zu springst. Drei zusammenhanglose Prozesse, eine unausweichliche Antwort: die Struktur steckt in der Geometrie selbst.",
+        body: "Dieselbe Form entsteht aus (1) rekursiver Unterteilung, (2) Pascals Dreieck, in dem die geraden Zellen ausgelöscht werden, und (3) dem zufälligen Chaosspiel, bei dem du immer halb auf eine von drei Ecken zu springst. Drei zusammenhanglose Prozesse, eine unausweichliche Antwort: Die Struktur steckt in der Geometrie selbst.",
       },
     ],
     tryIt:
@@ -1123,7 +1123,7 @@ const noStory: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Den samme figuren oppstår fra (1) rekursiv oppdeling, (2) Pascals trekant der de jevne cellene viskes ut, og (3) det tilfeldige Kaosspillet der du hopper halvveis mot et av tre hjørner. Tre prosesser uten sammenheng, ett uunngåelig svar: strukturen sitter i selve geometrien.",
+        body: "Den samme figuren oppstår fra (1) rekursiv oppdeling, (2) Pascals trekant der de jevne cellene viskes ut, og (3) det tilfeldige Kaosspillet der du hopper halvveis mot et av tre hjørner. Tre prosesser uten sammenheng, ett uunngåelig svar: Strukturen sitter i selve geometrien.",
       },
     ],
     tryIt: "Dra dybde-glidebryteren nedenfor og se hvordan de tre veiene møtes i sikten.",

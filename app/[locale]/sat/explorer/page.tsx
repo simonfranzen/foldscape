@@ -667,15 +667,15 @@ const RICH_EXPLORER: Record<Locale, RichExplorer> = {
     narrateStart:
       "Velg en formel og trykk Steg. Løseren beslutter en variabel, propagerer de tvungne følgene og går tilbake fra hver motsigelse.",
     narrateDecide: (v, level) =>
-      `Beslutning: ingen klausul tvinger noe, så gjett ${v} = sann og åpne beslutningsnivå ${level}.`,
+      `Beslutning: Ingen klausul tvinger noe, så gjett ${v} = sann og åpne beslutningsnivå ${level}.`,
     narrateUnit: (clause, v, value) =>
-      `Enhetspropagering: klausul ${clause} har én literal igjen, som tvinger ${v} = ${value ? "sann" : "usann"}.`,
+      `Enhetspropagering: Klausul ${clause} har én literal igjen, som tvinger ${v} = ${value ? "sann" : "usann"}.`,
     narrateBacktrack: (clause, v, value) =>
-      `Konflikt i klausul ${clause}: hver literal er usann. Gå tilbake og vend den siste åpne beslutningen: ${v} = ${value ? "sann" : "usann"}.`,
+      `Konflikt i klausul ${clause}: Hver literal er usann. Gå tilbake og vend den siste åpne beslutningen: ${v} = ${value ? "sann" : "usann"}.`,
     narrateSat:
-      "Hver variabel er tildelt og hver klausul oppfylt: formelen er OPPFYLLBAR. Tildelingen er et sertifikat som hvem som helst kan sjekke i ett gjennomløp.",
+      "Hver variabel er tildelt og hver klausul oppfylt: Formelen er OPPFYLLBAR. Tildelingen er et sertifikat som hvem som helst kan sjekke i ett gjennomløp.",
     narrateUnsat:
-      "Backtrackingen gikk forbi roten: hver gren ender i konflikt. Formelen er UOPPFYLLBAR, og søket beviste det nettopp, den vanskelige retningen.",
+      "Backtrackingen gikk forbi roten: Hver gren ender i konflikt. Formelen er UOPPFYLLBAR, og søket beviste det nettopp, den vanskelige retningen.",
   },
 };
 

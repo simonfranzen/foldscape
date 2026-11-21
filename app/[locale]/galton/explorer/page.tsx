@@ -159,7 +159,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerStrings> = {
     ballsUnit: "kuler",
     binsWord: "båser",
     landedWord: "landet",
-    canvasLabel: "Galton-brett-simulering: kuler faller mellom pinner og fyller et histogram.",
+    canvasLabel: "Galton-brett-simulering: Kuler faller mellom pinner og fyller et histogram.",
   },
 };
 

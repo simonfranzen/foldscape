@@ -262,7 +262,7 @@ const de: RichStory = {
         body: "John Conway erfand das 1970 als Gesellschaftsspiel. 1982 bauten Bastler:innen Logikgatter aus Gleiterströmen, 2000 eine Turing-Maschine, 2010 eine CPU, 2014 einen Game-of-Life-Simulator innerhalb von Game of Life. Universelle Berechnung, entdeckt in einem Spielzeug.",
       },
     ],
-    tryIt: "Unten: lies die Regeln, schau dem Zoo zu, dann klick selbst Zellen an.",
+    tryIt: "Unten: Lies die Regeln, schau dem Zoo zu, dann klick selbst Zellen an.",
   },
   sections: [
     {
@@ -1084,7 +1084,7 @@ const no: RichStory = {
         body: "John Conway fant det opp i 1970 som selskapslek. Innen 1982 hadde hobbyister bygd logiske porter av gliderstrømmer; innen 2000 en Turing-maskin; innen 2010 en CPU; innen 2014 en Game of Life-simulator som kjørte inni Game of Life. Universell beregning, oppdaget gjemt inne i en leke.",
       },
     ],
-    tryIt: "Under: les reglene, se på dyrehagen, og klikk så på celler selv.",
+    tryIt: "Under: Les reglene, se på dyrehagen, og klikk så på celler selv.",
   },
   sections: [
     {
@@ -1095,7 +1095,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Dyrehagen",
       title: "Stilleben, oscillatorer, romskip",
-      body: "Noen former beveger seg aldri: 2×2-Blokken, Bikuben, Loftet, såkalte stilleben. Andre pulserer: Blinkeren med periode 2, Padden med periode 2, Fyrtårnet med periode 2, Pulsaren med periode 3. Andre igjen flytter seg ved å gjenta seg forskjøvet: romskip. Glideren, fem celler, sklir én rute diagonalt hver fjerde generasjon. Det lette romskipet kryser rett fram. Kataloger lister nå titusenvis av navngitte mønstre.",
+      body: "Noen former beveger seg aldri: 2×2-Blokken, Bikuben, Brødet, såkalte stilleben. Andre pulserer: Blinkeren med periode 2, Padden med periode 2, Fyrtårnet med periode 2, Pulsaren med periode 3. Andre igjen flytter seg ved å gjenta seg forskjøvet: romskip. Glideren, fem celler, sklir én rute diagonalt hver fjerde generasjon. Det lette romskipet kryser rett fram. Kataloger lister nå titusenvis av navngitte mønstre.",
     },
     {
       pretitle: "Avsnitt 03 · Gliderkanonen",

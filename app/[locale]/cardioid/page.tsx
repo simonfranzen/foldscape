@@ -164,7 +164,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: sieh die Kardioide aus dem Licht hervortreten und finde sie in Mandelbrot wieder.",
+      "Unten: Sieh die Kardioide aus dem Licht hervortreten und finde sie in Mandelbrot wieder.",
   },
   sections: [
     {
@@ -688,7 +688,7 @@ const no: RichStory = {
         body: "Zoom så inn i Mandelbrotmengden. Det store hjertet midt i (hovedknoppen) er nøyaktig samme kardioide, parametrisert ved c(t) = ½e^(it) − ¼e^(2it). En kurve fra kjøkkenoptikken er også ryggraden i det mest studerte objektet i kompleks dynamikk. Uten åpenbar grunn.",
       },
     ],
-    tryIt: "Under: se kardioiden vokse fram av reflektert lys og møt den igjen inne i Mandelbrot.",
+    tryIt: "Under: Se kardioiden vokse fram av reflektert lys og møt den igjen inne i Mandelbrot.",
   },
   sections: [
     {

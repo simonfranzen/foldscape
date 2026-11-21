@@ -280,11 +280,11 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Das ist der Beweis, dass Turing-Vollständigkeit mit EINER einzigen Grundoperation erreichbar ist. Es verbindet Logik, Informatik und Philosophie des Geistes: lässt sich Denken auf ein einziges Symbol reduzieren?",
+        body: "Das ist der Beweis, dass Turing-Vollständigkeit mit EINER einzigen Grundoperation erreichbar ist. Es verbindet Logik, Informatik und Philosophie des Geistes: Lässt sich Denken auf ein einziges Symbol reduzieren?",
       },
     ],
     tryIt:
-      "Unten: führ den Reduzierer, beobachte K und S bei der Arbeit, und bau sie von Grund auf neu.",
+      "Unten: Führ den Reduzierer, beobachte K und S bei der Arbeit, und bau sie von Grund auf neu.",
   },
   sections: [
     {
@@ -1221,10 +1221,10 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Det er beviset på at Turing-fullstendighet kan nås med ÉN primitiv operasjon. Det binder sammen logikk, informatikk og bevissthetsfilosofi: kan tanken selv reduseres til ett eneste symbol?",
+        body: "Det er beviset på at Turing-fullstendighet kan nås med ÉN primitiv operasjon. Det binder sammen logikk, informatikk og bevissthetsfilosofi: Kan tanken selv reduseres til ett eneste symbol?",
       },
     ],
-    tryIt: "Under: kjør reduseren, se K og S i arbeid, og bygg dem opp fra bunnen.",
+    tryIt: "Under: Kjør reduseren, se K og S i arbeid, og bygg dem opp fra bunnen.",
   },
   sections: [
     {
@@ -1240,7 +1240,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Barker, 2001",
       title: "Inn kommer Iota",
-      body: "I 2001 spurte lingvisten og logikeren Chris Barker: Hvor langt kan man drive det? Schönfinkel trengte to kombinatorer. Holder det med én? Han definerte ℩ ≡ λx. x S K: «anvend argumentet ditt på S og deretter på K». Det er hele språket: ett symbol, én regel. Parenteser er typografi, ikke en ekstra primitiv. Likevel inneholder denne ene regelen S og K som avledede termer, og dermed alt.",
+      body: "I 2001 spurte lingvisten og logikeren Chris Barker: Hvor langt kan man drive det? Schönfinkel trengte to kombinatorer. Holder det med én? Han definerte ℩ ≡ λx. x S K: «Anvend argumentet ditt på S og deretter på K». Det er hele språket: ett symbol, én regel. Parenteser er typografi, ikke en ekstra primitiv. Likevel inneholder denne ene regelen S og K som avledede termer, og dermed alt.",
     },
     {
       pretitle: "Avsnitt 04 · Utlede K",
@@ -1271,9 +1271,9 @@ const no: RichStory = {
   ksLabels: {
     kHeading: "K: den konstante funksjonen",
     sHeading: "S: substitusjonsfunksjonen",
-    kBody: "Gi K to verdier: det beholder det første og lar det andre falle bort.",
+    kBody: "Gi K to verdier: Det beholder det første og lar det andre falle bort.",
     sBody:
-      "S tar tre argumenter og skriver dem om som x z (y z): både x og y anvendes på den delte verdien z.",
+      "S tar tre argumenter og skriver dem om som x z (y z): Både x og y anvendes på den delte verdien z.",
     kResult: "K (x, y) = x",
     sResult: "S (x, y, z) = x z (y z)",
     inputX: "x",

@@ -206,11 +206,11 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Hilberts Gedankenexperiment von 1924 ist das sauberste Argument, dass unendliche Mengen Regeln folgen, die unsere endliche Intuition nicht kennt. Es ist zugleich das Vorspiel zu Cantors tieferem Schlag: manche Unendlichkeiten sind wirklich größer als andere.",
+        body: "Hilberts Gedankenexperiment von 1924 ist das sauberste Argument, dass unendliche Mengen Regeln folgen, die unsere endliche Intuition nicht kennt. Es ist zugleich das Vorspiel zu Cantors tieferem Schlag: Manche Unendlichkeiten sind wirklich größer als andere.",
       },
     ],
     tryIt:
-      "Unten: spiele die vier Verschiebungen durch und sieh dann, wie die Unendlichkeit dem Hotel doch entwächst.",
+      "Unten: Spiele die vier Verschiebungen durch und sieh dann, wie die Unendlichkeit dem Hotel doch entwächst.",
   },
   sections: [
     {
@@ -221,7 +221,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Ein neuer Gast",
       title: "Verschiebung n → n+1",
-      body: "Eine reisende Person klopft. Der Empfang gibt eine einzige Anweisung durch: jeder Gast, geh von Zimmer n nach Zimmer n+1. Niemand wird verdrängt, es wartet immer ein höher nummeriertes Zimmer, und Zimmer 1 ist frei für den neuen Gast.",
+      body: "Eine reisende Person klopft. Der Empfang gibt eine einzige Anweisung durch: Jeder Gast, geh von Zimmer n nach Zimmer n+1. Niemand wird verdrängt, es wartet immer ein höher nummeriertes Zimmer, und Zimmer 1 ist frei für den neuen Gast.",
     },
     {
       pretitle: "Abschnitt 03 · k neue Gäste",
@@ -283,7 +283,7 @@ const de: RichStory = {
   primeTableRowBus3: "Bus 3, Gast m",
   primeTableRowBusK: "Bus k, Gast m",
   primeTableNote:
-    "Die eindeutige Primfaktorzerlegung garantiert, dass nie zwei Gäste dasselbe Zimmer verlangen. Viele Zimmernummern (6, 10, 12, 14, …) bleiben frei: es ist Spielraum im Überfluss da.",
+    "Die eindeutige Primfaktorzerlegung garantiert, dass nie zwei Gäste dasselbe Zimmer verlangen. Viele Zimmernummern (6, 10, 12, 14, …) bleiben frei: Es ist Spielraum im Überfluss da.",
   cantorLinkLabel: "→ /cantor · das vollständige Diagonalargument",
   takeItFurther: "Geh weiter",
 };
@@ -859,10 +859,10 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Hilberts tankeeksperiment fra 1924 er det reneste argumentet for at uendelige mengder følger regler vår endelige intuisjon ikke kjenner. Det er også opptakten til Cantors dypere smell: noen uendeligheter er virkelig større enn andre.",
+        body: "Hilberts tankeeksperiment fra 1924 er det reneste argumentet for at uendelige mengder følger regler vår endelige intuisjon ikke kjenner. Det er også opptakten til Cantors dypere smell: Noen uendeligheter er virkelig større enn andre.",
       },
     ],
-    tryIt: "Nedenfor: kjør de fire forskyvningene, se så uendeligheten vokse ut av hotellet.",
+    tryIt: "Nedenfor: Kjør de fire forskyvningene, se så uendeligheten vokse ut av hotellet.",
   },
   sections: [
     {
@@ -893,7 +893,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Den overtellbare broen",
       title: "ℝ slår hotellet",
-      body: "Ta ett skritt til, og trikset brekker. Cantors diagonalargument fra 1891 viser at de reelle tallene i [0,1] ikke engang kan listes: for enhver foreslått oppramsing skiller et nytt reelt tall seg fra rad n ved det n-te sifferet. De reelle er overtellbare; hotellet er ikke stort nok.",
+      body: "Ta ett skritt til, og trikset brekker. Cantors diagonalargument fra 1891 viser at de reelle tallene i [0,1] ikke engang kan listes: For enhver foreslått oppramsing skiller et nytt reelt tall seg fra rad n ved det n-te sifferet. De reelle er overtellbare; hotellet er ikke stort nok.",
     },
   ],
   closingTitle: "Åpne Utforskeren.",
@@ -935,7 +935,7 @@ const no: RichStory = {
   primeTableRowBus3: "Buss 3, passasjer m",
   primeTableRowBusK: "Buss k, passasjer m",
   primeTableNote:
-    "Den entydige primtallsfaktoriseringen garanterer at to passasjerer aldri ber om samme rom. Mange romnummer (6, 10, 12, 14, …) forblir tomme: det er rikelig med slark.",
+    "Den entydige primtallsfaktoriseringen garanterer at to passasjerer aldri ber om samme rom. Mange romnummer (6, 10, 12, 14, …) forblir tomme: Det er rikelig med slark.",
   cantorLinkLabel: "→ /cantor · hele diagonalargumentet",
   takeItFurther: "Gå videre",
 };

@@ -603,7 +603,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Steg fire · Feigenbaums konstant",
         title: "δ ≈ 4,6692: universell på tvers av systemer",
-        body: "Mål hvor mye vinduene krymper mellom doblingene: forholdet (rₙ − rₙ₋₁) / (rₙ₊₁ − rₙ) går mot samme grense. Mitchell Feigenbaum regnet den ut på en lommekalkulator i Los Alamos i 1975 og fikk δ ≈ 4,66920160910… Det forbløffende, bevist noen år senere av Lanford og andre, er at denne konstanten er universell: den dukker opp i Hénon-avbildningen, i Duffing-oscillatoren, i eksperimentell væskekonveksjon, i dryppende kraner. Periodedobling er en rute, og δ er fartsgrensen.",
+        body: "Mål hvor mye vinduene krymper mellom doblingene: Forholdet (rₙ − rₙ₋₁) / (rₙ₊₁ − rₙ) går mot samme grense. Mitchell Feigenbaum regnet den ut på en lommekalkulator i Los Alamos i 1975 og fikk δ ≈ 4,66920160910… Det forbløffende, bevist noen år senere av Lanford og andre, er at denne konstanten er universell: Den dukker opp i Hénon-avbildningen, i Duffing-oscillatoren, i eksperimentell væskekonveksjon, i dryppende kraner. Periodedobling er en rute, og δ er fartsgrensen.",
       },
       {
         pretitle: "Steg fem · Fullt kaos",

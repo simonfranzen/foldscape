@@ -227,7 +227,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: lass eine Parkettierung per Inflation wachsen, dann sieh φ aus der Fibonacci-Spirale hervortreten.",
+      "Unten: Lass eine Parkettierung per Inflation wachsen, dann sieh φ aus der Fibonacci-Spirale hervortreten.",
   },
   sections: [
     {
@@ -248,7 +248,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Inflation und Deflation",
       title: "Jede Parkettierung hat eindeutige Eltern und eindeutige Kinder",
-      body: "Penroses tiefster Zug war die Deflationsregel. Nimm irgendeine Drache-Pfeil-Parkettierung und unterteile jede Kachel nach einem festen Rezept: jeder Halb-Drache wird zu zwei kleineren Halb-Drachen und einem Halb-Pfeil, jeder Halb-Pfeil zu einem Halb-Drachen und einem Halb-Pfeil. Die Teile fügen sich zu einer Penrose-Parkettierung mit Skala 1/φ zusammen. Lauf das Rezept rückwärts (Inflation), und benachbarte Kacheln verschmelzen zu einer eindeutigen Eltern-Parkettierung mit φ-facher Skala. Die Eltern-Parkettierung ist eindeutig: es gibt nur eine Art, eine Penrose-Parkettierung in eine Penrose-Parkettierung zu vergröbern. Genau das schließt das Muster in die Aperiodizität ein, denn jede periodische Parkettierung würde sich irgendwann in sich selbst inflatieren, doch die φ-Skalierung ist irrational und schließt sich nie.",
+      body: "Penroses tiefster Zug war die Deflationsregel. Nimm irgendeine Drache-Pfeil-Parkettierung und unterteile jede Kachel nach einem festen Rezept: Jeder Halb-Drache wird zu zwei kleineren Halb-Drachen und einem Halb-Pfeil, jeder Halb-Pfeil zu einem Halb-Drachen und einem Halb-Pfeil. Die Teile fügen sich zu einer Penrose-Parkettierung mit Skala 1/φ zusammen. Lauf das Rezept rückwärts (Inflation), und benachbarte Kacheln verschmelzen zu einer eindeutigen Eltern-Parkettierung mit φ-facher Skala. Die Eltern-Parkettierung ist eindeutig: Es gibt nur eine Art, eine Penrose-Parkettierung in eine Penrose-Parkettierung zu vergröbern. Genau das schließt das Muster in die Aperiodizität ein, denn jede periodische Parkettierung würde sich irgendwann in sich selbst inflatieren, doch die φ-Skalierung ist irrational und schließt sich nie.",
     },
     {
       pretitle: "Abschnitt 05 · Der goldene Schnitt überall",
@@ -270,7 +270,7 @@ const de: RichStory = {
     hint: "Jeder Deflationsschritt teilt jede Kachel in 1/φ-mal kleinere Stücke auf. Dicke Rhomben überwiegen die dünnen, also wandert das Verhältnis dick zu dünn mit wachsender Tiefe Richtung φ ≈ 1,618. Die fünfzählige Symmetrie bleibt auf jeder Stufe exakt erhalten.",
     pretitle: "Interaktiv · die Deflationsregel",
     title: "Beginn mit einer Sonne, unterteile um 1/φ, sieh die Parkettierung entstehen",
-    body: "Das lässt die P3-Rhombenform wachsen, die dünn-und-dicke Schwester von Drache und Pfeil, aus dem klassischen Sonnen-Keim: ein fünfzähliger Stern aus zehn Halb-Rhomben um den Ursprung. Jeder Deflationsschritt unterteilt jede Kachel nach Penroses Regeln. Schieb die Tiefe hoch: auf Stufe 1 erkennst du noch den Keim, auf Stufe 6 schaust du auf einige Tausend Halbkacheln, und das Dick/Dünn-Verhältnis trifft schon mehrere Stellen von φ.",
+    body: "Das lässt die P3-Rhombenform wachsen, die dünn-und-dicke Schwester von Drache und Pfeil, aus dem klassischen Sonnen-Keim: ein fünfzähliger Stern aus zehn Halb-Rhomben um den Ursprung. Jeder Deflationsschritt unterteilt jede Kachel nach Penroses Regeln. Schieb die Tiefe hoch: Auf Stufe 1 erkennst du noch den Keim, auf Stufe 6 schaust du auf einige Tausend Halbkacheln, und das Dick/Dünn-Verhältnis trifft schon mehrere Stellen von φ.",
   },
   golden: {
     caption: "Interaktiv · der goldene Schnitt",
@@ -1021,7 +1021,7 @@ const no: RichStory = {
         body: "I 20 år lurte matematikere på: Kan en endelig flismengde tvinge bare aperiodiske flislegginger? Berger svarte ja med 20 426 fliser i 1966; Penrose dro det ned til to i 1974. Så i 1982 skjøt Dan Shechtman elektroner mot en aluminium-mangan-legering og så femfoldig diffraksjon, umulig i klassisk krystallografi. Penroses flislegginger var den ferdige papirmatematikken som viste at naturen hadde lov. Shechtman fikk Nobelprisen i 2011.",
       },
     ],
-    tryIt: "Under: la en flislegging vokse ved inflasjon, se så φ tre frem fra Fibonacci-spiralen.",
+    tryIt: "Under: La en flislegging vokse ved inflasjon, se så φ tre frem fra Fibonacci-spiralen.",
   },
   sections: [
     {
@@ -1032,7 +1032,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Fra 20 426 fliser til én",
       title: "Wang → Berger → Penrose → einstein",
-      body: "I 1961 spurte Hao Wang: Finnes det en algoritme som avgjør om en gitt flismengde fliser planet? Han la merke til at spørsmålet reduseres til om noen aperiodisk mengde finnes. Studenten hans Robert Berger svarte i 1966: ja, og han ga en (en Frankenstein-mengde på 20 426 Wang-fliser). Andre matematikere fikk antallet ned mot slutten av 60-tallet. I 1974 fant Penrose bare to. I 49 år var det rekorden. I 2023 kunngjorde David Smith, Joseph Myers, Craig Kaplan og Chaim Goodman-Strauss einsteinet: én eneste flis (et polygon, ingen matchregler!) som fliser planet kun aperiodisk. Måneder senere fulgte spectre, som ikke en gang trenger refleksjoner. 60-årsjakten endte med én form.",
+      body: "I 1961 spurte Hao Wang: Finnes det en algoritme som avgjør om en gitt flismengde fliser planet? Han la merke til at spørsmålet reduseres til om noen aperiodisk mengde finnes. Studenten hans Robert Berger svarte i 1966: Ja, og han ga en (en Frankenstein-mengde på 20 426 Wang-fliser). Andre matematikere fikk antallet ned mot slutten av 60-tallet. I 1974 fant Penrose bare to. I 49 år var det rekorden. I 2023 kunngjorde David Smith, Joseph Myers, Craig Kaplan og Chaim Goodman-Strauss einsteinet: én eneste flis (et polygon, ingen matchregler!) som fliser planet kun aperiodisk. Måneder senere fulgte spectre, som ikke en gang trenger refleksjoner. 60-årsjakten endte med én form.",
     },
     {
       pretitle: "Avsnitt 03 · Drage og pil med matchregler",
@@ -1042,7 +1042,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Inflasjon og deflasjon",
       title: "Hver flislegging har en unik forelder og unike barn",
-      body: "Penroses dypeste trekk var deflasjonsregelen. Ta hvilken som helst drage-pil-flislegging og del opp hver flis etter en fast oppskrift: hver halv-drage blir to mindre halv-drager og en halv-pil, hver halv-pil blir en halv-drage og en halv-pil. Bitene settes sammen til en Penrose-flislegging i skala 1/φ. Kjør oppskriften baklengs (inflasjon), og nabofliser smelter sammen til en unik forelder-flislegging i φ ganger skalaen. Forelderen er unik: det finnes bare én måte å gjøre en Penrose-flislegging grovere til en Penrose-flislegging. Det er dette som låser mønsteret i aperiodisitet, for enhver periodisk flislegging ville før eller siden inflatere seg inn i seg selv, men φ-skaleringen er irrasjonell og lukker seg aldri.",
+      body: "Penroses dypeste trekk var deflasjonsregelen. Ta hvilken som helst drage-pil-flislegging og del opp hver flis etter en fast oppskrift: Hver halv-drage blir to mindre halv-drager og en halv-pil, hver halv-pil blir en halv-drage og en halv-pil. Bitene settes sammen til en Penrose-flislegging i skala 1/φ. Kjør oppskriften baklengs (inflasjon), og nabofliser smelter sammen til en unik forelder-flislegging i φ ganger skalaen. Forelderen er unik: Det finnes bare én måte å gjøre en Penrose-flislegging grovere til en Penrose-flislegging. Det er dette som låser mønsteret i aperiodisitet, for enhver periodisk flislegging ville før eller siden inflatere seg inn i seg selv, men φ-skaleringen er irrasjonell og lukker seg aldri.",
     },
     {
       pretitle: "Avsnitt 05 · Det gylne snittet overalt",
@@ -1064,7 +1064,7 @@ const no: RichStory = {
     hint: "Hvert deflasjonstrinn deler hver flis i biter 1/φ ganger mindre. De tykke rombene er flere enn de tynne, så forholdet tykk/tynn går mot φ ≈ 1,618 ettersom dybden vokser. Den femfoldige symmetrien bevares nøyaktig på hvert nivå.",
     pretitle: "Interaktivt · deflasjonsregelen",
     title: "Start med en sol, del opp med 1/φ, se en flislegging dukke opp",
-    body: "Dette lar P3-rombeformen vokse frem, den tynne-og-tykke søsteren til drage og pil, fra det kanoniske sol-frøet: en femtakket stjerne av ti halvromber rundt origo. Hvert deflasjonstrinn deler hver flis etter Penroses regler. Dra opp dybden: på nivå 1 ser du fortsatt frøet; på nivå 6 ser du på noen tusen halvfliser, og tykk/tynn-forholdet treffer allerede flere sifre av φ.",
+    body: "Dette lar P3-rombeformen vokse frem, den tynne-og-tykke søsteren til drage og pil, fra det kanoniske sol-frøet: en femtakket stjerne av ti halvromber rundt origo. Hvert deflasjonstrinn deler hver flis etter Penroses regler. Dra opp dybden: På nivå 1 ser du fortsatt frøet; på nivå 6 ser du på noen tusen halvfliser, og tykk/tynn-forholdet treffer allerede flere sifre av φ.",
   },
   golden: {
     caption: "Interaktivt · det gylne snitt",

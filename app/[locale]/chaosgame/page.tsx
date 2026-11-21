@@ -258,7 +258,7 @@ const de: RichStory = {
         body: "Das ist ein verkapptes iteriertes Funktionensystem. Jeder «geh halb zu Ecke i» ist eine kontrahierende Abbildung in der Ebene; die Punktmenge konvergiert auf den einzigen Attraktor dieser drei Abbildungen. Tausch die Abbildungen aus und du bekommst andere Fraktale: Barnsleys Farn wächst aus genau demselben Rezept, nur vier affine Abbildungen statt drei Halbierungen.",
       },
     ],
-    tryIt: "Unten: lass die Regel live laufen, dann sieh dem Farn beim Wachsen zu.",
+    tryIt: "Unten: Lass die Regel live laufen, dann sieh dem Farn beim Wachsen zu.",
   },
   sections: [
     {
@@ -864,7 +864,7 @@ const no: RichStory = {
         body: 'Dette er et iterert funksjonssystem i forkledning. Hvert "gå halvveis mot hjørne i" er en kontraksjon av planet; punktmengden konvergerer mot den eneste attraktoren til de tre avbildningene. Bytt ut avbildningene og du får andre fraktaler: Barnsleys bregne vokser fra nøyaktig samme oppskrift, bare fire affine avbildninger i stedet for tre halveringssteg.',
       },
     ],
-    tryIt: "Under: se regelen kjøre live, se så bregnen vokse.",
+    tryIt: "Under: Se regelen kjøre live, se så bregnen vokse.",
   },
   sections: [
     {

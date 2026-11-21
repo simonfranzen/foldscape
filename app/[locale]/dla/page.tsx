@@ -345,7 +345,7 @@ const de: RichStory = {
         body: "Witten und Sander zeigten 1981, dass dieses Zwei-Regeln-Spiel eine universelle fraktale Dimension von ≈ 1,71 erzeugt, unabhängig vom Saatpixel oder Gitter. Dieselbe Form taucht in galvanisiertem Kupfer, in Flechten, in Bakterienkolonien und in Lichtenberg-Figuren auf, die Blitze hinterlassen.",
       },
     ],
-    tryIt: "Unten: dreh am Wanderer-Regler, sieh dem Dendriten live beim Wachsen zu.",
+    tryIt: "Unten: Dreh am Wanderer-Regler, sieh dem Dendriten live beim Wachsen zu.",
   },
   sections: [
     {
@@ -889,7 +889,7 @@ const no: RichStory = {
         body: "Witten og Sander viste i 1981 at dette to-regel-spillet har en universell fraktal dimensjon på ≈ 1,71, uavhengig av frø eller gitter. Samme form dukker opp igjen i elektroplatert kobber, i lav, i bakteriekolonier og i Lichtenberg-figurene lynet etterlater.",
       },
     ],
-    tryIt: "Nedenfor: vri på vandrer-rattet, se dendriten vokse live.",
+    tryIt: "Nedenfor: Vri på vandrer-rattet, se dendriten vokse live.",
   },
   sections: [
     {
@@ -945,7 +945,7 @@ const no: RichStory = {
     pause: "❚❚ Pause",
     play: "▶ Spill",
     reset: "⟳ Nullstill",
-    hint: "Flere vandrere · raskere vekst. Lavere klebrighet · tettere, mer klumpete klump: vandrerne glir forbi spissene før de fryser.",
+    hint: "Flere vandrere · raskere vekst. Lavere klebrighet · tettere, mer klumpete klump: Vandrerne glir forbi spissene før de fryser.",
     canvasLabel: "Live-DLA-simulering som vokser fra et senterfrø",
   },
 };

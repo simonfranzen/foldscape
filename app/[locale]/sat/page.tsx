@@ -635,7 +635,7 @@ const no: RichStory = {
   closingPretitle: "Utforsk",
   closingTitle: "Se en løser forgrene seg og gå tilbake.",
   closingBody:
-    "Utforskeren kjører et DPLL-søk på en formel du styrer: den velger en variabel, propagerer de tvungne følgene og går tilbake fra hver motsigelse. Steg gjennom, eller la den løpe, og se søketreet som P mot NP egentlig handler om.",
+    "Utforskeren kjører et DPLL-søk på en formel du styrer: Den velger en variabel, propagerer de tvungne følgene og går tilbake fra hver motsigelse. Steg gjennom, eller la den løpe, og se søketreet som P mot NP egentlig handler om.",
   ctaLabel: "→ Åpne Utforskeren",
 };
 

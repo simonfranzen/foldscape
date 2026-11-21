@@ -226,7 +226,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "Was du siehst",
     whatYouSeeP1:
-      "Oberes Bild: die Treppe π(x) springt bei jeder Primzahl um 1, die warme Kurve ist die aus den ersten N_zeros nichttrivialen Nullstellen rekonstruierte Riemann-Approximation. Bei null Nullstellen ist die Kurve Riemanns R(x), eine glatte Schätzung, die schon mitten durch die Stufen läuft. Mit wachsendem N_zeros schmiegen die Korrekturen die Kurve an die Treppe: genau so kodieren die Nullstellen die Primzahlen.",
+      "Oberes Bild: Die Treppe π(x) springt bei jeder Primzahl um 1, die warme Kurve ist die aus den ersten N_zeros nichttrivialen Nullstellen rekonstruierte Riemann-Approximation. Bei null Nullstellen ist die Kurve Riemanns R(x), eine glatte Schätzung, die schon mitten durch die Stufen läuft. Mit wachsendem N_zeros schmiegen die Korrekturen die Kurve an die Treppe: Genau so kodieren die Nullstellen die Primzahlen.",
     whatYouSeeP2:
       "Unteres Bild: das Bild von ζ entlang der kritischen Linie s = ½ + it, gezeichnet in der komplexen Ebene. Jede Schleife durch den Ursprung ist eine Nullstelle. Die Hypothese sagt, dass dieses Bild für immer dasselbe bleibt: Es gibt kein t, bei dem die Bahn abdriftet und den Ursprung verfehlt, während der Realteil von s irgendwo anders als bei ½ sitzt.",
     errorLabel: "max |π(x) − R(x)| über den sichtbaren Bereich",
@@ -382,7 +382,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     legendZetaPath: "ζ(½ + it)",
     whatYouSeeLabel: "Det du ser",
     whatYouSeeP1:
-      "Øverste plot: trappen π(x) hopper 1 ved hvert primtall, og den varme kurven er Riemanns approksimasjon rekonstruert fra de første N_zeros ikke-trivielle nullpunktene. Med null nullpunkter er kurven Riemanns R(x), et glatt estimat som allerede går midt gjennom trinnene. Når N_zeros vokser presser korreksjonene kurven inntil trappen: det er bokstavelig talt slik nullpunktene koder primtallene.",
+      "Øverste plot: Trappen π(x) hopper 1 ved hvert primtall, og den varme kurven er Riemanns approksimasjon rekonstruert fra de første N_zeros ikke-trivielle nullpunktene. Med null nullpunkter er kurven Riemanns R(x), et glatt estimat som allerede går midt gjennom trinnene. Når N_zeros vokser presser korreksjonene kurven inntil trappen: Det er bokstavelig talt slik nullpunktene koder primtallene.",
     whatYouSeeP2:
       "Nederste plot: bildet av ζ langs den kritiske linjen s = ½ + it, tegnet i det komplekse planet. Hver løkke gjennom origo er ett nullpunkt. Hypotesen sier at dette bildet forblir nøyaktig samme bilde for alltid: Det finnes ingen t der banen driver av og unngår origo mens realdelen av s sitter et annet sted enn ½.",
     errorLabel: "max |π(x) − R(x)| over synlig område",

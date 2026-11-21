@@ -1655,7 +1655,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Fouriers Behauptung",
           title: "Wärmeleitung, 1822",
-          body: "Joseph Fourier veröffentlichte 1822 seine 'Analytische Theorie der Wärme'. Um die Wärmegleichung zu lösen, stellte er eine ungeheuerliche Behauptung auf: jede Funktion, stetig oder springend, lässt sich als Summe reiner Sinus- und Cosinuswellen schreiben. Die Mathematiker:innen seiner Zeit glaubten ihm nicht. Es dauerte ein halbes Jahrhundert (Dirichlet, Riemann, Lebesgue), bis aus der Behauptung ein Theorem wurde.",
+          body: "Joseph Fourier veröffentlichte 1822 seine 'Analytische Theorie der Wärme'. Um die Wärmegleichung zu lösen, stellte er eine ungeheuerliche Behauptung auf: Jede Funktion, stetig oder springend, lässt sich als Summe reiner Sinus- und Cosinuswellen schreiben. Die Mathematiker:innen seiner Zeit glaubten ihm nicht. Es dauerte ein halbes Jahrhundert (Dirichlet, Riemann, Lebesgue), bis aus der Behauptung ein Theorem wurde.",
         },
         {
           pretitle: "Schritt zwei · Das Rezept",
@@ -1826,7 +1826,7 @@ const de: StoriesDict = {
       title: "Möbiusband & Kleinsche Flasche",
       tagline: "Flächen mit nur einer Seite.",
       intro:
-        "Nimm einen Papierstreifen, gib ihm eine halbe Drehung, klebe die Enden zusammen, und du hast eine Fläche mit einer Seite und einer Kante. Der Explorer zeigt ein rotierendes 3D-Möbiusband, das du an verschiedenen Verhältnissen aufschneiden kannst, um zu sehen, was dabei herausfällt: in der Mitte aufschneiden, und es bleibt ein Stück; auf einem Drittel aufschneiden, und du bekommst zwei ineinander verschlungene Ringe. Eine Schaltfläche wechselt zur Kleinschen Flasche, dem geschlossenen Analogon, das vier Dimensionen braucht, um ohne Selbstschnitt zu existieren.",
+        "Nimm einen Papierstreifen, gib ihm eine halbe Drehung, klebe die Enden zusammen, und du hast eine Fläche mit einer Seite und einer Kante. Der Explorer zeigt ein rotierendes 3D-Möbiusband, das du an verschiedenen Verhältnissen aufschneiden kannst, um zu sehen, was dabei herausfällt: In der Mitte aufschneiden, und es bleibt ein Stück; auf einem Drittel aufschneiden, und du bekommst zwei ineinander verschlungene Ringe. Eine Schaltfläche wechselt zur Kleinschen Flasche, dem geschlossenen Analogon, das vier Dimensionen braucht, um ohne Selbstschnitt zu existieren.",
       ctaInteractive: "→ Explorer öffnen",
       sections: [
         {
@@ -1946,7 +1946,7 @@ const de: StoriesDict = {
       title: "Sechs Grade & kleine Welten",
       tagline: "Zwei beliebige Menschen, sechs Händedrücke voneinander entfernt.",
       intro:
-        "Stanley Milgram schickte Briefe an Fremde und stellte fest, dass im Schnitt sechs Weiterleitungen sie quer durch Amerika brachten. Vierzig Jahre später zeigten Watts und Strogatz, warum: eine Prise zufälliger Abkürzungen in einem sonst regelmäßigen Netz lässt die mittlere Pfadlänge einbrechen, ohne das lokale Clustering anzurühren. Der Explorer lässt dich die Watts-Strogatz-Umverdrahtungswahrscheinlichkeit p einstellen und in Echtzeit zusehen, wie die mittlere Pfadlänge L kollabiert.",
+        "Stanley Milgram schickte Briefe an Fremde und stellte fest, dass im Schnitt sechs Weiterleitungen sie quer durch Amerika brachten. Vierzig Jahre später zeigten Watts und Strogatz, warum: Eine Prise zufälliger Abkürzungen in einem sonst regelmäßigen Netz lässt die mittlere Pfadlänge einbrechen, ohne das lokale Clustering anzurühren. Der Explorer lässt dich die Watts-Strogatz-Umverdrahtungswahrscheinlichkeit p einstellen und in Echtzeit zusehen, wie die mittlere Pfadlänge L kollabiert.",
       ctaInteractive: "→ Explorer öffnen",
       sections: [
         {

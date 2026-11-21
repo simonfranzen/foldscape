@@ -194,7 +194,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: lass live Kugeln fallen, dann sieh, wie die Binomialverteilung in die Normale übergeht, wenn du N hochziehst.",
+      "Unten: Lass live Kugeln fallen, dann sieh, wie die Binomialverteilung in die Normale übergeht, wenn du N hochziehst.",
   },
   sections: [
     {
@@ -258,7 +258,7 @@ const de: RichStory = {
   pascalBinsNote:
     "Summe = 1024 = 2¹⁰. Die Mitte wird dick, die Ränder darben. Schon eine Glocke, und N ist noch winzig.",
   cltNote:
-    "Unabhängig, endliche Varianz, jede Verteilung. Die standardisierte Summe konvergiert stets gegen die Standardnormale: die Glocke ist der universelle Attraktor des Mittelns.",
+    "Unabhängig, endliche Varianz, jede Verteilung. Die standardisierte Summe konvergiert stets gegen die Standardnormale: Die Glocke ist der universelle Attraktor des Mittelns.",
   breakLabel: "Wo die Glocke bricht",
   breakNote:
     "Cauchy · Lévy · Pareto · stabile Verteilungen mit unendlicher Varianz. Mandelbrot, 1963: Finanzrenditen sind «wild», nicht «mild».",
@@ -827,7 +827,7 @@ const no: RichStory = {
         body: "Klokken er ingen tilfeldighet. Det er den sentrale grenseverdisetningen på sin enkleste scene: Summer mange uavhengige rettferdige mynter, skaler om, og fordelingen konvergerer mot en Gauss. Høyder, feil, testpoeng, avkastninger: Alt som er summen av mange små uavhengige dytt havner her.",
       },
     ],
-    tryIt: "Under: slipp kuler live, så se binomialen vri seg til normal mens du drar opp N.",
+    tryIt: "Under: Slipp kuler live, så se binomialen vri seg til normal mens du drar opp N.",
   },
   sections: [
     {
@@ -891,12 +891,12 @@ const no: RichStory = {
   pascalBinsNote:
     "Sum = 1024 = 2¹⁰. Midten legger på seg, kantene sulter. Allerede en klokke, og N er fortsatt bitteliten.",
   cltNote:
-    "Uavhengige, endelig varians, hvilken som helst fordeling. Den standardiserte summen konvergerer alltid mot standardnormalen: klokken er den universelle attraktoren for å ta gjennomsnitt.",
+    "Uavhengige, endelig varians, hvilken som helst fordeling. Den standardiserte summen konvergerer alltid mot standardnormalen: Klokken er den universelle attraktoren for å ta gjennomsnitt.",
   breakLabel: "Der klokken brister",
   breakNote:
-    "Cauchy · Lévy · Pareto · stabile fordelinger med uendelig varians. Mandelbrot, 1963: finansielle avkastninger er «ville», ikke «milde».",
+    "Cauchy · Lévy · Pareto · stabile fordelinger med uendelig varians. Mandelbrot, 1963: Finansielle avkastninger er «ville», ikke «milde».",
   simCanvasLabel:
-    "Galton-brett-simulering: kuler faller mellom pinner og fyller et histogram under.",
+    "Galton-brett-simulering: Kuler faller mellom pinner og fyller et histogram under.",
   simResetLabel: "Nullstill histogrammet",
   overlayCanvasLabel:
     "Binomialfordeling som cyan-søyler med tilsvarende normaltetthet som fiolett kurve.",

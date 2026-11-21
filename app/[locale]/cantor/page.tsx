@@ -228,7 +228,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: bau die fehlende Zahl selbst, dann steig die Leiter immer größerer Unendlichkeiten hinauf.",
+      "Unten: Bau die fehlende Zahl selbst, dann steig die Leiter immer größerer Unendlichkeiten hinauf.",
   },
   sections: [
     {
@@ -249,7 +249,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Die Reellen sind überabzählbar",
       title: "|ℝ| = 2^ℵ₀ = c > ℵ₀",
-      body: "Die Liste sollte jede reelle Zahl enthalten, und wir haben gerade eine gebaut, die ihr entging. Die Annahme bricht zusammen: keine Aufzählung der reellen Zahlen kann vollständig sein. Die Reellen haben Mächtigkeit c = 2^ℵ₀, strikt größer als ℵ₀. Eine neue Art von Unendlichkeit, frisch ausgeliefert.",
+      body: "Die Liste sollte jede reelle Zahl enthalten, und wir haben gerade eine gebaut, die ihr entging. Die Annahme bricht zusammen: Keine Aufzählung der reellen Zahlen kann vollständig sein. Die Reellen haben Mächtigkeit c = 2^ℵ₀, strikt größer als ℵ₀. Eine neue Art von Unendlichkeit, frisch ausgeliefert.",
     },
     {
       pretitle: "Abschnitt 05 · Die Kontinuumshypothese",
@@ -278,7 +278,7 @@ const de: RichStory = {
   diagonalDiagonalLabel: "Diagonalziffern",
   towerCaption: "Interaktiv · der Turm der Unendlichkeiten",
   towerHint:
-    "Cantors Satz: jede Menge ist strikt kleiner als ihre Potenzmenge. Iterieren liefert eine endlose Leiter. Klick eine Sprosse, um zu lesen, was sie ist.",
+    "Cantors Satz: Jede Menge ist strikt kleiner als ihre Potenzmenge. Iterieren liefert eine endlose Leiter. Klick eine Sprosse, um zu lesen, was sie ist.",
   towerExpandHint: "Klick eine Sprosse, um sie auszuklappen.",
   towerOf: "= Potenzmenge von",
   towerHierarchy: "Hierarchie:",
@@ -307,7 +307,7 @@ const de: RichStory = {
     },
     {
       pretty: "⋯ für immer",
-      note: "Cantors Satz garantiert: egal wie hoch du steigst, |𝒫(X)| > |X|.",
+      note: "Cantors Satz garantiert: Egal wie hoch du steigst, |𝒫(X)| > |X|.",
     },
   ],
   continuumTitle: "Mächtigkeit des Kontinuums",
@@ -332,7 +332,7 @@ const de: RichStory = {
     },
   ],
   chFootnote:
-    "Die Kontinuumshypothese ist unabhängig von ZFC: die Axiome entscheiden sie schlicht nicht.",
+    "Die Kontinuumshypothese ist unabhängig von ZFC: Die Axiome entscheiden sie schlicht nicht.",
 };
 
 // ---------------- Español ----------------
@@ -1045,7 +1045,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Under: bygg det manglende reelle tallet for hånd, så klatre tårnet av stadig større uendeligheter.",
+      "Under: Bygg det manglende reelle tallet for hånd, så klatre tårnet av stadig større uendeligheter.",
   },
   sections: [
     {
@@ -1066,7 +1066,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · De reelle er overtellbare",
       title: "|ℝ| = 2^ℵ₀ = c > ℵ₀",
-      body: "Listen skulle inneholde hvert reelt tall, og vi bygde nettopp ett den gikk glipp av. Antakelsen brister: ingen opptelling av de reelle kan være fullstendig. De reelle har kardinalitet c = 2^ℵ₀, strengt større enn ℵ₀. En ny slags uendelighet, levert på døra.",
+      body: "Listen skulle inneholde hvert reelt tall, og vi bygde nettopp ett den gikk glipp av. Antakelsen brister: Ingen opptelling av de reelle kan være fullstendig. De reelle har kardinalitet c = 2^ℵ₀, strengt større enn ℵ₀. En ny slags uendelighet, levert på døra.",
     },
     {
       pretitle: "Avsnitt 05 · Kontinuumshypotesen",
@@ -1095,7 +1095,7 @@ const no: RichStory = {
   diagonalDiagonalLabel: "diagonalsifre",
   towerCaption: "Interaktivt · tårnet av uendeligheter",
   towerHint:
-    "Cantors teorem: enhver mengde er strengt mindre enn sin potensmengde. Iterer, og du får en uendelig stige. Klikk et trinn for å lese hva det er.",
+    "Cantors teorem: Enhver mengde er strengt mindre enn sin potensmengde. Iterer, og du får en uendelig stige. Klikk et trinn for å lese hva det er.",
   towerExpandHint: "Klikk hvilket som helst trinn for å åpne det.",
   towerOf: "= potensmengde av",
   towerHierarchy: "Hierarki:",
@@ -1121,7 +1121,7 @@ const no: RichStory = {
     { pretty: "𝒫⁵(ℝ)", note: "Kardinaltallene utover ℵ₀ utgjør selv et overtellbart hierarki." },
     {
       pretty: "⋯ for alltid",
-      note: "Cantors teorem garanterer: uansett hvor høyt du klatrer, |𝒫(X)| > |X|.",
+      note: "Cantors teorem garanterer: Uansett hvor høyt du klatrer, |𝒫(X)| > |X|.",
     },
   ],
   continuumTitle: "Kontinuumets kardinalitet",
@@ -1145,7 +1145,7 @@ const no: RichStory = {
       result: "CH kan ikke bevises i ZFC (forcing). Fields-medaljen 1966.",
     },
   ],
-  chFootnote: "Kontinuumshypotesen er uavhengig av ZFC: aksiomene avgjør den ganske enkelt ikke.",
+  chFootnote: "Kontinuumshypotesen er uavhengig av ZFC: Aksiomene avgjør den ganske enkelt ikke.",
 };
 
 const RICH_STORY: Record<Locale, RichStory> = { en, de, es, fr, it, pt, sv, no };

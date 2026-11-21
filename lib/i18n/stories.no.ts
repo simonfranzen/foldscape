@@ -187,7 +187,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Øyer av orden",
           title: "Der roen gjemmer seg inne i kaoset",
-          body: "Inne i det kaotiske regimet faller systemet plutselig tilbake til en stabil 3-syklus ved r ≈ 1 + √8 ≈ 3,8284. Derfra dobler det seg igjen (periode 6, 12, 24) og går inn i kaos på nytt. Li-Yorke-teoremet gjør poenget strengt: 'periode tre impliserer kaos.' Robert Mays artikkel fra 1976, 'Simple mathematical models with very complicated dynamics', satte hele historien foran biologene. Den har ikke gått igjen siden.",
+          body: "Inne i det kaotiske regimet faller systemet plutselig tilbake til en stabil 3-syklus ved r ≈ 1 + √8 ≈ 3,8284. Derfra dobler det seg igjen (periode 6, 12, 24) og går inn i kaos på nytt. Li-Yorke-teoremet gjør poenget strengt: 'Periode tre impliserer kaos.' Robert Mays artikkel fra 1976, 'Simple mathematical models with very complicated dynamics', satte hele historien foran biologene. Den har ikke gått igjen siden.",
         },
       ],
     },
@@ -232,7 +232,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Fouriers påstand",
           title: "Varmeledning, 1822",
-          body: "Joseph Fourier publiserte sin 'Analytiske teori om varme' i 1822. For å løse varmeligningen kom han med en skandaløst klingende påstand: enhver funksjon, kontinuerlig eller hoppete, kan skrives som en sum av rene sinuser og cosinuser. Datidens matematikere trodde ham ikke. Det tok et halvt århundre med foredling (Dirichlet, Riemann, Lebesgue) før påstanden festet seg som et teorem.",
+          body: "Joseph Fourier publiserte sin 'Analytiske teori om varme' i 1822. For å løse varmeligningen kom han med en skandaløst klingende påstand: Enhver funksjon, kontinuerlig eller hoppete, kan skrives som en sum av rene sinuser og cosinuser. Datidens matematikere trodde ham ikke. Det tok et halvt århundre med foredling (Dirichlet, Riemann, Lebesgue) før påstanden festet seg som et teorem.",
         },
         {
           pretitle: "Trinn to · Oppskriften",
@@ -382,7 +382,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Regelen",
           title: "To tilfeller, én instruksjon",
-          body: "Velg et hvilket som helst positivt heltall n. Hvis n er partall, erstatt det med n/2. Hvis n er oddetall, erstatt det med 3n + 1. Gjenta. Det er hele regelen. Prøv n = 7: det går 7 → 22 → 11 → 34 → 17 → 52 → 26 → 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1, og deretter går det i sløyfe 1 → 4 → 2 → 1 for alltid. Hvert utgangspunkt vi noensinne har testet ender i den samme lille sløyfen.",
+          body: "Velg et hvilket som helst positivt heltall n. Hvis n er partall, erstatt det med n/2. Hvis n er oddetall, erstatt det med 3n + 1. Gjenta. Det er hele regelen. Prøv n = 7: Det går 7 → 22 → 11 → 34 → 17 → 52 → 26 → 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1, og deretter går det i sløyfe 1 → 4 → 2 → 1 for alltid. Hvert utgangspunkt vi noensinne har testet ender i den samme lille sløyfen.",
         },
         {
           pretitle: "Trinn to · Formodningen",
@@ -436,13 +436,13 @@ export const no: StoriesDict = {
       title: "Belousov-Zhabotinsky-reaksjonen",
       tagline: "En kjemisk klokke som tegner spiraler.",
       intro:
-        "En ekte kjemisk blanding som nekter å bli stille: den pulserer gjennom farger i et beger og dyrker roterende spiraler i en petriskål. Utforskeren simulerer et 3-variabelt reaksjon-diffusjonsrutenett i Oregonator-stil slik at du kan se den samme ustabiliteten selvorganisere seg til bølger.",
+        "En ekte kjemisk blanding som nekter å bli stille: Den pulserer gjennom farger i et beger og dyrker roterende spiraler i en petriskål. Utforskeren simulerer et 3-variabelt reaksjon-diffusjonsrutenett i Oregonator-stil slik at du kan se den samme ustabiliteten selvorganisere seg til bølger.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {
           pretitle: "Trinn én · Den tilfeldige oppdagelsen",
           title: "En reaksjon som burde ha vært umulig",
-          body: "På begynnelsen av 1950-tallet blandet den sovjetiske kjemikeren Boris Belousov, på leting etter en uorganisk analog til Krebs-syklusen, bromat, sitronsyre og en cerium-katalysator, og så løsningen vippe farge rytmisk, om og om igjen. Anmelderne avviste artikkelen hans: en kjemisk reaksjon som synlig oscillerte i tid lignet et brudd på termodynamikkens andre lov. Belousov ga opp å publisere den. Et tiår senere, i 1961, plukket masterstudenten Anatol Zhabotinsky opp oppskriften, byttet ut sitron- med malonsyre, og demonstrerte oscillasjonene rent nok til at resultatet ikke lenger kunne nektes.",
+          body: "På begynnelsen av 1950-tallet blandet den sovjetiske kjemikeren Boris Belousov, på leting etter en uorganisk analog til Krebs-syklusen, bromat, sitronsyre og en cerium-katalysator, og så løsningen vippe farge rytmisk, om og om igjen. Anmelderne avviste artikkelen hans: En kjemisk reaksjon som synlig oscillerte i tid lignet et brudd på termodynamikkens andre lov. Belousov ga opp å publisere den. Et tiår senere, i 1961, plukket masterstudenten Anatol Zhabotinsky opp oppskriften, byttet ut sitron- med malonsyre, og demonstrerte oscillasjonene rent nok til at resultatet ikke lenger kunne nektes.",
         },
         {
           pretitle: "Trinn to · Hvordan det ser ut",
@@ -597,7 +597,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Descartes' teorem",
           title: "Kurvaturer, låst i algebra",
-          body: "Skriv hver sirkels kurvatur som k = 1/r, med én konvensjon: hvis en sirkel omslutter de andre (den ytre), tar du kurvaturen som negativ. I sin korrespondanse i 1643 med prinsesse Elisabeth av Böhmen viste Descartes at for fire gjensidig tangerende sirkler tilfredsstiller kurvaturene (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Å løse den kvadratiske for den fjerde kurvaturen gir k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). De to fortegnene er nøyaktig Apollonios' to svar: +-tegnet gir den lille innskrevne sirkelen, −-tegnet gir den andre tangerende sirkelen på motsatt side.",
+          body: "Skriv hver sirkels kurvatur som k = 1/r, med én konvensjon: Hvis en sirkel omslutter de andre (den ytre), tar du kurvaturen som negativ. I sin korrespondanse i 1643 med prinsesse Elisabeth av Böhmen viste Descartes at for fire gjensidig tangerende sirkler tilfredsstiller kurvaturene (k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²). Å løse den kvadratiske for den fjerde kurvaturen gir k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). De to fortegnene er nøyaktig Apollonios' to svar: +-tegnet gir den lille innskrevne sirkelen, −-tegnet gir den andre tangerende sirkelen på motsatt side.",
         },
         {
           pretitle: "Trinn tre · Rekursiv fylling",
@@ -667,7 +667,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Buffons nudel",
           title: "Lengde er alt som betyr noe",
-          body: "Den samme beregningen virker for ℓ > d, der flere krysninger per kast blir mulig og den lukkede formen er mer detaljert. Mer slående er Buffons nudel: ta en hvilken som helst plan kurve C av lengde L, uansett hvor vridd eller knekket, og slipp den på det samme linjerte gulvet. Det forventede antallet krysninger er 2L / (πd), uavhengig av formen. Rett nål eller vridende nudel: bare lengden teller. Den samme π, gjemt i en hvilken som helst kurve overhodet.",
+          body: "Den samme beregningen virker for ℓ > d, der flere krysninger per kast blir mulig og den lukkede formen er mer detaljert. Mer slående er Buffons nudel: Ta en hvilken som helst plan kurve C av lengde L, uansett hvor vridd eller knekket, og slipp den på det samme linjerte gulvet. Det forventede antallet krysninger er 2L / (πd), uavhengig av formen. Rett nål eller vridende nudel: Bare lengden teller. Den samme π, gjemt i en hvilken som helst kurve overhodet.",
         },
       ],
     },
@@ -692,7 +692,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Uendelig mange nye gjester",
           title: "Send gjest n til rom 2n; hvert oddetallsrom åpner seg",
-          body: "Nå ankommer en tellbart uendelig kø. Bestyreren ber hver eksisterende gjest i rom n om å flytte til rom 2n. Gjest 1 går til rom 2, gjest 2 til rom 4, gjest 3 til rom 6. Hvert partallsrom forblir okkupert og hvert oddetallsrom blir ledig. De nyankomne fyller 1, 3, 5, 7, … i rekkefølge, og alle har en nøkkel. Dette er likheten ℵ₀ + ℵ₀ = ℵ₀: to kopier av de naturlige tallene passer inn i én kopi uten tap.",
+          body: "Nå ankommer en tellbart uendelig kø. Bestyreren ber hver eksisterende gjest i rom n om å flytte til rom 2n. Gjest 1 går til rom 2, gjest 2 til rom 4, gjest 3 til rom 6. Hvert partallsrom forblir okkupert og hvert oddetallsrom blir ledig. De nyankomne fyller 1, 3, 5, 7, … i rekkefølge, og alle har en nøkkel. Dette er likheten ℵ₀ + ℵ₀ = ℵ₀: To kopier av de naturlige tallene passer inn i én kopi uten tap.",
         },
         {
           pretitle: "Trinn fire · Uendelige busser, uendelig mange passasjerer i hver",
@@ -777,12 +777,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · De tre reglene",
           title: "Separasjon, justering, samling",
-          body: "Hver frame beregner hver boid tre små styringsvektorer fra naboene innenfor persepsjonsradius. SEPARASJON: styr unna enhver boid som har kommet for nær, vektet etter hvor nær. JUSTERING: dytt hastigheten din mot den gjennomsnittlige hastigheten til naboene dine. SAMLING: styr mot massesenteret til naboene du kan se. De tre vektorene summeres med vekter og legges til hastigheten hver frame. Det er hele algoritmen.",
+          body: "Hver frame beregner hver boid tre små styringsvektorer fra naboene innenfor persepsjonsradius. SEPARASJON: Styr unna enhver boid som har kommet for nær, vektet etter hvor nær. JUSTERING: Dytt hastigheten din mot den gjennomsnittlige hastigheten til naboene dine. SAMLING: Styr mot massesenteret til naboene du kan se. De tre vektorene summeres med vekter og legges til hastigheten hver frame. Det er hele algoritmen.",
         },
         {
           pretitle: "Trinn tre · Emergens",
           title: "Ingen leder, ingen plan, ingen prat",
-          body: "Med utgangspunkt i tilfeldige posisjoner og tilfeldige kurser organiserer boidene seg selv til tette flokker innen noen få sekunder. Strømmer dannes, splitter rundt hindringer og slår seg sammen igjen, nøyaktig koreografien til ekte stærens mumlinger, sardinåtebkuler og flaggermussværmer. Ingenting i programmet vet om flokker. Flokken er hva de tre reglene ser ut som utenfra. Det er en av de reneste demonstrasjonene av emergens i hele datavitenskapen.",
+          body: "Med utgangspunkt i tilfeldige posisjoner og tilfeldige kurser organiserer boidene seg selv til tette flokker innen noen få sekunder. Strømmer dannes, splitter rundt hindringer og slår seg sammen igjen, nøyaktig den samme koreografien som i virvlende stæreflokker, tette sardinstimer og flaggermussvermer. Ingenting i programmet vet om flokker. Flokken er hva de tre reglene ser ut som utenfra. Det er en av de reneste demonstrasjonene av emergens i hele datavitenskapen.",
         },
         {
           pretitle: "Trinn fire · Hvor det ender opp",
@@ -807,7 +807,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Standardgeometrien",
           title: "Vase, kurv, pigg",
-          body: "Med Aizawas klassiske parametere (a = 0,95, b = 0,7, c = 0,6, d = 3,5, e = 0,25, f = 0,1), vinder banen seg rundt en torus i nedre halvdel av figuren, sløyfer deretter opp gjennom en tynn vertikal hals og tilbake ned i torusen på motsatt side. Resultatet ser ut som en flutet vase med en tråd som går gjennom. Fra riktig vinkel ser den ut som en kurv. Fra en annen ser den ut som et hjerte med en pigg. Det visuelle er en del av hvorfor Aizawa-attraktoren slapp ut av lærebøkene: den fotograferes bedre enn noen av de andre.",
+          body: "Med Aizawas klassiske parametere (a = 0,95, b = 0,7, c = 0,6, d = 3,5, e = 0,25, f = 0,1), vinder banen seg rundt en torus i nedre halvdel av figuren, sløyfer deretter opp gjennom en tynn vertikal hals og tilbake ned i torusen på motsatt side. Resultatet ser ut som en flutet vase med en tråd som går gjennom. Fra riktig vinkel ser den ut som en kurv. Fra en annen ser den ut som et hjerte med en pigg. Det visuelle er en del av hvorfor Aizawa-attraktoren slapp ut av lærebøkene: Den fotograferes bedre enn noen av de andre.",
         },
         {
           pretitle: "Trinn tre · Justere skivene",
@@ -837,7 +837,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Klebregelen",
           title: "Berøring = frys, for alltid",
-          body: "Det er én regel. En vandrende partikkel som blir tilstøtende til en hvilken som helst piksel i klyngen, blir til en klyngepiksel selv, og stopper å bevege seg. Det er hele fysikken. Grunnen til at strukturen er forgrenende og ikke klumpete er geometrisk: en vandrende vandrer er langt mer sannsynlig å bli avskåret av en eksponert spiss av klyngen enn å tråde seg vei ned i en dyp fjord. Spisser vokser raskere enn daler. Grener dannes. Interiøret blir utsultet på nye ankomster.",
+          body: "Det er én regel. En vandrende partikkel som blir tilstøtende til en hvilken som helst piksel i klyngen, blir til en klyngepiksel selv, og stopper å bevege seg. Det er hele fysikken. Grunnen til at strukturen er forgrenende og ikke klumpete er geometrisk: En vandrende vandrer er langt mer sannsynlig å bli avskåret av en eksponert spiss av klyngen enn å tråde seg vei ned i en dyp fjord. Spisser vokser raskere enn daler. Grener dannes. Interiøret blir utsultet på nye ankomster.",
         },
         {
           pretitle: "Trinn tre · Fraktaldimensjonen",
@@ -901,7 +901,7 @@ export const no: StoriesDict = {
         },
         {
           pretitle: "Trinn tre · Kummers teorem",
-          title: "Den skjulte loven: tell mentene",
+          title: "Den skjulte loven: Tell mentene",
           body: "Hvorfor faktorisere Pascal mod p seg så rent? I 1852 beviste Kummer et oppsiktsvekkende faktum. Den høyeste potensen av et primtall p som deler C(n, k), er lik antall mente som skjer når du legger til k og (n − k) i base p. Så C(n, k) er delelig med p (mod 0) nøyaktig når det er minst ett mente; den er ikke-null mod p nøyaktig når k kan legges til (n − k) i base p uten mente, det vil si når hvert base-p-siffer av k er høyst det tilsvarende base-p-sifferet av n. Fraktalen er, i hemmelighet, et bilde av når base-p-addisjon er ren.",
         },
         {
@@ -1082,7 +1082,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Det diagonale trikset",
           title: "G sier: «G er ikke bevisbar»",
-          body: "Ved hjelp av diagonal-lemmaet (i rett nedstigende linje fra Cantors diagonalargument fra 1891) konstruerte Gödel en setning G hvis Gödel-nummer er ⌜G⌝, og som er aritmetisk ekvivalent med ¬∃x Prov(x, ⌜G⌝): «intet tall x er et bevis for formelen med Gödel-nummer ⌜G⌝». På vanlig norsk: G sier «jeg er ikke bevisbar i dette systemet». Nå strammer sløyfen seg. Hvis G er bevisbar, beviser systemet et usant utsagn og er inkonsistent. Hvis G er ubevisbar, er det G påstår nøyaktig sant, men systemet kan ikke bevise det. Uansett kollapser Hilberts drøm om en komplett konsistent aritmetikk. Det andre ufullstendighetsteoremet følger nesten umiddelbart: Et slikt system kan ikke bevise sin egen konsistens, for om det kunne, ville det også bevise G, i strid med det første.",
+          body: "Ved hjelp av diagonal-lemmaet (i rett nedstigende linje fra Cantors diagonalargument fra 1891) konstruerte Gödel en setning G hvis Gödel-nummer er ⌜G⌝, og som er aritmetisk ekvivalent med ¬∃x Prov(x, ⌜G⌝): «Intet tall x er et bevis for formelen med Gödel-nummer ⌜G⌝». På vanlig norsk: G sier «jeg er ikke bevisbar i dette systemet». Nå strammer sløyfen seg. Hvis G er bevisbar, beviser systemet et usant utsagn og er inkonsistent. Hvis G er ubevisbar, er det G påstår nøyaktig sant, men systemet kan ikke bevise det. Uansett kollapser Hilberts drøm om en komplett konsistent aritmetikk. Det andre ufullstendighetsteoremet følger nesten umiddelbart: Et slikt system kan ikke bevise sin egen konsistens, for om det kunne, ville det også bevise G, i strid med det første.",
         },
         {
           pretitle: "Trinn fire · Hvor det spredte seg",
@@ -1292,7 +1292,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Appel-Haken-beviset, 1976",
           title: "Det første teoremet bevist av en datamaskin",
-          body: "Kenneth Appel og Wolfgang Haken ved University of Illinois reduserte problemet til en endelig liste på 1834 «uunngåelige konfigurasjoner», og viste deretter at hver enkelt er reduserbar. Beviset deres kjørte på en IBM 370 i omkring 1200 timer. Mange matematikere nektet å akseptere det: et bevis et menneske ikke kan lese i sin helhet, hevdet de, er ikke et bevis. Utgående post fra matematikkavdelingen ved University of Illinois ble frankert med «Four Colors Suffice» i årevis.",
+          body: "Kenneth Appel og Wolfgang Haken ved University of Illinois reduserte problemet til en endelig liste på 1834 «uunngåelige konfigurasjoner», og viste deretter at hver enkelt er reduserbar. Beviset deres kjørte på en IBM 370 i omkring 1200 timer. Mange matematikere nektet å akseptere det: Et bevis et menneske ikke kan lese i sin helhet, hevdet de, er ikke et bevis. Utgående post fra matematikkavdelingen ved University of Illinois ble frankert med «Four Colors Suffice» i årevis.",
         },
         {
           pretitle: "Trinn fire · Hvor det står",
@@ -1306,7 +1306,7 @@ export const no: StoriesDict = {
       title: "Seks grader og små verdener",
       tagline: "To hvilke som helst mennesker, seks håndtrykk fra hverandre.",
       intro:
-        "Stanley Milgram sendte brev til fremmede og fant at, i snitt, seks videresendinger fikk dem tvers over Amerika. Førti år senere viste Watts og Strogatz hvorfor: et drys av tilfeldige snarveier på et ellers regulært nettverk kollapser den gjennomsnittlige stilengden uten å røre den lokale klyngingen. Utforskeren lar deg justere Watts-Strogatz' omkoblingssannsynlighet p og se den gjennomsnittlige stilengden L kollapse i sanntid.",
+        "Stanley Milgram sendte brev til fremmede og fant at, i snitt, seks videresendinger fikk dem tvers over Amerika. Førti år senere viste Watts og Strogatz hvorfor: Et drys av tilfeldige snarveier på et ellers regulært nettverk kollapser den gjennomsnittlige stilengden uten å røre den lokale klyngingen. Utforskeren lar deg justere Watts-Strogatz' omkoblingssannsynlighet p og se den gjennomsnittlige stilengden L kollapse i sanntid.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {

@@ -218,7 +218,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: leg selbst Kacheln so, dass jede gemeinsame Kante passt, dann sieh einer Backtracking-Suche zu, wie sie eine Fläche mit einem Demosatz im Geiste der Rekorde von Culik und Jeandel-Rao füllt.",
+      "Unten: Leg selbst Kacheln so, dass jede gemeinsame Kante passt, dann sieh einer Backtracking-Suche zu, wie sie eine Fläche mit einem Demosatz im Geiste der Rekorde von Culik und Jeandel-Rao füllt.",
   },
   sections: [
     {
@@ -794,7 +794,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Under: legg selv fliser slik at hver delt kant stemmer, og se så et backtracking-søk fylle en flate med et demosett i ånden til rekordene fra Culik og Jeandel-Rao.",
+      "Under: Legg selv fliser slik at hver delt kant stemmer, og se så et backtracking-søk fylle en flate med et demosett i ånden til rekordene fra Culik og Jeandel-Rao.",
   },
   sections: [
     {

@@ -214,7 +214,7 @@ const de: RichStory = {
         body: "Apollonius fragte um 200 v. Chr., welche Kreise drei gegebene berühren; Descartes verriegelte 1643 die Antwort in Algebra. Aber welche ganzzahligen Krümmungen in einer Packung tatsächlich vorkommen, ist bis heute ein offenes Problem der arithmetischen Geometrie. Ein Bild sich küssender Kreise verbirgt ein Stück Zahlentheorie, das wir noch nicht zu Ende geschrieben haben.",
       },
     ],
-    tryIt: "Unten: berechne die vierte Krümmung selbst, dann sieh der Packung beim Wachsen zu.",
+    tryIt: "Unten: Berechne die vierte Krümmung selbst, dann sieh der Packung beim Wachsen zu.",
   },
   sections: [
     {
@@ -225,7 +225,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Descartes' Satz",
       title: "(k₁+k₂+k₃+k₄)² = 2(k₁²+k₂²+k₃²+k₄²)",
-      body: "Schreib jede Krümmung als k = 1/r, mit einer Konvention: die umschließende Außenkreis-Krümmung ist negativ. In seiner Korrespondenz von 1643 mit Prinzessin Elisabeth von Böhmen zeigte Descartes, dass für vier paarweise tangentiale Kreise eine einzige quadratische Identität gilt. Auflösen nach der vierten ergibt k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Die zwei Vorzeichen sind Apollonius' zwei Antworten: + setzt den kleinen eingeschriebenen Kreis in die Lücke, − liefert den anderen Tangentialkreis auf der gegenüberliegenden Seite.",
+      body: "Schreib jede Krümmung als k = 1/r, mit einer Konvention: Die umschließende Außenkreis-Krümmung ist negativ. In seiner Korrespondenz von 1643 mit Prinzessin Elisabeth von Böhmen zeigte Descartes, dass für vier paarweise tangentiale Kreise eine einzige quadratische Identität gilt. Auflösen nach der vierten ergibt k₄ = k₁+k₂+k₃ ± 2√(k₁k₂ + k₂k₃ + k₃k₁). Die zwei Vorzeichen sind Apollonius' zwei Antworten: + setzt den kleinen eingeschriebenen Kreis in die Lücke, − liefert den anderen Tangentialkreis auf der gegenüberliegenden Seite.",
     },
     {
       pretitle: "Abschnitt 03 · Rekursives Füllen",
@@ -277,7 +277,7 @@ const de: RichStory = {
     keyCurvature: "k = 1/r · die Krümmung",
     keyEncloses: "k < 0 · Kreis umschließt die anderen",
     descartesExplain:
-      "Zwei Lösungen: das +-Zeichen setzt den kleinen eingeschriebenen Kreis in die Lücke, das −-Zeichen liefert den anderen Tangentialkreis auf der gegenüberliegenden Seite des Tripels.",
+      "Zwei Lösungen: Das +-Zeichen setzt den kleinen eingeschriebenen Kreis in die Lücke, das −-Zeichen liefert den anderen Tangentialkreis auf der gegenüberliegenden Seite des Tripels.",
     hausdorffLabel: "Hausdorff-Dimension",
     hausdorffCaption:
       "Streng zwischen einer Kurve (Dimension 1) und einer Fläche (Dimension 2). Die Apollonische Restmenge hat Maß null, ist aber auf jeder Skala fraktal dicht.",
@@ -874,7 +874,7 @@ const no: RichStory = {
         body: "Apollonios spurte rundt 200 f.Kr. hvilke sirkler som tar på tre gitte; Descartes låste svaret i algebra i 1643. Men hvilke heltalskrumninger som faktisk dukker opp i en gitt pakning er fremdeles et åpent problem i aritmetisk geometri. Et bilde av sirkler som kysser hverandre skjuler et stykke tallteori vi ennå ikke har skrevet ferdig.",
       },
     ],
-    tryIt: "Under: regn ut den fjerde krumningen selv, se så pakningen vokse.",
+    tryIt: "Under: Regn ut den fjerde krumningen selv, se så pakningen vokse.",
   },
   sections: [
     {
@@ -937,7 +937,7 @@ const no: RichStory = {
     keyCurvature: "k = 1/r · krumningen",
     keyEncloses: "k < 0 · sirkelen omslutter de andre",
     descartesExplain:
-      "To løsninger: plusstegnet plasserer den lille innskrevne sirkelen i tomrommet; minustegnet gir den andre tangerende sirkelen på motsatt side av trippelen.",
+      "To løsninger: Plusstegnet plasserer den lille innskrevne sirkelen i tomrommet; minustegnet gir den andre tangerende sirkelen på motsatt side av trippelen.",
     hausdorffLabel: "Hausdorff-dimensjon",
     hausdorffCaption:
       "Strengt mellom en kurve (dimensjon 1) og et område (dimensjon 2). Den apollonske restmengden har mål null, men er fraktalt tett på enhver skala.",

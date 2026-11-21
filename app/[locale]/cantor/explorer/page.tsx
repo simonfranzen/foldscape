@@ -346,7 +346,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     plusOneLabel: "+1 mod 10",
     plusOneHint: "hopp over 0, 9 for å unngå 0,999…-tvetydighet",
     binaryNote:
-      "Binærmodus ignorerer regelen over: biter veksler 0 ↔ 1. Radene leses som uendelige 0/1-følger, ikke som tall, fordi to følger kan betegne samme tall (0,0111… = 0,1000…).",
+      "Binærmodus ignorerer regelen over: Biter veksler 0 ↔ 1. Radene leses som uendelige 0/1-følger, ikke som tall, fordi to følger kan betegne samme tall (0,0111… = 0,1000…).",
     contradictionBodyBinary:
       " skiller seg fra hver rad i listen på minst én plass, derfor står denne 0/1-følgen ikke på listen. Hold over eller fokuser en rad for å se hvor s avviker fra den. Listen var ufullstendig, det finnes flere 0/1-følger enn naturlige tall: ",
     legendLabel: "Tegnforklaring",

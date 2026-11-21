@@ -159,7 +159,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: dreh das Horn, zieh X_max, und sieh die eine Zahl ankommen, während die andere davonläuft.",
+      "Unten: Dreh das Horn, zieh X_max, und sieh die eine Zahl ankommen, während die andere davonläuft.",
   },
   sections: [
     {
@@ -672,7 +672,7 @@ const no: RichStory = {
         body: "Torricelli kunngjorde resultatet i 1641, flere tiår før analysen hadde et navn. Hobbes og Wallis kranglet bittert om hva det kunne bety. Det var første sted uendeligheten sluttet å oppføre seg.",
       },
     ],
-    tryIt: "Under: dra hornet, dra X_max, og se ett tall legge seg mens det andre rømmer.",
+    tryIt: "Under: Dra hornet, dra X_max, og se ett tall legge seg mens det andre rømmer.",
   },
   sections: [
     {

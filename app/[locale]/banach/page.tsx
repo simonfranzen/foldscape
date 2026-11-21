@@ -154,7 +154,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Deine Intuition",
       title: "Die Physik sagt nein",
-      body: "Lass einen Cricketball auf den Boden fallen. Schneide ihn sauber. Welche Stücke auch herausfallen, ihre Volumina müssen sich zum Volumen des Balls aufsummieren. Das ist Materieerhaltung, und die Welt lässt sich davon nicht abbringen. Alles, was du je geschnitten, gemahlen, geschmolzen oder vermischt hast, hat dieser Regel gehorcht. Wenn dir also jemand erzählt, er könne eine Kugel in fünf Teile zerlegen, die zu zwei identischen Kugeln zusammensetzbar sind, ist deine Bauchreaktion richtig: nichts Physikalisches funktioniert so. Die Überraschung ist, dass in der reinen Mathematik etwas so funktionieren kann.",
+      body: "Lass einen Cricketball auf den Boden fallen. Schneide ihn sauber. Welche Stücke auch herausfallen, ihre Volumina müssen sich zum Volumen des Balls aufsummieren. Das ist Materieerhaltung, und die Welt lässt sich davon nicht abbringen. Alles, was du je geschnitten, gemahlen, geschmolzen oder vermischt hast, hat dieser Regel gehorcht. Wenn dir also jemand erzählt, er könne eine Kugel in fünf Teile zerlegen, die zu zwei identischen Kugeln zusammensetzbar sind, ist deine Bauchreaktion richtig: Nichts Physikalisches funktioniert so. Die Überraschung ist, dass in der reinen Mathematik etwas so funktionieren kann.",
     },
     {
       pretitle: "Abschnitt 02 · Das Auswahlaxiom",
@@ -194,7 +194,7 @@ const de: RichStory = {
   closingPretitle: "Sieh die Maschine",
   closingTitle: "Öffne den Explorer.",
   closingBody:
-    "Der Explorer zeichnet den Cayley-Baum von F₂ explizit: du kannst die vier Wortklassen markieren, die paradoxe Zerlegung zusammenfügen sehen und jedes Stück bis auf eine Drehung zurückverfolgen. Die Mathematik oben wird zu einem Bild, das du drehen kannst.",
+    "Der Explorer zeichnet den Cayley-Baum von F₂ explizit: Du kannst die vier Wortklassen markieren, die paradoxe Zerlegung zusammenfügen sehen und jedes Stück bis auf eine Drehung zurückverfolgen. Die Mathematik oben wird zu einem Bild, das du drehen kannst.",
   ctaLabel: "→ Zum Explorer",
 };
 
@@ -636,7 +636,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Din intuisjon",
       title: "Fysikken sier nei",
-      body: "Slipp en cricketball i gulvet. Skjær den rent. Hvilke biter enn som faller ut, må volumene deres summere til ballens volum. Det er materiebevaring, og verden lar deg ikke jukse. Alt du noensinne har kuttet, malt, smeltet eller blandet har fulgt denne regelen. Så når noen sier til deg at de kan skjære en kule i fem biter som settes sammen til to identiske kuler, er magefølelsen din riktig: ingenting fysisk fungerer slik. Overraskelsen er at i ren matematikk kan noe gjøre det.",
+      body: "Slipp en cricketball i gulvet. Skjær den rent. Hvilke biter enn som faller ut, må volumene deres summere til ballens volum. Det er materiebevaring, og verden lar deg ikke jukse. Alt du noensinne har kuttet, malt, smeltet eller blandet har fulgt denne regelen. Så når noen sier til deg at de kan skjære en kule i fem biter som settes sammen til to identiske kuler, er magefølelsen din riktig: Ingenting fysisk fungerer slik. Overraskelsen er at i ren matematikk kan noe gjøre det.",
     },
     {
       pretitle: "Avsnitt 02 · Utvalgsaksiomet",
@@ -676,7 +676,7 @@ const no: RichStory = {
   closingPretitle: "Se motoren",
   closingTitle: "Åpne Utforskeren.",
   closingBody:
-    "Utforskeren tegner Cayley-treet for F₂ eksplisitt: den lar deg merke de fire ordklassene, se den paradoksale dekomposisjonen settes sammen, og spore hver bit tilbake til en rotasjon. Matematikken over blir et bilde du kan rotere.",
+    "Utforskeren tegner Cayley-treet for F₂ eksplisitt: Den lar deg merke de fire ordklassene, se den paradoksale dekomposisjonen settes sammen, og spore hver bit tilbake til en rotasjon. Matematikken over blir et bilde du kan rotere.",
   ctaLabel: "→ Åpne Utforskeren",
 };
 

@@ -163,7 +163,7 @@ const de: RichStory = {
     title: "Die Collatz-Vermutung",
     tagline: "Gerade halbieren. Ungerade verdreifachen-plus-eins. Endet bei 1. Wahrscheinlich.",
     intro:
-      "Eine Regel in vier Wörtern, achtundachtzig Jahre Schweigen. Wähl eine positive ganze Zahl: ist sie gerade, halbiere, sonst ersetze sie durch 3n + 1, und die Folge fällt am Ende in den Zyklus 4 → 2 → 1. Computer haben jede ganze Zahl bis etwa 2⁶⁸ geprüft. Niemand hat bewiesen, dass es immer so kommen muss.",
+      "Eine Regel in vier Wörtern, achtundachtzig Jahre Schweigen. Wähl eine positive ganze Zahl: Ist sie gerade, halbiere, sonst ersetze sie durch 3n + 1, und die Folge fällt am Ende in den Zyklus 4 → 2 → 1. Computer haben jede ganze Zahl bis etwa 2⁶⁸ geprüft. Niemand hat bewiesen, dass es immer so kommen muss.",
     ctaInteractive: "→ Explorer öffnen",
     sections: [],
   },
@@ -745,7 +745,7 @@ const no: RichStory = {
     title: "Collatz-formodningen",
     tagline: "Partall, halver. Oddetall, tre-pluss-én. Ender på 1. Sannsynligvis.",
     intro:
-      "En regel på fire ord, åttiåtte års stillhet. Velg et positivt heltall: er det et partall, halver det; er det et oddetall, erstatt med 3n + 1, og følgen havner til slutt i sløyfen 4 → 2 → 1. Datamaskinene har sjekket hvert heltall opp til omtrent 2⁶⁸. Ingen har bevist at det må skje.",
+      "En regel på fire ord, åttiåtte års stillhet. Velg et positivt heltall: Er det et partall, halver det; er det et oddetall, erstatt med 3n + 1, og følgen havner til slutt i sløyfen 4 → 2 → 1. Datamaskinene har sjekket hvert heltall opp til omtrent 2⁶⁸. Ingen har bevist at det må skje.",
     ctaInteractive: "→ Åpne utforskeren",
     sections: [],
   },
@@ -786,12 +786,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Formodningen",
       title: "Hver vei leder til 4 → 2 → 1",
-      body: "Lothar Collatz skrev ned regelen i 1937 i Berlin, to år etter doktorgraden. Samme udyr ble gjenoppdaget uavhengig av Kakutani, Ulam og talleteoretikerne i Syracuse, og derfor kaller litteraturen den også Syracuse-problemet, Kakutanis problem og Ulam-formodningen. Påstanden er den samme overalt: for hvert positivt heltall n når iterasjonen T(n) til slutt 1 og roterer deretter for alltid i sløyfen 4 → 2 → 1. Per 2025 er den verifisert ved direkte regning for hvert heltall opp til 2⁶⁸. Ingen motrepresentanter. Heller intet bevis.",
+      body: "Lothar Collatz skrev ned regelen i 1937 i Berlin, to år etter doktorgraden. Samme udyr ble gjenoppdaget uavhengig av Kakutani, Ulam og talleteoretikerne i Syracuse, og derfor kaller litteraturen den også Syracuse-problemet, Kakutanis problem og Ulam-formodningen. Påstanden er den samme overalt: For hvert positivt heltall n når iterasjonen T(n) til slutt 1 og roterer deretter for alltid i sløyfen 4 → 2 → 1. Per 2025 er den verifisert ved direkte regning for hvert heltall opp til 2⁶⁸. Ingen motrepresentanter. Heller intet bevis.",
     },
     {
       pretitle: "Avsnitt 04 · Taos resultat fra 2019",
       title: "Nesten alle baner, nesten hele veien hjem",
-      body: "Det dypeste framskrittet kom i 2019 fra Terence Tao. Artikkelen ‘Almost all orbits of the Collatz map attain almost bounded values’ viser at for hver funksjon f(n) som går mot uendelig har mengden av startheltall hvis Collatz-bane til slutt synker under f(n) logaritmisk tetthet 1. På klarspråk: trekk et heltall tilfeldig; nesten sikkert ender banen med å krympe under hvilken som helst grense du setter på forhånd. Det er et sannsynlighetsteoretisk nesten-treff, ikke et bevis. Eventuelle motrepresentanter ville danne en unntaksmengde av mål null, men mål null er ikke tom, og Taos argument utelukker dem ikke.",
+      body: "Det dypeste framskrittet kom i 2019 fra Terence Tao. Artikkelen ‘Almost all orbits of the Collatz map attain almost bounded values’ viser at for hver funksjon f(n) som går mot uendelig har mengden av startheltall hvis Collatz-bane til slutt synker under f(n) logaritmisk tetthet 1. På klarspråk: Trekk et heltall tilfeldig; nesten sikkert ender banen med å krympe under hvilken som helst grense du setter på forhånd. Det er et sannsynlighetsteoretisk nesten-treff, ikke et bevis. Eventuelle motrepresentanter ville danne en unntaksmengde av mål null, men mål null er ikke tom, og Taos argument utelukker dem ikke.",
     },
     {
       pretitle: "Avsnitt 05 · Den omvendte korallen",

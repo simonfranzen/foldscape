@@ -282,7 +282,7 @@ const de: RichStory = {
         body: "Das ist die erste bekannte Monte-Carlo-Methode, lange bevor der Name 1947 in Los Alamos geprägt wurde. Buffons Nadel überbrückt Geometrie und Wahrscheinlichkeit: Sie zeigt, dass eine deterministische Konstante allein mit Zufall abgetastet werden kann. Moderne Beweise der Wahrscheinlichkeit stützen sich auf dieselbe Maschinerie: Ersetz ein hartes Integral durch einen Erwartungswert, tast den Erwartungswert ab, nimm den Grenzwert.",
       },
     ],
-    tryIt: "Unten: wirf ein paar tausend virtuelle Nadeln und sieh, wie π auftaucht.",
+    tryIt: "Unten: Wirf ein paar tausend virtuelle Nadeln und sieh, wie π auftaucht.",
   },
   sections: [
     {
@@ -346,7 +346,7 @@ const de: RichStory = {
     lastRowN: "3 408 (Lazzarini)",
     claimed: "behauptet 0.0000003",
     footnote:
-      "Die letzte Zeile ist keine Aussage über den Zufall: sie ist eine Aussage über einen Mann, der bei genau der richtigen Nadel aufhört.",
+      "Die letzte Zeile ist keine Aussage über den Zufall: Sie ist eine Aussage über einen Mann, der bei genau der richtigen Nadel aufhört.",
   },
   bertrand: {
     caption: "Bertrand 1889 · drei Antworten auf eine Frage",
@@ -942,7 +942,7 @@ const no: RichStory = {
         body: "Dette er den første kjente Monte Carlo-metoden, lenge før navnet ble myntet i Los Alamos i 1947. Buffons nål binder geometri og sannsynlighet sammen: Den viser at en deterministisk konstant kan samples med bare tilfeldighet. Moderne sannsynlighetsbevis hviler på samme maskineri: Bytt ut et hardt integral mot en forventningsverdi, sampl forventningsverdien, ta grensen.",
       },
     ],
-    tryIt: "Under: slipp noen tusen virtuelle nåler og se π tre fram.",
+    tryIt: "Under: Slipp noen tusen virtuelle nåler og se π tre fram.",
   },
   sections: [
     {
@@ -1006,7 +1006,7 @@ const no: RichStory = {
     lastRowN: "3 408 (Lazzarini)",
     claimed: "påstått 0.0000003",
     footnote:
-      "Den siste raden er ikke et faktum om tilfeldigheten: den er et faktum om en mann som stoppet ved nøyaktig riktig nål.",
+      "Den siste raden er ikke et faktum om tilfeldigheten: Den er et faktum om en mann som stoppet ved nøyaktig riktig nål.",
   },
   bertrand: {
     caption: "Bertrand 1889 · tre svar på ett spørsmål",

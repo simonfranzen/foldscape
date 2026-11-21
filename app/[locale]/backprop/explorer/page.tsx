@@ -360,7 +360,7 @@ const E: Record<Locale, RichExplorer> = {
       "Rav = nettet sier klasse 1, cyan = klasse 0. Se hvordan områdene forvrenges mens tapet faller.",
     whatYouSeeLabel: "Det du ser",
     whatYouSeeInit:
-      "Tilfeldige vekter. Beslutningsoverflaten er en myk, nesten meningsløs gradient: nettet vet ikke ennå hva oppgaven er. Trykk start og se backprop omforme overflaten mot dataene.",
+      "Tilfeldige vekter. Beslutningsoverflaten er en myk, nesten meningsløs gradient: Nettet vet ikke ennå hva oppgaven er. Trykk start og se backprop omforme overflaten mot dataene.",
     whatYouSeeTraining:
       "Hver epoke går gjennom hele treningsdatasettet én gang. Kjerneregelen, gått baklengs gjennom hvert lag, gir hver vekt sin andel av skylda for det nåværende tapet; optimaliseringen skyver så hver vekt nedover. Den synlige beslutningsgrensen er nivåmengden ŷ = 0,5 av utgangen.",
     whatYouSeeConverged:

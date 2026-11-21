@@ -165,7 +165,7 @@ const de: RichAbout = {
       "Es gibt einen MINT-Grund und einen leiseren, persönlicheren. Mathematische Ideen werden zu oft als Geheimsprache präsentiert, deren Eintrittspreis ein Studium ist. Das stimmt nicht. Banach-Tarski, Hilberts Hotel, die Mandelbrot-Menge: Das sind keine Hochburgen, sondern Erzählungen. Sie verdienen ein Publikum, das sie anfassen, drehen, zerlegen und durchstöbern darf, ohne erst eine Prüfung zu bestehen.",
       "Mir liegt besonders daran, Frauen in Mathematik und Informatik zu stärken. Beide Felder sind reicher und ehrlicher, wenn alle, die in ihnen denken könnten, es auch tun. Ein Atlas allein verändert das nicht, aber er kann eine kleine, freundliche Tür sein, und er kann die richtigen Räume mitfinanzieren.",
       "Konkret: Einnahmen aus diesem Projekt fließen vollständig an Organisationen, die Forschende, Studierende und junge Menschen (insbesondere Frauen und nicht-binäre Personen) in Mathematik und Informatik stärken. Keine versteckten Kosten, keine Werbe-Umwege.",
-      "Ich bin keine neutrale Stimme hier. Das ist eine sehr persönliche Sammlung, kuratiert mit der Hand, die sie geschrieben hat. Wenn es dir gefällt: schick es weiter. Wenn dich etwas stört: schreib mir.",
+      "Ich bin keine neutrale Stimme hier. Das ist eine sehr persönliche Sammlung, kuratiert mit der Hand, die sie geschrieben hat. Wenn es dir gefällt: Schick es weiter. Wenn dich etwas stört: Schreib mir.",
     ],
   },
   studio: {

@@ -115,7 +115,7 @@ const FIGURE: Record<Locale, FigureLabels> = {
         "Ein Sonntagsspaziergangs-Rätsel: jede Brücke genau einmal überqueren und am Ausgangspunkt enden. Die Bürger versuchten es jahrzehntelang. Niemand konnte beweisen, dass es unmöglich war, bis Euler kam.",
       northBank: "Nordufer",
       southBank: "Südufer",
-      aria: "Schematische Karte von Königsberg: ein Fluss verläuft von Ost nach West, zwei Inseln (Kneiphof im Westen, Lomse im Osten) sind durch sieben gebogene Brücken mit den Ufern und miteinander verbunden.",
+      aria: "Schematische Karte von Königsberg: Ein Fluss verläuft von Ost nach West, zwei Inseln (Kneiphof im Westen, Lomse im Osten) sind durch sieben gebogene Brücken mit den Ufern und miteinander verbunden.",
     },
     fig2: {
       pretitle: "Abbildung 2 · Von der Stadt zum Graphen",
@@ -409,7 +409,7 @@ const FIGURE: Record<Locale, FigureLabels> = {
         "En søndagsspaserturs-gåte: krysse hver bro nøyaktig én gang og ende der du startet. Byboerne forsøkte i tiår. Ingen klarte å bevise at det var umulig, før Euler dukket opp.",
       northBank: "nordbredden",
       southBank: "sørbredden",
-      aria: "Skjematisk kart over Königsberg: en elv renner fra øst til vest, to øyer (Kneiphof i vest, Lomse i øst) er forbundet med bredden og med hverandre via sju buede broer.",
+      aria: "Skjematisk kart over Königsberg: En elv renner fra øst til vest, to øyer (Kneiphof i vest, Lomse i øst) er forbundet med bredden og med hverandre via sju buede broer.",
     },
     fig2: {
       pretitle: "Figur 2 · Fra by til graf",

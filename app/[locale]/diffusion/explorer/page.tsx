@@ -111,7 +111,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     topicTitle: "Thema · Diffusion",
     topicTagline: "Ein Score-Netz lernt das Datenfeld, Wanderer laufen aus Rauschen zurück.",
     topicBody:
-      "Training und Sampling starten, sobald die Seite lädt. Ein kleiner MLP verbessert im Hintergrund laufend seine Rauschvorhersage; rosa Wanderer entrauschen sich kontinuierlich aus einer Gauß-Wolke auf die Datenmannigfaltigkeit, starten neu und tun es wieder. Wechsle Datensatz, Schedule oder T jederzeit: die Kette ordnet sich live neu.",
+      "Training und Sampling starten, sobald die Seite lädt. Ein kleiner MLP verbessert im Hintergrund laufend seine Rauschvorhersage; rosa Wanderer entrauschen sich kontinuierlich aus einer Gauß-Wolke auf die Datenmannigfaltigkeit, starten neu und tun es wieder. Wechsle Datensatz, Schedule oder T jederzeit: Die Kette ordnet sich live neu.",
     scatterBadge: "2D-Spielzeug-Diffusion · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Datensatz",
@@ -141,7 +141,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatNowConverged: "die Wanderer sind auf der Datenmannigfaltigkeit gelandet",
     whatYouSeeLabel: "Die Leinwand lesen",
     whatYouSeeP1:
-      "Cyan-Punkte: die Spielzeug-Datenverteilung. Der Entrauscher sieht nur verrauschte Kopien davon im Training: er merkt sich keine Positionen, sondern lernt das lokale «wo ist innen?»-Feld.",
+      "Cyan-Punkte: die Spielzeug-Datenverteilung. Der Entrauscher sieht nur verrauschte Kopien davon im Training: Er merkt sich keine Positionen, sondern lernt das lokale «wo ist innen?»-Feld.",
     whatYouSeeP2:
       "Rosa-Punkte: Wanderer aus reinem 2D-Gauß-Rauschen, T Schritte rückwärts durch die gelernte Kette geschoben, mit verblassenden Pfaden. Schwacher blauer Schein: die Stärke von −ε_θ bei mittlerem Rauschen, das Score-Feld, an dem die Wanderer hinabrutschen.",
   },
@@ -340,7 +340,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     topicTitle: "Tema · Diffusjon",
     topicTagline: "Et score-nett lærer feltet, vandrere går tilbake fra støy.",
     topicBody:
-      "Trening og sampling starter i det siden lastes. Et lite MLP fortsetter å forbedre støyprediksjonen i bakgrunnen; rosa vandrere fjerner støy uavbrutt fra en gaussisk sky inn på datamangfoldigheten, starter på nytt og gjør det igjen. Bytt datasett, plan eller T når du vil: kjeden omorganiserer seg live.",
+      "Trening og sampling starter i det siden lastes. Et lite MLP fortsetter å forbedre støyprediksjonen i bakgrunnen; rosa vandrere fjerner støy uavbrutt fra en gaussisk sky inn på datamangfoldigheten, starter på nytt og gjør det igjen. Bytt datasett, plan eller T når du vil: Kjeden omorganiserer seg live.",
     scatterBadge: "2D-diffusjon · live",
     formulaBadge: "ε_θ(x_t, t) ≈ ε",
     datasetLabel: "Datasett",
@@ -369,7 +369,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatNowConverged: "vandrerne har kollapset på datamangfoldigheten",
     whatYouSeeLabel: "Lese lerretet",
     whatYouSeeP1:
-      "Cyan-prikker: leketøys-datafordelingen. Støyfjerneren ser dem kun (støyete) under trening: den memorerer ikke posisjoner; den lærer det lokale 'hvilken vei er innover?'-feltet.",
+      "Cyan-prikker: leketøys-datafordelingen. Støyfjerneren ser dem kun (støyete) under trening: Den memorerer ikke posisjoner; den lærer det lokale 'hvilken vei er innover?'-feltet.",
     whatYouSeeP2:
       "Rosa prikker: vandrere trukket fra ren 2D-gaussisk støy og dyttet T steg bakover gjennom den lærte kjeden, med falmende spor. Svakt blått skjær: størrelsen av −ε_θ ved middels støy, score-feltet de glir nedover.",
   },

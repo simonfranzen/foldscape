@@ -1821,7 +1821,7 @@ const de: Partial<Record<TopicId, Application[]>> = {
     {
       domain: "Antivirensoftware",
       description:
-        "Warum kein Virenscanner jede Schadsoftware erkennt: feindliche Programme perfekt zu erkennen, würde eine Variante des Halteproblems lösen.",
+        "Warum kein Virenscanner jede Schadsoftware erkennt: Feindliche Programme perfekt zu erkennen, würde eine Variante des Halteproblems lösen.",
     },
     {
       domain: "Compute-Clouds",
@@ -8014,7 +8014,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Undervisning",
         description:
-          "Et yndet introduksjonseksempel i kurs om cellulære automater: «motorvei»-fasen er et av de mest tilgjengelige emergente fenomenene i informatikken.",
+          "Et yndet introduksjonseksempel i kurs om cellulære automater: «Motorvei»-fasen er et av de mest tilgjengelige emergente fenomenene i informatikken.",
       },
     ],
     pascalmod: [
@@ -8165,7 +8165,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Antivirus",
         description:
-          "Hvorfor ingen antivirus fanger all skadelig kode: å oppdage fiendtlige programmer perfekt ville løse en variant av stoppeproblemet.",
+          "Hvorfor ingen antivirus fanger all skadelig kode: Å oppdage fiendtlige programmer perfekt ville løse en variant av stoppeproblemet.",
       },
       {
         domain: "Skytjenester for beregning",

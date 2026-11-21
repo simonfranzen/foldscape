@@ -216,7 +216,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     inlineRho: {
       caption: "Live · ρ von 0,5 bis 35 variieren",
       rhoLabel: "ρ",
-      hint: "Unter 1: die Bahn fällt in den Ursprung. Um 13,9: sie landet in einem von zwei Fixpunkten. Ab ≈24,7: der Schmetterling erscheint.",
+      hint: "Unter 1: Die Bahn fällt in den Ursprung. Um 13,9: Sie landet in einem von zwei Fixpunkten. Ab ≈24,7: Der Schmetterling erscheint.",
     },
     twoOrbits: {
       captionA: "Bahn A · x₀ = 0,1",
@@ -768,7 +768,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     inlineRho: {
       caption: "Live · varier ρ fra 0,5 til 35",
       rhoLabel: "ρ",
-      hint: "Under 1: banen faller til origo. Rundt 13,9: den slår seg til ro på ett av to faste punkter. Forbi ≈24,7: sommerfuglen trer fram.",
+      hint: "Under 1: Banen faller til origo. Rundt 13,9: Den slår seg til ro på ett av to faste punkter. Forbi ≈24,7: Sommerfuglen trer fram.",
     },
     twoOrbits: {
       captionA: "Bane A · x₀ = 0,1",

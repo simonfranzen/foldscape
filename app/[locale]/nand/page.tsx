@@ -234,7 +234,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "NAND ist einfach AND mit umgedrehter Antwort. Schau die Wahrheitstafel an: nur eine Zeile ist 0 (wenn beide Eingänge 1 sind), die anderen drei sind 1. Aus dieser einen Tatsache folgt alles: NOT a = a NAND a. Zwei NANDs ergeben AND. Drei ergeben OR. Vier ergeben XOR. Der Rest ist Komposition.",
+        body: "NAND ist einfach AND mit umgedrehter Antwort. Schau die Wahrheitstafel an: Nur eine Zeile ist 0 (wenn beide Eingänge 1 sind), die anderen drei sind 1. Aus dieser einen Tatsache folgt alles: NOT a = a NAND a. Zwei NANDs ergeben AND. Drei ergeben OR. Vier ergeben XOR. Der Rest ist Komposition.",
       },
       {
         label: "03",
@@ -242,7 +242,7 @@ const de: RichStory = {
         body: "Moderne CPUs sind physisch ein Meer aus NAND-Gattern, in Silizium geätzt: Milliarden davon, identisch, in ordentlichen Reihen. Die Komplexität eines Prozessors steckt nicht in den Teilen, sondern in der Verdrahtung. Wähle das richtige Primitiv, und alles wird zur Montage.",
       },
     ],
-    tryIt: "Unten: kipp die Bits, sieh die Gatter sich neu verdrahten, bau selbst das Universum.",
+    tryIt: "Unten: Kipp die Bits, sieh die Gatter sich neu verdrahten, bau selbst das Universum.",
   },
   sections: [
     {
@@ -304,7 +304,7 @@ const de: RichStory = {
         NOT: "Beide Eingänge eines einzigen NAND auf a verbinden.",
         AND: "NAND, dann NAND mit gekoppelten Eingängen (= NOT). Zwei Gatter.",
         OR: "Zwei NOTs, in ein NAND. Drei Gatter.",
-        XOR: "Eine Raute: ein NAND fächert in zwei weitere, ein letztes NAND führt zusammen. Vier Gatter.",
+        XOR: "Eine Raute: Ein NAND fächert in zwei weitere, ein letztes NAND führt zusammen. Vier Gatter.",
       },
     },
   },
@@ -1089,7 +1089,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "NAND er bare AND med svaret snudd. Se på sannhetstabellen: bare én rad er 0 (når begge inngangene er 1); de andre tre er 1. Ut fra det ene faktum følger alt: NOT a = a NAND a. To NAND gir AND. Tre gir OR. Fire gir XOR. Resten er sammensetning.",
+        body: "NAND er bare AND med svaret snudd. Se på sannhetstabellen: Bare én rad er 0 (når begge inngangene er 1); de andre tre er 1. Ut fra det ene faktum følger alt: NOT a = a NAND a. To NAND gir AND. Tre gir OR. Fire gir XOR. Resten er sammensetning.",
       },
       {
         label: "03",
@@ -1097,7 +1097,7 @@ const no: RichStory = {
         body: "Moderne CPU-er er fysisk et hav av NAND-porter etset inn i silisium: milliarder, identiske, i ryddige rader. Kompleksiteten til en prosessor ligger ikke i delene, men i ledningsføringen. Velg den rette primitiven, så blir alt montering.",
       },
     ],
-    tryIt: "Under: vipp bitene, se portene koble seg om, bygg selv universet.",
+    tryIt: "Under: Vipp bitene, se portene koble seg om, bygg selv universet.",
   },
   sections: [
     {

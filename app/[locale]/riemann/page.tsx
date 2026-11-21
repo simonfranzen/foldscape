@@ -625,7 +625,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Under: vandre med ζ langs den kritiske linjen og se kurven løkke gjennom origo ved hvert nullpunkt. Utforskeren forstørrer det samme bildet.",
+      "Under: Vandre med ζ langs den kritiske linjen og se kurven løkke gjennom origo ved hvert nullpunkt. Utforskeren forstørrer det samme bildet.",
   },
   sections: [
     {

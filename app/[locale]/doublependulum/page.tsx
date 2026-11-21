@@ -217,7 +217,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           pretitle: "Schritt drei · Chaos",
           title: "Niedrige Energie: schön. Hohe Energie: unvorhersehbar.",
-          body: "Bei niedriger Energie sanfte quasiperiodische Bewegung auf einem invarianten Torus. Über eine kritische Energie hinaus wird das System chaotisch: der größte Lyapunov-Exponent wird positiv, und ein Unterschied von eins zu einer Million am Start wird in Sekunden zur völligen Uneinigkeit.",
+          body: "Bei niedriger Energie sanfte quasiperiodische Bewegung auf einem invarianten Torus. Über eine kritische Energie hinaus wird das System chaotisch: Der größte Lyapunov-Exponent wird positiv, und ein Unterschied von eins zu einer Million am Start wird in Sekunden zur völligen Uneinigkeit.",
         },
         {
           pretitle: "Schritt vier · Wo es auftaucht",
@@ -278,7 +278,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt sechs · Verbindungen",
         title: "Von Roboterarmen über Hirnrhythmen zum Chaos im Sonnensystem",
-        body: "Dieselbe gekoppelte Mathematik regelt zweigliedrige Roboterarme (wo Regelungstechniker:innen das Chaos bekämpfen), den menschlichen Gang (wo das schwingende Bein im Wesentlichen ein passives Doppelpendel ist) und Ketten gekoppelter Oszillatoren in Stromnetzen, Herzschrittmachern und Kuramotos universeller Synchronisation. Der KAM-Mechanismus hinter dem Regimewechsel läuft auch im Sonnensystem: die Planeten, sorgfältig modelliert, sind auf Gigajahre-Skalen chaotisch.",
+        body: "Dieselbe gekoppelte Mathematik regelt zweigliedrige Roboterarme (wo Regelungstechniker:innen das Chaos bekämpfen), den menschlichen Gang (wo das schwingende Bein im Wesentlichen ein passives Doppelpendel ist) und Ketten gekoppelter Oszillatoren in Stromnetzen, Herzschrittmachern und Kuramotos universeller Synchronisation. Der KAM-Mechanismus hinter dem Regimewechsel läuft auch im Sonnensystem: Die Planeten, sorgfältig modelliert, sind auf Gigajahre-Skalen chaotisch.",
       },
     ],
     simCaption: "Live · Doppelpendel",
@@ -991,7 +991,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           pretitle: "Steg tre · Kaos",
           title: "Lav energi: pent. Høy energi: uforutsigbart.",
-          body: "Ved lav energi myk kvasiperiodisk bevegelse på en invariant torus. Forbi en kritisk energi blir systemet kaotisk: største Lyapunov-eksponent blir positiv, og en millionsdels forskjell ved start blir total uenighet på sekunder.",
+          body: "Ved lav energi myk kvasiperiodisk bevegelse på en invariant torus. Forbi en kritisk energi blir systemet kaotisk: Største Lyapunov-eksponent blir positiv, og en millionsdels forskjell ved start blir total uenighet på sekunder.",
         },
         {
           pretitle: "Steg fire · Hvor det dukker opp",
@@ -1052,7 +1052,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del seks · Forbindelser",
         title: "Fra robotarmer til hjernrytmer og Solsystemets kaos",
-        body: "Den samme matematikken for koblede rotorer styrer tolinks robotarmer (der reguleringsteknikere kjemper for å kvele kaoset), menneskelig gange (der det svingende beinet i bunn og grunn er en passiv dobbeltpendel), og kjeder av koblede oscillatorer som modellerer strømnett, pacemakere og Kuramotos universelle synkronisering. KAM-mekanismen bak regimeskiftet løper også i Solsystemet: planetene, modellert nøye, er kaotiske på gigaårsskalaer.",
+        body: "Den samme matematikken for koblede rotorer styrer tolinks robotarmer (der reguleringsteknikere kjemper for å kvele kaoset), menneskelig gange (der det svingende beinet i bunn og grunn er en passiv dobbeltpendel), og kjeder av koblede oscillatorer som modellerer strømnett, pacemakere og Kuramotos universelle synkronisering. KAM-mekanismen bak regimeskiftet løper også i Solsystemet: Planetene, modellert nøye, er kaotiske på gigaårsskalaer.",
       },
     ],
     simCaption: "Live · dobbeltpendel",

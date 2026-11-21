@@ -173,7 +173,7 @@ const de: RichStory = {
         body: "JPEG und MP3 werfen die Obertöne weg, die Auge und Ohr nicht bemerken. MRT-Scanner messen direkt Stichproben im Frequenzraum und rekonstruieren daraus den Körper. WLAN und 5G stapeln Daten parallel auf Tausende Sinusträger. Hinter allem steht dieselbe eine Tatsache.",
       },
     ],
-    tryIt: "Unten: bau eine Rechteckwelle von Hand, dann forme einen Klang mit Reglern.",
+    tryIt: "Unten: Bau eine Rechteckwelle von Hand, dann forme einen Klang mit Reglern.",
   },
   sections: [
     {
@@ -769,7 +769,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Nedenfor: bygg en firkantbølge for hånd, og form deretter en lyd ved å dra glidebrytere.",
+      "Nedenfor: Bygg en firkantbølge for hånd, og form deretter en lyd ved å dra glidebrytere.",
   },
   sections: [
     {
