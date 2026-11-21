@@ -128,7 +128,7 @@ const de: RichStory = {
     title: "Denoising-Diffusionsmodelle",
     tagline: "Bildrauschen, rückwärts zu einem Bild gelaufen.",
     intro:
-      "Nimm ein Foto, mische ein wenig Gauß-Rauschen darunter, wiederhole tausendmal, und das Foto wird zu reinem Rauschen. Ein Diffusionsmodell ist ein neuronales Netz, das gelernt hat, diesen Prozess rückwärts zu gehen: gegeben Rauschen, sage die etwas weniger verrauschte Version voraus, und nochmal, und nochmal, bis ein frisches Bild entsteht. Stable Diffusion, Midjourney, DALL·E und Sora sind alle dieselbe Idee, hochskaliert mit Text-Konditionierung und einem gelernten Latentraum.",
+      "Nimm ein Foto, mische ein wenig Gauß-Rauschen darunter, wiederhole tausendmal, und das Foto wird zu reinem Rauschen. Ein Diffusionsmodell ist ein neuronales Netz, das gelernt hat, diesen Prozess rückwärts zu gehen: Gegeben Rauschen, sage die etwas weniger verrauschte Version voraus, und nochmal, und nochmal, bis ein frisches Bild entsteht. Stable Diffusion, Midjourney, DALL·E und Sora sind alle dieselbe Idee, hochskaliert mit Text-Konditionierung und einem gelernten Latentraum.",
     ctaInteractive: "→ Zum Explorer",
   },
   encounter: {
@@ -138,17 +138,17 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Diffusion behandelt Bilderzeugung als Entrauschen. Der Vorwärtsprozess ist eine Markov-Kette, die Daten allmählich in Gauß-Rauschen zerstört; der Rückwärtsprozess ist eine gelernte Kette, die reines Rauschen wieder zu Daten macht. Trainiere die Rückwärtsrichtung an genügend Bildern und sie generalisiert: ziehe frisches Rauschen, laufe es zurück, erhalte ein nagelneues Bild, das es nie gab.",
+        body: "Diffusion behandelt Bilderzeugung als Entrauschen. Der Vorwärtsprozess ist eine Markov-Kette, die Daten allmählich in Gauß-Rauschen zerstört; der Rückwärtsprozess ist eine gelernte Kette, die reines Rauschen wieder zu Daten macht. Trainiere die Rückwärtsrichtung an genügend Bildern und sie generalisiert: Ziehe frisches Rauschen, laufe es zurück, erhalte ein nagelneues Bild, das es nie gab.",
       },
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Zeige einem U-Net Tausende Tupel aus (Bild, Rauschstufe, teilweise verrauschtes Bild) und frage: welches Rauschen wurde hinzugefügt? Sobald es das Rauschen auf jeder Stufe verlässlich rät, kehrst du die Frage um: beginne bei reinem Rauschen und ziehe die Vorhersage in tausend kleinen Schritten ab. Was vorher Bildrauschen war, wird Bild für Bild zu etwas Kohärentem.",
+        body: "Zeige einem U-Net Tausende Tupel aus (Bild, Rauschstufe, teilweise verrauschtes Bild) und frage: Welches Rauschen wurde hinzugefügt? Sobald es das Rauschen auf jeder Stufe verlässlich rät, kehrst du die Frage um: Beginne bei reinem Rauschen und ziehe die Vorhersage in tausend kleinen Schritten ab. Was vorher Bildrauschen war, wird Bild für Bild zu etwas Kohärentem.",
       },
       {
         label: "03",
         title: "Warum es wichtig ist",
-        body: "Diffusion löste 2022 die GANs als dominierende Methode der Bildgenerierung ab, weil sie stabil trainiert, sauber skaliert und beliebige Konditionierung akzeptiert. Dieselbe Mathematik treibt heute Wirkstoff-Backbones, Audio-Synthese, Videomodelle und sogar Klimasimulationen: überall, wo man sich einen Prozess vorstellen kann, der Struktur langsam zerstört, kann man lernen, ihn umzukehren.",
+        body: "Diffusion löste 2022 die GANs als dominierende Methode der Bildgenerierung ab, weil sie stabil trainiert, sauber skaliert und beliebige Konditionierung akzeptiert. Dieselbe Mathematik treibt heute Wirkstoff-Backbones, Audio-Synthese, Videomodelle und sogar Klimasimulationen: Überall, wo man sich einen Prozess vorstellen kann, der Struktur langsam zerstört, kann man lernen, ihn umzukehren.",
       },
     ],
     tryIt:
@@ -158,12 +158,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Der Vorwärtsprozess",
       title: "Wie ein Bild zu Rauschen wird",
-      body: "Wähle einen Rauschplan, eine kleine Folge β₁ < β₂ < … < β_T von Varianzen. Im Schritt t ersetze jeden Pixel durch √(1−β_t)·x_{t−1} + √β_t·ε, wobei ε frisches Gauß-Rauschen ist. T = 1000 Mal iteriert treibt das jedes Bild in eine Probe aus N(0, I): der ursprüngliche Inhalt ist unwiederbringlich weg. Eine saubere Algebra rollt die ganze Kette in eine geschlossene Form, q(x_t | x_0) = N(√ᾱ_t · x_0, (1−ᾱ_t) I), sodass du direkt zu jeder Rauschstufe springen kannst, ohne jeden Schritt zu simulieren.",
+      body: "Wähle einen Rauschplan, eine kleine Folge β₁ < β₂ < … < β_T von Varianzen. Im Schritt t ersetze jeden Pixel durch √(1−β_t)·x_{t−1} + √β_t·ε, wobei ε frisches Gauß-Rauschen ist. T = 1000 Mal iteriert treibt das jedes Bild in eine Probe aus N(0, I): Der ursprüngliche Inhalt ist unwiederbringlich weg. Eine saubere Algebra rollt die ganze Kette in eine geschlossene Form, q(x_t | x_0) = N(√ᾱ_t · x_0, (1−ᾱ_t) I), sodass du direkt zu jeder Rauschstufe springen kannst, ohne jeden Schritt zu simulieren.",
     },
     {
       pretitle: "Abschnitt 02 · Der Rückwärtsprozess",
       title: "Rauschen Schritt für Schritt rückgängig machen lernen",
-      body: "Die Rückwärtskette p_θ(x_{t−1} | x_t) ist das, was das Netz lernt. Sohl-Dickstein (2015) zeigte, dass die Rückwärtsschritte ebenfalls gaußisch sind, wenn die Vorwärtsschritte klein genug sind, sodass ein Netz nur ihre Mittel und Varianzen lernen muss. Ho, Jain & Abbeel (2020), die DDPM-Arbeit, vereinfachten den Verlust zu ‖ε − ε_θ(x_t, t)‖², also: sage das Rauschen voraus, das zu x_0 hinzugefügt wurde. Diese Umformulierung machte Diffusion erst praktikabel: ein winziges, klares Regressionsziel ersetzt eine widerspenstige Variationsschranke.",
+      body: "Die Rückwärtskette p_θ(x_{t−1} | x_t) ist das, was das Netz lernt. Sohl-Dickstein (2015) zeigte, dass die Rückwärtsschritte ebenfalls gaußisch sind, wenn die Vorwärtsschritte klein genug sind, sodass ein Netz nur ihre Mittel und Varianzen lernen muss. Ho, Jain & Abbeel (2020), die DDPM-Arbeit, vereinfachten den Verlust zu ‖ε − ε_θ(x_t, t)‖², also: Sage das Rauschen voraus, das zu x_0 hinzugefügt wurde. Diese Umformulierung machte Diffusion erst praktikabel: Ein winziges, klares Regressionsziel ersetzt eine widerspenstige Variationsschranke.",
     },
     {
       pretitle: "Abschnitt 03 · Warum ein U-Net Rauschen vorhersagt",
@@ -614,7 +614,7 @@ const no: RichStory = {
     title: "Diffusjonsmodeller med støyfjerning",
     tagline: "Støy, vandret baklengs til et bilde.",
     intro:
-      "Ta et fotografi, strø på litt gaussisk støy, gjenta tusen ganger: fotografiet blir til ren snø. En diffusjonsmodell er et nevralt nettverk trent til å vandre den prosessen baklengs: gitt støy, forutsi den litt mindre støyete versjonen, og en gang til, og en gang til, til et nytt bilde dukker opp. Stable Diffusion, Midjourney, DALL·E og Sora er alle den samme idéen, oppskalert med tekstbetinging og et lært latentrom.",
+      "Ta et fotografi, strø på litt gaussisk støy, gjenta tusen ganger: Fotografiet blir til ren snø. En diffusjonsmodell er et nevralt nettverk trent til å vandre den prosessen baklengs: Gitt støy, forutsi den litt mindre støyete versjonen, og en gang til, og en gang til, til et nytt bilde dukker opp. Stable Diffusion, Midjourney, DALL·E og Sora er alle den samme idéen, oppskalert med tekstbetinging og et lært latentrom.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -624,17 +624,17 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Diffusjon behandler bildegenerering som støyfjerning. Den fremoverrettede prosessen er en Markov-kjede som gradvis korrumperer data til gaussisk støy; den bakoverrettede prosessen er en lært kjede som tar ren støy tilbake til data. Tren den bakoverrettede på nok bilder, og den generaliserer: sampl ny støy, vandre den baklengs, få et helt nytt bilde som aldri har eksistert.",
+        body: "Diffusjon behandler bildegenerering som støyfjerning. Den fremoverrettede prosessen er en Markov-kjede som gradvis korrumperer data til gaussisk støy; den bakoverrettede prosessen er en lært kjede som tar ren støy tilbake til data. Tren den bakoverrettede på nok bilder, og den generaliserer: Sampl ny støy, vandre den baklengs, få et helt nytt bilde som aldri har eksistert.",
       },
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Vis et U-Net tusenvis av trippeller (bilde, støynivå, delvis støyete bilde) og spør: hvilken nøyaktig støy ble lagt til? Når den gjetter støyen pålitelig på hvilket nivå som helst, snur du spørsmålet: start fra ren støy og trekk fra prediksjonen i tusen små steg. Det som var snø konvergerer, bilderute for bilderute, til noe sammenhengende.",
+        body: "Vis et U-Net tusenvis av trippeller (bilde, støynivå, delvis støyete bilde) og spør: Hvilken nøyaktig støy ble lagt til? Når den gjetter støyen pålitelig på hvilket nivå som helst, snur du spørsmålet: Start fra ren støy og trekk fra prediksjonen i tusen små steg. Det som var snø konvergerer, bilderute for bilderute, til noe sammenhengende.",
       },
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Diffusjon avløste GAN-ene i 2022 som dominerende metode for bildegenerering fordi den trener stabilt, skalerer rent og tar imot vilkårlig betinging. Den samme matematikken driver i dag medikament-backbones, lydsyntese, videomodeller og selv klimatnedskalering: overalt der du kan se for deg en prosess som sakte ødelegger struktur, kan du se for deg å lære den motsatt vei.",
+        body: "Diffusjon avløste GAN-ene i 2022 som dominerende metode for bildegenerering fordi den trener stabilt, skalerer rent og tar imot vilkårlig betinging. Den samme matematikken driver i dag medikament-backbones, lydsyntese, videomodeller og selv klimatnedskalering: Overalt der du kan se for deg en prosess som sakte ødelegger struktur, kan du se for deg å lære den motsatt vei.",
       },
     ],
     tryIt:
@@ -644,12 +644,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Den fremoverrettede prosessen",
       title: "Hvordan et bilde blir til støy",
-      body: "Velg en støyplan, en liten følge β₁ < β₂ < … < β_T av varianser. I steg t, erstatt hver piksel med √(1−β_t)·x_{t−1} + √β_t·ε, der ε er ny gaussisk støy. Iterert T = 1000 ganger driver det hvert bilde til en prøve fra N(0, I): det opprinnelige innholdet er uigjenkallelig borte. Litt ren algebra ruller hele kjeden inn i en enkelt lukket form, q(x_t | x_0) = N(√ᾱ_t · x_0, (1−ᾱ_t) I), slik at du kan hoppe direkte til ethvert støynivå uten å simulere hvert steg.",
+      body: "Velg en støyplan, en liten følge β₁ < β₂ < … < β_T av varianser. I steg t, erstatt hver piksel med √(1−β_t)·x_{t−1} + √β_t·ε, der ε er ny gaussisk støy. Iterert T = 1000 ganger driver det hvert bilde til en prøve fra N(0, I): Det opprinnelige innholdet er uigjenkallelig borte. Litt ren algebra ruller hele kjeden inn i en enkelt lukket form, q(x_t | x_0) = N(√ᾱ_t · x_0, (1−ᾱ_t) I), slik at du kan hoppe direkte til ethvert støynivå uten å simulere hvert steg.",
     },
     {
       pretitle: "Avsnitt 02 · Den bakoverrettede prosessen",
       title: "Lære å oppheve støy, ett steg av gangen",
-      body: "Bakoverkjeden p_θ(x_{t−1} | x_t) er det nettet lærer. Sohl-Dickstein (2015) viste at hvis fremoverstegene er små, er bakoverstegene også gaussiske, slik at et nett bare trenger å lære deres middelverdier og varianser. Ho, Jain & Abbeel (2020), DDPM-artikkelen, forenklet tapet til ‖ε − ε_θ(x_t, t)‖², altså: forutsi støyen som ble lagt til x_0. Den omformuleringen gjorde diffusjon praktisk: et bittelite, rent regresjonsmål erstatter en krevende variasjonsgrense.",
+      body: "Bakoverkjeden p_θ(x_{t−1} | x_t) er det nettet lærer. Sohl-Dickstein (2015) viste at hvis fremoverstegene er små, er bakoverstegene også gaussiske, slik at et nett bare trenger å lære deres middelverdier og varianser. Ho, Jain & Abbeel (2020), DDPM-artikkelen, forenklet tapet til ‖ε − ε_θ(x_t, t)‖², altså: Forutsi støyen som ble lagt til x_0. Den omformuleringen gjorde diffusjon praktisk: Et bittelite, rent regresjonsmål erstatter en krevende variasjonsgrense.",
     },
     {
       pretitle: "Avsnitt 03 · Hvorfor et U-Net forutsier støy",

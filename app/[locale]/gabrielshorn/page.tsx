@@ -352,7 +352,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 04 · Le paradoxe du peintre",
       title: "Remplir oui, peindre non, et pourquoi c'est cohérent",
-      body: "La peinture réelle a une épaisseur ε. Couvrir une surface infinie d'une couche d'épaisseur ε > 0 demande un volume infini, pas de contradiction avec A = ∞. Le « remplissage » mathématique utilise une peinture d'épaisseur nulle sur la paroi ; à cette limite, la paroi intérieure est la même surface infinie, abordée autrement. Lâche l'hypothèse physique et le paradoxe se dissout.",
+      body: "La peinture réelle a une épaisseur ε. Couvrir une surface infinie d'une couche d'épaisseur ε > 0 demande un volume infini : pas de contradiction avec A = ∞. Le « remplissage » mathématique utilise une peinture d'épaisseur nulle sur la paroi ; à cette limite, la paroi intérieure est la même surface infinie, abordée autrement. Lâche l'hypothèse physique et le paradoxe se dissout.",
     },
     {
       pretitle: "Section 05 · Généralisations",
@@ -437,7 +437,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 04 · Il paradosso del pittore",
       title: "Riempi sì, dipingi mai, e perché va bene",
-      body: "La vernice vera ha spessore ε. Coprire una superficie infinita con uno strato di ε > 0 richiede volume infinito, nessuna contraddizione con A = ∞. Il «riempimento» matematico usa vernice di spessore nullo sulla parete; in quel limite la parete interna è la stessa superficie infinita, solo avvicinata in altro modo. Lascia cadere l'ipotesi fisica e il paradosso si dissolve.",
+      body: "La vernice vera ha spessore ε. Coprire una superficie infinita con uno strato di ε > 0 richiede volume infinito: nessuna contraddizione con A = ∞. Il «riempimento» matematico usa vernice di spessore nullo sulla parete; in quel limite la parete interna è la stessa superficie infinita, solo avvicinata in altro modo. Lascia cadere l'ipotesi fisica e il paradosso si dissolve.",
     },
     {
       pretitle: "Sezione 05 · Generalizzazioni",
@@ -607,7 +607,7 @@ const sv: RichStory = {
     },
     {
       pretitle: "Avsnitt 04 · Målarens paradox",
-      title: "Fyll ja, måla aldrig, och varför det är okej",
+      title: "Fyll ja, måla aldrig (och varför det är okej)",
       body: "Riktig färg har en tjocklek ε. Att täcka en oändlig yta med ett skikt av ε > 0 kräver oändlig volym, ingen motsägelse mot A = ∞. Den matematiska «fyllningen» använder färg med tjocklek noll på väggen; i den gränsen är innerväggen samma oändliga yta, bara närmad annorlunda. Släpp det fysiska antagandet och paradoxen löses upp.",
     },
     {
@@ -692,7 +692,7 @@ const no: RichStory = {
     },
     {
       pretitle: "Avsnitt 04 · Malerens paradoks",
-      title: "Fyll ja, mal aldri, og hvorfor det er greit",
+      title: "Fyll ja, mal aldri (og hvorfor det er greit)",
       body: "Ekte maling har tykkelse ε. Å dekke en uendelig flate med et lag på ε > 0 krever uendelig volum, ingen motsetning til A = ∞. Den matematiske «fyllingen» bruker maling med tykkelse null på veggen; i den grensen er innerveggen den samme uendelige flaten, bare nærmet på annet vis. Slipp den fysiske antakelsen og paradokset løser seg opp.",
     },
     {

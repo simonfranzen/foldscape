@@ -22,7 +22,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Regelen",
           title: "Velg et komplekst tall, og iterer",
-          body: "Velg et hvilket som helst komplekst tall c. Start en følge ved z₀ = 0 og fortsett å anvende zₙ₊₁ = zₙ² + c. Det er hele regelen. Så stiller vi ett ja/nei-spørsmål: holder følgen seg begrenset, eller stikker den til slutt av mot uendelig? Mengden av c-verdier der følgen holder seg begrenset: det er Mandelbrotmengden. Alt annet, inkludert det berømte bildet, er bare et fargerikt svar på det spørsmålet.",
+          body: "Velg et hvilket som helst komplekst tall c. Start en følge ved z₀ = 0 og fortsett å anvende zₙ₊₁ = zₙ² + c. Det er hele regelen. Så stiller vi ett ja/nei-spørsmål: Holder følgen seg begrenset, eller stikker den til slutt av mot uendelig? Mengden av c-verdier der følgen holder seg begrenset: Det er Mandelbrotmengden. Alt annet, inkludert det berømte bildet, er bare et fargerikt svar på det spørsmålet.",
         },
         {
           pretitle: "Trinn to · Å følge banen",
@@ -32,7 +32,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Hvorfor bildet er uendelig",
           title: "Grensen blir aldri enklere",
-          body: "Når du først fargelegger hver c etter hvor raskt banen rømmer, lyser grensen opp. Det forbløffende faktum, bevist av Tan Lei og andre, er at grensen er selvlik i en dyp forstand: hvor du enn zoomer, finner du nye bittesmå kopier av hele formen, omgitt av filigran som aldri gjentar seg. Det er derfor Utforskeren går ned til 10¹⁰ zoom: det er virkelig noe nytt på hver skala.",
+          body: "Når du først fargelegger hver c etter hvor raskt banen rømmer, lyser grensen opp. Det forbløffende faktum, bevist av Tan Lei og andre, er at grensen er selvlik i en dyp forstand: Hvor du enn zoomer, finner du nye bittesmå kopier av hele formen, omgitt av filigran som aldri gjentar seg. Det er derfor Utforskeren går ned til 10¹⁰ zoom: Det er virkelig noe nytt på hver skala.",
         },
         {
           pretitle: "Trinn fire · Fikspunktene",
@@ -97,7 +97,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Den andre siden",
           title: "NAND vant brikken, NOR vant Månen",
-          body: "NOR (¬(a ∨ b)) er den andre funksjonelt komplette enkeltporten. Apollo Guidance Computer som landet mennesker på Månen, var bygget utelukkende av NOR-porter. NAND vant kappløpet om forbrukerbrikker; NOR vant Månen. To måter å bygge et univers på: velg en side.",
+          body: "NOR (¬(a ∨ b)) er den andre funksjonelt komplette enkeltporten. Apollo Guidance Computer som landet mennesker på Månen, var bygget utelukkende av NOR-porter. NAND vant kappløpet om forbrukerbrikker; NOR vant Månen. To måter å bygge et univers på: Velg en side.",
         },
       ],
     },
@@ -112,7 +112,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Kombinatorisk logikk",
           title: "To bokstaver som beregner alt",
-          body: "På 1920-tallet viste Moses Schönfinkel og Haskell Curry at all beregning kunne bygges fra to bittesmå regler. Kall dem S og K. De tar andre ting som input og omorganiserer dem, ingen variabler nødvendig. Sammen danner de SKI-kombinatorkalkylen, som beviselig er like kraftig som hvilken som helst lambdakalkyle, hvilket som helst programmeringsspråk, hvilken som helst Turing-maskin.",
+          body: "På 1920-tallet viste Moses Schönfinkel og Haskell Curry at all beregning kunne bygges fra to bittesmå regler. Kall dem S og K. De tar andre ting som input og omorganiserer dem: ingen variabler nødvendig. Sammen danner de SKI-kombinatorkalkylen, som beviselig er like kraftig som hvilken som helst lambdakalkyle, hvilket som helst programmeringsspråk, hvilken som helst Turing-maskin.",
         },
         {
           pretitle: "Trinn to · Ett symbol",
@@ -142,22 +142,22 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Oppsettet",
           title: "En rad med celler, én regel, gjenta",
-          body: "En elementær cellulær automat kjører på en rad med celler, hver av dem svart eller hvit. Neste generasjon tegnes under: hver celle ser på seg selv og sine to umiddelbare naboer (tre celler) og bestemmer fargen sin etter en fast regel. Åtte mulige nabolagsmønstre; for hvert et enbits-svar. Åtte biter = én byte = én av 256 mulige regler. Stephen Wolfram nummererte dem 0 til 255 i binær.",
+          body: "En elementær cellulær automat kjører på en rad med celler, hver av dem svart eller hvit. Neste generasjon tegnes under: Hver celle ser på seg selv og sine to umiddelbare naboer (tre celler) og bestemmer fargen sin etter en fast regel. Åtte mulige nabolagsmønstre; for hvert et enbits-svar. Åtte biter = én byte = én av 256 mulige regler. Stephen Wolfram nummererte dem 0 til 255 i binær.",
         },
         {
           pretitle: "Trinn to · Lese regel 110",
           title: "Åtte mønstre, én byte",
-          body: "Skriv de åtte trecellemønstrene i synkende binær rekkefølge: 111, 110, 101, …, 000. Under hvert mønster, skriv neste generasjons verdi for den midtre cellen. Les raden med svar som ett enkelt binært tall: for regel 110 staver det 01101110, som er 110 i desimal. Regelen er bare den byten.",
+          body: "Skriv de åtte trecellemønstrene i synkende binær rekkefølge: 111, 110, 101, …, 000. Under hvert mønster, skriv neste generasjons verdi for den midtre cellen. Les raden med svar som ett enkelt binært tall: For regel 110 staver det 01101110, som er 110 i desimal. Regelen er bare den byten.",
         },
         {
           pretitle: "Trinn tre · Én piksel vokser til et univers",
           title: "Start fra én enkelt prikk",
-          body: "Så øverste rad med én svart celle, alt annet hvitt. Anvend regelen; tegn neste generasjon under. Gjenta i noen hundre rader. Med regel 110 er resultatet verken den kjedelige helsvart/helhvit av regler som 0 eller 255, eller den enkle Sierpiński av regel 90: det er en permanent bevegelig trafikk av trekantede glidere mot en stripete bakgrunn, lagdelt til noe som virkelig aldri roer seg.",
+          body: "Så øverste rad med én svart celle, alt annet hvitt. Anvend regelen; tegn neste generasjon under. Gjenta i noen hundre rader. Med regel 110 er resultatet verken den kjedelige helsvart/helhvit av regler som 0 eller 255, eller den enkle Sierpiński av regel 90: Det er en permanent bevegelig trafikk av trekantede glidere mot en stripete bakgrunn, lagdelt til noe som virkelig aldri roer seg.",
         },
         {
           pretitle: "Trinn fire · Cook-beviset",
           title: "Den er, beviselig, en datamaskin",
-          body: "På slutten av 1990-tallet viste Matthew Cook hvordan man kan ordne bestemte glidermønstre i regel 110 slik at kollisjonene deres virker som logiske porter, og deretter hvordan man kan sette sammen et fungerende syklisk tag-system, som i seg selv er Turing-komplett. Beviset er intrikat, men konsekvensen er ren: denne åttebits-regelen, anvendt på en rad med biter, er universell. Hva enn beregning du kan gjøre, kan du gjøre i regel 110.",
+          body: "På slutten av 1990-tallet viste Matthew Cook hvordan man kan ordne bestemte glidermønstre i regel 110 slik at kollisjonene deres virker som logiske porter, og deretter hvordan man kan sette sammen et fungerende syklisk tag-system, som i seg selv er Turing-komplett. Beviset er intrikat, men konsekvensen er ren: Denne åttebits-regelen, anvendt på en rad med biter, er universell. Hva enn beregning du kan gjøre, kan du gjøre i regel 110.",
         },
       ],
     },
@@ -172,7 +172,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Formelen",
           title: "En formel for morgendagens befolkning",
-          body: "Pierre-François Verhulsts logistiske ligning fra 1845, samplet i diskret tid, gir avbildningen xₙ₊₁ = r · xₙ · (1 − xₙ). Les x som en brøkdel av bæreevnen mellom 0 og 1; r som vekstraten. Leddet (1 − x) er bremsen: for mange individer sulter ut neste generasjon. Med 0 ≤ r ≤ 4 holder iterasjonen seg begrenset.",
+          body: "Pierre-François Verhulsts logistiske ligning fra 1845, samplet i diskret tid, gir avbildningen xₙ₊₁ = r · xₙ · (1 − xₙ). Les x som en brøkdel av bæreevnen mellom 0 og 1; r som vekstraten. Leddet (1 − x) er bremsen: For mange individer sulter ut neste generasjon. Med 0 ≤ r ≤ 4 holder iterasjonen seg begrenset.",
         },
         {
           pretitle: "Trinn to · Fra fred til kaos",
@@ -237,7 +237,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Oppskriften",
           title: "Sum av rene toner",
-          body: "For en periodisk funksjon: en Fourier-rekke, en sum over diskrete frekvenser. For en vilkårlig integrerbar funksjon: en Fourier-transformasjon f̂(ξ) = ∫ f(t) e^(−2πi ξ t) dt, et kontinuerlig spektrum. Begge sier det samme på forskjellige måter: et signal i tid, uansett hvor komplisert, dekomponeres til rene oscillasjoner. En akkord blir sine noter. Et fotografi blir sine striper.",
+          body: "For en periodisk funksjon: en Fourier-rekke, en sum over diskrete frekvenser. For en vilkårlig integrerbar funksjon: en Fourier-transformasjon f̂(ξ) = ∫ f(t) e^(−2πi ξ t) dt, et kontinuerlig spektrum. Begge sier det samme på forskjellige måter: Et signal i tid, uansett hvor komplisert, dekomponeres til rene oscillasjoner. En akkord blir sine noter. Et fotografi blir sine striper.",
         },
         {
           pretitle: "Trinn tre · Hvorfor telefonen din fungerer",
@@ -247,7 +247,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Usikkerhetsbyttet",
           title: "Skarpere i tid, uskarpere i frekvens",
-          body: "Press et signal inn i et smalt tidsvindu, og Fourier-transformasjonen smører seg nødvendigvis ut over mange frekvenser, og omvendt. Dette er ikke ingeniørkunst; det er matematikk. Gauss-funksjonen sitter på byttets optimum: den er sin egen Fourier-transformasjon. Den samme ulikheten, i fysikken, blir Heisenbergs usikkerhetsprinsipp. Tid og frekvens er duale koordinater; du kan ikke skarpstille begge samtidig.",
+          body: "Press et signal inn i et smalt tidsvindu, og Fourier-transformasjonen smører seg nødvendigvis ut over mange frekvenser, og omvendt. Dette er ikke ingeniørkunst; det er matematikk. Gauss-funksjonen sitter på byttets optimum: Den er sin egen Fourier-transformasjon. Den samme ulikheten, i fysikken, blir Heisenbergs usikkerhetsprinsipp. Tid og frekvens er duale koordinater; du kan ikke skarpstille begge samtidig.",
         },
       ],
     },
@@ -267,12 +267,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Eulers formel",
           title: "e^(iθ) = cos θ + i sin θ",
-          body: "Identiteten er det Eulers formel gir tilbake ved én bestemt vinkel, publisert i hans Introductio in analysin infinitorum fra 1748. For ethvert reelt tall θ sier formelen at e^(iθ), en eksponential med en imaginær eksponent, er lik cos θ + i sin θ. Geometrisk: når θ vokser, vandrer punktet e^(iθ) mot klokken rundt enhetssirkelen i det komplekse planet. Å multiplisere med e^(iθ) er rotasjon med vinkelen θ. Vekst og rotasjon, de to tingene e og i i hemmelighet gjør, viser seg å være den samme operasjonen sett fra to sider.",
+          body: "Identiteten er det Eulers formel gir tilbake ved én bestemt vinkel, publisert i hans Introductio in analysin infinitorum fra 1748. For ethvert reelt tall θ sier formelen at e^(iθ), en eksponential med en imaginær eksponent, er lik cos θ + i sin θ. Geometrisk: Når θ vokser, vandrer punktet e^(iθ) mot klokken rundt enhetssirkelen i det komplekse planet. Å multiplisere med e^(iθ) er rotasjon med vinkelen θ. Vekst og rotasjon, de to tingene e og i i hemmelighet gjør, viser seg å være den samme operasjonen sett fra to sider.",
         },
         {
           pretitle: "Trinn tre · Sett inn θ = π",
           title: "Enlinjesbeviset",
-          body: "Sett θ = π i Eulers formel. Høyresiden blir cos π + i sin π = −1 + i·0 = −1. Venstresiden er e^(iπ). Altså er e^(iπ) = −1, og ved å legge til 1 på begge sider får man e^(iπ) + 1 = 0. Geometrisk er dette en halv omdreining: å starte ved punktet 1 på enhetssirkelen og rotere med π radianer (180°) lander nøyaktig ved −1. Identiteten er den algebraiske formuleringen av den ene, perfekte halvomdreiningen.",
+          body: "Sett θ = π i Eulers formel. Høyresiden blir cos π + i sin π = −1 + i·0 = −1. Venstresiden er e^(iπ). Altså er e^(iπ) = −1, og ved å legge til 1 på begge sider får man e^(iπ) + 1 = 0. Geometrisk er dette en halv omdreining: Å starte ved punktet 1 på enhetssirkelen og rotere med π radianer (180°) lander nøyaktig ved −1. Identiteten er den algebraiske formuleringen av den ene, perfekte halvomdreiningen.",
         },
         {
           pretitle: "Trinn fire · Den vakreste ligningen",
@@ -297,17 +297,17 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Utvalgsaksiomet",
           title: "Der det merkelige kommer inn",
-          body: "Konstruksjonen er umulig i ZF-mengdelæren alene. Banach og Tarskis bevis trenger utvalgsaksiomet for å plukke én representant fra hver av overtellelig mange baner av en rotasjonsvirkning på sfæren. Den ene bruken av utvalg tvinger bitene til å være ikke-målbare: de har ikke noe veldefinert volum i Lebesgue-forstand, så ligningen 'volum av én kule = volum av to kuler' blir aldri skrevet ned. Bitene er ikke områder du noen gang kunne fysisk kutte ut: de er tette, ikke-målbare punktskyer som bare eksisterer som logiske objekter.",
+          body: "Konstruksjonen er umulig i ZF-mengdelæren alene. Banach og Tarskis bevis trenger utvalgsaksiomet for å plukke én representant fra hver av overtellelig mange baner av en rotasjonsvirkning på sfæren. Den ene bruken av utvalg tvinger bitene til å være ikke-målbare: De har ikke noe veldefinert volum i Lebesgue-forstand, så ligningen 'volum av én kule = volum av to kuler' blir aldri skrevet ned. Bitene er ikke områder du noen gang kunne fysisk kutte ut: De er tette, ikke-målbare punktskyer som bare eksisterer som logiske objekter.",
         },
         {
           pretitle: "Trinn tre · Den frie gruppen av rotasjoner",
           title: "F₂, generert av to rotasjoner",
-          body: "Hjertet av beviset er rent gruppe-teoretisk. To passende valgte rotasjoner a og b av enhetssfæren S² tilfredsstiller ingen annen relasjon enn de trivielle: de genererer en fri gruppe F₂ av rang 2; hvert redusert ord i a, a⁻¹, b, b⁻¹ virker som en annen rotasjon. F₂ tillater en paradoksal dekomposisjon: den splittes i fire mengder W(a), W(a⁻¹), W(b), W(b⁻¹) (ord som starter med hver generator) pluss identiteten, og hver forskjøvet mengde dekker resten av gruppen. Skyv dette gjennom Hausdorffs sfæreparadoks fra 1914, løft fra S² til den solide kulen, og dupliseringen på gruppen blir en duplisering av B³.",
+          body: "Hjertet av beviset er rent gruppe-teoretisk. To passende valgte rotasjoner a og b av enhetssfæren S² tilfredsstiller ingen annen relasjon enn de trivielle: De genererer en fri gruppe F₂ av rang 2; hvert redusert ord i a, a⁻¹, b, b⁻¹ virker som en annen rotasjon. F₂ tillater en paradoksal dekomposisjon: Den splittes i fire mengder W(a), W(a⁻¹), W(b), W(b⁻¹) (ord som starter med hver generator) pluss identiteten, og hver forskjøvet mengde dekker resten av gruppen. Skyv dette gjennom Hausdorffs sfæreparadoks fra 1914, løft fra S² til den solide kulen, og dupliseringen på gruppen blir en duplisering av B³.",
         },
         {
           pretitle: "Trinn fire · Hvorfor det ikke bryter sammen verden",
           title: "Ikke-målbare biter, ekte atomer",
-          body: "Lebesgue-målet er tellbart additivt på målbare mengder; hvis bitene var målbare, måtte volumet av de to ut-kulene være lik volumet av inngangskulen, motsigende seg selv. Så teoremet forteller deg høflig at bitene ikke kan være målbare, og det er de virkelig ikke. Den virkelige verden bryr seg ikke: fysisk materie er endelig mange atomer, ikke vilkårlige delmengder av ℝ³, og du kan ikke utføre et kutt langs en ikke-målbar grense. Paradokset lever fullstendig inne i kontinuumet, der uendelig har mer plass til å manøvrere enn intuisjonen tillater.",
+          body: "Lebesgue-målet er tellbart additivt på målbare mengder; hvis bitene var målbare, måtte volumet av de to ut-kulene være lik volumet av inngangskulen, motsigende seg selv. Så teoremet forteller deg høflig at bitene ikke kan være målbare, og det er de virkelig ikke. Den virkelige verden bryr seg ikke: Fysisk materie er endelig mange atomer, ikke vilkårlige delmengder av ℝ³, og du kan ikke utføre et kutt langs en ikke-målbar grense. Paradokset lever fullstendig inne i kontinuumet, der uendelig har mer plass til å manøvrere enn intuisjonen tillater.",
         },
       ],
     },
@@ -322,22 +322,22 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · En streng og tre regler",
           title: "Aksiom, alfabet, omskriving",
-          body: "Et L-system har tre deler. Et alfabet av symboler. Et aksiom, en startstreng. Et sett med produksjonsregler, én per symbol, som sier hva hvert symbol blir til i neste generasjon. Det definerende trikset er parallellisme: ved hvert trinn skrives hvert symbol om samtidig, slik hver celle i en kropp deler seg samtidig. Aristid Lindenmayer, en ungarsk biolog ved Utrecht, introduserte formalismen i 1968 for å modellere celle-for-celle-veksten av alger og planter. I den enkleste (kontekstfrie, deterministiske) varianten ser reglene på ett symbol om gangen; kontekstsensitive versjoner ser på naboer; stokastiske versjoner velger regler tilfeldig.",
+          body: "Et L-system har tre deler. Et alfabet av symboler. Et aksiom, en startstreng. Et sett med produksjonsregler, én per symbol, som sier hva hvert symbol blir til i neste generasjon. Det definerende trikset er parallellisme: Ved hvert trinn skrives hvert symbol om samtidig, slik hver celle i en kropp deler seg samtidig. Aristid Lindenmayer, en ungarsk biolog ved Utrecht, introduserte formalismen i 1968 for å modellere celle-for-celle-veksten av alger og planter. I den enkleste (kontekstfrie, deterministiske) varianten ser reglene på ett symbol om gangen; kontekstsensitive versjoner ser på naboer; stokastiske versjoner velger regler tilfeldig.",
         },
         {
           pretitle: "Trinn to · Skilpaddetolkningen",
           title: "En virtuell penn som dyrker fraktalen",
-          body: "Symboler alene er bare tekst. Geometrien dukker opp når du mater strengen til en skilpadde: F betyr tegn fremover én enhet, G betyr tegn fremover også, + vrir kursen til venstre med en fast vinkel, − vrir til høyre. To andre symboler legger på og tar av tilstand: [ legger gjeldende posisjon og kurs på en stabel, ] tar dem av igjen. Med bare push og pop forgrener en enkelt 1-D-streng seg plutselig: parentesparene blir kvister og sidegrener. Symboler utenfor tegnealfabetet (X, Y, A, B …) er stille variabler: de bærer informasjon videre gjennom omskrivinger, men skilpadden ignorerer dem.",
+          body: "Symboler alene er bare tekst. Geometrien dukker opp når du mater strengen til en skilpadde: F betyr tegn fremover én enhet, G betyr tegn fremover også, + vrir kursen til venstre med en fast vinkel, − vrir til høyre. To andre symboler legger på og tar av tilstand: [ legger gjeldende posisjon og kurs på en stabel, ] tar dem av igjen. Med bare push og pop forgrener en enkelt 1-D-streng seg plutselig: Parentesparene blir kvister og sidegrener. Symboler utenfor tegnealfabetet (X, Y, A, B …) er stille variabler: De bærer informasjon videre gjennom omskrivinger, men skilpadden ignorerer dem.",
         },
         {
           pretitle: "Trinn tre · Klassiske eksempler",
           title: "Fire regler, fire fraktaler",
-          body: "Koch-snøfnugg: aksiom F++F++F, regel F → F−F++F−F, vinkel 60°. Fire iterasjoner og trekanten har krøllet seg til et snøfnugg. Drakekurve: aksiom FX, regler X → X+YF+, Y → −FX−Y, vinkel 90°; etter et dusin omskrivinger bretter den seg til Heighways drage. Sierpiński-pilspiss: A → B−A−B, B → A+B+A, vinkel 60°, veksler paritet for å feie ut Sierpiński-trekanten. Fraktal plante: X → F+[[X]−X]−F[−FX]+X, F → FF, vinkel 25°, Lindenmayers og Prusinkiewicz' kanoniske bregne, grener og det hele. Samme maskineri, vilt forskjellige organismer.",
+          body: "Koch-snøfnugg: aksiom F++F++F, regel F → F−F++F−F, vinkel 60°. Fire iterasjoner og trekanten har krøllet seg til et snøfnugg. Drakekurve: aksiom FX, regler X → X+YF+, Y → −FX−Y, vinkel 90°; etter et dusin omskrivinger bretter den seg til Heighways drage. Sierpiński-pilspiss: A → B−A−B, B → A+B+A, vinkel 60°, veksler paritet for å feie ut Sierpiński-trekanten. Fraktal plante: X → F+[[X]−X]−F[−FX]+X, F → FF, vinkel 25° (Lindenmayers og Prusinkiewicz' kanoniske bregne, grener og det hele). Samme maskineri, vilt forskjellige organismer.",
         },
         {
           pretitle: "Trinn fire · Hvorfor botanikere elsker dem",
           title: "Fra en artikkel i 1968 til hver videospillskog",
-          body: 'Lindenmayer var ikke en matematiker på jakt etter pene bilder; han var en biolog som prøvde å fange hvordan en flercellet organisme utvikler seg fra én spiss. L-systemer ga botanikken sin første formelle grammatikk for vekst: forgreningstopologi, internodelengder, bladplassering, alt fra noen få omskrivingsregler. Przemyslaw Prusinkiewicz\' bok fra 1990, "The Algorithmic Beauty of Plants", gjorde ideen til en fungerende pipeline, og derfra lekket den inn i datagrafikk. De fleste prosedurale trær i spill og filmer, bregnene i Speedtree, vegetasjonen i Pixar-kortfilmer, byene-av-rør i demoscene-produksjoner, alle stammer fra Lindenmayers parallelle omskriving. En grammatikk for celler ble en grammatikk for verdener.',
+          body: 'Lindenmayer var ikke en matematiker på jakt etter pene bilder; han var en biolog som prøvde å fange hvordan en flercellet organisme utvikler seg fra én spiss. L-systemer ga botanikken sin første formelle grammatikk for vekst: forgreningstopologi, internodelengder, bladplassering, alt fra noen få omskrivingsregler. Przemyslaw Prusinkiewicz\' bok fra 1990, "The Algorithmic Beauty of Plants", gjorde ideen til en fungerende pipeline, og derfra lekket den inn i datagrafikk. De fleste prosedurale trær i spill og filmer, bregnene i Speedtree, vegetasjonen i Pixar-kortfilmer, byene-av-rør i demoscene-produksjoner: Alle stammer fra Lindenmayers parallelle omskriving. En grammatikk for celler ble en grammatikk for verdener.',
         },
       ],
     },
@@ -357,7 +357,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Wangs formodning og motbeviset",
           title: "Fra en algoritme som burde finnes til en som ikke kan",
-          body: "Hao Wang antok i 1961 at hvert endelig sett med fliser som kan flislegge planet, må tillate en periodisk flislegging, og fra det ville han ha utledet en algoritme for å avgjøre dominoproblemet (kan et gitt sett flislegge planet i det hele tatt?). I 1966 motbeviste hans student Robert Berger begge på en gang: han konstruerte et aperiodisk sett med 20 426 Wang-fliser, og beviste at dominoproblemet er uavgjørbart. Det finnes ingen algoritme som, gitt et flisesett, alltid kan avgjøre om det flislegger planet.",
+          body: "Hao Wang antok i 1961 at hvert endelig sett med fliser som kan flislegge planet, må tillate en periodisk flislegging, og fra det ville han ha utledet en algoritme for å avgjøre dominoproblemet (kan et gitt sett flislegge planet i det hele tatt?). I 1966 motbeviste hans student Robert Berger begge på en gang: Han konstruerte et aperiodisk sett med 20 426 Wang-fliser, og beviste at dominoproblemet er uavgjørbart. Det finnes ingen algoritme som, gitt et flisesett, alltid kan avgjøre om det flislegger planet.",
         },
         {
           pretitle: "Trinn tre · Beregning i flisleggingen",
@@ -367,7 +367,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Hvor de ender opp i naturen",
           title: "Fra uavgjørbarhet til prosedural tekstur",
-          body: "Utover det grunnleggende dramaet fant Wang-fliser et stille annet liv i datagrafikk. Et lite, nøye valgt sett lar en gjengiver flislegge en vegg, en skogbunn eller et terrenghøydekart uten synlige gjentakelser: matching-betingelsene syr sammen biter uten sømmer, langt billigere enn å generere en gigantisk unik tekstur. De er nære slektninger av Penrose-flisleggingene og kvasikrystallene Dan Shechtman oppdaget i 1982 (Nobelprisen 2011): alle tre er måter å tvinge frem et uendelig mønster som aldri helt gjentar seg selv.",
+          body: "Utover det grunnleggende dramaet fant Wang-fliser et stille annet liv i datagrafikk. Et lite, nøye valgt sett lar en gjengiver flislegge en vegg, en skogbunn eller et terrenghøydekart uten synlige gjentakelser: Matching-betingelsene syr sammen biter uten sømmer, langt billigere enn å generere en gigantisk unik tekstur. De er nære slektninger av Penrose-flisleggingene og kvasikrystallene Dan Shechtman oppdaget i 1982 (Nobelprisen 2011): Alle tre er måter å tvinge frem et uendelig mønster som aldri helt gjentar seg selv.",
         },
       ],
     },
@@ -387,12 +387,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Formodningen",
           title: "Alle veier fører til 1",
-          body: "Lothar Collatz foreslo formodningen i 1937, to år etter doktorgraden sin. Påstanden er forbløffende enkel: for ethvert positivt heltall n når iterasjonen til slutt 1. Den er også kjent som Syracuse-problemet, Kakutanis problem og Ulam-formodningen: flere matematikere snublet inn i samme dyret uavhengig. Per 2025 er den verifisert av datamaskiner for hvert positivt heltall opp til omtrent 2,36 × 10²¹. Ingen vet hvorfor.",
+          body: "Lothar Collatz foreslo formodningen i 1937, to år etter doktorgraden sin. Påstanden er forbløffende enkel: For ethvert positivt heltall n når iterasjonen til slutt 1. Den er også kjent som Syracuse-problemet, Kakutanis problem og Ulam-formodningen: Flere matematikere snublet inn i samme dyret uavhengig. Per 2025 er den verifisert av datamaskiner for hvert positivt heltall opp til omtrent 2,36 × 10²¹. Ingen vet hvorfor.",
         },
         {
           pretitle: "Trinn tre · Rekorder og overraskelser",
           title: "Hagl over Syracuse",
-          body: "Banene blir kalt haglsekvenser fordi de, som hagl i en tordensky, stiger og faller uberegnelig før de endelig treffer bakken. Det mest berømte lille tilfellet er n = 27: det tar 111 skritt å nå 1, og på veien topper det på 9232, omtrent 340 ganger startverdien. Andre bemerkelsesverdige frø: n = 97 tar 118 skritt; n = 871 tar 178 skritt; n = 6171 tar 261 skritt. Bittesmå inndata, vilt uforholdsmessige baner.",
+          body: "Banene blir kalt haglsekvenser fordi de, som hagl i en tordensky, stiger og faller uberegnelig før de endelig treffer bakken. Det mest berømte lille tilfellet er n = 27: Det tar 111 skritt å nå 1, og på veien topper det på 9232, omtrent 340 ganger startverdien. Andre bemerkelsesverdige frø: n = 97 tar 118 skritt; n = 871 tar 178 skritt; n = 6171 tar 261 skritt. Bittesmå inndata, vilt uforholdsmessige baner.",
         },
         {
           pretitle: "Trinn fire · Hvorfor det yter motstand",
@@ -422,12 +422,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Kaos",
           title: "Liten energi: pent. Stor energi: uforutsigbart.",
-          body: "Ved lav energi svinger loddene mildt og bevegelsen er kvasiperiodisk: banen vinder seg rundt en invariant torus i faserommet og gjentar seg aldri helt, men holder seg begrenset og ryddig. Skyv energien høyere og systemet krysser inn i kaos: den største Lyapunov-eksponenten blir positiv, og to starter som skiller seg med én del på en million separeres fullstendig innen noen få sekunder. Den doble pendelen er den klassiske fysiske demonstrasjonen av deterministisk kaos: deterministisk i ligningene, uforutsigbart i praksis.",
+          body: "Ved lav energi svinger loddene mildt og bevegelsen er kvasiperiodisk: Banen vinder seg rundt en invariant torus i faserommet og gjentar seg aldri helt, men holder seg begrenset og ryddig. Skyv energien høyere og systemet krysser inn i kaos: Den største Lyapunov-eksponenten blir positiv, og to starter som skiller seg med én del på en million separeres fullstendig innen noen få sekunder. Den doble pendelen er den klassiske fysiske demonstrasjonen av deterministisk kaos: deterministisk i ligningene, uforutsigbart i praksis.",
         },
         {
           pretitle: "Trinn fire · Hvor det dukker opp",
           title: "Roboter, gange, kontrollteori, museer",
-          body: "De samme koblede-rotor-ligningene beskriver to-ledds robotarmer (der kaos er noe å undertrykke, ikke feire), biomekanikken til et svingende ben i menneskelig gange, og mange sammensatte oscillatorer i ingeniørfag. Kontrollteoretikere bruker den doble pendelen som referanse for å stabilisere ustabile ikke-lineære systemer: å balansere den oppreist er et klassisk vanskelig problem. Og hvert godt vitenskapsmuseum har en svingende i en glasskasse, som tegner et spor besøkende aldri helt kan forutsi.",
+          body: "De samme koblede-rotor-ligningene beskriver to-ledds robotarmer (der kaos er noe å undertrykke, ikke feire), biomekanikken til et svingende ben i menneskelig gange, og mange sammensatte oscillatorer i ingeniørfag. Kontrollteoretikere bruker den doble pendelen som referanse for å stabilisere ustabile ikke-lineære systemer: Å balansere den oppreist er et klassisk vanskelig problem. Og hvert godt vitenskapsmuseum har en svingende i en glasskasse, som tegner et spor besøkende aldri helt kan forutsi.",
         },
       ],
     },
@@ -457,7 +457,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Hvorfor det betyr noe",
           title: "Kjemi som organiserer seg selv",
-          body: "BZR var det eksperimentelle åpenbare beviset som dyttet kjemien bort fra likevektstenkning. Langt fra likevekt dissiperer materie ikke bare: den kan spontant organisere seg til strukturerte mønstre i rom og tid. Ilya Prigogine bygget teorien om disse dissipative strukturene og ble tildelt Nobelprisen i kjemi i 1977 for det. I dag er BZR det klassiske eksempelet på selvorganisering utenfor likevekt, en søster av Turings morfogenmønstre, og en stamfar til hver reaksjon-diffusjonsmodell i biologi, nevrovitenskap og kjemiteknikk.",
+          body: "BZR var det eksperimentelle åpenbare beviset som dyttet kjemien bort fra likevektstenkning. Langt fra likevekt dissiperer materie ikke bare: Den kan spontant organisere seg til strukturerte mønstre i rom og tid. Ilya Prigogine bygget teorien om disse dissipative strukturene og ble tildelt Nobelprisen i kjemi i 1977 for det. I dag er BZR det klassiske eksempelet på selvorganisering utenfor likevekt, en søster av Turings morfogenmønstre, og en stamfar til hver reaksjon-diffusjonsmodell i biologi, nevrovitenskap og kjemiteknikk.",
         },
       ],
     },
@@ -472,12 +472,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Turings spørsmål",
           title: "Hvor kommer mønstrene på et dyr fra?",
-          body: "Et leopardembryo starter som en nesten ensartet ball av celler. Et eller annet sted på veien dukker det opp regelmessige flekker på pelsen: samme avstand, samme størrelse, på de riktige stedene. Det samme problemet dukker opp for sebrastriper, engelfiskbånd og ringene på et sjøsnegl. I 1952 publiserte Alan Turing 'The Chemical Basis of Morphogenesis' og foreslo et oppsiktsvekkende svar: mønstrene er ren kjemi. To stoffer som diffunderer med svært forskjellig rekkevidde og reagerer med hverandre, kan spontant bryte symmetri og legge ned et stabilt mønster oppå en ensartet bakgrunn.",
+          body: "Et leopardembryo starter som en nesten ensartet ball av celler. Et eller annet sted på veien dukker det opp regelmessige flekker på pelsen: samme avstand, samme størrelse, på de riktige stedene. Det samme problemet dukker opp for sebrastriper, engelfiskbånd og ringene på et sjøsnegl. I 1952 publiserte Alan Turing 'The Chemical Basis of Morphogenesis' og foreslo et oppsiktsvekkende svar: Mønstrene er ren kjemi. To stoffer som diffunderer med svært forskjellig rekkevidde og reagerer med hverandre, kan spontant bryte symmetri og legge ned et stabilt mønster oppå en ensartet bakgrunn.",
         },
         {
           pretitle: "Trinn to · Oppskriften",
           title: "Kortrekkende aktivering, langtrekkende hemming",
-          body: "Turings mekanisme tar to kjemikalier: en AKTIVATOR a som katalyserer sin egen produksjon og produksjonen av en HEMMER b, pluss hemmeren selv, som ødelegger aktivatoren. Den avgjørende ekstra ingrediensen er diffusjon: hemmeren må spre seg mye raskere enn aktivatoren. En liten fluktuasjon som hever a på ett sted, utløser en lokal utladning av aktivator, men den produserer også hemmer, som suser utover og undertrykker aktivatoren i en bred ring rundt. Den ringen av undertrykking holder neste utladning på avstand, og utladnings-og-ring-rytmen flislegger planet med regelmessige flekker, striper eller labyrinter.",
+          body: "Turings mekanisme tar to kjemikalier: en AKTIVATOR a som katalyserer sin egen produksjon og produksjonen av en HEMMER b, pluss hemmeren selv, som ødelegger aktivatoren. Den avgjørende ekstra ingrediensen er diffusjon: Hemmeren må spre seg mye raskere enn aktivatoren. En liten fluktuasjon som hever a på ett sted, utløser en lokal utladning av aktivator, men den produserer også hemmer, som suser utover og undertrykker aktivatoren i en bred ring rundt. Den ringen av undertrykking holder neste utladning på avstand, og utladnings-og-ring-rytmen flislegger planet med regelmessige flekker, striper eller labyrinter.",
         },
         {
           pretitle: "Trinn tre · Én ligning, mange mønstre",
@@ -496,7 +496,7 @@ export const no: StoriesDict = {
       title: "Sierpiński-trekanten",
       tagline: "Én fraktal, fire veier inn.",
       intro:
-        "Wacław Sierpiński beskrev den i 1915, men det samme triangulære hull-i-et-hull-mønsteret hadde allerede blitt skåret inn i gulvene i 1200-tallets Cosmati-kirker. Det forbløffende faktum er at formen kommer langs minst fire helt forskjellige veier (rekursjon, tilfeldighet, aritmetikk, en enlinjes cellulær automat) og Utforskeren lar deg se alle fire side om side.",
+        "Wacław Sierpiński beskrev den i 1915, men det samme triangulære hull-i-et-hull-mønsteret hadde allerede blitt skåret inn i gulvene i 1200-tallets Cosmati-kirker. Det forbløffende faktum er at formen kommer langs minst fire helt forskjellige veier (rekursjon, tilfeldighet, aritmetikk, en enlinjes cellulær automat), og Utforskeren lar deg se alle fire side om side.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {
@@ -512,12 +512,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Pascals trekant mod 2",
           title: "Oddetallsverdier tegner den for deg",
-          body: "Skriv ut Pascals trekant og fargelegg hvert oddetallsverdi svart, hver partallsverdi hvit. Resultatet, rad for rad, er Sierpiński-trekanten. Grunnen er Lucas' teorem: en binomialkoeffisient C(n, k) er odd nøyaktig når de binære sifrene til k er en delmengde av de binære sifrene til n. Så de svarte cellene bor der bitene til k passer inn i bitene til n, og den betingelsen, tegnet i en trekant, er Sierpińskis mønster. Kombinatorikk og geometri lander på samme sted.",
+          body: "Skriv ut Pascals trekant og fargelegg hvert oddetallsverdi svart, hver partallsverdi hvit. Resultatet, rad for rad, er Sierpiński-trekanten. Grunnen er Lucas' teorem: En binomialkoeffisient C(n, k) er odd nøyaktig når de binære sifrene til k er en delmengde av de binære sifrene til n. Så de svarte cellene bor der bitene til k passer inn i bitene til n, og den betingelsen, tegnet i en trekant, er Sierpińskis mønster. Kombinatorikk og geometri lander på samme sted.",
         },
         {
           pretitle: "Trinn fire · Regel 90 og IFS-en",
           title: "Én celle, én regel, samme form",
-          body: "Wolframs elementære cellulære automat Regel 90 sier: en celles neste tilstand er XOR av sine to naboer. Start med én svart celle i en ellers hvit rad og gå fremover. Hver ny generasjon tegnet under den forrige reproduserer Sierpińskis trekant nøyaktig. Den dypeste tolkningen er at alle fire rutene beskriver den samme attraktoren: et iterert funksjonssystem av tre kontraksjonsavbildninger, hver med forhold 1/2, fiksert ved de tre hjørnene. Uansett hvilken oppskrift du følger, konvergerer du mot den samme faste mengden, med Hausdorff-dimensjon log 3 / log 2 ≈ 1,585.",
+          body: "Wolframs elementære cellulære automat Regel 90 sier: En celles neste tilstand er XOR av sine to naboer. Start med én svart celle i en ellers hvit rad og gå fremover. Hver ny generasjon tegnet under den forrige reproduserer Sierpińskis trekant nøyaktig. Den dypeste tolkningen er at alle fire rutene beskriver den samme attraktoren: et iterert funksjonssystem av tre kontraksjonsavbildninger, hver med forhold 1/2, fiksert ved de tre hjørnene. Uansett hvilken oppskrift du følger, konvergerer du mot den samme faste mengden, med Hausdorff-dimensjon log 3 / log 2 ≈ 1,585.",
         },
       ],
     },
@@ -532,17 +532,17 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Regelen",
           title: "Tre prikker, en terning, og ett kort skritt",
-          body: "Plasser hjørnene til en polygon. Velg et hvilket som helst startpunkt: på, utenfor eller inne i polygonen spiller ingen rolle. Kast nå en terning for å velge et hjørne tilfeldig, gå en fast brøkdel av veien fra din nåværende posisjon mot det, og marker det nye stedet med en prikk. Behandle den prikken som din nye posisjon og gjenta. Regelen har bare to ingredienser: en liste over hjørner og et hoppforhold r. Det er hele kaosspillet, formalisert av Michael Barnsley i hans arbeid fra 1988 om itererte funksjonssystemer.",
+          body: "Plasser hjørnene til en polygon. Velg et hvilket som helst startpunkt: På, utenfor eller inne i polygonen spiller ingen rolle. Kast nå en terning for å velge et hjørne tilfeldig, gå en fast brøkdel av veien fra din nåværende posisjon mot det, og marker det nye stedet med en prikk. Behandle den prikken som din nye posisjon og gjenta. Regelen har bare to ingredienser: en liste over hjørner og et hoppforhold r. Det er hele kaosspillet, formalisert av Michael Barnsley i hans arbeid fra 1988 om itererte funksjonssystemer.",
         },
         {
           pretitle: "Trinn to · Fra tilfeldighet, Sierpiński-trekanten",
           title: "Det riktige forholdet for hver polygon",
-          body: "På en likesidet trekant med hoppforhold r = 1/2 kondenserer prikkene til Sierpiński-trekanten: etter en kort oppvarming kan ingen punkt noensinne lande i de sentrale hullene. For en regulær n-gon finnes det et magisk forhold rₙ = 1 / (1 + 2·cos(π/n)) som gir en ren selvlik fraktal. Tabellen nedenfor samler verdiene for n = 3 til 8: legg merke til at trekantens 1/2 og femkantens 1/(1 + φ) = 1/φ² ≈ 0,382 faller rett ut av den samme formelen. Bruk et annet forhold, og bildet enten over- eller underlapper inntil fraktalen smøres bort.",
+          body: "På en likesidet trekant med hoppforhold r = 1/2 kondenserer prikkene til Sierpiński-trekanten: Etter en kort oppvarming kan ingen punkt noensinne lande i de sentrale hullene. For en regulær n-gon finnes det et magisk forhold rₙ = 1 / (1 + 2·cos(π/n)) som gir en ren selvlik fraktal. Tabellen nedenfor samler verdiene for n = 3 til 8: Legg merke til at trekantens 1/2 og femkantens 1/(1 + φ) = 1/φ² ≈ 0,382 faller rett ut av den samme formelen. Bruk et annet forhold, og bildet enten over- eller underlapper inntil fraktalen smøres bort.",
         },
         {
           pretitle: "Trinn tre · Andre former fra andre regler",
           title: "Firkanter, restriksjoner, og Barnsleys bregne",
-          body: "På en firkant med r = 1/2 svikter regelen: prikkene fyller interiøret jevnt og ingen fraktal dukker opp. Fiksen er en restriksjonsregel (for eksempel, forby samme hjørne to ganger på rad, eller forby hjørnet ett skritt rundt fra det forrige) og en delikat fraktal kommer tilbake. Skyv ideen videre og hjørnene forsvinner helt: Barnsleys bregne er kaosspillet med fire affine transformasjoner valgt av vektede terninger (sannsynligheter 0,01, 0,85, 0,07, 0,07), og ut av den tilfeldigheten vokser et botanisk overbevisende blad.",
+          body: "På en firkant med r = 1/2 svikter regelen: Prikkene fyller interiøret jevnt og ingen fraktal dukker opp. Fiksen er en restriksjonsregel (for eksempel, forby samme hjørne to ganger på rad, eller forby hjørnet ett skritt rundt fra det forrige) og en delikat fraktal kommer tilbake. Skyv ideen videre og hjørnene forsvinner helt: Barnsleys bregne er kaosspillet med fire affine transformasjoner valgt av vektede terninger (sannsynligheter 0,01, 0,85, 0,07, 0,07), og ut av den tilfeldigheten vokser et botanisk overbevisende blad.",
         },
         {
           pretitle: "Trinn fire · Hvorfor det virker",
@@ -567,7 +567,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Femfoldig symmetri",
           title: "En forbudt symmetri",
-          body: "Hver vinkel i flisleggingen er et multiplum av 36°, den indre vinkelen til en regulær femkant. Rundt spesielle hjørner har mønsteret perfekt femfoldig rotasjonssymmetri, samme slags en femkant har. Klassisk krystallografi beviser at ingen periodisk flislegging av planet kan ha femfoldig symmetri: bare 2-, 3-, 4- og 6-foldige rotasjoner er forenlige med et gitter. Penroses flislegginger omgår teoremet ved å nekte å være periodiske i utgangspunktet. Overraskelsen er at du fortsatt kan ha lokal femfoldig orden uten noen gang å lukke deg inn i en gjentakende celle.",
+          body: "Hver vinkel i flisleggingen er et multiplum av 36°, den indre vinkelen til en regulær femkant. Rundt spesielle hjørner har mønsteret perfekt femfoldig rotasjonssymmetri, samme slags en femkant har. Klassisk krystallografi beviser at ingen periodisk flislegging av planet kan ha femfoldig symmetri: Bare 2-, 3-, 4- og 6-foldige rotasjoner er forenlige med et gitter. Penroses flislegginger omgår teoremet ved å nekte å være periodiske i utgangspunktet. Overraskelsen er at du fortsatt kan ha lokal femfoldig orden uten noen gang å lukke deg inn i en gjentakende celle.",
         },
         {
           pretitle: "Trinn tre · Det gylne snitt er innebygd",
@@ -592,7 +592,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Startposisjonen",
           title: "Tre sirkler som berører",
-          body: "Tegn tre sirkler i planet, hver av dem tangerende de to andre: de berører ved tre punkter og omslutter et buet trekantet hull. Rundt 200 f.Kr. stilte Apollonios fra Perga det naturlige oppfølgingsspørsmålet: hvilke sirkler er tangerende til alle tre gitte sirkler samtidig? For en trippel av gjensidig tangerende sirkler er det nøyaktig to svar: én liten sirkel innskrevet i det buede hullet, og én stor sirkel som omskriver alle tre. Begge de nye sirklene slutter seg til de opprinnelige tre for å danne en firling av gjensidig tangerende sirkler. Den firlingen er frøet til alt som følger.",
+          body: "Tegn tre sirkler i planet, hver av dem tangerende de to andre: De berører ved tre punkter og omslutter et buet trekantet hull. Rundt 200 f.Kr. stilte Apollonios fra Perga det naturlige oppfølgingsspørsmålet: Hvilke sirkler er tangerende til alle tre gitte sirkler samtidig? For en trippel av gjensidig tangerende sirkler er det nøyaktig to svar: én liten sirkel innskrevet i det buede hullet, og én stor sirkel som omskriver alle tre. Begge de nye sirklene slutter seg til de opprinnelige tre for å danne en firling av gjensidig tangerende sirkler. Den firlingen er frøet til alt som følger.",
         },
         {
           pretitle: "Trinn to · Descartes' teorem",
@@ -607,7 +607,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Heltallsoverraskelsen",
           title: "Når hver kurvatur er et helt tall",
-          body: "Velg de fire frøkurvaturene (k₁, k₂, k₃, k₄) til å være heltall. Da tvinger Descartes' formel k₄ = k₁+k₂+k₃ ± 2√(…) hver påfølgende kurvatur til å være et heltall også: kvadratroten kollapser takket være (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²), og hver ny sirkel arver heltallsheten fra foreldrene sine. Pakkingen (−1, 2, 2, 3) fylles med kurvaturene 6, 11, 14, 15, 18, 23, … og hver annen heltalls apollonisk pakking, for eksempel (−2, 3, 6, 7), (−3, 5, 8, 8), (−4, 8, 9, 9), (−6, 11, 14, 15), gjør det samme. Hvilke heltall som dukker opp, og hvilke som aldri gjør det, er et åpent spørsmål i aritmetisk geometri: et skjult talteoretisk skjelett som sitter inne i et bilde av sirkler.",
+          body: "Velg de fire frøkurvaturene (k₁, k₂, k₃, k₄) til å være heltall. Da tvinger Descartes' formel k₄ = k₁+k₂+k₃ ± 2√(…) hver påfølgende kurvatur til å være et heltall også: Kvadratroten kollapser takket være (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²), og hver ny sirkel arver heltallsheten fra foreldrene sine. Pakkingen (−1, 2, 2, 3) fylles med kurvaturene 6, 11, 14, 15, 18, 23, … og hver annen heltalls apollonisk pakking, for eksempel (−2, 3, 6, 7), (−3, 5, 8, 8), (−4, 8, 9, 9), (−6, 11, 14, 15), gjør det samme. Hvilke heltall som dukker opp, og hvilke som aldri gjør det, er et åpent spørsmål i aritmetisk geometri: et skjult talteoretisk skjelett som sitter inne i et bilde av sirkler.",
         },
       ],
     },
@@ -622,12 +622,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Den definerende ligningen",
           title: "Et tall lik sitt eget kvadrat minus én",
-          body: "Løs φ² = φ + 1. Den positive roten er φ = (1 + √5) / 2 ≈ 1,6180339887. Den ene ligningen inneholder nesten alt: del begge sider på φ, og du får φ = 1 + 1/φ, så 1/φ = φ − 1 ≈ 0,6180339887. Det resiproke er originalen minus én, en egenskap intet annet positivt tall har. Den negative roten er ψ = (1 − √5)/2 ≈ −0,6180, og paret (φ, ψ) er motoren bak hver Fibonacci-identitet nedenfor.",
+          body: "Løs φ² = φ + 1. Den positive roten er φ = (1 + √5) / 2 ≈ 1,6180339887. Den ene ligningen inneholder nesten alt: Del begge sider på φ, og du får φ = 1 + 1/φ, så 1/φ = φ − 1 ≈ 0,6180339887. Det resiproke er originalen minus én, en egenskap intet annet positivt tall har. Den negative roten er ψ = (1 − √5)/2 ≈ −0,6180, og paret (φ, ψ) er motoren bak hver Fibonacci-identitet nedenfor.",
         },
         {
           pretitle: "Trinn to · Fibonacci",
           title: "Legg sammen de to siste, for alltid",
-          body: "Start med F₀ = 0, F₁ = 1, og iterer deretter Fₙ₊₁ = Fₙ + Fₙ₋₁: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … . Ta forholdet mellom påfølgende ledd (1, 2, 1,5, 1,667, 1,6, 1,625, 1,615, 1,619) og det sirkler inn på φ. Binets lukkede form gjør den grensen eksakt: Fₙ = (φⁿ − ψⁿ)/√5. Fordi |ψ| < 1, forsvinner ψⁿ-leddet, og Fₙ ender opp avrundingsnært til φⁿ/√5 for hver n.",
+          body: "Start med F₀ = 0, F₁ = 1, og iterer deretter Fₙ₊₁ = Fₙ + Fₙ₋₁: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … . Ta forholdet mellom påfølgende ledd (1; 2; 1,5; 1,667; 1,6; 1,625; 1,615; 1,619) og det sirkler inn på φ. Binets lukkede form gjør den grensen eksakt: Fₙ = (φⁿ − ψⁿ)/√5. Fordi |ψ| < 1, forsvinner ψⁿ-leddet, og Fₙ ender opp avrundingsnært til φⁿ/√5 for hver n.",
         },
         {
           pretitle: "Trinn tre · Den gylne vinkelen og solsikker",
@@ -646,7 +646,7 @@ export const no: StoriesDict = {
       title: "Buffons nål",
       tagline: "Slipp pinner på linjert papir. π faller ut.",
       intro:
-        "Georges-Louis Leclerc, Comte de Buffon, stilte spørsmålet i 1733 og publiserte det i 1777: slipp en nål på et gulv av parallelle linjer og tell krysningene. Forholdet gir tilbake π: en konstant fra sirkler som dukker opp av rette nåler på rett tre. Utforskeren simulerer slippene live og lar deg se estimatet krype mot π = 3,14159…",
+        "Georges-Louis Leclerc, Comte de Buffon, stilte spørsmålet i 1733 og publiserte det i 1777: Slipp en nål på et gulv av parallelle linjer og tell krysningene. Forholdet gir tilbake π: en konstant fra sirkler som dukker opp av rette nåler på rett tre. Utforskeren simulerer slippene live og lar deg se estimatet krype mot π = 3,14159…",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {
@@ -682,12 +682,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Tenk på hotellet",
           title: "Uendelig mange rom, hvert eneste opptatt",
-          body: "Hotellet har et rom for hvert telletall: 1, 2, 3, og videre for alltid. I kveld er hvert eneste rom tatt: en gjest i 1, en gjest i 2, en gjest i 17, en gjest i 10¹⁰⁰. Sunn fornuft kaller dette 'fullt': det er ikke noe rom uten en gjest. Matematikken er uenig, fordi 'fullt' er en endelig idé og rommengden her er tellbart uendelig. Kardinaliteten til gjestene er ℵ₀, og ℵ₀ er ikke et tall; det er størrelsen på de naturlige tallene.",
+          body: "Hotellet har et rom for hvert telletall: 1, 2, 3, og videre for alltid. I kveld er hvert eneste rom tatt: en gjest i 1, en gjest i 2, en gjest i 17, en gjest i 10¹⁰⁰. Sunn fornuft kaller dette 'fullt': Det er ikke noe rom uten en gjest. Matematikken er uenig, fordi 'fullt' er en endelig idé og rommengden her er tellbart uendelig. Kardinaliteten til gjestene er ℵ₀, og ℵ₀ er ikke et tall; det er størrelsen på de naturlige tallene.",
         },
         {
           pretitle: "Trinn to · Én ny gjest",
           title: "Skyv n → n+1, og rom 1 blir ledig",
-          body: "En reisende banker på. Bestyreren sender ut én enkelt instruksjon: hver gjest, flytt fra rom n til rom n+1. Gjesten i 1 går til 2, gjesten i 2 går til 3, og så videre; ingen blir fortrengt fordi det alltid finnes et høyere-nummerert rom som venter. Etter forskyvningen er rom 1 tomt og den nyankomne sjekker inn. Det 'fulle' hotellet var aldri fullt i endelig forstand: det hadde ℵ₀ + 1 = ℵ₀ hele tiden.",
+          body: "En reisende banker på. Bestyreren sender ut én enkelt instruksjon: Hver gjest, flytt fra rom n til rom n+1. Gjesten i 1 går til 2, gjesten i 2 går til 3, og så videre; ingen blir fortrengt fordi det alltid finnes et høyere-nummerert rom som venter. Etter forskyvningen er rom 1 tomt og den nyankomne sjekker inn. Det 'fulle' hotellet var aldri fullt i endelig forstand: Det hadde ℵ₀ + 1 = ℵ₀ hele tiden.",
         },
         {
           pretitle: "Trinn tre · Uendelig mange nye gjester",
@@ -697,7 +697,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Uendelige busser, uendelig mange passasjerer i hver",
           title: "Primpotenser absorberer ℵ₀ × ℵ₀",
-          body: "En flåte av tellbart uendelig mange busser ruller opp, hver med tellbart uendelig mange passasjerer. Send hver eksisterende gjest fra rom n til rom 2ⁿ: de tar potensene av to. For buss k (k = 1, 2, 3, …), la pₖ være det k-te oddetallsprimtallet (3, 5, 7, 11, 13, …) og send passasjer m til rom pₖᵐ. Buss 1 lander på 3, 9, 27, 81, …; buss 2 på 5, 25, 125, …; buss 3 på 7, 49, …. Ved aritmetikkens fundamentalteorem er hver primpotens unik, så ingen to gjester kolliderer. ℵ₀ × ℵ₀ = ℵ₀.",
+          body: "En flåte av tellbart uendelig mange busser ruller opp, hver med tellbart uendelig mange passasjerer. Send hver eksisterende gjest fra rom n til rom 2ⁿ: De tar potensene av to. For buss k (k = 1, 2, 3, …), la pₖ være det k-te oddetallsprimtallet (3, 5, 7, 11, 13, …) og send passasjer m til rom pₖᵐ. Buss 1 lander på 3, 9, 27, 81, …; buss 2 på 5, 25, 125, …; buss 3 på 7, 49, …. Ved aritmetikkens fundamentalteorem er hver primpotens unik, så ingen to gjester kolliderer. ℵ₀ × ℵ₀ = ℵ₀.",
         },
       ],
     },
@@ -706,7 +706,7 @@ export const no: StoriesDict = {
       title: "Gabriels horn",
       tagline: "Endelig volum, uendelig overflate.",
       intro:
-        "En form fra 1641 som slukte enhver intuisjon matematikere hadde om uendelig. Utforskeren kutter hornet av ved en variabel x, tegner sideprofilen, og beregner volumet og overflatearealet live: se den ene holde seg tam og den andre løpe avgårde.",
+        "En form fra 1641 som slukte enhver intuisjon matematikere hadde om uendelig. Utforskeren kutter hornet av ved en variabel x, tegner sideprofilen, og beregner volumet og overflatearealet live: Se den ene holde seg tam og den andre løpe avgårde.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {
@@ -717,17 +717,17 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Beregn volumet",
           title: "V = π, nøyaktig",
-          body: "Del hornet i skiver av tykkelse dx og radius 1/x. Volumet til hver skive er π · (1/x)² · dx. Legg dem alle sammen fra 1 til uendelig: V = π ∫₁^∞ (1/x)² dx = π · [−1/x]₁^∞ = π. Endelig. Hele det uendelige hornet kunne fylles til randen med nøyaktig π kubikkenheter av maling. Det konvergente integralet ∫ 1/x² dx er det som holder det begrenset: kvadratene forsvinner raskt nok til at summen setter seg.",
+          body: "Del hornet i skiver av tykkelse dx og radius 1/x. Volumet til hver skive er π · (1/x)² · dx. Legg dem alle sammen fra 1 til uendelig: V = π ∫₁^∞ (1/x)² dx = π · [−1/x]₁^∞ = π. Endelig. Hele det uendelige hornet kunne fylles til randen med nøyaktig π kubikkenheter av maling. Det konvergente integralet ∫ 1/x² dx er det som holder det begrenset: Kvadratene forsvinner raskt nok til at summen setter seg.",
         },
         {
           pretitle: "Trinn tre · Beregn overflaten",
           title: "A = ∞, nøyaktig",
-          body: "Den laterale overflaten er A = 2π ∫₁^∞ (1/x) · √(1 + 1/x⁴) dx. Kvadratrotsfaktoren er alltid minst 1, så A ≥ 2π ∫₁^∞ (1/x) dx = 2π · [ln x]₁^∞. Det er det harmoniske integralet, og det divergerer. Uansett hvor langt du går langs hornet, fortsetter du å legge til lateralt areal, og totalen slutter aldri å vokse. Overflaten er uendelig: ingen endelig mengde maling vil dekke den.",
+          body: "Den laterale overflaten er A = 2π ∫₁^∞ (1/x) · √(1 + 1/x⁴) dx. Kvadratrotsfaktoren er alltid minst 1, så A ≥ 2π ∫₁^∞ (1/x) dx = 2π · [ln x]₁^∞. Det er det harmoniske integralet, og det divergerer. Uansett hvor langt du går langs hornet, fortsetter du å legge til lateralt areal, og totalen slutter aldri å vokse. Overflaten er uendelig: Ingen endelig mengde maling vil dekke den.",
         },
         {
           pretitle: "Trinn fire · Malerens paradoks",
           title: "Fyll det; mal det aldri",
-          body: "Så her er gåten: hell inn π enheter med maling og hornet er fullt, inkludert den indre veggen. Likevel ville du trenge uendelig mye for å dekke utsiden. Torricelli fant resultatet kontraintuitivt allerede før kalkulus eksisterte for å navngi trikset. Den moderne løsningen er at 'maling' antar et belegg av ikke-null tykkelse ε, som over en uendelig overflate trenger uendelig volum. Slipp den antakelsen, og paradokset oppløses: den matematiske 'malingen' inni har null tykkelse på veggen, og den indre veggen er den samme uendelige overflaten som utsiden. Navnet kommer senere: hornet til erkeengelen Gabriel, blåst for å kunngjøre dommedagen.",
+          body: "Så her er gåten: Hell inn π enheter med maling og hornet er fullt, inkludert den indre veggen. Likevel ville du trenge uendelig mye for å dekke utsiden. Torricelli fant resultatet kontraintuitivt allerede før kalkulus eksisterte for å navngi trikset. Den moderne løsningen er at 'maling' antar et belegg av ikke-null tykkelse ε, som over en uendelig overflate trenger uendelig volum. Slipp den antakelsen, og paradokset oppløses: Den matematiske 'malingen' inni har null tykkelse på veggen, og den indre veggen er den samme uendelige overflaten som utsiden. Navnet kommer senere: hornet til erkeengelen Gabriel, blåst for å kunngjøre dommedagen.",
         },
       ],
     },
@@ -736,13 +736,13 @@ export const no: StoriesDict = {
       title: "Cantors diagonalargument",
       tagline: "Uendelig kommer i størrelser.",
       intro:
-        "Georg Cantors diagonalargument fra 1891 er det reneste beviset i matematikken på at noen uendeligheter er større enn andre. Utforskeren animerer konstruksjonen live: velg en hvilken som helst liste av desimaler i [0,1] og se et nytt reelt tall trinne ut av diagonalen, ett som ikke kan være på listen din, uansett hvor smart du ordnet den.",
+        "Georg Cantors diagonalargument fra 1891 er det reneste beviset i matematikken på at noen uendeligheter er større enn andre. Utforskeren animerer konstruksjonen live: Velg en hvilken som helst liste av desimaler i [0,1] og se et nytt reelt tall trinne ut av diagonalen, ett som ikke kan være på listen din, uansett hvor smart du ordnet den.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {
           pretitle: "Trinn én · Sett opp det umulige",
           title: "Anta at de reelle kan listes",
-          body: "Cantors bevis er ved motsigelse. Anta at de reelle tallene mellom 0 og 1 er tellbare, det vil si, de kan ordnes i en uendelig sekvens r₁, r₂, r₃, …, der hvert reelt tall dukker opp et sted på listen. Legg merke til at vi aldri sier hvilken rekkefølge: argumentet må fungere for enhver ordning du muligens kan finne på. Hvis vi kan finne ett reelt tall som listen utelater, er antakelsen om at en slik komplett liste eksisterer død.",
+          body: "Cantors bevis er ved motsigelse. Anta at de reelle tallene mellom 0 og 1 er tellbare, det vil si, de kan ordnes i en uendelig sekvens r₁, r₂, r₃, …, der hvert reelt tall dukker opp et sted på listen. Legg merke til at vi aldri sier hvilken rekkefølge: Argumentet må fungere for enhver ordning du muligens kan finne på. Hvis vi kan finne ett reelt tall som listen utelater, er antakelsen om at en slik komplett liste eksisterer død.",
         },
         {
           pretitle: "Trinn to · Lese diagonalen",
@@ -752,12 +752,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Hvorfor s mangler",
           title: "Forskjellig i det n-te sifferet, hver gang",
-          body: "Ved konstruksjon skiller s seg fra r₁ i den første desimalplassen, fra r₂ i den andre, fra r₃ i den tredje, fra rₙ i den n-te, for hver n. Så s kan ikke være lik noen rₙ på listen. Likevel er s et fullstendig fint reelt tall i [0, 1]. Listen skulle inneholde hvert slikt reelt tall, og her er ett den utelot. Antakelsen kollapser: ingen liste av de reelle kan være komplett. De reelle mellom 0 og 1 er overtellbare.",
+          body: "Ved konstruksjon skiller s seg fra r₁ i den første desimalplassen, fra r₂ i den andre, fra r₃ i den tredje, fra rₙ i den n-te, for hver n. Så s kan ikke være lik noen rₙ på listen. Likevel er s et fullstendig fint reelt tall i [0, 1]. Listen skulle inneholde hvert slikt reelt tall, og her er ett den utelot. Antakelsen kollapser: Ingen liste av de reelle kan være komplett. De reelle mellom 0 og 1 er overtellbare.",
         },
         {
           pretitle: "Trinn fire · En ny slags uendelighet",
           title: "Kontinuum, stopping, Gödel: samme diagonal",
-          body: "De reelle har kardinalitet strengt større enn de naturlige: |ℝ| = 2^ℵ₀ = c > ℵ₀. Det samme diagonaltrikset driver Turings bevis på at stoppeproblemet er uavgjørbart, og Gödels første ufullstendighetsteorem: begge bygger en setning som er uenig med hver oppføring på en liste av kandidater. Cantor spurte deretter om noen kardinalitet bor strengt mellom ℵ₀ og c. Dette er kontinuumshypotesen. Gödel (1940) og Cohen (1963) viste sammen at den er uavhengig av ZFC: anta den sann, og aksiomene forblir konsistente; anta den usann, og aksiomene forblir konsistente. Matematikken, på dette punktet, lar døren stå åpen.",
+          body: "De reelle har kardinalitet strengt større enn de naturlige: |ℝ| = 2^ℵ₀ = c > ℵ₀. Det samme diagonaltrikset driver Turings bevis på at stoppeproblemet er uavgjørbart, og Gödels første ufullstendighetsteorem: Begge bygger en setning som er uenig med hver oppføring på en liste av kandidater. Cantor spurte deretter om noen kardinalitet bor strengt mellom ℵ₀ og c. Dette er kontinuumshypotesen. Gödel (1940) og Cohen (1963) viste sammen at den er uavhengig av ZFC: Anta den sann, og aksiomene forblir konsistente; anta den usann, og aksiomene forblir konsistente. Matematikken, på dette punktet, lar døren stå åpen.",
         },
       ],
     },
@@ -772,7 +772,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Agenten",
           title: "En prikk med en kurs",
-          body: "Hver boid er et bittelite bevegelig punkt: den har en posisjon og en hastighet. Det er hele hukommelsen hver agent bærer. Den kan ikke se hele flokken, bare den håndfullen naboer innenfor en liten persepsjonsradius. Det er intet kart, ingen leder å følge, ingen meldingsutveksling mellom agenter. Bare en posisjon, en hastighet, og det som er innen synsvidde.",
+          body: "Hver boid er et bittelite bevegelig punkt: Den har en posisjon og en hastighet. Det er hele hukommelsen hver agent bærer. Den kan ikke se hele flokken, bare den håndfullen naboer innenfor en liten persepsjonsradius. Det er intet kart, ingen leder å følge, ingen meldingsutveksling mellom agenter. Bare en posisjon, en hastighet, og det som er innen synsvidde.",
         },
         {
           pretitle: "Trinn to · De tre reglene",
@@ -842,12 +842,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Fraktaldimensjonen",
           title: "1,71, uavhengig av frøet",
-          body: "Witten og Sander publiserte modellen i 1981 og viste numerisk at på et 2D-gitter har den resulterende klyngen fraktaldimensjon ≈ 1,71. Det er strengt mellom en kurve (dimensjon 1) og en fylt region (dimensjon 2), og, avgjørende, det avhenger ikke av frøformen, gittertypen eller spawn-radiusen. Forskjellige fysiske prosesser som overfladisk ser helt ulike ut, gir nøyaktig samme dimensjon. Tallet er universelt på samme måte som π er.",
+          body: "Witten og Sander publiserte modellen i 1981 og viste numerisk at på et 2D-gitter har den resulterende klyngen fraktaldimensjon ≈ 1,71. Det er strengt mellom en kurve (dimensjon 1) og en fylt region (dimensjon 2), og det avhenger, avgjørende nok, ikke av frøformen, gittertypen eller spawn-radiusen. Forskjellige fysiske prosesser som overfladisk ser helt ulike ut, gir nøyaktig samme dimensjon. Tallet er universelt på samme måte som π er.",
         },
         {
           pretitle: "Trinn fire · Hvor det dukker opp",
           title: "Kobber, lyn, lav, nevroner",
-          body: "Bytt ut de abstrakte vandrerne med kobberioner i en sulfatløsning og slå på en strøm; metallet avsettes på katoden i det samme dendritiske mønsteret. Bytt dem ut med elektroner som lekker gjennom et dielektrikum, og du får en Lichtenberg-figur, det lynformede arret høyspenning etterlater på tre, akryl eller på en trefkroppen menneskelig kropp. Bytt dem ut med luftbårne sporer som lander på et tre, og du får silhuetten av en lavkoloni. Når diffusjon støter på noe ugjenkallelig klebrig, kan du forutsi bildet fra én regel.",
+          body: "Bytt ut de abstrakte vandrerne med kobberioner i en sulfatløsning og slå på en strøm; metallet avsettes på katoden i det samme dendritiske mønsteret. Bytt dem ut med elektroner som lekker gjennom et dielektrikum, og du får en Lichtenberg-figur, det lynformede arret høyspenning etterlater på tre, akryl eller på en menneskekropp som er truffet. Bytt dem ut med luftbårne sporer som lander på et tre, og du får silhuetten av en lavkoloni. Når diffusjon støter på noe ugjenkallelig klebrig, kan du forutsi bildet fra én regel.",
         },
       ],
     },
@@ -862,22 +862,22 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Reglene",
           title: "To linjer er hele programmet",
-          body: "Det er én maur vendt i en av fire retninger, på et uendelig kvadratisk rutenett der hver celle er enten hvit eller svart. Hvert tikk: se på cellen du står på. Hvis den er HVIT: vipp den til svart, snu 90° med klokken, gå frem ett skritt. Hvis den er SVART: vipp den til hvit, snu 90° mot klokken, gå frem ett skritt. Det er den komplette spesifikasjonen. Christopher Langton skrev den ned i 1986. Det er intet tilfeldig tall, intet nabolagsoppslag, ingen parametere. To linjer.",
+          body: "Det er én maur vendt i en av fire retninger, på et uendelig kvadratisk rutenett der hver celle er enten hvit eller svart. Hvert tikk: Se på cellen du står på. Hvis den er HVIT: Vipp den til svart, snu 90° med klokken, gå frem ett skritt. Hvis den er SVART: Vipp den til hvit, snu 90° mot klokken, gå frem ett skritt. Det er den komplette spesifikasjonen. Christopher Langton skrev den ned i 1986. Det er intet tilfeldig tall, intet nabolagsoppslag, ingen parametere. To linjer.",
         },
         {
           pretitle: "Trinn to · Tre regimer",
           title: "Enkel symmetri, så kaos, så…",
-          body: "Kjør mauren fra et tomt rutenett og se på. I omtrent 100 skritt er sporet lite og bilateralt symmetrisk: reglene er deterministiske, starten er tom, mønsteret må respektere begge aksene. Rundt skritt 500 splintres symmetrien og sporet ser i hovedsak tilfeldig ut: en floke av svarte firkanter uten struktur synlig på noen skala. Den fasen varer omtrent ti tusen skritt og frustrerte forskere i nesten et tiår. Så begynner det tredje regimet.",
+          body: "Kjør mauren fra et tomt rutenett og se på. I omtrent 100 skritt er sporet lite og bilateralt symmetrisk: Reglene er deterministiske, starten er tom, mønsteret må respektere begge aksene. Rundt skritt 500 splintres symmetrien og sporet ser i hovedsak tilfeldig ut: en floke av svarte firkanter uten struktur synlig på noen skala. Den fasen varer omtrent ti tusen skritt og frustrerte forskere i nesten et tiår. Så begynner det tredje regimet.",
         },
         {
           pretitle: "Trinn tre · Motorveien",
           title: "En 104-skritts-løkke, som driver for alltid",
-          body: "Et sted rundt skritt 10 000 (det nøyaktige øyeblikket avhenger av det innledende bitmønsteret, men det er alltid der omkring) låses mauren inn i en gjentakende 104-skritts-syklus som flytter henne to celler diagonalt for hver løkke. Sett utenfra ser det ut som hun legger ned en pen stripete 'motorvei' av mot hjørnet. Hun vil følge den, uforstyrret, for alltid. Bunimovich og Troubetzkoy beviste i 1992 at uansett hvilken endelig arrangement av svarte celler du starter med, er maurens bane alltid ubegrenset: hun kan ikke fanges. Om motorveien alltid dukker opp er fortsatt en åpen formodning. Det har den alltid hittil.",
+          body: "Et sted rundt skritt 10 000 (det nøyaktige øyeblikket avhenger av det innledende bitmønsteret, men det er alltid der omkring) låses mauren inn i en gjentakende 104-skritts-syklus som flytter henne to celler diagonalt for hver løkke. Sett utenfra ser det ut som hun legger ned en pen stripete 'motorvei' av mot hjørnet. Hun vil følge den, uforstyrret, for alltid. Bunimovich og Troubetzkoy beviste i 1992 at uansett hvilken endelig arrangement av svarte celler du starter med, er maurens bane alltid ubegrenset: Hun kan ikke fanges. Om motorveien alltid dukker opp er fortsatt en åpen formodning. Det har den alltid hittil.",
         },
         {
           pretitle: "Trinn fire · Hvorfor det betyr noe",
           title: "Universalitet, gjemt i to linjer",
-          body: "Ta mauren og bytt 'to farger' med 'n farger' og en annen turregel per farge. Noen av disse generaliserte maurene er Turing-komplette. Gajardo, Moreira og Goles beviste det: du kan kode hvilket som helst dataprogram inn i det innledende bitmønsteret, og maurens bane er kjøringen av det programmet. Så et system enkelt nok til å passe på en serviett er, i forkledning, hver mulig datamaskin som noensinne vil bli bygget. Det er gåten om cellulær emergens i sin reneste form.",
+          body: "Ta mauren og bytt 'to farger' med 'n farger' og en annen turregel per farge. Noen av disse generaliserte maurene er Turing-komplette. Gajardo, Moreira og Goles beviste det: Du kan kode hvilket som helst dataprogram inn i det innledende bitmønsteret, og maurens bane er kjøringen av det programmet. Så et system enkelt nok til å passe på en serviett er, i forkledning, hver mulig datamaskin som noensinne vil bli bygget. Det er gåten om cellulær emergens i sin reneste form.",
         },
       ],
     },
@@ -892,7 +892,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Trekanten",
           title: "Tall fra den enkleste regelen på jorden",
-          body: "Skriv en 1 på toppen. Under er hver oppføring summen av de to over den (behandle de tomme posisjonene som null). De første seks radene: 1 · 1 1 · 1 2 1 · 1 3 3 1 · 1 4 6 4 1 · 1 5 10 10 5 1. Tallene er binomialkoeffisientene C(n, k): de teller antall måter å velge k elementer fra n. De dukker opp i sannsynlighet, i algebra (utvidelsen av (a + b)ⁿ), i kombinatorikk. De er også den eneste ingrediensen som trengs for å se en fraktal.",
+          body: "Skriv en 1 på toppen. Under er hver oppføring summen av de to over den (behandle de tomme posisjonene som null). De første seks radene: 1 · 1 1 · 1 2 1 · 1 3 3 1 · 1 4 6 4 1 · 1 5 10 10 5 1. Tallene er binomialkoeffisientene C(n, k): De teller antall måter å velge k elementer fra n. De dukker opp i sannsynlighet, i algebra (utvidelsen av (a + b)ⁿ), i kombinatorikk. De er også den eneste ingrediensen som trengs for å se en fraktal.",
         },
         {
           pretitle: "Trinn to · Fargelegg etter rest",
@@ -907,7 +907,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Andre primtall",
           title: "Forskjellig p, forskjellig gasket",
-          body: "For p = 3 får du en trekantet gasket med tre farger og en 3-foldig selvlik struktur. For p = 5 er perioden 5; for p = 7 er gasketen enda tettere. Når p vokser, nærmer fraktalens Hausdorff-dimensjon seg 2: bildet fylles opp. For ikke-prim modulus eksisterer strukturen, men den blir uregelmessig (Kummers rene mente-telling fungerer bare for primtall). En enkel kombinatorisk tabell, en uendelig familie av fraktaler.",
+          body: "For p = 3 får du en trekantet gasket med tre farger og en 3-foldig selvlik struktur. For p = 5 er perioden 5; for p = 7 er gasketen enda tettere. Når p vokser, nærmer fraktalens Hausdorff-dimensjon seg 2: Bildet fylles opp. For ikke-prim modulus eksisterer strukturen, men den blir uregelmessig (Kummers rene mente-telling fungerer bare for primtall). En enkel kombinatorisk tabell, en uendelig familie av fraktaler.",
         },
       ],
     },
@@ -927,12 +927,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Hver brøk, én gang",
           title: "Ingenting glipper, ingenting gjentas",
-          body: "Det er et teorem (bevisbart på noen få linjer) at grenene i Stern-Brocot-treet ramser opp de positive rasjonale tallene uten utelatelser og uten gjentakelser: hver forkortet brøk p/q lander på én og bare én node, med p og q allerede koprime. Så treet er samtidig en fullstendig liste over de positive rasjonale tallene, et vitne om at det bare er tellbart mange, og en strukturelt rettferdig måte å bygge dem på. Stern (1858) og Brocot (1861) oppdaget det samme treet uavhengig: Stern som et stykke tallteori, Brocot som en urmakers verktøy for å velge tannhjulforhold.",
+          body: "Det er et teorem (bevisbart på noen få linjer) at grenene i Stern-Brocot-treet ramser opp de positive rasjonale tallene uten utelatelser og uten gjentakelser: Hver forkortet brøk p/q lander på én og bare én node, med p og q allerede koprime. Så treet er samtidig en fullstendig liste over de positive rasjonale tallene, et vitne om at det bare er tellbart mange, og en strukturelt rettferdig måte å bygge dem på. Stern (1858) og Brocot (1861) oppdaget det samme treet uavhengig: Stern som et stykke tallteori, Brocot som en urmakers verktøy for å velge tannhjulforhold.",
         },
         {
           pretitle: "Trinn tre · Kjedebrøkveien",
           title: "Venstre og høyre koder utvidelsen",
-          body: "Velg et hvilket som helst positivt tall, rasjonalt eller irrasjonalt. Gå nedover treet med utgangspunkt i 1/1. Ved hvert skritt gå VENSTRE hvis målet ditt er mindre enn den nåværende brøken, HØYRE hvis større. Skriv ned sekvensen av trekk som en kjørelengdeliste. Den listen er nøyaktig kjedebrøkutvidelsen av målet ditt. For eksempel: det gylne snitt φ = (1+√5)/2 ≈ 1,618 produserer veien R, L, R, L, R, L, … (vekselvis én og én) som koder kjedebrøken [1; 1, 1, 1, 1, …]. φ er, i denne forstand, det irrasjonelle tallet 'vanskeligst' å tilnærme med rasjonale tall.",
+          body: "Velg et hvilket som helst positivt tall, rasjonalt eller irrasjonalt. Gå nedover treet med utgangspunkt i 1/1. Ved hvert skritt gå VENSTRE hvis målet ditt er mindre enn den nåværende brøken, HØYRE hvis større. Skriv ned sekvensen av trekk som en kjørelengdeliste. Den listen er nøyaktig kjedebrøkutvidelsen av målet ditt. For eksempel: Det gylne snitt φ = (1+√5)/2 ≈ 1,618 produserer veien R, L, R, L, R, L, … (vekselvis én og én) som koder kjedebrøken [1; 1, 1, 1, 1, …]. φ er, i denne forstand, det irrasjonelle tallet 'vanskeligst' å tilnærme med rasjonale tall.",
         },
         {
           pretitle: "Trinn fire · Beste tilnærminger",
@@ -957,7 +957,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Fargelegg primtallene",
           title: "Et mønster som ikke burde være der",
-          body: "Fyll nå bare inn cellene hvis tall er primtall og la resten være tomme. Hvis primtallene var virkelig tilfeldige blant heltallene, ville rutenettet sett ut som uniforme prikker, som statisk støy. I stedet trekkes øyet langs klare diagonale linjer som strømmer over bildet. Mønsteret er ikke subtilt: selv et tretti-ganger-tretti-stykke viser det allerede. Ulam, Myron Stein og Mark Wells publiserte observasjonen i 1964 med et 65 000-tall rutenett trykt over flere sider av Scientific American.",
+          body: "Fyll nå bare inn cellene hvis tall er primtall og la resten være tomme. Hvis primtallene var virkelig tilfeldige blant heltallene, ville rutenettet sett ut som uniforme prikker, som statisk støy. I stedet trekkes øyet langs klare diagonale linjer som strømmer over bildet. Mønsteret er ikke subtilt: Selv et tretti-ganger-tretti-stykke viser det allerede. Ulam, Myron Stein og Mark Wells publiserte observasjonen i 1964 med et 65 000-tall rutenett trykt over flere sider av Scientific American.",
         },
         {
           pretitle: "Trinn tre · Hvorfor diagonaler",
@@ -967,7 +967,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Det dypere problemet",
           title: "Et åpent spørsmål med sminke",
-          body: "Ulam-spiralen er en kosmetisk omorganisering av heltallene, men de synlige diagonalene koder et dypt åpent spørsmål: hvilke kvadratiske polynomer i ℤ[x] produserer uendelig mange primtall? Flere Hardy-Littlewood- og Bateman-Horn-formodninger forutsier eksakte tettheter for disse primtallene (de matcher bildet spektakulært bra), men hver prediksjon er betinget. Ulams krot er et vindu mot den mest hardnakkede delen av analytisk tallteori, ved et uhell synlig for alle med kvadrert papir.",
+          body: "Ulam-spiralen er en kosmetisk omorganisering av heltallene, men de synlige diagonalene koder et dypt åpent spørsmål: Hvilke kvadratiske polynomer i ℤ[x] produserer uendelig mange primtall? Flere Hardy-Littlewood- og Bateman-Horn-formodninger forutsier eksakte tettheter for disse primtallene (de matcher bildet spektakulært bra), men hver prediksjon er betinget. Ulams krot er et vindu mot den mest hardnakkede delen av analytisk tallteori, ved et uhell synlig for alle med kvadrert papir.",
         },
       ],
     },
@@ -987,7 +987,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Ligningen",
           title: "r = 2a (1 − cos θ)",
-          body: "I polarkoordinater sentrert ved et valgt hjørne er kardioiden r(θ) = 2a(1 − cos θ). Når θ = 0 er radius 0 (spissen). Når θ = π er radius 4a (den fjerne enden). Kurven spores av et punkt på kanten av en sirkel med radius a som ruller rundt utsiden av en fast sirkel med samme radius; det er der ordet kommer fra: cardia betyr hjerte. Det er en av de mest studerte algebraiske kurvene i klassisk analyse.",
+          body: "I polarkoordinater sentrert ved et valgt hjørne er kardioiden r(θ) = 2a(1 − cos θ). Når θ = 0 er radius 0 (spissen). Når θ = π er radius 4a (den fjerne enden). Kurven spores av et punkt på kanten av en sirkel med radius a som ruller rundt utsiden av en fast sirkel med samme radius; det er der ordet kommer fra: Cardia betyr hjerte. Det er en av de mest studerte algebraiske kurvene i klassisk analyse.",
         },
         {
           pretitle: "Trinn tre · Mandelbrots hovedløk",
@@ -1006,7 +1006,7 @@ export const no: StoriesDict = {
       title: "Galton-brettet",
       tagline: "Sprettkuler tegner alltid den samme klokken.",
       intro:
-        "Francis Galtons quincunx er en trekant av pigger. Slipp en kule fra toppen: ved hver pigg avgjør et femti-femti myntkast om den styrer til venstre eller høyre, helt til tyngdekraften lar den falle ned i en av oppsamlingskurvene langs bunnen. Slipp ti tusen kuler, og kurvene fylles, alltid, til formen av normalfordelingen. Klokken er ingen tilfeldighet. Det er sentralgrenseteoremet gjort taktilt.",
+        "Francis Galtons quincunx er en trekant av pigger. Slipp en kule fra toppen: Ved hver pigg avgjør et femti-femti myntkast om den styrer til venstre eller høyre, helt til tyngdekraften lar den falle ned i en av oppsamlingskurvene langs bunnen. Slipp ti tusen kuler, og kurvene fylles, alltid, til formen av normalfordelingen. Klokken er ingen tilfeldighet. Det er sentralgrenseteoremet gjort taktilt.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {
@@ -1017,17 +1017,17 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Pascal-landingen",
           title: "Kurv-tellingene er binomiske",
-          body: "Etter N rader er sannsynligheten for at kulen lander i kurv k (nummerert 0 til N) C(N, k) / 2^N. Tellerne er oppføringene i rad N av Pascals trekant. Så et Galton-brett er, i hemmelighet, et fysisk oppslag av binomialkoeffisienter. Med N = 10 mottar de sentrale kurvene oppføringene 252, 210, 210, og de ytterste kurvene mottar oppføringen 1 (bare én vei av alle 1024). Formen er allerede en diskret klokke.",
+          body: "Etter N rader er sannsynligheten for at kulen lander i kurv k (nummerert 0 til N) C(N, k) / 2^N. Tellerne er oppføringene i rad N av Pascals trekant. Så et Galton-brett er, i hemmelighet, et fysisk oppslag av binomialkoeffisienter. Med N = 10 mottar de sentrale kurvene oppføringene 252, 210, 210; de ytterste kurvene mottar oppføringen 1 (bare én vei av alle 1024). Formen er allerede en diskret klokke.",
         },
         {
           pretitle: "Trinn tre · Sentralgrenseteoremet",
           title: "Klokken er uunngåelig",
-          body: "Når N vokser, konvergerer den binomiske sannsynlighetsmassefunksjonen mot Gauss-tettheten (1/√(2πNpq)) · exp(−(k − Np)² / (2Npq)). Dette er De Moivre-Laplace-teoremet (1733), det historiske første tilfellet av sentralgrenseteoremet. Den generelle CLT sier mye mer: ta EN HVILKEN SOM HELST tilfeldig variabel med endelig varians (bias, skjevhet, fordeling være forbannet) og summer N uavhengige kopier. Etter omskalering konvergerer summen mot en Gauss. Klokken er hva gjennomsnitt alltid blir.",
+          body: "Når N vokser, konvergerer den binomiske sannsynlighetsmassefunksjonen mot Gauss-tettheten (1/√(2πNpq)) · exp(−(k − Np)² / (2Npq)). Dette er De Moivre-Laplace-teoremet (1733), det historiske første tilfellet av sentralgrenseteoremet. Den generelle CLT sier mye mer: Ta EN HVILKEN SOM HELST tilfeldig variabel med endelig varians (bias, skjevhet, fordeling være forbannet) og summer N uavhengige kopier. Etter omskalering konvergerer summen mot en Gauss. Klokken er hva gjennomsnitt alltid blir.",
         },
         {
           pretitle: "Trinn fire · Hvorfor det dukker opp overalt",
           title: "Enhver sum av mange små spark",
-          body: "Høyder er laget av tusenvis av uavhengige små bidrag. Det er testscorer, IQ-score, målefeil, finansiell daglig avkastning (under restriktive antakelser). Hver er en sum av mange små uavhengige tilfeldige variabler, så hver er omtrent Gauss. Det er derfor klokkekurver styrer statistikken og hvorfor standardavvik har et navn. Galton-brettet er den mest fysiske måten å se teoremet i arbeid: ved 1000 kuler er klokken allerede glatt, selv om ingen enkelt kule vet noe om den.",
+          body: "Høyder er laget av tusenvis av uavhengige små bidrag. Det er testscorer, IQ-score, målefeil, finansiell daglig avkastning (under restriktive antakelser). Hver er en sum av mange små uavhengige tilfeldige variabler, så hver er omtrent Gauss. Det er derfor klokkekurver styrer statistikken og hvorfor standardavvik har et navn. Galton-brettet er den mest fysiske måten å se teoremet i arbeid: Ved 1000 kuler er klokken allerede glatt, selv om ingen enkelt kule vet noe om den.",
         },
       ],
     },
@@ -1042,12 +1042,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Fysikken",
           title: "Tre drag, en demping, tyngdekraft mot sentrum",
-          body: "Monter en liten jernlodd på en fleksibel snor over en plate. Plasser tre identiske magneter på platen i en likesidet trekant. Pendelen trekkes mot hver magnet med en kraft proporsjonal med 1/r² (eller 1/r³ for en invers-kube-modell: begge brukes i litteraturen; den kvalitative fraktalen dukker opp for begge). En svak fjær trekker også pendelen tilbake mot sentrum av trekanten. Luftmotstanden tapper jevnt energi. Bevegelsesligningene er deterministiske; det eneste ukjente er utgangsposisjonen.",
+          body: "Monter en liten jernlodd på en fleksibel snor over en plate. Plasser tre identiske magneter på platen i en likesidet trekant. Pendelen trekkes mot hver magnet med en kraft proporsjonal med 1/r² (eller 1/r³ for en invers-kube-modell: Begge brukes i litteraturen; den kvalitative fraktalen dukker opp for begge). En svak fjær trekker også pendelen tilbake mot sentrum av trekanten. Luftmotstanden tapper jevnt energi. Bevegelsesligningene er deterministiske; det eneste ukjente er utgangsposisjonen.",
         },
         {
           pretitle: "Trinn to · Attraksjonsbassengene",
           title: "Tre regioner i utgangspunktsrommet",
-          body: "Slipp pendelen fra et utgangspunkt over platen og integrer ligningene. Til slutt avtar pendelens amplitude og den setter seg rett over en av de tre magnetene: vinneren. Gjenta for hvert utgangspunkt i et fint rutenett, fargelegg hver etter vinneren sin: rød for magnet 1, grønn for magnet 2, blå for magnet 3. Platen er nå fargelagt inn i tre attraksjonsbassenger. Interiøret av hvert basseng er en pen fargelagt region. Grensen er derimot ikke en kurve: den er en fraktal.",
+          body: "Slipp pendelen fra et utgangspunkt over platen og integrer ligningene. Til slutt avtar pendelens amplitude og den setter seg rett over en av de tre magnetene: vinneren. Gjenta for hvert utgangspunkt i et fint rutenett, fargelegg hver etter vinneren sin: rød for magnet 1, grønn for magnet 2, blå for magnet 3. Platen er nå fargelagt inn i tre attraksjonsbassenger. Interiøret av hvert basseng er en pen fargelagt region. Grensen er derimot ikke en kurve: Den er en fraktal.",
         },
         {
           pretitle: "Trinn tre · Den fraktale grensen",
@@ -1082,12 +1082,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Det diagonale trikset",
           title: "G sier: «G er ikke bevisbar»",
-          body: "Ved hjelp av diagonal-lemmaet (i rett nedstigende linje fra Cantors diagonalargument fra 1891) konstruerte Gödel en setning G hvis Gödel-nummer er ⌜G⌝, og som er aritmetisk ekvivalent med ¬∃x Prov(x, ⌜G⌝): «intet tall x er et bevis for formelen med Gödel-nummer ⌜G⌝». På vanlig norsk: G sier «jeg er ikke bevisbar i dette systemet». Nå strammer sløyfen seg. Hvis G er bevisbar, beviser systemet et usant utsagn og er inkonsistent. Hvis G er ubevisbar, er det G påstår nøyaktig sant, men systemet kan ikke bevise det. Uansett kollapser Hilberts drøm om en komplett konsistent aritmetikk. Det andre ufullstendighetsteoremet følger nesten umiddelbart: et slikt system kan ikke bevise sin egen konsistens, for om det kunne, ville det også bevise G, i strid med det første.",
+          body: "Ved hjelp av diagonal-lemmaet (i rett nedstigende linje fra Cantors diagonalargument fra 1891) konstruerte Gödel en setning G hvis Gödel-nummer er ⌜G⌝, og som er aritmetisk ekvivalent med ¬∃x Prov(x, ⌜G⌝): «intet tall x er et bevis for formelen med Gödel-nummer ⌜G⌝». På vanlig norsk: G sier «jeg er ikke bevisbar i dette systemet». Nå strammer sløyfen seg. Hvis G er bevisbar, beviser systemet et usant utsagn og er inkonsistent. Hvis G er ubevisbar, er det G påstår nøyaktig sant, men systemet kan ikke bevise det. Uansett kollapser Hilberts drøm om en komplett konsistent aritmetikk. Det andre ufullstendighetsteoremet følger nesten umiddelbart: Et slikt system kan ikke bevise sin egen konsistens, for om det kunne, ville det også bevise G, i strid med det første.",
         },
         {
           pretitle: "Trinn fire · Hvor det spredte seg",
           title: "Tarski, Turing, Church, og hver bevisassistent siden",
-          body: "Det samme diagonale trikset dukker opp igjen og igjen. Alfred Tarski (1933) beviste at sannhet i aritmetikken ikke kan defineres inne i aritmetikken: sannhetens udefinerbarhet. Alan Turing (1936) viste at stoppeproblemet er uavgjørbart ved å diagonalisere over Turing-maskiner. Alonzo Church (1936) beviste at førsteordens logikk i seg selv er uavgjørbar. Hvert resultat er, strukturelt, en søskenbarn av Gödels: et system rikt nok til å beskrive seg selv inneholder et spørsmål det ikke kan besvare om seg selv. Moderne bevisassistenter (Coq, Lean, Isabelle, HOL) opererer innenfor Gödels grenser: de kan mekanisere enorme mengder matematikk, men de kan ikke bevise sin egen konsistens, og det finnes konkrete tallteoretiske utsagn (Goodsteins teorem, Paris-Harrington) som er sanne og beviselig ubevisbare i Peano-aritmetikk. Drømmen er borte; bygningen er større enn noensinne.",
+          body: "Det samme diagonale trikset dukker opp igjen og igjen. Alfred Tarski (1933) beviste at sannhet i aritmetikken ikke kan defineres inne i aritmetikken: sannhetens udefinerbarhet. Alan Turing (1936) viste at stoppeproblemet er uavgjørbart ved å diagonalisere over Turing-maskiner. Alonzo Church (1936) beviste at førsteordens logikk i seg selv er uavgjørbar. Hvert resultat er, strukturelt, en søskenbarn av Gödels: Et system rikt nok til å beskrive seg selv inneholder et spørsmål det ikke kan besvare om seg selv. Moderne bevisassistenter (Coq, Lean, Isabelle, HOL) opererer innenfor Gödels grenser: De kan mekanisere enorme mengder matematikk, men de kan ikke bevise sin egen konsistens, og det finnes konkrete tallteoretiske utsagn (Goodsteins teorem, Paris-Harrington) som er sanne og beviselig ubevisbare i Peano-aritmetikk. Drømmen er borte; bygningen er større enn noensinne.",
         },
       ],
     },
@@ -1102,12 +1102,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Spørsmålet",
           title: "Stopper P på x?",
-          body: "Gitt kildekoden til et program P og en input x, avgjør om P til slutt blir ferdig eller om det løper for alltid. Det høres ut som noe en tilstrekkelig dyktig analysator alltid burde kunne avgjøre: programmer er tross alt endelige strenger av symboler, og en datamaskin kan simulere dem. David Hilbert, i sitt Entscheidungsproblem fra 1928, ba om akkurat en slik universell avgjørelsesprosedyre. Mot midten av 1930-tallet nærmet Alonzo Church (via λ-kalkylen) og Alan Turing (via det vi nå kaller Turing-maskiner) seg det samme svaret fra hver sin kant.",
+          body: "Gitt kildekoden til et program P og en input x, avgjør om P til slutt blir ferdig eller om det løper for alltid. Det høres ut som noe en tilstrekkelig dyktig analysator alltid burde kunne avgjøre: Programmer er tross alt endelige strenger av symboler, og en datamaskin kan simulere dem. David Hilbert, i sitt Entscheidungsproblem fra 1928, ba om akkurat en slik universell avgjørelsesprosedyre. Mot midten av 1930-tallet nærmet Alonzo Church (via λ-kalkylen) og Alan Turing (via det vi nå kaller Turing-maskiner) seg det samme svaret fra hver sin kant.",
         },
         {
           pretitle: "Trinn to · Turings selvmotsigelse",
           title: "Anta halts(P, x), bygg så D",
-          body: "Anta, for selvmotsigelse, at det finnes en total beregnbar funksjon halts(P, x) som returnerer ⊤ når P stopper på input x og ⊥ ellers. Da kan vi skrive et nytt program D(P): beregn halts(P, P); hvis det returnerer ⊤, gå i evig løkke; hvis det returnerer ⊥, stopp umiddelbart. D er tillatt: hvert trinn er beregnbart per antakelse. Spør nå: hva returnerer halts(D, D)? Hvis halts(D, D) = ⊤, så løper D for alltid på input D etter definisjonen av D, så D stopper ikke på D, i strid med ⊤. Hvis halts(D, D) = ⊥, så stopper D på D, i strid med ⊥. Begge svar bryter definisjonen, så ingen slik halts kan eksistere. (Turing 1936, «On Computable Numbers, with an Application to the Entscheidungsproblem».)",
+          body: "Anta, for selvmotsigelse, at det finnes en total beregnbar funksjon halts(P, x) som returnerer ⊤ når P stopper på input x og ⊥ ellers. Da kan vi skrive et nytt program D(P): Beregn halts(P, P); hvis det returnerer ⊤, gå i evig løkke; hvis det returnerer ⊥, stopp umiddelbart. D er tillatt: Hvert trinn er beregnbart per antakelse. Spør nå: Hva returnerer halts(D, D)? Hvis halts(D, D) = ⊤, så løper D for alltid på input D etter definisjonen av D, så D stopper ikke på D, i strid med ⊤. Hvis halts(D, D) = ⊥, så stopper D på D, i strid med ⊥. Begge svar bryter definisjonen, så ingen slik halts kan eksistere. (Turing 1936, «On Computable Numbers, with an Application to the Entscheidungsproblem».)",
         },
         {
           pretitle: "Trinn tre · Diagonalisering i forkledning",
@@ -1117,7 +1117,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Hvorfor det betyr noe i dag",
           title: "Rices teorem og det praktiske nedfallet",
-          body: "Rices teorem (Henry Gordon Rice, 1953) generaliserer Turing: enhver ikke-triviell semantisk egenskap ved programmer («returnerer det noen gang null?», «lekker det minne?», «er det ondsinnet?») er uavgjørbar. Statiske analysatorer må derfor tilnærme: de overrapporterer (falske positive) eller underrapporterer (utelatte feil), aldri både fullstendige og rene. Kompilatorer går ut på tid under optimalisering og nekter å inline forbi en heuristikk. Antivirusmotorer kan generelt aldri fange all skadevare. Cloud-autoskalerere kan ikke love at en innsendt jobb vil stoppe; de setter i stedet et tak på CPU-tid. Stoppeproblemet er ingen kuriositet; det er veggen ethvert program-om-programmer til slutt treffer.",
+          body: "Rices teorem (Henry Gordon Rice, 1953) generaliserer Turing: Enhver ikke-triviell semantisk egenskap ved programmer («returnerer det noen gang null?», «lekker det minne?», «er det ondsinnet?») er uavgjørbar. Statiske analysatorer må derfor tilnærme: De overrapporterer (falske positive) eller underrapporterer (utelatte feil), aldri både fullstendige og rene. Kompilatorer går ut på tid under optimalisering og nekter å inline forbi en heuristikk. Antivirusmotorer kan generelt aldri fange all skadevare. Cloud-autoskalerere kan ikke love at en innsendt jobb vil stoppe; de setter i stedet et tak på CPU-tid. Stoppeproblemet er ingen kuriositet; det er veggen ethvert program-om-programmer til slutt treffer.",
         },
       ],
     },
@@ -1126,18 +1126,18 @@ export const no: StoriesDict = {
       title: "P vs NP",
       tagline: "Det største åpne spørsmålet i informatikken.",
       intro:
-        "Noen problemer er lette å løse. Andre er lette å sjekke når noen rekker deg svaret. P vs NP spør om de to klassene i hemmelighet er de samme, og et ja ville knust moderne kryptografi. Utforskeren er en liten 3-SAT-løser som lar deg se hvorfor verifisering er triviell, men søk brutalt: slipp inn en formel, og følg DPLL ned i tilbaketrekkings­treet mens den prøver tilordninger og kapper hele grener med én eneste selvmotsigelse.",
+        "Noen problemer er lette å løse. Andre er lette å sjekke når noen rekker deg svaret. P vs NP spør om de to klassene i hemmelighet er de samme, og et ja ville knust moderne kryptografi. Utforskeren er en liten 3-SAT-løser som lar deg se hvorfor verifisering er triviell, men søk brutalt: Slipp inn en formel, og følg DPLL ned i tilbaketrekkings­treet mens den prøver tilordninger og kapper hele grener med én eneste selvmotsigelse.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {
           pretitle: "Trinn én · To klasser problemer",
           title: "Raskt løsbart vs raskt verifiserbart",
-          body: "P er klassen av avgjørelsesproblemer en deterministisk maskin kan løse i polynomisk tid: multiplisere to tall, sortere en liste, sjekke om en graf er sammenhengende. NP er klassen der en polynom-tids-maskin, gitt en kandidatløsning, kan verifisere at svaret er korrekt. De to er ikke åpenbart de samme. Sudoku er lærebokeksemplet: å fylle ut et 9×9-rutenett er genuint vanskelig, men hvis en venn rekker deg et fullført rutenett, kan du bekrefte hver rad, kolonne og boks i ett lineært sveip. Den vanskelige delen er å finne løsningen; den lette delen er å sjekke den.",
+          body: "P er klassen av avgjørelsesproblemer en deterministisk maskin kan løse i polynomisk tid: multiplisere to tall, sortere en liste, sjekke om en graf er sammenhengende. NP er klassen der en polynom-tids-maskin, gitt en kandidatløsning, kan verifisere at svaret er korrekt. De to er ikke åpenbart de samme. Sudoku er lærebokeksemplet: Å fylle ut et 9×9-rutenett er genuint vanskelig, men hvis en venn rekker deg et fullført rutenett, kan du bekrefte hver rad, kolonne og boks i ett lineært sveip. Den vanskelige delen er å finne løsningen; den lette delen er å sjekke den.",
         },
         {
           pretitle: "Trinn to · NP-fullstendighet",
           title: "Cook 1971, Karp 1972, Levin uavhengig",
-          body: "I 1971 beviste Stephen Cook Cook-Levin-teoremet: ethvert problem i NP reduserer i polynomisk tid til boolsk satisfierbarhet (SAT). Leonid Levin publiserte samme resultat uavhengig i Sovjetunionen. Et år senere viste Richard Karp at 21 klassiske problemer (3-SAT, Hamilton-sti, Klikk, Delmengdesum, avgjørelses­versjonen av Handelsreisende) alle er innbyrdes polynom-tids-reduserbare. I dag teller listen tusenvis: Sudoku N×N, Tetris, generalisert Minesveiper, til og med gittermodeller for proteinfolding tilhører alle samme ekvivalensklasse. Løs én effektivt, og du har løst dem alle. Cook-Karp-Levin-reduksjoner gjorde et spørsmål om ett problem til et spørsmål om hvert interessant søkeproblem på én gang.",
+          body: "I 1971 beviste Stephen Cook Cook-Levin-teoremet: Ethvert problem i NP reduserer i polynomisk tid til boolsk satisfierbarhet (SAT). Leonid Levin publiserte samme resultat uavhengig i Sovjetunionen. Et år senere viste Richard Karp at 21 klassiske problemer (3-SAT, Hamilton-sti, Klikk, Delmengdesum, avgjørelses­versjonen av Handelsreisende) alle er innbyrdes polynom-tids-reduserbare. I dag teller listen tusenvis: Sudoku N×N, Tetris, generalisert Minesveiper, til og med gittermodeller for proteinfolding tilhører alle samme ekvivalensklasse. Løs én effektivt, og du har løst dem alle. Cook-Karp-Levin-reduksjoner gjorde et spørsmål om ett problem til et spørsmål om hvert interessant søkeproblem på én gang.",
         },
         {
           pretitle: "Trinn tre · Hva om P = NP?",
@@ -1156,28 +1156,28 @@ export const no: StoriesDict = {
       title: "RSA og enveis-funksjoner",
       tagline: "Å multiplisere er lett. Å faktorisere er umulig.",
       intro:
-        "Rivest, Shamir og Adleman, 1977: det første publiserte offentlig-nøkkel-kryptosystemet og fortsatt, nesten et halvt århundre senere, det som sikrer mesteparten av det fungerende internett. Utforskeren tar deg gjennom en hel RSA-nøkkelgenerering, kryptering og dekryptering på små tall slik at du ser hvert trinn: velg primtall, utled offentlig og privat eksponent, krypter så en melding og se den samme matematikken pirke den opp igjen.",
+        "Rivest, Shamir og Adleman, 1977: det første publiserte offentlig-nøkkel-kryptosystemet og fortsatt, nesten et halvt århundre senere, det som sikrer mesteparten av det fungerende internett. Utforskeren tar deg gjennom en hel RSA-nøkkelgenerering, kryptering og dekryptering på små tall slik at du ser hvert trinn: Velg primtall, utled offentlig og privat eksponent, krypter så en melding og se den samme matematikken pirke den opp igjen.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {
           pretitle: "Trinn én · Asymmetrien",
           title: "Enveis-funksjoner: lett fremover, hardt tilbake",
-          body: "Å multiplisere to enorme primtall p og q er raskt: noen millisekunder på en telefon. Å gjenvinne p og q fra produktet n = p · q er det ikke: den beste klassiske algoritmen vi kjenner (det generelle tallkroppsilet) løper i sub-eksponentiell, men super-polynomisk tid, og en 2048-bits n er godt utenfor rekkevidde for hver maskin som noensinne er bygget. Denne enveis-egenskapen (billig fremover, ruinerende dyr tilbake) er fundamentet for offentlig-nøkkel-kryptografi. RSA kler asymmetrien slik at en offentlig nøkkel kan rekkes til hvem som helst, og bare den som holder den tilhørende private nøkkelen kan lese det som ble skrevet tilbake.",
+          body: "Å multiplisere to enorme primtall p og q er raskt: noen millisekunder på en telefon. Å gjenvinne p og q fra produktet n = p · q er det ikke: Den beste klassiske algoritmen vi kjenner (det generelle tallkroppsilet) løper i sub-eksponentiell, men super-polynomisk tid, og en 2048-bits n er godt utenfor rekkevidde for hver maskin som noensinne er bygget. Denne enveis-egenskapen (billig fremover, ruinerende dyr tilbake) er fundamentet for offentlig-nøkkel-kryptografi. RSA kler asymmetrien slik at en offentlig nøkkel kan rekkes til hvem som helst, og bare den som holder den tilhørende private nøkkelen kan lese det som ble skrevet tilbake.",
         },
         {
           pretitle: "Trinn to · Nøkkelgenerering",
           title: "Velg e, utled d via utvidet Euklid",
-          body: "Beregn φ(n) = (p − 1)(q − 1), Eulers totient, antallet heltall i [1, n] som er innbyrdes primiske med n. Velg en liten offentlig eksponent e innbyrdes primisk med φ(n); 65537 er det kanoniske valget fordi det er primtall, har bare to bits satt, og overlever hvert kjent lav-eksponent-angrep. Beregn så den private eksponenten d = e⁻¹ mod φ(n) ved hjelp av den utvidede Euklids algoritme: den returnerer Bézout-koeffisienter (x, y) med e·x + φ(n)·y = 1, og x redusert mod φ(n) gir d. Den offentlige nøkkelen er paret (n, e); den private nøkkelen er (n, d). Kast p og q når d først er i hånden.",
+          body: "Beregn φ(n) = (p − 1)(q − 1), Eulers totient, antallet heltall i [1, n] som er innbyrdes primiske med n. Velg en liten offentlig eksponent e innbyrdes primisk med φ(n); 65537 er det kanoniske valget fordi det er primtall, har bare to bits satt, og overlever hvert kjent lav-eksponent-angrep. Beregn så den private eksponenten d = e⁻¹ mod φ(n) ved hjelp av den utvidede Euklids algoritme: Den returnerer Bézout-koeffisienter (x, y) med e·x + φ(n)·y = 1, og x redusert mod φ(n) gir d. Den offentlige nøkkelen er paret (n, e); den private nøkkelen er (n, d). Kast p og q når d først er i hånden.",
         },
         {
           pretitle: "Trinn tre · Krypter og dekrypter",
           title: "c = m^e mod n,   m = c^d mod n",
-          body: "Behandle klarteksten m som et heltall i [0, n). Chifferteksten er c = m^e mod n; dekryptering er m = c^d mod n. Grunnen til at det virker kommer rett fra Euler og Fermat: fordi ed ≡ 1 mod φ(n), har vi m^(ed) = m^(1 + kφ(n)) ≡ m mod n for hver m innbyrdes primisk med n (Eulers teorem), og et kort argument med den kinesiske restklasse­teoremet utvider identiteten til hver m i [0, n). Kvadrer-og-multipliser gjør de gigantiske eksponentene om til noen få tusen modulære multiplikasjoner: raskt i praksis, matematisk eksakt.",
+          body: "Behandle klarteksten m som et heltall i [0, n). Chifferteksten er c = m^e mod n; dekryptering er m = c^d mod n. Grunnen til at det virker kommer rett fra Euler og Fermat: Fordi ed ≡ 1 mod φ(n), har vi m^(ed) = m^(1 + kφ(n)) ≡ m mod n for hver m innbyrdes primisk med n (Eulers teorem), og et kort argument med den kinesiske restklasse­teoremet utvider identiteten til hver m i [0, n). Kvadrer-og-multipliser gjør de gigantiske eksponentene om til noen få tusen modulære multiplikasjoner: raskt i praksis, matematisk eksakt.",
         },
         {
           pretitle: "Trinn fire · Hvor det står i dag",
           title: "Fra TLS til post-kvante-migrasjonen",
-          body: "RSA er matematikken under hvert TLS-håndtrykk nettleseren din fortsatt forhandler med et RSA-sertifikat, under SSH-vertsnøkler, under kodesigneringskjedene som autentiserer apper fra Apple og Google, under elektroniske pass og de tidlige generasjonene av blockchain. Men i 1994 skrev Peter Shor ned en kvantealgoritme som faktoriserer heltall i polynomisk tid, gitt en tilstrekkelig stor feilkorrigerende kvantedatamaskin, brytes RSA. Ingen slik finnes ennå, men tidshorisonten er usikker nok til at NIST har standardisert post-kvante-erstatninger (CRYSTALS-Kyber for nøkkelutveksling i 2024, CRYSTALS-Dilithium for signaturer), og den globale migrasjonen er allerede i gang.",
+          body: "RSA er matematikken under hvert TLS-håndtrykk nettleseren din fortsatt forhandler med et RSA-sertifikat, under SSH-vertsnøkler, under kodesigneringskjedene som autentiserer apper fra Apple og Google, under elektroniske pass og de tidlige generasjonene av blockchain. Men i 1994 skrev Peter Shor ned en kvantealgoritme som faktoriserer heltall i polynomisk tid: Gitt en tilstrekkelig stor feilkorrigerende kvantedatamaskin, brytes RSA. Ingen slik finnes ennå, men tidshorisonten er usikker nok til at NIST har standardisert post-kvante-erstatninger (CRYSTALS-Kyber for nøkkelutveksling i 2024, CRYSTALS-Dilithium for signaturer), og den globale migrasjonen er allerede i gang.",
         },
       ],
     },
@@ -1186,7 +1186,7 @@ export const no: StoriesDict = {
       title: "Möbius-bånd og Klein-flaske",
       tagline: "Flater med bare én side.",
       intro:
-        "Ta en papirstrimmel, gi den en halv vridning, lim endene sammen, og du har en flate med én side og én kant. Utforskeren tegner et roterende 3D-Möbius-bånd du kan skjære langs ulike forhold for å se hva som faller ut: skjær gjennom midten, og det blir i ett stykke; skjær langs en tredjedel, og du får to sammenkoblede ringer. En knapp veksler til Klein-flasken, den lukkede analogen som trenger fire dimensjoner for å leve uten å krysse seg selv.",
+        "Ta en papirstrimmel, gi den en halv vridning, lim endene sammen, og du har en flate med én side og én kant. Utforskeren tegner et roterende 3D-Möbius-bånd du kan skjære langs ulike forhold for å se hva som faller ut: Skjær gjennom midten, og det blir i ett stykke; skjær langs en tredjedel, og du får to sammenkoblede ringer. En knapp veksler til Klein-flasken, den lukkede analogen som trenger fire dimensjoner for å leve uten å krysse seg selv.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {
@@ -1197,7 +1197,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn to · Overraskelser med saks",
           title: "Hva saksen avslører om topologi",
-          body: "Skjær Möbius-båndet gjennom midten. Det faller ikke fra hverandre; du får én lengre strimmel med to fulle vridninger (fire halvvridninger), og avgjørende: den strimmelen er nå tosidig igjen. Skjær et Möbius-bånd en tredjedel inn fra én kant, med snittet parallelt med kanten hele veien rundt, og saksen reiser to ganger rundt før løkken lukkes: ut faller to sammenkoblede ringer, et smalere, ferskt Möbius-bånd (fortsatt med én halv vridning) og en lengre tosidig ring med to halve vridninger (ikke lenger et Möbius-bånd), hektet i hverandre. Topologien er full av slike overraskelser: den globale vridningen skjult bak lokal flathet.",
+          body: "Skjær Möbius-båndet gjennom midten. Det faller ikke fra hverandre; du får én lengre strimmel med to fulle vridninger (fire halvvridninger), og avgjørende: Den strimmelen er nå tosidig igjen. Skjær et Möbius-bånd en tredjedel inn fra én kant, med snittet parallelt med kanten hele veien rundt, og saksen reiser to ganger rundt før løkken lukkes: Ut faller to sammenkoblede ringer, et smalere, ferskt Möbius-bånd (fortsatt med én halv vridning) og en lengre tosidig ring med to halve vridninger (ikke lenger et Möbius-bånd), hektet i hverandre. Topologien er full av slike overraskelser: den globale vridningen skjult bak lokal flathet.",
         },
         {
           pretitle: "Trinn tre · Klein-flasken",
@@ -1216,7 +1216,7 @@ export const no: StoriesDict = {
       title: "Euler-karakteristikken",
       tagline: "V − E + F = 2, uansett form.",
       intro:
-        "Descartes skrev det ned i 1639 og Euler gjenoppdaget det et århundre senere: tell hjørnene, kantene og flatene i ethvert konvekst polyeder, og V − E + F er alltid lik 2. Utforskeren går gjennom de platonske og arkimediske legemene og teller V, E, F live: du ser formelen holde tvers gjennom kube, dodekaeder og fotball. Bøy så flaten rundt en smultring og se konstanten endre seg.",
+        "Descartes skrev det ned i 1639 og Euler gjenoppdaget det et århundre senere: Tell hjørnene, kantene og flatene i ethvert konvekst polyeder, og V − E + F er alltid lik 2. Utforskeren går gjennom de platonske og arkimediske legemene og teller V, E, F live: Du ser formelen holde tvers gjennom kube, dodekaeder og fotball. Bøy så flaten rundt en smultring og se konstanten endre seg.",
       ctaInteractive: "→ Åpne Utforskeren",
       sections: [
         {
@@ -1232,12 +1232,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Hull senker det",
           title: "Hvert håndtak koster deg to",
-          body: "Pakk nå flaten rundt en smultring. Triangulér torusen som du vil: V − E + F faller til 0. En dobbel torus, to smultringer limt side om side, gir χ = −2. Regelen er χ = 2 − 2g, der g er antallet hull (genus). Hvert håndtak du syr på koster deg 2. Euler-karakteristikken måler topologi i ett enkelt heltall: den forteller deg hvor mange hull en lukket flate har, uansett hvordan den tegnes eller strekkes.",
+          body: "Pakk nå flaten rundt en smultring. Triangulér torusen som du vil: V − E + F faller til 0. En dobbel torus, to smultringer limt side om side, gir χ = −2. Regelen er χ = 2 − 2g, der g er antallet hull (genus). Hvert håndtak du syr på koster deg 2. Euler-karakteristikken måler topologi i ett enkelt heltall: Den forteller deg hvor mange hull en lukket flate har, uansett hvordan den tegnes eller strekkes.",
         },
         {
           pretitle: "Trinn fire · Hvorfor det betyr noe",
           title: "Fra fotballer til Fields-medaljen",
-          body: "Buckyball-kjemien tvinges av χ: hvert fulleren-bur bygget av femkanter og sekskanter må inneholde nøyaktig 12 femkanter, fordi Euler-karakteristikken til en kule er 2. Buckminster Fullers geodetiske kupler følger samme regel. 3D-printer-slicere bruker V − E + F til å validere at et mesh er lukket og printbart. Gauss-Bonnet knytter den totale krumningen til en glatt flate til 2π·χ, og binder geometri til topologi i én ligning. Atiyah-Singer-indeksteoremet (Fields-medaljen 1966) er den moderne etterkommeren av samme idé, og Lakatos' Proofs and Refutations sporer de to århundrene av grensetilfeller som nesten brøt V − E + F = 2 og deretter styrket det.",
+          body: "Buckyball-kjemien tvinges av χ: Hvert fulleren-bur bygget av femkanter og sekskanter må inneholde nøyaktig 12 femkanter, fordi Euler-karakteristikken til en kule er 2. Buckminster Fullers geodetiske kupler følger samme regel. 3D-printer-slicere bruker V − E + F til å validere at et mesh er lukket og printbart. Gauss-Bonnet knytter den totale krumningen til en glatt flate til 2π·χ, og binder geometri til topologi i én ligning. Atiyah-Singer-indeksteoremet (Fields-medaljen 1966) er den moderne etterkommeren av samme idé, og Lakatos' Proofs and Refutations sporer de to århundrene av grensetilfeller som nesten brøt V − E + F = 2 og deretter styrket det.",
         },
       ],
     },
@@ -1252,7 +1252,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Oppgaven",
           title: "En tur ingen kunne finne",
-          body: "Königsberg strakk seg over Pregel-elven med to øyer og to elvebredder, fire landmasser til sammen, forbundet med syv broer. Byens innbyggere stilte et søndagsspørsmål: kunne man ta en tur gjennom byen som krysset hver bro nøyaktig én gang og endte der man startet? Alle prøvde. Alle mislyktes. Ingen kunne bevise at det var umulig.",
+          body: "Königsberg strakk seg over Pregel-elven med to øyer og to elvebredder, fire landmasser til sammen, forbundet med syv broer. Byens innbyggere stilte et søndagsspørsmål: Kunne man ta en tur gjennom byen som krysset hver bro nøyaktig én gang og endte der man startet? Alle prøvde. Alle mislyktes. Ingen kunne bevise at det var umulig.",
         },
         {
           pretitle: "Trinn to · Eulers reduksjon",
@@ -1267,7 +1267,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn fire · Grafteoriens fødsel",
           title: "Fra en søndagstur til den moderne verden",
-          body: "Det samme paritetsargumentet driver nå GPS-ruting, den kinesiske postmanns-problemet (brukt til å optimalisere ruter for snøploger, søppelbiler og postbud), og DNA-assemblering: hver moderne genom-assembler vandrer en Euler-sti gjennom en de Bruijn-graf. Andre verdenskrig ødela to av Königsbergs broer; bare fem av de opprinnelige syv står igjen. Den nåværende grafen har nøyaktig to noder av odde grad, så i dag er turen endelig mulig, selv om Euler ikke lenger er der til å ta den.",
+          body: "Det samme paritetsargumentet driver nå GPS-ruting, den kinesiske postmanns-problemet (brukt til å optimalisere ruter for snøploger, søppelbiler og postbud), og DNA-assemblering: Hver moderne genom-assembler vandrer en Euler-sti gjennom en de Bruijn-graf. Andre verdenskrig ødela to av Königsbergs broer; bare fem av de opprinnelige syv står igjen. Den nåværende grafen har nøyaktig to noder av odde grad, så i dag er turen endelig mulig, selv om Euler ikke lenger er der til å ta den.",
         },
       ],
     },
@@ -1282,12 +1282,12 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Formodningen",
           title: "Francis Guthrie, 1852",
-          body: "Mens han fargela et kart over grevskapene i England, la den unge Francis Guthrie merke til at fire farger alltid syntes å være nok. Han spurte broren Frederick, som spurte læreren sin Augustus De Morgan, som spurte alle. Formodningen så ufarlig ut, og holdt matematikere i sjakk i 124 år. Flere publiserte bevis (Kempe 1879, Tait 1880) viste seg å inneholde subtile huller ingen oppdaget på over et tiår.",
+          body: "Mens han fargela et kart over grevskapene i England, la den unge Francis Guthrie merke til at fire farger alltid syntes å være nok. Han spurte broren Frederick, som spurte læreren sin Augustus De Morgan, som spurte alle. Formodningen så ufarlig ut, men holdt matematikere i sjakk i 124 år. Flere publiserte bevis (Kempe 1879, Tait 1880) viste seg å inneholde subtile huller ingen oppdaget på over et tiår.",
         },
         {
           pretitle: "Trinn to · Hvorfor tre ikke er nok, fem for mange",
           title: "Fire er den skarpe grensen",
-          body: "Tre farger holder beviselig ikke: fire innbyrdes naboregioner kan allerede tegnes i planet (tenk på tre land som møtes i ett hjørne med et fjerde rundt). Femfargesetningen, fra Heawood i 1890, er bevisbar på én side ved hjelp av Eulers formel V − E + F = 2 og et nøye gradargument. Å lukke gapet fra fem ned til fire er det som tok ytterligere åttiseks år.",
+          body: "Tre farger holder beviselig ikke: Fire innbyrdes naboregioner kan allerede tegnes i planet (tenk på tre land som møtes i ett hjørne med et fjerde rundt). Femfargesetningen, fra Heawood i 1890, er bevisbar på én side ved hjelp av Eulers formel V − E + F = 2 og et nøye gradargument. Å lukke gapet fra fem ned til fire er det som tok ytterligere åttiseks år.",
         },
         {
           pretitle: "Trinn tre · Appel-Haken-beviset, 1976",
@@ -1312,7 +1312,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn én · Breveksperimentet",
           title: "Milgram, 1967",
-          body: "Stanley Milgram, den gang ved Harvard, sendte brev til tilfeldige folk i Omaha og Wichita og ba dem videresende brevet, hånd til hånd, til en målaksjemegler i Boston, men bare via noen de personlig kjente ved fornavn. De fleste brevene kom aldri frem. De som gjorde det, brukte i snitt omtrent seks ledd fra avsender til mål. Folkemunne-uttrykket «seks grader av separasjon» var født. Snarveien: samfunnet har knutepunkter, og knutepunktene står for mesteparten av rutingen.",
+          body: "Stanley Milgram, den gang ved Harvard, sendte brev til tilfeldige folk i Omaha og Wichita og ba dem videresende brevet, hånd til hånd, til en målaksjemegler i Boston, men bare via noen de personlig kjente ved fornavn. De fleste brevene kom aldri frem. De som gjorde det, brukte i snitt omtrent seks ledd fra avsender til mål. Folkemunne-uttrykket «seks grader av separasjon» var født. Snarveien: Samfunnet har knutepunkter, og knutepunktene står for mesteparten av rutingen.",
         },
         {
           pretitle: "Trinn to · Watts og Strogatz, 1998",
@@ -1322,7 +1322,7 @@ export const no: StoriesDict = {
         {
           pretitle: "Trinn tre · Der verden faktisk er liten",
           title: "Filmer, hjerner, strømnett, nettet",
-          body: "Akademiske samarbeidsgrafer ga oss Erdős-tallet; Hollywood ga oss Bacon-tallet («Six Degrees of Kevin Bacon»-leken). Rundormen C. elegans har en fullstendig kartlagt 302-nevroners hjerne med smaverdens-konnektivitet; menneskelige konnektomer viser samme signatur på langt større skala. Strømnett, internett, sitteringsnettverk, Wikipedias lenkegraf, protein-interaksjonsnettverk: smaverdensregimet dukker opp overalt der noen tar bryet med å måle L og C. Verden er liten, strukturelt, nesten overalt.",
+          body: "Akademiske samarbeidsgrafer ga oss Erdős-tallet; Hollywood ga oss Bacon-tallet («Six Degrees of Kevin Bacon»-leken). Rundormen C. elegans har en fullstendig kartlagt 302-nevroners hjerne med smaverdens-konnektivitet; menneskelige konnektomer viser samme signatur på langt større skala. Strømnett, internett, sitteringsnettverk, Wikipedias lenkegraf, protein-interaksjonsnettverk: Smaverdensregimet dukker opp overalt der noen tar bryet med å måle L og C. Verden er liten, strukturelt, nesten overalt.",
         },
         {
           pretitle: "Trinn fire · Konsekvenser",

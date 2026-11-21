@@ -186,7 +186,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die Konstruktion",
       title: "Starte bei 1, spiral nach außen",
-      body: "Schreib 1 in die Mitte von kariertem Papier. Schritt rechts für 2, hoch für 3, links für 4 und 5, runter für 6 und 7, rechts für 8, 9, 10, dann hoch für 11, 12, 13. Lauf in einer quadratischen Spirale nach außen: jede ganze Zahl landet in genau einem Feld.",
+      body: "Schreib 1 in die Mitte von kariertem Papier. Schritt rechts für 2, hoch für 3, links für 4 und 5, runter für 6 und 7, rechts für 8, 9, 10, dann hoch für 11, 12, 13. Lauf in einer quadratischen Spirale nach außen: Jede ganze Zahl landet in genau einem Feld.",
     },
     {
       pretitle: "Abschnitt 02 · Die Diagonalen",
@@ -201,12 +201,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Bunjakowskis Vermutung",
       title: "Unendlich viele Primzahlen, für jede einzelne unbewiesen",
-      body: "Wiktor Bunjakowski vermutete 1857, dass jedes irreduzible Polynom in ℤ[x] ohne festen Primteiler und mit positivem Leitkoeffizient unendlich viele Primzahlen liefert. Für n² + 1, für n² − n + 41, für fast jede konkrete Quadratik auf der Spirale, wir können es immer noch nicht beweisen.",
+      body: "Wiktor Bunjakowski vermutete 1857, dass jedes irreduzible Polynom in ℤ[x] ohne festen Primteiler und mit positivem Leitkoeffizient unendlich viele Primzahlen liefert. Für n² + 1, für n² − n + 41, für fast jede konkrete Quadratik auf der Spirale: Wir können es immer noch nicht beweisen.",
     },
     {
       pretitle: "Abschnitt 05 · Hardy-Littlewood-Dichten",
       title: "Der Abgleich zwischen Vermutung und Bild ist unheimlich",
-      body: "Hardy und Littlewood sagten 1923 in ihrer Vermutung F die exakte asymptotische Dichte der Primzahlen entlang jeder Diagonale voraus. Die Vermutungen sind unbewiesen, der numerische Abgleich mit Ulams Spirale aber nahezu perfekt: das Bild bestätigt die Arithmetik, die Arithmetik erklärt das Bild.",
+      body: "Hardy und Littlewood sagten 1923 in ihrer Vermutung F die exakte asymptotische Dichte der Primzahlen entlang jeder Diagonale voraus. Die Vermutungen sind unbewiesen, der numerische Abgleich mit Ulams Spirale aber nahezu perfekt: Das Bild bestätigt die Arithmetik, die Arithmetik erklärt das Bild.",
     },
     {
       pretitle: "Abschnitt 06 · Das tiefere Geheimnis",
@@ -700,23 +700,23 @@ const sv: RichStory = {
     },
     {
       pretitle: "Avsnitt 02 · Diagonalerna",
-      title: "Primtal föredrar vissa kvadrater 4n² + bn + c",
-      body: "Talen längs varje rak diagonal lyder en kvadrat på formen 4n² + bn + c. De synliga primtalsstråken är just de diagonaler vars polynom råkar vara ovanligt primtalsrika. Geometrin är bara bokföring; aritmetiken är överraskningen.",
+      title: "Primtal föredrar vissa andragradspolynom 4n² + bn + c",
+      body: "Talen längs varje rak diagonal lyder ett andragradspolynom på formen 4n² + bn + c. De synliga primtalsstråken är just de diagonaler vars polynom råkar vara ovanligt primtalsrika. Geometrin är bara bokföring; aritmetiken är överraskningen.",
     },
     {
-      pretitle: "Avsnitt 03 · Berömda kvadrater",
+      pretitle: "Avsnitt 03 · Berömda andragradspolynom",
       title: "Eulers n² − n + 41",
-      body: "År 1772 noterade Euler att n² − n + 41 är primtal för varje heltal n från 0 till 40: fyrtioett på varandra följande primvärden från ett enda polynom, och missar först vid n = 41 (som hamnar på 41²). På spiralen är det ett enda obrutet diagonalstreck. Ingen annan enkel kvadrat har slagit den än.",
+      body: "År 1772 noterade Euler att n² − n + 41 är primtal för varje heltal n från 0 till 40: fyrtioett på varandra följande primvärden från ett enda polynom, och missar först vid n = 41 (som hamnar på 41²). På spiralen är det ett enda obrutet diagonalstreck. Inget annat enkelt andragradspolynom har slagit det än.",
     },
     {
       pretitle: "Avsnitt 04 · Bunjakovskijs förmodan",
       title: "Oändligt många primtal, obevisat för var och en",
-      body: "Viktor Bunjakovskij förmodade 1857 att varje irreducibelt polynom i ℤ[x] utan fast primdelare och med positiv ledande koefficient ger oändligt många primtal. För n² + 1, för n² − n + 41, för nästan varje konkret kvadrat som spiralen visar, vi kan fortfarande inte bevisa det.",
+      body: "Viktor Bunjakovskij förmodade 1857 att varje irreducibelt polynom i ℤ[x] utan fast primdelare och med positiv ledande koefficient ger oändligt många primtal. För n² + 1, för n² − n + 41, för nästan varje konkret andragradspolynom som spiralen visar: vi kan fortfarande inte bevisa det.",
     },
     {
       pretitle: "Avsnitt 05 · Hardy-Littlewood-täthet",
       title: "Överensstämmelsen mellan förmodan och bild är kuslig",
-      body: "Hardy och Littlewoods förmodan F från 1923 förutsäger för varje kvadrat den exakta asymptotiska tätheten av primtal längs dess diagonal. Förmodandena är obevisade, men den numeriska överensstämmelsen med Ulam-spiralen är nästan perfekt: bilden bekräftar aritmetiken och aritmetiken förklarar bilden.",
+      body: "Hardy och Littlewoods förmodan F från 1923 förutsäger för varje andragradspolynom den exakta asymptotiska tätheten av primtal längs dess diagonal. Förmodandena är obevisade, men den numeriska överensstämmelsen med Ulam-spiralen är nästan perfekt: bilden bekräftar aritmetiken och aritmetiken förklarar bilden.",
     },
     {
       pretitle: "Avsnitt 06 · Det djupare mysteriet",
@@ -730,7 +730,7 @@ const sv: RichStory = {
   spiralPrimes: (n) => `${n.toLocaleString("sv-SE")} primtal`,
   spiralNumbers: (n) => `${n.toLocaleString("sv-SE")} tal`,
   spiralHint:
-    "Bärnsten = primtal. Rosa = diagonalen som den valda kvadraten skär ut. Cyankontur markerar 1 i mitten.",
+    "Bärnsten = primtal. Rosa = diagonalen som det valda andragradspolynomet skär ut. Cyankontur markerar 1 i mitten.",
   spiralQuadratics: [
     { id: "none", label: "Av", a: 0, b: 0, c: 0 },
     { id: "euler", label: "Euler · n² − n + 41", a: 1, b: -1, c: 41 },
@@ -738,14 +738,14 @@ const sv: RichStory = {
     { id: "n2n11", label: "n² + n + 11", a: 1, b: 1, c: 11 },
     { id: "4n2_2n41", label: "4n² − 2n + 41", a: 4, b: -2, c: 41 },
   ],
-  quadraticCaption: "Interaktivt · testa en kvadrat",
+  quadraticCaption: "Interaktivt · testa ett andragradspolynom",
   quadraticCoefficientsLabel: "Koefficienter i an² + bn + c",
   quadraticPresetsLabel: "Berömda förinställningar",
   quadraticRangeLabel: "n = 0 … 40",
-  quadraticFormulaLabel: "kvadraten",
+  quadraticFormulaLabel: "polynomet",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} primtal · ${pct}`,
   quadraticNote:
-    "Varje cell visar n överst och a·n² + b·n + c under. Bärnstensfärgade celler är primtal. Eulers kvadrat klarar alla 41 / 41, där 41 dyker upp vid både n = 0 och n = 1. Pröva din egen.",
+    "Varje cell visar n överst och a·n² + b·n + c under. Bärnstensfärgade celler är primtal. Eulers polynom klarar alla 41 / 41, där 41 dyker upp vid både n = 0 och n = 1. Pröva ditt eget.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -757,7 +757,7 @@ const sv: RichStory = {
   closingPretitle: "Gå vidare",
   closingTitle: "Öppna Utforskaren.",
   closingBody:
-    "Utforskaren skjuter rutnätet upp till 501 × 501 (en kvarts miljon heltal) och låter dig svepa genom kvadrater för att hitta dina egna primtalsrika diagonaler.",
+    "Utforskaren skjuter rutnätet upp till 501 × 501 (en kvarts miljon heltal) och låter dig svepa genom andragradspolynom för att hitta dina egna primtalsrika diagonaler.",
   ctaLabel: "→ Öppna Utforskaren",
 };
 
@@ -798,27 +798,27 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Konstruksjonen",
       title: "Start på 1, spiral utover",
-      body: "Skriv 1 midt på rutete papir. Steg høyre for 2, opp for 3, venstre for 4 og 5, ned for 6 og 7, høyre for 8, 9, 10, så opp for 11, 12, 13. Fortsett å gå utover i en kvadratisk spiral: hvert heltall havner i nøyaktig én rute.",
+      body: "Skriv 1 midt på rutete papir. Steg høyre for 2, opp for 3, venstre for 4 og 5, ned for 6 og 7, høyre for 8, 9, 10, så opp for 11, 12, 13. Fortsett å gå utover i en kvadratisk spiral: Hvert heltall havner i nøyaktig én rute.",
     },
     {
       pretitle: "Avsnitt 02 · Diagonalene",
-      title: "Primtall foretrekker visse kvadrater 4n² + bn + c",
-      body: "Tall langs en hvilken som helst rett diagonal lyder en kvadrat på formen 4n² + bn + c. De synlige primtallsstripene er nettopp de diagonalene hvis polynom tilfeldigvis er uvanlig rikt på primtall. Geometrien er bare bokføring; overraskelsen er aritmetisk.",
+      title: "Primtall foretrekker visse andregradspolynomer 4n² + bn + c",
+      body: "Tall langs en hvilken som helst rett diagonal lyder et andregradspolynom på formen 4n² + bn + c. De synlige primtallsstripene er nettopp de diagonalene hvis polynom tilfeldigvis er uvanlig rikt på primtall. Geometrien er bare bokføring; overraskelsen er aritmetisk.",
     },
     {
-      pretitle: "Avsnitt 03 · Berømte kvadrater",
+      pretitle: "Avsnitt 03 · Berømte andregradspolynomer",
       title: "Eulers n² − n + 41",
-      body: "I 1772 la Euler merke til at n² − n + 41 er primtall for hvert heltall n fra 0 til 40: førtién etterfølgende primverdier fra et eneste polynom, og bommer først ved n = 41 (som havner på 41²). På spiralen er det én ubrutt diagonal stripe. Ingen annen enkel kvadrat har slått den ennå.",
+      body: "I 1772 la Euler merke til at n² − n + 41 er primtall for hvert heltall n fra 0 til 40: førtién etterfølgende primverdier fra et eneste polynom, og bommer først ved n = 41 (som havner på 41²). På spiralen er det én ubrutt diagonal stripe. Ikke noe annet enkelt andregradspolynom har slått det ennå.",
     },
     {
       pretitle: "Avsnitt 04 · Bunjakovskijs formodning",
       title: "Uendelig mange primtall, ubevist for hver eneste",
-      body: "Viktor Bunjakovskij formodet i 1857 at ethvert irredusibelt polynom i ℤ[x] uten fast primdivisor og med positiv ledende koeffisient gir uendelig mange primtall. For n² + 1, for n² − n + 41, for nesten enhver konkret kvadrat spiralen viser, vi klarer fortsatt ikke å bevise det.",
+      body: "Viktor Bunjakovskij formodet i 1857 at ethvert irredusibelt polynom i ℤ[x] uten fast primdivisor og med positiv ledende koeffisient gir uendelig mange primtall. For n² + 1, for n² − n + 41, for nesten ethvert konkret andregradspolynom spiralen viser: Vi klarer fortsatt ikke å bevise det.",
     },
     {
       pretitle: "Avsnitt 05 · Hardy-Littlewood-tettheter",
       title: "Samsvaret mellom formodning og bilde er nifst",
-      body: "Hardy og Littlewoods formodning F fra 1923 forutsier for hver kvadrat den nøyaktige asymptotiske tettheten av primtall langs diagonalen. Formodningene er ubeviste, men det numeriske samsvaret med Ulam-spiralen er nesten perfekt: bildet bekrefter aritmetikken og aritmetikken forklarer bildet.",
+      body: "Hardy og Littlewoods formodning F fra 1923 forutsier for hvert andregradspolynom den nøyaktige asymptotiske tettheten av primtall langs diagonalen. Formodningene er ubeviste, men det numeriske samsvaret med Ulam-spiralen er nesten perfekt: Bildet bekrefter aritmetikken og aritmetikken forklarer bildet.",
     },
     {
       pretitle: "Avsnitt 06 · Den dypere gåten",
@@ -832,7 +832,7 @@ const no: RichStory = {
   spiralPrimes: (n) => `${n.toLocaleString("nb-NO")} primtall`,
   spiralNumbers: (n) => `${n.toLocaleString("nb-NO")} tall`,
   spiralHint:
-    "Rav = primtall. Rosa = diagonalen den valgte kvadraten skjærer ut. Cyan-kontur markerer 1 i midten.",
+    "Rav = primtall. Rosa = diagonalen det valgte andregradspolynomet skjærer ut. Cyan-kontur markerer 1 i midten.",
   spiralQuadratics: [
     { id: "none", label: "Av", a: 0, b: 0, c: 0 },
     { id: "euler", label: "Euler · n² − n + 41", a: 1, b: -1, c: 41 },
@@ -840,14 +840,14 @@ const no: RichStory = {
     { id: "n2n11", label: "n² + n + 11", a: 1, b: 1, c: 11 },
     { id: "4n2_2n41", label: "4n² − 2n + 41", a: 4, b: -2, c: 41 },
   ],
-  quadraticCaption: "Interaktivt · test en kvadrat",
+  quadraticCaption: "Interaktivt · test et andregradspolynom",
   quadraticCoefficientsLabel: "Koeffisienter i an² + bn + c",
   quadraticPresetsLabel: "Berømte forhåndsinnstillinger",
   quadraticRangeLabel: "n = 0 … 40",
-  quadraticFormulaLabel: "kvadraten",
+  quadraticFormulaLabel: "polynomet",
   quadraticPrimeRate: (hits, total, pct) => `${hits} / ${total} primtall · ${pct}`,
   quadraticNote:
-    "Hver celle viser n øverst og a·n² + b·n + c under. Ravfargede celler er primtall. Eulers kvadrat klarer alle 41 / 41, der 41 dukker opp ved både n = 0 og n = 1. Prøv din egen.",
+    "Hver celle viser n øverst og a·n² + b·n + c under. Ravfargede celler er primtall. Eulers polynom klarer alle 41 / 41, der 41 dukker opp ved både n = 0 og n = 1. Prøv ditt eget.",
   quadraticPresets: [
     { label: "n² − n + 41", a: 1, b: -1, c: 41 },
     { label: "n² + n + 17", a: 1, b: 1, c: 17 },
@@ -859,7 +859,7 @@ const no: RichStory = {
   closingPretitle: "Gå videre",
   closingTitle: "Åpne Utforskeren.",
   closingBody:
-    "Utforskeren skyver rutenettet opp til 501 × 501 (en kvart million heltall) og lar deg sveipe gjennom kvadrater for å finne dine egne primtallsrike diagonaler.",
+    "Utforskeren skyver rutenettet opp til 501 × 501 (en kvart million heltall) og lar deg sveipe gjennom andregradspolynomer for å finne dine egne primtallsrike diagonaler.",
   ctaLabel: "→ Åpne Utforskeren",
 };
 

@@ -41,7 +41,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     caption:
       "die beiden kurzen Seiten werden mit entgegengesetzter Orientierung verklebt: Diese einzige Umkehrung ist die ganze Geschichte",
     paragraph:
-      "Ein Möbius-Band ist der Quotient des Einheitsquadrats [0, 1] × [0, 1] unter der Relation (0, y) ∼ (1, 1 − y): die beiden kurzen Seiten werden nach einer Umkehrung verklebt. Die langen Seiten bleiben frei, treffen sich aber an der Naht: Was wie zwei Randkurven aussah, ist in Wahrheit eine einzige Kante. Dasselbe Diagramm für die Klein-Flasche würde eine zweite Identifikation hinzufügen, die auch die langen Seiten verklebt (diesmal mit gleicher Orientierung), und damit jeden Rand entfernen.",
+      "Ein Möbius-Band ist der Quotient des Einheitsquadrats [0, 1] × [0, 1] unter der Relation (0, y) ∼ (1, 1 − y): Die beiden kurzen Seiten werden nach einer Umkehrung verklebt. Die langen Seiten bleiben frei, treffen sich aber an der Naht: Was wie zwei Randkurven aussah, ist in Wahrheit eine einzige Kante. Dasselbe Diagramm für die Klein-Flasche würde eine zweite Identifikation hinzufügen, die auch die langen Seiten verklebt (diesmal mit gleicher Orientierung), und damit jeden Rand entfernen.",
   },
   es: {
     diagramPretitle: "Diagrama · la identificación del pegado",
@@ -107,7 +107,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     caption:
       "de to korte sidene limes sammen med motsatt orientering: Den ene snuingen er hele poenget",
     paragraph:
-      "Et Möbius-bånd er kvotienten av enhetskvadratet [0, 1] × [0, 1] under relasjonen (0, y) ∼ (1, 1 − y): de to korte sidene limes sammen etter at den ene er snudd. De to lange sidene forblir frie, men møtes ved skjøten: Det som så ut som to randkurver er i virkeligheten én eneste kant. Det samme diagrammet for Kleinflasken ville lagt til en ny identifikasjon som også limer sammen de lange sidene (denne gangen med samme orientering), og fjerner dermed all rand på én gang.",
+      "Et Möbius-bånd er kvotienten av enhetskvadratet [0, 1] × [0, 1] under relasjonen (0, y) ∼ (1, 1 − y): De to korte sidene limes sammen etter at den ene er snudd. De to lange sidene forblir frie, men møtes ved skjøten: Det som så ut som to randkurver er i virkeligheten én eneste kant. Det samme diagrammet for Kleinflasken ville lagt til en ny identifikasjon som også limer sammen de lange sidene (denne gangen med samme orientering), og fjerner dermed all rand på én gang.",
   },
 };
 

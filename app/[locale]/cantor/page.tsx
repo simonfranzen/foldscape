@@ -244,7 +244,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Diagonalisieren",
       title: "Unterschied zu jeder Zeile in einer Stelle",
-      body: "Lies entlang der Diagonale: d_{1,1}, d_{2,2}, d_{3,3}, …. Bau eine neue reelle Zahl s, deren n-te Ziffer s_n sich von d_{n,n} unterscheidet, für jedes n. Ein sicherer Trick: tausch jede Ziffer gegen eine, die nicht 0 oder 9 ist (um die Mehrdeutigkeit 0,999… = 1,000… zu vermeiden). Per Konstruktion gilt s ≠ r_n an der n-ten Stelle, und doch ist s eine vollkommen reguläre reelle Zahl in [0,1].",
+      body: "Lies entlang der Diagonale: d_{1,1}, d_{2,2}, d_{3,3}, …. Bau eine neue reelle Zahl s, deren n-te Ziffer s_n sich von d_{n,n} unterscheidet, für jedes n. Ein sicherer Trick: Tausch jede Ziffer gegen eine, die nicht 0 oder 9 ist (um die Mehrdeutigkeit 0,999… = 1,000… zu vermeiden). Per Konstruktion gilt s ≠ r_n an der n-ten Stelle, und doch ist s eine vollkommen reguläre reelle Zahl in [0,1].",
     },
     {
       pretitle: "Abschnitt 04 · Die Reellen sind überabzählbar",
@@ -491,7 +491,7 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "L'infini n'est pas une seule chose. ℵ₀ compte les naturels 1, 2, 3, … ; la droite réelle porte une infinité strictement plus grande. Cantor a transformé l'intuition «la droite est plus dense que les entiers» en démonstration.",
+        body: "L'infini n'est pas une seule chose. ℵ₀ compte les naturels 1, 2, 3, … ; la droite réelle porte une infinité strictement plus grande. Cantor a transformé l'intuition « la droite est plus dense que les entiers » en démonstration.",
       },
       {
         label: "02",
@@ -511,7 +511,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 01 · Compter ℕ",
       title: "ℵ₀, la taille de 1, 2, 3, …",
-      body: "Les naturels sont le plus petit ensemble infini. Leur taille s'appelle ℵ₀ (aleph-zéro), et tout ensemble que tu peux étiqueter avec les naturels (les entiers, les rationnels, les chaînes finies) a la même taille. Dénombrable veut dire «assez petit pour être énuméré».",
+      body: "Les naturels sont le plus petit ensemble infini. Leur taille s'appelle ℵ₀ (aleph-zéro), et tout ensemble que tu peux étiqueter avec les naturels (les entiers, les rationnels, les chaînes finies) a la même taille. Dénombrable veut dire « assez petit pour être énuméré ».",
     },
     {
       pretitle: "Section 02 · Suppose que tu listes tous les réels",
@@ -1061,7 +1061,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Diagonalisere",
       title: "Skill deg fra hver rad i ett siffer",
-      body: "Les langs diagonalen: d_{1,1}, d_{2,2}, d_{3,3}, …. Bygg et nytt reelt tall s der n-te siffer s_n avviker fra d_{n,n} for hver n. Sikker oppskrift: bytt hvert siffer mot et som ikke er 0 eller 9 (for å unngå tvetydigheten 0,999… = 1,000…). Ved konstruksjon gjelder s ≠ r_n ved n-te desimal, for hver n; likevel er s et helt vanlig reelt tall i [0,1].",
+      body: "Les langs diagonalen: d_{1,1}, d_{2,2}, d_{3,3}, …. Bygg et nytt reelt tall s der n-te siffer s_n avviker fra d_{n,n} for hver n. Sikker oppskrift: Bytt hvert siffer mot et som ikke er 0 eller 9 (for å unngå tvetydigheten 0,999… = 1,000…). Ved konstruksjon gjelder s ≠ r_n ved n-te desimal, for hver n; likevel er s et helt vanlig reelt tall i [0,1].",
     },
     {
       pretitle: "Avsnitt 04 · De reelle er overtellbare",

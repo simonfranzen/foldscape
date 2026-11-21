@@ -190,7 +190,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt zwei · Zwei Regime",
         title: "ρ < 1 ist langweilig, ρ ≈ 28 ist der Schmetterling",
-        body: "ρ (die Rayleigh-Zahl) misst, wie stark du die Flüssigkeit von unten heizt. Unter ρ = 1 passiert nichts Interessantes: jeder Anfangszustand zerfällt zur Null, keine Konvektion, nur Wärmeleitung. Zwischen 1 und etwa 24,74 bekommst du stetige Konvektion, die Bahn spiralt in einen von zwei Fixpunkten. Überschreite ρ ≈ 24,74 und die Fixpunkte verlieren ihre Stabilität; beim kanonischen Wert ρ = 28 kann die Bahn nirgends mehr zur Ruhe kommen: Sie ist verdammt, ewig den Schmetterling abzulaufen.",
+        body: "ρ (die Rayleigh-Zahl) misst, wie stark du die Flüssigkeit von unten heizt. Unter ρ = 1 passiert nichts Interessantes: Jeder Anfangszustand zerfällt zur Null, keine Konvektion, nur Wärmeleitung. Zwischen 1 und etwa 24,74 bekommst du stetige Konvektion, die Bahn spiralt in einen von zwei Fixpunkten. Überschreite ρ ≈ 24,74 und die Fixpunkte verlieren ihre Stabilität; beim kanonischen Wert ρ = 28 kann die Bahn nirgends mehr zur Ruhe kommen: Sie ist verdammt, ewig den Schmetterling abzulaufen.",
       },
       {
         pretitle: "Abschnitt drei · Die Flügel",
@@ -200,7 +200,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt vier · Sensitive Abhängigkeit",
         title: "Warum ein bakteriengroßer Fehler katastrophal wird",
-        body: "Zwei Bahnen, durch ε getrennt, wachsen ungefähr wie ε·eλt auseinander, wobei λ ≈ 0,906 der größte Lyapunov-Exponent ist. Das klingt zahm, bis du rechnest: in etwa 16 simulierten Sekunden multipliziert sich der Abstand um eine Million. Jede Unsicherheit im Anfangszustand (Messrauschen, Rundung im Computer, ein Schmetterlingsflügel in Brasilien) wird mit dieser Rate verstärkt. Wettervorhersagen zerfallen, weil die reale Atmosphäre ihren eigenen positiven Lyapunov-Exponenten hat, und keine besseren Sensoren können einer Exponentialfunktion davonlaufen.",
+        body: "Zwei Bahnen, durch ε getrennt, wachsen ungefähr wie ε·eλt auseinander, wobei λ ≈ 0,906 der größte Lyapunov-Exponent ist. Das klingt zahm, bis du rechnest: In etwa 16 simulierten Sekunden multipliziert sich der Abstand um eine Million. Jede Unsicherheit im Anfangszustand (Messrauschen, Rundung im Computer, ein Schmetterlingsflügel in Brasilien) wird mit dieser Rate verstärkt. Wettervorhersagen zerfallen, weil die reale Atmosphäre ihren eigenen positiven Lyapunov-Exponenten hat, und keine besseren Sensoren können einer Exponentialfunktion davonlaufen.",
       },
       {
         pretitle: "Abschnitt fünf · Ein seltsamer Attraktor",
@@ -210,7 +210,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt sechs · Die kulturelle Schockwelle",
         title: "Von einem stillen 1963er-Paper zur Alltagsmetapher",
-        body: "Lorenz' Paper blieb ein Jahrzehnt fast unbeachtet. Dann legte James Gleicks Buch „Chaos“ (1987) den Schmetterling auf jeden Couchtisch, und „Schmetterlingseffekt“ wanderte in die Alltagssprache. Die tiefere Lehre ist härter als der Slogan: deterministische Gleichungen können vollkommen unvorhersehbar sein, die Welt steckt voller solcher Systeme (Klima, Ökosysteme, Volkswirtschaften, Herzen), und Vorhersage ist keine Frage von mehr Rechnen; sie hat einen fundamentalen Horizont. Moderne Wetterdienste lassen aus genau diesem Grund Dutzende leicht gestörter Vorhersagen gleichzeitig laufen.",
+        body: "Lorenz' Paper blieb ein Jahrzehnt fast unbeachtet. Dann legte James Gleicks Buch „Chaos“ (1987) den Schmetterling auf jeden Couchtisch, und „Schmetterlingseffekt“ wanderte in die Alltagssprache. Die tiefere Lehre ist härter als der Slogan: Deterministische Gleichungen können vollkommen unvorhersehbar sein, die Welt steckt voller solcher Systeme (Klima, Ökosysteme, Volkswirtschaften, Herzen), und Vorhersage ist keine Frage von mehr Rechnen; sie hat einen fundamentalen Horizont. Moderne Wetterdienste lassen aus genau diesem Grund Dutzende leicht gestörter Vorhersagen gleichzeitig laufen.",
       },
     ],
     inlineRho: {
@@ -742,7 +742,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del to · To regimer",
         title: "ρ < 1 er kjedelig, ρ ≈ 28 er sommerfuglen",
-        body: "ρ (Rayleigh-tallet) måler hvor hardt du varmer væsken nedenfra. Under ρ = 1 skjer ingenting interessant: enhver starttilstand dør ut mot null, ingen konveksjon, bare ledning. Mellom 1 og rundt 24,74 får du jevn konveksjon, banen spiralerer inn mot ett av to faste punkter. Krysser du ρ ≈ 24,74 mister de faste punktene stabilitet; ved kanonisk verdi ρ = 28 kan banen ikke lenger slå seg til ro noe sted: Den er dømt til å vandre sommerfuglen for alltid.",
+        body: "ρ (Rayleigh-tallet) måler hvor hardt du varmer væsken nedenfra. Under ρ = 1 skjer ingenting interessant: Enhver starttilstand dør ut mot null, ingen konveksjon, bare ledning. Mellom 1 og rundt 24,74 får du jevn konveksjon, banen spiralerer inn mot ett av to faste punkter. Krysser du ρ ≈ 24,74 mister de faste punktene stabilitet; ved kanonisk verdi ρ = 28 kan banen ikke lenger slå seg til ro noe sted: Den er dømt til å vandre sommerfuglen for alltid.",
       },
       {
         pretitle: "Del tre · Vingene",
@@ -752,7 +752,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del fire · Sensitiv avhengighet",
         title: "Hvorfor en bakteriestor feil blir katastrofal",
-        body: "To baner adskilt av ε vokser fra hverandre omtrent som ε·eλt, der λ ≈ 0,906 er den ledende Lyapunov-eksponenten. Det høres tamt ut til du gjør regnestykket: på rundt 16 simulerte sekunder ganges avstanden med en million. Enhver usikkerhet i utgangstilstanden (målestøy, avrunding i datamaskinen, en sommerfugl som slår med vingene i Brasil) forsterkes i dette tempoet. Værvarsler forfaller fordi den virkelige atmosfæren har sin egen positive Lyapunov-eksponent, og ingen bedre sensorer kan løpe fra en eksponentialfunksjon.",
+        body: "To baner adskilt av ε vokser fra hverandre omtrent som ε·eλt, der λ ≈ 0,906 er den ledende Lyapunov-eksponenten. Det høres tamt ut til du gjør regnestykket: På rundt 16 simulerte sekunder ganges avstanden med en million. Enhver usikkerhet i utgangstilstanden (målestøy, avrunding i datamaskinen, en sommerfugl som slår med vingene i Brasil) forsterkes i dette tempoet. Værvarsler forfaller fordi den virkelige atmosfæren har sin egen positive Lyapunov-eksponent, og ingen bedre sensorer kan løpe fra en eksponentialfunksjon.",
       },
       {
         pretitle: "Del fem · En selsom attraktor",
@@ -762,7 +762,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del seks · Den kulturelle sjokkbølgen",
         title: "Fra en stille artikkel i 1963 til en hverdagsfrase",
-        body: "Lorenz' artikkel gikk nesten ubemerket i et tiår. Så satte James Gleicks bok «Chaos» (1987) sommerfuglen på hvert sofabord, og «sommerfugleffekten» kom inn i språket. Den dypere lærdommen er hardere enn slagordet: deterministiske ligninger kan være fullstendig uforutsigbare, verden er full av slike systemer (klima, økosystemer, økonomier, hjerter), og prognose er ikke et spørsmål om å regne hardere; det har en grunnleggende horisont. Moderne værtjenester kjører dusinvis av lett forstyrrede varsler parallelt nettopp av denne grunnen.",
+        body: "Lorenz' artikkel gikk nesten ubemerket i et tiår. Så satte James Gleicks bok «Chaos» (1987) sommerfuglen på hvert sofabord, og «sommerfugleffekten» kom inn i språket. Den dypere lærdommen er hardere enn slagordet: Deterministiske ligninger kan være fullstendig uforutsigbare, verden er full av slike systemer (klima, økosystemer, økonomier, hjerter), og prognose er ikke et spørsmål om å regne hardere; det har en grunnleggende horisont. Moderne værtjenester kjører dusinvis av lett forstyrrede varsler parallelt nettopp av denne grunnen.",
       },
     ],
     inlineRho: {

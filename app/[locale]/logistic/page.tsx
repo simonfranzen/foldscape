@@ -128,12 +128,12 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "02 · Ein konkretes Beispiel",
           title: "Dreimal am selben Knopf gedreht",
-          body: "Starte mit x₀ = 0,2 und schraube an r. Bei r = 2,5 pendelt sich die Wiese auf eine einzige stabile Population ein: langweilig. Bei r = 3,1 fängt sie an zu flackern, ein Jahr hoch, ein Jahr tief, für immer. Bei r = 4 wird die Folge wild: sie springt zwischen 0 und 1 hin und her und wiederholt sich nie. Dieselbe Formel, drei völlig verschiedene Welten.",
+          body: "Starte mit x₀ = 0,2 und schraube an r. Bei r = 2,5 pendelt sich die Wiese auf eine einzige stabile Population ein: langweilig. Bei r = 3,1 fängt sie an zu flackern, ein Jahr hoch, ein Jahr tief, für immer. Bei r = 4 wird die Folge wild: Sie springt zwischen 0 und 1 hin und her und wiederholt sich nie. Dieselbe Formel, drei völlig verschiedene Welten.",
         },
         {
           label: "03 · Warum es wichtig ist",
           title: "Dasselbe Rezept überall",
-          body: "Die Kaskade, die du gleich sehen wirst (ein Wert, dann 2, dann 4, dann 8, dann Chaos) steuert auch Herzrhythmusstörungen, Räuber-Beute-Systeme, Laser, die instabil werden, und Konvektionszellen in Flüssigkeiten. Die Konstante, die das Tempo der Verdoppelungen festlegt, Feigenbaums δ ≈ 4,6692…, ist in all diesen Systemen dieselbe. Es ist eine der tiefsten Universalitäten der Naturwissenschaft.",
+          body: "Die Kaskade, die du gleich sehen wirst (ein Wert, dann 2, dann 4, dann 8, dann Chaos), steuert auch Herzrhythmusstörungen, Räuber-Beute-Systeme, Laser, die instabil werden, und Konvektionszellen in Flüssigkeiten. Die Konstante, die das Tempo der Verdoppelungen festlegt, Feigenbaums δ ≈ 4,6692…, ist in all diesen Systemen dieselbe. Es ist eine der tiefsten Universalitäten der Naturwissenschaft.",
         },
       ],
       tryIt:
@@ -148,27 +148,27 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Schritt zwei · Die erste Bifurkation",
         title: "Bei r = 3 spaltet sich der Ruhepunkt",
-        body: "Unterhalb von r = 3 landet die Iteration immer bei einer einzigen stabilen Population, einem Fixpunkt. Drücke r knapp über 3 und der Fixpunkt verliert seine Stabilität: stattdessen springt der Orbit jedes Jahr zwischen einem höheren und einem niedrigeren Wert. Aus dem Punkt ist ein 2-Zyklus geworden. Das ist eine Periodenverdopplungs-Bifurkation, der einfachste Weg, auf dem ein Ruhezustand einer Schwingung weicht, und der erste Riss in der Ruhe.",
+        body: "Unterhalb von r = 3 landet die Iteration immer bei einer einzigen stabilen Population, einem Fixpunkt. Drücke r knapp über 3 und der Fixpunkt verliert seine Stabilität: Stattdessen springt der Orbit jedes Jahr zwischen einem höheren und einem niedrigeren Wert. Aus dem Punkt ist ein 2-Zyklus geworden. Das ist eine Periodenverdopplungs-Bifurkation, der einfachste Weg, auf dem ein Ruhezustand einer Schwingung weicht, und der erste Riss in der Ruhe.",
       },
       {
         pretitle: "Schritt drei · Die Kaskade",
         title: "2, 4, 8, 16: immer schneller",
-        body: "Schiebe r weiter nach oben. Bei r ≈ 3,449 wird aus dem 2-Zyklus ein 4-Zyklus. Bei r ≈ 3,544 wird aus dem 4-Zyklus ein 8-Zyklus. Dann 16, 32, 64. Und die Fenster, in denen jeder neu verdoppelte Zyklus stabil ist, werden jedes Mal kürzer. Aufgetragen ergibt das das berühmte Bifurkationsdiagramm: der Stamm gabelt, gabelt wieder, gabelt schneller, als das Auge auflöst.",
+        body: "Schiebe r weiter nach oben. Bei r ≈ 3,449 wird aus dem 2-Zyklus ein 4-Zyklus. Bei r ≈ 3,544 wird aus dem 4-Zyklus ein 8-Zyklus. Dann 16, 32, 64. Und die Fenster, in denen jeder neu verdoppelte Zyklus stabil ist, werden jedes Mal kürzer. Aufgetragen ergibt das das berühmte Bifurkationsdiagramm: Der Stamm gabelt, gabelt wieder, gabelt schneller, als das Auge auflöst.",
       },
       {
         pretitle: "Schritt vier · Feigenbaums Konstante",
         title: "δ ≈ 4,6692: universell über Systeme hinweg",
-        body: "Miss, wie sehr die Fenster zwischen den Verdoppelungen schrumpfen: das Verhältnis (rₙ − rₙ₋₁) / (rₙ₊₁ − rₙ) strebt gegen denselben Grenzwert. Mitchell Feigenbaum rechnete ihn 1975 auf einem Taschenrechner in Los Alamos aus und erhielt δ ≈ 4,66920160910… Verblüffend ist, dass diese Konstante universell ist: sie taucht in der Hénon-Abbildung auf, im Duffing-Oszillator, in experimenteller Strömungs-Konvektion, in tropfenden Wasserhähnen. Periodenverdopplung ist ein Weg, und δ ist die Geschwindigkeitsbegrenzung.",
+        body: "Miss, wie sehr die Fenster zwischen den Verdoppelungen schrumpfen: Das Verhältnis (rₙ − rₙ₋₁) / (rₙ₊₁ − rₙ) strebt gegen denselben Grenzwert. Mitchell Feigenbaum rechnete ihn 1975 auf einem Taschenrechner in Los Alamos aus und erhielt δ ≈ 4,66920160910… Verblüffend ist, dass diese Konstante universell ist: Sie taucht in der Hénon-Abbildung auf, im Duffing-Oszillator, in experimenteller Strömungs-Konvektion, in tropfenden Wasserhähnen. Periodenverdopplung ist ein Weg, und δ ist die Geschwindigkeitsbegrenzung.",
       },
       {
         pretitle: "Schritt fünf · Volles Chaos",
         title: "r ≈ 3,56995 und was dahinter liegt",
-        body: "Nach unendlich vielen Verdoppelungen, alle in ein endliches r-Fenster gequetscht, kippt das System schließlich am Feigenbaum-Punkt r∞ ≈ 3,56994567… ins Chaos. Dahinter lässt sich der Orbit auf keinen Zyklus mehr ein: er besucht eine unendliche Menge an Werten, und zwei Startpunkte, die sich um 10⁻⁶ unterscheiden, sind nach dreißig Iterationen vollkommen unkorreliert. Bei r = 4 ist die Abbildung konjugiert zur Zeltabbildung auf [0,1]: reine deterministische Zufälligkeit, erzeugt aus einer Zeile Arithmetik.",
+        body: "Nach unendlich vielen Verdoppelungen, alle in ein endliches r-Fenster gequetscht, kippt das System schließlich am Feigenbaum-Punkt r∞ ≈ 3,56994567… ins Chaos. Dahinter lässt sich der Orbit auf keinen Zyklus mehr ein: Er besucht eine unendliche Menge an Werten, und zwei Startpunkte, die sich um 10⁻⁶ unterscheiden, sind nach dreißig Iterationen vollkommen unkorreliert. Bei r = 4 ist die Abbildung konjugiert zur Zeltabbildung auf [0,1]: reine deterministische Zufälligkeit, erzeugt aus einer Zeile Arithmetik.",
       },
       {
         pretitle: "Schritt sechs · Das Periode-3-Fenster",
         title: "Ordnung, mitten im Chaos versteckt",
-        body: "Schiebe r auf etwa 1 + √8 ≈ 3,8284, und das Chaos hört plötzlich auf: ein stabiler 3-Zyklus erscheint. Von dort beginnen die Verdoppelungen erneut (Periode 6, 12, 24) und das System kehrt ins Chaos zurück. 1975 bewiesen Tien-Yien Li und James Yorke ein verblüffendes Theorem im American Mathematical Monthly: für jede stetige Abbildung eines Intervalls impliziert Periode drei Chaos. Ein einziger 3-Zyklus erzwingt Orbits jeder anderen Periode und überabzählbar viele, die sich nie wiederholen. Das Wort, das sie für den Titel prägten, „chaos“, ist seither der Name des Feldes.",
+        body: "Schiebe r auf etwa 1 + √8 ≈ 3,8284, und das Chaos hört plötzlich auf: Ein stabiler 3-Zyklus erscheint. Von dort beginnen die Verdoppelungen erneut (Periode 6, 12, 24) und das System kehrt ins Chaos zurück. 1975 bewiesen Tien-Yien Li und James Yorke ein verblüffendes Theorem im American Mathematical Monthly: Für jede stetige Abbildung eines Intervalls impliziert Periode drei Chaos. Ein einziger 3-Zyklus erzwingt Orbits jeder anderen Periode und überabzählbar viele, die sich nie wiederholen. Das Wort, das sie für den Titel prägten, „chaos“, ist seither der Name des Feldes.",
       },
     ],
     demoCaption1: "Live-Demo · zieh an r, um das Regime zu ändern",
@@ -574,7 +574,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           label: "02 · Et konkret eksempel",
           title: "Tre vridninger av samme ratt",
-          body: "Start på x₀ = 0,2 og vri på r. Ved r = 2,5 legger enga seg på en eneste stabil populasjon: kjedelig. Ved r = 3,1 begynner den å flimre mellom to verdier, høyt år, lavt år, for alltid. Ved r = 4 blir følgen vill: den hopper mellom 0 og 1 og gjentar seg aldri. Samme formel, tre helt forskjellige verdener.",
+          body: "Start på x₀ = 0,2 og vri på r. Ved r = 2,5 legger enga seg på en eneste stabil populasjon: kjedelig. Ved r = 3,1 begynner den å flimre mellom to verdier, høyt år, lavt år, for alltid. Ved r = 4 blir følgen vill: Den hopper mellom 0 og 1 og gjentar seg aldri. Samme formel, tre helt forskjellige verdener.",
         },
         {
           label: "03 · Hvorfor det betyr noe",
@@ -593,12 +593,12 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Steg to · Den første bifurkasjonen",
         title: "Ved r = 3 deler den stabile tilstanden seg",
-        body: "Under r = 3 lander iterasjonen alltid på én enkelt stabil populasjon, et fastpunkt. Skyv r så vidt over 3 og fastpunktet mister stabiliteten: banen hopper i stedet hvert år mellom en høy og en lav verdi. Punktet er blitt til en 2-syklus. Det er en periodedoblingsbifurkasjon, den enkleste måten en stabil tilstand gir plass til svingning på, og det er den første sprekken i roen.",
+        body: "Under r = 3 lander iterasjonen alltid på én enkelt stabil populasjon, et fastpunkt. Skyv r så vidt over 3 og fastpunktet mister stabiliteten: Banen hopper i stedet hvert år mellom en høy og en lav verdi. Punktet er blitt til en 2-syklus. Det er en periodedoblingsbifurkasjon, den enkleste måten en stabil tilstand gir plass til svingning på, og det er den første sprekken i roen.",
       },
       {
         pretitle: "Steg tre · Kaskaden",
         title: "2, 4, 8, 16: raskere og raskere",
-        body: "Skyv r videre opp. Ved r ≈ 3,449 splittes 2-syklusen i en 4-syklus. Ved r ≈ 3,544 blir 4-syklusen til en 8-syklus. Så 16, 32, 64. Og vinduene der hver ny doblet syklus er stabil, blir kortere for hver gang. Plottet blir det det berømte bifurkasjonsdiagrammet: stammen forgrener seg, forgrener seg igjen, forgrener seg raskere enn øyet rekker å oppløse.",
+        body: "Skyv r videre opp. Ved r ≈ 3,449 splittes 2-syklusen i en 4-syklus. Ved r ≈ 3,544 blir 4-syklusen til en 8-syklus. Så 16, 32, 64. Og vinduene der hver ny doblet syklus er stabil, blir kortere for hver gang. Plottet blir det det berømte bifurkasjonsdiagrammet: Stammen forgrener seg, forgrener seg igjen, forgrener seg raskere enn øyet rekker å oppløse.",
       },
       {
         pretitle: "Steg fire · Feigenbaums konstant",
@@ -608,12 +608,12 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Steg fem · Fullt kaos",
         title: "r ≈ 3,56995 og videre",
-        body: "Etter uendelig mange doblinger, alle presset inn i et endelig r-vindu, tipper systemet til slutt over i kaos ved Feigenbaum-punktet r∞ ≈ 3,56994567… Bortenfor legger banen seg ikke lenger på noen syklus: den besøker et uendelig sett av verdier, og to startpunkter som skiller seg med 10⁻⁶ blir ukorrelerte i løpet av tretti iterasjoner. Ved r = 4 er avbildningen konjugert med teltavbildningen på [0,1]: ren deterministisk tilfeldighet, generert av én linje aritmetikk.",
+        body: "Etter uendelig mange doblinger, alle presset inn i et endelig r-vindu, tipper systemet til slutt over i kaos ved Feigenbaum-punktet r∞ ≈ 3,56994567… Bortenfor legger banen seg ikke lenger på noen syklus: Den besøker et uendelig sett av verdier, og to startpunkter som skiller seg med 10⁻⁶ blir ukorrelerte i løpet av tretti iterasjoner. Ved r = 4 er avbildningen konjugert med teltavbildningen på [0,1]: ren deterministisk tilfeldighet, generert av én linje aritmetikk.",
       },
       {
         pretitle: "Steg seks · Periode-3-vinduet",
         title: "Orden, gjemt midt i kaoset",
-        body: 'Skyv r opp til omtrent 1 + √8 ≈ 3,8284 og kaoset stopper plutselig: en stabil 3-syklus dukker opp. Derfra starter doblingene på nytt (periode 6, 12, 24) og systemet glir tilbake i kaoset. I 1975 beviste Tien-Yien Li og James Yorke et oppsiktsvekkende teorem i American Mathematical Monthly: for enhver kontinuerlig avbildning av et intervall medfører periode tre kaos. En eneste 3-syklus tvinger frem baner av enhver annen periode og en overtellbar mengde baner som aldri gjentar seg. Ordet de skapte i tittelen, "chaos", har vært feltets navn siden.',
+        body: 'Skyv r opp til omtrent 1 + √8 ≈ 3,8284 og kaoset stopper plutselig: En stabil 3-syklus dukker opp. Derfra starter doblingene på nytt (periode 6, 12, 24) og systemet glir tilbake i kaoset. I 1975 beviste Tien-Yien Li og James Yorke et oppsiktsvekkende teorem i American Mathematical Monthly: For enhver kontinuerlig avbildning av et intervall medfører periode tre kaos. En eneste 3-syklus tvinger frem baner av enhver annen periode og en overtellbar mengde baner som aldri gjentar seg. Ordet de skapte i tittelen, "chaos", har vært feltets navn siden.',
       },
     ],
     demoCaption1: "Live-demo · dra i r for å skifte regime",

@@ -248,7 +248,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Das eine Gatter",
       title: "AND, nur umgedreht",
-      body: "Der Sheffer-Strich a ↑ b nimmt zwei binäre Eingänge und liefert einen binären Ausgang. Drei der vier möglichen Fälle ergeben 1: nur wenn beide Eingänge 1 sind, gibt er 0 aus. Genau das ist die Definition: a ↑ b = ¬(a ∧ b). Der kleine Pfeil heißt manchmal Sheffer-Strich, manchmal wird er als Balken geschrieben (a | b). In jeder Notation dieselbe Operation.",
+      body: "Der Sheffer-Strich a ↑ b nimmt zwei binäre Eingänge und liefert einen binären Ausgang. Drei der vier möglichen Fälle ergeben 1: Nur wenn beide Eingänge 1 sind, gibt er 0 aus. Genau das ist die Definition: a ↑ b = ¬(a ∧ b). Der kleine Pfeil heißt manchmal Sheffer-Strich, manchmal wird er als Balken geschrieben (a | b). In jeder Notation dieselbe Operation.",
     },
     {
       pretitle: "Abschnitt 02 · NOT bauen",
@@ -263,7 +263,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Funktionale Vollständigkeit",
       title: "Warum ein Gatter genügt",
-      body: "Eine Menge boolescher Operatoren ist funktional vollständig, wenn sich jede boolesche Funktion allein mit diesen Operatoren ausdrücken lässt. {AND, OR, NOT} ist vollständig; das ist die Standardaussage. {AND, OR} allein ist es nicht: aus AND und OR lässt sich NOT nie herstellen. {NAND} allein ist vollständig, weil es NOT (durch Eingangskopplung) und AND (durch Negation seiner eigenen Ausgabe) liefert, und {AND, NOT} reicht bereits. Induktiv: jede boolesche Funktion hat eine Normalform aus AND, OR, NOT; schreibe alle drei in NANDs um; fertig.",
+      body: "Eine Menge boolescher Operatoren ist funktional vollständig, wenn sich jede boolesche Funktion allein mit diesen Operatoren ausdrücken lässt. {AND, OR, NOT} ist vollständig; das ist die Standardaussage. {AND, OR} allein ist es nicht: Aus AND und OR lässt sich NOT nie herstellen. {NAND} allein ist vollständig, weil es NOT (durch Eingangskopplung) und AND (durch Negation seiner eigenen Ausgabe) liefert, und {AND, NOT} reicht bereits. Induktiv: Jede boolesche Funktion hat eine Normalform aus AND, OR, NOT; schreibe alle drei in NANDs um; fertig.",
     },
     {
       pretitle: "Abschnitt 05 · Die Hardware-Realität",
@@ -273,7 +273,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Andere allein-vollständige Gatter",
       title: "NOR, der Peirce-Pfeil",
-      body: "NAND ist nicht das einzige Gatter, das allein genügt. Charles Sanders Peirce hatte schon 1880 in einem unveröffentlichten Manuskript bemerkt, dass NOR, geschrieben a ↓ b = ¬(a ∨ b), ebenfalls funktional vollständig ist. Sheffer entdeckte die NAND-Variante 1913 neu und veröffentlichte sie. Das sind die einzigen beiden binären booleschen Operatoren mit dieser Eigenschaft: jeder andere binäre Operator braucht Hilfe. Der Apollo Guidance Computer war komplett aus NOR-Gattern gebaut; der Chip in deiner Tasche läuft auf NANDs. Zwei Wege, ein Universum zu bauen.",
+      body: "NAND ist nicht das einzige Gatter, das allein genügt. Charles Sanders Peirce hatte schon 1880 in einem unveröffentlichten Manuskript bemerkt, dass NOR, geschrieben a ↓ b = ¬(a ∨ b), ebenfalls funktional vollständig ist. Sheffer entdeckte die NAND-Variante 1913 neu und veröffentlichte sie. Das sind die einzigen beiden binären booleschen Operatoren mit dieser Eigenschaft: Jeder andere binäre Operator braucht Hilfe. Der Apollo Guidance Computer war komplett aus NOR-Gattern gebaut; der Chip in deiner Tasche läuft auf NANDs. Zwei Wege, ein Universum zu bauen.",
     },
   ],
   truthTable: {
@@ -1103,7 +1103,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Den ene porten",
       title: "AND, men snudd",
-      body: "Sheffer-streken a ↑ b tar to binære innganger og gir én binær utgang. Den gir 1 i tre av de fire mulige tilfellene: bare når begge inngangene er 1 gir den 0. Det er bokstavelig talt definisjonen: a ↑ b = ¬(a ∧ b). Den lille pilen kalles iblant Sheffer-strek, iblant tegnes den som en strek (a | b). Det er den samme operasjonen i hvilken som helst notasjon.",
+      body: "Sheffer-streken a ↑ b tar to binære innganger og gir én binær utgang. Den gir 1 i tre av de fire mulige tilfellene: Bare når begge inngangene er 1 gir den 0. Det er bokstavelig talt definisjonen: a ↑ b = ¬(a ∧ b). Den lille pilen kalles iblant Sheffer-strek, iblant tegnes den som en strek (a | b). Det er den samme operasjonen i hvilken som helst notasjon.",
     },
     {
       pretitle: "Avsnitt 02 · Bygge NOT",
@@ -1113,12 +1113,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · AND, OR, XOR",
       title: "To, tre, fire porter",
-      body: "AND er to NAND: regn først ut a ↑ b, så negér resultatet med en annen NAND (koblede innganger). OR følger av De Morgan: a ∨ b = ¬(¬a ∧ ¬b), altså nøyaktig (a ↑ a) ↑ (b ↑ b), tre NAND. XOR trenger fire, ordnet som en liten rute. Når du først ser mønsteret blir hver boolsk funksjon en rettet asyklisk graf av identiske NAND-celler. Det finnes ingen annen byggekloss.",
+      body: "AND er to NAND: Regn først ut a ↑ b, så negér resultatet med en annen NAND (koblede innganger). OR følger av De Morgan: a ∨ b = ¬(¬a ∧ ¬b), altså nøyaktig (a ↑ a) ↑ (b ↑ b), tre NAND. XOR trenger fire, ordnet som en liten rute. Når du først ser mønsteret blir hver boolsk funksjon en rettet asyklisk graf av identiske NAND-celler. Det finnes ingen annen byggekloss.",
     },
     {
       pretitle: "Avsnitt 04 · Funksjonell fullstendighet",
       title: "Hvorfor én port holder",
-      body: "Et sett boolske operatorer er funksjonelt fullstendig hvis enhver boolsk funksjon kan uttrykkes ved bare disse operatorene. {AND, OR, NOT} er fullstendig; det er kursbokas standardfakta. {AND, OR} alene er det ikke: man får aldri NOT ut av AND og OR. {NAND} alene er fullstendig fordi det gir NOT (ved å koble inngangene) og AND (ved å negere sin egen utgang), og {AND, NOT} er allerede nok. Induktivt: hver boolsk funksjon har en normalform i AND, OR, NOT; skriv hver av disse om i NAND; ferdig.",
+      body: "Et sett boolske operatorer er funksjonelt fullstendig hvis enhver boolsk funksjon kan uttrykkes ved bare disse operatorene. {AND, OR, NOT} er fullstendig; det er kursbokas standardfakta. {AND, OR} alene er det ikke: Man får aldri NOT ut av AND og OR. {NAND} alene er fullstendig fordi det gir NOT (ved å koble inngangene) og AND (ved å negere sin egen utgang), og {AND, NOT} er allerede nok. Induktivt: Hver boolsk funksjon har en normalform i AND, OR, NOT; skriv hver av disse om i NAND; ferdig.",
     },
     {
       pretitle: "Avsnitt 05 · Maskinvarens virkelighet",
@@ -1128,7 +1128,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Andre alene-fullstendige porter",
       title: "NOR, Peirce-pilen",
-      body: "NAND er ikke alene om å klare seg alene. Charles Sanders Peirce hadde allerede notert, i et upublisert manuskript fra 1880, at NOR, skrevet a ↓ b = ¬(a ∨ b), også er funksjonelt fullstendig alene. Sheffer gjenoppdaget NAND-varianten i 1913 og publiserte. Det er de eneste to binære boolske operatorene med denne egenskapen: enhver annen binær operator trenger hjelp. Apollo Guidance Computer ble bygget utelukkende av NOR-porter; brikken i lommen din kjører på NAND. To måter å bygge et univers.",
+      body: "NAND er ikke alene om å klare seg alene. Charles Sanders Peirce hadde allerede notert, i et upublisert manuskript fra 1880, at NOR, skrevet a ↓ b = ¬(a ∨ b), også er funksjonelt fullstendig alene. Sheffer gjenoppdaget NAND-varianten i 1913 og publiserte. Det er de eneste to binære boolske operatorene med denne egenskapen: Enhver annen binær operator trenger hjelp. Apollo Guidance Computer ble bygget utelukkende av NOR-porter; brikken i lommen din kjører på NAND. To måter å bygge et univers.",
     },
   ],
   truthTable: {

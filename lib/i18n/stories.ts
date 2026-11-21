@@ -419,7 +419,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step four · Why botanists love them",
           title: "From a 1968 paper to every video-game forest",
-          body: "Lindenmayer was not a mathematician chasing pretty pictures; he was a biologist trying to capture how a multicellular organism develops from one tip. L-systems gave botany its first formal grammar for growth: branching topology, internode lengths, leaf placement, all from a few rewriting rules. Przemyslaw Prusinkiewicz's 1990 book \"The Algorithmic Beauty of Plants\" turned the idea into a working pipeline, and from there it leaked into computer graphics. Most procedural trees in games and films, the ferns in Speedtree, the vegetation in Pixar shorts, the cities-of-pipes in demoscene productions, all descend from Lindenmayer's parallel rewrite. A grammar for cells became a grammar for worlds.",
+          body: "Lindenmayer was not a mathematician chasing pretty pictures; he was a biologist trying to capture how a multicellular organism develops from one tip. L-systems gave botany its first formal grammar for growth: branching topology, internode lengths, leaf placement, all from a few rewriting rules. Przemyslaw Prusinkiewicz's 1990 book \"The Algorithmic Beauty of Plants\" turned the idea into a working pipeline, and from there it leaked into computer graphics. Most procedural trees in games and films, the ferns in Speedtree, the vegetation in Pixar shorts, the cities-of-pipes in demoscene productions all descend from Lindenmayer's parallel rewrite. A grammar for cells became a grammar for worlds.",
         },
       ],
     },
@@ -1079,7 +1079,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step four · And the smaller bulbs",
           title: "An infinite ladder of attached circles",
-          body: "The main cardioid in the Mandelbrot set has smaller circular discs hanging off it at every rational fraction p/q. Each disc corresponds to dynamics where the attracting cycle has period q. The largest disc, on the left, has period 2; the next two have period 3; then four discs of period 4; and so on. The fractal at the boundary of the Mandelbrot set is precisely the boundary between these stable regions and chaos. Coffee, optics, complex iteration, the deepest objects in dynamics, all wearing the same shape.",
+          body: "The main cardioid in the Mandelbrot set has smaller circular discs hanging off it at every rational fraction p/q. Each disc corresponds to dynamics where the attracting cycle has period q. The largest disc, on the left, has period 2; the next two have period 3; then four discs of period 4; and so on. The fractal at the boundary of the Mandelbrot set is precisely the boundary between these stable regions and chaos. Coffee, optics, complex iteration, the deepest objects in dynamics: all wearing the same shape.",
         },
       ],
     },
@@ -1259,7 +1259,7 @@ const en: StoriesDict = {
         {
           pretitle: "Step four · Where it stands today",
           title: "From TLS to the post-quantum migration",
-          body: "RSA is the maths under every TLS handshake your browser still negotiates with an RSA certificate, under SSH host keys, under the code-signing chains that authenticate apps from Apple and Google, under electronic passports and the early generations of blockchain. But in 1994 Peter Shor wrote down a quantum algorithm that factors integers in polynomial time, given a sufficiently large fault-tolerant quantum computer, RSA breaks. None exists yet, but the timeline is uncertain enough that NIST has standardised post-quantum replacements (CRYSTALS-Kyber for key exchange in 2024, CRYSTALS-Dilithium for signatures) and the global migration is already under way.",
+          body: "RSA is the maths under every TLS handshake your browser still negotiates with an RSA certificate, under SSH host keys, under the code-signing chains that authenticate apps from Apple and Google, under electronic passports and the early generations of blockchain. But in 1994 Peter Shor wrote down a quantum algorithm that factors integers in polynomial time; given a sufficiently large fault-tolerant quantum computer, RSA breaks. None exists yet, but the timeline is uncertain enough that NIST has standardised post-quantum replacements (CRYSTALS-Kyber for key exchange in 2024, CRYSTALS-Dilithium for signatures) and the global migration is already under way.",
         },
       ],
     },
@@ -1445,7 +1445,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Die Regel",
           title: "Wähle eine komplexe Zahl, dann iteriere",
-          body: "Wähle eine beliebige komplexe Zahl c. Starte eine Folge bei z₀ = 0 und wende immer wieder zₙ₊₁ = zₙ² + c an. Das ist die ganze Regel. Wir stellen dann eine einzige Ja/Nein-Frage: bleibt die Folge beschränkt oder wandert sie irgendwann ins Unendliche? Die Menge der c, für die die Folge beschränkt bleibt, ist die Mandelbrot-Menge. Alles weitere, auch das berühmte Bild, ist nur eine bunte Antwort auf diese Frage.",
+          body: "Wähle eine beliebige komplexe Zahl c. Starte eine Folge bei z₀ = 0 und wende immer wieder zₙ₊₁ = zₙ² + c an. Das ist die ganze Regel. Wir stellen dann eine einzige Ja/Nein-Frage: Bleibt die Folge beschränkt oder wandert sie irgendwann ins Unendliche? Die Menge der c, für die die Folge beschränkt bleibt, ist die Mandelbrot-Menge. Alles weitere, auch das berühmte Bild, ist nur eine bunte Antwort auf diese Frage.",
         },
         {
           pretitle: "Schritt zwei · Die Bahn beobachten",
@@ -1455,7 +1455,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt drei · Warum das Bild unendlich ist",
           title: "Der Rand wird nie einfacher",
-          body: "Sobald du jedes c danach einfärbst, wie schnell seine Bahn entkommt, leuchtet der Rand auf. Die erstaunliche Tatsache, bewiesen unter anderem von Tan Lei, ist: der Rand ist in einem tiefen Sinn selbstähnlich; wo immer du hineinzoomst, findest du neue winzige Kopien der ganzen Form, umgeben von Filigran, das sich nie wiederholt. Deshalb geht der Explorer bis zu 10¹⁰ Zoom: es gibt auf jeder Skala wirklich etwas Neues.",
+          body: "Sobald du jedes c danach einfärbst, wie schnell seine Bahn entkommt, leuchtet der Rand auf. Die erstaunliche Tatsache, bewiesen unter anderem von Tan Lei, ist: Der Rand ist in einem tiefen Sinn selbstähnlich; wo immer du hineinzoomst, findest du neue winzige Kopien der ganzen Form, umgeben von Filigran, das sich nie wiederholt. Deshalb geht der Explorer bis zu 10¹⁰ Zoom: Es gibt auf jeder Skala wirklich etwas Neues.",
         },
         {
           pretitle: "Schritt vier · Die Fixpunkte",
@@ -1520,7 +1520,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt vier · Die andere Seite",
           title: "NAND gewann den Chip, NOR gewann den Mond",
-          body: "NOR (¬(a ∨ b)) ist das andere funktional vollständige Einzelgatter. Der Apollo Guidance Computer, der Menschen auf dem Mond landete, war ausschließlich aus NOR-Gattern gebaut. NAND gewann das Rennen um Consumer-Chips; NOR gewann den Mond. Zwei Wege, ein Universum zu bauen: such dir eine Seite aus.",
+          body: "NOR (¬(a ∨ b)) ist das andere funktional vollständige Einzelgatter. Der Apollo Guidance Computer, der Menschen auf dem Mond landete, war ausschließlich aus NOR-Gattern gebaut. NAND gewann das Rennen um Consumer-Chips; NOR gewann den Mond. Zwei Wege, ein Universum zu bauen: Such dir eine Seite aus.",
         },
       ],
     },
@@ -1565,22 +1565,22 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Der Aufbau",
           title: "Eine Reihe Zellen, eine Regel, wiederholen",
-          body: "Ein elementarer Zellularautomat läuft auf einer Reihe von Zellen, die jeweils schwarz oder weiß sind. Die nächste Generation wird darunter gezeichnet: jede Zelle schaut sich selbst und ihre zwei direkten Nachbarn an (drei Zellen) und entscheidet ihre Farbe nach einer festen Regel. Acht mögliche Nachbarschaftsmuster; für jedes eine 1-Bit-Antwort. Acht Bit = ein Byte = eine von 256 möglichen Regeln. Stephen Wolfram nummerierte sie von 0 bis 255 in Binärdarstellung.",
+          body: "Ein elementarer Zellularautomat läuft auf einer Reihe von Zellen, die jeweils schwarz oder weiß sind. Die nächste Generation wird darunter gezeichnet: Jede Zelle schaut sich selbst und ihre zwei direkten Nachbarn an (drei Zellen) und entscheidet ihre Farbe nach einer festen Regel. Acht mögliche Nachbarschaftsmuster; für jedes eine 1-Bit-Antwort. Acht Bit = ein Byte = eine von 256 möglichen Regeln. Stephen Wolfram nummerierte sie von 0 bis 255 in Binärdarstellung.",
         },
         {
           pretitle: "Schritt zwei · Regel 110 lesen",
           title: "Acht Muster, ein Byte",
-          body: "Schreibe die acht Drei-Zellen-Muster in absteigender Binärreihenfolge: 111, 110, 101, …, 000. Unter jedes Muster schreibst du den Wert der nächsten Generation für die mittlere Zelle. Lies die Antwortreihe als eine einzige Binärzahl: bei Regel 110 ergibt das 01101110, also 110 in Dezimal. Die Regel ist genau dieses Byte.",
+          body: "Schreibe die acht Drei-Zellen-Muster in absteigender Binärreihenfolge: 111, 110, 101, …, 000. Unter jedes Muster schreibst du den Wert der nächsten Generation für die mittlere Zelle. Lies die Antwortreihe als eine einzige Binärzahl: Bei Regel 110 ergibt das 01101110, also 110 in Dezimal. Die Regel ist genau dieses Byte.",
         },
         {
           pretitle: "Schritt drei · Ein Pixel wächst zu einem Universum",
           title: "Starte mit einem einzigen Punkt",
-          body: "Setze die obere Reihe mit einer einzigen schwarzen Zelle, alles andere weiß. Wende die Regel an; zeichne die nächste Generation darunter. Wiederhole das für einige hundert Reihen. Bei Regel 110 ist das Ergebnis weder das langweilige Komplett-Schwarz/Weiß von Regeln wie 0 oder 255, noch das schlichte Sierpiński von Regel 90: es ist ein permanenter Verkehr aus dreieckigen Gleitern vor einem gestreiften Hintergrund, geschichtet zu etwas, das wirklich nie zur Ruhe kommt.",
+          body: "Setze die obere Reihe mit einer einzigen schwarzen Zelle, alles andere weiß. Wende die Regel an; zeichne die nächste Generation darunter. Wiederhole das für einige hundert Reihen. Bei Regel 110 ist das Ergebnis weder das langweilige Komplett-Schwarz/Weiß von Regeln wie 0 oder 255, noch das schlichte Sierpiński von Regel 90: Es ist ein permanenter Verkehr aus dreieckigen Gleitern vor einem gestreiften Hintergrund, geschichtet zu etwas, das wirklich nie zur Ruhe kommt.",
         },
         {
           pretitle: "Schritt vier · Der Beweis von Cook",
           title: "Es ist, beweisbar, ein Computer",
-          body: "In den späten 1990ern zeigte Matthew Cook, wie sich bestimmte Gleitermuster in Regel 110 so anordnen lassen, dass ihre Kollisionen als Logikgatter wirken, und wie sich daraus ein funktionierendes zyklisches Tag-System zusammensetzen lässt, das selbst Turing-vollständig ist. Der Beweis ist verschachtelt, aber die Konsequenz ist sauber: diese Achtbit-Regel, angewendet auf eine Reihe Bits, ist universell. Was auch immer du berechnen kannst, kannst du in Regel 110 tun.",
+          body: "In den späten 1990ern zeigte Matthew Cook, wie sich bestimmte Gleitermuster in Regel 110 so anordnen lassen, dass ihre Kollisionen als Logikgatter wirken, und wie sich daraus ein funktionierendes zyklisches Tag-System zusammensetzen lässt, das selbst Turing-vollständig ist. Der Beweis ist verschachtelt, aber die Konsequenz ist sauber: Diese Achtbit-Regel, angewendet auf eine Reihe Bits, ist universell. Was auch immer du berechnen kannst, kannst du in Regel 110 tun.",
         },
       ],
     },
@@ -1595,7 +1595,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Die Formel",
           title: "Eine Formel für die Bevölkerung von morgen",
-          body: "Die logistische Gleichung von Pierre-François Verhulst aus dem Jahr 1845, in diskreter Zeit abgetastet, ergibt die Abbildung xₙ₊₁ = r · xₙ · (1 − xₙ). Lies x als Anteil der Kapazitätsgrenze zwischen 0 und 1; r als Wachstumsrate. Der Term (1 − x) ist die Bremse: zu viele Individuen lassen die nächste Generation verhungern. Mit 0 ≤ r ≤ 4 bleibt die Iteration beschränkt.",
+          body: "Die logistische Gleichung von Pierre-François Verhulst aus dem Jahr 1845, in diskreter Zeit abgetastet, ergibt die Abbildung xₙ₊₁ = r · xₙ · (1 − xₙ). Lies x als Anteil der Kapazitätsgrenze zwischen 0 und 1; r als Wachstumsrate. Der Term (1 − x) ist die Bremse: Zu viele Individuen lassen die nächste Generation verhungern. Mit 0 ≤ r ≤ 4 bleibt die Iteration beschränkt.",
         },
         {
           pretitle: "Schritt zwei · Vom Frieden ins Chaos",
@@ -1605,7 +1605,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt drei · Feigenbaums universelle Konstante",
           title: "Eine Zahl, die zwischen Systemen reist",
-          body: "Miss das Verhältnis der Längen zweier aufeinanderfolgender Verdoppelungs-Intervalle. Heraus kommt δ ≈ 4,66920…, Mitchell Feigenbaums Konstante. Das Erstaunliche: dieselbe Konstante taucht in völlig unzusammenhängenden Systemen auf, etwa der Hénon-Abbildung, dem Duffing-Oszillator, sogar in experimentellen Strömungsversuchen. Periodenverdopplung ist ein universeller Weg ins Chaos, und δ ist ihr Fingerabdruck.",
+          body: "Miss das Verhältnis der Längen zweier aufeinanderfolgender Verdoppelungs-Intervalle. Heraus kommt δ ≈ 4,66920…, Mitchell Feigenbaums Konstante. Das Erstaunliche: Dieselbe Konstante taucht in völlig unzusammenhängenden Systemen auf, etwa der Hénon-Abbildung, dem Duffing-Oszillator, sogar in experimentellen Strömungsversuchen. Periodenverdopplung ist ein universeller Weg ins Chaos, und δ ist ihr Fingerabdruck.",
         },
         {
           pretitle: "Schritt vier · Inseln der Ordnung",
@@ -1660,7 +1660,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt zwei · Das Rezept",
           title: "Summe reiner Töne",
-          body: "Für eine periodische Funktion: eine Fourier-Reihe, eine Summe über diskrete Frequenzen. Für eine beliebige integrierbare Funktion: eine Fourier-Transformierte f̂(ξ) = ∫ f(t) e^(−2πi ξ t) dt, ein kontinuierliches Spektrum. Beide sagen auf unterschiedliche Weise dasselbe: ein Signal in der Zeit, wie kompliziert auch immer, zerfällt in reine Schwingungen. Ein Akkord wird zu seinen Tönen. Ein Foto wird zu seinen Streifen.",
+          body: "Für eine periodische Funktion: eine Fourier-Reihe, eine Summe über diskrete Frequenzen. Für eine beliebige integrierbare Funktion: eine Fourier-Transformierte f̂(ξ) = ∫ f(t) e^(−2πi ξ t) dt, ein kontinuierliches Spektrum. Beide sagen auf unterschiedliche Weise dasselbe: Ein Signal in der Zeit, wie kompliziert auch immer, zerfällt in reine Schwingungen. Ein Akkord wird zu seinen Tönen. Ein Foto wird zu seinen Streifen.",
         },
         {
           pretitle: "Schritt drei · Warum dein Handy funktioniert",
@@ -1670,7 +1670,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt vier · Der Unschärfe-Handel",
           title: "Schärfer in der Zeit, unschärfer in der Frequenz",
-          body: "Pferche ein Signal in ein schmales Zeitfenster, und seine Fourier-Transformierte verteilt sich zwangsläufig auf viele Frequenzen, und umgekehrt. Das ist keine Ingenieurstatsache; das ist Mathematik. Die Gauß-Funktion sitzt am Optimum dieses Handels: sie ist ihre eigene Fourier-Transformierte. Dieselbe Ungleichung wird in der Physik zu Heisenbergs Unschärferelation. Zeit und Frequenz sind duale Koordinaten; man kann sie nicht beide zugleich scharfstellen.",
+          body: "Pferche ein Signal in ein schmales Zeitfenster, und seine Fourier-Transformierte verteilt sich zwangsläufig auf viele Frequenzen, und umgekehrt. Das ist keine Ingenieurstatsache; das ist Mathematik. Die Gauß-Funktion sitzt am Optimum dieses Handels: Sie ist ihre eigene Fourier-Transformierte. Dieselbe Ungleichung wird in der Physik zu Heisenbergs Unschärferelation. Zeit und Frequenz sind duale Koordinaten; man kann sie nicht beide zugleich scharfstellen.",
         },
       ],
     },
@@ -1722,12 +1722,12 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt drei · Der Diagonal-Trick",
           title: "G sagt: «G ist nicht beweisbar»",
-          body: "Mit dem Diagonal-Lemma (ein direkter Nachfahre von Cantors Diagonalargument von 1891) konstruierte Gödel einen Satz G, dessen Gödel-Nummer ⌜G⌝ ist und der arithmetisch äquivalent zu ¬∃x Prov(x, ⌜G⌝) ist: «keine Zahl x ist ein Beweis der Formel mit der Gödel-Nummer ⌜G⌝». In Klartext: G sagt «Ich bin in diesem System nicht beweisbar». Jetzt die Zange. Wenn G beweisbar ist, beweist das System eine falsche Aussage und ist widersprüchlich. Wenn G unbeweisbar ist, dann ist genau das, was G behauptet, wahr, aber das System kann es nicht beweisen. So oder so kollabiert Hilberts Traum einer vollständigen widerspruchsfreien Arithmetik. Der Zweite Unvollständigkeitssatz folgt fast unmittelbar: ein solches System kann seine eigene Widerspruchsfreiheit nicht beweisen, denn könnte es das, würde es auch G beweisen und damit dem Ersten widersprechen.",
+          body: "Mit dem Diagonal-Lemma (ein direkter Nachfahre von Cantors Diagonalargument von 1891) konstruierte Gödel einen Satz G, dessen Gödel-Nummer ⌜G⌝ ist und der arithmetisch äquivalent zu ¬∃x Prov(x, ⌜G⌝) ist: «Keine Zahl x ist ein Beweis der Formel mit der Gödel-Nummer ⌜G⌝». In Klartext: G sagt «Ich bin in diesem System nicht beweisbar». Jetzt die Zange. Wenn G beweisbar ist, beweist das System eine falsche Aussage und ist widersprüchlich. Wenn G unbeweisbar ist, dann ist genau das, was G behauptet, wahr, aber das System kann es nicht beweisen. So oder so kollabiert Hilberts Traum einer vollständigen widerspruchsfreien Arithmetik. Der Zweite Unvollständigkeitssatz folgt fast unmittelbar: Ein solches System kann seine eigene Widerspruchsfreiheit nicht beweisen, denn könnte es das, würde es auch G beweisen und damit dem Ersten widersprechen.",
         },
         {
           pretitle: "Schritt vier · Wo es weiterwirkt",
           title: "Tarski, Turing, Church und jeder Beweisassistent seither",
-          body: "Derselbe Diagonal-Trick taucht immer wieder auf. Alfred Tarski (1933) bewies, dass die Wahrheit in der Arithmetik innerhalb der Arithmetik nicht definierbar ist: die Undefinierbarkeit der Wahrheit. Alan Turing (1936) zeigte, dass das Halteproblem unentscheidbar ist, indem er über Turing-Maschinen diagonalisierte. Alonzo Church (1936) bewies, dass die Logik erster Stufe selbst unentscheidbar ist. Jedes dieser Ergebnisse ist strukturell ein Cousin von Gödels Satz: ein System, das reich genug ist, sich selbst zu beschreiben, enthält eine Frage über sich, die es nicht beantworten kann. Moderne Beweisassistenten (Coq, Lean, Isabelle, HOL) operieren innerhalb von Gödels Grenzen: sie können enorm viel Mathematik mechanisieren, aber sie können ihre eigene Widerspruchsfreiheit nicht beweisen, und es gibt konkrete zahlentheoretische Aussagen (Goodsteins Theorem, Paris-Harrington), die wahr und in der Peano-Arithmetik nachweislich unbeweisbar sind. Der Traum ist vorbei; das Gebäude ist größer denn je.",
+          body: "Derselbe Diagonal-Trick taucht immer wieder auf. Alfred Tarski (1933) bewies, dass die Wahrheit in der Arithmetik innerhalb der Arithmetik nicht definierbar ist: die Undefinierbarkeit der Wahrheit. Alan Turing (1936) zeigte, dass das Halteproblem unentscheidbar ist, indem er über Turing-Maschinen diagonalisierte. Alonzo Church (1936) bewies, dass die Logik erster Stufe selbst unentscheidbar ist. Jedes dieser Ergebnisse ist strukturell ein Cousin von Gödels Satz: Ein System, das reich genug ist, sich selbst zu beschreiben, enthält eine Frage über sich, die es nicht beantworten kann. Moderne Beweisassistenten (Coq, Lean, Isabelle, HOL) operieren innerhalb von Gödels Grenzen: Sie können enorm viel Mathematik mechanisieren, aber sie können ihre eigene Widerspruchsfreiheit nicht beweisen, und es gibt konkrete zahlentheoretische Aussagen (Goodsteins Theorem, Paris-Harrington), die wahr und in der Peano-Arithmetik nachweislich unbeweisbar sind. Der Traum ist vorbei; das Gebäude ist größer denn je.",
         },
       ],
     },
@@ -1742,12 +1742,12 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Die Frage",
           title: "Hält P auf x?",
-          body: "Gegeben der Quellcode eines Programms P und eine Eingabe x: entscheide, ob P irgendwann fertig wird oder ob es ewig läuft. Es klingt nach etwas, das ein hinreichend kluger Analysierer immer entscheiden können müsste: Programme sind schließlich endliche Zeichenketten, und ein Computer kann sie simulieren. David Hilbert verlangte 1928 in seinem Entscheidungsproblem genau ein solches universelles Entscheidungsverfahren. Mitte der 1930er Jahre näherten sich Alonzo Church (über den λ-Kalkül) und Alan Turing (über das, was wir heute Turing-Maschinen nennen) derselben Antwort von entgegengesetzten Seiten.",
+          body: "Gegeben der Quellcode eines Programms P und eine Eingabe x: Entscheide, ob P irgendwann fertig wird oder ob es ewig läuft. Es klingt nach etwas, das ein hinreichend kluger Analysierer immer entscheiden können müsste: Programme sind schließlich endliche Zeichenketten, und ein Computer kann sie simulieren. David Hilbert verlangte 1928 in seinem Entscheidungsproblem genau ein solches universelles Entscheidungsverfahren. Mitte der 1930er Jahre näherten sich Alonzo Church (über den λ-Kalkül) und Alan Turing (über das, was wir heute Turing-Maschinen nennen) derselben Antwort von entgegengesetzten Seiten.",
         },
         {
           pretitle: "Schritt zwei · Turings Widerspruch",
           title: "Nimm halts(P, x) an, dann baue D",
-          body: "Angenommen, zum Widerspruch, es gäbe eine totale berechenbare Funktion halts(P, x), die ⊤ liefert, wenn P auf der Eingabe x hält, und sonst ⊥. Dann können wir ein neues Programm D(P) schreiben: berechne halts(P, P); liefert es ⊤, gehe in eine Endlosschleife; liefert es ⊥, halte sofort an. D ist erlaubt: jeder seiner Schritte ist nach Annahme berechenbar. Nun frage: was liefert halts(D, D)? Wenn halts(D, D) = ⊤, dann läuft D nach Definition auf der Eingabe D in eine Schleife, also hält D nicht auf D, im Widerspruch zu ⊤. Wenn halts(D, D) = ⊥, dann hält D auf D, im Widerspruch zu ⊥. Jede Antwort sprengt die Definition, also kann ein solches halts nicht existieren. (Turing 1936, ‚On Computable Numbers, with an Application to the Entscheidungsproblem'.)",
+          body: "Angenommen, zum Widerspruch, es gäbe eine totale berechenbare Funktion halts(P, x), die ⊤ liefert, wenn P auf der Eingabe x hält, und sonst ⊥. Dann können wir ein neues Programm D(P) schreiben: Berechne halts(P, P); liefert es ⊤, gehe in eine Endlosschleife; liefert es ⊥, halte sofort an. D ist erlaubt: Jeder seiner Schritte ist nach Annahme berechenbar. Nun frage: Was liefert halts(D, D)? Wenn halts(D, D) = ⊤, dann läuft D nach Definition auf der Eingabe D in eine Schleife, also hält D nicht auf D, im Widerspruch zu ⊤. Wenn halts(D, D) = ⊥, dann hält D auf D, im Widerspruch zu ⊥. Jede Antwort sprengt die Definition, also kann ein solches halts nicht existieren. (Turing 1936, ‚On Computable Numbers, with an Application to the Entscheidungsproblem'.)",
         },
         {
           pretitle: "Schritt drei · Diagonalisierung in Verkleidung",
@@ -1757,7 +1757,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt vier · Warum es heute zählt",
           title: "Rices Satz und die praktischen Folgen",
-          body: "Rices Satz (Henry Gordon Rice, 1953) verallgemeinert Turing: jede nicht-triviale semantische Eigenschaft von Programmen (‚gibt es jemals null zurück?', ‚leckt es Speicher?', ‚ist es bösartig?') ist unentscheidbar. Statische Analysierer müssen daher approximieren: sie melden zu viel (Falsch-Positive) oder zu wenig (übersehene Fehler), nie beides sauber und vollständig. Compiler brechen beim Optimieren ab und weigern sich, jenseits einer Heuristik weiter zu inlinen. Antivirus-Engines können generell nie alle Schadsoftware fangen. Cloud-Autoscaler können nicht versprechen, dass ein abgegebener Job hält; sie deckeln stattdessen die CPU-Zeit. Das Halteproblem ist keine Kuriosität; es ist die Wand, an die jedes Programm-über-Programme irgendwann stößt.",
+          body: "Rices Satz (Henry Gordon Rice, 1953) verallgemeinert Turing: Jede nicht-triviale semantische Eigenschaft von Programmen (‚gibt es jemals null zurück?', ‚leckt es Speicher?', ‚ist es bösartig?') ist unentscheidbar. Statische Analysierer müssen daher approximieren: Sie melden zu viel (Falsch-Positive) oder zu wenig (übersehene Fehler), nie beides sauber und vollständig. Compiler brechen beim Optimieren ab und weigern sich, jenseits einer Heuristik weiter zu inlinen. Antivirus-Engines können generell nie alle Schadsoftware fangen. Cloud-Autoscaler können nicht versprechen, dass ein abgegebener Job hält; sie deckeln stattdessen die CPU-Zeit. Das Halteproblem ist keine Kuriosität; es ist die Wand, an die jedes Programm-über-Programme irgendwann stößt.",
         },
       ],
     },
@@ -1766,18 +1766,18 @@ const de: StoriesDict = {
       title: "P vs NP",
       tagline: "Die größte offene Frage der Informatik.",
       intro:
-        "Manche Probleme sind leicht zu lösen. Andere sind leicht zu prüfen, sobald jemand dir die Antwort reicht. P vs NP fragt, ob diese beiden Klassen heimlich dasselbe sind, und ein Ja würde die moderne Kryptographie zertrümmern. Der Explorer ist ein kleiner 3-SAT-Solver, mit dem du sehen kannst, warum Verifikation trivial, Suche aber brutal ist: wirf eine Formel hinein und folge DPLL den Backtracking-Baum hinunter, während es Belegungen probiert und ganze Zweige mit einem einzigen Widerspruch abschneidet.",
+        "Manche Probleme sind leicht zu lösen. Andere sind leicht zu prüfen, sobald jemand dir die Antwort reicht. P vs NP fragt, ob diese beiden Klassen heimlich dasselbe sind, und ein Ja würde die moderne Kryptographie zertrümmern. Der Explorer ist ein kleiner 3-SAT-Solver, mit dem du sehen kannst, warum Verifikation trivial, Suche aber brutal ist: Wirf eine Formel hinein und folge DPLL den Backtracking-Baum hinunter, während es Belegungen probiert und ganze Zweige mit einem einzigen Widerspruch abschneidet.",
       ctaInteractive: "→ Explorer öffnen",
       sections: [
         {
           pretitle: "Schritt eins · Zwei Klassen von Problemen",
           title: "Schnell lösbar vs. schnell verifizierbar",
-          body: "P ist die Klasse der Entscheidungsprobleme, die eine deterministische Maschine in Polynomzeit lösen kann: zwei Zahlen multiplizieren, eine Liste sortieren, prüfen, ob ein Graph zusammenhängend ist. NP ist die Klasse, in der eine Polynomzeit-Maschine, sobald sie eine Kandidatenlösung erhält, verifizieren kann, dass die Antwort stimmt. Dass beide dasselbe sind, ist nicht offensichtlich. Sudoku ist das Schulbeispiel: ein 9×9-Gitter auszufüllen ist wirklich schwer, aber wenn eine Freundin dir ein fertiges Gitter reicht, kannst du Zeile, Spalte und Block in einem einzigen linearen Durchgang bestätigen. Der schwere Teil ist die Lösung zu finden; der leichte Teil ist sie zu prüfen.",
+          body: "P ist die Klasse der Entscheidungsprobleme, die eine deterministische Maschine in Polynomzeit lösen kann: zwei Zahlen multiplizieren, eine Liste sortieren, prüfen, ob ein Graph zusammenhängend ist. NP ist die Klasse, in der eine Polynomzeit-Maschine, sobald sie eine Kandidatenlösung erhält, verifizieren kann, dass die Antwort stimmt. Dass beide dasselbe sind, ist nicht offensichtlich. Sudoku ist das Schulbeispiel: Ein 9×9-Gitter auszufüllen ist wirklich schwer, aber wenn eine Freundin dir ein fertiges Gitter reicht, kannst du Zeile, Spalte und Block in einem einzigen linearen Durchgang bestätigen. Der schwere Teil ist die Lösung zu finden; der leichte Teil ist sie zu prüfen.",
         },
         {
           pretitle: "Schritt zwei · NP-Vollständigkeit",
           title: "Cook 1971, Karp 1972, Levin unabhängig",
-          body: "1971 bewies Stephen Cook den Satz von Cook-Levin: jedes Problem in NP lässt sich in Polynomzeit auf die boolesche Erfüllbarkeit (SAT) reduzieren. Leonid Levin veröffentlichte dasselbe Ergebnis unabhängig in der Sowjetunion. Ein Jahr später zeigte Richard Karp, dass 21 klassische Probleme (3-SAT, Hamiltonkreis, Clique, Subset Sum, die Entscheidungsversion des Travelling Salesman) alle in Polynomzeit aufeinander reduzierbar sind. Heute geht die Liste in die Tausende: Sudoku N×N, Tetris, verallgemeinertes Minesweeper, selbst Gitter-Modelle der Proteinfaltung gehören zur selben Äquivalenzklasse. Löse eines effizient, und du hast alle gelöst. Cook-Karp-Levin-Reduktionen verwandelten eine Frage über ein Problem in eine Frage über jedes interessante Suchproblem auf einmal.",
+          body: "1971 bewies Stephen Cook den Satz von Cook-Levin: Jedes Problem in NP lässt sich in Polynomzeit auf die boolesche Erfüllbarkeit (SAT) reduzieren. Leonid Levin veröffentlichte dasselbe Ergebnis unabhängig in der Sowjetunion. Ein Jahr später zeigte Richard Karp, dass 21 klassische Probleme (3-SAT, Hamiltonkreis, Clique, Subset Sum, die Entscheidungsversion des Travelling Salesman) alle in Polynomzeit aufeinander reduzierbar sind. Heute geht die Liste in die Tausende: Sudoku N×N, Tetris, verallgemeinertes Minesweeper, selbst Gitter-Modelle der Proteinfaltung gehören zur selben Äquivalenzklasse. Löse eines effizient, und du hast alle gelöst. Cook-Karp-Levin-Reduktionen verwandelten eine Frage über ein Problem in eine Frage über jedes interessante Suchproblem auf einmal.",
         },
         {
           pretitle: "Schritt drei · Was, wenn P = NP?",
@@ -1802,22 +1802,22 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Die Asymmetrie",
           title: "Einwegfunktionen: leicht vorwärts, schwer zurück",
-          body: "Zwei riesige Primzahlen p und q zu multiplizieren ist schnell: wenige Millisekunden auf einem Smartphone. p und q aus ihrem Produkt n = p · q wiederzugewinnen, ist es nicht: der beste bekannte klassische Algorithmus (das allgemeine Zahlkörpersieb) läuft in subexponentieller, aber superpolynomieller Zeit, und ein 2048-Bit-n liegt bequem außerhalb der Reichweite jeder je gebauten Maschine. Diese Einweg-Eigenschaft (billig vorwärts, ruinös teuer rückwärts) ist das Fundament der Public-Key-Kryptographie. RSA kleidet die Asymmetrie so ein, dass ein öffentlicher Schlüssel an jeden weitergegeben werden kann und nur der Inhaber des passenden privaten Schlüssels lesen kann, was zurückgeschrieben wurde.",
+          body: "Zwei riesige Primzahlen p und q zu multiplizieren ist schnell: wenige Millisekunden auf einem Smartphone. p und q aus ihrem Produkt n = p · q wiederzugewinnen, ist es nicht: Der beste bekannte klassische Algorithmus (das allgemeine Zahlkörpersieb) läuft in subexponentieller, aber superpolynomieller Zeit, und ein 2048-Bit-n liegt bequem außerhalb der Reichweite jeder je gebauten Maschine. Diese Einweg-Eigenschaft (billig vorwärts, ruinös teuer rückwärts) ist das Fundament der Public-Key-Kryptographie. RSA kleidet die Asymmetrie so ein, dass ein öffentlicher Schlüssel an jeden weitergegeben werden kann und nur der Inhaber des passenden privaten Schlüssels lesen kann, was zurückgeschrieben wurde.",
         },
         {
           pretitle: "Schritt zwei · Schlüsselerzeugung",
           title: "Wähle e, leite d über den erweiterten Euklid ab",
-          body: "Berechne φ(n) = (p − 1)(q − 1), Eulers Totient, die Anzahl der zu n teilerfremden Zahlen in [1, n]. Wähle einen kleinen öffentlichen Exponenten e, teilerfremd zu φ(n); 65537 ist die kanonische Wahl, weil es prim ist, nur zwei gesetzte Bits hat und jeden bekannten Angriff mit kleinem Exponenten übersteht. Berechne dann den privaten Exponenten d = e⁻¹ mod φ(n) mit dem erweiterten euklidischen Algorithmus: er liefert Bézout-Koeffizienten (x, y) mit e·x + φ(n)·y = 1, und x mod φ(n) ergibt d. Der öffentliche Schlüssel ist das Paar (n, e); der private Schlüssel ist (n, d). Wirf p und q weg, sobald du d in der Hand hast.",
+          body: "Berechne φ(n) = (p − 1)(q − 1), Eulers Totient, die Anzahl der zu n teilerfremden Zahlen in [1, n]. Wähle einen kleinen öffentlichen Exponenten e, teilerfremd zu φ(n); 65537 ist die kanonische Wahl, weil es prim ist, nur zwei gesetzte Bits hat und jeden bekannten Angriff mit kleinem Exponenten übersteht. Berechne dann den privaten Exponenten d = e⁻¹ mod φ(n) mit dem erweiterten euklidischen Algorithmus: Er liefert Bézout-Koeffizienten (x, y) mit e·x + φ(n)·y = 1, und x mod φ(n) ergibt d. Der öffentliche Schlüssel ist das Paar (n, e); der private Schlüssel ist (n, d). Wirf p und q weg, sobald du d in der Hand hast.",
         },
         {
           pretitle: "Schritt drei · Verschlüsseln und entschlüsseln",
           title: "c = m^e mod n,   m = c^d mod n",
-          body: "Behandle den Klartext m als ganze Zahl in [0, n). Der Geheimtext ist c = m^e mod n; entschlüsselt wird mit m = c^d mod n. Der Grund, warum das funktioniert, kommt direkt von Euler und Fermat: weil ed ≡ 1 mod φ(n), gilt m^(ed) = m^(1 + kφ(n)) ≡ m mod n für jedes zu n teilerfremde m (Eulers Satz), und ein kurzes Argument mit dem chinesischen Restsatz dehnt die Identität auf jedes m in [0, n) aus. Square-and-Multiply verwandelt die riesigen Exponenten in ein paar tausend modulare Multiplikationen: in der Praxis schnell, mathematisch exakt.",
+          body: "Behandle den Klartext m als ganze Zahl in [0, n). Der Geheimtext ist c = m^e mod n; entschlüsselt wird mit m = c^d mod n. Der Grund, warum das funktioniert, kommt direkt von Euler und Fermat: Weil ed ≡ 1 mod φ(n), gilt m^(ed) = m^(1 + kφ(n)) ≡ m mod n für jedes zu n teilerfremde m (Eulers Satz), und ein kurzes Argument mit dem chinesischen Restsatz dehnt die Identität auf jedes m in [0, n) aus. Square-and-Multiply verwandelt die riesigen Exponenten in ein paar tausend modulare Multiplikationen: in der Praxis schnell, mathematisch exakt.",
         },
         {
           pretitle: "Schritt vier · Wo es heute steht",
           title: "Von TLS zur Post-Quanten-Migration",
-          body: "RSA ist die Mathematik unter jedem TLS-Handshake, den dein Browser noch mit einem RSA-Zertifikat aushandelt, unter SSH-Host-Schlüsseln, unter den Code-Signing-Ketten, die Apps von Apple und Google authentifizieren, unter elektronischen Reisepässen und den frühen Generationen der Blockchain. Doch 1994 schrieb Peter Shor einen Quantenalgorithmus auf, der ganze Zahlen in Polynomzeit faktorisiert, sobald ein hinreichend großer fehlertoleranter Quantencomputer existiert, bricht RSA. Noch existiert keiner, aber der Zeitplan ist unsicher genug, dass NIST Post-Quanten-Nachfolger standardisiert hat (CRYSTALS-Kyber für den Schlüsselaustausch 2024, CRYSTALS-Dilithium für Signaturen), und die weltweite Migration ist bereits im Gange.",
+          body: "RSA ist die Mathematik unter jedem TLS-Handshake, den dein Browser noch mit einem RSA-Zertifikat aushandelt, unter SSH-Host-Schlüsseln, unter den Code-Signing-Ketten, die Apps von Apple und Google authentifizieren, unter elektronischen Reisepässen und den frühen Generationen der Blockchain. Doch 1994 schrieb Peter Shor einen Quantenalgorithmus auf, der ganze Zahlen in Polynomzeit faktorisiert; sobald ein hinreichend großer fehlertoleranter Quantencomputer existiert, bricht RSA. Noch existiert keiner, aber der Zeitplan ist unsicher genug, dass NIST Post-Quanten-Nachfolger standardisiert hat (CRYSTALS-Kyber für den Schlüsselaustausch 2024, CRYSTALS-Dilithium für Signaturen), und die weltweite Migration ist bereits im Gange.",
         },
       ],
     },
@@ -1837,7 +1837,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt zwei · Überraschungen mit der Schere",
           title: "Was Schnitte über Topologie verraten",
-          body: "Schneide das Möbiusband in der Mitte auf. Es fällt nicht auseinander; du erhältst einen längeren Streifen mit zwei vollen Drehungen (vier halben Drehungen), und entscheidend: dieser Streifen ist wieder zweiseitig. Schneide ein Möbiusband ein Drittel vom Rand entfernt auf, parallel zur Kante einmal ringsum, und die Schere reist zweimal um das Band, bevor sich der Schnitt schließt: heraus kommen zwei ineinander verschlungene Ringe, ein schmäleres, neues Möbiusband (innen, mit nach wie vor einer halben Drehung) und ein längerer, zweiseitiger Ring mit zwei vollen Halbdrehungen, der kein Möbiusband mehr ist, beide ineinander gehakt. Die Topologie steckt voller solcher Überraschungen: die globale Verdrehung, die sich hinter lokaler Flachheit versteckt.",
+          body: "Schneide das Möbiusband in der Mitte auf. Es fällt nicht auseinander; du erhältst einen längeren Streifen mit zwei vollen Drehungen (vier halben Drehungen), und entscheidend: Dieser Streifen ist wieder zweiseitig. Schneide ein Möbiusband ein Drittel vom Rand entfernt auf, parallel zur Kante einmal ringsum, und die Schere reist zweimal um das Band, bevor sich der Schnitt schließt: Heraus kommen zwei ineinander verschlungene Ringe, ein schmäleres, neues Möbiusband (innen, mit nach wie vor einer halben Drehung) und ein längerer, zweiseitiger Ring mit zwei vollen Halbdrehungen, der kein Möbiusband mehr ist, beide ineinander gehakt. Die Topologie steckt voller solcher Überraschungen: die globale Verdrehung, die sich hinter lokaler Flachheit versteckt.",
         },
         {
           pretitle: "Schritt drei · Die Kleinsche Flasche",
@@ -1856,7 +1856,7 @@ const de: StoriesDict = {
       title: "Die Euler-Charakteristik",
       tagline: "V − E + F = 2, ganz gleich, welche Form.",
       intro:
-        "Descartes schrieb sie 1639 auf, und Euler entdeckte sie ein Jahrhundert später wieder: zähle die Ecken, Kanten und Flächen eines beliebigen konvexen Polyeders, und V − E + F ergibt stets 2. Der Explorer geht durch die platonischen und archimedischen Körper und zählt V, E, F live mit: du siehst, wie die Formel über Würfel, Dodekaeder und Fußball hinweg standhält. Dann biege die Fläche um einen Donut und sieh zu, wie die Konstante sich ändert.",
+        "Descartes schrieb sie 1639 auf, und Euler entdeckte sie ein Jahrhundert später wieder: Zähle die Ecken, Kanten und Flächen eines beliebigen konvexen Polyeders, und V − E + F ergibt stets 2. Der Explorer geht durch die platonischen und archimedischen Körper und zählt V, E, F live mit: Du siehst, wie die Formel über Würfel, Dodekaeder und Fußball hinweg standhält. Dann biege die Fläche um einen Donut und sieh zu, wie die Konstante sich ändert.",
       ctaInteractive: "→ Explorer öffnen",
       sections: [
         {
@@ -1872,12 +1872,12 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt drei · Löcher senken sie",
           title: "Jeder Henkel kostet dich zwei",
-          body: "Wickle die Fläche jetzt um einen Donut. Triangulier den Torus, wie du willst: V − E + F fällt auf 0. Ein Doppeltorus, zwei Donuts Seite an Seite verklebt, liefert χ = −2. Die Regel ist χ = 2 − 2g, wobei g die Anzahl der Löcher ist (das Geschlecht). Jeder Henkel, den du annähst, kostet dich 2. Die Euler-Charakteristik misst Topologie in einer einzigen ganzen Zahl: sie verrät dir, wie viele Löcher eine geschlossene Fläche hat, ganz gleich, wie sie gezeichnet oder gedehnt ist.",
+          body: "Wickle die Fläche jetzt um einen Donut. Triangulier den Torus, wie du willst: V − E + F fällt auf 0. Ein Doppeltorus, zwei Donuts Seite an Seite verklebt, liefert χ = −2. Die Regel ist χ = 2 − 2g, wobei g die Anzahl der Löcher ist (das Geschlecht). Jeder Henkel, den du annähst, kostet dich 2. Die Euler-Charakteristik misst Topologie in einer einzigen ganzen Zahl: Sie verrät dir, wie viele Löcher eine geschlossene Fläche hat, ganz gleich, wie sie gezeichnet oder gedehnt ist.",
         },
         {
           pretitle: "Schritt vier · Warum das zählt",
           title: "Vom Fußball zur Fields-Medaille",
-          body: "Die Chemie der Buckybälle wird durch χ erzwungen: jeder Fulleren-Käfig aus Fünfecken und Sechsecken muss genau 12 Fünfecke enthalten, weil die Euler-Charakteristik einer Kugel 2 ist. Buckminster Fullers geodätische Kuppeln folgen derselben Regel. 3D-Druck-Slicer nutzen V − E + F, um zu prüfen, ob ein Netz geschlossen und druckbar ist. Gauß-Bonnet verknüpft die Gesamtkrümmung einer glatten Fläche mit 2π·χ und bindet so Geometrie an Topologie in einer einzigen Gleichung. Der Atiyah-Singer-Indexsatz (Fields-Medaille 1966) ist der moderne Nachfahre derselben Idee, und Lakatos' ‚Beweise und Widerlegungen' zeichnet die zwei Jahrhunderte an Grenzfällen nach, die V − E + F = 2 fast gebrochen und dann gestärkt haben.",
+          body: "Die Chemie der Buckybälle wird durch χ erzwungen: Jeder Fulleren-Käfig aus Fünfecken und Sechsecken muss genau 12 Fünfecke enthalten, weil die Euler-Charakteristik einer Kugel 2 ist. Buckminster Fullers geodätische Kuppeln folgen derselben Regel. 3D-Druck-Slicer nutzen V − E + F, um zu prüfen, ob ein Netz geschlossen und druckbar ist. Gauß-Bonnet verknüpft die Gesamtkrümmung einer glatten Fläche mit 2π·χ und bindet so Geometrie an Topologie in einer einzigen Gleichung. Der Atiyah-Singer-Indexsatz (Fields-Medaille 1966) ist der moderne Nachfahre derselben Idee, und Lakatos' ‚Beweise und Widerlegungen' zeichnet die zwei Jahrhunderte an Grenzfällen nach, die V − E + F = 2 fast gebrochen und dann gestärkt haben.",
         },
       ],
     },
@@ -1892,7 +1892,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Das Rätsel",
           title: "Ein Spaziergang, den niemand fand",
-          body: "Königsberg lag rittlings über dem Pregel mit zwei Inseln und zwei Flussufern, insgesamt vier Landstücke, verbunden durch sieben Brücken. Die Bürger:innen stellten eine Sonntagsspaziergang-Frage: könnte man durch die Stadt laufen, jede Brücke genau einmal überqueren und am Startpunkt enden? Alle versuchten es. Alle scheiterten. Niemand konnte beweisen, dass es unmöglich war.",
+          body: "Königsberg lag rittlings über dem Pregel mit zwei Inseln und zwei Flussufern, insgesamt vier Landstücke, verbunden durch sieben Brücken. Die Bürger:innen stellten eine Sonntagsspaziergang-Frage: Könnte man durch die Stadt laufen, jede Brücke genau einmal überqueren und am Startpunkt enden? Alle versuchten es. Alle scheiterten. Niemand konnte beweisen, dass es unmöglich war.",
         },
         {
           pretitle: "Schritt zwei · Eulers Reduktion",
@@ -1907,7 +1907,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt vier · Die Geburt der Graphentheorie",
           title: "Vom Sonntagsspaziergang zur modernen Welt",
-          body: "Dasselbe Paritätsargument treibt heute GPS-Routing an, das Chinese-Postman-Problem (eingesetzt zur Routenoptimierung für Schneepflüge, Müllwagen und Briefträger:innen) und die DNA-Assemblierung: jeder moderne Genom-Assembler läuft einen eulerschen Pfad durch einen de-Bruijn-Graphen. Der Zweite Weltkrieg zerstörte zwei von Königsbergs Brücken; nur fünf der ursprünglichen sieben sind übrig. Der heutige Graph hat genau zwei Knoten ungeraden Grades, also ist der Spaziergang heute endlich möglich, auch wenn Euler nicht mehr da ist, um ihn zu unternehmen.",
+          body: "Dasselbe Paritätsargument treibt heute GPS-Routing an, das Chinese-Postman-Problem (eingesetzt zur Routenoptimierung für Schneepflüge, Müllwagen und Briefträger:innen) und die DNA-Assemblierung: Jeder moderne Genom-Assembler läuft einen eulerschen Pfad durch einen de-Bruijn-Graphen. Der Zweite Weltkrieg zerstörte zwei von Königsbergs Brücken; nur fünf der ursprünglichen sieben sind übrig. Der heutige Graph hat genau zwei Knoten ungeraden Grades, also ist der Spaziergang heute endlich möglich, auch wenn Euler nicht mehr da ist, um ihn zu unternehmen.",
         },
       ],
     },
@@ -1927,12 +1927,12 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt zwei · Warum drei nicht reicht und fünf zu viel ist",
           title: "Vier ist die scharfe Schranke",
-          body: "Drei Farben reichen nachweislich nicht: vier paarweise benachbarte Regionen lassen sich in der Ebene bereits zeichnen (denk an drei Länder, die an einer Ecke aufeinandertreffen, mit einem vierten ringsherum). Der Fünffarbensatz, von Heawood 1890 bewiesen, ist auf einer Seite mit Eulers Formel V − E + F = 2 und einem sorgfältigen Gradargument beweisbar. Die Lücke von fünf herunter auf vier zu schließen, brauchte weitere sechsundachtzig Jahre.",
+          body: "Drei Farben reichen nachweislich nicht: Vier paarweise benachbarte Regionen lassen sich in der Ebene bereits zeichnen (denk an drei Länder, die an einer Ecke aufeinandertreffen, mit einem vierten ringsherum). Der Fünffarbensatz, von Heawood 1890 bewiesen, ist auf einer Seite mit Eulers Formel V − E + F = 2 und einem sorgfältigen Gradargument beweisbar. Die Lücke von fünf herunter auf vier zu schließen, brauchte weitere sechsundachtzig Jahre.",
         },
         {
           pretitle: "Schritt drei · Der Appel-Haken-Beweis, 1976",
           title: "Der erste vom Computer bewiesene Satz",
-          body: "Kenneth Appel und Wolfgang Haken an der University of Illinois reduzierten das Problem auf eine endliche Liste von 1834 «unvermeidbaren Konfigurationen» und zeigten dann, dass jede davon reduzibel ist. Ihr Beweis lief etwa 1200 Stunden auf einem IBM 370. Viele Mathematiker:innen weigerten sich, ihn zu akzeptieren: ein Beweis, den ein Mensch nicht zur Gänze lesen kann, argumentierten sie, sei kein Beweis. Die ausgehende Post der Mathematik-Abteilung der University of Illinois wurde jahrelang mit «Four Colors Suffice» freigestempelt.",
+          body: "Kenneth Appel und Wolfgang Haken an der University of Illinois reduzierten das Problem auf eine endliche Liste von 1834 «unvermeidbaren Konfigurationen» und zeigten dann, dass jede davon reduzibel ist. Ihr Beweis lief etwa 1200 Stunden auf einem IBM 370. Viele Mathematiker:innen weigerten sich, ihn zu akzeptieren: Ein Beweis, den ein Mensch nicht zur Gänze lesen kann, argumentierten sie, sei kein Beweis. Die ausgehende Post der Mathematik-Abteilung der University of Illinois wurde jahrelang mit «Four Colors Suffice» freigestempelt.",
         },
         {
           pretitle: "Schritt vier · Wo es heute steht",
@@ -1952,7 +1952,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt eins · Das Brief-Experiment",
           title: "Milgram, 1967",
-          body: "Stanley Milgram, damals in Harvard, schickte Briefe an zufällige Menschen in Omaha und Wichita und bat sie, den Brief von Hand zu Hand an einen Ziel-Börsenmakler in Boston weiterzuleiten, aber nur über jemanden, den sie persönlich beim Vornamen kannten. Die meisten Briefe kamen nie an. Die, die es schafften, brauchten im Schnitt etwa sechs Glieder vom Absender bis zum Ziel. Die popkulturelle Phrase «sechs Grade der Trennung» war geboren. Die Abkürzung: die Gesellschaft hat Knotenpunkte, und die Knotenpunkte erledigen den Großteil der Vermittlung.",
+          body: "Stanley Milgram, damals in Harvard, schickte Briefe an zufällige Menschen in Omaha und Wichita und bat sie, den Brief von Hand zu Hand an einen Ziel-Börsenmakler in Boston weiterzuleiten, aber nur über jemanden, den sie persönlich beim Vornamen kannten. Die meisten Briefe kamen nie an. Die, die es schafften, brauchten im Schnitt etwa sechs Glieder vom Absender bis zum Ziel. Die popkulturelle Phrase «sechs Grade der Trennung» war geboren. Die Abkürzung: Die Gesellschaft hat Knotenpunkte, und die Knotenpunkte erledigen den Großteil der Vermittlung.",
         },
         {
           pretitle: "Schritt zwei · Watts und Strogatz, 1998",
@@ -1962,7 +1962,7 @@ const de: StoriesDict = {
         {
           pretitle: "Schritt drei · Wo die Welt wirklich klein ist",
           title: "Filme, Gehirne, Netze, das Web",
-          body: "Akademische Kollaborationsgraphen gaben uns die Erdős-Zahl; Hollywood gab uns die Bacon-Zahl (das Spiel «Six Degrees of Kevin Bacon»). Der Wurm C. elegans hat ein vollständig kartiertes 302-Neuronen-Gehirn mit Kleine-Welt-Konnektivität; menschliche Konnektome zeigen dieselbe Signatur auf weit größerer Skala. Stromnetze, das Internet, Zitationsnetzwerke, der Linkgraph der Wikipedia, Protein-Interaktionsnetzwerke: das Kleine-Welt-Regime taucht überall dort wieder auf, wo sich jemand die Mühe macht, L und C zu messen. Die Welt ist strukturell fast überall klein.",
+          body: "Akademische Kollaborationsgraphen gaben uns die Erdős-Zahl; Hollywood gab uns die Bacon-Zahl (das Spiel «Six Degrees of Kevin Bacon»). Der Wurm C. elegans hat ein vollständig kartiertes 302-Neuronen-Gehirn mit Kleine-Welt-Konnektivität; menschliche Konnektome zeigen dieselbe Signatur auf weit größerer Skala. Stromnetze, das Internet, Zitationsnetzwerke, der Linkgraph der Wikipedia, Protein-Interaktionsnetzwerke: Das Kleine-Welt-Regime taucht überall dort wieder auf, wo sich jemand die Mühe macht, L und C zu messen. Die Welt ist strukturell fast überall klein.",
         },
         {
           pretitle: "Schritt vier · Folgen",

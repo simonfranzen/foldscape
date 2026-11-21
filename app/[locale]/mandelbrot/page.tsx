@@ -224,7 +224,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Wähle c = −0,5. Starte bei 0. Die nächsten Werte sind −0,5, −0,25, −0,4375, −0,309… die Folge beruhigt sich, nichts läuft weg. Jetzt wähle c = 1. Die Folge ist 0, 1, 2, 5, 26, 677: sie haut ab und kommt nie zurück. Genau dieses winzige Ja/Nein färbt das Bild ein.",
+        body: "Wähle c = −0,5. Starte bei 0. Die nächsten Werte sind −0,5, −0,25, −0,4375, −0,309… die Folge beruhigt sich, nichts läuft weg. Jetzt wähle c = 1. Die Folge ist 0, 1, 2, 5, 26, 677: Sie haut ab und kommt nie zurück. Genau dieses winzige Ja/Nein färbt das Bild ein.",
       },
       {
         label: "03",
@@ -238,7 +238,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Das Rezept",
       title: "z₀ = 0, dann zₙ₊₁ = zₙ² + c",
-      body: "Jeder Punkt im Bild ist eine komplexe Zahl c. Für jedes c spielen wir dieselbe kleine Schleife durch: starte bei 0, quadriere den aktuellen Wert, addiere c, füttere das Ergebnis zurück. Nach ein paar Dutzend Schritten stellen wir eine einzige Frage: ist der Wert ins Unendliche geflohen, oder hängt er noch in der Nähe der Null? Schwarz heißt, er ist geblieben. Die Farben zeigen, wie schnell er geflüchtet ist.",
+      body: "Jeder Punkt im Bild ist eine komplexe Zahl c. Für jedes c spielen wir dieselbe kleine Schleife durch: Starte bei 0, quadriere den aktuellen Wert, addiere c, füttere das Ergebnis zurück. Nach ein paar Dutzend Schritten stellen wir eine einzige Frage: Ist der Wert ins Unendliche geflohen, oder hängt er noch in der Nähe der Null? Schwarz heißt, er ist geblieben. Die Farben zeigen, wie schnell er geflüchtet ist.",
     },
     {
       pretitle: "Abschnitt 02 · Beschränkt oder nicht",
@@ -248,12 +248,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Die Menge selbst",
       title: "Was schwarz bedeutet, was Farbe bedeutet",
-      body: "Schwarz ist das Urteil: dieses c gehört zur Mandelbrot-Menge, seine Bahn bleibt für immer beschränkt. Die Farbbänder außen kodieren die Fluchtzeit: wie viele Schritte die Bahn brauchte, bis der laufende Wert den Sicherheitsradius |z| = 2 überschritt. Andere Palette, andere Stimmung, dieselbe Zahl darunter. Das Bild ist im Kern eine Höhenkarte.",
+      body: "Schwarz ist das Urteil: Dieses c gehört zur Mandelbrot-Menge, seine Bahn bleibt für immer beschränkt. Die Farbbänder außen kodieren die Fluchtzeit: wie viele Schritte die Bahn brauchte, bis der laufende Wert den Sicherheitsradius |z| = 2 überschritt. Andere Palette, andere Stimmung, dieselbe Zahl darunter. Das Bild ist im Kern eine Höhenkarte.",
     },
     {
       pretitle: "Abschnitt 04 · Der Rand",
       title: "Fraktal auf jeder Skala",
-      body: "Das Innere ist ruhig und das Äußere ist ruhig; das ganze Drama lebt am Rand. Shishikura bewies 1998, dass dieser Rand Hausdorff-Dimension genau 2 hat: er ist so verwinkelt, dass er in präzisem Sinn versucht, eine Fläche auszufüllen, obwohl er eine Kurve ist. Zoome um einen Faktor von einer Milliarde hinein, und du findest winzige Beinahe-Kopien der ganzen Menge, umgeben von Fäden, die sich nie wiederholen. Auf jeder Skala steckt wirklich etwas Neues.",
+      body: "Das Innere ist ruhig und das Äußere ist ruhig; das ganze Drama lebt am Rand. Shishikura bewies 1998, dass dieser Rand Hausdorff-Dimension genau 2 hat: Er ist so verwinkelt, dass er in präzisem Sinn versucht, eine Fläche auszufüllen, obwohl er eine Kurve ist. Zoome um einen Faktor von einer Milliarde hinein, und du findest winzige Beinahe-Kopien der ganzen Menge, umgeben von Fäden, die sich nie wiederholen. Auf jeder Skala steckt wirklich etwas Neues.",
     },
     {
       pretitle: "Abschnitt 05 · Knospen und Knospen auf Knospen",
@@ -278,7 +278,7 @@ const de: RichStory = {
     iterPretitle: "Interaktiv · Schieberegler",
     iterTitle: "Wie viele Schritte, bevor wir beschränkt sagen?",
     iterBody:
-      "Wir können nur endlich oft iterieren. Stoppt man zu früh, wirkt der Rand grob; iteriert man länger, treten feinere Fäden hervor. Zieh den Schieber, um den Kompromiss live zu spüren: jeder Pixel, der bei wenigen Iterationen drin war, kann bei vielen noch fliehen.",
+      "Wir können nur endlich oft iterieren. Stoppt man zu früh, wirkt der Rand grob; iteriert man länger, treten feinere Fäden hervor. Zieh den Schieber, um den Kompromiss live zu spüren: Jeder Pixel, der bei wenigen Iterationen drin war, kann bei vielen noch fliehen.",
     iterCaption: (n: number) => `${n} Iterationen`,
   },
   juliaPretitle: "Abschnitt 06 · Julia-Galerie",
@@ -329,7 +329,7 @@ const de: RichStory = {
   seahorseLabel: "Seepferdchen-Tal",
   seahorseCaption: "Zoome um Faktor 10² in die obere Kerbe, und ein weiteres Universum.",
   iterSliderNote:
-    'Bei wenigen Iterationen werden große Bereiche am Rand fälschlich als „drin" eingestuft. Schiebe den Regler nach rechts, und die Fäden werden dünner: das, was immer schon da war, tritt hervor.',
+    'Bei wenigen Iterationen werden große Bereiche am Rand fälschlich als „drin" eingestuft. Schiebe den Regler nach rechts, und die Fäden werden dünner: Das, was immer schon da war, tritt hervor.',
   cascadePrefix: "Dieselbe Periodenverdopplungs-Kaskade, die du auch in der ",
   cascadeLogisticLink: "logistischen Abbildung",
   cascadeMiddle:
@@ -1006,7 +1006,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Velg c = −0,5. Start på 0. De neste verdiene blir −0,5, −0,25, −0,4375, −0,309… følgen roer seg, ingenting stikker av. Velg nå c = 1. Følgen blir 0, 1, 2, 5, 26, 677: den drar og kommer aldri tilbake. Det er dette bittelille ja/nei som farger bildet.",
+        body: "Velg c = −0,5. Start på 0. De neste verdiene blir −0,5, −0,25, −0,4375, −0,309… følgen roer seg, ingenting stikker av. Velg nå c = 1. Følgen blir 0, 1, 2, 5, 26, 677: Den drar og kommer aldri tilbake. Det er dette bittelille ja/nei som farger bildet.",
       },
       {
         label: "03",
@@ -1020,7 +1020,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Oppskriften",
       title: "z₀ = 0, så zₙ₊₁ = zₙ² + c",
-      body: "Hvert punkt i bildet er et komplekst tall c. For hver c kjører vi samme lille løkke: start på 0, kvadrer gjeldende verdi, legg til c, mat resultatet tilbake. Etter noen titalls steg stiller vi ett enkelt spørsmål: har verdien stukket av mot uendelig, eller henger den fortsatt rundt null? Svart betyr at den ble. Fargene koder hvor raskt den flyktet.",
+      body: "Hvert punkt i bildet er et komplekst tall c. For hver c kjører vi samme lille løkke: Start på 0, kvadrer gjeldende verdi, legg til c, mat resultatet tilbake. Etter noen titalls steg stiller vi ett enkelt spørsmål: Har verdien stukket av mot uendelig, eller henger den fortsatt rundt null? Svart betyr at den ble. Fargene koder hvor raskt den flyktet.",
     },
     {
       pretitle: "Avsnitt 02 · Begrenset eller ikke",
@@ -1030,12 +1030,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Mengden selv",
       title: "Hva svart betyr, hva farge betyr",
-      body: "Svart er dommen: dette c-et hører til Mandelbrotmengden, banen forblir begrenset for alltid. Fargebåndene utenfor koder fluktstiden: hvor mange steg banen brukte før verdien krysset sikkerhetsradien |z| = 2. Ulike paletter, ulik stemning, samme heltall under. Bildet er i bunn og grunn et høydekart.",
+      body: "Svart er dommen: Dette c-et hører til Mandelbrotmengden, banen forblir begrenset for alltid. Fargebåndene utenfor koder fluktstiden: hvor mange steg banen brukte før verdien krysset sikkerhetsradien |z| = 2. Ulike paletter, ulik stemning, samme heltall under. Bildet er i bunn og grunn et høydekart.",
     },
     {
       pretitle: "Avsnitt 04 · Grensen",
       title: "Fraktal på alle skalaer",
-      body: "Det indre er rolig og det ytre er rolig; alt dramaet bor på grensen. Shishikura beviste i 1998 at denne grensen har Hausdorff-dimensjon nøyaktig 2: den er så kronglete at den i streng forstand prøver å fylle et areal selv om den er en kurve. Zoom inn med en faktor på en milliard og du finner bittesmå nær-kopier av hele mengden, omgitt av filamenter som aldri gjentar seg. Det er virkelig noe nytt på hver skala.",
+      body: "Det indre er rolig og det ytre er rolig; alt dramaet bor på grensen. Shishikura beviste i 1998 at denne grensen har Hausdorff-dimensjon nøyaktig 2: Den er så kronglete at den i streng forstand prøver å fylle et areal selv om den er en kurve. Zoom inn med en faktor på en milliard og du finner bittesmå nær-kopier av hele mengden, omgitt av filamenter som aldri gjentar seg. Det er virkelig noe nytt på hver skala.",
     },
     {
       pretitle: "Avsnitt 05 · Knopper på knopper",
@@ -1060,7 +1060,7 @@ const no: RichStory = {
     iterPretitle: "Interaktivt · glidebryter",
     iterTitle: "Hvor mange steg før vi kaller den begrenset?",
     iterBody:
-      "Vi kan bare iterere endelig mange ganger. Stopper du for tidlig virker grensen grov; itererer du lengre dukker finere filamenter opp. Dra i glidebryteren for å kjenne kompromisset live: hver piksel som var 'inne' ved få iterasjoner kan likevel flykte ved mange.",
+      "Vi kan bare iterere endelig mange ganger. Stopper du for tidlig virker grensen grov; itererer du lengre dukker finere filamenter opp. Dra i glidebryteren for å kjenne kompromisset live: Hver piksel som var 'inne' ved få iterasjoner kan likevel flykte ved mange.",
     iterCaption: (n: number) => `${n} iterasjoner`,
   },
   juliaPretitle: "Avsnitt 06 · Julia-galleri",

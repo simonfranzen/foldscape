@@ -250,7 +250,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Starte irgendwo in einem gleichseitigen Dreieck. Jeder Schritt: wähl eine der drei Ecken gleichverteilt zufällig, geh halb in ihre Richtung, setz einen Punkt. Nach 200 Punkten siehst du eine Streuwolke. Nach 5000 das Sieb: Jede «verbotene» Region (das mittlere Loch, dann die drei Sub-Löcher, dann neun Sub-Sub-Löcher) ist beweisbar leer.",
+        body: "Starte irgendwo in einem gleichseitigen Dreieck. Jeder Schritt: Wähl eine der drei Ecken gleichverteilt zufällig, geh halb in ihre Richtung, setz einen Punkt. Nach 200 Punkten siehst du eine Streuwolke. Nach 5000 das Sieb: Jede «verbotene» Region (das mittlere Loch, dann die drei Sub-Löcher, dann neun Sub-Sub-Löcher) ist beweisbar leer.",
       },
       {
         label: "03",
@@ -264,32 +264,32 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Das minimale Rezept",
       title: "Drei Ecken, ein Halbierungsschritt, eine Zufallswahl",
-      body: "Setz drei Punkte v₁, v₂, v₃ an die Ecken eines Dreiecks. Wähl irgendeine Startposition p₀ in der Ebene. Bei jedem Schritt: würfle einen fairen dreiseitigen Würfel, um einen Index i ∈ {1, 2, 3} zu ziehen, geh dann halb von der aktuellen Position in Richtung der gewählten Ecke, pₙ₊₁ = (pₙ + vᵢ) / 2, und markier pₙ₊₁ als Punkt. Wiederhole für immer. Das ist das ganze Chaos-Spiel: zwei Zutaten, drei Ecken, ein fester Sprungfaktor von einem Halben. Kein Gedächtnis, kein Plan, keine globale Regel. Das Bild baut sich selbst.",
+      body: "Setz drei Punkte v₁, v₂, v₃ an die Ecken eines Dreiecks. Wähl irgendeine Startposition p₀ in der Ebene. Bei jedem Schritt: Würfle einen fairen dreiseitigen Würfel, um einen Index i ∈ {1, 2, 3} zu ziehen, geh dann halb von der aktuellen Position in Richtung der gewählten Ecke, pₙ₊₁ = (pₙ + vᵢ) / 2, und markier pₙ₊₁ als Punkt. Wiederhole für immer. Das ist das ganze Chaos-Spiel: zwei Zutaten, drei Ecken, ein fester Sprungfaktor von einem Halben. Kein Gedächtnis, kein Plan, keine globale Regel. Das Bild baut sich selbst.",
     },
     {
       pretitle: "Abschnitt 02 · Warum es funktioniert",
       title: "Fixpunkte dreier kontrahierender Abbildungen",
-      body: "Jede mögliche Bewegung ist eine Funktion fᵢ(x) = (x + vᵢ) / 2, eine Kontraktion um den Faktor 1/2 zur Ecke vᵢ hin. Der Fixpunkt von fᵢ ist vᵢ selbst: immer wieder halb zu einer Ecke zu gehen, bringt dich zur Ecke. Die Verknüpfung der drei Abbildungen in jeder möglichen Reihenfolge erzeugt eine selbstähnliche Menge: das Sierpiński-Dreieck. Das Chaos-Spiel tastet diese Menge mit Wahrscheinlichkeit eins ab. Jeder Schritt ist eine zufällige Projektion auf einen der drei Fixpunkte, und weil jede Abbildung kontrahiert, klingt der Einfluss des Startpunkts exponentiell ab: Nach kurzer Einlaufzeit lebt deine Bahn ganz auf dem Attraktor.",
+      body: "Jede mögliche Bewegung ist eine Funktion fᵢ(x) = (x + vᵢ) / 2, eine Kontraktion um den Faktor 1/2 zur Ecke vᵢ hin. Der Fixpunkt von fᵢ ist vᵢ selbst: Immer wieder halb zu einer Ecke zu gehen, bringt dich zur Ecke. Die Verknüpfung der drei Abbildungen in jeder möglichen Reihenfolge erzeugt eine selbstähnliche Menge: das Sierpiński-Dreieck. Das Chaos-Spiel tastet diese Menge mit Wahrscheinlichkeit eins ab. Jeder Schritt ist eine zufällige Projektion auf einen der drei Fixpunkte, und weil jede Abbildung kontrahiert, klingt der Einfluss des Startpunkts exponentiell ab: Nach kurzer Einlaufzeit lebt deine Bahn ganz auf dem Attraktor.",
     },
     {
       pretitle: "Abschnitt 03 · Barnsleys Collage-Theorem",
       title: "Jede kompakte Menge hat ein IFS, das gegen sie konvergiert",
-      body: "Michael Barnsleys Buch «Fractals Everywhere» von 1988 machte das Collage-Theorem breit bekannt: jede kompakte Teilmenge der Ebene lässt sich beliebig gut durch den Attraktor eines endlichen iterierten Funktionensystems annähern. Dreh die Frage um: Such dir eine Zielform, dann finde wenige affine Abbildungen, deren Bilder zusammen (eine «Collage») die Form überdecken. Der Attraktor dieses IFS ist die Form. Das Chaos-Spiel tastet sie mit einer einzigen Zufallsbahn ab. Küstenlinien, Farne, Berge, Wolken: jedes Fraktal in der Natur ist im Prinzip ein paar getarnte Kontraktionen.",
+      body: "Michael Barnsleys Buch «Fractals Everywhere» von 1988 machte das Collage-Theorem breit bekannt: Jede kompakte Teilmenge der Ebene lässt sich beliebig gut durch den Attraktor eines endlichen iterierten Funktionensystems annähern. Dreh die Frage um: Such dir eine Zielform, dann finde wenige affine Abbildungen, deren Bilder zusammen (eine «Collage») die Form überdecken. Der Attraktor dieses IFS ist die Form. Das Chaos-Spiel tastet sie mit einer einzigen Zufallsbahn ab. Küstenlinien, Farne, Berge, Wolken: Jedes Fraktal in der Natur ist im Prinzip ein paar getarnte Kontraktionen.",
     },
     {
       pretitle: "Abschnitt 04 · Jenseits des Dreiecks",
       title: "Wenn Halbieren scheitert, und die Regel, die es rettet",
-      body: "Versuch vier Ecken am Quadrat mit demselben Schritt r = 1/2. Das Ergebnis ist kein Fraktal: die Punkte füllen das Innere gleichmäßig. Der Grund: die vier Halbierungsabbildungen auf dem Quadrat überdecken das ganze Quadrat; ihr Attraktor ist das gefüllte Quadrat. Die Lösung ist eine Beschränkungsregel. Verbiete, dass die nächste Ecke gleich der vorigen ist («no repeat»), und ein zartes Sierpiński-Teppich-Verwandtes erscheint. Jedes n-Eck hat seinen eigenen magischen Sprungfaktor rₙ = 1 − sₙ, der ohne Beschränkungen einen sauberen selbstähnlichen Attraktor liefert. Für n = 3 ist das 1/2; für n = 5 ist es 1/φ ≈ 0,618; für n = 6, 2/3; und so weiter.",
+      body: "Versuch vier Ecken am Quadrat mit demselben Schritt r = 1/2. Das Ergebnis ist kein Fraktal: Die Punkte füllen das Innere gleichmäßig. Der Grund: Die vier Halbierungsabbildungen auf dem Quadrat überdecken das ganze Quadrat; ihr Attraktor ist das gefüllte Quadrat. Die Lösung ist eine Beschränkungsregel. Verbiete, dass die nächste Ecke gleich der vorigen ist («no repeat»), und ein zartes Sierpiński-Teppich-Verwandtes erscheint. Jedes n-Eck hat seinen eigenen magischen Sprungfaktor rₙ = 1 − sₙ, der ohne Beschränkungen einen sauberen selbstähnlichen Attraktor liefert. Für n = 3 ist das 1/2; für n = 5 ist es 1/φ ≈ 0,618; für n = 6, 2/3; und so weiter.",
     },
     {
       pretitle: "Abschnitt 05 · Barnsleys Farn",
       title: "Vier affine Abbildungen. Eine Fotografie eines Farns.",
-      body: "Lass die Ecken ganz weg. Wähl vier affine Transformationen der Ebene f₁ … f₄ und vier Wahrscheinlichkeiten (0,01, 0,85, 0,07, 0,07). In jedem Schritt: wähl eine der vier Abbildungen mit diesen Wahrscheinlichkeiten und wende sie auf den aktuellen Punkt an. f₁ (das seltene 1 %) kollabiert alles auf den Stamm; f₂ (die dominanten 85 %) kopiert den Farn auf sich selbst, gedreht und geschrumpft; f₃ und f₄ schälen die linken und rechten Blättchen ab. Nach hunderttausend Iterationen ist die Punktwolke ununterscheidbar von der Fotografie eines echten Farns. Die Zahlen sind nicht magisch: änder einen Koeffizienten und der Farn biegt sich; änder eine Wahrscheinlichkeit und die Blättchen werden dichter. Das Rezept ist editierbar.",
+      body: "Lass die Ecken ganz weg. Wähl vier affine Transformationen der Ebene f₁ … f₄ und vier Wahrscheinlichkeiten (0,01, 0,85, 0,07, 0,07). In jedem Schritt: Wähl eine der vier Abbildungen mit diesen Wahrscheinlichkeiten und wende sie auf den aktuellen Punkt an. f₁ (das seltene 1 %) kollabiert alles auf den Stamm; f₂ (die dominanten 85 %) kopiert den Farn auf sich selbst, gedreht und geschrumpft; f₃ und f₄ schälen die linken und rechten Blättchen ab. Nach hunderttausend Iterationen ist die Punktwolke ununterscheidbar von der Fotografie eines echten Farns. Die Zahlen sind nicht magisch: Änder einen Koeffizienten und der Farn biegt sich; änder eine Wahrscheinlichkeit und die Blättchen werden dichter. Das Rezept ist editierbar.",
     },
     {
       pretitle: "Abschnitt 06 · Tiefer",
       title: "Chaos, Ergodizität und das SRB-Maß",
-      body: "Das Chaos-Spiel ist mehr als ein Zeichentrick. Die Zufallsbahn ist eine Markow-Kette auf dem Attraktor; die invariante Verteilung, die sie abtastet (das Hutchinson-Maß) ist das einzige Wahrscheinlichkeitsmaß, das unter dem IFS in gewichtete Stücke zerfällt. In der glatten Ergodentheorie ist das ein Geschwister des SRB-Maßes (Sinai-Ruelle-Bowen) auf einem hyperbolischen Attraktor: das physikalische Maß, das fast jede Anfangsbedingung herausstellt. Das Bild vor dir ist eine endliche Stichprobe einer Wahrscheinlichkeitsverteilung, die auf einem Fraktal der Dimension log 3 / log 2 ≈ 1,585 lebt. Geometrie, Wahrscheinlichkeit und Dynamik treffen sich in einem Würfelwurf.",
+      body: "Das Chaos-Spiel ist mehr als ein Zeichentrick. Die Zufallsbahn ist eine Markow-Kette auf dem Attraktor; die invariante Verteilung, die sie abtastet (das Hutchinson-Maß), ist das einzige Wahrscheinlichkeitsmaß, das unter dem IFS in gewichtete Stücke zerfällt. In der glatten Ergodentheorie ist das ein Geschwister des SRB-Maßes (Sinai-Ruelle-Bowen) auf einem hyperbolischen Attraktor: das physikalische Maß, das fast jede Anfangsbedingung herausstellt. Das Bild vor dir ist eine endliche Stichprobe einer Wahrscheinlichkeitsverteilung, die auf einem Fraktal der Dimension log 3 / log 2 ≈ 1,585 lebt. Geometrie, Wahrscheinlichkeit und Dynamik treffen sich in einem Würfelwurf.",
     },
   ],
   liveCaption: "Interaktiv · das Chaos-Spiel live",
@@ -325,7 +325,7 @@ const de: RichStory = {
   closingPretitle: "Geh weiter",
   closingTitle: "Würfle.",
   closingBody:
-    "Der Explorer lässt dich Eckenzahl, Sprungfaktor, Beschränkungsregel und Farbe drehen, und im Handumdrehen auf den Vier-Abbildungs-Farn von Barnsley umschalten. Alles, was du gerade gelesen hast, in deiner Hand.",
+    "Der Explorer lässt dich Eckenzahl, Sprungfaktor, Beschränkungsregel und Farbe drehen und im Handumdrehen auf den Vier-Abbildungs-Farn von Barnsley umschalten. Alles, was du gerade gelesen hast, in deiner Hand.",
   closingCta: "→ Explorer öffnen",
 };
 
@@ -840,7 +840,7 @@ const no: RichStory = {
     title: "Kaosspillet",
     tagline: "Kast en terning, tegn en fraktal.",
     intro:
-      "Tre punkter, en terning og et kort skritt: gjenta noen tusen ganger og fra ren tilfeldighet dukker en perfekt Sierpiński-triangel opp. Utforskeren lar deg skru på regelen live; her forteller vi historien bak.",
+      "Tre punkter, en terning og et kort skritt: Gjenta noen tusen ganger og fra ren tilfeldighet dukker en perfekt Sierpiński-triangel opp. Utforskeren lar deg skru på regelen live; her forteller vi historien bak.",
     ctaInteractive: "→ Åpne Utforskeren",
     sections: [],
   },
@@ -856,7 +856,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: 'Start hvor som helst inne i en likesidig triangel. Hvert skritt: velg likt fordelt ett av de tre hjørnene, gå halvveis dit, slipp et punkt. Etter 200 punkter ser du en spredt sky. Etter 5000 ser du gitteret: hver "forbudte" region (det sentrale hullet, så de tre underhullene, så ni underunderhull) er beviselig tom.',
+        body: 'Start hvor som helst inne i en likesidig triangel. Hvert skritt: Velg likt fordelt ett av de tre hjørnene, gå halvveis dit, slipp et punkt. Etter 200 punkter ser du en spredt sky. Etter 5000 ser du gitteret: Hver "forbudte" region (det sentrale hullet, så de tre underhullene, så ni underunderhull) er beviselig tom.',
       },
       {
         label: "03",
@@ -870,27 +870,27 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Den minimale oppskriften",
       title: "Tre hjørner, et halveringssteg, et tilfeldig valg",
-      body: "Plasser tre punkter v₁, v₂, v₃ i hjørnene av en triangel. Velg en startposisjon p₀ hvor som helst i planet. Ved hvert skritt: kast en rettferdig tresidet terning for å velge en indeks i ∈ {1, 2, 3}, gå så halvveis fra din nåværende posisjon mot det valgte hjørnet, pₙ₊₁ = (pₙ + vᵢ) / 2, og marker pₙ₊₁ som et punkt. Gjenta i det uendelige. Det er hele kaosspillet: to ingredienser, tre hjørner, et fast hoppforhold på en halv. Ingen hukommelse, ingen plan, ingen global regel. Bildet bygger seg selv.",
+      body: "Plasser tre punkter v₁, v₂, v₃ i hjørnene av en triangel. Velg en startposisjon p₀ hvor som helst i planet. Ved hvert skritt: Kast en rettferdig tresidet terning for å velge en indeks i ∈ {1, 2, 3}, gå så halvveis fra din nåværende posisjon mot det valgte hjørnet, pₙ₊₁ = (pₙ + vᵢ) / 2, og marker pₙ₊₁ som et punkt. Gjenta i det uendelige. Det er hele kaosspillet: to ingredienser, tre hjørner, et fast hoppforhold på en halv. Ingen hukommelse, ingen plan, ingen global regel. Bildet bygger seg selv.",
     },
     {
       pretitle: "Avsnitt 02 · Hvorfor det fungerer",
       title: "Fikspunkter for tre kontraherende avbildninger",
-      body: "Hvert tilgjengelige trekk er en funksjon fᵢ(x) = (x + vᵢ) / 2, en kontraksjon med faktor 1/2 mot hjørne vᵢ. Fikspunktet til fᵢ er vᵢ selv: å gå halvveis mot et hjørne om og om igjen tar deg til hjørnet. Å sette sammen de tre avbildningene i alle mulige rekkefølger gir en selvlignende mengde: Sierpiński-triangelen. Kaosspillet samples den mengden med sannsynlighet én. Hvert skritt er en tilfeldig projeksjon mot ett av de tre fikspunktene, og fordi hver avbildning kontraherer, dør innflytelsen fra startpunktet eksponentielt: etter en kort innkjøring lever banen din helt på attraktoren.",
+      body: "Hvert tilgjengelige trekk er en funksjon fᵢ(x) = (x + vᵢ) / 2, en kontraksjon med faktor 1/2 mot hjørne vᵢ. Fikspunktet til fᵢ er vᵢ selv: Å gå halvveis mot et hjørne om og om igjen tar deg til hjørnet. Å sette sammen de tre avbildningene i alle mulige rekkefølger gir en selvlignende mengde: Sierpiński-triangelen. Kaosspillet samples den mengden med sannsynlighet én. Hvert skritt er en tilfeldig projeksjon mot ett av de tre fikspunktene, og fordi hver avbildning kontraherer, dør innflytelsen fra startpunktet eksponentielt: Etter en kort innkjøring lever banen din helt på attraktoren.",
     },
     {
       pretitle: "Avsnitt 03 · Barnsleys collage-teorem",
       title: "Enhver kompakt mengde har et IFS som konvergerer mot den",
-      body: 'Michael Barnsleys bok Fractals Everywhere fra 1988 gjorde collage-teoremet bredt kjent: enhver kompakt delmengde av planet kan tilnærmes vilkårlig godt av attraktoren til et endelig iterert funksjonssystem. Snu spørsmålet: velg en målform, finn så noen få affine avbildninger hvis bilder limes sammen (en "collage") til å dekke den. Attraktoren til det IFS-et er formen. Kaosspillet samples den med én tilfeldig bane. Kystlinjer, bregner, fjell, skyer: enhver fraktal i naturen er i prinsippet noen få forkledde kontraksjoner.',
+      body: 'Michael Barnsleys bok Fractals Everywhere fra 1988 gjorde collage-teoremet bredt kjent: Enhver kompakt delmengde av planet kan tilnærmes vilkårlig godt av attraktoren til et endelig iterert funksjonssystem. Snu spørsmålet: Velg en målform, finn så noen få affine avbildninger hvis bilder limes sammen (en "collage") til å dekke den. Attraktoren til det IFS-et er formen. Kaosspillet samples den med én tilfeldig bane. Kystlinjer, bregner, fjell, skyer: Enhver fraktal i naturen er i prinsippet noen få forkledde kontraksjoner.',
     },
     {
       pretitle: "Avsnitt 04 · Forbi triangelen",
       title: "Når halvering svikter, og regelen som fikser det",
-      body: 'Prøv fire hjørner på et kvadrat med samme steg r = 1/2. Resultatet er ingen fraktal: punktene fyller innsiden jevnt. Grunnen er at de fire halveringsavbildningene på kvadratet dekker hele kvadratet: attraktoren deres er det fylte kvadratet. Boten er en restriksjonsregel. Forby at neste hjørne er likt det forrige ("ingen gjentakelse") og en delikat slektning av Sierpiński-teppet dukker opp. Hver n-kant har sitt eget magiske hoppforhold rₙ = 1 − sₙ som gir en ren selvlignende attraktor uten restriksjoner. For n = 3 er det 1/2; for n = 5 er det 1/φ ≈ 0,618; for n = 6, 2/3; og så videre.',
+      body: 'Prøv fire hjørner på et kvadrat med samme steg r = 1/2. Resultatet er ingen fraktal: Punktene fyller innsiden jevnt. Grunnen er at de fire halveringsavbildningene på kvadratet dekker hele kvadratet: Attraktoren deres er det fylte kvadratet. Boten er en restriksjonsregel. Forby at neste hjørne er likt det forrige ("ingen gjentakelse") og en delikat slektning av Sierpiński-teppet dukker opp. Hver n-kant har sitt eget magiske hoppforhold rₙ = 1 − sₙ som gir en ren selvlignende attraktor uten restriksjoner. For n = 3 er det 1/2; for n = 5 er det 1/φ ≈ 0,618; for n = 6, 2/3; og så videre.',
     },
     {
       pretitle: "Avsnitt 05 · Barnsleys bregne",
       title: "Fire affine avbildninger. Et fotografi av en bregne.",
-      body: "Slipp hjørnene helt. Velg fire affine transformasjoner av planet f₁ … f₄ og fire sannsynligheter (0,01, 0,85, 0,07, 0,07). Ved hvert skritt, velg én av de fire avbildningene med de sannsynlighetene og bruk den på ditt nåværende punkt. f₁ (de sjeldne 1 %) kollapser alt på stilken; f₂ (de dominerende 85 %) kopierer bregnen på seg selv, rotert og krympet; f₃ og f₄ skreller av venstre og høyre småblad. Etter hundre tusen iterasjoner er punktskyen umulig å skille fra et fotografi av en ekte bregne. Tallene er ikke magiske: endre en koeffisient og bregnen bøyer seg; endre en sannsynlighet og småbladene blir tykkere. Oppskriften er redigerbar.",
+      body: "Slipp hjørnene helt. Velg fire affine transformasjoner av planet f₁ … f₄ og fire sannsynligheter (0,01, 0,85, 0,07, 0,07). Ved hvert skritt, velg én av de fire avbildningene med de sannsynlighetene og bruk den på ditt nåværende punkt. f₁ (de sjeldne 1 %) kollapser alt på stilken; f₂ (de dominerende 85 %) kopierer bregnen på seg selv, rotert og krympet; f₃ og f₄ skreller av venstre og høyre småblad. Etter hundre tusen iterasjoner er punktskyen umulig å skille fra et fotografi av en ekte bregne. Tallene er ikke magiske: Endre en koeffisient og bregnen bøyer seg; endre en sannsynlighet og småbladene blir tykkere. Oppskriften er redigerbar.",
     },
     {
       pretitle: "Avsnitt 06 · Dypere",

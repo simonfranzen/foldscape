@@ -157,7 +157,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Schreibe die acht Nachbarschaftsmuster in absteigender Binärreihenfolge: 111, 110, 101, 100, 011, 010, 001, 000. Unter jedes Muster schreibst du den nächsten Wert nach Regel 110. Lies die Ausgaben als eine einzige Binärzahl, 01101110, und rechne um: das ist dezimal 110. Der Name ist buchstäblich die Regel.",
+        body: "Schreibe die acht Nachbarschaftsmuster in absteigender Binärreihenfolge: 111, 110, 101, 100, 011, 010, 001, 000. Unter jedes Muster schreibst du den nächsten Wert nach Regel 110. Lies die Ausgaben als eine einzige Binärzahl, 01101110, und rechne um: Das ist dezimal 110. Der Name ist buchstäblich die Regel.",
       },
       {
         label: "03",
@@ -171,12 +171,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die 256 elementaren Regeln",
       title: "Wolframs Zoo, sortiert in vier Klassen",
-      body: "Stephen Wolfram katalogisierte in den 1980ern jede der 256 elementaren Zellularautomaten und bemerkte etwas Auffälliges: ihr Langzeitverhalten fällt in vier breite Klassen. Klasse 1 stirbt in einheitlichem Schwarz oder Weiß. Klasse 2 setzt sich in Streifen oder einfache periodische Muster. Klasse 3 ist pseudo-zufällig: Rauschen, das sich nie ganz wiederholt. Klasse 4 ist die seltene, merkwürdige Mitte: Inseln aus Ordnung, die durch Rauschen treiben, kollidierende Gleiter, Struktur, die weder periodisch noch chaotisch ist. In Klasse 4 versteckt sich Universalität, und Regel 110 ist ihr Flaggschiff.",
+      body: "Stephen Wolfram katalogisierte in den 1980ern jede der 256 elementaren Zellularautomaten und bemerkte etwas Auffälliges: Ihr Langzeitverhalten fällt in vier breite Klassen. Klasse 1 stirbt in einheitlichem Schwarz oder Weiß. Klasse 2 setzt sich in Streifen oder einfache periodische Muster. Klasse 3 ist pseudo-zufällig: Rauschen, das sich nie ganz wiederholt. Klasse 4 ist die seltene, merkwürdige Mitte: Inseln aus Ordnung, die durch Rauschen treiben, kollidierende Gleiter, Struktur, die weder periodisch noch chaotisch ist. In Klasse 4 versteckt sich Universalität, und Regel 110 ist ihr Flaggschiff.",
     },
     {
       pretitle: "Abschnitt 02 · Die Regel lesen",
       title: "Von acht Mustern zu einer einzigen Zahl",
-      body: "Jede elementare Regel schaut sich drei Zellen an (links, Mitte, rechts) und liefert ein Bit. Acht mögliche 3-Bit-Eingaben, je eine Ausgabe: das ist genau eine Funktion von {0,1}³ nach {0,1}, also genau 8 Bit Information, also ein Byte. Lege die Ausgaben in Wolframs kanonischer Reihenfolge ab (Eingabe 111 liefert das höchste Bit, 000 das niedrigste) und das Byte, das du abliest, ist die Nummer der Regel. Regel 30 ergibt 00011110₂. Regel 110 ergibt 01101110₂. Der Name ist nicht Dekoration; er ist die Regel.",
+      body: "Jede elementare Regel schaut sich drei Zellen an (links, Mitte, rechts) und liefert ein Bit. Acht mögliche 3-Bit-Eingaben, je eine Ausgabe: Das ist genau eine Funktion von {0,1}³ nach {0,1}, also genau 8 Bit Information, also ein Byte. Lege die Ausgaben in Wolframs kanonischer Reihenfolge ab (Eingabe 111 liefert das höchste Bit, 000 das niedrigste) und das Byte, das du abliest, ist die Nummer der Regel. Regel 30 ergibt 00011110₂. Regel 110 ergibt 01101110₂. Der Name ist nicht Dekoration; er ist die Regel.",
     },
     {
       pretitle: "Abschnitt 03 · Regel 30 gegen Regel 110",
@@ -186,12 +186,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Gleiter in Regel 110",
       title: "Bewegliche Teilchen, wie Life, aber eindimensional",
-      body: "Lässt man Regel 110 ein paar hundert Generationen auf einer zufälligen Reihe laufen, tauchen erkennbare Formen auf: lange linkslaufende Streifen, kurze rechtslaufende Keile, stehende Blöcke. Matthew Cook katalogisierte über ein Dutzend verschiedene Gleiterarten (A, B, C₁, C₂, D₁, D₂, E, F, G, H), jede mit eigener Geschwindigkeit und Breite. Gleiterkollisionen wirken wie Logikgatter: das richtige Paar erzeugt ein stabiles Signal, das falsche Paar löscht aus. Es ist Conways Game of Life, zusammengepresst in eine Dimension, mit demselben emergenten Zoo und demselben Hauch von Berechnung.",
+      body: "Lässt man Regel 110 ein paar hundert Generationen auf einer zufälligen Reihe laufen, tauchen erkennbare Formen auf: lange linkslaufende Streifen, kurze rechtslaufende Keile, stehende Blöcke. Matthew Cook katalogisierte über ein Dutzend verschiedene Gleiterarten (A, B, C₁, C₂, D₁, D₂, E, F, G, H), jede mit eigener Geschwindigkeit und Breite. Gleiterkollisionen wirken wie Logikgatter: Das richtige Paar erzeugt ein stabiles Signal, das falsche Paar löscht aus. Es ist Conways Game of Life, zusammengepresst in eine Dimension, mit demselben emergenten Zoo und demselben Hauch von Berechnung.",
     },
     {
       pretitle: "Abschnitt 05 · Turing-Vollständigkeit",
       title: "Cook 2004: Universalität aus einem Byte",
-      body: "Matthew Cooks Konstruktion, in den späten 1990ern bei Wolfram Research fertiggestellt und nach langem Publikationsstreit 2004 endgültig erschienen, zeigt, dass der Gleiterzoo von Regel 110 ein zyklisches Tag-System simulieren kann, und zyklische Tag-Systeme sind selbst Turing-vollständig. Jedes Programm, jede Berechnung, jeder Algorithmus lässt sich als Anfangsreihe von Zellen kodieren; Regel 110, lange genug angewendet, führt dieses Programm aus. Der Beweis braucht pro logischem Schritt Tausende Zellen und ist berüchtigt verschachtelt, aber die Konsequenz ist sauber: eine einzeilige Lookup-Tabelle ist ein universeller Computer. Kein Takt, kein Speicher, kein Befehlssatz: nur eine Regel.",
+      body: "Matthew Cooks Konstruktion, in den späten 1990ern bei Wolfram Research fertiggestellt und nach langem Publikationsstreit 2004 endgültig erschienen, zeigt, dass der Gleiterzoo von Regel 110 ein zyklisches Tag-System simulieren kann, und zyklische Tag-Systeme sind selbst Turing-vollständig. Jedes Programm, jede Berechnung, jeder Algorithmus lässt sich als Anfangsreihe von Zellen kodieren; Regel 110, lange genug angewendet, führt dieses Programm aus. Der Beweis braucht pro logischem Schritt Tausende Zellen und ist berüchtigt verschachtelt, aber die Konsequenz ist sauber: Eine einzeilige Lookup-Tabelle ist ein universeller Computer. Kein Takt, kein Speicher, kein Befehlssatz: nur eine Regel.",
     },
     {
       pretitle: "Abschnitt 06 · Universalität überall",
@@ -704,7 +704,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Skriv de åtte nabolagsmønstrene i synkende binær rekkefølge: 111, 110, 101, 100, 011, 010, 001, 000. Under hvert mønster skriver du utgangen for Regel 110. Les utgangene som ett enkelt binært tall, 01101110, og regn om: det er desimaltallet 110. Navnet er bokstavelig talt regelen.",
+        body: "Skriv de åtte nabolagsmønstrene i synkende binær rekkefølge: 111, 110, 101, 100, 011, 010, 001, 000. Under hvert mønster skriver du utgangen for Regel 110. Les utgangene som ett enkelt binært tall, 01101110, og regn om: Det er desimaltallet 110. Navnet er bokstavelig talt regelen.",
       },
       {
         label: "03",
@@ -718,12 +718,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · De 256 elementære reglene",
       title: "Wolframs dyrehage, sortert i fire klasser",
-      body: "Stephen Wolfram katalogiserte på 1980-tallet hver av de 256 elementære cellulære automatene og la merke til noe slående: deres langtidsoppførsel faller i fire brede klasser. Klasse 1 dør ut i ensartet svart eller hvitt. Klasse 2 legger seg i striper eller enkle periodiske mønstre. Klasse 3 er pseudo-tilfeldig: støy som aldri helt gjentar seg. Klasse 4 er den sjeldne, merkelige mellomgrunnen: øyer av orden som driver gjennom støy, glidere som kolliderer, struktur som verken er periodisk eller kaotisk. Universaliteten skjuler seg i klasse 4, og Regel 110 er flaggskipet.",
+      body: "Stephen Wolfram katalogiserte på 1980-tallet hver av de 256 elementære cellulære automatene og la merke til noe slående: Deres langtidsoppførsel faller i fire brede klasser. Klasse 1 dør ut i ensartet svart eller hvitt. Klasse 2 legger seg i striper eller enkle periodiske mønstre. Klasse 3 er pseudo-tilfeldig: støy som aldri helt gjentar seg. Klasse 4 er den sjeldne, merkelige mellomgrunnen: øyer av orden som driver gjennom støy, glidere som kolliderer, struktur som verken er periodisk eller kaotisk. Universaliteten skjuler seg i klasse 4, og Regel 110 er flaggskipet.",
     },
     {
       pretitle: "Avsnitt 02 · Lese regelen",
       title: "Fra åtte mønstre til ett enkelt tall",
-      body: "Hver elementær regel ser på tre celler (venstre, midt, høyre) og returnerer én bit. Åtte mulige 3-biters innganger, én utgang hver: det er nøyaktig en funksjon fra {0,1}³ til {0,1}, altså nøyaktig 8 biter informasjon, altså én byte. Legg utgangene i Wolframs kanoniske rekkefølge (inngang 111 gir den høyeste biten, 000 den laveste) og byten du leser av er regelens nummer. Regel 30 gir 00011110₂. Regel 110 gir 01101110₂. Navnet er ikke dekorativt; det er regelen.",
+      body: "Hver elementær regel ser på tre celler (venstre, midt, høyre) og returnerer én bit. Åtte mulige 3-biters innganger, én utgang hver: Det er nøyaktig en funksjon fra {0,1}³ til {0,1}, altså nøyaktig 8 biter informasjon, altså én byte. Legg utgangene i Wolframs kanoniske rekkefølge (inngang 111 gir den høyeste biten, 000 den laveste) og byten du leser av er regelens nummer. Regel 30 gir 00011110₂. Regel 110 gir 01101110₂. Navnet er ikke dekorativt; det er regelen.",
     },
     {
       pretitle: "Avsnitt 03 · Regel 30 mot Regel 110",
@@ -733,12 +733,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Glidere i Regel 110",
       title: "Bevegelige biter, som Life men i én dimensjon",
-      body: "Lar du Regel 110 kjøre på en tilfeldig rad i noen hundre generasjoner, dukker gjenkjennelige former opp: lange venstre­løpende striper, korte høyre­løpende kiler, stille­stående blokker. Matthew Cook katalogiserte over et dusin distinkte gliderarter (A, B, C₁, C₂, D₁, D₂, E, F, G, H), hver med egen hastighet og bredde. Gliderkollisjoner fungerer som logiske porter: riktig par gir et stabilt signal, feil par utsletter hverandre. Det er Conways Game of Life presset sammen i én dimensjon, med samme fremvoksende dyrehage og samme antydning av beregning.",
+      body: "Lar du Regel 110 kjøre på en tilfeldig rad i noen hundre generasjoner, dukker gjenkjennelige former opp: lange venstre­løpende striper, korte høyre­løpende kiler, stille­stående blokker. Matthew Cook katalogiserte over et dusin distinkte gliderarter (A, B, C₁, C₂, D₁, D₂, E, F, G, H), hver med egen hastighet og bredde. Gliderkollisjoner fungerer som logiske porter: Riktig par gir et stabilt signal, feil par utsletter hverandre. Det er Conways Game of Life presset sammen i én dimensjon, med samme fremvoksende dyrehage og samme antydning av beregning.",
     },
     {
       pretitle: "Avsnitt 05 · Turing-kompletthet",
       title: "Cook 2004: universalitet fra én byte",
-      body: "Matthew Cooks konstruksjon, fullført ved Wolfram Research på slutten av 1990-tallet og endelig publisert i 2004 etter en lang publiseringsstrid, viser at glidersamlingen i Regel 110 kan simulere et syklisk tag-system, og sykliske tag-systemer er selv Turing-komplette. Ethvert program, enhver beregning, enhver algoritme kan kodes som en startrad av celler; Regel 110, anvendt lenge nok, kjører det programmet. Beviset krever tusenvis av celler per logisk steg og er beryktet for sin innfløkthet, men konklusjonen er ren: en énrads oppslagstabell er en universell datamaskin. Ingen klokke, intet minne, intet instruksjonssett: bare en regel.",
+      body: "Matthew Cooks konstruksjon, fullført ved Wolfram Research på slutten av 1990-tallet og endelig publisert i 2004 etter en lang publiseringsstrid, viser at glidersamlingen i Regel 110 kan simulere et syklisk tag-system, og sykliske tag-systemer er selv Turing-komplette. Ethvert program, enhver beregning, enhver algoritme kan kodes som en startrad av celler; Regel 110, anvendt lenge nok, kjører det programmet. Beviset krever tusenvis av celler per logisk steg og er beryktet for sin innfløkthet, men konklusjonen er ren: En énrads oppslagstabell er en universell datamaskin. Ingen klokke, intet minne, intet instruksjonssett: bare en regel.",
     },
     {
       pretitle: "Avsnitt 06 · Universalitet overalt",

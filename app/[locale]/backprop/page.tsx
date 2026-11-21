@@ -128,7 +128,7 @@ const de: RichStory = {
     tagline:
       "Ein Algorithmus, Analysis rückwärts gelaufen, und jedes neuronale Netz, von dem du je gehört hast.",
     intro:
-      "Zeig einem Netz ein Bild; es rät. Miss, wie falsch der Tipp war; diese Zahl ist der Verlust. Backprop läuft die Kettenregel rückwärts durch jede Schicht und stellt zu jedem der Millionen Gewichte dieselbe Frage: hätte ich dich ein winziges Stück hochgeschoben, wäre der Verlust gestiegen oder gesunken? Dann verschiebt es jedes Gewicht in die Richtung, die den Verlust senkt. Eine Milliarde Mal. Dieser eine Trick ist GPT, AlphaFold, Bildgeneratoren, Spracherkennung: der gesamte moderne KI-Boom auf einer mathematischen Idee.",
+      "Zeig einem Netz ein Bild; es rät. Miss, wie falsch der Tipp war; diese Zahl ist der Verlust. Backprop läuft die Kettenregel rückwärts durch jede Schicht und stellt zu jedem der Millionen Gewichte dieselbe Frage: Hätte ich dich ein winziges Stück hochgeschoben, wäre der Verlust gestiegen oder gesunken? Dann verschiebt es jedes Gewicht in die Richtung, die den Verlust senkt. Eine Milliarde Mal. Dieser eine Trick ist GPT, AlphaFold, Bildgeneratoren, Spracherkennung: der gesamte moderne KI-Boom auf einer mathematischen Idee.",
     ctaInteractive: "→ Zum Explorer",
   },
   encounter: {
@@ -143,7 +143,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Du willst ein Netz, das beim XOR zweier Bits eine 1 ausgibt und sonst eine 0. Starte mit zufälligen Gewichten: Das Netz rät Müll. Vergleiche Tipp mit Wahrheit, berechne den Verlust. Backprop sagt jedem Gewicht: „senke dich um 0,03“, „erhöhe dich um 0,11“, und so weiter. Nach ein paar hundert solcher Mini-Korrekturen gibt das Netz 0,98 statt 0,4 aus und 0,02 statt 0,6. Es hat die Regel gelernt, die kein einzelnes Neuron je allein kodieren könnte.",
+        body: "Du willst ein Netz, das beim XOR zweier Bits eine 1 ausgibt und sonst eine 0. Starte mit zufälligen Gewichten: Das Netz rät Müll. Vergleiche Tipp mit Wahrheit, berechne den Verlust. Backprop sagt jedem Gewicht: „Senke dich um 0,03“, „erhöhe dich um 0,11“, und so weiter. Nach ein paar hundert solcher Mini-Korrekturen gibt das Netz 0,98 statt 0,4 aus und 0,02 statt 0,6. Es hat die Regel gelernt, die kein einzelnes Neuron je allein kodieren könnte.",
       },
       {
         label: "03",
@@ -167,12 +167,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Der Verlust",
       title: "Wie falsch das war",
-      body: "Vergleiche den Tipp ŷ mit der Wahrheit y und kondensiere den Vergleich auf eine einzige Zahl L, den Verlust. Bei Regression ist L der quadratische Fehler (ŷ − y)². Bei Klassifikation ist L die Kreuzentropie −Σy·log ŷ. Der Verlust ist eine skalare Funktion jedes Gewichts im Netz: änderst du irgendein Gewicht, ändert sich L. Das ganze Ziel des Trainings ist, Gewichte zu finden, die L klein machen. Diese Minimierung können wir nicht direkt lösen (die Landschaft hat zu viele Dimensionen), aber wir können die Steigung von L bezüglich jedes Gewichts berechnen und ihr bergab folgen.",
+      body: "Vergleiche den Tipp ŷ mit der Wahrheit y und kondensiere den Vergleich auf eine einzige Zahl L, den Verlust. Bei Regression ist L der quadratische Fehler (ŷ − y)². Bei Klassifikation ist L die Kreuzentropie −Σy·log ŷ. Der Verlust ist eine skalare Funktion jedes Gewichts im Netz: Änderst du irgendein Gewicht, ändert sich L. Das ganze Ziel des Trainings ist, Gewichte zu finden, die L klein machen. Diese Minimierung können wir nicht direkt lösen (die Landschaft hat zu viele Dimensionen), aber wir können die Steigung von L bezüglich jedes Gewichts berechnen und ihr bergab folgen.",
     },
     {
       pretitle: "Abschnitt 04 · Die Kettenregel, rückwärts",
       title: "Wie sich ein winziger Schub fortpflanzt",
-      body: "Der Verlust hängt von der Ausgabe ab, die Ausgabe von den Gewichten der letzten Schicht und ihren Eingaben, jene Eingaben von den Gewichten der vorletzten Schicht, rekursiv bis zurück zur Eingabe. Die Kettenregel sagt: multipliziere die lokalen Ableitungen entlang des Pfades. Backprop ist die Buchhaltung, die das effizient erledigt: ein Durchlauf von der Ausgabe zurück zur Eingabe, jede Schicht nutzt ihre bereits berechneten Aktivierungen und Gradienten wieder. Das Ergebnis ist für jedes Gewicht w im Netz ∂L/∂w: wie viel sich der Verlust ändern würde, wenn du w um einen infinitesimalen Betrag verschiebst. Linnainmaa schrieb das 1970 in einer finnischen Masterarbeit auf; Rumelhart, Hinton und Williams gaben ihm 1986 die moderne Form und den Namen.",
+      body: "Der Verlust hängt von der Ausgabe ab, die Ausgabe von den Gewichten der letzten Schicht und ihren Eingaben, jene Eingaben von den Gewichten der vorletzten Schicht, rekursiv bis zurück zur Eingabe. Die Kettenregel sagt: Multipliziere die lokalen Ableitungen entlang des Pfades. Backprop ist die Buchhaltung, die das effizient erledigt: ein Durchlauf von der Ausgabe zurück zur Eingabe, jede Schicht nutzt ihre bereits berechneten Aktivierungen und Gradienten wieder. Das Ergebnis ist für jedes Gewicht w im Netz ∂L/∂w: wie viel sich der Verlust ändern würde, wenn du w um einen infinitesimalen Betrag verschiebst. Linnainmaa schrieb das 1970 in einer finnischen Masterarbeit auf; Rumelhart, Hinton und Williams gaben ihm 1986 die moderne Form und den Namen.",
     },
     {
       pretitle: "Abschnitt 05 · Das Update",
@@ -242,12 +242,12 @@ const es: RichStory = {
     {
       pretitle: "Sección 02 · El pase hacia adelante",
       title: "Lo que la red cree que es la respuesta",
-      body: "Mete el vector de entrada x en la primera capa. Cada neurona calcula una suma ponderada de sus entradas, suma un sesgo y pasa el resultado por su función de activación. Las salidas de la capa 1 son las entradas de la 2; las de la 2, de la 3; y así. Al llegar a la capa de salida, la red ha producido su tipi actual ŷ. Aún no hay aprendizaje, solo una larga cadena de multiplicaciones y sumas. El pase hacia adelante es rápido y vergonzosamente paralelo; en una GPU es una multiplicación de matrices por capa.",
+      body: "Mete el vector de entrada x en la primera capa. Cada neurona calcula una suma ponderada de sus entradas, suma un sesgo y pasa el resultado por su función de activación. Las salidas de la capa 1 son las entradas de la 2; las de la 2, de la 3; y así. Al llegar a la capa de salida, la red ha producido su predicción actual ŷ. Aún no hay aprendizaje, solo una larga cadena de multiplicaciones y sumas. El pase hacia adelante es rápido y vergonzosamente paralelo; en una GPU es una multiplicación de matrices por capa.",
     },
     {
       pretitle: "Sección 03 · La pérdida",
       title: "Cuán equivocada estuvo",
-      body: "Compara el tipi ŷ con la verdad y, y reduce la comparación a un solo número L, la pérdida. En regresión, L es el error cuadrático (ŷ − y)². En clasificación, L es la entropía cruzada −Σy·log ŷ. La pérdida es una función escalar de cada peso de la red: cambia cualquier peso y L cambia. Todo el objetivo del entrenamiento es encontrar pesos que hagan L pequeño. Esa minimización no la sabemos resolver directamente (el paisaje tiene demasiadas dimensiones), pero podemos calcular la pendiente de L respecto a cada peso y seguirla cuesta abajo.",
+      body: "Compara la predicción ŷ con la verdad y, y reduce la comparación a un solo número L, la pérdida. En regresión, L es el error cuadrático (ŷ − y)². En clasificación, L es la entropía cruzada −Σy·log ŷ. La pérdida es una función escalar de cada peso de la red: cambia cualquier peso y L cambia. Todo el objetivo del entrenamiento es encontrar pesos que hagan L pequeño. Esa minimización no la sabemos resolver directamente (el paisaje tiene demasiadas dimensiones), pero podemos calcular la pendiente de L respecto a cada peso y seguirla cuesta abajo.",
     },
     {
       pretitle: "Sección 04 · La regla de la cadena, hacia atrás",
@@ -530,7 +530,7 @@ const sv: RichStory = {
     pretitle: "Ämne · Analys",
     title: "Backpropagation",
     tagline:
-      "En algoritm, kalkyl gången baklänges, och varje neuralt nätverk du någonsin hört talas om.",
+      "En algoritm (kalkyl gången baklänges) och varje neuralt nätverk du någonsin hört talas om.",
     intro:
       "Visa en bild för ett nätverk; det gissar. Mät hur fel gissningen var; det talet är förlusten. Backprop går kedjeregeln baklänges genom varje lager och frågar var och en av miljoner vikter samma sak: om jag hade knuffat dig uppåt en aning, hade förlusten gått upp eller ner? Sedan knuffar den varje vikt i den riktning som sänker förlusten. Upprepa en miljard gånger. Det enda tricket är GPT, AlphaFold, bildgeneratorer, taligenkänning: hela den moderna AI-explosionen på en enda matematisk idé.",
     ctaInteractive: "→ Öppna Explorern",
@@ -611,9 +611,9 @@ const no: RichStory = {
     pretitle: "Tema · Analyse",
     title: "Backpropagation",
     tagline:
-      "Én algoritme, kalkulus gått baklengs, og hvert nevralt nettverk du noensinne har hørt om.",
+      "Én algoritme (kalkulus gått baklengs) og hvert nevralt nettverk du noensinne har hørt om.",
     intro:
-      "Vis et nettverk et bilde; det gjetter. Mål hvor feil gjetningen var; det tallet er tapet. Backprop går kjerneregelen baklengs gjennom hvert lag og stiller hver av millioner av vekter det samme spørsmålet: hadde jeg skjøvet deg en bitteliten bit oppover, ville tapet steget eller sunket? Så skyver den hver vekt i den retningen som senker tapet. Gjenta en milliard ganger. Det ene trikset er GPT, AlphaFold, bildegeneratorer, talegjenkjenning: hele den moderne AI-eksplosjonen på én matematisk idé.",
+      "Vis et nettverk et bilde; det gjetter. Mål hvor feil gjetningen var; det tallet er tapet. Backprop går kjerneregelen baklengs gjennom hvert lag og stiller hver av millioner av vekter det samme spørsmålet: Hadde jeg skjøvet deg en bitteliten bit oppover, ville tapet steget eller sunket? Så skyver den hver vekt i den retningen som senker tapet. Gjenta en milliard ganger. Det ene trikset er GPT, AlphaFold, bildegeneratorer, talegjenkjenning: hele den moderne AI-eksplosjonen på én matematisk idé.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -628,7 +628,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Du vil ha et nett som gir 1 for XOR av to bit og 0 ellers. Start med tilfeldige vekter: nettet returnerer søppel. Sammenlign gjetning med sannhet, regn ut tapet. Backprop sier til hver vekt: «senk deg med 0,03», «øk deg med 0,11», og så videre. Etter noen hundre slike minikorreksjoner gir samme nett 0,98 i stedet for 0,4 og 0,02 i stedet for 0,6. Det har lært en regel ingen enkelt nevron kunne kodet alene.",
+        body: "Du vil ha et nett som gir 1 for XOR av to bit og 0 ellers. Start med tilfeldige vekter: Nettet returnerer søppel. Sammenlign gjetning med sannhet, regn ut tapet. Backprop sier til hver vekt: «senk deg med 0,03», «øk deg med 0,11», og så videre. Etter noen hundre slike minikorreksjoner gir samme nett 0,98 i stedet for 0,4 og 0,02 i stedet for 0,6. Det har lært en regel ingen enkelt nevron kunne kodet alene.",
       },
       {
         label: "03",
@@ -642,7 +642,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Problemet",
       title: "Hvorfor et nettverk må lære",
-      body: "Et nevralt nettverk er bare en stabel av lineære avbildninger atskilt av enkle ikke-lineariteter som sigmoid eller ReLU. Med de rette vektene kan det approksimere enhver funksjon; det er det universelle approksimasjonsteoremet. Haken ligger i «med de rette vektene». For enhver ikke-triviell oppgave ligger de rette vektene i en høystakk med millioner av dimensjoner, og ikke noe analytisk arbeid finner dem. De må læres fra eksempler: vis en inngang, vis den ønskede utgangen, tillat justering. Backpropagation er justeringsregelen som gjør dette mulig i stor skala.",
+      body: "Et nevralt nettverk er bare en stabel av lineære avbildninger atskilt av enkle ikke-lineariteter som sigmoid eller ReLU. Med de rette vektene kan det approksimere enhver funksjon; det er det universelle approksimasjonsteoremet. Haken ligger i «med de rette vektene». For enhver ikke-triviell oppgave ligger de rette vektene i en høystakk med millioner av dimensjoner, og ikke noe analytisk arbeid finner dem. De må læres fra eksempler: Vis en inngang, vis den ønskede utgangen, tillat justering. Backpropagation er justeringsregelen som gjør dette mulig i stor skala.",
     },
     {
       pretitle: "Avsnitt 02 · Forover-passet",
@@ -652,12 +652,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Tapet",
       title: "Hvor feil det var",
-      body: "Sammenlign gjetningen ŷ med sannheten y, og kollaps sammenligningen til ett enkelt tall L, tapet. Ved regresjon er L kvadratfeilen (ŷ − y)². Ved klassifisering er L kryssentropien −Σy·log ŷ. Tapet er en skalar funksjon av hver vekt i nettet: endre en vekt og L endrer seg. Hele målet med treningen er å finne vekter som gjør L liten. Den minimeringen kan vi ikke løse direkte (landskapet har for mange dimensjoner), men vi kan regne ut stigningen til L med hensyn til hver vekt og følge den nedover.",
+      body: "Sammenlign gjetningen ŷ med sannheten y, og kollaps sammenligningen til ett enkelt tall L, tapet. Ved regresjon er L kvadratfeilen (ŷ − y)². Ved klassifisering er L kryssentropien −Σy·log ŷ. Tapet er en skalar funksjon av hver vekt i nettet: Endre en vekt og L endrer seg. Hele målet med treningen er å finne vekter som gjør L liten. Den minimeringen kan vi ikke løse direkte (landskapet har for mange dimensjoner), men vi kan regne ut stigningen til L med hensyn til hver vekt og følge den nedover.",
     },
     {
       pretitle: "Avsnitt 04 · Kjerneregelen, baklengs",
       title: "Hvordan en bitteliten dytt forplanter seg",
-      body: "Tapet avhenger av utgangen, utgangen av siste lags vekter og inngangene til det laget, og de inngangene av forrige lags vekter, rekursivt helt til inngangen. Kjerneregelen sier: multipliser de lokale deriverte langs banen. Backprop er regnskapet som gjør dette effektivt: én passering fra utgang tilbake til inngang som gjenbruker hvert lags allerede beregnede aktiveringer og gradienter. Resultatet, for hver vekt w, er ∂L/∂w: hvor mye tapet ville endret seg om du skjøv w en infinitesimal mengde. Linnainmaa skrev dette ned i en finsk masteroppgave i 1970; Rumelhart, Hinton og Williams ga det moderne form og navn i 1986.",
+      body: "Tapet avhenger av utgangen, utgangen av siste lags vekter og inngangene til det laget, og de inngangene av forrige lags vekter, rekursivt helt til inngangen. Kjerneregelen sier: Multipliser de lokale deriverte langs banen. Backprop er regnskapet som gjør dette effektivt: én passering fra utgang tilbake til inngang som gjenbruker hvert lags allerede beregnede aktiveringer og gradienter. Resultatet, for hver vekt w, er ∂L/∂w: hvor mye tapet ville endret seg om du skjøv w en infinitesimal mengde. Linnainmaa skrev dette ned i en finsk masteroppgave i 1970; Rumelhart, Hinton og Williams ga det moderne form og navn i 1986.",
     },
     {
       pretitle: "Avsnitt 05 · Oppdateringen",

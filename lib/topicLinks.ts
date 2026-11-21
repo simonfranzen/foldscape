@@ -163,14 +163,14 @@ export const TOPIC_LINKS: Record<TopicId, TopicLink[]> = {
       href: "https://arxiv.org/abs/1909.03562",
     },
     {
-      label: "Lagarias, J.: The 3x+1 problem: an annotated bibliography",
+      label: "Lagarias, J.: The 3x+1 problem, an annotated bibliography",
       href: "https://arxiv.org/abs/math/0309224",
     },
   ],
   doublependulum: [
     { label: "Wikipedia: Double pendulum", href: "https://en.wikipedia.org/wiki/Double_pendulum" },
     {
-      label: "Diego Assencio: The double pendulum: Lagrangian formulation",
+      label: "Diego Assencio: The double pendulum, Lagrangian formulation",
       href: "https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6",
     },
     {

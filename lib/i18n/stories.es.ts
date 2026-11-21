@@ -267,7 +267,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso dos · La fórmula de Euler",
           title: "e^(iθ) = cos θ + i sin θ",
-          body: "La identidad es lo que la fórmula de Euler devuelve para un ángulo concreto, publicada en su Introductio in analysin infinitorum de 1748. Para cualquier número real θ, la fórmula dice que e^(iθ) (una exponencial con exponente imaginario) es igual a cos θ + i sin θ. Geométricamente: a medida que θ crece, el punto e^(iθ) recorre en sentido antihorario la circunferencia unidad del plano complejo. Multiplicar por e^(iθ) es rotar un ángulo θ. Crecimiento y rotación, las dos cosas que e e i hacen en secreto, resultan ser la misma operación vista por dos lados.",
+          body: "La identidad es lo que la fórmula de Euler devuelve para un ángulo concreto, publicada en su Introductio in analysin infinitorum de 1748. Para cualquier número real θ, la fórmula dice que e^(iθ), una exponencial con exponente imaginario, es igual a cos θ + i sin θ. Geométricamente: a medida que θ crece, el punto e^(iθ) recorre en sentido antihorario la circunferencia unidad del plano complejo. Multiplicar por e^(iθ) es rotar un ángulo θ. Crecimiento y rotación, las dos cosas que e e i hacen en secreto, resultan ser la misma operación vista por dos lados.",
         },
         {
           pretitle: "Paso tres · Sustituye θ = π",
@@ -302,7 +302,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso tres · El grupo libre de rotaciones",
           title: "F₂, generado por dos rotaciones",
-          body: "El corazón de la prueba es puramente teórico-grupal. Dos rotaciones a y b adecuadamente elegidas de la esfera unidad S² no satisfacen ninguna relación más allá de las triviales: generan un grupo libre F₂ de rango 2: cada palabra reducida en a, a⁻¹, b, b⁻¹ actúa como una rotación distinta. F₂ admite una descomposición paradójica: se parte en cuatro conjuntos W(a), W(a⁻¹), W(b), W(b⁻¹) (palabras que empiezan por cada generador) más la identidad, y cada conjunto desplazado cubre el resto del grupo. Pasa esto por la paradoja esférica de Hausdorff de 1914, levántalo de S² a la bola sólida, y la duplicación en el grupo se convierte en una duplicación de B³.",
+          body: "El corazón de la prueba es puramente teórico-grupal. Dos rotaciones a y b adecuadamente elegidas de la esfera unidad S² no satisfacen ninguna relación más allá de las triviales: generan un grupo libre F₂ de rango 2, en el que cada palabra reducida en a, a⁻¹, b, b⁻¹ actúa como una rotación distinta. F₂ admite una descomposición paradójica: se parte en cuatro conjuntos W(a), W(a⁻¹), W(b), W(b⁻¹) (palabras que empiezan por cada generador) más la identidad, y cada conjunto desplazado cubre el resto del grupo. Pasa esto por la paradoja esférica de Hausdorff de 1914, levántalo de S² a la bola sólida, y la duplicación en el grupo se convierte en una duplicación de B³.",
         },
         {
           pretitle: "Paso cuatro · Por qué no rompe el mundo",
@@ -332,7 +332,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso tres · Ejemplos clásicos",
           title: "Cuatro reglas, cuatro fractales",
-          body: "Copo de nieve de Koch: axioma F++F++F, regla F → F−F++F−F, ángulo 60°. Cuatro iteraciones y el triángulo se arruga hasta convertirse en copo de nieve. Curva del dragón: axioma FX, reglas X → X+YF+, Y → −FX−Y, ángulo 90°; tras una docena de reescrituras se pliega en el dragón de Heighway. Punta de flecha de Sierpiński: A → B−A−B, B → A+B+A, ángulo 60°, alterna la paridad para barrer el triángulo de Sierpiński. Planta fractal: X → F+[[X]−X]−F[−FX]+X, F → FF, ángulo 25°: el helecho canónico de Lindenmayer y Prusinkiewicz, con ramas y todo. La misma maquinaria, organismos radicalmente distintos.",
+          body: "Copo de nieve de Koch: axioma F++F++F, regla F → F−F++F−F, ángulo 60°. Cuatro iteraciones y el triángulo se arruga hasta convertirse en copo de nieve. Curva del dragón: axioma FX, reglas X → X+YF+, Y → −FX−Y, ángulo 90°; tras una docena de reescrituras se pliega en el dragón de Heighway. Punta de flecha de Sierpiński: A → B−A−B, B → A+B+A, ángulo 60°, alterna la paridad para barrer el triángulo de Sierpiński. Planta fractal: X → F+[[X]−X]−F[−FX]+X, F → FF, ángulo 25°, el helecho canónico de Lindenmayer y Prusinkiewicz, con ramas y todo. La misma maquinaria, organismos radicalmente distintos.",
         },
         {
           pretitle: "Paso cuatro · Por qué los aman los botánicos",
@@ -562,7 +562,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso uno · Dos baldosas, sin repetición",
           title: "Penrose, 1974",
-          body: "Roger Penrose presentó su primera teselación aperiódica (P1) en 1974, usando seis prototeselas construidas alrededor del pentágono. Pronto recortó el conjunto a dos: la pareja cometa + dardo (P2) y la pareja de dos rombos (P3): un rombo delgado con ángulos 36°/144° y otro grueso con ángulos 72°/108°. Cada baldosa lleva las reglas de coincidencia de Conway: flechas o muescas de color en los bordes que fijan qué baldosa puede ir junto a cuál. Sin ellas podrías teselar periódicamente con cometas y dardos; con ellas, cada teselación legal se ve forzada a ser aperiódica.",
+          body: "Roger Penrose presentó su primera teselación aperiódica (P1) en 1974, usando seis prototeselas construidas alrededor del pentágono. Pronto recortó el conjunto a dos: la pareja cometa + dardo (P2) y la pareja de dos rombos (P3), un rombo delgado con ángulos 36°/144° y otro grueso con ángulos 72°/108°. Cada baldosa lleva las reglas de coincidencia de Conway: flechas o muescas de color en los bordes que fijan qué baldosa puede ir junto a cuál. Sin ellas podrías teselar periódicamente con cometas y dardos; con ellas, cada teselación legal se ve forzada a ser aperiódica.",
         },
         {
           pretitle: "Paso dos · Simetría de orden cinco",
@@ -736,7 +736,7 @@ export const es: StoriesDict = {
       title: "El argumento diagonal de Cantor",
       tagline: "El infinito tiene tallas.",
       intro:
-        "El argumento diagonal de Georg Cantor de 1891 es la prueba más limpia en matemáticas de que algunos infinitos son mayores que otros. El Explorador anima la construcción en vivo: elige cualquier listado de decimales en [0,1] y observa cómo un nuevo número real sale de la diagonal: uno que no puede estar en tu lista, por muy ingeniosamente que la hayas ordenado.",
+        "El argumento diagonal de Georg Cantor de 1891 es la prueba más limpia en matemáticas de que algunos infinitos son mayores que otros. El Explorador anima la construcción en vivo: elige cualquier listado de decimales en [0,1] y observa cómo un nuevo número real sale de la diagonal, uno que no puede estar en tu lista, por muy ingeniosamente que la hayas ordenado.",
       ctaInteractive: "→ Abrir el Explorador",
       sections: [
         {
@@ -1177,7 +1177,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso cuatro · Dónde está hoy",
           title: "De TLS a la migración poscuántica",
-          body: "RSA es la matemática bajo cada handshake de TLS que tu navegador aún negocia con un certificado RSA, bajo las claves de host SSH, bajo las cadenas de firma de código que autentican las aplicaciones de Apple y Google, bajo los pasaportes electrónicos y las primeras generaciones de blockchain. Pero en 1994 Peter Shor escribió un algoritmo cuántico que factoriza enteros en tiempo polinómico, dada una computadora cuántica tolerante a fallos lo bastante grande, RSA se rompe. Aún no existe, pero el plazo es lo bastante incierto como para que el NIST haya estandarizado reemplazos poscuánticos (CRYSTALS-Kyber para intercambio de claves en 2024, CRYSTALS-Dilithium para firmas) y la migración global ya esté en marcha.",
+          body: "RSA es la matemática bajo cada handshake de TLS que tu navegador aún negocia con un certificado RSA, bajo las claves de host SSH, bajo las cadenas de firma de código que autentican las aplicaciones de Apple y Google, bajo los pasaportes electrónicos y las primeras generaciones de blockchain. Pero en 1994 Peter Shor escribió un algoritmo cuántico que factoriza enteros en tiempo polinómico: dada una computadora cuántica tolerante a fallos lo bastante grande, RSA se rompe. Aún no existe, pero el plazo es lo bastante incierto como para que el NIST haya estandarizado reemplazos poscuánticos (CRYSTALS-Kyber para intercambio de claves en 2024, CRYSTALS-Dilithium para firmas) y la migración global ya esté en marcha.",
         },
       ],
     },
@@ -1197,7 +1197,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso dos · Sorpresas con las tijeras",
           title: "Lo que las tijeras revelan sobre la topología",
-          body: "Corta la cinta de Möbius por el medio. No se cae a pedazos: obtienes una tira más larga con dos vueltas completas (cuatro medias vueltas) y, lo crucial, esa tira vuelve a tener dos caras. Corta una cinta de Möbius a un tercio de uno de sus bordes, manteniendo el corte paralelo al borde a lo largo de toda la vuelta, y las tijeras recorren dos vueltas antes de cerrar el lazo: salen dos anillos entrelazados: una nueva cinta de Möbius más estrecha (aún con una sola media vuelta) y un anillo de dos caras más largo con dos medias vueltas (que ya no es una cinta de Möbius), enlazados entre sí. La topología está llena de estas sorpresas: la torsión global oculta tras la planitud local.",
+          body: "Corta la cinta de Möbius por el medio. No se cae a pedazos: obtienes una tira más larga con dos vueltas completas (cuatro medias vueltas) y, lo crucial, esa tira vuelve a tener dos caras. Corta una cinta de Möbius a un tercio de uno de sus bordes, manteniendo el corte paralelo al borde a lo largo de toda la vuelta, y las tijeras recorren dos vueltas antes de cerrar el lazo: salen dos anillos entrelazados, una nueva cinta de Möbius más estrecha (aún con una sola media vuelta) y un anillo de dos caras más largo con dos medias vueltas (que ya no es una cinta de Möbius), enlazados entre sí. La topología está llena de estas sorpresas: la torsión global oculta tras la planitud local.",
         },
         {
           pretitle: "Paso tres · La botella de Klein",
@@ -1207,7 +1207,7 @@ export const es: StoriesDict = {
         {
           pretitle: "Paso cuatro · Dónde viven",
           title: "De las correas de transmisión a la química",
-          body: "Las cintas de Möbius aparecen como correas transportadoras y cintas de impresora (el desgaste se reparte por toda la superficie y duplica la vida útil), como las esculturas Endless Ribbon de Max Bill, como resistencias de Möbius que cancelan su propia autoinducción, como guías de onda Möbius superconductoras para microondas, y, desde 2003, como moléculas aromáticas de Möbius sintetizadas por Rainer Herges. El famoso triángulo del reciclaje es, en rigor, una cinta de Möbius con tres medias vueltas, sigue siendo de una sola cara, pero más retorcida que la clásica banda de una sola media vuelta. Sobre todo, la cinta de Möbius y la botella de Klein son las puertas de entrada a la clasificación de superficies: el teorema que afirma que toda superficie cerrada queda determinada, salvo homeomorfismo, por el género, la orientabilidad y un único entero χ.",
+          body: "Las cintas de Möbius aparecen como correas transportadoras y cintas de impresora (el desgaste se reparte por toda la superficie y duplica la vida útil), como las esculturas Endless Ribbon de Max Bill, como resistencias de Möbius que cancelan su propia autoinducción, como guías de onda Möbius superconductoras para microondas, y, desde 2003, como moléculas aromáticas de Möbius sintetizadas por Rainer Herges. El famoso triángulo del reciclaje es, en rigor, una cinta de Möbius con tres medias vueltas; sigue siendo de una sola cara, pero más retorcida que la clásica banda de una sola media vuelta. Sobre todo, la cinta de Möbius y la botella de Klein son las puertas de entrada a la clasificación de superficies: el teorema que afirma que toda superficie cerrada queda determinada, salvo homeomorfismo, por el género, la orientabilidad y un único entero χ.",
         },
       ],
     },

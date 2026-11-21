@@ -258,7 +258,7 @@ const de: RichStory = {
     title: "Buffons Nadel",
     tagline: "Wirf Stäbchen auf liniertes Papier. π fällt heraus.",
     intro:
-      "Georges-Louis Leclerc, Comte de Buffon, stellte die Frage 1733 und veröffentlichte sie 1777: wirf eine Nadel auf einen Boden aus parallelen Linien und zähl die Überschneidungen. Das Verhältnis gibt π zurück, eine Kreiskonstante, die aus geraden Nadeln auf geradem Holz auftaucht. Hier gehen wir den Beweis, die Geschichte und das Experiment nebeneinander durch.",
+      "Georges-Louis Leclerc, Comte de Buffon, stellte die Frage 1733 und veröffentlichte sie 1777: Wirf eine Nadel auf einen Boden aus parallelen Linien und zähl die Überschneidungen. Das Verhältnis gibt π zurück, eine Kreiskonstante, die aus geraden Nadeln auf geradem Holz auftaucht. Hier gehen wir den Beweis, die Geschichte und das Experiment nebeneinander durch.",
     ctaInteractive: "→ Explorer öffnen",
     sections: [],
   },
@@ -279,7 +279,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Das ist die erste bekannte Monte-Carlo-Methode, lange bevor der Name 1947 in Los Alamos geprägt wurde. Buffons Nadel überbrückt Geometrie und Wahrscheinlichkeit: sie zeigt, dass eine deterministische Konstante allein mit Zufall abgetastet werden kann. Moderne Beweise der Wahrscheinlichkeit stützen sich auf dieselbe Maschinerie: ersetz ein hartes Integral durch einen Erwartungswert, tast den Erwartungswert ab, nimm den Grenzwert.",
+        body: "Das ist die erste bekannte Monte-Carlo-Methode, lange bevor der Name 1947 in Los Alamos geprägt wurde. Buffons Nadel überbrückt Geometrie und Wahrscheinlichkeit: Sie zeigt, dass eine deterministische Konstante allein mit Zufall abgetastet werden kann. Moderne Beweise der Wahrscheinlichkeit stützen sich auf dieselbe Maschinerie: Ersetz ein hartes Integral durch einen Erwartungswert, tast den Erwartungswert ab, nimm den Grenzwert.",
       },
     ],
     tryIt: "Unten: wirf ein paar tausend virtuelle Nadeln und sieh, wie π auftaucht.",
@@ -308,12 +308,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Lazzarinis 'Experiment' 1901",
       title: "Sechs Nachkommastellen aus 3408 Würfen: zu schön um wahr zu sein",
-      body: "1901 veröffentlichte der italienische Mathematiker Mario Lazzarini ein Experiment, in dem er behauptete, π ≈ 3,1415929 aus nur 3408 Nadelwürfen berechnet zu haben: sechs korrekte Stellen, exakt übereinstimmend mit der berühmten chinesischen Näherung 355 / 113. Solche Genauigkeit aus einem Buffon-Versuch würde bei ehrlicher Konvergenz rund 10¹⁴ Würfe erfordern. Der Trick: Lazzarinis Design nutzte N = 213 · 16 = 3408 Würfe mit einem Nadel-zu-Linien-Verhältnis ℓ/d = 5/6, so gewählt, dass in dem Moment, in dem die laufende Zählung gerade C = 1808 Kreuzungen erreichte, der Schätzer π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 per Konstruktion auf der berühmten Näherung landete. Er hörte mit ziemlicher Sicherheit im richtigen Moment auf. Die Episode ist berühmt als die sauberste Warnung in experimenteller Statistik, und als Beleg, dass Buffons Nadel, ehrlich durchgeführt, qualvoll langsam konvergiert. Pierre-Simon Laplace hatte das Problem schon 1812 auf ein quadratisches Gitter erweitert, in dem zwei Kreuzungen (horizontal und vertikal) unabhängig gezählt werden können und die Varianz halbiert wird; Laplaces Variante ist die, die man bei einem ernsthaften Experiment tatsächlich laufen lassen würde.",
+      body: "1901 veröffentlichte der italienische Mathematiker Mario Lazzarini ein Experiment, in dem er behauptete, π ≈ 3,1415929 aus nur 3408 Nadelwürfen berechnet zu haben: sechs korrekte Stellen, exakt übereinstimmend mit der berühmten chinesischen Näherung 355 / 113. Solche Genauigkeit aus einem Buffon-Versuch würde bei ehrlicher Konvergenz rund 10¹⁴ Würfe erfordern. Der Trick: Lazzarinis Design nutzte N = 213 · 16 = 3408 Würfe mit einem Nadel-zu-Linien-Verhältnis ℓ/d = 5/6, so gewählt, dass in dem Moment, in dem die laufende Zählung gerade C = 1808 Kreuzungen erreichte, der Schätzer π ≈ 2·(ℓ/d)·N/C = 2·(5/6)·(3408/1808) = 355/113 per Konstruktion auf der berühmten Näherung landete. Er hörte mit ziemlicher Sicherheit im richtigen Moment auf. Die Episode ist berühmt als die sauberste Warnung in experimenteller Statistik und als Beleg, dass Buffons Nadel, ehrlich durchgeführt, qualvoll langsam konvergiert. Pierre-Simon Laplace hatte das Problem schon 1812 auf ein quadratisches Gitter erweitert, in dem zwei Kreuzungen (horizontal und vertikal) unabhängig gezählt werden können und die Varianz halbiert wird; Laplaces Variante ist die, die man bei einem ernsthaften Experiment tatsächlich laufen lassen würde.",
     },
     {
       pretitle: "Abschnitt 06 · Andere geometrische Wahrscheinlichkeiten",
       title: "Bertrands Paradox und die Falle des Worts 'zufällig'",
-      body: "Buffons Nadel funktioniert, weil die Worte 'gleichverteilte Position, gleichverteilter Winkel' den Stichprobenraum genau festlegen. Andere Aufgaben der geometrischen Wahrscheinlichkeit sind nicht so freundlich. Joseph Bertrand veröffentlichte 1889 ein Paradox: wie groß ist die Wahrscheinlichkeit, dass eine zufällige Sehne eines Einheitskreises länger ist als die Seite des einbeschriebenen gleichseitigen Dreiecks? Drei natürliche Vorgehensweisen (zwei zufällige Endpunkte auf dem Kreis wählen, einen zufälligen Mittelpunkt im Inneren wählen, einen zufälligen Abstand vom Zentrum wählen) ergeben drei verschiedene Antworten (1/3, 1/4, 1/2). Alle drei sind unter der jeweiligen Definition von 'zufällige Sehne' korrekt; das Paradox ist, dass der Ausdruck ohne Verfahren mehrdeutig ist. Edwin Jaynes argumentierte 1973 aus Maximum-Entropie-Invarianzgründen für die 1/2-Antwort, aber die tiefere Lehre bleibt: geometrische Wahrscheinlichkeit ist erst wohldefiniert, wenn das Stichprobenverfahren vollständig spezifiziert ist. Buffons Nadel ist teilweise deshalb berühmt, weil diese Spezifikation so transparent ist, und die Antwort, 2 ℓ / (π d), nicht davon abhängt, welches natürliche Verfahren man wählt.",
+      body: "Buffons Nadel funktioniert, weil die Worte 'gleichverteilte Position, gleichverteilter Winkel' den Stichprobenraum genau festlegen. Andere Aufgaben der geometrischen Wahrscheinlichkeit sind nicht so freundlich. Joseph Bertrand veröffentlichte 1889 ein Paradox: Wie groß ist die Wahrscheinlichkeit, dass eine zufällige Sehne eines Einheitskreises länger ist als die Seite des einbeschriebenen gleichseitigen Dreiecks? Drei natürliche Vorgehensweisen (zwei zufällige Endpunkte auf dem Kreis wählen, einen zufälligen Mittelpunkt im Inneren wählen, einen zufälligen Abstand vom Zentrum wählen) ergeben drei verschiedene Antworten (1/3, 1/4, 1/2). Alle drei sind unter der jeweiligen Definition von 'zufällige Sehne' korrekt; das Paradox ist, dass der Ausdruck ohne Verfahren mehrdeutig ist. Edwin Jaynes argumentierte 1973 aus Maximum-Entropie-Invarianzgründen für die 1/2-Antwort, aber die tiefere Lehre bleibt: Geometrische Wahrscheinlichkeit ist erst wohldefiniert, wenn das Stichprobenverfahren vollständig spezifiziert ist. Buffons Nadel ist teilweise deshalb berühmt, weil diese Spezifikation so transparent ist und die Antwort, 2 ℓ / (π d), nicht davon abhängt, welches natürliche Verfahren man wählt.",
     },
   ],
   closingPretitle: "Geh weiter",
@@ -918,7 +918,7 @@ const no: RichStory = {
     title: "Buffons Nål",
     tagline: "Slipp pinner på linjert papir. π faller ut.",
     intro:
-      "Georges-Louis Leclerc, greve av Buffon, stilte spørsmålet i 1733 og publiserte det i 1777: slipp en nål på et gulv av parallelle linjer og tell kryssingene. Forholdet gir tilbake π, en sirkelkonstant som dukker opp av rette nåler på rett tre. Her går vi gjennom beviset, historien og eksperimentet side om side.",
+      "Georges-Louis Leclerc, greve av Buffon, stilte spørsmålet i 1733 og publiserte det i 1777: Slipp en nål på et gulv av parallelle linjer og tell kryssingene. Forholdet gir tilbake π, en sirkelkonstant som dukker opp av rette nåler på rett tre. Her går vi gjennom beviset, historien og eksperimentet side om side.",
     ctaInteractive: "→ Åpne Utforskeren",
     sections: [],
   },
@@ -939,7 +939,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Dette er den første kjente Monte Carlo-metoden, lenge før navnet ble myntet i Los Alamos i 1947. Buffons nål binder geometri og sannsynlighet sammen: den viser at en deterministisk konstant kan samples med bare tilfeldighet. Moderne sannsynlighetsbevis hviler på samme maskineri: bytt ut et hardt integral mot en forventningsverdi, sampl forventningsverdien, ta grensen.",
+        body: "Dette er den første kjente Monte Carlo-metoden, lenge før navnet ble myntet i Los Alamos i 1947. Buffons nål binder geometri og sannsynlighet sammen: Den viser at en deterministisk konstant kan samples med bare tilfeldighet. Moderne sannsynlighetsbevis hviler på samme maskineri: Bytt ut et hardt integral mot en forventningsverdi, sampl forventningsverdien, ta grensen.",
       },
     ],
     tryIt: "Under: slipp noen tusen virtuelle nåler og se π tre fram.",
@@ -963,7 +963,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Monte Carlo-metoden",
       title: "Sample et integral med tilfeldighet",
-      body: "Buffons nål er prototypen på det Stanisław Ulam og John von Neumann formaliserte i Los Alamos i 1947 og døpte Monte Carlo etter kasinoet: estimer et hardt integral ved å sample det med tilfeldige punkter. Trikset er de store talls lov: gjennomsnitt av uavhengige stikkprøver konvergerer mot sin forventningsverdi. I dag driver Monte Carlo kjernene i moderne beregningsfysikk (gitter-QCD), prising av finansielle derivater (Black-Scholes med stokastisk volatilitet), fotorealistisk rendering (path tracing i ray-tracere, der hver piksel er en Buffon-aktig stikkprøve av et lysintegral), bayesiansk inferens (Markov-kjede Monte Carlo) og deler av moderne maskinlæringstrening der gradienter estimeres stokastisk. Alt dette stammer fra en telling av kryssinger.",
+      body: "Buffons nål er prototypen på det Stanisław Ulam og John von Neumann formaliserte i Los Alamos i 1947 og døpte Monte Carlo etter kasinoet: Estimer et hardt integral ved å sample det med tilfeldige punkter. Trikset er de store talls lov: Gjennomsnitt av uavhengige stikkprøver konvergerer mot sin forventningsverdi. I dag driver Monte Carlo kjernene i moderne beregningsfysikk (gitter-QCD), prising av finansielle derivater (Black-Scholes med stokastisk volatilitet), fotorealistisk rendering (path tracing i ray-tracere, der hver piksel er en Buffon-aktig stikkprøve av et lysintegral), bayesiansk inferens (Markov-kjede Monte Carlo) og deler av moderne maskinlæringstrening der gradienter estimeres stokastisk. Alt dette stammer fra en telling av kryssinger.",
     },
     {
       pretitle: "Avsnitt 05 · Lazzarinis 'eksperiment' 1901",
@@ -973,7 +973,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Andre geometriske sannsynligheter",
       title: "Bertrands paradoks og fellen med 'tilfeldig'",
-      body: "Buffons nål fungerer fordi ordene 'jevnt fordelt posisjon, jevnt fordelt vinkel' fester utvalgsrommet presist. Andre geometriske sannsynlighetsproblemer er ikke like greie. Joseph Bertrand publiserte et paradoks i 1889: hva er sannsynligheten for at en tilfeldig korde i en enhetssirkel er lengre enn siden i den innskrevne likesidede trekanten? Tre naturlige prosedyrer (velg to tilfeldige endepunkt på sirkelen, velg et tilfeldig midtpunkt inne i skiven, velg en tilfeldig avstand fra sentrum) gir tre forskjellige svar (1/3, 1/4, 1/2). Alle tre er riktige gitt sin egen definisjon av 'tilfeldig korde'; paradokset er at uttrykket uten en prosedyre er tvetydig. Edwin Jaynes argumenterte i 1973 for 1/2-svaret på grunn av maks-entropi-invarians, men den dypere lærdommen står ved lag: geometrisk sannsynlighet er først veldefinert når samplingsprosedyren er fullstendig spesifisert. Buffons nål er delvis berømt fordi den spesifikasjonen er så gjennomsiktig, og svaret, 2 ℓ / (π d), avhenger ikke av hvilken naturlig prosedyre du velger.",
+      body: "Buffons nål fungerer fordi ordene 'jevnt fordelt posisjon, jevnt fordelt vinkel' fester utvalgsrommet presist. Andre geometriske sannsynlighetsproblemer er ikke like greie. Joseph Bertrand publiserte et paradoks i 1889: Hva er sannsynligheten for at en tilfeldig korde i en enhetssirkel er lengre enn siden i den innskrevne likesidede trekanten? Tre naturlige prosedyrer (velg to tilfeldige endepunkt på sirkelen, velg et tilfeldig midtpunkt inne i skiven, velg en tilfeldig avstand fra sentrum) gir tre forskjellige svar (1/3, 1/4, 1/2). Alle tre er riktige gitt sin egen definisjon av 'tilfeldig korde'; paradokset er at uttrykket uten en prosedyre er tvetydig. Edwin Jaynes argumenterte i 1973 for 1/2-svaret på grunn av maks-entropi-invarians, men den dypere lærdommen står ved lag: Geometrisk sannsynlighet er først veldefinert når samplingsprosedyren er fullstendig spesifisert. Buffons nål er delvis berømt fordi den spesifikasjonen er så gjennomsiktig, og svaret, 2 ℓ / (π d), avhenger ikke av hvilken naturlig prosedyre du velger.",
     },
   ],
   closingPretitle: "Gå videre",

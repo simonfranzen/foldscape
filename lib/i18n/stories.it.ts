@@ -997,7 +997,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo quattro · E i bulbi più piccoli",
           title: "Una scala infinita di cerchi attaccati",
-          body: "La cardioide principale dell'insieme di Mandelbrot ha dischi circolari più piccoli che pendono da essa a ogni frazione razionale p/q. Ogni disco corrisponde a dinamiche in cui il ciclo attrattivo ha periodo q. Il disco più grande, a sinistra, ha periodo 2; i due successivi hanno periodo 3; poi quattro dischi di periodo 4; e così via. Il frattale al confine dell'insieme di Mandelbrot è precisamente il confine tra queste regioni stabili e il caos. Caffè, ottica, iterazione complessa, gli oggetti più profondi della dinamica, tutti che indossano la stessa forma.",
+          body: "La cardioide principale dell'insieme di Mandelbrot ha dischi circolari più piccoli che pendono da essa a ogni frazione razionale p/q. Ogni disco corrisponde a dinamiche in cui il ciclo attrattivo ha periodo q. Il disco più grande, a sinistra, ha periodo 2; i due successivi hanno periodo 3; poi quattro dischi di periodo 4; e così via. Il frattale al confine dell'insieme di Mandelbrot è precisamente il confine tra queste regioni stabili e il caos. Caffè, ottica, iterazione complessa, gli oggetti più profondi della dinamica: tutti che indossano la stessa forma.",
         },
       ],
     },
@@ -1177,7 +1177,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo quattro · Dove sta oggi",
           title: "Da TLS alla migrazione post-quantistica",
-          body: "RSA è la matematica sotto ogni handshake TLS che il tuo browser ancora negozia con un certificato RSA, sotto le chiavi host SSH, sotto le catene di firma del codice che autenticano le app di Apple e Google, sotto i passaporti elettronici e le prime generazioni di blockchain. Ma nel 1994 Peter Shor scrisse un algoritmo quantistico che fattorizza gli interi in tempo polinomiale, dato un computer quantistico fault-tolerant sufficientemente grande, RSA si rompe. Non ne esiste ancora uno, ma la tempistica è incerta abbastanza che il NIST ha standardizzato i sostituti post-quantistici (CRYSTALS-Kyber per lo scambio di chiavi nel 2024, CRYSTALS-Dilithium per le firme) e la migrazione globale è già in corso.",
+          body: "RSA è la matematica sotto ogni handshake TLS che il tuo browser ancora negozia con un certificato RSA, sotto le chiavi host SSH, sotto le catene di firma del codice che autenticano le app di Apple e Google, sotto i passaporti elettronici e le prime generazioni di blockchain. Ma nel 1994 Peter Shor scrisse un algoritmo quantistico che fattorizza gli interi in tempo polinomiale: dato un computer quantistico fault-tolerant sufficientemente grande, RSA si rompe. Non ne esiste ancora uno, ma la tempistica è incerta abbastanza che il NIST ha standardizzato i sostituti post-quantistici (CRYSTALS-Kyber per lo scambio di chiavi nel 2024, CRYSTALS-Dilithium per le firme) e la migrazione globale è già in corso.",
         },
       ],
     },
@@ -1192,7 +1192,7 @@ export const it: StoriesDict = {
         {
           pretitle: "Passo uno · Il mezzo giro",
           title: "Incolla gli estremi con un capovolgimento",
-          body: "Prendi una striscia di carta rettangolare. Dai a un estremo un mezzo giro (180°) prima di incollarlo all'altro. Il risultato ha un solo bordo e un solo lato. Percorrila con una penna e coprirai ciò che sembrano entrambi i ‘lati’ senza mai attraversare il confine; segui il bordo e tornerai al punto di partenza dopo averlo percorso due volte. Scoperto indipendentemente da August Ferdinand Möbius e Johann Benedict Listing nel 1858, la prima superficie non orientabile mai scritta esplicitamente. La sua caratteristica di Eulero è χ = 0.",
+          body: "Prendi una striscia di carta rettangolare. Dai a un estremo un mezzo giro (180°) prima di incollarlo all'altro. Il risultato ha un solo bordo e un solo lato. Percorrila con una penna e coprirai ciò che sembrano entrambi i ‘lati’ senza mai attraversare il confine; segui il bordo e tornerai al punto di partenza dopo averlo percorso due volte. Scoperto indipendentemente da August Ferdinand Möbius e Johann Benedict Listing nel 1858: la prima superficie non orientabile mai scritta esplicitamente. La sua caratteristica di Eulero è χ = 0.",
         },
         {
           pretitle: "Passo due · Sorprese al taglio",

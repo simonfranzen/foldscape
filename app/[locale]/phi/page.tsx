@@ -188,7 +188,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Sonnenblumen und der 137,5°-Winkel",
       title: "Drehe um 360°/φ² zwischen den Samen",
-      body: "Setz Samen n auf Radius √n und dreh ihn um einen festen Winkel α gegen den vorigen. Ist α ein rationaler Bruchteil einer Umdrehung, reihen sich die Samen auf wenigen Speichen auf und lassen Lücken. Wähl α = 360°/φ² ≈ 137,508°, und die «irrationalste» Eigenschaft von φ garantiert, dass sich die Samen nie ausrichten: sie packen sich dicht, gleichmäßig, ohne Vorzugsrichtung. Der Simulator unten zeigt die Fehlermodi schmerzhaft deutlich.",
+      body: "Setz Samen n auf Radius √n und dreh ihn um einen festen Winkel α gegen den vorigen. Ist α ein rationaler Bruchteil einer Umdrehung, reihen sich die Samen auf wenigen Speichen auf und lassen Lücken. Wähl α = 360°/φ² ≈ 137,508°, und die «irrationalste» Eigenschaft von φ garantiert, dass sich die Samen nie ausrichten: Sie packen sich dicht, gleichmäßig, ohne Vorzugsrichtung. Der Simulator unten zeigt die Fehlermodi schmerzhaft deutlich.",
     },
     {
       pretitle: "Abschnitt 05 · Goldenes Rechteck und Spirale",
@@ -198,7 +198,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Wo φ wirklich ist, und wo nicht",
       title: "Robuste Biologie gegen rückwirkende Mythologie",
-      body: "Parthenon, Mona Lisa, Nautilus-Schale: die berühmten «goldener Schnitt in der Kunst»-Belege sind meist Bestätigungsfehler und gerundete Messungen. Wo φ ehrlich lebt, ist in Wachstum und Packung: Phyllotaxis, Kettenbruchtheorie, Penrose-Parkettierungen und Quasikristalle. Echt, schmaler als die Plakate behaupten, und weit interessanter als die Mythologie.",
+      body: "Parthenon, Mona Lisa, Nautilus-Schale: Die berühmten «goldener Schnitt in der Kunst»-Belege sind meist Bestätigungsfehler und gerundete Messungen. Wo φ ehrlich lebt, ist in Wachstum und Packung: Phyllotaxis, Kettenbruchtheorie, Penrose-Parkettierungen und Quasikristalle. Echt, schmaler als die Plakate behaupten, und weit interessanter als die Mythologie.",
     },
   ],
   sunflower: {
@@ -716,7 +716,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Solsikker og 137,5°-vinkelen",
       title: "Vri med 360°/φ² mellom frøene",
-      body: "Plasser frø n på radius √n og vri det en fast vinkel α i forhold til det forrige. Er α en rasjonal brøkdel av en omdreining, stiller frøene seg på noen få eiker og lar tomrom stå igjen. Velg α = 360°/φ² ≈ 137,508°, og φs «mest irrasjonale»-egenskap sikrer at de aldri stiller seg på linje: de pakker seg tett, jevnt, uten foretrukket retning. Simulatoren under gjør feilmodusene smertelig synlige.",
+      body: "Plasser frø n på radius √n og vri det en fast vinkel α i forhold til det forrige. Er α en rasjonal brøkdel av en omdreining, stiller frøene seg på noen få eiker og lar tomrom stå igjen. Velg α = 360°/φ² ≈ 137,508°, og φs «mest irrasjonale»-egenskap sikrer at de aldri stiller seg på linje: De pakker seg tett, jevnt, uten foretrukket retning. Simulatoren under gjør feilmodusene smertelig synlige.",
     },
     {
       pretitle: "Avsnitt 05 · Gylden rektangel og spiral",
@@ -726,7 +726,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Hvor φ virkelig er, og hvor det ikke er",
       title: "Robust biologi mot etterpåtilpasset mytologi",
-      body: "Parthenon, Mona Lisa, nautilusskallet: de berømte «gylne snitt i kunsten»-tilpasningene er mest bekreftelsesskjevhet og avrundede mål. Der φ virkelig lever er i vekst og pakking: phyllotaxis, kjedebrøksteori, Penrose-flislegginger og kvasikrystaller. Ekte, smalere enn plakatene antyder, og langt mer interessant enn mytologien.",
+      body: "Parthenon, Mona Lisa, nautilusskallet: De berømte «gylne snitt i kunsten»-tilpasningene er mest bekreftelsesskjevhet og avrundede mål. Der φ virkelig lever er i vekst og pakking: phyllotaxis, kjedebrøksteori, Penrose-flislegginger og kvasikrystaller. Ekte, smalere enn plakatene antyder, og langt mer interessant enn mytologien.",
     },
   ],
   sunflower: {

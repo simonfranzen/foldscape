@@ -323,7 +323,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Live-Demo",
       title: "Drei Regeln, ein Schwarm",
-      body: "Jedes Dreieck ist ein Boid mit derselben Trennung-Ausrichtung-Zusammenhalt-Aktualisierung. Nichts ist skriptiert: die Bahnen, Spaltungen und Wiedervereinigungen kommen alle aus lokalen Interaktionen. Schau ein paar Sekunden lang den Wirbeln zu: Jedes Muster, das du siehst, ist emergent.",
+      body: "Jedes Dreieck ist ein Boid mit derselben Trennung-Ausrichtung-Zusammenhalt-Aktualisierung. Nichts ist skriptiert: Die Bahnen, Spaltungen und Wiedervereinigungen kommen alle aus lokalen Interaktionen. Schau ein paar Sekunden lang den Wirbeln zu: Jedes Muster, das du siehst, ist emergent.",
     },
     {
       pretitle: "Abschnitt 06 · Emergenz und Anwendungen",
@@ -463,7 +463,7 @@ const fr: RichStory = {
       {
         label: "01",
         title: "L'idée centrale",
-        body: "En 1986, Craig Reynolds s'est demandé si une nuée a besoin d'un chorégraphe. Il a donné à chaque oiseau simulé (un «boid») trois instincts locaux et les a lâchés. À force d'observer ses voisins, une nuée apparaît.",
+        body: "En 1986, Craig Reynolds s'est demandé si une nuée a besoin d'un chorégraphe. Il a donné à chaque oiseau simulé (un « boid ») trois instincts locaux et les a lâchés. À force d'observer ses voisins, une nuée apparaît.",
       },
       {
         label: "02",
@@ -493,7 +493,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · Règle 2",
       title: "Alignement",
-      body: "Moyenne les vitesses de tous les voisins dans le rayon de perception et tourne pour suivre ce cap moyen. Sans alignement, les boids s'agglutinent mais regardent dans tous les sens : il n'y a aucune «direction de la nuée».",
+      body: "Moyenne les vitesses de tous les voisins dans le rayon de perception et tourne pour suivre ce cap moyen. Sans alignement, les boids s'agglutinent mais regardent dans tous les sens : il n'y a aucune « direction de la nuée ».",
     },
     {
       pretitle: "Section 04 · Règle 3",
@@ -508,7 +508,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 06 · Émergence et applications",
       title: "De SIGGRAPH aux spectacles de drones",
-      body: "Reynolds a présenté les boids à SIGGRAPH 1987 ; cinq et sept ans plus tard, les chauves-souris de Batman, le défi (1992) et la ruée des gnous du Roi Lion (1994) tournaient sur le même moteur. Aujourd'hui leurs descendants pilotent les essaims de drones Shooting Star d'Intel, simulent les évacuations de foule et alimentent l'optimisation par essaim de particules, un algorithme où les solutions candidates «volent en nuée» vers la meilleure.",
+      body: "Reynolds a présenté les boids à SIGGRAPH 1987 ; cinq et sept ans plus tard, les chauves-souris de Batman, le défi (1992) et la ruée des gnous du Roi Lion (1994) tournaient sur le même moteur. Aujourd'hui leurs descendants pilotent les essaims de drones Shooting Star d'Intel, simulent les évacuations de foule et alimentent l'optimisation par essaim de particules, un algorithme où les solutions candidates « volent en nuée » vers la meilleure.",
     },
   ],
   demoCaption: "En direct · 120 boids, trois règles",
@@ -862,7 +862,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Live-demo",
       title: "Tre regler, én flokk",
-      body: "Hver trekant er en boid som kjører den samme separasjon-retning-samhold-oppdateringen. Ingenting er skriptet: strømmene, splittelsene og gjenforeningene kommer alle fra lokale samhandlinger. Se virvlene danne seg noen sekunder: Hvert mønster du ser er emergent.",
+      body: "Hver trekant er en boid som kjører den samme separasjon-retning-samhold-oppdateringen. Ingenting er skriptet: Strømmene, splittelsene og gjenforeningene kommer alle fra lokale samhandlinger. Se virvlene danne seg noen sekunder: Hvert mønster du ser er emergent.",
     },
     {
       pretitle: "Avsnitt 06 · Emergens og anvendelser",

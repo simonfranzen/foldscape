@@ -267,7 +267,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape deux · La formule d'Euler",
           title: "e^(iθ) = cos θ + i sin θ",
-          body: "L'identité, c'est ce que rend la formule d'Euler pour un angle bien précis, publiée dans son Introductio in analysin infinitorum de 1748. Pour tout nombre réel θ, la formule dit que e^(iθ) (une exponentielle à exposant imaginaire) égale cos θ + i sin θ. Géométriquement : à mesure que θ croît, le point e^(iθ) parcourt le cercle unité dans le sens trigonométrique du plan complexe. Multiplier par e^(iθ) est une rotation d'angle θ. La croissance et la rotation, les deux choses que e et i font secrètement, se révèlent être la même opération vue sous deux angles.",
+          body: "L'identité, c'est ce que rend la formule d'Euler pour un angle bien précis, publiée dans son Introductio in analysin infinitorum de 1748. Pour tout nombre réel θ, la formule dit que e^(iθ), une exponentielle à exposant imaginaire, égale cos θ + i sin θ. Géométriquement : à mesure que θ croît, le point e^(iθ) parcourt le cercle unité dans le sens trigonométrique du plan complexe. Multiplier par e^(iθ) est une rotation d'angle θ. La croissance et la rotation, les deux choses que e et i font secrètement, se révèlent être la même opération vue sous deux angles.",
         },
         {
           pretitle: "Étape trois · Substituer θ = π",
@@ -302,7 +302,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape trois · Le groupe libre de rotations",
           title: "F₂, engendré par deux rotations",
-          body: "Le cœur de la preuve est purement théorique des groupes. Deux rotations a et b de la sphère unité S² convenablement choisies ne satisfont aucune relation autre que les triviales : elles engendrent un groupe libre F₂ de rang 2 : chaque mot réduit en a, a⁻¹, b, b⁻¹ agit comme une rotation différente. F₂ admet une décomposition paradoxale : il se scinde en quatre ensembles W(a), W(a⁻¹), W(b), W(b⁻¹) (mots commençant par chaque générateur), plus l'identité, et chaque ensemble décalé recouvre le reste du groupe. Passe cela par le paradoxe de la sphère de Hausdorff (1914), relève de S² à la boule pleine, et la duplication sur le groupe devient une duplication de B³.",
+          body: "Le cœur de la preuve est purement théorique des groupes. Deux rotations a et b de la sphère unité S² convenablement choisies ne satisfont aucune relation autre que les triviales : elles engendrent un groupe libre F₂ de rang 2, dans lequel chaque mot réduit en a, a⁻¹, b, b⁻¹ agit comme une rotation différente. F₂ admet une décomposition paradoxale : il se scinde en quatre ensembles W(a), W(a⁻¹), W(b), W(b⁻¹) (mots commençant par chaque générateur), plus l'identité, et chaque ensemble décalé recouvre le reste du groupe. Passe cela par le paradoxe de la sphère de Hausdorff (1914), relève de S² à la boule pleine, et la duplication sur le groupe devient une duplication de B³.",
         },
         {
           pretitle: "Étape quatre · Pourquoi cela ne casse pas le monde",
@@ -332,7 +332,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape trois · Exemples classiques",
           title: "Quatre règles, quatre fractales",
-          body: "Flocon de Koch : axiome F++F++F, règle F → F−F++F−F, angle 60°. Quatre itérations et le triangle s'est fripé en flocon. Courbe du dragon : axiome FX, règles X → X+YF+, Y → −FX−Y, angle 90° ; au bout d'une douzaine de réécritures, elle se plie en dragon de Heighway. Pointe de flèche de Sierpiński : A → B−A−B, B → A+B+A, angle 60°, alterne la parité pour balayer le triangle de Sierpiński. Plante fractale : X → F+[[X]−X]−F[−FX]+X, F → FF, angle 25° : la fougère canonique de Lindenmayer et Prusinkiewicz, branches comprises. Même machinerie, organismes radicalement différents.",
+          body: "Flocon de Koch : axiome F++F++F, règle F → F−F++F−F, angle 60°. Quatre itérations et le triangle s'est fripé en flocon. Courbe du dragon : axiome FX, règles X → X+YF+, Y → −FX−Y, angle 90° ; au bout d'une douzaine de réécritures, elle se plie en dragon de Heighway. Pointe de flèche de Sierpiński : A → B−A−B, B → A+B+A, angle 60°, alterne la parité pour balayer le triangle de Sierpiński. Plante fractale : X → F+[[X]−X]−F[−FX]+X, F → FF, angle 25°, la fougère canonique de Lindenmayer et Prusinkiewicz, branches comprises. Même machinerie, organismes radicalement différents.",
         },
         {
           pretitle: "Étape quatre · Pourquoi les botanistes les adorent",
@@ -562,7 +562,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape un · Deux tuiles, jamais répétées",
           title: "Penrose, 1974",
-          body: "Roger Penrose a introduit son premier pavage apériodique (P1) en 1974, en utilisant six prototuiles construites autour du pentagone. Il a vite ramené le jeu à deux : la paire cerf-volant + fléchette (P2) et la paire à deux losanges (P3) : un losange mince aux angles 36°/144° et un losange épais aux angles 72°/108°. Chaque tuile porte les règles d'appariement de Conway : des flèches ou encoches colorées sur les arêtes qui fixent quelles tuiles peuvent côtoyer lesquelles. Sans elles, on pourrait paver périodiquement avec cerfs-volants et fléchettes ; avec elles, tout pavage légal est forcé d'être apériodique.",
+          body: "Roger Penrose a introduit son premier pavage apériodique (P1) en 1974, en utilisant six prototuiles construites autour du pentagone. Il a vite ramené le jeu à deux : la paire cerf-volant + fléchette (P2) et la paire à deux losanges (P3), un losange mince aux angles 36°/144° et un losange épais aux angles 72°/108°. Chaque tuile porte les règles d'appariement de Conway : des flèches ou encoches colorées sur les arêtes qui fixent quelles tuiles peuvent côtoyer lesquelles. Sans elles, on pourrait paver périodiquement avec cerfs-volants et fléchettes ; avec elles, tout pavage légal est forcé d'être apériodique.",
         },
         {
           pretitle: "Étape deux · Symétrie d'ordre cinq",
@@ -736,7 +736,7 @@ export const fr: StoriesDict = {
       title: "L'argument diagonal de Cantor",
       tagline: "L'infini a des tailles.",
       intro:
-        "L'argument diagonal de Georg Cantor de 1891 est la preuve la plus nette en mathématiques que certaines infinités sont plus grandes que d'autres. L'Explorateur anime la construction en direct : choisis n'importe quelle énumération de décimaux dans [0,1] et regarde un nouveau réel sortir de la diagonale : un nombre qui ne peut pas figurer sur ta liste, peu importe la manière dont tu l'ordonnes.",
+        "L'argument diagonal de Georg Cantor de 1891 est la preuve la plus nette en mathématiques que certaines infinités sont plus grandes que d'autres. L'Explorateur anime la construction en direct : choisis n'importe quelle énumération de décimaux dans [0,1] et regarde un nouveau réel sortir de la diagonale, un nombre qui ne peut pas figurer sur ta liste, peu importe la manière dont tu l'ordonnes.",
       ctaInteractive: "→ Ouvrir l'Explorateur",
       sections: [
         {
@@ -1178,7 +1178,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape quatre · Où en est-on aujourd'hui",
           title: "De TLS à la migration post-quantique",
-          body: "RSA, c'est la mathématique sous chaque poignée de main TLS que ton navigateur négocie encore avec un certificat RSA, sous les clés d'hôte SSH, sous les chaînes de signature de code qui authentifient les apps d'Apple et de Google, sous les passeports électroniques et les premières générations de blockchain. Mais en 1994, Peter Shor a écrit un algorithme quantique qui factorise les entiers en temps polynomial, étant donné un ordinateur quantique tolérant aux fautes suffisamment grand, RSA se brise. Aucun n'existe encore, mais le calendrier est assez incertain pour que le NIST ait normalisé des remplaçants post-quantiques (CRYSTALS-Kyber pour l'échange de clés en 2024, CRYSTALS-Dilithium pour les signatures) et la migration mondiale est déjà en cours.",
+          body: "RSA, c'est la mathématique sous chaque poignée de main TLS que ton navigateur négocie encore avec un certificat RSA, sous les clés d'hôte SSH, sous les chaînes de signature de code qui authentifient les apps d'Apple et de Google, sous les passeports électroniques et les premières générations de blockchain. Mais en 1994, Peter Shor a écrit un algorithme quantique qui factorise les entiers en temps polynomial : étant donné un ordinateur quantique tolérant aux fautes suffisamment grand, RSA se brise. Aucun n'existe encore, mais le calendrier est assez incertain pour que le NIST ait normalisé des remplaçants post-quantiques (CRYSTALS-Kyber pour l'échange de clés en 2024, CRYSTALS-Dilithium pour les signatures) et la migration mondiale est déjà en cours.",
         },
       ],
     },
@@ -1198,7 +1198,7 @@ export const fr: StoriesDict = {
         {
           pretitle: "Étape deux · Les surprises du ciseau",
           title: "Ce que les ciseaux révèlent sur la topologie",
-          body: "Coupe le ruban de Möbius par le milieu. Il ne tombe pas en morceaux : tu obtiens une bande plus longue avec deux tours complets (quatre demi-tours), et surtout cette bande est de nouveau à deux côtés. Coupe un ruban de Möbius à un tiers de la distance d'un bord, en gardant la coupe parallèle au bord tout du long, et les ciseaux font deux fois le tour avant de refermer la boucle : il en sort deux anneaux entrelacés : un nouveau ruban de Möbius plus étroit (toujours avec un seul demi-tour) et un anneau plus long à deux côtés avec deux demi-tours (qui n'est plus un ruban de Möbius), enlacés l'un dans l'autre. La topologie regorge de ces surprises : la torsion globale cachée par la planéité locale.",
+          body: "Coupe le ruban de Möbius par le milieu. Il ne tombe pas en morceaux : tu obtiens une bande plus longue avec deux tours complets (quatre demi-tours), et surtout cette bande est de nouveau à deux côtés. Coupe un ruban de Möbius à un tiers de la distance d'un bord, en gardant la coupe parallèle au bord tout du long, et les ciseaux font deux fois le tour avant de refermer la boucle : il en sort deux anneaux entrelacés, un nouveau ruban de Möbius plus étroit (toujours avec un seul demi-tour) et un anneau plus long à deux côtés avec deux demi-tours (qui n'est plus un ruban de Möbius), enlacés l'un dans l'autre. La topologie regorge de ces surprises : la torsion globale cachée par la planéité locale.",
         },
         {
           pretitle: "Étape trois · La bouteille de Klein",

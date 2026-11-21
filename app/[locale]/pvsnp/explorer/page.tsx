@@ -1272,9 +1272,9 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     toggleHint: "Klikk på variabler for å veksle T → F → uten verdi.",
     verifierOutput: "Verifiserer-utdata",
     currentNode: "Gjeldende node",
-    verifierSatisfied: "✓ OPPFYLT: hver klausul er sann.",
-    verifierFalsified: "✗ FALSIFISERT: minst én klausul er brutt.",
-    verifierIncomplete: "… ufullstendig: noen variabler er uten verdi.",
+    verifierSatisfied: "✓ OPPFYLT: Hver klausul er sann.",
+    verifierFalsified: "✗ FALSIFISERT: Minst én klausul er brutt.",
+    verifierIncomplete: "… ufullstendig: Noen variabler er uten verdi.",
     verifierFootnote:
       "Verifiseringen går gjennom de m klausulene én gang og sjekker hver i O(1). Totalarbeid: O(m), uavhengig av søkerommet. Det er det som plasserer problemet i NP.",
     verdictLabel: "dom",
@@ -1330,7 +1330,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     modeSolve: "Løs",
     modeVerify: "Verifiser",
     modeFootnote:
-      "«Løs» kjører DPLL (potensielt eksponentielt). «Verifiser» setter bare inn en tilordning i m klausuler: det er O(m)-sertifikatet som plasserer 3-SAT i NP.",
+      "«Løs» kjører DPLL (potensielt eksponentielt). «Verifiser» setter bare inn en tilordning i m klausuler: Det er O(m)-sertifikatet som plasserer 3-SAT i NP.",
     actionReady: "Klar.",
     actionSat: (depth) => `SAT: tilordning funnet på dybde ${depth}.`,
     actionConflict: "Konflikt: backtracker.",

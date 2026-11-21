@@ -140,7 +140,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Nimm eine massive Orange. Zerlege sie, rein mathematisch, in genau fünf Teile. Keine Orangenspalten: jedes Teil ist eine dichte, ineinander verwobene Punktwolke, die durch die ganze Frucht zieht. Drehe jede Wolke starr an Ort und Stelle, kein Strecken, keine zusätzliche Materie. Die fünf Teile fügen sich zu zwei massiven Orangen zusammen, jede so groß wie die ursprüngliche und nicht von ihr zu unterscheiden. Der Schnitt ist exakt definiert, aber physikalisch nicht ausführbar: kein Skalpell kann ihm folgen, denn er existiert nur im Kontinuum.",
+        body: "Nimm eine massive Orange. Zerlege sie, rein mathematisch, in genau fünf Teile. Keine Orangenspalten: Jedes Teil ist eine dichte, ineinander verwobene Punktwolke, die durch die ganze Frucht zieht. Drehe jede Wolke starr an Ort und Stelle, kein Strecken, keine zusätzliche Materie. Die fünf Teile fügen sich zu zwei massiven Orangen zusammen, jede so groß wie die ursprüngliche und nicht von ihr zu unterscheiden. Der Schnitt ist exakt definiert, aber physikalisch nicht ausführbar: Kein Skalpell kann ihm folgen, denn er existiert nur im Kontinuum.",
       },
       {
         label: "03",
@@ -159,27 +159,27 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Das Auswahlaxiom",
       title: "Aus jeder Menge eines wählen, überabzählbar oft",
-      body: "Das Auswahlaxiom besagt: aus jeder Sammlung nichtleerer Mengen kannst du gleichzeitig je ein Element auswählen, selbst wenn die Sammlung überabzählbar ist und du keine Regel hast, wie zu wählen sei. Für endliche oder abzählbare Sammlungen ist das offensichtlich. Für überabzählbare ist es eine reine Deklaration: ein Wähler existiert, Punkt. Banach und Tarski nutzen es, um aus überabzählbar vielen Bahnen einer Drehgruppe auf der Sphäre je einen Vertreter zu picken. Aus diesem einen Akt der Auswahl folgt die Verdopplung.",
+      body: "Das Auswahlaxiom besagt: Aus jeder Sammlung nichtleerer Mengen kannst du gleichzeitig je ein Element auswählen, selbst wenn die Sammlung überabzählbar ist und du keine Regel hast, wie zu wählen sei. Für endliche oder abzählbare Sammlungen ist das offensichtlich. Für überabzählbare ist es eine reine Deklaration: Ein Wähler existiert, Punkt. Banach und Tarski nutzen es, um aus überabzählbar vielen Bahnen einer Drehgruppe auf der Sphäre je einen Vertreter zu picken. Aus diesem einen Akt der Auswahl folgt die Verdopplung.",
     },
     {
       pretitle: "Abschnitt 03 · Nichtmessbare Mengen",
       title: "Stücke ohne Volumen",
-      body: "Das Lebesgue-Maß ordnet jeder vernünftig zeichenbaren Menge ein Volumen zu. Doch Vitali zeigte 1905, dass man (mit dem Auswahlaxiom) eine Teilmenge des Einheitsintervalls konstruieren kann, der überhaupt keine konsistente Länge zukommt: jeder Wert, auch null, führt zum Widerspruch mit den Maßregeln. Die Banach-Tarski-Stücke sind dreidimensionale Verwandte von Vitalis Menge: dichte Punktwolken, deren Volumen wirklich undefiniert ist. Deshalb verletzt die Umlagerung die Volumenerhaltung nicht: die Eingangsstücke hatten nie ein Volumen, das man hätte erhalten können.",
+      body: "Das Lebesgue-Maß ordnet jeder vernünftig zeichenbaren Menge ein Volumen zu. Doch Vitali zeigte 1905, dass man (mit dem Auswahlaxiom) eine Teilmenge des Einheitsintervalls konstruieren kann, der überhaupt keine konsistente Länge zukommt: Jeder Wert, auch null, führt zum Widerspruch mit den Maßregeln. Die Banach-Tarski-Stücke sind dreidimensionale Verwandte von Vitalis Menge: dichte Punktwolken, deren Volumen wirklich undefiniert ist. Deshalb verletzt die Umlagerung die Volumenerhaltung nicht: Die Eingangsstücke hatten nie ein Volumen, das man hätte erhalten können.",
     },
     {
       pretitle: "Abschnitt 04 · Die freie Gruppe F₂",
       title: "Zwei Drehungen, keine Beziehungen",
-      body: "Wähle zwei Drehungen a und b der Einheitssphäre, zum Beispiel beide um den Winkel θ = arccos(1/3), um zwei zueinander senkrechte Achsen. Egal wie du sie verkettest (aba⁻¹b, b²a⁻³, was auch immer), du kommst nie zur Identität zurück, außer indem du Inverse trivial kürzt. Die Gruppe, die sie erzeugen, ist die freie Gruppe F₂ über zwei Buchstaben: jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine andere Drehung. F₂ hat eine paradoxe Zerlegung: zerteile sie in die vier Stücke der Wörter, die mit je einem Erzeuger beginnen. Verschiebe das a⁻¹-Stück um a, und es wird zu jedem Wort, das nicht mit a beginnt, also den drei anderen Stücken plus der Identität, sodass W(a) zusammen mit diesem verschobenen Stück bereits ganz F₂ ausfüllt. Mach dasselbe mit b, und du füllst F₂ ein zweites Mal, sodass zwei der vier Stücke die ganze Gruppe wieder aufbauen und die anderen zwei sie erneut. Die Sphäre erbt dieselbe Eigenschaft, und danach die Kugel.",
+      body: "Wähle zwei Drehungen a und b der Einheitssphäre, zum Beispiel beide um den Winkel θ = arccos(1/3), um zwei zueinander senkrechte Achsen. Egal wie du sie verkettest (aba⁻¹b, b²a⁻³, was auch immer), du kommst nie zur Identität zurück, außer indem du Inverse trivial kürzt. Die Gruppe, die sie erzeugen, ist die freie Gruppe F₂ über zwei Buchstaben: Jedes reduzierte Wort in a, a⁻¹, b, b⁻¹ ist eine andere Drehung. F₂ hat eine paradoxe Zerlegung: Zerteile sie in die vier Stücke der Wörter, die mit je einem Erzeuger beginnen. Verschiebe das a⁻¹-Stück um a, und es wird zu jedem Wort, das nicht mit a beginnt, also den drei anderen Stücken plus der Identität, sodass W(a) zusammen mit diesem verschobenen Stück bereits ganz F₂ ausfüllt. Mach dasselbe mit b, und du füllst F₂ ein zweites Mal, sodass zwei der vier Stücke die ganze Gruppe wieder aufbauen und die anderen zwei sie erneut. Die Sphäre erbt dieselbe Eigenschaft, und danach die Kugel.",
     },
     {
       pretitle: "Abschnitt 05 · Die tatsächliche Zerlegung",
       title: "Fünf Stücke, und Robinson bewies, dass weniger nicht geht",
-      body: "Die Originalarbeit von Banach und Tarski (1924) gibt eine Konstruktion mit endlich vielen Stücken; spätere Verfeinerungen drückten die Zahl auf fünf. Raphael M. Robinson bewies 1947, dass fünf scharf ist: vier reichen nicht. Eines der fünf Stücke ist ein einzelner Punkt im Zentrum, ein Artefakt des Verhaltens der Drehungen am Ursprung; die anderen vier sind die dichten, nichtmessbaren Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet und in die Kugel zurückträgt. Jedes Stück wird als starrer Körper gedreht, ohne Strecken, und am Ende stehen zwei massive Kugeln da, ununterscheidbar vom Original.",
+      body: "Die Originalarbeit von Banach und Tarski (1924) gibt eine Konstruktion mit endlich vielen Stücken; spätere Verfeinerungen drückten die Zahl auf fünf. Raphael M. Robinson bewies 1947, dass fünf scharf ist: Vier reichen nicht. Eines der fünf Stücke ist ein einzelner Punkt im Zentrum, ein Artefakt des Verhaltens der Drehungen am Ursprung; die anderen vier sind die dichten, nichtmessbaren Punktwolken, die die F₂-Wirkung aus der Sphäre schneidet und in die Kugel zurückträgt. Jedes Stück wird als starrer Körper gedreht, ohne Strecken, und am Ende stehen zwei massive Kugeln da, ununterscheidbar vom Original.",
     },
     {
       pretitle: "Abschnitt 06 · Warum es kein Widerspruch ist",
       title: "Verschiedene Welten, verschiedene Regeln",
-      body: "Physikalische Stücke haben ein Maß: man kann sie wiegen, ihr Volumen messen, ihre Atome zählen. Banach-Tarski-Stücke haben kein Maß: sie sind überabzählbare, dichte, unphysikalische Mengen. Volumenerhaltung ist eine Aussage über messbare Dinge, und der Satz behauptet nie, dass die Stücke messbar seien; er behauptet das Gegenteil. Materie hat Atome, die Mengenlehre nicht. Das Paradox ist eine exakte, formale Warnung: das Kontinuum hat Strukturen, die wir nicht anfassen können, und die beruhigende Gleichung «Volumen rein = Volumen raus» ist eine Eigenschaft braver Mengen, nicht aller Mengen. Das ist die ganze Lektion.",
+      body: "Physikalische Stücke haben ein Maß: Man kann sie wiegen, ihr Volumen messen, ihre Atome zählen. Banach-Tarski-Stücke haben kein Maß: Sie sind überabzählbare, dichte, unphysikalische Mengen. Volumenerhaltung ist eine Aussage über messbare Dinge, und der Satz behauptet nie, dass die Stücke messbar seien; er behauptet das Gegenteil. Materie hat Atome, die Mengenlehre nicht. Das Paradox ist eine exakte, formale Warnung: Das Kontinuum hat Strukturen, die wir nicht anfassen können, und die beruhigende Gleichung «Volumen rein = Volumen raus» ist eine Eigenschaft braver Mengen, nicht aller Mengen. Das ist die ganze Lektion.",
     },
   ],
   freeGroupCaption: "Cayley-Graph von F₂",
@@ -622,7 +622,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Ta en hel appelsin. Skjær den, matematisk, i nøyaktig fem biter. Ingen båter: hver bit er en tett punktsky som er flettet gjennom hele frukten. Roter hver sky stivt på stedet, ingen strekking, ingen ekstra materie. De fem bitene settes sammen til to hele appelsiner, hver like stor som originalen og umulig å skille fra den. Snittet er presist definert, men fysisk uutførbart: ingen skalpell kan følge det, for det finnes bare i kontinuumet.",
+        body: "Ta en hel appelsin. Skjær den, matematisk, i nøyaktig fem biter. Ingen båter: Hver bit er en tett punktsky som er flettet gjennom hele frukten. Roter hver sky stivt på stedet, ingen strekking, ingen ekstra materie. De fem bitene settes sammen til to hele appelsiner, hver like stor som originalen og umulig å skille fra den. Snittet er presist definert, men fysisk uutførbart: Ingen skalpell kan følge det, for det finnes bare i kontinuumet.",
       },
       {
         label: "03",
@@ -641,27 +641,27 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Utvalgsaksiomet",
       title: "Velge én fra hver, utellbart mange ganger",
-      body: "Utvalgsaksiomet sier: gitt en hvilken som helst samling av ikke-tomme mengder kan du samtidig velge ett element fra hver, selv om samlingen er overtellbar og du ikke har noen regel for å velge. For endelige eller tellbare samlinger er det opplagt. For overtellbare samlinger er det en ren erklæring: en velger finnes, punktum. Banach og Tarski bruker det til å plukke én representant fra hver av de overtellbart mange banene til en rotasjonsgruppe som virker på sfæren. Fra det ene valget følger dubleringen.",
+      body: "Utvalgsaksiomet sier: Gitt en hvilken som helst samling av ikke-tomme mengder kan du samtidig velge ett element fra hver, selv om samlingen er overtellbar og du ikke har noen regel for å velge. For endelige eller tellbare samlinger er det opplagt. For overtellbare samlinger er det en ren erklæring: En velger finnes, punktum. Banach og Tarski bruker det til å plukke én representant fra hver av de overtellbart mange banene til en rotasjonsgruppe som virker på sfæren. Fra det ene valget følger dubleringen.",
     },
     {
       pretitle: "Avsnitt 03 · Ikke-målbare mengder",
       title: "Biter uten volum",
-      body: "Lebesgue-målet gir et volum til hver mengde du med rimelighet kan tegne. Men Vitali viste i 1905 at man, med utvalgsaksiomet, kan konstruere en delmengde av enhetsintervallet som ikke tillater noen konsistent lengde i det hele tatt: å gi den hvilken som helst verdi, selv null, bryter målereglene. Banach-Tarski-bitene er tredimensjonale fettere av Vitalis mengde: tette punktskyer hvis volum genuint er udefinert. Det er derfor omplasseringen ikke bryter volumbevaring: innbitene hadde aldri noe volum å bevare.",
+      body: "Lebesgue-målet gir et volum til hver mengde du med rimelighet kan tegne. Men Vitali viste i 1905 at man, med utvalgsaksiomet, kan konstruere en delmengde av enhetsintervallet som ikke tillater noen konsistent lengde i det hele tatt: Å gi den hvilken som helst verdi, selv null, bryter målereglene. Banach-Tarski-bitene er tredimensjonale fettere av Vitalis mengde: tette punktskyer hvis volum genuint er udefinert. Det er derfor omplasseringen ikke bryter volumbevaring: Innbitene hadde aldri noe volum å bevare.",
     },
     {
       pretitle: "Avsnitt 04 · Den frie gruppen F₂",
       title: "To rotasjoner, ingen relasjoner",
-      body: "Velg to rotasjoner a og b av enhetssfæren, for eksempel begge med vinkelen θ = arccos(1/3), om to vinkelrette akser. Uansett hvordan du komponerer dem (aba⁻¹b, b²a⁻³, hva det skal være) kommer du aldri tilbake til identiteten utenom triviell inverskansellering. Gruppen de genererer er den frie gruppen F₂ over to bokstaver: hvert redusert ord i a, a⁻¹, b, b⁻¹ er en distinkt rotasjon. F₂ har en paradoksal dekomposisjon: del den i de fire bitene av ord som starter med hver generator. Forskyv a⁻¹-biten med a, og den blir hvert ord som ikke starter med a, altså de tre andre bitene pluss identiteten, slik at W(a) sammen med den forskjøvne biten allerede fyller hele F₂. Gjør det samme med b, og du fyller F₂ en gang til, så to av de fire bitene bygger opp hele gruppen og de andre to bygger den opp igjen. Sfæren arver samme egenskap, og deretter kulen.",
+      body: "Velg to rotasjoner a og b av enhetssfæren, for eksempel begge med vinkelen θ = arccos(1/3), om to vinkelrette akser. Uansett hvordan du komponerer dem (aba⁻¹b, b²a⁻³, hva det skal være) kommer du aldri tilbake til identiteten utenom triviell inverskansellering. Gruppen de genererer er den frie gruppen F₂ over to bokstaver: Hvert redusert ord i a, a⁻¹, b, b⁻¹ er en distinkt rotasjon. F₂ har en paradoksal dekomposisjon: Del den i de fire bitene av ord som starter med hver generator. Forskyv a⁻¹-biten med a, og den blir hvert ord som ikke starter med a, altså de tre andre bitene pluss identiteten, slik at W(a) sammen med den forskjøvne biten allerede fyller hele F₂. Gjør det samme med b, og du fyller F₂ en gang til, så to av de fire bitene bygger opp hele gruppen og de andre to bygger den opp igjen. Sfæren arver samme egenskap, og deretter kulen.",
     },
     {
       pretitle: "Avsnitt 05 · Den faktiske dekomposisjonen",
       title: "Fem biter, og Robinson beviste at det er minimum",
-      body: "Banach og Tarskis originalartikkel (1924) gir en konstruksjon med endelig mange biter; senere forfining presset antallet ned til fem. Raphael M. Robinson beviste i 1947 at fem er skarpt: fire er ikke nok. En av de fem er et enkelt punkt i sentrum, en artefakt av hvordan rotasjonene oppfører seg ved origo; de andre fire er de tette, ikke-målbare punktskyene som F₂-virkningen kutter ut av sfæren og bærer inn i kulen. Hver bit roteres som et stivt legeme, uten strekking, og resultatet er to massive kuler som ikke kan skilles fra originalen.",
+      body: "Banach og Tarskis originalartikkel (1924) gir en konstruksjon med endelig mange biter; senere forfining presset antallet ned til fem. Raphael M. Robinson beviste i 1947 at fem er skarpt: Fire er ikke nok. En av de fem er et enkelt punkt i sentrum, en artefakt av hvordan rotasjonene oppfører seg ved origo; de andre fire er de tette, ikke-målbare punktskyene som F₂-virkningen kutter ut av sfæren og bærer inn i kulen. Hver bit roteres som et stivt legeme, uten strekking, og resultatet er to massive kuler som ikke kan skilles fra originalen.",
     },
     {
       pretitle: "Avsnitt 06 · Hvorfor det ikke er en motsigelse",
       title: "Forskjellige verdener, forskjellige regler",
-      body: "Fysiske biter har mål: du kan veie dem, måle volumet deres, telle atomene deres. Banach-Tarski-biter har ikke mål: de er overtellbare, tette, ufysiske mengder. Volumbevaring er en påstand om målbare ting, og teoremet sier aldri at bitene er målbare; det sier det motsatte. Materie har atomer, mengdelæren har ikke det. Paradokset er en eksakt, formell advarsel: kontinuumet har struktur vi ikke kan ta på, og den betryggende ligningen «volum inn = volum ut» er en egenskap ved snille mengder, ikke alle. Det er hele leksjonen.",
+      body: "Fysiske biter har mål: Du kan veie dem, måle volumet deres, telle atomene deres. Banach-Tarski-biter har ikke mål: De er overtellbare, tette, ufysiske mengder. Volumbevaring er en påstand om målbare ting, og teoremet sier aldri at bitene er målbare; det sier det motsatte. Materie har atomer, mengdelæren har ikke det. Paradokset er en eksakt, formell advarsel: Kontinuumet har struktur vi ikke kan ta på, og den betryggende ligningen «volum inn = volum ut» er en egenskap ved snille mengder, ikke alle. Det er hele leksjonen.",
     },
   ],
   freeGroupCaption: "Cayley-graf for F₂",

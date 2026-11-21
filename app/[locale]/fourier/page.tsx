@@ -160,7 +160,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die zentrale Idee",
-        body: "Jede Schwingung, die du dir vorstellen kannst (ein Geigenton, eine EKG-Spur, die Kanten eines Fotos, das Funksignal in deiner Tasche) ist heimlich ein Stapel reiner Sinuswellen, übereinandergelegt. Ändere das Rezept der Sinusse, und du änderst Klang, Bild, Signal. Diese eine Tatsache ist die Fourier-Transformation.",
+        body: "Jede Schwingung, die du dir vorstellen kannst (ein Geigenton, eine EKG-Spur, die Kanten eines Fotos, das Funksignal in deiner Tasche), ist heimlich ein Stapel reiner Sinuswellen, übereinandergelegt. Ändere das Rezept der Sinusse, und du änderst Klang, Bild, Signal. Diese eine Tatsache ist die Fourier-Transformation.",
       },
       {
         label: "02",
@@ -189,7 +189,7 @@ const de: RichStory = {
     {
       pretitle: "Schritt drei · Zeitbereich ↔ Frequenzbereich",
       title: "Zwei Fenster auf dasselbe Signal",
-      body: "Die Fourier-Transformation ist ein Koordinatenwechsel. Dasselbe Signal hat zwei gleichwertige Darstellungen: ein Graph gegen die Zeit (die Wellenform auf einem Oszilloskop) und ein Graph gegen die Frequenz (das Spektrum auf einem Analyser). Ein Spektrogramm schiebt ein kurzes Fenster über die Aufnahme, nimmt in jedem Fenster das Spektrum und stapelt sie: eine Melodie wird zu einer leuchtenden Klavierrolle aus Frequenz und Zeit. Mit den Reglern hier formst du eine Seite und siehst die andere live mitlaufen.",
+      body: "Die Fourier-Transformation ist ein Koordinatenwechsel. Dasselbe Signal hat zwei gleichwertige Darstellungen: ein Graph gegen die Zeit (die Wellenform auf einem Oszilloskop) und ein Graph gegen die Frequenz (das Spektrum auf einem Analyser). Ein Spektrogramm schiebt ein kurzes Fenster über die Aufnahme, nimmt in jedem Fenster das Spektrum und stapelt sie: Eine Melodie wird zu einer leuchtenden Klavierrolle aus Frequenz und Zeit. Mit den Reglern hier formst du eine Seite und siehst die andere live mitlaufen.",
     },
     {
       pretitle: "Schritt vier · Kontinuierlich, diskret und die FFT",
@@ -199,7 +199,7 @@ const de: RichStory = {
     {
       pretitle: "Schritt fünf · Die Unschärferelation",
       title: "Ein Signal kann nicht in beiden Welten scharf sein",
-      body: "Pferche ein Signal in ein schmales Zeitfenster, und seine Fourier-Transformierte verteilt sich zwangsläufig auf viele Frequenzen, und umgekehrt. Sei σ_t die Streuung in der Zeit und σ_f die Streuung in der Frequenz. Es gilt σ_t · σ_f ≥ 1/(4π) (oder, mit der Winkelkonvention, σ_t · σ_ω ≥ 1/2), und Gleichheit erreicht allein die Gauß-Funktion, die, schön genug, ihre eigene Fourier-Transformierte ist. Multipliziere beide Seiten mit ℏ und du hast Heisenbergs Orts-Impuls-Ungleichung: das Quantenprinzip ist dieselbe Ungleichung in anderer Gestalt. Zeit und Frequenz sind duale Koordinaten, und der Handel zwischen ihnen ist Mathematik, nicht Ingenieurskunst.",
+      body: "Pferche ein Signal in ein schmales Zeitfenster, und seine Fourier-Transformierte verteilt sich zwangsläufig auf viele Frequenzen, und umgekehrt. Sei σ_t die Streuung in der Zeit und σ_f die Streuung in der Frequenz. Es gilt σ_t · σ_f ≥ 1/(4π) (oder, mit der Winkelkonvention, σ_t · σ_ω ≥ 1/2), und Gleichheit erreicht allein die Gauß-Funktion, die, schön genug, ihre eigene Fourier-Transformierte ist. Multipliziere beide Seiten mit ℏ und du hast Heisenbergs Orts-Impuls-Ungleichung: Das Quantenprinzip ist dieselbe Ungleichung in anderer Gestalt. Zeit und Frequenz sind duale Koordinaten, und der Handel zwischen ihnen ist Mathematik, nicht Ingenieurskunst.",
     },
     {
       pretitle: "Schritt sechs · Kultureller Einfluss",
@@ -795,7 +795,7 @@ const no: RichStory = {
     {
       pretitle: "Trinn fem · Uskarphetsrelasjonen",
       title: "Et signal kan ikke være skarpt i begge verdener",
-      body: "Press et signal inn i et smalt tidsvindu, og Fouriertransformasjonen sprer seg nødvendigvis over mange frekvenser, og omvendt. La σ_t være spredningen i tid og σ_f spredningen i frekvens. Det gjelder σ_t · σ_f ≥ 1/(4π) (eller, i vinkelkonvensjon, σ_t · σ_ω ≥ 1/2), og likhet oppnås kun av gaussfunksjonen, som, vakkert nok, er sin egen Fouriertransformasjon. Multipliser begge sider med ℏ, og du har Heisenbergs posisjons-bevegelsesmengdeulikhet: kvanteprinsippet er samme ulikhet i annen drakt. Tid og frekvens er duale koordinater, og avveiningen mellom dem er matematikk, ikke ingeniørkunst.",
+      body: "Press et signal inn i et smalt tidsvindu, og Fouriertransformasjonen sprer seg nødvendigvis over mange frekvenser, og omvendt. La σ_t være spredningen i tid og σ_f spredningen i frekvens. Det gjelder σ_t · σ_f ≥ 1/(4π) (eller, i vinkelkonvensjon, σ_t · σ_ω ≥ 1/2), og likhet oppnås kun av gaussfunksjonen, som, vakkert nok, er sin egen Fouriertransformasjon. Multipliser begge sider med ℏ, og du har Heisenbergs posisjons-bevegelsesmengdeulikhet: Kvanteprinsippet er samme ulikhet i annen drakt. Tid og frekvens er duale koordinater, og avveiningen mellom dem er matematikk, ikke ingeniørkunst.",
     },
     {
       pretitle: "Trinn seks · Kulturell innflytelse",

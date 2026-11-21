@@ -3238,7 +3238,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bricolage matériel",
         description:
-          "Les projets FPGA et microcontrôleurs affichent souvent Life sur des matrices LED comme «hello world» du matériel cellulaire parallèle.",
+          "Les projets FPGA et microcontrôleurs affichent souvent Life sur des matrices LED comme « hello world » du matériel cellulaire parallèle.",
       },
     ],
     nand: [
@@ -3409,7 +3409,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Philosophie des mathématiques",
         description:
-          "Fréquemment invoqué dans les discussions sur le réalisme mathématique, le sens de l'«infini» et les limites de l'intuition.",
+          "Fréquemment invoqué dans les discussions sur le réalisme mathématique, le sens de l'« infini » et les limites de l'intuition.",
       },
     ],
     lsystem: [
@@ -3465,7 +3465,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Pédagogie",
         description:
-          "Utilisé dans les démonstrations de «tours de nombres» au collège et dans les projets de recherche de licence sur les suites entières.",
+          "Utilisé dans les démonstrations de « tours de nombres » au collège et dans les projets de recherche de licence sur les suites entières.",
       },
     ],
     doublependulum: [
@@ -3504,7 +3504,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Enseignement de la chimie",
         description:
-          "BZR est la plus spectaculaire démo de «chimie vivante» qu'un enseignant de lycée puisse montrer : oscillation visible dans un ballon.",
+          "BZR est la plus spectaculaire démo de « chimie vivante » qu'un enseignant de lycée puisse montrer : oscillation visible dans un ballon.",
       },
       {
         domain: "Théorie primée par le Nobel",
@@ -3626,7 +3626,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Fractions continues",
         description:
-          "φ possède le développement en fraction continue le plus simple [1;1,1,…], ce qui en fait le nombre «le plus irrationnel», concept clé de la théorie KAM en mécanique classique.",
+          "φ possède le développement en fraction continue le plus simple [1;1,1,…], ce qui en fait le nombre « le plus irrationnel », concept clé de la théorie KAM en mécanique classique.",
       },
       {
         domain: "Quasi-cristaux et Penrose",
@@ -3709,7 +3709,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Théorie des langages de programmation",
         description:
-          "Utilisée pour prouver qu'il n'existe aucun système de types «universel» qui décide le typage pour tous les programmes (théorème de Rice).",
+          "Utilisée pour prouver qu'il n'existe aucun système de types « universel » qui décide le typage pour tous les programmes (théorème de Rice).",
       },
       {
         domain: "Cryptographie et complexité",
@@ -3802,7 +3802,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Enseignement",
         description:
-          "Exemple introductif favori des cours sur les automates cellulaires : la phase «autoroute» est l'un des phénomènes émergents les plus accessibles de l'informatique.",
+          "Exemple introductif favori des cours sur les automates cellulaires : la phase « autoroute » est l'un des phénomènes émergents les plus accessibles de l'informatique.",
       },
     ],
     pascalmod: [
@@ -3909,7 +3909,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Démonstrations de chaos",
         description:
-          "Le jouet de bureau «pendule à trois aimants» est la démonstration physique la plus populaire des bassins d'attraction fractals, vendu par ThinkGeek, Nikola Labs et de nombreuses boutiques de cadeaux scientifiques.",
+          "Le jouet de bureau « pendule à trois aimants » est la démonstration physique la plus populaire des bassins d'attraction fractals, vendu par ThinkGeek, Nikola Labs et de nombreuses boutiques de cadeaux scientifiques.",
       },
       {
         domain: "Recherche en lévitation magnétique",
@@ -3958,7 +3958,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Nuages de calcul",
         description:
-          "Les autoscalers cloud ne peuvent jamais garantir que «cette tâche utilisateur se terminera» ; ils imposent des délais parce que décider de l'arrêt est impossible.",
+          "Les autoscalers cloud ne peuvent jamais garantir que « cette tâche utilisateur se terminera » ; ils imposent des délais parce que décider de l'arrêt est impossible.",
       },
       {
         domain: "Enseignement",
@@ -4024,7 +4024,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bandes transporteuses industrielles",
         description:
-          "Les courroies d'entraînement en bande de Möbius s'usent uniformément sur les deux «côtés» (il n'y en a qu'un !), utilisées dans les vieilles presses d'imprimerie, les bandes modernes d'enregistrement et certains systèmes VHS.",
+          "Les courroies d'entraînement en bande de Möbius s'usent uniformément sur les deux « côtés » (il n'y en a qu'un !), utilisées dans les vieilles presses d'imprimerie, les bandes modernes d'enregistrement et certains systèmes VHS.",
       },
       {
         domain: "Génie mécanique",
@@ -4122,7 +4122,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Réseaux sociaux",
         description:
-          "La fonctionnalité «contacts du 2ᵉ degré» de LinkedIn, les cascades de retweets de Twitter et le «vous connaissez peut-être» de Facebook exploitent la structure en petit monde pour la pertinence.",
+          "La fonctionnalité « contacts du 2ᵉ degré » de LinkedIn, les cascades de retweets de Twitter et le « vous connaissez peut-être » de Facebook exploitent la structure en petit monde pour la pertinence.",
       },
       {
         domain: "Modèles épidémiques",
@@ -6414,7 +6414,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Hårdvarukurser",
         description:
-          "Kursen nand2tetris bygger en komplett dator utgående från ett enda NAND-chip, används vid över 100 universitet.",
+          "Kursen nand2tetris bygger en komplett dator utgående från ett enda NAND-chip och används vid över 100 universitet.",
       },
       {
         domain: "Inbäddad logik",
@@ -6968,7 +6968,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Talteori",
         description:
-          "Lucas sats (1878) driver direkt effektiva algoritmer för binomialkoefficienter modulo primtal, används i kryptografi, ordkombinatorik och tävlingsprogrammering.",
+          "Lucas sats (1878) driver direkt effektiva algoritmer för binomialkoefficienter modulo primtal, som används i kryptografi, ordkombinatorik och tävlingsprogrammering.",
       },
       {
         domain: "Kodteori",
@@ -6978,7 +6978,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bildkonst",
         description:
-          "Pascal mod 2 är den algebraiska källan till Sierpiński-triangeln, säljs som affisch, vävs in i mattor och visas i galleriinstallationer.",
+          "Pascal mod 2 är den algebraiska källan till Sierpiński-triangeln, som säljs som affisch, vävs in i mattor och visas i galleriinstallationer.",
       },
     ],
     sternbrocot: [
@@ -7068,7 +7068,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kaosdemonstrationer",
         description:
-          "Skrivbordsleksaken «trekassemagnetpendeln» är den populäraste fysiska demonstrationen av fraktala attraktionsbassänger, säljs av ThinkGeek, Nikola Labs och många science-gift-shoppar.",
+          "Skrivbordsleksaken «trekassemagnetpendeln» är den populäraste fysiska demonstrationen av fraktala attraktionsbassänger och säljs av ThinkGeek, Nikola Labs och många science-gift-shoppar.",
       },
       {
         domain: "Forskning om magnetisk levitation",
@@ -7183,7 +7183,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Industriella transportband",
         description:
-          "Drivremmar i form av en Möbius-band slits jämnt på båda «sidorna» (det finns ju bara en!), används i gamla tryckpressar, moderna inspelningsband och vissa VHS-bandsystem.",
+          "Drivremmar i form av en Möbius-band slits jämnt på båda «sidorna» (det finns ju bara en!) och används i gamla tryckpressar, moderna inspelningsband och vissa VHS-bandsystem.",
       },
       {
         domain: "Maskinteknik",
@@ -7382,7 +7382,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Inversa problem i naturvetenskap",
         description:
-          "Fysiker inverterar experiment genom att bygga den framåtriktade modellen i PyTorch/JAX och backpropagera igenom, används i proteindesign (AlphaFold), differentierbar rendering och gradientbaserad experimentdesign.",
+          "Fysiker inverterar experiment genom att bygga den framåtriktade modellen i PyTorch/JAX och backpropagera igenom, något som används i proteindesign (AlphaFold), differentierbar rendering och gradientbaserad experimentdesign.",
       },
     ],
   },
@@ -7428,7 +7428,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Analoger i naturen",
         description:
-          "Kystlinjer, fjellrygger, bregneblad og brokkolibuketter viser den samme selvlike kantstrukturen: det var akkurat Mandelbrots poeng med fraktal geometri.",
+          "Kystlinjer, fjellrygger, bregneblad og brokkolibuketter viser den samme selvlike kantstrukturen: Det var akkurat Mandelbrots poeng med fraktal geometri.",
       },
     ],
     life: [
@@ -7467,7 +7467,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Maskinvarekurs",
         description:
-          "Kurset nand2tetris bygger en komplett datamaskin med utgangspunkt i én eneste NAND-brikke, brukes ved over 100 universiteter.",
+          "Kurset nand2tetris bygger en komplett datamaskin med utgangspunkt i én eneste NAND-brikke og brukes ved over 100 universiteter.",
       },
       {
         domain: "Innebygd logikk",
@@ -7540,7 +7540,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Værvarsling",
         description:
-          "Operative værmeldere bruker ensemble-metoder fordi atmosfæren deler Lorenz' sensitivitet for startbetingelser: forutsigbarheten kollapser etter omtrent 14 dager.",
+          "Operative værmeldere bruker ensemble-metoder fordi atmosfæren deler Lorenz' sensitivitet for startbetingelser: Forutsigbarheten kollapser etter omtrent 14 dager.",
       },
       {
         domain: "Klimamodellering",
@@ -7660,7 +7660,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Materialer og kvasikrystaller",
         description:
-          "Teorien om Wang-fliser overlapper delvis med kvasikrystallenes matematikk: begge produserer aperiodiske, uendelige arrangementer.",
+          "Teorien om Wang-fliser overlapper delvis med kvasikrystallenes matematikk: Begge produserer aperiodiske, uendelige arrangementer.",
       },
     ],
     collatz: [
@@ -7750,7 +7750,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Fraktalantenner",
         description:
-          "Antenner med Sierpiński-trekant er kommersielle produkter: mobiltelefoner, Wi-Fi-rutere og GPS-enheter bruker multibånds fraktal-patcher som resonnerer på mange frekvenser på liten plass.",
+          "Antenner med Sierpiński-trekant er kommersielle produkter: Mobiltelefoner, Wi-Fi-rutere og GPS-enheter bruker multibånds fraktal-patcher som resonnerer på mange frekvenser på liten plass.",
       },
       {
         domain: "Varmevekslere",
@@ -7772,7 +7772,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Bioinformatikk",
         description:
-          "Chaos Game Representation (CGR) er en standardmåte å visualisere DNA-sekvenser på: hvert nukleotid styrer et punkt mot ett av fire hjørner i et kvadrat, og artene klumper seg i gjenkjennelige fraktale signaturer.",
+          "Chaos Game Representation (CGR) er en standardmåte å visualisere DNA-sekvenser på: Hvert nukleotid styrer et punkt mot ett av fire hjørner i et kvadrat, og artene klumper seg i gjenkjennelige fraktale signaturer.",
       },
       {
         domain: "Fraktal kompresjon",
@@ -7789,7 +7789,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kvasikrystaller",
         description:
-          "Dan Shechtmans oppdagelse av metalliske kvasikrystaller i 1982 (Nobelpris 2011) ble forstått gjennom Penrose-mosaikker: den samme femfoldige matematikken styrer begge.",
+          "Dan Shechtmans oppdagelse av metalliske kvasikrystaller i 1982 (Nobelpris 2011) ble forstått gjennom Penrose-mosaikker: Den samme femfoldige matematikken styrer begge.",
       },
       {
         domain: "Arkitektur",
@@ -7816,7 +7816,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Tallteori",
         description:
-          "Heltallige apolloniske pakninger studeres av analytisk tallteori: arbeider av Sarnak, Bourgain og Kontorovich har gitt nye resultater om primtallskrumninger.",
+          "Heltallige apolloniske pakninger studeres av analytisk tallteori: Arbeider av Sarnak, Bourgain og Kontorovich har gitt nye resultater om primtallskrumninger.",
       },
       {
         domain: "Skum- og emulsjonsfysikk",
@@ -7987,7 +7987,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Krystallvekst",
         description:
-          "Dannelsen av snøfnugg, frost på vinduer og mineraldendritter i fjell: alle viser DLA-skaleringslover.",
+          "Dannelsen av snøfnugg, frost på vinduer og mineraldendritter i fjell: Alle viser DLA-skaleringslover.",
       },
       {
         domain: "Biologi",
@@ -8031,7 +8031,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Billedkunst",
         description:
-          "Pascal mod 2 er den algebraiske kilden til Sierpiński-trekanten, selges som plakat, veves inn i tepper og vises i galleriinstallasjoner.",
+          "Pascal mod 2 er den algebraiske kilden til Sierpiński-trekanten, som selges som plakat, veves inn i tepper og vises i galleriinstallasjoner.",
       },
     ],
     sternbrocot: [
@@ -8121,7 +8121,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kaosdemonstrasjoner",
         description:
-          "Skrivebordsleken «tremagnetpendel» er den mest populære fysiske demonstrasjonen av fraktale tiltrekningsbasseng, selges av ThinkGeek, Nikola Labs og en mengde gavebutikker for vitenskap.",
+          "Skrivebordsleken «tremagnetpendel» er den mest populære fysiske demonstrasjonen av fraktale tiltrekningsbasseng og selges av ThinkGeek, Nikola Labs og en mengde gavebutikker for vitenskap.",
       },
       {
         domain: "Forskning på magnetisk levitasjon",
@@ -8182,7 +8182,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Kryptografi",
         description:
-          "Hvis P = NP, ville RSA, AES, all blokkjede- og TLS-beskyttet trafikk være knekt over natten: enhver moderne digital hemmelighet hviler på at P ≠ NP i praksis.",
+          "Hvis P = NP, ville RSA, AES, all blokkjede- og TLS-beskyttet trafikk være knekt over natten: Enhver moderne digital hemmelighet hviler på at P ≠ NP i praksis.",
       },
       {
         domain: "Optimering",
@@ -8290,7 +8290,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Grafteoriens fødsel",
         description:
-          "Königsberg satte hele feltet i gang: grafteori ligger i dag bak Googles PageRank, sosial nettverksanalyse, brikkelayout og ruteplanlegging.",
+          "Königsberg satte hele feltet i gang: Grafteori ligger i dag bak Googles PageRank, sosial nettverksanalyse, brikkelayout og ruteplanlegging.",
       },
       {
         domain: "DNA-sekvensering",
@@ -8327,7 +8327,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Datamaskinverifisert matematikk",
         description:
-          "Sammen med Keplers formodning var firefarge-teoremet en milepæl innen datamaskinassistert bevisførsel: bevisassistentmiljøet (Coq, Lean) sporer sin legitimitet hit.",
+          "Sammen med Keplers formodning var firefarge-teoremet en milepæl innen datamaskinassistert bevisførsel: Bevisassistentmiljøet (Coq, Lean) sporer sin legitimitet hit.",
       },
     ],
     smallworld: [
@@ -8381,7 +8381,7 @@ export const TOPIC_APPLICATIONS: Record<Locale, Partial<Record<TopicId, Applicat
       {
         domain: "Fysikk og termodynamikk",
         description:
-          "Fremoverprosessen er bokstavelig talt Langevin-dynamikk: støyplanen speiler et system som relakserer mot termisk likevekt. Sohl-Dicksteins originalartikkel fra 2015 var formulert som ikke-likevektstermodynamikk.",
+          "Fremoverprosessen er bokstavelig talt Langevin-dynamikk: Støyplanen speiler et system som relakserer mot termisk likevekt. Sohl-Dicksteins originalartikkel fra 2015 var formulert som ikke-likevektstermodynamikk.",
       },
     ],
     riemann: [

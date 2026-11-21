@@ -19,6 +19,10 @@ for (let i = 0; i < n; i++) {
 }
 const est = (2 * len * totalRef.current) / (d * crossRef.current);`;
 
+// Only the word inside \\text{} is localised (as DE already does); the maths is shared.
+const crossingFormula = (label: string) =>
+  `P(\\text{${label}}) = \\frac{2\\ell}{\\pi d} \\quad\\Longrightarrow\\quad \\pi \\approx \\frac{2\\ell\\, n}{d\\, k}`;
+
 export const BUFFON_GUIDE: ExplorerGuide = {
   en: {
     metaDescription:
@@ -137,6 +141,360 @@ export const BUFFON_GUIDE: ExplorerGuide = {
       {
         title: "Nur das Verhältnis zählt",
         text: "Probier d = 40 mit ℓ = 30 und danach d = 120 mit ℓ = 90. Beide haben ℓ/d = 0,75 und dieselbe Kreuzungswahrscheinlichkeit von etwa 0,48. Nach vielen Würfen verhalten sich die Schätzungen gleich, obwohl die Bilder ganz verschieden aussehen.",
+      },
+    ],
+  },
+  es: {
+    metaDescription:
+      "Estima π con la aguja de Buffon: lanza miles de agujas sobre líneas paralelas, cambia su longitud y la separación, y mira cómo converge la estimación.",
+    heading: "Cómo funciona este explorador",
+    intro:
+      "El panel superior es un suelo con líneas paralelas, y cada lanzamiento arroja sobre él una aguja en una posición aleatoria y con un ángulo aleatorio. Las agujas que tocan una línea se iluminan en ámbar, las demás se quedan grises. Cuenta cuántas veces una aguja cruza una línea, divide, y π aparece de la nada. El panel inferior representa la estimación en curso frente al número de agujas, para que veas cómo el azar se convierte poco a poco en una constante.",
+    sections: [
+      {
+        heading: "Por qué una aguja sabe de π",
+        paragraphs: [
+          "La pregunta se remonta a Georges-Louis Leclerc, conde de Buffon, en el siglo XVIII: si una aguja de longitud ℓ cae sobre un suelo rayado con líneas paralelas separadas una distancia d, y ℓ es como mucho d, ¿qué probabilidad hay de que cruce una línea? Solo importan dos números. Uno es la distancia del centro de la aguja a la línea más cercana, uniforme entre 0 y d/2. El otro es el ángulo θ entre la aguja y las líneas, uniforme entre 0 y π. La aguja cruza cuando su media longitud proyectada sobre la vertical, (ℓ/2) sen θ, es mayor que esa distancia.",
+          "Al promediar sobre todas las posiciones y todos los ángulos, esto se convierte en una integral de sen θ, y por esa integral entra π. El resultado es una probabilidad de 2ℓ/(πd). Dale la vuelta y obtienes un estimador: tras n lanzamientos con k cruces, π ≈ 2ℓn/(dk). Esa es exactamente la fórmula que aparece en la esquina del lienzo.",
+        ],
+        formula: crossingFormula("cruce"),
+      },
+      {
+        heading: "Qué hacen los controles",
+        paragraphs: [
+          "«Separación de líneas d» va de 40 a 120 px, 60 por defecto. «Longitud de aguja ℓ» está ligada a la separación y va de 0,2d a 1,5d, 50 px por defecto; la etiqueta muestra siempre el cociente ℓ/d. Cambiar cualquiera de las dos borra todos los recuentos, porque el estimador aplica los valores actuales de ℓ y d a los totales, y mezclar lanzamientos de ajustes distintos lo sesgaría para siempre.",
+          "«Lanzar 1 000» y «Lanzar 10 000» arrojan un lote de una vez. «Caída automática» sigue lanzando en cada fotograma de animación al ritmo elegido, de 1 a 500 agujas por fotograma, 40 por defecto. El panel de estadísticas muestra las caídas, los cruces, la estimación con seis decimales y su error relativo en porcentaje.",
+        ],
+      },
+      {
+        heading: "Cómo está construido",
+        paragraphs: [
+          "Cada lanzamiento sortea tres números aleatorios: x, y y un ángulo en [0, π). La prueba de cruce no busca líneas cercanas. Reduce y módulo d para saber dónde queda el centro dentro de su franja y luego comprueba si la distancia al medio de la franja más la media longitud proyectada supera d/2.",
+          "Un detalle mantiene honesta la estimación. La altura del lienzo rara vez es un múltiplo entero de d, y sortear y de forma uniforme sobre toda la altura haría que algunas posiciones dentro de una franja fueran ligeramente más probables que otras. Por eso el código muestrea y solo sobre un número entero de franjas. La coordenada x no interviene en la prueba; solo reparte las agujas por la imagen.",
+          "Los recuentos viven en refs y no en el estado de React, así que un lote de 10 000 agujas provoca un único renderizado. Para dibujar solo se guardan las 240 agujas más recientes en un búfer circular, lo que mantiene la imagen legible después de un millón de lanzamientos. Cada 25 lanzamientos se registra la estimación actual, hasta 1200 muestras, y la gráfica las muestra dentro de una banda de π ± 0,8 con una línea de referencia discontinua en el valor verdadero. Nada se mueve por sí solo: la caída automática está desactivada por defecto, así que la página permanece quieta hasta que empiezas a lanzar. Si tu sistema pide movimiento reducido, la caída automática sigue muestreando a pleno ritmo, pero actualiza la imagen, la gráfica y los números solo dos veces por segundo.",
+        ],
+        code: DROP_EXCERPT,
+      },
+      {
+        heading: "Convergencia lenta y agujas largas",
+        paragraphs: [
+          "La estimación vaga mucho. Con los valores por defecto ℓ = 50 y d = 60, su desviación típica es aproximadamente 3/√n, de modo que tras 10 000 agujas cabe esperar un error de unos 0,03, y cada cifra correcta adicional cuesta unas cien veces más agujas. Entre las agujas que no superan la separación, ℓ = d da la menor dispersión. Esa ley de la raíz cuadrada la comparten todos los métodos de Montecarlo. Un famoso experimento de Mario Lazzarini, de 1901, comunicó 355/113 a partir de 3408 agujas, un resultado demasiado bueno para esta dispersión y que en general se considera amañado.",
+          "En cuanto ℓ supera d, el panel muestra una nota y la estimación se aleja de π. Una aguja larga puede cruzar dos líneas, pero aun así se cuenta una sola vez, y la probabilidad de al menos un cruce es menor que 2ℓ/(πd). El número esperado de cruces, contados con multiplicidad, sigue siendo exactamente 2ℓ/(πd) para cualquier longitud, así que el sesgo viene únicamente de contar sucesos en lugar de intersecciones. Con ℓ = 1,5d la estimación se estabiliza cerca de 3,85 en vez de 3,14.",
+        ],
+      },
+    ],
+    experimentsHeading: "Prueba esto",
+    experiments: [
+      {
+        title: "Siente el ruido",
+        text: "Pulsa «Lanzar 1 000» unas cuantas veces, limpiando entre una y otra. Las estimaciones se dispersan más o menos entre 3,0 y 3,3. Después pulsa «Lanzar 10 000» y fíjate en que la dispersión se reduce solo en un factor de unos tres, no de diez.",
+      },
+      {
+        title: "La mejor aguja",
+        text: "Deja d en 60 y pon ℓ en 60, de modo que el cociente marque 1,00. Activa la caída automática a 500 por fotograma y compara el temblor de la gráfica con una tanda a ℓ = 15. La aguja corta cruza pocas veces y su estimación salta mucho más.",
+      },
+      {
+        title: "Mira aparecer el sesgo",
+        text: "Pon ℓ en 1,5d (90 px con d = 60) y activa la caída automática. La curva no se acerca a la línea discontinua de π, sino que se estabiliza en torno a 3,85. Baja ℓ de nuevo a 60 y vuelve a π.",
+      },
+      {
+        title: "Solo importa el cociente",
+        text: "Prueba d = 40 con ℓ = 30 y luego d = 120 con ℓ = 90. En ambos casos ℓ/d = 0,75 y la probabilidad de cruce es la misma, alrededor de 0,48, así que tras muchos lanzamientos las dos estimaciones se comportan igual aunque las imágenes sean muy distintas.",
+      },
+    ],
+  },
+  fr: {
+    metaDescription:
+      "Estime π avec l'aiguille de Buffon : lance des milliers d'aiguilles sur des lignes parallèles, change longueur et espacement, et regarde l'estimation converger.",
+    heading: "Comment fonctionne cet explorateur",
+    intro:
+      "Le panneau du haut est un plancher rayé de lignes parallèles, et chaque lancer y jette une aiguille à une position aléatoire et sous un angle aléatoire. Les aiguilles qui touchent une ligne s'allument en ambre, les autres restent grises. Compte combien de fois une aiguille croise une ligne, divise, et π surgit de nulle part. Le panneau du bas trace l'estimation courante en fonction du nombre d'aiguilles : tu peux ainsi regarder le hasard se transformer lentement en constante.",
+    sections: [
+      {
+        heading: "Pourquoi une aiguille connaît π",
+        paragraphs: [
+          "La question remonte à Georges-Louis Leclerc, comte de Buffon, au XVIIIe siècle : si une aiguille de longueur ℓ tombe sur un plancher rayé de lignes parallèles espacées d'une distance d, et que ℓ vaut au plus d, quelle est la probabilité qu'elle croise une ligne ? Seuls deux nombres comptent. L'un est la distance entre le centre de l'aiguille et la ligne la plus proche, uniforme entre 0 et d/2. L'autre est l'angle θ entre l'aiguille et les lignes, uniforme entre 0 et π. L'aiguille croise une ligne lorsque sa demi-longueur projetée sur la verticale, (ℓ/2) sin θ, dépasse cette distance.",
+          "En moyennant sur toutes les positions et tous les angles, on obtient une intégrale de sin θ, et c'est par cette intégrale que π entre en scène. Le résultat est une probabilité de 2ℓ/(πd). Retourne la formule et tu obtiens un estimateur : après n lancers dont k croisements, π ≈ 2ℓn/(dk). C'est exactement la formule affichée dans le coin du canevas.",
+        ],
+        formula: crossingFormula("croisement"),
+      },
+      {
+        heading: "À quoi servent les commandes",
+        paragraphs: [
+          "« Espacement des lignes d » va de 40 à 120 px, 60 par défaut. « Longueur d'aiguille ℓ » est liée à l'espacement et va de 0,2d à 1,5d, 50 px par défaut ; le libellé affiche toujours le rapport ℓ/d. Modifier l'un ou l'autre efface tous les compteurs, car l'estimateur applique les valeurs actuelles de ℓ et de d aux totaux, et mélanger des lancers issus de réglages différents le biaiserait définitivement.",
+          "« Lancer 1 000 » et « Lancer 10 000 » jettent un lot d'un seul coup. « Lancer auto » continue de lancer à chaque image d'animation à la cadence choisie, de 1 à 500 aiguilles par image, 40 par défaut. Le panneau de statistiques affiche les lancers, les croisements, l'estimation à six décimales et son erreur relative en pourcentage.",
+        ],
+      },
+      {
+        heading: "Comment c'est construit",
+        paragraphs: [
+          "Chaque lancer tire trois nombres aléatoires : x, y et un angle dans [0, π). Le test de croisement ne cherche pas les lignes voisines. Il réduit y modulo d pour savoir où se trouve le centre à l'intérieur de sa bande, puis vérifie si la distance au milieu de la bande, augmentée de la demi-longueur projetée, dépasse d/2.",
+          "Un détail garantit l'honnêteté de l'estimation. La hauteur du canevas est rarement un multiple entier de d, et tirer y uniformément sur toute la hauteur rendrait certaines positions à l'intérieur d'une bande légèrement plus probables que d'autres. Le code n'échantillonne donc y que sur un nombre entier de bandes. La coordonnée x ne joue aucun rôle dans le test ; elle ne sert qu'à répartir les aiguilles sur l'image.",
+          "Les compteurs vivent dans des refs plutôt que dans l'état React, si bien qu'un lot de 10 000 aiguilles ne déclenche qu'un seul nouveau rendu. Seules les 240 aiguilles les plus récentes sont conservées dans un tampon circulaire pour le dessin, ce qui garde l'image lisible après un million de lancers. Tous les 25 lancers, l'estimation courante est enregistrée, jusqu'à 1 200 échantillons, et le graphique les montre dans une bande de π ± 0,8 avec une ligne de référence en pointillés à la vraie valeur. Rien ne bouge tout seul : le lancer automatique est désactivé par défaut, la page reste donc immobile tant que tu ne commences pas à lancer. Si ton système demande une réduction des animations, le lancer automatique continue d'échantillonner à pleine cadence, mais ne rafraîchit l'image, le graphique et les nombres que deux fois par seconde.",
+        ],
+        code: DROP_EXCERPT,
+      },
+      {
+        heading: "Convergence lente et longues aiguilles",
+        paragraphs: [
+          "L'estimation vagabonde beaucoup. Avec les valeurs par défaut ℓ = 50 et d = 60, son écart type vaut environ 3/√n : après 10 000 aiguilles, tu peux donc t'attendre à une erreur d'environ 0,03, et chaque chiffre exact supplémentaire coûte environ cent fois plus d'aiguilles. Parmi les aiguilles qui ne dépassent pas l'espacement, ℓ = d donne la plus faible dispersion. Cette loi en racine carrée est commune à toutes les méthodes de Monte-Carlo. Une célèbre expérience de Mario Lazzarini, en 1901, a annoncé 355/113 à partir de 3 408 aiguilles, un résultat bien trop bon pour cette dispersion et que l'on pense généralement arrangé.",
+          "Dès que ℓ dépasse d, le panneau affiche une note et l'estimation s'éloigne de π. Une longue aiguille peut croiser deux lignes, mais elle n'est tout de même comptée qu'une fois, et la probabilité d'au moins un croisement est inférieure à 2ℓ/(πd). Le nombre attendu de croisements, comptés avec multiplicité, reste exactement 2ℓ/(πd) quelle que soit la longueur : le biais vient donc uniquement du fait de compter des événements plutôt que des intersections. Pour ℓ = 1,5d, l'estimation se stabilise près de 3,85 au lieu de 3,14.",
+        ],
+      },
+    ],
+    experimentsHeading: "À essayer",
+    experiments: [
+      {
+        title: "Ressens le bruit",
+        text: "Appuie plusieurs fois sur « Lancer 1 000 », en effaçant entre deux essais. Les estimations se dispersent à peu près entre 3,0 et 3,3. Appuie ensuite sur « Lancer 10 000 » et remarque que la dispersion ne diminue que d'un facteur trois environ, et non dix.",
+      },
+      {
+        title: "La meilleure aiguille",
+        text: "Garde d à 60 et règle ℓ sur 60, pour que le rapport affiche 1,00. Lance le mode automatique à 500 par image et compare le tremblement du graphique avec un essai à ℓ = 15. L'aiguille courte croise rarement, et son estimation saute beaucoup plus.",
+      },
+      {
+        title: "Regarde le biais apparaître",
+        text: "Règle ℓ sur 1,5d (90 px pour d = 60) et active le lancer automatique. La courbe ne s'approche pas de la ligne pointillée de π, elle se stabilise autour de 3,85. Ramène ℓ à 60 et elle revient vers π.",
+      },
+      {
+        title: "Seul le rapport compte",
+        text: "Essaie d = 40 avec ℓ = 30, puis d = 120 avec ℓ = 90. Dans les deux cas ℓ/d = 0,75 et la probabilité de croisement est la même, environ 0,48 : après de nombreux lancers, les deux estimations se comportent donc de la même façon, même si les images sont très différentes.",
+      },
+    ],
+  },
+  it: {
+    metaDescription:
+      "Stima π con l'ago di Buffon: lancia migliaia di aghi su linee parallele, cambia lunghezza dell'ago e distanza tra le linee e guarda la stima convergere.",
+    heading: "Come funziona questo esploratore",
+    intro:
+      "Il pannello in alto è un pavimento con linee parallele, e ogni lancio vi getta sopra un ago in una posizione casuale e con un angolo casuale. Gli aghi che toccano una linea si accendono color ambra, gli altri restano grigi. Conta quante volte un ago incrocia una linea, dividi, e π salta fuori dal nulla. Il pannello in basso traccia la stima corrente in funzione del numero di aghi, così puoi guardare il caso trasformarsi lentamente in una costante.",
+    sections: [
+      {
+        heading: "Perché un ago conosce π",
+        paragraphs: [
+          "La domanda risale a Georges-Louis Leclerc, conte di Buffon, nel XVIII secolo: se un ago di lunghezza ℓ cade su un pavimento rigato da linee parallele a distanza d l'una dall'altra, e ℓ è al massimo d, qual è la probabilità che incroci una linea? Contano solo due numeri. Uno è la distanza dal centro dell'ago alla linea più vicina, uniforme tra 0 e d/2. L'altro è l'angolo θ tra l'ago e le linee, uniforme tra 0 e π. L'ago incrocia una linea quando la sua semilunghezza proiettata sulla verticale, (ℓ/2) sin θ, è maggiore di quella distanza.",
+          "Facendo la media su tutte le posizioni e tutti gli angoli si ottiene un integrale di sin θ, ed è da quell'integrale che entra π. Il risultato è una probabilità pari a 2ℓ/(πd). Rovesciala e ottieni uno stimatore: dopo n lanci con k incroci, π ≈ 2ℓn/(dk). È esattamente la formula nell'angolo del canvas.",
+        ],
+        formula: crossingFormula("incrocio"),
+      },
+      {
+        heading: "Che cosa fanno i controlli",
+        paragraphs: [
+          "«Distanza tra le linee d» va da 40 a 120 px, predefinita 60. «Lunghezza dell'ago ℓ» è legata alla distanza e va da 0,2d a 1,5d, predefinita 50 px; l'etichetta mostra sempre il rapporto ℓ/d. Modificare una delle due azzera tutti i conteggi, perché lo stimatore applica i valori attuali di ℓ e d ai totali, e mescolare lanci fatti con impostazioni diverse lo distorcerebbe per sempre.",
+          "«Lancia 1 000» e «Lancia 10 000» gettano un lotto in un colpo solo. «Lancio automatico» continua a lanciare a ogni fotogramma dell'animazione al ritmo scelto, da 1 a 500 aghi per fotogramma, predefinito 40. Il pannello delle statistiche mostra i lanci, gli incroci, la stima con sei decimali e il suo errore relativo in percentuale.",
+        ],
+      },
+      {
+        heading: "Com'è costruito",
+        paragraphs: [
+          "Ogni lancio estrae tre numeri casuali: x, y e un angolo in [0, π). Il test di incrocio non va a cercare le linee vicine. Riduce y modulo d per trovare dove sta il centro all'interno della sua striscia, poi controlla se la distanza dal centro della striscia più la semilunghezza proiettata supera d/2.",
+          "Un dettaglio mantiene onesta la stima. L'altezza del canvas è raramente un multiplo intero di d, ed estrarre y in modo uniforme su tutta l'altezza renderebbe alcune posizioni all'interno di una striscia leggermente più probabili di altre. Per questo il codice campiona y solo su un numero intero di strisce. La coordinata x non ha alcun ruolo nel test; serve soltanto a distribuire gli aghi nell'immagine.",
+          "I conteggi stanno in ref anziché nello stato di React, quindi un lotto di 10 000 aghi provoca un solo nuovo rendering. Per il disegno si conservano in un buffer circolare solo i 240 aghi più recenti, il che mantiene leggibile l'immagine anche dopo un milione di lanci. Ogni 25 lanci viene registrata la stima corrente, fino a 1200 campioni, e il grafico li mostra dentro una fascia di π ± 0,8 con una linea di riferimento tratteggiata sul valore vero. Niente si muove da solo: il lancio automatico è spento per impostazione predefinita, quindi la pagina resta ferma finché non cominci a lanciare. Se il tuo sistema chiede di ridurre il movimento, il lancio automatico continua a campionare a pieno ritmo ma aggiorna l'immagine, il grafico e i numeri solo due volte al secondo.",
+        ],
+        code: DROP_EXCERPT,
+      },
+      {
+        heading: "Convergenza lenta e aghi lunghi",
+        paragraphs: [
+          "La stima vaga parecchio. Con i valori predefiniti ℓ = 50 e d = 60, la sua deviazione standard è circa 3/√n, quindi dopo 10 000 aghi puoi aspettarti un errore di circa 0,03, e ogni cifra corretta in più costa circa cento volte tanti aghi. Tra gli aghi non più lunghi della distanza tra le linee, ℓ = d dà la dispersione più piccola. Questa legge della radice quadrata è comune a tutti i metodi Monte Carlo. Un famoso esperimento di Mario Lazzarini del 1901 riportò 355/113 a partire da 3408 aghi, un risultato fin troppo buono per questa dispersione e che si ritiene comunemente aggiustato.",
+          "Non appena ℓ supera d, il pannello mostra una nota e la stima si allontana da π. Un ago lungo può incrociare due linee, ma viene comunque contato una volta sola, e la probabilità di almeno un incrocio è minore di 2ℓ/(πd). Il numero atteso di incroci, contati con molteplicità, resta esattamente 2ℓ/(πd) per qualsiasi lunghezza, quindi la distorsione nasce soltanto dal contare eventi anziché intersezioni. Con ℓ = 1,5d la stima si assesta vicino a 3,85 invece che a 3,14.",
+        ],
+      },
+    ],
+    experimentsHeading: "Prova così",
+    experiments: [
+      {
+        title: "Senti il rumore",
+        text: "Premi «Lancia 1 000» qualche volta, azzerando tra una prova e l'altra. Le stime si sparpagliano all'incirca tra 3,0 e 3,3. Poi premi «Lancia 10 000» e nota che la dispersione si riduce solo di un fattore tre circa, non dieci.",
+      },
+      {
+        title: "L'ago migliore",
+        text: "Tieni d a 60 e imposta ℓ a 60, così il rapporto segna 1,00. Avvia il lancio automatico a 500 per fotogramma e confronta il tremolio del grafico con una prova a ℓ = 15. L'ago corto incrocia di rado e la sua stima salta molto di più.",
+      },
+      {
+        title: "Guarda comparire la distorsione",
+        text: "Imposta ℓ a 1,5d (90 px con d = 60) e accendi il lancio automatico. La curva non si avvicina alla linea tratteggiata di π, ma si assesta intorno a 3,85. Riporta ℓ a 60 e torna verso π.",
+      },
+      {
+        title: "Conta solo il rapporto",
+        text: "Prova d = 40 con ℓ = 30, poi d = 120 con ℓ = 90. In entrambi i casi ℓ/d = 0,75 e la probabilità di incrocio è la stessa, circa 0,48, quindi dopo molti lanci le due stime si comportano allo stesso modo anche se le immagini sono molto diverse.",
+      },
+    ],
+  },
+  pt: {
+    metaDescription:
+      "Estima π com a agulha de Buffon: lança milhares de agulhas sobre linhas paralelas, muda o comprimento e o espaçamento e vê a estimativa convergir.",
+    heading: "Como funciona este explorador",
+    intro:
+      "O painel de cima é um chão com linhas paralelas, e cada lançamento atira para lá uma agulha numa posição aleatória e com um ângulo aleatório. As agulhas que tocam numa linha acendem-se a âmbar, as outras ficam cinzentas. Conta quantas vezes uma agulha cruza uma linha, divide, e π aparece do nada. O painel de baixo traça a estimativa corrente em função do número de agulhas, para que possas ver o acaso transformar-se lentamente numa constante.",
+    sections: [
+      {
+        heading: "Porque é que uma agulha conhece π",
+        paragraphs: [
+          "A pergunta remonta a Georges-Louis Leclerc, conde de Buffon, no século XVIII: se uma agulha de comprimento ℓ cair num chão riscado com linhas paralelas a uma distância d umas das outras, e ℓ for no máximo d, qual é a probabilidade de cruzar uma linha? Só dois números importam. Um é a distância do centro da agulha à linha mais próxima, uniforme entre 0 e d/2. O outro é o ângulo θ entre a agulha e as linhas, uniforme entre 0 e π. A agulha cruza uma linha quando o seu meio comprimento projetado na vertical, (ℓ/2) sen θ, é maior do que essa distância.",
+          "Fazendo a média sobre todas as posições e todos os ângulos, isto transforma-se num integral de sen θ, e é por esse integral que π entra. O resultado é uma probabilidade de 2ℓ/(πd). Vira-a ao contrário e obténs um estimador: depois de n lançamentos com k cruzamentos, π ≈ 2ℓn/(dk). É exatamente a fórmula que está no canto do canvas.",
+        ],
+        formula: crossingFormula("cruzamento"),
+      },
+      {
+        heading: "O que fazem os controlos",
+        paragraphs: [
+          "«Espaçamento das linhas d» vai de 40 a 120 px, 60 por omissão. «Comprimento da agulha ℓ» está preso ao espaçamento e vai de 0,2d a 1,5d, 50 px por omissão; a etiqueta mostra sempre a razão ℓ/d. Alterar qualquer um dos dois limpa todas as contagens, porque o estimador aplica os valores atuais de ℓ e d aos totais, e misturar lançamentos de configurações diferentes iria enviesá-lo de vez.",
+          "«Lançar 1 000» e «Lançar 10 000» atiram um lote de uma só vez. «Lançamento automático» continua a lançar em cada fotograma de animação ao ritmo escolhido, de 1 a 500 agulhas por fotograma, 40 por omissão. O painel de estatísticas mostra os lançamentos, os cruzamentos, a estimativa com seis casas decimais e o seu erro relativo em percentagem.",
+        ],
+      },
+      {
+        heading: "Como está construído",
+        paragraphs: [
+          "Cada lançamento sorteia três números aleatórios: x, y e um ângulo em [0, π). O teste de cruzamento não procura linhas próximas. Reduz y módulo d para saber onde fica o centro dentro da sua faixa e depois verifica se a distância ao meio da faixa, somada ao meio comprimento projetado, ultrapassa d/2.",
+          "Há um pormenor que mantém a estimativa honesta. A altura do canvas raramente é um múltiplo inteiro de d, e sortear y uniformemente em toda a altura tornaria algumas posições dentro de uma faixa ligeiramente mais prováveis do que outras. Por isso o código amostra y apenas sobre um número inteiro de faixas. A coordenada x não tem qualquer papel no teste; serve só para espalhar as agulhas pela imagem.",
+          "As contagens vivem em refs e não no estado do React, pelo que um lote de 10 000 agulhas desencadeia uma única nova renderização. Para o desenho guardam-se apenas as 240 agulhas mais recentes num buffer circular, o que mantém a imagem legível depois de um milhão de lançamentos. A cada 25 lançamentos regista-se a estimativa atual, até 1200 amostras, e o gráfico mostra-as dentro de uma banda de π ± 0,8 com uma linha de referência tracejada no valor verdadeiro. Nada se move sozinho: o lançamento automático está desligado por omissão, por isso a página fica parada até começares a lançar. Se o teu sistema pedir movimento reduzido, o lançamento automático continua a amostrar ao ritmo máximo, mas atualiza a imagem, o gráfico e os números apenas duas vezes por segundo.",
+        ],
+        code: DROP_EXCERPT,
+      },
+      {
+        heading: "Convergência lenta e agulhas compridas",
+        paragraphs: [
+          "A estimativa vagueia bastante. Com os valores predefinidos ℓ = 50 e d = 60, o seu desvio padrão é aproximadamente 3/√n, pelo que depois de 10 000 agulhas podes esperar um erro de cerca de 0,03, e cada algarismo correto adicional custa cerca de cem vezes mais agulhas. Entre as agulhas que não são mais compridas do que o espaçamento, ℓ = d dá a menor dispersão. Essa lei da raiz quadrada é partilhada por todos os métodos de Monte Carlo. Uma famosa experiência de Mario Lazzarini, em 1901, relatou 355/113 a partir de 3408 agulhas, um resultado bom demais para esta dispersão e que em geral se acredita ter sido arranjado.",
+          "Assim que ℓ ultrapassa d, o painel mostra uma nota e a estimativa afasta-se de π. Uma agulha comprida pode cruzar duas linhas, mas continua a ser contada uma só vez, e a probabilidade de pelo menos um cruzamento é menor do que 2ℓ/(πd). O número esperado de cruzamentos, contados com multiplicidade, mantém-se exatamente 2ℓ/(πd) para qualquer comprimento, pelo que o enviesamento vem apenas de contar acontecimentos em vez de interseções. Com ℓ = 1,5d a estimativa estabiliza perto de 3,85 em vez de 3,14.",
+        ],
+      },
+    ],
+    experimentsHeading: "Experimenta isto",
+    experiments: [
+      {
+        title: "Sente o ruído",
+        text: "Carrega em «Lançar 1 000» algumas vezes, limpando entre cada tentativa. As estimativas dispersam-se mais ou menos entre 3,0 e 3,3. Depois carrega em «Lançar 10 000» e repara que a dispersão encolhe apenas por um fator de cerca de três, não dez.",
+      },
+      {
+        title: "A melhor agulha",
+        text: "Mantém d em 60 e põe ℓ em 60, para que a razão marque 1,00. Liga o lançamento automático a 500 por fotograma e compara a tremura do gráfico com uma corrida a ℓ = 15. A agulha curta cruza raramente e a sua estimativa salta muito mais.",
+      },
+      {
+        title: "Vê o enviesamento aparecer",
+        text: "Põe ℓ em 1,5d (90 px com d = 60) e liga o lançamento automático. A curva não se aproxima da linha tracejada de π, antes estabiliza em torno de 3,85. Baixa ℓ de novo para 60 e ela regressa a π.",
+      },
+      {
+        title: "Só a razão importa",
+        text: "Experimenta d = 40 com ℓ = 30 e depois d = 120 com ℓ = 90. Em ambos os casos ℓ/d = 0,75 e a probabilidade de cruzamento é a mesma, cerca de 0,48, por isso depois de muitos lançamentos as duas estimativas comportam-se da mesma maneira, embora as imagens sejam muito diferentes.",
+      },
+    ],
+  },
+  sv: {
+    metaDescription:
+      "Skatta π med Buffons nål: släpp tusentals nålar på parallella linjer, ändra nållängd och linjeavstånd och se den löpande skattningen konvergera.",
+    heading: "Så fungerar den här utforskaren",
+    intro:
+      "Den övre panelen är ett golv med parallella linjer, och varje släpp kastar en nål på det på en slumpmässig plats och i en slumpmässig vinkel. Nålar som nuddar en linje lyser bärnstensgult, de andra förblir grå. Räkna hur ofta en nål korsar en linje, dividera, och π dyker upp från ingenstans. Den nedre panelen ritar den löpande skattningen mot antalet nålar, så att du kan se slumpen långsamt förvandlas till en konstant.",
+    sections: [
+      {
+        heading: "Varför en nål känner till π",
+        paragraphs: [
+          "Frågan går tillbaka till Georges-Louis Leclerc, greve av Buffon, på 1700-talet: om en nål med längden ℓ faller på ett golv med parallella linjer på avståndet d från varandra, och ℓ är högst d, hur stor är chansen att den korsar en linje? Bara två tal spelar roll. Det ena är avståndet från nålens mittpunkt till närmaste linje, likformigt fördelat mellan 0 och d/2. Det andra är vinkeln θ mellan nålen och linjerna, likformigt fördelad mellan 0 och π. Nålen korsar en linje när dess halva längd projicerad på vertikalen, (ℓ/2) sin θ, är längre än det avståndet.",
+          "Om man tar medelvärdet över alla lägen och vinklar blir detta en integral av sin θ, och det är genom den integralen som π kommer in. Resultatet är sannolikheten 2ℓ/(πd). Vänd på den och du får en skattare: efter n släpp med k korsningar är π ≈ 2ℓn/(dk). Det är precis formeln i hörnet av ritytan.",
+        ],
+        formula: crossingFormula("korsning"),
+      },
+      {
+        heading: "Vad reglagen gör",
+        paragraphs: [
+          "”Linjeavstånd d” går från 40 till 120 px, standard 60. ”Nållängd ℓ” är knuten till avståndet och går från 0,2d till 1,5d, standard 50 px. Etiketten visar alltid kvoten ℓ/d. Om du ändrar något av dem nollställs alla räknare, eftersom skattaren tillämpar aktuella ℓ och d på totalsummorna, och att blanda släpp från olika inställningar skulle ge den ett bestående systematiskt fel.",
+          "”Släpp 1 000” och ”Släpp 10 000” kastar en hel omgång på en gång. ”Autosläpp” fortsätter att kasta i varje animationsbildruta i vald takt, från 1 till 500 nålar per bildruta, standard 40. Statistikpanelen visar släpp, korsningar, skattningen med sex decimaler och dess relativa fel i procent.",
+        ],
+      },
+      {
+        heading: "Hur den är byggd",
+        paragraphs: [
+          "Varje släpp drar tre slumptal: x, y och en vinkel i [0, π). Korsningstestet letar inte efter linjer i närheten. Det reducerar y modulo d för att ta reda på var mittpunkten ligger i sin remsa och kontrollerar sedan om avståndet till remsans mitt plus den projicerade halva längden överstiger d/2.",
+          "En detalj håller skattningen ärlig. Ritytans höjd är sällan en hel multipel av d, och att dra y likformigt över hela höjden skulle göra vissa lägen inom en remsa något sannolikare än andra. Koden drar därför y bara över ett helt antal remsor. x-koordinaten spelar ingen roll i testet, den sprider bara ut nålarna över bilden.",
+          "Räknarna ligger i refs i stället för i React-state, så en omgång på 10 000 nålar utlöser bara en enda omrendering. Bara de 240 senaste nålarna sparas i en ringbuffert för uppritning, vilket håller bilden läsbar efter en miljon släpp. Var 25:e släpp sparas den aktuella skattningen, upp till 1200 mätpunkter, och diagrammet visar dem inom ett band på π ± 0,8 med en streckad referenslinje vid det sanna värdet. Ingenting rör sig av sig självt: autosläpp är avstängt som standard, så sidan står stilla tills du börjar kasta. Om ditt system ber om minskad rörelse fortsätter autosläpp att sampla i full takt men uppdaterar bilden, diagrammet och siffrorna bara två gånger i sekunden.",
+        ],
+        code: DROP_EXCERPT,
+      },
+      {
+        heading: "Långsam konvergens och långa nålar",
+        paragraphs: [
+          "Skattningen vandrar omkring en hel del. Med standardvärdena ℓ = 50 och d = 60 är dess standardavvikelse ungefär 3/√n, så efter 10 000 nålar kan du räkna med ett fel på omkring 0,03, och varje ytterligare korrekt siffra kostar ungefär hundra gånger så många nålar. Bland nålar som inte är längre än linjeavståndet ger ℓ = d minst spridning. Den kvadratrotslagen delas av alla Monte Carlo-metoder. I ett berömt experiment från 1901 rapporterade Mario Lazzarini 355/113 utifrån 3408 nålar, ett resultat som är alldeles för bra för den här spridningen och som allmänt anses vara tillrättalagt.",
+          "Så snart ℓ överstiger d visar panelen en anmärkning och skattningen glider bort från π. En lång nål kan korsa två linjer men räknas ändå bara en gång, och sannolikheten för minst en korsning är mindre än 2ℓ/(πd). Det förväntade antalet korsningar, räknade med multiplicitet, förblir exakt 2ℓ/(πd) för alla längder, så det systematiska felet kommer enbart av att man räknar händelser i stället för skärningspunkter. Vid ℓ = 1,5d lägger sig skattningen nära 3,85 i stället för 3,14.",
+        ],
+      },
+    ],
+    experimentsHeading: "Prova det här",
+    experiments: [
+      {
+        title: "Känn på bruset",
+        text: "Tryck på ”Släpp 1 000” några gånger och rensa däremellan. Skattningarna sprider sig ungefär mellan 3,0 och 3,3. Tryck sedan på ”Släpp 10 000” och lägg märke till att spridningen bara krymper med ungefär en faktor tre, inte tio.",
+      },
+      {
+        title: "Den bästa nålen",
+        text: "Låt d stå på 60 och sätt ℓ till 60, så att kvoten visar 1,00. Kör autosläpp med 500 per bildruta och jämför hur diagrammet darrar med en körning vid ℓ = 15. Den korta nålen korsar sällan, och dess skattning hoppar mycket mer.",
+      },
+      {
+        title: "Se det systematiska felet dyka upp",
+        text: "Sätt ℓ till 1,5d (90 px vid d = 60) och slå på autosläpp. Kurvan närmar sig inte den streckade π-linjen utan planar ut kring 3,85. Sänk ℓ till 60 igen så återvänder den till π.",
+      },
+      {
+        title: "Bara kvoten spelar roll",
+        text: "Prova d = 40 med ℓ = 30 och sedan d = 120 med ℓ = 90. Båda har ℓ/d = 0,75 och samma korsningssannolikhet på ungefär 0,48, så efter många släpp beter sig de två skattningarna likadant trots att bilderna ser helt olika ut.",
+      },
+    ],
+  },
+  no: {
+    metaDescription:
+      "Estimer π med Buffons nål: slipp tusenvis av nåler på parallelle linjer, endre nålelengde og linjeavstand og se det løpende estimatet konvergere mot π.",
+    heading: "Slik fungerer denne utforskeren",
+    intro:
+      "Det øvre panelet er et gulv med parallelle linjer, og hvert slipp kaster en nål på det på et tilfeldig sted og i en tilfeldig vinkel. Nåler som berører en linje, lyser ravgult, de andre forblir grå. Tell hvor ofte en nål krysser en linje, del, og π dukker opp fra ingensteds. Det nedre panelet tegner det løpende estimatet mot antall nåler, slik at du kan se tilfeldighet langsomt bli til en konstant.",
+    sections: [
+      {
+        heading: "Hvorfor en nål kjenner til π",
+        paragraphs: [
+          "Spørsmålet går tilbake til Georges-Louis Leclerc, greve av Buffon, på 1700-tallet: Hvis en nål med lengde ℓ faller på et gulv med parallelle linjer i avstand d fra hverandre, og ℓ er høyst d, hvor stor er sjansen for at den krysser en linje? Bare to tall betyr noe. Det ene er avstanden fra nålens midtpunkt til nærmeste linje, uniformt fordelt mellom 0 og d/2. Det andre er vinkelen θ mellom nålen og linjene, uniformt fordelt mellom 0 og π. Nålen krysser en linje når den halve lengden projisert på vertikalen, (ℓ/2) sin θ, er lengre enn denne avstanden.",
+          "Tar man gjennomsnittet over alle posisjoner og vinkler, blir dette et integral av sin θ, og det er gjennom dette integralet π kommer inn. Resultatet er sannsynligheten 2ℓ/(πd). Snu den om, og du får en estimator: etter n slipp med k kryssinger er π ≈ 2ℓn/(dk). Det er nettopp formelen i hjørnet av lerretet.",
+        ],
+        formula: crossingFormula("kryssing"),
+      },
+      {
+        heading: "Hva kontrollene gjør",
+        paragraphs: [
+          "«Linjeavstand d» går fra 40 til 120 px, standard 60. «Nålelengde ℓ» er knyttet til avstanden og går fra 0,2d til 1,5d, standard 50 px. Etiketten viser alltid forholdet ℓ/d. Endrer du en av dem, nullstilles alle tellinger, fordi estimatoren bruker gjeldende ℓ og d på totalene, og å blande slipp fra ulike innstillinger ville gi den en varig skjevhet.",
+          "«Slipp 1 000» og «Slipp 10 000» kaster en hel bunke på én gang. «Autoslipp» fortsetter å kaste i hvert animasjonsbilde i valgt takt, fra 1 til 500 nåler per bilde, standard 40. Statistikkpanelet viser slipp, kryssinger, estimatet med seks desimaler og den relative feilen i prosent.",
+        ],
+      },
+      {
+        heading: "Hvordan den er bygd",
+        paragraphs: [
+          "Hvert slipp trekker tre tilfeldige tall: x, y og en vinkel i [0, π). Kryssingstesten leter ikke etter linjer i nærheten. Den reduserer y modulo d for å finne hvor midtpunktet ligger i stripen sin, og sjekker deretter om avstanden til midten av stripen pluss den projiserte halve lengden overstiger d/2.",
+          "Én detalj holder estimatet ærlig. Høyden på lerretet er sjelden et helt multiplum av d, og å trekke y uniformt over hele høyden ville gjøre noen posisjoner i en stripe litt mer sannsynlige enn andre. Koden trekker derfor y bare over et helt antall striper. x-koordinaten spiller ingen rolle i testen, den sprer bare nålene utover bildet.",
+          "Tellingene ligger i refs i stedet for i React-state, så en bunke på 10 000 nåler utløser bare én ny rendring. Bare de 240 nyeste nålene tas vare på i en ringbuffer for tegning, noe som holder bildet lesbart etter en million slipp. For hvert 25. slipp lagres det gjeldende estimatet, opptil 1200 målepunkter, og plottet viser dem innenfor et bånd på π ± 0,8 med en stiplet referanselinje ved den sanne verdien. Ingenting beveger seg av seg selv: autoslipp er av som standard, så siden står stille til du begynner å kaste. Hvis systemet ditt ber om redusert bevegelse, fortsetter autoslipp å sample i full takt, men oppdaterer bildet, plottet og tallene bare to ganger i sekundet.",
+        ],
+        code: DROP_EXCERPT,
+      },
+      {
+        heading: "Langsom konvergens og lange nåler",
+        paragraphs: [
+          "Estimatet vandrer mye rundt. Med standardverdiene ℓ = 50 og d = 60 er standardavviket omtrent 3/√n, så etter 10 000 nåler kan du vente en feil på rundt 0,03, og hvert ekstra riktige siffer koster omtrent hundre ganger så mange nåler. Blant nåler som ikke er lengre enn linjeavstanden, gir ℓ = d minst spredning. Denne kvadratrotloven er felles for alle Monte Carlo-metoder. Et berømt eksperiment av Mario Lazzarini fra 1901 rapporterte 355/113 ut fra 3408 nåler, et resultat som er altfor godt for denne spredningen, og som de fleste mener var tilpasset.",
+          "Så snart ℓ overstiger d, viser panelet en merknad, og estimatet driver bort fra π. En lang nål kan krysse to linjer, men telles likevel bare én gang, og sannsynligheten for minst én kryssing er mindre enn 2ℓ/(πd). Det forventede antallet kryssinger, talt med multiplisitet, forblir nøyaktig 2ℓ/(πd) for enhver lengde, så skjevheten kommer utelukkende av at man teller hendelser i stedet for skjæringspunkter. Ved ℓ = 1,5d legger estimatet seg nær 3,85 i stedet for 3,14.",
+        ],
+      },
+    ],
+    experimentsHeading: "Prøv dette",
+    experiments: [
+      {
+        title: "Kjenn på støyen",
+        text: "Trykk på «Slipp 1 000» noen ganger, og tøm mellom hver gang. Estimatene sprer seg omtrent mellom 3,0 og 3,3. Trykk deretter på «Slipp 10 000» og legg merke til at spredningen bare krymper med omtrent en faktor tre, ikke ti.",
+      },
+      {
+        title: "Den beste nålen",
+        text: "La d stå på 60 og sett ℓ til 60, slik at forholdet viser 1,00. Kjør autoslipp med 500 per bilde og sammenlign hvor mye plottet skjelver, med en kjøring ved ℓ = 15. Den korte nålen krysser sjelden, og estimatet hopper mye mer.",
+      },
+      {
+        title: "Se skjevheten dukke opp",
+        text: "Sett ℓ til 1,5d (90 px ved d = 60) og slå på autoslipp. Kurven nærmer seg ikke den stiplede π-linjen, men flater ut rundt 3,85. Senk ℓ tilbake til 60, så vender den tilbake til π.",
+      },
+      {
+        title: "Bare forholdet teller",
+        text: "Prøv d = 40 med ℓ = 30 og deretter d = 120 med ℓ = 90. Begge har ℓ/d = 0,75 og samme kryssingssannsynlighet på omtrent 0,48, så etter mange slipp oppfører de to estimatene seg likt selv om bildene ser helt forskjellige ut.",
       },
     ],
   },

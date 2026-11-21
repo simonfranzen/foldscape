@@ -384,7 +384,7 @@ const EXPLORER: Record<Locale, RichExplorer> = {
     whatYouSeeP1:
       "Øverste plot: trappen π(x) hopper 1 ved hvert primtall, og den varme kurven er Riemanns approksimasjon rekonstruert fra de første N_zeros ikke-trivielle nullpunktene. Med null nullpunkter er kurven Riemanns R(x), et glatt estimat som allerede går midt gjennom trinnene. Når N_zeros vokser presser korreksjonene kurven inntil trappen: det er bokstavelig talt slik nullpunktene koder primtallene.",
     whatYouSeeP2:
-      "Nederste plot: bildet av ζ langs den kritiske linjen s = ½ + it, tegnet i det komplekse planet. Hver løkke gjennom origo er ett nullpunkt. Hypotesen sier at dette bildet forblir nøyaktig samme bilde for alltid: det finnes ingen t der banen driver av og unngår origo mens realdelen av s sitter et annet sted enn ½.",
+      "Nederste plot: bildet av ζ langs den kritiske linjen s = ½ + it, tegnet i det komplekse planet. Hver løkke gjennom origo er ett nullpunkt. Hypotesen sier at dette bildet forblir nøyaktig samme bilde for alltid: Det finnes ingen t der banen driver av og unngår origo mens realdelen av s sitter et annet sted enn ½.",
     errorLabel: "max |π(x) − R(x)| over synlig område",
     resetLabel: "↺ tilbakestill",
   },

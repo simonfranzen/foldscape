@@ -216,7 +216,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Stell dir vor, du läufst um einen Kreis mit Radius 1 um den Ursprung einer Ebene. Starte bei der 1 rechts. Multiplizieren mit e^(iθ) heißt: laufe θ Bogenmaß um den Kreis. Lauf also π Bogenmaß, den halben Weg, und du kommst beim Punkt −1 an. Addiere 1 und du bist wieder bei 0.",
+        body: "Stell dir vor, du läufst um einen Kreis mit Radius 1 um den Ursprung einer Ebene. Starte bei der 1 rechts. Multiplizieren mit e^(iθ) heißt: Laufe θ Bogenmaß um den Kreis. Lauf also π Bogenmaß, den halben Weg, und du kommst beim Punkt −1 an. Addiere 1 und du bist wieder bei 0.",
       },
       {
         label: "03",
@@ -241,7 +241,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Eulers Formel",
       title: "e^(iθ) = cos θ + i sin θ",
-      body: "Euler veröffentlichte diese Formel 1748 in seiner Introductio in analysin infinitorum, und sie ist die größere Wahrheit, von der die Identität nur ein einzelner Wert ist. Die linke Seite, e^(iθ), ist eine Exponentialfunktion mit imaginärem Exponenten, eine Art Wachstum, die sich vorher niemand vorgestellt hatte. Die rechte Seite, cos θ + i sin θ, ist der Punkt auf dem Einheitskreis bei Winkel θ. Eulers Behauptung: diese beiden völlig verschieden aussehenden Dinge sind gleich. Setzt man θ = π, kollabiert die rechte Seite zu −1 + 0i, also e^(iπ) = −1, und 1 addiert ergibt die Identität. Die Identität ist Eulers Formel bei θ = π.",
+      body: "Euler veröffentlichte diese Formel 1748 in seiner Introductio in analysin infinitorum, und sie ist die größere Wahrheit, von der die Identität nur ein einzelner Wert ist. Die linke Seite, e^(iθ), ist eine Exponentialfunktion mit imaginärem Exponenten, eine Art Wachstum, die sich vorher niemand vorgestellt hatte. Die rechte Seite, cos θ + i sin θ, ist der Punkt auf dem Einheitskreis bei Winkel θ. Eulers Behauptung: Diese beiden völlig verschieden aussehenden Dinge sind gleich. Setzt man θ = π, kollabiert die rechte Seite zu −1 + 0i, also e^(iπ) = −1, und 1 addiert ergibt die Identität. Die Identität ist Eulers Formel bei θ = π.",
     },
     {
       pretitle: "Abschnitt 04 · Warum sie wahr ist",
@@ -279,7 +279,7 @@ const de: RichStory = {
   interactivePretitle2: "Interaktiv · Schieberegler",
   interactiveTitle2: "Bau den Beweis, Term für Term",
   interactiveBody2:
-    "Jede Kurve ist eine Taylor-Teilsumme: nur die ersten N+1 Glieder. Schieb N hoch, und die Teilsummen schmiegen sich an die echten exp-, cos- und sin-Kurven an. Sieh das kleine Panel darunter: die komplexe Teilsumme von (iπ)^k / k! driftet gegen −1, wenn N wächst.",
+    "Jede Kurve ist eine Taylor-Teilsumme: nur die ersten N+1 Glieder. Schieb N hoch, und die Teilsummen schmiegen sich an die echten exp-, cos- und sin-Kurven an. Sieh das kleine Panel darunter: Die komplexe Teilsumme von (iπ)^k / k! driftet gegen −1, wenn N wächst.",
   charactersLabel: "Die fünf Konstanten",
   charactersRows: [
     { sym: "0", role: "Additive Identität", home: "Arithmetik" },
@@ -649,7 +649,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 06 · Dove si colloca",
       title: "Una breve progressione",
-      body: "Fai un passo indietro e guarda la catena. L'aritmetica sulla retta reale ti dà +, × e le costanti 0 e 1. L'analisi rende la crescita continua un numero e lo chiama e. L'algebra risolve cubiche, esaurisce le radici reali, inventa i e scopre il piano complesso. La geometria parametrizza il cerchio unitario tramite l'angolo e incontra π. La formula di Eulero osserva poi, con due pagine di serie di potenze, che crescere nella direzione immaginaria è ruotare nel piano, che e ed i fanno di nascosto la stessa cosa. Poni l'angolo a un mezzo giro e le cinque costanti si incontrano, senza nulla in mezzo. L'identità non è una coincidenza; è la destinazione.",
+      body: "Fai un passo indietro e guarda la catena. L'aritmetica sulla retta reale ti dà +, × e le costanti 0 e 1. L'analisi rende la crescita continua un numero e lo chiama e. L'algebra risolve cubiche, esaurisce le radici reali, inventa i e scopre il piano complesso. La geometria parametrizza il cerchio unitario tramite l'angolo e incontra π. La formula di Eulero osserva poi, con due pagine di serie di potenze, che crescere nella direzione immaginaria è ruotare nel piano, cioè che e ed i fanno di nascosto la stessa cosa. Poni l'angolo a un mezzo giro e le cinque costanti si incontrano, senza nulla in mezzo. L'identità non è una coincidenza; è la destinazione.",
     },
   ],
   unitCircleCaption: "Trascina θ · e^(iθ) sul cerchio unitario",
@@ -780,7 +780,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 06 · Onde se situa",
       title: "Uma progressão curta",
-      body: "Dá um passo atrás e vê a cadeia. A aritmética na reta real dá-te +, × e as constantes 0 e 1. O cálculo transforma o crescimento contínuo num número e chama-lhe e. A álgebra resolve cúbicas, fica sem raízes reais, inventa i e descobre o plano complexo. A geometria parametriza o círculo unitário pelo ângulo e encontra π. A fórmula de Euler nota então, com duas páginas de séries de potências, que crescer na direção imaginária é rodar no plano, que e e i fazem em segredo a mesma coisa. Põe o ângulo numa meia-volta e as cinco constantes encontram-se enfim, sem nada no meio. A identidade não é coincidência; é o destino.",
+      body: "Dá um passo atrás e vê a cadeia. A aritmética na reta real dá-te +, × e as constantes 0 e 1. O cálculo transforma o crescimento contínuo num número e chama-lhe e. A álgebra resolve cúbicas, fica sem raízes reais, inventa i e descobre o plano complexo. A geometria parametriza o círculo unitário pelo ângulo e encontra π. A fórmula de Euler nota então, com duas páginas de séries de potências, que crescer na direção imaginária é rodar no plano, isto é, que e e i fazem em segredo a mesma coisa. Põe o ângulo numa meia-volta e as cinco constantes encontram-se enfim, sem nada no meio. A identidade não é coincidência; é o destino.",
     },
   ],
   unitCircleCaption: "Arrasta θ · e^(iθ) no círculo unitário",
@@ -1001,7 +1001,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Forestill deg å gå rundt en sirkel med radius 1 sentrert i origo i et plan. Start ved punktet 1 til høyre. Å multiplisere med e^(iθ) betyr: gå θ radianer rundt sirkelen. Gå altså π radianer, halve runden, og du lander ved punktet −1. Legg til 1 og du er tilbake ved 0.",
+        body: "Forestill deg å gå rundt en sirkel med radius 1 sentrert i origo i et plan. Start ved punktet 1 til høyre. Å multiplisere med e^(iθ) betyr: Gå θ radianer rundt sirkelen. Gå altså π radianer, halve runden, og du lander ved punktet −1. Legg til 1 og du er tilbake ved 0.",
       },
       {
         label: "03",
@@ -1015,7 +1015,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Fem skikkelser",
       title: "Hvem som står i ligningen",
-      body: "Hvert av de fem tallene kommer fra sitt eget land i matematikken. 0 er den additive identiteten: å legge den til endrer ingenting. 1 er den multiplikative identiteten: å multiplisere med den endrer ingenting. e ≈ 2,71828 er den naturlige basen, tallet hvis derivert er seg selv, født i analysen ut av rentes rente og kontinuerlig vekst. i er den imaginære enheten, definert ved i² = −1, født i algebraen da Cardano trengte en kvadratrot av et negativt tall for å løse kubiske ligninger. π ≈ 3,14159 er sirkelens halvomdreining, forholdet mellom omkrets og diameter, født i geometrien. Vanligvis deler de aldri rom. Identiteten er rommet.",
+      body: "Hvert av de fem tallene kommer fra sitt eget land i matematikken. 0 er den additive identiteten: Å legge den til endrer ingenting. 1 er den multiplikative identiteten: Å multiplisere med den endrer ingenting. e ≈ 2,71828 er den naturlige basen, tallet hvis derivert er seg selv, født i analysen ut av rentes rente og kontinuerlig vekst. i er den imaginære enheten, definert ved i² = −1, født i algebraen da Cardano trengte en kvadratrot av et negativt tall for å løse kubiske ligninger. π ≈ 3,14159 er sirkelens halvomdreining, forholdet mellom omkrets og diameter, født i geometrien. Vanligvis deler de aldri rom. Identiteten er rommet.",
     },
     {
       pretitle: "Avsnitt 02 · Kompleks multiplikasjon",
@@ -1063,7 +1063,7 @@ const no: RichStory = {
   interactivePretitle2: "Interaktivt · glidebryter",
   interactiveTitle2: "Bygg beviset, ledd for ledd",
   interactiveBody2:
-    "Hver kurve er en Taylor-delsum: bare de første N+1 leddene. Skru opp N og delsummene legger seg mot de ekte exp-, cos- og sin-kurvene. Se på det lille panelet under: den komplekse delsummen av (iπ)^k / k! glir mot −1 etter hvert som N vokser.",
+    "Hver kurve er en Taylor-delsum: bare de første N+1 leddene. Skru opp N og delsummene legger seg mot de ekte exp-, cos- og sin-kurvene. Se på det lille panelet under: Den komplekse delsummen av (iπ)^k / k! glir mot −1 etter hvert som N vokser.",
   charactersLabel: "De fem konstantene",
   charactersRows: [
     { sym: "0", role: "Additiv identitet", home: "Aritmetikk" },

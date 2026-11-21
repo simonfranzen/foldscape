@@ -162,7 +162,7 @@ const de: RichStory = {
     title: "Die Belousov-Zhabotinsky-Reaktion",
     tagline: "Eine chemische Uhr, die Spiralen zeichnet.",
     intro:
-      "Bromat, Malonsäure und ein Cer-Katalysator in verdünnter Schwefelsäure: der Kolben weigert sich, zur Ruhe zu kommen; er pulsiert durch die Farben wie ein Herzschlag. Verteilt man dieselbe Mischung dünn über eine Petrischale, erscheinen rotierende Spiralen, exakt die Form, die durch ein flimmerndes Herz läuft. Geboren in einem Moskauer Labor 1951, ein Jahrzehnt lang als Verletzung des zweiten Hauptsatzes abgetan, ist die BZ-Reaktion der sauberste Beleg dafür, dass Chemie sich selbst organisieren kann.",
+      "Bromat, Malonsäure und ein Cer-Katalysator in verdünnter Schwefelsäure: Der Kolben weigert sich, zur Ruhe zu kommen; er pulsiert durch die Farben wie ein Herzschlag. Verteilt man dieselbe Mischung dünn über eine Petrischale, erscheinen rotierende Spiralen, exakt die Form, die durch ein flimmerndes Herz läuft. Geboren in einem Moskauer Labor 1951, ein Jahrzehnt lang als Verletzung des zweiten Hauptsatzes abgetan, ist die BZ-Reaktion der sauberste Beleg dafür, dass Chemie sich selbst organisieren kann.",
     ctaInteractive: "Explorer öffnen",
     sections: [],
   },
@@ -178,7 +178,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "1951 versuchte der sowjetische Biochemiker Boris Belousov, den Krebs-Zyklus im Becherglas nachzustellen. Seine Mischung wurde gelb, dann klar, dann wieder gelb, und hörte nicht auf. Zwei Zeitschriften lehnten seine Arbeit als offensichtlichen Unsinn ab: jede:r Chemiker:in wusste, Reaktionen liefen nur in eine Richtung, hin zum Gleichgewicht. Er legte das Papier in die Schublade. Zehn Jahre später reproduzierte und erweiterte Anatol Zhabotinsky, ein Moskauer Doktorand, die Reaktion, und die Zunft musste zugeben, dass Belousov die ganze Zeit recht gehabt hatte.",
+        body: "1951 versuchte der sowjetische Biochemiker Boris Belousov, den Krebs-Zyklus im Becherglas nachzustellen. Seine Mischung wurde gelb, dann klar, dann wieder gelb, und hörte nicht auf. Zwei Zeitschriften lehnten seine Arbeit als offensichtlichen Unsinn ab: Jede:r Chemiker:in wusste, Reaktionen liefen nur in eine Richtung, hin zum Gleichgewicht. Er legte das Papier in die Schublade. Zehn Jahre später reproduzierte und erweiterte Anatol Zhabotinsky, ein Moskauer Doktorand, die Reaktion, und die Zunft musste zugeben, dass Belousov die ganze Zeit recht gehabt hatte.",
       },
       {
         label: "03",
@@ -232,7 +232,7 @@ const de: RichStory = {
     note: "Drei-Variablen-Oregonator, mit kleinen Vorwärts-Euler-Schritten integriert. ε steuert, wie scharf der Aktivator x zündet; q stimmt die Bromid-Inhibition. Treibst du ε zu weit, verschmieren die Spitzen zu glatter Schwingung; ziehst du q unter ~1e−4, gibt die Bromid-Bremse auf.",
     pretitle: "Interaktiv · die chemische Uhr",
     title: "Sieh die drei Konzentrationen tanzen",
-    body: "Dieselben drei Variablen (x ∼ HBrO₂, y ∼ Br⁻, z ∼ Ce⁴⁺) die Field und Noyes 1974 aufschrieben, in Echtzeit. Langsamer Anstieg des Aktivators, scharfes Zünden, ein Blitz des oxidierten Katalysators, die Bromid-Bremse holt auf, das System lädt nach. Eine Uhr, gebaut aus nichts als Kinetik.",
+    body: "Dieselben drei Variablen (x ∼ HBrO₂, y ∼ Br⁻, z ∼ Ce⁴⁺), die Field und Noyes 1974 aufschrieben, in Echtzeit. Langsamer Anstieg des Aktivators, scharfes Zünden, ein Blitz des oxidierten Katalysators, die Bromid-Bremse holt auf, das System lädt nach. Eine Uhr, gebaut aus nichts als Kinetik.",
   },
   spiral: {
     caption: "Interaktiv · 2D-erregbares Medium",
@@ -760,7 +760,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "I 1951 prøvde den sovjetiske biokjemikeren Boris Belousov å modellere Krebs-syklusen i et beger. Blandingen ble gul, så fargeløs, så gul igjen, og sluttet ikke. To tidsskrifter avviste artikkelen hans som åpenbart tøv: enhver kjemiker visste at reaksjoner gikk én vei, mot likevekt. Han la den i skuffen. Ti år senere reproduserte og utvidet Anatol Zjabotinskij, doktorgradsstudent i Moskva, reaksjonen, og kjemimiljøet måtte sakte innrømme at Belousov hadde hatt rett hele tiden.",
+        body: "I 1951 prøvde den sovjetiske biokjemikeren Boris Belousov å modellere Krebs-syklusen i et beger. Blandingen ble gul, så fargeløs, så gul igjen, og sluttet ikke. To tidsskrifter avviste artikkelen hans som åpenbart tøv: Enhver kjemiker visste at reaksjoner gikk én vei, mot likevekt. Han la den i skuffen. Ti år senere reproduserte og utvidet Anatol Zjabotinskij, doktorgradsstudent i Moskva, reaksjonen, og kjemimiljøet måtte sakte innrømme at Belousov hadde hatt rett hele tiden.",
       },
       {
         label: "03",

@@ -170,7 +170,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die Katakaustik",
       title: "Licht, ein Kreis und die Kurve, die es einfängt",
-      body: "Setz eine punktförmige Lichtquelle auf den Rand eines kreisförmigen Spiegels. Jeder Strahl reflektiert an der Innenwand, und alle reflektierten Strahlen kreuzen einander; die Familie umhüllt eine glatte Kurve: die Katakaustik des Kreises. Diese Hüllkurve ist eine Kardioide: ihre runde Spitze berührt den Rand an der Lichtquelle, während die Rückkehrspitze vom Licht weg zeigt, ein Drittel des Radius hinter der Mitte. Keine Näherung, sondern exakt.",
+      body: "Setz eine punktförmige Lichtquelle auf den Rand eines kreisförmigen Spiegels. Jeder Strahl reflektiert an der Innenwand, und alle reflektierten Strahlen kreuzen einander; die Familie umhüllt eine glatte Kurve: die Katakaustik des Kreises. Diese Hüllkurve ist eine Kardioide: Ihre runde Spitze berührt den Rand an der Lichtquelle, während die Rückkehrspitze vom Licht weg zeigt, ein Drittel des Radius hinter der Mitte. Keine Näherung, sondern exakt.",
     },
     {
       pretitle: "Abschnitt 02 · Die Gleichung",
@@ -180,7 +180,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Die rollende Definition",
       title: "Ein Punkt auf einem Rad, das um sein Zwillingsrad rollt",
-      body: "Nimm zwei gleich große Kreise mit Radius a. Halt den einen fest, lass den anderen schlupffrei um ihn rollen, und markiere einen Punkt am Rand des rollenden Kreises. Die Bahn dieses Punktes ist die Kardioide: kardía heißt im Griechischen «Herz». Dieselbe Form, dieselbe Gleichung, aber aus Rollen statt Spiegeln gebaut.",
+      body: "Nimm zwei gleich große Kreise mit Radius a. Halt den einen fest, lass den anderen schlupffrei um ihn rollen, und markiere einen Punkt am Rand des rollenden Kreises. Die Bahn dieses Punktes ist die Kardioide; kardía heißt im Griechischen «Herz». Dieselbe Form, dieselbe Gleichung, aber aus Rollen statt Spiegeln gebaut.",
     },
     {
       pretitle: "Abschnitt 04 · Mandelbrots Hauptknospe",
@@ -356,7 +356,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · La définition par roulement",
       title: "Un point d'une roue qui tourne autour de sa jumelle",
-      body: "Prends deux cercles de même rayon a. Fixe l'un, fais rouler l'autre sans glisser autour, marque un point sur le bord de celui qui roule. La courbe tracée est la cardioïde : kardía signifie «cœur» en grec. Même forme, même équation, mais bâtie depuis le roulement plutôt que la réflexion.",
+      body: "Prends deux cercles de même rayon a. Fixe l'un, fais rouler l'autre sans glisser autour, marque un point sur le bord de celui qui roule. La courbe tracée est la cardioïde : kardía signifie « cœur » en grec. Même forme, même équation, mais bâtie depuis le roulement plutôt que la réflexion.",
     },
     {
       pretitle: "Section 04 · Le bulbe principal de Mandelbrot",
@@ -371,7 +371,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 06 · Histoire",
       title: "Étienne Pascal, 1637, et un baptême en 1741",
-      body: "Étienne Pascal (le père de Blaise) étudia la courbe vers 1637 et l'appela «la limaçon». Un siècle plus tard, en 1741, Johann Castillon lui donna le nom qu'on utilise encore : cardioïde, la courbe en cœur. Newton, les Bernoulli et Cayley en ont travaillé les propriétés ; aujourd'hui elle survit comme exemple de manuel et comme silhouette iconique du bulbe de Mandelbrot.",
+      body: "Étienne Pascal (le père de Blaise) étudia la courbe vers 1637 et l'appela « la limaçon ». Un siècle plus tard, en 1741, Johann Castillon lui donna le nom qu'on utilise encore : cardioïde, la courbe en cœur. Newton, les Bernoulli et Cayley en ont travaillé les propriétés ; aujourd'hui elle survit comme exemple de manuel et comme silhouette iconique du bulbe de Mandelbrot.",
     },
   ],
   closingPretitle: "Aller plus loin",
@@ -694,7 +694,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Katakaustikken",
       title: "Lys, en sirkel og kurven som fanger det",
-      body: "Sett en punktformet lyskilde på kanten av et sirkelformet speil. Hver stråle spretter av innerveggen, og de reflekterte strålene krysser hverandre; familien omslutter en glatt kurve: sirkelens katakaustikk. Den hyllingskurven er en kardioide: den myke enden nuddar kanten ved kilden, mens spissen peker bort fra lyset, en tredjedels radius bortenfor midten. Ingen tilnærming: det er eksakt.",
+      body: "Sett en punktformet lyskilde på kanten av et sirkelformet speil. Hver stråle spretter av innerveggen, og de reflekterte strålene krysser hverandre; familien omslutter en glatt kurve: sirkelens katakaustikk. Den hyllingskurven er en kardioide: Den myke enden nuddar kanten ved kilden, mens spissen peker bort fra lyset, en tredjedels radius bortenfor midten. Ingen tilnærming: Det er eksakt.",
     },
     {
       pretitle: "Avsnitt 02 · Ligningen",
@@ -704,7 +704,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Den rullende definisjonen",
       title: "Et punkt på et hjul som ruller rundt sin tvilling",
-      body: "Ta to sirkler med samme radius a. Hold den ene fast, la den andre rulle rundt uten å gli, og merk et punkt på kanten av den rullende. Kurven som tegnes er kardioiden: kardía betyr «hjerte» på gresk. Samme form, samme ligning, men bygd av rulling i stedet for refleksjon.",
+      body: "Ta to sirkler med samme radius a. Hold den ene fast, la den andre rulle rundt uten å gli, og merk et punkt på kanten av den rullende. Kurven som tegnes er kardioiden: Kardía betyr «hjerte» på gresk. Samme form, samme ligning, men bygd av rulling i stedet for refleksjon.",
     },
     {
       pretitle: "Avsnitt 04 · Mandelbrots hovedknopp",

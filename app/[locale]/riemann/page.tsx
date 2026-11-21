@@ -137,7 +137,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die Vermutung",
-        body: "Nimm die Funktion ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + …, setze sie (analytisch) auf alle komplexen s fort und frage, wo sie verschwindet. Einige Nullstellen sind trivial: die negativen geraden Zahlen. Alle anderen, sagt Riemann, liegen auf der senkrechten Linie Re(s) = ½. Billionen wurden geprüft. Nicht eine danebenliegt.",
+        body: "Nimm die Funktion ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + …, setze sie (analytisch) auf alle komplexen s fort und frage, wo sie verschwindet. Einige Nullstellen sind trivial: die negativen geraden Zahlen. Alle anderen, sagt Riemann, liegen auf der senkrechten Linie Re(s) = ½. Billionen wurden geprüft. Nicht eine liegt daneben.",
       },
       {
         label: "02",
@@ -162,12 +162,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Analytische Fortsetzung",
       title: "Eine divergierende Summe fortsetzen",
-      body: "Die Reihe Σ 1/nˢ konvergiert nur für Re(s) > 1. Riemanns Arbeit von 1859 vollzieht einen einzigen, kühnen Zug: sie zeigt, dass ζ eine eindeutige Fortsetzung auf die gesamte komplexe Ebene besitzt (bis auf einen einzigen Pol bei s = 1) und dass diese Fortsetzung die symmetrische Funktionalgleichung ζ(s) = 2ˢ πˢ⁻¹ sin(πs/2) Γ(1−s) ζ(1−s) erfüllt. Das neue ζ ist nicht mehr durch die Summe definiert; es ist als die einzige wohlerzogene Funktion definiert, die mit der Summe übereinstimmt, wo die Summe Sinn ergibt. Alles Weitere ist Geometrie auf diesem fortgesetzten Objekt.",
+      body: "Die Reihe Σ 1/nˢ konvergiert nur für Re(s) > 1. Riemanns Arbeit von 1859 vollzieht einen einzigen, kühnen Zug: Sie zeigt, dass ζ eine eindeutige Fortsetzung auf die gesamte komplexe Ebene besitzt (bis auf einen einzigen Pol bei s = 1) und dass diese Fortsetzung die symmetrische Funktionalgleichung ζ(s) = 2ˢ πˢ⁻¹ sin(πs/2) Γ(1−s) ζ(1−s) erfüllt. Das neue ζ ist nicht mehr durch die Summe definiert; es ist als die einzige wohlerzogene Funktion definiert, die mit der Summe übereinstimmt, wo die Summe Sinn ergibt. Alles Weitere ist Geometrie auf diesem fortgesetzten Objekt.",
     },
     {
       pretitle: "Abschnitt 03 · Der kritische Streifen",
       title: "Triviale Nullstellen außerhalb, interessante drinnen",
-      body: "Die Funktionalgleichung verrät sofort die „trivialen“ Nullstellen bei s = −2, −4, −6, …; der Sinusfaktor erzwingt sie. Alles andere muss im kritischen Streifen 0 < Re(s) < 1 leben, dem einzigen Ort, an dem die Funktion noch Spielraum hat zu oszillieren. Riemanns Hypothese ist die Behauptung, dass dieser ganze Streifen letztlich täuscht: die nichttrivialen Nullstellen verteilen sich nicht über ihn, sie kollabieren auf eine einzige senkrechte Naht in der Mitte, Re(s) = ½. Der Streifen ist die Bühne; die Naht ist, wo etwas passiert.",
+      body: "Die Funktionalgleichung verrät sofort die „trivialen“ Nullstellen bei s = −2, −4, −6, …; der Sinusfaktor erzwingt sie. Alles andere muss im kritischen Streifen 0 < Re(s) < 1 leben, dem einzigen Ort, an dem die Funktion noch Spielraum hat zu oszillieren. Riemanns Hypothese ist die Behauptung, dass dieser ganze Streifen letztlich täuscht: Die nichttrivialen Nullstellen verteilen sich nicht über ihn, sie kollabieren auf eine einzige senkrechte Naht in der Mitte, Re(s) = ½. Der Streifen ist die Bühne; die Naht ist, wo etwas passiert.",
     },
     {
       pretitle: "Abschnitt 04 · Die Vermutung",
@@ -181,8 +181,8 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 06 · Numerische Evidenz und Quantenchaos",
-      title: "Die Nullstellen reihen sich auf, wie ein Physik-Spektrum",
-      body: "Computerverifikationen haben die ersten zehn Billionen nichttrivialen Nullstellen exakt auf die kritische Linie gelegt (Gourdon, 2004 und Nachfolger). Und 1972 bemerkten Hugh Montgomery und Freeman Dyson etwas Seltsameres als jedes zahlentheoretische Resultat: die Statistik der Abstände zwischen Zeta-Nullstellen stimmt exakt mit der Statistik der Eigenwertabstände großer zufälliger hermitescher Matrizen überein, derselben Matrizen, mit denen Physiker:innen die Energieniveaus schwerer Atomkerne modellieren. Die Primzahlen, in einem noch zu klärenden Sinn, summen auf der Resonanzfrequenz eines Quantensystems.",
+      title: "Die Nullstellen reihen sich auf wie ein Physik-Spektrum",
+      body: "Computerverifikationen haben die ersten zehn Billionen nichttrivialen Nullstellen exakt auf die kritische Linie gelegt (Gourdon, 2004 und Nachfolger). Und 1972 bemerkten Hugh Montgomery und Freeman Dyson etwas Seltsameres als jedes zahlentheoretische Resultat: Die Statistik der Abstände zwischen Zeta-Nullstellen stimmt exakt mit der Statistik der Eigenwertabstände großer zufälliger hermitescher Matrizen überein, derselben Matrizen, mit denen Physiker:innen die Energieniveaus schwerer Atomkerne modellieren. Die Primzahlen, in einem noch zu klärenden Sinn, summen auf der Resonanzfrequenz eines Quantensystems.",
     },
   ],
   figureCaption:
@@ -191,7 +191,7 @@ const de: RichStory = {
   zetaPathTLabel: "t_max",
   zetaPathZerosFound: "Nullstellen passiert",
   zetaPathHint:
-    "Jedes Mal, wenn die Kurve durch den Ursprung läuft, hat ζ den Wert null erreicht, und der Imaginärteil t in diesem Moment ist die Höhe einer nichttrivialen Nullstelle. Ziehe den Regler hoch: die erste Schleife kommt bei t ≈ 14,13, die zweite bei 21,02, die dritte bei 25,01.",
+    "Jedes Mal, wenn die Kurve durch den Ursprung läuft, hat ζ den Wert null erreicht, und der Imaginärteil t in diesem Moment ist die Höhe einer nichttrivialen Nullstelle. Ziehe den Regler hoch: Die erste Schleife kommt bei t ≈ 14,13, die zweite bei 21,02, die dritte bei 25,01.",
   closingPretitle: "Sieh die Maschine",
   closingTitle: "Öffne den Explorer.",
   closingBody:
@@ -581,7 +581,7 @@ const sv: RichStory = {
     },
   ],
   figureCaption:
-    "Den kritiska remsan 0 < Re(s) < 1. De streckade lodrätorna markerar dess kanter; den varma linjen i mitten är Re(s) = ½. Varje pärla är en av de första åtta höjderna för icke-triviala nollställen: 14,13, 21,02, 25,01, 30,42, 32,93, 37,59, 40,92, 43,33.",
+    "Den kritiska remsan 0 < Re(s) < 1. De streckade lodrätorna markerar dess kanter; den varma linjen i mitten är Re(s) = ½. Varje pärla är en av de första åtta höjderna för icke-triviala nollställen: 14,13; 21,02; 25,01; 30,42; 32,93; 37,59; 40,92; 43,33.",
   zetaPathCaption: "ζ(½ + it) ritad i det komplexa planet",
   zetaPathTLabel: "t_max",
   zetaPathZerosFound: "nollställen passerade",
@@ -616,7 +616,7 @@ const no: RichStory = {
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Det første ikke-trivielle nullpunktet sitter ved s = ½ + 14,13… · i. Det neste ved ½ + 21,02… · i, deretter ½ + 25,01… · i, og marsjerer videre oppover uten slutt. Hvert er en liten resonanshandling mellom heltallene: høydene er ikke tilfeldige, de utgjør spekteret som primtallene avviker fra middelet med.",
+        body: "Det første ikke-trivielle nullpunktet sitter ved s = ½ + 14,13… · i. Det neste ved ½ + 21,02… · i, deretter ½ + 25,01… · i, og marsjerer videre oppover uten slutt. Hvert er en liten resonanshandling mellom heltallene: Høydene er ikke tilfeldige, de utgjør spekteret som primtallene avviker fra middelet med.",
       },
       {
         label: "03",
@@ -631,17 +631,17 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Eulers produkt",
       title: "ζ har primtallene i DNA-et",
-      body: "Allerede i 1737, nesten et århundre før Riemann, merket Euler at den uendelige summen ζ(s) = Σ 1/nˢ kan skrives som et uendelig produkt over primtallene: ζ(s) = ∏ₚ 1 / (1 − p⁻ˢ). Ekvivalensen er en av matematikkens stilleste men mest forbløffende identiteter: heltallenes additive struktur og primtallenes multiplikative struktur er bokstavelig talt samme objekt, sett fra to sider. Når du først vet det, er spørsmålet «hvor forsvinner ζ?» ikke lenger et spørsmål om en funksjon; det er et spørsmål om primtallene selv.",
+      body: "Allerede i 1737, nesten et århundre før Riemann, merket Euler at den uendelige summen ζ(s) = Σ 1/nˢ kan skrives som et uendelig produkt over primtallene: ζ(s) = ∏ₚ 1 / (1 − p⁻ˢ). Ekvivalensen er en av matematikkens stilleste men mest forbløffende identiteter: Heltallenes additive struktur og primtallenes multiplikative struktur er bokstavelig talt samme objekt, sett fra to sider. Når du først vet det, er spørsmålet «hvor forsvinner ζ?» ikke lenger et spørsmål om en funksjon; det er et spørsmål om primtallene selv.",
     },
     {
       pretitle: "Avsnitt 02 · Analytisk forlengelse",
       title: "Forlenge en sum som divergerer",
-      body: "Rekka Σ 1/nˢ konvergerer bare for Re(s) > 1. Riemanns artikkel fra 1859 utfører ett eneste, dristig grep: den viser at ζ har en entydig forlengelse til hele det komplekse planet (med unntak av én enkelt pol ved s = 1), og at denne forlengelsen oppfyller den symmetriske funksjonalligningen ζ(s) = 2ˢ πˢ⁻¹ sin(πs/2) Γ(1−s) ζ(1−s). Den nye ζ er ikke lenger definert av summen; den er definert som den eneste veloppdragne funksjonen som stemmer med summen der summen gir mening. Alt videre er geometri på dette forlengede objektet.",
+      body: "Rekka Σ 1/nˢ konvergerer bare for Re(s) > 1. Riemanns artikkel fra 1859 utfører ett eneste, dristig grep: Den viser at ζ har en entydig forlengelse til hele det komplekse planet (med unntak av én enkelt pol ved s = 1), og at denne forlengelsen oppfyller den symmetriske funksjonalligningen ζ(s) = 2ˢ πˢ⁻¹ sin(πs/2) Γ(1−s) ζ(1−s). Den nye ζ er ikke lenger definert av summen; den er definert som den eneste veloppdragne funksjonen som stemmer med summen der summen gir mening. Alt videre er geometri på dette forlengede objektet.",
     },
     {
       pretitle: "Avsnitt 03 · Den kritiske stripen",
       title: "Trivielle nullpunkter utenfor, interessante inni",
-      body: "Funksjonalligningen avslører straks de «trivielle» nullpunktene ved s = −2, −4, −6, …; sinusfaktoren tvinger dem frem. Alt annet må leve i den kritiske stripen 0 < Re(s) < 1, det eneste stedet der funksjonen fremdeles har rom til å oscillere. Riemanns hypotese er påstanden om at hele stripen er bedragerisk: de ikke-trivielle nullpunktene fordeler seg ikke utover den, de kollapser på én loddrett søm i midten, Re(s) = ½. Stripen er scenen; sømmen er der noe skjer.",
+      body: "Funksjonalligningen avslører straks de «trivielle» nullpunktene ved s = −2, −4, −6, …; sinusfaktoren tvinger dem frem. Alt annet må leve i den kritiske stripen 0 < Re(s) < 1, det eneste stedet der funksjonen fremdeles har rom til å oscillere. Riemanns hypotese er påstanden om at hele stripen er bedragerisk: De ikke-trivielle nullpunktene fordeler seg ikke utover den, de kollapser på én loddrett søm i midten, Re(s) = ½. Stripen er scenen; sømmen er der noe skjer.",
     },
     {
       pretitle: "Avsnitt 04 · Formodningen",
@@ -656,16 +656,16 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Numerisk evidens og kvantekaos",
       title: "Nullpunktene stiller seg på rekke, og ligner et fysikkspektrum",
-      body: "Datamaskinverifikasjoner har plassert de første ti billioner ikke-trivielle nullpunktene nøyaktig på den kritiske linjen (Gourdon, 2004 og etterfølgere). Og i 1972 la Hugh Montgomery og Freeman Dyson merke til noe merkeligere enn noe tallteoretisk resultat: statistikken for avstandene mellom zeta-nullpunkter stemmer nøyaktig med statistikken for avstandene mellom egenverdier i store tilfeldige hermitiske matriser, de samme matrisene fysikere bruker for å modellere energinivåene til tunge atomkjerner. Primtallene summer, i en betydning som ennå ikke er forklart, på resonansfrekvensen til et kvantesystem.",
+      body: "Datamaskinverifikasjoner har plassert de første ti billioner ikke-trivielle nullpunktene nøyaktig på den kritiske linjen (Gourdon, 2004 og etterfølgere). Og i 1972 la Hugh Montgomery og Freeman Dyson merke til noe merkeligere enn noe tallteoretisk resultat: Statistikken for avstandene mellom zeta-nullpunkter stemmer nøyaktig med statistikken for avstandene mellom egenverdier i store tilfeldige hermitiske matriser, de samme matrisene fysikere bruker for å modellere energinivåene til tunge atomkjerner. Primtallene summer, i en betydning som ennå ikke er forklart, på resonansfrekvensen til et kvantesystem.",
     },
   ],
   figureCaption:
-    "Den kritiske stripen 0 < Re(s) < 1. De stiplede loddrettene markerer kantene; den varme linjen i midten er Re(s) = ½. Hver perle er en av de første åtte høydene til ikke-trivielle nullpunkter: 14,13, 21,02, 25,01, 30,42, 32,93, 37,59, 40,92, 43,33.",
+    "Den kritiske stripen 0 < Re(s) < 1. De stiplede loddrettene markerer kantene; den varme linjen i midten er Re(s) = ½. Hver perle er en av de første åtte høydene til ikke-trivielle nullpunkter: 14,13; 21,02; 25,01; 30,42; 32,93; 37,59; 40,92; 43,33.",
   zetaPathCaption: "ζ(½ + it) tegnet i det komplekse planet",
   zetaPathTLabel: "t_max",
   zetaPathZerosFound: "nullpunkter krysset",
   zetaPathHint:
-    "Hver gang kurven løkker gjennom origo har ζ truffet null, og imaginærdelen t i det øyeblikket er høyden til et ikke-trivielt nullpunkt. Dra glidebryteren oppover: første løkke kommer rundt t ≈ 14,13, den andre rundt 21,02, den tredje rundt 25,01.",
+    "Hver gang kurven løkker gjennom origo har ζ truffet null, og imaginærdelen t i det øyeblikket er høyden til et ikke-trivielt nullpunkt. Dra glidebryteren oppover: Første løkke kommer rundt t ≈ 14,13, den andre rundt 21,02, den tredje rundt 25,01.",
   closingPretitle: "Se motoren",
   closingTitle: "Åpne Utforskeren.",
   closingBody:

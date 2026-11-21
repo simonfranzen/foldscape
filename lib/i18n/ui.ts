@@ -470,7 +470,7 @@ const no: UiDict = {
   mandel: {
     bookmarks: "Bokmerker",
     bookmarksInfo:
-      "Berømte steder i Mandelbrot-landskapet. Hvert sted krever flere iterasjoner: jo nærmere kanten, desto lengre tid bruker banen på å rømme.",
+      "Berømte steder i Mandelbrot-landskapet. Hvert sted krever flere iterasjoner: Jo nærmere kanten, desto lengre tid bruker banen på å rømme.",
     iterations: "Iterasjoner",
     iterationsInfo:
       "Hvor mange ganger vi anvender zₙ → zₙ² + c før et punkt regnes med i mengden. Flere iterasjoner gir finere detaljer.",

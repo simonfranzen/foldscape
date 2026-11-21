@@ -203,7 +203,7 @@ const de: RichStory = {
     title: "Langtons Ameise",
     tagline: "Zwei Regeln. Zehntausend Schritte. Eine Autobahn.",
     intro:
-      "Eine Ameise auf einem unendlichen Gitter folgt zwei Regeln: färbe das Feld um, drehe auf Weiß in die eine Richtung, auf Schwarz in die andere. Etwa zehntausend Schritte lang sieht die Spur wie pures Chaos aus. Dann, ohne Vorwarnung, beginnt sie, ein perfekt periodisches Muster aus 104 Schritten zu zeichnen, das nach unendlich davondriftet. Zwei Regeln, ein ungelöstes Wunder der Emergenz.",
+      "Eine Ameise auf einem unendlichen Gitter folgt zwei Regeln: Färbe das Feld um, drehe auf Weiß in die eine Richtung, auf Schwarz in die andere. Etwa zehntausend Schritte lang sieht die Spur wie pures Chaos aus. Dann, ohne Vorwarnung, beginnt sie, ein perfekt periodisches Muster aus 104 Schritten zu zeichnen, das nach unendlich davondriftet. Zwei Regeln, ein ungelöstes Wunder der Emergenz.",
     ctaInteractive: "→ Explorer öffnen",
   },
   encounter: {
@@ -452,7 +452,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · L'autoroute",
       title: "Une boucle de 104 pas, à la dérive éternelle",
-      body: "Quelque part autour du pas 10 000 la fourmi se cale dans un cycle d'exactement 104 pas qui la décale de deux cases en diagonale par tour. Vu de l'extérieur, c'est une «autoroute» rayée filant proprement vers un coin du plan. Elle la suivra, imperturbable, jusqu'à la fin des temps.",
+      body: "Quelque part autour du pas 10 000 la fourmi se cale dans un cycle d'exactement 104 pas qui la décale de deux cases en diagonale par tour. Vu de l'extérieur, c'est une « autoroute » rayée filant proprement vers un coin du plan. Elle la suivra, imperturbable, jusqu'à la fin des temps.",
     },
     {
       pretitle: "Section 04 · La conjecture ouverte",
@@ -467,7 +467,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 06 · Généralisations",
       title: "n couleurs, n tours, tout ordinateur imaginable",
-      body: "Remplace «deux couleurs» par «n couleurs» et donne à chacune sa propre règle R/L. La plupart de ces fourmis généralisées produisent encore autoroutes, triangles, régions remplies. L'universalité n'a même pas besoin des couleurs supplémentaires : Gajardo, Moreira et Goles ont montré en 2002 que la fourmi d'origine à deux règles exécute déjà tout circuit booléen encodé dans sa grille de départ, si bien que sa trajectoire est un calcul. La famille à n couleurs élargit le zoo des formes, pas la puissance de calcul.",
+      body: "Remplace « deux couleurs » par « n couleurs » et donne à chacune sa propre règle R/L. La plupart de ces fourmis généralisées produisent encore autoroutes, triangles, régions remplies. L'universalité n'a même pas besoin des couleurs supplémentaires : Gajardo, Moreira et Goles ont montré en 2002 que la fourmi d'origine à deux règles exécute déjà tout circuit booléen encodé dans sa grille de départ, si bien que sa trajectoire est un calcul. La famille à n couleurs élargit le zoo des formes, pas la puissance de calcul.",
     },
   ],
   rulesGrid: {
@@ -833,7 +833,7 @@ const no: RichStory = {
     title: "Langtons maur",
     tagline: "To regler. Ti tusen skritt. En motorvei.",
     intro:
-      "En maur på et uendelig rutenett følger to regler: snu cellen, vri den ene veien på hvitt og den andre på svart. I omtrent ti tusen skritt ser sporet ut som rent kaos. Så, uten varsel, begynner hun å legge ut et perfekt periodisk mønster på 104 skritt som driver av mot uendeligheten. To regler, et uløst emergent mirakel.",
+      "En maur på et uendelig rutenett følger to regler: Snu cellen, vri den ene veien på hvitt og den andre på svart. I omtrent ti tusen skritt ser sporet ut som rent kaos. Så, uten varsel, begynner hun å legge ut et perfekt periodisk mønster på 104 skritt som driver av mot uendeligheten. To regler, et uløst emergent mirakel.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {

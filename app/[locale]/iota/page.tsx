@@ -300,12 +300,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Barker, 2001",
       title: "Auftritt Iota",
-      body: "2001 fragte der Linguist und Logiker Chris Barker: wie weit kann man das treiben? Schönfinkel brauchte zwei Kombinatoren. Reicht einer? Er definierte ℩ ≡ λx. x S K: „wende dein Argument auf S an, dann auf K.“ Das ist die ganze Sprache: ein Symbol, eine Regel. Klammern sind Typografie, kein zusätzliches Primitiv. Und doch enthält diese eine Regel S und K als abgeleitete Terme, und damit alles.",
+      body: "2001 fragte der Linguist und Logiker Chris Barker: Wie weit kann man das treiben? Schönfinkel brauchte zwei Kombinatoren. Reicht einer? Er definierte ℩ ≡ λx. x S K: „Wende dein Argument auf S an, dann auf K.“ Das ist die ganze Sprache: ein Symbol, eine Regel. Klammern sind Typografie, kein zusätzliches Primitiv. Und doch enthält diese eine Regel S und K als abgeleitete Terme, und damit alles.",
     },
     {
       pretitle: "Abschnitt 04 · K herleiten",
       title: "Eine kleine Iota-Schachtelung ergibt K",
-      body: "Nimm ℩(℩(℩℩)). Jedes äußere Iota feuert die Regel ℩x = xSK: das äußerste schält sich als (℩(℩ι)) S K ab, dann noch einmal, dann noch einmal. Nach ein paar S- und K-Reduktionen bleibt am Ende der nackte Kombinator K übrig. Die Linksaußen-Spur läuft etwa neun Schritte von Anfang bis Ende, eine kurze Kette, alles Buchhaltung. Aus vier Strichen eines einzigen Symbols fällt die Konstantenfunktion heraus.",
+      body: "Nimm ℩(℩(℩℩)). Jedes äußere Iota feuert die Regel ℩x = xSK: Das äußerste schält sich als (℩(℩ι)) S K ab, dann noch einmal, dann noch einmal. Nach ein paar S- und K-Reduktionen bleibt am Ende der nackte Kombinator K übrig. Die Linksaußen-Spur läuft etwa neun Schritte von Anfang bis Ende, eine kurze Kette, alles Buchhaltung. Aus vier Strichen eines einzigen Symbols fällt die Konstantenfunktion heraus.",
     },
     {
       pretitle: "Abschnitt 05 · S herleiten",
@@ -315,7 +315,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Turing-Vollständigkeit",
       title: "Von einem Symbol zu allem Berechenbaren",
-      body: "Currys und Feys' Combinatory Logic (1958) ist ein langes Buch mit einem kurzen Hauptsatz: jeder λ-Term lässt sich in einen Term übersetzen, der nur aus S und K besteht. Kombiniert mit dem, was wir gerade gemacht haben (Iota erzeugt S, Iota erzeugt K), ist die Kette geschlossen. Alles, was eine Turing-Maschine, ein Python-Programm oder ein Mensch berechnen kann, lässt sich in Iota codieren. Der Preis ist eine brutale Längenexplosion; der Gewinn ist konzeptionell. Iota steht hinter funktionaler Programmierung, Typtheorie, Beweisassistenten und jeder Implementierung von ML-artigen Sprachen als ultimatives Minimalmodell.",
+      body: "Currys und Feys' Combinatory Logic (1958) ist ein langes Buch mit einem kurzen Hauptsatz: Jeder λ-Term lässt sich in einen Term übersetzen, der nur aus S und K besteht. Kombiniert mit dem, was wir gerade gemacht haben (Iota erzeugt S, Iota erzeugt K), ist die Kette geschlossen. Alles, was eine Turing-Maschine, ein Python-Programm oder ein Mensch berechnen kann, lässt sich in Iota codieren. Der Preis ist eine brutale Längenexplosion; der Gewinn ist konzeptionell. Iota steht hinter funktionaler Programmierung, Typtheorie, Beweisassistenten und jeder Implementierung von ML-artigen Sprachen als ultimatives Minimalmodell.",
     },
   ],
   reducerCaption: "Interaktiv · Schritt-für-Schritt-Reduzierer",
@@ -1240,12 +1240,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Barker, 2001",
       title: "Inn kommer Iota",
-      body: "I 2001 spurte lingvisten og logikeren Chris Barker: hvor langt kan man drive det? Schönfinkel trengte to kombinatorer. Holder det med én? Han definerte ℩ ≡ λx. x S K: «anvend argumentet ditt på S og deretter på K». Det er hele språket: ett symbol, én regel. Parenteser er typografi, ikke en ekstra primitiv. Likevel inneholder denne ene regelen S og K som avledede termer, og dermed alt.",
+      body: "I 2001 spurte lingvisten og logikeren Chris Barker: Hvor langt kan man drive det? Schönfinkel trengte to kombinatorer. Holder det med én? Han definerte ℩ ≡ λx. x S K: «anvend argumentet ditt på S og deretter på K». Det er hele språket: ett symbol, én regel. Parenteser er typografi, ikke en ekstra primitiv. Likevel inneholder denne ene regelen S og K som avledede termer, og dermed alt.",
     },
     {
       pretitle: "Avsnitt 04 · Utlede K",
       title: "En liten nøsting av iota gir K",
-      body: "Ta ℩(℩(℩℩)). Hvert ytre iota fyrer av regelen ℩x = xSK: det ytterste skreller av som (℩(℩ι)) S K, så igjen, og igjen. Etter noen få S- og K-reduksjoner ligger den nakne kombinatoren K igjen. Det venstre-ytterste sporet løper rundt ni steg fra start til slutt, en kort kjede, ren bokføring. Av fire streker av ett symbol faller den konstante funksjonen ut.",
+      body: "Ta ℩(℩(℩℩)). Hvert ytre iota fyrer av regelen ℩x = xSK: Det ytterste skreller av som (℩(℩ι)) S K, så igjen, og igjen. Etter noen få S- og K-reduksjoner ligger den nakne kombinatoren K igjen. Det venstre-ytterste sporet løper rundt ni steg fra start til slutt, en kort kjede, ren bokføring. Av fire streker av ett symbol faller den konstante funksjonen ut.",
     },
     {
       pretitle: "Avsnitt 05 · Utlede S",
@@ -1255,7 +1255,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Turing-fullstendighet",
       title: "Fra ett symbol til alt beregnbart",
-      body: "Curry og Feys' Combinatory Logic (1958) er en lang bok hvis sentrale teorem er kort: enhver λ-term kan oversettes til en term bygget bare av S og K. Kombinert med det vi nettopp gjorde (iota produserer S og iota produserer K) er kjeden lukket. Alt en Turingmaskin, et Python-program eller en menneskelig matematiker kan beregne, kan iota kode. Prisen er en brutal lengdeeksplosjon; gevinsten er begrepsmessig. Iota står bak funksjonell programmering, typeteori, bevisassistenter og enhver implementasjon av ML-lignende språk som den ultimate minimale modellen.",
+      body: "Curry og Feys' Combinatory Logic (1958) er en lang bok hvis sentrale teorem er kort: Enhver λ-term kan oversettes til en term bygget bare av S og K. Kombinert med det vi nettopp gjorde (iota produserer S og iota produserer K) er kjeden lukket. Alt en Turingmaskin, et Python-program eller en menneskelig matematiker kan beregne, kan iota kode. Prisen er en brutal lengdeeksplosjon; gevinsten er begrepsmessig. Iota står bak funksjonell programmering, typeteori, bevisassistenter og enhver implementasjon av ML-lignende språk som den ultimate minimale modellen.",
     },
   ],
   reducerCaption: "Interaktiv · trinn-for-trinn-reduser",

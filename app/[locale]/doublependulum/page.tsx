@@ -207,7 +207,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           pretitle: "Schritt eins · Der Aufbau",
           title: "Zwei Pendel, ein Bob hängt am anderen",
-          body: "Ein starrer Stab der Länge L₁ mit einer Masse m₁ am Ende, der unter der Schwerkraft schwingt. An diesem ersten Bob hängt ein zweiter Stab der Länge L₂ mit Masse m₂. Zwei Winkel θ₁ und θ₂ gegen die Vertikale, dazu ihre Winkelgeschwindigkeiten: das ist der gesamte Zustand.",
+          body: "Ein starrer Stab der Länge L₁ mit einer Masse m₁ am Ende, der unter der Schwerkraft schwingt. An diesem ersten Bob hängt ein zweiter Stab der Länge L₂ mit Masse m₂. Zwei Winkel θ₁ und θ₂ gegen die Vertikale, dazu ihre Winkelgeschwindigkeiten: Das ist der gesamte Zustand.",
         },
         {
           pretitle: "Schritt zwei · Die Lagrange-Funktion",
@@ -222,7 +222,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           pretitle: "Schritt vier · Wo es auftaucht",
           title: "Roboter, Gehen, Regelungstheorie, Museen",
-          body: "Dieselben Gleichungen beschreiben zweigliedrige Roboterarme, das schwingende Bein beim Gehen, zusammengesetzte Oszillatoren in der Maschinenwelt, und das klassische Problem, ein Pendel aufrecht zu stabilisieren. Jedes Wissenschaftsmuseum hat eins im Glaskasten, das Bahnen zieht, die niemand vorhersagen kann.",
+          body: "Dieselben Gleichungen beschreiben zweigliedrige Roboterarme, das schwingende Bein beim Gehen, zusammengesetzte Oszillatoren in der Maschinenwelt und das klassische Problem, ein Pendel aufrecht zu stabilisieren. Jedes Wissenschaftsmuseum hat eins im Glaskasten, das Bahnen zieht, die niemand vorhersagen kann.",
         },
       ],
     },
@@ -253,7 +253,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt eins · Die Lagrange-Funktion",
         title: "Energie rein, Energie raus, Bewegungsgleichungen",
-        body: "Schreib die Position jedes Bobs: (x₁, y₁) für den ersten und (x₂, y₂) für den zweiten, beide als Funktion von θ₁ und θ₂. Ableiten gibt Geschwindigkeiten. Die kinetische Energie T ist ½ m₁ v₁² + ½ m₂ v₂². Die potentielle Energie V ist m₁ g y₁ + m₂ g y₂. Bilde L = T − V, eine einzige skalare Funktion auf dem vierdimensionalen Zustandsraum, und die ganze Dynamik steckt darin. Lagranges tiefe Einsicht von 1788: man braucht keine Freikörperbilder, die Natur minimiert eine Wirkung und die Gleichungen folgen.",
+        body: "Schreib die Position jedes Bobs: (x₁, y₁) für den ersten und (x₂, y₂) für den zweiten, beide als Funktion von θ₁ und θ₂. Ableiten gibt Geschwindigkeiten. Die kinetische Energie T ist ½ m₁ v₁² + ½ m₂ v₂². Die potentielle Energie V ist m₁ g y₁ + m₂ g y₂. Bilde L = T − V, eine einzige skalare Funktion auf dem vierdimensionalen Zustandsraum, und die ganze Dynamik steckt darin. Lagranges tiefe Einsicht von 1788: Man braucht keine Freikörperbilder, die Natur minimiert eine Wirkung und die Gleichungen folgen.",
       },
       {
         pretitle: "Abschnitt zwei · Die gekoppelten ODEs",
@@ -263,12 +263,12 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Abschnitt drei · Drei Regime",
         title: "Ruhig, wild und der KAM-Riss dazwischen",
-        body: "Bei niedriger Gesamtenergie liegt die Bewegung auf einem glatten invarianten Torus im 4D-Phasenraum: quasiperiodisch, beschränkt, fast langweilig. Drehst du die Energie hoch, zerreißt der Torus: nach dem KAM-Satz von Kolmogorow, Arnold und Moser überleben die meisten invarianten Tori kleine Störungen, mit wachsender Energie brechen sie aber Stück für Stück, bis ein chaotisches Meer übrigbleibt. Dazwischen ein kritischer Übergang, in dem Inseln der Ordnung neben stochastischen Schichten existieren. Das Doppelpendel ist die Tischvorführung der gesamten KAM-Geschichte.",
+        body: "Bei niedriger Gesamtenergie liegt die Bewegung auf einem glatten invarianten Torus im 4D-Phasenraum: quasiperiodisch, beschränkt, fast langweilig. Drehst du die Energie hoch, zerreißt der Torus: Nach dem KAM-Satz von Kolmogorow, Arnold und Moser überleben die meisten invarianten Tori kleine Störungen, mit wachsender Energie brechen sie aber Stück für Stück, bis ein chaotisches Meer übrigbleibt. Dazwischen ein kritischer Übergang, in dem Inseln der Ordnung neben stochastischen Schichten existieren. Das Doppelpendel ist die Tischvorführung der gesamten KAM-Geschichte.",
       },
       {
         pretitle: "Abschnitt vier · Lyapunov und der Horizont",
         title: "Eine Vorhersagedecke, gemessen in Sekunden",
-        body: "Im chaotischen Regime driften zwei nahe Bahnen ungefähr wie ε · e^(λt) auseinander, wobei λ der größte Lyapunov-Exponent ist, positiv, endlich, eine Eigenschaft des Systems, nicht des Beobachters. Der Vorhersagehorizont skaliert dann wie t* ≈ (1/λ) · log(L/ε): jeder weitere Faktor zehn an Anfangsgenauigkeit kauft dir nur konstant viele Sekunden Vorausschau. Keine bessere Uhr, kein schnellerer Rechner, kein klügerer Integrator schlägt den Exponenten.",
+        body: "Im chaotischen Regime driften zwei nahe Bahnen ungefähr wie ε · e^(λt) auseinander, wobei λ der größte Lyapunov-Exponent ist, positiv, endlich, eine Eigenschaft des Systems, nicht des Beobachters. Der Vorhersagehorizont skaliert dann wie t* ≈ (1/λ) · log(L/ε): Jeder weitere Faktor zehn an Anfangsgenauigkeit kauft dir nur konstant viele Sekunden Vorausschau. Keine bessere Uhr, kein schnellerer Rechner, kein klügerer Integrator schlägt den Exponenten.",
       },
       {
         pretitle: "Abschnitt fünf · Phasenraum und Poincaré",
@@ -873,7 +873,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     },
     encounter: {
       pretitle: "Första mötet",
-      title: "Två stänger, en pivot: en hel kaosens fysik",
+      title: "Två stänger, en pivot: en hel kaosfysik",
       cards: [
         {
           label: "01 · Den stora idén",
@@ -981,7 +981,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         {
           pretitle: "Steg én · Oppsettet",
           title: "To pendler, ett lodd henger i et annet",
-          body: "En stiv stang med lengde L₁ og et lodd m₁ i enden, som svinger under tyngdekraften. Fra det første loddet henger en andre stang L₂ med lodd m₂. To vinkler θ₁ og θ₂ målt fra loddrett, pluss vinkelhastighetene deres: det er hele tilstanden.",
+          body: "En stiv stang med lengde L₁ og et lodd m₁ i enden, som svinger under tyngdekraften. Fra det første loddet henger en andre stang L₂ med lodd m₂. To vinkler θ₁ og θ₂ målt fra loddrett, pluss vinkelhastighetene deres: Det er hele tilstanden.",
         },
         {
           pretitle: "Steg to · Lagrangianen",
@@ -1002,7 +1002,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
     },
     encounter: {
       pretitle: "Første møte",
-      title: "To stenger, ett pivot: en hel kaoset fysikk",
+      title: "To stenger, ett pivot: en hel kaosfysikk",
       cards: [
         {
           label: "01 · Den store idéen",
@@ -1027,7 +1027,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del én · Lagrangianen",
         title: "Energi inn, energi ut, bevegelseslikninger",
-        body: "Skriv posisjonen til hvert lodd: (x₁, y₁) for det første og (x₂, y₂) for det andre, begge som funksjoner av θ₁ og θ₂. Deriver for å få hastigheter. Den kinetiske energien T er ½ m₁ v₁² + ½ m₂ v₂². Den potensielle V er m₁ g y₁ + m₂ g y₂. Dann L = T − V, en enkelt skalar funksjon over 4D-tilstandsrommet, og hele dynamikken ligger der. Lagranges dype innsikt fra 1788: ingen frikroppsdiagrammer trengs, naturen minimerer en virkning og ligningene følger.",
+        body: "Skriv posisjonen til hvert lodd: (x₁, y₁) for det første og (x₂, y₂) for det andre, begge som funksjoner av θ₁ og θ₂. Deriver for å få hastigheter. Den kinetiske energien T er ½ m₁ v₁² + ½ m₂ v₂². Den potensielle V er m₁ g y₁ + m₂ g y₂. Dann L = T − V, en enkelt skalar funksjon over 4D-tilstandsrommet, og hele dynamikken ligger der. Lagranges dype innsikt fra 1788: Ingen frikroppsdiagrammer trengs, naturen minimerer en virkning og ligningene følger.",
       },
       {
         pretitle: "Del to · De koblede ODEene",
@@ -1042,7 +1042,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Del fire · Lyapunov og horisonten",
         title: "Et forutsigbarhetstak, målt i sekunder",
-        body: "I det kaotiske regimet vokser to nære baner fra hverandre omtrent som ε · e^(λt), der λ er den største Lyapunov-eksponenten, positiv, endelig, en egenskap ved systemet, ikke ved observatøren. Forutsigbarhetshorisonten skalerer som t* ≈ (1/λ) · log(L/ε): hver ekstra faktor ti i startpresisjon kjøper bare et konstant antall sekunder framsyn. Ingen bedre stoppeklokke, ingen raskere datamaskin, ingen smartere integrator slår eksponenten.",
+        body: "I det kaotiske regimet vokser to nære baner fra hverandre omtrent som ε · e^(λt), der λ er den største Lyapunov-eksponenten, positiv, endelig, en egenskap ved systemet, ikke ved observatøren. Forutsigbarhetshorisonten skalerer som t* ≈ (1/λ) · log(L/ε): Hver ekstra faktor ti i startpresisjon kjøper bare et konstant antall sekunder framsyn. Ingen bedre stoppeklokke, ingen raskere datamaskin, ingen smartere integrator slår eksponenten.",
       },
       {
         pretitle: "Del fem · Faserom og Poincaré",

@@ -244,12 +244,12 @@ const de: AtlasDict = {
     diffusion: {
       title: "Diffusionsmodelle",
       tagline: "Rauschen, Schritt für Schritt zu einem Bild aufgelöst",
-      body: "Nimm ein Bild und streue ein wenig Gauß-Rauschen darüber. Wiederhole das tausendmal, und es bleibt nur noch Rauschen. Lerne nun die Umkehrung: gegeben reines Rauschen, sage die leicht weniger verrauschte Version voraus. Stapele tausend solcher Schritte und du erzeugst aus reinem Zufall völlig neue Bilder. Das ist die ganze Idee hinter Stable Diffusion, Midjourney und DALL·E: eine Markov-Kette, die gelernt hat, die Wärmegleichung rückwärts zu laufen.",
+      body: "Nimm ein Bild und streue ein wenig Gauß-Rauschen darüber. Wiederhole das tausendmal, und es bleibt nur noch Rauschen. Lerne nun die Umkehrung: Gegeben reines Rauschen, sage die leicht weniger verrauschte Version voraus. Stapele tausend solcher Schritte und du erzeugst aus reinem Zufall völlig neue Bilder. Das ist die ganze Idee hinter Stable Diffusion, Midjourney und DALL·E: eine Markov-Kette, die gelernt hat, die Wärmegleichung rückwärts zu laufen.",
     },
     nand: {
       title: "Der Sheffer-Strich",
       tagline: "Ein Gatter genügt für die gesamte digitale Logik",
-      body: "Das NAND-Gatter (a ↑ b = ¬(a ∧ b)) ist allein funktional vollständig: jede boolesche Verknüpfung (UND, ODER, NICHT, XOR, alles) lässt sich aus NANDs bauen. Genau deshalb sind ganze Computerchips physikalisch ein Meer aus NAND-Gattern. Das Resultat geht auf Henry Sheffer in den 1910ern zurück.",
+      body: "Das NAND-Gatter (a ↑ b = ¬(a ∧ b)) ist allein funktional vollständig: Jede boolesche Verknüpfung (UND, ODER, NICHT, XOR, alles) lässt sich aus NANDs bauen. Genau deshalb sind ganze Computerchips physikalisch ein Meer aus NAND-Gattern. Das Resultat geht auf Henry Sheffer in den 1910ern zurück.",
     },
     iota: {
       title: "Der Iota-Kombinator",
@@ -299,7 +299,7 @@ const de: AtlasDict = {
     boids: {
       title: "Boids: Schwärme aus drei Regeln",
       tagline: "Trennung, Ausrichtung, Zusammenhalt. Heraus fliegt ein Schwarm.",
-      body: "1986 gab Craig Reynolds jedem simulierten Vogel drei lokale Instinkte: weiche Nachbarn aus, die zu nahe sind (Trennung), drehe in die mittlere Flugrichtung deiner Nachbarn (Ausrichtung), steuere auf deren mittleren Standort zu (Zusammenhalt). Kein Anführer, kein Plan, keine Vogelperspektive. Aus diesen drei winzigen Drangregeln entstehen dichte Schwärme, sich teilende Ströme, wirbelnde Wiedervereinigungen: exakt die Choreografie, die echte Stare, Fischschwärme und Heuschreckenwolken aufführen.",
+      body: "1986 gab Craig Reynolds jedem simulierten Vogel drei lokale Instinkte: Weiche Nachbarn aus, die zu nahe sind (Trennung), drehe in die mittlere Flugrichtung deiner Nachbarn (Ausrichtung), steuere auf deren mittleren Standort zu (Zusammenhalt). Kein Anführer, kein Plan, keine Vogelperspektive. Aus diesen drei winzigen Drangregeln entstehen dichte Schwärme, sich teilende Ströme, wirbelnde Wiedervereinigungen: exakt die Choreografie, die echte Stare, Fischschwärme und Heuschreckenwolken aufführen.",
     },
     dla: {
       title: "Diffusionsbegrenzte Aggregation",
@@ -309,7 +309,7 @@ const de: AtlasDict = {
     langton: {
       title: "Langtons Ameise",
       tagline: "Zwei Regeln, zehntausend Schritte, eine Autobahn",
-      body: "Eine Ameise steht auf einem weißen Feld eines unendlichen Gitters. Regel: auf Weiß färbe das Feld um, drehe nach rechts, gehe einen Schritt. Auf Schwarz färbe um, drehe nach links, gehe einen Schritt. Etwa zehntausend Schritte lang sieht die Spur wie pures Chaos aus. Dann, ohne Vorwarnung, beginnt die Ameise, ein perfekt periodisches Muster aus 104 Schritten zu zeichnen, das nach unendlich davondriftet. Niemand hat bewiesen, dass die Autobahn immer entsteht; bisher hat sie es einfach immer. Zwei Regeln, ein ungelöstes Wunder der Emergenz.",
+      body: "Eine Ameise steht auf einem weißen Feld eines unendlichen Gitters. Regel: Auf Weiß färbe das Feld um, drehe nach rechts, gehe einen Schritt. Auf Schwarz färbe um, drehe nach links, gehe einen Schritt. Etwa zehntausend Schritte lang sieht die Spur wie pures Chaos aus. Dann, ohne Vorwarnung, beginnt die Ameise, ein perfekt periodisches Muster aus 104 Schritten zu zeichnen, das nach unendlich davondriftet. Niemand hat bewiesen, dass die Autobahn immer entsteht; bisher hat sie es einfach immer. Zwei Regeln, ein ungelöstes Wunder der Emergenz.",
     },
     pascalmod: {
       title: "Pascals Dreieck (mod n)",
@@ -319,7 +319,7 @@ const de: AtlasDict = {
     sternbrocot: {
       title: "Der Stern-Brocot-Baum",
       tagline: "Jeder Bruch, genau einmal, aus falsch addieren gebaut",
-      body: "Starte mit 0/1 und 1/0. Wann immer zwei Brüche nebeneinanderstehen, schiebe ihren Medianten (a + c)/(b + d) dazwischen. Weiter, unendlich. Im so wachsenden Baum bekommt jeder gekürzte Bruch p/q mit p, q > 0 seinen eigenen, einzigen Knoten (keiner fehlt, keiner taucht doppelt auf) und der Links-Rechts-Pfad zu einem Bruch ist exakt seine Kettenbruchentwicklung. Derselbe Baum liefert die besten rationalen Approximationen für irrationale Zahlen: der Weg zu π und φ führt mitten hindurch.",
+      body: "Starte mit 0/1 und 1/0. Wann immer zwei Brüche nebeneinanderstehen, schiebe ihren Medianten (a + c)/(b + d) dazwischen. Weiter, unendlich. Im so wachsenden Baum bekommt jeder gekürzte Bruch p/q mit p, q > 0 seinen eigenen, einzigen Knoten (keiner fehlt, keiner taucht doppelt auf) und der Links-Rechts-Pfad zu einem Bruch ist exakt seine Kettenbruchentwicklung. Derselbe Baum liefert die besten rationalen Approximationen für irrationale Zahlen: Der Weg zu π und φ führt mitten hindurch.",
     },
     ulam: {
       title: "Die Ulam-Spirale",
@@ -329,7 +329,7 @@ const de: AtlasDict = {
     aizawa: {
       title: "Der Aizawa-Attraktor",
       tagline: "Lorenz' seltsamerer, fremderer Cousin",
-      body: "Wie Lorenz besteht Aizawa aus drei gekoppelten Differentialgleichungen, die einen Punkt durch den 3D-Raum zerren. Anders als Lorenz' Schmetterling faltet sich die Bahn hier zu einem verknoteten Torus mit Korbhenkel und einer vertikalen Spitze in der Mitte, eine Form, so markant, dass sie zu den meistfotografierten seltsamen Attraktoren überhaupt zählt. Winzige Änderungen der Parameter formen die gesamte Geometrie um: ein einziger Regler verwandelt den Korb in eine Blume, in eine Vase, in Chaos.",
+      body: "Wie Lorenz besteht Aizawa aus drei gekoppelten Differentialgleichungen, die einen Punkt durch den 3D-Raum zerren. Anders als Lorenz' Schmetterling faltet sich die Bahn hier zu einem verknoteten Torus mit Korbhenkel und einer vertikalen Spitze in der Mitte, eine Form, so markant, dass sie zu den meistfotografierten seltsamen Attraktoren überhaupt zählt. Winzige Änderungen der Parameter formen die gesamte Geometrie um: Ein einziger Regler verwandelt den Korb in eine Blume, in eine Vase, in Chaos.",
     },
     cardioid: {
       title: "Die Kaffeetassen-Kardioide",
@@ -339,7 +339,7 @@ const de: AtlasDict = {
     galton: {
       title: "Das Galton-Brett",
       tagline: "Hüpfende Kugeln zeichnen immer dieselbe Glocke",
-      body: "Francis Galtons Quincunx ist ein Dreieck aus Stiften. Lass oben eine Kugel los: an jedem Stift entscheidet ein fifty-fifty-Münzwurf, ob es nach links oder rechts geht, bis die Schwerkraft sie in eines der Auffangfächer am Boden befördert. Lässt du zehntausend Kugeln fallen, füllen sich die Fächer, immer, zur Form der Normalverteilung. Die Glocke ist kein Zufall; sie ist der Zentrale Grenzwertsatz zum Anfassen: jede Summe vieler unabhängiger kleiner Zufallsstöße konvergiert gegen eine Gauß-Kurve, unabhängig davon, wie die einzelnen Stöße aussehen.",
+      body: "Francis Galtons Quincunx ist ein Dreieck aus Stiften. Lass oben eine Kugel los: An jedem Stift entscheidet ein fifty-fifty-Münzwurf, ob es nach links oder rechts geht, bis die Schwerkraft sie in eines der Auffangfächer am Boden befördert. Lässt du zehntausend Kugeln fallen, füllen sich die Fächer, immer, zur Form der Normalverteilung. Die Glocke ist kein Zufall; sie ist der Zentrale Grenzwertsatz zum Anfassen: Jede Summe vieler unabhängiger kleiner Zufallsstöße konvergiert gegen eine Gauß-Kurve, unabhängig davon, wie die einzelnen Stöße aussehen.",
     },
     magpendulum: {
       title: "Das magnetische Pendel",
@@ -364,7 +364,7 @@ const de: AtlasDict = {
     doublependulum: {
       title: "Das Doppelpendel",
       tagline: "Zwei verkettete Pendel, totales Chaos",
-      body: "Hänge ein zweites Pendel an die Masse eines ersten. Das System hat nur zwei Winkel und zwei Geschwindigkeiten, und doch ist seine Bewegung berüchtigt chaotisch: identisch wirkende Startwerte driften innerhalb von Sekunden weit auseinander. Die Bahnen im Phasenraum zeichnen einige der schönsten Kurven der gesamten dynamischen Systeme.",
+      body: "Hänge ein zweites Pendel an die Masse eines ersten. Das System hat nur zwei Winkel und zwei Geschwindigkeiten, und doch ist seine Bewegung berüchtigt chaotisch: Identisch wirkende Startwerte driften innerhalb von Sekunden weit auseinander. Die Bahnen im Phasenraum zeichnen einige der schönsten Kurven der gesamten dynamischen Systeme.",
     },
     bzr: {
       title: "Die Belousov-Zhabotinsky-Reaktion",
@@ -384,7 +384,7 @@ const de: AtlasDict = {
     chaosgame: {
       title: "Das Chaosspiel",
       tagline: "Würfle, zeichne ein Fraktal",
-      body: "Setze drei Punkte zu einem Dreieck. Wähle einen beliebigen Startpunkt. Wiederholt: wähle eine Ecke zufällig, gehe die halbe Strecke dorthin und markiere die Stelle. Nach ein paar tausend Schritten verdichtet sich das Rauschen zu einem perfekten Sierpiński-Dreieck: Ordnung aus purem Zufall, ohne andere Anweisung als das Halbieren.",
+      body: "Setze drei Punkte zu einem Dreieck. Wähle einen beliebigen Startpunkt. Wiederholt: Wähle eine Ecke zufällig, gehe die halbe Strecke dorthin und markiere die Stelle. Nach ein paar tausend Schritten verdichtet sich das Rauschen zu einem perfekten Sierpiński-Dreieck: Ordnung aus purem Zufall, ohne andere Anweisung als das Halbieren.",
     },
     penrose: {
       title: "Penrose-Parkettierungen",
@@ -419,7 +419,7 @@ const de: AtlasDict = {
     cantor: {
       title: "Cantors Diagonalargument",
       tagline: "Es gibt mehr reelle als natürliche Zahlen",
-      body: "Angenommen, die reellen Zahlen zwischen 0 und 1 ließen sich in einer Folge auflisten. Cantor zeigte, wie man aus jeder solchen Liste eine reelle Zahl konstruiert, die fehlt: ändere die erste Ziffer der ersten Zahl, die zweite Ziffer der zweiten und so weiter entlang der Diagonale. Die neue Zahl kann keiner in der Liste gleichen. Die reellen Zahlen sind überabzählbar, und Unendlichkeit kommt in Größen.",
+      body: "Angenommen, die reellen Zahlen zwischen 0 und 1 ließen sich in einer Folge auflisten. Cantor zeigte, wie man aus jeder solchen Liste eine reelle Zahl konstruiert, die fehlt: Ändere die erste Ziffer der ersten Zahl, die zweite Ziffer der zweiten und so weiter entlang der Diagonale. Die neue Zahl kann keiner in der Liste gleichen. Die reellen Zahlen sind überabzählbar, und Unendlichkeit kommt in Größen.",
     },
     godel: {
       title: "Gödels Unvollständigkeit",
@@ -449,7 +449,7 @@ const de: AtlasDict = {
     eulerchar: {
       title: "Euler-Charakteristik",
       tagline: "V − E + F = 2 für jedes brave Polyeder",
-      body: "Zähle Ecken, subtrahiere Kanten, addiere Flächen. Für jedes Polyeder ohne Löcher ist die Antwort immer 2: Würfel, Dodekaeder, Fußball, dein Haus. Die Zahl ist eine topologische Invariante: ziehe die Form, wie du willst, das Ergebnis bleibt fest. Füge ein Loch hinzu und sie fällt auf 0. Topologie in einer Gleichung.",
+      body: "Zähle Ecken, subtrahiere Kanten, addiere Flächen. Für jedes Polyeder ohne Löcher ist die Antwort immer 2: Würfel, Dodekaeder, Fußball, dein Haus. Die Zahl ist eine topologische Invariante: Ziehe die Form, wie du willst, das Ergebnis bleibt fest. Füge ein Loch hinzu und sie fällt auf 0. Topologie in einer Gleichung.",
     },
     konigsberg: {
       title: "Die Königsberger Brücken",
@@ -1670,7 +1670,7 @@ const no: AtlasDict = {
       "For alle som noen gang har stoppet opp fordi en formel var vakker. Elever, studenter, utviklere, lærere, kunstnere, nysgjerrige, og for alle som aner at den vakreste delen av matematikken aldri kom inn i læreboka.",
     motivationLabel: "Hvorfor dette finnes",
     motivation:
-      "Fordi det vakreste ved et bevis sjelden er beviset selv: det er øyeblikket når en bitteliten regel for første gang frambringer noe ingen hadde forutsett. Lærebøker raser forbi det øyeblikket. Foldscape er mitt forsøk på å legge det i hånden din.",
+      "Fordi det vakreste ved et bevis sjelden er beviset selv: Det er øyeblikket når en bitteliten regel for første gang frambringer noe ingen hadde forutsett. Lærebøker raser forbi det øyeblikket. Foldscape er mitt forsøk på å legge det i hånden din.",
     browseLabel: "Bla i atlaset",
     statusInteractive: "Interaktiv",
     statusStub: "Under utvikling",
@@ -1699,17 +1699,17 @@ const no: AtlasDict = {
     sat: {
       title: "Boolsk oppfyllbarhet (SAT)",
       tagline: "Problemet som ethvert vanskelig problem reduseres til",
-      body: "Gitt en logisk formel av variabler bundet sammen med OG, ELLER og IKKE: kan du sette hver variabel til sann eller usann slik at helheten blir sann? Å sjekke en foreslått tildeling er trivielt; å finne en kan være brutalt. I 1971 beviste Stephen Cook (og uavhengig Leonid Levin) at SAT er NP-fullstendig: ethvert problem hvis svar er lette å verifisere reduseres til det, så en rask SAT-løser ville knekt dem alle på én gang. Det var det første problemet som noensinne ble bevist NP-fullstendig, og står i hjertet av P mot NP. Likevel avgjør virkelige løsere, med DPLL-søk og konfliktdrevet klausullæring, rutinemessig formler med millioner av variabler.",
+      body: "Gitt en logisk formel av variabler bundet sammen med OG, ELLER og IKKE: Kan du sette hver variabel til sann eller usann slik at helheten blir sann? Å sjekke en foreslått tildeling er trivielt; å finne en kan være brutalt. I 1971 beviste Stephen Cook (og uavhengig Leonid Levin) at SAT er NP-fullstendig: Ethvert problem hvis svar er lette å verifisere reduseres til det, så en rask SAT-løser ville knekt dem alle på én gang. Det var det første problemet som noensinne ble bevist NP-fullstendig, og står i hjertet av P mot NP. Likevel avgjør virkelige løsere, med DPLL-søk og konfliktdrevet klausullæring, rutinemessig formler med millioner av variabler.",
     },
     diffusion: {
       title: "Diffusjonsmodeller",
       tagline: "Støy oppløst til et bilde, steg for steg",
-      body: "Ta et hvilket som helst fotografi og strø på litt gaussisk støy. Gjenta tusen ganger og bildet er ren snø. Lær nå det motsatte: gitt ren støy, forutsi den litt mindre støyete versjonen. Stable tusen slike steg og du kan generere helt nye bilder fra ren tilfeldighet. Det er hele idéen bak Stable Diffusion, Midjourney og DALL·E: en Markov-kjede trent til å kjøre varmelikningen baklengs.",
+      body: "Ta et hvilket som helst fotografi og strø på litt gaussisk støy. Gjenta tusen ganger og bildet er ren snø. Lær nå det motsatte: Gitt ren støy, forutsi den litt mindre støyete versjonen. Stable tusen slike steg og du kan generere helt nye bilder fra ren tilfeldighet. Det er hele idéen bak Stable Diffusion, Midjourney og DALL·E: en Markov-kjede trent til å kjøre varmelikningen baklengs.",
     },
     nand: {
       title: "Sheffer-streken",
       tagline: "Én port er nok for all digital logikk",
-      body: "NAND-porten (a ↑ b = ¬(a ∧ b)) er funksjonelt fullstendig alene: ethvert boolsk uttrykk (AND, OR, NOT, XOR, alt) kan bygges utelukkende av NAND. Det er derfor hele brikker fysisk realiseres som et hav av NAND-porter. Resultatet ble slått fast av Henry Sheffer på 1910-tallet.",
+      body: "NAND-porten (a ↑ b = ¬(a ∧ b)) er funksjonelt fullstendig alene: Ethvert boolsk uttrykk (AND, OR, NOT, XOR, alt) kan bygges utelukkende av NAND. Det er derfor hele brikker fysisk realiseres som et hav av NAND-porter. Resultatet ble slått fast av Henry Sheffer på 1910-tallet.",
     },
     iota: {
       title: "Iota-kombinatoren",
@@ -1779,7 +1779,7 @@ const no: AtlasDict = {
     bzr: {
       title: "Belousov-Zjabotinskij-reaksjonen",
       tagline: "En kjemisk reaksjon som tegner spiraler",
-      body: "Bland bromat, malonsyre og en katalysator i riktige forhold, og løsningen faller ikke til ro: den pulserer, skifter farge og organiserer seg spontant i roterende spiralbølger. Kjemien er virkelig; matematikken bak er et reaksjons-diffusjonssystem hvis mønstre kan gjenskapes i kode.",
+      body: "Bland bromat, malonsyre og en katalysator i riktige forhold, og løsningen faller ikke til ro: Den pulserer, skifter farge og organiserer seg spontant i roterende spiralbølger. Kjemien er virkelig; matematikken bak er et reaksjons-diffusjonssystem hvis mønstre kan gjenskapes i kode.",
     },
     turingpattern: {
       title: "Turing-mønstre",
@@ -1794,7 +1794,7 @@ const no: AtlasDict = {
     chaosgame: {
       title: "Kaosspillet",
       tagline: "Kast en terning, tegn en fraktal",
-      body: "Plasser tre punkter i en trekant. Velg et hvilket som helst startpunkt. Gjenta: trekk et hjørne tilfeldig, gå halvveis dit og marker stedet. I løpet av noen tusen trekk fortettes støyen til en perfekt Sierpiński-trekant: orden ut av ren tilfeldighet, uten annen instruks enn et halveringssteg.",
+      body: "Plasser tre punkter i en trekant. Velg et hvilket som helst startpunkt. Gjenta: Trekk et hjørne tilfeldig, gå halvveis dit og marker stedet. I løpet av noen tusen trekk fortettes støyen til en perfekt Sierpiński-trekant: orden ut av ren tilfeldighet, uten annen instruks enn et halveringssteg.",
     },
     penrose: {
       title: "Penrose-flislegging",
@@ -1829,7 +1829,7 @@ const no: AtlasDict = {
     cantor: {
       title: "Cantors diagonalargument",
       tagline: "Det finnes flere reelle tall enn telletall",
-      body: "Anta at de reelle tallene mellom 0 og 1 kunne listes opp i en følge. Cantor viste hvordan man fra hvilken som helst slik liste konstruerer et reelt tall som mangler: endre første siffer i det første, andre siffer i det andre, og så videre langs diagonalen. Det nye tallet kan ikke være lik noe i listen. De reelle er ikke tellbare, og uendeligheten kommer i størrelser.",
+      body: "Anta at de reelle tallene mellom 0 og 1 kunne listes opp i en følge. Cantor viste hvordan man fra hvilken som helst slik liste konstruerer et reelt tall som mangler: Endre første siffer i det første, andre siffer i det andre, og så videre langs diagonalen. Det nye tallet kan ikke være lik noe i listen. De reelle er ikke tellbare, og uendeligheten kommer i størrelser.",
     },
     godel: {
       title: "Gödels ufullstendighet",
@@ -1854,12 +1854,12 @@ const no: AtlasDict = {
     mobius: {
       title: "Möbius-bånd & Klein-flaske",
       tagline: "Flater med bare én side",
-      body: "Gi en papirstrimmel en halv vridning og lim sammen endene. Resultatet har én kant og én side: en maur som går på flaten besøker « begge sider » uten noen gang å krysse kanten. I fire dimensjoner gir samme triks på et rør Klein-flasken: en lukket flate uten innside eller utside. Leketøy, kunst og topologiens grunnlag.",
+      body: "Gi en papirstrimmel en halv vridning og lim sammen endene. Resultatet har én kant og én side: En maur som går på flaten besøker « begge sider » uten noen gang å krysse kanten. I fire dimensjoner gir samme triks på et rør Klein-flasken: en lukket flate uten innside eller utside. Leketøy, kunst og topologiens grunnlag.",
     },
     eulerchar: {
       title: "Euler-karakteristikken",
       tagline: "H − K + F = 2 for hver snill polyeder",
-      body: "Tell hjørner, trekk fra kanter, legg til flater. For enhver polyeder uten hull er svaret alltid 2: terning, dodekaeder, fotball, huset ditt. Tallet er en topologisk invariant: dra formen som du vil, svaret står fast. Legg til ett hull og det faller til 0. Topologi i én ligning.",
+      body: "Tell hjørner, trekk fra kanter, legg til flater. For enhver polyeder uten hull er svaret alltid 2: terning, dodekaeder, fotball, huset ditt. Tallet er en topologisk invariant: Dra formen som du vil, svaret står fast. Legg til ett hull og det faller til 0. Topologi i én ligning.",
     },
     konigsberg: {
       title: "Königsberg-broene",
@@ -1869,7 +1869,7 @@ const no: AtlasDict = {
     fourcolor: {
       title: "Firefargesatsen",
       tagline: "Hvert flatt kart greier seg med høyst fire farger",
-      body: "Formulert 1852, bevist 1976 av Kenneth Appel og Wolfgang Haken. Enhver inndeling av planet i regioner kan farges med høyst fire farger uten at to naborregioner deler farge. Det var den første store satsen verifisert av datamaskin: den reduserer problemet til 1834 uunngåelige konfigurasjoner og sjekker hver. Matematikere kranglet i årevis om hvorvidt beviset « virkelig telte ».",
+      body: "Formulert 1852, bevist 1976 av Kenneth Appel og Wolfgang Haken. Enhver inndeling av planet i regioner kan farges med høyst fire farger uten at to naborregioner deler farge. Det var den første store satsen verifisert av datamaskin: Den reduserer problemet til 1834 uunngåelige konfigurasjoner og sjekker hver. Matematikere kranglet i årevis om hvorvidt beviset « virkelig telte ».",
     },
     smallworld: {
       title: "Seks grader & små verdener",

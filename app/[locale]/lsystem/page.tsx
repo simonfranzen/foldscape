@@ -58,7 +58,7 @@ const en: RichStory = {
     title: "L-Systems",
     tagline: "Letters that rewrite themselves into plants.",
     intro:
-      "An L-system is a tiny grammar: a starting string, a handful of rewrite rules, and a turtle that turns the letters into lines. In a few generations, three letters become a fern. In the Explorer you edit the axiom, slide the depth and watch the turtle draw (Koch flakes, dragons, Hilbert curves, whole forests) out of a handful of characters.",
+      "An L-system is a tiny grammar: a starting string, a handful of rewrite rules, and a turtle that turns the letters into lines. In a few generations, three letters become a fern. In the Explorer you edit the axiom, slide the depth and watch the turtle draw Koch flakes, dragons, Hilbert curves, whole forests, out of a handful of characters.",
     ctaInteractive: "→ Open the Explorer",
     sections: [],
   },
@@ -145,7 +145,7 @@ const de: RichStory = {
     title: "L-Systeme",
     tagline: "Buchstaben, die sich zu Pflanzen umschreiben.",
     intro:
-      "Ein L-System ist eine winzige Grammatik: eine Startzeichenkette, eine Handvoll Ersetzungsregeln und eine Schildkröte, die aus den Buchstaben Linien macht. Aus drei Buchstaben wird in wenigen Generationen ein Farn. Im Explorer veränderst du Axiom und Regeln, schiebst die Iterationstiefe und siehst zu, wie die Schildkröte zeichnet (Koch-Flocken, Drachen, Hilbert-Kurven, ganze Wälder) aus einer Handvoll Zeichen.",
+      "Ein L-System ist eine winzige Grammatik: eine Startzeichenkette, eine Handvoll Ersetzungsregeln und eine Schildkröte, die aus den Buchstaben Linien macht. Aus drei Buchstaben wird in wenigen Generationen ein Farn. Im Explorer veränderst du Axiom und Regeln, schiebst die Iterationstiefe und siehst zu, wie die Schildkröte zeichnet: Koch-Flocken, Drachen, Hilbert-Kurven, ganze Wälder aus einer Handvoll Zeichen.",
     ctaInteractive: "→ Explorer öffnen",
     sections: [],
   },
@@ -176,12 +176,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die Ersetzungsregel",
       title: "Alphabet, Axiom, paralleles Umschreiben",
-      body: "Ein L-System besteht aus drei Teilen. Einem Alphabet von Symbolen. Einem Axiom, der Startzeichenkette. Einer Menge von Produktionsregeln, eine pro Symbol, die sagt, was aus jedem Symbol in der nächsten Generation wird. Der entscheidende Kniff ist die Parallelität: in jedem Schritt werden alle Symbole gleichzeitig ersetzt, so wie sich in einem jungen Blatt alle Zellen gleichzeitig teilen. Genau diese Entwurfsentscheidung trennt ein L-System von einer Chomsky-Grammatik, in der pro Schritt ein Symbol ersetzt wird. Parallelität liefert Wachstum.",
+      body: "Ein L-System besteht aus drei Teilen. Einem Alphabet von Symbolen. Einem Axiom, der Startzeichenkette. Einer Menge von Produktionsregeln, eine pro Symbol, die sagt, was aus jedem Symbol in der nächsten Generation wird. Der entscheidende Kniff ist die Parallelität: In jedem Schritt werden alle Symbole gleichzeitig ersetzt, so wie sich in einem jungen Blatt alle Zellen gleichzeitig teilen. Genau diese Entwurfsentscheidung trennt ein L-System von einer Chomsky-Grammatik, in der pro Schritt ein Symbol ersetzt wird. Parallelität liefert Wachstum.",
     },
     {
       pretitle: "Abschnitt 02 · Die Schildkröten-Interpretation",
       title: "F, +, −, [, ]: ein Stift mit Gedächtnis",
-      body: "Buchstaben für sich sind nur Text. Die Geometrie entsteht, wenn man die Zeichenkette einer Schildkröte gibt. F bedeutet eine Einheit vorwärts zeichnen. + dreht den Kopf um einen festen Winkel nach links (oft 25°, 60°, 90°). − dreht um denselben Winkel nach rechts. Zwei weitere Symbole geben der Schildkröte ein Gedächtnis: [ legt aktuelle Position und Richtung auf einen Stapel, ] holt sie zurück. Mit Push und Pop allein verzweigt sich eine eindimensionale Zeichenkette plötzlich: Klammerpaare werden zu Seitenästen und Zweigen. Symbole außerhalb des Zeichen-Alphabets (X, Y, A, B…) sind stumme Variablen: sie tragen Information durch die Umschreibungen, doch die Schildkröte ignoriert sie auf dem Papier.",
+      body: "Buchstaben für sich sind nur Text. Die Geometrie entsteht, wenn man die Zeichenkette einer Schildkröte gibt. F bedeutet eine Einheit vorwärts zeichnen. + dreht den Kopf um einen festen Winkel nach links (oft 25°, 60°, 90°). − dreht um denselben Winkel nach rechts. Zwei weitere Symbole geben der Schildkröte ein Gedächtnis: [ legt aktuelle Position und Richtung auf einen Stapel, ] holt sie zurück. Mit Push und Pop allein verzweigt sich eine eindimensionale Zeichenkette plötzlich: Klammerpaare werden zu Seitenästen und Zweigen. Symbole außerhalb des Zeichen-Alphabets (X, Y, A, B…) sind stumme Variablen: Sie tragen Information durch die Umschreibungen, doch die Schildkröte ignoriert sie auf dem Papier.",
     },
     {
       pretitle: "Abschnitt 03 · Berühmte L-Systeme",
@@ -190,13 +190,13 @@ const de: RichStory = {
     },
     {
       pretitle: "Abschnitt 04 · Verzweigung mit Klammern",
-      title: "[ legt ab, ] holt zurück: so wachsen Pflanzen",
+      title: "[ legt ab, ] holt zurück: So wachsen Pflanzen",
       body: "Echte Pflanzen sind keine Kurven, sie verzweigen. Ein L-System bekommt Verzweigung kostenlos aus zwei Zeichen. Liest die Schildkröte [, legt sie ihre aktuelle Position und Richtung auf einen Stapel und zeichnet weiter. Liest sie ], stellt sie sie wieder her. Alles, was zwischen den passenden Klammern gezeichnet wurde, wird zu einem Seitenast, dann setzt die Schildkröte den Stamm fort. Verschachtelte Klammern ergeben Äste auf Ästen auf Ästen, genauso wie die Zweige eines Mammutbaums aus seinen Ästen wachsen, die aus seinen Hauptästen wachsen, die aus seinem Stamm wachsen. Zwei Zeichen, unendliche Botanik.",
     },
     {
       pretitle: "Abschnitt 05 · Stochastisch und kontextsensitiv",
       title: "Jenseits strenger Determiniertheit",
-      body: "Die einfache Variante oben ist kontextfrei und deterministisch: jedes Symbol hat genau eine Regel. Zwei Erweiterungen machen L-Systeme richtig mächtig. Stochastische L-Systeme geben einem Symbol mehrere mögliche Ersetzungen, jede mit einer Wahrscheinlichkeit; zwei Farne aus derselben Grammatik sehen dadurch wie Geschwister aus, nicht wie Klone. Kontextsensitive L-Systeme erlauben einer Regel nur dann zu feuern, wenn ein Symbol zwischen bestimmten Nachbarn steht. So modellieren Biolog:innen Signalwege: ein Hormon in der Mutterzelle löst eine bestimmte Teilung in der Tochterzelle aus. Es gibt auch parametrische L-Systeme, in denen jedes Symbol kontinuierliche Parameter trägt (Länge, Winkel, Alter), und getaktete L-Systeme, in denen Regeln mit unterschiedlicher Geschwindigkeit feuern. Die ganze Familie modelliert echte Morphogenese mit erstaunlicher Treue.",
+      body: "Die einfache Variante oben ist kontextfrei und deterministisch: Jedes Symbol hat genau eine Regel. Zwei Erweiterungen machen L-Systeme richtig mächtig. Stochastische L-Systeme geben einem Symbol mehrere mögliche Ersetzungen, jede mit einer Wahrscheinlichkeit; zwei Farne aus derselben Grammatik sehen dadurch wie Geschwister aus, nicht wie Klone. Kontextsensitive L-Systeme erlauben einer Regel nur dann zu feuern, wenn ein Symbol zwischen bestimmten Nachbarn steht. So modellieren Biolog:innen Signalwege: Ein Hormon in der Mutterzelle löst eine bestimmte Teilung in der Tochterzelle aus. Es gibt auch parametrische L-Systeme, in denen jedes Symbol kontinuierliche Parameter trägt (Länge, Winkel, Alter), und getaktete L-Systeme, in denen Regeln mit unterschiedlicher Geschwindigkeit feuern. Die ganze Familie modelliert echte Morphogenese mit erstaunlicher Treue.",
     },
     {
       pretitle: "Abschnitt 06 · Echte Biologie, echte Grafik",
@@ -284,7 +284,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · Estocásticos y sensibles al contexto",
       title: "Más allá del determinismo estricto",
-      body: "La versión simple de arriba es libre de contexto y determinista: cada símbolo tiene exactamente una regla. Dos extensiones hacen a los sistemas L realmente potentes. Los sistemas L estocásticos dan a un símbolo varias reescrituras posibles, cada una con una probabilidad, así dos helechos de la misma gramática parecen hermanos, no clones. Los sistemas L sensibles al contexto solo permiten disparar una regla cuando un símbolo está entre vecinos específicos, que es como los biólogos modelan la señalización: una hormona en la célula madre dispara una división concreta en la hija. También hay sistemas L paramétricos, donde cada símbolo lleva parámetros continuos (longitud, ángulo, edad), y sistemas L temporizados, donde las reglas disparan a velocidades distintas. Toda la familia modela la morfogénesis real con fidelidad sorprendente.",
+      body: "La versión simple de arriba es libre de contexto y determinista: cada símbolo tiene exactamente una regla. Dos extensiones hacen a los sistemas L realmente potentes. Los sistemas L estocásticos dan a un símbolo varias reescrituras posibles, cada una con una probabilidad; así dos helechos de la misma gramática parecen hermanos, no clones. Los sistemas L sensibles al contexto solo permiten disparar una regla cuando un símbolo está entre vecinos específicos, que es como los biólogos modelan la señalización: una hormona en la célula madre dispara una división concreta en la hija. También hay sistemas L paramétricos, donde cada símbolo lleva parámetros continuos (longitud, ángulo, edad), y sistemas L temporizados, donde las reglas disparan a velocidades distintas. Toda la familia modela la morfogénesis real con fidelidad sorprendente.",
     },
     {
       pretitle: "Sección 06 · Biología real, gráficos reales",
@@ -701,12 +701,12 @@ const no: RichStory = {
     {
       pretitle: "Del 01 · Omskrivingsregelen",
       title: "Alfabet, aksiom, parallell omskriving",
-      body: "Et L-system har tre deler. Et alfabet av symboler. Et aksiom, startstrengen. Et sett produksjonsregler, én per symbol, som sier hva hvert symbol blir i neste generasjon. Den definerende vrien er parallellitet: i hvert skritt skrives alle symboler om samtidig, slik alle cellene i et ungt blad deler seg samtidig. Akkurat den ene designvalget skiller et L-system fra en Chomsky-grammatikk, der ett symbol skrives om av gangen. Parallellitet gir vekst.",
+      body: "Et L-system har tre deler. Et alfabet av symboler. Et aksiom, startstrengen. Et sett produksjonsregler, én per symbol, som sier hva hvert symbol blir i neste generasjon. Den definerende vrien er parallellitet: I hvert skritt skrives alle symboler om samtidig, slik alle cellene i et ungt blad deler seg samtidig. Akkurat den ene designvalget skiller et L-system fra en Chomsky-grammatikk, der ett symbol skrives om av gangen. Parallellitet gir vekst.",
     },
     {
       pretitle: "Del 02 · Skilpaddetolkningen",
       title: "F, +, −, [, ]: en penn med hukommelse",
-      body: "Bokstaver alene er bare tekst. Geometrien dukker opp når du gir strengen til en skilpadde. F betyr gå én enhet fram. + dreier kursen til venstre med en fast vinkel (ofte 25°, 60°, 90°). − dreier samme vinkel til høyre. To symboler til gir skilpadden hukommelse: [ legger nåværende posisjon og kurs på en stabel, ] henter dem tilbake. Bare med push og pop forgrener en endimensjonal streng seg plutselig: parentespar blir sidekvister og småkvister. Symboler utenfor tegnealfabetet (X, Y, A, B…) er stumme variabler: de bærer informasjon gjennom omskrivingene, men skilpadden overser dem på papiret.",
+      body: "Bokstaver alene er bare tekst. Geometrien dukker opp når du gir strengen til en skilpadde. F betyr gå én enhet fram. + dreier kursen til venstre med en fast vinkel (ofte 25°, 60°, 90°). − dreier samme vinkel til høyre. To symboler til gir skilpadden hukommelse: [ legger nåværende posisjon og kurs på en stabel, ] henter dem tilbake. Bare med push og pop forgrener en endimensjonal streng seg plutselig: Parentespar blir sidekvister og småkvister. Symboler utenfor tegnealfabetet (X, Y, A, B…) er stumme variabler: De bærer informasjon gjennom omskrivingene, men skilpadden overser dem på papiret.",
     },
     {
       pretitle: "Del 03 · Berømte L-systemer",
@@ -715,13 +715,13 @@ const no: RichStory = {
     },
     {
       pretitle: "Del 04 · Forgrening med parenteser",
-      title: "[ legger på, ] tar av: slik vokser planter",
+      title: "[ legger på, ] tar av: Slik vokser planter",
       body: "Ekte planter er ikke kurver; de forgrener seg. Et L-system får forgrening gratis fra to tegn. Når skilpadden leser [ lagrer den nåværende posisjon og retning på en stabel og fortsetter å tegne. Når den leser ] henter den dem tilbake. Alt som ble tegnet mellom de matchende parentesene blir en sidegren, og skilpadden fortsetter så stammen. Nøstede parenteser gir grener på grener på grener, på samme måte som en sequoia-kvist vokser fra dens grener, som vokser fra dens hovedgrener, som vokser fra stammen. To tegn, uendelig botanikk.",
     },
     {
       pretitle: "Del 05 · Stokastiske og kontekstsensitive",
       title: "Forbi streng determinisme",
-      body: "Den enkle versjonen over er kontekstfri og deterministisk: hvert symbol har nøyaktig én regel. To utvidelser gjør L-systemer virkelig kraftige. Stokastiske L-systemer gir et symbol flere mulige omskrivinger, hver med en sannsynlighet; to bregner fra samme grammatikk ser dermed ut som søsken, ikke kloner. Kontekstsensitive L-systemer lar en regel utløses bare når et symbol står mellom bestemte naboer, som er måten biologer modellerer signalering på: et hormon i morcellen utløser en bestemt deling hos dattercellen. Det finnes også parametriske L-systemer, der hvert symbol bærer kontinuerlige parametre (lengde, vinkel, alder), og tidsstyrte L-systemer der regler utløses i ulike hastigheter. Hele familien modellerer ekte morfogenese med slående troskap.",
+      body: "Den enkle versjonen over er kontekstfri og deterministisk: Hvert symbol har nøyaktig én regel. To utvidelser gjør L-systemer virkelig kraftige. Stokastiske L-systemer gir et symbol flere mulige omskrivinger, hver med en sannsynlighet; to bregner fra samme grammatikk ser dermed ut som søsken, ikke kloner. Kontekstsensitive L-systemer lar en regel utløses bare når et symbol står mellom bestemte naboer, som er måten biologer modellerer signalering på: Et hormon i morcellen utløser en bestemt deling hos dattercellen. Det finnes også parametriske L-systemer, der hvert symbol bærer kontinuerlige parametre (lengde, vinkel, alder), og tidsstyrte L-systemer der regler utløses i ulike hastigheter. Hele familien modellerer ekte morfogenese med slående troskap.",
     },
     {
       pretitle: "Del 06 · Ekte biologi, ekte grafikk",

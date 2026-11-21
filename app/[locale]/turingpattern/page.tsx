@@ -189,7 +189,7 @@ const de: RichStory = {
     title: "Turing-Muster",
     tagline: "Zwei Stoffe, zwei Diffusionsgeschwindigkeiten, und ein Leopardenfell entsteht.",
     intro:
-      "1952 zeigte Alan Turing: zwei wechselwirkende Stoffe, einer diffundiert schneller als der andere, können eine gleichförmige Mischung von allein in Punkte, Streifen und verzweigte Netze brechen. Dieselben Gleichungen erklären Leopardenfell, Zebrastreifen, Kaiserfisch-Bänder und überraschend viel davon, wie ein Embryo entscheidet, wohin er was setzt.",
+      "1952 zeigte Alan Turing: Zwei wechselwirkende Stoffe, einer diffundiert schneller als der andere, können eine gleichförmige Mischung von allein in Punkte, Streifen und verzweigte Netze brechen. Dieselben Gleichungen erklären Leopardenfell, Zebrastreifen, Kaiserfisch-Bänder und überraschend viel davon, wie ein Embryo entscheidet, wohin er was setzt.",
     ctaInteractive: "Explorer öffnen",
     sections: [],
   },
@@ -205,7 +205,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Nenn sie Aktivator und Inhibitor. Der Aktivator verstärkt sich lokal, wie ein kleines Feuer, das neben sich ein neues entzündet. Der Inhibitor diffundiert schneller weg und erstickt den Aktivator in der Ferne. Wo der Aktivator gewinnt, entsteht ein Fleck. Drumherum verhindert der Inhibitor-Hof, dass dicht daneben ein zweiter Fleck wächst. Diesen Wettstreit kachelt man über eine Fläche und erhält ein gleichmäßiges Meer von Punkten, oder Streifen, je nach Geometrie.",
+        body: "Nenn sie Aktivator und Inhibitor. Der Aktivator verstärkt sich lokal, wie ein kleines Feuer, das neben sich ein neues entzündet. Der Inhibitor diffundiert schneller weg und erstickt den Aktivator in der Ferne. Wo der Aktivator gewinnt, entsteht ein Fleck. Drumherum verhindert der Inhibitor-Hof, dass dicht daneben ein zweiter Fleck wächst. Diesen Wettstreit kachelt man über eine Fläche und erhält ein gleichmäßiges Meer von Punkten oder Streifen, je nach Geometrie.",
       },
       {
         label: "03",
@@ -220,22 +220,22 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die Gleichung",
       title: "Zwei gekoppelte PDEs, zwei Diffusionskonstanten",
-      body: "Sei u und v die Konzentration zweier wechselwirkender Stoffe auf einer Fläche. Jeder diffundiert mit eigener Rate, jeder reagiert mit dem anderen. Das System lautet ∂u/∂t = D_u ∇²u + f(u, v) und ∂v/∂t = D_v ∇²v + g(u, v). Die Laplace-Terme beschreiben die Ausbreitung; f und g die Chemie. Mehr braucht es nicht: gleichförmiger Anfangszustand plus Reaktion plus Unterschied zwischen D_u und D_v reichen, damit Muster aus dem Nichts erscheinen.",
+      body: "Sei u und v die Konzentration zweier wechselwirkender Stoffe auf einer Fläche. Jeder diffundiert mit eigener Rate, jeder reagiert mit dem anderen. Das System lautet ∂u/∂t = D_u ∇²u + f(u, v) und ∂v/∂t = D_v ∇²v + g(u, v). Die Laplace-Terme beschreiben die Ausbreitung; f und g die Chemie. Mehr braucht es nicht: Gleichförmiger Anfangszustand plus Reaktion plus Unterschied zwischen D_u und D_v reichen, damit Muster aus dem Nichts erscheinen.",
     },
     {
       pretitle: "Abschnitt 02 · Aktivator und Inhibitor",
       title: "Lokale Aktivierung, laterale Inhibition",
-      body: "Die sauberste Anschauung ist Gierer-Meinhardt: u ist ein Aktivator, der sich selbst und seine eigene Bremse v katalysiert. Der Aktivator möchte überall dort, wo eine Fluktuation seine Konzentration anhebt, zu einem heißen Fleck entbrennen. Aber er produziert auch v, das schneller nach außen diffundiert und u im umliegenden Ring drückt. Ergebnis: jeder werdende Fleck zäunt seine Nachbarn ab. Der Abstand der Flecken wird davon gesetzt, wie weit v reist, bis u nachziehen kann.",
+      body: "Die sauberste Anschauung ist Gierer-Meinhardt: u ist ein Aktivator, der sich selbst und seine eigene Bremse v katalysiert. Der Aktivator möchte überall dort, wo eine Fluktuation seine Konzentration anhebt, zu einem heißen Fleck entbrennen. Aber er produziert auch v, das schneller nach außen diffundiert und u im umliegenden Ring drückt. Ergebnis: Jeder werdende Fleck zäunt seine Nachbarn ab. Der Abstand der Flecken wird davon gesetzt, wie weit v reist, bis u nachziehen kann.",
     },
     {
       pretitle: "Abschnitt 03 · Warum das Diffusionsverhältnis zählt",
       title: "Die Turing-Instabilität braucht eine schnellere Bremse als das Feuer",
-      body: "Ohne Diffusion ist der gleichförmige Zustand lokal stabil: kleine Störungen klingen ab. Turings Überraschung: Diffusion kann ihn destabilisieren, aber nur, wenn D_v ≫ D_u. Der langsame Aktivator klumpt; der schnelle Inhibitor fegt die Klumpen weg, außer bei einer charakteristischen Wellenlänge, an der sich die Raten ausgleichen. Diese Wellenlänge wird der Abstand der Flecken, die Periode der Streifen. Ändert man das Verhältnis, ändert sich die Skala des Musters: dieselbe Chemie, neu gestimmt durch eine Zahl.",
+      body: "Ohne Diffusion ist der gleichförmige Zustand lokal stabil: Kleine Störungen klingen ab. Turings Überraschung: Diffusion kann ihn destabilisieren, aber nur, wenn D_v ≫ D_u. Der langsame Aktivator klumpt; der schnelle Inhibitor fegt die Klumpen weg, außer bei einer charakteristischen Wellenlänge, an der sich die Raten ausgleichen. Diese Wellenlänge wird der Abstand der Flecken, die Periode der Streifen. Ändert man das Verhältnis, ändert sich die Skala des Musters: dieselbe Chemie, neu gestimmt durch eine Zahl.",
     },
     {
       pretitle: "Abschnitt 04 · Das Gray-Scott-Modell",
       title: "Zwei Regler: F (feed) und k (kill)",
-      body: "Die berühmteste konkrete Realisierung ist Gray-Scott: ∂u/∂t = D_u ∇²u − uv² + F(1−u), ∂v/∂t = D_v ∇²v + uv² − (F+k)v. Die Reaktion u + 2v → 3v autokatalysiert v; der feed F füllt u nach, das kill (F+k) entfernt v. Streicht man F und k über ein winziges Rechteck der (F, k)-Ebene, durchwandert man eine ganze Bestiarium, erstmals 1993 von John Pearson katalogisiert: Punkte, Streifen, Labyrinthe, Korallen, Mitose, U-Skater-Welt, Solitonen. Ein einziges Paar Gleichungen, ein ganzer Zoo von Verhalten.",
+      body: "Die berühmteste konkrete Realisierung ist Gray-Scott: ∂u/∂t = D_u ∇²u − uv² + F(1−u), ∂v/∂t = D_v ∇²v + uv² − (F+k)v. Die Reaktion u + 2v → 3v autokatalysiert v; der feed F füllt u nach, das kill (F+k) entfernt v. Streicht man F und k über ein winziges Rechteck der (F, k)-Ebene, durchwandert man ein ganzes Bestiarium, erstmals 1993 von John Pearson katalogisiert: Punkte, Streifen, Labyrinthe, Korallen, Mitose, U-Skater-Welt, Solitonen. Ein einziges Paar Gleichungen, ein ganzer Zoo von Verhalten.",
     },
     {
       pretitle: "Abschnitt 05 · Biologie und darüber hinaus",
@@ -257,7 +257,7 @@ const de: RichStory = {
     playLabel: "Start",
     presetLabel: "Pearson-Voreinstellungen",
     presetNames: { spots: "Punkte", stripes: "Streifen", coral: "Koralle", mitosis: "Mitose" },
-    note: "Winziges 120×100-Gitter, toroidaler Rand, 30 Teilschritte pro Frame. Wähl ein Pearson-Preset oder zieh an den F- und k-Reglern. Tipp: kleine Schritte zählen. Der größte Teil der (F, k)-Ebene gibt leere Felder; der interessante Streifen ist messerschmal.",
+    note: "Winziges 120×100-Gitter, toroidaler Rand, 30 Teilschritte pro Frame. Wähl ein Pearson-Preset oder zieh an den F- und k-Reglern. Tipp: Kleine Schritte zählen. Der größte Teil der (F, k)-Ebene gibt leere Felder; der interessante Streifen ist messerschmal.",
     pretitle: "Interaktiv · dreh an den zwei Reglern",
     title: "Lass das Modell im Browser laufen",
     body: "Sieh Gray-Scott-Reaktion-Diffusion live auf einem kleinen Gitter. Die vier Presets entsprechen den kanonischen Regimen, die Pearson 1993 benannte; mit den Reglern gleitest du dazwischen. Die Dynamik ist heikel: eine Änderung um 0,001 in F oder k kann dich von Leopardenflecken in ein Streifenlabyrinth tragen.",
@@ -313,7 +313,7 @@ const es: RichStory = {
     title: "Patrones de Turing",
     tagline: "Dos químicos, dos velocidades de difusión, y aparece la piel de un leopardo.",
     intro:
-      "En 1952 Alan Turing demostró que dos sustancias que interactúan, una difundiendo más rápido que la otra, pueden romper espontáneamente una mezcla uniforme en puntos, rayas y redes ramificadas. Las mismas ecuaciones explican la piel del leopardo, las rayas de la cebra, las bandas del pez ángel y sorprendentemente bien cómo un embrión decide dónde poner las cosas.",
+      "En 1952 Alan Turing demostró que dos sustancias que interactúan, una difundiendo más rápido que la otra, pueden romper espontáneamente una mezcla uniforme en puntos, rayas y redes ramificadas. Las mismas ecuaciones explican la piel del leopardo, las rayas de la cebra, las bandas del pez ángel, y sorprendentemente bien cómo un embrión decide dónde poner las cosas.",
     ctaInteractive: "Abrir el Explorador",
     sections: [],
   },
@@ -438,7 +438,7 @@ const fr: RichStory = {
     tagline:
       "Deux produits chimiques, deux vitesses de diffusion, et la robe d'un léopard apparaît.",
     intro:
-      "En 1952 Alan Turing a montré que deux substances en interaction, l'une diffusant plus vite que l'autre, peuvent spontanément briser un mélange uniforme en taches, rayures et réseaux ramifiés. Les mêmes équations expliquent la peau du léopard, les rayures du zèbre, les bandes du poisson-ange et étonnamment bien comment un embryon décide où poser quoi.",
+      "En 1952 Alan Turing a montré que deux substances en interaction, l'une diffusant plus vite que l'autre, peuvent spontanément briser un mélange uniforme en taches, rayures et réseaux ramifiés. Les mêmes équations expliquent la peau du léopard, les rayures du zèbre, les bandes du poisson-ange, et étonnamment bien comment un embryon décide où poser quoi.",
     ctaInteractive: "Ouvrir l'Explorateur",
     sections: [],
   },
@@ -459,7 +459,7 @@ const fr: RichStory = {
       {
         label: "03",
         title: "Pourquoi ça compte",
-        body: "Turing a écrit ça en 1952, dans «The Chemical Basis of Morphogenesis», avant qu'aucune biologie ne le confirme. La biologie moléculaire moderne a depuis trouvé les couples activateur-inhibiteur qu'il prédisait : dans la peau du poisson-zèbre, les follicules pileux de la souris, l'espacement des doigts dans les membres de vertébrés. La même mathématique réapparaît dans la pigmentation des coquillages et la physique des rides de sable.",
+        body: "Turing a écrit ça en 1952, dans « The Chemical Basis of Morphogenesis », avant qu'aucune biologie ne le confirme. La biologie moléculaire moderne a depuis trouvé les couples activateur-inhibiteur qu'il prédisait : dans la peau du poisson-zèbre, les follicules pileux de la souris, l'espacement des doigts dans les membres de vertébrés. La même mathématique réapparaît dans la pigmentation des coquillages et la physique des rides de sable.",
       },
     ],
     tryIt:
@@ -494,7 +494,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 06 · Ce que l'on ignore encore",
       title: "Problèmes ouverts et mise à l'échelle surprenante",
-      body: "Quelles molécules exactes jouent l'activateur et l'inhibiteur dans la peau des mammifères reste en débat (les candidats impliquent la signalisation Wnt et Notch), et comment le système met le motif à l'échelle du corps reste un mystère : une souris et un éléphant produisent les mêmes types de motifs à des échelles très différentes, alors que la chimie sous-jacente devrait fixer une longueur d'onde absolue. Mathématiquement, le lien avec les équations d'amplitude et la sélection de motifs est bien compris ; biologiquement, la surprise que «Turing avait raison» s'approfondit plutôt qu'elle ne se referme.",
+      body: "Quelles molécules exactes jouent l'activateur et l'inhibiteur dans la peau des mammifères reste en débat (les candidats impliquent la signalisation Wnt et Notch), et comment le système met le motif à l'échelle du corps reste un mystère : une souris et un éléphant produisent les mêmes types de motifs à des échelles très différentes, alors que la chimie sous-jacente devrait fixer une longueur d'onde absolue. Mathématiquement, le lien avec les équations d'amplitude et la sélection de motifs est bien compris ; biologiquement, la surprise que « Turing avait raison » s'approfondit plutôt qu'elle ne se referme.",
     },
   ],
   grayScott: {
@@ -562,7 +562,7 @@ const it: RichStory = {
     title: "Motivi di Turing",
     tagline: "Due sostanze, due velocità di diffusione, e il manto di un leopardo appare.",
     intro:
-      "Nel 1952 Alan Turing mostrò che due sostanze che interagiscono, una che diffonde più veloce dell'altra, possono spontaneamente rompere una miscela uniforme in macchie, strisce e reti ramificate. Le stesse equazioni spiegano la pelle del leopardo, le strisce della zebra, le bande del pesce angelo e sorprendentemente bene come un embrione decide dove mettere le cose.",
+      "Nel 1952 Alan Turing mostrò che due sostanze che interagiscono, una che diffonde più veloce dell'altra, possono spontaneamente rompere una miscela uniforme in macchie, strisce e reti ramificate. Le stesse equazioni spiegano la pelle del leopardo, le strisce della zebra, le bande del pesce angelo e, sorprendentemente bene, come un embrione decide dove mettere le cose.",
     ctaInteractive: "Apri l'Esploratore",
     sections: [],
   },
@@ -578,7 +578,7 @@ const it: RichStory = {
       {
         label: "02",
         title: "Un esempio concreto",
-        body: "Chiamale attivatore e inibitore. L'attivatore si amplifica localmente, come un piccolo fuoco che accende un altro fuoco accanto. L'inibitore si diffonde verso l'esterno più veloce e soffoca l'attivatore a distanza. Dove vince l'attivatore, nasce una macchia. Intorno, l'alone dell'inibitore impedisce a un'altra macchia di formarsi troppo vicino. Pava questa competizione su una superficie e ottieni un mare uniforme di puntini, o di strisce, se la geometria pende così.",
+        body: "Chiamale attivatore e inibitore. L'attivatore si amplifica localmente, come un piccolo fuoco che accende un altro fuoco accanto. L'inibitore si diffonde verso l'esterno più veloce e soffoca l'attivatore a distanza. Dove vince l'attivatore, nasce una macchia. Intorno, l'alone dell'inibitore impedisce a un'altra macchia di formarsi troppo vicino. Ripeti questa competizione su tutta una superficie e ottieni un mare uniforme di puntini, o di strisce, se la geometria pende così.",
       },
       {
         label: "03",
@@ -686,7 +686,7 @@ const pt: RichStory = {
     title: "Padrões de Turing",
     tagline: "Dois químicos, duas velocidades de difusão, e a pelagem do leopardo aparece.",
     intro:
-      "Em 1952 Alan Turing mostrou que duas substâncias que interagem, uma a difundir mais depressa do que a outra, podem quebrar espontaneamente uma mistura uniforme em pontos, riscas e redes ramificadas. As mesmas equações explicam a pele do leopardo, as riscas da zebra, as bandas do peixe-anjo e surpreendentemente bem como um embrião decide onde pôr cada coisa.",
+      "Em 1952 Alan Turing mostrou que duas substâncias que interagem, uma a difundir mais depressa do que a outra, podem quebrar espontaneamente uma mistura uniforme em pontos, riscas e redes ramificadas. As mesmas equações explicam a pele do leopardo, as riscas da zebra, as bandas do peixe-anjo e, surpreendentemente bem, como um embrião decide onde pôr cada coisa.",
     ctaInteractive: "Abrir o Explorador",
     sections: [],
   },
@@ -965,17 +965,17 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Ligningen",
       title: "To koblede PDE-er, to diffusjonskonstanter",
-      body: "La u og v være konsentrasjonene av to vekselvirkende stoffer på en flat overflate. Hvert av dem diffunderer i sin egen rytme, og hvert av dem reagerer med det andre. Systemet er ∂u/∂t = D_u ∇²u + f(u, v) og ∂v/∂t = D_v ∇²v + g(u, v). Laplace-leddene beskriver spredning; f og g beskriver kjemien. Det er alt: en jevn utgangstilstand pluss reaksjonsleddene pluss en forskjell mellom D_u og D_v er nok til at mønstre dukker opp ut av intet.",
+      body: "La u og v være konsentrasjonene av to vekselvirkende stoffer på en flat overflate. Hvert av dem diffunderer i sin egen rytme, og hvert av dem reagerer med det andre. Systemet er ∂u/∂t = D_u ∇²u + f(u, v) og ∂v/∂t = D_v ∇²v + g(u, v). Laplace-leddene beskriver spredning; f og g beskriver kjemien. Det er alt: En jevn utgangstilstand pluss reaksjonsleddene pluss en forskjell mellom D_u og D_v er nok til at mønstre dukker opp ut av intet.",
     },
     {
       pretitle: "Avsnitt 02 · Aktivator og inhibitor",
       title: "Lokal aktivering, lateral inhibisjon",
-      body: "Den reneste intuisjonen er Gierer-Meinhardt-bildet: u er en aktivator som katalyserer både seg selv og sin egen brems, v. Aktivatoren vil ta fyr i en het flekk der en fluktuasjon løfter konsentrasjonen. Men den produserer også v, som diffunderer utover raskere og presser ned u i ringen rundt. Resultat: hver gryende flekk gjerder inn naboene. Avstanden mellom flekker settes av hvor langt v rekker før u tar igjen.",
+      body: "Den reneste intuisjonen er Gierer-Meinhardt-bildet: u er en aktivator som katalyserer både seg selv og sin egen brems, v. Aktivatoren vil ta fyr i en het flekk der en fluktuasjon løfter konsentrasjonen. Men den produserer også v, som diffunderer utover raskere og presser ned u i ringen rundt. Resultat: Hver gryende flekk gjerder inn naboene. Avstanden mellom flekker settes av hvor langt v rekker før u tar igjen.",
     },
     {
       pretitle: "Avsnitt 03 · Hvorfor diffusjonsforhold betyr noe",
       title: "Turing-instabiliteten krever at bremsen er raskere enn ilden",
-      body: "Uten diffusjon er den jevne tilstanden lokalt stabil: små forstyrrelser dør ut. Turings overraskelse var at å legge til diffusjon kan destabilisere den, men bare hvis D_v ≫ D_u. Den langsomme aktivatoren klumper seg; den raske inhibitoren feier bort klumpene, unntatt ved en karakteristisk bølgelengde der tempoene balanserer. Den bølgelengden blir avstanden mellom flekkene, perioden i stripene. Endre forholdet og mønsterets skala endrer seg: samme kjemi, omstemt av ett tall.",
+      body: "Uten diffusjon er den jevne tilstanden lokalt stabil: Små forstyrrelser dør ut. Turings overraskelse var at å legge til diffusjon kan destabilisere den, men bare hvis D_v ≫ D_u. Den langsomme aktivatoren klumper seg; den raske inhibitoren feier bort klumpene, unntatt ved en karakteristisk bølgelengde der tempoene balanserer. Den bølgelengden blir avstanden mellom flekkene, perioden i stripene. Endre forholdet og mønsterets skala endrer seg: samme kjemi, omstemt av ett tall.",
     },
     {
       pretitle: "Avsnitt 04 · Gray-Scott-modellen",
@@ -990,7 +990,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Hva vi ennå ikke vet",
       title: "Åpne problemer og overraskende skalering",
-      body: "Hvilke nøyaktige molekyler som spiller aktivator og inhibitor i pattedyrhud er fortsatt omdiskutert (kandidater er Wnt- og Notch-signalering), og hvordan systemet skalerer mønsteret med kroppsstørrelse forblir et mysterium: en mus og en elefant lager de samme mønstertypene i veldig forskjellige skalaer, selv om den underliggende kjemien skulle fiksere én absolutt bølgelengde. Matematisk er forbindelsen til amplitudeligninger og mønstervalg godt forstått; biologisk fordyper overraskelsen at «Turing hadde rett» seg, snarere enn at den lukker seg.",
+      body: "Hvilke nøyaktige molekyler som spiller aktivator og inhibitor i pattedyrhud er fortsatt omdiskutert (kandidater er Wnt- og Notch-signalering), og hvordan systemet skalerer mønsteret med kroppsstørrelse forblir et mysterium: En mus og en elefant lager de samme mønstertypene i veldig forskjellige skalaer, selv om den underliggende kjemien skulle fiksere én absolutt bølgelengde. Matematisk er forbindelsen til amplitudeligninger og mønstervalg godt forstått; biologisk fordyper overraskelsen at «Turing hadde rett» seg, snarere enn at den lukker seg.",
     },
   ],
   grayScott: {
@@ -1002,7 +1002,7 @@ const no: RichStory = {
     playLabel: "Spill",
     presetLabel: "Pearson-forhåndsvalg",
     presetNames: { spots: "Prikker", stripes: "Striper", coral: "Korall", mitosis: "Mitose" },
-    note: "Liten 120×100-rutenett, toroidal omslag, 30 deltrinn per ramme. Velg en Pearson-forhåndsvalg eller skyv F og k. Tips: små skritt teller. Mesteparten av (F, k)-planet gir tomme felter; den interessante stripen er knivskarpt smal.",
+    note: "Liten 120×100-rutenett, toroidal omslag, 30 deltrinn per ramme. Velg en Pearson-forhåndsvalg eller skyv F og k. Tips: Små skritt teller. Mesteparten av (F, k)-planet gir tomme felter; den interessante stripen er knivskarpt smal.",
     pretitle: "Interaktivt · vri på de to rattene",
     title: "Kjør modellen i nettleseren",
     body: "Se Gray-Scott reaksjon-diffusjon i sanntid på et lite rutenett. De fire forhåndsvalgene tilsvarer de kanoniske regimene Pearson navnga i 1993; skyvebryterne lar deg gli mellom dem. Dynamikken er følsom: en endring på 0,001 i F eller k kan ta deg fra leopardflekker til en labyrint av striper.",

@@ -65,7 +65,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     vennAriaLabel: "Venn diagram of P, NP, NP-complete, PSPACE and EXP",
     vennCaption: "P ⊆ NP ⊆ PSPACE ⊆ EXP · P ⊊ EXP (time hierarchy theorem)",
     vennBody:
-      "P sits as a small disc inside NP. NP-complete problems are the hardest in NP: every other NP problem reduces to them. If a single NP-complete problem turned out to be in P, the rose disc would collapse into the cyan one and P would equal NP. The time hierarchy theorem already proves P ⊊ EXP, so at least one of the inclusions above is strict, we just don't know which.",
+      "P sits as a small disc inside NP. NP-complete problems are the hardest in NP: every other NP problem reduces to them. If a single NP-complete problem turned out to be in P, the rose disc would collapse into the cyan one and P would equal NP. The time hierarchy theorem already proves P ⊊ EXP, so at least one of the inclusions above is strict; we just don't know which.",
     catalogueBadge: "Catalogue · canonical NP-complete problems",
     catalogueTitle: "Solve any of these in polynomial time, solve them all.",
     catalogueFootnote:
@@ -117,7 +117,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     vennAriaLabel: "Diagrama de Venn de P, NP, NP-completo, PSPACE y EXP",
     vennCaption: "P ⊆ NP ⊆ PSPACE ⊆ EXP · P ⊊ EXP (teorema de la jerarquía temporal)",
     vennBody:
-      "P es un disco pequeño dentro de NP. Los problemas NP-completos son los más difíciles de NP: todo otro problema de NP se reduce a ellos. Si un solo problema NP-completo resultara estar en P, el disco rosa colapsaría sobre el cian y P sería igual a NP. El teorema de la jerarquía temporal ya prueba P ⊊ EXP, así que al menos una de las inclusiones de arriba es estricta, solo no sabemos cuál.",
+      "P es un disco pequeño dentro de NP. Los problemas NP-completos son los más difíciles de NP: todo otro problema de NP se reduce a ellos. Si un solo problema NP-completo resultara estar en P, el disco rosa colapsaría sobre el cian y P sería igual a NP. El teorema de la jerarquía temporal ya prueba P ⊊ EXP, así que al menos una de las inclusiones de arriba es estricta; solo no sabemos cuál.",
     catalogueBadge: "Catálogo · problemas NP-completos canónicos",
     catalogueTitle: "Resuelve uno de ellos en tiempo polinómico, los resuelves todos.",
     catalogueFootnote:
@@ -142,7 +142,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     vennAriaLabel: "Diagramme de Venn de P, NP, NP-complet, PSPACE et EXP",
     vennCaption: "P ⊆ NP ⊆ PSPACE ⊆ EXP · P ⊊ EXP (théorème de la hiérarchie temporelle)",
     vennBody:
-      "P est un petit disque à l'intérieur de NP. Les problèmes NP-complets sont les plus durs de NP : tout autre problème de NP s'y réduit. Si un seul problème NP-complet s'avérait être dans P, le disque rose s'effondrerait dans le cyan et P serait égal à NP. Le théorème de la hiérarchie temporelle prouve déjà P ⊊ EXP, donc au moins l'une des inclusions ci-dessus est stricte, on ne sait simplement pas laquelle.",
+      "P est un petit disque à l'intérieur de NP. Les problèmes NP-complets sont les plus durs de NP : tout autre problème de NP s'y réduit. Si un seul problème NP-complet s'avérait être dans P, le disque rose s'effondrerait dans le cyan et P serait égal à NP. Le théorème de la hiérarchie temporelle prouve déjà P ⊊ EXP, donc au moins l'une des inclusions ci-dessus est stricte ; on ne sait simplement pas laquelle.",
     catalogueBadge: "Catalogue · problèmes NP-complets canoniques",
     catalogueTitle: "Résolvez l'un d'eux en temps polynomial, vous les résolvez tous.",
     catalogueFootnote:
@@ -218,7 +218,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     vennAriaLabel: "Venn-diagram över P, NP, NP-fullständig, PSPACE och EXP",
     vennCaption: "P ⊆ NP ⊆ PSPACE ⊆ EXP · P ⊊ EXP (tidshierarkisatsen)",
     vennBody:
-      "P sitter som en liten skiva inuti NP. NP-fullständiga problem är de svåraste i NP: varje annat NP-problem reduceras till dem. Om ett enda NP-fullständigt problem visade sig ligga i P skulle den rosa skivan kollapsa in i den cyanfärgade och P vore lika med NP. Tidshierarkisatsen bevisar redan P ⊊ EXP, så åtminstone en av inklusionerna ovan är strikt, vi vet bara inte vilken.",
+      "P sitter som en liten skiva inuti NP. NP-fullständiga problem är de svåraste i NP: varje annat NP-problem reduceras till dem. Om ett enda NP-fullständigt problem visade sig ligga i P skulle den rosa skivan kollapsa in i den cyanfärgade och P vore lika med NP. Tidshierarkisatsen bevisar redan P ⊊ EXP, så åtminstone en av inklusionerna ovan är strikt; vi vet bara inte vilken.",
     catalogueBadge: "Katalog · kanoniska NP-fullständiga problem",
     catalogueTitle: "Lös ett av dem i polynomtid, och du har löst dem alla.",
     catalogueFootnote:
@@ -243,7 +243,7 @@ const FIGURES: Record<Locale, RichFigures> = {
     vennAriaLabel: "Venn-diagram over P, NP, NP-fullstendig, PSPACE og EXP",
     vennCaption: "P ⊆ NP ⊆ PSPACE ⊆ EXP · P ⊊ EXP (tidshierarki-satsen)",
     vennBody:
-      "P sitter som en liten skive inni NP. NP-fullstendige problemer er de hardeste i NP: ethvert annet NP-problem reduserer til dem. Hvis et eneste NP-fullstendig problem viste seg å ligge i P, ville den rosa skiven kollapse inn i den cyanfargede, og P ville være lik NP. Tidshierarki-satsen beviser allerede P ⊊ EXP, så minst én av inklusjonene over er strikt, vi vet bare ikke hvilken.",
+      "P sitter som en liten skive inni NP. NP-fullstendige problemer er de hardeste i NP: Ethvert annet NP-problem reduserer til dem. Hvis et eneste NP-fullstendig problem viste seg å ligge i P, ville den rosa skiven kollapse inn i den cyanfargede, og P ville være lik NP. Tidshierarki-satsen beviser allerede P ⊊ EXP, så minst én av inklusjonene over er strikt; vi vet bare ikke hvilken.",
     catalogueBadge: "Katalog · kanoniske NP-fullstendige problemer",
     catalogueTitle: "Løs ett av dem i polynomtid, og du har løst dem alle.",
     catalogueFootnote:
@@ -258,7 +258,7 @@ const FIGURES: Record<Locale, RichFigures> = {
       tsp: "Reis gjennom alle byene innenfor budsjettet B.",
       tetris: "Optimalt spill (Demaine, Hohenberger, Liben-Nowell 2003).",
       sudoku: "Generalisert til n² × n²-brett. Yato og Seta 2003.",
-      minesweeper: "Kaye 2000: er et gitt brett konsistent?",
+      minesweeper: "Kaye 2000: Er et gitt brett konsistent?",
     },
   },
 };

@@ -201,7 +201,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Zeichne drei Kreise, die sich gegenseitig berühren. Zwischen ihnen liegt eine gekrümmte Dreieckslücke. Setz den größten Kreis hinein, der noch passt: er berührt alle drei. Jetzt hast du drei neue, kleinere Lücken. Wiederhole. Das Bild, das entsteht (die Packung) ist eine fraktale Koralle aus einer einzigen Regel: jede Lücke ist Sitz eines neuen Kreises.",
+        body: "Zeichne drei Kreise, die sich gegenseitig berühren. Zwischen ihnen liegt eine gekrümmte Dreieckslücke. Setz den größten Kreis hinein, der noch passt: Er berührt alle drei. Jetzt hast du drei neue, kleinere Lücken. Wiederhole. Das Bild, das entsteht (die Packung), ist eine fraktale Koralle aus einer einzigen Regel: Jede Lücke ist Sitz eines neuen Kreises.",
       },
       {
         label: "02",
@@ -220,7 +220,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Die Ausgangslage",
       title: "Drei Kreise, die sich berühren",
-      body: "Drei Kreise in der Ebene, jeder zu den anderen beiden tangent: drei Küsse, drei Berührpunkte. Um 200 v. Chr. stellte Apollonius von Perge die naheliegende Frage: welche Kreise berühren alle drei? Die Antwort lautet genau zwei. Ein kleiner, eingeschriebener in der gekrümmten Lücke, und ein großer, umschriebener um das Tripel. Nimm einen davon hinzu, und du hast vier paarweise tangentiale Kreise. Dieses Quadrupel ist der Keim für alles Weitere.",
+      body: "Drei Kreise in der Ebene, jeder zu den anderen beiden tangent: drei Küsse, drei Berührpunkte. Um 200 v. Chr. stellte Apollonius von Perge die naheliegende Frage: Welche Kreise berühren alle drei? Die Antwort lautet genau zwei. Ein kleiner, eingeschriebener in der gekrümmten Lücke, und ein großer, umschriebener um das Tripel. Nimm einen davon hinzu, und du hast vier paarweise tangentiale Kreise. Dieses Quadrupel ist der Keim für alles Weitere.",
     },
     {
       pretitle: "Abschnitt 02 · Descartes' Satz",
@@ -230,22 +230,22 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Rekursives Füllen",
       title: "Jede Lücke ist ein neuer Keim",
-      body: "Sobald das Keim-Quadrupel steht, ist jede gekrümmte Dreieckslücke selbst von drei paarweise tangentialen Kreisen begrenzt, genau die Konfiguration vom Anfang. Wende Descartes' Formel mit dem + erneut an und setz den eingeschriebenen Kreis in die Lücke. Dieser neue Kreis spaltet seine Lücke in drei kleinere, gekrümmte Dreiecke auf, jedes ein neuer Keim. Der Prozess ist selbstähnlich: dieselbe Regel, die die erste Lücke füllt, füllt jede Lücke für immer.",
+      body: "Sobald das Keim-Quadrupel steht, ist jede gekrümmte Dreieckslücke selbst von drei paarweise tangentialen Kreisen begrenzt, genau die Konfiguration vom Anfang. Wende Descartes' Formel mit dem + erneut an und setz den eingeschriebenen Kreis in die Lücke. Dieser neue Kreis spaltet seine Lücke in drei kleinere, gekrümmte Dreiecke auf, jedes ein neuer Keim. Der Prozess ist selbstähnlich: Dieselbe Regel, die die erste Lücke füllt, füllt jede Lücke für immer.",
     },
     {
       pretitle: "Abschnitt 04 · Die Ganzzahl-Überraschung",
       title: "Ganze Zahlen rein, ganze Zahlen für immer",
-      body: "Wähl die vier Keim-Krümmungen ganzzahlig. Dann passiert ein algebraisches Wunder: jede weitere Krümmung in der Packung ist ebenfalls ganzzahlig. Der Grund: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) ist symmetrisch in den vier Variablen, also liefert das Ersetzen der alten k₄ durch die neue k₄' die Formel k₄' = 2(k₁+k₂+k₃) − k₄: keine Wurzel, nur ganzzahlige Arithmetik. Die Packung (−1, 2, 2, 3) erzeugt 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Jede ganzzahlige Apollonius-Packung tut dasselbe. Das Bild ist im Kern ein zahlentheoretisches Objekt.",
+      body: "Wähl die vier Keim-Krümmungen ganzzahlig. Dann passiert ein algebraisches Wunder: Jede weitere Krümmung in der Packung ist ebenfalls ganzzahlig. Der Grund: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) ist symmetrisch in den vier Variablen, also liefert das Ersetzen der alten k₄ durch die neue k₄' die Formel k₄' = 2(k₁+k₂+k₃) − k₄: keine Wurzel, nur ganzzahlige Arithmetik. Die Packung (−1, 2, 2, 3) erzeugt 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Jede ganzzahlige Apollonius-Packung tut dasselbe. Das Bild ist im Kern ein zahlentheoretisches Objekt.",
     },
     {
       pretitle: "Abschnitt 05 · Hausdorff-Dimension ≈ 1,3056867",
       title: "Zwischen Kurve und Fläche",
-      body: "Füll weiter. Die Vereinigung aller je gezeichneten Kreise bedeckt immer mehr der ursprünglichen Scheibe, aber nie alles. Der Reststaub (die Punkte, die zu keinem Kreis gehören) hat Lebesgue-Maß null, ist aber überall dicht. Seine Hausdorff-Dimension wurde von Boyd numerisch berechnet und von McMullen streng bei etwa 1,3056867 eingeschnürt. Die Zahl ist universell: sie hängt nicht vom Keim ab. Jede Apollonius-Packung hat dasselbe fraktale Gewicht.",
+      body: "Füll weiter. Die Vereinigung aller je gezeichneten Kreise bedeckt immer mehr der ursprünglichen Scheibe, aber nie alles. Der Reststaub (die Punkte, die zu keinem Kreis gehören) hat Lebesgue-Maß null, ist aber überall dicht. Seine Hausdorff-Dimension wurde von Boyd numerisch berechnet und von McMullen streng bei etwa 1,3056867 eingeschnürt. Die Zahl ist universell: Sie hängt nicht vom Keim ab. Jede Apollonius-Packung hat dasselbe fraktale Gewicht.",
     },
     {
       pretitle: "Abschnitt 06 · Offene Probleme und Verbindungen",
       title: "Bourgain-Fuchs, hyperbolische Geometrie, und was offen bleibt",
-      body: "Die ganzzahligen Krümmungen in einer Apollonius-Packung bilden eine Menge natürlicher Zahlen, aber welche kommen vor? Die lokal-global-Vermutung sagte voraus: eine Krümmung kommt in einer festen Packung genau dann vor, wenn sie modulo 24 in ihr vorkommt, bis auf endlich viele Ausnahmen. 2023 widerlegt von Haag, Kertzer, Rickards und Stange (Annals of Mathematics): es gibt unendliche Familien von Krümmungen, die lokal erlaubt sind, global aber nie erscheinen. Bourgain und Fuchs hatten 2011 immerhin gezeigt, dass die vorkommenden Krümmungen positive Dichte haben: ein fester positiver Anteil aller ganzen Zahlen taucht wirklich auf. Dahinter lebt eine tiefere Geschichte: jede Apollonius-Packung ist die Bahn einer Gruppe von Lorentz-Spiegelungen auf einer quadratischen Form der Signatur (3,1), und dieselben Packungen tauchen als Ränder hyperbolischer 3-Mannigfaltigkeiten wieder auf. Geometrie, Zahlentheorie und Gruppentheorie treffen sich in einem Bild sich berührender Kreise.",
+      body: "Die ganzzahligen Krümmungen in einer Apollonius-Packung bilden eine Menge natürlicher Zahlen, aber welche kommen vor? Die lokal-global-Vermutung sagte voraus: Eine Krümmung kommt in einer festen Packung genau dann vor, wenn sie modulo 24 in ihr vorkommt, bis auf endlich viele Ausnahmen. 2023 widerlegt von Haag, Kertzer, Rickards und Stange (Annals of Mathematics): Es gibt unendliche Familien von Krümmungen, die lokal erlaubt sind, global aber nie erscheinen. Bourgain und Fuchs hatten 2011 immerhin gezeigt, dass die vorkommenden Krümmungen positive Dichte haben: Ein fester positiver Anteil aller ganzen Zahlen taucht wirklich auf. Dahinter lebt eine tiefere Geschichte: Jede Apollonius-Packung ist die Bahn einer Gruppe von Lorentz-Spiegelungen auf einer quadratischen Form der Signatur (3,1), und dieselben Packungen tauchen als Ränder hyperbolischer 3-Mannigfaltigkeiten wieder auf. Geometrie, Zahlentheorie und Gruppentheorie treffen sich in einem Bild sich berührender Kreise.",
     },
   ],
   descartes: {
@@ -258,7 +258,7 @@ const de: RichStory = {
     plusLabel: "+ eingeschrieben (klein)",
     minusLabel: "− umschrieben (groß)",
     noteText:
-      "Wähl drei Krümmungen: positiv für gewöhnliche Kreise, negativ für einen umschließenden. Die Formel liefert die zwei Kreise, die alle drei berühren. Probier (−1, 2, 2): die +-Lösung ist k₄ = 3, die −-Lösung ebenfalls k₄ = 3; der Keim (−1, 2, 2, 3) ist symmetrisch.",
+      "Wähl drei Krümmungen: positiv für gewöhnliche Kreise, negativ für einen umschließenden. Die Formel liefert die zwei Kreise, die alle drei berühren. Probier (−1, 2, 2): Die +-Lösung ist k₄ = 3, die −-Lösung ebenfalls k₄ = 3; der Keim (−1, 2, 2, 3) ist symmetrisch.",
     pretitle: "Interaktiv · die Formel von Hand",
     title: "Tipp drei Krümmungen ein, sieh die vierte erscheinen",
     body: "Descartes' Formel ist eine Quadratische in k₄, also hat sie zwei Lösungen. Tipp irgendeine drei vorzeichenbehaftete Krümmungen ein, und der Rechner gibt beide zurück: die eingeschriebene und die umschriebene. Spiel mit den Voreinstellungen, um zu spüren, wie die Algebra auf den klassischen Ganzzahl-Keimen reagiert, und beobachte, wie oft die Antwort selbst ganzzahlig ausfällt.",
@@ -344,8 +344,8 @@ const es: RichStory = {
     },
     {
       pretitle: "Sección 04 · La sorpresa de los enteros",
-      title: "Pon enteros, quedan enteros para siempre",
-      body: "Toma las cuatro curvaturas iniciales enteras. Ocurre entonces un pequeño milagro algebraico: toda curvatura posterior del empaquetado es también entera. La razón: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) es simétrica en las cuatro variables, así que cambiar la k₄ vieja por la nueva k₄' da k₄' = 2(k₁+k₂+k₃) − k₄: sin raíz, solo aritmética entera. El empaquetado (−1, 2, 2, 3) genera 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Todo empaquetado apoloniano entero hace lo mismo. La imagen es, en el fondo, un objeto de teoría de números.",
+      title: "Pon enteros: quedan enteros para siempre",
+      body: "Toma las cuatro curvaturas iniciales enteras. Ocurre entonces un pequeño milagro algebraico: toda curvatura posterior del empaquetado es también entera. La razón: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) es simétrica en las cuatro variables, así que cambiar la k₄ vieja por la nueva k₄' da k₄' = 2(k₁+k₂+k₃) − k₄, sin raíz, solo aritmética entera. El empaquetado (−1, 2, 2, 3) genera 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Todo empaquetado apoloniano entero hace lo mismo. La imagen es, en el fondo, un objeto de teoría de números.",
     },
     {
       pretitle: "Sección 05 · Dimensión de Hausdorff ≈ 1,3056867",
@@ -454,8 +454,8 @@ const fr: RichStory = {
     },
     {
       pretitle: "Section 04 · La surprise des entiers",
-      title: "Mets des entiers, il en reste pour toujours",
-      body: "Prends les quatre courbures de départ entières. Un petit miracle algébrique se produit : toute courbure ultérieure du tamis reste entière. La raison : (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) est symétrique dans les quatre variables, donc remplacer l'ancien k₄ par le nouveau k₄' donne k₄' = 2(k₁+k₂+k₃) − k₄ : sans racine, juste de l'arithmétique entière. La garniture (−1, 2, 2, 3) engendre 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Tout empilement apollonien entier fait pareil. L'image est, au fond, un objet de théorie des nombres.",
+      title: "Mets des entiers : il en reste pour toujours",
+      body: "Prends les quatre courbures de départ entières. Un petit miracle algébrique se produit : toute courbure ultérieure du tamis reste entière. La raison : (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) est symétrique dans les quatre variables, donc remplacer l'ancien k₄ par le nouveau k₄' donne k₄' = 2(k₁+k₂+k₃) − k₄, sans racine, juste de l'arithmétique entière. La garniture (−1, 2, 2, 3) engendre 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Tout empilement apollonien entier fait pareil. L'image est, au fond, un objet de théorie des nombres.",
     },
     {
       pretitle: "Section 05 · Dimension de Hausdorff ≈ 1,3056867",
@@ -565,7 +565,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 04 · La sorpresa degli interi",
       title: "Metti interi, restano interi per sempre",
-      body: "Scegli le quattro curvature iniziali intere. Allora si verifica un piccolo miracolo algebrico: ogni curvatura successiva nella packing è anch'essa intera. Il motivo: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) è simmetrica nelle quattro variabili, quindi sostituire la vecchia k₄ con la nuova k₄' dà k₄' = 2(k₁+k₂+k₃) − k₄: niente radice, solo aritmetica intera. La packing (−1, 2, 2, 3) genera 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Ogni impacchettamento apolloniano intero fa lo stesso. L'immagine è, nel profondo, un oggetto di teoria dei numeri.",
+      body: "Scegli le quattro curvature iniziali intere. Allora si verifica un piccolo miracolo algebrico: ogni curvatura successiva nella packing è anch'essa intera. Il motivo: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) è simmetrica nelle quattro variabili, quindi sostituire la vecchia k₄ con la nuova k₄' dà k₄' = 2(k₁+k₂+k₃) − k₄, niente radice, solo aritmetica intera. La packing (−1, 2, 2, 3) genera 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Ogni impacchettamento apolloniano intero fa lo stesso. L'immagine è, nel profondo, un oggetto di teoria dei numeri.",
     },
     {
       pretitle: "Sezione 05 · Dimensione di Hausdorff ≈ 1,3056867",
@@ -675,7 +675,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 04 · A surpresa dos inteiros",
       title: "Põe inteiros, ficam inteiros para sempre",
-      body: "Toma as quatro curvaturas iniciais inteiras. Acontece então um pequeno milagre algébrico: cada curvatura seguinte do empacotamento é também inteira. A razão: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) é simétrica nas quatro variáveis, portanto trocar a k₄ velha pela nova k₄' dá k₄' = 2(k₁+k₂+k₃) − k₄: sem raiz, só aritmética inteira. O empacotamento (−1, 2, 2, 3) gera 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Todo empacotamento apoloniano inteiro faz o mesmo. A imagem é, no fundo, um objeto da teoria dos números.",
+      body: "Toma as quatro curvaturas iniciais inteiras. Acontece então um pequeno milagre algébrico: cada curvatura seguinte do empacotamento é também inteira. A razão: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) é simétrica nas quatro variáveis, portanto trocar a k₄ velha pela nova k₄' dá k₄' = 2(k₁+k₂+k₃) − k₄, sem raiz, só aritmética inteira. O empacotamento (−1, 2, 2, 3) gera 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Todo empacotamento apoloniano inteiro faz o mesmo. A imagem é, no fundo, um objeto da teoria dos números.",
     },
     {
       pretitle: "Secção 05 · Dimensão de Hausdorff ≈ 1,3056867",
@@ -784,7 +784,7 @@ const sv: RichStory = {
     },
     {
       pretitle: "Avsnitt 04 · Heltalsöverraskningen",
-      title: "Lägg in heltal, det förblir heltal för alltid",
+      title: "Lägg in heltal: det förblir heltal för alltid",
       body: "Välj de fyra frö-krökningarna till heltal. Då händer ett litet algebraiskt under: varje följande krökning i packningen är också heltal. Skälet: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) är symmetrisk i de fyra variablerna, så att byta gamla k₄ mot nya k₄' ger k₄' = 2(k₁+k₂+k₃) − k₄: ingen rot, bara heltalsaritmetik. Packningen (−1, 2, 2, 3) genererar 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Varje heltalsapolloniansk packning gör samma sak. Bilden är, i grunden, ett talteoretiskt objekt.",
     },
     {
@@ -861,7 +861,7 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "Tegn tre sirkler som tar på hverandre. Mellom dem ligger et krummet trekantet tomrom. Slipp inn den største sirkelen som får plass: den tar på alle tre. Nå har du tre nye, mindre tomrom. Gjenta. Bildet som vokser fram, pakningen, er en fraktal korall født av én eneste regel: hvert tomrom er sete for en ny sirkel.",
+        body: "Tegn tre sirkler som tar på hverandre. Mellom dem ligger et krummet trekantet tomrom. Slipp inn den største sirkelen som får plass: Den tar på alle tre. Nå har du tre nye, mindre tomrom. Gjenta. Bildet som vokser fram, pakningen, er en fraktal korall født av én eneste regel: Hvert tomrom er sete for en ny sirkel.",
       },
       {
         label: "02",
@@ -880,7 +880,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Utgangsstillingen",
       title: "Tre sirkler som tar på hverandre",
-      body: "Tre sirkler i planet, hver tangentiell til de andre to: tre kyss, tre kontaktpunkter. Rundt 200 f.Kr. stilte Apollonios fra Perga det naturlige oppfølgingsspørsmålet: hvilke sirkler tar på alle tre? Svaret er nøyaktig to. Én liten innskrevet i det krummede tomrommet, og én stor omskrevet rundt trippelen. Legg til en av dem og du har fire gjensidig tangente sirkler. Den firetuppelen er frøet for alt som følger.",
+      body: "Tre sirkler i planet, hver tangentiell til de andre to: tre kyss, tre kontaktpunkter. Rundt 200 f.Kr. stilte Apollonios fra Perga det naturlige oppfølgingsspørsmålet: Hvilke sirkler tar på alle tre? Svaret er nøyaktig to. Én liten innskrevet i det krummede tomrommet, og én stor omskrevet rundt trippelen. Legg til en av dem og du har fire gjensidig tangente sirkler. Den firetuppelen er frøet for alt som følger.",
     },
     {
       pretitle: "Avsnitt 02 · Descartes' teorem",
@@ -890,22 +890,22 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Rekursiv fylling",
       title: "Hvert tomrom er et nytt frø",
-      body: "Så snart frø-kvadrupelen ligger der, er hvert krummede trekantede tomrom selv begrenset av tre gjensidig tangente sirkler, akkurat samme konfigurasjon vi startet med. Bruk Descartes' formel igjen med +. Den nye sirkelen deler tomrommet i tre mindre krummede trekanter, hver av dem igjen et frø. Prosessen er selvlik: regelen som fyller det første tomrommet fyller hvert tomrom for evig.",
+      body: "Så snart frø-kvadrupelen ligger der, er hvert krummede trekantede tomrom selv begrenset av tre gjensidig tangente sirkler, akkurat samme konfigurasjon vi startet med. Bruk Descartes' formel igjen med +. Den nye sirkelen deler tomrommet i tre mindre krummede trekanter, hver av dem igjen et frø. Prosessen er selvlik: Regelen som fyller det første tomrommet fyller hvert tomrom for evig.",
     },
     {
       pretitle: "Avsnitt 04 · Heltallsoverraskelsen",
-      title: "Legg inn heltall, det blir heltall for alltid",
-      body: "Velg de fire frø-krumningene som heltall. Da skjer et lite algebraisk mirakel: hver påfølgende krumning i pakningen er også heltall. Grunnen: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) er symmetrisk i de fire variablene, så å bytte den gamle k₄ med den nye k₄' gir k₄' = 2(k₁+k₂+k₃) − k₄: ingen rot, bare heltallsaritmetikk. Pakningen (−1, 2, 2, 3) genererer 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Hver heltalls-apollonsk pakning gjør det samme. Bildet er, i bunn og grunn, et tallteoretisk objekt.",
+      title: "Legg inn heltall: Det blir heltall for alltid",
+      body: "Velg de fire frø-krumningene som heltall. Da skjer et lite algebraisk mirakel: Hver påfølgende krumning i pakningen er også heltall. Grunnen: (k₁+k₂+k₃+k₄)² = 2(k₁²+…+k₄²) er symmetrisk i de fire variablene, så å bytte den gamle k₄ med den nye k₄' gir k₄' = 2(k₁+k₂+k₃) − k₄: ingen rot, bare heltallsaritmetikk. Pakningen (−1, 2, 2, 3) genererer 6, 11, 14, 15, 18, 23, 26, 27, 30, 35, … Hver heltalls-apollonsk pakning gjør det samme. Bildet er, i bunn og grunn, et tallteoretisk objekt.",
     },
     {
       pretitle: "Avsnitt 05 · Hausdorff-dimensjon ≈ 1,3056867",
       title: "Mellom en kurve og en flate",
-      body: "Fortsett å fylle. Unionen av alle sirklene du noen gang tegner dekker mer og mer av den opprinnelige skiven, men aldri alt. Reststøvet (punktene som ikke tilhører noen sirkel) har Lebesgue-mål null, men er overalt tett. Hausdorff-dimensjonen ble regnet ut numerisk av Boyd og strengt innrammet av McMullen til rundt 1,3056867. Tallet er universelt: det avhenger ikke av hvilket frø du starter med. Hver apollonsk pakning har samme fraktale vekt.",
+      body: "Fortsett å fylle. Unionen av alle sirklene du noen gang tegner dekker mer og mer av den opprinnelige skiven, men aldri alt. Reststøvet (punktene som ikke tilhører noen sirkel) har Lebesgue-mål null, men er overalt tett. Hausdorff-dimensjonen ble regnet ut numerisk av Boyd og strengt innrammet av McMullen til rundt 1,3056867. Tallet er universelt: Det avhenger ikke av hvilket frø du starter med. Hver apollonsk pakning har samme fraktale vekt.",
     },
     {
       pretitle: "Avsnitt 06 · Åpne problemer og forbindelser",
       title: "Bourgain-Fuchs, hyperbolsk geometri og det som gjenstår",
-      body: "Heltallskrumningene i en apollonsk pakning danner en mengde naturlige tall, men hvilke dukker opp? Den lokal-globale formodningen forutsa: en krumning dukker opp i en gitt pakning hvis og bare hvis den dukker opp modulo 24 i den, på en endelig liste unntak nær. Motbevist i 2023 av Haag, Kertzer, Rickards og Stange (Annals of Mathematics): det finnes uendelige familier av krumninger som er lokalt tillatte, men globalt aldri dukker opp. Bourgain og Fuchs hadde allerede i 2011 vist at heltallskrumningene har positiv tetthet: en fast positiv andel av alle heltall dukker virkelig opp. Bak lever en dypere historie: hver apollonsk pakning er banen til en gruppe av Lorentz-refleksjoner på en kvadratisk form av signatur (3,1), og de samme pakningene dukker opp igjen som rander til hyperbolske 3-mangfoldigheter. Geometri, tallteori og gruppeteori møtes i et bilde av sirkler som tar på hverandre.",
+      body: "Heltallskrumningene i en apollonsk pakning danner en mengde naturlige tall, men hvilke dukker opp? Den lokal-globale formodningen forutsa: En krumning dukker opp i en gitt pakning hvis og bare hvis den dukker opp modulo 24 i den, på en endelig liste unntak nær. Motbevist i 2023 av Haag, Kertzer, Rickards og Stange (Annals of Mathematics): Det finnes uendelige familier av krumninger som er lokalt tillatte, men globalt aldri dukker opp. Bourgain og Fuchs hadde allerede i 2011 vist at heltallskrumningene har positiv tetthet: En fast positiv andel av alle heltall dukker virkelig opp. Bak lever en dypere historie: Hver apollonsk pakning er banen til en gruppe av Lorentz-refleksjoner på en kvadratisk form av signatur (3,1), og de samme pakningene dukker opp igjen som rander til hyperbolske 3-mangfoldigheter. Geometri, tallteori og gruppeteori møtes i et bilde av sirkler som tar på hverandre.",
     },
   ],
   descartes: {

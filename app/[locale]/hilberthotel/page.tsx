@@ -216,7 +216,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Abzählbar unendlich",
       title: "Zimmer 1, 2, 3, … bis ins Unendliche",
-      body: "Das Hotel hat ein Zimmer für jede natürliche Zahl: ein Gast in 1, ein Gast in 17, ein Gast in 10¹⁰⁰. Heute Nacht ist jedes belegt, doch «voll» ist das falsche Wort: die Mächtigkeit der Gäste ist ℵ₀, und ℵ₀ ist keine Zahl, die man auffüllen kann.",
+      body: "Das Hotel hat ein Zimmer für jede natürliche Zahl: ein Gast in 1, ein Gast in 17, ein Gast in 10¹⁰⁰. Heute Nacht ist jedes belegt, doch «voll» ist das falsche Wort: Die Mächtigkeit der Gäste ist ℵ₀, und ℵ₀ ist keine Zahl, die man auffüllen kann.",
     },
     {
       pretitle: "Abschnitt 02 · Ein neuer Gast",
@@ -231,7 +231,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · ℵ₀ neue Gäste",
       title: "Verschiebung n → 2n; die ungeraden Zimmer öffnen sich",
-      body: "Nun trifft eine abzählbar unendliche Schlange ein. Der Empfang schickt jeden bisherigen Gast aus Zimmer n in Zimmer 2n: jedes gerade Zimmer bleibt belegt, jedes ungerade wird frei. Die Neuen füllen 1, 3, 5, 7, …: die Gleichung ℵ₀ + ℵ₀ = ℵ₀, in einer einzigen Durchsage erledigt.",
+      body: "Nun trifft eine abzählbar unendliche Schlange ein. Der Empfang schickt jeden bisherigen Gast aus Zimmer n in Zimmer 2n: Jedes gerade Zimmer bleibt belegt, jedes ungerade wird frei. Die Neuen füllen 1, 3, 5, 7, …: die Gleichung ℵ₀ + ℵ₀ = ℵ₀, in einer einzigen Durchsage erledigt.",
     },
     {
       pretitle: "Abschnitt 05 · ℵ₀ Busse × ℵ₀ Gäste",
@@ -241,7 +241,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Die überabzählbare Brücke",
       title: "ℝ schlägt das Hotel",
-      body: "Geh einen Schritt weiter, und der Trick bricht. Cantors Diagonalargument von 1891 zeigt, dass die reellen Zahlen in [0,1] nicht einmal aufgelistet werden können: zu jeder Aufzählung gibt es eine neue reelle Zahl, die sich in der n-ten Stelle von Zeile n unterscheidet. Die reellen Zahlen sind überabzählbar; das Hotel ist nicht groß genug.",
+      body: "Geh einen Schritt weiter, und der Trick bricht. Cantors Diagonalargument von 1891 zeigt, dass die reellen Zahlen in [0,1] nicht einmal aufgelistet werden können: Zu jeder Aufzählung gibt es eine neue reelle Zahl, die sich in der n-ten Stelle von Zeile n unterscheidet. Die reellen Zahlen sind überabzählbar; das Hotel ist nicht groß genug.",
     },
   ],
   closingTitle: "Öffne den Explorer.",
@@ -261,8 +261,8 @@ const de: RichStory = {
   inlineExistingGuest: "bestehend",
   inlineBusGuest: "Bus",
   inlineGapNote:
-    "Graue ∅-Zimmer sind Nummern, die keine Primzahlpotenz sind: dorthin wird niemand abgebildet, sie bleiben leer. Das Schema verschenkt Zimmer, kollidiert aber nie.",
-  cardinalityCaption: "Bijektions-Labor: passt das Hotel noch?",
+    "Graue ∅-Zimmer sind Nummern, die keine Primzahlpotenz sind: Dorthin wird niemand abgebildet, sie bleiben leer. Das Schema verschenkt Zimmer, kollidiert aber nie.",
+  cardinalityCaption: "Bijektions-Labor: Passt das Hotel noch?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
   cardinalityReals: "ℕ → ℝ ?",
@@ -849,7 +849,7 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store idéen",
-        body: "Uendelighet er ikke et veldig stort tall: det er en annen slags størrelse, med sin egen aritmetikk. Et «fullt» uendelig hotell kan fortsatt ta imot flere gjester fordi ℵ₀ + 1 = ℵ₀.",
+        body: "Uendelighet er ikke et veldig stort tall: Det er en annen slags størrelse, med sin egen aritmetikk. Et «fullt» uendelig hotell kan fortsatt ta imot flere gjester fordi ℵ₀ + 1 = ℵ₀.",
       },
       {
         label: "02",
@@ -868,12 +868,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Tellbart uendelig",
       title: "Rom 1, 2, 3, … for alltid",
-      body: "Hotellet har ett rom for hvert naturlig tall: en gjest i 1, en i 17, en i 10¹⁰⁰. I natt er alle tatt, men «fullt» er feil ord: gjestenes kardinalitet er ℵ₀, og ℵ₀ er ikke et tall man kan fylle.",
+      body: "Hotellet har ett rom for hvert naturlig tall: en gjest i 1, en i 17, en i 10¹⁰⁰. I natt er alle tatt, men «fullt» er feil ord: Gjestenes kardinalitet er ℵ₀, og ℵ₀ er ikke et tall man kan fylle.",
     },
     {
       pretitle: "Avsnitt 02 · Én ny gjest",
       title: "Forskyvning n → n+1",
-      body: "En reisende banker på. Resepsjonen sender ut én enkelt instruksjon: hver gjest, gå fra rom n til rom n+1. Ingen blir skjøvet ut (det venter alltid et rom med høyere nummer) og 1 blir ledig for den nyankomne.",
+      body: "En reisende banker på. Resepsjonen sender ut én enkelt instruksjon: Hver gjest, gå fra rom n til rom n+1. Ingen blir skjøvet ut (det venter alltid et rom med høyere nummer) og 1 blir ledig for den nyankomne.",
     },
     {
       pretitle: "Avsnitt 03 · k nye gjester",
@@ -883,7 +883,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · ℵ₀ nye gjester",
       title: "Forskyvning n → 2n; oddetallsrommene åpner seg",
-      body: "Nå kommer en tellbart uendelig kø. Resepsjonen sender hver eksisterende gjest fra n til 2n: hvert partallsrom forblir tatt, hvert oddetallsrom blir ledig. De nye fyller 1, 3, 5, 7, …: likheten ℵ₀ + ℵ₀ = ℵ₀, utført i én enkelt kunngjøring.",
+      body: "Nå kommer en tellbart uendelig kø. Resepsjonen sender hver eksisterende gjest fra n til 2n: Hvert partallsrom forblir tatt, hvert oddetallsrom blir ledig. De nye fyller 1, 3, 5, 7, …: likheten ℵ₀ + ℵ₀ = ℵ₀, utført i én enkelt kunngjøring.",
     },
     {
       pretitle: "Avsnitt 05 · ℵ₀ busser × ℵ₀ gjester",
@@ -900,7 +900,7 @@ const no: RichStory = {
   closingBody:
     "Spill av de fire forskyvningene igjen, se primtallspotens-tildelingen lande buss for buss, og gå så over til Cantors diagonal for å se hvorfor akkurat dette trikset til slutt ikke fungerer.",
   ctaLabel: "→ Åpne Utforskeren",
-  inlineCaption: "Hilberts hotell: animer en forskyvning",
+  inlineCaption: "Hilberts hotell: Animer en forskyvning",
   inlineOne: "+1 gjest",
   inlineK: "+k gjester",
   inlineInfinite: "+ℵ₀ gjester",
@@ -913,8 +913,8 @@ const no: RichStory = {
   inlineExistingGuest: "eksisterende",
   inlineBusGuest: "buss",
   inlineGapNote:
-    "Grå ∅-rom er tall som ikke er en primtallspotens: ingen havner der, de forblir tomme. Skjemaet sløser med rom, men kolliderer aldri.",
-  cardinalityCaption: "Bijeksjonslab: strekker hotellet fortsatt til?",
+    "Grå ∅-rom er tall som ikke er en primtallspotens: Ingen havner der, de forblir tomme. Skjemaet sløser med rom, men kolliderer aldri.",
+  cardinalityCaption: "Bijeksjonslab: Strekker hotellet fortsatt til?",
   cardinalityDoubles: "ℕ ↔ 2ℕ",
   cardinalityPairs: "ℕ ↔ ℕ × ℕ",
   cardinalityReals: "ℕ → ℝ ?",

@@ -362,7 +362,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
         },
       ],
       tryIt:
-        "Fais glisser le canevas pour tourner. Bouge le curseur «b» : regarde le panier se fermer, respirer et fleurir.",
+        "Fais glisser le canevas pour tourner. Bouge le curseur « b » : regarde le panier se fermer, respirer et fleurir.",
     },
     sections: [
       {
@@ -378,7 +378,7 @@ const RICH_STORY: Record<Locale, RichStory> = {
       {
         pretitle: "Section trois · Sensibilité aux paramètres",
         title: "Tourner une molette refond tout",
-        body: "Glisse «b» de 0,3 à 1,2 et le panier se transforme en continu : ruban, tressage, bol, vase, chaos. Pas de diagramme de phase propre : l'espace des paramètres est un atlas lisse de formes, chacune un équilibre légèrement différent entre étirement et pliage.",
+        body: "Glisse « b » de 0,3 à 1,2 et le panier se transforme en continu : ruban, tressage, bol, vase, chaos. Pas de diagramme de phase propre : l'espace des paramètres est un atlas lisse de formes, chacune un équilibre légèrement différent entre étirement et pliage.",
       },
       {
         pretitle: "Section quatre · Le zoo du chaos",

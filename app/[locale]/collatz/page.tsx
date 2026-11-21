@@ -188,7 +188,7 @@ const de: RichStory = {
       },
     ],
     tryIt:
-      "Unten: wirf irgendeinen Keim in den Hagel und sieh ihn fallen, dann lass die Rückwärts-Koralle wachsen, die alle ganzen Zahlen auf einmal hält.",
+      "Unten: Wirf irgendeinen Keim in den Hagel und sieh ihn fallen, dann lass die Rückwärts-Koralle wachsen, die alle ganzen Zahlen auf einmal hält.",
   },
   sections: [
     {
@@ -204,22 +204,22 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Die Vermutung",
       title: "Jeder Weg führt zu 4 → 2 → 1",
-      body: "Lothar Collatz notierte die Regel 1937 in Berlin, zwei Jahre nach seiner Promotion. Dasselbe Biest wurde unabhängig von Kakutani, Ulam und den Zahlentheoretiker:innen in Syracuse wiederentdeckt, deshalb heißt es in der Literatur auch Syracuse-Problem, Kakutani-Problem und Ulam-Vermutung. Die Behauptung ist überall dieselbe: für jede positive ganze Zahl n erreicht die Iteration T(n) am Ende 1 und kreist dann für immer im Zyklus 4 → 2 → 1. Stand 2025 ist sie für jede ganze Zahl bis 2⁶⁸ direkt durchgerechnet. Kein Gegenbeispiel. Auch kein Beweis.",
+      body: "Lothar Collatz notierte die Regel 1937 in Berlin, zwei Jahre nach seiner Promotion. Dasselbe Biest wurde unabhängig von Kakutani, Ulam und den Zahlentheoretiker:innen in Syracuse wiederentdeckt, deshalb heißt es in der Literatur auch Syracuse-Problem, Kakutani-Problem und Ulam-Vermutung. Die Behauptung ist überall dieselbe: Für jede positive ganze Zahl n erreicht die Iteration T(n) am Ende 1 und kreist dann für immer im Zyklus 4 → 2 → 1. Stand 2025 ist sie für jede ganze Zahl bis 2⁶⁸ direkt durchgerechnet. Kein Gegenbeispiel. Auch kein Beweis.",
     },
     {
       pretitle: "Abschnitt 04 · Taos Ergebnis von 2019",
       title: "Fast alle Bahnen, fast bis nach Hause",
-      body: "Den tiefsten Fortschritt brachte 2019 Terence Tao. Seine Arbeit ‚Almost all orbits of the Collatz map attain almost bounded values‘ zeigt: für jede Funktion f(n), die gegen unendlich strebt, hat die Menge der Startzahlen, deren Collatz-Bahn schließlich unter f(n) fällt, logarithmische Dichte 1. Im Klartext: wähl eine Startzahl zufällig, fast sicher schrumpft ihre Bahn irgendwann unter jede vorher gesetzte Schranke. Das ist eine probabilistische Knapp-vorbei-Aussage, kein Beweis. Etwaige Gegenbeispiele würden eine Maß-null-Ausnahmemenge bilden, aber Maß null heißt nicht leer, und Taos Argument schließt sie ausdrücklich nicht aus.",
+      body: "Den tiefsten Fortschritt brachte 2019 Terence Tao. Seine Arbeit ‚Almost all orbits of the Collatz map attain almost bounded values‘ zeigt: Für jede Funktion f(n), die gegen unendlich strebt, hat die Menge der Startzahlen, deren Collatz-Bahn schließlich unter f(n) fällt, logarithmische Dichte 1. Im Klartext: Wähl eine Startzahl zufällig, fast sicher schrumpft ihre Bahn irgendwann unter jede vorher gesetzte Schranke. Das ist eine probabilistische Knapp-vorbei-Aussage, kein Beweis. Etwaige Gegenbeispiele würden eine Maß-null-Ausnahmemenge bilden, aber Maß null heißt nicht leer, und Taos Argument schließt sie ausdrücklich nicht aus.",
     },
     {
       pretitle: "Abschnitt 05 · Die Rückwärts-Koralle",
-      title: "Lass die Regel rückwärts laufen: die Zahlen ordnen sich selbst",
-      body: "Vorwärts ist Collatz eine Zahl nach der anderen. Rückwärts ist Collatz der ganze Baum. Beginn bei 1 und kehr die Regel um: jeder Knoten n hat Elter 2n (immer; das war der Halbierungsschritt), und zusätzlich einen Elter (n − 1) / 3, sobald diese Zahl eine positive, ungerade ganze Zahl größer als 1 ist. Lass den Baum in die Breite sprießen, und die ganzen Zahlen ordnen sich zu einer unendlichen, verzweigten Koralle, verwurzelt bei 1, nach außen fächernd. Die Collatz-Vermutung ist genau die Aussage, dass jede positive ganze Zahl irgendwo in diesem einen Baum auftaucht, dass die Koralle am Ende alle enthält.",
+      title: "Lass die Regel rückwärts laufen: Die Zahlen ordnen sich selbst",
+      body: "Vorwärts ist Collatz eine Zahl nach der anderen. Rückwärts ist Collatz der ganze Baum. Beginn bei 1 und kehr die Regel um: Jeder Knoten n hat Elter 2n (immer; das war der Halbierungsschritt), und zusätzlich einen Elter (n − 1) / 3, sobald diese Zahl eine positive, ungerade ganze Zahl größer als 1 ist. Lass den Baum in die Breite sprießen, und die ganzen Zahlen ordnen sich zu einer unendlichen, verzweigten Koralle, verwurzelt bei 1, nach außen fächernd. Die Collatz-Vermutung ist genau die Aussage, dass jede positive ganze Zahl irgendwo in diesem einen Baum auftaucht, dass die Koralle am Ende alle enthält.",
     },
     {
       pretitle: "Abschnitt 06 · Was den Beweis aufhält",
       title: "Eine Invariante, die niemand findet",
-      body: "Warum ist das so schwer? Der tiefe Grund: niemand hat eine ausreichende Invariante gefunden. Um zu zeigen, dass jede Bahn endet, brauchst du eine Größe, die entlang der Iteration strikt fällt, oder eine Lyapunov-Funktion, oder ein kluges Potential, und nichts davon ist in achtundachtzig Jahren aufgetaucht. John Conway zeigte 1972, dass schon eine leicht verallgemeinerte Collatz-artige Abbildung unentscheidbar ist; sein späteres FRACTRAN-System (1987) realisierte dann volle Turing-Vollständigkeit in genau diesem Stil verzweigter Arithmetik. Das deutet darauf hin, dass Collatz selbst nahe an der Grenze der Unentscheidbarkeit liegen könnte: nicht nur schwer, sondern womöglich außerhalb der Reichweite jedes endlichen Beweissystems. Erdős könnte recht gehabt haben.",
+      body: "Warum ist das so schwer? Der tiefe Grund: Niemand hat eine ausreichende Invariante gefunden. Um zu zeigen, dass jede Bahn endet, brauchst du eine Größe, die entlang der Iteration strikt fällt, oder eine Lyapunov-Funktion, oder ein kluges Potential, und nichts davon ist in achtundachtzig Jahren aufgetaucht. John Conway zeigte 1972, dass schon eine leicht verallgemeinerte Collatz-artige Abbildung unentscheidbar ist; sein späteres FRACTRAN-System (1987) realisierte dann volle Turing-Vollständigkeit in genau diesem Stil verzweigter Arithmetik. Das deutet darauf hin, dass Collatz selbst nahe an der Grenze der Unentscheidbarkeit liegen könnte: nicht nur schwer, sondern womöglich außerhalb der Reichweite jedes endlichen Beweissystems. Erdős könnte recht gehabt haben.",
     },
   ],
   closingTitle: "Sieh es fallen.",
@@ -505,7 +505,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 05 · Il corallo inverso",
       title: "Inverti la regola e gli interi si auto-assemblano",
-      body: "In avanti, Collatz è un numero alla volta. All'indietro, Collatz è l'intero albero. Parti da 1 e inverti la regola: ogni nodo n ha genitore 2n (sempre; era il suo passo di dimezzamento) e, in più, genitore (n − 1) / 3 quando quel numero è un intero dispari strettamente maggiore di 1. Fai crescere l'albero in ampiezza e gli interi si assemblano in un corallo ramificato infinito, radicato in 1 e aperto verso l'esterno. La congettura di Collatz è esattamente l'affermazione che ogni intero positivo compare da qualche parte in questo unico albero, che il corallo, alla fine, li contiene tutti.",
+      body: "In avanti, Collatz è un numero alla volta. All'indietro, Collatz è l'intero albero. Parti da 1 e inverti la regola: ogni nodo n ha genitore 2n (sempre; era il suo passo di dimezzamento) e, in più, genitore (n − 1) / 3 quando quel numero è un intero dispari strettamente maggiore di 1. Fai crescere l'albero in ampiezza e gli interi si assemblano in un corallo ramificato infinito, radicato in 1 e aperto verso l'esterno. La congettura di Collatz è esattamente l'affermazione che ogni intero positivo compare da qualche parte in questo unico albero, cioè che il corallo, alla fine, li contiene tutti.",
     },
     {
       pretitle: "Sezione 06 · Cosa blocca la dimostrazione",
@@ -602,7 +602,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 05 · O coral inverso",
       title: "Inverte a regra e os inteiros auto-organizam-se",
-      body: "Para a frente, Collatz é um número de cada vez. Para trás, Collatz é a árvore inteira. Começa em 1 e inverte a regra: cada nó n tem pai 2n (sempre; foi o seu passo de divisão) e, além disso, pai (n − 1) / 3 quando esse número for um inteiro ímpar estritamente maior que 1. Faz crescer a árvore em largura e os inteiros organizam-se num coral ramificado infinito, com raiz em 1 e abrindo-se para fora. A conjetura de Collatz é exatamente a afirmação de que todo inteiro positivo aparece nalgum sítio desta única árvore, que o coral, no fim, contém todos.",
+      body: "Para a frente, Collatz é um número de cada vez. Para trás, Collatz é a árvore inteira. Começa em 1 e inverte a regra: cada nó n tem pai 2n (sempre; foi o seu passo de divisão) e, além disso, pai (n − 1) / 3 quando esse número for um inteiro ímpar estritamente maior que 1. Faz crescer a árvore em largura e os inteiros organizam-se num coral ramificado infinito, com raiz em 1 e abrindo-se para fora. A conjetura de Collatz é exatamente a afirmação de que todo inteiro positivo aparece nalgum sítio desta única árvore, isto é, que o coral, no fim, contém todos.",
     },
     {
       pretitle: "Secção 06 · O que trava a demonstração",
@@ -770,7 +770,7 @@ const no: RichStory = {
       },
     ],
     tryIt:
-      "Under: kast hvilket som helst frø inn i hagelstormen og se det falle, la så den omvendte korallen vokse, den som rommer alle heltallene på én gang.",
+      "Under: Kast hvilket som helst frø inn i hagelstormen og se det falle, la så den omvendte korallen vokse, den som rommer alle heltallene på én gang.",
   },
   sections: [
     {
@@ -796,12 +796,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Den omvendte korallen",
       title: "Kjør regelen baklengs, så ordner heltallene seg selv",
-      body: "Forover er Collatz ett tall om gangen. Baklengs er Collatz hele treet. Start ved 1 og snu regelen: hver node n har forelder 2n (alltid; det var halveringsskrittet), og i tillegg en forelder (n − 1) / 3 så snart det tallet er et positivt oddetall strengt større enn 1. La treet vokse i bredden, og heltallene samler seg til en uendelig forgrenet korall, rotfestet i 1 og spredd utover. Collatz-formodningen er nettopp påstanden om at hvert positivt heltall dukker opp et sted i dette ene treet, at korallen til slutt rommer dem alle.",
+      body: "Forover er Collatz ett tall om gangen. Baklengs er Collatz hele treet. Start ved 1 og snu regelen: Hver node n har forelder 2n (alltid; det var halveringsskrittet), og i tillegg en forelder (n − 1) / 3 så snart det tallet er et positivt oddetall strengt større enn 1. La treet vokse i bredden, og heltallene samler seg til en uendelig forgrenet korall, rotfestet i 1 og spredd utover. Collatz-formodningen er nettopp påstanden om at hvert positivt heltall dukker opp et sted i dette ene treet, at korallen til slutt rommer dem alle.",
     },
     {
       pretitle: "Avsnitt 06 · Det som hindrer beviset",
       title: "En invariant ingen har funnet",
-      body: "Hvorfor er det så vanskelig? Den dypeste grunnen: ingen har funnet en tilstrekkelig invariant. For å bevise at hver bane stopper, trengs en størrelse som strengt avtar langs iterasjonen, eller en Lyapunov-funksjon, eller et slu potensial, og intet slikt har dukket opp på åttiåtte år. John Conway viste i 1972 at allerede en lett generalisert Collatz-lignende avbildning er uavgjørbar; hans senere FRACTRAN-system (1987) realiserte deretter full Turing-komplettering i nettopp denne stilen av forgrenet aritmetikk. Det antyder at Collatz selv kan ligge nær uavgjørbarhetens grense: et problem ikke bare vanskelig, men kanskje utenfor rekkevidde for ethvert endelig bevisystem. Erdős kan ha hatt rett.",
+      body: "Hvorfor er det så vanskelig? Den dypeste grunnen: Ingen har funnet en tilstrekkelig invariant. For å bevise at hver bane stopper, trengs en størrelse som strengt avtar langs iterasjonen, eller en Lyapunov-funksjon, eller et slu potensial, og intet slikt har dukket opp på åttiåtte år. John Conway viste i 1972 at allerede en lett generalisert Collatz-lignende avbildning er uavgjørbar; hans senere FRACTRAN-system (1987) realiserte deretter full Turing-komplettering i nettopp denne stilen av forgrenet aritmetikk. Det antyder at Collatz selv kan ligge nær uavgjørbarhetens grense: et problem ikke bare vanskelig, men kanskje utenfor rekkevidde for ethvert endelig bevisystem. Erdős kan ha hatt rett.",
     },
   ],
   closingTitle: "Se den falle.",

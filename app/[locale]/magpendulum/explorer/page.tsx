@@ -127,7 +127,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     canvasLabel: "Mapa de bacias do pêndulo magnético",
   },
   sv: {
-    basinMap: "bäckenkarta",
+    basinMap: "bassängkarta",
     computing: "räknar",
     ready: "klar",
     strength: "Magnetstyrka k",
@@ -139,10 +139,10 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     shade: "Skugga efter infångningstid",
     recompute: "⟳ Räkna om",
     legend: "Magnetlegend",
-    canvasLabel: "Bäckenkarta för den magnetiska pendeln",
+    canvasLabel: "Bassängkarta för den magnetiska pendeln",
   },
   no: {
-    basinMap: "bekkenkart",
+    basinMap: "bassengkart",
     computing: "regner",
     ready: "klar",
     strength: "Magnetstyrke k",
@@ -154,7 +154,7 @@ const RICH_EXPLORER: Record<Locale, ExplorerDict> = {
     shade: "Skyggelegg etter innfangingstid",
     recompute: "⟳ Beregn på nytt",
     legend: "Magnetlegende",
-    canvasLabel: "Bekkenkart for den magnetiske pendelen",
+    canvasLabel: "Bassengkart for den magnetiske pendelen",
   },
 };
 

@@ -207,7 +207,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Für jeden Punkt über der Platte frage: über welchem Magneten ruht das Pendel am Ende? Färbe diesen Punkt in der Farbe des Siegers. Die Platte wird zur Karte möglicher Zukünfte, und die Karte ist ein Fraktal.",
+        body: "Für jeden Punkt über der Platte frage: Über welchem Magneten ruht das Pendel am Ende? Färbe diesen Punkt in der Farbe des Siegers. Die Platte wird zur Karte möglicher Zukünfte, und die Karte ist ein Fraktal.",
       },
       {
         label: "02",
@@ -217,7 +217,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Die Grenze zwischen den Farben ist eine Wada-Menge: an jedem Grenzpunkt treffen sich alle drei Farben. Determinismus überlebt, Vorhersagbarkeit nicht: Dasselbe Paradox spukt im Wetter, im Sonnensystem und in jeder Physik mit konkurrierenden Attraktoren.",
+        body: "Die Grenze zwischen den Farben ist eine Wada-Menge: An jedem Grenzpunkt treffen sich alle drei Farben. Determinismus überlebt, Vorhersagbarkeit nicht: Dasselbe Paradox spukt im Wetter, im Sonnensystem und in jeder Physik mit konkurrierenden Attraktoren.",
       },
     ],
     tryIt: "Unten: erst die Skizze, dann dreh selbst an einer lebendigen Bassin-Karte.",
@@ -257,7 +257,7 @@ const de: RichStory = {
   closingPretitle: "Die Herausforderung",
   closingTitle: "Finde die Wada-Grenze.",
   closingBody:
-    "Der Explorer lässt dich Magnetstärke, Dämpfung, Pendelhöhe über der Platte und Bassin-Auflösung verändern, und beobachten, wie das Fraktal in Echtzeit schärfer wird.",
+    "Der Explorer lässt dich Magnetstärke, Dämpfung, Pendelhöhe über der Platte und Bassin-Auflösung verändern und beobachten, wie das Fraktal in Echtzeit schärfer wird.",
   ctaLabel: "→ Explorer öffnen",
   basinCaption: "Live · niedrig aufgelöste Bassin-Karte",
   basinDamping: "Dämpfung γ",
@@ -363,7 +363,7 @@ const fr: RichStory = {
     title: "Le pendule magnétique",
     tagline: "Colore chaque départ par son vainqueur : un fractal apparaît.",
     intro:
-      "Suspends un pendule de fer au-dessus de trois aimants en triangle. Les lois de Newton, l'attraction magnétique, un soupçon de frottement : tout est déterministe. Et pourtant la question «au-dessus de quel aimant se posera-t-il ?» n'a pas de réponse lisse. Colore chaque point de départ par son vainqueur final et trois bassins enlacés apparaissent, tissés l'un dans l'autre à chaque échelle.",
+      "Suspends un pendule de fer au-dessus de trois aimants en triangle. Les lois de Newton, l'attraction magnétique, un soupçon de frottement : tout est déterministe. Et pourtant la question « au-dessus de quel aimant se posera-t-il ? » n'a pas de réponse lisse. Colore chaque point de départ par son vainqueur final et trois bassins enlacés apparaissent, tissés l'un dans l'autre à chaque échelle.",
     ctaInteractive: "→ Ouvrir l'Explorateur",
   },
   encounter: {
@@ -413,12 +413,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Yoneyama, 1917",
       title: "Une curiosité topologique que l'ère du chaos a réarmée",
-      body: "La première construction de Wada fut un amuse-bouche topologique de Kunizō Yoneyama en 1917 : trois «lacs» sur une île, chacun creusant des canaux si fins que tout point de terre finit sur les trois rives. Soixante-dix ans elle resta curiosité. Puis, en 1991, Kennedy et Yorke forgent le terme «bassins de Wada» pour la dynamique chaotique, à partir d'exemples dynamiques abstraits ; une décennie plus tard, Aguirre, Vallejo et Sanjuán prouvent que le système de Hénon-Heiles porte des bassins de Wada (2001), et Daza et ses collègues confirment ensuite le pendule magnétique comme système de Wada. La théorie du chaos tenait son fractal de table.",
+      body: "La première construction de Wada fut un amuse-bouche topologique de Kunizō Yoneyama en 1917 : trois « lacs » sur une île, chacun creusant des canaux si fins que tout point de terre finit sur les trois rives. Soixante-dix ans elle resta curiosité. Puis, en 1991, Kennedy et Yorke forgent le terme « bassins de Wada » pour la dynamique chaotique, à partir d'exemples dynamiques abstraits ; une décennie plus tard, Aguirre, Vallejo et Sanjuán prouvent que le système de Hénon-Heiles porte des bassins de Wada (2001), et Daza et ses collègues confirment ensuite le pendule magnétique comme système de Wada. La théorie du chaos tenait son fractal de table.",
     },
     {
       pretitle: "Section 06 · Connexions",
       title: "Méthode de Newton, système solaire, billards chaotiques",
-      body: "La même frontière fractale revient dans les bassins de la méthode de Newton pour les racines d'un cubique, dans les intégrations à long terme des planètes, et dans l'espace des phases «troué» des billards chaotiques. La méthode de cellules de Hsu produit ces bassins en série. Là où les attracteurs sont en compétition, leurs frontières aiment devenir Wada.",
+      body: "La même frontière fractale revient dans les bassins de la méthode de Newton pour les racines d'un cubique, dans les intégrations à long terme des planètes, et dans l'espace des phases « troué » des billards chaotiques. La méthode de cellules de Hsu produit ces bassins en série. Là où les attracteurs sont en compétition, leurs frontières aiment devenir Wada.",
     },
   ],
   closingPretitle: "Le défi",
@@ -613,7 +613,7 @@ const sv: RichStory = {
     title: "Den magnetiska pendeln",
     tagline: "Färga varje start efter sin vinnare, och en fraktal dyker upp.",
     intro:
-      "Häng en järnpendel över tre magneter i triangel. Newtons lagar, magnetisk dragning, en aning friktion: allt deterministiskt. Och ändå har frågan «över vilken magnet landar den?» inget slätt svar. Färga varje startpunkt efter sin slutliga vinnare och tre sammanflätade bäcken dyker upp, vävda i varandra på varje skala.",
+      "Häng en järnpendel över tre magneter i triangel. Newtons lagar, magnetisk dragning, en aning friktion: allt deterministiskt. Och ändå har frågan «över vilken magnet landar den?» inget slätt svar. Färga varje startpunkt efter sin slutliga vinnare och tre sammanflätade attraktionsbassänger dyker upp, vävda i varandra på varje skala.",
     ctaInteractive: "→ Öppna Utforskaren",
   },
   encounter: {
@@ -636,7 +636,7 @@ const sv: RichStory = {
         body: "Gränsen mellan färgerna är en Wada-mängd: i varje gränspunkt möts alla tre färger. Determinismen överlever, förutsägbarheten inte: samma paradox spökar i vädret, solsystemet och all fysik med konkurrerande attraktorer.",
       },
     ],
-    tryIt: "Nedan: först skissen, sedan vrider du själv rattarna på en levande bäckenkarta.",
+    tryIt: "Nedan: först skissen, sedan vrider du själv rattarna på en levande bassängkarta.",
   },
   sections: [
     {
@@ -646,28 +646,28 @@ const sv: RichStory = {
     },
     {
       pretitle: "Avsnitt 02 · Deterministisk kaos",
-      title: "Samma start, samma slut; olika bäcken överallt",
+      title: "Samma start, samma slut; olika bassänger överallt",
       body: "Släpp pendeln två gånger från exakt samma punkt och den landar två gånger över samma magnet. Ingen slump i fysiken. Men flytta starten en millimeter och svaret kan vända, och mönstret av vändningar är tätt på varje skala.",
     },
     {
-      pretitle: "Avsnitt 03 · Attraktionsbäcken",
+      pretitle: "Avsnitt 03 · Attraktionsbassänger",
       title: "Tre färger, en karta",
-      body: "Svep ett rutnät av startpunkter; för var och en integrera ekvationerna tills den vilar; färga den efter sin vinnande magnet. Insidan av varje bäcken är en ren färgad region. Gränsen mellan dem är där bilden slutar vara slät.",
+      body: "Svep ett rutnät av startpunkter; för var och en integrera ekvationerna tills den vilar; färga den efter sin vinnande magnet. Insidan av varje bassäng är en ren färgad region. Gränsen mellan dem är där bilden slutar vara slät.",
     },
     {
       pretitle: "Avsnitt 04 · Wada-egenskapen",
       title: "Varje gränspunkt gränsar till alla tre färger",
-      body: "Zooma in på gränsen mellan två bäcken och den tredje färgen finns redan där, trädd genom sömmen. Zooma igen och alla tre färger ligger godtyckligt nära varje gränspunkt. Fronten är ingen kurva: den är en Wada-mängd, där tre regioner delar en gemensam gräns.",
+      body: "Zooma in på gränsen mellan två bassänger och den tredje färgen finns redan där, trädd genom sömmen. Zooma igen och alla tre färger ligger godtyckligt nära varje gränspunkt. Fronten är ingen kurva: den är en Wada-mängd, där tre regioner delar en gemensam gräns.",
     },
     {
       pretitle: "Avsnitt 05 · Yoneyama, 1917",
       title: "En topologisk kuriositet som kaos-eran beväpnade",
-      body: "Den första Wada-konstruktionen var en topologisk amuse-bouche av Kunizō Yoneyama 1917: tre «sjöar» på en ö, var och en gräver kanaler så fina att varje landpunkt hamnar på alla tre stränder. I sjuttio år förblev det en kuriositet. Sedan, 1991, myntade Kennedy och Yorke begreppet Wada-bäcken för kaotisk dynamik, utifrån abstrakta dynamiska exempel; ett decennium senare visade Aguirre, Vallejo och Sanjuán att Hénon-Heiles-systemet bär Wada-bäcken (2001), och Daza med kollegor bekräftade sedan den magnetiska pendeln som ett Wada-system. Kaosteorin hade sin fraktal på bordet.",
+      body: "Den första Wada-konstruktionen var en topologisk amuse-bouche av Kunizō Yoneyama 1917: tre «sjöar» på en ö, var och en gräver kanaler så fina att varje landpunkt hamnar på alla tre stränder. I sjuttio år förblev det en kuriositet. Sedan, 1991, myntade Kennedy och Yorke begreppet Wada-bassänger för kaotisk dynamik, utifrån abstrakta dynamiska exempel; ett decennium senare visade Aguirre, Vallejo och Sanjuán att Hénon-Heiles-systemet bär Wada-bassänger (2001), och Daza med kollegor bekräftade sedan den magnetiska pendeln som ett Wada-system. Kaosteorin hade sin fraktal på bordet.",
     },
     {
       pretitle: "Avsnitt 06 · Kopplingar",
       title: "Newtons metod, solsystemet, kaotiska biljarder",
-      body: "Samma fraktala front dyker upp i Newton-metodens bäcken för rötterna till ett kubiskt polynom, i långtidsintegrationer av planeterna och i det «läckande» fasrummet hos kaotiska biljarder. Hsus cell-mapping-metod producerar dessa bäcken på löpande band. Där attraktorer konkurrerar tenderar deras gränser att växa Wada.",
+      body: "Samma fraktala front dyker upp i Newton-metodens bassänger för rötterna till ett kubiskt polynom, i långtidsintegrationer av planeterna och i det «läckande» fasrummet hos kaotiska biljarder. Hsus cell-mapping-metod producerar dessa bassänger på löpande band. Där attraktorer konkurrerar tenderar deras gränser att växa Wada.",
     },
   ],
   closingPretitle: "Utmaningen",
@@ -675,14 +675,14 @@ const sv: RichStory = {
   closingBody:
     "Utforskaren låter dig ändra magnetstyrka, dämpning, pendelhöjd över plattan och rutnätets upplösning, och se fraktalen skärpas i realtid.",
   ctaLabel: "→ Öppna Utforskaren",
-  basinCaption: "Live · låguppl. bäckenkarta",
+  basinCaption: "Live · låguppl. bassängkarta",
   basinDamping: "Dämpning γ",
   basinStrength: "Magnetstyrka k",
   basinHint:
-    "Varje pixel är en startposition; dess färg, magneten som vinner. Vrid ner dämpningen och bäckenet splittras; vrid upp och färgerna lugnar sig.",
+    "Varje pixel är en startposition; dess färg, magneten som vinner. Vrid ner dämpningen och bassängen splittras; vrid upp och färgerna lugnar sig.",
   basinComputing: "räknar",
   basinReady: "klar",
-  sketchCaption: "Tre magneter · tre bäcken",
+  sketchCaption: "Tre magneter · tre bassänger",
   sketchHint:
     "Varje färg markerar magneten som pendeln till slut vilar över. I den riktiga bilden är ekrarna oändligt fina.",
 };
@@ -696,7 +696,7 @@ const no: RichStory = {
     title: "Den magnetiske pendelen",
     tagline: "Farg hver start etter sin vinner, og en fraktal dukker opp.",
     intro:
-      "Heng en jernpendel over tre magneter i en trekant. Newtons lover, magnetisk tiltrekning, et streif av friksjon: alt deterministisk. Likevel har spørsmålet «over hvilken magnet lander den?» ikke noe glatt svar. Farg hvert startpunkt etter sin endelige vinner, og tre sammenflettede bekken dukker opp, vevet inn i hverandre på hver skala.",
+      "Heng en jernpendel over tre magneter i en trekant. Newtons lover, magnetisk tiltrekning, et streif av friksjon: alt deterministisk. Likevel har spørsmålet «over hvilken magnet lander den?» ikke noe glatt svar. Farg hvert startpunkt etter sin endelige vinner, og tre sammenflettede attraksjonsbassenger dukker opp, vevet inn i hverandre på hver skala.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -706,7 +706,7 @@ const no: RichStory = {
       {
         label: "01",
         title: "Den store idéen",
-        body: "For hvert punkt over platen, spør: over hvilken magnet vil pendelen hvile? Mal punktet i vinnerens farge. Platen blir et kart over framtider, og kartet er en fraktal.",
+        body: "For hvert punkt over platen, spør: Over hvilken magnet vil pendelen hvile? Mal punktet i vinnerens farge. Platen blir et kart over framtider, og kartet er en fraktal.",
       },
       {
         label: "02",
@@ -716,10 +716,10 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Grensen mellom fargene er en Wada-mengde: i hvert grensepunkt møtes alle tre farger. Determinismen overlever, forutsigbarheten ikke: Det samme paradokset hjemsøker været, solsystemet og all fysikk med konkurrerende attraktorer.",
+        body: "Grensen mellom fargene er en Wada-mengde: I hvert grensepunkt møtes alle tre farger. Determinismen overlever, forutsigbarheten ikke: Det samme paradokset hjemsøker været, solsystemet og all fysikk med konkurrerende attraktorer.",
       },
     ],
-    tryIt: "Under: først skissen, så vrir du selv på rattene på et levende bekkenkart.",
+    tryIt: "Under: først skissen, så vrir du selv på rattene på et levende bassengkart.",
   },
   sections: [
     {
@@ -729,28 +729,28 @@ const no: RichStory = {
     },
     {
       pretitle: "Del 02 · Deterministisk kaos",
-      title: "Samme start, samme slutt; annet bekken overalt",
+      title: "Samme start, samme slutt; ulike bassenger overalt",
       body: "Slipp pendelen to ganger fra nøyaktig samme punkt og den lander to ganger over samme magnet. Ingen tilfeldighet i fysikken. Men flytt starten en millimeter og svaret kan snu, og mønsteret av snuinger er tett på hver skala.",
     },
     {
-      pretitle: "Del 03 · Tiltrekningsbekken",
+      pretitle: "Del 03 · Attraksjonsbassenger",
       title: "Tre farger, ett kart",
-      body: "Sveip et rutenett av startpunkter; for hvert et integrer ligningene til ro; farg det etter den vinnende magneten. Innsiden av hvert bekken er en ren farget region. Grensen mellom dem er der bildet slutter å være glatt.",
+      body: "Sveip et rutenett av startpunkter; for hvert et integrer ligningene til ro; farg det etter den vinnende magneten. Innsiden av hvert basseng er en ren farget region. Grensen mellom dem er der bildet slutter å være glatt.",
     },
     {
       pretitle: "Del 04 · Wada-egenskapen",
       title: "Hvert grensepunkt grenser til alle tre farger",
-      body: "Zoom inn på grensen mellom to bekken og den tredje fargen er allerede der, trådd gjennom sømmen. Zoom igjen og alle tre farger ligger vilkårlig nær hvert grensepunkt. Fronten er ingen kurve: Den er en Wada-mengde, der tre regioner deler én felles grense.",
+      body: "Zoom inn på grensen mellom to bassenger og den tredje fargen er allerede der, trådd gjennom sømmen. Zoom igjen og alle tre farger ligger vilkårlig nær hvert grensepunkt. Fronten er ingen kurve: Den er en Wada-mengde, der tre regioner deler én felles grense.",
     },
     {
       pretitle: "Del 05 · Yoneyama, 1917",
       title: "En topologisk kuriositet som kaos-tiden væpnet opp",
-      body: "Den første Wada-konstruksjonen var en topologisk smakebit fra Kunizō Yoneyama i 1917: tre «sjøer» på en øy, hver graver kanaler så fine at hvert landpunkt ender på alle tre bredder. I sytti år forble det en kuriositet. Så, i 1991, myntet Kennedy og Yorke begrepet Wada-bekken for kaotisk dynamikk, ut fra abstrakte dynamiske eksempler; et tiår senere viste Aguirre, Vallejo og Sanjuán at Hénon-Heiles-systemet bærer Wada-bekken (2001), og Daza med kolleger bekreftet siden den magnetiske pendelen som et Wada-system. Kaosteorien hadde sin fraktal på bordet.",
+      body: "Den første Wada-konstruksjonen var en topologisk smakebit fra Kunizō Yoneyama i 1917: tre «sjøer» på en øy, hver graver kanaler så fine at hvert landpunkt ender på alle tre bredder. I sytti år forble det en kuriositet. Så, i 1991, myntet Kennedy og Yorke begrepet Wada-bassenger for kaotisk dynamikk, ut fra abstrakte dynamiske eksempler; et tiår senere viste Aguirre, Vallejo og Sanjuán at Hénon-Heiles-systemet bærer Wada-bassenger (2001), og Daza med kolleger bekreftet siden den magnetiske pendelen som et Wada-system. Kaosteorien hadde sin fraktal på bordet.",
     },
     {
       pretitle: "Del 06 · Forbindelser",
       title: "Newtons metode, solsystemet, kaotiske biljarder",
-      body: "Den samme fraktale fronten dukker opp i Newton-metodens bekken for røttene til et tredjegradspolynom, i langtidsintegrasjoner av planetene og i det «lekke» faserommet til kaotiske biljarder. Hsus cellekartlegging produserer slike bekken i serie. Der attraktorer konkurrerer, vokser grensene gjerne Wada.",
+      body: "Den samme fraktale fronten dukker opp i Newton-metodens bassenger for røttene til et tredjegradspolynom, i langtidsintegrasjoner av planetene og i det «lekke» faserommet til kaotiske biljarder. Hsus cellekartlegging produserer slike bassenger i serie. Der attraktorer konkurrerer, vokser grensene gjerne Wada.",
     },
   ],
   closingPretitle: "Utfordringen",
@@ -758,14 +758,14 @@ const no: RichStory = {
   closingBody:
     "Utforskeren lar deg endre magnetstyrke, demping, pendelhøyde over platen og rutenettets oppløsning, og se fraktalen skjerpe seg i sanntid.",
   ctaLabel: "→ Åpne Utforskeren",
-  basinCaption: "Live · lav-oppl. bekkenkart",
+  basinCaption: "Live · lav-oppl. bassengkart",
   basinDamping: "Demping γ",
   basinStrength: "Magnetstyrke k",
   basinHint:
-    "Hvert piksel er en startposisjon; fargen, magneten som vinner. Skru dempingen ned og bekkenet splintres; skru opp og fargene roer seg.",
+    "Hvert piksel er en startposisjon; fargen, magneten som vinner. Skru dempingen ned og bassenget splintres; skru opp og fargene roer seg.",
   basinComputing: "regner",
   basinReady: "klar",
-  sketchCaption: "Tre magneter · tre bekken",
+  sketchCaption: "Tre magneter · tre bassenger",
   sketchHint:
     "Hver farge markerer magneten pendelen til slutt hviler over. I det ekte bildet er ekrene uendelig fine.",
 };

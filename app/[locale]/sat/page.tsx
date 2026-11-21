@@ -86,7 +86,7 @@ const en: RichStory = {
     {
       pretitle: "Section 03 · The first domino",
       title: "Cook-Levin and NP-completeness",
-      body: "Cook (1971) and, independently behind the Iron Curtain, Levin (1973) proved the pivotal fact: you can encode the entire run of any polynomial-time non-deterministic machine as a Boolean formula: variables for the tape, the head and the clock; clauses that force the rules of computation, so that the formula is satisfiable exactly when the machine accepts. Hence every problem in NP reduces to SAT. The year after, Richard Karp showed 21 famous problems (graph colouring, Hamiltonian cycle, subset sum) reduce to it too. SAT is the first domino: knock it over quickly and the whole row falls.",
+      body: "Cook (1971) and, independently behind the Iron Curtain, Levin (1973) proved the pivotal fact: you can encode the entire run of any polynomial-time non-deterministic machine as a Boolean formula (variables for the tape, the head and the clock; clauses that force the rules of computation), so that the formula is satisfiable exactly when the machine accepts. Hence every problem in NP reduces to SAT. The year after, Richard Karp showed 21 famous problems (graph colouring, Hamiltonian cycle, subset sum) reduce to it too. SAT is the first domino: knock it over quickly and the whole row falls.",
     },
     {
       pretitle: "Section 04 · How solvers actually win",
@@ -131,7 +131,7 @@ const de: RichStory = {
       {
         label: "01",
         title: "Die Grundidee",
-        body: "Eine boolesche Formel besteht aus Variablen, die jeweils wahr oder falsch sind, verknüpft mit UND (∧), ODER (∨) und NICHT (¬). Erfüllbarkeit stellt genau eine Frage: Gibt es eine Belegung der Variablen, sodass die ganze Formel wahr wird? Wenn ja, ist die Formel erfüllbar: nenne die Belegung, und jede:r kann sie in Sekunden prüfen. Wenn nein, ist sie unerfüllbar, und das zu beweisen heißt unter Umständen, jede Möglichkeit auszuschließen.",
+        body: "Eine boolesche Formel besteht aus Variablen, die jeweils wahr oder falsch sind, verknüpft mit UND (∧), ODER (∨) und NICHT (¬). Erfüllbarkeit stellt genau eine Frage: Gibt es eine Belegung der Variablen, sodass die ganze Formel wahr wird? Wenn ja, ist die Formel erfüllbar: Nenne die Belegung, und jede:r kann sie in Sekunden prüfen. Wenn nein, ist sie unerfüllbar, und das zu beweisen heißt unter Umständen, jede Möglichkeit auszuschließen.",
       },
       {
         label: "02",
@@ -161,12 +161,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Der erste Dominostein",
       title: "Cook-Levin und NP-Vollständigkeit",
-      body: "Cook (1971) und, unabhängig hinter dem Eisernen Vorhang, Levin (1973) bewiesen das Entscheidende: Man kann den gesamten Lauf jeder nichtdeterministischen Polynomialzeit-Maschine als boolesche Formel kodieren: Variablen für Band, Kopf und Takt; Klauseln, die die Rechenregeln erzwingen, sodass die Formel genau dann erfüllbar ist, wenn die Maschine akzeptiert. Also lässt sich jedes Problem in NP auf SAT zurückführen. Im Jahr darauf zeigte Richard Karp, dass 21 berühmte Probleme (Graphenfärbung, Hamilton-Kreis, Teilsummen) sich ebenfalls darauf reduzieren. SAT ist der erste Dominostein: Kippt er schnell, fällt die ganze Reihe.",
+      body: "Cook (1971) und, unabhängig hinter dem Eisernen Vorhang, Levin (1973) bewiesen das Entscheidende: Man kann den gesamten Lauf jeder nichtdeterministischen Polynomialzeit-Maschine als boolesche Formel kodieren (Variablen für Band, Kopf und Takt; Klauseln, die die Rechenregeln erzwingen), sodass die Formel genau dann erfüllbar ist, wenn die Maschine akzeptiert. Also lässt sich jedes Problem in NP auf SAT zurückführen. Im Jahr darauf zeigte Richard Karp, dass 21 berühmte Probleme (Graphenfärbung, Hamilton-Kreis, Teilsummen) sich ebenfalls darauf reduzieren. SAT ist der erste Dominostein: Kippt er schnell, fällt die ganze Reihe.",
     },
     {
       pretitle: "Abschnitt 04 · Wie Solver wirklich gewinnen",
       title: "DPLL und die Suche, die sich selbst beschneidet",
-      body: "Der Brute-Force-Baum hat 2ⁿ Blätter, eines pro Belegung, jenseits von ein paar Dutzend Variablen aussichtslos. Das Davis-Putnam-Logemann-Loveland-Verfahren (1962) macht daraus eine Suche, die sich selbst beschneidet: Variable wählen, einen Wert annehmen, die Konsequenzen propagieren. Unit-Propagation: bleibt in einer Klausel nur ein unbelegtes Literal, ist dieses erzwungen. Pure-Literal-Elimination: eine Variable, die nur positiv vorkommt, kann einfach wahr gesetzt werden. Stößt man auf einen Widerspruch, wird zurückgesetzt. Moderne Solver ergänzen das Conflict-Driven Clause Learning, bei dem jede Sackgasse eine neue Klausel lehrt, die eine ganze Familie künftiger Sackgassen blockiert, und bewältigen routinemäßig Formeln mit Millionen von Variablen.",
+      body: "Der Brute-Force-Baum hat 2ⁿ Blätter, eines pro Belegung, jenseits von ein paar Dutzend Variablen aussichtslos. Das Davis-Putnam-Logemann-Loveland-Verfahren (1962) macht daraus eine Suche, die sich selbst beschneidet: Variable wählen, einen Wert annehmen, die Konsequenzen propagieren. Unit-Propagation: Bleibt in einer Klausel nur ein unbelegtes Literal, ist dieses erzwungen. Pure-Literal-Elimination: Eine Variable, die nur positiv vorkommt, kann einfach wahr gesetzt werden. Stößt man auf einen Widerspruch, wird zurückgesetzt. Moderne Solver ergänzen das Conflict-Driven Clause Learning, bei dem jede Sackgasse eine neue Klausel lehrt, die eine ganze Familie künftiger Sackgassen blockiert, und bewältigen routinemäßig Formeln mit Millionen von Variablen.",
     },
     {
       pretitle: "Abschnitt 05 · Wo es schwer wird",
@@ -180,7 +180,7 @@ const de: RichStory = {
   toggleSatisfied:
     "Erfüllt. Jede Klausel hat ein wahres Literal, also ist die ganze Formel wahr, und du hast es in Sekunden geprüft. Das Finden war der leichte Fall; stell dir tausend Variablen vor.",
   toggleUnsatisfied:
-    "Noch nicht: mindestens eine Klausel ist noch ganz falsch (in Rosa). Kipp eine Variable und sieh zu, wie die Klauseln reagieren.",
+    "Noch nicht: Mindestens eine Klausel ist noch ganz falsch (in Rosa). Kipp eine Variable und sieh zu, wie die Klauseln reagieren.",
   toggleReset: "zurücksetzen",
   closingPretitle: "Erkunden",
   closingTitle: "Sieh einem Solver beim Verzweigen und Zurücksetzen zu.",
@@ -236,7 +236,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 03 · La primera ficha de dominó",
       title: "Cook-Levin y la NP-completitud",
-      body: "Cook (1971) y, de forma independiente tras el Telón de Acero, Levin (1973) probaron lo decisivo: puedes codificar la ejecución completa de cualquier máquina no determinista de tiempo polinómico como una fórmula booleana: variables para la cinta, el cabezal y el reloj; cláusulas que imponen las reglas del cómputo, de modo que la fórmula es satisfacible exactamente cuando la máquina acepta. Así, todo problema de NP se reduce a SAT. Al año siguiente, Richard Karp mostró que 21 problemas famosos (coloreo de grafos, ciclo hamiltoniano, suma de subconjuntos) también se reducen a él. SAT es la primera ficha: derríbala rápido y cae la fila entera.",
+      body: "Cook (1971) y, de forma independiente tras el Telón de Acero, Levin (1973) probaron lo decisivo: puedes codificar la ejecución completa de cualquier máquina no determinista de tiempo polinómico como una fórmula booleana (variables para la cinta, el cabezal y el reloj; cláusulas que imponen las reglas del cómputo), de modo que la fórmula es satisfacible exactamente cuando la máquina acepta. Así, todo problema de NP se reduce a SAT. Al año siguiente, Richard Karp mostró que 21 problemas famosos (coloreo de grafos, ciclo hamiltoniano, suma de subconjuntos) también se reducen a él. SAT es la primera ficha: derríbala rápido y cae la fila entera.",
     },
     {
       pretitle: "Sección 04 · Cómo ganan de verdad los solvers",
@@ -311,7 +311,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 03 · Le premier domino",
       title: "Cook-Levin et la NP-complétude",
-      body: "Cook (1971) et, indépendamment derrière le rideau de fer, Levin (1973) ont prouvé l'essentiel : on peut encoder l'exécution entière de toute machine non déterministe en temps polynomial comme une formule booléenne : variables pour le ruban, la tête et l'horloge ; clauses imposant les règles du calcul, de sorte que la formule est satisfaisable exactement quand la machine accepte. Donc tout problème de NP se ramène à SAT. L'année suivante, Richard Karp a montré que 21 problèmes célèbres (coloration de graphes, cycle hamiltonien, somme de sous-ensembles) s'y ramènent aussi. SAT est le premier domino : fais-le tomber vite et toute la rangée suit.",
+      body: "Cook (1971) et, indépendamment derrière le rideau de fer, Levin (1973) ont prouvé l'essentiel : on peut encoder l'exécution entière de toute machine non déterministe en temps polynomial comme une formule booléenne (variables pour le ruban, la tête et l'horloge ; clauses imposant les règles du calcul), de sorte que la formule est satisfaisable exactement quand la machine accepte. Donc tout problème de NP se ramène à SAT. L'année suivante, Richard Karp a montré que 21 problèmes célèbres (coloration de graphes, cycle hamiltonien, somme de sous-ensembles) s'y ramènent aussi. SAT est le premier domino : fais-le tomber vite et toute la rangée suit.",
     },
     {
       pretitle: "Section 04 · Comment les solveurs gagnent vraiment",
@@ -386,7 +386,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 03 · Il primo domino",
       title: "Cook-Levin e la NP-completezza",
-      body: "Cook (1971) e, indipendentemente dietro la cortina di ferro, Levin (1973) dimostrarono il punto cruciale: si può codificare l'intera esecuzione di qualsiasi macchina non deterministica polinomiale come formula booleana: variabili per il nastro, la testina e il clock; clausole che impongono le regole del calcolo, così che la formula è soddisfacibile esattamente quando la macchina accetta. Quindi ogni problema in NP si riduce a SAT. L'anno dopo, Richard Karp mostrò che 21 problemi celebri (colorazione di grafi, ciclo hamiltoniano, somma di sottoinsiemi) vi si riducono pure. SAT è il primo domino: abbattilo in fretta e cade l'intera fila.",
+      body: "Cook (1971) e, indipendentemente dietro la cortina di ferro, Levin (1973) dimostrarono il punto cruciale: si può codificare l'intera esecuzione di qualsiasi macchina non deterministica polinomiale come formula booleana (variabili per il nastro, la testina e il clock; clausole che impongono le regole del calcolo), così che la formula è soddisfacibile esattamente quando la macchina accetta. Quindi ogni problema in NP si riduce a SAT. L'anno dopo, Richard Karp mostrò che 21 problemi celebri (colorazione di grafi, ciclo hamiltoniano, somma di sottoinsiemi) vi si riducono pure. SAT è il primo domino: abbattilo in fretta e cade l'intera fila.",
     },
     {
       pretitle: "Sezione 04 · Come vincono davvero i solver",
@@ -461,7 +461,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 03 · O primeiro dominó",
       title: "Cook-Levin e a NP-completude",
-      body: "Cook (1971) e, de forma independente atrás da Cortina de Ferro, Levin (1973) provaram o essencial: pode-se codificar a execução inteira de qualquer máquina não determinista de tempo polinomial como uma fórmula booleana: variáveis para a fita, a cabeça e o relógio; cláusulas que impõem as regras do cálculo, de modo que a fórmula é satisfazível exatamente quando a máquina aceita. Assim, todo problema em NP reduz-se a SAT. No ano seguinte, Richard Karp mostrou que 21 problemas famosos (coloração de grafos, ciclo hamiltoniano, soma de subconjuntos) também se reduzem a ele. SAT é o primeiro dominó: derruba-o depressa e cai a fila inteira.",
+      body: "Cook (1971) e, de forma independente atrás da Cortina de Ferro, Levin (1973) provaram o essencial: pode-se codificar a execução inteira de qualquer máquina não determinista de tempo polinomial como uma fórmula booleana (variáveis para a fita, a cabeça e o relógio; cláusulas que impõem as regras do cálculo), de modo que a fórmula é satisfazível exatamente quando a máquina aceita. Assim, todo problema em NP reduz-se a SAT. No ano seguinte, Richard Karp mostrou que 21 problemas famosos (coloração de grafos, ciclo hamiltoniano, soma de subconjuntos) também se reduzem a ele. SAT é o primeiro dominó: derruba-o depressa e cai a fila inteira.",
     },
     {
       pretitle: "Secção 04 · Como os solvers vencem de facto",
@@ -536,7 +536,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 03 · Den första brickan",
       title: "Cook-Levin och NP-fullständighet",
-      body: "Cook (1971) och, oberoende bakom järnridån, Levin (1973) bevisade det avgörande: man kan koda hela körningen av vilken icke-deterministisk polynomtidsmaskin som helst som en boolesk formel: variabler för bandet, huvudet och klockan; klausuler som tvingar fram beräkningsreglerna, så att formeln är satisfierbar exakt när maskinen accepterar. Alltså reduceras varje problem i NP till SAT. Året därpå visade Richard Karp att 21 berömda problem (graffärgning, hamiltonsk cykel, delmängdssumma) också reduceras till det. SAT är den första brickan: fäll den snabbt och hela raden faller.",
+      body: "Cook (1971) och, oberoende bakom järnridån, Levin (1973) bevisade det avgörande: man kan koda hela körningen av vilken icke-deterministisk polynomtidsmaskin som helst som en boolesk formel (variabler för bandet, huvudet och klockan; klausuler som tvingar fram beräkningsreglerna) så att formeln är satisfierbar exakt när maskinen accepterar. Alltså reduceras varje problem i NP till SAT. Året därpå visade Richard Karp att 21 berömda problem (graffärgning, hamiltonsk cykel, delmängdssumma) också reduceras till det. SAT är den första brickan: fäll den snabbt och hela raden faller.",
     },
     {
       pretitle: "Avsnitt 04 · Hur lösare faktiskt vinner",
@@ -571,7 +571,7 @@ const no: RichStory = {
     title: "Boolsk oppfyllbarhet (SAT)",
     tagline: "Problemet som ethvert vanskelig problem reduseres til.",
     intro:
-      "Gitt en formel av sann/usann-variabler bundet sammen med OG, ELLER og IKKE: kan du sette variablene slik at helheten blir sann? Å verifisere et kandidatsvar er trivielt; å finne ett kan være brutalt. SAT var det første problemet som noensinne ble bevist NP-fullstendig: sømmen der «lett å sjekke» og «lett å løse» trekkes fra hverandre, og maskinrommet for spørsmålet P mot NP.",
+      "Gitt en formel av sann/usann-variabler bundet sammen med OG, ELLER og IKKE: Kan du sette variablene slik at helheten blir sann? Å verifisere et kandidatsvar er trivielt; å finne ett kan være brutalt. SAT var det første problemet som noensinne ble bevist NP-fullstendig: sømmen der «lett å sjekke» og «lett å løse» trekkes fra hverandre, og maskinrommet for spørsmålet P mot NP.",
     ctaInteractive: "→ Åpne Utforskeren",
   },
   encounter: {
@@ -581,17 +581,17 @@ const no: RichStory = {
       {
         label: "01",
         title: "Hovedidéen",
-        body: "En boolsk formel bygges av variabler som hver er sanne eller usanne, bundet sammen med OG (∧), ELLER (∨) og IKKE (¬). Oppfyllbarhet stiller ett eneste spørsmål: finnes det en måte å sette variablene på slik at hele formelen blir sann? Hvis ja, er formelen oppfyllbar: oppgi tildelingen, så kan hvem som helst sjekke den på sekunder. Hvis nei, er den uoppfyllbar, og å bevise det kan bety å utelukke enhver mulighet.",
+        body: "En boolsk formel bygges av variabler som hver er sanne eller usanne, bundet sammen med OG (∧), ELLER (∨) og IKKE (¬). Oppfyllbarhet stiller ett eneste spørsmål: Finnes det en måte å sette variablene på slik at hele formelen blir sann? Hvis ja, er formelen oppfyllbar: Oppgi tildelingen, så kan hvem som helst sjekke den på sekunder. Hvis nei, er den uoppfyllbar, og å bevise det kan bety å utelukke enhver mulighet.",
       },
       {
         label: "02",
         title: "Et konkret eksempel",
-        body: "Ta (x ∨ ¬y) ∧ (y ∨ z) ∧ (¬z ∨ ¬x). Tre klausuler bundet med OG, så alle tre må gjelde samtidig. Prøv x = sann, y = sann, z = usann: første klausul er sann (x), andre sann (y), tredje sann (¬z). Oppfylt. Du verifiserte nettopp en løsning raskere enn du rakk å lese dette kortet, men med 100 variabler og 500 klausuler er det å finne den tildelingen en helt annen sak.",
+        body: "Ta (x ∨ ¬y) ∧ (y ∨ z) ∧ (¬z ∨ ¬x). Tre klausuler bundet med OG, så alle tre må gjelde samtidig. Prøv x = sann, y = sann, z = usann: Første klausul er sann (x), andre sann (y), tredje sann (¬z). Oppfylt. Du verifiserte nettopp en løsning raskere enn du rakk å lese dette kortet, men med 100 variabler og 500 klausuler er det å finne den tildelingen en helt annen sak.",
       },
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "I 1971 beviste Stephen Cook at SAT er NP-fullstendig: ethvert problem hvis løsninger er raske å sjekke, kan skrives om til en SAT-instans i polynomtid. Avbild planleggingsproblemet ditt, gåten din, kryptonøkkelen din på en formel, så løser en SAT-løser den eller beviser at ingen løsning finnes. En rask SAT-algoritme ville fått tusen vanskelige problemer til å rase sammen på én gang. Nettopp derfor tror nesten ingen at den finnes.",
+        body: "I 1971 beviste Stephen Cook at SAT er NP-fullstendig: Ethvert problem hvis løsninger er raske å sjekke, kan skrives om til en SAT-instans i polynomtid. Avbild planleggingsproblemet ditt, gåten din, kryptonøkkelen din på en formel, så løser en SAT-løser den eller beviser at ingen løsning finnes. En rask SAT-algoritme ville fått tusen vanskelige problemer til å rase sammen på én gang. Nettopp derfor tror nesten ingen at den finnes.",
       },
     ],
     tryIt:
@@ -606,22 +606,22 @@ const no: RichStory = {
     {
       pretitle: "Del 02 · Lett å sjekke, vanskelig å finne",
       title: "Hvorfor SAT bor i NP",
-      body: "Gi noen en tildeling, og de verifiserer den i ett eneste lineært gjennomløp: sett inn verdiene, evaluer hver klausul. Det plasserer SAT i NP: klassen av problemer hvis ja-svar bærer et kort sertifikat som er raskt å sjekke. Det åpne spørsmålet er om det er like lett å finne sertifikatet som å sjekke det. Ingen har funnet en polynomtidsalgoritme for SAT, og ingen har bevist at ingen finnes. Det gapet er problemet P mot NP, og SAT ligger nøyaktig på forkastningslinjen.",
+      body: "Gi noen en tildeling, og de verifiserer den i ett eneste lineært gjennomløp: Sett inn verdiene, evaluer hver klausul. Det plasserer SAT i NP: klassen av problemer hvis ja-svar bærer et kort sertifikat som er raskt å sjekke. Det åpne spørsmålet er om det er like lett å finne sertifikatet som å sjekke det. Ingen har funnet en polynomtidsalgoritme for SAT, og ingen har bevist at ingen finnes. Det gapet er problemet P mot NP, og SAT ligger nøyaktig på forkastningslinjen.",
     },
     {
       pretitle: "Del 03 · Den første brikken",
       title: "Cook-Levin og NP-fullstendighet",
-      body: "Cook (1971) og, uavhengig bak jernteppet, Levin (1973) beviste det avgjørende: man kan kode hele kjøringen av enhver ikke-deterministisk polynomtidsmaskin som en boolsk formel: variabler for båndet, hodet og klokken; klausuler som tvinger fram beregningsreglene, slik at formelen er oppfyllbar nøyaktig når maskinen aksepterer. Altså reduseres ethvert problem i NP til SAT. Året etter viste Richard Karp at 21 berømte problemer (graffarging, hamiltonsk sykel, delmengdesum) også reduseres til det. SAT er den første brikken: velt den raskt, så faller hele rekken.",
+      body: "Cook (1971) og, uavhengig bak jernteppet, Levin (1973) beviste det avgjørende: Man kan kode hele kjøringen av enhver ikke-deterministisk polynomtidsmaskin som en boolsk formel (variabler for båndet, hodet og klokken; klausuler som tvinger fram beregningsreglene) slik at formelen er oppfyllbar nøyaktig når maskinen aksepterer. Altså reduseres ethvert problem i NP til SAT. Året etter viste Richard Karp at 21 berømte problemer (graffarging, hamiltonsk sykel, delmengdesum) også reduseres til det. SAT er den første brikken: Velt den raskt, så faller hele rekken.",
     },
     {
       pretitle: "Del 04 · Hvordan løsere faktisk vinner",
       title: "DPLL, og søket som beskjærer seg selv",
-      body: "Brute force-treet har 2ⁿ blader, ett per tildeling, håpløst forbi noen titalls variabler. Davis-Putnam-Logemann-Loveland-prosedyren (1962) gjør det til et søk som beskjærer seg selv: velg en variabel, anta en verdi, propager følgene. Enhetspropagering: har en klausul bare én utildelt literal igjen, er den literalen tvunget. Eliminering av ren literal: en variabel som bare opptrer positivt, kan rett og slett settes sann. Støter du på en motsigelse, gå tilbake. Moderne løsere legger til konfliktdrevet klausullæring, der hver blindvei lærer bort en ny klausul som blokkerer en hel familie av framtidige blindveier, og avgjør rutinemessig formler med millioner av variabler.",
+      body: "Brute force-treet har 2ⁿ blader, ett per tildeling, håpløst forbi noen titalls variabler. Davis-Putnam-Logemann-Loveland-prosedyren (1962) gjør det til et søk som beskjærer seg selv: Velg en variabel, anta en verdi, propager følgene. Enhetspropagering: Har en klausul bare én utildelt literal igjen, er den literalen tvunget. Eliminering av ren literal: En variabel som bare opptrer positivt, kan rett og slett settes sann. Støter du på en motsigelse, gå tilbake. Moderne løsere legger til konfliktdrevet klausullæring, der hver blindvei lærer bort en ny klausul som blokkerer en hel familie av framtidige blindveier, og avgjør rutinemessig formler med millioner av variabler.",
     },
     {
       pretitle: "Del 05 · Der det blir vanskelig",
       title: "Løsbare øyer og faseovergangen",
-      body: "Ikke alt SAT er vanskelig. 2-SAT (høyst to literaler per klausul) løses i lineær tid, det samme gjelder Horn-formler; XOR-formler ligger i polynomtid via gausseliminasjon over GF(2). Schaefers dikotomiteorem (1978) er forbløffende: ethvert boolsk skrankeproblem av denne formen er enten i P eller NP-fullstendig, med ingenting imellom. Og tilfeldig generert 3-SAT viser en faseovergang: når forholdet mellom klausuler og variabler krysser omtrent 4,27, vipper formler brått fra nesten-alltid-oppfyllbare til nesten-alltid-uoppfyllbare, og de aller vanskeligste instansene trengs nøyaktig ved den terskelen, som vann akkurat ved frysepunktet.",
+      body: "Ikke alt SAT er vanskelig. 2-SAT (høyst to literaler per klausul) løses i lineær tid, det samme gjelder Horn-formler; XOR-formler ligger i polynomtid via gausseliminasjon over GF(2). Schaefers dikotomiteorem (1978) er forbløffende: Ethvert boolsk skrankeproblem av denne formen er enten i P eller NP-fullstendig, med ingenting imellom. Og tilfeldig generert 3-SAT viser en faseovergang: Når forholdet mellom klausuler og variabler krysser omtrent 4,27, vipper formler brått fra nesten-alltid-oppfyllbare til nesten-alltid-uoppfyllbare, og de aller vanskeligste instansene trengs nøyaktig ved den terskelen, som vann akkurat ved frysepunktet.",
     },
   ],
   toggleCaption: "Oppfyll for hånd",
@@ -630,7 +630,7 @@ const no: RichStory = {
   toggleSatisfied:
     "Oppfylt. Hver klausul har en sann literal, så hele formelen er sann, og du verifiserte det på sekunder. Å finne den var det lette tilfellet; tenk deg tusen variabler.",
   toggleUnsatisfied:
-    "Ikke ennå: minst én klausul er fortsatt helt usann (i rosa). Vipp en variabel og se klausulene reagere.",
+    "Ikke ennå: Minst én klausul er fortsatt helt usann (i rosa). Vipp en variabel og se klausulene reagere.",
   toggleReset: "nullstill",
   closingPretitle: "Utforsk",
   closingTitle: "Se en løser forgrene seg og gå tilbake.",

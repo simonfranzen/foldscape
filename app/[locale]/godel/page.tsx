@@ -203,13 +203,13 @@ const FIGURES: Record<Locale, RichFigures> = {
     loopIntro:
       "Le contenu de G et le nombre de Gödel de G sont câblés ensemble. G affirme que la formule numérotée ⌜G⌝ n'a pas de preuve, et la formule numérotée ⌜G⌝ est G elle-même. La boucle se referme sur la diagonale.",
     loopSentence: "énoncé",
-    loopSentenceCaption: "«Je ne suis pas prouvable dans S»",
+    loopSentenceCaption: "« Je ne suis pas prouvable dans S »",
     loopArithEquiv: "équivalence arithmétique",
     loopGoedelNumber: "nombre de Gödel",
     loopGoedelCaption: "le nombre entier qui code G elle-même",
     branchProvableHead: "si G est prouvable",
     branchProvableBody:
-      "S prouve un énoncé qui dit «je n'ai pas de preuve» : le système est inconsistant.",
+      "S prouve un énoncé qui dit « je n'ai pas de preuve » : le système est inconsistant.",
     branchUnprovableHead: "si G n'est pas prouvable",
     branchUnprovableBody:
       "Alors ce que G affirme est exactement vrai : vrai, mais non prouvable dans S.",

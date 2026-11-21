@@ -260,7 +260,7 @@ export const COSMOS: Record<Locale, CosmosDict> = {
     approach: "Seks hoper. Femti idéer. Én regel hver.",
     overviewTitle: "Hele himmelen",
     overviewSub: "Velg en stjerne. Eller søk i kosmos.",
-    searchHint: "Temaer, formler, idéer: prøv «kaos» eller «ζ»",
+    searchHint: "Temaer, formler, idéer: Prøv «kaos» eller «ζ»",
     searchPlaceholder: "Søk i kosmos…",
     searchEmpty: "Ingen stjerne passer.",
     searchAria: "Søk i kosmos",

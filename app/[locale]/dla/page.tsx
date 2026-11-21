@@ -351,11 +351,11 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Der Aufbau",
       title: "Ein Saatpixel, Wanderer und eine Klebe-Regel",
-      body: "Setz einen einzigen festen Pixel in die Mitte eines Gitters: das ist der Keim. Am Rand starten Wanderer, jeder macht pro Tick einen zufälligen Schritt hoch, runter, links oder rechts. Keine Kraft, kein Feld, kein Plan: nur Diffusion.",
+      body: "Setz einen einzigen festen Pixel in die Mitte eines Gitters: Das ist der Keim. Am Rand starten Wanderer, jeder macht pro Tick einen zufälligen Schritt hoch, runter, links oder rechts. Keine Kraft, kein Feld, kein Plan: nur Diffusion.",
     },
     {
       pretitle: "Abschnitt 02 · Die Klebe-Regel",
-      title: "Berühr eine feste Zelle: friere fest.",
+      title: "Berühr eine feste Zelle: Friere fest.",
       body: "Sobald ein Wanderer auf einem Feld neben einer gefrorenen Zelle landet, klebt er dort und bewegt sich nie wieder. Das ist die gesamte Physik. Keine Oberflächenspannung, kein Krümmungsterm, keine Temperatur: eine einzige Ja/Nein-Regel, auf jeden Wanderer angewandt, der zu nah kommt.",
     },
     {
@@ -366,7 +366,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Die universelle Dimension",
       title: "D ≈ 1,71, und sie schert sich nicht um den Keim.",
-      body: "Witten & Sander, 1981: die Hausdorff-Dimension eines 2D-DLA-Clusters liegt bei etwa 1,71, irgendwo zwischen einer Kurve (D = 1) und einer ausgefüllten Scheibe (D = 2). Niemeyer, Pietronero und Wiesmann (1984) verpackten das in die größere Familie der dielektrischen Durchschläge; Sander (1986) sammelte die frühen Belege. Die Zahl ist universell über Keime, Gitter und Wanderer-Regeln hinweg.",
+      body: "Witten & Sander, 1981: Die Hausdorff-Dimension eines 2D-DLA-Clusters liegt bei etwa 1,71, irgendwo zwischen einer Kurve (D = 1) und einer ausgefüllten Scheibe (D = 2). Niemeyer, Pietronero und Wiesmann (1984) verpackten das in die größere Familie der dielektrischen Durchschläge; Sander (1986) sammelte die frühen Belege. Die Zahl ist universell über Keime, Gitter und Wanderer-Regeln hinweg.",
     },
     {
       pretitle: "Abschnitt 05 · Wo es in der Natur auftaucht",
@@ -376,7 +376,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Varianten",
       title: "Klebrig oder rutschig, Punkt oder Linie oder Ring, 2D oder 3D.",
-      body: "Senk die Klebrigkeit, und Wanderer prallen ein paar Mal vom Cluster ab, bevor sie festfrieren: der Dendrit wird zum dichteren Blob. Tausch den Mittelpunkt-Keim gegen eine horizontale Linie aus und du bekommst einen Frost-am-Fenster-Kristall; tausch ihn gegen einen Ring, und die Koralle wächst nach innen. Heb das Ganze in drei Dimensionen, und die fraktale Dimension verschiebt sich auf etwa 2,5.",
+      body: "Senk die Klebrigkeit, und Wanderer prallen ein paar Mal vom Cluster ab, bevor sie festfrieren: Der Dendrit wird zum dichteren Blob. Tausch den Mittelpunkt-Keim gegen eine horizontale Linie aus und du bekommst einen Frost-am-Fenster-Kristall; tausch ihn gegen einen Ring, und die Koralle wächst nach innen. Heb das Ganze in drei Dimensionen, und die fraktale Dimension verschiebt sich auf etwa 2,5.",
     },
   ],
   closingTitle: "Öffne den Explorer.",
@@ -638,7 +638,7 @@ const it: RichStory = {
     },
     {
       pretitle: "Sezione 04 · La dimensione universale",
-      title: "D ≈ 1,71, e non si cura del seme.",
+      title: "D ≈ 1,71 e non si cura del seme.",
       body: "Witten & Sander, 1981: la dimensione di Hausdorff di un ammasso DLA in 2D è di circa 1,71, da qualche parte tra una curva (D = 1) e un disco pieno (D = 2). Niemeyer, Pietronero e Wiesmann (1984) la inserirono nella più ampia famiglia delle scariche dielettriche; Sander (1986) raccolse le prime prove. Il numero è universale su semi, reticoli e regole di camminatore.",
     },
     {
@@ -728,7 +728,7 @@ const pt: RichStory = {
     },
     {
       pretitle: "Secção 04 · A dimensão universal",
-      title: "D ≈ 1,71, e não quer saber da semente.",
+      title: "D ≈ 1,71 e não quer saber da semente.",
       body: "Witten & Sander, 1981: a dimensão de Hausdorff de um aglomerado DLA em 2D é cerca de 1,71, algures entre uma curva (D = 1) e um disco cheio (D = 2). Niemeyer, Pietronero e Wiesmann (1984) embrulharam-na na família mais ampla das descargas dielétricas; Sander (1986) reuniu as primeiras provas. O número é universal sobre sementes, redes e regras de caminhante.",
     },
     {
@@ -819,7 +819,7 @@ const sv: RichStory = {
     },
     {
       pretitle: "Avsnitt 04 · Den universella dimensionen",
-      title: "D ≈ 1,71, och den bryr sig inte om fröet.",
+      title: "D ≈ 1,71. Och den bryr sig inte om fröet.",
       body: "Witten & Sander, 1981: Hausdorff-dimensionen för en 2D-DLA-klump är ungefär 1,71, någonstans mellan en kurva (D = 1) och en fylld skiva (D = 2). Niemeyer, Pietronero och Wiesmann (1984) svepte in den i den bredare familjen för dielektriskt sammanbrott; Sander (1986) samlade de tidiga bevisen. Talet är universellt över frön, gitter och vandrarregler.",
     },
     {
@@ -895,11 +895,11 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Oppsettet",
       title: "Et frø, vandrere og en klistringsregel",
-      body: "Legg én enkelt fast piksel i midten av et rutenett: det er frøet. Ved kanten dukker vandrere opp; for hvert tikk tar hver enkelt et tilfeldig skritt opp, ned, venstre eller høyre. Ingen kraft, intet felt, ingen plan: bare diffusjon.",
+      body: "Legg én enkelt fast piksel i midten av et rutenett: Det er frøet. Ved kanten dukker vandrere opp; for hvert tikk tar hver enkelt et tilfeldig skritt opp, ned, venstre eller høyre. Ingen kraft, intet felt, ingen plan: bare diffusjon.",
     },
     {
       pretitle: "Avsnitt 02 · Klistringsregelen",
-      title: "Berør en frosset celle: frys.",
+      title: "Berør en frosset celle: Frys.",
       body: "I det øyeblikket en vandrer lander ved siden av en frossen celle, klistres den fast og rører seg aldri mer. Det er hele fysikken. Ingen overflatespenning, intet krumningsledd, ingen temperatur: én eneste binær regel, anvendt på hver vandrer som kommer for nær.",
     },
     {
@@ -909,7 +909,7 @@ const no: RichStory = {
     },
     {
       pretitle: "Avsnitt 04 · Den universelle dimensjonen",
-      title: "D ≈ 1,71, og den bryr seg ikke om frøet.",
+      title: "D ≈ 1,71. Og den bryr seg ikke om frøet.",
       body: "Witten & Sander, 1981: Hausdorff-dimensjonen til en 2D-DLA-klump er omtrent 1,71, et sted mellom en kurve (D = 1) og en fylt skive (D = 2). Niemeyer, Pietronero og Wiesmann (1984) pakket den inn i den bredere familien for dielektrisk gjennombrudd; Sander (1986) samlet de tidlige bevisene. Tallet er universelt over frø, gittere og vandrer-regler.",
     },
     {
@@ -920,7 +920,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 06 · Varianter",
       title: "Klissete eller glatt, punkt eller linje eller ring, 2D eller 3D.",
-      body: "Senk klisseheten, og vandrere spretter noen ganger før de fryser: dendriten tykner til en tettere klump. Bytt ut sentrumfrøet med en horisontal linje og du får en frostkrystall på glass; bytt det mot en ring, og korallen vokser innover. Løft alt opp i tre dimensjoner og den fraktale dimensjonen skifter til omtrent 2,5.",
+      body: "Senk klisseheten, og vandrere spretter noen ganger før de fryser: Dendriten tykner til en tettere klump. Bytt ut sentrumfrøet med en horisontal linje og du får en frostkrystall på glass; bytt det mot en ring, og korallen vokser innover. Løft alt opp i tre dimensjoner og den fraktale dimensjonen skifter til omtrent 2,5.",
     },
   ],
   closingTitle: "Åpne Utforskeren.",
@@ -930,7 +930,7 @@ const no: RichStory = {
   miniSimCaption: "Live · senterfrø · dyrk selv",
   dendriteCaption: "En dendritt fra ett enkelt frø",
   dendriteHint:
-    "Spisser vokser raskere enn daler: grener strekker seg utover og sulter ut det indre.",
+    "Spisser vokser raskere enn daler: Grener strekker seg utover og sulter ut det indre.",
   tipsCaption: "Hvorfor grener, ikke klumper",
   tipsHint:
     "Vandrerne driver inn fra langt hold. Utstikkende spisser fanger dem først; dalene mellom armene ser nesten ingenting.",

@@ -21,6 +21,14 @@ const DEFLATE_EXCERPT = `function inflate(tris) {
   return out;
 }`;
 
+// Decimal-comma variant of the φ formula, shared by the locales that write 1,618.
+const PHI_FORMULA =
+  "\\varphi = \\frac{1+\\sqrt{5}}{2} \\approx 1{,}618, \\qquad \\varphi^2 = \\varphi + 1";
+
+// Same substitution matrix everywhere; only the two subscript labels are localized.
+const substitutionFormula = (thin: string, thick: string) =>
+  `\\begin{pmatrix} n_{\\text{${thin}}} \\\\ n_{\\text{${thick}}} \\end{pmatrix} \\mapsto \\begin{pmatrix} 1 & 1 \\\\ 1 & 2 \\end{pmatrix} \\begin{pmatrix} n_{\\text{${thin}}} \\\\ n_{\\text{${thick}}} \\end{pmatrix}`;
+
 export const PENROSE_GUIDE: ExplorerGuide = {
   en: {
     metaDescription:
@@ -143,6 +151,366 @@ export const PENROSE_GUIDE: ExplorerGuide = {
       {
         title: "Den Keim ansehen",
         text: "Stell im Rhomben-Modus die Tiefe auf 0. Die zehn Keimdreiecke werden jeweils nach außen zu einem dünnen Rhombus gespiegelt, der Zähler zeigt 10 dünne und 0 dicke.",
+      },
+    ],
+  },
+  es: {
+    metaDescription:
+      "Haz crecer un teselado de Penrose por deflación: rombos gruesos y finos, triángulos de Robinson y una razón grueso/fino que converge al número áureo φ.",
+    heading: "Cómo funciona este explorador",
+    intro:
+      "El patrón del lienzo es un teselado de Penrose de rombos, a menudo llamado P3. Usa solo dos piezas, un rombo grueso y uno fino, ambos con la misma longitud de lado. Juntos pueden cubrir todo el plano, pero nunca de forma periódica: no hay manera de desplazar el patrón entero de modo que coincida consigo mismo. El explorador parte de un pequeño anillo de triángulos y corta una y otra vez cada triángulo en otros más pequeños según una regla fija, y de esa subdivisión nace el teselado.",
+    sections: [
+      {
+        heading: "Dos rombos, dos triángulos",
+        paragraphs: [
+          "El rombo grueso tiene ángulos de 72° y 108°, el fino de 36° y 144°. Corta cada uno por la mitad a lo largo de su eje de simetría y obtienes los dos triángulos de Robinson con los que trabaja realmente el código. Al partir el rombo fino por su diagonal corta sale un triángulo con 36° en el vértice superior y dos ángulos de 72° en la base. Al partir el rombo grueso por su diagonal larga sale un triángulo con 108° en el vértice superior y dos ángulos de 36° en la base. En ambos, los dos lados iguales son lados del rombo, y en ambos la razón entre el lado largo y el corto es el número áureo φ.",
+          "Roger Penrose encontró conjuntos aperiódicos de piezas de este tipo en la década de 1970. Sin reglas adicionales, los dos rombos también podrían teselar de forma periódica, así que el verdadero teselado de Penrose viene acompañado de reglas de encaje en los lados que prohíben toda disposición periódica. La subdivisión esquiva el problema: cualquier teselado obtenido al deflacionar repetidamente los triángulos cumple esas reglas de forma automática.",
+        ],
+        formula: PHI_FORMULA,
+      },
+      {
+        heading: "Qué hacen los controles",
+        paragraphs: [
+          "«Profundidad de deflación» va de 0 a 6 y empieza en 4. La profundidad 0 es la semilla: diez medios triángulos finos con el vértice superior en el centro, que juntos forman un decágono. Cada paso sustituye cada mitad fina por dos triángulos más pequeños y cada mitad gruesa por tres, todos reducidos en un factor φ, de modo que el disco entero conserva su tamaño mientras las piezas se hacen más pequeñas. El número total de medios triángulos es 10, 20, 50, 130, 340, 890, 2330 y crece aproximadamente por φ² ≈ 2,618 en cada paso.",
+          "«Rotación de la semilla» gira el decágono inicial de 0° a 360°. La semilla alterna la orientación de los triángulos vecinos, por lo que tiene simetría de orden cinco, y girar 72° da exactamente la misma imagen. Los botones de modo cambian entre «Rombos», donde los medios triángulos reflejados se vuelven a pegar en rombos completos (gruesos en violeta, finos en rosa), y «Medios triángulos», que muestra la misma subdivisión un nivel más abajo (mitades gruesas en violeta, mitades finas en ámbar). Los interruptores de visualización ocultan los contornos o los colores. El botón «Centrar · restablecer rotación» devuelve la rotación a 0°.",
+          "«Marcas de encaje» dibuja pequeñas puntas de flecha en dos lados opuestos de cada rombo, en ámbar para los gruesos y en cian para los finos, con una punta simple y una doble en cada caso. Son una pista visual simplificada de la idea de decorar los lados, no un conjunto completo de reglas de encaje de Penrose.",
+        ],
+      },
+      {
+        heading: "Cómo está construido",
+        paragraphs: [
+          "Cada medio triángulo se guarda como tres números complejos A, B, C más un indicador de tipo: 0 para la mitad fina, 1 para la mitad gruesa. A es siempre el vértice situado entre los dos lados iguales. La deflación no necesita más que puntos que dividan un lado en proporción áurea, y eso es lo que calcula la expresión A + (B − A) / φ.",
+          "Para mostrar rombos, el código empareja los triángulos que comparten la base B C. Asigna a cada triángulo como clave el punto medio de B C redondeado a seis decimales, y cuando dos triángulos del mismo tipo coinciden en la misma clave forma el rombo con el cuarto vértice B + C − A, el reflejo del vértice superior respecto de la base. Las mitades que sobran en el borde del disco se reflejan del mismo modo para que el contorno quede limpio, y por eso el contador de rombos es algo mayor que la mitad del número de triángulos.",
+          "El dibujo usa un canvas 2D escalado para que el disco unidad ocupe alrededor del 95 por ciento del lado más corto (menos un pequeño margen), seguido de una suave viñeta radial. No hay nada animado: el canvas solo se vuelve a dibujar cuando cambias un control o redimensionas la ventana, así que la página se comporta igual con el movimiento reducido activado.",
+        ],
+        code: DEFLATE_EXCERPT,
+      },
+      {
+        heading: "De dónde sale el número áureo",
+        paragraphs: [
+          "Cuenta lo que hace un paso. Una mitad fina se convierte en una fina y una gruesa; una mitad gruesa, en una fina y dos gruesas. Partiendo de diez mitades finas, las cantidades son diez veces números de Fibonacci consecutivos: 10 y 0, luego 10 y 10, 20 y 30, 50 y 80, y así sucesivamente. La razón entre gruesas y finas tiende por tanto a φ: (1, φ) es la dirección del vector propio dominante de la matriz de sustitución, cuyo valor propio es φ². Como φ es irracional, ningún bloque de piezas que se repita podría producir jamás esa razón, lo que da un argumento elegante de por qué el teselado no puede ser periódico.",
+        ],
+        formula: substitutionFormula("fino", "grueso"),
+      },
+    ],
+    experimentsHeading: "Prueba esto",
+    experiments: [
+      {
+        title: "Mira cómo converge la razón",
+        text: "Cambia a «Medios triángulos» y sube la profundidad paso a paso de 1 a 6. La razón marca 1, 1,5, 1,6, 1,6154, 1,6176 y finalmente 1,6180 en la profundidad 6, donde hay 1440 mitades gruesas y 890 finas.",
+      },
+      {
+        title: "Encuentra la simetría de orden cinco",
+        text: "Pon la profundidad en 3 y la rotación en 72°. La imagen es idéntica a la de 0°.",
+      },
+      {
+        title: "Quita el color",
+        text: "En la profundidad 5, desactiva los colores y deja solo los contornos. Sin las pistas del violeta y el rosa, busca las estrellas de cinco puntas hechas de rombos gruesos. Los mismos fragmentos pequeños reaparecen por todo el disco, pero nunca sobre una cuadrícula regular.",
+      },
+      {
+        title: "Observa la semilla",
+        text: "Pon la profundidad en 0 en el modo «Rombos». Cada uno de los diez triángulos de la semilla se refleja hacia fuera hasta formar un rombo fino, y el contador muestra 10 finos y 0 gruesos.",
+      },
+    ],
+  },
+  fr: {
+    metaDescription:
+      "Fais pousser un pavage de Penrose par déflation : losanges épais et fins, triangles de Robinson, et un rapport épais/fin qui converge vers le nombre d'or φ.",
+    heading: "Comment fonctionne cet explorateur",
+    intro:
+      "Le motif du canevas est un pavage de Penrose en losanges, souvent appelé P3. Il n'utilise que deux tuiles, un losange épais et un losange fin, de même longueur de côté. Ensemble, ils peuvent recouvrir tout le plan, mais jamais de façon périodique : il n'existe aucune translation qui fasse coïncider le motif entier avec lui-même. L'explorateur part d'un petit anneau de triangles et découpe sans cesse chaque triangle en triangles plus petits selon une règle fixe, et c'est de cette subdivision que naît le pavage.",
+    sections: [
+      {
+        heading: "Deux losanges, deux triangles",
+        paragraphs: [
+          "Le losange épais a des angles de 72° et 108°, le fin de 36° et 144°. Coupe chacun en deux le long de son axe de symétrie et tu obtiens les deux triangles de Robinson avec lesquels le code travaille réellement. Le losange fin, coupé selon sa petite diagonale, donne un triangle avec un angle de 36° au sommet et deux angles de 72° à la base. Le losange épais, coupé selon sa grande diagonale, donne un triangle avec un angle de 108° au sommet et deux angles de 36° à la base. Dans les deux cas, les deux côtés égaux sont des côtés du losange, et dans les deux cas le rapport entre le grand côté et le petit est le nombre d'or φ.",
+          "Roger Penrose a découvert des jeux de tuiles apériodiques de ce genre dans les années 1970. Sans règles supplémentaires, les deux losanges pourraient aussi paver de façon périodique : le véritable pavage de Penrose s'accompagne donc de règles d'accord sur les côtés, qui interdisent tout arrangement périodique. La subdivision contourne le problème : tout pavage obtenu par déflation répétée des triangles respecte automatiquement ces règles.",
+        ],
+        formula: PHI_FORMULA,
+      },
+      {
+        heading: "À quoi servent les commandes",
+        paragraphs: [
+          "« Profondeur de déflation » va de 0 à 6 et démarre à 4. La profondeur 0 est la graine : dix demi-triangles fins dont le sommet est au centre et qui forment ensemble un décagone. Chaque étape remplace chaque moitié fine par deux triangles plus petits et chaque moitié épaisse par trois, tous réduits d'un facteur φ, de sorte que le disque garde la même taille pendant que les tuiles rapetissent. Le nombre total de demi-triangles vaut 10, 20, 50, 130, 340, 890, 2330 et croît d'environ φ² ≈ 2,618 à chaque étape.",
+          "« Rotation de la graine » fait tourner le décagone de départ de 0° à 360°. La graine alterne l'orientation des triangles voisins, elle possède donc une symétrie d'ordre cinq, et une rotation de 72° donne exactement la même image. Les boutons de mode basculent entre « Losanges », où les demi-triangles en miroir sont recollés en losanges entiers (épais en violet, fins en rose), et « Demi-triangles », qui montre la même subdivision un niveau plus bas (moitiés épaisses en violet, moitiés fines en ambre). Les interrupteurs d'affichage masquent les contours ou les couleurs. Le bouton « Centrer · réinitialiser la rotation » ramène la rotation à 0°.",
+          "« Marques d'accord » dessine de petites pointes de flèche sur deux côtés opposés de chaque losange, ambre pour les épais et cyan pour les fins, avec à chaque fois une pointe simple et une pointe double. C'est une évocation visuelle simplifiée de l'idée de décorer les côtés, pas un jeu complet de règles d'accord de Penrose.",
+        ],
+      },
+      {
+        heading: "Comment c'est construit",
+        paragraphs: [
+          "Chaque demi-triangle est stocké sous la forme de trois nombres complexes A, B, C et d'un indicateur de type : 0 pour la moitié fine, 1 pour la moitié épaisse. A est toujours le sommet situé entre les deux côtés égaux. La déflation n'a besoin que de points qui partagent un côté selon le nombre d'or, et c'est ce que calcule l'expression A + (B − A) / φ.",
+          "Pour afficher des losanges, le code apparie les triangles qui partagent leur base B C. Il associe à chaque triangle une clé, le milieu de B C arrondi à six décimales, et quand deux triangles de même type se retrouvent sur la même clé, il forme le losange avec le quatrième sommet B + C − A, le symétrique du sommet par rapport à la base. Les moitiés restées seules au bord du disque sont réfléchies de la même façon pour que le contour soit net, et c'est pourquoi le compteur de losanges dépasse légèrement la moitié du nombre de triangles.",
+          "Le dessin utilise un canvas 2D mis à l'échelle pour que le disque unité occupe environ 95 pour cent du plus petit côté (moins une petite marge), suivi d'un doux vignettage radial. Rien n'est animé : le canvas n'est redessiné que lorsque tu modifies une commande ou redimensionnes la fenêtre, si bien que la page se comporte de la même manière quand la réduction des animations est activée.",
+        ],
+        code: DEFLATE_EXCERPT,
+      },
+      {
+        heading: "D'où vient le nombre d'or",
+        paragraphs: [
+          "Compte ce que fait une étape. Une moitié fine devient une fine et une épaisse ; une moitié épaisse devient une fine et deux épaisses. En partant de dix moitiés fines, les effectifs valent dix fois des nombres de Fibonacci consécutifs : 10 et 0, puis 10 et 10, 20 et 30, 50 et 80, et ainsi de suite. Le rapport entre épaisses et fines tend donc vers φ : (1, φ) est la direction du vecteur propre dominant de la matrice de substitution, dont la valeur propre est φ². Comme φ est irrationnel, aucun bloc de tuiles qui se répète ne pourrait jamais produire ce rapport, ce qui fournit un argument élégant expliquant pourquoi le pavage ne peut pas être périodique.",
+        ],
+        formula: substitutionFormula("fin", "épais"),
+      },
+    ],
+    experimentsHeading: "À essayer",
+    experiments: [
+      {
+        title: "Regarder le rapport converger",
+        text: "Passe en « Demi-triangles » et augmente la profondeur pas à pas de 1 à 6. Le rapport affiche 1, 1,5, 1,6, 1,6154, 1,6176 et enfin 1,6180 à la profondeur 6, où l'on compte 1440 moitiés épaisses et 890 fines.",
+      },
+      {
+        title: "Trouver la symétrie d'ordre cinq",
+        text: "Règle la profondeur sur 3 et la rotation sur 72°. L'image est identique à celle de 0°.",
+      },
+      {
+        title: "Retirer la couleur",
+        text: "À la profondeur 5, désactive les couleurs et ne garde que les contours. Sans les repères violets et roses, cherche les étoiles à cinq branches faites de losanges épais. Les mêmes petits fragments reviennent partout sur le disque, mais jamais sur une grille régulière.",
+      },
+      {
+        title: "Voir la graine",
+        text: "Règle la profondeur sur 0 en mode « Losanges ». Chacun des dix triangles de la graine est réfléchi vers l'extérieur pour former un losange fin, et le compteur affiche 10 fins et 0 épais.",
+      },
+    ],
+  },
+  it: {
+    metaDescription:
+      "Fai crescere una tassellatura di Penrose per deflazione: rombi spessi e sottili, triangoli di Robinson e un rapporto che converge alla sezione aurea φ.",
+    heading: "Come funziona questo esploratore",
+    intro:
+      "Il motivo sulla tela è una tassellatura di Penrose a rombi, spesso chiamata P3. Usa soltanto due tasselli, un rombo spesso e uno sottile, con lati della stessa lunghezza. Insieme possono ricoprire l'intero piano, ma mai in modo periodico: non c'è modo di traslare tutto il motivo così che si sovrapponga a sé stesso. L'esploratore parte da un piccolo anello di triangoli e taglia ripetutamente ogni triangolo in triangoli più piccoli secondo una regola fissa, e da questa suddivisione nasce la tassellatura.",
+    sections: [
+      {
+        heading: "Due rombi, due triangoli",
+        paragraphs: [
+          "Il rombo spesso ha angoli di 72° e 108°, quello sottile di 36° e 144°. Taglia ciascuno a metà lungo il suo asse di simmetria e ottieni i due triangoli di Robinson con cui il codice lavora davvero. Dividendo il rombo sottile lungo la diagonale corta si ottiene un triangolo con 36° al vertice e due angoli alla base di 72°. Dividendo il rombo spesso lungo la diagonale lunga si ottiene un triangolo con 108° al vertice e due angoli alla base di 36°. In entrambi i due lati uguali sono lati del rombo, e in entrambi il rapporto tra il lato lungo e quello corto è la sezione aurea φ.",
+          "Roger Penrose trovò insiemi aperiodici di tasselli di questo tipo negli anni Settanta. Senza regole aggiuntive i due rombi potrebbero tassellare anche in modo periodico, perciò la vera tassellatura di Penrose prevede regole di incastro sui lati che vietano ogni disposizione periodica. La suddivisione aggira il problema: ogni tassellatura ottenuta deflazionando ripetutamente i triangoli rispetta automaticamente quelle regole.",
+        ],
+        formula: PHI_FORMULA,
+      },
+      {
+        heading: "Che cosa fanno i controlli",
+        paragraphs: [
+          "«Profondità di deflazione» va da 0 a 6 e parte da 4. La profondità 0 è il seme: dieci mezzi triangoli sottili con il vertice al centro, che insieme formano un decagono. Ogni passo sostituisce ciascuna metà sottile con due triangoli più piccoli e ciascuna metà spessa con tre, tutti rimpiccioliti di un fattore φ, così l'intero disco mantiene le stesse dimensioni mentre i tasselli diventano più piccoli. Il numero totale di mezzi triangoli è 10, 20, 50, 130, 340, 890, 2330 e cresce di circa φ² ≈ 2,618 a ogni passo.",
+          "«Rotazione del seme» ruota il decagono iniziale da 0° a 360°. Il seme alterna l'orientamento dei triangoli vicini, quindi ha una simmetria di ordine cinque, e una rotazione di 72° dà esattamente la stessa immagine. I pulsanti della modalità passano da «Rombi», in cui i mezzi triangoli speculari vengono riuniti in rombi interi (spessi viola, sottili rosa), a «Mezzi triangoli», che mostra la stessa suddivisione un livello più in basso (metà spesse viola, metà sottili ambra). Gli interruttori di visualizzazione nascondono i contorni o i colori. Il pulsante «Centra · azzera rotazione» riporta la rotazione a 0°.",
+          "«Marche di incastro» disegna piccole punte di freccia su due lati opposti di ogni rombo, ambra per quelli spessi e ciano per quelli sottili, ogni volta con una punta singola e una doppia. Sono un accenno visivo semplificato all'idea di decorare i lati, non un insieme completo di regole di incastro di Penrose.",
+        ],
+      },
+      {
+        heading: "Come è costruito",
+        paragraphs: [
+          "Ogni mezzo triangolo è memorizzato come tre numeri complessi A, B, C più un indicatore di tipo: 0 per la metà sottile, 1 per la metà spessa. A è sempre il vertice compreso tra i due lati uguali. Alla deflazione servono soltanto punti che dividono un lato secondo la sezione aurea, ed è proprio ciò che calcola l'espressione A + (B − A) / φ.",
+          "Per mostrare i rombi, il codice accoppia i triangoli che condividono la base B C. Assegna a ogni triangolo come chiave il punto medio di B C arrotondato a sei decimali, e quando due triangoli dello stesso tipo si incontrano sulla stessa chiave forma il rombo con il quarto vertice B + C − A, il simmetrico del vertice rispetto alla base. Le metà rimaste spaiate sul bordo del disco vengono riflesse allo stesso modo, così il contorno appare pulito, ed è per questo che il contatore dei rombi supera di poco la metà del numero di triangoli.",
+          "Il disegno usa un canvas 2D scalato in modo che il disco unitario occupi circa il 95 per cento del lato più corto (meno un piccolo margine), seguito da una morbida vignettatura radiale. Nulla è animato: il canvas viene ridisegnato solo quando cambi un controllo o ridimensioni la finestra, quindi la pagina si comporta allo stesso modo con il movimento ridotto attivo.",
+        ],
+        code: DEFLATE_EXCERPT,
+      },
+      {
+        heading: "Da dove viene la sezione aurea",
+        paragraphs: [
+          "Conta che cosa fa un singolo passo. Una metà sottile diventa una sottile e una spessa; una metà spessa diventa una sottile e due spesse. Partendo da dieci metà sottili, i conteggi sono dieci volte numeri di Fibonacci consecutivi: 10 e 0, poi 10 e 10, 20 e 30, 50 e 80, e così via. Il rapporto tra spesse e sottili tende perciò a φ: (1, φ) è la direzione dell'autovettore dominante della matrice di sostituzione, il cui autovalore è φ². Poiché φ è irrazionale, nessun blocco di tasselli che si ripete potrebbe mai produrre questo rapporto, il che offre un argomento elegante sul perché la tassellatura non può essere periodica.",
+        ],
+        formula: substitutionFormula("sottile", "spesso"),
+      },
+    ],
+    experimentsHeading: "Prova così",
+    experiments: [
+      {
+        title: "Guarda il rapporto convergere",
+        text: "Passa a «Mezzi triangoli» e aumenta la profondità un passo alla volta da 1 a 6. Il rapporto segna 1, 1,5, 1,6, 1,6154, 1,6176 e infine 1,6180 alla profondità 6, dove ci sono 1440 metà spesse e 890 sottili.",
+      },
+      {
+        title: "Trova la simmetria di ordine cinque",
+        text: "Imposta la profondità su 3 e la rotazione su 72°. L'immagine è identica a quella a 0°.",
+      },
+      {
+        title: "Togli il colore",
+        text: "Alla profondità 5, disattiva i colori e lascia solo i contorni. Senza gli indizi del viola e del rosa, cerca le stelle a cinque punte fatte di rombi spessi. Gli stessi piccoli frammenti ricompaiono in tutto il disco, ma mai su una griglia regolare.",
+      },
+      {
+        title: "Osserva il seme",
+        text: "Imposta la profondità su 0 in modalità «Rombi». Ciascuno dei dieci triangoli del seme viene riflesso verso l'esterno in un rombo sottile, e il contatore mostra 10 sottili e 0 spessi.",
+      },
+    ],
+  },
+  pt: {
+    metaDescription:
+      "Faz crescer uma pavimentação de Penrose por deflação: losangos espessos e finos, triângulos de Robinson e uma razão que converge para o número de ouro φ.",
+    heading: "Como funciona este explorador",
+    intro:
+      "O padrão na tela é uma pavimentação de Penrose com losangos, muitas vezes chamada P3. Usa apenas duas peças, um losango espesso e um fino, ambos com o mesmo comprimento de lado. Juntos conseguem cobrir o plano inteiro, mas nunca de forma periódica: não há maneira de deslocar o padrão todo de modo a que coincida consigo mesmo. O explorador parte de um pequeno anel de triângulos e corta repetidamente cada triângulo em triângulos mais pequenos segundo uma regra fixa, e é dessa subdivisão que nasce a pavimentação.",
+    sections: [
+      {
+        heading: "Dois losangos, dois triângulos",
+        paragraphs: [
+          "O losango espesso tem ângulos de 72° e 108°, o fino de 36° e 144°. Corta cada um ao meio ao longo do seu eixo de simetria e obténs os dois triângulos de Robinson com que o código realmente trabalha. Dividir o losango fino pela diagonal curta dá um triângulo com 36° no vértice e dois ângulos de 72° na base. Dividir o losango espesso pela diagonal longa dá um triângulo com 108° no vértice e dois ângulos de 36° na base. Em ambos, os dois lados iguais são lados do losango, e em ambos a razão entre o lado comprido e o curto é o número de ouro φ.",
+          "Roger Penrose encontrou conjuntos aperiódicos de peças deste género na década de 1970. Sem regras adicionais, os dois losangos também poderiam pavimentar de forma periódica, por isso a verdadeira pavimentação de Penrose inclui regras de encaixe nos lados que proíbem qualquer disposição periódica. A subdivisão contorna o problema: qualquer pavimentação obtida por deflação repetida dos triângulos cumpre automaticamente essas regras.",
+        ],
+        formula: PHI_FORMULA,
+      },
+      {
+        heading: "O que fazem os controlos",
+        paragraphs: [
+          "«Profundidade de deflação» vai de 0 a 6 e começa em 4. A profundidade 0 é a semente: dez meios triângulos finos com o vértice no centro, que juntos formam um decágono. Cada passo substitui cada metade fina por dois triângulos mais pequenos e cada metade espessa por três, todos reduzidos por um fator φ, de modo que o disco mantém o mesmo tamanho enquanto as peças ficam mais pequenas. O número total de meios triângulos é 10, 20, 50, 130, 340, 890, 2330 e cresce cerca de φ² ≈ 2,618 em cada passo.",
+          "«Rotação da semente» roda o decágono inicial de 0° a 360°. A semente alterna a orientação dos triângulos vizinhos, por isso tem simetria de ordem cinco, e rodar 72° dá exatamente a mesma imagem. Os botões de modo alternam entre «Losangos», em que os meios triângulos espelhados são colados de novo em losangos inteiros (espessos em violeta, finos em rosa), e «Meios triângulos», que mostra a mesma subdivisão um nível abaixo (metades espessas em violeta, metades finas em âmbar). Os interruptores de visualização escondem os contornos ou as cores. O botão «Centrar · repor rotação» volta a pôr a rotação em 0°.",
+          "«Marcas de encaixe» desenha pequenas pontas de seta em dois lados opostos de cada losango, âmbar nos espessos e ciano nos finos, com uma ponta simples e uma dupla em cada caso. São uma sugestão visual simplificada da ideia de decorar os lados, não um conjunto completo de regras de encaixe de Penrose.",
+        ],
+      },
+      {
+        heading: "Como está construído",
+        paragraphs: [
+          "Cada meio triângulo é guardado como três números complexos A, B, C e um indicador de tipo: 0 para a metade fina, 1 para a metade espessa. A é sempre o vértice entre os dois lados iguais. A deflação só precisa de pontos que dividam um lado na proporção áurea, e é isso que calcula a expressão A + (B − A) / φ.",
+          "Para mostrar losangos, o código emparelha os triângulos que partilham a base B C. Atribui a cada triângulo como chave o ponto médio de B C arredondado a seis casas decimais, e quando dois triângulos do mesmo tipo se encontram na mesma chave forma o losango com o quarto vértice B + C − A, o simétrico do vértice em relação à base. As metades que sobram na orla do disco são refletidas da mesma maneira, para que o contorno fique limpo, e é por isso que o contador de losangos é um pouco superior a metade do número de triângulos.",
+          "O desenho usa um canvas 2D dimensionado para que o disco unitário ocupe cerca de 95 por cento do lado mais curto (menos uma pequena margem), seguido de uma vinheta radial suave. Nada é animado: o canvas só é redesenhado quando mudas um controlo ou redimensionas a janela, por isso a página comporta-se da mesma forma com o movimento reduzido ativado.",
+        ],
+        code: DEFLATE_EXCERPT,
+      },
+      {
+        heading: "De onde vem o número de ouro",
+        paragraphs: [
+          "Conta o que faz um passo. Uma metade fina transforma-se numa fina e numa espessa; uma metade espessa transforma-se numa fina e em duas espessas. Partindo de dez metades finas, as contagens são dez vezes números de Fibonacci consecutivos: 10 e 0, depois 10 e 10, 20 e 30, 50 e 80, e assim por diante. A razão entre espessas e finas tende, portanto, para φ: (1, φ) é a direção do vetor próprio dominante da matriz de substituição, cujo valor próprio é φ². Como φ é irracional, nenhum bloco de peças que se repita poderia alguma vez produzir esta razão, o que dá um argumento elegante para a pavimentação não poder ser periódica.",
+        ],
+        formula: substitutionFormula("fino", "espesso"),
+      },
+    ],
+    experimentsHeading: "Experimenta",
+    experiments: [
+      {
+        title: "Vê a razão convergir",
+        text: "Muda para «Meios triângulos» e aumenta a profundidade passo a passo de 1 a 6. A razão indica 1, 1,5, 1,6, 1,6154, 1,6176 e por fim 1,6180 na profundidade 6, onde há 1440 metades espessas e 890 finas.",
+      },
+      {
+        title: "Encontra a simetria de ordem cinco",
+        text: "Define a profundidade para 3 e a rotação para 72°. A imagem é idêntica à de 0°.",
+      },
+      {
+        title: "Tira a cor",
+        text: "Na profundidade 5, desliga as cores e deixa apenas os contornos. Sem as pistas do violeta e do rosa, procura as estrelas de cinco pontas feitas de losangos espessos. Os mesmos pequenos fragmentos repetem-se por todo o disco, mas nunca numa grelha regular.",
+      },
+      {
+        title: "Vê a semente",
+        text: "Define a profundidade para 0 no modo «Losangos». Cada um dos dez triângulos da semente é refletido para fora, formando um losango fino, e o contador mostra 10 finos e 0 espessos.",
+      },
+    ],
+  },
+  sv: {
+    metaDescription:
+      "Låt en Penroseplattläggning växa fram genom deflation: tjocka och tunna romber, Robinsontrianglar och ett förhållande som konvergerar mot gyllene snittet φ.",
+    heading: "Så fungerar den här utforskaren",
+    intro:
+      "Mönstret på ytan är en Penroseplattläggning med romber, ofta kallad P3. Den använder bara två plattor, en tjock romb och en tunn, båda med samma kantlängd. Tillsammans kan de täcka hela planet, men aldrig periodiskt: det går inte att förskjuta hela mönstret så att det hamnar på sig självt. Utforskaren börjar med en liten ring av trianglar och skär gång på gång varje triangel i mindre trianglar enligt en fast regel, och ur den uppdelningen växer plattläggningen fram.",
+    sections: [
+      {
+        heading: "Två romber, två trianglar",
+        paragraphs: [
+          "Den tjocka romben har vinklarna 72° och 108°, den tunna 36° och 144°. Dela var och en mitt itu längs symmetriaxeln så får du de två Robinsontrianglar som koden faktiskt arbetar med. Om du halverar den tunna romben längs den korta diagonalen får du en triangel med 36° i toppen och två basvinklar på 72°. Om du halverar den tjocka romben längs den långa diagonalen får du en triangel med 108° i toppen och två basvinklar på 36°. I båda är de två lika långa sidorna rombkanter, och i båda är förhållandet mellan den långa och den korta sidan gyllene snittet φ.",
+          "Roger Penrose hittade aperiodiska uppsättningar av plattor av det här slaget på 1970-talet. Utan extra regler skulle de två romberna också kunna lägga ett periodiskt mönster, så den äkta Penroseplattläggningen har matchningsregler för kanterna som förbjuder varje periodiskt arrangemang. Uppdelningen kringgår problemet: varje plattläggning som uppstår genom upprepad deflation av trianglarna följer automatiskt de reglerna.",
+        ],
+        formula: PHI_FORMULA,
+      },
+      {
+        heading: "Vad reglagen gör",
+        paragraphs: [
+          "”Deflationsdjup” går från 0 till 6 och börjar på 4. Djup 0 är fröet: tio tunna halvtrianglar med toppen i mitten, som tillsammans bildar en tiohörning. Varje steg ersätter varje tunn halva med två mindre trianglar och varje tjock halva med tre, alla förminskade med faktorn φ, så hela skivan behåller sin storlek medan plattorna blir mindre. Det totala antalet halvtrianglar blir 10, 20, 50, 130, 340, 890, 2330 och växer med ungefär φ² ≈ 2,618 per steg.",
+          "”Frörotation” vrider starttiohörningen från 0° till 360°. Fröet växlar orientering mellan intilliggande trianglar och har därför femtalig symmetri, och en vridning på 72° ger exakt samma bild. Lägesknapparna växlar mellan ”Romber”, där spegelvända halvtrianglar limmas ihop till hela romber igen (tjocka violetta, tunna rosa), och ”Halvtrianglar”, som visar samma uppdelning en nivå längre ner (tjocka halvor violetta, tunna halvor bärnstensfärgade). Visningsreglagen döljer konturer eller färger. Knappen ”Centrera · nollställ rotation” återställer rotationen till 0°.",
+          "”Matchmarkeringar” ritar små pilspetsar på två motstående sidor av varje romb, bärnsten för tjocka och cyan för tunna, med en enkel och en dubbel spets vardera. De är en förenklad visuell antydan om idén med kantdekorationer, inte en fullständig uppsättning Penrosematchningsregler.",
+        ],
+      },
+      {
+        heading: "Så är den byggd",
+        paragraphs: [
+          "Varje halvtriangel lagras som tre komplexa tal A, B, C plus en typflagga: 0 för den tunna halvan, 1 för den tjocka. A är alltid toppen mellan de två lika långa sidorna. Deflationen behöver inget annat än punkter som delar en kant i gyllene snittet, och det är just vad uttrycket A + (B − A) / φ beräknar.",
+          "För att visa romber parar koden ihop trianglar som delar basen B C. Den ger varje triangel en nyckel, mittpunkten på B C avrundad till sex decimaler, och när två trianglar av samma typ möts på samma nyckel bildar den romben med det fjärde hörnet B + C − A, toppens spegelbild i basen. Halvor som blir över vid skivans rand speglas på samma sätt så att kanten ser ren ut, och därför är rombräknaren något större än halva antalet trianglar.",
+          "Ritningen görs på en 2D-canvas som skalas så att enhetsskivan fyller ungefär 95 procent av den kortare sidan (minus en liten marginal), följt av en mjuk radiell vinjett. Ingenting är animerat: canvasen ritas om bara när du ändrar ett reglage eller ändrar fönstrets storlek, så sidan beter sig likadant med minskad rörelse aktiverad.",
+        ],
+        code: DEFLATE_EXCERPT,
+      },
+      {
+        heading: "Varifrån gyllene snittet kommer",
+        paragraphs: [
+          "Räkna efter vad ett steg gör. En tunn halva blir en tunn och en tjock; en tjock halva blir en tunn och två tjocka. Med start i tio tunna halvor är antalen tio gånger på varandra följande Fibonaccital: 10 och 0, sedan 10 och 10, 20 och 30, 50 och 80, och så vidare. Förhållandet mellan tjocka och tunna närmar sig därför φ: (1, φ) är riktningen för den dominanta egenvektorn till substitutionsmatrisen, vars egenvärde är φ². Eftersom φ är irrationellt skulle inget upprepat block av plattor någonsin kunna ge det förhållandet, vilket ger ett elegant argument för varför plattläggningen inte kan vara periodisk.",
+        ],
+        formula: substitutionFormula("tunn", "tjock"),
+      },
+    ],
+    experimentsHeading: "Prova det här",
+    experiments: [
+      {
+        title: "Se förhållandet konvergera",
+        text: "Byt till ”Halvtrianglar” och stega djupet från 1 till 6. Förhållandet visar 1, 1,5, 1,6, 1,6154, 1,6176 och till sist 1,6180 vid djup 6, där det finns 1440 tjocka och 890 tunna halvor.",
+      },
+      {
+        title: "Hitta den femtaliga symmetrin",
+        text: "Sätt djupet till 3 och rotationen till 72°. Bilden är identisk med den vid 0°.",
+      },
+      {
+        title: "Ta bort färgen",
+        text: "Stäng av färgerna vid djup 5 och lämna bara konturerna. Leta, utan de violetta och rosa ledtrådarna, efter de femuddiga stjärnorna av tjocka romber. Samma små utsnitt återkommer över hela skivan, men aldrig i ett regelbundet rutnät.",
+      },
+      {
+        title: "Titta på fröet",
+        text: "Sätt djupet till 0 i läget ”Romber”. De tio frötrianglarna speglas var och en utåt till en tunn romb, och räknaren visar 10 tunna och 0 tjocka.",
+      },
+    ],
+  },
+  no: {
+    metaDescription:
+      "La en Penrose-flislegging vokse fram ved deflasjon: tykke og tynne romber, Robinson-trekanter og et forhold som konvergerer mot det gylne snitt φ.",
+    heading: "Slik fungerer denne utforskeren",
+    intro:
+      "Mønsteret på lerretet er en Penrose-flislegging med romber, ofte kalt P3. Den bruker bare to fliser, en tykk rombe og en tynn, begge med samme kantlengde. Sammen kan de dekke hele planet, men aldri periodisk: det er ikke mulig å forskyve hele mønsteret slik at det lander på seg selv. Utforskeren starter med en liten ring av trekanter og skjærer gang på gang hver trekant opp i mindre trekanter etter en fast regel, og ut av den oppdelingen vokser flisleggingen fram.",
+    sections: [
+      {
+        heading: "To romber, to trekanter",
+        paragraphs: [
+          "Den tykke romben har vinkler på 72° og 108°, den tynne 36° og 144°. Del hver av dem i to langs symmetriaksen, så får du de to Robinson-trekantene som koden faktisk arbeider med. Halverer du den tynne romben langs den korte diagonalen, får du en trekant med 36° i toppen og to grunnvinkler på 72°. Halverer du den tykke romben langs den lange diagonalen, får du en trekant med 108° i toppen og to grunnvinkler på 36°. I begge er de to like lange sidene rombekanter, og i begge er forholdet mellom den lange og den korte siden det gylne snitt φ.",
+          "Roger Penrose fant aperiodiske flissett av dette slaget på 1970-tallet. Uten ekstra regler kunne de to rombene også lagt et periodisk mønster, så den ekte Penrose-flisleggingen har matchingsregler for kantene som forbyr enhver periodisk ordning. Oppdelingen omgår problemet: enhver flislegging som oppstår ved gjentatt deflasjon av trekantene, følger disse reglene automatisk.",
+        ],
+        formula: PHI_FORMULA,
+      },
+      {
+        heading: "Hva kontrollene gjør",
+        paragraphs: [
+          "«Deflasjonsdybde» går fra 0 til 6 og starter på 4. Dybde 0 er frøet: ti tynne halvtrekanter med toppen i sentrum, som til sammen danner en tikant. Hvert trinn erstatter hver tynne halvdel med to mindre trekanter og hver tykke halvdel med tre, alle forminsket med faktoren φ, så hele skiven beholder størrelsen mens flisene blir mindre. Det samlede antallet halvtrekanter blir 10, 20, 50, 130, 340, 890, 2330 og vokser med omtrent φ² ≈ 2,618 per trinn.",
+          "«Frørotasjon» dreier starttikanten fra 0° til 360°. Frøet veksler orientering mellom nabotrekanter og har derfor femtallig symmetri, og en dreining på 72° gir nøyaktig det samme bildet. Modusknappene bytter mellom «Romber», der speilvendte halvtrekanter limes sammen til hele romber igjen (tykke fiolette, tynne rosa), og «Halvtrekanter», som viser den samme oppdelingen ett nivå lenger ned (tykke halvdeler fiolette, tynne halvdeler ravfargede). Visningsbryterne skjuler omriss eller farger. Knappen «Sentrer · nullstill rotasjon» setter rotasjonen tilbake til 0°.",
+          "«Matchmarkeringer» tegner små pilspisser på to motstående sider av hver rombe, rav for tykke og cyan for tynne, med én enkel og én dobbel spiss hver. De er et forenklet visuelt hint om ideen med kantdekorasjoner, ikke et fullstendig sett med Penrose-matchingsregler.",
+        ],
+      },
+      {
+        heading: "Slik er den bygget",
+        paragraphs: [
+          "Hver halvtrekant lagres som tre komplekse tall A, B, C pluss et typeflagg: 0 for den tynne halvdelen, 1 for den tykke. A er alltid toppen mellom de to like lange sidene. Deflasjonen trenger ikke annet enn punkter som deler en kant i det gylne snitt, og det er nettopp det uttrykket A + (B − A) / φ beregner.",
+          "For å vise romber parer koden sammen trekanter som deler grunnlinjen B C. Den gir hver trekant en nøkkel, midtpunktet på B C avrundet til seks desimaler, og når to trekanter av samme type møtes på samme nøkkel, danner den romben med det fjerde hjørnet B + C − A, speilbildet av toppen om grunnlinjen. Halvdeler som blir til overs ved randen av skiven, speiles på samme måte slik at kanten ser ryddig ut, og derfor er rombetelleren litt større enn halvparten av antall trekanter.",
+          "Tegningen gjøres på et 2D-canvas som skaleres slik at enhetsskiven fyller omtrent 95 prosent av den korteste siden (minus en liten marg), etterfulgt av en myk radiell vignett. Ingenting er animert: canvaset tegnes på nytt bare når du endrer en kontroll eller endrer størrelsen på vinduet, så siden oppfører seg likt med redusert bevegelse slått på.",
+        ],
+        code: DEFLATE_EXCERPT,
+      },
+      {
+        heading: "Hvor det gylne snitt kommer fra",
+        paragraphs: [
+          "Tell etter hva ett trinn gjør. En tynn halvdel blir til én tynn og én tykk; en tykk halvdel blir til én tynn og to tykke. Med ti tynne halvdeler som utgangspunkt er antallene ti ganger påfølgende Fibonacci-tall: 10 og 0, så 10 og 10, 20 og 30, 50 og 80, og så videre. Forholdet mellom tykke og tynne nærmer seg derfor φ: (1, φ) er retningen til den dominante egenvektoren til substitusjonsmatrisen, som har egenverdien φ². Fordi φ er irrasjonalt, kunne ingen gjentatt blokk av fliser noen gang gi dette forholdet, og det gir et elegant argument for hvorfor flisleggingen ikke kan være periodisk.",
+        ],
+        formula: substitutionFormula("tynn", "tykk"),
+      },
+    ],
+    experimentsHeading: "Prøv dette",
+    experiments: [
+      {
+        title: "Se forholdet konvergere",
+        text: "Bytt til «Halvtrekanter» og øk dybden trinn for trinn fra 1 til 6. Forholdet viser 1, 1,5, 1,6, 1,6154, 1,6176 og til slutt 1,6180 ved dybde 6, der det finnes 1440 tykke og 890 tynne halvdeler.",
+      },
+      {
+        title: "Finn den femtallige symmetrien",
+        text: "Sett dybden til 3 og rotasjonen til 72°. Bildet er identisk med det ved 0°.",
+      },
+      {
+        title: "Ta bort fargen",
+        text: "Slå av fargene ved dybde 5 og la bare omrissene stå igjen. Let, uten de fiolette og rosa hintene, etter de femtaggede stjernene av tykke romber. De samme små utsnittene går igjen over hele skiven, men aldri i et regelmessig rutenett.",
+      },
+      {
+        title: "Se på frøet",
+        text: "Sett dybden til 0 i modusen «Romber». De ti frøtrekantene speiles hver for seg utover til en tynn rombe, og telleren viser 10 tynne og 0 tykke.",
       },
     ],
   },

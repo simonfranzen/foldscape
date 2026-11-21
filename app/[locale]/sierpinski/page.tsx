@@ -238,7 +238,7 @@ const deStory: RichStory = {
       {
         label: "01",
         title: "Die große Idee",
-        body: "Ein Dreieck, und sobald du näher hinsiehst, stecken in jeder Ecke drei kleinere Kopien davon. In jeder dieser Kopien wieder drei kleinere, unendlich weit nach unten. Das Erstaunliche: drei völlig verschiedene Rezepte (Papier falten, Pascals Dreieck zählen, Würfel rollen) zeichnen dieselbe Figur.",
+        body: "Ein Dreieck, und sobald du näher hinsiehst, stecken in jeder Ecke drei kleinere Kopien davon. In jeder dieser Kopien wieder drei kleinere, unendlich weit nach unten. Das Erstaunliche: Drei völlig verschiedene Rezepte (Papier falten, Pascals Dreieck zählen, Würfel rollen) zeichnen dieselbe Figur.",
       },
       {
         label: "02",
@@ -273,7 +273,7 @@ const deStory: RichStory = {
     {
       pretitle: "Abschnitt 04 · Drei Wege zur selben Packung",
       title: "Rekursion · Arithmetik · Zufall",
-      body: "Weg eins ist die deterministische Unterteilung oben. Weg zwei ist Arithmetik: schreib Pascals Dreieck aus und färb alle ungeraden Einträge ein, lass die geraden weiß. Nach dem Satz von Lucas ist C(n, k) genau dann ungerade, wenn die Binärziffern von k Teilmenge der Binärziffern von n sind, und diese kombinatorische Bedingung, als Dreieck gezeichnet, ist die Packung. Weg drei ist das zufällige Chaosspiel: setz irgendwo einen Punkt, wähl dann immer wieder zufällig eine der drei Ecken und spring auf halbem Weg dorthin; nach wenigen hundert Sprüngen verdichten sich die Punkte zur selben Figur. Rekursion, Teilbarkeit, Zufall: Auf /pascalmod und /chaosgame kannst du die letzten beiden selbst durchspielen.",
+      body: "Weg eins ist die deterministische Unterteilung oben. Weg zwei ist Arithmetik: Schreib Pascals Dreieck aus und färb alle ungeraden Einträge ein, lass die geraden weiß. Nach dem Satz von Lucas ist C(n, k) genau dann ungerade, wenn die Binärziffern von k Teilmenge der Binärziffern von n sind, und diese kombinatorische Bedingung, als Dreieck gezeichnet, ist die Packung. Weg drei ist das zufällige Chaosspiel: Setz irgendwo einen Punkt, wähl dann immer wieder zufällig eine der drei Ecken und spring auf halbem Weg dorthin; nach wenigen hundert Sprüngen verdichten sich die Punkte zur selben Figur. Rekursion, Teilbarkeit, Zufall: Auf /pascalmod und /chaosgame kannst du die letzten beiden selbst durchspielen.",
     },
     {
       pretitle: "Abschnitt 05 · Verwandte",
@@ -283,7 +283,7 @@ const deStory: RichStory = {
     {
       pretitle: "Abschnitt 06 · Mathematische Geschichte",
       title: "Sierpiński 1915 und die aufkommende polnische Mengenlehre",
-      body: "Wacław Sierpiński publizierte das Dreieck 1915 in Lemberg (heute Lwiw), vor dem Hintergrund einer aufkommenden polnischen Schule für Mengenlehre und Punktmengen-Topologie, die er, Janiszewski und Mazurkiewicz wenig später um die Warschauer Zeitschrift Fundamenta Mathematicae herum institutionalisieren sollten. 1916 folgte Sierpińskis Teppich; 1926 verallgemeinerte Karl Menger die Konstruktion ins Räumliche. (Die berühmte Lemberger Schule um Banach, Steinhaus, Mazur und Ulam im Café Szkocka kam erst später, in den 1920ern und 1930ern.) Das Muster selbst ist jedoch viel älter: kosmateske Marmorböden des 13. Jahrhunderts in römischen Kirchen tragen schon klar erkennbare Sierpiński-Packungen, drei oder vier Iterationen tief geschnitten. Die Mathematik formalisierte, was die Steinmetze seit sieben Jahrhunderten verlegt hatten.",
+      body: "Wacław Sierpiński publizierte das Dreieck 1915 in Lemberg (heute Lwiw), vor dem Hintergrund einer aufkommenden polnischen Schule für Mengenlehre und Punktmengen-Topologie, die er, Janiszewski und Mazurkiewicz wenig später um die Warschauer Zeitschrift Fundamenta Mathematicae herum institutionalisieren sollten. 1916 folgte Sierpińskis Teppich; 1926 verallgemeinerte Karl Menger die Konstruktion ins Räumliche. (Die berühmte Lemberger Schule um Banach, Steinhaus, Mazur und Ulam im Café Szkocka kam erst später, in den 1920ern und 1930ern.) Das Muster selbst ist jedoch viel älter: Kosmateske Marmorböden des 13. Jahrhunderts in römischen Kirchen tragen schon klar erkennbare Sierpiński-Packungen, drei oder vier Iterationen tief geschnitten. Die Mathematik formalisierte, was die Steinmetze seit sieben Jahrhunderten verlegt hatten.",
     },
   ],
   subdivision: {
@@ -304,7 +304,7 @@ const deStory: RichStory = {
     tabPascal: "Pascal mod 2 · 64 Zeilen",
     tabChaos: "Chaosspiel · live",
     legendSubdivision:
-      "Geometrische Rekursion: die drei Eckdreiecke bleiben, das mittlere wird gelöscht. Drei Kopien zur Hälfte: das IFS in Bildern.",
+      "Geometrische Rekursion: Die drei Eckdreiecke bleiben, das mittlere wird gelöscht. Drei Kopien zur Hälfte: das IFS in Bildern.",
     legendPascal:
       "Satz von Lucas in Farbe: C(n, k) ist ungerade gdw. die Bits von k in den Bits von n stecken. Das Muster der Ungeraden ist die Packung.",
     legendChaos:
@@ -1113,7 +1113,7 @@ const noStory: RichStory = {
       {
         label: "01",
         title: "Den store ideen",
-        body: "En trekant, og så snart du ser nærmere, ligger det i hvert hjørne tre mindre kopier av den; inni hver av dem nye tre, i det uendelige. Det forbløffende: tre helt forskjellige oppskrifter (å brette papir, å telle i Pascals trekant, å rulle en terning) tegner den samme figuren.",
+        body: "En trekant, og så snart du ser nærmere, ligger det i hvert hjørne tre mindre kopier av den; inni hver av dem nye tre, i det uendelige. Det forbløffende: Tre helt forskjellige oppskrifter (å brette papir, å telle i Pascals trekant, å rulle en terning) tegner den samme figuren.",
       },
       {
         label: "02",
@@ -1132,7 +1132,7 @@ const noStory: RichStory = {
     {
       pretitle: "Avsnitt 01 · Den klassiske konstruksjonen",
       title: "Fjern midten, fortsett rekursivt",
-      body: "Ta en likesidet trekant. Forbind midtpunktene på de tre sidene: det deler den i fire kongruente mindre trekanter, tre med spissen opp og en med spissen ned. Visk ut den nedoverpekende. Da står du igjen med tre små trekanter i hjørnene. Anvend samme regel på hver: forbind midtpunkter, visk ut den sentrale omvendte, behold hjørnene. Gjenta. Hver iterasjon tredobler antallet biter og halverer sidelengden. I grensen har den gjenværende mengden Lebesguemål null, men er likevel sammenhengende, selvlik i alle skalaer, en overtellbar perfekt mengde uten isolerte punkter. Den grensen er Sierpiński-trekanten.",
+      body: "Ta en likesidet trekant. Forbind midtpunktene på de tre sidene: Det deler den i fire kongruente mindre trekanter, tre med spissen opp og en med spissen ned. Visk ut den nedoverpekende. Da står du igjen med tre små trekanter i hjørnene. Anvend samme regel på hver: Forbind midtpunkter, visk ut den sentrale omvendte, behold hjørnene. Gjenta. Hver iterasjon tredobler antallet biter og halverer sidelengden. I grensen har den gjenværende mengden Lebesguemål null, men er likevel sammenhengende, selvlik i alle skalaer, en overtellbar perfekt mengde uten isolerte punkter. Den grensen er Sierpiński-trekanten.",
     },
     {
       pretitle: "Avsnitt 02 · Den fraktale dimensjonen",
@@ -1147,7 +1147,7 @@ const noStory: RichStory = {
     {
       pretitle: "Avsnitt 04 · Tre veier til samme sikt",
       title: "Rekursjon · aritmetikk · tilfeldighet",
-      body: "Vei én er den deterministiske oppdelingen over. Vei to er aritmetikk: skriv ut Pascals trekant og fargelegg hvert oddetalls-tall, la de partall hvite. Ved Lucas' sats er C(n, k) odde nøyaktig når k:s binære sifre er en delmengde av n:s, og denne kombinatoriske betingelsen, tegnet som en trekant, er sikten. Vei tre er det tilfeldige Kaosspillet: slipp et punkt hvor som helst, velg så et av de tre hjørnene tilfeldig og hopp halvveis dit; etter noen hundre hopp tetner punktene seg til samme figur. Rekursjon, delelighet, tilfeldighet: gå til /pascalmod og /chaosgame for å spille de to siste for hånd.",
+      body: "Vei én er den deterministiske oppdelingen over. Vei to er aritmetikk: Skriv ut Pascals trekant og fargelegg hvert oddetalls-tall, la de partall hvite. Ved Lucas' sats er C(n, k) odde nøyaktig når k:s binære sifre er en delmengde av n:s, og denne kombinatoriske betingelsen, tegnet som en trekant, er sikten. Vei tre er det tilfeldige Kaosspillet: Slipp et punkt hvor som helst, velg så et av de tre hjørnene tilfeldig og hopp halvveis dit; etter noen hundre hopp tetner punktene seg til samme figur. Rekursjon, delelighet, tilfeldighet: Gå til /pascalmod og /chaosgame for å spille de to siste for hånd.",
     },
     {
       pretitle: "Avsnitt 05 · Forbindelser",
@@ -1157,7 +1157,7 @@ const noStory: RichStory = {
     {
       pretitle: "Avsnitt 06 · Matematisk historie",
       title: "Sierpiński 1915 og fremveksten av polsk mengdelære",
-      body: "Wacław Sierpiński publiserte trekanten i 1915, mens han arbeidet i Lwów (i dag Lviv), mot bakgrunnen av en gryende polsk skole i mengdelære og punktmengde-topologi som han, Janiszewski og Mazurkiewicz snart skulle institusjonalisere rundt det Warszawabaserte tidsskriftet Fundamenta Mathematicae. Sierpiński bidro selv med teppet i 1916; Karl Menger generaliserte konstruksjonen til tre dimensjoner i 1926. (Den berømte Lwów-skolen rundt Banach, Steinhaus, Mazur og Ulam på Den skotske kafeen kom senere, gjennom 1920- og 1930-årene.) Selve mønsteret er likevel mye eldre: kosmateske marmorgulv fra 1200-tallet i romerske kirker bærer allerede gjenkjennelige Sierpiński-sikter, hugget tre eller fire iterasjoner dypt. Matematikken formaliserte det steinhuggerne hadde lagt ned i sju århundrer.",
+      body: "Wacław Sierpiński publiserte trekanten i 1915, mens han arbeidet i Lwów (i dag Lviv), mot bakgrunnen av en gryende polsk skole i mengdelære og punktmengde-topologi som han, Janiszewski og Mazurkiewicz snart skulle institusjonalisere rundt det Warszawabaserte tidsskriftet Fundamenta Mathematicae. Sierpiński bidro selv med teppet i 1916; Karl Menger generaliserte konstruksjonen til tre dimensjoner i 1926. (Den berømte Lwów-skolen rundt Banach, Steinhaus, Mazur og Ulam på Den skotske kafeen kom senere, gjennom 1920- og 1930-årene.) Selve mønsteret er likevel mye eldre: Kosmateske marmorgulv fra 1200-tallet i romerske kirker bærer allerede gjenkjennelige Sierpiński-sikter, hugget tre eller fire iterasjoner dypt. Matematikken formaliserte det steinhuggerne hadde lagt ned i sju århundrer.",
     },
   ],
   subdivision: {
@@ -1178,7 +1178,7 @@ const noStory: RichStory = {
     tabPascal: "Pascal mod 2 · 64 rader",
     tabChaos: "Kaosspillet · live",
     legendSubdivision:
-      "Geometrisk rekursjon: behold de tre hjørnetrekantene, slett den midterste. Tre kopier på halvparten: IFS-et i bilder.",
+      "Geometrisk rekursjon: Behold de tre hjørnetrekantene, slett den midterste. Tre kopier på halvparten: IFS-et i bilder.",
     legendPascal:
       "Lucas' sats i farge: C(n, k) er odde hvis og bare hvis bitene i k får plass i bitene i n. Mønsteret av odde er sikten.",
     legendChaos:

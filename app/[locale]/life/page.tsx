@@ -254,7 +254,7 @@ const de: RichStory = {
       {
         label: "02",
         title: "Ein konkretes Beispiel",
-        body: "Geboren bei genau drei lebenden Nachbarn, überlebt bei zwei oder drei, sonst stirbt. Das ist die ganze Regel, geschrieben B3/S23. Setz einen 2×2-Block hin: er bleibt für immer. Setz drei Zellen in eine Reihe, einen Blinker, und er kippt für immer zwischen waagerecht und senkrecht hin und her, ein Regelpuls pro Herzschlag.",
+        body: "Geboren bei genau drei lebenden Nachbarn, überlebt bei zwei oder drei, sonst stirbt. Das ist die ganze Regel, geschrieben B3/S23. Setz einen 2×2-Block hin: Er bleibt für immer. Setz drei Zellen in eine Reihe, einen Blinker, und er kippt für immer zwischen waagerecht und senkrecht hin und her, ein Regelpuls pro Herzschlag.",
       },
       {
         label: "03",
@@ -293,7 +293,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Offene Grenzen",
       title: "Exotische Regeln, Margolus-Blöcke, Hashlife",
-      body: "Conways B3/S23 ist ein Punkt in einem riesigen Raum. HighLife (B36/S23) bringt Periode-12-Replikatoren mit. Day & Night ist symmetrisch unter Farbumkehr. Seeds (B2/S) ist rein generativ: nichts überlebt je. Margolus-Nachbarschaften teilen das Gitter in 2×2-Blöcke und aktualisieren sie als Einheit, was reversible Automaten ergibt. Bill Gospers Hashlife-Algorithmus merkt sich Raum-Zeit-Regionen und simuliert 10^20 Generationen in Sekunden. Es gibt eine ganze Biologie zu entdecken, eine Regelzeichenkette nach der anderen.",
+      body: "Conways B3/S23 ist ein Punkt in einem riesigen Raum. HighLife (B36/S23) bringt Periode-12-Replikatoren mit. Day & Night ist symmetrisch unter Farbumkehr. Seeds (B2/S) ist rein generativ: Nichts überlebt je. Margolus-Nachbarschaften teilen das Gitter in 2×2-Blöcke und aktualisieren sie als Einheit, was reversible Automaten ergibt. Bill Gospers Hashlife-Algorithmus merkt sich Raum-Zeit-Regionen und simuliert 10^20 Generationen in Sekunden. Es gibt eine ganze Biologie zu entdecken, eine Regelzeichenkette nach der anderen.",
     },
   ],
   closingTitle: "Du bist dran.",
@@ -958,7 +958,7 @@ const sv: RichStory = {
     {
       pretitle: "Avsnitt 02 · Djurparken",
       title: "Stilleben, oscillatorer, rymdskepp",
-      body: "Vissa former rör sig aldrig: 2×2-Blocket, Bikupan, Limpan (stilleben). Andra pulserar: Blinkaren med period 2, Paddan med period 2, Fyrtornet med period 2, Pulsaren med period 3. Och andra rör sig genom att upprepa sig förflyttade: rymdskepp. Glidaren, fem celler, glider en ruta diagonalt var fjärde generation. Det lätta rymdskeppet kryssar rakt. Kataloger listar nu tiotusentals namngivna mönster.",
+      body: "Vissa former rör sig aldrig: 2×2-Blocket, Bikupan, Limpan, så kallade stilleben. Andra pulserar: Blinkaren med period 2, Paddan med period 2, Fyrtornet med period 2, Pulsaren med period 3. Och andra rör sig genom att upprepa sig förflyttade: rymdskepp. Glidaren, fem celler, glider en ruta diagonalt var fjärde generation. Det lätta rymdskeppet kryssar rakt. Kataloger listar nu tiotusentals namngivna mönster.",
     },
     {
       pretitle: "Avsnitt 03 · Glidarkanonen",
@@ -1095,7 +1095,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Dyrehagen",
       title: "Stilleben, oscillatorer, romskip",
-      body: "Noen former beveger seg aldri: 2×2-Blokken, Bikuben, Loftet (stilleben). Andre pulserer: Blinkeren med periode 2, Padden med periode 2, Fyrtårnet med periode 2, Pulsaren med periode 3. Andre igjen flytter seg ved å gjenta seg forskjøvet: romskip. Glideren, fem celler, sklir én rute diagonalt hver fjerde generasjon. Det lette romskipet kryser rett fram. Kataloger lister nå titusenvis av navngitte mønstre.",
+      body: "Noen former beveger seg aldri: 2×2-Blokken, Bikuben, Loftet, såkalte stilleben. Andre pulserer: Blinkeren med periode 2, Padden med periode 2, Fyrtårnet med periode 2, Pulsaren med periode 3. Andre igjen flytter seg ved å gjenta seg forskjøvet: romskip. Glideren, fem celler, sklir én rute diagonalt hver fjerde generasjon. Det lette romskipet kryser rett fram. Kataloger lister nå titusenvis av navngitte mønstre.",
     },
     {
       pretitle: "Avsnitt 03 · Gliderkanonen",
@@ -1105,17 +1105,17 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Universell beregning",
       title: "Tråder, porter, minne, klokker",
-      body: "Behandle en gliderstrøm som en tråd som bærer bits: glider til stede er 1, fraværende er 0. Kollisjoner mellom strømmer realiserer OG, ELLER, IKKE. Løkker av strømmer lagrer bits: minne. Kanoner gir klokken. Med disse primitivene kan en hvilken som helst boolsk krets bygges, og dermed en hvilken som helst beregning. Paul Rendell bygde i 2000 en fungerende Turing-maskin laget kun av Life-mønstre; Adam Gouchers metafier gjør hele CPU-er om til Life-mosaikker. Conways fire-linjers regel er Turing-komplett.",
+      body: "Behandle en gliderstrøm som en tråd som bærer bits: Glider til stede er 1, fraværende er 0. Kollisjoner mellom strømmer realiserer OG, ELLER, IKKE. Løkker av strømmer lagrer bits: minne. Kanoner gir klokken. Med disse primitivene kan en hvilken som helst boolsk krets bygges, og dermed en hvilken som helst beregning. Paul Rendell bygde i 2000 en fungerende Turing-maskin laget kun av Life-mønstre; Adam Gouchers metafier gjør hele CPU-er om til Life-mosaikker. Conways fire-linjers regel er Turing-komplett.",
     },
     {
       pretitle: "Avsnitt 05 · Selvreplikasjon og meta-Life",
       title: "OTCA-metapiksler og Game of Life i Game of Life",
-      body: "I 2006 designet Brice Due OTCA-metapikselet, et Life-mønster på 2048×2048 hvis kollektive atferd, sett fra langt nok unna, i sin tur er en enkelt Life-celle. Flislegg et helt rutenett med OTCA-metapiksler og du får Game of Life som kjører inni Game of Life, i grensen umulig å skille fra originalen. Selvreplikerende mønstre fulgte: i 2010 bygde Andrew Wade Gemini, et mønster på 846 278 levende celler i en om lag 4,2 millioner celler bred avgrensningsboks, som kopierer seg selv hver 33,7. million generasjon. Leken inneholder seg selv.",
+      body: "I 2006 designet Brice Due OTCA-metapikselet, et Life-mønster på 2048×2048 hvis kollektive atferd, sett fra langt nok unna, i sin tur er en enkelt Life-celle. Flislegg et helt rutenett med OTCA-metapiksler og du får Game of Life som kjører inni Game of Life, i grensen umulig å skille fra originalen. Selvreplikerende mønstre fulgte: I 2010 bygde Andrew Wade Gemini, et mønster på 846 278 levende celler i en om lag 4,2 millioner celler bred avgrensningsboks, som kopierer seg selv hver 33,7. million generasjon. Leken inneholder seg selv.",
     },
     {
       pretitle: "Avsnitt 06 · Åpne grenser",
       title: "Eksotiske regler, Margolus-blokker, Hashlife",
-      body: "Conways B3/S23 er ett punkt i et enormt rom. HighLife (B36/S23) tilfører periode-12-replikatorer. Day & Night er symmetrisk under fargeinversjon. Seeds (B2/S) er rent genererende: ingenting overlever noensinne. Margolus-naboskap deler rutenettet i 2×2-blokker som oppdateres som enheter, og gir reversible automater. Bill Gospers Hashlife-algoritme memoiserer tidrom-regioner og simulerer 10^20 generasjoner på sekunder. Det finnes en hel biologi å oppdage, én regelstreng om gangen.",
+      body: "Conways B3/S23 er ett punkt i et enormt rom. HighLife (B36/S23) tilfører periode-12-replikatorer. Day & Night er symmetrisk under fargeinversjon. Seeds (B2/S) er rent genererende: Ingenting overlever noensinne. Margolus-naboskap deler rutenettet i 2×2-blokker som oppdateres som enheter, og gir reversible automater. Bill Gospers Hashlife-algoritme memoiserer tidrom-regioner og simulerer 10^20 generasjoner på sekunder. Det finnes en hel biologi å oppdage, én regelstreng om gangen.",
     },
   ],
   closingTitle: "Din tur.",

@@ -286,7 +286,7 @@ export const sv: StoriesDict = {
       title: "Banach-Tarski-paradoxen",
       tagline: "Skär ett klot, sluta med två.",
       intro:
-        "Ett massivt klot, uppdelat i en handfull bitar, kan återsammansättas till två massiva klot som vart och ett är identiskt med originalet, ingen sträckning, inget extra material. Utforskaren ritar maskineriet bakom tricket: den fria gruppen F₂ av två rotationer, vars självlika Cayleyträd innehåller fyra förskjutna kopior av sig själv. Den förgreningsstrukturen är, nästan bokstavligen, varifrån det andra klotet kommer.",
+        "Ett massivt klot, uppdelat i en handfull bitar, kan återsammansättas till två massiva klot som vart och ett är identiskt med originalet: ingen sträckning, inget extra material. Utforskaren ritar maskineriet bakom tricket: den fria gruppen F₂ av två rotationer, vars självlika Cayleyträd innehåller fyra förskjutna kopior av sig själv. Den förgreningsstrukturen är, nästan bokstavligen, varifrån det andra klotet kommer.",
       ctaInteractive: "→ Öppna Utforskaren",
       sections: [
         {
@@ -302,7 +302,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg tre · Den fria rotationsgruppen",
           title: "F₂, genererad av två rotationer",
-          body: "Hjärtat i beviset är rent gruppteoretiskt. Två lämpligt valda rotationer a och b av enhetssfären S² uppfyller ingen relation annan än de triviala: de genererar en fri grupp F₂ av rang 2: varje reducerat ord i a, a⁻¹, b, b⁻¹ verkar som en annan rotation. F₂ medger en paradoxal uppdelning: den delas i fyra mängder W(a), W(a⁻¹), W(b), W(b⁻¹) (ord som börjar med varje generator) plus identiteten, och varje förskjuten mängd täcker resten av gruppen. Driv detta genom Hausdorffs sfärparadox från 1914, lyft från S² till det massiva klotet, och dupliceringen i gruppen blir en duplicering av B³.",
+          body: "Hjärtat i beviset är rent gruppteoretiskt. Två lämpligt valda rotationer a och b av enhetssfären S² uppfyller ingen relation annan än de triviala: de genererar en fri grupp F₂ av rang 2; varje reducerat ord i a, a⁻¹, b, b⁻¹ verkar som en annan rotation. F₂ medger en paradoxal uppdelning: den delas i fyra mängder W(a), W(a⁻¹), W(b), W(b⁻¹) (ord som börjar med varje generator) plus identiteten, och varje förskjuten mängd täcker resten av gruppen. Driv detta genom Hausdorffs sfärparadox från 1914, lyft från S² till det massiva klotet, och dupliceringen i gruppen blir en duplicering av B³.",
         },
         {
           pretitle: "Steg fyra · Varför det inte spräcker världen",
@@ -332,7 +332,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg tre · Klassiska exempel",
           title: "Fyra regler, fyra fraktaler",
-          body: "Kochs snöflinga: axiom F++F++F, regel F → F−F++F−F, vinkel 60°. Fyra iterationer och triangeln har krusat sig till en snöflinga. Drakkurvan: axiom FX, regler X → X+YF+, Y → −FX−Y, vinkel 90°; efter ett dussin omskrivningar viker den sig till Heighways drake. Sierpińskis pilspets: A → B−A−B, B → A+B+A, vinkel 60°, alternerar paritet för att svepa ut Sierpiński-triangeln. Fraktalväxt: X → F+[[X]−X]−F[−FX]+X, F → FF, vinkel 25°: Lindenmayers och Prusinkiewiczs kanoniska ormbunke, grenar och allt. Samma maskineri, vilt olika organismer.",
+          body: "Kochs snöflinga: axiom F++F++F, regel F → F−F++F−F, vinkel 60°. Fyra iterationer och triangeln har krusat sig till en snöflinga. Drakkurvan: axiom FX, regler X → X+YF+, Y → −FX−Y, vinkel 90°; efter ett dussin omskrivningar viker den sig till Heighways drake. Sierpińskis pilspets: A → B−A−B, B → A+B+A, vinkel 60°, alternerar paritet för att svepa ut Sierpiński-triangeln. Fraktalväxt: X → F+[[X]−X]−F[−FX]+X, F → FF, vinkel 25° (Lindenmayers och Prusinkiewiczs kanoniska ormbunke, grenar och allt). Samma maskineri, vilt olika organismer.",
         },
         {
           pretitle: "Steg fyra · Varför botaniker älskar dem",
@@ -562,7 +562,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg ett · Två plattor, aldrig upprepande",
           title: "Penrose, 1974",
-          body: "Roger Penrose introducerade sin första aperiodiska täckning (P1) 1974 med sex prototyper byggda kring femhörningen. Han trimmade snabbt ner uppsättningen till två: drake + pil-paret (P2) och två-romb-paret (P3): en tunn romb med vinklarna 36°/144° och en tjock romb med vinklarna 72°/108°. Varje platta bär Conways matchningsregler: färgade pilar eller skåror på kanterna som bestämmer vilka plattor som får ligga bredvid varandra. Utan dem skulle du kunna täcka periodiskt med drakar och pilar; med dem tvingas varje laglig täckning att vara aperiodisk.",
+          body: "Roger Penrose introducerade sin första aperiodiska täckning (P1) 1974 med sex prototyper byggda kring femhörningen. Han trimmade snabbt ner uppsättningen till två: drake + pil-paret (P2) och två-romb-paret (P3), en tunn romb med vinklarna 36°/144° och en tjock romb med vinklarna 72°/108°. Varje platta bär Conways matchningsregler: färgade pilar eller skåror på kanterna som bestämmer vilka plattor som får ligga bredvid varandra. Utan dem skulle du kunna täcka periodiskt med drakar och pilar; med dem tvingas varje laglig täckning att vara aperiodisk.",
         },
         {
           pretitle: "Steg två · Femfaldig symmetri",
@@ -736,7 +736,7 @@ export const sv: StoriesDict = {
       title: "Cantors diagonalargument",
       tagline: "Oändligheten kommer i storlekar.",
       intro:
-        "Georg Cantors diagonalargument från 1891 är det renaste beviset i matematiken för att vissa oändligheter är större än andra. Utforskaren animerar konstruktionen i realtid: välj vilken som helst listning av decimaler i [0,1] och se ett nytt reellt tal kliva ut ur diagonalen: ett som inte kan stå på din lista, oavsett hur smart du ordnade den.",
+        "Georg Cantors diagonalargument från 1891 är det renaste beviset i matematiken för att vissa oändligheter är större än andra. Utforskaren animerar konstruktionen i realtid: välj vilken som helst listning av decimaler i [0,1] och se ett nytt reellt tal kliva ut ur diagonalen, ett som inte kan stå på din lista, oavsett hur smart du ordnade den.",
       ctaInteractive: "→ Öppna Utforskaren",
       sections: [
         {
@@ -842,7 +842,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg tre · Den fraktala dimensionen",
           title: "1.71: oberoende av fröet",
-          body: "Witten och Sander publicerade modellen 1981 och visade numeriskt att på ett 2D-gitter har det resulterande klustret fraktal dimension ≈ 1.71. Det är strikt mellan en kurva (dimension 1) och en fylld region (dimension 2), och, avgörande, beror inte på fröets form, gittertypen eller spawnradien. Olika fysiska processer som ytligt sett ser helt olika ut ger exakt samma dimension. Talet är universellt i samma mening som π är.",
+          body: "Witten och Sander publicerade modellen 1981 och visade numeriskt att på ett 2D-gitter har det resulterande klustret fraktal dimension ≈ 1.71. Det är strikt mellan en kurva (dimension 1) och en fylld region (dimension 2), och beror, avgörande nog, inte på fröets form, gittertypen eller spawnradien. Olika fysiska processer som ytligt sett ser helt olika ut ger exakt samma dimension. Talet är universellt i samma mening som π är.",
         },
         {
           pretitle: "Steg fyra · Var det dyker upp",
@@ -937,7 +937,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg fyra · Bästa approximationer",
           title: "Att stanna tidigt ger konvergenterna",
-          body: "Stanna vandringen efter vilket ändligt antal steg som helst. Bråket du står på är en bästa rationell approximation av ditt mål, bättre än vilket rationellt tal som helst med mindre nämnare. Så sekvensen av bråk du besöker på väg till π ger dig 3, 22/7, 333/106, 355/113, 103993/33102, de berömda konvergenterna som mänskliga kulturer fortsatte att återupptäcka genom århundradena. Samma konstruktion som räknar upp de rationella plockar också ut just de allra bästa.",
+          body: "Stanna vandringen efter vilket ändligt antal steg som helst. Bråket du står på är en bästa rationell approximation av ditt mål, bättre än vilket rationellt tal som helst med mindre nämnare. Så sekvensen av bråk du besöker på väg till π ger dig 3, 22/7, 333/106, 355/113, 103993/33102: de berömda konvergenterna som mänskliga kulturer fortsatte att återupptäcka genom århundradena. Samma konstruktion som räknar upp de rationella plockar också ut just de allra bästa.",
         },
       ],
     },
@@ -1017,7 +1017,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg två · Pascal-landningen",
           title: "Lådantalen är binomiala",
-          body: "Efter N rader är sannolikheten att kulan landar i låda k (numrerad 0 till N) C(N, k) / 2^N. Täljarna är posterna i rad N av Pascals triangel. Så ett Galton-bräde är, i hemlighet, en fysisk uppslagning av binomialkoefficienter. Med N = 10 får de centrala lådorna värdena 252, 210, 210, och de yttersta lådorna får värdet 1 (endast en väg av alla 1024). Formen är redan en diskret klocka.",
+          body: "Efter N rader är sannolikheten att kulan landar i låda k (numrerad 0 till N) C(N, k) / 2^N. Täljarna är posterna i rad N av Pascals triangel. Så ett Galton-bräde är, i hemlighet, en fysisk uppslagning av binomialkoefficienter. Med N = 10 får de centrala lådorna värdena 252, 210, 210; de yttersta lådorna får värdet 1 (endast en väg av alla 1024). Formen är redan en diskret klocka.",
         },
         {
           pretitle: "Steg tre · Centrala gränsvärdessatsen",
@@ -1042,7 +1042,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg ett · Fysiken",
           title: "Tre dragningar, en dämpning, gravitation mot mitten",
-          body: "Montera en liten järnvikt på en flexibel snöre ovanför en platta. Placera tre identiska magneter på plattan i en liksidig triangel. Pendeln dras mot varje magnet med en kraft proportionell mot 1/r² (eller 1/r³ för en invers-kubmodell; båda används i litteraturen; den kvalitativa fraktalen dyker upp för båda). En svag fjäder drar också pendeln tillbaka mot triangelns mitt. Luftmotstånd tappar stadigt energi. Rörelseekvationerna är deterministiska; det enda okända är startpositionen.",
+          body: "Montera en liten järnvikt på en flexibel snöre ovanför en platta. Placera tre identiska magneter på plattan i en liksidig triangel. Pendeln dras mot varje magnet med en kraft proportionell mot 1/r² (eller 1/r³ för en invers-kubmodell: båda används i litteraturen; den kvalitativa fraktalen dyker upp för båda). En svag fjäder drar också pendeln tillbaka mot triangelns mitt. Luftmotstånd tappar stadigt energi. Rörelseekvationerna är deterministiska; det enda okända är startpositionen.",
         },
         {
           pretitle: "Steg två · Avrinningsområdena",
@@ -1052,7 +1052,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg tre · Den fraktala gränsen",
           title: "Varje randpunkt gränsar till alla tre färgerna",
-          body: "Zooma in på randen mellan vilka två färger som helst och du finner den tredje färgen inflätad där. Zooma igen och du finner alla tre färgerna godtyckligt nära vilken randpunkt som helst. Detta är den definierande egenskapen hos ett Wada-bassäng: en topologisk monstrositet upptäckt av Yoneyama 1917 och sedan vapenformad av kaosteoretiker på 1990-talet. Determinismen förblir intakt: samma start → samma utfall. Men den minsta förändringen i startposition kan vända svaret till vilken av de tre magneterna som helst. Förutsägbarheten är borta.",
+          body: "Zooma in på randen mellan vilka två färger som helst och du finner den tredje färgen inflätad där. Zooma igen och du finner alla tre färgerna godtyckligt nära vilken randpunkt som helst. Detta är den definierande egenskapen hos en Wada-bassäng: en topologisk monstrositet upptäckt av Yoneyama 1917 och sedan vapenformad av kaosteoretiker på 1990-talet. Determinismen förblir intakt: samma start → samma utfall. Men den minsta förändringen i startposition kan vända svaret till vilken av de tre magneterna som helst. Förutsägbarheten är borta.",
         },
         {
           pretitle: "Steg fyra · Varför detta spelar roll",
@@ -1177,7 +1177,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg fyra · Var det står idag",
           title: "Från TLS till postkvantmigrationen",
-          body: "RSA är matematiken under varje TLS-handslag din webbläsare fortfarande förhandlar med ett RSA-certifikat, under SSH-värdnycklar, under kodsigneringskedjorna som autentiserar appar från Apple och Google, under elektroniska pass och de tidiga generationerna av blockkedjor. Men 1994 skrev Peter Shor ner en kvantalgoritm som faktoriserar heltal i polynomiell tid, givet en tillräckligt stor feltolerant kvantdator bryts RSA. Ingen sådan finns ännu, men tidslinjen är osäker nog att NIST har standardiserat postkvant-ersättningar (CRYSTALS-Kyber för nyckelutbyte 2024, CRYSTALS-Dilithium för signaturer) och den globala migrationen är redan i gång.",
+          body: "RSA är matematiken under varje TLS-handslag din webbläsare fortfarande förhandlar med ett RSA-certifikat, under SSH-värdnycklar, under kodsigneringskedjorna som autentiserar appar från Apple och Google, under elektroniska pass och de tidiga generationerna av blockkedjor. Men 1994 skrev Peter Shor ner en kvantalgoritm som faktoriserar heltal i polynomiell tid: givet en tillräckligt stor feltolerant kvantdator bryts RSA. Ingen sådan finns ännu, men tidslinjen är osäker nog att NIST har standardiserat postkvant-ersättningar (CRYSTALS-Kyber för nyckelutbyte 2024, CRYSTALS-Dilithium för signaturer) och den globala migrationen är redan i gång.",
         },
       ],
     },
@@ -1197,7 +1197,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg två · Saxöverraskningar",
           title: "Vad saxen avslöjar om topologin",
-          body: "Skär Möbiusbandet längs mitten. Det faller inte isär: du får ett längre band med två fulla vridningar (fyra halvvridningar), och avgörande nog är det bandet tvåsidigt igen. Skär ett Möbiusband en tredjedel in från ena kanten, och håll snittet parallellt med kanten hela vägen runt, och saxen färdas två varv innan slingan sluts: ut kommer två sammanflätade ringar: ett smalare, färskt Möbiusband (fortfarande med en halv vridning) och en längre tvåsidig ring med två halva vridningar (inte längre ett Möbiusband), länkade genom varandra. Topologin är full av sådana överraskningar: den globala vridningen gömd av lokal planhet.",
+          body: "Skär Möbiusbandet längs mitten. Det faller inte isär: du får ett längre band med två fulla vridningar (fyra halvvridningar), och avgörande nog är det bandet tvåsidigt igen. Skär ett Möbiusband en tredjedel in från ena kanten, och håll snittet parallellt med kanten hela vägen runt, och saxen färdas två varv innan slingan sluts. Ut kommer två sammanflätade ringar: ett smalare, färskt Möbiusband (fortfarande med en halv vridning) och en längre tvåsidig ring med två halva vridningar (inte längre ett Möbiusband), länkade genom varandra. Topologin är full av sådana överraskningar: den globala vridningen gömd av lokal planhet.",
         },
         {
           pretitle: "Steg tre · Kleinflaskan",
@@ -1282,7 +1282,7 @@ export const sv: StoriesDict = {
         {
           pretitle: "Steg ett · Förmodan",
           title: "Francis Guthrie, 1852",
-          body: "När han färglade en karta över Englands grevskap märkte den unge Francis Guthrie att fyra färger alltid tycktes räcka. Han frågade sin bror Frederick, som frågade deras lärare Augustus De Morgan, som frågade alla. Förmodan såg harmlös ut, och tröttade ut matematiker i 124 år. Flera publicerade bevis (Kempe 1879, Tait 1880) visade sig innehålla subtila luckor som ingen upptäckte på över ett decennium.",
+          body: "När han färglade en karta över Englands grevskap märkte den unge Francis Guthrie att fyra färger alltid tycktes räcka. Han frågade sin bror Frederick, som frågade deras lärare Augustus De Morgan, som frågade alla. Förmodan såg harmlös ut, men tröttade ut matematiker i 124 år. Flera publicerade bevis (Kempe 1879, Tait 1880) visade sig innehålla subtila luckor som ingen upptäckte på över ett decennium.",
         },
         {
           pretitle: "Steg två · Varför tre inte räcker, fem är för många",

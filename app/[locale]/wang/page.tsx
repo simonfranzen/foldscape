@@ -224,22 +224,22 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 01 · Wangs Frage",
       title: "Lässt sich entscheiden, ob ein Kachelsatz die Ebene kachelt?",
-      body: "1961 stellte der Logiker Hao Wang eine täuschend konkrete Frage: Gibt es zu einem endlichen Satz quadratischer Kacheln mit gefärbten Kanten einen Algorithmus, der entscheidet, ob sich Kopien davon (ohne Drehungen, ohne Spiegelungen) zu einer Kachelung der gesamten unendlichen Ebene zusammenfügen lassen? Wangs eigene Vermutung war: ja, und stärker, jeder Kachelsatz, der die Ebene kachelt, müsse auch eine periodische Kachelung zulassen, ein Muster, das sich durch Translation wiederholt. Wäre das wahr, würde eine endliche Prüfung das Dominoproblem ein für alle Mal klären. Die Ebene würde einer endlichen Rechnung weichen.",
+      body: "1961 stellte der Logiker Hao Wang eine täuschend konkrete Frage: Gibt es zu einem endlichen Satz quadratischer Kacheln mit gefärbten Kanten einen Algorithmus, der entscheidet, ob sich Kopien davon (ohne Drehungen, ohne Spiegelungen) zu einer Kachelung der gesamten unendlichen Ebene zusammenfügen lassen? Wangs eigene Vermutung war: Ja, und stärker, jeder Kachelsatz, der die Ebene kachelt, müsse auch eine periodische Kachelung zulassen, ein Muster, das sich durch Translation wiederholt. Wäre das wahr, würde eine endliche Prüfung das Dominoproblem ein für alle Mal klären. Die Ebene würde einer endlichen Rechnung weichen.",
     },
     {
       pretitle: "Abschnitt 02 · Bergers Satz",
       title: "Unentscheidbar. Und aperiodische Kachelsätze existieren.",
-      body: "1966 zerschlug Wangs Schüler Robert Berger beide Hälften der Vermutung in einem Zug. Er konstruierte einen Satz aus 20 426 Wang-Kacheln, der die Ebene tatsächlich kachelt, aber nur aperiodisch. Keine Translation einer Kachelung mit diesem Satz bildet sie je auf sich selbst ab. Und er bewies, dass das Dominoproblem unentscheidbar ist: kein Algorithmus, keine clevere endliche Prüfung kann allgemein sagen, ob ein Kachelsatz die Ebene überhaupt kachelt. Eine endliche Liste farbiger Quadrate kann verkappt Turing-vollständig sein.",
+      body: "1966 zerschlug Wangs Schüler Robert Berger beide Hälften der Vermutung in einem Zug. Er konstruierte einen Satz aus 20 426 Wang-Kacheln, der die Ebene tatsächlich kachelt, aber nur aperiodisch. Keine Translation einer Kachelung mit diesem Satz bildet sie je auf sich selbst ab. Und er bewies, dass das Dominoproblem unentscheidbar ist: Kein Algorithmus, keine clevere endliche Prüfung kann allgemein sagen, ob ein Kachelsatz die Ebene überhaupt kachelt. Eine endliche Liste farbiger Quadrate kann verkappt Turing-vollständig sein.",
     },
     {
       pretitle: "Abschnitt 03 · Berechnung kodieren",
       title: "Turing-Maschinen, auf Kanten gemalt",
-      body: "Bergers Konstruktion ist eine Übersetzung: nimm irgendeine Turing-Maschine und erzeuge daraus einen Wang-Kachelsatz, der die obere Halbebene genau dann kachelt, wenn die Maschine bei leerem Band nie hält. Jede Kachelreihe buchstabiert eine vollständige Maschinenkonfiguration (Bandinhalt und Kopfposition) und jeder Übergang von Reihe zu Reihe wird durch die Kantenfarben gezwungen, exakt ein Maschinenschritt zu sein. Die unendliche Kachelung, falls sie existiert, ist die unendliche Rechnung. Aus «kachelt dieser Satz?» wird «läuft diese Maschine ewig?», und das ist das Halteproblem, das älteste bekannte unentscheidbare Problem.",
+      body: "Bergers Konstruktion ist eine Übersetzung: Nimm irgendeine Turing-Maschine und erzeuge daraus einen Wang-Kachelsatz, der die obere Halbebene genau dann kachelt, wenn die Maschine bei leerem Band nie hält. Jede Kachelreihe buchstabiert eine vollständige Maschinenkonfiguration (Bandinhalt und Kopfposition) und jeder Übergang von Reihe zu Reihe wird durch die Kantenfarben gezwungen, exakt ein Maschinenschritt zu sein. Die unendliche Kachelung, falls sie existiert, ist die unendliche Rechnung. Aus «kachelt dieser Satz?» wird «läuft diese Maschine ewig?», und das ist das Halteproblem, das älteste bekannte unentscheidbare Problem.",
     },
     {
       pretitle: "Abschnitt 04 · Von 20 426 zu 11",
       title: "Robinson, Culik, Jeandel-Rao",
-      body: "Bergers 20 426 Kacheln waren ein Beweis, keine Skulptur. Die folgenden Jahrzehnte waren eine Jagd nach dem kleinsten aperiodischen Wang-Satz. Raphael Robinson drückte ihn 1971 mit einer saubereren hierarchischen Konstruktion auf 56. 1996 veröffentlichte Jarkko Kari 14; Karel Culik II baute direkt auf Karis Ideen auf und fand im selben Jahr 13, ein Rekord, der fast zwei Jahrzehnte hielt. 2015 bewiesen Emmanuel Jeandel und Michaël Rao per erschöpfender Computersuche, dass 11 das wahre Minimum ist: es gibt einen aperiodischen Satz aus 11 Wang-Kacheln, und keiner aus 10 oder weniger kann aperiodisch sein. Die Geschichte hat eine endliche Antwort, und sie heißt 11.",
+      body: "Bergers 20 426 Kacheln waren ein Beweis, keine Skulptur. Die folgenden Jahrzehnte waren eine Jagd nach dem kleinsten aperiodischen Wang-Satz. Raphael Robinson drückte ihn 1971 mit einer saubereren hierarchischen Konstruktion auf 56. 1996 veröffentlichte Jarkko Kari 14; Karel Culik II baute direkt auf Karis Ideen auf und fand im selben Jahr 13, ein Rekord, der fast zwei Jahrzehnte hielt. 2015 bewiesen Emmanuel Jeandel und Michaël Rao per erschöpfender Computersuche, dass 11 das wahre Minimum ist: Es gibt einen aperiodischen Satz aus 11 Wang-Kacheln, und keiner aus 10 oder weniger kann aperiodisch sein. Die Geschichte hat eine endliche Antwort, und sie heißt 11.",
     },
     {
       pretitle: "Abschnitt 05 · Quasikristalle",
@@ -249,7 +249,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 06 · Die aperiodische Monokachel",
       title: "2023: Eine Kachel reicht",
-      body: "Über ein halbes Jahrhundert war offen, ob eine einzige Kachel Aperiodizität erzwingen kann: ein «einstein», ein Stein. Im März 2023 verkündeten David Smith, Joseph Myers, Craig Kaplan und Chaim Goodman-Strauss den Hut: ein 13-eckiges Vieleck, das die Ebene nur aperiodisch kachelt, mit Spiegelungen. Zwei Monate später lieferte dasselbe Team den Spectre, eine aperiodische Monokachel ohne Spiegelungen. Die Kette, die mit Wangs Vermutung von 1961 begann (über Bergers 20 426, Robinsons 56, Culiks 13, Jeandel-Raos 11) endet sechs Jahrzehnte später bei 1.",
+      body: "Über ein halbes Jahrhundert war offen, ob eine einzige Kachel Aperiodizität erzwingen kann: ein «einstein», ein Stein. Im März 2023 verkündeten David Smith, Joseph Myers, Craig Kaplan und Chaim Goodman-Strauss den Hut: ein 13-eckiges Vieleck, das die Ebene nur aperiodisch kachelt, mit Spiegelungen. Zwei Monate später lieferte dasselbe Team den Spectre, eine aperiodische Monokachel ohne Spiegelungen. Die Kette, die mit Wangs Vermutung von 1961 begann (über Bergers 20 426, Robinsons 56, Culiks 13, Jeandel-Raos 11), endet sechs Jahrzehnte später bei 1.",
     },
   ],
   closingTitle: "Leg eine Kachel. Die Ebene entscheidet.",
@@ -790,7 +790,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "I 1966 beviste Robert Berger at ingen algoritme generelt kan avgjøre om et gitt Wang-flisesett dekker planet. For å gjøre det bygde han et sett på 20 426 fliser som bare dekker planet aperiodisk: ingen translasjon av mønsteret avbilder det på seg selv. Den videre forskningen krympet rekorden fra 20 426 til 13 (Culik 1996) og 11 (Jeandel-Rao 2015), og åpnet veien til Penrose-mønstre og den moderne aperiodiske monoflisen.",
+        body: "I 1966 beviste Robert Berger at ingen algoritme generelt kan avgjøre om et gitt Wang-flisesett dekker planet. For å gjøre det bygde han et sett på 20 426 fliser som bare dekker planet aperiodisk: Ingen translasjon av mønsteret avbilder det på seg selv. Den videre forskningen krympet rekorden fra 20 426 til 13 (Culik 1996) og 11 (Jeandel-Rao 2015), og åpnet veien til Penrose-mønstre og den moderne aperiodiske monoflisen.",
       },
     ],
     tryIt:
@@ -800,22 +800,22 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 01 · Wangs spørsmål",
       title: "Kan man avgjøre om et sett dekker planet?",
-      body: "I 1961 stilte logikeren Hao Wang et bedragersk konkret spørsmål: gitt et endelig sett kvadratiske fliser med fargede kanter, finnes det en algoritme som avgjør om kopier av dem (uten rotasjoner, uten speilinger) kan settes sammen til en dekking av hele det uendelige planet? Wangs egen formodning sa ja, og sterkere: ethvert sett som dekker planet må tillate en periodisk dekking, et mønster som gjentar seg ved translasjon. Var det sant, ville en endelig sjekk avgjøre Dominoproblemet for godt. Planet ville falle for en endelig regning.",
+      body: "I 1961 stilte logikeren Hao Wang et bedragersk konkret spørsmål: Gitt et endelig sett kvadratiske fliser med fargede kanter, finnes det en algoritme som avgjør om kopier av dem (uten rotasjoner, uten speilinger) kan settes sammen til en dekking av hele det uendelige planet? Wangs egen formodning sa ja, og sterkere: Ethvert sett som dekker planet må tillate en periodisk dekking, et mønster som gjentar seg ved translasjon. Var det sant, ville en endelig sjekk avgjøre Dominoproblemet for godt. Planet ville falle for en endelig regning.",
     },
     {
       pretitle: "Avsnitt 02 · Bergers teorem",
       title: "Uavgjørbart. Og aperiodiske sett finnes.",
-      body: "I 1966 raserte Wangs elev Robert Berger begge halvdeler av formodningen på én gang. Han konstruerte et sett på 20 426 Wang-fliser som faktisk dekker planet, men bare aperiodisk. Ingen translasjon av en dekking med det settet avbilder den på seg selv. Og han beviste at Dominoproblemet er uavgjørbart: ingen algoritme, ingen smart endelig sjekk, vil generelt si om et sett dekker planet i det hele tatt. En endelig liste fargede kvadrater kan være Turing-fullstendig i forkledning.",
+      body: "I 1966 raserte Wangs elev Robert Berger begge halvdeler av formodningen på én gang. Han konstruerte et sett på 20 426 Wang-fliser som faktisk dekker planet, men bare aperiodisk. Ingen translasjon av en dekking med det settet avbilder den på seg selv. Og han beviste at Dominoproblemet er uavgjørbart: Ingen algoritme, ingen smart endelig sjekk, vil generelt si om et sett dekker planet i det hele tatt. En endelig liste fargede kvadrater kan være Turing-fullstendig i forkledning.",
     },
     {
       pretitle: "Avsnitt 03 · Beregning i mønsteret",
       title: "Turingmaskiner malt på kantene",
-      body: "Bergers konstruksjon er en oversettelse: ta en hvilken som helst Turingmaskin og produser et Wang-flisesett som dekker det øvre halvplanet hvis og bare hvis maskinen aldri stopper på tom inndata. Hver rad fliser staver ut en hel maskinkonfigurasjon (båndinnholdet og hodeposisjonen) og hver overgang fra rad til rad tvinges av kantfargene til å være nøyaktig ett maskinsteg. Den uendelige dekkingen, om den finnes, er den uendelige beregningen. « Dekker dette settet? » blir « går denne maskinen for alltid? », og det er stoppproblemet.",
+      body: "Bergers konstruksjon er en oversettelse: Ta en hvilken som helst Turingmaskin og produser et Wang-flisesett som dekker det øvre halvplanet hvis og bare hvis maskinen aldri stopper på tom inndata. Hver rad fliser staver ut en hel maskinkonfigurasjon (båndinnholdet og hodeposisjonen) og hver overgang fra rad til rad tvinges av kantfargene til å være nøyaktig ett maskinsteg. Den uendelige dekkingen, om den finnes, er den uendelige beregningen. « Dekker dette settet? » blir « går denne maskinen for alltid? », og det er stoppproblemet.",
     },
     {
       pretitle: "Avsnitt 04 · Fra 20 426 til 11",
       title: "Robinson, Culik, Jeandel-Rao",
-      body: "Bergers 20 426 fliser var et bevis, ikke en skulptur. Tiårene som fulgte var en jakt på det minste aperiodiske Wang-settet. Raphael Robinson presset det ned til 56 i 1971 med en renere hierarkisk konstruksjon. I 1996 publiserte Jarkko Kari 14; Karel Culik II bygde direkte på Karis ideer og fant 13 samme år, en rekord som holdt i nesten to tiår. I 2015 beviste Emmanuel Jeandel og Michaël Rao ved uttømmende datasøk at 11 er det sanne minimum: det finnes et aperiodisk sett på 11 Wang-fliser, og intet sett på 10 eller færre kan være aperiodisk. Historien har et endelig svar, og det er 11.",
+      body: "Bergers 20 426 fliser var et bevis, ikke en skulptur. Tiårene som fulgte var en jakt på det minste aperiodiske Wang-settet. Raphael Robinson presset det ned til 56 i 1971 med en renere hierarkisk konstruksjon. I 1996 publiserte Jarkko Kari 14; Karel Culik II bygde direkte på Karis ideer og fant 13 samme år, en rekord som holdt i nesten to tiår. I 2015 beviste Emmanuel Jeandel og Michaël Rao ved uttømmende datasøk at 11 er det sanne minimum: Det finnes et aperiodisk sett på 11 Wang-fliser, og intet sett på 10 eller færre kan være aperiodisk. Historien har et endelig svar, og det er 11.",
     },
     {
       pretitle: "Avsnitt 05 · Kvasikrystaller",
@@ -824,7 +824,7 @@ const no: RichStory = {
     },
     {
       pretitle: "Avsnitt 06 · Den aperiodiske monoflisen",
-      title: "2023: én flis er nok",
+      title: "2023: Én flis er nok",
       body: "I over et halvt århundre var det åpne spørsmålet om én enkelt flis kan tvinge fram aperiodisitet: en « einstein », en stein. I mars 2023 kunngjorde David Smith, Joseph Myers, Craig Kaplan og Chaim Goodman-Strauss « hatten »: en 13-kantet polygon som dekker planet bare aperiodisk, med speilinger. To måneder senere leverte samme team « spøkelset », en aperiodisk monoflis som klarer seg uten speilinger. Kjeden Wangs formodning åpnet i 1961 (gjennom Bergers 20 426, Robinsons 56, Culiks 13, Jeandel-Raos 11) ender, seks tiår senere, i 1.",
     },
   ],
@@ -835,7 +835,7 @@ const no: RichStory = {
   tilingCaption: "Interaktivt · legg fliser, kantene må matche",
   tilingPalette: "Palett · 8 fliser",
   tilingHint:
-    "Klikk en celle for å gå gjennom åtte fliser; et klikk forbi den siste tømmer den. En rød ring merker en flis hvis kant ikke stemmer med naboen. Prøv å fylle 3×3-en så hver delt kant matcher: noen konfigurasjoner har mange løsninger, andre ingen.",
+    "Klikk en celle for å gå gjennom åtte fliser; et klikk forbi den siste tømmer den. En rød ring merker en flis hvis kant ikke stemmer med naboen. Prøv å fylle 3×3-en så hver delt kant matcher: Noen konfigurasjoner har mange løsninger, andre ingen.",
   tilingOk: "Alle kanter matcher.",
   tilingBad: "Noen kanter matcher ikke.",
   tilingClear: "Tøm",

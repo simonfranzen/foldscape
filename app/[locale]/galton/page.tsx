@@ -170,7 +170,7 @@ const de: RichStory = {
     title: "Das Galton-Brett",
     tagline: "Hüpfende Kugeln zeichnen immer dieselbe Glocke.",
     intro:
-      "Ein Dreieck aus Stiften, eine Kugel oben fallengelassen, fifty-fifty an jedem Stoß, und irgendwie füllen sich die Fächer unten jedes Mal zur selben Kurve. Das Brett ist der Zentrale Grenzwertsatz zum Anfassen: tausend Münzwürfe werden zur universellsten Form der Statistik.",
+      "Ein Dreieck aus Stiften, eine Kugel oben fallengelassen, fifty-fifty an jedem Stoß, und irgendwie füllen sich die Fächer unten jedes Mal zur selben Kurve. Das Brett ist der Zentrale Grenzwertsatz zum Anfassen: Tausend Münzwürfe werden zur universellsten Form der Statistik.",
     ctaInteractive: "→ Explorer öffnen",
   },
   encounter: {
@@ -190,7 +190,7 @@ const de: RichStory = {
       {
         label: "03",
         title: "Warum es zählt",
-        body: "Die Glocke ist kein Zufall. Sie ist der Zentrale Grenzwertsatz in seiner einfachsten Bühne: summier viele unabhängige faire Münzwürfe, skalier um, und die Verteilung konvergiert gegen eine Gauß. Körpergrößen, Messfehler, Testwerte, Renditen: alles, was Summe vieler kleiner unabhängiger Stöße ist, landet hier.",
+        body: "Die Glocke ist kein Zufall. Sie ist der Zentrale Grenzwertsatz in seiner einfachsten Bühne: Summier viele unabhängige faire Münzwürfe, skalier um, und die Verteilung konvergiert gegen eine Gauß. Körpergrößen, Messfehler, Testwerte, Renditen: Alles, was Summe vieler kleiner unabhängiger Stöße ist, landet hier.",
       },
     ],
     tryIt:
@@ -215,7 +215,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 04 · Zentraler Grenzwertsatz",
       title: "Jede endliche Varianz, jede Verteilung → Glocke",
-      body: "Der allgemeine ZGS, streng bewiesen 1901 von Ljapunow und 1922 von Lindeberg geschärft, sagt weit mehr: nimm IRGENDWELCHE unabhängigen Zufallsvariablen mit endlicher Varianz (schief, diskret, hässlich), summier N davon, skalier um. Der Grenzwert ist eine Gauß. Die Glocke ist der universelle Attraktor des Mittelns.",
+      body: "Der allgemeine ZGS, streng bewiesen 1901 von Ljapunow und 1922 von Lindeberg geschärft, sagt weit mehr: Nimm IRGENDWELCHE unabhängigen Zufallsvariablen mit endlicher Varianz (schief, diskret, hässlich), summier N davon, skalier um. Der Grenzwert ist eine Gauß. Die Glocke ist der universelle Attraktor des Mittelns.",
     },
     {
       pretitle: "Abschnitt 05 · Warum sie überall ist",
@@ -240,7 +240,7 @@ const de: RichStory = {
   simHint:
     "Stifte in Cyan, fallende Kugeln in Amber, das Histogramm füllt sich darunter in Cyan. Die Form wird mit jeder Kugel schärfer.",
   simPretitle: "Interaktiv · der Quincunx",
-  simTitle: "Stifte, Kugeln, Fächer: sieh die Glocke entstehen",
+  simTitle: "Stifte, Kugeln, Fächer: Sieh die Glocke entstehen",
   simBody:
     "Jede Kugel nimmt ihren eigenen Zufallspfad; nur das Histogramm konvergiert. Schieb N und sieh die Glocke schärfer werden.",
   overlayCaption: "Interaktiv · Binomial → Normal",
@@ -250,7 +250,7 @@ const de: RichStory = {
   overlayHint:
     "Cyane Balken: die exakte Binomialverteilung. Violette Kurve: die passende Gauß. Die amber gestrichelte Linie markiert μ = N/2.",
   overlayPretitle: "Interaktiv · De Moivre-Laplace",
-  overlayTitle: "Dreh N hoch: die Binomial wird zur Gauß",
+  overlayTitle: "Dreh N hoch: Die Binomial wird zur Gauß",
   overlayBody:
     "Bei N = 4 ist die Binomial eine grobe Treppe; bei N = 40 schmiegt sich die Gauß-Kurve an jeden Balken. Das ist die Konvergenz, die de Moivre 1733 bewies, der erste Zentrale Grenzwertsatz, verkleidet.",
   pascalRowLabel: "N = 10 · Zeile von Pascal",
@@ -326,7 +326,7 @@ const es: RichStory = {
     {
       pretitle: "Sección 05 · Por qué está en todas partes",
       title: "Estaturas, errores, puntajes, rendimientos",
-      body: "Las estaturas adultas son suma de miles de pequeñas contribuciones genéticas y ambientales, también lo son los errores de medida, los puntajes de IQ, los rendimientos diarios logarítmicos (bajo supuestos limpios). Cada uno es suma de muchos pequeños empujones independientes, así que cada uno es aproximadamente gaussiano. Por eso la desviación estándar tiene nombre y las campanas mandan en estadística.",
+      body: "Las estaturas adultas son suma de miles de pequeñas contribuciones genéticas y ambientales; también lo son los errores de medida, los puntajes de IQ, los rendimientos diarios logarítmicos (bajo supuestos limpios). Cada uno es suma de muchos pequeños empujones independientes, así que cada uno es aproximadamente gaussiano. Por eso la desviación estándar tiene nombre y las campanas mandan en estadística.",
     },
     {
       pretitle: "Sección 06 · Límites",
@@ -432,12 +432,12 @@ const fr: RichStory = {
     {
       pretitle: "Section 05 · Pourquoi elle est partout",
       title: "Tailles, erreurs, scores, rendements",
-      body: "Les tailles adultes sont une somme de milliers de petites contributions génétiques et environnementales, pareil pour les erreurs de mesure, les scores de QI, les rendements logarithmiques quotidiens (sous des hypothèses propres). Chacun est somme de nombreuses petites secousses indépendantes, donc approximativement gaussien. Voilà pourquoi l'écart-type a un nom et pourquoi les courbes en cloche règnent en statistique.",
+      body: "Les tailles adultes sont une somme de milliers de petites contributions génétiques et environnementales ; pareil pour les erreurs de mesure, les scores de QI, les rendements logarithmiques quotidiens (sous des hypothèses propres). Chacun est somme de nombreuses petites secousses indépendantes, donc approximativement gaussien. Voilà pourquoi l'écart-type a un nom et pourquoi les courbes en cloche règnent en statistique.",
     },
     {
       pretitle: "Section 06 · Limites",
       title: "Les queues lourdes refusent la cloche",
-      body: "Le TCL exige une variance finie. Lâche cette hypothèse et d'autres attracteurs plus étranges prennent le relais : les lois stables, avec Cauchy et Lévy aux extrêmes. La critique de Mandelbrot envers la finance, que les rendements ont des queues «sauvages» en loi de puissance, c'est exactement ce point. Quand une seule contribution peut éclipser la somme, aucune cloche n'apparaît.",
+      body: "Le TCL exige une variance finie. Lâche cette hypothèse et d'autres attracteurs plus étranges prennent le relais : les lois stables, avec Cauchy et Lévy aux extrêmes. La critique de Mandelbrot envers la finance, que les rendements ont des queues « sauvages » en loi de puissance, c'est exactement ce point. Quand une seule contribution peut éclipser la somme, aucune cloche n'apparaît.",
     },
   ],
   closingPretitle: "Aller plus loin",
@@ -473,7 +473,7 @@ const fr: RichStory = {
     "Indépendantes, variance finie, n'importe quelle loi. La somme standardisée converge toujours vers la normale centrée réduite : la cloche est l'attracteur universel de la moyenne.",
   breakLabel: "Là où la cloche se brise",
   breakNote:
-    "Cauchy · Lévy · Pareto · lois stables à variance infinie. Mandelbrot, 1963 : les rendements financiers sont «sauvages», pas «doux».",
+    "Cauchy · Lévy · Pareto · lois stables à variance infinie. Mandelbrot, 1963 : les rendements financiers sont « sauvages », pas « doux ».",
   simCanvasLabel:
     "Simulation de la planche de Galton : les billes tombent entre les clous et remplissent un histogramme en dessous.",
   simResetLabel: "Réinitialiser l'histogramme",
@@ -543,7 +543,7 @@ const it: RichStory = {
     {
       pretitle: "Sezione 06 · Limiti",
       title: "Le code pesanti rifiutano la campana",
-      body: "Il TLC richiede varianza finita. Lascia cadere quest'ipotesi e prendono il sopravvento attrattori più strani: le distribuzioni stabili, con Cauchy e Lévy agli estremi. La critica di Mandelbrot alla finanza, che i rendimenti hanno code «selvagge» a legge di potenza, è esattamente questo punto. Quando un singolo contributo può sovrastare la somma, nessuna campana appare.",
+      body: "Il TLC richiede varianza finita. Lascia cadere quest'ipotesi e prendono il sopravvento attrattori più strani: le distribuzioni stabili, con Cauchy e Lévy agli estremi. La critica di Mandelbrot alla finanza (che i rendimenti hanno code «selvagge» a legge di potenza) è esattamente questo punto. Quando un singolo contributo può sovrastare la somma, nessuna campana appare.",
     },
   ],
   closingPretitle: "Vai oltre",
@@ -648,7 +648,7 @@ const pt: RichStory = {
     {
       pretitle: "Secção 06 · Limites",
       title: "Caudas pesadas recusam o sino",
-      body: "O TLC precisa de variância finita. Deixa cair essa hipótese e outros atratores mais estranhos tomam o lugar: as distribuições estáveis, com Cauchy e Lévy nos extremos. A crítica de Mandelbrot à finança, que os retornos têm caudas «selvagens» de lei de potência, é exatamente este ponto. Quando uma única contribuição pode eclipsar a soma, nenhum sino aparece.",
+      body: "O TLC precisa de variância finita. Deixa cair essa hipótese e outros atratores mais estranhos tomam o lugar: as distribuições estáveis, com Cauchy e Lévy nos extremos. A crítica de Mandelbrot à finança (que os retornos têm caudas «selvagens» de lei de potência) é exatamente este ponto. Quando uma única contribuição pode eclipsar a soma, nenhum sino aparece.",
     },
   ],
   closingPretitle: "Vai mais longe",
@@ -824,7 +824,7 @@ const no: RichStory = {
       {
         label: "03",
         title: "Hvorfor det betyr noe",
-        body: "Klokken er ingen tilfeldighet. Det er den sentrale grenseverdisetningen på sin enkleste scene: summer mange uavhengige rettferdige mynter, skaler om, og fordelingen konvergerer mot en Gauss. Høyder, feil, testpoeng, avkastninger: alt som er summen av mange små uavhengige dytt havner her.",
+        body: "Klokken er ingen tilfeldighet. Det er den sentrale grenseverdisetningen på sin enkleste scene: Summer mange uavhengige rettferdige mynter, skaler om, og fordelingen konvergerer mot en Gauss. Høyder, feil, testpoeng, avkastninger: Alt som er summen av mange små uavhengige dytt havner her.",
       },
     ],
     tryIt: "Under: slipp kuler live, så se binomialen vri seg til normal mens du drar opp N.",
@@ -848,12 +848,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 04 · Sentrale grenseverdisetning",
       title: "Hvilken som helst endelig varians, hvilken som helst fordeling → klokke",
-      body: "Den generelle SGS, strengt bevist av Lyapunov i 1901 og skjerpet av Lindeberg i 1922, sier mye mer: ta HVILKE som helst uavhengige stokastiske variable med endelig varians (skjeve, diskrete, stygge), summer N av dem, skaler om. Grensen er en Gauss. Klokken er den universelle attraktoren for å ta gjennomsnitt.",
+      body: "Den generelle SGS, strengt bevist av Lyapunov i 1901 og skjerpet av Lindeberg i 1922, sier mye mer: Ta HVILKE som helst uavhengige stokastiske variable med endelig varians (skjeve, diskrete, stygge), summer N av dem, skaler om. Grensen er en Gauss. Klokken er den universelle attraktoren for å ta gjennomsnitt.",
     },
     {
       pretitle: "Avsnitt 05 · Hvorfor den dukker opp overalt",
       title: "Høyder, feil, testpoeng, avkastninger",
-      body: "Voksne høyder er en sum av tusenvis av små genetiske og miljømessige bidrag, det samme er målefeil, IQ-poeng, daglige logaritmiske avkastninger (under ryddige antakelser). Hver er summen av mange små uavhengige dytt, altså omtrent gaussisk. Derfor har standardavviket et navn og derfor hersker klokkekurvene i statistikken.",
+      body: "Voksne høyder er en sum av tusenvis av små genetiske og miljømessige bidrag; det samme er målefeil, IQ-poeng, daglige logaritmiske avkastninger (under ryddige antakelser). Hver er summen av mange små uavhengige dytt, altså omtrent gaussisk. Derfor har standardavviket et navn og derfor hersker klokkekurvene i statistikken.",
     },
     {
       pretitle: "Avsnitt 06 · Grenser",
@@ -873,7 +873,7 @@ const no: RichStory = {
   simHint:
     "Pinner i cyan, fallende kuler i rav, histogrammet fylles i cyan under. Formen kvesses ved hvert fall.",
   simPretitle: "Interaktivt · quincunxen",
-  simTitle: "Pinner, kuler, båser: se klokken ta form",
+  simTitle: "Pinner, kuler, båser: Se klokken ta form",
   simBody:
     "Hver kule tar sin egen tilfeldige vei; bare histogrammet konvergerer. Dra N og se klokken kvesses.",
   overlayCaption: "Interaktivt · binomial → normal",
@@ -883,7 +883,7 @@ const no: RichStory = {
   overlayHint:
     "Cyan-søyler: den eksakte binomialen. Fiolett kurve: tilsvarende Gauss. Den rav-fargede stiplede linjen markerer μ = N/2.",
   overlayPretitle: "Interaktivt · De Moivre-Laplace",
-  overlayTitle: "Skru opp N: binomialen blir gaussisk",
+  overlayTitle: "Skru opp N: Binomialen blir gaussisk",
   overlayBody:
     "Ved N = 4 er binomialen en grov trapp; ved N = 40 omfavner Gauss-kurven hver søyle. Det er konvergensen de Moivre beviste i 1733, den første sentrale grenseverdisetningen, i forkledning.",
   pascalRowLabel: "N = 10 · rad i Pascal",

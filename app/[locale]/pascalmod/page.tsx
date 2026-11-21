@@ -205,7 +205,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 03 · Kummers Satz (1852)",
       title: "Teilbarkeit = Anzahl der Überträge",
-      body: "Warum spaltet sich mod p so sauber? Kummers Satz sagt: die höchste Potenz von p, die C(n, k) teilt, ist die Anzahl der Überträge bei der Addition k + (n − k) zur Basis p. Also C(n, k) ≢ 0 mod p genau dann, wenn kein Übertrag auftritt, wenn jede p-adische Ziffer von k ≤ der entsprechenden Ziffer von n bleibt. Das Fraktal porträtiert übertragsfreie Addition.",
+      body: "Warum spaltet sich mod p so sauber? Kummers Satz sagt: Die höchste Potenz von p, die C(n, k) teilt, ist die Anzahl der Überträge bei der Addition k + (n − k) zur Basis p. Also C(n, k) ≢ 0 mod p genau dann, wenn kein Übertrag auftritt, wenn jede p-adische Ziffer von k ≤ der entsprechenden Ziffer von n bleibt. Das Fraktal porträtiert übertragsfreie Addition.",
     },
     {
       pretitle: "Abschnitt 04 · Andere Primzahlen, andere Sieben",
@@ -215,12 +215,12 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 05 · Hausdorff-Dimensionen",
       title: "log((p+1)p/2) / log p, gegen 2 strebend",
-      body: "Das mod-p-Sieb hat Hausdorff-Dimension log((p+1)p/2) / log p. Für p = 2 ergibt das log 3 / log 2 ≈ 1,585; für p = 3 etwa 1,631; für p = 7 schon 1,712. Mit wachsendem p kriecht die Dimension gegen 2: das Dreieck füllt mehr und mehr der Ebene, aber nie ganz.",
+      body: "Das mod-p-Sieb hat Hausdorff-Dimension log((p+1)p/2) / log p. Für p = 2 ergibt das log 3 / log 2 ≈ 1,585; für p = 3 etwa 1,631; für p = 7 schon 1,712. Mit wachsendem p kriecht die Dimension gegen 2: Das Dreieck füllt mehr und mehr der Ebene, aber nie ganz.",
     },
     {
       pretitle: "Abschnitt 06 · Zusammengesetzte Moduln",
       title: "Zusammengesetztes n: das Fraktal bleibt, verwischt",
-      body: "Reduziere mod 6 und Kummers saubere Übertragszahl bricht: die Primzahlpotenz-Struktur verheddert sich. Das Bild bleibt insgesamt selbstähnlich (der Chinesische Restsatz stapelt mod 2 und mod 3 übereinander), aber lokale Symmetrie franst aus. Stephen Wolfram katalogisierte solche Bilder in NKS als nächste Zellulär-Automaten-Verwandte von Pascal mod p.",
+      body: "Reduziere mod 6 und Kummers saubere Übertragszahl bricht: Die Primzahlpotenz-Struktur verheddert sich. Das Bild bleibt insgesamt selbstähnlich (der Chinesische Restsatz stapelt mod 2 und mod 3 übereinander), aber lokale Symmetrie franst aus. Stephen Wolfram katalogisierte solche Bilder in NKS als nächste Zellulär-Automaten-Verwandte von Pascal mod p.",
     },
   ],
   viewer: {
@@ -757,7 +757,7 @@ const no: RichStory = {
   page: {
     pretitle: "Tema · Geometri",
     title: "Pascals trekant (mod n)",
-    tagline: "Fargelegg etter delelighet: en fraktal faller ut.",
+    tagline: "Fargelegg etter delelighet: En fraktal faller ut.",
     intro:
       "Pascals trekant er oppslagstabellen for binomialkoeffisientene C(n, k). Hver oppføring er summen av de to over. Reduser modulo et primtall, og fargemønsteret som står igjen er en perfekt, uendelig fraktal. Grunnen gjemmer seg i base-p-aritmetikk.",
     ctaInteractive: "→ Åpne Utforskeren",
@@ -799,7 +799,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 03 · Kummers teorem (1852)",
       title: "Delelighet = antall mente",
-      body: "Hvorfor faktoriserer mod p så rent? Kummers teorem sier: den høyeste potensen av p som deler C(n, k) er antall mente når k og (n − k) legges sammen i base p. Altså C(n, k) ≢ 0 mod p akkurat når det ikke oppstår noen mente, når hvert base-p-siffer i k blir ≤ tilsvarende siffer i n. Fraktalen er portrettet av menteløs addisjon.",
+      body: "Hvorfor faktoriserer mod p så rent? Kummers teorem sier: Den høyeste potensen av p som deler C(n, k) er antall mente når k og (n − k) legges sammen i base p. Altså C(n, k) ≢ 0 mod p akkurat når det ikke oppstår noen mente, når hvert base-p-siffer i k blir ≤ tilsvarende siffer i n. Fraktalen er portrettet av menteløs addisjon.",
     },
     {
       pretitle: "Avsnitt 04 · Andre primtall, andre siler",
@@ -809,12 +809,12 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 05 · Hausdorff-dimensjoner",
       title: "log((p+1)p/2) / log p, klatrende mot 2",
-      body: "Mod-p-silen har Hausdorff-dimensjon log((p+1)p/2) / log p. For p = 2 gir det log 3 / log 2 ≈ 1,585; for p = 3 omtrent 1,631; for p = 7 allerede 1,712. Når p vokser, kryper dimensjonen mot 2: trekanten fyller mer og mer av planet, men aldri alt.",
+      body: "Mod-p-silen har Hausdorff-dimensjon log((p+1)p/2) / log p. For p = 2 gir det log 3 / log 2 ≈ 1,585; for p = 3 omtrent 1,631; for p = 7 allerede 1,712. Når p vokser, kryper dimensjonen mot 2: Trekanten fyller mer og mer av planet, men aldri alt.",
     },
     {
       pretitle: "Avsnitt 06 · Ikke-prime moduler",
       title: "Sammensatt n: fraktalen er der ennå, men uskarp",
-      body: "Reduser mod 6 og Kummers rene mentetelling brister: primpotensstrukturen vikler seg. Bildet forblir selvlikt i stort (kinesisk restteorem stabler mønstrene mod 2 og mod 3), men lokal symmetri rakner. Stephen Wolfram katalogiserte disse i NKS som de cellulære automatene nærmest Pascal mod p.",
+      body: "Reduser mod 6 og Kummers rene mentetelling brister: Primpotensstrukturen vikler seg. Bildet forblir selvlikt i stort (kinesisk restteorem stabler mønstrene mod 2 og mod 3), men lokal symmetri rakner. Stephen Wolfram katalogiserte disse i NKS som de cellulære automatene nærmest Pascal mod p.",
     },
   ],
   viewer: {
@@ -844,7 +844,7 @@ const no: RichStory = {
   },
   dimensionLabel: "Hausdorff-dimensjon",
   dimensionNote:
-    "Strengt mellom en kurve (1) og en flate (2). Når p vokser fyller silen mer: grensen er 2, aldri nådd.",
+    "Strengt mellom en kurve (1) og en flate (2). Når p vokser fyller silen mer: Grensen er 2, aldri nådd.",
   closingPretitle: "Gå videre",
   closingTitle: "Åpne Utforskeren.",
   closingBody:

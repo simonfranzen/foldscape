@@ -413,7 +413,7 @@ const FIGURE: Record<Locale, FigureLabels> = {
     },
     fig2: {
       pretitle: "Figur 2 · Fra by til graf",
-      heading: "Eulers sprang: geometri blir topologi",
+      heading: "Eulers sprang: Geometri blir topologi",
       becomes: "blir",
       cityLabel: "byen",
       graphLabel: "grafen",

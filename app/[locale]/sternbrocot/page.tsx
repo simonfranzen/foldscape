@@ -189,7 +189,7 @@ const de: RichStory = {
     {
       pretitle: "Abschnitt 02 · Jeder Bruch, einmal",
       title: "Nichts ausgelassen, nichts wiederholt",
-      body: "Stern entdeckte den Baum 1858 als Stück reiner Zahlentheorie; Brocot fand ihn 1861 wieder, beim Wählen von Zahnradübersetzungen für Uhren. Ihr gemeinsamer Satz: gehst du weit genug, triffst du jeden gekürzten Bruch p/q mit p, q > 0, jeder sitzt an seinem eigenen, einzigen Knoten, keiner fehlt, keiner taucht doppelt auf. Der Baum ist zugleich vollständige Liste der positiven rationalen Zahlen und Zeuge dafür, dass sie nur abzählbar sind.",
+      body: "Stern entdeckte den Baum 1858 als Stück reiner Zahlentheorie; Brocot fand ihn 1861 wieder, beim Wählen von Zahnradübersetzungen für Uhren. Ihr gemeinsamer Satz: Gehst du weit genug, triffst du jeden gekürzten Bruch p/q mit p, q > 0, jeder sitzt an seinem eigenen, einzigen Knoten, keiner fehlt, keiner taucht doppelt auf. Der Baum ist zugleich vollständige Liste der positiven rationalen Zahlen und Zeuge dafür, dass sie nur abzählbar sind.",
     },
     {
       pretitle: "Abschnitt 03 · Links-Rechts ist der Kettenbruch",
@@ -394,7 +394,7 @@ const fr: RichStory = {
     {
       pretitle: "Section 06 · Usages modernes",
       title: "Hinting de polices, horloges numériques, théorie des nombres",
-      body: "Brocot voulait des trains d'engrenages précis ; aujourd'hui le même arbre choisit des approximations rationnelles pour le hinting de polices sur grilles de pixels, anime l'étape d'approximation des PLL numériques, et soutient des preuves modernes d'approximation diophantienne. Partout où il faut «la fraction la plus simple qui s'approche assez», c'est la structure.",
+      body: "Brocot voulait des trains d'engrenages précis ; aujourd'hui le même arbre choisit des approximations rationnelles pour le hinting de polices sur grilles de pixels, anime l'étape d'approximation des PLL numériques, et soutient des preuves modernes d'approximation diophantienne. Partout où il faut « la fraction la plus simple qui s'approche assez », c'est la structure.",
     },
   ],
   closingPretitle: "Pour aller plus loin",
@@ -742,7 +742,7 @@ const no: RichStory = {
     {
       pretitle: "Avsnitt 02 · Hver brøk, én gang",
       title: "Ingenting glemt, ingenting gjentatt",
-      body: "Stern oppdaget treet i 1858 som ren tallteori; Brocot gjenoppdaget det i 1861 mens han valgte utvekslinger til klokker. Deres felles teorem: gå langt nok og du møter hver forkortet brøk p/q med positive ledd, hver enkelt ved sin egen unike node, ingen mangler, ingen gjentas. Treet er samtidig en fullstendig liste over de positive rasjonale tallene og et vitne om at de bare er tellbart mange.",
+      body: "Stern oppdaget treet i 1858 som ren tallteori; Brocot gjenoppdaget det i 1861 mens han valgte utvekslinger til klokker. Deres felles teorem: Gå langt nok og du møter hver forkortet brøk p/q med positive ledd, hver enkelt ved sin egen unike node, ingen mangler, ingen gjentas. Treet er samtidig en fullstendig liste over de positive rasjonale tallene og et vitne om at de bare er tellbart mange.",
     },
     {
       pretitle: "Avsnitt 03 · Venstre-høyre er kjedebrøken",

@@ -302,7 +302,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo três · O grupo livre de rotações",
           title: "F₂, gerado por duas rotações",
-          body: "O coração da prova é puramente da teoria dos grupos. Duas rotações a e b da esfera unitária S², adequadamente escolhidas, não satisfazem qualquer relação não trivial: geram um grupo livre F₂ de posto 2: cada palavra reduzida em a, a⁻¹, b, b⁻¹ atua como uma rotação distinta. F₂ admite uma decomposição paradoxal: divide-se em quatro conjuntos W(a), W(a⁻¹), W(b), W(b⁻¹) (palavras que começam por cada gerador) mais a identidade, e cada conjunto deslocado cobre o resto do grupo. Empurra isto pelo paradoxo da esfera de Hausdorff (1914), eleva de S² até à bola sólida, e a duplicação no grupo torna-se uma duplicação de B³.",
+          body: "O coração da prova é puramente da teoria dos grupos. Duas rotações a e b da esfera unitária S², adequadamente escolhidas, não satisfazem qualquer relação não trivial: geram um grupo livre F₂ de posto 2; cada palavra reduzida em a, a⁻¹, b, b⁻¹ atua como uma rotação distinta. F₂ admite uma decomposição paradoxal: divide-se em quatro conjuntos W(a), W(a⁻¹), W(b), W(b⁻¹) (palavras que começam por cada gerador) mais a identidade, e cada conjunto deslocado cobre o resto do grupo. Empurra isto pelo paradoxo da esfera de Hausdorff (1914), eleva de S² até à bola sólida, e a duplicação no grupo torna-se uma duplicação de B³.",
         },
         {
           pretitle: "Passo quatro · Porque não parte o mundo",
@@ -332,7 +332,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo três · Exemplos clássicos",
           title: "Quatro regras, quatro fractais",
-          body: "Floco de neve de Koch: axioma F++F++F, regra F → F−F++F−F, ângulo 60°. Quatro iterações e o triângulo enrugou-se até virar floco. Curva do dragão: axioma FX, regras X → X+YF+, Y → −FX−Y, ângulo 90°; após uma dúzia de reescritas dobra-se no dragão de Heighway. Ponta de seta de Sierpiński: A → B−A−B, B → A+B+A, ângulo 60°, alterna paridade para varrer o triângulo de Sierpiński. Planta fractal: X → F+[[X]−X]−F[−FX]+X, F → FF, ângulo 25°: o feto canónico de Lindenmayer e Prusinkiewicz, ramos e tudo. A mesma maquinaria, organismos selvagemente diferentes.",
+          body: "Floco de neve de Koch: axioma F++F++F, regra F → F−F++F−F, ângulo 60°. Quatro iterações e o triângulo enrugou-se até virar floco. Curva do dragão: axioma FX, regras X → X+YF+, Y → −FX−Y, ângulo 90°; após uma dúzia de reescritas dobra-se no dragão de Heighway. Ponta de seta de Sierpiński: A → B−A−B, B → A+B+A, ângulo 60°, alterna paridade para varrer o triângulo de Sierpiński. Planta fractal: X → F+[[X]−X]−F[−FX]+X, F → FF, ângulo 25°, o feto canónico de Lindenmayer e Prusinkiewicz, ramos e tudo. A mesma maquinaria, organismos selvagemente diferentes.",
         },
         {
           pretitle: "Passo quatro · Porque os botânicos os adoram",
@@ -562,7 +562,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo um · Dois azulejos, nunca a repetir",
           title: "Penrose, 1974",
-          body: "Roger Penrose introduziu a sua primeira pavimentação aperiódica (P1) em 1974, usando seis protótipos construídos em torno do pentágono. Rapidamente reduziu o conjunto a dois: o par papagaio + flecha (P2), e o par de dois losangos (P3): um losango fino com ângulos 36°/144° e um losango grosso com ângulos 72°/108°. Cada azulejo carrega as regras de correspondência de Conway: setas ou entalhes coloridos nas arestas que fixam que azulejos podem estar ao lado de quais. Sem elas, podias pavimentar periodicamente com papagaios e flechas; com elas, toda pavimentação legítima é forçada a ser aperiódica.",
+          body: "Roger Penrose introduziu a sua primeira pavimentação aperiódica (P1) em 1974, usando seis protótipos construídos em torno do pentágono. Rapidamente reduziu o conjunto a dois: o par papagaio + flecha (P2), e o par de dois losangos (P3), um losango fino com ângulos 36°/144° e um losango grosso com ângulos 72°/108°. Cada azulejo carrega as regras de correspondência de Conway: setas ou entalhes coloridos nas arestas que fixam que azulejos podem estar ao lado de quais. Sem elas, podias pavimentar periodicamente com papagaios e flechas; com elas, toda pavimentação legítima é forçada a ser aperiódica.",
         },
         {
           pretitle: "Passo dois · Simetria de ordem cinco",
@@ -736,7 +736,7 @@ export const pt: StoriesDict = {
       title: "O Argumento Diagonal de Cantor",
       tagline: "O infinito vem em tamanhos.",
       intro:
-        "O argumento diagonal de 1891 de Georg Cantor é a prova mais limpa em matemática de que alguns infinitos são maiores que outros. O Explorador anima a construção em direto: escolhe qualquer listagem de decimais em [0,1] e vê sair um novo número real da diagonal: um que não pode estar na tua lista, não importa quão astutamente a tenhas ordenado.",
+        "O argumento diagonal de 1891 de Georg Cantor é a prova mais limpa em matemática de que alguns infinitos são maiores que outros. O Explorador anima a construção em direto: escolhe qualquer listagem de decimais em [0,1] e vê sair um novo número real da diagonal, um que não pode estar na tua lista, não importa quão astutamente a tenhas ordenado.",
       ctaInteractive: "→ Abrir o Explorador",
       sections: [
         {
@@ -997,7 +997,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo quatro · E os bolbos mais pequenos",
           title: "Uma escada infinita de círculos agarrados",
-          body: "A cardioide principal do conjunto de Mandelbrot tem discos circulares mais pequenos pendurados em cada fração racional p/q. Cada disco corresponde a uma dinâmica em que o ciclo atrativo tem período q. O maior disco, à esquerda, tem período 2; os dois seguintes têm período 3; depois quatro discos de período 4; e assim por diante. O fractal na fronteira do conjunto de Mandelbrot é precisamente a fronteira entre estas regiões estáveis e o caos. Café, ótica, iteração complexa, os objetos mais profundos da dinâmica, todos a vestir a mesma forma.",
+          body: "A cardioide principal do conjunto de Mandelbrot tem discos circulares mais pequenos pendurados em cada fração racional p/q. Cada disco corresponde a uma dinâmica em que o ciclo atrativo tem período q. O maior disco, à esquerda, tem período 2; os dois seguintes têm período 3; depois quatro discos de período 4; e assim por diante. O fractal na fronteira do conjunto de Mandelbrot é precisamente a fronteira entre estas regiões estáveis e o caos. Café, ótica, iteração complexa, os objetos mais profundos da dinâmica: todos a vestir a mesma forma.",
         },
       ],
     },
@@ -1177,7 +1177,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo quatro · Onde está hoje",
           title: "Do TLS à migração pós-quântica",
-          body: "O RSA é a matemática por baixo de cada aperto de mão TLS que o teu browser ainda negoceia com um certificado RSA, por baixo das chaves de host SSH, por baixo das cadeias de assinatura de código que autenticam apps da Apple e da Google, por baixo dos passaportes electrónicos e das primeiras gerações de blockchain. Mas em 1994 Peter Shor escreveu um algoritmo quântico que factoriza inteiros em tempo polinomial, dado um computador quântico tolerante a falhas suficientemente grande, o RSA quebra. Ainda não existe nenhum, mas o calendário é incerto o bastante para que o NIST tenha padronizado substituições pós-quânticas (CRYSTALS-Kyber para troca de chaves em 2024, CRYSTALS-Dilithium para assinaturas) e a migração global já esteja em curso.",
+          body: "O RSA é a matemática por baixo de cada aperto de mão TLS que o teu browser ainda negoceia com um certificado RSA, por baixo das chaves de host SSH, por baixo das cadeias de assinatura de código que autenticam apps da Apple e da Google, por baixo dos passaportes electrónicos e das primeiras gerações de blockchain. Mas em 1994 Peter Shor escreveu um algoritmo quântico que factoriza inteiros em tempo polinomial: dado um computador quântico tolerante a falhas suficientemente grande, o RSA quebra. Ainda não existe nenhum, mas o calendário é incerto o bastante para que o NIST tenha padronizado substituições pós-quânticas (CRYSTALS-Kyber para troca de chaves em 2024, CRYSTALS-Dilithium para assinaturas) e a migração global já esteja em curso.",
         },
       ],
     },
@@ -1197,7 +1197,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo dois · Surpresas com tesoura",
           title: "O que as tesouras revelam sobre topologia",
-          body: "Corta a fita de Möbius a meio. Não se parte: obténs uma fita mais comprida com duas voltas completas (quatro meias voltas), e crucialmente essa fita volta a ter dois lados. Corta uma fita de Möbius a um terço da distância a uma das arestas, mantendo o corte paralelo à aresta ao longo de toda a volta, e a tesoura percorre o caminho duas vezes antes de fechar o ciclo: saem dois anéis entrelaçados: uma nova fita de Möbius mais estreita (ainda com uma só meia volta) e um anel mais comprido de dois lados com duas meias voltas (que já não é uma fita de Möbius), enlaçados um no outro. A topologia está cheia destas surpresas: o giro global escondido pela planura local.",
+          body: "Corta a fita de Möbius a meio. Não se parte: obténs uma fita mais comprida com duas voltas completas (quatro meias voltas), e crucialmente essa fita volta a ter dois lados. Corta uma fita de Möbius a um terço da distância a uma das arestas, mantendo o corte paralelo à aresta ao longo de toda a volta, e a tesoura percorre o caminho duas vezes antes de fechar o ciclo: saem dois anéis entrelaçados, uma nova fita de Möbius mais estreita (ainda com uma só meia volta) e um anel mais comprido de dois lados com duas meias voltas (que já não é uma fita de Möbius), enlaçados um no outro. A topologia está cheia destas surpresas: o giro global escondido pela planura local.",
         },
         {
           pretitle: "Passo três · A garrafa de Klein",
@@ -1317,7 +1317,7 @@ export const pt: StoriesDict = {
         {
           pretitle: "Passo dois · Watts e Strogatz, 1998",
           title: "Re-ligar com probabilidade p",
-          body: "Começa por uma rede em anel: N nós num círculo, cada um ligado aos seus k vizinhos mais próximos de cada lado. O grafo tem clustering C alto (os teus amigos são amigos uns dos outros) mas um comprimento médio de caminho L longo, da ordem de N/k. Agora re-liga cada aresta com probabilidade p a um destino aleatório. À medida que p sobe a partir de 0, L colapsa logaritmicamente enquanto C mal se mexe. Uns quantos atalhos aleatórios encolhem o mundo. O ponto certo, à volta de p ≈ 0,01 a 0,1, é o regime de mundo pequeno: C alto como uma rede regular, L baixo como um grafo aleatório.",
+          body: "Começa por uma rede em anel: N nós num círculo, cada um ligado aos seus k vizinhos mais próximos de cada lado. O grafo tem clustering C alto (os teus amigos são amigos uns dos outros), mas um comprimento médio de caminho L longo, da ordem de N/k. Agora re-liga cada aresta com probabilidade p a um destino aleatório. À medida que p sobe a partir de 0, L colapsa logaritmicamente enquanto C mal se mexe. Uns quantos atalhos aleatórios encolhem o mundo. O ponto certo, à volta de p ≈ 0,01 a 0,1, é o regime de mundo pequeno: C alto como uma rede regular, L baixo como um grafo aleatório.",
         },
         {
           pretitle: "Passo três · Onde o mundo é mesmo pequeno",
