@@ -1,7 +1,7 @@
 import { renderTopicOG } from "@/lib/og/template";
 
 export const runtime = "edge";
-export const alt = "Foldscape — nand";
+export const alt = "NAND and the Sheffer Stroke · Foldscape";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

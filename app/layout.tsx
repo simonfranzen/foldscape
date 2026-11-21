@@ -6,7 +6,8 @@ import { Nav } from "@/components/Nav";
 import { I18nProvider } from "@/lib/i18n/context";
 import { Footer } from "@/components/Footer";
 import { palette } from "@/lib/visual/palette";
-import { languageAlternates } from "@/lib/og/metadata";
+import { TITLE_SUFFIX, languageAlternates } from "@/lib/og/metadata";
+import { JsonLd, siteJsonLd } from "@/lib/seo/jsonld";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
@@ -19,14 +20,14 @@ const serif = Cormorant_Garamond({
 });
 
 const SITE_URL = "https://foldscape.zauberware.com";
-const SITE_TITLE = "Foldscape — an atlas of mathematical curiosities";
+const SITE_TITLE = "Foldscape · an atlas of mathematical curiosities";
 const SITE_DESCRIPTION =
-  "From almost nothing — everything. An atlas of mathematical curiosities where a single rule unfolds into a universe: Mandelbrot, Conway's Life, Lorenz, Fourier, Euler and more. Curated by Simon Franzen at zauberware.";
+  "An interactive atlas of mathematical curiosities: fractals, chaos, logic and computation. Explore the Mandelbrot set, Conway's Game of Life, Lorenz, Fourier and more.";
 
 export const metadata: Metadata = {
   title: {
     default: SITE_TITLE,
-    template: "%s — Foldscape",
+    template: `%s${TITLE_SUFFIX}`,
   },
   description: SITE_DESCRIPTION,
   metadataBase: new URL(SITE_URL),
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        <JsonLd data={siteJsonLd()} />
       </head>
       <body className="noise overflow-x-hidden bg-ink-950 text-ink-100 antialiased">
         <a

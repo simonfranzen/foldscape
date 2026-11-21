@@ -15,6 +15,8 @@ import { ATLAS } from "@/lib/i18n/atlas";
 import { MESSAGES } from "@/lib/i18n/messages";
 import { UI } from "@/lib/i18n/ui";
 import { LOCALES, type Locale } from "@/lib/i18n/types";
+import { TOPIC_SEO } from "@/lib/seo/descriptions";
+import { serializeJsonLd, topicJsonLd } from "@/lib/seo/jsonld";
 
 const TOPIC_IDS = TOPICS.map((t) => t.id);
 const TOPIC_ID_SET = new Set<TopicId>(TOPIC_IDS);
@@ -164,4 +166,32 @@ describe("i18n: EN ↔ DE key parity", () => {
       expect(missing, `${name}.en missing: ${missing.join(", ")}`).toEqual([]);
     });
   }
+});
+
+describe("search metadata", () => {
+  // Google truncates around 155 to 160 characters; much shorter wastes the
+  // snippet. Dashes as punctuation are a house style rule for public copy.
+  for (const id of TOPIC_IDS) {
+    it(`${id} has a 140 to 160 character description without dashes`, () => {
+      const { title, description } = TOPIC_SEO[id];
+      expect(description.length).toBeGreaterThanOrEqual(140);
+      expect(description.length).toBeLessThanOrEqual(160);
+      for (const text of [description, title ?? ""]) {
+        expect(text).not.toMatch(/[\u2013\u2014]| - /);
+      }
+    });
+  }
+
+  it("JSON-LD escapes < so it cannot close the script tag", () => {
+    const out = serializeJsonLd({ name: "</script><b>" });
+    expect(out).not.toContain("<");
+    expect(JSON.parse(out)).toEqual({ name: "</script><b>" });
+  });
+
+  it("topic JSON-LD carries an Article and a two-step breadcrumb", () => {
+    const [article, crumbs] = topicJsonLd("lorenz");
+    expect(article["@type"]).toContain("Article");
+    expect(article.url).toBe("https://foldscape.zauberware.com/lorenz");
+    expect((crumbs.itemListElement as unknown[]).length).toBe(2);
+  });
 });

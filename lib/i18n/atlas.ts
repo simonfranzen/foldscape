@@ -70,10 +70,11 @@ export interface AtlasDict {
 
 const en: AtlasDict = {
   landing: {
-    pretitle: "An atlas of mathematical curiosities",
+    pretitle: "Foldscape: an interactive atlas of mathematical curiosities",
     title1: "From almost nothing",
     title2: "everything",
-    subtitle: "Ideas in which a single rule unfolds into an entire universe.",
+    subtitle:
+      "An interactive atlas of mathematical ideas, from fractals and chaos to logic and computation, where a single rule unfolds into an entire universe.",
     hook: "One operator. One rule. One equation. And suddenly: logic, life, chaos. Universes from almost nothing — math at the moment it stops being homework and starts looking like art.",
     intro1:
       "Every room begins with almost nothing — one operator, one rule, one equation — and walks until the picture is dense. Every room is fully built; you get to turn every knob, restart every iteration, zoom every picture down to the last digit.",
@@ -179,10 +180,11 @@ const en: AtlasDict = {
 
 const de: AtlasDict = {
   landing: {
-    pretitle: "Ein Atlas mathematischer Kuriositäten",
+    pretitle: "Foldscape: ein interaktiver Atlas mathematischer Kuriositäten",
     title1: "Aus fast nichts",
     title2: "alles",
-    subtitle: "Ideen, in denen sich aus einer einzigen Regel ein ganzes Universum entfaltet.",
+    subtitle:
+      "Ein interaktiver Atlas mathematischer Ideen, von Fraktalen und Chaos bis Logik und Berechenbarkeit, in denen sich aus einer einzigen Regel ein ganzes Universum entfaltet.",
     hook: "Eine Operation. Eine Regel. Eine Gleichung. Und plötzlich: Logik, Leben, Chaos. Universen aus fast nichts — Mathematik in dem Moment, in dem sie aufhört Hausaufgabe zu sein und anfängt, wie Kunst auszusehen.",
     intro1:
       "Jeder Raum beginnt bei fast nichts — ein Operator, eine Regel, eine Gleichung — und läuft, bis das Bild dicht wird. Jeder Raum ist fertig ausgebaut; du darfst an jedem Knopf drehen, jede Iteration neu starten, jedes Bild bis zur letzten Stelle zoomen.",

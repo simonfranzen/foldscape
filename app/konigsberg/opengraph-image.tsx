@@ -1,7 +1,7 @@
 import { renderTopicOG } from "@/lib/og/template";
 
 export const runtime = "edge";
-export const alt = "Foldscape — konigsberg";
+export const alt = "The Seven Bridges of Königsberg · Foldscape";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

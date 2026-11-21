@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { getTopic, type TopicId } from "@/lib/topics";
 import { EN_PLACEHOLDERS } from "@/lib/i18n/placeholders";
 import { DEFAULT_LOCALE, LOCALES } from "@/lib/i18n/types";
+import { TOPIC_SEO } from "@/lib/seo/descriptions";
 
 export const SITE_URL = "https://foldscape.zauberware.com";
 
@@ -53,6 +54,8 @@ export function languageAlternates(path: string): Record<string, string> {
   return out;
 }
 
+export const TITLE_SUFFIX = " · Foldscape";
+
 // Titles carry the site suffix explicitly via `absolute`: the root title
 // template only reaches direct children, so nested sub-rooms (explorer,
 // sandbox) would otherwise lose the suffix while story pages keep it.
@@ -63,10 +66,10 @@ export function pageMetadata(
   type: "website" | "article" = "website",
 ): Metadata {
   return {
-    title: { absolute: `${title} — Foldscape` },
+    title: { absolute: `${title}${TITLE_SUFFIX}` },
     description,
     openGraph: {
-      title: `${title} — Foldscape`,
+      title: `${title}${TITLE_SUFFIX}`,
       description,
       url: path,
       siteName: "Foldscape",
@@ -74,18 +77,31 @@ export function pageMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} — Foldscape`,
+      title: `${title}${TITLE_SUFFIX}`,
       description,
     },
     alternates: { canonical: path, languages: languageAlternates(path) },
   };
 }
 
+// Search-facing title and description for a story page. The title falls back
+// to the atlas card title; the description falls back to the tagline only
+// if a topic was added without an entry in TOPIC_SEO.
+export function topicSeoCopy(id: TopicId): { title: string; description: string } {
+  const { title, tagline } = getTopicCopy(id);
+  const seo = TOPIC_SEO[id];
+  return {
+    title: seo?.title ?? title,
+    description:
+      seo?.description ||
+      tagline ||
+      `${title}, an idea in the Foldscape atlas of mathematical curiosities.`,
+  };
+}
+
 export function topicMetadata(id: TopicId): Metadata {
   const topic = getTopic(id);
-  const { title, tagline } = getTopicCopy(id);
-  const description =
-    tagline || `${title}, an idea in the Foldscape atlas of mathematical curiosities.`;
+  const { title, description } = topicSeoCopy(id);
   return pageMetadata(topic.href, title, description, "article");
 }
 

@@ -1,7 +1,7 @@
 import { renderTopicOG } from "@/lib/og/template";
 
 export const runtime = "edge";
-export const alt = "Foldscape — rsa";
+export const alt = "RSA Encryption and One-Way Functions · Foldscape";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

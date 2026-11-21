@@ -1,7 +1,7 @@
 import { renderTopicOG } from "@/lib/og/template";
 
 export const runtime = "edge";
-export const alt = "Foldscape — smallworld";
+export const alt = "Six Degrees and Small-World Networks · Foldscape";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
